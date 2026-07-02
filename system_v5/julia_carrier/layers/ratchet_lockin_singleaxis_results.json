@@ -1,0 +1,719 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^2); finite genuine channel set (6 het + 4 commuting control)",
+    "finite_operator": "Ti/Te/Fi/Fe (strength-independent) + Weyl-L/R GKSL with FIXED steps, swept T (then swept gamma); genuine layer maps reused from ratchet_survivor_reach_killtest",
+    "finite_path": "forward vs reversed depth words at each horizon T (and each gamma); permutation survivors at each T",
+    "finite_probe": "20 random density operators + 1 fixed survivor seed; 7 horizons T in {4,2,1,0.5,0.25,0.125,0.06} (steps=200 fixed) + 4 gamma cross-check values; depth ladder reps 1..64 (depths 6..384)"
+  },
+  "N01_witness": {
+    "divergence_formula": "Delta(d) = mean_rho ||Phi_fwd^d(rho) - Phi_rev^d(rho)||_1 vs depth d, per horizon T (steps fixed)",
+    "lockin_depth_series_T_decreasing": [
+      6,
+      6,
+      6,
+      12,
+      24,
+      6,
+      6
+    ],
+    "noise_floor": 1.3642420526593924e-12,
+    "present_above_floor": true,
+    "survivor_spread_max_series_T_decreasing": [
+      0.44543639097738674,
+      0.4430454836483465,
+      0.6503740572231798,
+      0.574096609469261,
+      0.32334809390968167,
+      0.1751320554698648,
+      0.0872519612293285
+    ]
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "any ratchet edge admission",
+    "ratchet thesis closure",
+    "pairwise nesting",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics"
+  ],
+  "carrier": "density operators rho in D(C^2); genuine layer channels Ti/Te/Fi/Fe (strength-independent) + Weyl-L/R GKSL; HS norm, trace norm. NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "MEASURES the forward-vs-reversed divergence-vs-depth curve and its 95% plateau lock-in depth on the genuine channel set as the physical horizon T is varied with Euler fineness fixed, plus a gamma-only cross-check, vs an explicit noise floor and a commuting control. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics. A lock-in-depth-vs-T trend here is a CANDIDATE order-memory diagnostic, not a proven ratchet edge.",
+  "classification": "ratchet_lockin_singleaxis_poc",
+  "commuting_control": {
+    "above_floor": false,
+    "base_schedule": "Tz.30 Tz.55 Tz.65 Tz.80",
+    "depths": [
+      4,
+      8,
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "divergence_maxes": [
+      1.1102314949223173e-16,
+      1.110223026693108e-16,
+      1.1102230246251664e-16,
+      1.1102230246251565e-16,
+      1.1102230246251565e-16,
+      1.1102230246251565e-16,
+      1.1102230246251565e-16
+    ],
+    "divergence_means": [
+      9.127692517130764e-18,
+      5.5885041711197695e-18,
+      5.551133841416103e-18,
+      5.551115123132187e-18,
+      5.551115123125783e-18,
+      5.551115123125783e-18,
+      5.551115123125783e-18
+    ],
+    "flat_at_floor": true,
+    "lockin_depth": -1,
+    "note": "z-pinches in one basis: commute and carry no GKSL leg, so identical across all T and gamma by construction. MUST stay at the floor (flat curve) and pick the SAME survivor.",
+    "plateau": 5.551115123125783e-18,
+    "same_survivor": true,
+    "survivor_spread_max": 3.2944368926050117e-82
+  },
+  "core_thesis_already_validated": {
+    "order_dependent_survivor_and_irreversibility": "ratchet_survivor_reach_killtest.jl: survivor persists, commuting control flat + same survivor.",
+    "order_sensitivity_real": "order_null_killtest.jl overall=order_sensitivity_real; heterogeneous word run order matters.",
+    "this_file_resolves_only": "the ONE open secondary falsifier: whether the lock-in DEPTH curve is monotone once the conflated T+steps knob is split onto ONE physical axis (T, steps fixed)."
+  },
+  "crosscheck_gamma_only": {
+    "agrees_with_T_axis": true,
+    "all_gamma_above_floor": true,
+    "fixed_T": 1.0,
+    "fixed_steps": 200,
+    "gamma_series_decreasing": [
+      2.0,
+      1.0,
+      0.5,
+      0.25
+    ],
+    "lockin_depth_monotone_in_gamma": false,
+    "lockin_depth_series_gamma_decreasing": [
+      6,
+      6,
+      6,
+      6
+    ],
+    "lockin_grew_somewhere": false,
+    "lockin_nondecreasing_as_gamma_decreases": true,
+    "note": "ONLY the dissipator weight gamma (jump rate) varies; T and steps fixed. gamma touches EXACTLY the two Weyl GKSL legs. Series read with gamma DECREASING (= gentler relaxation per slot) to mirror the T axis.",
+    "per_gamma": [
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.840854637397975,
+          0.837306163774744,
+          0.8363466333350305,
+          0.8363469393883884,
+          0.8363469393875327,
+          0.8363469393875327,
+          0.8363469393875327
+        ],
+        "divergence_means": [
+          0.8207953348770411,
+          0.8361500738000324,
+          0.8363451698119826,
+          0.8363469393815797,
+          0.8363469393875327,
+          0.8363469393875327,
+          0.8363469393875327
+        ],
+        "gksl_T": 1.0,
+        "gksl_gamma": 2.0,
+        "gksl_steps": 200,
+        "lockin_depth": 6,
+        "lockin_idx": 1,
+        "plateau": 0.8363469393875327,
+        "rose_before_lockin": false,
+        "survivor_persists": true,
+        "survivor_spread_max": 1.0840253991881554,
+        "survivor_spread_mean": 0.6730653660197832
+      },
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.5315222874867731,
+          0.4767968409101223,
+          0.4630109043753138,
+          0.4628950663311786,
+          0.46289491645106173,
+          0.4628949164509471,
+          0.4628949164509471
+        ],
+        "divergence_means": [
+          0.4505539514635538,
+          0.46207857077573083,
+          0.46270929918298015,
+          0.46289478363907455,
+          0.4628949164508519,
+          0.46289491645094716,
+          0.46289491645094716
+        ],
+        "gksl_T": 1.0,
+        "gksl_gamma": 1.0,
+        "gksl_steps": 200,
+        "lockin_depth": 6,
+        "lockin_idx": 1,
+        "plateau": 0.46289491645094716,
+        "rose_before_lockin": false,
+        "survivor_persists": true,
+        "survivor_spread_max": 0.6503740572231798,
+        "survivor_spread_mean": 0.4178019991453788
+      },
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.43212162484532896,
+          0.28755704270106625,
+          0.23573603645051217,
+          0.23287144812836336,
+          0.23282447042071505,
+          0.23282446160950523,
+          0.23282446160950523
+        ],
+        "divergence_means": [
+          0.2797538068320472,
+          0.23693804628281648,
+          0.23151744807004193,
+          0.23280990674470772,
+          0.2328244589795395,
+          0.23282446160950493,
+          0.2328244616095052
+        ],
+        "gksl_T": 1.0,
+        "gksl_gamma": 0.5,
+        "gksl_steps": 200,
+        "lockin_depth": 6,
+        "lockin_idx": 1,
+        "plateau": 0.2328244616095052,
+        "rose_before_lockin": false,
+        "survivor_persists": true,
+        "survivor_spread_max": 0.3580251230479662,
+        "survivor_spread_mean": 0.2376511376825405
+      },
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.4335225952713415,
+          0.23066198755709794,
+          0.126798563852707,
+          0.11401262986530672,
+          0.11325486391745236,
+          0.11325252970376082,
+          0.11325252968182917
+        ],
+        "divergence_means": [
+          0.23675910741607656,
+          0.1406618736672588,
+          0.11147002366947305,
+          0.11315189176448277,
+          0.11325222299668206,
+          0.11325252967894757,
+          0.11325252968182901
+        ],
+        "gksl_T": 1.0,
+        "gksl_gamma": 0.25,
+        "gksl_steps": 200,
+        "lockin_depth": 6,
+        "lockin_idx": 1,
+        "plateau": 0.11325252968182901,
+        "rose_before_lockin": false,
+        "survivor_persists": true,
+        "survivor_spread_max": 0.19050621847189217,
+        "survivor_spread_mean": 0.1319838239532459
+      }
+    ],
+    "plateau_series_gamma_decreasing": [
+      0.8363469393875327,
+      0.46289491645094716,
+      0.2328244616095052,
+      0.11325252968182901
+    ],
+    "survivor_spread_max_series_gamma_decreasing": [
+      1.0840253991881554,
+      0.6503740572231798,
+      0.3580251230479662,
+      0.19050621847189217
+    ]
+  },
+  "distinguishing_question_T_axis": {
+    "above_floor_series": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "all_T_above_floor": true,
+    "lockin_depth_monotone_in_T": false,
+    "lockin_depth_series_T_decreasing": [
+      6,
+      6,
+      6,
+      12,
+      24,
+      6,
+      6
+    ],
+    "lockin_grew_somewhere": true,
+    "lockin_nondecreasing_as_T_decreases": false,
+    "note": "-1 lock-in entries mean the curve never rose above the floor at that T (no lock-in to measure). monotone == nondecreasing down the (decreasing-T) list AND grows somewhere.",
+    "plateau_series_T_decreasing": [
+      0.3540637408893296,
+      0.3726238718523548,
+      0.46289491645094716,
+      0.43981071366425856,
+      0.287172727641838,
+      0.15877506351992865,
+      0.07972496211258583
+    ],
+    "question": "with steps fixed and only T varied, does the lock-in DEPTH grow monotonically as T DECREASES?",
+    "survivor_spread_max_series_T_decreasing": [
+      0.44543639097738674,
+      0.4430454836483465,
+      0.6503740572231798,
+      0.574096609469261,
+      0.32334809390968167,
+      0.1751320554698648,
+      0.0872519612293285
+    ]
+  },
+  "n_rho": 20,
+  "noise_floor": {
+    "deepest_word_length": 384,
+    "definition": "eps(Float64) * max PTM HS scale (=2.0) * deepest het word length (384) * 8 safety",
+    "machine_eps": 2.220446049250313e-16,
+    "max_ptm_hs_scale": 2.0,
+    "value": 1.3642420526593924e-12
+  },
+  "non_numpy": true,
+  "object_id": "ratchet_lockin_singleaxis",
+  "prior_confound": {
+    "fix": "FIX steps=200 (small, constant Euler error) and vary ONLY T; cross-check by FIX T+steps and vary ONLY gamma.",
+    "prior_knob_conflated": "T (relaxation horizon) AND steps (Euler fineness): strong/medium/weak used dt=0.01 but very_weak used dt=0.006 with only 10 Euler steps, so the depth series mixed a physical-horizon change with an integrator-resolution change.",
+    "prior_lockin_series_strong_to_veryweak": [
+      6,
+      6,
+      24,
+      6
+    ],
+    "prior_was_nonmonotone": true
+  },
+  "promotion_allowed": false,
+  "reused_from": "ratchet_survivor_reach_killtest.jl / order_null_killtest.jl genuine _bf channels (Ti/Te/Fi/Fe + Weyl-L/R GKSL + hopf_h0 + rand_rho + ptm + het base schedule). NO new channels invented; only the swept axis is isolated.",
+  "script": "ratchet_lockin_singleaxis.jl",
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes local rerun",
+  "sweep_T_only": {
+    "T_series_decreasing": [
+      4.0,
+      2.0,
+      1.0,
+      0.5,
+      0.25,
+      0.125,
+      0.06
+    ],
+    "dt_series": [
+      0.02,
+      0.01,
+      0.005,
+      0.0025,
+      0.00125,
+      0.000625,
+      0.0003
+    ],
+    "fixed_gamma": 1.0,
+    "fixed_steps": 200,
+    "note": "ONLY the physical horizon T varies; steps fixed at 200 so Euler local error is small and CONSTANT in count. dt = T/200 shrinks with T, so the integrator gets FINER (not coarser) as T weakens -- the very_weak coarse-dt confound from the prior file is removed.",
+    "per_T": [
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.35503546683071097,
+          0.3540686346897566,
+          0.35406374089921366,
+          0.3540637408893297,
+          0.3540637408893297,
+          0.3540637408893297,
+          0.3540637408893297
+        ],
+        "divergence_means": [
+          0.3538417627716687,
+          0.35406390053490866,
+          0.3540637408728211,
+          0.3540637408893296,
+          0.3540637408893296,
+          0.3540637408893296,
+          0.3540637408893296
+        ],
+        "gksl_T": 4.0,
+        "gksl_dt": 0.02,
+        "gksl_gamma": 1.0,
+        "gksl_steps": 200,
+        "lockin_depth": 6,
+        "lockin_idx": 1,
+        "plateau": 0.3540637408893296,
+        "rose_before_lockin": false,
+        "survivor_persists": true,
+        "survivor_spread_max": 0.44543639097738674,
+        "survivor_spread_mean": 0.3080008726884619
+      },
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.39105887749593593,
+          0.3728535867099875,
+          0.3726241283728937,
+          0.372623871852516,
+          0.3726238718523548,
+          0.3726238718523548,
+          0.3726238718523548
+        ],
+        "divergence_means": [
+          0.37706272520819895,
+          0.37258154569505997,
+          0.372623937630881,
+          0.37262387185237494,
+          0.3726238718523548,
+          0.3726238718523548,
+          0.3726238718523548
+        ],
+        "gksl_T": 2.0,
+        "gksl_dt": 0.01,
+        "gksl_gamma": 1.0,
+        "gksl_steps": 200,
+        "lockin_depth": 6,
+        "lockin_idx": 1,
+        "plateau": 0.3726238718523548,
+        "rose_before_lockin": false,
+        "survivor_persists": true,
+        "survivor_spread_max": 0.4430454836483465,
+        "survivor_spread_mean": 0.3283763576435465
+      },
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.5315222874867731,
+          0.4767968409101223,
+          0.4630109043753138,
+          0.4628950663311786,
+          0.46289491645106173,
+          0.4628949164509471,
+          0.4628949164509471
+        ],
+        "divergence_means": [
+          0.4505539514635538,
+          0.46207857077573083,
+          0.46270929918298015,
+          0.46289478363907455,
+          0.4628949164508519,
+          0.46289491645094716,
+          0.46289491645094716
+        ],
+        "gksl_T": 1.0,
+        "gksl_dt": 0.005,
+        "gksl_gamma": 1.0,
+        "gksl_steps": 200,
+        "lockin_depth": 6,
+        "lockin_idx": 1,
+        "plateau": 0.46289491645094716,
+        "rose_before_lockin": false,
+        "survivor_persists": true,
+        "survivor_spread_max": 0.6503740572231798,
+        "survivor_spread_mean": 0.4178019991453788
+      },
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.4805102883283021,
+          0.4649159932662999,
+          0.4401432384510042,
+          0.43981876427550437,
+          0.43981071455484844,
+          0.4398107136642586,
+          0.4398107136642586
+        ],
+        "divergence_means": [
+          0.3651062931721975,
+          0.4201187847890252,
+          0.4369053141994157,
+          0.4397825925968582,
+          0.4398107107280257,
+          0.43981071366425856,
+          0.43981071366425856
+        ],
+        "gksl_T": 0.5,
+        "gksl_dt": 0.0025,
+        "gksl_gamma": 1.0,
+        "gksl_steps": 200,
+        "lockin_depth": 12,
+        "lockin_idx": 2,
+        "plateau": 0.43981071366425856,
+        "rose_before_lockin": true,
+        "survivor_persists": true,
+        "survivor_spread_max": 0.574096609469261,
+        "survivor_spread_mean": 0.31055419282436275
+      },
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.38274161239145205,
+          0.305236875011886,
+          0.2889098033939005,
+          0.2871957127947214,
+          0.28717273137452526,
+          0.287172727641838,
+          0.287172727641838
+        ],
+        "divergence_means": [
+          0.23365912921152213,
+          0.26544352074168476,
+          0.2842146139679748,
+          0.2871364180818065,
+          0.28717272179878345,
+          0.28717272764183777,
+          0.287172727641838
+        ],
+        "gksl_T": 0.25,
+        "gksl_dt": 0.00125,
+        "gksl_gamma": 1.0,
+        "gksl_steps": 200,
+        "lockin_depth": 24,
+        "lockin_idx": 3,
+        "plateau": 0.287172727641838,
+        "rose_before_lockin": true,
+        "survivor_persists": true,
+        "survivor_spread_max": 0.32334809390968167,
+        "survivor_spread_mean": 0.17223294921839016
+      },
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.3255478886589819,
+          0.19576667925604677,
+          0.16117499479920822,
+          0.15881101765507513,
+          0.15877506851169143,
+          0.1587750635199288,
+          0.1587750635199288
+        ],
+        "divergence_means": [
+          0.15819104244200127,
+          0.141432023310774,
+          0.15666083442717438,
+          0.15875191506070235,
+          0.15877506040267406,
+          0.15877506351992854,
+          0.15877506351992865
+        ],
+        "gksl_T": 0.125,
+        "gksl_dt": 0.000625,
+        "gksl_gamma": 1.0,
+        "gksl_steps": 200,
+        "lockin_depth": 6,
+        "lockin_idx": 1,
+        "plateau": 0.15877506351992865,
+        "rose_before_lockin": false,
+        "survivor_persists": true,
+        "survivor_spread_max": 0.1751320554698648,
+        "survivor_spread_mean": 0.08713849482887547
+      },
+      {
+        "above_floor": true,
+        "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+        "depths": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192,
+          384
+        ],
+        "divergence_maxes": [
+          0.28480558975642944,
+          0.1296934144035654,
+          0.08167874858639688,
+          0.07976037983520343,
+          0.07972496653651467,
+          0.07972496211258599,
+          0.07972496211258599
+        ],
+        "divergence_means": [
+          0.1324737162367731,
+          0.07104544040735053,
+          0.0780083038279589,
+          0.07970810874078227,
+          0.07972496025864499,
+          0.07972496211258581,
+          0.07972496211258583
+        ],
+        "gksl_T": 0.06,
+        "gksl_dt": 0.0003,
+        "gksl_gamma": 1.0,
+        "gksl_steps": 200,
+        "lockin_depth": 6,
+        "lockin_idx": 1,
+        "plateau": 0.07972496211258583,
+        "rose_before_lockin": false,
+        "survivor_persists": true,
+        "survivor_spread_max": 0.0872519612293285,
+        "survivor_spread_mean": 0.04176242258973448
+      }
+    ]
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm), HS norms, channel/PTM algebra; every measured number flows through it.",
+    "Random": "load_bearing: random density operators (signatures measured over fresh samples, not planted).",
+    "Statistics": "supportive: means over the rho ensemble and over orderings.",
+    "Z3": "load_bearing: binds the genuine survivor spread at the gentlest horizon to the commuting law; verdict flips UNSAT->SAT on the commuting control."
+  },
+  "verdict": {
+    "all_T_above_floor": true,
+    "classification": "lockin_depth_not_monotone",
+    "control_flat_at_floor": true,
+    "control_same_survivor": true,
+    "controls_clean": true,
+    "crosscheck_agrees_with_T_axis": true,
+    "crosscheck_gamma_axis_lockin_monotone": false,
+    "interpretation": "If lockin_depth_monotone_in_T: gentler physical horizon T (steps fixed) requires MORE depth before the order memory locks in -- the genuine ratchet drive-down read off a single clean axis. If lockin_depth_not_monotone: the lock-in DEPTH is not the ratchet's load-bearing signature; the ratchet's evidence is the survivor-persistence + irreversibility legs (already solid), not the depth curve -- and that is a fine, final answer. The gamma cross-check states whether jump-rate-alone gives the same answer as horizon-alone.",
+    "lockin_depth_monotone_in_T": false,
+    "lockin_depth_series_T_decreasing": [
+      6,
+      6,
+      6,
+      12,
+      24,
+      6,
+      6
+    ],
+    "scope": "this verdict is ABOUT THE LOCK-IN DEPTH CURVE ONLY. The core ratchet thesis (order-dependent irreversible survivor) is validated by order_null_killtest.jl and ratchet_survivor_reach_killtest.jl and is NOT re-decided here.",
+    "survivor_persists_at_every_T": true,
+    "z3_load_bearing_flip": true
+  },
+  "z3_load_bearing": {
+    "commuting_survivor_spread": 3.2944368926050117e-82,
+    "commuting_verdict": "sat",
+    "encoding": "FREE int spread, FREE bool commuting_set; law Or([Not(commuting_set), spread==0]); assert commuting_set=true + spread==IntVal(measured). genuine(gentlest horizon): unsat; commuting: sat.",
+    "genuine_gentle_survivor_spread": 0.0872519612293285,
+    "genuine_gentle_verdict": "unsat",
+    "load_bearing_flip": true
+  }
+}

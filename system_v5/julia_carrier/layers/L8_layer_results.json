@@ -1,0 +1,314 @@
+{
+  "F01_witness": {
+    "finite_carrier": "Dirac spinor Psi in C^4 = C^2_L (+) C^2_R; chiral projectors P_L,P_R",
+    "finite_cell_complex": "K=(V,E,F,C)=(4,6,4,1) tetra-cell, Dirac spinor per vertex",
+    "finite_operator": "parity P=gamma0 (improper lift) and rotor lifts U_rot=exp(-i th/2 Sigma_k)",
+    "finite_path": "reflect-then-rotate vs rotate-then-reflect orientation operations on Psi",
+    "finite_probe": "chiral charge q = Psi^dag gamma5 Psi; induced 3x3 current action det"
+  },
+  "N01_witness": {
+    "anchored_to": "P=gamma0 anticommutes with gamma5; Sigma_k commutes with gamma5 (Weyl-basis, source-quoted, not planted)",
+    "description": "orientation/parity order gap: a reflection P and a rotation U_rot do NOT commute on the chirality cover — P flips the orientation label (q -> -q) while U_rot preserves it, so P^{-1} U_rot P U_rot^{-1} acts nontrivially on the L/R sheet; equivalently P anticommutes with gamma5 while U_rot commutes, giving the improper-vs-proper det gap = 2.",
+    "gap_present": true,
+    "measured_parity_anticommutator_residual": 0.0,
+    "measured_pin_spin_det_gap": 2.0,
+    "measured_rotation_commutator_max": 0.0
+  },
+  "O1_orientation_swap": {
+    "math": "P gamma5 P^{-1} = -gamma5 -> q -> -q (orientation flip); U_rot gamma5 U_rot^{-1} = gamma5 -> q invariant",
+    "max_reflection_flip_residual_q_to_minus_q": 2.220446049250313e-16,
+    "max_rotation_invariance_residual": 4.440892098500626e-16,
+    "mean_swap_magnitude_2absq": 0.7649536824839619,
+    "n_trials": 400,
+    "orientation_swap_present": true
+  },
+  "O2_pin_vs_spin": {
+    "det_parity_lift_improper": -1.0,
+    "det_rotation_lift_proper_mean": 1.0,
+    "math": "Pin(3) lifts O(3) incl. reflections (det=-1); Spin(3) lifts only SO(3) rotations (det=+1). Parity P is the improper Pin-only lift.",
+    "parity_ortho_residual": 0.0,
+    "pin_spin_det_gap": 2.0,
+    "pin_vs_spin_distinct": true,
+    "rotation_ortho_residual_max": 6.79238219974942e-16
+  },
+  "O3_double_cover": {
+    "double_cover_present": true,
+    "math": "R_2pi = (R_pi)^2 = -I4 (deck transformation of the orientation cover) yet identity on SO(3) and on the L/R label.",
+    "pi_rotor_induced_O3_not_identity": 2.0,
+    "two_pi_rotor_deck_sign_measured": -1.0,
+    "two_pi_rotor_eq_minus_I_residual": 1.2246467991473532e-16,
+    "two_pi_rotor_gamma5_commutator": 0.0,
+    "two_pi_rotor_label_identity_residual": 2.4492935982947064e-16
+  },
+  "ablation": {
+    "ablation_outcome_delta_swap_magnitude": 0.7649536824839619,
+    "nonvacuous": true,
+    "present_to_absent_certificate": true,
+    "removed": "the gamma5 orientation control (set gamma5 := 0 -> orientation-blind), re-run the orientation swap magnitude",
+    "swap_magnitude_with_gamma5": 0.7649536824839619,
+    "swap_magnitude_without_gamma5": 0.0
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "L9 Clifford/quaternion module — consumes the oriented L/R cover (Cl3 rotors/reflections); blocked until pairwise order test with L8 runs.",
+    "L10 terrain GKSL generators — terrain families are seated on the oriented sheet s=L/R; blocked.",
+    "Axis0 cut-state kernel / flux placement (Weyl Flux doc) — downstream derived object; blocked.",
+    "order/ratchet pairwise tests (L7-then-L8 vs L8-then-L7) — gated behind parent-complete + dependency-forcing; not run here."
+  ],
+  "carrier_language": "native Julia (LinearAlgebra), NOT numpy/torch",
+  "classification": "L8_layer_poc",
+  "construction": {
+    "gamma5_anticomm_residual": 0.0,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_ok": true,
+    "gamma5_sq_residual": 0.0,
+    "gamma5_weyl_block_diag_chirality_split": true,
+    "parity_PL_to_PR_exchange_residual": 0.0,
+    "parity_PR_to_PL_exchange_residual": 0.0,
+    "parity_P_eq_gamma0_sq_residual": 0.0,
+    "parity_anticommutes_gamma5_residual": 0.0,
+    "parity_ok": true,
+    "parity_swaps_LR_projectors": true,
+    "parity_unitary_residual": 0.0,
+    "rotation_gamma5_commutator_max": 0.0,
+    "rotation_preserves_sheets": true
+  },
+  "controls": {
+    "negative": {
+      "erase_gamma5_orientation_swap_collapse_gap": 0.7649536824839619,
+      "erase_gamma5_peps_orientation_collapse_gap": 0.23632272879559565,
+      "erase_reflection_pin_to_spin_collapse_gap": 2.0,
+      "merge_LR_sheets_collapse_gap": 0.8059626606605836
+    },
+    "positive": {
+      "double_cover_deck_sign_gap": 2.0,
+      "lr_density_chirality_diff_gap": 0.8059626606605836,
+      "orientation_swap_2absq_gap": 0.7649536824839619,
+      "peps_vertex_orientation_gap": 0.23632272879559565,
+      "pi_rotor_real_rotation_gap": 2.0,
+      "pin_spin_det_gap": 2.0
+    },
+    "required_load_bearing_erasures": [
+      "erase_gamma5_orientation_swap_collapse",
+      "erase_reflection_pin_to_spin_collapse",
+      "merge_LR_sheets_collapse",
+      "erase_gamma5_peps_orientation_collapse"
+    ]
+  },
+  "dependency_forcing": {
+    "all_erasures_collapse_signature": true,
+    "below_geometry_represented": "yes — the gamma5 chirality split (P_L,P_R), the parity operator P=gamma0, the rotor lifts U_rot, and the two L7 sheet Hamiltonians H_L=+H0,H_R=-H0; erasures act on the orientation control (gamma5->0), the reflection generator (Pin->Spin), and the sheet split (merge).",
+    "erasure_E_merge_sheets": {
+      "control": "set H_R := H_L = +H0 (merge L/R Weyl sheets below the cover)",
+      "lr_density_swap_gap_after_merge": 0.0,
+      "lr_density_swap_gap_genuine": 0.8059626606605836,
+      "merge_collapses_orientation_signal": true
+    },
+    "erasure_E_no_reflection_pin_to_spin": {
+      "control": "remove the reflection generator (parity P replaced by a proper rotor); only Spin rotations remain",
+      "det_parity_lift_after_erasure": 1.0,
+      "det_parity_lift_genuine": -1.0,
+      "det_rotation_reference": 1.0,
+      "pin_collapses_onto_spin": true,
+      "pin_spin_gap_after_erasure": 0.0,
+      "pin_spin_gap_genuine": 2.0
+    },
+    "erasure_E_swap_LR_orientation_blind": {
+      "control": "symmetrise chiral projectors (P_L+P_R)/2 = I/2  <=>  gamma5 -> 0 (no preferred orientation; reflection that swaps L<->R is the identity)",
+      "orientation_cover_trivializes": true,
+      "swap_magnitude_after_erasure": 0.0,
+      "swap_magnitude_genuine": 0.7649536824839619
+    },
+    "interpretation": "PASS: each below-geometry erasure collapses an L8 signature — gamma5->0 trivializes the orientation swap (2|q| -> 0), removing the reflection collapses Pin onto Spin (det gap 2 -> 0), and merging the L7 sheets kills the L/R density differential the cover covers. The orientation cover is FORCED by the below-geometry, not hand-written."
+  },
+  "finite_map": "(Psi in C^4 Dirac spinor, g in {rotation, reflection} lift) --> oriented chirality label q = Psi^dag gamma5 Psi in [-1,1] with cover action: reflection P=gamma0 sends q -> -q (orientation reversal, P gamma5 P^{-1} = -gamma5, P P_L P^{-1} = P_R); rotation U_rot=exp(-i theta/2 Sigma_k) sends q -> q (preserves orientation, [U_rot,gamma5]=0). Erasure gamma5->0 maps every q -> 0 (cover trivializes); removing the reflection maps det_parity -1 -> +1 (Pin collapses onto Spin).",
+  "honest_status_ladder": "passes",
+  "honesty_note": "All signatures are MEASURED off freshly-sampled Dirac spinors and random rotation lifts, never planted. The decisive dependency-forcing controls: (E_swap_LR) gamma5->0 trivializes the orientation cover — the swap magnitude 2|q| goes 0.765 -> 0.0; (E_no_reflection) removing the reflection collapses Pin onto Spin — the parity det goes -1.0 -> 1.0 (gap 2.0 -> 0.0); (E_merge) merging the L7 sheets kills the L/R chirality differential the cover covers — D_chi goes 0.806 -> 0.0. If any had SURVIVED, that signature would only prove hand-written channels run; the collapse certificate is all_erasures_collapse_signature=true. Z3 is load-bearing: free is_reflection -> derived parity det, measured==derived UNSAT, reflection-under-erased-Spin SAT.",
+  "layer": "L8",
+  "layer_name": "chirality orientation cover (L/R sheet; gamma5/Pin/Spin/reflection)",
+  "layer_signature": {
+    "det_parity_improper": -1.0,
+    "det_rotation_proper": 1.0,
+    "distinct_from": "L7 (opposite CIRCULATION of the two sheets; does NOT flip q under parity); L9 (Clifford module action). L8 is the ORIENTATION cover: reflection swaps L<->R (q->-q), Pin-vs-Spin improper det gap, 2pi deck = -1.",
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "layer_id": "L8",
+    "lr_density_chirality_diff_genuine": 0.8059626606605836,
+    "object": "chirality_orientation_double_cover_pin_spin_reflection",
+    "orientation_swap_2absq_mean": 0.7649536824839619,
+    "peps_vertex_orientation_gap": 0.23632272879559565,
+    "pin_spin_det_gap": 2.0,
+    "two_pi_deck_sign": -1.0
+  },
+  "negative_controls": {
+    "chiral_eigenstate_charge_exact_pm1": {
+      "exact": true,
+      "qL": -1.0,
+      "qR": 1.0
+    },
+    "parity_even_state_no_orientation_signal": {
+      "meaning": "a q=0 (equal L/R) state has zero swap magnitude: the orientation signal is genuinely about chiral imbalance, not planted",
+      "no_swap": true,
+      "q_even": 2.2371143170757382e-17
+    },
+    "parity_maps_L_eigenstate_to_R": {
+      "P_psiL_lands_in_R_block": true,
+      "meaning": "P psi_L is a pure-R direction: the cover swap is exact on eigenstates"
+    },
+    "parity_squared_is_identity_Z2_cover": {
+      "P2_identity": true,
+      "meaning": "P^2 = I: the orientation cover deck group is Z/2 (reflecting twice restores orientation); this is the order-2 structure of the cover"
+    }
+  },
+  "non_numpy": true,
+  "peps3d_K_VEFC_anchor": {
+    "C_count": 1,
+    "E_count": 6,
+    "F_count": 4,
+    "V_count": 4,
+    "cell_orientation_collapses_under_gamma5_erasure": true,
+    "cell_orientation_reverses_under_parity": true,
+    "edge_orientation_contrast_genuine": [
+      0.17462,
+      0.096196,
+      0.362683,
+      0.270817,
+      0.188063,
+      0.45888
+    ],
+    "euler_char_V_minus_E_plus_F": 2,
+    "meaning": "each vertex of the tetra-cell K=(4,6,4,1) carries a Dirac spinor with a chiral charge q_i; the parity P reverses the cell orientation (q_i -> -q_i at every vertex, residual ~0), and erasing gamma5 collapses every q_i to 0.",
+    "spinor_per_vertex_dirac_C4": true,
+    "vertex_chiral_charge_after_gamma5_erasure": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "vertex_chiral_charge_genuine": [
+      -0.126361,
+      0.04826,
+      -0.222557,
+      0.236323
+    ],
+    "vertex_chiral_charge_reflected": [
+      0.126361,
+      -0.04826,
+      0.222557,
+      -0.236323
+    ],
+    "vertex_orientation_flip_residual_q_to_minusq": 2.7755575615628914e-17
+  },
+  "promotion_allowed": false,
+  "qit_readouts_derived": {
+    "D_chi_trace_distance_LR_mean": 0.9178701569149029,
+    "note": "the chirality trace-distance D_chi=||rho_L-rho_R||_1 and the von Neumann entropy are DERIVED outputs of the cover dynamics, never the primary object",
+    "orientation_note": "the orientation cover is the structure on TOP of these readouts; scalar entropy is never the L8 object.",
+    "von_neumann_entropy_reflected_sheet_mean": 0.47240487909785883
+  },
+  "scale_stress_8_16_32_64": {
+    "N_16": {
+      "gamma5_erasure_collapses_all_sites": true,
+      "hold_at_this_scale": true,
+      "mean_swap_magnitude_after_erasure": 0.0,
+      "mean_swap_magnitude_genuine": 0.6108979303188231,
+      "n_collapsed": 16,
+      "n_present": 16,
+      "orientation_swap_present_all_sites": true,
+      "sites": 16
+    },
+    "N_32": {
+      "gamma5_erasure_collapses_all_sites": true,
+      "hold_at_this_scale": true,
+      "mean_swap_magnitude_after_erasure": 0.0,
+      "mean_swap_magnitude_genuine": 0.6959197509134797,
+      "n_collapsed": 32,
+      "n_present": 32,
+      "orientation_swap_present_all_sites": true,
+      "sites": 32
+    },
+    "N_64": {
+      "gamma5_erasure_collapses_all_sites": true,
+      "hold_at_this_scale": true,
+      "mean_swap_magnitude_after_erasure": 0.0,
+      "mean_swap_magnitude_genuine": 0.7473485319126333,
+      "n_collapsed": 64,
+      "n_present": 64,
+      "orientation_swap_present_all_sites": true,
+      "sites": 64
+    },
+    "N_8": {
+      "gamma5_erasure_collapses_all_sites": true,
+      "hold_at_this_scale": true,
+      "mean_swap_magnitude_after_erasure": 0.0,
+      "mean_swap_magnitude_genuine": 0.6283492572449179,
+      "n_collapsed": 8,
+      "n_present": 8,
+      "orientation_swap_present_all_sites": true,
+      "sites": 8
+    },
+    "scale_invariant_declared": true,
+    "scale_invariant_note": "orientation-swap-present (exact q -> -q) + gamma5-erasure-collapse hold on EVERY independent Dirac site, so the boolean is invariant BY CONSTRUCTION; the mean_swap_magnitude_genuine varies across scales (independent samples) and is the non-frozen numeric witness."
+  },
+  "scale_stress_all_hold": true,
+  "script": "L8_layer.jl",
+  "seed": 20260601,
+  "spinor_state_native_julia": true,
+  "status_ladder": "exists < runs < passes",
+  "summary": {
+    "min_gaps": {
+      "double_cover_deck_sign_gap": 2.0,
+      "lr_density_chirality_diff_gap": 0.8059626606605836,
+      "orientation_swap_2absq_gap": 0.7649536824839619,
+      "peps_vertex_orientation_gap": 0.23632272879559565,
+      "pi_rotor_real_rotation_gap": 2.0,
+      "pin_spin_det_gap": 2.0
+    },
+    "orientation_swap_2absq_mean": 0.7649536824839619,
+    "pin_spin_det_gap": 2.0
+  },
+  "tools_used": {
+    "JSON": "load_bearing — emits the receipt.",
+    "LinearAlgebra": "load_bearing — exp(matrix) lifts/propagators, det/opnorm for the induced O(3) action, eigvals for trace-distance/entropy/PSD, matrix products for the parity/rotor algebra; every measured number flows through it.",
+    "Random": "load_bearing — Haar Dirac spinors, random rotation axes/angles and seed Bloch vectors; numbers are off fresh samples, not planted.",
+    "Z3": "load_bearing — DERIVES the parity-lift det from a free is_reflection flag over the sign group and proves measured==derived (UNSAT); a reflection claimed under the erased (Spin-only) theory goes SAT (verdict flips)."
+  },
+  "upgrades_scout": "pin3_spin3_chirality_clifford_object.jl (kept Pin/Spin facts; replaced single-qubit by-construction theater with below-geometry + dependency-forcing)",
+  "verdict": {
+    "ablation_nonvacuous": true,
+    "all_pass": true,
+    "dependency_forcing_merge_collapses": true,
+    "dependency_forcing_pin_to_spin_collapses": true,
+    "dependency_forcing_swap_collapses": true,
+    "double_cover_present": true,
+    "gamma5_constructed_measured": true,
+    "negative_controls_ok": true,
+    "orientation_swap_present": true,
+    "parity_operator_swaps_LR": true,
+    "peps3d_orientation_reverses_and_collapses": true,
+    "pin_vs_spin_distinct": true,
+    "qit_readouts_derived_ok": true,
+    "rotation_preserves_sheets": true,
+    "scale_stress_all_hold": true,
+    "z3_anchor_load_bearing_ok": true
+  },
+  "z3_anchor": {
+    "broken_claim_reflection_under_erased_spin_must_be_sat": "sat",
+    "encoding": "free boolean is_reflection over the sign group {-1,+1} with the lift homomorphism (improper<->-1, proper<->+1); assert measured != derived; UNSAT => proven, SAT => kill. Measured det fed from the float current-action sim.",
+    "load_bearing_ok": true,
+    "measured_det_parity": -1,
+    "measured_det_parity_after_pin_to_spin_erasure": 1,
+    "measured_det_rotation": 1,
+    "parity_det_proof": "unsat",
+    "rotation_det_proof": "unsat"
+  }
+}

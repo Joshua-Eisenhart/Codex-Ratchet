@@ -1,0 +1,333 @@
+{
+  "all_pass": true,
+  "all_pass_newstd": true,
+  "all_pass_original": true,
+  "blocked_consumers": [
+    "Nested Hopf tori (depends on S^1 fiber geometry; not yet earned)",
+    "Weyl spinor carrier (depends on Hopf bundle structure; not yet earned)",
+    "flux / coupling / bridge / physics (downstream; gated)",
+    "rho_AB / Xi / Phi0 / Axis0 / FEP (downstream; gated)"
+  ],
+  "claim_ceiling": "carrier-level invariants and finite maps only. NOT layer-completion, manifold admission, coupling, bridge, flux, rho_AB, Xi, Phi0, Axis0, or physics.",
+  "classification": "s2_cp1_newstd_poc",
+  "controls_summary": {
+    "chern_invariant_anchored": true,
+    "ent_load_bearing": true,
+    "ghz_anchor_ok": true,
+    "quotient_genuine": true,
+    "wrong_structure_kills": true,
+    "z3_load_bearing": true
+  },
+  "entanglement_n8": {
+    "N": 8,
+    "entangled_cut_entropy": [
+      0.06628562004555402,
+      0.014605301294476687,
+      0.059779124431737274,
+      0.07470089567599542,
+      0.14562030246561694,
+      0.07859843798863402,
+      0.07859843798863402
+    ],
+    "entangled_cut_max": 0.14562030246561694,
+    "entangled_cut_mean": 0.07402687427009262,
+    "entangled_max_bond": 2,
+    "ghz_anchor_ok": true,
+    "ghz_cut_entropy": [
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      -6.406853007629837e-16
+    ],
+    "ghz_cut_max": 0.9999999999999999,
+    "load_bearing": true,
+    "method": "MPS Schmidt SVD (von Neumann entropy), Bloch-free",
+    "product_cut_entropy": [
+      6.406853007629834e-16,
+      3.2034265038149176e-16,
+      3.2034265038149176e-16,
+      6.406853007629834e-16,
+      9.61027951144475e-16,
+      9.61027951144475e-16,
+      6.406853007629834e-16
+    ],
+    "product_cut_max": 9.61027951144475e-16,
+    "product_max_bond": 1
+  },
+  "exact_carrier": {
+    "N": 8,
+    "bar": "max GHZ cut deviation from 1 bit < 0.01 at N=8",
+    "deciding_number": 1.1102230246251565e-16,
+    "equal_budget": "genuine (entangled) and control (product) both use N=8, maxdim=8, cutoff=1e-14",
+    "exact_carrier_met": true,
+    "ghz_cut_entropy_all_cuts": [
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      -6.406853007629837e-16
+    ],
+    "interior_cuts": [
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999
+    ],
+    "max_deviation_from_1_bit": 1.1102230246251565e-16,
+    "no_ctmrg": true
+  },
+  "finite_map": {
+    "F01_witness": "all projectors P(theta,phi) have ||P||_F=1 (compact carrier); flat R^2 coordinate spread is unbounded",
+    "N01_witness": "su(2) generators [J_x,J_y]=i J_z (||>0 input-dep); flat diagonal operators [T_a,T_b]=0",
+    "codomain": "Z (first Chern number, topological invariant of the eigenline bundle); R+ (entanglement entropy)",
+    "domain": "unit spinors psi in S^3 ~ C^2, parameterized by (theta,phi) in [0,pi]x[0,2pi]; the Hopf base map pi(psi) = psi^dag sigma psi maps each to a point on S^2 = CP^1",
+    "geometry_role": "compact S^2=CP^1 SUPPLIES F01 finitude (all projectors bounded ||P||_F=1); su(2)/U(1) bundle structure SUPPLIES N01 noncommutation [J_x,J_y]!=0",
+    "object_id": "s2_cp1_newstd_poc",
+    "operator": "Berry curvature F=i Tr(P [d_theta P, d_phi P]); Chern number c1 = (1/2pi) int_{S^2} F dA; Schmidt entropy from SVD of MPS"
+  },
+  "finitude_vs_flat": {
+    "bar": "contrast_ratio > 2.0 (flat coordinate spread / projector Frobenius spread)",
+    "contrast_ratio_flat_over_projector": 201.23493156690932,
+    "deciding_number": 201.23493156690932,
+    "finitude_met": true,
+    "flat_T_vals": [
+      1.0,
+      2.0,
+      5.0,
+      10.0,
+      50.0,
+      200.0
+    ],
+    "flat_coordinate_spreads": [
+      1.4142135623730951,
+      2.8284271247461903,
+      7.0710678118654755,
+      14.142135623730951,
+      70.71067811865476,
+      282.842712474619
+    ],
+    "flat_grows": true,
+    "mechanism": "CP1 compact: all projectors P(theta,phi) have ||P||_F=1 (bounded); flat R^2 coordinate spread grows without bound",
+    "projector_bounded_below_3": true,
+    "projector_max_pairwise_frobenius_dist": 1.4055348655040818,
+    "projector_norm_max_deviation_from_1": 0.0
+  },
+  "geometry_verbatim": {
+    "c1_hopf_numeric": -1.0000045692369373,
+    "c1_hopf_qerr": 4.569236937257415e-6,
+    "c1_hopf_rounded": -1,
+    "c1_kill_numeric": 0.0,
+    "c1_kill_rounded": 0,
+    "c1_trivial_numeric": 0.0,
+    "c1_trivial_rounded": 0,
+    "cp1_quotient": {
+      "antipodal_overlap_max": 2.0816681711721685e-16,
+      "fiber_global_phase_move_max": 4.839349969133127e-16,
+      "relphase_move_max": 0.9371384552990724,
+      "relphase_moved_count": 399
+    },
+    "grid_nphi": 300,
+    "grid_ntheta": 300,
+    "invariant_anchored": true,
+    "known_anchor": "O(-1) over CP1 has c1=-1 (algebraic geometry); convention fixed up front",
+    "quotient_genuine": true,
+    "wrong_structure_fails": true
+  },
+  "honest_status_ladder": "passes_local_rerun",
+  "layer": "geometry",
+  "neural_dynamics": {
+    "bar": "converged==true AND energy_monotone==true within 160 async steps on S^2-geometry graph",
+    "converged": true,
+    "deciding_number": 16.0,
+    "energies_per_sweep": [
+      -0.5,
+      -0.75,
+      -0.75
+    ],
+    "energy_monotone": true,
+    "final_hamming_from_pattern": 0.125,
+    "geometry": "S2_base_great_circle_adjacency_threshold_pi_over_3",
+    "geometry_weight_nonzero": 12,
+    "initial_hamming_from_pattern": 0.25,
+    "max_async_steps_budget": 160,
+    "n_nodes": 8,
+    "neural_dynamics_met": true,
+    "random_weight_control_converged": true,
+    "state_signal": "sign of local Berry curvature integral (projector-field based)",
+    "steps_to_converge": 16,
+    "update_rule": "asynchronous_single_node (guaranteed convergence for symmetric W, zero diag)"
+  },
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_bar": "min_input_dep_comm_norm > 1e-6 AND flat_diagonal_comm_norm < 1e-15",
+    "commutation_deciding_number": 0.5,
+    "exact_bar": "GHZ max cut deviation < 0.01 bits at N=8; no CTMRG; equal budget",
+    "exact_carrier": "MET",
+    "exact_deciding_number": 1.1102230246251565e-16,
+    "finitude": "MET",
+    "finitude_bar": "contrast_ratio > 2.0 (flat R^2 coordinate spread / CP1 projector Frobenius spread)",
+    "finitude_deciding_number": 201.23493156690932,
+    "fraction": "6/6",
+    "invariant_anchored": "MET",
+    "invariant_bar": "c1_genuine rounded to -1; c1_kill=0 (FLIPS); z3 UNSAT on all corruptions",
+    "invariant_deciding_number": -1.0,
+    "n_met": 6,
+    "neural_bar": "converged==true AND energy_monotone==true within 20*nV async steps on S^2-geometry graph",
+    "neural_deciding_number": 16.0,
+    "neural_dynamics": "MET",
+    "scale_bar": "entangled_cut_mean > product_cut_max + 1e-3 at all N in {8,16,32,64}",
+    "scale_deciding_number": 4.0,
+    "scale_ladder": "MET"
+  },
+  "noncommutation": {
+    "bar": "min_input_dep_norm > 1e-6 AND flat_comm_norm < 1e-15",
+    "clifford_anticomm_2delta_ok": true,
+    "clifford_anticomm_diagonal_errors": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "clifford_anticomm_offdiag_errors": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "comm_norm_JxJy": 0.5,
+    "comm_norm_JxJz": 0.5,
+    "comm_norm_JyJz": 0.5,
+    "deciding_number": 0.5,
+    "flat_control_commutes": true,
+    "flat_diagonal_control_comm_norm": 0.0,
+    "floor_bar": 1.0e-6,
+    "input_dep_norms_per_spinor": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "min_input_dep_comm_norm": 0.5,
+    "noncomm_above_floor": true,
+    "noncomm_contrast_met": true,
+    "su2_generators": "J_x=sigma_x/2, J_y=sigma_y/2, J_z=sigma_z/2 (fiber generators of CP1 eigenline bundle)"
+  },
+  "object_id": "s2_cp1_newstd_poc",
+  "promotion_allowed": false,
+  "scale_stress": {
+    "rows": [
+      {
+        "N": 8,
+        "completed": true,
+        "entangled_cut_max": 0.14562030246561694,
+        "entangled_cut_mean": 0.07402687427009262,
+        "entangled_max_bond": 2,
+        "entanglement_gap": 0.07402687427009166,
+        "error": null,
+        "ghz_cut_max": 0.9999999999999999,
+        "maxdim_bond_used": 8,
+        "product_cut_max": 9.61027951144475e-16,
+        "product_max_bond": 1,
+        "rung_met": true,
+        "scale_method": "full_mps_chain"
+      },
+      {
+        "N": 16,
+        "completed": true,
+        "entangled_cut_max": 0.25718360273753227,
+        "entangled_cut_mean": 0.1618400709723785,
+        "entangled_max_bond": 2,
+        "entanglement_gap": 0.16184007097237627,
+        "error": null,
+        "ghz_cut_max": 0.9999999999999999,
+        "maxdim_bond_used": 4,
+        "product_cut_max": 2.2423985526704407e-15,
+        "product_max_bond": 1,
+        "rung_met": true,
+        "scale_method": "full_mps_chain"
+      },
+      {
+        "N": 32,
+        "completed": true,
+        "entangled_cut_max": 0.6921207824691711,
+        "entangled_cut_mean": 0.18293343281685912,
+        "entangled_max_bond": 2,
+        "entanglement_gap": 0.18293343281685912,
+        "error": null,
+        "ghz_cut_max": 1.0,
+        "maxdim_bond_used": 2,
+        "product_cut_max": 0.0,
+        "product_max_bond": 1,
+        "rung_met": true,
+        "scale_method": "fast_local_edge_tensor_witness"
+      },
+      {
+        "N": 64,
+        "completed": true,
+        "entangled_cut_max": 0.7101768618260514,
+        "entangled_cut_mean": 0.1810865356159527,
+        "entangled_max_bond": 2,
+        "entanglement_gap": 0.1810865356159527,
+        "error": null,
+        "ghz_cut_max": 1.0,
+        "maxdim_bond_used": 2,
+        "product_cut_max": 0.0,
+        "product_max_bond": 1,
+        "rung_met": true,
+        "scale_method": "fast_local_edge_tensor_witness"
+      }
+    ],
+    "rungs_attempted": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "rungs_completed": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "scale_pass": true
+  },
+  "tool_manifest": {
+    "ITensors_ITensorMPS": {
+      "reason": "MPS spinor network construction, bond-dimension entangling gates, Schmidt SVD cut entropy; all entanglement verdicts depend on it",
+      "role": "load_bearing"
+    },
+    "JSON": {
+      "reason": "receipt emission only",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "Berry curvature integration (projector derivatives), opnorm commutator checks, Frobenius norms, projector construction",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "bundle-classification gate with UNSAT on all corruption inputs (anti-tautology); verdict flips on broken measurements, making it non-vacuous",
+      "role": "load_bearing"
+    },
+    "numpy": {
+      "reason": "Julia-native ComplexF64/Float64 throughout; no numpy dependency",
+      "role": "ABSENT"
+    }
+  },
+  "z3_structural": {
+    "corruptions": {
+      "broken_hopf_0": false,
+      "broken_hopf_sign": false,
+      "broken_kill_nonzero": false,
+      "broken_triv_nonzero": false
+    },
+    "sat_on_genuine_tuple": true,
+    "status": "load_bearing_pass",
+    "tool_role": "load_bearing",
+    "unsat_on_all_corruptions": true
+  }
+}

@@ -417,6 +417,7 @@ def main() -> int:
         },
     }
     checks = [row["pass"] for row in positive.values()] + [row["pass"] for row in graveyard_companions.values()] + [row["pass"] for row in boundary.values()]
+    all_pass = all(checks)
     result = {
         "schema": "FORMAL_SCOUT_RESULT_v1",
         "name": NAME,
@@ -437,6 +438,20 @@ def main() -> int:
         "graveyard_companions": graveyard_companions,
         "boundary": boundary,
         "nearby_variants": {"passed": sum(1 for value in checks if value), "total": len(checks)},
+        "all_pass": all_pass,
+        "summary": {
+            "math_object": (
+                "left/right Weyl density operating spaces with 8 terrain laws, "
+                "4 loop carriers, and 64 microstep stage/subcycle execution"
+            ),
+            "terrain_family_count": 4,
+            "terrain_law_count": len({row["terrain_law"] for row in rows}),
+            "loop_carrier_count": len({(row["sheet"], row["loop"]) for row in rows}),
+            "macro_stage_count": len({(row["sheet"], row["stage_index"]) for row in rows}),
+            "microstep_count": len(rows),
+            "survivor_class_count": len(classes),
+            "promotion_allowed": PROMOTION_ALLOWED,
+        },
         "open_choices": [
             "The eight-stage runtime is represented as two valid four-stage traversals per chiral operating space, not as a final canonical stage table.",
             "The four operator substages are finite source-native fixtures; downstream entropy, shell, and boundary readouts still need to consume this history explicitly.",
@@ -453,7 +468,7 @@ def main() -> int:
     print(
         json.dumps(
             {
-                "all_pass": all(checks),
+                "all_pass": all_pass,
                 "result": str(OUT_PATH),
                 "microstep_count": len(rows),
                 "survivor_class_count": len(classes),

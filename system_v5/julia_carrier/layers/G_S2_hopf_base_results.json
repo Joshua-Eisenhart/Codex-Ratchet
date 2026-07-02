@@ -1,0 +1,44 @@
+{
+  "all_pass": true,
+  "anchored_invariants": {
+    "base_on_unit_S2": "pure-state Bloch identity: |<sx>|^2+|<sy>|^2+|<sz>|^2 = 1",
+    "fiber_quotient": "S^3/U(1)=S^2: global phase cancels in <psi|sigma|psi>",
+    "poles": "|0>->+zhat, |1>->-zhat (exact Hopf base points)"
+  },
+  "classification": "PoC",
+  "controls": {
+    "boundary": true,
+    "boundary_notes": [
+      "theta->0 fiber motion = 5.551115123125783e-17 (ok)",
+      "north pole |0> -> +zhat (ok)",
+      "south pole |1> -> -zhat (ok)",
+      "relphase on pole |0> motion = 0.0 (expected ~0; pole has no relative phase)"
+    ],
+    "negative_relphase_moves_base": true,
+    "negative_su2_moves_base": true,
+    "positive_fiber_fixes_base": true
+  },
+  "description": "S^2 Hopf base: q sigma_z q^dag = <psi|sigma|psi>; base-norm + U(1) fiber-invariance",
+  "measured": {
+    "base_norm_dev_max": 4.440892098500626e-16,
+    "fiber_shift_max": 4.1540741810552243e-16,
+    "relphase_moved_count": 1999,
+    "relphase_shift_max": 1.9981634497079863,
+    "relphase_shift_min": 3.597533769998862e-16,
+    "su2_moved_count": 2000,
+    "su2_shift_max": 1.999945510814808,
+    "su2_shift_min": 0.05056036552619221,
+    "two_form_agree_max": 2.5438405243138006e-16
+  },
+  "n_samples": 2000,
+  "object_id": "G_S2_hopf_base",
+  "promotion_allowed": false,
+  "status": "passes",
+  "tol": 1.0e-10,
+  "verdicts": {
+    "A_base_on_unit_S2": true,
+    "B_fiber_invariance": true,
+    "hopf_two_forms_agree": true,
+    "kill_control_genuine": true
+  }
+}

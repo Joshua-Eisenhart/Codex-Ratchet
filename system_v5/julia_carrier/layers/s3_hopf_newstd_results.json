@@ -1,0 +1,208 @@
+{
+  "all_pass": true,
+  "bloch_free": true,
+  "carrier": "Julia + LinearAlgebra + ITensors/ITensorMPS + Z3 + CliffordAlgebras",
+  "checks": {
+    "bloch_free": true,
+    "chern_anti_is_+1": true,
+    "chern_hopf_is_-1": true,
+    "chern_trivial_is_0": true,
+    "chern_w2_is_-2": true,
+    "clifford_anticommutator": true,
+    "entanglement_load_bearing": true,
+    "entropy_gap_positive": true,
+    "finitude_compact_lt_flat": true,
+    "flat_commutator_near_zero": true,
+    "neural_dynamics_settled": true,
+    "scale_ladder_ge2_rungs": true,
+    "su2_commutator_input_dep": true,
+    "su2_commutator_nonzero": true,
+    "wrong_structure_fires": true,
+    "z3_structural_gate": true
+  },
+  "chern_numbers": {
+    "WRONG_STRUCTURE": {
+      "expected": 0,
+      "numeric": 0.0,
+      "rounded": 0
+    },
+    "anti_m-1": {
+      "known": 1,
+      "numeric": 1.0,
+      "rounded": 1
+    },
+    "hopf_m+1": {
+      "known": -1,
+      "numeric": -1.0,
+      "rounded": -1
+    },
+    "trivial_m0": {
+      "known": 0,
+      "numeric": 0.0,
+      "rounded": 0
+    },
+    "winding2_m+2": {
+      "known": -2,
+      "numeric": -2.0,
+      "rounded": -2
+    }
+  },
+  "classification": "s3_hopf_newstd_poc",
+  "commutation": {
+    "clifford_max_ac_err": 0.0,
+    "clifford_status": "load_bearing_pass",
+    "comm_input_dep": true,
+    "flat_comm_norm": 0.0,
+    "su2_norm_comm_JxJy": 1.0
+  },
+  "entanglement_rows": [
+    {
+      "cut_bond": 4,
+      "entangled_bond": 2,
+      "entangled_entropy": 0.220118,
+      "entropy_gap": 0.220118,
+      "load_bearing": true,
+      "n_sites": 8,
+      "product_bond": 1,
+      "product_entropy": -0.0,
+      "trunc_err_control": 0.0,
+      "trunc_err_genuine": 0.0,
+      "trunc_err_ok": true
+    },
+    {
+      "cut_bond": 8,
+      "entangled_bond": 2,
+      "entangled_entropy": 0.2133,
+      "entropy_gap": 0.2133,
+      "load_bearing": true,
+      "n_sites": 16,
+      "product_bond": 1,
+      "product_entropy": -0.0,
+      "trunc_err_control": 0.0,
+      "trunc_err_genuine": 0.0,
+      "trunc_err_ok": true
+    },
+    {
+      "cut_bond": 16,
+      "entangled_bond": 2,
+      "entangled_entropy": 0.214528,
+      "entropy_gap": 0.214528,
+      "load_bearing": true,
+      "n_sites": 32,
+      "product_bond": 1,
+      "product_entropy": -0.0,
+      "trunc_err_control": 0.0,
+      "trunc_err_genuine": 0.0,
+      "trunc_err_ok": true
+    },
+    {
+      "cut_bond": 32,
+      "entangled_bond": 2,
+      "entangled_entropy": 0.216324,
+      "entropy_gap": 0.216324,
+      "load_bearing": true,
+      "n_sites": 64,
+      "product_bond": 1,
+      "product_entropy": -0.0,
+      "trunc_err_control": 0.0,
+      "trunc_err_genuine": 0.0,
+      "trunc_err_ok": true
+    }
+  ],
+  "finite_map": {
+    "F01": "compact S^3 carrier, bounded operator norms, integer Chern, bounded entropy",
+    "N01": {
+      "clifford_anticommutator_max_err": 0.0,
+      "su2_commutator_norm": 1.0
+    },
+    "codomain": "(c1 integer, cut Schmidt entropy, SU(2) commutator norm, Hopfield overlap)",
+    "domain": "(theta,phi,m) on S^2 x {winding integers}, compact/finite"
+  },
+  "finitude": {
+    "compact_norm": 1.0,
+    "criterion_met": true,
+    "flat_norm_N64": 64.0,
+    "ratio": 0.015625
+  },
+  "honest_status": "passes",
+  "neural_dynamics": {
+    "E_final": -6.5,
+    "E_init": -1.5,
+    "best_overlap": 1.0,
+    "best_pattern": 1,
+    "energy_decrease": 5.0,
+    "settled": true
+  },
+  "new_standard_scorecard": {
+    "commutation": {
+      "deciding": "||[Jx,Jy]||=1.0 clifford_err=0.0 flat_comm=0.0",
+      "status": "MET"
+    },
+    "exact_carrier": {
+      "deciding": "MPS load_bearing=true rungs=[8, 16, 32, 64]",
+      "status": "MET"
+    },
+    "finitude": {
+      "deciding": "compact_norm=1.0 flat_norm=64.0 ratio=0.0156 < 0.1 ? true",
+      "status": "MET"
+    },
+    "invariant_anchored": {
+      "deciding": "c1_hopf=-1 c1_anti=1 c1_w2=-2 wrong=0 wrong_fires=true",
+      "status": "MET"
+    },
+    "neural_dynamics": {
+      "deciding": "energy_decrease=5.0 best_overlap=1.0",
+      "status": "MET"
+    },
+    "scale_ladder": {
+      "deciding": "rungs=[8, 16, 32, 64] failed=String[]",
+      "status": "MET"
+    }
+  },
+  "object_id": "s3_hopf_newstd",
+  "overall_fraction": "6/6 MET, 0 PARTIAL, 0 GAP",
+  "promotion_allowed": false,
+  "scale_ladder_completed": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "scale_ladder_failed": [],
+  "tool_manifest": {
+    "CliffordAlgebras": {
+      "reason": "anti-commutator {Gamma_a,Gamma_b}=2delta check; fallback uses plain matrices",
+      "role": "load_bearing_or_fallback"
+    },
+    "ITensorMPS": {
+      "reason": "MPS contraction, bond dimension, truncation error — coupled with ITensors for scale ladder",
+      "role": "load_bearing"
+    },
+    "ITensors": {
+      "reason": "exact MPS spinor network, SVD cut entropy — removing it removes the entanglement carrier entirely",
+      "role": "load_bearing"
+    },
+    "JSON": {
+      "reason": "result serialisation only",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "plaquette Chern c1, SU(2) commutator, operator norms — removing it flips all geometry/commutation verdicts",
+      "role": "load_bearing"
+    },
+    "Random": {
+      "reason": "seeded noise for Hopfield settling test",
+      "role": "supportive"
+    },
+    "Z3": {
+      "reason": "structural gate on c1 integer tuple; if available, all corruption tests flip to UNSAT",
+      "role": "load_bearing_or_skipped"
+    }
+  },
+  "verdict": "GENUINELY-UPGRADED",
+  "z3_structural": {
+    "all_corruptions_unsat": true,
+    "genuine_sat": true,
+    "status": "load_bearing_pass"
+  }
+}

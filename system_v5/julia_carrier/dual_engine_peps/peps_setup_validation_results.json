@@ -1,0 +1,130 @@
+{
+  "claim_ceiling": "product-state CTMRG setup validation against hand-computed EXACT references; isolates PEPSKit SETUP BUG from CTMRG-unreliable; NOT layer-completion / manifold admission / coupling / bridge / flux / physics",
+  "classification": "peps_setup_validation",
+  "codomain_or_output": "per-bond CTMRG energy + match verdict vs exact hand-computed reference",
+  "domain": "complex128 product-state dense tensors [P,N,E,S,W], D=1 (1x1 and 2x2 finite unit cells)",
+  "empirical_operator_matrix": {
+    "basis_order": [
+      "|uu>",
+      "|ud>",
+      "|du>",
+      "|dd>"
+    ],
+    "identification": "standard S=1/2 Heisenberg bond Sx.Sx+Sy.Sy+Sz.Sz (Sa=sigma_a/2); NO sublattice rotation in the operator",
+    "imag_part_zero": true,
+    "matrix_real": [
+      [
+        0.25,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.25,
+        0.5,
+        0.0
+      ],
+      [
+        0.0,
+        0.5,
+        -0.25,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.25
+      ]
+    ]
+  },
+  "engine": "Julia 1.12 / PEPSKit / TensorKit (setup-validation lane)",
+  "exit_status": "ok",
+  "finite_map": "(product-state iPEPS tensor) |-> (per-bond CTMRG energy) compared to hand-computed exact",
+  "gate_smoking_gun_explanation": {
+    "caveat": "This explains the SIGN of the gate's number as consistent with a near-FM under-optimized tensor; it does NOT by itself prove the gate's structured-tensor energy is the true GS energy (it is not — the tensor was light-optimized). The gate compared finite-torus vs infinite-CTMRG, which remains a real apples-to-oranges confound independent of the setup.",
+    "gate_value_per_bond": 0.2498469201586454,
+    "gate_value_per_site": 0.49968946518519775,
+    "observation": "The gate's per-bond +0.2498 is numerically ~ +0.25 = the FERROMAGNET product-state energy this validation hand-computes. The structured tensor in the gate was barely optimized (correlation length ~35 >> torus L6); it sat near a FERROMAGNETIC / disordered configuration, so PEPSKit correctly reported a POSITIVE ~+0.25/bond for that tensor. That POSITIVE value is NOT evidence of a sign/index bug: PEPSKit reproduces the EXACT sign on BOTH FM (+0.25) and Neel (-0.25) product states here."
+  },
+  "hand_computed_exact_references_per_bond": {
+    "arithmetic": "FM: <SzSz>=(+1/2)(+1/2)=+1/4, flips vanish -> +0.25/bond. Neel: <SzSz>=(+1/2)(-1/2)=-1/4 -> -0.25/bond. +x FM: <SxSx>=(+1/2)(+1/2)=+1/4 -> +0.25/bond.",
+    "ferromagnet_plus_x": 0.25,
+    "ferromagnet_up_up": 0.25,
+    "neel_up_down": -0.25
+  },
+  "landmine_guards": [
+    "no_fixedpoint",
+    "no_PEPSOptimize",
+    "no_LBFGS",
+    "no_HagerZhangLineSearch",
+    "ctmrg_maxiter_capped",
+    "external_time_cap_by_caller"
+  ],
+  "normalization_fact": {
+    "note": "1x1 cell has 2 terms (h+v bond); 2x2 cell has 8 terms. julia_ctmrg_heisenberg.jl divides raw by 2 -> correct ONLY for a 1x1 cell.",
+    "statement": "PEPSKit expectation_value returns the SUM over all bond terms in the unit cell, NOT a per-site average. per_bond = raw / length(H.terms).",
+    "terms_1x1": 2
+  },
+  "object_id": "peps_setup_validation",
+  "promotion_allowed": false,
+  "purpose": "Separate 'PEPSKit SETUP BUG' from 'CTMRG fundamentally unreliable'. CTMRG is EXACT for product states (D=1, no truncation), so any product-state disagreement is a PURE setup bug. Reuses the heisenberg_XYZ + TensorMap(P<-NESW) + leading_boundary setup of julia_ctmrg_heisenberg.jl.",
+  "results": {
+    "boundary_chi_independence": {
+      "chi2_per_bond": 0.25,
+      "chi4_per_bond": 0.25,
+      "chi_independent": true
+    },
+    "fm_plus_x_1x1": {
+      "abs_err": 0.0,
+      "exact_per_bond": 0.25,
+      "nterms": 2,
+      "per_bond": 0.25,
+      "raw_sum": 0.5
+    },
+    "fm_up_1x1": {
+      "abs_err": 0.0,
+      "exact_per_bond": 0.25,
+      "nterms": 2,
+      "per_bond": 0.25,
+      "raw_sum": 0.5,
+      "sign_ok": true
+    },
+    "neel_2x2": {
+      "abs_err": 0.0,
+      "exact_per_bond": -0.25,
+      "nterms": 8,
+      "per_bond": -0.25,
+      "raw_sum": -2.0,
+      "sign_ok": true
+    },
+    "wrong_structure_control": {
+      "fm_per_bond": 0.25,
+      "neel_per_bond": -0.25,
+      "note": "AFM-aligned Neel must give a NEGATIVE per-bond energy and FM a POSITIVE one; a constant-output pipeline would return identical values.",
+      "sign_flip": true
+    }
+  },
+  "root_constraints_in_force": {
+    "F01": "finite product-state carrier (D=1), finite probe {chi in {2,4}}, finite operator heisenberg_XYZ, bounded CTMRG (maxiter=80); contraction EXACT for D=1",
+    "N01": "ordered CTMRG fixed-point sweep; bond term and transfer op noncommuting; wrong-structure control: AFM-aligned Neel vs FM product state must differ in SIGN"
+  },
+  "started": "2026-06-02T21:12:24.680",
+  "tests": {
+    "boundary_chi_independent": true,
+    "fm_plus_x_matches_exact": true,
+    "fm_up_matches_exact": true,
+    "neel_matches_exact": true,
+    "neel_sign_negative": true,
+    "wrong_structure_control_flips": true
+  },
+  "tool_manifest": {
+    "LinearAlgebra": "supportive: reshape/convert of the operator matrix for the empirical readout",
+    "PEPSKit": "load_bearing: leading_boundary CTMRG + expectation_value (the setup under test)",
+    "TensorKit": "load_bearing: TensorMap carrier with explicit P<-NESW space split (same as setup under test)"
+  },
+  "verdict": "setup_correct",
+  "verdict_detail": "PEPSKit reproduces the EXACT product-state energies (FM +0.25, Neel -0.25, +x +0.25) to <1e-6, with the correct Neel SIGN and FM/Neel sign-flip. The setup is SOUND. The gate's gate_ctmrg_unreliable disagreement is therefore NOT a setup bug; it is genuinely about CTMRG on the pathological/structured/under-optimized tensor (and finite-vs-infinite). The gate finding STANDS and the spinor lean is SUPPORTED.",
+  "wall_seconds": 99.38
+}

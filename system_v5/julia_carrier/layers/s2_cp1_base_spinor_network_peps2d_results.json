@@ -1,0 +1,286 @@
+{
+  "all_pass": true,
+  "blocked_consumers": [
+    "PEPS3D manifold admission",
+    "full nonclassical manifold admission",
+    "layer completion",
+    "G-structure completion",
+    "Axis0",
+    "flux",
+    "Xi",
+    "Phi0",
+    "bridge",
+    "FEP",
+    "physics/gravity"
+  ],
+  "checks": {
+    "antitautology_control_preserves_invariant": true,
+    "ctmrg_converged_per_rung_by_truncation_lt_1e_minus_2": true,
+    "environment_entropy_from_ctmrg_corner_not_mps": true,
+    "erasure_ablation_delta_nonzero": true,
+    "erasure_flips_invariant": true,
+    "fixedpoint_not_used": true,
+    "invariant_measured_on_contracted_network": true,
+    "ladder_numbers_vary": true,
+    "mps_not_used": true,
+    "network_winding_invariant_and_wrong_structure_control_pass": true,
+    "peps2d_ladder_8_16_32_64_complete": true,
+    "peps_load_bearing_earned_by_flip": true,
+    "promotion_blocked": true,
+    "wrong_structure_control_flips_invariant": true
+  },
+  "claim_ceiling": "PoC only: CP1/O(m) base seeds a PEPSKit InfinitePEPS that contracts with CTMRG. The KNOWN O(1) winding invariant (+1) is measured ON the contracted network from its Bloch field, and a wrong-structure (trivialized bundle) control measured on the contracted network flips it to 0. promotion_allowed=false. Not a PEPS3D/manifold/G-structure/Axis0/flux/bridge/FEP admission, not layer completion, not canonical by process.",
+  "classification": "s2_cp1_base_spinor_network_peps2d_poc",
+  "codomain_or_output": "integer winding measured on the contracted Bloch field, wrong-structure flip, erasure delta + flip, anti-tautology negative control, and CTMRG corner Schmidt entropy ladder.",
+  "domain": "CP1 phi-loop of O(m)-seeded InfinitePEPS unit cells (C^2 physical leg, D=2 virtual bonds) at fixed theta, each contracted by CTMRG; chi ladder {8,16,32,64} for the corner entropy.",
+  "engine": "PEPSKit InfinitePEPS -> CTMRGEnv -> leading_boundary -> expectation_value/corner tsvd; contraction only",
+  "entropy_ladder_values_nats": [
+    0.204119442827,
+    0.789223888935,
+    1.704649526321,
+    2.117692333266
+  ],
+  "errors": [],
+  "finite_map": "CP1 section psi(theta,phi)=O(m) over the S^2 base seeds a PEPSKit InfinitePEPS; CTMRG contracts it; the contracted-network Bloch field n(phi)=(<sx>,<sy>,<sz>)_env carries the measured integer azimuthal winding; the corner spectrum carries the environment entropy.",
+  "fixedpoint_used": false,
+  "honest_status": "passes local rerun",
+  "lbfgs_used": false,
+  "mps_used": false,
+  "name": "S2/CP1 base spinor network as PEPS2D CTMRG contraction with on-network invariant controls",
+  "network_winding_control": {
+    "all_pass": true,
+    "antitautology_negative_control": {
+      "comparable_size_to_erasure": true,
+      "description": "deterministic jitter of the genuine contracted Bloch field with magnitude comparable to the erasure delta; a topological integer winding must survive it. If it flipped, the erasure 'flip' would be a perturbation-size artifact rather than structural.",
+      "jitter_field_delta_vs_genuine": 0.27855391,
+      "jitter_magnitude": 0.291817285,
+      "winding_int": 1,
+      "winding_preserved": true
+    },
+    "checks": {
+      "antitautology_control_preserves_winding": true,
+      "erasure_delta_nonzero": true,
+      "erasure_flips_winding": true,
+      "erasure_kills_winding_to_0": true,
+      "genuine_field_nondegenerate": true,
+      "genuine_winding_is_plus_1": true,
+      "invariant_actually_flips": true,
+      "load_bearing_earned_not_hardcoded": true,
+      "wrong_structure_flips_to_0": true
+    },
+    "erasure_ablation": {
+      "bloch_field_delta_vs_genuine": 1.167269141,
+      "description": "keep the genuine O(1) amplitude profile but remove the load-bearing azimuthal winding from BOTH the section phase and the virtual phase, then contract; Bloch field read from ITS contracted environment. Isolates the structure carrying the winding.",
+      "winding_int": 0,
+      "winding_numeric": 0.0
+    },
+    "genuine": {
+      "bloch_field_head": [
+        [
+          0.932039,
+          0.0,
+          0.362358
+        ],
+        [
+          0.46602,
+          0.80717,
+          0.362358
+        ],
+        [
+          -0.46602,
+          0.80717,
+          0.362358
+        ],
+        [
+          -0.932039,
+          -0.0,
+          0.362358
+        ],
+        [
+          -0.46602,
+          -0.80717,
+          0.362358
+        ],
+        [
+          0.46602,
+          -0.80717,
+          0.362358
+        ]
+      ],
+      "min_planar_radius": 0.93203912,
+      "winding_int": 1,
+      "winding_numeric": 1.0
+    },
+    "known_invariant_anchor": "O(1) line bundle over CP^1 = S^2; orientation chosen so the contracted Bloch field winds once -> winding = +1",
+    "load_bearing": true,
+    "loop": {
+      "ctmrg_chi": 4,
+      "nphi": 6,
+      "theta": 1.2
+    },
+    "measured_on": "contracted_PEPS2D_network",
+    "method": "integer azimuthal winding of the CTMRG-contracted Bloch field n(phi)=(<sx>,<sy>,<sz>)_env read via expectation_value(peps, sigma_a, env) on the contracted InfinitePEPS network around a closed phi-loop at fixed theta",
+    "verdict_flip": {
+      "antitautology_control_value": 1,
+      "antitautology_preserves_invariant": true,
+      "erased_ablation_value": 0,
+      "erasure_delta": 1.167269141,
+      "erasure_delta_nonzero": true,
+      "erasure_flips_invariant": true,
+      "genuine_invariant_value": 1,
+      "invariant_flips": true,
+      "wrong_structure_control_value": 0
+    },
+    "wrong_structure_control": {
+      "bloch_field_delta_vs_genuine": 1.159472454,
+      "description": "trivialized bundle: same iPEPS construction re-seeded from a frozen, phi-independent section (winding removed from physical and virtual phase); contracted with CTMRG; Bloch field read from ITS contracted environment",
+      "min_planar_radius": 0.932039123,
+      "winding_int": 0,
+      "winding_numeric": 0.0
+    }
+  },
+  "non_numpy_julia": true,
+  "peps2d_genuinely_engaged": true,
+  "peps2d_ladder": [
+    {
+      "corner_schmidt_probability_head": [
+        0.957554756893,
+        0.032423316155,
+        0.007835119748,
+        0.002184035909,
+        1.58076e-6,
+        6.09404e-7,
+        5.8056e-7,
+        5.71e-10
+      ],
+      "corner_schmidt_rank_positive": 8,
+      "ctmrg_converged_by_truncation_lt_1e_minus_2": true,
+      "ctmrg_maxiter": 6,
+      "ctmrg_miniter": 1,
+      "ctmrg_tol": 0.001,
+      "ctmrg_truncation_error": 2.235174179077202e-7,
+      "env_chi": 8,
+      "env_schmidt_entropy_nats": 0.204119442827,
+      "info_type": "@NamedTuple{truncation_error::Float64, condition_number::Float64, U::Array{TensorMap{ComplexF64, ComplexSpace, 3, 1, Vector{ComplexF64}}, 3}, S::Array{DiagonalTensorMap{Float64, ComplexSpace, Vector{Float64}}, 3}, V::Array{TensorMap{ComplexF64, ComplexSpace, 1, 3, Vector{ComplexF64}}, 3}, U_full::Array{TensorMap{ComplexF64, ComplexSpace, 3, 1, Vector{ComplexF64}}, 3}, S_full::Array{DiagonalTensorMap{Float64, ComplexSpace, Vector{Float64}}, 3}, V_full::Array{TensorMap{ComplexF64, ComplexSpace, 1, 3, Vector{ComplexF64}}, 3}}",
+      "ipeps_unitcell": [
+        1,
+        1
+      ],
+      "ladder_rung": 8,
+      "peps_bond_dim": 2
+    },
+    {
+      "corner_schmidt_probability_head": [
+        0.782741048041,
+        0.114943086112,
+        0.057380502196,
+        0.028137383794,
+        0.011142262171,
+        0.003419618534,
+        0.001926338772,
+        0.000190635762,
+        8.932053e-5,
+        2.2307178e-5
+      ],
+      "corner_schmidt_rank_positive": 16,
+      "ctmrg_converged_by_truncation_lt_1e_minus_2": true,
+      "ctmrg_maxiter": 6,
+      "ctmrg_miniter": 1,
+      "ctmrg_tol": 0.001,
+      "ctmrg_truncation_error": 9.657056180250456e-8,
+      "env_chi": 16,
+      "env_schmidt_entropy_nats": 0.789223888935,
+      "info_type": "@NamedTuple{truncation_error::Float64, condition_number::Float64, U::Array{TensorMap{ComplexF64, ComplexSpace, 3, 1, Vector{ComplexF64}}, 3}, S::Array{DiagonalTensorMap{Float64, ComplexSpace, Vector{Float64}}, 3}, V::Array{TensorMap{ComplexF64, ComplexSpace, 1, 3, Vector{ComplexF64}}, 3}, U_full::Array{TensorMap{ComplexF64, ComplexSpace, 3, 1, Vector{ComplexF64}}, 3}, S_full::Array{DiagonalTensorMap{Float64, ComplexSpace, Vector{Float64}}, 3}, V_full::Array{TensorMap{ComplexF64, ComplexSpace, 1, 3, Vector{ComplexF64}}, 3}}",
+      "ipeps_unitcell": [
+        1,
+        1
+      ],
+      "ladder_rung": 16,
+      "peps_bond_dim": 2
+    },
+    {
+      "corner_schmidt_probability_head": [
+        0.386734172911,
+        0.229340243087,
+        0.15627225603,
+        0.093037114474,
+        0.05470177001,
+        0.031067298104,
+        0.019719742652,
+        0.013694705528,
+        0.00770722208,
+        0.003276788279
+      ],
+      "corner_schmidt_rank_positive": 32,
+      "ctmrg_converged_by_truncation_lt_1e_minus_2": true,
+      "ctmrg_maxiter": 6,
+      "ctmrg_miniter": 1,
+      "ctmrg_tol": 0.001,
+      "ctmrg_truncation_error": 6.664001874625007e-8,
+      "env_chi": 32,
+      "env_schmidt_entropy_nats": 1.704649526321,
+      "info_type": "@NamedTuple{truncation_error::Float64, condition_number::Float64, U::Array{TensorMap{ComplexF64, ComplexSpace, 3, 1, Vector{ComplexF64}}, 3}, S::Array{DiagonalTensorMap{Float64, ComplexSpace, Vector{Float64}}, 3}, V::Array{TensorMap{ComplexF64, ComplexSpace, 1, 3, Vector{ComplexF64}}, 3}, U_full::Array{TensorMap{ComplexF64, ComplexSpace, 3, 1, Vector{ComplexF64}}, 3}, S_full::Array{DiagonalTensorMap{Float64, ComplexSpace, Vector{Float64}}, 3}, V_full::Array{TensorMap{ComplexF64, ComplexSpace, 1, 3, Vector{ComplexF64}}, 3}}",
+      "ipeps_unitcell": [
+        1,
+        1
+      ],
+      "ladder_rung": 32,
+      "peps_bond_dim": 2
+    },
+    {
+      "corner_schmidt_probability_head": [
+        0.299694433418,
+        0.210130324419,
+        0.149697501787,
+        0.083885261383,
+        0.065022812151,
+        0.045389331951,
+        0.033513909575,
+        0.026746487164,
+        0.021673116471,
+        0.015009499102
+      ],
+      "corner_schmidt_rank_positive": 64,
+      "ctmrg_converged_by_truncation_lt_1e_minus_2": true,
+      "ctmrg_maxiter": 6,
+      "ctmrg_miniter": 1,
+      "ctmrg_tol": 0.001,
+      "ctmrg_truncation_error": 3.650024149988651e-8,
+      "env_chi": 64,
+      "env_schmidt_entropy_nats": 2.117692333266,
+      "info_type": "@NamedTuple{truncation_error::Float64, condition_number::Float64, U::Array{TensorMap{ComplexF64, ComplexSpace, 3, 1, Vector{ComplexF64}}, 3}, S::Array{DiagonalTensorMap{Float64, ComplexSpace, Vector{Float64}}, 3}, V::Array{TensorMap{ComplexF64, ComplexSpace, 1, 3, Vector{ComplexF64}}, 3}, U_full::Array{TensorMap{ComplexF64, ComplexSpace, 3, 1, Vector{ComplexF64}}, 3}, S_full::Array{DiagonalTensorMap{Float64, ComplexSpace, Vector{Float64}}, 3}, V_full::Array{TensorMap{ComplexF64, ComplexSpace, 1, 3, Vector{ComplexF64}}, 3}}",
+      "ipeps_unitcell": [
+        1,
+        1
+      ],
+      "ladder_rung": 64,
+      "peps_bond_dim": 2
+    }
+  ],
+  "peps_contraction_load_bearing_earned": true,
+  "promotion_allowed": false,
+  "root_constraints_in_force": {
+    "F01": "finite carrier/probe set: finite CP1 phi-loop, finite InfinitePEPS unit cell, finite CTMRG chi ladder",
+    "N01": "order-sensitive 2D tensor contraction boundary (CTMRG) is the carrier; no MPS half-chain substitution"
+  },
+  "seed": 20260602,
+  "sim_id": "s2_cp1_base_spinor_network_peps2d",
+  "timestamp_utc": "2026-06-03T00:41:59.985",
+  "tool_integration_depth": {
+    "Dates": "supportive",
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "PEPSKit": "load_bearing",
+    "Random": "supportive",
+    "TensorKit": "load_bearing"
+  },
+  "tool_manifest": {
+    "Dates": "supportive: UTC receipt timestamp",
+    "JSON": "supportive: result receipt emission",
+    "LinearAlgebra": "load_bearing: CP1 section normalization, Bloch norms, winding accumulation",
+    "PEPSKit": "load_bearing: PEPSTensor/InfinitePEPS carrier, CTMRGEnv, leading_boundary, expectation_value on the contracted network",
+    "Random": "supportive: deterministic CTMRG initial environment seeds",
+    "TensorKit": "load_bearing: TensorMap physical/virtual spaces and CTMRG corner tsvd spectrum"
+  },
+  "wallclock_seconds": 201.24
+}

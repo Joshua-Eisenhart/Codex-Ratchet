@@ -1,0 +1,312 @@
+{
+  "F01_witness": {
+    "finite_PEPS3D_K_V_E_F_C": [
+      8,
+      12,
+      6,
+      1
+    ],
+    "finite_algebra_basis_words": 16,
+    "finite_carrier_module_dim": 4,
+    "finite_generators": 4,
+    "finite_probe": "16 Clifford words + 24 random rotors + 4 scale rungs",
+    "finite_spinor_space": "C^4 (Dirac); finite-dim, non-numpy ComplexF64"
+  },
+  "N01_witness": {
+    "anticommutator_is_the_order_law": "{g_mu,g_nu}=2 eta_mu_nu I encodes NON-commuting generators",
+    "max_odd_anticommutator_with_gamma5": 0.0,
+    "noncommuting_measured": true,
+    "odd_anticommutes_gamma5": true,
+    "order_gap_measured": true,
+    "rotor_noncommutativity_gap": 0.2982974559308604
+  },
+  "ablation_outcome_delta": {
+    "erase_anticommutator_g3_eq_g2": {
+      "ablation_kind": "removed_and_rerun",
+      "burnside_after": 8,
+      "control_gap_before": 16.0,
+      "delta_magnitude": 8.0,
+      "delta_witness": {
+        "burnside_after": 8,
+        "burnside_before": 16,
+        "burnside_drop_gap": 8.0,
+        "commutant_rise_gap": 1.0,
+        "non_vacuous": true
+      },
+      "non_vacuous": true,
+      "recomputed": true
+    },
+    "erase_double_cover_reverse": {
+      "ablation_kind": "removed_and_rerun",
+      "control_gap_before": 8.982814231090085e-16,
+      "delta_magnitude": 0.9991888729152133,
+      "delta_witness": {
+        "double_cover_orth_collapse_gap": 0.9991888729152133,
+        "non_vacuous": true,
+        "orth_gap_with_reverse": 8.982814231090085e-16,
+        "orth_gap_without_reverse_after": 0.9991888729152142
+      },
+      "non_vacuous": true,
+      "orthogonality_gap_after": 0.9991888729152142,
+      "recomputed": true
+    },
+    "erase_signature_to_euclidean": {
+      "ablation_kind": "removed_and_rerun",
+      "clifford_residual_after": 4.0,
+      "control_gap_before": 0.0,
+      "delta_magnitude": 4.0,
+      "delta_witness": {
+        "euclidean_residual_after": 4.0,
+        "minkowski_residual_before": 0.0,
+        "non_vacuous": true,
+        "signature_break_gap": 4.0
+      },
+      "non_vacuous": true,
+      "recomputed": true
+    }
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "L10 terrain/channel/generator (Clifford module is the carrier its generators act on)",
+    "L11 operator-substage local cell (rotor/gamma actions as PEPS3D cell operators)",
+    "L12 entropy/cut/communication (chiral-sector readouts feed cut entropies)",
+    "G-structure selection (Clifford-module structure tested LAST, support lattice)",
+    "Axis0 / flux / FEP / physics (downstream; not drivers)",
+    "noncommutative-order ratchet (HYPOTHESIS; gated behind parent-complete layers + dependency-forcing)"
+  ],
+  "classification": "L9_layer_poc",
+  "controls": {
+    "negative": {
+      "boundary_superposition_zero_charge": true,
+      "controls_ok": true,
+      "left_stays_left_under_even": true,
+      "odd_gen_moves_left_to_right": true,
+      "reducible_burnside": 16,
+      "reducible_commutant": 4,
+      "reducible_rho_plus_rho_caught": true
+    },
+    "positive": {
+      "anticommutator_collapse_gap": 4.0,
+      "burnside_faithful_gap": 16.0,
+      "double_cover_collapse_gap": 0.9991888729152142,
+      "faithfulness_drop_gap": 8.0,
+      "reducible_commutant_rise_gap": 3.0,
+      "scale_burnside_top_minus_bottom_gap": 57.0
+    }
+  },
+  "dependency_forcing": {
+    "all_erasures_collapse_signature": true,
+    "baseline_signature": {
+      "burnside": 16,
+      "commutant": 1,
+      "double_cover": -1.0
+    },
+    "below_geometry": "the Clifford anticommutator {g_mu,g_nu}=2 eta_mu_nu I that DEFINES the algebra",
+    "break_anticommutator_E1": {
+      "action": "g3 := g2 (linear dependency among generators)",
+      "burnside_after": 8,
+      "burnside_drop_gap": 8.0,
+      "clifford_residual_after": 2.0,
+      "collapses": true,
+      "commutant_after": 2,
+      "commutant_rise_gap": 1.0
+    },
+    "collapse_double_cover_E3": {
+      "action": "rotor sandwich v -> R v R (reverse dropped)",
+      "baseline_orthogonality_max_gap": 8.982814231090085e-16,
+      "broken_orthogonality_max_gap": 0.9991888729152142,
+      "collapses": true
+    },
+    "interpretation": "Every below-geometry erasure collapses the layer signature (faithfulness, Clifford relation, or double cover). The L9 Clifford-module signature is FORCED by the anticommutator geometry below — it is not a property of hand-written matrices.",
+    "wrong_signature_E2": {
+      "action": "g_k^2 := +I (Euclidean Cl(4,0)) instead of Minkowski (+,-,-,-)",
+      "clifford_residual_vs_minkowski_gap": 4.0,
+      "collapses": true,
+      "gamma5_sq_residual_vs_I_gap": 0.0
+    }
+  },
+  "derived_readouts": {
+    "chiral_charge": 0.04518717825170192,
+    "chiral_sector_entropy": 0.6921258922968251,
+    "derived_entropy_pure_zero": true,
+    "left_weight": 0.4774064108741491,
+    "note": "entropy/charge are DERIVED from measured densities/projectors, never primary",
+    "right_weight": 0.522593589125851,
+    "vn_entropy_pure_state": 2.2204460492503126e-16
+  },
+  "faithful_irreducible": {
+    "burnside_rank": 16,
+    "burnside_target_M4": 16,
+    "clifford_relation_max_residual": 0.0,
+    "faithful": true,
+    "full_matrix_algebra": true,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_sq_residual": 0.0,
+    "irreducible": true,
+    "module_dim": 4,
+    "schur_commutant_dim": 1
+  },
+  "finite_map": {
+    "codomain": "End(C^4)=M4(C) (faithful module action rho(w)), and rotor sandwich SO(3) on S^2",
+    "domain": "Cl(1,3) algebra elements w (16 basis words) and Dirac spinors psi in S=C^4",
+    "operator": "rho: Cl(1,3) -> M4(C), w |-> rho(w);  rotor sandwich v -> R v rev(R) in Cl^+(3,0)=H",
+    "quotient_geometry": "Spin(3)=S^3 -> SO(3) 2:1 cover acting on S^2 of unit spatial axes",
+    "signature": "(Burnside_rank=16, Schur_commutant=1, gamma5^2=+1, R(2pi)=-1)"
+  },
+  "genuineness_booleans": {
+    "E1_break_anticommutator_collapses": true,
+    "E2_wrong_signature_collapses": true,
+    "E3_collapse_double_cover_collapses": true,
+    "all_below_erasures_collapse": true,
+    "clifford_relation_measured": true,
+    "derived_entropy_pure_zero": true,
+    "faithful_burnside_16": true,
+    "full_matrix_algebra_M4": true,
+    "gamma5_sq_plus1": true,
+    "hamilton_relations": true,
+    "irreducible_schur_1": true,
+    "negative_boundary_controls": true,
+    "peps3d_sphere_anchor": true,
+    "rotor_2pi_so3_identity": true,
+    "rotor_acts_on_peps3d_faces": true,
+    "rotor_double_cover_minus1": true,
+    "rotor_positive_all_so3": true,
+    "scale_anticommutator_clean": true,
+    "scale_burnside_varies": true,
+    "scale_entropy_varies": true,
+    "spinor_density_psd_trace1": true,
+    "weyl_split_under_even_subalg": true,
+    "z3_loadbearing_flips": true
+  },
+  "honest_status_ladder": "passes local rerun (this run)",
+  "layer": "L9_layer",
+  "object": "clifford_quaternion_module",
+  "object_id": "L9_layer",
+  "peps3d_anchor": {
+    "K_V_E_F_C": [
+      8,
+      12,
+      6,
+      1
+    ],
+    "carrier": "cube cell complex; 6 faces = S^2 axis anchors the rotor cover acts on",
+    "euler_characteristic": 2,
+    "is_sphere_S2": true,
+    "rotor_acts_on_faces": true,
+    "rotor_pi2_permutes_faces": 6
+  },
+  "promotion_allowed": false,
+  "required_load_bearing_erasures": [
+    "break_anticommutator",
+    "wrong_signature",
+    "collapse_double_cover"
+  ],
+  "rotor_quaternion": {
+    "double_cover_is_minus1": true,
+    "double_cover_sign_R2pi": -1.0,
+    "double_cover_so3_identity_at_2pi": true,
+    "hamilton_all": true,
+    "hamilton_relations": {
+      "i2_eq_-1": true,
+      "ij_eq_k": true,
+      "ijk_eq_-1": true,
+      "j2_eq_-1": true,
+      "k2_eq_-1": true
+    },
+    "positive_rotor_det_max_gap": 6.661338147750939e-16,
+    "positive_rotors_all_so3": true,
+    "positive_rotors_n": 24
+  },
+  "scale_stress": {
+    "all_rungs_clifford_clean": true,
+    "burnside_rank_varies": true,
+    "chiral_entropy_varies": true,
+    "expected_N_invariant": [],
+    "ladder_note": "module dims 8,16,32,64 = 2^3..2^6 via Cl(2k,0) JW gamma families; burnside_rank and chiral_sector_entropy both GROW with the rung (not frozen).",
+    "rows": [
+      {
+        "N": 8,
+        "anticommutator_clean": true,
+        "burnside_rank": 22,
+        "chiral_sector_entropy": 1.386294361,
+        "clifford_anticommutator_residual": 0.0,
+        "module_dim": 8,
+        "n_generators": 6
+      },
+      {
+        "N": 16,
+        "anticommutator_clean": true,
+        "burnside_rank": 37,
+        "chiral_sector_entropy": 2.079441542,
+        "clifford_anticommutator_residual": 0.0,
+        "module_dim": 16,
+        "n_generators": 8
+      },
+      {
+        "N": 32,
+        "anticommutator_clean": true,
+        "burnside_rank": 56,
+        "chiral_sector_entropy": 2.772588722,
+        "clifford_anticommutator_residual": 0.0,
+        "module_dim": 32,
+        "n_generators": 10
+      },
+      {
+        "N": 64,
+        "anticommutator_clean": true,
+        "burnside_rank": 79,
+        "chiral_sector_entropy": 3.465735903,
+        "clifford_anticommutator_residual": 0.0,
+        "module_dim": 64,
+        "n_generators": 12
+      }
+    ]
+  },
+  "signature_intact": true,
+  "spinor_carrier": {
+    "example_chiral_charge_psi": 0.04518717825170192,
+    "native": "ComplexF64 Dirac spinor psi in C^4, built in-Julia (non-numpy)",
+    "rho_is_spinor_outer_product": true,
+    "rho_psd_trace1": true
+  },
+  "tool_manifest": {
+    "CliffordAlgebras_jl": "NOT used here: explicit 4x4 Weyl rep is exact and self-checked; the package build has a known even-n pseudoscalar readout defect (see clifford_cl3_cl6 scout)",
+    "JSON": "load_bearing: receipt emission",
+    "LinearAlgebra": "load_bearing: rank/nullspace (Burnside/Schur), eig (entropy), opnorm (SO(3))",
+    "Random": "load_bearing: 24 rotor + 12 double-cover seeds (positive/erasure stress)",
+    "Z3": "load_bearing: exact-rational Clifford anticommutator proof; verdict FLIPS on g3:=g2",
+    "numpy": "ABSENT (Julia-native by construction)"
+  },
+  "weyl_split": {
+    "chiral_form": true,
+    "dim_left": 2,
+    "dim_right": 2,
+    "each_dim2": true,
+    "even_commutes": true,
+    "even_invariant": true,
+    "max_even_commutator_with_g5": 0.0,
+    "max_even_cross_block_leak": 0.0,
+    "max_odd_anticommutator_with_g5": 0.0,
+    "odd_anticommutes": true,
+    "odd_connects_L_R": true,
+    "odd_cross_block_leak": 1.0,
+    "weyl_split_ok": true
+  },
+  "z3_loadbearing_proof": {
+    "broken_g3g3_eq_0_negation": "sat",
+    "broken_input_flips_to_sat": true,
+    "claim": "Clifford anticommutator {g_mu,g_nu}=2 eta_mu_nu I over exact integers (IntSort): negation unsat on genuine gammas, sat on the broken g3:=g2 (claimed off-diagonal) input.",
+    "g0g0_anticommutator_eq_2I_negation": "unsat",
+    "g1g2_anticommutator_eq_0_negation": "unsat",
+    "genuine_claims_proven_unsat": true,
+    "int_sort_exact": true,
+    "tool_integration_depth": "load_bearing",
+    "verdict_flips": true,
+    "z3_used": true
+  }
+}

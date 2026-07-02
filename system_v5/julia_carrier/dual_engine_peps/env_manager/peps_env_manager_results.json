@@ -1,0 +1,169 @@
+{
+  "all_tests_pass": true,
+  "cache_events": [
+    {
+      "cached_chi": 2,
+      "hash_seconds": 0.015787,
+      "label": "same_state_first_get",
+      "miss_reason": "empty_cache",
+      "recompute_count": 1,
+      "recompute_seconds": 0.010947,
+      "state_hash": "3c6a10d2ae6e28618e486fff8cab9c7af43236a35fff0e3a4896b7274e2db01b",
+      "status": "miss"
+    },
+    {
+      "cached_chi": 2,
+      "hash_seconds": 0.002099,
+      "label": "same_state_second_get",
+      "miss_reason": "",
+      "recompute_count": 1,
+      "recompute_seconds": 0.0,
+      "state_hash": "3c6a10d2ae6e28618e486fff8cab9c7af43236a35fff0e3a4896b7274e2db01b",
+      "status": "hit"
+    },
+    {
+      "cached_chi": 2,
+      "hash_seconds": 0.002841,
+      "label": "same_object_after_tensor_mutation",
+      "miss_reason": "state_hash_changed",
+      "recompute_count": 2,
+      "recompute_seconds": 0.003795,
+      "state_hash": "3866fead8e76757c6557e57f95360fe073a5fcc8749109c73bbfc848ed678f44",
+      "status": "miss"
+    }
+  ],
+  "checksum_cost": {
+    "avg_hash_seconds": 0.006015,
+    "avg_recompute_seconds": 0.007371,
+    "hash_seconds_samples": [
+      0.015787,
+      0.002099,
+      0.002841,
+      0.010586,
+      0.001704,
+      0.003074
+    ],
+    "hash_to_recompute_ratio": 0.81605843,
+    "note": "Full-state SHA-256 is robust against in-place tensor replacement but scales with tensor payload size; pointer tracking would be cheaper but missed by same-object mutation.",
+    "recompute_seconds_samples": [
+      0.010947,
+      0.003795
+    ]
+  },
+  "claim_ceiling": "environment-manager infrastructure only; no physics, layer, bridge, flux, Axis0, or manifold admission claim",
+  "classification": "env_manager_infra",
+  "completed_at": "2026-06-02T20:56:32.844",
+  "couple_layers_stub": {
+    "coupling_strength": 0.25,
+    "energy_terms": {
+      "inter_layer_stub": -0.009986297166459603
+    },
+    "layer_a": {
+      "env_status": "hit",
+      "expectation_error": "",
+      "onsite_sz": 0.30900643244424275,
+      "recompute_count": 2
+    },
+    "layer_b": {
+      "env_status": "miss",
+      "expectation_error": "",
+      "onsite_sz": -0.12926976422423225,
+      "recompute_count": 1
+    },
+    "operator_math_stub": "J_perp * sigma_z(layer_1) tensor sigma_z(layer_2), evaluated as a mean-field product of single-layer CTMRG readouts",
+    "operator_owner_label": "NiTe/SeTi",
+    "pepskit_gap": "PEPSKit exposes per-layer InfinitePEPS CTMRGEnv caching and expectation_value, but not a native stacked-2D/pseudo-3D cross-layer environment object in this local API probe.",
+    "promotion_allowed": false,
+    "stub_scope": "pseudo-3D environment-manager wiring only; not a 3D tensor-network contraction"
+  },
+  "created_at": "2026-06-02T20:55:18.674",
+  "ctmrg_settings": {
+    "chi": 2,
+    "maxiter": 4,
+    "miniter": 1,
+    "solver_path": "CTMRGEnv(peps, ComplexSpace(chi)) -> leading_boundary(...); no fixedpoint, no PEPSOptimize, no LBFGS",
+    "tol": 1.0e-5,
+    "trunc": "fixedspace"
+  },
+  "exit_status": "ok",
+  "object_id": "peps_env_manager",
+  "pepskit_env_api": {
+    "exposes_needed_for_per_layer_cache": true,
+    "gaps_or_cautions": [
+      "No state dirty flag or checksum API was observed; the manager must hash TensorMap payload bytes.",
+      "No native pseudo-3D stacked-layer environment object was observed; cross-layer NiTe/SeTi remains a stub/mean-field placement here.",
+      "The mutable manager API is convenient but not AD-pure; use get_env_cow for copy-on-write manager replacement in differentiable lanes.",
+      "PEPSKit CTMRG info is cached as returned, but this driver does not promote convergence or physics claims."
+    ],
+    "needed_api_observed": [
+      "InfinitePEPS stores site tensors in field :A",
+      "CTMRGEnv(peps, ComplexSpace(chi)) initializes a per-layer environment",
+      "leading_boundary(env0, peps; kwargs...) returns a cacheable environment",
+      "expectation_value(peps, LocalOperator, env) consumes the returned environment"
+    ]
+  },
+  "promotion_allowed": false,
+  "state_cache_design": {
+    "ad_boundary": "get_env mutates the manager by owner API design; get_env_cow returns a copied manager for copy-on-write AD-style use",
+    "cache_key": "SHA-256 over dense TensorMap payload bytes plus chi",
+    "extra_guard_fields": [
+      "cached_chi",
+      "last_status",
+      "last_hash_seconds",
+      "last_recompute_seconds",
+      "last_miss_reason"
+    ],
+    "manager_fields": [
+      "peps_ref",
+      "cached_env",
+      "state_hash",
+      "recompute_count"
+    ],
+    "pointer_tradeoff": "peps_ref is retained for diagnostics only; cache admission does not depend on pointer identity"
+  },
+  "tests": {
+    "hash_distinguishes_states": {
+      "different_tensor_hash_different": true,
+      "hash_A0": "3c6a10d2ae6e28618e486fff8cab9c7af43236a35fff0e3a4896b7274e2db01b",
+      "hash_A0_copy": "3c6a10d2ae6e28618e486fff8cab9c7af43236a35fff0e3a4896b7274e2db01b",
+      "hash_A1": "3866fead8e76757c6557e57f95360fe073a5fcc8749109c73bbfc848ed678f44",
+      "pass": true,
+      "same_tensor_hash_equal": true
+    },
+    "mutation_triggers_miss": {
+      "miss_reason": "state_hash_changed",
+      "pass": true,
+      "recompute_count_after_mutation": 2,
+      "status": "miss"
+    },
+    "same_state_second_hit": {
+      "first_status": "miss",
+      "pass": true,
+      "recompute_count_after_first": 1,
+      "recompute_count_after_second": 1,
+      "second_status": "hit"
+    }
+  },
+  "tool_integration_depth": {
+    "JSON": "load_bearing",
+    "LinearAlgebra": "supportive",
+    "PEPSKit": "load_bearing",
+    "Random": "supportive",
+    "SHA": "load_bearing",
+    "TensorKit": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "load_bearing: result receipt",
+    "LinearAlgebra": "supportive: tensor normalization",
+    "PEPSKit": "load_bearing: CTMRGEnv, leading_boundary, expectation_value, InfinitePEPS",
+    "Random": "supportive: deterministic fixtures",
+    "SHA": "load_bearing: robust full tensor-data checksum",
+    "TensorKit": "load_bearing: ComplexSpace and TensorMap carrier with P<-N,E,S,W convention"
+  },
+  "wall_seconds": 74.169367,
+  "warmup": {
+    "recompute_count": 1,
+    "seconds": 64.002461,
+    "status": "miss"
+  }
+}

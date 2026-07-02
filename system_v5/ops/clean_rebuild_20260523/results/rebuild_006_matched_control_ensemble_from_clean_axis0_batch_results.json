@@ -1,0 +1,290 @@
+{
+  "schema": "clean_rebuild_result_v1",
+  "name": "rebuild_006_matched_control_ensemble_from_clean_axis0_batch",
+  "classification": "clean_rebuild_scout",
+  "sim_execution_kind": "nonclassical_clean_rebuild",
+  "source_alignment_category": "matched_control_ensemble_clean_axis0_batch",
+  "promotion_allowed": false,
+  "claim_ceiling": "Clean rebuild scout only: runs matched-reference controls over clean Axis0/QIT-FEP bridge candidates. It does not admit final Axis0, Xi, Phi0, or formal evidence.",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing deterministic random spinors, matched entangling angles, QIT path readouts, and ensemble statistics"
+    },
+    "clean_rebuild_004_source": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive clean Xi constructors and spinor helpers"
+    },
+    "clean_rebuild_005_source": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive clean QIT path readout helper"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive clean rebuild receipt serialization"
+    },
+    "pathlib": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result paths"
+    },
+    "time": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive runtime metadata"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "clean_rebuild_004_source": "supportive",
+    "clean_rebuild_005_source": "supportive",
+    "python_json": "supportive",
+    "pathlib": "supportive",
+    "time": "supportive"
+  },
+  "generated_at": "2026-05-24T02:30:37Z",
+  "runtime_seconds": 0.6266682147979736,
+  "all_pass": true,
+  "sections": {
+    "matched_control_gate": {
+      "pass": true,
+      "point_reference": {
+        "candidate": "point_reference_lifted_base",
+        "candidate_score": {
+          "log_z": -0.5519715533790124,
+          "I_c": -0.00882462984750497,
+          "MI": 0.2040032941969234,
+          "Phi_logZ_plus_Ic": -0.5607961832265174,
+          "Phi_logZ_plus_MI": -0.34796825918208907
+        },
+        "k_seeds": 48,
+        "stats": {
+          "log_z": {
+            "mean_diff": 0.0019169978311425705,
+            "std_diff": 0.016383282453940287,
+            "se_diff": 0.0023647231337480244,
+            "z": 0.810664810515969,
+            "admit_positive": false
+          },
+          "I_c": {
+            "mean_diff": -0.00017692803137145906,
+            "std_diff": 0.0006882480718393323,
+            "se_diff": 9.934005238641985e-05,
+            "z": -1.7810342064571507,
+            "admit_positive": false
+          },
+          "MI": {
+            "mean_diff": 0.04427618573975969,
+            "std_diff": 0.013587811603362546,
+            "se_diff": 0.0019612316717248215,
+            "z": 22.575704022167166,
+            "admit_positive": true
+          },
+          "Phi_logZ_plus_Ic": {
+            "mean_diff": 0.0017400697997711004,
+            "std_diff": 0.01689339273198133,
+            "se_diff": 0.0024383512103338723,
+            "z": 0.7136255812520299,
+            "admit_positive": false
+          },
+          "Phi_logZ_plus_MI": {
+            "mean_diff": 0.046193183570902185,
+            "std_diff": 0.019349107228406395,
+            "se_diff": 0.0027928030667248417,
+            "z": 16.54007907728115,
+            "admit_positive": true
+          }
+        },
+        "admitted_positive_readouts": [
+          "MI",
+          "Phi_logZ_plus_MI"
+        ],
+        "admission_status": "admitted_under_matched",
+        "rows_preview": [
+          {
+            "seed": 0,
+            "matched_score": {
+              "log_z": -0.5522393239280096,
+              "I_c": -0.008518187876111999,
+              "MI": 0.17491610476735142,
+              "Phi_logZ_plus_Ic": -0.5607575118041216,
+              "Phi_logZ_plus_MI": -0.37732321916065825
+            },
+            "diff_candidate_minus_matched": {
+              "log_z": 0.00026777054899718156,
+              "I_c": -0.0003064419713929706,
+              "MI": 0.029087189429571975,
+              "Phi_logZ_plus_Ic": -3.8671422395775146e-05,
+              "Phi_logZ_plus_MI": 0.029354959978569184
+            }
+          },
+          {
+            "seed": 1,
+            "matched_score": {
+              "log_z": -0.5678583992130766,
+              "I_c": -0.009046913646088067,
+              "MI": 0.1561448983050282,
+              "Phi_logZ_plus_Ic": -0.5769053128591648,
+              "Phi_logZ_plus_MI": -0.4117135009080484
+            },
+            "diff_candidate_minus_matched": {
+              "log_z": 0.01588684583406419,
+              "I_c": 0.00022228379858309742,
+              "MI": 0.047858395891895195,
+              "Phi_logZ_plus_Ic": 0.016109129632647434,
+              "Phi_logZ_plus_MI": 0.06374524172595936
+            }
+          },
+          {
+            "seed": 2,
+            "matched_score": {
+              "log_z": -0.5715659704348848,
+              "I_c": -0.009414782074496319,
+              "MI": 0.15033770676547223,
+              "Phi_logZ_plus_Ic": -0.5809807525093811,
+              "Phi_logZ_plus_MI": -0.4212282636694125
+            },
+            "diff_candidate_minus_matched": {
+              "log_z": 0.019594417055872393,
+              "I_c": 0.0005901522269913494,
+              "MI": 0.05366558743145117,
+              "Phi_logZ_plus_Ic": 0.020184569282863718,
+              "Phi_logZ_plus_MI": 0.07326000448732345
+            }
+          }
+        ]
+      },
+      "history_window": {
+        "candidate": "history_window_lifted_base",
+        "candidate_score": {
+          "log_z": -0.5269776501328204,
+          "I_c": -0.004298605023766108,
+          "MI": 0.033595380197606654,
+          "Phi_logZ_plus_Ic": -0.5312762551565864,
+          "Phi_logZ_plus_MI": -0.49338226993521367
+        },
+        "k_seeds": 48,
+        "stats": {
+          "log_z": {
+            "mean_diff": -0.016521349916789854,
+            "std_diff": 0.0055506129731131915,
+            "se_diff": 0.0008011619735485826,
+            "z": -20.62173500773124,
+            "admit_positive": false
+          },
+          "I_c": {
+            "mean_diff": -0.00019707988366147108,
+            "std_diff": 0.0002960638800753483,
+            "se_diff": 4.273314021470686e-05,
+            "z": -4.611874593612123,
+            "admit_positive": false
+          },
+          "MI": {
+            "mean_diff": 0.0009987717560534922,
+            "std_diff": 0.003015645305577724,
+            "se_diff": 0.0004352709072389326,
+            "z": 2.294598006535819,
+            "admit_positive": false
+          },
+          "Phi_logZ_plus_Ic": {
+            "mean_diff": -0.01671842980045121,
+            "std_diff": 0.005602213547643634,
+            "se_diff": 0.0008086098749474553,
+            "z": -20.67552019635872,
+            "admit_positive": false
+          },
+          "Phi_logZ_plus_MI": {
+            "mean_diff": -0.015522578160736282,
+            "std_diff": 0.006339486106399371,
+            "se_diff": 0.0009150260025133924,
+            "z": -16.96408420973708,
+            "admit_positive": false
+          }
+        },
+        "admitted_positive_readouts": [],
+        "admission_status": "killed_or_nonseparating_under_matched",
+        "rows_preview": [
+          {
+            "seed": 0,
+            "matched_score": {
+              "log_z": -0.5143928168642774,
+              "I_c": -0.004141637060079473,
+              "MI": 0.03356858761306411,
+              "Phi_logZ_plus_Ic": -0.5185344539243569,
+              "Phi_logZ_plus_MI": -0.4808242292512133
+            },
+            "diff_candidate_minus_matched": {
+              "log_z": -0.012584833268542983,
+              "I_c": -0.00015696796368663488,
+              "MI": 2.6792584542544018e-05,
+              "Phi_logZ_plus_Ic": -0.012741801232229455,
+              "Phi_logZ_plus_MI": -0.012558040684000349
+            }
+          },
+          {
+            "seed": 1,
+            "matched_score": {
+              "log_z": -0.5101260258313964,
+              "I_c": -0.003828577361945071,
+              "MI": 0.029530487140817525,
+              "Phi_logZ_plus_Ic": -0.5139546031933415,
+              "Phi_logZ_plus_MI": -0.48059553869057897
+            },
+            "diff_candidate_minus_matched": {
+              "log_z": -0.01685162430142395,
+              "I_c": -0.0004700276618210368,
+              "MI": 0.004064893056789129,
+              "Phi_logZ_plus_Ic": -0.017321651963244866,
+              "Phi_logZ_plus_MI": -0.012786731244634697
+            }
+          },
+          {
+            "seed": 2,
+            "matched_score": {
+              "log_z": -0.505590030122179,
+              "I_c": -0.004329102330115538,
+              "MI": 0.03532079624399853,
+              "Phi_logZ_plus_Ic": -0.5099191324522946,
+              "Phi_logZ_plus_MI": -0.4702692338781805
+            },
+            "diff_candidate_minus_matched": {
+              "log_z": -0.021387620010641428,
+              "I_c": 3.0497306349430188e-05,
+              "MI": -0.001725416046391877,
+              "Phi_logZ_plus_Ic": -0.021357122704291798,
+              "Phi_logZ_plus_MI": -0.023113036057033187
+            }
+          }
+        ]
+      },
+      "combined_admitted_readouts": {
+        "point_reference": [
+          "MI",
+          "Phi_logZ_plus_MI"
+        ],
+        "history_window": []
+      }
+    },
+    "nonpromotion_gate": {
+      "pass": true,
+      "admission": "blocked",
+      "admitted_readout_count_under_matched_controls": 2,
+      "reason": "Matched controls are diagnostic only in this clean rebuild lane. Any surviving readout still requires independent rerun after formal estate reset; killed/nonseparating readouts stay negative evidence."
+    }
+  },
+  "source_boundary": {
+    "reads_formal_scout_results": false,
+    "reads_grok_sim": false,
+    "reads_external_audits": false,
+    "reads_cross_lane_synthesis_docs": false,
+    "reads_clean_rebuild_source": [
+      "sim_rebuild_004_xi_rho_ab_bridge_family_from_readonly.py",
+      "sim_rebuild_005_qit_fep_axis0_batch_from_clean_xi.py"
+    ],
+    "reads_clean_rebuild_results": false
+  }
+}

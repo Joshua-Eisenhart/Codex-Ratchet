@@ -53,12 +53,15 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded golden-section scalar search for symmetric effective-rate Choi-distance fit"},
+    "python_math": {"tried": True, "used": True, "reason": "supportive local bounded golden-section scalar search for symmetric effective-rate Choi-distance fit"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing effective channel application, Choi matrices, ranks, spectra, trace distances, and fit objective evaluation"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic Choi dimension and rank boundary"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing Choi-rank survivor/control witness"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    tool: ("supportive" if tool == "python_math" else "load_bearing")
+    for tool in TOOL_MANIFEST
+}
 
 
 def bounded_scalar_minimize(objective: Callable[[float], float], lower: float, upper: float, *, xatol: float = 1e-9, max_iter: int = 256) -> dict[str, Any]:

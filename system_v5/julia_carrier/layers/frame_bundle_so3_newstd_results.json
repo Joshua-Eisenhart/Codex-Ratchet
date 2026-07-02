@@ -1,0 +1,247 @@
+{
+  "bloch_free": true,
+  "claim_ceiling": "candidate; finitude+noncommutation+topological invariant survived local checks; NOT layer-complete, NOT manifold-admitted, NOT coupling-proven",
+  "classification": "frame_bundle_so3_newstd_poc",
+  "criterion_1_finitude_vs_flat": {
+    "flat_generator_norms": [
+      0.9999999999999999,
+      1.9999999999999998,
+      3.9999999999999996,
+      7.999999999999999
+    ],
+    "flat_max": 7.999999999999999,
+    "genuine_generator_norm": 0.5,
+    "interpretation": "SO(3) generator norm compact-bounded; flat R^3 translation norm grows with momentum k",
+    "k_vals": [
+      1.0,
+      2.0,
+      4.0,
+      8.0
+    ],
+    "pass": true,
+    "ratio_flat_over_genuine": 15.999999999999998,
+    "threshold_genuine_le": 1.01,
+    "threshold_ratio_ge": 3.0
+  },
+  "criterion_2_noncommutation": {
+    "anti_tautology": "Commutator computed from actual matrix products at random input angles; not by construction",
+    "clifford_anticomm_max_err": 0.0,
+    "clifford_checks": {
+      "G1_G1": 0.0,
+      "G1_G2": 0.0,
+      "G1_G3": 0.0,
+      "G2_G1": 0.0,
+      "G2_G2": 0.0,
+      "G2_G3": 0.0,
+      "G3_G1": 0.0,
+      "G3_G2": 0.0,
+      "G3_G3": 0.0
+    },
+    "flat_comm_norm": 0.0,
+    "genuine_comm_max": 87.5546469148326,
+    "genuine_comm_min": 0.7249520989898851,
+    "genuine_commutator_norms": [
+      87.554647,
+      16.043428,
+      8.138985,
+      20.59325,
+      0.724952,
+      29.962552,
+      22.897002,
+      3.211995,
+      12.157976,
+      15.83272
+    ],
+    "pass": true,
+    "pass_clifford": true,
+    "pass_flat": true,
+    "pass_genuine": true,
+    "thresholds": {
+      "clifford_lt": 1.0e-12,
+      "flat_lt": 1.0e-10,
+      "genuine_gt": 0.1
+    }
+  },
+  "criterion_3_topological_invariant": {
+    "invariant": "pi_0(O(3)) = Z/2, pi_0(SO(3)) = 0",
+    "matches_known": true,
+    "max_det_dev_on_paths": 6.661338147750939e-16,
+    "o3_det_signs_observed": [
+      -1,
+      1
+    ],
+    "pass": true,
+    "so3_all_det_plus1": true,
+    "wrong_structure_control": "reflection det=-1 is excluded; same frame without SO(3) reduction is SAT; verdict flips when input swapped",
+    "z3_admits_genuine": true,
+    "z3_excludes_reflection": true,
+    "z3_reflection_valid_O3_without_reduction": true,
+    "z3_verdict_flips_on_input": true
+  },
+  "criterion_4_exact_carrier": {
+    "carrier_type": "ITensors MPS (exact dense for N<=8; bond-limited for larger N)",
+    "entanglement_base_rows": [
+      {
+        "bond_entangled": 2,
+        "bond_product": 1,
+        "max_product_cut": 0.0,
+        "min_entangled_cut": 1.0,
+        "n_sites": 4,
+        "pass": true
+      },
+      {
+        "bond_entangled": 2,
+        "bond_product": 1,
+        "max_product_cut": 0.0,
+        "min_entangled_cut": 1.0,
+        "n_sites": 6,
+        "pass": true
+      },
+      {
+        "bond_entangled": 2,
+        "bond_product": 1,
+        "max_product_cut": 0.0,
+        "min_entangled_cut": 1.0,
+        "n_sites": 8,
+        "pass": true
+      }
+    ],
+    "pass": true,
+    "truncation_budget_note": "equal maxdim budget for genuine and product control; no asymmetric truncation"
+  },
+  "criterion_5_scale_ladder": {
+    "completed_rungs": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "n_met_of_4": 4,
+    "pass": true,
+    "rungs": [
+      {
+        "N": 8,
+        "max_product_cut": 0.0,
+        "maxdim": 64,
+        "min_entangled_cut": 1.0,
+        "pass": true,
+        "status": "MET"
+      },
+      {
+        "N": 16,
+        "max_product_cut": 0.0,
+        "maxdim": 64,
+        "min_entangled_cut": 1.0,
+        "pass": true,
+        "status": "MET"
+      },
+      {
+        "N": 32,
+        "max_product_cut": 0.0,
+        "maxdim": 8,
+        "min_entangled_cut": 1.0,
+        "pass": true,
+        "status": "MET"
+      },
+      {
+        "N": 64,
+        "max_product_cut": 0.0,
+        "maxdim": 4,
+        "min_entangled_cut": 1.0,
+        "pass": true,
+        "status": "MET"
+      }
+    ]
+  },
+  "criterion_6_neural_dynamics": {
+    "K_patterns": 3,
+    "N_units": 8,
+    "energies_genuine_final": -3.5000000000000004,
+    "energies_genuine_init": -0.16666666666666663,
+    "energy_drop_flat": 2.666666666666667,
+    "energy_drop_genuine": 3.333333333333334,
+    "flat_control_note": "Hopfield settling on SO(3) geometry; flat control uses Euclidean inner product (commuting)",
+    "n_steps": 50,
+    "pass": true,
+    "threshold_drop_ge": 0.05,
+    "type": "Hopfield-style energy minimisation on SO(3) geometry"
+  },
+  "finite_map": {
+    "codomain": "Schmidt entropy spectrum, commutator norms, energy landscape, topological det-component",
+    "domain": "SO(3) frame elements (axis-angle params) x spinor network configs"
+  },
+  "frame_element": {
+    "angle": 0.9,
+    "axis": [
+      0.3,
+      1.0,
+      -0.4
+    ],
+    "pass": true,
+    "so3_det": 0.9999999999999998,
+    "so3_orth_err": 2.4902799884605145e-16,
+    "su2_det": 1.0,
+    "su2_unit_err": 0.0
+  },
+  "honest_status": "runs; passes local rerun (this session)",
+  "new_standard_scorecard": {
+    "commutation": {
+      "deciding_number": "min_genuine=0.725, flat=0.0, clifford_err=0.0",
+      "status": "MET"
+    },
+    "exact_carrier": {
+      "deciding_number": "ITensors MPS, min_entangled_cut=all>0.5, max_product_cut=all<1e-9",
+      "status": "MET"
+    },
+    "finitude": {
+      "deciding_number": "genuine_norm=0.5, ratio=16.0 (threshold: <=1.01, >=3.0)",
+      "status": "MET"
+    },
+    "invariant_anchored": {
+      "deciding_number": "pi0_O3=Z/2 measured, Z3_UNSAT=reflection excluded, verdict_flips=true",
+      "status": "MET"
+    },
+    "neural_dynamics": {
+      "deciding_number": "energy_drop=3.3333 (threshold>=0.05)",
+      "status": "MET"
+    },
+    "overall_fraction": "6/6 MET, 0/6 PARTIAL",
+    "scale_ladder": {
+      "deciding_number": "4/4 rungs MET of [8,16,32,64]",
+      "status": "MET"
+    },
+    "verdict": "GENUINELY-UPGRADED",
+    "weakest_criterion": "finitude",
+    "weakest_status": "MET"
+  },
+  "object_id": "frame_bundle_so3_newstd",
+  "promotion_allowed": false,
+  "root_constraints": {
+    "F01": "compact SO(3)/SU(2) carrier; bounded invariant; flat control unbounded",
+    "N01": "SO(3) generators noncommuting [J_a,J_b]=i eps J_c; flat translations commute"
+  },
+  "source_object": "frame_bundle_so3_spinor_network.jl (geometry reused verbatim)",
+  "title": "SO(3) frame-bundle neural net on non-flat geometry -- NEW STANDARD upgrade",
+  "tool_manifest": {
+    "ITensors_ITensorMPS": {
+      "reason": "spinor-network MPS + Schmidt/SVD cut entropy; scale ladder",
+      "role": "load_bearing"
+    },
+    "JSON": {
+      "reason": "results emission",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "SU(2)/SO(3) frame algebra, det, opnorm, SVD; finitude and commutation criteria",
+      "role": "load_bearing"
+    },
+    "Random": {
+      "reason": "input-dependent random axis directions for commutator check; pi_0 sampling",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "structural exclusion of det=-1 reflection; det DERIVED by cofactor; verdict flips on wired input",
+      "role": "load_bearing"
+    }
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^2); finite genuine channel set (6 het + 4 commuting control)",
+    "finite_operator": "Ti/Te/Fi/Fe (strength-independent) + Weyl-L/R GKSL with tunable (T,steps); genuine layer maps reused from ratchet_accumulation_killtest",
+    "finite_path": "forward vs reversed depth words at each GKSL strength; permutation survivors at each strength",
+    "finite_probe": "20 random density operators + 1 fixed survivor seed; 4 GKSL strengths; depth ladder 6,12,24,48,96,192,384 (reps 1..64)"
+  },
+  "N01_witness": {
+    "divergence_formula": "Delta(d) = mean_rho ||Phi_fwd^d(rho) - Phi_rev^d(rho)||_1 vs depth d, per GKSL strength",
+    "noise_floor": 1.3642420526593924e-12,
+    "present_above_floor": true,
+    "saturation_depth_lockin_series_strong_to_veryweak": [
+      6,
+      6,
+      24,
+      6
+    ],
+    "survivor_spread_max_series_strong_to_veryweak": [
+      0.44370390106554813,
+      0.6543086639720657,
+      0.3273673468310748,
+      0.08759915263434503
+    ]
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "any ratchet edge admission",
+    "ratchet thesis closure",
+    "pairwise nesting",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics"
+  ],
+  "carrier": "density operators rho in D(C^2); genuine layer channels Ti/Te/Fi/Fe (strength-independent) + Weyl-L/R GKSL (strength = (T,steps)); HS norm, trace norm. NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "MEASURES the forward-vs-reversed divergence-vs-depth curve, its saturation (lock-in) depth, and order-dependent survivor persistence on the genuine channel set across four GKSL relaxation strengths, vs an explicit noise floor and a commuting control. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics. A saturation-depth-vs-strength scaling here is a CANDIDATE order-memory lock-in diagnostic, not a proven ratchet edge.",
+  "classification": "ratchet_survivor_reach_killtest_poc",
+  "commuting_control": {
+    "above_floor": false,
+    "base_schedule": "Tz.30 Tz.55 Tz.65 Tz.80",
+    "depths": [
+      4,
+      8,
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "divergence_maxes": [
+      1.1102314949223173e-16,
+      1.110223026693108e-16,
+      1.1102230246251664e-16,
+      1.1102230246251565e-16,
+      1.1102230246251565e-16,
+      1.1102230246251565e-16,
+      1.1102230246251565e-16
+    ],
+    "divergence_means": [
+      9.127692517130764e-18,
+      5.5885041711197695e-18,
+      5.551133841416103e-18,
+      5.551115123132187e-18,
+      5.551115123125783e-18,
+      5.551115123125783e-18,
+      5.551115123125783e-18
+    ],
+    "flat_at_floor": true,
+    "note": "z-pinches in one basis: commute and carry no GKSL leg, so identical across all GKSL strengths by construction. MUST stay at the floor (flat curve) and pick the SAME survivor at every strength.",
+    "plateau": 5.551115123125783e-18,
+    "same_survivor": true,
+    "saturation_depth": -1,
+    "survivor_spread_max": 3.2944368926050117e-82
+  },
+  "n_rho": 20,
+  "noise_floor": {
+    "deepest_word_length": 384,
+    "definition": "eps(Float64) * max PTM HS scale (=2.0) * deepest het word length (384) * 8 safety",
+    "machine_eps": 2.220446049250313e-16,
+    "max_ptm_hs_scale": 2.0,
+    "value": 1.3642420526593924e-12
+  },
+  "non_numpy": true,
+  "object_id": "ratchet_survivor_reach_killtest",
+  "open_falsifier_resolved": "Is the depth~6 divergence saturation seen in ratchet_accumulation_killtest.jl the genuine ratchet REACHING its survivor (lock-in depth grows as GKSL weakens, survivor persists) or an ARTIFACT of strong GKSL relaxation (flat at all strengths / no survivor)?",
+  "promotion_allowed": false,
+  "reframe_lockin_depth_vs_strength": {
+    "all_strengths_above_floor": true,
+    "lockin_depth_grew_somewhere": true,
+    "lockin_depth_grows_as_strength_weakens": false,
+    "lockin_depth_nondecreasing_as_strength_weakens": false,
+    "note": "saturation_depth_series ordered strong->medium->weak->very_weak. GENUINE ratchet-to-survivor predicts this series is nondecreasing AND grows somewhere (gentler step => more depth to lock in). -1 entries mean no lock-in (plateau below floor) at that strength.",
+    "order": [
+      "strong",
+      "medium",
+      "weak",
+      "very_weak"
+    ],
+    "plateau_series": [
+      0.3527632184890449,
+      0.4652036026388334,
+      0.2907797624485763,
+      0.0801295376116918
+    ],
+    "saturation_depth_series": [
+      6,
+      6,
+      24,
+      6
+    ],
+    "survivor_spread_max_series": [
+      0.44370390106554813,
+      0.6543086639720657,
+      0.3273673468310748,
+      0.08759915263434503
+    ]
+  },
+  "reused_from": "ratchet_accumulation_killtest.jl (genuine channels, same as order_null_killtest.jl / L7/L10/L11 _bf layers). NO new channels invented; only the GKSL (T,steps) strength is swept.",
+  "script": "ratchet_survivor_reach_killtest.jl",
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes local rerun",
+  "sweep": [
+    {
+      "above_floor": true,
+      "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+      "depths": [
+        6,
+        12,
+        24,
+        48,
+        96,
+        192,
+        384
+      ],
+      "divergence_maxes": [
+        0.35367127166592105,
+        0.3527672045409517,
+        0.3527632184957781,
+        0.3527632184890449,
+        0.3527632184890449,
+        0.3527632184890449,
+        0.3527632184890449
+      ],
+      "divergence_means": [
+        0.3525866472135488,
+        0.35276337143036834,
+        0.35276321847859954,
+        0.3527632184890449,
+        0.3527632184890449,
+        0.3527632184890449,
+        0.3527632184890449
+      ],
+      "gksl_T": 4.0,
+      "gksl_steps": 400,
+      "note": "saturation_depth = smallest probed depth reaching >=95% of the plateau (lock-in depth). survivor_persists = pairwise survivor trace-distance (max over 6 orderings) above floor.",
+      "plateau": 0.3527632184890449,
+      "rose_before_lockin": false,
+      "saturation_depth_lockin": 6,
+      "saturation_idx": 1,
+      "strength_label": "strong",
+      "survivor_persists": true,
+      "survivor_spread_max": 0.44370390106554813,
+      "survivor_spread_mean": 0.30683475533089427
+    },
+    {
+      "above_floor": true,
+      "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+      "depths": [
+        6,
+        12,
+        24,
+        48,
+        96,
+        192,
+        384
+      ],
+      "divergence_maxes": [
+        0.5334506224444397,
+        0.4794101491633158,
+        0.46532604033984476,
+        0.4652037677270533,
+        0.465203602638972,
+        0.4652036026388333,
+        0.4652036026388333
+      ],
+      "divergence_means": [
+        0.4520260789139806,
+        0.46432471989455826,
+        0.4650086101792007,
+        0.465203455987852,
+        0.4652036026387176,
+        0.4652036026388334,
+        0.4652036026388334
+      ],
+      "gksl_T": 1.0,
+      "gksl_steps": 100,
+      "note": "saturation_depth = smallest probed depth reaching >=95% of the plateau (lock-in depth). survivor_persists = pairwise survivor trace-distance (max over 6 orderings) above floor.",
+      "plateau": 0.4652036026388334,
+      "rose_before_lockin": false,
+      "saturation_depth_lockin": 6,
+      "saturation_idx": 1,
+      "strength_label": "medium",
+      "survivor_persists": true,
+      "survivor_spread_max": 0.6543086639720657,
+      "survivor_spread_mean": 0.42011613226517636
+    },
+    {
+      "above_floor": true,
+      "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+      "depths": [
+        6,
+        12,
+        24,
+        48,
+        96,
+        192,
+        384
+      ],
+      "divergence_maxes": [
+        0.38565918719667514,
+        0.3088338249342246,
+        0.29253463131510193,
+        0.29080379020937364,
+        0.29077976663656446,
+        0.2907797624485766,
+        0.2907797624485763
+      ],
+      "divergence_means": [
+        0.2352462119433157,
+        0.26853090267262303,
+        0.28769253745414836,
+        0.2907404476951413,
+        0.29077975566029807,
+        0.2907797624485761,
+        0.2907797624485763
+      ],
+      "gksl_T": 0.25,
+      "gksl_steps": 25,
+      "note": "saturation_depth = smallest probed depth reaching >=95% of the plateau (lock-in depth). survivor_persists = pairwise survivor trace-distance (max over 6 orderings) above floor.",
+      "plateau": 0.2907797624485763,
+      "rose_before_lockin": true,
+      "saturation_depth_lockin": 24,
+      "saturation_idx": 3,
+      "strength_label": "weak",
+      "survivor_persists": true,
+      "survivor_spread_max": 0.3273673468310748,
+      "survivor_spread_mean": 0.17461973049598567
+    },
+    {
+      "above_floor": true,
+      "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+      "depths": [
+        6,
+        12,
+        24,
+        48,
+        96,
+        192,
+        384
+      ],
+      "divergence_maxes": [
+        0.2852875475248472,
+        0.13025573264222085,
+        0.08210065190529553,
+        0.08016532560545042,
+        0.08012954212948173,
+        0.0801295376116918,
+        0.0801295376116918
+      ],
+      "divergence_means": [
+        0.13264269563237582,
+        0.0714276720467734,
+        0.07840769134673979,
+        0.08011250148789242,
+        0.0801295357125533,
+        0.08012953761169166,
+        0.0801295376116918
+      ],
+      "gksl_T": 0.06,
+      "gksl_steps": 10,
+      "note": "saturation_depth = smallest probed depth reaching >=95% of the plateau (lock-in depth). survivor_persists = pairwise survivor trace-distance (max over 6 orderings) above floor.",
+      "plateau": 0.0801295376116918,
+      "rose_before_lockin": false,
+      "saturation_depth_lockin": 6,
+      "saturation_idx": 1,
+      "strength_label": "very_weak",
+      "survivor_persists": true,
+      "survivor_spread_max": 0.08759915263434503,
+      "survivor_spread_mean": 0.041997658595202596
+    }
+  ],
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm), HS norms, channel/PTM algebra; every measured number flows through it.",
+    "Random": "load_bearing: random density operators (signatures measured over fresh samples, not planted).",
+    "Statistics": "supportive: means over the rho ensemble and over orderings.",
+    "Z3": "load_bearing: binds the genuine survivor spread at the weakest strength to the commuting law; verdict flips UNSAT->SAT on the commuting control."
+  },
+  "verdict": {
+    "all_strengths_above_floor": true,
+    "classification": "mixed",
+    "control_flat_at_floor": true,
+    "control_same_survivor": true,
+    "controls_clean": true,
+    "interpretation": "ratchet_reaches_survivor requires: every GKSL strength above floor and saturating, lock-in depth nondecreasing AND growing as strength weakens, the order-dependent survivor persisting at every strength, and the commuting control flat with the same survivor. saturation_was_artifact if weakening GKSL drives divergence below the floor or kills the survivor at any strength. mixed if signals partially hold. This settles whether the depth~6 saturation in ratchet_accumulation_killtest.jl is genuine survivor lock-in (ratchet drive-down) or an artifact of strong relaxation.",
+    "lockin_depth_grows_as_strength_weakens": false,
+    "saturation_depth_series_strong_to_veryweak": [
+      6,
+      6,
+      24,
+      6
+    ],
+    "survivor_persists_at_every_strength": true,
+    "survivor_spread_max_series_strong_to_veryweak": [
+      0.44370390106554813,
+      0.6543086639720657,
+      0.3273673468310748,
+      0.08759915263434503
+    ],
+    "z3_load_bearing_flip": true
+  },
+  "z3_load_bearing": {
+    "commuting_survivor_spread": 3.2944368926050117e-82,
+    "commuting_verdict": "sat",
+    "encoding": "FREE int spread, FREE bool commuting_set; law Or([Not(commuting_set), spread==0]); assert commuting_set=true + spread==IntVal(measured). genuine(weakest strength): unsat; commuting: sat.",
+    "genuine_weak_survivor_spread": 0.08759915263434503,
+    "genuine_weak_verdict": "unsat",
+    "load_bearing_flip": true
+  }
+}

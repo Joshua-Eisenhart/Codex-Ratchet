@@ -1,0 +1,703 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^d), d in {2,4,8}; finite frame set {Hopf rotor at angle ang, flat=I, 600 scale-swept random exp(-i s H_rand)} per (d,ang)",
+    "finite_operator": "dissipative Weyl-L GKSL channel lifted to dim d; genuine Spin(2k+1) Hopf rotor frames at 5 angles; scale-swept random unitary generators",
+    "finite_path": "dressed compositions U Phi_WeylL(U' . U) U' at each (d,ang); z(d,ang)=(E_hopf-band_mean)/band_std over the +/-10% commutator-matched 600-frame scale-swept band",
+    "finite_probe": "21 density operators per carrier (20 spinor-derived + 1 maximally-mixed)"
+  },
+  "N01_witness": {
+    "noise_floor": 1.4210854715202004e-14,
+    "order_sensitive_control": "frame conjugation does not commute with the dissipative upper op; [U, H0_d] != 0 drives the dressed-vs-bare gap at every angle. The scale-swept band brackets the magnitude of this non-commutation so the matched-band z isolates whether geometry carries structure BEYOND it. Geometric (non-temporal) substrate axis.",
+    "present_above_floor": true,
+    "top_level_separation": 0.20796687423572202
+  },
+  "all_angles_completed": true,
+  "angles": [
+    0.1,
+    0.8,
+    1.55,
+    2.3,
+    3.0
+  ],
+  "angles_completed": [
+    "0.1",
+    "0.8",
+    "1.55",
+    "2.3",
+    "3.0"
+  ],
+  "band_populated_surface": [
+    [
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      false
+    ],
+    [
+      true,
+      false,
+      false
+    ],
+    [
+      true,
+      false,
+      false
+    ]
+  ],
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "brackets_c_hopf_surface": [
+    [
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      false
+    ],
+    [
+      true,
+      false,
+      false
+    ],
+    [
+      true,
+      false,
+      false
+    ]
+  ],
+  "carrier_layer": "density operators in D(C^d), d in {2,4,8}; genuine higher-Hopf rotor frames (Spin(3)/Spin(5)/Spin(7)) from Clifford gamma towers; dissipative Weyl-L GKSL upper op lifted to dim d. NO CTMRG, NO PEPS, NO optimization. Reused VERBATIM from substrate_effect_matched_band.jl; only rotor angle is swept and band cut to 600.",
+  "cells": {
+    "ang0.1_d2": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.059243728243803,
+      "E_matched_mean": 0.06443093837985547,
+      "E_matched_std": 0.053315154275708536,
+      "ang": 0.1,
+      "band_c_hi": 2.5492035572809173,
+      "band_c_lo": 0.00022198128193485247,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 0.09510845599179019,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 2,
+      "flat_collapses": true,
+      "n_matched": 17,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": false,
+      "z_full_band": -0.3096103901476852,
+      "z_matched_band": -0.09729335320362884,
+      "z_sign": -1
+    },
+    "ang0.1_d4": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.06152265311564263,
+      "E_matched_mean": 0.09438306537346716,
+      "E_matched_std": 0.03348295078985589,
+      "ang": 0.1,
+      "band_c_hi": 2.8889946471820256,
+      "band_c_lo": 0.0009828546906273134,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 0.16724920832484155,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 4,
+      "flat_collapses": true,
+      "n_matched": 10,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": false,
+      "z_full_band": -0.42566686043717206,
+      "z_matched_band": -0.9814072978233457,
+      "z_sign": -1
+    },
+    "ang0.1_d8": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.09868328909875536,
+      "E_matched_mean": 0.12572375784116943,
+      "E_matched_std": 0.015722140176518937,
+      "ang": 0.1,
+      "band_c_hi": 3.336269313595438,
+      "band_c_lo": 0.002241704841069127,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 0.26371174825057014,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 8,
+      "flat_collapses": true,
+      "n_matched": 17,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": false,
+      "z_full_band": -0.4082248844833484,
+      "z_matched_band": -1.719897446455737,
+      "z_sign": -1
+    },
+    "ang0.8_d2": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.4568842292005313,
+      "E_matched_mean": 0.31980643503637995,
+      "E_matched_std": 0.22693677915953905,
+      "ang": 0.8,
+      "band_c_hi": 2.5492035572809173,
+      "band_c_lo": 0.00022198128193485247,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 0.7410482769585955,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 2,
+      "flat_collapses": true,
+      "n_matched": 10,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": false,
+      "z_full_band": 1.672511689352107,
+      "z_matched_band": 0.604035162003353,
+      "z_sign": 1
+    },
+    "ang0.8_d4": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.48970579686687515,
+      "E_matched_mean": 0.6435605828116112,
+      "E_matched_std": 0.12966150817202887,
+      "ang": 0.8,
+      "band_c_hi": 2.8889946471820256,
+      "band_c_lo": 0.0009828546906273134,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 1.3031410967549673,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 4,
+      "flat_collapses": true,
+      "n_matched": 27,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": true,
+      "z_full_band": 1.1795925368092584,
+      "z_matched_band": -1.1865879713554517,
+      "z_sign": -1
+    },
+    "ang0.8_d8": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.763660478845778,
+      "E_matched_mean": 0.9716273530815001,
+      "E_matched_std": 0.10485556218681627,
+      "ang": 0.8,
+      "band_c_hi": 3.336269313595438,
+      "band_c_lo": 0.002241704841069127,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 2.0547398716229077,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 8,
+      "flat_collapses": true,
+      "n_matched": 26,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": true,
+      "z_full_band": 1.483493226533522,
+      "z_matched_band": -1.9833652111387008,
+      "z_sign": -1
+    },
+    "ang1.55_d2": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.8016557971910626,
+      "E_matched_mean": 0.4814100554865588,
+      "E_matched_std": 0.14153889152777396,
+      "ang": 1.55,
+      "band_c_hi": 2.5492035572809173,
+      "band_c_lo": 0.00022198128193485247,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 1.3315330472668212,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 2,
+      "flat_collapses": true,
+      "n_matched": 22,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": true,
+      "z_full_band": 3.3910975367534064,
+      "z_matched_band": 2.2625989100788066,
+      "z_sign": 1
+    },
+    "ang1.55_d4": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.8781978637970199,
+      "E_matched_mean": 1.0079816711939038,
+      "E_matched_std": 0.13700701985894348,
+      "ang": 1.55,
+      "band_c_hi": 2.8889946471820256,
+      "band_c_lo": 0.0009828546906273134,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 2.341514702257,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 4,
+      "flat_collapses": true,
+      "n_matched": 10,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": false,
+      "z_full_band": 2.6360500137005567,
+      "z_matched_band": -0.9472785228852048,
+      "z_sign": -1
+    },
+    "ang1.55_d8": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 1.318498379188281,
+      "E_matched_mean": "non_finite(NaN)",
+      "E_matched_std": "non_finite(NaN)",
+      "ang": 1.55,
+      "band_c_hi": 3.336269313595438,
+      "band_c_lo": 0.002241704841069127,
+      "band_populated": false,
+      "brackets_c_hopf": false,
+      "c_hopf": 3.692005133365357,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 8,
+      "flat_collapses": true,
+      "n_matched": 1,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": false,
+      "z_full_band": 3.0618885774413998,
+      "z_matched_band": "non_finite(NaN)",
+      "z_sign": 0
+    },
+    "ang2.3_d2": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 1.0313856272462991,
+      "E_matched_mean": 0.6013965871905618,
+      "E_matched_std": 0.17383606862688472,
+      "ang": 2.3,
+      "band_c_hi": 2.5492035572809173,
+      "band_c_lo": 0.00022198128193485247,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 1.7369550216612182,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 2,
+      "flat_collapses": true,
+      "n_matched": 17,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": true,
+      "z_full_band": 4.5362338278923495,
+      "z_matched_band": 2.473531778831526,
+      "z_sign": 1
+    },
+    "ang2.3_d4": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 1.115297289407295,
+      "E_matched_mean": "non_finite(NaN)",
+      "E_matched_std": "non_finite(NaN)",
+      "ang": 2.3,
+      "band_c_hi": 2.8889946471820256,
+      "band_c_lo": 0.0009828546906273134,
+      "band_populated": false,
+      "brackets_c_hopf": false,
+      "c_hopf": 3.054453457784795,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 4,
+      "flat_collapses": true,
+      "n_matched": 3,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": false,
+      "z_full_band": 3.5249361984957037,
+      "z_matched_band": "non_finite(NaN)",
+      "z_sign": 0
+    },
+    "ang2.3_d8": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 1.659530525379363,
+      "E_matched_mean": "non_finite(NaN)",
+      "E_matched_std": "non_finite(NaN)",
+      "ang": 2.3,
+      "band_c_hi": 3.336269313595438,
+      "band_c_lo": 0.002241704841069127,
+      "band_populated": false,
+      "brackets_c_hopf": false,
+      "c_hopf": 4.816137961848801,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 8,
+      "flat_collapses": true,
+      "n_matched": 0,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": false,
+      "z_full_band": 4.032052212127956,
+      "z_matched_band": "non_finite(NaN)",
+      "z_sign": 0
+    },
+    "ang3.0_d2": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 1.1050656202484528,
+      "E_matched_mean": 0.7324124334002627,
+      "E_matched_std": 0.1386959027923257,
+      "ang": 3.0,
+      "band_c_hi": 2.5492035572809173,
+      "band_c_lo": 0.00022198128193485247,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 1.898194976424334,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 2,
+      "flat_collapses": true,
+      "n_matched": 12,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": true,
+      "z_full_band": 4.903507132788552,
+      "z_matched_band": 2.686836304070041,
+      "z_sign": 1
+    },
+    "ang3.0_d4": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 1.1958850391415685,
+      "E_matched_mean": "non_finite(NaN)",
+      "E_matched_std": "non_finite(NaN)",
+      "ang": 3.0,
+      "band_c_hi": 2.8889946471820256,
+      "band_c_lo": 0.0009828546906273134,
+      "band_populated": false,
+      "brackets_c_hopf": false,
+      "c_hopf": 3.3379955940044406,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 4,
+      "flat_collapses": true,
+      "n_matched": 0,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": false,
+      "z_full_band": 3.8270598211833,
+      "z_matched_band": "non_finite(NaN)",
+      "z_sign": 0
+    },
+    "ang3.0_d8": {
+      "E_flat_max": 0.0,
+      "E_hopf_max": 1.776881378691125,
+      "E_matched_mean": "non_finite(NaN)",
+      "E_matched_std": "non_finite(NaN)",
+      "ang": 3.0,
+      "band_c_hi": 3.336269313595438,
+      "band_c_lo": 0.002241704841069127,
+      "band_populated": false,
+      "brackets_c_hopf": false,
+      "c_hopf": 5.263215668189597,
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 8,
+      "flat_collapses": true,
+      "n_matched": 0,
+      "noise_floor": 1.4210854715202004e-14,
+      "outside": false,
+      "z_full_band": 4.365890331654429,
+      "z_matched_band": "non_finite(NaN)",
+      "z_sign": 0
+    }
+  },
+  "claim_ceiling": "MEASURES the SIGN of z(d,ang)=(E_hopf-band_mean)/band_std over a +/-10% commutator-matched 600-frame scale-swept random band, across 5 rotor angles in [0.1,pi], at d in {2,4,8}. Tests whether iter-7's d>=4 negative-z substrate-suppression survives an angle sweep or is an ang=0.9 artifact. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics. A robust sign split is a CANDIDATE structural fact, NOT a proven nesting layer. promotion_allowed=false.",
+  "classification": "substrate_effect_angle_sweep_light_poc",
+  "codomain_or_output": "5x3 SIGNED z(d,ang) surface (10% matched-band) + per-cell band_populated/n_matched/bracket coverage/flat-collapse; per-d z-sign pattern across angles; angle-structural verdict",
+  "dependency_receipts": [
+    "layers/substrate_effect_matched_band.jl (iter-7 object whose d>=4 negative-z sign is under angle-sweep test; ALL geometry/GKSL/E(A)/matched-band/bracket logic reused VERBATIM)",
+    "layers/substrate_effect_matched_band_results.json (iter-7 result: z_matched=[+1.34,-1.01,-2.08] at d=2,4,8, ang=0.9)",
+    "layers/substrate_effect_scale_ladder.jl (iter-6 genuine Clifford gamma towers + Hopf rotors + Weyl-L GKSL)"
+  ],
+  "dims": [
+    2,
+    4,
+    8
+  ],
+  "domain": "for each (d,ang) in {2,4,8} x {0.1,0.8,1.55,2.3,3.0}: finite set of 21 density operators; frame set {genuine Hopf rotor at angle ang, flat=I, 600 scale-swept random U=exp(-i s H_rand)}; upper op = Weyl-L GKSL lifted to dim d",
+  "downstream_blocks": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "finite_map": "(carrier dim d, rotor angle ang, genuine Hopf frame U_hopf(d,ang) in Spin(2k+1)) |-> dressed dissipative-Weyl channel Phi_B^A(rho)=U Phi_WeylL(U' rho U) U'; observable z(d,ang)=(E_hopf - band_mean)/band_std over a 600-frame SCALE-SWEPT commutator-matched random band U_rand=exp(-i s H_rand) bracketing c_hopf",
+  "flat_collapse_surface": [
+    [
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true
+    ],
+    [
+      true,
+      true,
+      true
+    ]
+  ],
+  "kill_conditions": [
+    "flat frame U=I must collapse E to floor at every (d,ang) (anti-tautology)",
+    "the scale-swept band must BRACKET c_hopf at each cell; cells that cannot populate >=8 matched at 600 frames are skipped and noted",
+    "if z(d=8) sign flips across angles => iter-7 negative z was angle-specific (sign_split_angle_artifact)",
+    "if z(d=8) stays outside-band-negative on >=3 of 5 angles AND d=2 does not => structural higher-Hopf suppression (sign_split_structural)"
+  ],
+  "n_matched_surface": [
+    [
+      17,
+      10,
+      17
+    ],
+    [
+      10,
+      27,
+      26
+    ],
+    [
+      22,
+      10,
+      1
+    ],
+    [
+      17,
+      3,
+      0
+    ],
+    [
+      12,
+      0,
+      0
+    ]
+  ],
+  "n_random_band": 600,
+  "n_rho": 21,
+  "name": "LIGHT hard-capped angle sweep of iter-7 d>=4 substrate-suppression sign (5 angles x d in {2,4,8}, 600-frame band, density-operator only)",
+  "negatives_run": [
+    "flat_frame_U_eq_I_each_cell",
+    "scale_swept_commutator_matched_random_band_each_cell",
+    "bracket_coverage_proof_c_lo_le_c_hopf_le_c_hi_each_cell"
+  ],
+  "non_numpy": true,
+  "object_id": "substrate_effect_angle_sweep_light",
+  "partial_run": false,
+  "per_d_sign_stats": {
+    "d2": {
+      "n_negative": 1,
+      "n_outside_and_negative": 0,
+      "n_populated": 5,
+      "n_positive": 4,
+      "signs": [
+        -1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "d4": {
+      "n_negative": 3,
+      "n_outside_and_negative": 1,
+      "n_populated": 3,
+      "n_positive": 0,
+      "signs": [
+        -1,
+        -1,
+        -1
+      ]
+    },
+    "d8": {
+      "n_negative": 2,
+      "n_outside_and_negative": 1,
+      "n_populated": 2,
+      "n_positive": 0,
+      "signs": [
+        -1,
+        -1
+      ]
+    }
+  },
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "required_negatives": [
+    "flat_frame_U_eq_I_each_cell",
+    "scale_swept_commutator_matched_random_band_each_cell",
+    "bracket_coverage_proof_c_lo_le_c_hopf_le_c_hi_each_cell"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite density-operator carrier / Hopf-rotor (5 angles) + scale-swept random frame set / Weyl GKSL ops / dressed paths at d in {2,4,8}",
+    "N01 frame conjugation [U, H0_d] != 0 order-sensitive control (geometric substrate axis); scale-swept band brackets its magnitude"
+  ],
+  "script": "substrate_effect_angle_sweep_light.jl",
+  "seed": 20260602,
+  "sign_surface": [
+    [
+      -1,
+      -1,
+      -1
+    ],
+    [
+      1,
+      -1,
+      -1
+    ],
+    [
+      1,
+      -1,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ]
+  ],
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical_poc",
+  "sim_id": "substrate_effect_angle_sweep_light",
+  "status_ladder": "exists < runs < passes local rerun",
+  "surface_axes": {
+    "col_values": [
+      2,
+      4,
+      8
+    ],
+    "cols": "dims",
+    "row_values": [
+      0.1,
+      0.8,
+      1.55,
+      2.3,
+      3.0
+    ],
+    "rows": "angles"
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm), HS norms, opnorm (Hermitian generator normalization), matrix exp (Spin rotors / GKSL / scale-swept random U); every measured number flows through it.",
+    "Random": "load_bearing: random density operators AND the 600-frame scale-swept random Hermitian generators + log-uniform scales.",
+    "Statistics": "load_bearing: mean/std over the rho ensemble and the matched band; z(d,ang) IS (E-mean)/std.",
+    "Z3": "load_bearing: binds the measured top d=8 separation to flat=>sep==0; verdict flips UNSAT->SAT on the flat control."
+  },
+  "verdict": {
+    "all_clifford_genuine": true,
+    "all_flat_controls_collapse": true,
+    "d2_differs_from_d8": false,
+    "d2_predominantly_negative": false,
+    "d4_robust_negative_ge3of5_outside": false,
+    "d8_robust_negative_ge3of5_outside": false,
+    "d8_sign_flips_across_angles": false,
+    "decides": "whether iter-7's d>=4 substrate-suppression sign is structural (angle-robust higher-Hopf fact) or an ang=0.9 artifact. LIGHT 600-frame sign probe; magnitude precision and per-cell Z3 are out of scope.",
+    "interpretation": "Sweeps the rotor angle (the ONLY change vs iter-7 besides the 2000->600 band cut). z(d,ang)<0 = the genuine higher-Hopf rotor produces LESS substrate effect than a commutator-matched random frame of the SAME commutator norm at that angle. sign_split_structural = z(d=8) is outside-band-negative on >=3 of 5 angles AND d=2 does not share that negative pattern -> iter-7's d>=4 suppression is a genuine higher-Hopf structural fact, not an ang=0.9 accident. sign_split_angle_artifact = the d=8 sign flips across angles or no angle gives an outside-band negative -> iter-7's negative z was angle-specific. mixed = reported per-leg, NOT collapsed.",
+    "overall": "mixed",
+    "per_d_n_outside_and_negative": {
+      "d2": 0,
+      "d4": 1,
+      "d8": 1
+    },
+    "per_d_signs_across_angles": {
+      "d2": [
+        -1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "d4": [
+        -1,
+        -1,
+        -1
+      ],
+      "d8": [
+        -1,
+        -1
+      ]
+    },
+    "z3_load_bearing": true
+  },
+  "version": "1.0",
+  "z3_load_bearing": {
+    "encoding": "FREE int sep, FREE bool is_flat; law Or([Not(is_flat), sep==0]); assert is_flat=true + sep==IntVal(max |E_hopf-E_matched_mean| over the d=8 populated angle legs). genuine nonzero: unsat; flat zero: sat.",
+    "flat_verdict": "sat",
+    "genuine_verdict": "unsat",
+    "level": "max-separation d=8 leg across the swept angles",
+    "load_bearing_flip": true,
+    "measured_separation": 0.20796687423572202
+  },
+  "z_surface": [
+    [
+      -0.09729335320362884,
+      -0.9814072978233457,
+      -1.719897446455737
+    ],
+    [
+      0.604035162003353,
+      -1.1865879713554517,
+      -1.9833652111387008
+    ],
+    [
+      2.2625989100788066,
+      -0.9472785228852048,
+      "non_finite(NaN)"
+    ],
+    [
+      2.473531778831526,
+      "non_finite(NaN)",
+      "non_finite(NaN)"
+    ],
+    [
+      2.686836304070041,
+      "non_finite(NaN)",
+      "non_finite(NaN)"
+    ]
+  ]
+}

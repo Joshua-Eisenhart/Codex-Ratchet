@@ -1,0 +1,302 @@
+{
+  "F01_witness": {
+    "finite_carrier": "two Weyl sheets rho_L, rho_R in D(C^2); combined Dirac Psi in C^4",
+    "finite_cell_complex": "K=(V,E,F,C)=(4,6,4,1) tetra-cell, L/R spinor pair per vertex",
+    "finite_operator": "sheet propagators U_s = exp(-i H_s t), H_L=+H0, H_R=-H0, H0=n.sigma",
+    "finite_path": "two-step opposite circulations on a fixed Hopf-torus seed r0",
+    "finite_probe": "Bloch readout r = tr(rho sigma); gamma5 chiral charge q = Psi^dag g5 Psi"
+  },
+  "N01_witness": {
+    "anchored_to": "H_L=+H0, H_R=-H0 (Pauli/Weyl sign flip), source-quoted, not planted",
+    "description": "opposite-circulation order/handedness gap: the same generator n drives r_L and r_R in OPPOSITE senses, so the signed straddle chi=sign((r_L x r_R).n) = -1; equivalently the winding-sign product w_L*w_R = -1.",
+    "gap_present": true,
+    "measured_chi": -1,
+    "measured_winding_product": -1
+  },
+  "W1_opposite_circulation": {
+    "chi_mean": -1.0,
+    "chi_signed_straddle": -1,
+    "frac_trials_consistent": 1.0,
+    "math": "d r_L = +2 n x r_L ;  d r_R = -2 n x r_R  (H_L=+H0, H_R=-H0)",
+    "mean_align_left_to_plus2nxr": 0.9887710779360432,
+    "mean_align_right_to_minus2nxr": 0.9887710779360432,
+    "n_trials": 400,
+    "opposite_circulation_present": true
+  },
+  "W3_chern_per_sheet": {
+    "C_L_degree_image_map": 1.0000000000000018,
+    "C_R_degree_image_map": 1.0000000000000013,
+    "math": "task: |C|=1 per sheet, opposite sign",
+    "note": "Raw S^2->S^2 degree is +1 for both rotation signs (both orientation-preserving), so degree alone does NOT flip; the chirality is the SIGN of the circulation w_s.(n x r), which is +1 on L and -1 on R. |C|=1 per sheet; opposite circulation sign is the honest opposite-sign signal.",
+    "winding_sign_L": 1,
+    "winding_sign_R": -1,
+    "winding_signs_opposite": true
+  },
+  "ablation": {
+    "ablation_outcome_delta_chi_mean": 1.0,
+    "chi_mean_with_sign_flip": -1.0,
+    "chi_mean_without_sign_flip": 0.0,
+    "nonvacuous": true,
+    "present_to_absent_certificate": true,
+    "removed": "the right-sheet sign flip H_R = -H0 (set H_R := +H0), re-run chi"
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "L8 chirality orientation cover — consumes this L/R bundle; needs Pin/Spin/reflection controls; blocked until those land.",
+    "L9 Clifford/quaternion module — consumes the chiral split; blocked.",
+    "L10 terrain GKSL generators (Funnel/Vortex/.../Citadel) — built ON H_L/H_R sheets; blocked.",
+    "Axis0 cut-state kernel / flux placement (Weyl Flux doc) — downstream derived object; blocked.",
+    "order/ratchet pairwise tests — gated behind parent-complete + dependency-forcing; not run here."
+  ],
+  "carrier_language": "native Julia (LinearAlgebra), NOT numpy/torch",
+  "classification": "L7_layer_poc",
+  "construction": {
+    "chiral_charge_controls_ok": true,
+    "chiral_charge_q0": 2.2371143170757382e-17,
+    "chiral_charge_qL": -1.0,
+    "chiral_charge_qR": 1.0,
+    "gamma5_anticomm_residual": 0.0,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_ok": true,
+    "gamma5_sq_residual": 0.0,
+    "gamma5_weyl_block_diag_chirality_split": true
+  },
+  "controls": {
+    "negative": {
+      "merge_LR_sheets_block_collapse_gap": 0.7788366846173003,
+      "merge_LR_sheets_circulation_collapse_gap": 1.0,
+      "merge_LR_sheets_dchi_collapse_gap": 0.9178701569149029,
+      "merge_LR_sheets_peps_collapse_gap": 1.2498514438250026,
+      "swap_sigma_plus_minus_basin_collapse_gap": 0.9996777776371198
+    },
+    "positive": {
+      "chiral_block_divergence_gap": 0.7788366846173003,
+      "dchi_LR_trace_distance_gap": 0.9178701569149029,
+      "ladder_source_sink_basin_gap": 0.9996777776371198,
+      "opposite_circulation_chi_gap": 1.0,
+      "peps_vertex_chiral_gap": 1.2498514438250026,
+      "winding_sign_product_gap": 1
+    },
+    "required_load_bearing_erasures": [
+      "merge_LR_sheets_circulation_collapse",
+      "merge_LR_sheets_dchi_collapse",
+      "merge_LR_sheets_block_collapse",
+      "merge_LR_sheets_peps_collapse",
+      "swap_sigma_plus_minus_basin_collapse"
+    ]
+  },
+  "dependency_forcing": {
+    "all_erasures_collapse_signature": true,
+    "below_geometry_represented": "yes — the two sheet Hamiltonians H_L=+H0, H_R=-H0 and the two sheet flows; erasures act on that split (merge sheets; swap ladder operators).",
+    "erasure_E_merge": {
+      "chi_after": 0,
+      "chi_before": -1,
+      "chi_collapsed_minus1_to_plus1": true,
+      "chiral_block_divergence_genuine": 0.7788366846173003,
+      "chiral_block_divergence_merged": 0.0,
+      "control": "set H_R := H_L = +H0 (merge L/R Weyl sheets)",
+      "gamma5_split_nontrivial_genuine": true,
+      "gamma5_split_trivial_under_merge": true,
+      "merge_collapses_signature": true,
+      "winding_sign_R_after": 1,
+      "winding_sign_R_before": -1,
+      "winding_signs_equal_after_merge": true
+    },
+    "erasure_E_swap": {
+      "control": "swap sigma_- <-> sigma_+ (ladder-operator sheet content)",
+      "pop0_L_after_swap": 0.99983888881856,
+      "pop0_L_genuine_sink_to_0": 0.00016111118144011843,
+      "pop0_R_after_swap": 0.00016111118144011843,
+      "pop0_R_genuine_source_to_1": 0.99983888881856,
+      "swap_exchanges_basins": true
+    },
+    "interpretation": "PASS: merging the L/R sheets (H_R:=H_L=+H0) collapses the opposite-circulation signature (straddle chi -1 -> 0, winding signs equal, gamma5 split dynamically trivial). The bundle signature is FORCED by the below-geometry sheet split, not hand-written."
+  },
+  "finite_map": "(n in S^2, r0 in Bloch ball) --> (r_L(t), r_R(t)) via r_L = R(+2 n,t) r0, r_R = R(-2 n,t) r0 (opposite SO(3) rotations); gamma5 = i g0g1g2g3 = diag(-I2,+I2) splits Dirac C^4 = C^2_L (+) C^2_R via P_L=(I-g5)/2, P_R=(I+g5)/2. Erasure E_merge: H_R -> +H0 maps the two opposite rotations to one, collapsing chi.",
+  "honest_status_ladder": "passes",
+  "honesty_note": "All signatures are MEASURED off freshly-sampled generators n and seed Bloch vectors, never planted. The decisive dependency-forcing control is E_merge (set H_R:=H_L=+H0): the opposite-circulation straddle chi goes -1 -> 0, the winding-sign product goes -1 -> 1, the gamma5 L/R block divergence goes 0.7788 -> 0.0 (dynamically trivial), and the PEPS3D per-vertex L/R trace distance goes 1.2499 -> ~0. If any had SURVIVED the merge, that signature would only prove hand-written channels run; the merge collapse certificate is merge_collapses_signature=true. Z3 is load-bearing: free sheets_merged -> derived chi_L*chi_R, measured==derived UNSAT, split-while-merged SAT.",
+  "layer": "L7",
+  "layer_name": "Weyl spinor bundle (L/R)",
+  "layer_signature": {
+    "dchi_LR_trace_distance_genuine": 0.9178701569149029,
+    "distinct_from": "L1 (carrier coherence rank 3->1), L2 (Hopf holonomy), L8 (orientation cover); L7 is the L/R circulation sign flip.",
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "ladder_pop0_L_sink": 0.00016111118144011843,
+    "ladder_pop0_R_source": 0.99983888881856,
+    "layer_id": "L7",
+    "object": "weyl_LR_spinor_bundle_opposite_circulation",
+    "opposite_circulation_chi_mean": -1.0,
+    "peps_vertex_chiral_gap": 1.2498514438250026,
+    "winding_product_genuine": -1,
+    "winding_product_merged": 1,
+    "winding_sign_L": 1,
+    "winding_sign_R": -1
+  },
+  "negative_controls": {
+    "L_vs_L_same_circulation_no_straddle": {
+      "chi": 0,
+      "meaning": "left sheet against itself: r_L x r_L = 0 -> chi=0 (no straddle, no split); the chi=-1 split is specifically the L-vs-R opposite-sheet effect",
+      "no_straddle_ok": true
+    },
+    "abelian_n_parallel_r0_no_circulation": {
+      "is_zero": true,
+      "mean_displacement": 7.281212669833319e-17,
+      "meaning": "when n || r0 the cross product vanishes: no Hopf circulation -> the circulation signature is genuinely about non-parallel n x r, not planted"
+    },
+    "gamma5_eigenstate_charge_exact": {
+      "exact_pm1": true,
+      "qL": -1.0,
+      "qR": 1.0
+    }
+  },
+  "non_numpy": true,
+  "peps3d_K_VEFC_anchor": {
+    "C_count": 1,
+    "E_count": 6,
+    "F_count": 4,
+    "V_count": 4,
+    "edge_chiral_contrast_after_merge": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "edge_chiral_contrast_genuine": [
+      0.275714,
+      0.764637,
+      0.485317,
+      1.040351,
+      0.761032,
+      0.27932
+    ],
+    "euler_char_V_minus_E_plus_F": 2,
+    "meaning": "each vertex carries an L/R density pair on a tetra-cell K=(4,6,4,1); the per-vertex chirality differential D_i=||rho_L^i-rho_R^i||_1 is nonzero for the genuine bundle and collapses to exactly 0 when the sheets are merged (U_L==U_R). The edge contrast |D_i-D_j| inherits the same collapse.",
+    "signature_changes_under_merge_erasure": true,
+    "spinor_per_vertex_LR_pair": true,
+    "vertex_LR_trace_distance_after_merge": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "vertex_LR_trace_distance_genuine": [
+      0.485214,
+      0.2095,
+      1.249851,
+      0.970532
+    ]
+  },
+  "promotion_allowed": false,
+  "qit_readouts_derived": {
+    "D_chi_collapses_under_merge": true,
+    "D_chi_trace_distance_LR_after_merge_mean": 0.0,
+    "D_chi_trace_distance_LR_genuine_mean": 0.9178701569149029,
+    "note": "entropy and trace-distance are DERIVED outputs of the sheet dynamics, never the primary object",
+    "unitary_entropy_invariance_note": "both sheets evolve unitarily from the same seed, so S_L ~ S_R (entropy is conserved); the chirality lives in D_chi, not in S.",
+    "von_neumann_entropy_L_mean": 0.47240487909785883,
+    "von_neumann_entropy_R_mean": 0.47240487909785883
+  },
+  "scale_stress_8_16_32_64": {
+    "N_16": {
+      "hold_at_this_scale": true,
+      "mean_straddle_magnitude_genuine": 0.12841842011457483,
+      "mean_straddle_magnitude_merged": 0.0,
+      "merge_collapses_all_sites": true,
+      "n_collapsed": 16,
+      "n_present": 16,
+      "opposite_circulation_present_all_sites": true,
+      "sites": 16
+    },
+    "N_32": {
+      "hold_at_this_scale": true,
+      "mean_straddle_magnitude_genuine": 0.17356974648764026,
+      "mean_straddle_magnitude_merged": 0.0,
+      "merge_collapses_all_sites": true,
+      "n_collapsed": 32,
+      "n_present": 32,
+      "opposite_circulation_present_all_sites": true,
+      "sites": 32
+    },
+    "N_64": {
+      "hold_at_this_scale": true,
+      "mean_straddle_magnitude_genuine": 0.1493815983653893,
+      "mean_straddle_magnitude_merged": 0.0,
+      "merge_collapses_all_sites": true,
+      "n_collapsed": 64,
+      "n_present": 64,
+      "opposite_circulation_present_all_sites": true,
+      "sites": 64
+    },
+    "N_8": {
+      "hold_at_this_scale": true,
+      "mean_straddle_magnitude_genuine": 0.10017349770884976,
+      "mean_straddle_magnitude_merged": 0.0,
+      "merge_collapses_all_sites": true,
+      "n_collapsed": 8,
+      "n_present": 8,
+      "opposite_circulation_present_all_sites": true,
+      "sites": 8
+    },
+    "scale_invariant_declared": true,
+    "scale_invariant_note": "opposite-circulation present + merge-collapse hold on EVERY independent site, so the boolean is invariant BY CONSTRUCTION; the mean_straddle_magnitude_genuine varies across scales (independent samples) and is the non-frozen numeric witness."
+  },
+  "scale_stress_all_hold": true,
+  "script": "L7_layer.jl",
+  "seed": 20260601,
+  "spinor_state_native_julia": true,
+  "status_ladder": "exists < runs < passes",
+  "summary": {
+    "dchi_LR_trace_distance_genuine": 0.9178701569149029,
+    "min_gaps": {
+      "chiral_block_divergence_gap": 0.7788366846173003,
+      "dchi_LR_trace_distance_gap": 0.9178701569149029,
+      "ladder_source_sink_basin_gap": 0.9996777776371198,
+      "opposite_circulation_chi_gap": 1.0,
+      "peps_vertex_chiral_gap": 1.2498514438250026,
+      "winding_sign_product_gap": 1
+    },
+    "opposite_circulation_chi_mean": -1.0
+  },
+  "tools_used": {
+    "JSON": "load_bearing — emits the receipt.",
+    "LinearAlgebra": "load_bearing — exp(matrix) sheet propagators, eigvals for trace-distance/entropy/PSD, cross products and Bloch reductions; every measured number flows through it.",
+    "Random": "load_bearing — Haar spinors, random generators n and seed Bloch vectors; numbers are off fresh samples, not planted.",
+    "Z3": "load_bearing — DERIVES the opposite-circulation product from a free sheets_merged flag and proves measured==derived (UNSAT); a broken split-while-merged claim goes SAT (verdict flips)."
+  },
+  "verdict": {
+    "ablation_nonvacuous": true,
+    "all_pass": true,
+    "chern_winding_signs_opposite": true,
+    "chiral_charge_controls": true,
+    "dependency_forcing_merge_collapses": true,
+    "dependency_forcing_swap_exchanges": true,
+    "gamma5_constructed_measured": true,
+    "negative_controls_ok": true,
+    "opposite_circulation_present": true,
+    "peps3d_signature_changes_under_merge": true,
+    "qit_readouts_derived_ok": true,
+    "scale_stress_all_hold": true,
+    "z3_anchor_load_bearing_ok": true
+  },
+  "z3_anchor": {
+    "broken_claim_split_while_merged_must_be_sat": "sat",
+    "encoding": "free boolean sheets_merged -> derived chi_L*chi_R (split=-1, merged=+1) over free int winding signs; assert measured != derived; UNSAT => proven, SAT => kill. Measured product fed from the float sim winding signs.",
+    "load_bearing_ok": true,
+    "measured_product_genuine": -1,
+    "measured_product_merged": 1,
+    "merged_product_proof": "unsat",
+    "split_product_proof": "unsat"
+  }
+}

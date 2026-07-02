@@ -1,0 +1,70 @@
+{
+  "schema": "G_STRUCTURE_CANDIDATE_SPACE_STATUS_v1",
+  "generated_at": "2026-05-28T07:18:52Z",
+  "status": "standalone_candidate_space_passed",
+  "result_path": "system_v5/ops/formal_scouts/results/g_structure_candidate_space_full_function_probe_results.json",
+  "source_path": "system_v5/ops/formal_scouts/sim_g_structure_candidate_space_full_function_probe.py",
+  "latest_tool_depth_repair": {
+    "packet": "tool_depth_z3_cvc5_non_vacuous_solver_controls",
+    "result": "system_v5/ops/formal_scouts/results/tool_depth_z3_cvc5_non_vacuous_solver_controls_probe_results.json",
+    "status": "passes local rerun",
+    "scope": "z3/cvc5 proof-tool repair covers parent G-structure row facts only; it does not select an official G-structure or unlock layer embedding"
+  },
+  "current_truth": {
+    "candidate_structures_have_standalone_finite_function": true,
+    "official_layered_ratchet_g_structure_selected": false,
+    "layer_embedding_unlocked": false,
+    "stacking_unlocked": false,
+    "flux_unlocked": false,
+    "axis0_unlocked": false,
+    "physics_unlocked": false,
+    "final_manifold_admitted": false
+  },
+  "candidate_structures_tested": [
+    "S3_spinor_carrier",
+    "S2_Hopf_base_surface",
+    "Hopf_fibration_S3_to_S2",
+    "Nested_Hopf_tori",
+    "Clifford_torus_T2_in_S3",
+    "Twistor_incidence_spinor_geometry",
+    "U1_Hopf_principal_bundle",
+    "SU2_Spin3_unit_quaternion_double_cover",
+    "SO3_orientation_frame_reduction",
+    "Pin3_Spin3_chirality_split",
+    "Clifford_geometries_Cl3_Cl6",
+    "Hybrid_Hopf_Spin_Twistor_Clifford_reduction_graph"
+  ],
+  "scale": {
+    "site_counts": [8, 16, 32, 64],
+    "row_count": 48,
+    "peps2d_bond_dim": 4,
+    "peps3d_bond_dim": 4
+  },
+  "carrier_views": [
+    "torch_native_spinor_states",
+    "MPS",
+    "PEPS2D",
+    "PEPS3D",
+    "PyG_message_passing",
+    "derived_QIT_entropy_family"
+  ],
+  "explicit_not_used": [
+    "qubit_sphere_adapter",
+    "dense_global_state_closure",
+    "label_only_g_structure",
+    "scalar_entropy_primary"
+  ],
+  "blocked_consumers": [
+    "layer_embedding",
+    "official_layered_ratchet_G_structure_selection",
+    "stacking",
+    "cross_layer_order_closure",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "next_admissible_step": "Run separate deeper standalone scouts for candidate selection pressure, beginning with Nested_Hopf_tori vs Clifford_torus_T2_in_S3 vs Twistor_incidence_spinor_geometry vs Hybrid_Hopf_Spin_Twistor_Clifford_reduction_graph. Do not embed manifold layers until that selection or blocker exists."
+}

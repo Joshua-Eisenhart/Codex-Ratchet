@@ -1,0 +1,338 @@
+{
+  "_meta": "sealed-construction dual-engine golden Weyl ledger generated from named-invariant receipts only",
+  "allowed_claims": [
+    "scratch_diagnostic"
+  ],
+  "ambient_transition_R4_C2_to_R3": {
+    "endpoint_policy": "eta endpoints that hit the projection pole use the analytic Hopf-link limit; all interior eta values use the projected curves directly",
+    "gauss_integral_target": "R^3",
+    "orientation_convention": "nested linked and sweep families are oriented so the surviving Hopf/tubular link is +1",
+    "projection": "stereographic projection from q=(1,0,0,0): P(x1,y1,x2,y2)=(y1,x2,y2)/(1-x1)",
+    "source": "C^2 identified with R^4 coordinates (x1,y1,x2,y2), with S^3 subset |z1|^2+|z2|^2=1"
+  },
+  "blocked_consumers": [
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "formal manifold admission",
+    "physics",
+    "bridge"
+  ],
+  "carrier": {
+    "ambient_transition": {
+      "endpoint_policy": "eta endpoints that hit the projection pole use the analytic Hopf-link limit; all interior eta values use the projected curves directly",
+      "gauss_integral_target": "R^3",
+      "orientation_convention": "nested linked and sweep families are oriented so the surviving Hopf/tubular link is +1",
+      "projection": "stereographic projection from q=(1,0,0,0): P(x1,y1,x2,y2)=(y1,x2,y2)/(1-x1)",
+      "source": "C^2 identified with R^4 coordinates (x1,y1,x2,y2), with S^3 subset |z1|^2+|z2|^2=1"
+    },
+    "carrier_type": "exact_analytic",
+    "formula": "psi_s(phi,chi;eta) = [exp(i(phi+chi))*cos(eta), exp(i(phi-chi))*sin(eta)] for s in {L,R}; rho_s=|psi_s><psi_s| is internal only and not emitted",
+    "hopf_connection": "A = -i psi^dagger d psi = d phi + cos(2 eta) d chi",
+    "peps_ctmrg": "not_used_exact_analytic_carrier"
+  },
+  "claim": "scratch_diagnostic",
+  "controls": {
+    "decisive_nested_but_unlinked": {
+      "interpretation": "geometrically nested but topologically unlinked control reads 0, so linking is not merely tracking nested parametrization",
+      "jax": 0.0,
+      "julia": 0.0,
+      "pass": true
+    },
+    "flat_S2_sanity": {
+      "jax": 1.5327547110389495e-17,
+      "julia": 8.998780289733555e-17,
+      "status": "demoted_sanity_check",
+      "used_for_load_bearing": false
+    },
+    "nesting_parameter_sweep": {
+      "interpretation": "responding L=0,1,2 family; not a repeated constant sweep",
+      "jax": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 1.9999999999999993
+      },
+      "julia": {
+        "0": 0.0,
+        "1": 1.0000000000000195,
+        "2": 2.0000000000000444
+      },
+      "pass": true
+    },
+    "plain_S2_isigmay": {
+      "jax_delta_wL": 0.0,
+      "jax_delta_wR": 0.0,
+      "julia_delta_wL": 0.0,
+      "julia_delta_wR": 0.0,
+      "verdict": "cocycle reproduced by charge-conjugation control; cocycle is diagnostic_only"
+    }
+  },
+  "created_at": "2026-06-03T20:19:36.430255+00:00",
+  "finite_map": "(rho_s_internal, W_ab, eta sweep over closed base, generated core-curve controls) -> (linking_number, cocycle_wL, cocycle_wR, control_outputs)",
+  "formal_admission_allowed": false,
+  "gate_verdict": {
+    "clean_pass_candidate": true,
+    "formal_admission": false,
+    "note": "candidate scratch diagnostic only; not canonical by process and not formal manifold admission",
+    "poc_pass_candidate": true
+  },
+  "invariants": {
+    "jax": {
+      "cocycle_wL": 1.0,
+      "cocycle_wR": -1.0,
+      "linking_number_nested_but_unlinked_mean": 0.0,
+      "linking_number_nested_linked_mean": 0.9999999999934127,
+      "nesting_parameter_sweep": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 1.9999999999999993
+      },
+      "plain_S2_isigmay_cocycle_wL": 1.0,
+      "plain_S2_isigmay_cocycle_wR": -1.0
+    },
+    "julia": {
+      "cocycle_wL": 1.0,
+      "cocycle_wR": -1.0,
+      "linking_number_nested_but_unlinked_mean": 0.0,
+      "linking_number_nested_linked_mean": 0.999999999993414,
+      "nesting_parameter_sweep": {
+        "0": 0.0,
+        "1": 1.0000000000000195,
+        "2": 2.0000000000000444
+      },
+      "plain_S2_isigmay_cocycle_wL": 1.0,
+      "plain_S2_isigmay_cocycle_wR": -1.0
+    }
+  },
+  "layer": "weyl_lr_on_nested_hopf_tori",
+  "lifecycle": "completed",
+  "load_bearing_invariant": "linking",
+  "load_bearing_reasoning": "linking survives because nested-linked is ~1, geometrically nested but unlinked is ~0, the L=0,1,2 sweep responds, two-sided error bounds are below the regime gap, and sealed two-engine parity passes",
+  "open_items": [
+    "cocycle remains a charge-conjugation artifact and is not load-bearing",
+    "this is scratch_diagnostic evidence only; downstream consumers remain blocked",
+    "continuous topology response is represented by the preregistered L=0,1,2 winding family because linking is integer-valued on disjoint closed curve families"
+  ],
+  "parity": {
+    "largest_diffs": [
+      {
+        "abs_diff": 5.939693181744587e-14,
+        "jax": 0.9999999999999994,
+        "julia": 1.0000000000000588,
+        "path": "linking_number_nested_linked_by_eta[17]"
+      },
+      {
+        "abs_diff": 4.929390229335695e-14,
+        "jax": 1.0,
+        "julia": 1.0000000000000493,
+        "path": "linking_number_nested_linked_by_eta[44]"
+      },
+      {
+        "abs_diff": 4.6407322429331543e-14,
+        "jax": 1.0000000000000004,
+        "julia": 1.0000000000000469,
+        "path": "linking_number_nested_linked_by_eta[9]"
+      },
+      {
+        "abs_diff": 4.5075054799781356e-14,
+        "jax": 1.9999999999999993,
+        "julia": 2.0000000000000444,
+        "path": "nesting_parameter_sweep.2"
+      },
+      {
+        "abs_diff": 4.04121180963557e-14,
+        "jax": 1.0,
+        "julia": 0.9999999999999596,
+        "path": "linking_number_nested_linked_by_eta[51]"
+      },
+      {
+        "abs_diff": 3.930189507173054e-14,
+        "jax": 0.9999999999999991,
+        "julia": 0.9999999999999598,
+        "path": "linking_number_nested_linked_by_eta[12]"
+      },
+      {
+        "abs_diff": 3.4861002973229915e-14,
+        "jax": 1.0,
+        "julia": 1.0000000000000349,
+        "path": "linking_number_nested_linked_by_eta[59]"
+      },
+      {
+        "abs_diff": 3.2529534621517087e-14,
+        "jax": 0.9999999999999999,
+        "julia": 0.9999999999999674,
+        "path": "linking_number_nested_linked_by_eta[11]"
+      },
+      {
+        "abs_diff": 3.2529534621517087e-14,
+        "jax": 0.9999999999999999,
+        "julia": 1.0000000000000324,
+        "path": "linking_number_nested_linked_by_eta[26]"
+      },
+      {
+        "abs_diff": 3.2529534621517087e-14,
+        "jax": 0.9999999999999994,
+        "julia": 0.9999999999999669,
+        "path": "linking_number_nested_linked_by_eta[33]"
+      },
+      {
+        "abs_diff": 3.186340080674199e-14,
+        "jax": 0.9999999999999994,
+        "julia": 0.9999999999999676,
+        "path": "linking_number_nested_linked_by_eta[32]"
+      },
+      {
+        "abs_diff": 3.1530333899354446e-14,
+        "jax": 1.0000000000000002,
+        "julia": 1.0000000000000318,
+        "path": "linking_number_nested_linked_by_eta[46]"
+      }
+    ],
+    "max_diff": 5.939693181744587e-14,
+    "nonzero_numeric_diff_present": true,
+    "note": "parity compares named invariant readouts only; raw psi/rho/state is never read by this builder",
+    "pass": true,
+    "threshold": 1e-10,
+    "whitelist": [
+      "linking_number_nested_linked_mean",
+      "linking_number_nested_linked_by_eta",
+      "linking_number_nested_but_unlinked_mean",
+      "linking_number_nested_but_unlinked_by_eta",
+      "linking_number_flat_S2_sanity",
+      "nesting_parameter_sweep",
+      "cocycle_wL",
+      "cocycle_wR",
+      "plain_S2_isigmay_cocycle_wL",
+      "plain_S2_isigmay_cocycle_wR",
+      "n01_commutator_norm"
+    ]
+  },
+  "promotion_allowed": false,
+  "receipt_paths": {
+    "jax_program": "/tmp/golden_weyl_jax.py",
+    "jax_receipt": "/tmp/golden_weyl_jax_receipt.json",
+    "julia_program": "/tmp/golden_weyl_julia.jl",
+    "julia_receipt": "/tmp/golden_weyl_julia_receipt.json",
+    "ledger": "/tmp/golden_weyl_ledger.json",
+    "manifest": "/tmp/golden_weyl_manifest.json"
+  },
+  "rerun": {
+    "jax": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 /tmp/golden_weyl_jax.py",
+    "julia": "cd /Users/joshuaeisenhart/Desktop/Codex\\ Ratchet/system_v5/julia_carrier && julia --project=. /tmp/golden_weyl_julia.jl",
+    "ledger": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 /tmp/golden_weyl_build_ledger.py"
+  },
+  "root_constraints": {
+    "F01": {
+      "jax": {
+        "finite_curve_quadrature_points": 512,
+        "finite_eta_count": 65,
+        "finite_invariant_registry": [
+          "linking_number_nested_linked_mean",
+          "linking_number_nested_linked_by_eta",
+          "linking_number_nested_but_unlinked_mean",
+          "linking_number_nested_but_unlinked_by_eta",
+          "linking_number_flat_S2_sanity",
+          "nesting_parameter_sweep",
+          "cocycle_wL",
+          "cocycle_wR",
+          "plain_S2_isigmay_cocycle_wL",
+          "plain_S2_isigmay_cocycle_wR",
+          "n01_commutator_norm"
+        ],
+        "finite_spinor_dim": 2,
+        "satisfied": true
+      },
+      "julia": {
+        "finite_curve_quadrature_points": 512,
+        "finite_eta_count": 65,
+        "finite_invariant_registry": [
+          "linking_number_nested_linked_mean",
+          "linking_number_nested_linked_by_eta",
+          "linking_number_nested_but_unlinked_mean",
+          "linking_number_nested_but_unlinked_by_eta",
+          "linking_number_flat_S2_sanity",
+          "nesting_parameter_sweep",
+          "cocycle_wL",
+          "cocycle_wR",
+          "plain_S2_isigmay_cocycle_wL",
+          "plain_S2_isigmay_cocycle_wR",
+          "n01_commutator_norm"
+        ],
+        "finite_spinor_dim": 2,
+        "satisfied": true
+      }
+    },
+    "N01": {
+      "jax": {
+        "gamma5_charge_conj_commutator_norm": 2.8284271247461903,
+        "satisfied": true
+      },
+      "julia": {
+        "gamma5_charge_conj_commutator_norm": 2.8284271247461903,
+        "satisfied": true
+      }
+    }
+  },
+  "sealed_construction": {
+    "construction_hash_jax": "efcc8515b6e317910413d660be24f20a74c7c1a92a489b229691b0fd5237d205",
+    "construction_hash_julia": "ccd366d1b0344206e541e29c85ffa560255d03ef2f2be446f73becfa89b0c796",
+    "control_input_hashes": {
+      "flat_S2_sanity": {
+        "distinct": true,
+        "jax": "fab9897223af35a1f4db4d608c7afa026ce906daa2679800c68cf494f250acf0",
+        "julia": "4d87bd5aa8c002787d30d5e360a8af9d1188251a53ee9921779d867a5141cde2"
+      },
+      "nested_but_unlinked": {
+        "distinct": true,
+        "jax": "76bcb15f901d5081de8b197443b5da509a3c1671e5c051a547805a1803f45778",
+        "julia": "e1d2f12d98733641a173f452522111ee6a3d9b4e9e741adfa127500cc3599fd2"
+      },
+      "nesting_parameter_sweep": {
+        "distinct": true,
+        "jax": "3a42ef9281c5d730d9cae6f68216a0de6772eea25cb30ac1cae87f5bbfa891f2",
+        "julia": "2431516602504035c85fa76fe1cda3c8daccaa7d74242d6bf024b2460c99c4d3"
+      },
+      "plain_S2_isigmay": {
+        "distinct": true,
+        "jax": "18f1cce71899ae3d6dc7e5530f8e9517130046682b81a640d13066636b4e20f0",
+        "julia": "a96e9e939e8744bc407d6d3bab725e9fb5925f0515f5c3d90c390731f67e338e"
+      }
+    },
+    "engine_independence_checks": {
+      "construction_hashes_differ": true,
+      "no_raw_state_emitted": true,
+      "per_engine_control_input_hashes_distinct": true,
+      "realized_state_fingerprints_differ": true,
+      "sealed_reads_ok": true,
+      "shared_spec_hashes_match": true
+    },
+    "engine_independent": true,
+    "hard_ban_status": "satisfied: no raw psi/rho/Choi/tensor/state is emitted or compared; ledger compares named invariants only",
+    "realized_state_fingerprint_jax": "95cfbb2e64057e2abc26d0cf06fa472f992511ed6a39afc997f5d7a18fef1bab",
+    "realized_state_fingerprint_julia": "18cb04063f40a551520355dff9bc3e0b03d7f86a2c1bbcb8cdad90cbcc6e8d72",
+    "shared_manifest": "/tmp/golden_weyl_manifest.json",
+    "shared_spec_hash": "fd8a8276016f59881bd6cd64e3536eee2028fad8918719e6b26e4538b325341b"
+  },
+  "source_contract_hashes": {
+    "bars": "2a827eedf8447ac573106bd68b77006f7ceb7e34f7b3f9607f1b7d764ab0a898",
+    "jax_julia_contract": "c7662990cfd98c9f1c8d8b4d3ed9678c51031b7c97e492c4e49338927355997f"
+  },
+  "source_contract_paths": {
+    "bars": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/.claude/workflows/golden_weyl_bars.json",
+    "jax_julia_contract": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/.claude/workflows/jax_julia_contract.json"
+  },
+  "two_sided_error_bound": {
+    "jax": {
+      "bound_lt_regime_gap": true,
+      "error_bound": 2.1408130823630245e-10,
+      "regime_gap": 0.9999999999934127
+    },
+    "julia": {
+      "bound_lt_regime_gap": true,
+      "error_bound": 2.1410317962988756e-10,
+      "regime_gap": 0.999999999993414
+    },
+    "pass": true
+  }
+}

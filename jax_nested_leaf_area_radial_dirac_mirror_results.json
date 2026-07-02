@@ -1,0 +1,183 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "official_g_structure_selection",
+    "layer_stacking_readiness",
+    "Axis0",
+    "FEP",
+    "flux",
+    "Xi",
+    "Phi0",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "carrier_layer": "nested_hopf_tori finite leaf grid",
+  "carrier_realization": "jax arrays over finite leaf chain",
+  "checks": {
+    "entropy_area_proxy": true,
+    "leaf_area_ratchet": true,
+    "radial_dirac_coupling": true
+  },
+  "claim_ceiling": "JAX mirror of finite leaf-area/radial-Dirac diagnostics only; S~A is a proxy, not entropy-is-area proof or layer admission.",
+  "classification": "tool_lego_fit_probe",
+  "codomain_or_output": "JSON receipt with area monotone, coupling weights, localization, and entropy-area proxy controls",
+  "dependency_receipts": [
+    "jax_nested_hopf_foliation_invariant_mirror_results.json",
+    "system_v5/julia_carrier/layers/nested_leaf_area_ratchet_results.json (read-only reference)"
+  ],
+  "domain": "15 finite Hopf-torus leaves with two-component spinor per leaf",
+  "entropy_area_proxy": {
+    "metrics": {
+      "N": 200,
+      "cut_indices": [
+        25,
+        42,
+        58,
+        75,
+        92,
+        108,
+        125,
+        142,
+        158,
+        175
+      ],
+      "entropy_area_correlation": 0.9909888696503223,
+      "flat_area_correlation": 0.0,
+      "flat_area_spread": 0.0,
+      "pbc": true,
+      "theta_scan": [
+        0.19634954084936207,
+        0.32724923474893675,
+        0.4581489286485115,
+        0.5890486225480862,
+        0.7199483164476609,
+        0.8508480103472356,
+        0.9817477042468103,
+        1.1126473981463851,
+        1.2435470920459597,
+        1.3744467859455345
+      ]
+    },
+    "pass": true
+  },
+  "finite_map": "finite theta leaves -> measured A(theta) and radial Dirac hopping/localization readouts",
+  "geometry_layer": "leaf area ratchet plus radial Dirac gamma_theta d/dtheta coupling",
+  "leaf_area": {
+    "checks": {
+      "area_matches_formula": true,
+      "area_monotone_down_from_clifford_right": true,
+      "area_monotone_to_clifford_from_left": true,
+      "clifford_leaf_is_max": true,
+      "flat_control_constant_over_same_descent": true,
+      "ratchet_descent_strict_decrease": true
+    },
+    "clifford_area_measured": 19.739208802178904,
+    "descent_areas": [
+      19.739208802178904,
+      19.269090652448302,
+      17.881129306944477,
+      15.641437427647583,
+      12.656698095202705,
+      9.06908318148809,
+      5.04948128716435,
+      0.7893578173700815
+    ],
+    "descent_thetas": [
+      0.7853981633974483,
+      0.6760555686263843,
+      0.5667129738553202,
+      0.45737037908425615,
+      0.34802778431319215,
+      0.23868518954212817,
+      0.12934259477106408,
+      0.02
+    ],
+    "flat_area_spread": 0.0,
+    "max_abs_err": 1.9895196601282805e-13,
+    "measured_areas": [
+      3.6270700994808895,
+      7.130624676915283,
+      10.39135438321854,
+      13.298218979057387,
+      15.752228677020515,
+      17.6698151201031,
+      18.985677201877916,
+      19.65500481735314,
+      19.65500481735314,
+      18.985677201877916,
+      17.6698151201031,
+      15.752228677020515,
+      13.298218979057388,
+      10.39135438321854,
+      7.130624676915283,
+      3.6270700994808895
+    ],
+    "pass": true,
+    "theta_grid": [
+      0.09239978392911156,
+      0.18479956785822313,
+      0.2771993517873347,
+      0.36959913571644626,
+      0.46199891964555784,
+      0.5543987035746694,
+      0.6467984875037809,
+      0.7391982714328925,
+      0.831598055362004,
+      0.9239978392911156,
+      1.0163976232202272,
+      1.1087974071493387,
+      1.2011971910784502,
+      1.2935969750075618,
+      1.3859967589366735,
+      1.478396542865785
+    ]
+  },
+  "name": "JAX nested leaf area and radial Dirac mirror",
+  "peps3d_embedding": "diagnostic finite cell anchor only: theta leaf x 2 spinor component chain; not admitted PEPS3D evidence",
+  "promotion_allowed": false,
+  "promotion_status": "blocked_diagnostic_only",
+  "quaternion_action": "not_applicable_to_radial_dirac_mirror",
+  "radial_dirac": {
+    "checks": {
+      "adjacent_coupling_nonzero": true,
+      "coupled_delocalizes_vs_decoupled": true,
+      "decoupled_offdiag_zero": true,
+      "gamma_axioms": true,
+      "nonadjacent_coupling_zero": true
+    },
+    "gamma_axioms": {
+      "gamma_hermitian": true,
+      "gamma_square_identity": true,
+      "gamma_traceless": true
+    },
+    "metrics": {
+      "adjacent_weight": 459.161321240124,
+      "coupled_mean_leaf_participation": 11.333311453805287,
+      "coupled_offdiag_weight": 459.161321240124,
+      "decoupled_mean_leaf_participation": 1.0,
+      "decoupled_offdiag_weight": 0.0,
+      "leaf_mass_slope_for_lpr_degeneracy_lift": 0.001,
+      "nonadjacent_weight": 0.0,
+      "theta_max": 1.478396542865785,
+      "theta_min": 0.09239978392911156
+    },
+    "pass": true
+  },
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "root_constraints_in_force": {
+    "F01": "finite theta leaves and finite radial Dirac chain",
+    "N01": "gamma_theta nearest-neighbor inter-leaf coupling versus coupling-off/identity-free controls"
+  },
+  "sim_execution_kind": "nonclassical_diagnostic_jax_audit",
+  "sim_id": "jax_nested_leaf_area_radial_dirac_mirror",
+  "spinor_state": "two-component spinor per finite theta leaf in radial Dirac chain",
+  "tier": "finite_carrier_geometry_probe",
+  "tool_integration_depth": {
+    "jax": "load_bearing"
+  },
+  "tool_manifest": {
+    "jax": "load-bearing area/radial-chain/spectrum computation"
+  },
+  "version": "1.0"
+}

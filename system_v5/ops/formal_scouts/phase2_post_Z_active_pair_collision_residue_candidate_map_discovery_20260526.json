@@ -1,0 +1,160 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T04:13:02-07:00",
+  "scope": "phase2_post_Z_active_pair_collision_residue_K_candidate_map_discovery",
+  "classification": "formal_scout_controller_candidate",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "selected_candidate_map_id": "Y_row_deletion_collision_stability_K",
+  "current_state_assertion": {
+    "phase2_carrier_geometry": "real_bounded",
+    "frontier_row_count": 35,
+    "contract_complete_rows": 33,
+    "killed_rows": 2,
+    "active_transition_decision": "blocked",
+    "wizard_v4_2_status": "BLOCKED",
+    "latest_admitted_packet": "phase2_active_pair_collision_residue_packet",
+    "latest_admitted_map": "Z_active_pair_collision_residue_K"
+  },
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After Z, active-pair deleted masks have finite collision/residue partitions. This candidate applies one finite row-deletion operation epsilon_p to those partitions and asks which active collision survives. It does not claim topology, all-subset minimality, restoration, inverse, full coordinate coverage, or downstream geometry.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "Y_row_deletion_collision_stability_K",
+      "candidate_name": "finite row-deletion collision survival over Z active collision partitions",
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "Y_row_deletion_collision_stability_K : (Z_active_pair_collision_residue_K, U_loss_pair_support_mask_K, epsilon_p:Pairs(C_Q)->Pairs(C_Q)\\{p}, kappa_Z) -> finite row-deletion collision-survival table + remaining-coordinate coverage vector + F-boundary no-collision controls",
+      "why_admissible": [
+        "It ratchets directly from Z by adding an explicit finite row-deletion operation epsilon_p over the three U class-pair rows.",
+        "The operation is finite: three removable rows times three active collision partitions, with F-boundary no-collision controls.",
+        "The output is finite: collision survives/breaks table, remaining coordinate coverage vector, removed-row sensitivity profile, and finite controls.",
+        "It remains PEPS3D-anchor explicit because row deletion acts on Z collision classes whose members are inherited V/E/F/C support-mask rows.",
+        "It is not topology, all-subset minimality, restore/inverse, or downstream geometry; it is only a finite deletion-sensitivity readout over Z partitions."
+      ],
+      "geometry_it_would_earn_if_later_passed": "A bounded finite row-deletion sensitivity readout for the Phase 2 collision-residue carrier: each removed U class-pair row preserves exactly one active collision partition and breaks the other two, while remaining coordinate coverage stays V/E/C with F neutral.",
+      "not_run_in_this_artifact": true
+    },
+    {
+      "candidate_id": "AA_loss_active_pair_residual_coordinate_complement_K",
+      "decision": "deferred_lower_priority_candidate_not_run",
+      "why_deferred": "Complement coordinates were already read out by Z; a standalone complement table risks summary-only status unless a later operation uses it."
+    },
+    {
+      "candidate_id": "all_subset_minimality_from_Z",
+      "decision": "rejected",
+      "why_rejected": "Y deletes one class-pair row at a time from Z partitions. It does not test all subsets or prove minimality."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_from_Z",
+      "decision": "rejected",
+      "why_rejected": "Row-deletion sensitivity of finite partitions is not topology, sheaf, homology, persistence, or closure."
+    },
+    {
+      "candidate_id": "restore_inverse_from_Z",
+      "decision": "rejected",
+      "why_rejected": "Deleting rows and observing broken/surviving collisions does not restore deleted information or provide an inverse."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_Z",
+      "decision": "rejected",
+      "why_rejected": "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, and axes 7-12 remain blocked consumers."
+    }
+  ],
+  "selected_candidate_map": {
+    "candidate_id": "Y_row_deletion_collision_stability_K",
+    "finite_map": "Y_row_deletion_collision_stability_K : (Z_active_pair_collision_residue_K, U_loss_pair_support_mask_K, epsilon_p:Pairs(C_Q)->Pairs(C_Q)\\{p}, kappa_Z) -> finite row-deletion collision-survival table + remaining-coordinate coverage vector + F-boundary no-collision controls",
+    "domain": {
+      "Z_active_pair_collision_residue_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_active_pair_collision_residue_probe_results.json",
+      "X_loss_active_coordinate_pair_deletion_collapse_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_active_coordinate_pair_deletion_collapse_probe_results.json",
+      "U_loss_pair_support_mask_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json",
+      "removable_rows": [
+        "sigma012/edge",
+        "sigma012/vertex",
+        "edge/vertex"
+      ],
+      "active_pair_rows": [
+        "VE",
+        "VC",
+        "EC"
+      ],
+      "f_boundary_rows": [
+        "VF",
+        "EF",
+        "CF"
+      ],
+      "epsilon_p": "finite operation removing exactly one class-pair row from each Z partition table",
+      "coverage": "remaining coordinate coverage over inherited PEPS3D V/E/F/C support masks"
+    },
+    "codomain_or_output": "finite row-deletion collision-survival table, collision-break table, remaining-coordinate coverage vector, F-neutral certificate, F-boundary no-collision controls, and nonpromotion controls",
+    "PEPS3D_carrier_anchor": "Every row-deletion and collision-survival row is computed from inherited PEPS3D V/E/F/C support masks and Z collision classes.",
+    "F01_witness": "finite row set, finite row-deletion operations, finite active collision partitions, finite remaining coverage vectors, finite F-boundary controls, and finite output rows",
+    "N01_order_witness": "Inherited from the Phase 2 carrier chain through Z; order-erased rows must remain non-claim-bearing and Y is not admitted as a new noncommuting operator.",
+    "positive_case": "removing sigma012/edge preserves only EC collision; removing sigma012/vertex preserves only VC collision; removing edge/vertex preserves only VE collision; every remaining coverage vector is [1,1,0,1] with F neutral; all F-boundary rows remain no-collision controls",
+    "status": "admissible_candidate_not_run"
+  },
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_active_coordinate_pair_deletion_collapse_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_active_pair_collision_residue_probe_results.json"
+  ],
+  "controller_dependency_artifacts": [
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_post_Z_active_pair_collision_residue_active_frontier_blocker_20260526.json"
+  ],
+  "controls": {
+    "positive": [
+      "each removed row preserves exactly one active collision and breaks two active collisions",
+      "remaining coordinate coverage is [1,1,0,1] for every single-row deletion",
+      "F remains neutral in every row-deletion coverage vector",
+      "F-boundary rows remain no-collision controls after row deletion"
+    ],
+    "negative": [
+      "norm-only data cannot emit row-deletion collision-survival table",
+      "scalar-label data cannot bind survival rows to PEPS3D V/E/F/C masks",
+      "no-anchor row deletion counts cannot be claim-bearing evidence",
+      "illegal row or coordinate scramble must fail",
+      "delete-zero, delete-two, and delete-all rows are boundary controls only"
+    ],
+    "boundary": [
+      "single-row deletion is the only admitted operation",
+      "Y does not test all subsets",
+      "Y does not prove restoration or inverse",
+      "bond and site values stay inherited from Z; no convergence law is admitted"
+    ],
+    "order_erased": [
+      "order-erased source rows must stay non-claim-bearing",
+      "commuting-only evidence cannot admit the inherited carrier witness"
+    ],
+    "downstream_leak": [
+      "Phase 7/downstream receipts must not be dependencies",
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT, and axes 7-12 remain blocked"
+    ]
+  },
+  "failure_conditions": [
+    "any removed row preserves zero or more than one active collision",
+    "remaining coordinate coverage differs from [1,1,0,1]",
+    "F becomes active in any row-deletion coverage vector",
+    "any F-boundary row gains a collision",
+    "no explicit PEPS3D V/E/F/C anchors survive in the row-deletion table",
+    "no-anchor, scalar-label, norm-only, fake-face, delete-zero/delete-two/delete-all, or order-erased controls reproduce claim-bearing row-deletion rows",
+    "the map requires dense full-state closure or dense environment closure",
+    "the map claims all-subset minimality, restoration, inverse, topology/sheaf/homology/persistence/gluing, full PEPS3D closure, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12"
+  ],
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_Z_active_pair_collision_residue_active_frontier_blocker_20260526.json",
+  "next_admissible_step": "Author one bounded formal_scout source for Y_row_deletion_collision_stability_K, then run/lint/validate it. This candidate artifact does not admit the map and does not open downstream geometry."
+}

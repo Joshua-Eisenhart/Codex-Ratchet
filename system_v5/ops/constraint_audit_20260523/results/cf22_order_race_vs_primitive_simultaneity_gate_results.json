@@ -1,0 +1,58 @@
+{
+  "schema": "cf22_order_race_vs_primitive_simultaneity_gate_result_v1",
+  "name": "cf22_order_race_vs_primitive_simultaneity_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-22",
+  "gate": "EG-CF22-order-race-vs-primitive-simultaneity",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-22 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite density states, noncommuting order-race control, and commuting collapse boundary"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:13:14Z",
+  "runtime_seconds": 0.016451120376586914,
+  "positive": {
+    "pass": true,
+    "merge_contract_declared": [
+      "A_then_B",
+      "B_then_A"
+    ],
+    "no_global_now": true,
+    "order_race_trace_distance": 0.17565567681474809
+  },
+  "negative": {
+    "pass": false,
+    "expected": "fail",
+    "negative_case_type": "executable_rejection",
+    "negative_rejected": true,
+    "attempted_claim": {
+      "claim": "A and B happen at one primitive same-time state",
+      "merge_contract_declared": false,
+      "order_race_control_available": true
+    },
+    "order_race_gap_before_erasure": 0.17565567681474809,
+    "same_time_average_to_ab_gap": 0.08782783840737401,
+    "same_time_average_to_ba_gap": 0.08782783840737407,
+    "lost_order_gap_to_nearest_ordered_state": 0.08782783840737401
+  },
+  "boundary": {
+    "pass": true,
+    "commuting_collapse_control": true,
+    "order_gap": 3.7367087251761353e-17,
+    "interpretation": "simultaneity-like collapse is allowed only when the declared operations commute"
+  },
+  "all_pass": true
+}

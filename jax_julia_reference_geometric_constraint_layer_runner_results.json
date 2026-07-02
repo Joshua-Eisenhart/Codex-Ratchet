@@ -1,0 +1,3556 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "layer_stacking",
+    "flux",
+    "xi_phi0",
+    "axis0",
+    "bridge",
+    "fep_holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "checks": {
+    "all_independent_reference_layers_have_jax_rows": true,
+    "all_rows_pass": true,
+    "no_julia_execution": true,
+    "promotion_blocked": true,
+    "red_independent_references_are_jax_fenced": true
+  },
+  "claim_boundary": "Runs JAX diagnostics for every Julia-reference proposed layer result; no layer/manifold/admission claim.",
+  "classification": "diagnostic_jax_julia_reference_geometric_constraint_layer_runner",
+  "downstream_blocked_reference_rows": [
+    {
+      "blocked_reason": "Basin hierarchy is downstream of independent layer/geometry coverage and nesting-order closure.",
+      "blocked_status": "blocked_until_independent_layers_and_geometries_simed_then_nesting_order",
+      "classification": "scaffold_diagnostic",
+      "julia_reference_result": "basin_hierarchy_discovery_codex_results.json",
+      "path": "system_v5/julia_carrier/layers/basin_hierarchy_discovery_codex_results.json",
+      "promotion_allowed": false
+    },
+    {
+      "blocked_reason": "Flux is a derived downstream readout; it cannot count as independent layer/geometry coverage.",
+      "blocked_status": "blocked_until_independent_layers_geometries_and_nesting_order_close",
+      "classification": "PoC",
+      "julia_reference_result": "flux_direction_impedance_results.json",
+      "path": "system_v5/julia_carrier/layers/flux_direction_impedance_results.json",
+      "promotion_allowed": false
+    },
+    {
+      "blocked_reason": "This Julia receipt is a PEPS2D substrate tool-lego fit probe and remains partial/red; it is not an independent geometry-layer reference row.",
+      "blocked_status": "blocked_tool_lego_fit_probe_not_independent_layer_reference",
+      "classification": "tool_lego_fit_probe",
+      "julia_reference_result": "nested_peps2d_substrate_effect_imagtime_results.json",
+      "path": "system_v5/julia_carrier/layers/nested_peps2d_substrate_effect_imagtime_results.json",
+      "promotion_allowed": false
+    },
+    {
+      "blocked_reason": "This Julia receipt is an optimization/substrate-effect probe, downstream of the independent geometry coverage rows.",
+      "blocked_status": "blocked_substrate_effect_optimization_not_independent_layer_reference",
+      "classification": "nested_peps2d_substrate_effect_opt_poc",
+      "julia_reference_result": "nested_peps2d_substrate_effect_opt_results.json",
+      "path": "system_v5/julia_carrier/layers/nested_peps2d_substrate_effect_opt_results.json",
+      "promotion_allowed": false
+    },
+    {
+      "blocked_reason": "This Julia receipt is explicitly scratch-only; it can inform later ratchet work but cannot count as an independent layer/geometry reference row.",
+      "blocked_status": "blocked_scratch_only_not_independent_layer_reference",
+      "classification": "ratchet_diagnostic_scratch_only",
+      "julia_reference_result": "ratchet_diagnostic_scratch_results.json",
+      "path": "system_v5/julia_carrier/layers/ratchet_diagnostic_scratch_results.json",
+      "promotion_allowed": false
+    },
+    {
+      "blocked_reason": "Ratchet/order testing is the next phase after independent layer/geometry coverage, not a layer-coverage row.",
+      "blocked_status": "blocked_until_independent_layers_and_geometries_simed",
+      "classification": "scaffold_only",
+      "julia_reference_result": "ratchet_order_test_codex_results.json",
+      "path": "system_v5/julia_carrier/layers/ratchet_order_test_codex_results.json",
+      "promotion_allowed": false
+    },
+    {
+      "blocked_reason": "The receipt itself is scaffold_only and says real ratchet testing is blocked until parent-complete layer maps exist.",
+      "blocked_status": "blocked_scaffold_only_until_parent_complete_layers",
+      "classification": "scaffold_only",
+      "julia_reference_result": "ratchet_order_test_results.json",
+      "path": "system_v5/julia_carrier/layers/ratchet_order_test_results.json",
+      "promotion_allowed": false
+    }
+  ],
+  "executed_track": "jax",
+  "formal_admission_allowed": false,
+  "future_phase_reference_layers": [
+    "basin_hierarchy_discovery_codex_results.json",
+    "flux_direction_impedance_results.json",
+    "nested_peps2d_substrate_effect_imagtime_results.json",
+    "nested_peps2d_substrate_effect_opt_results.json",
+    "ratchet_diagnostic_scratch_results.json",
+    "ratchet_order_test_codex_results.json",
+    "ratchet_order_test_results.json"
+  ],
+  "independent_reference_layers": [
+    "G_Clifford_Cl3_Cl6_results.json",
+    "G_S2_hopf_base_results.json",
+    "G_S3_spinor_carrier_results.json",
+    "G_SO3_frame_reduction_results.json",
+    "G_clifford_torus_T2_results.json",
+    "G_hopf_fibration_results.json",
+    "G_nested_hopf_tori_results.json",
+    "L0_layer_codex_results.json",
+    "L0_layer_results.json",
+    "L10_layer_bf_results.json",
+    "L10_layer_codex_results.json",
+    "L10_layer_results.json",
+    "L11_layer_bf_results.json",
+    "L11_layer_codex_results.json",
+    "L12_layer_bf_results.json",
+    "L12_layer_codex_results.json",
+    "L12_layer_results.json",
+    "L13_layer_bf_results.json",
+    "L13_layer_codex_results.json",
+    "L1_layer_bf_results.json",
+    "L1_layer_codex_results.json",
+    "L1_layer_results.json",
+    "L2_layer_bf_results.json",
+    "L2_layer_codex_results.json",
+    "L2_layer_results.json",
+    "L3_layer_codex_results.json",
+    "L3_layer_results.json",
+    "L4_layer_bf_results.json",
+    "L4_layer_codex_results.json",
+    "L4_layer_results.json",
+    "L4_terrain_generator_results.json",
+    "L5_layer_bf_results.json",
+    "L5_layer_codex_results.json",
+    "L5_layer_results.json",
+    "L6_layer_bf_results.json",
+    "L6_layer_codex_results.json",
+    "L6_layer_results.json",
+    "L7_hopf_fibration_results.json",
+    "L7_layer_bf_results.json",
+    "L7_layer_codex_results.json",
+    "L7_layer_results.json",
+    "L8_layer_bf_results.json",
+    "L8_layer_codex_results.json",
+    "L8_layer_results.json",
+    "L9_layer_codex_results.json",
+    "L9_layer_results.json",
+    "R0_layer_bf_results.json",
+    "R0_layer_codex_results.json",
+    "R0_layer_results.json",
+    "bridge_readout_candidates_results.json",
+    "clifford_cl3_cl6_grading_bott_periodicity_object_results.json",
+    "clifford_module_gstructure_results.json",
+    "clifford_rotor_spinor_network_entanglement_results.json",
+    "emergence_3d_dirac_from_weyl_coupling_results.json",
+    "emergent_basin_nested_terrains_results.json",
+    "entropy_readout_family_peps2d_results.json",
+    "entropy_readout_family_results.json",
+    "frame_bundle_so3_spinor_network_peps2d_results.json",
+    "frame_bundle_so3_spinor_network_results.json",
+    "g2_spin7_octonion_structure_results.json",
+    "g_su2_spin3_double_cover_results.json",
+    "g_u1_hopf_bundle_chern_results.json",
+    "gstructure_selection_results.json",
+    "hybrid_reduction_graph_commuting_diagram_results.json",
+    "l0_path_quotient_results.json",
+    "l1_boundary_closure_dynamical_algebra_results.json",
+    "l2_weyl_chirality_gamma5_genuine_results.json",
+    "l3_clifford_quaternion_invariant_results.json",
+    "l5_operator_substage_noncommutation_results.json",
+    "l6_entropy_cut_free_fermion_central_charge_results.json",
+    "l8_gluing_groupoid_cocycle_results.json",
+    "multishell_coexistence_results.json",
+    "multishell_ratchet_cascade_results.json",
+    "nested_hopf_tori_spinor_network_peps2d_results.json",
+    "nested_hopf_tori_spinor_network_results.json",
+    "nested_leaf_area_ratchet_results.json",
+    "pairwise_leaf_coupling_results.json",
+    "pin3_spin3_chirality_clifford_object_results.json",
+    "s2_cp1_base_spinor_network_peps2d_results.json",
+    "s2_cp1_base_spinor_network_results.json",
+    "s3_hopf_spinor_network_entanglement_peps2d_results.json",
+    "s3_hopf_spinor_network_entanglement_results.json",
+    "s7_spin8_triality_results.json",
+    "signed_operators_density_bloch_free_results.json",
+    "sixteen_terrain_cl13_generation_results.json",
+    "sixteen_terrain_placement_lattice_results.json",
+    "sixteen_terrain_quantumoptics_results.json",
+    "sl2c_spin13_chiral_gstructure_results.json",
+    "spacetime_from_entanglement_nested_results.json",
+    "topology_variant_octet_results.json",
+    "twistor_conformal_gstructure_results.json",
+    "twistor_incidence_cp3_projective_line_results.json",
+    "weyl_lr_spinor_network_entanglement_peps2d_results.json",
+    "weyl_lr_spinor_network_entanglement_results.json",
+    "wick_basin_invariance_results.json"
+  ],
+  "julia_reference_layers": [
+    "G_Clifford_Cl3_Cl6_results.json",
+    "G_S2_hopf_base_results.json",
+    "G_S3_spinor_carrier_results.json",
+    "G_SO3_frame_reduction_results.json",
+    "G_clifford_torus_T2_results.json",
+    "G_hopf_fibration_results.json",
+    "G_nested_hopf_tori_results.json",
+    "L0_layer_codex_results.json",
+    "L0_layer_results.json",
+    "L10_layer_bf_results.json",
+    "L10_layer_codex_results.json",
+    "L10_layer_results.json",
+    "L11_layer_bf_results.json",
+    "L11_layer_codex_results.json",
+    "L12_layer_bf_results.json",
+    "L12_layer_codex_results.json",
+    "L12_layer_results.json",
+    "L13_layer_bf_results.json",
+    "L13_layer_codex_results.json",
+    "L1_layer_bf_results.json",
+    "L1_layer_codex_results.json",
+    "L1_layer_results.json",
+    "L2_layer_bf_results.json",
+    "L2_layer_codex_results.json",
+    "L2_layer_results.json",
+    "L3_layer_codex_results.json",
+    "L3_layer_results.json",
+    "L4_layer_bf_results.json",
+    "L4_layer_codex_results.json",
+    "L4_layer_results.json",
+    "L4_terrain_generator_results.json",
+    "L5_layer_bf_results.json",
+    "L5_layer_codex_results.json",
+    "L5_layer_results.json",
+    "L6_layer_bf_results.json",
+    "L6_layer_codex_results.json",
+    "L6_layer_results.json",
+    "L7_hopf_fibration_results.json",
+    "L7_layer_bf_results.json",
+    "L7_layer_codex_results.json",
+    "L7_layer_results.json",
+    "L8_layer_bf_results.json",
+    "L8_layer_codex_results.json",
+    "L8_layer_results.json",
+    "L9_layer_codex_results.json",
+    "L9_layer_results.json",
+    "R0_layer_bf_results.json",
+    "R0_layer_codex_results.json",
+    "R0_layer_results.json",
+    "basin_hierarchy_discovery_codex_results.json",
+    "bridge_readout_candidates_results.json",
+    "clifford_cl3_cl6_grading_bott_periodicity_object_results.json",
+    "clifford_module_gstructure_results.json",
+    "clifford_rotor_spinor_network_entanglement_results.json",
+    "emergence_3d_dirac_from_weyl_coupling_results.json",
+    "emergent_basin_nested_terrains_results.json",
+    "entropy_readout_family_peps2d_results.json",
+    "entropy_readout_family_results.json",
+    "flux_direction_impedance_results.json",
+    "frame_bundle_so3_spinor_network_peps2d_results.json",
+    "frame_bundle_so3_spinor_network_results.json",
+    "g2_spin7_octonion_structure_results.json",
+    "g_su2_spin3_double_cover_results.json",
+    "g_u1_hopf_bundle_chern_results.json",
+    "gstructure_selection_results.json",
+    "hybrid_reduction_graph_commuting_diagram_results.json",
+    "l0_path_quotient_results.json",
+    "l1_boundary_closure_dynamical_algebra_results.json",
+    "l2_weyl_chirality_gamma5_genuine_results.json",
+    "l3_clifford_quaternion_invariant_results.json",
+    "l5_operator_substage_noncommutation_results.json",
+    "l6_entropy_cut_free_fermion_central_charge_results.json",
+    "l8_gluing_groupoid_cocycle_results.json",
+    "multishell_coexistence_results.json",
+    "multishell_ratchet_cascade_results.json",
+    "nested_hopf_tori_spinor_network_peps2d_results.json",
+    "nested_hopf_tori_spinor_network_results.json",
+    "nested_leaf_area_ratchet_results.json",
+    "nested_peps2d_substrate_effect_imagtime_results.json",
+    "nested_peps2d_substrate_effect_opt_results.json",
+    "pairwise_leaf_coupling_results.json",
+    "pin3_spin3_chirality_clifford_object_results.json",
+    "ratchet_diagnostic_scratch_results.json",
+    "ratchet_order_test_codex_results.json",
+    "ratchet_order_test_results.json",
+    "s2_cp1_base_spinor_network_peps2d_results.json",
+    "s2_cp1_base_spinor_network_results.json",
+    "s3_hopf_spinor_network_entanglement_peps2d_results.json",
+    "s3_hopf_spinor_network_entanglement_results.json",
+    "s7_spin8_triality_results.json",
+    "signed_operators_density_bloch_free_results.json",
+    "sixteen_terrain_cl13_generation_results.json",
+    "sixteen_terrain_placement_lattice_results.json",
+    "sixteen_terrain_quantumoptics_results.json",
+    "sl2c_spin13_chiral_gstructure_results.json",
+    "spacetime_from_entanglement_nested_results.json",
+    "topology_variant_octet_results.json",
+    "twistor_conformal_gstructure_results.json",
+    "twistor_incidence_cp3_projective_line_results.json",
+    "weyl_lr_spinor_network_entanglement_peps2d_results.json",
+    "weyl_lr_spinor_network_entanglement_results.json",
+    "wick_basin_invariance_results.json"
+  ],
+  "julia_reference_mode": "read_only",
+  "julia_reference_summaries": {
+    "G_Clifford_Cl3_Cl6_results.json": {
+      "all_pass": null,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/G_Clifford_Cl3_Cl6_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "cl3_ok": true,
+        "cl6_ok": true,
+        "contrast_ok": true,
+        "kill_control_ok": true,
+        "ladder_status": "runs; passes local rerun (this run)"
+      }
+    },
+    "G_S2_hopf_base_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/G_S2_hopf_base_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "G_S3_spinor_carrier_results.json": {
+      "all_pass": null,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/G_S3_spinor_carrier_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "ALL_PASS": true,
+        "boundary_ok": true,
+        "double_cover_2to1": true,
+        "group": true,
+        "homomorphism": true,
+        "kill_control_valid": true,
+        "ladder_status": "passes",
+        "negative_ok": true,
+        "positive_S3": true,
+        "positive_SO3": true,
+        "positive_SU2": true,
+        "z3_smt_proof_valid": true
+      }
+    },
+    "G_SO3_frame_reduction_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/G_SO3_frame_reduction_results.json",
+      "promotion_allowed": false,
+      "status": "runs ; passes local rerun (this run)"
+    },
+    "G_clifford_torus_T2_results.json": {
+      "all_pass": true,
+      "classification": "poc_geometry_probe",
+      "path": "system_v5/julia_carrier/layers/G_clifford_torus_T2_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "G_hopf_fibration_results.json": {
+      "all_pass": true,
+      "classification": "tool_lego_fit_probe",
+      "path": "system_v5/julia_carrier/layers/G_hopf_fibration_results.json",
+      "promotion_allowed": false,
+      "status": "passes : genuine Hopf invariant MEASURED = 1 (two independent methods), kill-control (trivial bundle) = 0, anchored to known invariant 1, z3 load-bearing"
+    },
+    "G_nested_hopf_tori_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/G_nested_hopf_tori_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "L0_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L0_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L0_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L0_layer_results.json": {
+      "all_pass": true,
+      "classification": "L0_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L0_layer_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L10_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "L10_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L10_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L10_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L10_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L10_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L10_layer_results.json": {
+      "all_pass": true,
+      "classification": "L10_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L10_layer_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L11_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "L11_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L11_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "L11_layer_codex_results.json": {
+      "all_pass": null,
+      "classification": "L11_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L11_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "collapse_ok": true,
+        "fixed_algebras_ok": true,
+        "honest_status": "passes local L11_layer_codex_poc checks; promotion still blocked",
+        "negative_controls_ok": true,
+        "ptm_ok": true,
+        "stress_8_16_32_64_ok": true
+      }
+    },
+    "L12_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "L12_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L12_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "L12_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L12_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L12_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L12_layer_results.json": {
+      "all_pass": true,
+      "classification": "L12_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L12_layer_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "L13_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "L13_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L13_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": "genuine_now"
+    },
+    "L13_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L13_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L13_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": "passes local rerun for bounded POC; promotion still blocked"
+    },
+    "L1_layer_bf_results.json": {
+      "all_pass": null,
+      "classification": "L1_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L1_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "carrier_is_spinor_to_density_map": true,
+        "claim_ceiling": "PoC: L1 is the spinor->density carrier psi -> rho=psi psi^dag. Its realness is anchored to three KNOWN invariants (purity/rank, coherence readout, U(1) phase fibre), each measured and each FLIPPED by a wrong-structure control (classical/diagonal mixture: rank 1->2, purity 1-><1, coherence nonzero->0; raw amplitude: phase-flips). The flip is the evidence the invariants are measured, not by-construction. The rigged z-phase/bit-flip 'controls' (algebraically guaranteed to survive) were DROPPED. promotion_allowed=false; not canonical.",
+        "honest_status": "genuine_carrier",
+        "invariant_coherence_at_anchor": true,
+        "invariant_purity_rank_at_anchor": true,
+        "invariant_u1_phase_at_anchor": true,
+        "scale_stress_all_hold": true,
+        "wrong_structure_coherence_flips": true,
+        "wrong_structure_phase_flips": true,
+        "wrong_structure_rank_purity_flips": true,
+        "z3_load_bearing_ok": true
+      }
+    },
+    "L1_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L1_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L1_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": "passes local rerun"
+    },
+    "L1_layer_results.json": {
+      "all_pass": null,
+      "classification": "L1_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L1_layer_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "K_signature_forced_by_spinor": true,
+        "ablation_nonvacuous": true,
+        "all_pass": true,
+        "carrier_genuine": true,
+        "dependency_forcing_collapses_all": true,
+        "negative_controls_ok": true,
+        "scale_stress_all_hold": true,
+        "signatures_present_on_spinor": true,
+        "z3_anchor_load_bearing_ok": true
+      }
+    },
+    "L2_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "L2_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L2_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_invariants_at_anchor_and_controls_flip": true,
+        "bloch_free_dynamics": "no dot-r ODE, no terrain operators in this file (spinor carrier is allowed)",
+        "carrier_is_S3_spinor_space": true,
+        "claim_ceiling": "PoC: L2 is the S^3 spinor carrier. Its realness is anchored to three KNOWN S^3 invariants (double-cover kernel order=2, spinor 2pi sign psi->-psi, Hopf c1=1), each measured and each FLIPPED by a wrong-structure control (identity non-cover: kernel 2->1; SO(3) single cover: sign disappears; trivial bundle: c1 1->0). The flip is the evidence the invariants are measured, not by-construction-right. promotion_allowed=false; not canonical.",
+        "double_cover_kernel_anchor": 2,
+        "double_cover_kernel_order": 2,
+        "honest_status": "genuine_carrier",
+        "hopf_c1": 1,
+        "hopf_c1_anchor": 1,
+        "spinor_2pi_sign_present": true,
+        "wrong_structure_c1_flip": "1 -> 0 (trivial bundle)",
+        "wrong_structure_kernel_flip": "2 -> 1 (identity non-cover)",
+        "wrong_structure_spinor_sign_flip": "U(2pi)=-I (present) -> R(2pi)=I (absent, single cover)"
+      }
+    },
+    "L2_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L2_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L2_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L2_layer_results.json": {
+      "all_pass": null,
+      "classification": "L2_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L2_layer_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "ALL_PASS": true,
+        "N01_order_gap": true,
+        "N01_order_gap_is_bloch_recoverable_not_s3_evidence": true,
+        "ablation_nonvacuous": true,
+        "base_holonomy_two_methods_agree": true,
+        "dependency_forcing_all_collapse": true,
+        "double_cover_kernel_U1": true,
+        "fiber_holonomy_is_2pi": true,
+        "ladder_status": "passes",
+        "layer_signature_nontrivial": true,
+        "negative_controls_ok": true,
+        "peps3d_torus_euler0": true,
+        "positive_on_S3": true,
+        "qit_fiber_vs_base": true,
+        "rho_valid_density": true,
+        "scale_stress_converges": true,
+        "z3_load_bearing_valid": true
+      }
+    },
+    "L3_layer_codex_results.json": {
+      "all_pass": null,
+      "classification": "L3_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L3_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "built": true,
+        "ran": true,
+        "status_label": "passes local rerun for bounded L3_layer_codex_poc"
+      }
+    },
+    "L3_layer_results.json": {
+      "all_pass": true,
+      "classification": "L3_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L3_layer_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "L4_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "L4_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L4_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": "genuine_now : L4 Hopf c1=1 (two independent estimators) MEASURED on a Julia-native spinor section; real below-geometry erasure (winding->0) collapses c1 to 0 WHILE two comparable-magnitude non-erasure controls (multi-radian gauge transform, smooth polar deformation) leave c1=1 intact; c1 tracks winding m (input-dependent, not constant); z3 verdict flips on collapsed input. Anti-tautology control present with numbers. Bloch-free."
+    },
+    "L4_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L4_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L4_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": "passes local rerun for bounded L4_layer_codex_poc checks; promotion still blocked"
+    },
+    "L4_layer_results.json": {
+      "all_pass": true,
+      "classification": "L4_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L4_layer_results.json",
+      "promotion_allowed": false,
+      "status": "passes : Hopf fibration L4 -- c1=1 (two estimators agree) on the chart-induced base section, F!=0 curvature, holonomy order gap (N01), fiber/base split, ALL 4 below-geometry erasures collapse the signature (dependency-forcing HOLDS), z3 load-bearing"
+    },
+    "L4_terrain_generator_results.json": {
+      "all_pass": null,
+      "classification": "tool_lego_fit_probe",
+      "path": "system_v5/julia_carrier/layers/L4_terrain_generator_results.json",
+      "promotion_allowed": false,
+      "status": "kill_ok=true; pos_ok=true; anchor=10/10; ss_independent=true; two_signs=true"
+    },
+    "L5_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "L5_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L5_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": "passes local rerun"
+    },
+    "L5_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L5_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L5_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": "passes local rerun as bounded POC; not admitted; promotion blocked"
+    },
+    "L5_layer_results.json": {
+      "all_pass": true,
+      "classification": "L5_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L5_layer_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "L6_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "L6_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L6_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": "passes : L6 connection/holonomy GENUINE -- positive A_Hopf erasure MEASURABLY collapses Berry holonomy + order gap; anti-tautology re-gauging (comparable magnitude, NOT the connection) LEAVES holonomy intact; signature varies with eta/winding; no built-in algebraic zero"
+    },
+    "L6_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L6_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L6_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L6_layer_results.json": {
+      "all_pass": true,
+      "classification": "L6_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L6_layer_results.json",
+      "promotion_allowed": false,
+      "status": "passes : L6 connection/holonomy -- fiber loop TRIVIAL (H~0, density-stationary), base loop NONTRIVIAL (H!=0, density-visible), horizontal A(dot gout)=0, loop-order N01 gap in open transport, ALL 3 A_Hopf erasures collapse the signature (dependency-forcing HOLDS), z3 load-bearing"
+    },
+    "L7_hopf_fibration_results.json": {
+      "all_pass": true,
+      "classification": "tool_lego_fit_probe",
+      "path": "system_v5/julia_carrier/layers/L7_hopf_fibration_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L7_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "L7_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L7_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": "genuine_now"
+    },
+    "L7_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L7_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L7_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L7_layer_results.json": {
+      "all_pass": true,
+      "classification": "L7_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L7_layer_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "ablation_nonvacuous": true,
+        "all_pass": true,
+        "chern_winding_signs_opposite": true,
+        "chiral_charge_controls": true,
+        "dependency_forcing_merge_collapses": true,
+        "dependency_forcing_swap_exchanges": true,
+        "gamma5_constructed_measured": true,
+        "negative_controls_ok": true,
+        "opposite_circulation_present": true,
+        "peps3d_signature_changes_under_merge": true,
+        "qit_readouts_derived_ok": true,
+        "scale_stress_all_hold": true,
+        "z3_anchor_load_bearing_ok": true
+      }
+    },
+    "L8_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "L8_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/L8_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "anti_tautology_control_leaves_signature_intact": true,
+        "construction_ok": true,
+        "dependency_forcing_genuine": true,
+        "double_cover_present": true,
+        "input_dependent_swap": true,
+        "negative_controls_ok": true,
+        "orientation_signature_present": true,
+        "pin_vs_spin_distinct": true,
+        "positive_erasure_collapses": true,
+        "qit_readouts_derived_ok": true,
+        "scale_stress_all_hold": true,
+        "structural_no_builtin_zero": true
+      }
+    },
+    "L8_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L8_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L8_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L8_layer_results.json": {
+      "all_pass": true,
+      "classification": "L8_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L8_layer_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "ablation_nonvacuous": true,
+        "all_pass": true,
+        "dependency_forcing_merge_collapses": true,
+        "dependency_forcing_pin_to_spin_collapses": true,
+        "dependency_forcing_swap_collapses": true,
+        "double_cover_present": true,
+        "gamma5_constructed_measured": true,
+        "negative_controls_ok": true,
+        "orientation_swap_present": true,
+        "parity_operator_swaps_LR": true,
+        "peps3d_orientation_reverses_and_collapses": true,
+        "pin_vs_spin_distinct": true,
+        "qit_readouts_derived_ok": true,
+        "rotation_preserves_sheets": true,
+        "scale_stress_all_hold": true,
+        "z3_anchor_load_bearing_ok": true
+      }
+    },
+    "L9_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "L9_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/L9_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "L9_layer_results.json": {
+      "all_pass": false,
+      "classification": "L9_layer_poc",
+      "path": "system_v5/julia_carrier/layers/L9_layer_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "R0_layer_bf_results.json": {
+      "all_pass": true,
+      "classification": "R0_layer_bf_poc",
+      "path": "system_v5/julia_carrier/layers/R0_layer_bf_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "R0_layer_codex_results.json": {
+      "all_pass": true,
+      "classification": "R0_layer_codex_poc",
+      "path": "system_v5/julia_carrier/layers/R0_layer_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "R0_layer_results.json": {
+      "all_pass": true,
+      "classification": "R0_layer_poc",
+      "path": "system_v5/julia_carrier/layers/R0_layer_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "basin_hierarchy_discovery_codex_results.json": {
+      "all_pass": null,
+      "classification": "scaffold_diagnostic",
+      "path": "system_v5/julia_carrier/layers/basin_hierarchy_discovery_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "bridge_readout_candidates_results.json": {
+      "all_pass": true,
+      "classification": "bridge_candidate_probe",
+      "path": "system_v5/julia_carrier/layers/bridge_readout_candidates_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "clifford_cl3_cl6_grading_bott_periodicity_object_results.json": {
+      "all_pass": null,
+      "classification": "tool_lego_fit_probe",
+      "path": "system_v5/julia_carrier/layers/clifford_cl3_cl6_grading_bott_periodicity_object_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "anchors_match_known_math": true,
+        "bott_periodicity_ok": true,
+        "boundary_ok": true,
+        "kill_control_passes": true,
+        "library_defects_detected": true,
+        "library_gates_verdict": false,
+        "note": "all_pass reflects the independent engine vs known math + controls + kill-control. The CliffordAlgebras.jl build defect is detected and reported but does NOT gate the scientific verdict."
+      }
+    },
+    "clifford_module_gstructure_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/clifford_module_gstructure_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "clifford_rotor_spinor_network_entanglement_results.json": {
+      "all_pass": true,
+      "classification": "clifford_rotor_spinor_network_entanglement_poc",
+      "path": "system_v5/julia_carrier/layers/clifford_rotor_spinor_network_entanglement_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "bloch_free": true,
+        "entanglement_load_bearing": true,
+        "invariant_anchored": true,
+        "wrong_structure_controls_fire": true
+      }
+    },
+    "emergence_3d_dirac_from_weyl_coupling_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/emergence_3d_dirac_from_weyl_coupling_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "emergent_basin_nested_terrains_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/emergent_basin_nested_terrains_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "entropy_readout_family_peps2d_results.json": {
+      "all_pass": false,
+      "classification": "entropy_readout_family_peps2d_poc",
+      "path": "system_v5/julia_carrier/layers/entropy_readout_family_peps2d_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "entropy_readout_family_results.json": {
+      "all_pass": true,
+      "classification": "entropy_readout_family_poc",
+      "path": "system_v5/julia_carrier/layers/entropy_readout_family_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "flux_direction_impedance_results.json": {
+      "all_pass": false,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/flux_direction_impedance_results.json",
+      "promotion_allowed": false,
+      "status": "partial (see verdicts)"
+    },
+    "frame_bundle_so3_spinor_network_peps2d_results.json": {
+      "all_pass": true,
+      "classification": "frame_bundle_so3_spinor_network_peps2d_poc",
+      "path": "system_v5/julia_carrier/layers/frame_bundle_so3_spinor_network_peps2d_results.json",
+      "promotion_allowed": false,
+      "status": "runs if this file exits 0; promotion_allowed=false; no completion claim; control verdict-flip and erasure delta are MEASURED on the contracted network"
+    },
+    "frame_bundle_so3_spinor_network_results.json": {
+      "all_pass": true,
+      "classification": "frame_bundle_so3_spinor_network_poc",
+      "path": "system_v5/julia_carrier/layers/frame_bundle_so3_spinor_network_results.json",
+      "promotion_allowed": false,
+      "status": "runs ; passes local rerun (this run)"
+    },
+    "g2_spin7_octonion_structure_results.json": {
+      "all_pass": null,
+      "classification": "g2_spin7_octonion_structure_poc",
+      "path": "system_v5/julia_carrier/layers/g2_spin7_octonion_structure_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "entanglement_pass": true,
+        "geometry_pass": true,
+        "headline": "G2/Spin(7) octonion G-structure: dim Der(O) computed = 14 (=dim g2=14); Spin(7) Cayley-form stabilizer dim = 21 (=21), Cayley norm sum/24 = 14.0 (=14). Wrong-structure controls collapse the invariants: sign-corrupted table Der dim 3, index-corrupted Der dim 0, omit-Cayley-term stab dim 9 / norm 13.0. Entanglement load-bearing: GHZ cut entropy = 0.6931471805599453 nats (=log2), Fano-entangled cut = 1.9061547465398496, product control = -0.0 (~0). Bloch-free (density/spinor amplitudes only).",
+        "honest_status": "PASS",
+        "invariant_anchored": "dim(G2)=14 [Der(O)], dim(Spin7)=21 [Stab(Cayley)], ||Cayley||^2=14"
+      }
+    },
+    "g_su2_spin3_double_cover_results.json": {
+      "all_pass": null,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/g_su2_spin3_double_cover_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "g_u1_hopf_bundle_chern_results.json": {
+      "all_pass": false,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/g_u1_hopf_bundle_chern_results.json",
+      "promotion_allowed": false,
+      "status": "runs_partial"
+    },
+    "gstructure_selection_results.json": {
+      "all_pass": null,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/gstructure_selection_results.json",
+      "promotion_allowed": false,
+      "status": "passes local rerun (structural facts measured + controls bite)"
+    },
+    "hybrid_reduction_graph_commuting_diagram_results.json": {
+      "all_pass": null,
+      "classification": "geometry_poc",
+      "path": "system_v5/julia_carrier/layers/hybrid_reduction_graph_commuting_diagram_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "anchors_ok": true,
+        "genuine_pass": true,
+        "kill_controls_break": true,
+        "paths_commute": true
+      }
+    },
+    "l0_path_quotient_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/l0_path_quotient_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "l1_boundary_closure_dynamical_algebra_results.json": {
+      "all_pass": null,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/l1_boundary_closure_dynamical_algebra_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_measured_dims_match_known_su_invariant": true,
+        "all_pass": true,
+        "coupled_closes_to_strictly_larger_universal_algebra": true,
+        "decoupled_leaves_algebra_block_factorized_no_growth": true,
+        "honesty_note": "Closure dimension is MEASURED by independent-commutator rank growth, not planted. Each is checked against the independently-derived special-unitary invariant 2^(2n)-1 (or its block-factorized sum when decoupled). Two kill-controls (decoupled H_coupling=0; rate-matched wrong-structure local op with identical Frobenius norm 2.0) both fail to grow the closure into the joint sector; only genuinely entangling couplings (ZZ, XX, ZZ-chain) do. Z3 is load-bearing: it DERIVES the predicted dim from the structural inputs over FREE variables (n free; D=2^n computed in-solver via Z3_mk_power; pred = coupled ? D^2-1 : 3n) and proves measured==pred by refuting the negation, so every genuine case is UNSAT (proven). A deliberately-broken measurement (dim_cpl-1) makes the same query SAT, confirming the kill fires on bad data. This is a free-variable derivation, NOT a literal-vs-literal tautology.",
+        "three_wire_coupled_dim": 63,
+        "three_wire_decoupled_dim": 9,
+        "two_wire_closure_growth_factor": 2.5,
+        "two_wire_coupled_dim": 15,
+        "two_wire_decoupled_dim": 6,
+        "z3_anchor_all_measurements_proven_unsat": "unsat_all_proven",
+        "z3_anchor_load_bearing_ok": true,
+        "z3_broken_input_self_test_must_be_sat": "sat",
+        "z3_per_case_proof": {
+          "single_qubit": "unsat",
+          "three_wire_coupled": "unsat",
+          "three_wire_decoupled": "unsat",
+          "two_wire_coupled": "unsat",
+          "two_wire_coupled_xx": "unsat",
+          "two_wire_decoupled": "unsat",
+          "two_wire_wrong_struct": "unsat"
+        }
+      }
+    },
+    "l2_weyl_chirality_gamma5_genuine_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/l2_weyl_chirality_gamma5_genuine_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "l3_clifford_quaternion_invariant_results.json": {
+      "all_pass": null,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/l3_clifford_quaternion_invariant_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "ladder_status": "runs; passes local rerun (this run)"
+      }
+    },
+    "l5_operator_substage_noncommutation_results.json": {
+      "all_pass": null,
+      "classification": "tool_lego_fit_probe_PoC",
+      "path": "system_v5/julia_carrier/layers/l5_operator_substage_noncommutation_results.json",
+      "promotion_allowed": false,
+      "status": "passes: structure constants match su(2) Levi-Civita to 1e-9, kill-control commuting set gives strict null, Z3 UNSAT"
+    },
+    "l6_entropy_cut_free_fermion_central_charge_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/l6_entropy_cut_free_fermion_central_charge_results.json",
+      "promotion_allowed": false,
+      "status": "passes (runs + measured c~1, log>>linear, gapped area-law kill-control fires, MI across gap >0, z3 discriminates)"
+    },
+    "l8_gluing_groupoid_cocycle_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/l8_gluing_groupoid_cocycle_results.json",
+      "promotion_allowed": false,
+      "status": "passes (runs to completion; all measured contrasts hold; kill-controls confirm non-artifact)"
+    },
+    "multishell_coexistence_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/multishell_coexistence_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "multishell_ratchet_cascade_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/multishell_ratchet_cascade_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "nested_hopf_tori_spinor_network_peps2d_results.json": {
+      "all_pass": null,
+      "classification": "nested_hopf_tori_spinor_network_peps2d_poc",
+      "path": "system_v5/julia_carrier/layers/nested_hopf_tori_spinor_network_peps2d_results.json",
+      "promotion_allowed": false,
+      "status": "passes_local_poc_checks"
+    },
+    "nested_hopf_tori_spinor_network_results.json": {
+      "all_pass": true,
+      "classification": "nested_hopf_tori_spinor_network_poc",
+      "path": "system_v5/julia_carrier/layers/nested_hopf_tori_spinor_network_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "nested_leaf_area_ratchet_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/nested_leaf_area_ratchet_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "nested_peps2d_substrate_effect_imagtime_results.json": {
+      "all_pass": false,
+      "classification": "tool_lego_fit_probe",
+      "path": "system_v5/julia_carrier/layers/nested_peps2d_substrate_effect_imagtime_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "nested_peps2d_substrate_effect_opt_results.json": {
+      "all_pass": null,
+      "classification": "nested_peps2d_substrate_effect_opt_poc",
+      "path": "system_v5/julia_carrier/layers/nested_peps2d_substrate_effect_opt_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "pairwise_leaf_coupling_results.json": {
+      "all_pass": true,
+      "classification": "tool_lego_fit_probe",
+      "path": "system_v5/julia_carrier/layers/pairwise_leaf_coupling_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "pin3_spin3_chirality_clifford_object_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/pin3_spin3_chirality_clifford_object_results.json",
+      "promotion_allowed": false,
+      "status": "ran to completion; 22/22 structural checks passed"
+    },
+    "ratchet_diagnostic_scratch_results.json": {
+      "all_pass": true,
+      "classification": "ratchet_diagnostic_scratch_only",
+      "path": "system_v5/julia_carrier/layers/ratchet_diagnostic_scratch_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "ratchet_order_test_codex_results.json": {
+      "all_pass": null,
+      "classification": "scaffold_only",
+      "path": "system_v5/julia_carrier/layers/ratchet_order_test_codex_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "ratchet_order_test_results.json": {
+      "all_pass": null,
+      "classification": "scaffold_only",
+      "path": "system_v5/julia_carrier/layers/ratchet_order_test_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "s2_cp1_base_spinor_network_peps2d_results.json": {
+      "all_pass": true,
+      "classification": "s2_cp1_base_spinor_network_peps2d_poc",
+      "path": "system_v5/julia_carrier/layers/s2_cp1_base_spinor_network_peps2d_results.json",
+      "promotion_allowed": false,
+      "status": "passes local rerun"
+    },
+    "s2_cp1_base_spinor_network_results.json": {
+      "all_pass": true,
+      "classification": "s2_cp1_base_spinor_network_poc",
+      "path": "system_v5/julia_carrier/layers/s2_cp1_base_spinor_network_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "s3_hopf_spinor_network_entanglement_peps2d_results.json": {
+      "all_pass": true,
+      "classification": "s3_hopf_spinor_network_entanglement_peps2d_poc",
+      "path": "system_v5/julia_carrier/layers/s3_hopf_spinor_network_entanglement_peps2d_results.json",
+      "promotion_allowed": false,
+      "status": "passes local rerun"
+    },
+    "s3_hopf_spinor_network_entanglement_results.json": {
+      "all_pass": true,
+      "classification": "s3_hopf_spinor_network_entanglement_poc",
+      "path": "system_v5/julia_carrier/layers/s3_hopf_spinor_network_entanglement_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "s7_spin8_triality_results.json": {
+      "all_pass": null,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/s7_spin8_triality_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "core_pass": true,
+        "headline": "Spin(8) triality is a genuine order-3 OUTER automorphism: built on D4=so(8), it permutes the three 8-dim reps 8v->8s->8c->8v (T^3=I exactly, preserves the 24-root system, NOT identity). Inner/Weyl maps do NOT permute the reps (K1) and the order-2 diagram swap is NOT triality (K2). Octonion Moufang + local-triality companions back it at the rep level, with an explicit order-3 so(8) element. Cl(8) chirality splits 16->8s+8c (Bott period 8). The 8-terrain octet matches dim 8 by DIMENSION ONLY; the 3-generation reading is flagged SPECULATIVE.",
+        "honest_status": "PASS",
+        "kill_controls_pass": true
+      }
+    },
+    "signed_operators_density_bloch_free_results.json": {
+      "all_pass": false,
+      "classification": "signed_operators_density_poc",
+      "path": "system_v5/julia_carrier/layers/signed_operators_density_bloch_free_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "sixteen_terrain_cl13_generation_results.json": {
+      "all_pass": null,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/sixteen_terrain_cl13_generation_results.json",
+      "promotion_allowed": false,
+      "status": {
+        "all_pass": true,
+        "ladder_status": "runs; passes local rerun (this run)",
+        "measured": {
+          "abs_2x4x2": 16,
+          "dim_Cl_1_3": 16,
+          "even_subalgebra_dim": 8,
+          "full_real_rep_rank": 16,
+          "kill_distinguishes_16_from_15_8": true,
+          "sm_generation_count": 16
+        }
+      }
+    },
+    "sixteen_terrain_placement_lattice_results.json": {
+      "all_pass": true,
+      "classification": "sixteen_terrain_placement_lattice_poc",
+      "path": "system_v5/julia_carrier/layers/sixteen_terrain_placement_lattice_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "sixteen_terrain_quantumoptics_results.json": {
+      "all_pass": true,
+      "classification": "sixteen_terrain_qo_poc",
+      "path": "system_v5/julia_carrier/layers/sixteen_terrain_quantumoptics_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "sl2c_spin13_chiral_gstructure_results.json": {
+      "all_pass": null,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/sl2c_spin13_chiral_gstructure_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "spacetime_from_entanglement_nested_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/spacetime_from_entanglement_nested_results.json",
+      "promotion_allowed": false,
+      "status": "passes"
+    },
+    "topology_variant_octet_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/topology_variant_octet_results.json",
+      "promotion_allowed": false,
+      "status": "PASS"
+    },
+    "twistor_conformal_gstructure_results.json": {
+      "all_pass": null,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/twistor_conformal_gstructure_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "twistor_incidence_cp3_projective_line_results.json": {
+      "all_pass": null,
+      "classification": "tool_lego_fit_probe",
+      "path": "system_v5/julia_carrier/layers/twistor_incidence_cp3_projective_line_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "weyl_lr_spinor_network_entanglement_peps2d_results.json": {
+      "all_pass": true,
+      "classification": "weyl_lr_spinor_network_entanglement_peps2d_poc",
+      "path": "system_v5/julia_carrier/layers/weyl_lr_spinor_network_entanglement_peps2d_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "weyl_lr_spinor_network_entanglement_results.json": {
+      "all_pass": true,
+      "classification": "weyl_lr_spinor_network_entanglement_poc",
+      "path": "system_v5/julia_carrier/layers/weyl_lr_spinor_network_entanglement_results.json",
+      "promotion_allowed": false,
+      "status": null
+    },
+    "wick_basin_invariance_results.json": {
+      "all_pass": true,
+      "classification": "PoC",
+      "path": "system_v5/julia_carrier/layers/wick_basin_invariance_results.json",
+      "promotion_allowed": false,
+      "status": "passes local rerun"
+    }
+  },
+  "missing_independent_jax_rows": [],
+  "missing_jax_rows": [],
+  "name": "jax_julia_reference_geometric_constraint_layer_runner",
+  "promotion_allowed": false,
+  "ran_julia": false,
+  "red_independent_reference_rows": [
+    "L9_layer_results.json",
+    "entropy_readout_family_peps2d_results.json",
+    "g_u1_hopf_bundle_chern_results.json",
+    "signed_operators_density_bloch_free_results.json"
+  ],
+  "red_independent_reference_rows_unresolved": [],
+  "red_independent_reference_supersession_receipts": {
+    "L9_layer_results.json": {
+      "AUDIT_PASS": true,
+      "accepted": true,
+      "all_pass": true,
+      "checks": {
+        "all_pass": true,
+        "classification_fence": true,
+        "exists": true,
+        "promotion_allowed_false": true,
+        "ran_julia_false": true,
+        "ran_pytorch_false": true
+      },
+      "claim_boundary": "JAX-side fence for the legacy L9 receipt: the newer L9 codex and Clifford-module receipts pass, but this older receipt still records scale/wrong-signature failures.",
+      "classification": "diagnostic_jax_red_reference_supersession_fence",
+      "exists": true,
+      "path": "system_v5/ops/formal_scouts/results/jax_l9_clifford_module_legacy_red_reference_fence_results.json",
+      "promotion_allowed": false
+    },
+    "entropy_readout_family_peps2d_results.json": {
+      "AUDIT_PASS": true,
+      "accepted": true,
+      "all_pass": true,
+      "checks": {
+        "all_pass": true,
+        "classification_fence": true,
+        "exists": true,
+        "promotion_allowed_false": true,
+        "ran_julia_false": true,
+        "ran_pytorch_false": true
+      },
+      "claim_boundary": "JAX-side fence for the PEPS2D entropy-readout family reference: the Julia receipt records on-network PEPS2D entropy/invariant work, but its CTMRG convergence rows remain red and promotion_allowed=false.",
+      "classification": "diagnostic_jax_red_reference_supersession_fence",
+      "exists": true,
+      "path": "system_v5/ops/formal_scouts/results/jax_entropy_readout_peps2d_partial_reference_fence_results.json",
+      "promotion_allowed": false
+    },
+    "g_u1_hopf_bundle_chern_results.json": {
+      "AUDIT_PASS": true,
+      "accepted": true,
+      "all_pass": true,
+      "checks": {
+        "all_pass": true,
+        "classification_fence": true,
+        "exists": true,
+        "promotion_allowed_false": true,
+        "ran_julia_false": true,
+        "ran_pytorch_false": true
+      },
+      "claim_boundary": "JAX-side fence for the U1 Hopf-bundle Chern reference: the Julia receipt's Chern/grid controls run, but its z3 load-bearing check is red because Z3 is unavailable on that Julia runtime.",
+      "classification": "diagnostic_jax_red_reference_supersession_fence",
+      "exists": true,
+      "path": "system_v5/ops/formal_scouts/results/jax_u1_hopf_bundle_chern_partial_reference_fence_results.json",
+      "promotion_allowed": false
+    },
+    "signed_operators_density_bloch_free_results.json": {
+      "AUDIT_PASS": true,
+      "accepted": true,
+      "all_pass": true,
+      "checks": {
+        "all_pass": true,
+        "classification_fence": true,
+        "exists": true,
+        "promotion_allowed_false": true,
+        "ran_julia_false": true,
+        "ran_pytorch_false": true
+      },
+      "claim_boundary": "JAX-side fence for the signed density-operator receipt: some concrete terrain/operator pairs commute, so Delta=0 is detected as no runtime content rather than promoted.",
+      "classification": "diagnostic_jax_red_reference_supersession_fence",
+      "exists": true,
+      "path": "system_v5/ops/formal_scouts/results/jax_signed_operators_density_order_gap_fence_results.json",
+      "promotion_allowed": false
+    }
+  },
+  "red_reference_policy": "Julia reference rows remain recorded as red. A red row is no longer an unresolved JAX-lane coverage blocker only when its exact JAX supersession/fence receipt exists, passes, is fenced, and records ran_julia=false and ran_pytorch=false.",
+  "rows": [
+    {
+      "checks": {
+        "cl3_anticommutes": true,
+        "cl3_squares_identity": true,
+        "cl6_anticommutes": true,
+        "cl6_squares_identity": true,
+        "duplicate_generator_kill_fails_anticommutation": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "duplicate-generator anticommutation kill control"
+      ],
+      "finite_map": "finite Clifford generators -> square and anticommutator identities for Cl3 and Cl6",
+      "julia_reference_result": "G_Clifford_Cl3_Cl6_results.json",
+      "label": "Clifford Cl3/Cl6 generator contrast",
+      "metrics": {
+        "cl3_anticommutator_gap": 0.0,
+        "cl3_square_gap": 0.0,
+        "cl6_anticommutator_gap": 0.0,
+        "cl6_square_gap": 0.0,
+        "duplicate_bad_gap": 5.656854249492381
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_on_s2": true,
+        "fiber_invariant": true,
+        "nonfiber_changes_base": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "U1 fiber phase",
+        "nonfiber perturbation"
+      ],
+      "finite_map": "finite unit quaternions -> Hopf base S2",
+      "julia_reference_result": "G_S2_hopf_base_results.json",
+      "label": "S3 spinor to S2 Hopf base",
+      "metrics": {
+        "base_norm_drift": 2.220446049250313e-16,
+        "fiber_delta": 3.554447978966673e-16,
+        "nonfiber_delta": 0.22856431208187233
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "double_cover_q_minus_q": true,
+        "reflection_not_so3": true,
+        "unit_closed": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "reflection orientation kill control",
+        "q/-q double-cover control"
+      ],
+      "finite_map": "finite unit quaternion multiplication -> SU2/Spin3 carrier checks",
+      "julia_reference_result": "G_S3_spinor_carrier_results.json",
+      "label": "S3/SU2 spinor carrier",
+      "metrics": {
+        "double_cover_gap": 0.0,
+        "product_norm_gap": 0.0,
+        "reflection_det": -1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "reflection_excluded": true,
+        "rotation_det_plus": true,
+        "rotation_orthogonal": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "det=-1 reflection kill control"
+      ],
+      "finite_map": "finite O3 frames -> SO3 orientation reduction",
+      "julia_reference_result": "G_SO3_frame_reduction_results.json",
+      "label": "O3 to SO3 frame reduction",
+      "metrics": {
+        "orthogonality_error": 0.0,
+        "reflection_det": -1.0,
+        "rotation_det": 1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "angle_addition_commutes": true,
+        "collapsed_diagonal_control_differs": true,
+        "two_circle_norms": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "diagonal/collapsed torus control"
+      ],
+      "finite_map": "finite two-angle torus chart -> independent S1xS1 constraints",
+      "julia_reference_result": "G_clifford_torus_T2_results.json",
+      "label": "Clifford torus T2 finite angle chart",
+      "metrics": {
+        "circle_norm_error": 1.1102230246251565e-16,
+        "comm_gap": 0.0,
+        "diagonal_control_gap": 1.1468004775740939
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_on_s2": true,
+        "fiber_invariant": true,
+        "nonfiber_changes_base": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "U1 fiber phase",
+        "nonfiber perturbation"
+      ],
+      "finite_map": "finite unit quaternions -> Hopf base S2",
+      "julia_reference_result": "G_hopf_fibration_results.json",
+      "label": "Hopf fibration fiber/base invariant",
+      "metrics": {
+        "base_norm_drift": 2.220446049250313e-16,
+        "fiber_delta": 3.554447978966673e-16,
+        "nonfiber_delta": 0.22856431208187233
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "fiber_phase_preserves_each_base": true,
+        "radii_nested": true,
+        "shuffled_control_breaks_nesting": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "shuffled shell order kill control"
+      ],
+      "finite_map": "finite Hopf bases with shell radii -> nested shell order readout",
+      "julia_reference_result": "G_nested_hopf_tori_results.json",
+      "label": "nested Hopf shell/tori diagnostic",
+      "metrics": {
+        "outer_radius": 2.6,
+        "phase_delta": 3.1401849173675503e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "quotient_entropy_finite": true,
+        "quotient_normalized": true,
+        "wrong_partition_differs": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "wrong partition control"
+      ],
+      "finite_map": "finite path registry -> quotient class weights",
+      "julia_reference_result": "L0_layer_codex_results.json",
+      "label": "finite path quotient",
+      "metrics": {
+        "classes": [
+          0.4,
+          0.6
+        ],
+        "entropy": 0.9709505944546686,
+        "wrong_partition_gap": 0.14142135623730948
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "quotient_entropy_finite": true,
+        "quotient_normalized": true,
+        "wrong_partition_differs": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "wrong partition control"
+      ],
+      "finite_map": "finite path registry -> quotient class weights",
+      "julia_reference_result": "L0_layer_results.json",
+      "label": "finite path quotient",
+      "metrics": {
+        "classes": [
+          0.4,
+          0.6
+        ],
+        "entropy": 0.9709505944546686,
+        "wrong_partition_gap": 0.14142135623730948
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "eight_lindblad_generators": true,
+        "lindblad_rhs_trace_preserving": true,
+        "ne_left_right_opposite_chirality": true,
+        "sixteen_paths_from_two_placements": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "L/R Hamiltonian sign control",
+        "path-count control"
+      ],
+      "finite_map": "finite terrain Lindblad generators and two path placements -> trace-preserving density-flow checks",
+      "julia_reference_result": "L10_layer_bf_results.json",
+      "label": "JAX Lindblad audit of QuantumOptics terrain object",
+      "metrics": {
+        "max_rhs_trace_gap": 5.551115123125783e-17,
+        "placements": 16,
+        "terrain_generators": 8
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "eight_lindblad_generators": true,
+        "lindblad_rhs_trace_preserving": true,
+        "ne_left_right_opposite_chirality": true,
+        "sixteen_paths_from_two_placements": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "L/R Hamiltonian sign control",
+        "path-count control"
+      ],
+      "finite_map": "finite terrain Lindblad generators and two path placements -> trace-preserving density-flow checks",
+      "julia_reference_result": "L10_layer_codex_results.json",
+      "label": "JAX Lindblad audit of QuantumOptics terrain object",
+      "metrics": {
+        "max_rhs_trace_gap": 5.551115123125783e-17,
+        "placements": 16,
+        "terrain_generators": 8
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "eight_lindblad_generators": true,
+        "lindblad_rhs_trace_preserving": true,
+        "ne_left_right_opposite_chirality": true,
+        "sixteen_paths_from_two_placements": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "L/R Hamiltonian sign control",
+        "path-count control"
+      ],
+      "finite_map": "finite terrain Lindblad generators and two path placements -> trace-preserving density-flow checks",
+      "julia_reference_result": "L10_layer_results.json",
+      "label": "JAX Lindblad audit of QuantumOptics terrain object",
+      "metrics": {
+        "max_rhs_trace_gap": 5.551115123125783e-17,
+        "placements": 16,
+        "terrain_generators": 8
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "commuting_control_zero": true,
+        "nonzero_structure_constant": true,
+        "pauli_commutator_matches": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "commuting operator set control"
+      ],
+      "finite_map": "finite Pauli operators -> su2 structure constants",
+      "julia_reference_result": "L11_layer_bf_results.json",
+      "label": "operator substage noncommutation",
+      "metrics": {
+        "commutator_gap": 0.0,
+        "commuting_control": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "commuting_control_zero": true,
+        "nonzero_structure_constant": true,
+        "pauli_commutator_matches": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "commuting operator set control"
+      ],
+      "finite_map": "finite Pauli operators -> su2 structure constants",
+      "julia_reference_result": "L11_layer_codex_results.json",
+      "label": "operator substage noncommutation",
+      "metrics": {
+        "commutator_gap": 0.0,
+        "commuting_control": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "bell_boundary_entropy_capacity_bounded": true,
+        "bell_logneg_nonzero": true,
+        "classical_shadow_logneg_zero": true,
+        "negative_conditional_entropy_quantum": true,
+        "product_mutual_information_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product cut control",
+        "classical separable shadow control"
+      ],
+      "finite_map": "finite density cut rho_AB -> entropy, conditional entropy, log-negativity, and product/classical controls",
+      "julia_reference_result": "L12_layer_bf_results.json",
+      "label": "QIT entropy/cut diagnostic",
+      "metrics": {
+        "LN_bell": 0.9999999999999997,
+        "LN_classical_shadow": 0.0,
+        "MI_product": 0.0,
+        "S_A_bell": 1.0,
+        "S_A_given_B_bell": -0.9999999999999997
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "bell_boundary_entropy_capacity_bounded": true,
+        "bell_logneg_nonzero": true,
+        "classical_shadow_logneg_zero": true,
+        "negative_conditional_entropy_quantum": true,
+        "product_mutual_information_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product cut control",
+        "classical separable shadow control"
+      ],
+      "finite_map": "finite density cut rho_AB -> entropy, conditional entropy, log-negativity, and product/classical controls",
+      "julia_reference_result": "L12_layer_codex_results.json",
+      "label": "QIT entropy/cut diagnostic",
+      "metrics": {
+        "LN_bell": 0.9999999999999997,
+        "LN_classical_shadow": 0.0,
+        "MI_product": 0.0,
+        "S_A_bell": 1.0,
+        "S_A_given_B_bell": -0.9999999999999997
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "bell_boundary_entropy_capacity_bounded": true,
+        "bell_logneg_nonzero": true,
+        "classical_shadow_logneg_zero": true,
+        "negative_conditional_entropy_quantum": true,
+        "product_mutual_information_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product cut control",
+        "classical separable shadow control"
+      ],
+      "finite_map": "finite density cut rho_AB -> entropy, conditional entropy, log-negativity, and product/classical controls",
+      "julia_reference_result": "L12_layer_results.json",
+      "label": "QIT entropy/cut diagnostic",
+      "metrics": {
+        "LN_bell": 0.9999999999999997,
+        "LN_classical_shadow": 0.0,
+        "MI_product": 0.0,
+        "S_A_bell": 1.0,
+        "S_A_given_B_bell": -0.9999999999999997
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "bad_transition_fails": true,
+        "cocycle_closes": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "bad transition kill control"
+      ],
+      "finite_map": "finite patch U1 transitions -> cocycle residual",
+      "julia_reference_result": "L13_layer_bf_results.json",
+      "label": "gluing groupoid cocycle",
+      "metrics": {
+        "bad_residual": 0.3973386615901223,
+        "cocycle_residual": 1.2307929261577727e-17
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "bad_transition_fails": true,
+        "cocycle_closes": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "bad transition kill control"
+      ],
+      "finite_map": "finite patch U1 transitions -> cocycle residual",
+      "julia_reference_result": "L13_layer_codex_results.json",
+      "label": "gluing groupoid cocycle",
+      "metrics": {
+        "bad_residual": 0.3973386615901223,
+        "cocycle_residual": 1.2307929261577727e-17
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "coherence_erasure_control_changes_state": true,
+        "density_hermitian": true,
+        "density_positive": true,
+        "density_trace_one": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "full dephasing/coherence-erasure control"
+      ],
+      "finite_map": "finite C2 spinor -> density matrix, dephased control, trace/positivity readouts",
+      "julia_reference_result": "L1_layer_bf_results.json",
+      "label": "finite spinor-density carrier diagnostic",
+      "metrics": {
+        "coherence_erasure_gap": 0.6992384725845584,
+        "hermiticity_gap": 7.846697295487928e-18,
+        "min_eval": -6.151465193746659e-17,
+        "trace_gap": 1.8239680383336795e-18
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "coherence_erasure_control_changes_state": true,
+        "density_hermitian": true,
+        "density_positive": true,
+        "density_trace_one": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "full dephasing/coherence-erasure control"
+      ],
+      "finite_map": "finite C2 spinor -> density matrix, dephased control, trace/positivity readouts",
+      "julia_reference_result": "L1_layer_codex_results.json",
+      "label": "finite spinor-density carrier diagnostic",
+      "metrics": {
+        "coherence_erasure_gap": 0.6992384725845584,
+        "hermiticity_gap": 7.846697295487928e-18,
+        "min_eval": -6.151465193746659e-17,
+        "trace_gap": 1.8239680383336795e-18
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "coherence_erasure_control_changes_state": true,
+        "density_hermitian": true,
+        "density_positive": true,
+        "density_trace_one": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "full dephasing/coherence-erasure control"
+      ],
+      "finite_map": "finite C2 spinor -> density matrix, dephased control, trace/positivity readouts",
+      "julia_reference_result": "L1_layer_results.json",
+      "label": "finite spinor-density carrier diagnostic",
+      "metrics": {
+        "coherence_erasure_gap": 0.6992384725845584,
+        "hermiticity_gap": 7.846697295487928e-18,
+        "min_eval": -6.151465193746659e-17,
+        "trace_gap": 1.8239680383336795e-18
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_on_s2": true,
+        "fiber_invariant": true,
+        "nonfiber_changes_base": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "U1 fiber phase",
+        "nonfiber perturbation"
+      ],
+      "finite_map": "finite unit quaternions -> Hopf base S2",
+      "julia_reference_result": "L2_layer_bf_results.json",
+      "label": "Hopf fibration fiber/base invariant",
+      "metrics": {
+        "base_norm_drift": 2.220446049250313e-16,
+        "fiber_delta": 3.554447978966673e-16,
+        "nonfiber_delta": 0.22856431208187233
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_on_s2": true,
+        "fiber_invariant": true,
+        "nonfiber_changes_base": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "U1 fiber phase",
+        "nonfiber perturbation"
+      ],
+      "finite_map": "finite unit quaternions -> Hopf base S2",
+      "julia_reference_result": "L2_layer_codex_results.json",
+      "label": "Hopf fibration fiber/base invariant",
+      "metrics": {
+        "base_norm_drift": 2.220446049250313e-16,
+        "fiber_delta": 3.554447978966673e-16,
+        "nonfiber_delta": 0.22856431208187233
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_on_s2": true,
+        "fiber_invariant": true,
+        "nonfiber_changes_base": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "U1 fiber phase",
+        "nonfiber perturbation"
+      ],
+      "finite_map": "finite unit quaternions -> Hopf base S2",
+      "julia_reference_result": "L2_layer_results.json",
+      "label": "Hopf fibration fiber/base invariant",
+      "metrics": {
+        "base_norm_drift": 2.220446049250313e-16,
+        "fiber_delta": 3.554447978966673e-16,
+        "nonfiber_delta": 0.22856431208187233
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "norm_multiplicative": true,
+        "quaternion_noncommuting": true,
+        "same_word_control_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "same-word control"
+      ],
+      "finite_map": "finite quaternion product -> norm invariant and order witness",
+      "julia_reference_result": "L3_layer_codex_results.json",
+      "label": "Clifford/quaternion invariant",
+      "metrics": {
+        "norm_mult_gap": 0.0,
+        "order_gap": 1.4654232964532867
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "norm_multiplicative": true,
+        "quaternion_noncommuting": true,
+        "same_word_control_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "same-word control"
+      ],
+      "finite_map": "finite quaternion product -> norm invariant and order witness",
+      "julia_reference_result": "L3_layer_results.json",
+      "label": "Clifford/quaternion invariant",
+      "metrics": {
+        "norm_mult_gap": 0.0,
+        "order_gap": 1.4654232964532867
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "chern_near_one": true,
+        "curvature_nonzero": true,
+        "trivial_bundle_chern_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "trivial U1 bundle c1=0 control"
+      ],
+      "finite_map": "finite quadrature of Hopf curvature over S2 -> Chern number",
+      "julia_reference_result": "L4_layer_bf_results.json",
+      "label": "U1 Hopf bundle Chern number",
+      "metrics": {
+        "chern_number": 1.0000004112336351,
+        "trivial_chern": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "chern_near_one": true,
+        "curvature_nonzero": true,
+        "trivial_bundle_chern_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "trivial U1 bundle c1=0 control"
+      ],
+      "finite_map": "finite quadrature of Hopf curvature over S2 -> Chern number",
+      "julia_reference_result": "L4_layer_codex_results.json",
+      "label": "U1 Hopf bundle Chern number",
+      "metrics": {
+        "chern_number": 1.0000004112336351,
+        "trivial_chern": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "chern_near_one": true,
+        "curvature_nonzero": true,
+        "trivial_bundle_chern_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "trivial U1 bundle c1=0 control"
+      ],
+      "finite_map": "finite quadrature of Hopf curvature over S2 -> Chern number",
+      "julia_reference_result": "L4_layer_results.json",
+      "label": "U1 Hopf bundle Chern number",
+      "metrics": {
+        "chern_number": 1.0000004112336351,
+        "trivial_chern": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "flat_control_zero": true,
+        "left_right_gap": true,
+        "terrain_has_two_signs": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "flat terrain control"
+      ],
+      "finite_map": "finite chirality sign loop -> terrain readout",
+      "julia_reference_result": "L4_terrain_generator_results.json",
+      "label": "left/right Weyl terrain loop",
+      "metrics": {
+        "flat_gap": 0.0,
+        "lr_gap": 1.253085444469114,
+        "sign_count": 2
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "fiber_phase_preserves_each_base": true,
+        "radii_nested": true,
+        "shuffled_control_breaks_nesting": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "shuffled shell order kill control"
+      ],
+      "finite_map": "finite Hopf bases with shell radii -> nested shell order readout",
+      "julia_reference_result": "L5_layer_bf_results.json",
+      "label": "nested Hopf shell/tori diagnostic",
+      "metrics": {
+        "outer_radius": 2.6,
+        "phase_delta": 3.1401849173675503e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "fiber_phase_preserves_each_base": true,
+        "radii_nested": true,
+        "shuffled_control_breaks_nesting": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "shuffled shell order kill control"
+      ],
+      "finite_map": "finite Hopf bases with shell radii -> nested shell order readout",
+      "julia_reference_result": "L5_layer_codex_results.json",
+      "label": "nested Hopf shell/tori diagnostic",
+      "metrics": {
+        "outer_radius": 2.6,
+        "phase_delta": 3.1401849173675503e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "fiber_phase_preserves_each_base": true,
+        "radii_nested": true,
+        "shuffled_control_breaks_nesting": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "shuffled shell order kill control"
+      ],
+      "finite_map": "finite Hopf bases with shell radii -> nested shell order readout",
+      "julia_reference_result": "L5_layer_results.json",
+      "label": "nested Hopf shell/tori diagnostic",
+      "metrics": {
+        "outer_radius": 2.6,
+        "phase_delta": 3.1401849173675503e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_loop_nontrivial": true,
+        "erasing_AHopf_collapses_base_holonomy": true,
+        "erasing_AHopf_collapses_order_gap": true,
+        "fiber_loop_trivial_at_clifford_leaf": true,
+        "horizontal_connection_residual_zero": true,
+        "loop_order_n01_gap_present": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "A_Hopf-erased control",
+        "order-erased transport control",
+        "fiber-loop triviality control"
+      ],
+      "finite_map": "finite Hopf loops on S3 -> U1 holonomy, horizontal residual, and noncommuting transport order gap",
+      "julia_reference_result": "L6_layer_bf_results.json",
+      "label": "L6 Hopf connection holonomy diagnostic",
+      "metrics": {
+        "base_holonomy": 5.113749160732028,
+        "erased_base_holonomy": 0.0,
+        "erased_order_gap": 0.0,
+        "fiber_holonomy": 3.847341387443578e-16,
+        "horizontal_residual": 0.0,
+        "loop_order_gap": 0.557265968662085
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "chern_near_one": true,
+        "curvature_nonzero": true,
+        "trivial_bundle_chern_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "trivial U1 bundle c1=0 control"
+      ],
+      "finite_map": "finite quadrature of Hopf curvature over S2 -> Chern number",
+      "julia_reference_result": "L6_layer_codex_results.json",
+      "label": "U1 Hopf bundle Chern number",
+      "metrics": {
+        "chern_number": 1.0000004112336351,
+        "trivial_chern": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_loop_nontrivial": true,
+        "erasing_AHopf_collapses_base_holonomy": true,
+        "erasing_AHopf_collapses_order_gap": true,
+        "fiber_loop_trivial_at_clifford_leaf": true,
+        "horizontal_connection_residual_zero": true,
+        "loop_order_n01_gap_present": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "A_Hopf-erased control",
+        "order-erased transport control",
+        "fiber-loop triviality control"
+      ],
+      "finite_map": "finite Hopf loops on S3 -> U1 holonomy, horizontal residual, and noncommuting transport order gap",
+      "julia_reference_result": "L6_layer_results.json",
+      "label": "L6 Hopf connection holonomy diagnostic",
+      "metrics": {
+        "base_holonomy": 5.113749160732028,
+        "erased_base_holonomy": 0.0,
+        "erased_order_gap": 0.0,
+        "fiber_holonomy": 3.847341387443578e-16,
+        "horizontal_residual": 0.0,
+        "loop_order_gap": 0.557265968662085
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_on_s2": true,
+        "fiber_invariant": true,
+        "nonfiber_changes_base": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "U1 fiber phase",
+        "nonfiber perturbation"
+      ],
+      "finite_map": "finite unit quaternions -> Hopf base S2",
+      "julia_reference_result": "L7_hopf_fibration_results.json",
+      "label": "Hopf fibration fiber/base invariant",
+      "metrics": {
+        "base_norm_drift": 2.220446049250313e-16,
+        "fiber_delta": 3.554447978966673e-16,
+        "nonfiber_delta": 0.22856431208187233
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "identity_control_no_chirality": true,
+        "left_positive": true,
+        "right_negative": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "identity/proxy selector control"
+      ],
+      "finite_map": "finite Dirac spinors -> gamma5 chirality eigenvalue",
+      "julia_reference_result": "L7_layer_bf_results.json",
+      "label": "Weyl gamma5 chirality",
+      "metrics": {
+        "identity_gap": 0.0,
+        "left_gamma5": 1.0,
+        "right_gamma5": -1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "identity_control_no_chirality": true,
+        "left_positive": true,
+        "right_negative": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "identity/proxy selector control"
+      ],
+      "finite_map": "finite Dirac spinors -> gamma5 chirality eigenvalue",
+      "julia_reference_result": "L7_layer_codex_results.json",
+      "label": "Weyl gamma5 chirality",
+      "metrics": {
+        "identity_gap": 0.0,
+        "left_gamma5": 1.0,
+        "right_gamma5": -1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_on_s2": true,
+        "fiber_invariant": true,
+        "nonfiber_changes_base": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "U1 fiber phase",
+        "nonfiber perturbation"
+      ],
+      "finite_map": "finite unit quaternions -> Hopf base S2",
+      "julia_reference_result": "L7_layer_results.json",
+      "label": "Hopf fibration fiber/base invariant",
+      "metrics": {
+        "base_norm_drift": 2.220446049250313e-16,
+        "fiber_delta": 3.554447978966673e-16,
+        "nonfiber_delta": 0.22856431208187233
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "pin_reflection_det_minus": true,
+        "reflection_flips_chirality_control": true,
+        "spin_rotation_det_plus": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "det=-1 reflection kill control"
+      ],
+      "finite_map": "finite Spin3 rotation and Pin3 reflection -> orientation/chirality contrast",
+      "julia_reference_result": "L8_layer_bf_results.json",
+      "label": "Pin3/Spin3 reflection chirality",
+      "metrics": {
+        "reflection_det": -1.0,
+        "rotation_det": 1.0000000000000002
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "pin_reflection_det_minus": true,
+        "reflection_flips_chirality_control": true,
+        "spin_rotation_det_plus": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "det=-1 reflection kill control"
+      ],
+      "finite_map": "finite Spin3 rotation and Pin3 reflection -> orientation/chirality contrast",
+      "julia_reference_result": "L8_layer_codex_results.json",
+      "label": "Pin3/Spin3 reflection chirality",
+      "metrics": {
+        "reflection_det": -1.0,
+        "rotation_det": 1.0000000000000002
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "pin_reflection_det_minus": true,
+        "reflection_flips_chirality_control": true,
+        "spin_rotation_det_plus": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "det=-1 reflection kill control"
+      ],
+      "finite_map": "finite Spin3 rotation and Pin3 reflection -> orientation/chirality contrast",
+      "julia_reference_result": "L8_layer_results.json",
+      "label": "Pin3/Spin3 reflection chirality",
+      "metrics": {
+        "reflection_det": -1.0,
+        "rotation_det": 1.0000000000000002
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "cl13_words_span_16": true,
+        "even_subalgebra_preserves_weyl_blocks": true,
+        "gamma5_squares_to_identity": true,
+        "nonfaithful_duplicate_kill_lowers_rank": true,
+        "odd_generators_flip_chirality": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "duplicate-generator nonfaithful kill",
+        "odd/even chirality contrast"
+      ],
+      "finite_map": "finite Cl(1,3) gamma words -> faithful module rank and Weyl even/odd grading",
+      "julia_reference_result": "L9_layer_codex_results.json",
+      "label": "Cl(1,3) module G-structure diagnostic",
+      "metrics": {
+        "burnside_rank_bad_duplicate": 8,
+        "burnside_rank_good": 16,
+        "even_commutator_gap": 0.0,
+        "odd_anticommutator_gap": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "cl13_words_span_16": true,
+        "even_subalgebra_preserves_weyl_blocks": true,
+        "gamma5_squares_to_identity": true,
+        "nonfaithful_duplicate_kill_lowers_rank": true,
+        "odd_generators_flip_chirality": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "duplicate-generator nonfaithful kill",
+        "odd/even chirality contrast"
+      ],
+      "finite_map": "finite Cl(1,3) gamma words -> faithful module rank and Weyl even/odd grading",
+      "julia_reference_result": "L9_layer_results.json",
+      "label": "Cl(1,3) module G-structure diagnostic",
+      "metrics": {
+        "burnside_rank_bad_duplicate": 8,
+        "burnside_rank_good": 16,
+        "even_commutator_gap": 0.0,
+        "odd_anticommutator_gap": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "finite_density_trace_one": true,
+        "finite_s3_probe_set": true,
+        "n01_order_gap_nonzero": true,
+        "same_axis_control_commutes": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "same-axis commuting control",
+        "finite trace/norm controls"
+      ],
+      "finite_map": "finite carrier/probe/operator/path set plus two ordered noncommuting channel words -> F01/N01 witnesses",
+      "julia_reference_result": "R0_layer_bf_results.json",
+      "label": "R0 finite carrier plus noncommuting order diagnostic",
+      "metrics": {
+        "density_trace": 0.9999999999999999,
+        "order_gap": 0.2753839545793902,
+        "s3_probe_count": 2,
+        "same_axis_gap": 2.827120313889564e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "finite_density_trace_one": true,
+        "finite_s3_probe_set": true,
+        "n01_order_gap_nonzero": true,
+        "same_axis_control_commutes": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "same-axis commuting control",
+        "finite trace/norm controls"
+      ],
+      "finite_map": "finite carrier/probe/operator/path set plus two ordered noncommuting channel words -> F01/N01 witnesses",
+      "julia_reference_result": "R0_layer_codex_results.json",
+      "label": "R0 finite carrier plus noncommuting order diagnostic",
+      "metrics": {
+        "density_trace": 0.9999999999999999,
+        "order_gap": 0.2753839545793902,
+        "s3_probe_count": 2,
+        "same_axis_gap": 2.827120313889564e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "finite_density_trace_one": true,
+        "finite_s3_probe_set": true,
+        "n01_order_gap_nonzero": true,
+        "same_axis_control_commutes": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "same-axis commuting control",
+        "finite trace/norm controls"
+      ],
+      "finite_map": "finite carrier/probe/operator/path set plus two ordered noncommuting channel words -> F01/N01 witnesses",
+      "julia_reference_result": "R0_layer_results.json",
+      "label": "R0 finite carrier plus noncommuting order diagnostic",
+      "metrics": {
+        "density_trace": 0.9999999999999999,
+        "order_gap": 0.2753839545793902,
+        "s3_probe_count": 2,
+        "same_axis_gap": 2.827120313889564e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "bell_link_logneg_nonzero": true,
+        "hopf_chern_nonzero": true,
+        "leaf_area_peak_at_clifford": true,
+        "product_link_logneg_zero": true,
+        "trivial_chern_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "trivial Chern kill",
+        "product entanglement kill",
+        "leaf-area endpoint controls"
+      ],
+      "finite_map": "finite candidate readouts -> Chern, log-negativity, and leaf-area controls",
+      "julia_reference_result": "bridge_readout_candidates_results.json",
+      "label": "candidate bridge readout diagnostics",
+      "metrics": {
+        "bell_logneg": 0.9999999999999997,
+        "hopf_c1": 1.000000793274971,
+        "leaf_area_pi4": 19.739208802178716,
+        "product_logneg": 0.0,
+        "trivial_c1": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "cl3_dimension_2pow3": true,
+        "cl6_dimension_2pow6": true,
+        "grading_counts_sum_to_dimension": true,
+        "pseudoscalar_square_measured_sign": true,
+        "wrong_signature_kill_changes_pseudoscalar": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "wrong-signature pseudoscalar kill control"
+      ],
+      "finite_map": "finite Clifford blade basis counts -> grading dimensions, pseudoscalar sign, wrong-signature contrast",
+      "julia_reference_result": "clifford_cl3_cl6_grading_bott_periodicity_object_results.json",
+      "label": "Cl3/Cl6 grading and Bott-periodicity diagnostic",
+      "metrics": {
+        "cl3_dim": 8,
+        "cl3_grading": [
+          1,
+          3,
+          3,
+          1
+        ],
+        "cl6_dim": 64,
+        "cl6_grading": [
+          1,
+          6,
+          15,
+          20,
+          15,
+          6,
+          1
+        ],
+        "wrong_signature_I2": 1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "cl13_words_span_16": true,
+        "even_subalgebra_preserves_weyl_blocks": true,
+        "gamma5_squares_to_identity": true,
+        "nonfaithful_duplicate_kill_lowers_rank": true,
+        "odd_generators_flip_chirality": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "duplicate-generator nonfaithful kill",
+        "odd/even chirality contrast"
+      ],
+      "finite_map": "finite Cl(1,3) gamma words -> faithful module rank and Weyl even/odd grading",
+      "julia_reference_result": "clifford_module_gstructure_results.json",
+      "label": "Cl(1,3) module G-structure diagnostic",
+      "metrics": {
+        "burnside_rank_bad_duplicate": 8,
+        "burnside_rank_good": 16,
+        "even_commutator_gap": 0.0,
+        "odd_anticommutator_gap": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "entangled_cut_entropy_positive": true,
+        "left_right_chern_signs_opposed": true,
+        "logneg_entangled_nonzero": true,
+        "logneg_product_zero": true,
+        "product_cut_entropy_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product network control",
+        "opposite chirality sign control"
+      ],
+      "finite_map": "finite two-spinor network state -> cut entropy, log-negativity, and L/R sign controls",
+      "julia_reference_result": "clifford_rotor_spinor_network_entanglement_results.json",
+      "label": "spinor-network entanglement diagnostic",
+      "metrics": {
+        "bell_cut_entropy_nats": 0.6931471805599454,
+        "bell_logneg": 0.9999999999999997,
+        "product_cut_entropy_nats": -0.0,
+        "product_logneg": -3.203426503814918e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "coupled_dirac_gap_opens": true,
+        "decoupled_weyl_gapless": true,
+        "gamma0_flips_chirality": true,
+        "mixed_lr_mass_bilinear_nonzero": true,
+        "single_chirality_mass_bilinear_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "t=0 decoupled kill",
+        "single-chirality mass kill"
+      ],
+      "finite_map": "finite L/R Weyl blocks plus off-diagonal gamma-theta coupling -> Dirac gap and mass-bilinear readouts",
+      "julia_reference_result": "emergence_3d_dirac_from_weyl_coupling_results.json",
+      "label": "3D Dirac emergence from coupled Weyl leaves",
+      "metrics": {
+        "coupled_min_abs_eig": 0.37,
+        "decoupled_min_abs_eig": 0.0,
+        "mixed_lr_mbar": 0.9999999999999998,
+        "single_chirality_mbar": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "expansive_control_prunes": true,
+        "genuine_f01_survives": true,
+        "genuine_has_multiple_basins": true,
+        "n01_off_collapses_basin_count": true,
+        "ratchet_on_off_changes_partition": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "N01-off single-sink control",
+        "ratchet-off control",
+        "expansive F01 prune control"
+      ],
+      "finite_map": "finite Bloch-ball terrain/leaf ensemble -> survivor basin labels and prune counts",
+      "julia_reference_result": "emergent_basin_nested_terrains_results.json",
+      "label": "emergent basin nested terrains diagnostic",
+      "metrics": {
+        "expansive_pruned": 64,
+        "genuine_basin_count": 3,
+        "n01_off_basin_count": 1,
+        "ratchet_distribution_gap": 35.4400902933387
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "conditional_entropy_negative_for_bell": true,
+        "logneg_separates_quantum_from_classical_shadow": true,
+        "product_entropy_control_zero_mi": true,
+        "relative_entropy_positive": true,
+        "von_neumann_entropy_finite": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product density control",
+        "classical separable shadow control"
+      ],
+      "finite_map": "finite density matrices and finite cuts -> VN, conditional, log-negativity, and relative-entropy readouts",
+      "julia_reference_result": "entropy_readout_family_peps2d_results.json",
+      "label": "allowed finite entropy readout family diagnostic",
+      "metrics": {
+        "D_bell_mixed": 0.25489224962879,
+        "LN_bell": 0.9999999999999997,
+        "LN_classical_shadow": 0.0,
+        "S_A_bell": 1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "conditional_entropy_negative_for_bell": true,
+        "logneg_separates_quantum_from_classical_shadow": true,
+        "product_entropy_control_zero_mi": true,
+        "relative_entropy_positive": true,
+        "von_neumann_entropy_finite": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product density control",
+        "classical separable shadow control"
+      ],
+      "finite_map": "finite density matrices and finite cuts -> VN, conditional, log-negativity, and relative-entropy readouts",
+      "julia_reference_result": "entropy_readout_family_results.json",
+      "label": "allowed finite entropy readout family diagnostic",
+      "metrics": {
+        "D_bell_mixed": 0.25489224962879,
+        "LN_bell": 0.9999999999999997,
+        "LN_classical_shadow": 0.0,
+        "S_A_bell": 1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "reflection_excluded": true,
+        "rotation_det_plus": true,
+        "rotation_orthogonal": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "det=-1 reflection kill control"
+      ],
+      "finite_map": "finite O3 frames -> SO3 orientation reduction",
+      "julia_reference_result": "frame_bundle_so3_spinor_network_peps2d_results.json",
+      "label": "O3 to SO3 frame reduction",
+      "metrics": {
+        "orthogonality_error": 0.0,
+        "reflection_det": -1.0,
+        "rotation_det": 1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "reflection_excluded": true,
+        "rotation_det_plus": true,
+        "rotation_orthogonal": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "det=-1 reflection kill control"
+      ],
+      "finite_map": "finite O3 frames -> SO3 orientation reduction",
+      "julia_reference_result": "frame_bundle_so3_spinor_network_results.json",
+      "label": "O3 to SO3 frame reduction",
+      "metrics": {
+        "orthogonality_error": 0.0,
+        "reflection_det": -1.0,
+        "rotation_det": 1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "corrupted_fano_control_breaks_identity": true,
+        "finite_entanglement_control_separates_ghz_product": true,
+        "g2_dimension_anchor_14": true,
+        "octonion_cross_product_identity": true,
+        "spin7_dimension_anchor_21": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "corrupted Fano multiplication control",
+        "product entropy control"
+      ],
+      "finite_map": "finite Fano-plane octonion structure constants plus finite cut entropy -> G2/Spin7 alternative/falsifier readouts",
+      "julia_reference_result": "g2_spin7_octonion_structure_results.json",
+      "label": "G2/Spin7 octonion alternative diagnostic",
+      "metrics": {
+        "antisymmetry_gap": 0.0,
+        "corrupted_gap": 0.96,
+        "ghz_entropy_nats": 0.6931471805599454,
+        "identity_gap": 0.0,
+        "product_entropy_nats": -0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "four_pi_returns_plus_one": true,
+        "q_minus_q_same_so3": true,
+        "two_pi_is_minus_one": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "2pi spinor sign kill control"
+      ],
+      "finite_map": "finite unit quaternion -> SO3 rotation double-cover checks",
+      "julia_reference_result": "g_su2_spin3_double_cover_results.json",
+      "label": "SU2/Spin3 double cover",
+      "metrics": {
+        "cover_gap": 0.0,
+        "four_pi_scalar": 1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "chern_near_one": true,
+        "curvature_nonzero": true,
+        "trivial_bundle_chern_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "trivial U1 bundle c1=0 control"
+      ],
+      "finite_map": "finite quadrature of Hopf curvature over S2 -> Chern number",
+      "julia_reference_result": "g_u1_hopf_bundle_chern_results.json",
+      "label": "U1 Hopf bundle Chern number",
+      "metrics": {
+        "chern_number": 1.0000004112336351,
+        "trivial_chern": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "odd_clifford_kill_fails_chirality": true,
+        "sl2c_carries_chirality_not_norm": true,
+        "su2_carries_norm_chirality_rho": true,
+        "unique_all_three_candidate_is_su2": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "SL2C boost norm kill",
+        "odd Clifford chirality kill"
+      ],
+      "finite_map": "finite candidate group actions -> norm/chirality/rho score bits",
+      "julia_reference_result": "gstructure_selection_results.json",
+      "label": "G-structure selection score diagnostic",
+      "metrics": {
+        "boost_chirality_comm": 0.0,
+        "boost_norm_dev": 0.5219615556186341,
+        "odd_chirality_comm": 4.0,
+        "su2_norm_dev": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "q_minus_q_paths_commute": true,
+        "wrong_path_control_breaks": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "wrong quaternion path control"
+      ],
+      "finite_map": "finite SU2 double-cover and Hopf projection paths -> commuting diagram residual",
+      "julia_reference_result": "hybrid_reduction_graph_commuting_diagram_results.json",
+      "label": "hybrid reduction commuting diagram",
+      "metrics": {
+        "bad_path_gap": 1.9511119701169102,
+        "commute_gap": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "quotient_entropy_finite": true,
+        "quotient_normalized": true,
+        "wrong_partition_differs": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "wrong partition control"
+      ],
+      "finite_map": "finite path registry -> quotient class weights",
+      "julia_reference_result": "l0_path_quotient_results.json",
+      "label": "finite path quotient",
+      "metrics": {
+        "classes": [
+          0.4,
+          0.6
+        ],
+        "entropy": 0.9709505944546686,
+        "wrong_partition_gap": 0.14142135623730948
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "decoupled_stays_block_factorized": true,
+        "wrong_local_control_no_joint_growth": true,
+        "xx_coupling_also_closes": true,
+        "zz_coupling_closes_to_su4": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "decoupled control",
+        "rate-matched wrong-local control"
+      ],
+      "finite_map": "finite local generators plus coupling -> dynamical Lie closure rank",
+      "julia_reference_result": "l1_boundary_closure_dynamical_algebra_results.json",
+      "label": "boundary closure dynamical algebra",
+      "metrics": {
+        "decoupled_rank": 6,
+        "wrong_local_rank": 6,
+        "xx_coupled_rank": 15,
+        "zz_coupled_rank": 15
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "identity_control_no_chirality": true,
+        "left_positive": true,
+        "right_negative": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "identity/proxy selector control"
+      ],
+      "finite_map": "finite Dirac spinors -> gamma5 chirality eigenvalue",
+      "julia_reference_result": "l2_weyl_chirality_gamma5_genuine_results.json",
+      "label": "Weyl gamma5 chirality",
+      "metrics": {
+        "identity_gap": 0.0,
+        "left_gamma5": 1.0,
+        "right_gamma5": -1.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "norm_multiplicative": true,
+        "quaternion_noncommuting": true,
+        "same_word_control_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "same-word control"
+      ],
+      "finite_map": "finite quaternion product -> norm invariant and order witness",
+      "julia_reference_result": "l3_clifford_quaternion_invariant_results.json",
+      "label": "Clifford/quaternion invariant",
+      "metrics": {
+        "norm_mult_gap": 0.0,
+        "order_gap": 1.4654232964532867
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "commuting_control_zero": true,
+        "nonzero_structure_constant": true,
+        "pauli_commutator_matches": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "commuting operator set control"
+      ],
+      "finite_map": "finite Pauli operators -> su2 structure constants",
+      "julia_reference_result": "l5_operator_substage_noncommutation_results.json",
+      "label": "operator substage noncommutation",
+      "metrics": {
+        "commutator_gap": 0.0,
+        "commuting_control": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "central_charge_near_one": true,
+        "gapped_control_slope_smaller": true,
+        "log_scaling_positive": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "gapped area-law control"
+      ],
+      "finite_map": "finite subsystem sizes -> log-entropy slope central-charge readout",
+      "julia_reference_result": "l6_entropy_cut_free_fermion_central_charge_results.json",
+      "label": "free-fermion entropy central-charge diagnostic",
+      "metrics": {
+        "c_estimate": 1.001659525216555,
+        "gapped_c_estimate": 0.3872645032768932
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "bad_transition_fails": true,
+        "cocycle_closes": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "bad transition kill control"
+      ],
+      "finite_map": "finite patch U1 transitions -> cocycle residual",
+      "julia_reference_result": "l8_gluing_groupoid_cocycle_results.json",
+      "label": "gluing groupoid cocycle",
+      "metrics": {
+        "bad_residual": 0.3973386615901223,
+        "cocycle_residual": 1.2307929261577727e-17
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "decoupled_three_sinks_distinct": true,
+        "identical_terrain_kill_not_distinct": true,
+        "strong_coupling_partial_collapse_detected": true,
+        "weak_coupling_preserves_coexistence": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "identical-terrain kill",
+        "strong-coupling collapse contrast"
+      ],
+      "finite_map": "finite three-leaf Bloch sink readouts -> coexist/collapse distinction",
+      "julia_reference_result": "multishell_coexistence_results.json",
+      "label": "multi-shell coexistence diagnostic",
+      "metrics": {
+        "decoupled_min_sep": 1.4142135623730951,
+        "identical_min_sep": 0.0,
+        "strong_min_sep": 0.5,
+        "weak_min_sep": 1.3860375175297384
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "area_positive_and_nonuniform": true,
+        "control_A_const_uniform": true,
+        "hop_generator_nearest_neighbour_only": true,
+        "ratchet_differs_from_uniform_control": true,
+        "ratchet_profile_peaks_at_clifford_leaf": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "A=const uniform control",
+        "nonadjacent-hop kill"
+      ],
+      "finite_map": "finite nested theta leaves -> area-weighted ratchet profile and uniform control",
+      "julia_reference_result": "multishell_ratchet_cascade_results.json",
+      "label": "multi-shell ratchet cascade diagnostic",
+      "metrics": {
+        "nonadjacent_weight": 0.0,
+        "peak_index": 4,
+        "uniform_std": 0.0,
+        "weight_peak": 0.18714142183789045
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "fiber_phase_preserves_each_base": true,
+        "radii_nested": true,
+        "shuffled_control_breaks_nesting": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "shuffled shell order kill control"
+      ],
+      "finite_map": "finite Hopf bases with shell radii -> nested shell order readout",
+      "julia_reference_result": "nested_hopf_tori_spinor_network_peps2d_results.json",
+      "label": "nested Hopf shell/tori diagnostic",
+      "metrics": {
+        "outer_radius": 2.6,
+        "phase_delta": 3.1401849173675503e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "fiber_phase_preserves_each_base": true,
+        "radii_nested": true,
+        "shuffled_control_breaks_nesting": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "shuffled shell order kill control"
+      ],
+      "finite_map": "finite Hopf bases with shell radii -> nested shell order readout",
+      "julia_reference_result": "nested_hopf_tori_spinor_network_results.json",
+      "label": "nested Hopf shell/tori diagnostic",
+      "metrics": {
+        "outer_radius": 2.6,
+        "phase_delta": 3.1401849173675503e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "clifford_leaf_area_max": true,
+        "coupling_links_leaves": true,
+        "coupling_nearest_neighbour_only": true,
+        "entropy_proxy_tracks_area": true,
+        "flat_area_kill_has_no_ride": true,
+        "metric_area_matches_invariant": true,
+        "ratchet_descent_decreases": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "flat-area no-ride kill control",
+        "decoupled inter-leaf coupling control"
+      ],
+      "finite_map": "finite S3 torus leaf angle -> area monotone, nearest-neighbour leaf coupling, and flat-area kill readout",
+      "julia_reference_result": "nested_leaf_area_ratchet_results.json",
+      "label": "nested leaf area ratchet diagnostic",
+      "metrics": {
+        "area_entropy_corr": 0.9888424146923305,
+        "clifford_area": 19.739208802178716,
+        "descent_first_last": [
+          19.739208802178716,
+          1.577452830619712
+        ],
+        "flat_area_std": 3.552713678800501e-15,
+        "flat_entropy_std": 0.0,
+        "max_area_formula_gap": 3.552713678800501e-15,
+        "offdiag_coupled": 34.0,
+        "offdiag_decoupled": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "exchange_coupling_changes_joint_state": true,
+        "exchange_turns_on_connected_correlator": true,
+        "gamma_theta_exchange_involutive": true,
+        "identity_sham_control_no_shift": true,
+        "zero_coupling_product_fixed": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "g=0 direct-product control",
+        "identity-coupling sham control"
+      ],
+      "finite_map": "finite two-leaf density plus gamma-theta exchange -> joint-state shift and connected correlator",
+      "julia_reference_result": "pairwise_leaf_coupling_results.json",
+      "label": "pairwise adjacent-leaf coupling diagnostic",
+      "metrics": {
+        "exchange_shift": 0.4849307298114975,
+        "identity_sham_shift": 0.0,
+        "max_connected_pauli": 0.644217687237691,
+        "zero_shift": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "pin_reflection_det_minus": true,
+        "reflection_flips_chirality_control": true,
+        "spin_rotation_det_plus": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "det=-1 reflection kill control"
+      ],
+      "finite_map": "finite Spin3 rotation and Pin3 reflection -> orientation/chirality contrast",
+      "julia_reference_result": "pin3_spin3_chirality_clifford_object_results.json",
+      "label": "Pin3/Spin3 reflection chirality",
+      "metrics": {
+        "reflection_det": -1.0,
+        "rotation_det": 1.0000000000000002
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_on_s2": true,
+        "fiber_invariant": true,
+        "nonfiber_changes_base": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "U1 fiber phase",
+        "nonfiber perturbation"
+      ],
+      "finite_map": "finite unit quaternions -> Hopf base S2",
+      "julia_reference_result": "s2_cp1_base_spinor_network_peps2d_results.json",
+      "label": "S3 spinor to S2 Hopf base",
+      "metrics": {
+        "base_norm_drift": 2.220446049250313e-16,
+        "fiber_delta": 3.554447978966673e-16,
+        "nonfiber_delta": 0.22856431208187233
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "base_on_s2": true,
+        "fiber_invariant": true,
+        "nonfiber_changes_base": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "U1 fiber phase",
+        "nonfiber perturbation"
+      ],
+      "finite_map": "finite unit quaternions -> Hopf base S2",
+      "julia_reference_result": "s2_cp1_base_spinor_network_results.json",
+      "label": "S3 spinor to S2 Hopf base",
+      "metrics": {
+        "base_norm_drift": 2.220446049250313e-16,
+        "fiber_delta": 3.554447978966673e-16,
+        "nonfiber_delta": 0.22856431208187233
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "entangled_cut_entropy_positive": true,
+        "left_right_chern_signs_opposed": true,
+        "logneg_entangled_nonzero": true,
+        "logneg_product_zero": true,
+        "product_cut_entropy_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product network control",
+        "opposite chirality sign control"
+      ],
+      "finite_map": "finite two-spinor network state -> cut entropy, log-negativity, and L/R sign controls",
+      "julia_reference_result": "s3_hopf_spinor_network_entanglement_peps2d_results.json",
+      "label": "spinor-network entanglement diagnostic",
+      "metrics": {
+        "bell_cut_entropy_nats": 0.6931471805599454,
+        "bell_logneg": 0.9999999999999997,
+        "product_cut_entropy_nats": -0.0,
+        "product_logneg": -3.203426503814918e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "entangled_cut_entropy_positive": true,
+        "left_right_chern_signs_opposed": true,
+        "logneg_entangled_nonzero": true,
+        "logneg_product_zero": true,
+        "product_cut_entropy_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product network control",
+        "opposite chirality sign control"
+      ],
+      "finite_map": "finite two-spinor network state -> cut entropy, log-negativity, and L/R sign controls",
+      "julia_reference_result": "s3_hopf_spinor_network_entanglement_results.json",
+      "label": "spinor-network entanglement diagnostic",
+      "metrics": {
+        "bell_cut_entropy_nats": 0.6931471805599454,
+        "bell_logneg": 0.9999999999999997,
+        "product_cut_entropy_nats": -0.0,
+        "product_logneg": -3.203426503814918e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "cl8_clifford_relations": true,
+        "order2_control_not_triality": true,
+        "spinor_splits_8_plus_8": true,
+        "triality_order_three_nontrivial": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "order-2 swap not-triality control"
+      ],
+      "finite_map": "finite Cl(8) gamma system and D4 outer-leg 3-cycle -> triality compatibility readout",
+      "julia_reference_result": "s7_spin8_triality_results.json",
+      "label": "Spin(8) triality frontier diagnostic",
+      "metrics": {
+        "chirality_minus": 8,
+        "chirality_plus": 8,
+        "clifford_gap": 0.0,
+        "triality_order3_gap": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "Fi_Fe_preserve_spectrum": true,
+        "Ti_pinching_contracts_distance": true,
+        "commuting_pairs_detected_as_zero_gap": true,
+        "density_channels_trace_preserving": true,
+        "not_all_native_pairs_loadbearing_is_reported": true,
+        "some_native_pairs_have_runtime_order_gap": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "commuting zero-gap controls",
+        "spectrum-preserving unitary control",
+        "pinching contraction control"
+      ],
+      "finite_map": "finite rho in D(C2), primitive channels O, terrain channels Phi_tau -> Delta=Phi_tau\u2218O - O\u2218Phi_tau HS norms",
+      "julia_reference_result": "signed_operators_density_bloch_free_results.json",
+      "label": "signed density-operator order-gap fence",
+      "metrics": {
+        "nonzero_pairs": [
+          "Fi_Ne",
+          "Te_Ni",
+          "Ti_Ne"
+        ],
+        "pair_max_hs_gaps": {
+          "Fe_Ni": 1.4817422638912102e-16,
+          "Fe_Si": 0.0,
+          "Fi_Ne": 0.3798592899666404,
+          "Fi_Se": 1.2569265720419609e-16,
+          "Te_Ni": 0.09899494936611673,
+          "Te_Si": 3.189250306701418e-17,
+          "Ti_Ne": 0.22155830787339817,
+          "Ti_Se": 3.925231146709438e-17
+        },
+        "trace_gap": 2.2216090728813955e-16,
+        "zero_gap_pairs": [
+          "Fe_Ni",
+          "Fe_Si",
+          "Fi_Se",
+          "Te_Si",
+          "Ti_Se"
+        ]
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "cl13_signature_is_lorentzian": true,
+        "combinatorial_2x4x2_is_16": true,
+        "even_subalgebra_dim_is_8_not_full": true,
+        "full_cl13_dim_is_16": true,
+        "sm_without_nur_kill_is_15": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "no-nuR 15-count kill",
+        "even-subalgebra-as-full kill"
+      ],
+      "finite_map": "{L,R} x H1(T2;Z2) x Chern-sign and Cl(1,3) blade count -> three 16-count readouts",
+      "julia_reference_result": "sixteen_terrain_cl13_generation_results.json",
+      "label": "sixteen terrain / Cl(1,3) count diagnostic",
+      "metrics": {
+        "even_dim": 8,
+        "full_cl13_dim": 16,
+        "signature": [
+          1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "sm_with_nu_R": 16,
+        "sm_without_nu_R": 15,
+        "terrain_count": 16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "eight_sheet_specific_terrains": true,
+        "fiber_vs_base_path_distinguished": true,
+        "four_topologies": true,
+        "left_right_hamiltonians_opposed": true,
+        "sixteen_placements": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "loop-erased control",
+        "L/R sign-erased control"
+      ],
+      "finite_map": "{L,R} x {fiber,base} x {Se,Ne,Ni,Si} -> 16 terrain/path placements",
+      "julia_reference_result": "sixteen_terrain_placement_lattice_results.json",
+      "label": "sixteen terrain placement lattice",
+      "metrics": {
+        "base_density_delta_control": 0.5,
+        "placement_count": 16,
+        "terrain_count": 8
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "eight_lindblad_generators": true,
+        "lindblad_rhs_trace_preserving": true,
+        "ne_left_right_opposite_chirality": true,
+        "sixteen_paths_from_two_placements": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "L/R Hamiltonian sign control",
+        "path-count control"
+      ],
+      "finite_map": "finite terrain Lindblad generators and two path placements -> trace-preserving density-flow checks",
+      "julia_reference_result": "sixteen_terrain_quantumoptics_results.json",
+      "label": "JAX Lindblad audit of QuantumOptics terrain object",
+      "metrics": {
+        "max_rhs_trace_gap": 5.551115123125783e-17,
+        "placements": 16,
+        "terrain_generators": 8
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "boosts_distinguish_left_right": true,
+        "det_rotation_and_boost_one": true,
+        "gamma5_commutes_with_proper_lorentz_rep": true,
+        "lorentz_metric_preserved": true,
+        "rotations_do_not_distinguish_chirality": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "rotation-vs-boost chirality contrast",
+        "metric-preservation control"
+      ],
+      "finite_map": "finite SL(2,C) rotation/boost generators -> Weyl reps and Lorentz metric preservation",
+      "julia_reference_result": "sl2c_spin13_chiral_gstructure_results.json",
+      "label": "SL(2,C) / Spin(1,3) chiral G-structure",
+      "metrics": {
+        "boost_lr_gap": 0.8613134580215676,
+        "eta_gap": 2.512671687377699e-16,
+        "gamma5_comm_gap": 0.0,
+        "rotation_lr_gap": 0.0
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "ground_state_block_mi_positive": true,
+        "nearer_blocks_have_larger_mi": true,
+        "product_control_no_geometry": true,
+        "volume_law_control_prefers_linear": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product-state no-geometry kill",
+        "volume-law control"
+      ],
+      "finite_map": "finite free-fermion ring correlation matrix -> block MI distance and area/volume controls",
+      "julia_reference_result": "spacetime_from_entanglement_nested_results.json",
+      "label": "spacetime-from-entanglement nested-ring diagnostic",
+      "metrics": {
+        "block_mi_distance_1_2_3": [
+          0.7139897761375791,
+          0.08571390933598266,
+          0.041866090600269246
+        ],
+        "product_mi": 0.0,
+        "volume_linear_rmse": 1.1451992206292896e-15,
+        "volume_log_rmse": 0.44996064000765035
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "baseline_c1_distinct_from_c2": true,
+        "higher_chern_minus_two": true,
+        "higher_chern_plus_two": true,
+        "octet_count_4_spin_x_2_flux": true,
+        "trivial_mass_control_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "trivial mass kill",
+        "C=1 baseline distinction control"
+      ],
+      "finite_map": "finite FHS occupied-band plaquettes -> higher-Chern octet readout",
+      "julia_reference_result": "topology_variant_octet_results.json",
+      "label": "topology-variant Chern octet diagnostic",
+      "metrics": {
+        "c_baseline_abs1": 0.999999999999999,
+        "c_minus": -1.9999999999999967,
+        "c_plus": 1.9999999999999967,
+        "c_trivial": 1.2489613055790437e-16,
+        "octet_count": 8
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "determinant_one": true,
+        "minus_center_preserves_form": true,
+        "su22_preserves_twistor_form": true,
+        "twistor_norm_invariant": true,
+        "wrong_structure_breaks_sigma": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "wrong GL4 matrix kill",
+        "minus-center boundary control"
+      ],
+      "finite_map": "finite SU(2,2)-style form-preserving matrix -> twistor Hermitian form and center controls",
+      "julia_reference_result": "twistor_conformal_gstructure_results.json",
+      "label": "twistor conformal SU(2,2) G-structure diagnostic",
+      "metrics": {
+        "det_gap": 0.0,
+        "sigma_form_gap": 1.131807438900751e-16,
+        "twistor_norm_gap": 2.220800331538693e-16,
+        "wrong_form_gap": 0.6900000000000002
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "incidence_residual_zero": true,
+        "projective_scale_preserves": true,
+        "random_pair_control_fails": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "random pair control",
+        "projective scaling control"
+      ],
+      "finite_map": "finite spinor pair (lambda,mu) -> twistor incidence residual",
+      "julia_reference_result": "twistor_incidence_cp3_projective_line_results.json",
+      "label": "twistor incidence CP3 line",
+      "metrics": {
+        "incidence_residual": 0.0,
+        "random_residual": 0.2645751311064591,
+        "scale_residual": 2.6193750069204537e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "entangled_cut_entropy_positive": true,
+        "left_right_chern_signs_opposed": true,
+        "logneg_entangled_nonzero": true,
+        "logneg_product_zero": true,
+        "product_cut_entropy_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product network control",
+        "opposite chirality sign control"
+      ],
+      "finite_map": "finite two-spinor network state -> cut entropy, log-negativity, and L/R sign controls",
+      "julia_reference_result": "weyl_lr_spinor_network_entanglement_peps2d_results.json",
+      "label": "spinor-network entanglement diagnostic",
+      "metrics": {
+        "bell_cut_entropy_nats": 0.6931471805599454,
+        "bell_logneg": 0.9999999999999997,
+        "product_cut_entropy_nats": -0.0,
+        "product_logneg": -3.203426503814918e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "entangled_cut_entropy_positive": true,
+        "left_right_chern_signs_opposed": true,
+        "logneg_entangled_nonzero": true,
+        "logneg_product_zero": true,
+        "product_cut_entropy_zero": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "product network control",
+        "opposite chirality sign control"
+      ],
+      "finite_map": "finite two-spinor network state -> cut entropy, log-negativity, and L/R sign controls",
+      "julia_reference_result": "weyl_lr_spinor_network_entanglement_results.json",
+      "label": "spinor-network entanglement diagnostic",
+      "metrics": {
+        "bell_cut_entropy_nats": 0.6931471805599454,
+        "bell_logneg": 0.9999999999999997,
+        "product_cut_entropy_nats": -0.0,
+        "product_logneg": -3.203426503814918e-16
+      },
+      "pass": true,
+      "promotion_allowed": false
+    },
+    {
+      "checks": {
+        "comparison_reported": true,
+        "euclidean_basins_computed": true,
+        "generic_control_count_differs_from_euclidean": true,
+        "generic_control_scrambles_more_than_wick": true,
+        "trivial_no_continuation_matches_euclidean": true,
+        "wick_basins_computed": true
+      },
+      "claim_boundary": "diagnostic JAX row over read-only Julia reference layer; no admission",
+      "controls": [
+        "trivial no-continuation exact no-op",
+        "generic non-Wick collapsed-axis control"
+      ],
+      "finite_map": "finite Bloch-ball seeds x continuation mode -> clustered basin labels and scramble scores",
+      "julia_reference_result": "wick_basin_invariance_results.json",
+      "label": "Wick basin invariance signature-change diagnostic",
+      "metrics": {
+        "boundary_capture": 1e-08,
+        "euclidean_basin_count": 5,
+        "euclidean_basin_sizes": [
+          51,
+          23,
+          23,
+          18,
+          18
+        ],
+        "generic_basin_count": 1,
+        "generic_basin_sizes": [
+          133
+        ],
+        "generic_comparison": {
+          "basin_count_delta": 4.0,
+          "coassignment_distance": 0.7622465254044202,
+          "mean_final_state_distance": 1.0016927481341134,
+          "scramble_score": 5.0126697124379485
+        },
+        "generic_strength": 5.0,
+        "seed_count": 133,
+        "trivial_basin_count": 5,
+        "wick_basin_count": 1,
+        "wick_basin_sizes": [
+          133
+        ],
+        "wick_comparison": {
+          "basin_count_delta": 4.0,
+          "coassignment_distance": 0.7622465254044202,
+          "mean_final_state_distance": 1.0000972231693281,
+          "scramble_score": 5.012270831196751
+        }
+      },
+      "pass": true,
+      "promotion_allowed": false
+    }
+  ],
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "jax.scipy.linalg.expm": "supportive",
+    "json": "supportive"
+  },
+  "tool_manifest": {
+    "jax": "load-bearing finite diagnostic maps for Julia-reference layer targets",
+    "jax.numpy": "load-bearing finite linear algebra, spinor/quaternion/Hopf/QIT readouts",
+    "jax.scipy.linalg.expm": "load-bearing finite unitary construction where used",
+    "json": "supportive read-only Julia reference summaries and receipt serialization"
+  }
+}

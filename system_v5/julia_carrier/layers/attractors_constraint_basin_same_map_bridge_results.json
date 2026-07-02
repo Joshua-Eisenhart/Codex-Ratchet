@@ -1,0 +1,1202 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Attractors": "load_bearing",
+    "Dates": "supportive",
+    "DynamicalSystems": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "SHA": "supportive",
+    "StaticArrays": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "Attractors": {
+      "reason": "maps the exact finite transition table as a deterministic iterated map",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "timestamps the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "DynamicalSystems": {
+      "reason": "supplies DeterministicIteratedMap for the finite transition table",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "reads the Z3 result receipt and writes the bridge receipt",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "constructs the same finite transition tables and emits the result receipt",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "records source and transition-table hashes for stale/identity checks",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "StaticArrays": {
+      "reason": "represents the one-dimensional discrete map state",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    }
+  },
+  "actual_tools_used": [
+    "DynamicalSystems",
+    "JSON",
+    "SHA",
+    "StaticArrays",
+    "Dates",
+    "Attractors",
+    "Julia"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "Attractors.jl maps the same finite F_C fixture to the same target basin that Z3 proves.",
+    "Constraint-erased, wrong-target, and order-erased controls flip on the 64-state fixture.",
+    "promotion_allowed=false; no layer, manifold, PEPS, flux, Axis0, FEP, bridge admission, or physics claim is made."
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/attractors_constraint_basin_same_map_bridge_results.json"
+  ],
+  "backend_primary_result": {
+    "all_pass": true,
+    "backend": "Julia + Attractors.jl + DynamicalSystems.jl with Z3 dependency receipt",
+    "claim_bearing": true,
+    "claim_scope": "same-fixture finite-map bridge only; not proof promotion or admission",
+    "summary": "Attractors maps the exact finite table; Z3 result is a dependency receipt, not rerun here."
+  },
+  "blocked_consumers": [
+    "layer completion",
+    "parent-complete layer status",
+    "G-structure selection",
+    "PEPS2D",
+    "PEPS3D",
+    "stacking readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "bridge admission",
+    "gravity",
+    "physics",
+    "final manifold admission",
+    "manifold basin admission"
+  ],
+  "blocked_until": "A target layer emits a real carrier transition map that can replace this proof fixture without inventing a surrogate.",
+  "branch_status_before_run": "same_fixture_bridge_not_admission",
+  "carrier_layer": "finite schedule fixture",
+  "carrier_realization": "Julia finite transition tables mapped through DynamicalSystems.DeterministicIteratedMap and AttractorsViaRecurrences",
+  "claim_ceiling": "Same-fixture bridge scout only. It proves neither a continuous attractor theorem nor a PEPS/layer/manifold admission. It only records parity between a finite Z3 proof fixture and Attractors finite-map mapping.",
+  "classification": "formal_scout",
+  "codomain_or_output": "same-fixture Attractors/Z3 parity receipt with negative-control deltas",
+  "controls": {
+    "constraint_erased_64": {
+      "attractor_count": 16,
+      "attractor_rows": [
+        {
+          "attractor_label": "NeTi::Ti",
+          "attractor_state": 1,
+          "fraction": 0.0625,
+          "label": 1
+        },
+        {
+          "attractor_label": "FeSi::Ti",
+          "attractor_state": 5,
+          "fraction": 0.0625,
+          "label": 2
+        },
+        {
+          "attractor_label": "TiSe::Ti",
+          "attractor_state": 9,
+          "fraction": 0.0625,
+          "label": 3
+        },
+        {
+          "attractor_label": "NiFe::Ti",
+          "attractor_state": 13,
+          "fraction": 0.0625,
+          "label": 4
+        },
+        {
+          "attractor_label": "SeFi::Ti",
+          "attractor_state": 17,
+          "fraction": 0.0625,
+          "label": 5
+        },
+        {
+          "attractor_label": "SiTe::Ti",
+          "attractor_state": 21,
+          "fraction": 0.0625,
+          "label": 6
+        },
+        {
+          "attractor_label": "FiNe::Ti",
+          "attractor_state": 25,
+          "fraction": 0.0625,
+          "label": 7
+        },
+        {
+          "attractor_label": "TeNi::Ti",
+          "attractor_state": 29,
+          "fraction": 0.0625,
+          "label": 8
+        },
+        {
+          "attractor_label": "NeFi::Ti",
+          "attractor_state": 33,
+          "fraction": 0.0625,
+          "label": 9
+        },
+        {
+          "attractor_label": "TeSi::Ti",
+          "attractor_state": 37,
+          "fraction": 0.0625,
+          "label": 10
+        },
+        {
+          "attractor_label": "FiSe::Ti",
+          "attractor_state": 41,
+          "fraction": 0.0625,
+          "label": 11
+        },
+        {
+          "attractor_label": "NiTe::Ti",
+          "attractor_state": 45,
+          "fraction": 0.0625,
+          "label": 12
+        },
+        {
+          "attractor_label": "TiNe::Ti",
+          "attractor_state": 49,
+          "fraction": 0.0625,
+          "label": 13
+        },
+        {
+          "attractor_label": "SiFe::Ti",
+          "attractor_state": 53,
+          "fraction": 0.0625,
+          "label": 14
+        },
+        {
+          "attractor_label": "SeTi::Ti",
+          "attractor_state": 57,
+          "fraction": 0.0625,
+          "label": 15
+        },
+        {
+          "attractor_label": "FeNi::Ti",
+          "attractor_state": 61,
+          "fraction": 0.0625,
+          "label": 16
+        }
+      ],
+      "basin_entropy": {
+        "basin_entropy": 0.6931471805599453,
+        "boundary_basin_entropy": 0.6931471805599453,
+        "box_side": 8,
+        "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+        "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+      },
+      "raw_basin_labels": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6,
+        7,
+        7,
+        7,
+        7,
+        8,
+        8,
+        8,
+        8,
+        9,
+        9,
+        9,
+        9,
+        10,
+        10,
+        10,
+        10,
+        11,
+        11,
+        11,
+        11,
+        12,
+        12,
+        12,
+        12,
+        13,
+        13,
+        13,
+        13,
+        14,
+        14,
+        14,
+        14,
+        15,
+        15,
+        15,
+        15,
+        16,
+        16,
+        16,
+        16
+      ],
+      "target_fraction": 0.0625,
+      "target_label": "NeTi::Ti",
+      "target_state": 1,
+      "wrong_target_fraction": 0.0625,
+      "wrong_target_label": "FeSi::Ti",
+      "wrong_target_state": 5
+    },
+    "order_erased_gap_count_64": 0,
+    "order_gap_count_64": 45,
+    "wrong_target_bad_reach_count_64": 64,
+    "z3_dependency_pass": true
+  },
+  "data_or_artifact_dependencies": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/constraint_basin_synthesis_terrain64_results.json"
+  ],
+  "decorative_tool_name_overclaim_guard": {
+    "Attractors": "load_bearing for finite-map basin labels/fractions/entropy only; not a proof engine",
+    "DynamicalSystems": "load_bearing for deterministic map execution only; not a nonclassical carrier admission",
+    "bit_identical_controls_checked": "genuine and constraint-erased table hashes differ on the 64-state rung",
+    "shared_premise_tested": "Attractors consumed the same finite table fixture as the Z3 scout; controls used different table hashes and changed target fractions/order gaps."
+  },
+  "demotion_condition": "Demote to broken if Attractors no longer maps the genuine F_C table to NeTi::Ti, if erased/wrong/order controls stop flipping, if the Z3 dependency receipt is not passing, or if downstream wording treats this as layer/manifold/PEPS admission.",
+  "dependency_receipts": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/constraint_basin_synthesis_terrain64_results.json"
+  ],
+  "domain": "finite terrain/operator schedule states only; no continuous, PEPS, spinor, or manifold state space is claimed",
+  "downstream_blocks": [
+    "layer completion",
+    "parent-complete layer status",
+    "G-structure selection",
+    "PEPS2D",
+    "PEPS3D",
+    "stacking readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "bridge admission",
+    "gravity",
+    "physics",
+    "final manifold admission",
+    "manifold basin admission"
+  ],
+  "eligible_consumers": [
+    "diagnostic same-fixture proof/mapping parity",
+    "future harness for exported per-layer finite maps"
+  ],
+  "entropy_as_output": {
+    "boundary": "Attractors.basin_entropy diagnostic only; no fractal/Wada claim",
+    "constraint_erased_64": {
+      "basin_entropy": 0.6931471805599453,
+      "boundary_basin_entropy": 0.6931471805599453,
+      "box_side": 8,
+      "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+      "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+    },
+    "genuine_64": {
+      "basin_entropy": 0.0,
+      "boundary_basin_entropy": null,
+      "box_side": 8,
+      "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+      "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+    }
+  },
+  "fail_rule": "Any missing same-map target basin, failed Z3 dependency, bit-identical control, or promotion-like downstream claim fails the bridge scout.",
+  "finite_map": {
+    "codomain_or_output": "Attractors finite-map basin labels/fractions plus Z3 dependency parity and direct control deltas",
+    "domain": "finite states (native_word, substage) at 8/16/32/64 state rungs",
+    "map": "F_C = contract_word_gated_after_project_substage, recreated from the same fixture used by constraint_basin_synthesis_terrain64.jl."
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-03T08:40:16.510",
+  "geometry_layer": "terrain/operator order grammar fixture, not a geometric manifold carrier",
+  "graph_surfaces_used": [],
+  "kill_conditions": [
+    "genuine F_C table does not map to NeTi::Ti target basin",
+    "constraint-erased table maps all states to the target",
+    "wrong-target claim has no failing states",
+    "order-erased table keeps a nonzero order gap",
+    "Z3 dependency receipt is not passing",
+    "downstream report treats same-fixture parity as layer/manifold/PEPS admission"
+  ],
+  "law_or_candidate_tested": "same finite F_C table maps all states to target basin under Attractors and matches the existing Z3 proof dependency; erased/wrong/order controls fail",
+  "name": "Same-map bridge from Z3 finite basin proof to Attractors finite-map basin mapping",
+  "negatives_run": [
+    "constraint_erased_same_map",
+    "wrong_target_same_table",
+    "order_erased_table",
+    "bit_identical_control_check"
+  ],
+  "next_lego_target": "Export one real terrain/channel carrier finite map and run this same-map bridge against that exported carrier rather than the schedule fixture.",
+  "object_id": "attractors_constraint_basin_same_map_bridge",
+  "one_layer_done_right_candidate": false,
+  "out_of_scope": [
+    "continuous or infinite-time attractor proof",
+    "new Z3 proof beyond dependency comparison",
+    "PEPS2D or PEPS3D carrier construction",
+    "spinor-network carrier admission",
+    "per-layer terrain/operator completion",
+    "manifold basin admission",
+    "flux/Xi/Phi0/Axis0/FEP/physics claims"
+  ],
+  "pass_rule": "All 8/16/32/64 rungs must map genuine F_C to the target under Attractors, match Z3 dependency proof flags, and keep erased/wrong/order controls failing.",
+  "peps3d_embedding": "absent; this blocks manifold, PEPS3D, flux, Axis0, FEP, physics, and basin-admission consumers",
+  "prior_function_receipts": [],
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "finite schedule fixture only",
+    "no PEPS2D or PEPS3D carrier",
+    "no spinor-network carrier",
+    "no exported per-layer carrier map",
+    "no layer-completion claim gate"
+  ],
+  "promotion_condition": "Promotion requires a real target-layer carrier map, formal proof or interval bound where claimed, fresh controls, and a passing layer-completion claim gate for any completion-like wording.",
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [
+    "dependency: constraint_basin_synthesis_terrain64 Z3 proof receipt"
+  ],
+  "purpose": "Check that Attractors.jl basin mapping agrees with the Z3 finite proof on the same transition-table fixture, not a continuous surrogate.",
+  "quaternion_action": "not_applicable",
+  "required_inputs": [
+    "same finite transition table fixture",
+    "Z3 dependency result",
+    "8/16/32/64 state rungs"
+  ],
+  "required_negatives": [
+    "constraint_erased_same_map",
+    "wrong_target_same_table",
+    "order_erased_table",
+    "bit_identical_control_check"
+  ],
+  "required_tools": [
+    "DynamicalSystems",
+    "JSON",
+    "SHA",
+    "StaticArrays",
+    "Dates",
+    "Attractors",
+    "Julia"
+  ],
+  "result_summary": {
+    "all_rungs_pass": true,
+    "controls_pass": true,
+    "order_erased_gap_count_64": 0,
+    "order_gap_count_64": 45,
+    "source_sha256": "b4566e338e6668a73cc71cb7c587f2e7a769c605f97768dd2ce02a00d66df249",
+    "state_rungs": [
+      "8",
+      "16",
+      "32",
+      "64"
+    ],
+    "target_fraction_constraint_erased_64": 0.0625,
+    "target_fraction_genuine_64": 1.0,
+    "wrong_target_bad_reach_count_64": 64,
+    "z3_dependency_pass": true
+  },
+  "root_constraints": [
+    "F01 finite carrier/probe/operator/path set: exact finite transition tables at 8/16/32/64 state rungs",
+    "N01 noncommuting/order-sensitive operation/control: genuine table differs from reverse-order table; order-erased table collapses the gap"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite distinguishable terrain/operator schedule states",
+    "N01 direct transition-table order gap, not a continuous ODE label"
+  ],
+  "scale_ladder": {
+    "rungs": {
+      "16": {
+        "constraint_erased_attractors": {
+          "attractor_count": 4,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.25,
+              "label": 1
+            },
+            {
+              "attractor_label": "FeSi::Ti",
+              "attractor_state": 5,
+              "fraction": 0.25,
+              "label": 2
+            },
+            {
+              "attractor_label": "TiSe::Ti",
+              "attractor_state": 9,
+              "fraction": 0.25,
+              "label": 3
+            },
+            {
+              "attractor_label": "NiFe::Ti",
+              "attractor_state": 13,
+              "fraction": 0.25,
+              "label": 4
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box_side": 4,
+            "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+            "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+          },
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4
+          ],
+          "target_fraction": 0.25,
+          "target_label": "NeTi::Ti",
+          "target_state": 1,
+          "wrong_target_fraction": 0.25,
+          "wrong_target_label": "FeSi::Ti",
+          "wrong_target_state": 5
+        },
+        "constraint_erased_table_hash": "a0bbb6ade9ae81dc2ae1a5db4d0635fc6c1171134821dc0782328a42fe3d0842",
+        "genuine_attractors": {
+          "attractor_count": 1,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 1.0,
+              "label": 1
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box_side": 4,
+            "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+            "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+          },
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "target_fraction": 1.0,
+          "target_label": "NeTi::Ti",
+          "target_state": 1,
+          "wrong_target_fraction": 0.0,
+          "wrong_target_label": "FeSi::Ti",
+          "wrong_target_state": 5
+        },
+        "genuine_table_hash": "000cea319a8b592aef6aaffdc401487ec9d75f0893b73b88ec5bea815c84e783",
+        "horizon_k": 3,
+        "order_erased_gap_count_direct": 0,
+        "order_gap_count_direct": 9,
+        "same_map_bridge_pass": true,
+        "state_count": 16,
+        "word_count": 4,
+        "wrong_target_bad_reach_count_direct": 16,
+        "z3_erased_counterexample_exists": true,
+        "z3_reach_proved": true,
+        "z3_wrong_target_counterexample_exists": true
+      },
+      "32": {
+        "constraint_erased_attractors": {
+          "attractor_count": 8,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.125,
+              "label": 1
+            },
+            {
+              "attractor_label": "FeSi::Ti",
+              "attractor_state": 5,
+              "fraction": 0.125,
+              "label": 2
+            },
+            {
+              "attractor_label": "TiSe::Ti",
+              "attractor_state": 9,
+              "fraction": 0.125,
+              "label": 3
+            },
+            {
+              "attractor_label": "NiFe::Ti",
+              "attractor_state": 13,
+              "fraction": 0.125,
+              "label": 4
+            },
+            {
+              "attractor_label": "SeFi::Ti",
+              "attractor_state": 17,
+              "fraction": 0.125,
+              "label": 5
+            },
+            {
+              "attractor_label": "SiTe::Ti",
+              "attractor_state": 21,
+              "fraction": 0.125,
+              "label": 6
+            },
+            {
+              "attractor_label": "FiNe::Ti",
+              "attractor_state": 25,
+              "fraction": 0.125,
+              "label": 7
+            },
+            {
+              "attractor_label": "TeNi::Ti",
+              "attractor_state": 29,
+              "fraction": 0.125,
+              "label": 8
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.6931471805599453,
+            "boundary_basin_entropy": 0.6931471805599453,
+            "box_side": 8,
+            "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+            "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+          },
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4,
+            5,
+            5,
+            5,
+            5,
+            6,
+            6,
+            6,
+            6,
+            7,
+            7,
+            7,
+            7,
+            8,
+            8,
+            8,
+            8
+          ],
+          "target_fraction": 0.125,
+          "target_label": "NeTi::Ti",
+          "target_state": 1,
+          "wrong_target_fraction": 0.125,
+          "wrong_target_label": "FeSi::Ti",
+          "wrong_target_state": 5
+        },
+        "constraint_erased_table_hash": "5faa39eafaa1c0323c15a2020bbd2dc5c8c070103560fc9e21db111ea2967946",
+        "genuine_attractors": {
+          "attractor_count": 1,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 1.0,
+              "label": 1
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box_side": 8,
+            "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+            "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+          },
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "target_fraction": 1.0,
+          "target_label": "NeTi::Ti",
+          "target_state": 1,
+          "wrong_target_fraction": 0.0,
+          "wrong_target_label": "FeSi::Ti",
+          "wrong_target_state": 5
+        },
+        "genuine_table_hash": "6f4ca0ffa75370868b3f60544b876f916328269e2bf96c95b006084dc9fe0e3c",
+        "horizon_k": 7,
+        "order_erased_gap_count_direct": 0,
+        "order_gap_count_direct": 21,
+        "same_map_bridge_pass": true,
+        "state_count": 32,
+        "word_count": 8,
+        "wrong_target_bad_reach_count_direct": 32,
+        "z3_erased_counterexample_exists": true,
+        "z3_reach_proved": true,
+        "z3_wrong_target_counterexample_exists": true
+      },
+      "64": {
+        "constraint_erased_attractors": {
+          "attractor_count": 16,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.0625,
+              "label": 1
+            },
+            {
+              "attractor_label": "FeSi::Ti",
+              "attractor_state": 5,
+              "fraction": 0.0625,
+              "label": 2
+            },
+            {
+              "attractor_label": "TiSe::Ti",
+              "attractor_state": 9,
+              "fraction": 0.0625,
+              "label": 3
+            },
+            {
+              "attractor_label": "NiFe::Ti",
+              "attractor_state": 13,
+              "fraction": 0.0625,
+              "label": 4
+            },
+            {
+              "attractor_label": "SeFi::Ti",
+              "attractor_state": 17,
+              "fraction": 0.0625,
+              "label": 5
+            },
+            {
+              "attractor_label": "SiTe::Ti",
+              "attractor_state": 21,
+              "fraction": 0.0625,
+              "label": 6
+            },
+            {
+              "attractor_label": "FiNe::Ti",
+              "attractor_state": 25,
+              "fraction": 0.0625,
+              "label": 7
+            },
+            {
+              "attractor_label": "TeNi::Ti",
+              "attractor_state": 29,
+              "fraction": 0.0625,
+              "label": 8
+            },
+            {
+              "attractor_label": "NeFi::Ti",
+              "attractor_state": 33,
+              "fraction": 0.0625,
+              "label": 9
+            },
+            {
+              "attractor_label": "TeSi::Ti",
+              "attractor_state": 37,
+              "fraction": 0.0625,
+              "label": 10
+            },
+            {
+              "attractor_label": "FiSe::Ti",
+              "attractor_state": 41,
+              "fraction": 0.0625,
+              "label": 11
+            },
+            {
+              "attractor_label": "NiTe::Ti",
+              "attractor_state": 45,
+              "fraction": 0.0625,
+              "label": 12
+            },
+            {
+              "attractor_label": "TiNe::Ti",
+              "attractor_state": 49,
+              "fraction": 0.0625,
+              "label": 13
+            },
+            {
+              "attractor_label": "SiFe::Ti",
+              "attractor_state": 53,
+              "fraction": 0.0625,
+              "label": 14
+            },
+            {
+              "attractor_label": "SeTi::Ti",
+              "attractor_state": 57,
+              "fraction": 0.0625,
+              "label": 15
+            },
+            {
+              "attractor_label": "FeNi::Ti",
+              "attractor_state": 61,
+              "fraction": 0.0625,
+              "label": 16
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.6931471805599453,
+            "boundary_basin_entropy": 0.6931471805599453,
+            "box_side": 8,
+            "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+            "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+          },
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4,
+            5,
+            5,
+            5,
+            5,
+            6,
+            6,
+            6,
+            6,
+            7,
+            7,
+            7,
+            7,
+            8,
+            8,
+            8,
+            8,
+            9,
+            9,
+            9,
+            9,
+            10,
+            10,
+            10,
+            10,
+            11,
+            11,
+            11,
+            11,
+            12,
+            12,
+            12,
+            12,
+            13,
+            13,
+            13,
+            13,
+            14,
+            14,
+            14,
+            14,
+            15,
+            15,
+            15,
+            15,
+            16,
+            16,
+            16,
+            16
+          ],
+          "target_fraction": 0.0625,
+          "target_label": "NeTi::Ti",
+          "target_state": 1,
+          "wrong_target_fraction": 0.0625,
+          "wrong_target_label": "FeSi::Ti",
+          "wrong_target_state": 5
+        },
+        "constraint_erased_table_hash": "be32fa03dee6a29dfad9234f34992a22a8125f44faaaf62369fcc40008727398",
+        "genuine_attractors": {
+          "attractor_count": 1,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 1.0,
+              "label": 1
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box_side": 8,
+            "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+            "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+          },
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "target_fraction": 1.0,
+          "target_label": "NeTi::Ti",
+          "target_state": 1,
+          "wrong_target_fraction": 0.0,
+          "wrong_target_label": "FeSi::Ti",
+          "wrong_target_state": 5
+        },
+        "genuine_table_hash": "c0173657ed4871640424cc92908f9209f9a8eda2dfa31a20016873847651f704",
+        "horizon_k": 15,
+        "order_erased_gap_count_direct": 0,
+        "order_gap_count_direct": 45,
+        "same_map_bridge_pass": true,
+        "state_count": 64,
+        "word_count": 16,
+        "wrong_target_bad_reach_count_direct": 64,
+        "z3_erased_counterexample_exists": true,
+        "z3_reach_proved": true,
+        "z3_wrong_target_counterexample_exists": true
+      },
+      "8": {
+        "constraint_erased_attractors": {
+          "attractor_count": 2,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.5,
+              "label": 1
+            },
+            {
+              "attractor_label": "FeSi::Ti",
+              "attractor_state": 5,
+              "fraction": 0.5,
+              "label": 2
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box_side": 2,
+            "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+            "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+          },
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2
+          ],
+          "target_fraction": 0.5,
+          "target_label": "NeTi::Ti",
+          "target_state": 1,
+          "wrong_target_fraction": 0.5,
+          "wrong_target_label": "FeSi::Ti",
+          "wrong_target_state": 5
+        },
+        "constraint_erased_table_hash": "7831cb9bfc79137708c18e8537cd087e86412a123dea4ec3ad895bbd5f90d13d",
+        "genuine_attractors": {
+          "attractor_count": 1,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 1.0,
+              "label": 1
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box_side": 2,
+            "claim_boundary": "diagnostic finite-map entropy only; no fractal/Wada/infinite-time claim",
+            "method": "Attractors.basin_entropy over the one-dimensional finite transition-table basin labels"
+          },
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "target_fraction": 1.0,
+          "target_label": "NeTi::Ti",
+          "target_state": 1,
+          "wrong_target_fraction": 0.0,
+          "wrong_target_label": "FeSi::Ti",
+          "wrong_target_state": 5
+        },
+        "genuine_table_hash": "086cd98d7e27fc0160e1598a5702873fc70e8ffab4e09c6a33629d299059ff0d",
+        "horizon_k": 1,
+        "order_erased_gap_count_direct": 0,
+        "order_gap_count_direct": 3,
+        "same_map_bridge_pass": true,
+        "state_count": 8,
+        "word_count": 2,
+        "wrong_target_bad_reach_count_direct": 8,
+        "z3_erased_counterexample_exists": true,
+        "z3_reach_proved": true,
+        "z3_wrong_target_counterexample_exists": true
+      }
+    }
+  },
+  "scientific_question": "Can the exact finite F_C table proven by Z3 be mapped by Attractors as the same target basin while erased/wrong/order controls still fail?",
+  "sim_class": "constraint_basin_same_map_bridge_probe",
+  "sim_execution_kind": "bridge",
+  "sim_id": "attractors_constraint_basin_same_map_bridge",
+  "source_receipt_coherence": {
+    "coherence_rule": "Result must be treated as stale if source_sha256 does not match the current source file hash.",
+    "source_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/attractors_constraint_basin_same_map_bridge.jl",
+    "source_sha256": "b4566e338e6668a73cc71cb7c587f2e7a769c605f97768dd2ce02a00d66df249"
+  },
+  "spinor_state": "not_applicable_to_this_same_fixture_bridge",
+  "summary": {
+    "all_pass": true,
+    "sim_execution_kind": "bridge",
+    "tests_passed": 1,
+    "tests_total": 1
+  },
+  "tier": "tool-stage same-fixture bridge scout",
+  "tool_ablations": {
+    "constraint_erased_same_map": {
+      "baseline_target_fraction": 1.0,
+      "control_target_fraction": 0.0625,
+      "outcome_delta": 0.9375,
+      "what_changed": "Attractors consumes project_substage-only table instead of genuine F_C table"
+    },
+    "order_erased_table": {
+      "baseline_order_gap_count": 45,
+      "control_order_gap_count": 0,
+      "outcome_delta": 45,
+      "what_changed": "Erase substage gating so order gap against projection table disappears"
+    },
+    "wrong_target_same_table": {
+      "baseline_bad_reach_count": 0,
+      "outcome_delta": 64,
+      "what_changed": "Keep genuine F_C table but claim FeSi::Ti instead of NeTi::Ti as the target",
+      "wrong_target_bad_reach_count": 64
+    }
+  },
+  "tool_integration_depth": {
+    "Attractors": "load_bearing",
+    "Dates": "supportive",
+    "DynamicalSystems": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "SHA": "supportive",
+    "StaticArrays": "supportive"
+  },
+  "tool_manifest": {
+    "Attractors": {
+      "reason": "maps the exact finite transition table as a deterministic iterated map",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "timestamps the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "DynamicalSystems": {
+      "reason": "supplies DeterministicIteratedMap for the finite transition table",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "reads the Z3 result receipt and writes the bridge receipt",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "constructs the same finite transition tables and emits the result receipt",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "records source and transition-table hashes for stale/identity checks",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "StaticArrays": {
+      "reason": "represents the one-dimensional discrete map state",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    }
+  },
+  "topology_surfaces_used": [],
+  "version": "0.1.0",
+  "witness_trace_id": "attractors_constraint_basin_same_map_bridge:F_C->NeTi::Ti"
+}

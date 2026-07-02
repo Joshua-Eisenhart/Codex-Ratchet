@@ -1,0 +1,198 @@
+{
+  "all_pass": true,
+  "anti_tautology_negative_control": {
+    "both_controls_leave_signature_intact": true,
+    "control_A_gauge_transform": {
+      "c1_curvature_after": 1.005012,
+      "c1_fhs_after": 1.0,
+      "comparable_to_winding_2pi": true,
+      "gauge_phase_amplitude_rad": 7.6386,
+      "operation": "psi -> e^{i g(theta,alpha)} psi, g large-amplitude smooth periodic",
+      "signature_survives": true
+    },
+    "control_B_polar_deformation": {
+      "c1_curvature_after": 1.00501,
+      "c1_fhs_after": 1.0,
+      "deformation_amplitude_rad": 0.3997,
+      "operation": "theta -> theta + 0.4 sin(theta) (smooth same-class bend), keep winding m=1",
+      "signature_survives": true
+    },
+    "verdict": "ANTI-TAUTOLOGY HOLDS: two comparable-magnitude operations that are NOT the below-geometry erasure leave c1=1 intact, while the real erasure (winding->0) collapses it to 0. The collapse is SPECIFIC, not a tautology of 'any perturbation dies'."
+  },
+  "bloch_free": "density/spinor-section only: rho=psi*psi', FHS uses gauge-invariant overlaps; base_coord is a geometric coordinate, never an evolved state; no r-vector, no dot-r ODE",
+  "blocked_consumers": [
+    "layer completion",
+    "parent-complete L4",
+    "stacking readiness",
+    "L5 nested Hopf tori",
+    "L6 connection/holonomy admission",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "flux",
+    "FEP",
+    "physics/gravity bridge"
+  ],
+  "carrier": {
+    "julia_native": true,
+    "on_S3_norm_dev": 0.0,
+    "rho_is_psd": true,
+    "rho_is_pure": true,
+    "rho_trace": 1.0,
+    "uses_numpy": false
+  },
+  "classification": "L4_layer_bf_poc",
+  "controls_summary": {
+    "anti_tautology_survives_ok": true,
+    "carrier_ok": true,
+    "dependency_forcing_genuine": true,
+    "derived_entropy_ok": true,
+    "fiber_base_split_ok": true,
+    "input_dependence_ok": true,
+    "positive_c1_ok": true,
+    "real_erasure_collapses_ok": true,
+    "scale_8_16_32_64_ok": true,
+    "z3_load_bearing_ok": true
+  },
+  "dependency_forcing_decisive": {
+    "anti_taut_controls_keep_c1": true,
+    "c1_anti_taut_deform": 1.0,
+    "c1_anti_taut_gauge": 1.0,
+    "c1_real_erasure": 0.0,
+    "dependency_forcing_genuine": true,
+    "note": "GENUINE iff the real below-geometry erasure collapses the signature WHILE a comparable-magnitude non-erasure leaves it intact. Both measured numbers reported.",
+    "real_erasure_collapses_c1": true
+  },
+  "finite_map": {
+    "codomain": "S^2 base (theta,alpha); U(1) line bundle, first Chern c1 via gauge-invariant FHS + curvature integral",
+    "domain": "S^3={psi in C^2:||psi||=1}, Hopf chart psi(phi,chi;eta)"
+  },
+  "honest_status": "genuine_now : L4 Hopf c1=1 (two independent estimators) MEASURED on a Julia-native spinor section; real below-geometry erasure (winding->0) collapses c1 to 0 WHILE two comparable-magnitude non-erasure controls (multi-radian gauge transform, smooth polar deformation) leave c1=1 intact; c1 tracks winding m (input-dependent, not constant); z3 verdict flips on collapsed input. Anti-tautology control present with numbers. Bloch-free.",
+  "input_dependence": {
+    "c1_equals_m": true,
+    "c1_vs_winding_m": {
+      "m_-1": -1.0,
+      "m_0": 0.0,
+      "m_1": 1.0,
+      "m_2": 2.0,
+      "m_3": 3.0
+    },
+    "note": "c1 = winding m for every m tested; the surviving signature varies with input, it is not a fixed constant."
+  },
+  "layer": "L4",
+  "object": "hopf_fibration_S3_to_S2_U1_fiber",
+  "positive_erasure_real_below_geometry": {
+    "c1_before": 1.0,
+    "c1_curvature_after": 0.0,
+    "c1_fhs_after": 0.0,
+    "delta_c1": 1.0,
+    "note": "erasing the actual below-geometry (the winding) collapses c1 1->0 on BOTH estimators. This is the measured POSITIVE collapse.",
+    "operation": "winding m: 1 -> 0 (remove the U(1) winding = the cos(2eta) d chi connection content)",
+    "signature_collapsed": true
+  },
+  "positive_hopf_signature": {
+    "S_base_mixed": 0.644611,
+    "S_fiber_pure": 0.0,
+    "base_responsiveness": 1.600573,
+    "c1_curvature_integral": 1.005012,
+    "c1_fhs_plaquette": 1.0,
+    "c1_integer": 1,
+    "curvature_nonzero": true,
+    "fiber_invariance": 0.0,
+    "maxF_plaquette": 0.001543,
+    "sumF_total_flux": 6.2832,
+    "two_estimators_agree": true
+  },
+  "promotion_allowed": false,
+  "promotion_note": "promotion_allowed=false; L4_layer_bf_poc; bounded Julia PoC; not canonical; order/stacking gated behind parent-complete + realness gate.",
+  "run_command": "julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L4_layer_bf.jl\"",
+  "scale_8_16_32_64": {
+    "grid_16": {
+      "c1": 1.0,
+      "c1_quantized": true,
+      "maxF": 0.019212,
+      "nalpha": 32,
+      "ntheta": 16,
+      "peps3d_C": 768,
+      "peps3d_E": 2048,
+      "peps3d_F": 1024,
+      "peps3d_V": 1024,
+      "sumF": 6.2832
+    },
+    "grid_32": {
+      "c1": 1.0,
+      "c1_quantized": true,
+      "maxF": 0.004815,
+      "nalpha": 64,
+      "ntheta": 32,
+      "peps3d_C": 3072,
+      "peps3d_E": 8192,
+      "peps3d_F": 4096,
+      "peps3d_V": 4096,
+      "sumF": 6.2832
+    },
+    "grid_64": {
+      "c1": 1.0,
+      "c1_quantized": true,
+      "maxF": 0.001205,
+      "nalpha": 128,
+      "ntheta": 64,
+      "peps3d_C": 12288,
+      "peps3d_E": 32768,
+      "peps3d_F": 16384,
+      "peps3d_V": 16384,
+      "sumF": 6.2832
+    },
+    "grid_8": {
+      "c1": 1.0,
+      "c1_quantized": true,
+      "maxF": 0.075974,
+      "nalpha": 16,
+      "ntheta": 8,
+      "peps3d_C": 192,
+      "peps3d_E": 512,
+      "peps3d_F": 256,
+      "peps3d_V": 256,
+      "sumF": 6.2832
+    }
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "role": "io",
+      "use": "receipt emission"
+    },
+    "LinearAlgebra": {
+      "role": "load_bearing",
+      "use": "norms/overlaps/eigvals for FHS link products, curvature integral, density spectra"
+    },
+    "Z3": {
+      "role": "load_bearing",
+      "use": "free-int c1 gap C_hopf>C_triv from 2 independent estimators; verdict flips on collapsed input"
+    },
+    "numpy": {
+      "role": "ABSENT",
+      "use": "Julia-native; no numpy"
+    }
+  },
+  "z3_load_bearing": {
+    "broken_hopf_to_triv_sat": "sat",
+    "broken_triv_to_hopf_sat": "sat",
+    "claim": "free ints C_hopf,C_triv DERIVED from 2 independent c1 estimators satisfy C_hopf>C_triv",
+    "genuine_unsat": "unsat",
+    "hopf_bracket": [
+      0,
+      2
+    ],
+    "is_load_bearing": true,
+    "triv_bracket": [
+      -1,
+      1
+    ],
+    "verdict_flips": true
+  }
+}

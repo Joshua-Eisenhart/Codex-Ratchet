@@ -1,0 +1,58 @@
+{
+  "schema": "cf20_basis_scramble_gauge_invariance_gate_result_v1",
+  "name": "cf20_basis_scramble_gauge_invariance_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-20",
+  "gate": "EG-CF20-basis-scramble-gauge-invariance",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-20 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite density states, unitary basis scramble, invariant trace-distance readout, and raw-coordinate negative control"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-24T02:11:39Z",
+  "runtime_seconds": 0.0018720626831054688,
+  "positive": {
+    "pass": true,
+    "trace_distance_before": 0.40527768258318886,
+    "trace_distance_after_basis_scramble": 0.40527768258318886,
+    "trace_distance_scramble_gap": 0.0,
+    "raw_z_gap_before": 0.08000000000000002,
+    "raw_z_gap_after_basis_scramble": 0.4255240403417204,
+    "raw_z_scramble_gap": 0.3455240403417204
+  },
+  "negative": {
+    "pass": false,
+    "expected": "fail",
+    "negative_case_type": "executable_rejection",
+    "negative_rejected": true,
+    "raw_z_gap_before": 0.08000000000000002,
+    "raw_z_gap_after_basis_scramble": 0.4255240403417204,
+    "attempted_claim": {
+      "readout": "raw z-coordinate gap",
+      "basis_declared": false,
+      "basis_scramble_control_present": true
+    }
+  },
+  "boundary": {
+    "pass": true,
+    "basis_declared": "Z",
+    "states_diagonal_in_declared_basis": true,
+    "raw_z_gap": 0.7600000000000002,
+    "trace_distance": 0.38000000000000006,
+    "interpretation": "basis-specific readout is admissible only as a declared probe/boundary case, not as basis-free ontology"
+  },
+  "all_pass": true
+}

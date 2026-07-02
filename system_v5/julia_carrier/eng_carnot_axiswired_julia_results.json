@@ -1,0 +1,1951 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "SHA": "supportive",
+    "kraus_apply": "load_bearing",
+    "lindblad_step": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive: result artifact emission",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load_bearing: eigvals for vN entropy, norm for N01 gaps, Hermitian correction -- removal changes verdict",
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive: source hash for stale-receipt audit",
+      "used": true
+    },
+    "kraus_apply": {
+      "reason": "load_bearing: axis1 expand/compress channels; removal changes stroke outputs",
+      "used": true
+    },
+    "lindblad_step": {
+      "reason": "load_bearing: axis2 open_isothermal Lindblad; removal changes entropy readout and cycle closure",
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "axis3": "Carnot_fixed",
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "coupling",
+    "bridge",
+    "Phi0",
+    "Xi",
+    "Axis0",
+    "flux",
+    "physics"
+  ],
+  "boundary_checks": {
+    "Th_near_Tc_eta_vanishes": "eta -> 0 when T_h -> T_c",
+    "adiabatic_dS_zero": "closed_adiabatic: delta_S < S_ADIAB"
+  },
+  "claim_ceiling": "Carnot engine all-6-axes-wired finite map. F01+N01 in force. axis3=Carnot fixed. 4 strokes (axis1 x axis2) x 4 substages (axis5 x axis6) x 2 directions (axis4) = 32. Clausius entropy bookkeeping (axis0). N01 cold-pair order gap load-bearing. Hot-pair commutes (honest z-diagonal degeneracy). promotion_allowed=false. No layer/manifold/bridge/coupling/physics claims. Candidate finite-map probe only.",
+  "classification": "tool_lego_fit_probe",
+  "classification_note": "candidate finite-map probe only; not canonical by process; promotion_allowed=false",
+  "cycle_closes": {
+    "clausius_DS_cycle_near_zero": true,
+    "honest_caveat": "cycle_closes is purity-window only. Clausius DS_cycle~0 is the primary closure criterion.",
+    "purity_check": "within PURITY_CLOSE window (not full state return)",
+    "state_return": "NOT guaranteed -- Lindblad is approximate; full return not asserted"
+  },
+  "direct_checks": {
+    "adiabatic_entropy_preserved": true,
+    "boundary_eta_near_zero": true,
+    "isothermal_entropy_exchanged": true,
+    "n01_cold_direct_gap": 0.3879460401780365,
+    "n01_cold_direct_pass": true,
+    "n01_ctrl_direct_gap": 0.0,
+    "n01_ctrl_direct_pass": true,
+    "n01_hot_commutes_direct": true,
+    "n01_hot_direct_gap": 5.685025231188364e-17,
+    "negative_reversed_eta_lt_0": true
+  },
+  "directions": {
+    "axis4_CCW_refrigerator": "stroke sequence 4->3->2->1 reversed; W_net < 0; eta < 0",
+    "axis4_CW_engine": "stroke sequence 1->2->3->4; W_net > 0; eta > 0"
+  },
+  "eligible_consumers": [
+    "/tmp/eng_carnot_axiswired_jax.py (JAX parity audit)"
+  ],
+  "engine": "Carnot",
+  "entropy_readout": {
+    "adiabatic_entropy_preserved": true,
+    "axis0": "Clausius dS=dQ/T per stroke, sum over cycle ~0",
+    "axis0_qit": "von Neumann S_vN per stroke (no kT/ln2)",
+    "entropy_kinds": [
+      "Clausius_dS_dQ_per_T",
+      "von_Neumann_nats"
+    ],
+    "isothermal_entropy_exchanged": true
+  },
+  "execution_command": "julia --project=system_v5/julia_carrier --startup-file=no system_v5/julia_carrier/eng_carnot_axiswired_julia.jl",
+  "finite_map": {
+    "F01": "finite carrier: 8/16/32/64 L/R Weyl spinor density matrices, each 2x2 complex",
+    "N01": "cold_gradient x open_isothermal != open_isothermal x cold_gradient (Frobenius gap >> N01_EPS = LOAD-BEARING); wrong-structure: cold_gradient x cold_gradient commutes (gap < COMMUTE_EPS); hot pair commutes (z-diagonal geometric degeneracy, reported honestly)",
+    "codomain": "(eta, W_net, DS_per_stroke_Clausius, DS_cycle, rho_after_each_stroke, S_vN_per_stroke, N01_cold_pair_order_gap, cycle_closes_bool)",
+    "domain": "(rho_init in {L/R Weyl spinor density matrix}, T_h, T_c, Q_h, axis4 in {CW, CCW}, N in {8,16,32,64})"
+  },
+  "four_strokes": {
+    "axis4_CCW": "refrigerator: stroke 4->3->2->1 reversed; W_net<0; eta<0; work->heat",
+    "axis4_CW": "engine: stroke 1->2->3->4; W_net>0; eta>0; heat->work",
+    "stroke_1": {
+      "axis1": "expand",
+      "axis2": "open_isothermal",
+      "name": "isothermal_expand_hot"
+    },
+    "stroke_2": {
+      "axis1": "expand",
+      "axis2": "closed_adiabatic",
+      "name": "adiabatic_expand_cool"
+    },
+    "stroke_3": {
+      "axis1": "compress",
+      "axis2": "open_isothermal",
+      "name": "isothermal_compress_cold"
+    },
+    "stroke_4": {
+      "axis1": "compress",
+      "axis2": "closed_adiabatic",
+      "name": "adiabatic_compress_heat"
+    }
+  },
+  "generated_at": "2026-06-04T01:43:56.762",
+  "negative_checks": {
+    "n01_wrong_struct_ctrl": "cold_gradient^2 commutes (gap < COMMUTE_EPS)",
+    "refrig_CCW_eta_negative": "reversed cycle: eta < 0",
+    "reversed_T_eta_negative": "T_c > T_h: eta < 0"
+  },
+  "object_id": "eng_carnot_axiswired_julia_v1",
+  "parity_reference": {
+    "DS_cycle": 0.0,
+    "N": 32,
+    "W_net": 25.0,
+    "cycle_closes_entropy_only": true,
+    "eta": 0.25,
+    "mean_dS_stroke1": 0.4521789041494257,
+    "mean_dS_stroke2": 0.12082487681391327,
+    "mean_dS_stroke3": -0.12985988345557126,
+    "mean_dS_stroke4": -0.08163440881388817,
+    "mean_n01_cold_gap": 0.3252276820244419,
+    "mean_state_return_gap": 0.8528408759717657,
+    "n01_cold_pass": true,
+    "n01_ctrl_pass": true,
+    "n01_hot_commutes": true,
+    "rng_seed": 20260604,
+    "seed_protocol": "deterministic arithmetic state table shared by Julia and JAX"
+  },
+  "positive_checks": {
+    "DS_cycle_clausius": "sum ~ 0 to 1e-10",
+    "W_net_CW_positive": "engine produces work > 0",
+    "eta_analytical": "1 - T_c/T_h exact to 1e-10",
+    "n01_cold_pair": "cold substage order gap > N01_EPS across all sizes",
+    "s1_entropy_up": "isothermal expand hot: S_vN increases (abs > S_EPS)"
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "claim ceiling is candidate-only",
+    "promotion_allowed=false"
+  ],
+  "rng_seed": 20260604,
+  "seed_protocol": "deterministic arithmetic state table shared by Julia and JAX",
+  "size_ladder": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "size_ladder_results": [
+    {
+      "N": 8,
+      "all_pass": true,
+      "all_valid": true,
+      "axis0_svn_readout": {
+        "mean_dS_stroke1_isothermal_expand_hot": 0.45364838958830916,
+        "mean_dS_stroke2_adiabatic_expand": 0.15417286875083605,
+        "mean_dS_stroke3_isothermal_compress_cold": -0.1636953072350122,
+        "mean_dS_stroke4_adiabatic_compress": -0.08420290762423302,
+        "s1_entropy_up_pass": true,
+        "s2_approx_preserved_pass": false,
+        "s3_entropy_changes_pass": true,
+        "s4_approx_preserved_pass": true
+      },
+      "clausius": {
+        "DS_c": 0.25,
+        "DS_cycle": 0.0,
+        "DS_cycle_pass": true,
+        "DS_h": -0.25,
+        "Q_h": 100.0,
+        "T_c": 300.0,
+        "T_h": 400.0,
+        "W_net": 25.0,
+        "W_net_pass": true,
+        "eta": 0.25,
+        "eta_expected": 0.25,
+        "eta_pass": true,
+        "strokes": [
+          {
+            "T": 400.0,
+            "axis1": "expand",
+            "axis2": "open_isothermal",
+            "dQ_clausius": 100.0,
+            "dS_clausius": 0.25,
+            "description": "absorbs heat Q_h from hot reservoir at T_h",
+            "name": "isothermal_expand_hot",
+            "stroke": 1
+          },
+          {
+            "T": "none",
+            "axis1": "expand",
+            "axis2": "closed_adiabatic",
+            "dQ_clausius": 0.0,
+            "dS_clausius": 0.0,
+            "description": "expands adiabatically: no heat exchange, cools",
+            "name": "adiabatic_expand_cool",
+            "stroke": 2
+          },
+          {
+            "T": 300.0,
+            "axis1": "compress",
+            "axis2": "open_isothermal",
+            "dQ_clausius": -75.0,
+            "dS_clausius": -0.25,
+            "description": "rejects heat Q_c to cold reservoir at T_c",
+            "name": "isothermal_compress_cold",
+            "stroke": 3
+          },
+          {
+            "T": "none",
+            "axis1": "compress",
+            "axis2": "closed_adiabatic",
+            "dQ_clausius": 0.0,
+            "dS_clausius": 0.0,
+            "description": "compresses adiabatically: no heat exchange, heats",
+            "name": "adiabatic_compress_heat",
+            "stroke": 4
+          }
+        ]
+      },
+      "cycle_closure": {
+        "cycle_closes_entropy_only": true,
+        "cycle_closes_purity_fraction": 0.0,
+        "honest_caveat": "purity-window closure only; full state return not guaranteed; Clausius DS_cycle~0 is the primary closure criterion",
+        "mean_state_return_gap_frobenius": 0.7835730470172413
+      },
+      "n01_substage": {
+        "all_n01_cold_pass": true,
+        "all_n01_ctrl_pass": true,
+        "all_n01_hot_commutes": true,
+        "mean_n01_cold_gap": 0.47463035627193295,
+        "n01_degenerate_pair": "hot pair: hot_spectral x open_isothermal (both z-diagonal, commute -- honest geometric degeneracy)",
+        "n01_load_bearing_pair": "cold pair: cold_gradient x open_isothermal (Rx x z-Lindblad, genuinely non-commuting)",
+        "sample_substage_results": [
+          {
+            "chirality": "L",
+            "state_idx": 1,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.3674647431400828,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 4.3885418357208765e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6218799737614575,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.3729809443403968,
+                "delta_S_vN": 0.6218799737614575,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6218799737614575,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.37298094434039675,
+                "delta_S_vN": 0.6218799737614575,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.6161375664387685,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.38732802688170853,
+                "delta_S_vN": 0.6161375664387685,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.6068153877991493,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.4094318698249055,
+                "delta_S_vN": 0.6068153877991493,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.3674647431400828,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 4.3885418357208765e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6259558178031068,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.36241528385119204,
+                "delta_S_vN": 0.6259558178031068,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6259558178031072,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.36241528385119204,
+                "delta_S_vN": 0.6259558178031072,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.6474221791098119,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.3000790143630999,
+                "delta_S_vN": 0.6474221791098119,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.557600547648627,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.5085305752125224,
+                "delta_S_vN": 0.557600547648627,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "R",
+            "state_idx": 2,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.390744027387885,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.1538193420365585e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.623687007333067,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.3683378602119239,
+                "delta_S_vN": 0.623687007333067,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.623687007333067,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.3683378602119238,
+                "delta_S_vN": 0.623687007333067,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.4853387900930456,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.6212178795619709,
+                "delta_S_vN": 0.4853387900930456,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.5558719428617813,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.511601902979065,
+                "delta_S_vN": 0.5558719428617813,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.3907440273878849,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.2757001226805672e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.642001673339327,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.317072289210525,
+                "delta_S_vN": 0.642001673339327,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.642001673339327,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.3170722892105251,
+                "delta_S_vN": 0.642001673339327,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.38679563379960247,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.7395695517397325,
+                "delta_S_vN": 0.38679563379960247,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.6710772569897749,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.20931831695302833,
+                "delta_S_vN": 0.6710772569897749,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "L",
+            "state_idx": 3,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.6068022819778791,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 8.530184095984111e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.609491994228905,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.40322463231541583,
+                "delta_S_vN": 0.609491994228905,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.609491994228905,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.40322463231541583,
+                "delta_S_vN": 0.609491994228905,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.5310319411557722,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.5534338548469623,
+                "delta_S_vN": 0.5310319411557722,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.3703124439744958,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.7565858836722489,
+                "delta_S_vN": 0.3703124439744958,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.606802281977879,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 6.476817243151492e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.05048337736233067,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.9823696058988232,
+                "delta_S_vN": 0.05048337736233067,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.050483377362330696,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.9823696058988232,
+                "delta_S_vN": 0.050483377362330696,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": -0.0060546171091668535,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 1.0120728687773277,
+                "delta_S_vN": -0.0060546171091668535,
+                "rho_valid": false
+              },
+              "substage_d": {
+                "S_vN": 0.0691503591009501,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.9741021532505455,
+                "delta_S_vN": 0.0691503591009501,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "R",
+            "state_idx": 4,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.5335103725818849,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.3740499258058684e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6086076023388753,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.4052874684581052,
+                "delta_S_vN": 0.6086076023388756,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.608607602338875,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.4052874684581051,
+                "delta_S_vN": 0.6086076023388752,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.4468683676602634,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.6712322507848536,
+                "delta_S_vN": 0.4468683676602636,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.46106777802090615,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.6534161437571772,
+                "delta_S_vN": 0.46106777802090637,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.5335103725818849,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.1295700899707568e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.07927086965141847,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.9693346646155538,
+                "delta_S_vN": 0.07927086965141869,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.07927086965141766,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.969334664615554,
+                "delta_S_vN": 0.07927086965141789,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.061116189444652455,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.9777469612009113,
+                "delta_S_vN": 0.06111618944465268,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.003486105236714837,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.9992110931673607,
+                "delta_S_vN": 0.003486105236715059,
+                "rho_valid": true
+              }
+            }
+          }
+        ]
+      },
+      "refrigerator_axis4_CCW": {
+        "eta_refrigerator": -0.25,
+        "negative_eta_pass": true
+      }
+    },
+    {
+      "N": 16,
+      "all_pass": true,
+      "all_valid": true,
+      "axis0_svn_readout": {
+        "mean_dS_stroke1_isothermal_expand_hot": 0.45715686849707265,
+        "mean_dS_stroke2_adiabatic_expand": 0.09859884729443064,
+        "mean_dS_stroke3_isothermal_compress_cold": -0.10644936289963562,
+        "mean_dS_stroke4_adiabatic_compress": -0.08102622021112987,
+        "s1_entropy_up_pass": true,
+        "s2_approx_preserved_pass": false,
+        "s3_entropy_changes_pass": true,
+        "s4_approx_preserved_pass": true
+      },
+      "clausius": {
+        "DS_c": 0.25,
+        "DS_cycle": 0.0,
+        "DS_cycle_pass": true,
+        "DS_h": -0.25,
+        "Q_h": 100.0,
+        "T_c": 300.0,
+        "T_h": 400.0,
+        "W_net": 25.0,
+        "W_net_pass": true,
+        "eta": 0.25,
+        "eta_expected": 0.25,
+        "eta_pass": true,
+        "strokes": [
+          {
+            "T": 400.0,
+            "axis1": "expand",
+            "axis2": "open_isothermal",
+            "dQ_clausius": 100.0,
+            "dS_clausius": 0.25,
+            "description": "absorbs heat Q_h from hot reservoir at T_h",
+            "name": "isothermal_expand_hot",
+            "stroke": 1
+          },
+          {
+            "T": "none",
+            "axis1": "expand",
+            "axis2": "closed_adiabatic",
+            "dQ_clausius": 0.0,
+            "dS_clausius": 0.0,
+            "description": "expands adiabatically: no heat exchange, cools",
+            "name": "adiabatic_expand_cool",
+            "stroke": 2
+          },
+          {
+            "T": 300.0,
+            "axis1": "compress",
+            "axis2": "open_isothermal",
+            "dQ_clausius": -75.0,
+            "dS_clausius": -0.25,
+            "description": "rejects heat Q_c to cold reservoir at T_c",
+            "name": "isothermal_compress_cold",
+            "stroke": 3
+          },
+          {
+            "T": "none",
+            "axis1": "compress",
+            "axis2": "closed_adiabatic",
+            "dQ_clausius": 0.0,
+            "dS_clausius": 0.0,
+            "description": "compresses adiabatically: no heat exchange, heats",
+            "name": "adiabatic_compress_heat",
+            "stroke": 4
+          }
+        ]
+      },
+      "cycle_closure": {
+        "cycle_closes_entropy_only": true,
+        "cycle_closes_purity_fraction": 0.0,
+        "honest_caveat": "purity-window closure only; full state return not guaranteed; Clausius DS_cycle~0 is the primary closure criterion",
+        "mean_state_return_gap_frobenius": 0.8701581037995054
+      },
+      "n01_substage": {
+        "all_n01_cold_pass": true,
+        "all_n01_ctrl_pass": true,
+        "all_n01_hot_commutes": true,
+        "mean_n01_cold_gap": 0.45583605284035944,
+        "n01_degenerate_pair": "hot pair: hot_spectral x open_isothermal (both z-diagonal, commute -- honest geometric degeneracy)",
+        "n01_load_bearing_pair": "cold pair: cold_gradient x open_isothermal (Rx x z-Lindblad, genuinely non-commuting)",
+        "sample_substage_results": [
+          {
+            "chirality": "L",
+            "state_idx": 1,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.3874007728291686,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 4.3885418357208765e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6061318246208363,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.41100013919814377,
+                "delta_S_vN": 0.606131824620836,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6061318246208364,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.4110001391981437,
+                "delta_S_vN": 0.6061318246208361,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.43658175231934726,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.6837091295637104,
+                "delta_S_vN": 0.43658175231934704,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.33218966268624894,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.7934779474207138,
+                "delta_S_vN": 0.3321896626862487,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.3874007728291686,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 4.3885418357208765e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.16928031571634208,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.9191576795683168,
+                "delta_S_vN": 0.16928031571634186,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.16928031571634175,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.9191576795683168,
+                "delta_S_vN": 0.16928031571634153,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.1177787932464443,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.9495233569554243,
+                "delta_S_vN": 0.11777879324644408,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.06856237727117474,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.9743731732794344,
+                "delta_S_vN": 0.06856237727117452,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "R",
+            "state_idx": 2,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.38779052611301223,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 8.777083671441753e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6053693900476484,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.4127414050348507,
+                "delta_S_vN": 0.6053693900476482,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6053693900476484,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.41274140503485063,
+                "delta_S_vN": 0.6053693900476482,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.44474494945451215,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.6738365297725295,
+                "delta_S_vN": 0.44474494945451193,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.24651471900250377,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.8654635156978417,
+                "delta_S_vN": 0.24651471900250355,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.38779052611301235,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 8.777083671441753e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.20804664093290084,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.8934506951849231,
+                "delta_S_vN": 0.20804664093290062,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.20804664093290073,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.893450695184923,
+                "delta_S_vN": 0.2080466409329005,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.06909170205018837,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.9741292200801281,
+                "delta_S_vN": 0.06909170205018815,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.14395674507446146,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.9346290005408636,
+                "delta_S_vN": 0.14395674507446124,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "L",
+            "state_idx": 3,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.570779638552021,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.0385185452638061e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6048620791791423,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.4138954155496562,
+                "delta_S_vN": 0.6048620791791423,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6048620791791423,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.41389541554965614,
+                "delta_S_vN": 0.6048620791791423,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.5722357805470911,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.4815670454798431,
+                "delta_S_vN": 0.5722357805470911,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.22932768613490911,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.8782797289236667,
+                "delta_S_vN": 0.22932768613490911,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.570779638552021,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 2.387624894196368e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.24802928868656965,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.8643094889747869,
+                "delta_S_vN": 0.24802928868656965,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.24802928868656993,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.8643094889747871,
+                "delta_S_vN": 0.24802928868656993,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": -0.004172143131598621,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 1.0083269756399222,
+                "delta_S_vN": -0.004172143131598621,
+                "rho_valid": false
+              },
+              "substage_d": {
+                "S_vN": 0.17687395482748142,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.9143155870294306,
+                "delta_S_vN": 0.17687395482748142,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "R",
+            "state_idx": 4,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.477373273867236,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.4288057044435644e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6046896640561836,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.41428678868073315,
+                "delta_S_vN": 0.6046896640561836,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6046896640561836,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.4142867886807333,
+                "delta_S_vN": 0.6046896640561836,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.4681501171577297,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.6442575607972229,
+                "delta_S_vN": 0.4681501171577297,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.559892841262711,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.504422377826534,
+                "delta_S_vN": 0.559892841262711,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.47737327386723594,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.3455014484288012e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.2886529049544542,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.8318147640375869,
+                "delta_S_vN": 0.2886529049544542,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.2886529049544542,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.831814764037587,
+                "delta_S_vN": 0.2886529049544542,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.33823785899855263,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.7878423088516046,
+                "delta_S_vN": 0.33823785899855263,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.013408326715072066,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.9963258061569144,
+                "delta_S_vN": 0.013408326715072066,
+                "rho_valid": true
+              }
+            }
+          }
+        ]
+      },
+      "refrigerator_axis4_CCW": {
+        "eta_refrigerator": -0.25,
+        "negative_eta_pass": true
+      }
+    },
+    {
+      "N": 32,
+      "all_pass": true,
+      "all_valid": true,
+      "axis0_svn_readout": {
+        "mean_dS_stroke1_isothermal_expand_hot": 0.4521789041494257,
+        "mean_dS_stroke2_adiabatic_expand": 0.12082487681391327,
+        "mean_dS_stroke3_isothermal_compress_cold": -0.12985988345557126,
+        "mean_dS_stroke4_adiabatic_compress": -0.08163440881388817,
+        "s1_entropy_up_pass": true,
+        "s2_approx_preserved_pass": false,
+        "s3_entropy_changes_pass": true,
+        "s4_approx_preserved_pass": true
+      },
+      "clausius": {
+        "DS_c": 0.25,
+        "DS_cycle": 0.0,
+        "DS_cycle_pass": true,
+        "DS_h": -0.25,
+        "Q_h": 100.0,
+        "T_c": 300.0,
+        "T_h": 400.0,
+        "W_net": 25.0,
+        "W_net_pass": true,
+        "eta": 0.25,
+        "eta_expected": 0.25,
+        "eta_pass": true,
+        "strokes": [
+          {
+            "T": 400.0,
+            "axis1": "expand",
+            "axis2": "open_isothermal",
+            "dQ_clausius": 100.0,
+            "dS_clausius": 0.25,
+            "description": "absorbs heat Q_h from hot reservoir at T_h",
+            "name": "isothermal_expand_hot",
+            "stroke": 1
+          },
+          {
+            "T": "none",
+            "axis1": "expand",
+            "axis2": "closed_adiabatic",
+            "dQ_clausius": 0.0,
+            "dS_clausius": 0.0,
+            "description": "expands adiabatically: no heat exchange, cools",
+            "name": "adiabatic_expand_cool",
+            "stroke": 2
+          },
+          {
+            "T": 300.0,
+            "axis1": "compress",
+            "axis2": "open_isothermal",
+            "dQ_clausius": -75.0,
+            "dS_clausius": -0.25,
+            "description": "rejects heat Q_c to cold reservoir at T_c",
+            "name": "isothermal_compress_cold",
+            "stroke": 3
+          },
+          {
+            "T": "none",
+            "axis1": "compress",
+            "axis2": "closed_adiabatic",
+            "dQ_clausius": 0.0,
+            "dS_clausius": 0.0,
+            "description": "compresses adiabatically: no heat exchange, heats",
+            "name": "adiabatic_compress_heat",
+            "stroke": 4
+          }
+        ]
+      },
+      "cycle_closure": {
+        "cycle_closes_entropy_only": true,
+        "cycle_closes_purity_fraction": 0.0,
+        "honest_caveat": "purity-window closure only; full state return not guaranteed; Clausius DS_cycle~0 is the primary closure criterion",
+        "mean_state_return_gap_frobenius": 0.8528408759717657
+      },
+      "n01_substage": {
+        "all_n01_cold_pass": true,
+        "all_n01_ctrl_pass": true,
+        "all_n01_hot_commutes": true,
+        "mean_n01_cold_gap": 0.3252276820244419,
+        "n01_degenerate_pair": "hot pair: hot_spectral x open_isothermal (both z-diagonal, commute -- honest geometric degeneracy)",
+        "n01_load_bearing_pair": "cold pair: cold_gradient x open_isothermal (Rx x z-Lindblad, genuinely non-commuting)",
+        "sample_substage_results": [
+          {
+            "chirality": "L",
+            "state_idx": 1,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.40330134049711414,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 6.798699777552591e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6173020949885013,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.3844665721744026,
+                "delta_S_vN": 0.6173020949885013,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6173020949885013,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.38446657217440255,
+                "delta_S_vN": 0.6173020949885013,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.436395637567878,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.683931686954869,
+                "delta_S_vN": 0.436395637567878,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.4471369852987883,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.6709017184032164,
+                "delta_S_vN": 0.4471369852987883,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.4033013404971141,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.1775693440128312e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.5805999097604435,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.46531057219587324,
+                "delta_S_vN": 0.5805999097604435,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.5805999097604435,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.4653105721958731,
+                "delta_S_vN": 0.5805999097604435,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.1875643061591025,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.9073397721404604,
+                "delta_S_vN": 0.1875643061591025,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.5927173554389831,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.4404993477181959,
+                "delta_S_vN": 0.5927173554389831,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "R",
+            "state_idx": 2,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.36834061692581527,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 2.7755575615628914e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6196318594787608,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.3786696260252292,
+                "delta_S_vN": 0.6196318594787608,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6196318594787608,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.3786696260252292,
+                "delta_S_vN": 0.6196318594787608,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.6168223270993769,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.3856483128280285,
+                "delta_S_vN": 0.6168223270993769,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.619313077353376,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.379468634483429,
+                "delta_S_vN": 0.619313077353376,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.36834061692581527,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 2.7755575615628914e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6046411085402672,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.41439693143465944,
+                "delta_S_vN": 0.6046411085402672,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6046411085402672,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.41439693143465944,
+                "delta_S_vN": 0.6046411085402672,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.6485657201246229,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.29636096904935216,
+                "delta_S_vN": 0.6485657201246229,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.4903116753915512,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.6143244888633277,
+                "delta_S_vN": 0.4903116753915512,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "L",
+            "state_idx": 3,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.24937301490686478,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.2412670766236366e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6217673003577895,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.3732683411320798,
+                "delta_S_vN": 0.6217673003577895,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6217673003577894,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.37326834113207985,
+                "delta_S_vN": 0.6217673003577894,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.4836046153849851,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.6235969612615755,
+                "delta_S_vN": 0.4836046153849851,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.6303595904033693,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.35060537122101443,
+                "delta_S_vN": 0.6303595904033693,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.24937301490686478,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 7.850462293418876e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6249253179748633,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.3651184418704689,
+                "delta_S_vN": 0.6249253179748633,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6249253179748631,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.3651184418704689,
+                "delta_S_vN": 0.6249253179748631,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.3822322689278658,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.7443487903387003,
+                "delta_S_vN": 0.3822322689278658,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.5365742016461295,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.5444494081770849,
+                "delta_S_vN": 0.5365742016461295,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "R",
+            "state_idx": 4,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.27989575576797354,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 5.887846720064156e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6235948725262265,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.3685761584448315,
+                "delta_S_vN": 0.6235948725262267,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6235948725262265,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.3685761584448315,
+                "delta_S_vN": 0.6235948725262267,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.4863472571309966,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.6198285303797385,
+                "delta_S_vN": 0.4863472571309968,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.6282283614894014,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.3563743732062656,
+                "delta_S_vN": 0.6282283614894016,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.27989575576797354,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.1274368112207335e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6412043348067102,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.3194904175165548,
+                "delta_S_vN": 0.6412043348067105,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6412043348067104,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.3194904175165547,
+                "delta_S_vN": 0.6412043348067106,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.3894212858973576,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.7367954170115187,
+                "delta_S_vN": 0.3894212858973578,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.5852770018246032,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.4559206663778949,
+                "delta_S_vN": 0.5852770018246034,
+                "rho_valid": true
+              }
+            }
+          }
+        ]
+      },
+      "refrigerator_axis4_CCW": {
+        "eta_refrigerator": -0.25,
+        "negative_eta_pass": true
+      }
+    },
+    {
+      "N": 64,
+      "all_pass": true,
+      "all_valid": true,
+      "axis0_svn_readout": {
+        "mean_dS_stroke1_isothermal_expand_hot": 0.44630513624903523,
+        "mean_dS_stroke2_adiabatic_expand": 0.12373090025765103,
+        "mean_dS_stroke3_isothermal_compress_cold": -0.12638319836700154,
+        "mean_dS_stroke4_adiabatic_compress": -0.08150748442070817,
+        "s1_entropy_up_pass": true,
+        "s2_approx_preserved_pass": false,
+        "s3_entropy_changes_pass": true,
+        "s4_approx_preserved_pass": true
+      },
+      "clausius": {
+        "DS_c": 0.25,
+        "DS_cycle": 0.0,
+        "DS_cycle_pass": true,
+        "DS_h": -0.25,
+        "Q_h": 100.0,
+        "T_c": 300.0,
+        "T_h": 400.0,
+        "W_net": 25.0,
+        "W_net_pass": true,
+        "eta": 0.25,
+        "eta_expected": 0.25,
+        "eta_pass": true,
+        "strokes": [
+          {
+            "T": 400.0,
+            "axis1": "expand",
+            "axis2": "open_isothermal",
+            "dQ_clausius": 100.0,
+            "dS_clausius": 0.25,
+            "description": "absorbs heat Q_h from hot reservoir at T_h",
+            "name": "isothermal_expand_hot",
+            "stroke": 1
+          },
+          {
+            "T": "none",
+            "axis1": "expand",
+            "axis2": "closed_adiabatic",
+            "dQ_clausius": 0.0,
+            "dS_clausius": 0.0,
+            "description": "expands adiabatically: no heat exchange, cools",
+            "name": "adiabatic_expand_cool",
+            "stroke": 2
+          },
+          {
+            "T": 300.0,
+            "axis1": "compress",
+            "axis2": "open_isothermal",
+            "dQ_clausius": -75.0,
+            "dS_clausius": -0.25,
+            "description": "rejects heat Q_c to cold reservoir at T_c",
+            "name": "isothermal_compress_cold",
+            "stroke": 3
+          },
+          {
+            "T": "none",
+            "axis1": "compress",
+            "axis2": "closed_adiabatic",
+            "dQ_clausius": 0.0,
+            "dS_clausius": 0.0,
+            "description": "compresses adiabatically: no heat exchange, heats",
+            "name": "adiabatic_compress_heat",
+            "stroke": 4
+          }
+        ]
+      },
+      "cycle_closure": {
+        "cycle_closes_entropy_only": true,
+        "cycle_closes_purity_fraction": 0.0,
+        "honest_caveat": "purity-window closure only; full state return not guaranteed; Clausius DS_cycle~0 is the primary closure criterion",
+        "mean_state_return_gap_frobenius": 0.8479630618088926
+      },
+      "n01_substage": {
+        "all_n01_cold_pass": true,
+        "all_n01_ctrl_pass": true,
+        "all_n01_hot_commutes": true,
+        "mean_n01_cold_gap": 0.4965199970314966,
+        "n01_degenerate_pair": "hot pair: hot_spectral x open_isothermal (both z-diagonal, commute -- honest geometric degeneracy)",
+        "n01_load_bearing_pair": "cold pair: cold_gradient x open_isothermal (Rx x z-Lindblad, genuinely non-commuting)",
+        "sample_substage_results": [
+          {
+            "chirality": "L",
+            "state_idx": 1,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.36698999457539,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.3877787807814457e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6244018892614409,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.36648307773981526,
+                "delta_S_vN": 0.6244018892614409,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6244018892614409,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.36648307773981526,
+                "delta_S_vN": 0.6244018892614409,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.5889027208273538,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.4484828029347966,
+                "delta_S_vN": 0.5889027208273538,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.6434552273080675,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.31261233279656403,
+                "delta_S_vN": 0.6434552273080675,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.36698999457538994,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.3877787807814457e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6481175610199683,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.2978239748618311,
+                "delta_S_vN": 0.6481175610199683,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6481175610199683,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.2978239748618311,
+                "delta_S_vN": 0.6481175610199683,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.6007866241230233,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.4230365847684802,
+                "delta_S_vN": 0.6007866241230233,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.5935443928112841,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.43874627085826506,
+                "delta_S_vN": 0.5935443928112841,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "R",
+            "state_idx": 2,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.6455637059152902,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.1816510524180758e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6090918549990858,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.4041594234571172,
+                "delta_S_vN": 0.6090918549990858,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6090918549990857,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.4041594234571171,
+                "delta_S_vN": 0.6090918549990857,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.5821354703778397,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.46225241101851006,
+                "delta_S_vN": 0.5821354703778397,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.369595118030414,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.757311165632779,
+                "delta_S_vN": 0.369595118030414,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.6455637059152902,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.2911750880923164e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.0635269746293772,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.976666635657927,
+                "delta_S_vN": 0.0635269746293772,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.06352697462937708,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.9766666356579272,
+                "delta_S_vN": 0.06352697462937708,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": -0.0032931184502316777,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 1.0065754396252282,
+                "delta_S_vN": -0.0032931184502316777,
+                "rho_valid": false
+              },
+              "substage_d": {
+                "S_vN": 0.06445943277439029,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.9762456812562273,
+                "delta_S_vN": 0.06445943277439029,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "L",
+            "state_idx": 3,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.5267520402758836,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 7.850462293418876e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6081530562131989,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.40634310090829073,
+                "delta_S_vN": 0.6081530562131989,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6081530562131989,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.40634310090829073,
+                "delta_S_vN": 0.6081530562131989,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.48287412139181085,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.6245953310481722,
+                "delta_S_vN": 0.48287412139181085,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.33388337290691084,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.7919077161839801,
+                "delta_S_vN": 0.33388337290691084,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.5267520402758836,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 7.88106850030428e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.09422712179496576,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.961946358032987,
+                "delta_S_vN": 0.09422712179496576,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.0942271217949654,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.961946358032987,
+                "delta_S_vN": 0.0942271217949654,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": -0.002578630446307478,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 1.00515063432021,
+                "delta_S_vN": -0.002578630446307478,
+                "rho_valid": false
+              },
+              "substage_d": {
+                "S_vN": 0.07834455841200431,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.9697789694251621,
+                "delta_S_vN": 0.07834455841200431,
+                "rho_valid": true
+              }
+            }
+          },
+          {
+            "chirality": "R",
+            "state_idx": 4,
+            "stroke1_substages": {
+              "n01_cold_order_gap": 0.44677424735942256,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 3.925231146709438e-17,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.6071663784960828,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.40862396072689144,
+                "delta_S_vN": 0.6071663784960828,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.6071663784960828,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.4086239607268914,
+                "delta_S_vN": 0.6071663784960828,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.44175764880666557,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.6774747894361997,
+                "delta_S_vN": 0.44175764880666557,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.36824741979461884,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.7586704501175361,
+                "delta_S_vN": 0.36824741979461884,
+                "rho_valid": true
+              }
+            },
+            "stroke3_substages": {
+              "n01_cold_order_gap": 0.44677424735942256,
+              "n01_cold_pass": true,
+              "n01_ctrl_pass": true,
+              "n01_ctrl_same_op": 0.0,
+              "n01_hot_commutes": true,
+              "n01_hot_order_gap": 1.1775693440128312e-16,
+              "n01_note": "hot(z-dephase)xopen(z-Lindblad): BOTH z-diagonal, commute to ~1e-16 (honest geometric degeneracy). cold(Rx)xopen(z-Lindblad): genuinely non-commuting, gap>>N01_EPS (LOAD-BEARING N01 witness). Wrong-struct control: cold_gradient x cold_gradient commutes (gap<COMMUTE_EPS).",
+              "substage_a": {
+                "S_vN": 0.12831261219609377,
+                "axis5": "hot",
+                "axis6": "order_AB",
+                "bloch_r": 0.9436654134211281,
+                "delta_S_vN": 0.12831261219609377,
+                "rho_valid": true
+              },
+              "substage_b": {
+                "S_vN": 0.12831261219609377,
+                "axis5": "hot",
+                "axis6": "order_BA",
+                "bloch_r": 0.9436654134211281,
+                "delta_S_vN": 0.12831261219609377,
+                "rho_valid": true
+              },
+              "substage_c": {
+                "S_vN": 0.08225954388580879,
+                "axis5": "cold",
+                "axis6": "order_AB",
+                "bloch_r": 0.9678904295533078,
+                "delta_S_vN": 0.08225954388580879,
+                "rho_valid": true
+              },
+              "substage_d": {
+                "S_vN": 0.04589215147715981,
+                "axis5": "cold",
+                "axis6": "order_BA",
+                "bloch_r": 0.9842908263492267,
+                "delta_S_vN": 0.04589215147715981,
+                "rho_valid": true
+              }
+            }
+          }
+        ]
+      },
+      "refrigerator_axis4_CCW": {
+        "eta_refrigerator": -0.25,
+        "negative_eta_pass": true
+      }
+    }
+  ],
+  "source_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/eng_carnot_axiswired_julia.jl",
+  "source_sha256": "189a51f8364a3be0e803c3e00758d5ce349cf4a07590b7dbc944cb859b8c3879",
+  "substages": {
+    "definition": "axis5 (hot/cold) x axis6 (order_AB/order_BA)",
+    "n01_honest_degeneracy": "hot pair (a vs b): hot_spectral x open_isothermal commutes to machine precision (both z-diagonal); not a wrong-structure fabrication",
+    "n01_load_bearing": "cold pair (c vs d): cold_gradient x open_isothermal is genuinely non-commuting (Rx x z-Lindblad, gap ~0.77)",
+    "per_stroke": 4,
+    "substage_a": {
+      "axis5": "hot",
+      "axis6": "order_AB",
+      "op": "hot_spectral then ax2"
+    },
+    "substage_b": {
+      "axis5": "hot",
+      "axis6": "order_BA",
+      "op": "ax2 then hot_spectral"
+    },
+    "substage_c": {
+      "axis5": "cold",
+      "axis6": "order_AB",
+      "op": "cold_gradient then ax2"
+    },
+    "substage_d": {
+      "axis5": "cold",
+      "axis6": "order_BA",
+      "op": "ax2 then cold_gradient"
+    }
+  },
+  "thresholds": {
+    "COMMUTE_EPS": 1.0e-9,
+    "GAMMA_KRAUS": 0.3,
+    "GAMMA_LINDBLAD": 0.3,
+    "N01_EPS": 1.0e-9,
+    "OMEGA": 1.0,
+    "PURITY_CLOSE": 0.05,
+    "S_ADIAB": 1.0e-10,
+    "S_EPS": 1.0e-6,
+    "THETA_UNIT": 1.0471975511965976
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "SHA": "supportive",
+    "kraus_apply": "load_bearing",
+    "lindblad_step": "load_bearing"
+  }
+}

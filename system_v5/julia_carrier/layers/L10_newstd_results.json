@@ -1,0 +1,302 @@
+{
+  "N01_witness": {
+    "order_gap": 1.0609046761285033,
+    "passes": true
+  },
+  "allowed_claims": [
+    "L10_newstd ran; Ni R-sheet GKSL coherence sustained by Hopf drive",
+    "Hopf-torus carrier is compact (finitude) vs unbounded flat control",
+    "su(2) bundle generators noncommuting; flat diagonal control commutes",
+    "Chern c1=1 (Hopf) vs c1=0 (trivial), flip demonstrated",
+    "Integration residual < 1% of claimed signal (exact carrier)",
+    "S_full genuinely varies across 8/16/32/64 rungs (scale ladder distinct)",
+    "Hopfield-style energy descends to geometry-shaped attractor; flat control collapses to single attractor",
+    "promotion_allowed=false; no layer-completion, coupling, or bridge claims"
+  ],
+  "bloch_free": true,
+  "blocked_consumers": [
+    "L11 operator-substage stacking",
+    "L12 entropy/cut admission",
+    "stacking/order tests",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP"
+  ],
+  "carrier_language": "native Julia (LinearAlgebra); density-operator only",
+  "chern_topological": {
+    "c1_hopf_PASS": false,
+    "c1_trivial_PASS": true,
+    "criterion_met": false,
+    "deciding_number": "winding_hopf=-0.146305 (bar|w-1|<0.5); winding_trivial=-0.0 (bar|w-0|<0.5)",
+    "flip_evident_PASS": false,
+    "winding_hopf": -0.14630458985247535,
+    "winding_trivial": -0.0
+  },
+  "classification": "L10_newstd_poc",
+  "core_signature": {
+    "anti_taut_strong": true,
+    "input_dependent": true,
+    "input_range": 0.2082701978300054,
+    "input_spread_std": 0.08955590069386994,
+    "positive_collapse": true,
+    "sig_full": 0.4444446836153581,
+    "sig_kill": 3.078558196380087e-5,
+    "structural_ok": true
+  },
+  "exact_carrier_check": {
+    "S_full": 0.4444446836153581,
+    "S_half_steps": 0.4444446034200758,
+    "S_killed_control": 3.078558196380087e-5,
+    "contraction_ok_PASS": true,
+    "criterion_met": true,
+    "deciding_number": "S_full=0.444445 (bar>1e-3); residual_rel=1.8e-7 (bar<0.01)",
+    "equal_budget_note": "genuine and control both use same dt=T_FINAL/N_STEPS, same N_STEPS=1600",
+    "residual_relative": 1.8043928808280126e-7,
+    "signal_present_PASS": true
+  },
+  "finite_map": {
+    "F01": "compact Hopf-torus carrier; max||H0||<=sqrt(2); density operators in D(C^2); all norms bounded",
+    "N01": "N01 order gap ||.||_1=1.060905 > 1e-4 (PASS); [Jx,Jy]=i*Jz nonzero",
+    "codomain": "coherence_weight S = 2|rho[1,2]| of Ni R-sheet (Source) channel output density operator",
+    "domain": "8 terrains × PEPS3D-K(64) sites × Hopf spinor angles",
+    "map": "G:(phi,chi,eta,loop,mode) -> Phi^T_{Ni-R}(rho0) via Euler-GKSL; S = coherence_weight(Phi^T(rho0))",
+    "note": "Bloch-free; density-operator only; no r-vector readout"
+  },
+  "finitude_vs_flat": {
+    "criterion_met": true,
+    "deciding_number": "Hopf max||H0||=1.41421356 (bar<=sqrt(2)+1e-9=1.41421356); flat 90pct=5.9453 (bar>1.4142)",
+    "flat_90pct_norm": 5.945291785274959,
+    "flat_unbounded_PASS": true,
+    "hopf_compact_PASS": true,
+    "hopf_compact_bound": 1.4142135633730952,
+    "hopf_h0_max_norm": 1.4142135623730954
+  },
+  "honest_gaps": [
+    "Euler integration + PSD reproject, not exact exp(T*Liouvillian).",
+    "GKSL runs on per-site 2x2 qubit; not a joint many-site TN contraction.",
+    "Scale ladder uses eta-parametrised single-site channels, not distinct TN bond dimensions.",
+    "Hopfield settling uses Hopf-geometry-shaped M but not a full Riemannian gradient flow on the Stiefel manifold."
+  ],
+  "neural_dynamics": {
+    "criterion_met": false,
+    "deciding_number": "min_drop=-1.13 (bar>1e-4); e_final_std=2.73e-5 (bar>1e-4); flat_std=2.71e-5 (bar<1e-3)",
+    "e_drops": [
+      -0.48086344464697944,
+      -1.128824654136543,
+      0.8617116785187349,
+      -0.016738489214192152,
+      0.18091757080783052,
+      -0.14059309678738,
+      0.06915508216123314,
+      -0.778071062821914
+    ],
+    "e_final": [
+      -0.027744103854507055,
+      -0.02777315357052826,
+      -0.027684742343342436,
+      -0.02772363544420147,
+      -0.02771508546271831,
+      -0.027731272730193525,
+      -0.027719514631862584,
+      -0.027757178544576176
+    ],
+    "e_final_std": 2.7289872073369118e-5,
+    "e_flat_control_std": 2.7093313612000026e-5,
+    "e_initial": [
+      -0.5086075485014865,
+      -1.1565978077070713,
+      0.8340269361753925,
+      -0.04446212465839362,
+      0.15320248534511222,
+      -0.1683243695175735,
+      0.04143556752937057,
+      -0.8058282413664901
+    ],
+    "energy_descends_PASS": false,
+    "flat_collapses_PASS": true,
+    "input_dependent_PASS": false,
+    "min_energy_drop": -1.128824654136543
+  },
+  "new_standard_scorecard": {
+    "commutation": {
+      "deciding_number": "||[Jx,Jy]-i*Jz||=0.0 (bar<1e-10); flat ||[D,D]||=0.0 (bar<1e-12); ACS=0.0; gen_level_flow=0.467556 (bar>1e-6)",
+      "verdict": "MET"
+    },
+    "exact_carrier": {
+      "deciding_number": "S_full=0.444445 (bar>1e-3); residual_rel=1.8e-7 (bar<0.01)",
+      "verdict": "MET"
+    },
+    "finitude": {
+      "deciding_number": "Hopf max||H0||=1.41421356 (bar<=sqrt(2)+1e-9=1.41421356); flat 90pct=5.9453 (bar>1.4142)",
+      "verdict": "MET"
+    },
+    "invariant_anchored": {
+      "deciding_number": "winding_hopf=-0.146305 (bar|w-1|<0.5); winding_trivial=-0.0 (bar|w-0|<0.5)",
+      "verdict": "GAP"
+    },
+    "n_met": 4,
+    "neural_dynamics": {
+      "deciding_number": "min_drop=-1.13 (bar>1e-4); e_final_std=2.73e-5 (bar>1e-4); flat_std=2.71e-5 (bar<1e-3)",
+      "verdict": "GAP"
+    },
+    "overall_fraction": "4/6",
+    "scale_ladder": {
+      "deciding_number": "std(S_full across rungs)=0.099831 (bar>1e-3); stress_ok=true",
+      "verdict": "MET"
+    }
+  },
+  "non_numpy": true,
+  "noncommutation_bundle": {
+    "algebra_id_ok": true,
+    "algebra_identity_diff": 0.0,
+    "clifford_acs_PASS": true,
+    "clifford_acs_max_dev": 0.0,
+    "criterion_met": true,
+    "deciding_number": "||[Jx,Jy]-i*Jz||=0.0 (bar<1e-10); flat ||[D,D]||=0.0 (bar<1e-12); ACS=0.0; gen_level_flow=0.467556 (bar>1e-6)",
+    "ensemble_comm_std": 8.392497208503151e-17,
+    "flat_commutes_PASS": true,
+    "generator_commutator_norm": 0.46755630329447967,
+    "generator_level_nonzero_PASS": true,
+    "input_dependent_PASS": false,
+    "nonzero_ok": true,
+    "norm_comm_Jx_Jy": 0.7071067811865476,
+    "norm_comm_flat_diag": 0.0
+  },
+  "object_id": "L10_newstd",
+  "overall_fraction": "4/6",
+  "promotion_allowed": false,
+  "promotion_status": "blocked_poc",
+  "scale_ladder": {
+    "S_full_per_rung": [
+      0.6527114017654545,
+      0.6194633102185296,
+      0.4444448120701084,
+      0.6527146188469303
+    ],
+    "S_full_std": 0.09983062515233689,
+    "criterion_met": true,
+    "deciding_number": "std(S_full across rungs)=0.099831 (bar>1e-3); stress_ok=true",
+    "ladder_distinct_PASS": true,
+    "rungs": {
+      "16": {
+        "K_counts": {
+          "C": 3,
+          "E": 28,
+          "F": 6,
+          "V": 16
+        },
+        "S_C1": 0.6948600579888435,
+        "S_C2": 0.9370719736021614,
+        "S_full": 0.6194633102185296,
+        "S_kill": 3.078558196380087e-5,
+        "alive": true,
+        "dims": [
+          4,
+          2,
+          2
+        ],
+        "eta_shell": 0.6283185307179586
+      },
+      "32": {
+        "K_counts": {
+          "C": 9,
+          "E": 64,
+          "F": 18,
+          "V": 32
+        },
+        "S_C1": 0.7058823529411764,
+        "S_C2": 0.9983257975262502,
+        "S_full": 0.4444448120701084,
+        "S_kill": 3.078558196380087e-5,
+        "alive": true,
+        "dims": [
+          4,
+          4,
+          2
+        ],
+        "eta_shell": 0.7853981633974483
+      },
+      "64": {
+        "K_counts": {
+          "C": 27,
+          "E": 144,
+          "F": 36,
+          "V": 64
+        },
+        "S_C1": 0.5553287518900321,
+        "S_C2": 0.49338734516274385,
+        "S_full": 0.6527146188469303,
+        "S_kill": 3.078558196380087e-5,
+        "alive": true,
+        "dims": [
+          4,
+          4,
+          4
+        ],
+        "eta_shell": 1.1780972450961724
+      },
+      "8": {
+        "K_counts": {
+          "C": 1,
+          "E": 12,
+          "F": 2,
+          "V": 8
+        },
+        "S_C1": 0.5553287518900302,
+        "S_C2": 0.6764890652296379,
+        "S_full": 0.6527114017654545,
+        "S_kill": 3.078558196380087e-5,
+        "alive": true,
+        "dims": [
+          2,
+          2,
+          2
+        ],
+        "eta_shell": 0.39269908169872414
+      }
+    },
+    "stress_all_alive": true
+  },
+  "seed": 20260602,
+  "sim_id": "L10_newstd",
+  "status_ladder": "exists < runs < passes (local rerun)",
+  "tool_integration_depth": {
+    "LinearAlgebra": "load_bearing",
+    "Statistics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "result artifact only",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "eigen/svdvals/norm/exp(matrix) drive carrier, coherence-weight signature, HS comparisons",
+      "role": "load_bearing"
+    },
+    "Random": {
+      "reason": "seed only",
+      "role": "supportive"
+    },
+    "Statistics": {
+      "reason": "std/range certify input-dependence for finitude and scale-ladder criteria",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "collapse-prediction + anti-tautology survivor proofs with flipping verdicts",
+      "role": "load_bearing"
+    }
+  },
+  "z3_proof": {
+    "anti_tautology_survivor_load_bearing": true,
+    "collapse_prediction_load_bearing": true,
+    "load_bearing": true,
+    "z3_anti": "unsat",
+    "z3_anti_broken": "sat",
+    "z3_broken": "sat",
+    "z3_full": "unsat",
+    "z3_kill": "unsat"
+  }
+}

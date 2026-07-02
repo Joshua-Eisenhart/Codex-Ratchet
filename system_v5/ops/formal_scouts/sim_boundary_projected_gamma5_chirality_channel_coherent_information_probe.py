@@ -54,12 +54,15 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded golden-section scalar search for symmetric effective-rate fit"},
+    "python_math": {"tried": True, "used": True, "reason": "supportive local bounded golden-section scalar search for symmetric effective-rate fit"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing density evolution, boundary expectation, entropy spectra, coherent information, CPTP checks, and fit objective evaluation"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing coherent-information/conditional-entropy identity check"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing survivor/control witness"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    tool: ("supportive" if tool == "python_math" else "load_bearing")
+    for tool in TOOL_MANIFEST
+}
 
 
 def bounded_scalar_minimize(objective: Callable[[float], float], lower: float, upper: float, *, xatol: float = 1e-10, max_iter: int = 256) -> dict[str, Any]:

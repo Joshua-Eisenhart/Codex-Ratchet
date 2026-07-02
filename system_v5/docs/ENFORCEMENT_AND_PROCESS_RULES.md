@@ -38,6 +38,17 @@ This guardrail is mandatory.
 9. exploratory coupling work does not mean the coupling stage is earned
 10. broad coupling / coexistence / topology-variant / emergence promotion remains blocked until the registry and parent evidence are strong enough
 11. bridge / axis / engine surfaces remain later and explicitly gated
+12. before any response, closeout, status artifact, worker report, PR text, or
+    staged doc/result claims full layer completion, parent-complete layer
+    status, true G-structure completion, official G-structure selection,
+    stacking readiness, Axis0/FEP/flux unlocking, physics/gravity progress, or
+    final manifold admission, run
+    `make layer-completion-claim-gate CLAIM_FILE=<claim text file when applicable>`.
+    If the gate fails, the claim is blocked and the violation must be reported
+    directly.
+13. sensitive completion claims routed through `scripts/stage_gate.py` must
+    include `--claim-file`; generic stage admission is never enough for those
+    claims.
 
 If a queue, launch prompt, ledger row, or worker plan widens exploratory coupling into earned higher-stage permission, this guardrail wins.
 
@@ -78,6 +89,26 @@ Concrete examples that must stay preserved:
 - Pauli / Bloch / channel / differential machinery should be simmed as independent legos before compound claims
 
 If a sim batch violates that order, it is off-plan even if it reports passing outputs.
+
+Every nonclassical manifold step must be admitted as an explicit finite map,
+invariant, or blocked readout, not as a label. The minimum admission record is:
+
+- root constraints in force: F01 finite carrier/probes/operators/paths and N01 noncommuting or order-sensitive control;
+- domain and codomain or output object;
+- torch-native spinor state or spinor-derived density;
+- finite PEPS3D carrier anchor from the first admitted carrier/probe step;
+- quaternionic map/invariant when quaternion language is used;
+- negative/control condition, including label-erased and order-erased controls where relevant;
+- receipt path or blocked-reason artifact;
+- downstream consumers explicitly allowed or blocked.
+
+No candidate order, scaffold, or stage schedule may be promoted if any lower
+dependency map is missing. PEPS3D is not a late rung after substages; for new
+nonclassical manifold work it is the finite spinor-network carrier from the
+first admitted finite carrier/probe step. A 16-stage-site scaffold plus 64
+operator rows is not a 64-substage manifold embedding unless every substage is a
+finite PEPS3D-carried cell/tensor/channel action or an explicit projection from
+a richer finite PEPS3D cell carrier.
 
 ---
 
@@ -131,6 +162,12 @@ Do not report process terms like `survived` or internal terms like `classical_ba
 
 ## Rule 1: PyTorch-native computation
 All new core nonclassical computation uses PyTorch tensors. NumPy may remain in first-class classical baselines, legacy comparison rows, and explicit reviewed helper/boundary surfaces only. NumPy imports, `np.*` calls, and `.numpy()` tensor conversions are not allowed inside nonclassical sims as claim-bearing computation or as a quiet bridge to NumPy; any reviewed helper/boundary surface that still uses them remains blocked from nonclassical, QIT-engine, manifold, basin, axis, or bridge promotion until ported or explicitly reclassified. Density matrices = torch tensors. Operators = torch operations. Gradients = autograd.
+
+For nonclassical manifold work, PyTorch is necessary but not sufficient. The
+claim-bearing carrier must also be spinor/quaternion-compatible and
+PEPS3D-carried from the first admitted finite carrier/probe step. A tensor that
+is merely named PEPS3D, a scalar boundary row, a dense full-state closure, or a
+Cartesian/Bloch primitive adapter is not a nonclassical manifold carrier.
 
 **Why:** numpy arrays encourage Cartesian, coordinate-first computation. PyTorch computational graphs are a better fit for the current relational/non-coordinate design target. Treat this as current build rationale, not as a standalone proof of ontology.
 
@@ -206,8 +243,16 @@ Runner `DONE` marks execution evidence only. Controller admission requires recon
 
 Failure rule: when a compound or stack packet fails, do not debug the compound while any participating tool function lacks an individual useful-lego receipt. Decompose to the first missing micro proof, rerun that bounded packet, and only then revisit the compound.
 
-## Rule 3: No engine jargon in sims
+## Rule 3: No unearned jargon in sims
 Standard mathematical terms only. Z-dephasing, not Ti. X-rotation, not Fi. The Jungian labels are a Rosetta mapping applied only after the math has earned the relevant checks; they must not steer the computation layer.
+
+This is broader than engine labels. Terms such as `manifold`, `layer`, `shell`,
+`Hopf`, `quaternion shell`, `terrain`, `flux`, `Xi`, `Phi0`, `Axis0`,
+`PEPS3D`, and `substage` are label-only until the sim gives the explicit finite
+carrier, map/invariant, torch spinor/quaternion realization, PEPS3D
+site/bond/face/cell anchor, negative/control, and receipt path. Label-only
+usage must be classified as scaffold, Rosetta, adapter, diagnostic, or blocked,
+not as evidence.
 
 **Why:** Jungian labels carry psychological ontology that contaminates the math. The math should stand alone. Labels are a mapping layer, not a computation layer.
 
@@ -235,6 +280,9 @@ So:
 - sim every layer independently where possible
 - then sim admissible stackings / nestings of those layers
 - do not rewrite a likely order into canon before the stack tests exist
+- fail closed when lower dependency maps lack receipts; do not turn a likely
+  order into a scaffold with missing finite-map, PEPS3D-carrier, or control
+  checks
 
 This applies especially to:
 - nested Hopf torus layers
@@ -254,7 +302,12 @@ The long-term target is a larger integrated sim made from layers of smaller sims
 
 Coupling readiness is not inferred from `DONE` counts. It is earned only when the reconciled parent receipts satisfy the queue, result, classification, tool-depth, and ledger-loopback checks for the exact functions being coupled.
 
-For G-stack / G-tower / Hopf / Weyl / Pauli / Flux work, do not simulate only isolated geometries and do not jump straight to the whole stack. First establish each layer as a bounded lego with positive, negative, boundary, and claim-relevant tool checks. Then test the admissible nesting order and noncommutativity of compositions.
+For G-stack / G-tower / Hopf / Weyl / Pauli / Flux work, do not simulate only isolated geometries and do not jump straight to the whole stack. First establish each candidate as a bounded finite-map lego with positive, negative, boundary, PEPS3D-carrier, and claim-relevant tool checks. Then test the admissible nesting order and noncommutativity of compositions.
+
+Flux, Xi, Phi0, and Axis0 cannot be authored, queued, or summarized as
+foundation progress until their lower dependency receipts are named. If the
+lower map chain is missing, write a blocked-reason artifact or build the next
+missing micro-scout; do not create a downstream row.
 
 LLM and subagent parallelism belongs in writing, auditing, repairing, and scouting bounded packets. Actual sim evidence comes from Python runners. Classical baselines may run more freely as baselines and controls, but they do not become nonclassical evidence or bridge permission.
 

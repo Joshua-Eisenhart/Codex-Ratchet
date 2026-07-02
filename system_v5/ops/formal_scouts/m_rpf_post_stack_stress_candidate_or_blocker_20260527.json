@@ -1,0 +1,116 @@
+{
+  "artifact_id": "m_rpf_post_stack_stress_candidate_or_blocker_20260527",
+  "kind": "candidate_map_artifact",
+  "schema": "m_rpf_post_stack_stress_candidate_v1",
+  "created_at": "2026-05-27T22:05:00Z",
+  "campaign_goal_path": "system_v5/ops/tmp/FORMAL_SIM_M_RPF_LONG_RUNNING_GOAL_20260527.md",
+  "controlling_result_path": "system_v5/ops/formal_scouts/results/m_rpf_cross_row_order_closure_probe_results.json",
+  "monitor_heartbeat_path": "system_v5/ops/formal_scouts/retrocausal_shell_field_v43_monitor_heartbeat_20260527.json",
+  "primary_object": "M_RPF(C)",
+  "decision": "candidate_map_written_not_run",
+  "candidate_name": "M_RPF_post_stack_stress_candidate",
+  "finite_map": "M_RPF_post_stack_stress : (K, event_x, shell stack Sigma_r(x), Omega_r, rho_omega, compatibility weights w_omega, ordered adapter tuple A0..A8, compression C, finite stress family S) -> (rho_present_stress, outward_record_stress, per-stress survivor tuple, stability residuals, N01 order gaps, failed controls, resource blockers, blocked consumers)",
+  "object_order_to_preserve": [
+    "Omega_r future/refinement branches",
+    "compatibility_weights",
+    "ordered adapters A0..A8",
+    "compression C",
+    "rho_present_stack",
+    "outward_record_stack"
+  ],
+  "domain": {
+    "K": "finite PEPS3D carrier K=(V,E,F,C_cells) with event_x anchored in V union E union F union C_cells",
+    "shells": "finite shell radii r in {1,2,3} with future_inward shell orientation and past_outward record orientation",
+    "Omega_r": "finite future/refinement branches and spinor-derived rho_omega branch states",
+    "compatibility_weights": "finite normalized weights over Omega_r, applied before compression",
+    "adapter_tuple": [
+      "A0 finite response quotient adapter",
+      "A1 boundary environment adapter",
+      "A2 spinor L/R sheet adapter",
+      "A3 Clifford/quaternion adapter",
+      "A4 terrain channel adapter",
+      "A5 operator-substage cell adapter",
+      "A6 entropy cut communication adapter",
+      "A7 nested Hopf shell projection adapter",
+      "A8 gluing groupoid adapter"
+    ],
+    "finite_stress_family": [
+      "site scales 8, 16, 32, 64",
+      "bond_dim 2 and 4 where row-local receipts support bond 4",
+      "adjacent adapter swaps A_i/A_i+1",
+      "single adapter dropout",
+      "Omega_r branch scramble",
+      "compatibility-weight uniformization",
+      "shell-orientation erasure",
+      "PEPS3D anchor erasure",
+      "compression-before-weights order violation",
+      "forward-shadow replacement",
+      "scalar entropy primary replacement",
+      "Axis0/FEP proxy replacement"
+    ]
+  },
+  "codomain_or_output": {
+    "rho_present_stress": "finite trace-one stress survivor readouts preserving M_RPF(C) provenance",
+    "outward_record_stress": "finite past_outward record for each stress row",
+    "per_stress_survivor_tuple": "ordered tuple of survivor/readout summaries for each admitted stress",
+    "stability_residuals": "finite residuals comparing event_x, shell radii, Omega_r, compatibility weights, PEPS3D anchors, and row-local adapter provenance before and after stress",
+    "N01_order_gaps": "finite adapter-order gaps that must survive positive stress and collapse only in order-erased controls",
+    "failed_controls": "negative controls that correctly fail object preservation",
+    "resource_blockers": "explicit blocker fields if bond/site growth cannot be kept finite without dense closure",
+    "blocked_consumers": "downstream consumers kept locked regardless of stress pass"
+  },
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/m_rpf_cross_row_order_closure_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l0_response_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l1_boundary_environment_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l3_clifford_quaternion_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l4_terrain_channel_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l5_operator_substage_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l6_entropy_cut_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l7_hopf_shell_projection_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l8_gluing_groupoid_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/retrocausal_shell_field_v43_monitor_heartbeat_20260527.json"
+  ],
+  "positive_requirements_for_future_scout": [
+    "M_RPF_stack_0_8 result must validate without fresh rerun unless stale",
+    "all stress carriers, paths, adapters, shells, and outputs remain finite",
+    "PEPS3D anchor provenance remains load-bearing",
+    "Omega_r compatibility weights precede every compression readout",
+    "rho_present_stress and outward_record_stress retain row-local adapter provenance",
+    "at least one N01 adapter-order gap survives positive stress",
+    "entropy remains a derived QIT readout only"
+  ],
+  "controls_required_for_future_scout": [
+    "adapter_order_swap",
+    "adapter_drop",
+    "shell_orientation_erased",
+    "Omega_scramble",
+    "compatibility_weight_uniformized",
+    "compression_before_weights",
+    "scalar_entropy_primary",
+    "PEPS3D_anchor_erased",
+    "dense_state_closure",
+    "forward_shadow",
+    "Axis0_proxy_promotion",
+    "FEP_Holodeck_proxy_promotion"
+  ],
+  "failure_condition": "If any post-stack stress row cannot preserve Omega_r -> compatibility_weights -> ordered adapters -> compression -> rho_present_stack -> outward_record_stack without dense closure or proxy substitution, write an explicit blocker instead of opening downstream consumers.",
+  "not_run_in_this_artifact": true,
+  "promotion_allowed": false,
+  "downstream_unlocked": false,
+  "next_admissible_step": "Run exactly one bounded formal scout for M_RPF_post_stack_stress, or replace this candidate with a blocker if the stress map cannot remain finite while preserving M_RPF(C) object provenance.",
+  "blocked_consumers": [
+    "flux",
+    "Xi_Phi0",
+    "Axis0",
+    "Holodeck_FEP",
+    "physics_gravity",
+    "final_manifold"
+  ],
+  "wizard_truth": {
+    "status": "PARTIAL_OR_BLOCKED",
+    "full_wizard_claimed": false,
+    "completed_current_turn_subagent_receipts": 0
+  }
+}

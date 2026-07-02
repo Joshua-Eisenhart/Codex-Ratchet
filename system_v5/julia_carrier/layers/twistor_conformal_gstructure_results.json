@@ -1,0 +1,150 @@
+{
+  "anchored_invariants": [
+    "twistor Hermitian form signature (2,2) = eigvals(Sigma) = (+1,+1,-1,-1)",
+    "dim su(2,2) = 15 = dim so(2,4) = 6*5/2 (Gram-rank of explicit basis)",
+    "su(2,2) trace-form signature (8,7) = (noncompact, compact)",
+    "double cover kernel Z/2 = {+-I} in the Lambda^2 6-vector rep (+-U -> same SO rotation)",
+    "twistor incidence omega = i x pi: rank-2 line in CP^3, preserved by conformal U"
+  ],
+  "classification": "PoC",
+  "defining_relation": "U in SU(2,2) <=> U^dagger Sigma U = Sigma, det U = 1, Sigma=diag(1,1,-1,-1)",
+  "kill_control": {
+    "K1_generic_breaks_sigma": true,
+    "K1_generic_detmag_range": [
+      0.1266454711622393,
+      32.5537349504221
+    ],
+    "K1_min_generic_form_residual": 3.4592470008214193,
+    "K1_min_generic_klein_residual": 0.11854360351803228,
+    "K2_adversary_is_det1": true,
+    "K2_adversary_max_detmag_minus_1": 3.6637359812630166e-15,
+    "K2_det1_adversary_PASSES_klein": true,
+    "K2_det1_adversary_breaks_sigma": true,
+    "K2_max_adversary_klein_residual": 7.843122549004813e-15,
+    "K2_min_adversary_form_residual": 2.69293023783573,
+    "diagnostic_identity_R6tKR6_eq_detM_KLEIN_max_residual": 8.276630442083435e-15,
+    "diagnostic_identity_holds": true,
+    "kill_control_healthy": true,
+    "load_bearing_discriminator": "Sigma-preservation (U^dagger Sigma U = Sigma); the Klein readout only sees det(M)=1 and does NOT separate SU(2,2) from SL(4,C)"
+  },
+  "object_id": "twistor_conformal_gstructure",
+  "promotion_allowed": false,
+  "seed": 20260601,
+  "summary": {
+    "all_genuine_tests_pass": true,
+    "all_kill_controls_healthy": true,
+    "boundary_center_pass": true,
+    "dimension_signature_pass": true,
+    "double_cover_pass": true,
+    "honest_realform_caveat": "The Lambda^2 6-vector model preserves a Klein metric of MEASURED signature (3,3), and only UP TO det(M) (exact identity R6(M)^T KLEIN R6(M) = det(M) KLEIN). So Klein-preservation certifies det(M)=1 / SL(4,C)~Spin(6,C), NOT SU(2,2) -- it is NOT the discriminator. The SU(2,2) G-structure test is Sigma-preservation (signature (2,2)), measured directly and proven load-bearing by a det-1 adversary in the kill-control. The DOUBLE-COVER kernel Z/2 (from the Lambda^2 rep) is genuine. All reported, not smoothed.",
+    "honest_status": "passes",
+    "kill_control_healthy": true,
+    "ladder": "exists < runs < passes",
+    "measured_anchors": [
+      "U^dagger Sigma U = Sigma, det U = 1 (the SU(2,2) G-structure, residual ~1e-14)",
+      "twistor Hermitian form Sigma signature = (2,2) [eigvals (+1,+1,-1,-1)]",
+      "dim su(2,2) = 15 = dim so(2,4); trace-form signature (8,7)",
+      "double cover: Lambda^2 6-vector rep has kernel Z/2 ({+-I}); +-U -> same SO rotation",
+      "twistor incidence omega = i x pi: rank-2 line in CP^3, preserved by conformal U"
+    ],
+    "negative_indefinite_pass": true,
+    "positive_gstructure_pass": true,
+    "twistor_incidence_pass": true,
+    "z3_load_bearing": true
+  },
+  "test1_positive_gstructure": {
+    "det_is_one": true,
+    "form_preserved": true,
+    "max_det_error": 2.5262663852907567e-13,
+    "max_form_residual": 8.693771642450022e-13,
+    "max_twistor_norm_residual": 1.4380718837969653e-12,
+    "pass": true,
+    "samples": 300,
+    "sigma_eigenvalues": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "sigma_signature_is_2_2": true,
+    "sigma_signature_pos_neg": [
+      2,
+      2
+    ],
+    "twistor_norm_invariant": true
+  },
+  "test2_dimension_signature": {
+    "all_in_algebra": true,
+    "all_traceless": true,
+    "basis_size": 15,
+    "dim_is_15": true,
+    "expected_dim": 15,
+    "gram_rank": 15,
+    "max_algebra_residual": 0.0,
+    "max_trace_norm": 1.1102230246251565e-16,
+    "pass": true,
+    "trace_form_signature_is_8_7": true,
+    "trace_form_signature_pos_neg": [
+      8,
+      7
+    ]
+  },
+  "test3_double_cover": {
+    "R6_in_special_orthogonal": true,
+    "R6_preserves_klein": true,
+    "center_Z4_action_on_lambda2": [
+      1,
+      -1,
+      1,
+      -1
+    ],
+    "cover_kernel": "Z/2 = {+-I}  (the +-iI center maps to -1, so they are NOT in the Lambda^2 kernel)",
+    "fraction_R6_nontrivial": 1.0,
+    "klein_metric_is_split_3_3": true,
+    "klein_signature_pos_neg": [
+      3,
+      3
+    ],
+    "lambda2_kernel_is_Z2": true,
+    "max_det6_minus_1": 7.370039523591188e-12,
+    "max_klein_preservation_residual": 9.686772360634664e-12,
+    "max_plus_minus_gap": 0.0,
+    "pass": true,
+    "plus_minus_U_same_rotation": true,
+    "rep_faithful_mod_Z2": true
+  },
+  "test4_twistor_incidence": {
+    "conformal_preserves_line": true,
+    "incidence_holds": true,
+    "incident_residual_max": 0.0,
+    "pass": true,
+    "rank_Lx_all_2": true,
+    "rank_U_Lx_all_2": true
+  },
+  "test5_negative_indefinite": {
+    "boosts_are_nonunitary": true,
+    "boosts_preserve_sigma": true,
+    "fraction_nonunitary": 1.0,
+    "indefinite_structure_genuine": true,
+    "max_form_residual_for_boosts": 9.722030668291513e-14,
+    "max_unitarity_deviation": 272.05906152014273,
+    "pass": true
+  },
+  "test_boundary_center": {
+    "adjoint_kernel": "Z/4 (full center acts trivially in adjoint)",
+    "center_all_preserve_sigma": true,
+    "center_lambda2_scalar_match": true,
+    "lambda2_vector_kernel": "Z/2 = {+-I} (the genuine double cover)",
+    "pass": true
+  },
+  "title": "SU(2,2)=Spin(2,4) conformal G-structure on twistor space C^4 (CP^3)",
+  "z3_structural_proof": {
+    "genuine_sigma_value_sat": true,
+    "instance": "U = (1,3)-boost; check (U^dagger Sigma U)[1,1] = c^2 - s^2 with Sigma signs (+1,-1) inside Z3",
+    "load_bearing": true,
+    "nonsolution_point_sat": false,
+    "perturbed_sigma_value_sat": false,
+    "products_computed_inside_z3": true,
+    "verdicts_flip": true
+  }
+}

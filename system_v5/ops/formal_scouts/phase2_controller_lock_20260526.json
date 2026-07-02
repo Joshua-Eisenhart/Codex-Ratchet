@@ -1,0 +1,105 @@
+{
+  "kind": "phase2_controller_lock",
+  "created_at": "2026-05-26T10:26:16-07:00",
+  "scope": "formal_scout_phase2_after_AO_multiplicity_pair_separation_K",
+  "lock_status": "locked",
+  "scout_permitted": false,
+  "phase2_saturated": true,
+  "wizard_unblock_self_declared": false,
+  "owner_authorization_required_for_later_scout": true,
+  "validator_green_override_allowed": false,
+  "receipt_grinding_forbidden": true,
+  "allowed_write_packet": [
+    "system_v5/ops/formal_scouts/phase2_controller_lock_20260526.json",
+    "system_v5/ops/formal_scouts/phase2_AO_saturation_reset_20260526.json",
+    "system_v5/ops/FORMAL_SIM_GEOMETRY_ADVANCEMENT_LONG_GOAL_20260526.md",
+    "system_v5/ops/FORMAL_SIM_RECEIPT_GRINDING_POSTMORTEM_20260526.md"
+  ],
+  "forbidden_until_owner_authorized_route_truth_repair": [
+    "new scout execution",
+    "new candidate-map discovery artifact outside the reset artifact",
+    "new frontier/blocker JSON outside the reset artifact",
+    "direct matrix mutation",
+    "direct transition mutation",
+    "source or result mutation",
+    "receipt synthesis for null receipt_path rows",
+    "same-matrix row closure by added criteria",
+    "downstream geometry opening",
+    "FULL or PARTIAL Wizard claim without v4.2 receipts",
+    "self-declared Wizard unblock"
+  ],
+  "live_fact_verification": {
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "transition_artifact_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_AO_multiplicity_pair_separation_active_frontier_blocker_20260526.json",
+    "latest_result_path": "system_v5/ops/formal_scouts/results/peps3d_multiplicity_pair_separation_probe_results.json",
+    "transition_decision": "blocked",
+    "transition_validator_all_pass": false,
+    "wizard_v4_2_status": "BLOCKED",
+    "wizard_accepted_parent_count": 0,
+    "wizard_accepted_child_count": 0,
+    "frontier_row_count": 59,
+    "contract_complete_rows": 56,
+    "killed_rows": 3,
+    "complete_rows_with_null_receipt_path_count": 9,
+    "latest_AO_all_pass": true,
+    "latest_AO_pair_count": 6,
+    "latest_AO_witness_vector_unique_count": 6
+  },
+  "saturation_basis": {
+    "latest_admitted_packet": "phase2_multiplicity_pair_separation_packet",
+    "latest_admitted_map": "AO_multiplicity_pair_separation_K : (AN_support_multiplicity_stratum_fiber_boundary_K, M={2,3,4,59}, support_cell_pair_keys, projection_indices, local_incidence_indices, stratum_ids, source_balance_row_ids, fiber_ids, frontier_pair_ids, signature_pair_keys, balance_class_pair_keys, residue_delta_support_patterns) -> finite unordered multiplicity-pair shared/delta witness table + exact-retention control vector",
+    "reason": "Local scout success is checkpoint evidence only. Wizard route truth is blocked, transition validator state is false, and the active matrix still contains complete rows with null receipt_path fields. Fresh-map and scout paths are unavailable under this lock.",
+    "fresh_map_claim_unavailable": true,
+    "later_fresh_map_claim_minimum": "different carrier/probe family plus a named blocked downstream surface it could unblock, after owner-authorized route-truth repair and external auditor confirmation"
+  },
+  "downstream_consumers_still_blocked": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "saturation_warnings": [
+    {
+      "row_id": "phase2_pair_delete_interaction_falsifier_family",
+      "receipt_path": "system_v5/ops/formal_scouts/results/peps3d_pair_delete_interaction_probe_results.json",
+      "warning": "DD_pair_delete_interaction_K killed a fresh pair-delete order-gap route; do not grind alternate rows to bypass this warning."
+    },
+    {
+      "row_id": "phase2_row_coordinate_deletion_order_gap_falsifier_family",
+      "receipt_path": "system_v5/ops/formal_scouts/results/peps3d_row_coordinate_deletion_order_gap_probe_results.json",
+      "warning": "Y_order_gap_K killed a fresh row/coordinate deletion order-gap route; do not use additional local candidate loops as continuation permission."
+    }
+  ],
+  "independent_auditor_route": {
+    "attempted": true,
+    "accepted": false,
+    "runtime": "codex_native_subagent",
+    "subagent_id": null,
+    "receipt_path": null,
+    "verdict": "BLOCKED",
+    "blocked_reason": "spawn_agent returned: agent thread limit reached",
+    "required_checks_not_satisfied": [
+      "grinding",
+      "scout",
+      "matrix mutation",
+      "weak-auditor",
+      "Wizard unblock",
+      "null receipts"
+    ]
+  },
+  "unlock_conditions": [
+    "owner authorization after this packet closes",
+    "structural route-truth repair performed without receipt grinding",
+    "external auditor returns CLEAN with verdict, separate receipt/runtime/subagent id, at least three exact prompt/repo citations, and explicit checks for grinding, scout, matrix mutation, weak-auditor, Wizard unblock, and null receipts",
+    "lock artifact is deliberately replaced or retired by an owner-authorized reset packet"
+  ]
+}

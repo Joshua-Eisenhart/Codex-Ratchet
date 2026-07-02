@@ -1,0 +1,113 @@
+{
+  "all_pass": true,
+  "carrier_statement": "S^3 = {psi in C^2 : ||psi||=1}. The unit spinor psi IS the carrier. No dot-r ODE, no terrain operators (the Bloch-free directive governs operator/terrain dynamics, not the spinor carrier).",
+  "checks": {
+    "ctrl_dc_cover_destroyed": true,
+    "ctrl_dc_kernel_flips_to_1": true,
+    "ctrl_hp_c1_flips_to_0": true,
+    "ctrl_hp_curvature_flat": true,
+    "ctrl_ss_R2pi_is_I_no_sign": true,
+    "dc_R_in_SO3": true,
+    "dc_kernel_order_is_2": true,
+    "dc_two_to_one_homomorphism": true,
+    "hp_U1_fiber_global_phase": true,
+    "hp_c1_is_1": true,
+    "hp_curvature_nonzero": true,
+    "hp_pi_unit_on_S2": true,
+    "neg_nonunit_excluded": true,
+    "ss_2pi_gives_minus_psi": true,
+    "ss_4pi_gives_plus_psi": true,
+    "ss_U2pi_is_minus_I": true
+  },
+  "classification": "L2_layer_bf_poc",
+  "finite_map": {
+    "codomain": "Hopf base pi(psi)=psi^dag sigma psi in S^2 ; SO(3) rotation R(q) ; first Chern number c1 of the Hopf line bundle",
+    "domain": "finite set of unit spinors psi in S^3 = {psi in C^2 : ||psi||=1}, unit quaternions q in S^3, and (theta,phi) grid on S^2",
+    "invariants": "double-cover kernel order (=2) ; spinor 2pi sign (psi->-psi) ; Hopf c1 (=1)"
+  },
+  "fresh_rerun_command": "julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L2_layer_bf.jl\"",
+  "invariant_double_cover": {
+    "R_in_SO3_frac": 1.0,
+    "kernel_is_Z2": true,
+    "kernel_order": 2,
+    "kernel_order_anchor": 2,
+    "map": "q -> R(q), unit quaternion (SU(2)) to SO(3) rotation",
+    "pass": true,
+    "q_and_minus_q_same_R_frac": 1.0,
+    "two_to_one_homomorphism": true
+  },
+  "invariant_hopf_c1": {
+    "Fmax": 0.002790065423354113,
+    "U1_fiber_is_global_phase": true,
+    "U1_fiber_max_phase_dev": 3.608224830031759e-16,
+    "c1": 1,
+    "c1_anchor": 1,
+    "c1_is_one": true,
+    "chern_raw": 0.9999999950091312,
+    "curvature_nonzero": true,
+    "pass": true,
+    "pi_on_S2_max_norm_dev": 4.440892098500626e-16,
+    "pi_on_S2_unit": true
+  },
+  "invariant_spinor_sign": {
+    "U_2pi_matrix_is_minus_I": true,
+    "U_2pi_psi_equals_minus_psi": true,
+    "U_2pi_psi_not_plus_psi": true,
+    "U_4pi_matrix_is_plus_I": true,
+    "U_4pi_psi_equals_plus_psi": true,
+    "err_2pi_to_minus_psi": 1.0838898772828417e-16,
+    "err_4pi_to_plus_psi": 2.633125101432526e-16,
+    "genuine_double_cover_sign": true,
+    "pass": true
+  },
+  "item": "L2_layer_bf",
+  "layer_id": "L2",
+  "layer_name": "S^3 spinor carrier (unit spinors psi in C^2; S^3 is a spinor space)",
+  "negative_controls": {
+    "nonunit_breaks_hopf_norm": true,
+    "nonunit_excluded_from_S3": true,
+    "nonunit_spinor_norm": 2.23606797749979
+  },
+  "prior_was_misframed": "The prior L2_layer_bf.jl tried to prove the carrier via a density-only 'dependency-forcing erasure', which forced every collapse to be an algebraic tautology and made the fiber phase inexpressible (honest_status=could_not_make_genuine). That was the WRONG question. A carrier's realness is anchored to KNOWN S^3 invariants (double-cover kernel order, spinor 2pi sign, Hopf c1) with a WRONG-STRUCTURE control that FLIPS each invariant. This rebuild does that.",
+  "promotion_allowed": false,
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes",
+  "verdict": {
+    "all_invariants_at_anchor_and_controls_flip": true,
+    "bloch_free_dynamics": "no dot-r ODE, no terrain operators in this file (spinor carrier is allowed)",
+    "carrier_is_S3_spinor_space": true,
+    "claim_ceiling": "PoC: L2 is the S^3 spinor carrier. Its realness is anchored to three KNOWN S^3 invariants (double-cover kernel order=2, spinor 2pi sign psi->-psi, Hopf c1=1), each measured and each FLIPPED by a wrong-structure control (identity non-cover: kernel 2->1; SO(3) single cover: sign disappears; trivial bundle: c1 1->0). The flip is the evidence the invariants are measured, not by-construction-right. promotion_allowed=false; not canonical.",
+    "double_cover_kernel_anchor": 2,
+    "double_cover_kernel_order": 2,
+    "honest_status": "genuine_carrier",
+    "hopf_c1": 1,
+    "hopf_c1_anchor": 1,
+    "spinor_2pi_sign_present": true,
+    "wrong_structure_c1_flip": "1 -> 0 (trivial bundle)",
+    "wrong_structure_kernel_flip": "2 -> 1 (identity non-cover)",
+    "wrong_structure_spinor_sign_flip": "U(2pi)=-I (present) -> R(2pi)=I (absent, single cover)"
+  },
+  "wrong_structure_double_cover": {
+    "double_cover_destroyed": true,
+    "kernel_order": 1,
+    "kernel_order_flipped_to_1": true,
+    "map": "q -> q (identity; NON-cover, single-valued)",
+    "q_and_minus_q_same_frac": 0.0
+  },
+  "wrong_structure_hopf_c1": {
+    "Fmax": 0.0,
+    "c1": 0,
+    "c1_flipped_to_0": true,
+    "chern_raw": 0.0,
+    "curvature_flat": true,
+    "hopf_invariant_destroyed": true,
+    "section": "constant |u> = (1,0) (trivial bundle)"
+  },
+  "wrong_structure_spinor_sign": {
+    "R_2pi_is_identity": true,
+    "R_4pi_is_identity": true,
+    "map": "SO(3) single cover R(theta) about x",
+    "no_minus_sign_at_2pi": true,
+    "spinor_sign_disappears": true
+  }
+}

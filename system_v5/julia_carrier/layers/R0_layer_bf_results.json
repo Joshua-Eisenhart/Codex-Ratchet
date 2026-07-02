@@ -1,0 +1,382 @@
+{
+  "F01_witness": {
+    "dim_H": 2,
+    "finite_operators": [
+      "A=R(TA)diag(1.3,-0.7)R(TA)'",
+      "B=R(TB)diag(0.9,-1.1)R(TB)'",
+      "B_par=R(TA)diag(0.9,-1.1)R(TA)' (real N01 erasure)",
+      "D=R(TD)diag(0.9,-1.1)R(TD)' (anti-tautology control)"
+    ],
+    "finite_probe_counts": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "registry_admission": "bounded finite spectrum + finite enumerable carriers"
+  },
+  "N01_witness": {
+    "input_dependent": true,
+    "min_state_order_gap": 0.22676062457543278,
+    "operator_noncommutation_gap": 2.0091824638581817,
+    "readout": "gap_A(rho) = ||A rho - rho A||_HS"
+  },
+  "ablation_outcome_delta": {
+    "delta": 2.0091824638581817,
+    "kind": "removed_and_rerun_numeric",
+    "non_vacuous": true,
+    "signature_erased": 0.0,
+    "signature_genuine_noncommuting": 2.0091824638581817
+  },
+  "all_pass": true,
+  "anti_tautology_proof": {
+    "comparable_control_gap": 2.807816350938637,
+    "control_stayed_above_floor": true,
+    "erasure_collapsed_below_floor": true,
+    "magnitudes": {
+      "hs_B": 1.4212670403551897,
+      "hs_Bpar": 1.4212670403551897,
+      "hs_D": 1.42126704035519
+    },
+    "positive_gap": 2.0091824638581817,
+    "real_erasure_gap": 0.0,
+    "statement": "erasure gap 0.0 (~0) vs comparable-control gap 2.807816 (> 0) at matched magnitude -> collapse is MEASURED, not a tautology."
+  },
+  "bloch_free": true,
+  "bloch_free_note": "density-operator only: rho, HS norm, trace distance, Liouvillian on vec(rho). NO r=(rx,ry,rz), no bloch_vector(), no rho=(I+r.sigma)/2 reconstruction, no sigma-triple state, no dot-r ODE.",
+  "blocked_consumers": [
+    "geometry_layers_L0_to_L13",
+    "stacking",
+    "pairwise_order_tests",
+    "G_structure_selection",
+    "Axis0",
+    "flux",
+    "FEP",
+    "physics",
+    "final_manifold_admission"
+  ],
+  "classification": "R0_layer_bf_poc",
+  "controls": {
+    "negative": {
+      "anti_tautology_comparable_control_residual_gap": 2.807816351,
+      "erase_noncommutation_operator_delta_gap": 2.009182464
+    },
+    "positive": {
+      "min_state_order_gap_N01": 0.226760625,
+      "min_trace_distance_derived": 0.177887408,
+      "operator_noncommutation_gap": 2.009182464
+    }
+  },
+  "controls_detail": {
+    "ANTI_TAUTOLOGY_control_leaves_intact": {
+      "hs_B": 1.4212670403551897,
+      "hs_D": 1.42126704035519,
+      "magnitude_comparable": true,
+      "note": "D has B's spectrum (||D||_HS == ||B||_HS) but a THIRD distinct eigenframe (TD != TA != TB). A comparable-magnitude DIFFERENT op does NOT collapse ||[A,D]||_HS -> the erasure collapse is MEASURED, not a tautology.",
+      "pass": true,
+      "sig_control_AD": 2.807816350938637
+    },
+    "ANTI_TAUTOLOGY_holds": {
+      "comparable_control_intact": true,
+      "erasure_collapses": true,
+      "pass": true
+    },
+    "DEPENDENCY_FORCING_finite_rejects_continuum": {
+      "admit_continuum": false,
+      "admit_finite": true,
+      "admit_unbounded": false,
+      "pass": true,
+      "reason_continuum": "continuum_real_interval_index_not_enumerable",
+      "reason_finite": "finite_enumerable_carriers_and_bounded_spectrum",
+      "reason_unbounded": "unbounded_or_nonfinite_spectrum"
+    },
+    "DEPENDENCY_FORCING_real_erasure_collapses": {
+      "note": "rotate B into A's eigenframe (B_par = R_A diag(spec_B) R_A^-1); [A,B_par]->0 because simultaneously diagonalizable. B_par is NOT a scalar multiple of A (spec {0.9,-1.1} vs {1.3,-0.7}) -> MEASURED collapse.",
+      "pass": true,
+      "sig_erased_A_Bpar": 0.0,
+      "sig_positive_AB": 2.0091824638581817
+    },
+    "INPUT_DEPENDENCE_state_gap_varies": {
+      "note": "||[A,rho]||_HS VARIES across the finite probe set (max-min > floor); the signature is input-dependent, not a fixed constant.",
+      "pass": true,
+      "state_order_gap_spread_by_N": [
+        [
+          8,
+          1.1854136293006166
+        ],
+        [
+          16,
+          1.0349986987678292
+        ],
+        [
+          32,
+          0.9522832543341775
+        ],
+        [
+          64,
+          1.1560489958855173
+        ]
+      ]
+    },
+    "STRUCTURAL_no_builtin_zero": {
+      "Bpar_codiagonal_with_probe_rho": false,
+      "Bpar_is_scalar_multiple_of_A": false,
+      "D_is_scalar_multiple_of_A": false,
+      "lambda_Bpar": 0.8899082568807342,
+      "lambda_D": 0.08303006363978616,
+      "note": "erasure op B_par is NOT a scalar multiple of A and NOT co-diagonal with the measured probe rho -> no built-in algebraic zero (unlike C=2A).",
+      "pass": true
+    },
+    "ablation_nonvacuous": {
+      "ablation_outcome_delta": 2.0091824638581817,
+      "pass": true
+    },
+    "liouvillian_vec_consistency": {
+      "max_err": 1.6449732842128782e-16,
+      "note": "vec(-i[A,rho]) == L*vec(rho); density-operator Liouvillian, NO Bloch dot-r ODE",
+      "pass": true
+    },
+    "n_ladder_nonvacuous": {
+      "pass": true,
+      "resolvable_by_N": [
+        [
+          8,
+          8
+        ],
+        [
+          16,
+          16
+        ],
+        [
+          32,
+          32
+        ],
+        [
+          64,
+          64
+        ]
+      ]
+    },
+    "positive": {
+      "derived_min_trace_distance": {
+        "min_trace_distance": 0.17788740794628172,
+        "pass": true
+      },
+      "operator_noncommutation_gap": {
+        "operator_noncommutation_gap": 2.0091824638581817,
+        "pass": true
+      },
+      "state_order_gap_N01": {
+        "min_state_order_gap_N01": 0.22676062457543278,
+        "pass": true
+      }
+    },
+    "positive_N01_operator_noncommutation_present": {
+      "operator_noncommutation_gap": 2.0091824638581817,
+      "pass": true
+    },
+    "positive_N01_state_order_gap_present": {
+      "min_state_order_gap": 0.22676062457543278,
+      "pass": true
+    },
+    "trace_distance_metric_nontrivial": {
+      "min_trace_distance": 0.17788740794628172,
+      "pass": true
+    }
+  },
+  "dependency_forcing": {
+    "anti_tautology_comparable_control_AD_gap": 2.807816350938637,
+    "anti_tautology_control_leaves_intact": true,
+    "anti_tautology_holds": true,
+    "below_geometry": "R0 root: the bare N01 noncommuting operator structure and the F01 finite registry.",
+    "erasure_collapses_signature": true,
+    "finite_rejects_continuum": true,
+    "input_dependent": true,
+    "positive_signature_AB": 2.0091824638581817,
+    "real_erasure_Bpar_gap": 0.0,
+    "structural_no_builtin_zero": true,
+    "verdict": "GENUINE dependency-forcing: real erasure COLLAPSES the signature, a comparable DIFFERENT op LEAVES it intact, no built-in algebraic zero, input-dependent, finite registry rejects continuum."
+  },
+  "derived_readouts": {
+    "liouvillian_vec_max_err": 1.6449732842128782e-16,
+    "min_trace_distance": 0.17788740794628172,
+    "note": "density-operator readouts (entropy, trace distance, Liouvillian on vec(rho)); never primary, never a Bloch r-vector.",
+    "von_neumann_entropy_max_bits": 9.61027951144475e-16,
+    "von_neumann_entropy_min_bits": -6.406853007629837e-16
+  },
+  "finite_map": "(finite probe registry {rho_k}, ordered operator word in {A,B}*) -> (N01 operator gap ||[A,B]||_HS, N01 state gap ||[A,rho]||_HS, derived trace distance)",
+  "honest_note": "R0 root F01/N01 lego, BLOCH-FREE rebuild. The COSMETIC C=2A collinear erasure (||[A,2A]||=0 is an algebraic identity) is REPLACED by a frame-alignment erasure (B_par = B's spectrum in A's eigenframe) whose collapse is MEASURED. An anti-tautology control D (B's spectrum, a THIRD frame, matched HS magnitude) LEAVES the signature intact -> the collapse is specific, not guaranteed. No Bloch r-vector anywhere.",
+  "item": "R0_layer_bf",
+  "language": "julia",
+  "layer_id": "R0",
+  "negative_controls": {
+    "identity_operator_zero_gap": {
+      "gap_identity_op": 0.0,
+      "pass": true
+    },
+    "self_commutator_zero": {
+      "norm_self_commutator": 0.0,
+      "pass": true
+    }
+  },
+  "non_numpy": true,
+  "passes_local_rerun": true,
+  "peps3d_anchor": {
+    "claimed": false,
+    "reason": "R0 is the root finite carrier/probe layer; NO manifold geometry is claimed. Honestly absent."
+  },
+  "positive": {
+    "derived_min_trace_distance": {
+      "min_trace_distance": 0.17788740794628172,
+      "pass": true
+    },
+    "operator_noncommutation_gap": {
+      "operator_noncommutation_gap": 2.0091824638581817,
+      "pass": true
+    },
+    "state_order_gap_N01": {
+      "min_state_order_gap_N01": 0.22676062457543278,
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "rows": [
+    {
+      "input_dependent": true,
+      "layer_gate": {
+        "min_state_order_gap_N01": 0.22676062457543278,
+        "operator_noncommutation_gap": 2.0091824638581817,
+        "state_order_gap_spread": 1.1854136293006166
+      },
+      "max_state_order_gap": 1.4121742538760493,
+      "pass": true,
+      "site_count": 8
+    },
+    {
+      "input_dependent": true,
+      "layer_gate": {
+        "min_state_order_gap_N01": 0.37165798971446024,
+        "operator_noncommutation_gap": 2.0091824638581817,
+        "state_order_gap_spread": 1.0349986987678292
+      },
+      "max_state_order_gap": 1.4066566884822895,
+      "pass": true,
+      "site_count": 16
+    },
+    {
+      "input_dependent": true,
+      "layer_gate": {
+        "min_state_order_gap_N01": 0.45831800817181884,
+        "operator_noncommutation_gap": 2.0091824638581817,
+        "state_order_gap_spread": 0.9522832543341775
+      },
+      "max_state_order_gap": 1.4106012625059963,
+      "pass": true,
+      "site_count": 32
+    },
+    {
+      "input_dependent": true,
+      "layer_gate": {
+        "min_state_order_gap_N01": 0.2576305164651883,
+        "operator_noncommutation_gap": 2.0091824638581817,
+        "state_order_gap_spread": 1.1560489958855173
+      },
+      "max_state_order_gap": 1.4136795123507058,
+      "pass": true,
+      "site_count": 64
+    }
+  ],
+  "scale_8_16_32_64": {
+    "honest_note": "operator-intrinsic ||[A,B]||_HS is N-INVARIANT (a property of {A,B}); the N-dependent signature is the resolvable distinct-density count under a fixed trace-distance resolution, which grows with N.",
+    "n_ladder_nonvacuous": true,
+    "resolvable_by_N": [
+      [
+        8,
+        8
+      ],
+      [
+        16,
+        16
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        64,
+        64
+      ]
+    ],
+    "site_counts": [
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "status_ladder": "exists < runs < passes",
+  "summary": {
+    "all_pass": true,
+    "layer": "R0",
+    "max_sites": 64,
+    "min_gaps": {
+      "min_state_order_gap_N01": 0.22676062457543278,
+      "min_trace_distance_derived": 0.17788740794628172,
+      "operator_noncommutation_gap": 2.0091824638581817
+    },
+    "promotion_allowed": false,
+    "row_count": 4
+  },
+  "tool_ablations": {
+    "linear_algebra_noncommutation": {
+      "ablation_delta": 2.0091824638581817,
+      "ablation_kind": "numeric",
+      "after_removal": 0.0,
+      "anti_tautology_comparable_control_gap": 2.807816350938637,
+      "control_gap_after_stub": 0.0,
+      "control_gap_before": 2.0091824638581817,
+      "delta_magnitude": 2.0091824638581817,
+      "non_vacuous": true,
+      "pass": true,
+      "recomputed": true,
+      "stub_action": "rotate B into A's eigenframe (B->B_par); re-measure ||[A,B]||_HS"
+    }
+  },
+  "tool_ablations_by_tool": {
+    "linear_algebra_noncommutation": {
+      "ablation_delta": 2.0091824638581817,
+      "ablation_kind": "numeric",
+      "after_removal": 0.0,
+      "anti_tautology_comparable_control_gap": 2.807816350938637,
+      "control_gap_after_stub": 0.0,
+      "control_gap_before": 2.0091824638581817,
+      "delta_magnitude": 2.0091824638581817,
+      "non_vacuous": true,
+      "pass": true,
+      "recomputed": true,
+      "stub_action": "rotate B into A's eigenframe (B->B_par); re-measure ||[A,B]||_HS"
+    }
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": null
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "emit receipt",
+      "role": "supportive",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "Hermitian operators via eigenframe rotation, HS norms, commutators, trace distance, Liouvillian superoperator, eigenspectrum entropy",
+      "role": "load_bearing",
+      "used": true
+    },
+    "Z3": {
+      "reason": "z3 OMITTED not decorative: R0 N01 structural claim is DIRECTLY measured and ablated with an anti-tautology control; the prior z3 (a x r)!=0 over free Bloch reals was a triviality decoupled from the measured operators.",
+      "role": "omitted",
+      "used": false
+    }
+  }
+}

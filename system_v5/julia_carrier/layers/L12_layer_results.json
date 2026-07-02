@@ -1,0 +1,271 @@
+{
+  "F01_witness": {
+    "finite_carrier": "nsites=8 PEPS3D cut cells; each a 3-qubit pure |psi_ABE> in C^8 (Julia-native ComplexF64), rho_AB in C^{4x4}",
+    "finite_operator": "cut-crossing channels {dephase_Z_B, rotate_X_B} + product-erasure map; finite operator set",
+    "finite_path": "ordered cut-channel compositions Z_B then X_B vs X_B then Z_B (finite directed paths over the cut)",
+    "finite_probe": "finite cut-edge list of the complex; finite Pauli readout basis {I,X,Y,Z}; von Neumann eigenspectra"
+  },
+  "N01_witness": {
+    "channel_params": {
+      "dephase_p": 0.3,
+      "rotate_theta": 0.8
+    },
+    "gap_formula": "Delta=max_v ||Phi_Z Phi_X rho_v - Phi_X Phi_Z rho_v||_1 (Schatten-1), cut-crossing channels on B",
+    "identity_order_control_gap": 0.0,
+    "measured_max_order_gap": 0.2152068272698569,
+    "present": true
+  },
+  "ablation_nonvacuous": true,
+  "ablation_outcome_delta": {
+    "E1_I_A_B_collapse_gap": 0.5789859002094853,
+    "E1_I_c_collapse_gap": 0.5789859002094853,
+    "E2_I_A_B_collapse_gap": 0.5789859002094851,
+    "E3_n_readout_delta": 7.0
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "L13 gluing/groupoid/dynamic (needs L12 cut readouts as transition/compatibility data across patches)",
+    "pairwise/subset/stack order tests (gated behind parent-complete + realness gate + dep-forcing)",
+    "Axis0 entropy ratchet / Phi_0 = I_c(A>B) (downstream; Xi: geometry/history -> rho_AB is OPEN, NOT closed here)",
+    "flux / FEP / gravity bridges (downstream, NOT drivers; blocked until stack complete)"
+  ],
+  "checks": {
+    "DEPFORCE_E1_product_erasure_collapse": true,
+    "DEPFORCE_E2_marginal_scramble_collapse": true,
+    "DEPFORCE_E3_collapse_complex": true,
+    "F01_witness_present": true,
+    "N01_identity_order_control_null": true,
+    "N01_order_gap_measured": true,
+    "ablation_nonvacuous": true,
+    "cut_correlation_real_entangled": true,
+    "finite_map_present": true,
+    "julia_native_spinor_density": true,
+    "negative_controls_fire": true,
+    "peps3d_anchor_present": true,
+    "qit_dephase_degrades_correlation": true,
+    "qit_entropy_is_derived": true,
+    "readout_identities_hold": true,
+    "scale_stress_8_16_32_64": true,
+    "z3_load_bearing_flip": true
+  },
+  "classification": "L12_layer_poc",
+  "controls": {
+    "negative": {
+      "identity_order_control_gap": 0.0,
+      "marginal_scramble_MI_gap": 0.0,
+      "product_cut_residual_MI_gap": 4.440892098500626e-16,
+      "zero_angle_cut_MI_gap": 0.0
+    },
+    "positive": {
+      "n01_cut_channel_order_gap": 0.2152068272698569,
+      "product_drop_I_A_B_gap": 0.5789859002094853,
+      "qit_Xdephase_correlation_gap": 0.6876096382667658
+    }
+  },
+  "cut_signature": {
+    "I_A_B_entangled": [
+      0.39592478097105976,
+      0.4647196310895183,
+      0.5272685411280018,
+      0.5817073619118192,
+      0.6265066927542223,
+      0.6604614514070393,
+      0.6826860815551887,
+      0.692612660859032
+    ],
+    "I_A_B_product": [
+      -2.220446049250313e-16,
+      -2.220446049250313e-16,
+      0.0,
+      0.0,
+      0.0,
+      -2.220446049250313e-16,
+      -4.440892098500626e-16,
+      -2.220446049250313e-16
+    ],
+    "I_c_entangled": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "I_c_product": [
+      -0.39592478097106,
+      -0.46471963108951847,
+      -0.5272685411280018,
+      -0.5817073619118192,
+      -0.6265066927542223,
+      -0.6604614514070395,
+      -0.682686081555189,
+      -0.6926126608590322
+    ],
+    "mean_I_A_B_entangled": 0.5789859002094851,
+    "mean_I_A_B_product": -1.6653345369377348e-16,
+    "mean_I_c_entangled": 0.0,
+    "mean_I_c_product": -0.5789859002094853,
+    "nsites": 8
+  },
+  "dependency_forcing": {
+    "E1_product_erasure": {
+      "I_A_B_collapse_gap": 0.5789859002094853,
+      "I_c_collapse_gap": 0.5789859002094853,
+      "baseline_mean_I_A_B": 0.5789859002094851,
+      "baseline_mean_I_c": 0.0,
+      "collapsed": true,
+      "mean_I_A_B_after": -1.6653345369377348e-16,
+      "mean_I_c_after": -0.5789859002094853,
+      "meaning": "replacing the entangled cut by its product (same marginals, zero correlation) drives I(A:B)->0 exactly and I_c to the product baseline -I(A)<=0. The readouts WERE measuring real cut correlation."
+    },
+    "E2_marginal_scramble": {
+      "I_A_B_collapse_gap": 0.5789859002094851,
+      "baseline_mean_I_A_B": 0.5789859002094851,
+      "collapsed": true,
+      "mean_I_A_B_after": 0.0,
+      "meaning": "a fully product, maximally-mixed cut also has I(A:B)=0: the product baseline is set by marginals, not by leftover A-B terms."
+    },
+    "E3_collapse_complex_to_single_cut": {
+      "baseline_n_readouts": 8,
+      "collapsed": true,
+      "honest_note": "E3 collapses the COMPLEX/vector structure; a single cut readout still runs (a scalar always runs). It is the readout VECTOR over the complex, not one scalar, that is the L12 object.",
+      "meaning": "with no V,E,F,C complex (single cut) the readout VECTOR over the complex degenerates to one scalar; the across-cut object is gone.",
+      "n_readout_delta": 7,
+      "n_readouts_after": 1
+    }
+  },
+  "dependency_forcing_all_collapse": true,
+  "doc_source": "MANIFOLD_GEOMETRY_LAYER_STACK_NONCOMMUTATIVE_ORDER_20260528.md line 70-71; QIT_ENGINE_FULL_EXPLICIT_MATH_PACKET_20260522.md Axis-0 Entropy Ratchet line 1496-1507",
+  "finite_map": {
+    "codomain": "per-cut state rho_AB(v)=Tr_E|psi><psi| + derived readout vector (S_A,S_B,S_AB,S(A|B),I_c(A>B),I(A:B)) + N01 channel-order gap on the cut",
+    "domain": "PEPS3D cut cells v of K=(V,E,F,C); each carries a 3-qubit pure |psi_ABE(v)>, angle alpha(v) read from Hopf latitude; environment E purifies the A:B cut",
+    "map": "G_L12 : (cut cell v, alpha(v), beta(v)) -> rho_AB(v) ;  readouts R(rho_AB) ;  Phi_0 = I_c(A>B). Xi: geometry/history -> rho_AB is the OPEN bridge (not closed here)."
+  },
+  "honest_scope": {
+    "claim_ceiling": "L12 is the entropy/cut/communication layer whose SIGNATURE is the derived readout vector (S(A|B),I_c,I(A:B)) over a PEPS3D cut complex, where the PRIMARY object is the entangled cut state rho_AB. E1 product-erasure drives I(A:B)->0 and I_c to the product baseline; the readouts genuinely MEASURE cut correlation. The alpha-IS-forced-by-L7/L8 link and the Xi bridge are modeled/open, not derived/closed here.",
+    "forced_standard_math": [
+      "von Neumann entropy + cut functionals S(A|B), I_c(A>B), I(A:B) (re-MEASURED from QIT packet l.214,1499-1507, not discovered)",
+      "product cut I(A:B)=0 exactly; product I_c = -S(rho_A) <= 0 (standard QIT)",
+      "GHZ-type purified cut: A:B marginal cos^2 a|00><00|+sin^2 a|11><11|, I(A:B)=H(cos^2 a)>0 (standard)"
+    ],
+    "honest_failure_note": "E3 (collapse to single cut) collapses the readout VECTOR but a single scalar readout still runs -- a scalar always runs. L12 is real ONLY as the readout VECTOR over the PEPS3D cut complex whose entangled cuts carry real A:B correlation; one entropy number is not the object. Reported, not hidden.",
+    "novel_interpretive_NOT_proven": [
+      "reading the per-cut entangling angle alpha(v) as FORCED by the L7/L8 Hopf latitude: here it is MODELED as a latitude sweep, not derived from a full below-geometry carrier run inside this file.",
+      "Xi: geometry/history -> rho_AB is the OPEN bridge (packet l.1513); this file builds rho_AB from a modeled angle, it does NOT close Xi.",
+      "Phi_0 = I_c(A>B) is the packet's candidate current; NOT admitted as a root/axis mechanism here (downstream, blocked)."
+    ]
+  },
+  "layer_id": "L12",
+  "negative_controls": {
+    "identity_order_gap": 0.0,
+    "identity_order_null": true,
+    "product_cut_max_abs_MI": 4.440892098500626e-16,
+    "product_cut_null": true,
+    "zero_angle_cut_MI": 0.0,
+    "zero_angle_null": true
+  },
+  "object": "L12_layer_entropy_cut_communication_cut_state_over_peps3d",
+  "peps3d": {
+    "C": 1,
+    "E": 12,
+    "F": 6,
+    "V": 8,
+    "euler_VEFC": 1,
+    "grid": "2x2x2",
+    "n_cut_cells": 8
+  },
+  "peps3d_honest_note": "finite K=(V,E,F,C) anchor with a local cut state per cell; an anchor PoC, NOT a full PEPS3D tensor-network contraction.",
+  "primary_object_note": "PRIMARY OBJECT = the cut state rho_AB (entangled, carried by below-geometry + purifier E). S(A|B), I_c, I(A:B) are DERIVED scalar readouts that MEASURE it; never the primary object.",
+  "promotion_allowed": false,
+  "qit_derived": {
+    "base_readouts": {
+      "I_A_B": 0.692612660859032,
+      "I_c": 0.0,
+      "S_AB": 0.692612660859032
+    },
+    "dephase_degrades_cut_correlation": true,
+    "entropy_is_derived_not_primary": true,
+    "note": "readouts taken AFTER a cut-crossing channel acts. The cut state is Z-classically-correlated so Z-dephasing is a symmetry (no change, correct physics); X-basis dephasing on B is NOT a symmetry and degrades the cut correlation (I(A:B) down, S_AB up). DERIVED measurement, never the layer's primary scalar.",
+    "readout_change_after_Xdephase": {
+      "dI_A_B_after_Xdephase": -0.6876096382667658,
+      "dI_c_after_Xdephase": -0.6876096382667657,
+      "dS_AB_after_Xdephase": 0.6881388137135884
+    }
+  },
+  "readout_identities": {
+    "I_A_B": 0.6931471805599453,
+    "I_c_A_to_B": 0.0,
+    "S_A": 0.6931471805599453,
+    "S_AB": 0.6931471805599453,
+    "S_A_given_B": 0.0,
+    "S_B": 0.6931471805599453,
+    "identity_residual": 0.0,
+    "note": "S(A|B)=S(rho_AB)-S(rho_B); I_c=S(rho_B)-S(rho_AB); I(A:B)=S(rho_A)+S(rho_B)-S(rho_AB) hold exactly from the state"
+  },
+  "scale_stress_8_16_32_64": {
+    "16": {
+      "I_c_separation": 0.5820557568561452,
+      "mean_I_A_B_entangled": 0.582055756856145,
+      "mean_I_A_B_product": -1.0408340855860843e-16,
+      "mean_I_c_entangled": 0.0,
+      "mean_I_c_product": -0.5820557568561452,
+      "nsites": 16,
+      "ok": true
+    },
+    "32": {
+      "I_c_separation": 0.5834452633215279,
+      "mean_I_A_B_entangled": 0.5834452633215277,
+      "mean_I_A_B_product": -9.71445146547012e-17,
+      "mean_I_c_entangled": 0.0,
+      "mean_I_c_product": -0.5834452633215279,
+      "nsites": 32,
+      "ok": true
+    },
+    "64": {
+      "I_c_separation": 0.5841077300877879,
+      "mean_I_A_B_entangled": 0.5841077300877879,
+      "mean_I_A_B_product": -1.1275702593849246e-16,
+      "mean_I_c_entangled": 0.0,
+      "mean_I_c_product": -0.5841077300877879,
+      "nsites": 64,
+      "ok": true
+    },
+    "8": {
+      "I_c_separation": 0.5789859002094853,
+      "mean_I_A_B_entangled": 0.5789859002094851,
+      "mean_I_A_B_product": -1.6653345369377348e-16,
+      "mean_I_c_entangled": 0.0,
+      "mean_I_c_product": -0.5789859002094853,
+      "nsites": 8,
+      "ok": true
+    }
+  },
+  "scale_stress_all_pass": true,
+  "spinor": {
+    "cell_eltype": "ComplexF64",
+    "construction": "psi_v=(e^{i phi}cos eta, e^{i chi}sin eta) in S^3; |psi_ABE> in C^8; rho_AB=Tr_E|psi><psi|. NOT numpy.",
+    "cut_eltype": "ComplexF64",
+    "native_julia": true,
+    "rho_AB_trace": 1.0
+  },
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "tool_manifest": {
+    "JSON": "load_bearing: receipt emission",
+    "LinearAlgebra": "load_bearing: eigvals (von Neumann entropy spectra), svdvals (trace-norm N01 gap), kron (cut & product states), tr (partial-trace normalisation)",
+    "Z3": "load_bearing: cut-correlation obstruction SAT/UNSAT verdict flips on product-erased input (see z3 block)",
+    "decorative_imports": "none"
+  },
+  "z3": {
+    "claim": "a positive cut mutual information I(A:B)>0 cannot coexist with a product cut state (product law I(A:B)=0)",
+    "encoding": "FREE ints mutual_information, is_product_cut; law Or(Not(is_product==1), mi==0); assert is_product==1 + mi==ceil(scale*|measured|). entangled: unsat; product: sat. Not a literal-vs-literal tautology. (Implies/>= unexported in this Z3.jl; encoded via Or/Not + equality.)",
+    "erased_product_MI": 0.0,
+    "erased_verdict": "sat",
+    "genuine_verdict": "unsat",
+    "load_bearing_flip": true,
+    "measured_entangled_MI": 0.692612660859032,
+    "role": "load_bearing"
+  }
+}

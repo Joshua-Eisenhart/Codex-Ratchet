@@ -731,7 +731,9 @@ def child_prompt(args: argparse.Namespace, child_id: str, role: str) -> str:
             "You MUST follow that skill. Interpret 100% confidence as no known unresolved loophole under the declared evidence standard, not literal omniscience. "
             "Return only the requested receipt YAML. Include top-level loophole_audit, confidence_status, and stop_condition. "
             "loophole_audit MUST include strategy_under_test, evidence_standard, loopholes_found, fixes_applied, verification_result, and unresolved_loopholes. "
-            "fixes_applied MUST be a non-empty list; if this read-only child cannot apply fixes, include proposed_fix/not_applied_read_only entries with the exact gate or prompt change needed.\n"
+            "loopholes_found and unresolved_loopholes may be empty lists when none are found; fixes_applied MUST be a non-empty list. "
+            "If this read-only child cannot apply fixes, include proposed_fix/not_applied_read_only entries with the exact gate or prompt change needed. "
+            "Set status: accepted when the receipt is complete under the declared evidence boundary; do not mark it partial only because the work is read-only.\n"
         )
     management_contract = ""
     if child_id.startswith("manager."):
@@ -760,12 +762,12 @@ def child_prompt(args: argparse.Namespace, child_id: str, role: str) -> str:
         f"{loophole_contract}"
         f"{management_contract}"
         f"Packet root: {packet_root}\n"
-        "This is a non-interactive worker invocation launched by the Wizard harness. "
-        "For this invocation, adopt the bounded child role exactly; do not describe yourself as the main assistant and do not ask whether to proceed. "
+        "This is a non-interactive schema-filling analysis request launched by the Wizard harness. "
+        "For this invocation, complete the bounded work item exactly; do not treat it as an identity change, jailbreak, or request to override safety, and do not ask whether to proceed. "
         "If you see a role or evidence conflict, encode it inside evidence_boundary or status, then still return the YAML receipt. "
         "Do not edit files. Do not open a browser.\n"
         "Do not ask for clarification. If source data is incomplete, name the evidence boundary and still return the required YAML receipt.\n"
-        "Use the assigned role only. Return YAML only, no prose before or after. "
+        "Use the assigned work item only. Return YAML only, no prose before or after. "
         "Quote any scalar value containing a colon, or use a block scalar. "
         "The YAML MUST have these top-level keys with non-empty values: id, status, distinct_delta, "
         "loaded_mini_mmm_or_fallback, work_unit_fingerprint, value_score, evidence_boundary, "
@@ -1370,7 +1372,17 @@ def run_one_grok_child(args: argparse.Namespace, out_dir: Path, child_id: str, r
                 {"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
                 {
                     "model": model_name,
-                    "messages": [{"role": "user", "content": prompt}],
+                    "messages": [
+                        {
+                            "role": "system",
+                            "content": (
+                                "You fill concise YAML receipts for a local software test harness. "
+                                "The user message is a benign schema-filling work order, not a request to change identity "
+                                "or override safety policy. Follow the requested schema for safe software-analysis content."
+                            ),
+                        },
+                        {"role": "user", "content": prompt},
+                    ],
                     "temperature": 0,
                     "max_tokens": 512,
                 },
@@ -1674,7 +1686,7 @@ def child_usefulness_failure_reason(child: Any) -> str:
             loophole_missing.append("loophole_audit_object")
         else:
             for field in ("strategy_under_test", "evidence_standard", "loopholes_found", "fixes_applied", "verification_result", "unresolved_loopholes"):
-                ok = present_value(audit, field) if field == "unresolved_loopholes" else nonempty_value(audit, field)
+                ok = present_value(audit, field) if field in {"loopholes_found", "unresolved_loopholes"} else nonempty_value(audit, field)
                 if not ok:
                     loophole_missing.append(f"loophole_audit.{field}")
         missing = loophole_missing

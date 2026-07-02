@@ -1,0 +1,355 @@
+{
+  "schema": "clean_rebuild_result_v1",
+  "name": "rebuild_007_point_reference_survivor_stress",
+  "classification": "clean_rebuild_scout",
+  "sim_execution_kind": "nonclassical_clean_rebuild",
+  "source_alignment_category": "point_reference_survivor_stress",
+  "promotion_allowed": false,
+  "claim_ceiling": "Clean rebuild scout only: stresses the point-reference MI survivor from rebuild_006. It does not admit final Xi, Phi0, Axis0, or formal evidence.",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing deterministic matched controls, spinor transformations, QIT path readouts, and stress statistics"
+    },
+    "clean_rebuild_004_source": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive clean spinor/Xi constructors"
+    },
+    "clean_rebuild_005_source": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive clean QIT path readout"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive receipt serialization"
+    },
+    "pathlib": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result paths"
+    },
+    "time": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive runtime metadata"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "clean_rebuild_004_source": "supportive",
+    "clean_rebuild_005_source": "supportive",
+    "python_json": "supportive",
+    "pathlib": "supportive",
+    "time": "supportive"
+  },
+  "generated_at": "2026-05-23T23:06:41Z",
+  "runtime_seconds": 1.8064048290252686,
+  "all_pass": true,
+  "sections": {
+    "survivor_stress_gate": {
+      "pass": true,
+      "candidate_score": {
+        "log_z": -0.5519715533790124,
+        "I_c": -0.00882462984750497,
+        "MI": 0.2040032941969234,
+        "Phi_logZ_plus_Ic": -0.5607961832265174,
+        "Phi_logZ_plus_MI": -0.34796825918208907
+      },
+      "ensemble_controls": [
+        {
+          "control": "matched_random",
+          "k_seeds": 64,
+          "stats": {
+            "log_z": {
+              "mean_diff": -0.0005576276215613699,
+              "std_diff": 0.015856015518195425,
+              "se_diff": 0.001982001939774428,
+              "z": -0.2813456487458501,
+              "survives_positive": false
+            },
+            "I_c": {
+              "mean_diff": -0.00042204791356127214,
+              "std_diff": 0.000757371606572751,
+              "se_diff": 9.467145082159387e-05,
+              "z": -4.458027313393681,
+              "survives_positive": false
+            },
+            "MI": {
+              "mean_diff": 0.052189722926763535,
+              "std_diff": 0.01675357877513819,
+              "se_diff": 0.002094197346892274,
+              "z": 24.921110230710358,
+              "survives_positive": true
+            },
+            "Phi_logZ_plus_Ic": {
+              "mean_diff": -0.0009796755351226556,
+              "std_diff": 0.016355459679331427,
+              "se_diff": 0.0020444324599164284,
+              "z": -0.47919192946227357,
+              "survives_positive": false
+            },
+            "Phi_logZ_plus_MI": {
+              "mean_diff": 0.05163209530520208,
+              "std_diff": 0.018732974242147832,
+              "se_diff": 0.002341621780268479,
+              "z": 22.049716030264374,
+              "survives_positive": true
+            }
+          },
+          "surviving_readouts": [
+            "MI",
+            "Phi_logZ_plus_MI"
+          ]
+        },
+        {
+          "control": "phase_scrambled",
+          "k_seeds": 64,
+          "stats": {
+            "log_z": {
+              "mean_diff": 0.003063894469620977,
+              "std_diff": 0.019665368707937145,
+              "se_diff": 0.002458171088492143,
+              "z": 1.2464122143346776,
+              "survives_positive": false
+            },
+            "I_c": {
+              "mean_diff": -0.001763553542874447,
+              "std_diff": 0.0010475996131042587,
+              "se_diff": 0.00013094995163803234,
+              "z": -13.467385980784515,
+              "survives_positive": false
+            },
+            "MI": {
+              "mean_diff": 0.09171133777703326,
+              "std_diff": 0.013400720506791605,
+              "se_diff": 0.0016750900633489506,
+              "z": 54.75009361208788,
+              "survives_positive": true
+            },
+            "Phi_logZ_plus_Ic": {
+              "mean_diff": 0.001300340926746529,
+              "std_diff": 0.02027618010567942,
+              "se_diff": 0.0025345225132099277,
+              "z": 0.5130516379196294,
+              "survives_positive": false
+            },
+            "Phi_logZ_plus_MI": {
+              "mean_diff": 0.09477523224665417,
+              "std_diff": 0.025094301260482028,
+              "se_diff": 0.0031367876575602535,
+              "z": 30.214105190776262,
+              "survives_positive": true
+            }
+          },
+          "surviving_readouts": [
+            "MI",
+            "Phi_logZ_plus_MI"
+          ]
+        },
+        {
+          "control": "amplitude_scrambled",
+          "k_seeds": 64,
+          "stats": {
+            "log_z": {
+              "mean_diff": -0.000166815422682225,
+              "std_diff": 8.2216602478113e-05,
+              "se_diff": 1.0277075309764125e-05,
+              "z": -16.231799189379853,
+              "survives_positive": false
+            },
+            "I_c": {
+              "mean_diff": -8.120104774870498e-06,
+              "std_diff": 3.0669320626006568e-06,
+              "se_diff": 3.833665078250821e-07,
+              "z": -21.181048967833785,
+              "survives_positive": false
+            },
+            "MI": {
+              "mean_diff": 9.788728574600157e-05,
+              "std_diff": 3.8353897103635685e-05,
+              "se_diff": 4.7942371379544606e-06,
+              "z": 20.417697942193737,
+              "survives_positive": false
+            },
+            "Phi_logZ_plus_Ic": {
+              "mean_diff": -0.00017493552745711204,
+              "std_diff": 8.513501649330282e-05,
+              "se_diff": 1.0641877061662853e-05,
+              "z": -16.438408980245953,
+              "survives_positive": false
+            },
+            "Phi_logZ_plus_MI": {
+              "mean_diff": -6.8928136936308e-05,
+              "std_diff": 4.50564182938322e-05,
+              "se_diff": 5.632052286729025e-06,
+              "z": -12.238547056589914,
+              "survives_positive": false
+            }
+          },
+          "surviving_readouts": []
+        },
+        {
+          "control": "shell_matched",
+          "k_seeds": 64,
+          "stats": {
+            "log_z": {
+              "mean_diff": 0.050426471723347785,
+              "std_diff": 3.496873836876313e-17,
+              "se_diff": 4.3710922960953915e-18,
+              "z": 1.1536354830208626e+16,
+              "survives_positive": true
+            },
+            "I_c": {
+              "mean_diff": -0.0011557933908962702,
+              "std_diff": 1.4899783543096758e-16,
+              "se_diff": 1.8624729428870948e-17,
+              "z": -62056922507804.49,
+              "survives_positive": false
+            },
+            "MI": {
+              "mean_diff": 0.083259212762887,
+              "std_diff": 1.4807103379607004e-16,
+              "se_diff": 1.8508879224508755e-17,
+              "z": 4498338973039400.0,
+              "survives_positive": true
+            },
+            "Phi_logZ_plus_Ic": {
+              "mean_diff": 0.04927067833245151,
+              "std_diff": 1.806229272589397e-16,
+              "se_diff": 2.257786590736746e-17,
+              "z": 2182255778052691.2,
+              "survives_positive": true
+            },
+            "Phi_logZ_plus_MI": {
+              "mean_diff": 0.13368568448623472,
+              "std_diff": 1.3917382147355022e-16,
+              "se_diff": 1.7396727684193777e-17,
+              "z": 7684530499819119.0,
+              "survives_positive": true
+            }
+          },
+          "surviving_readouts": [
+            "log_z",
+            "MI",
+            "Phi_logZ_plus_Ic",
+            "Phi_logZ_plus_MI"
+          ]
+        },
+        {
+          "control": "history_matched",
+          "k_seeds": 64,
+          "stats": {
+            "log_z": {
+              "mean_diff": 0.004426108180268208,
+              "std_diff": 0.04384843430928569,
+              "se_diff": 0.005481054288660712,
+              "z": 0.8075286153295376,
+              "survives_positive": false
+            },
+            "I_c": {
+              "mean_diff": 0.0002360752293632185,
+              "std_diff": 0.0014622210394366064,
+              "se_diff": 0.0001827776299295758,
+              "z": 1.291598044324014,
+              "survives_positive": false
+            },
+            "MI": {
+              "mean_diff": 0.05059605181425235,
+              "std_diff": 0.013221687119511896,
+              "se_diff": 0.001652710889938987,
+              "z": 30.613976178326144,
+              "survives_positive": true
+            },
+            "Phi_logZ_plus_Ic": {
+              "mean_diff": 0.004662183409631419,
+              "std_diff": 0.04514349961588707,
+              "se_diff": 0.005642937451985883,
+              "z": 0.8261979597152342,
+              "survives_positive": false
+            },
+            "Phi_logZ_plus_MI": {
+              "mean_diff": 0.05502215999452047,
+              "std_diff": 0.031992906645299,
+              "se_diff": 0.003999113330662375,
+              "z": 13.758589828562602,
+              "survives_positive": true
+            }
+          },
+          "surviving_readouts": [
+            "MI",
+            "Phi_logZ_plus_MI"
+          ]
+        }
+      ],
+      "fixed_controls": [
+        {
+          "control": "fiber_candidate",
+          "score": {
+            "log_z": -0.42015456741595236,
+            "I_c": -0.006847694183117566,
+            "MI": 0.10296673189215155,
+            "Phi_logZ_plus_Ic": -0.4270022615990699,
+            "Phi_logZ_plus_MI": -0.31718783552380075
+          },
+          "diff_candidate_minus_control": {
+            "log_z": -0.13181698596306002,
+            "I_c": -0.0019769356643874036,
+            "MI": 0.10103656230477184,
+            "Phi_logZ_plus_Ic": -0.13379392162744747,
+            "Phi_logZ_plus_MI": -0.030780423658288314
+          },
+          "positive_readouts_over_floor": [
+            "MI"
+          ]
+        },
+        {
+          "control": "product_like_zero_angle",
+          "score": {
+            "log_z": -0.503630750997084,
+            "I_c": -5.2427198385076835e-17,
+            "MI": 1.5419764230904953e-17,
+            "Phi_logZ_plus_Ic": -0.5036307509970841,
+            "Phi_logZ_plus_MI": -0.503630750997084
+          },
+          "diff_candidate_minus_control": {
+            "log_z": -0.048340802381928394,
+            "I_c": -0.008824629847504917,
+            "MI": 0.20400329419692337,
+            "Phi_logZ_plus_Ic": -0.057165432229433266,
+            "Phi_logZ_plus_MI": 0.15566249181499492
+          },
+          "positive_readouts_over_floor": [
+            "MI",
+            "Phi_logZ_plus_MI"
+          ]
+        }
+      ],
+      "readout_survival": {
+        "MI": false,
+        "Phi_logZ_plus_MI": false
+      },
+      "survived_all_controls": []
+    },
+    "nonpromotion_gate": {
+      "pass": true,
+      "admission": "blocked",
+      "survivors": [],
+      "reason": "This stress scout can kill or narrow the clean point-reference survivor, but formal admission is blocked until the formal estate is reset and the survivor is rerun as an isolated formal scout."
+    }
+  },
+  "source_boundary": {
+    "reads_formal_scout_results": false,
+    "reads_grok_sim": false,
+    "reads_external_audits": false,
+    "reads_cross_lane_synthesis_docs": false,
+    "reads_clean_rebuild_source": [
+      "sim_rebuild_004_xi_rho_ab_bridge_family_from_readonly.py",
+      "sim_rebuild_005_qit_fep_axis0_batch_from_clean_xi.py"
+    ],
+    "reads_clean_rebuild_results": false
+  }
+}

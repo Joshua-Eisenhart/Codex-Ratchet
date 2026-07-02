@@ -1,0 +1,215 @@
+{
+  "all_pass": true,
+  "allowed_claims": [
+    "finite PoC nesting/coherence check on one two-qubit joint tensor-network state",
+    "good U1 maximal torus is a valid SU2 subaction in this convention",
+    "bad generic global U1 phase breaks U1 subset SU2 nesting",
+    "terrain Lindblad is a valid density action on this carrier"
+  ],
+  "architecture_coheres_for_this_finite_object": true,
+  "blocked_consumers": [
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics",
+    "full manifold admission",
+    "layer completion"
+  ],
+  "boundary": {
+    "O3_reflection_boundary": "reflection is in O3 but det=-1, so it is excluded by SO3 and has no even Spin3 lift in this probe",
+    "global_phase_boundary": "only center phases +/-I are also in SU2; a generic global U1 phase is not the Hopf SU2 maximal torus used here"
+  },
+  "carrier_realization": "Julia ITensors/ITensorMPS two-site MPS plus LinearAlgebra dense readout for finite operator identities.",
+  "checks": {
+    "density_is_valid": true,
+    "gamma5_commutes_with_hopf_u1_subaction": true,
+    "gamma5_commutes_with_spin3_even_action": true,
+    "gamma5_projectors_ok": true,
+    "hopf_base_rotates_by_so3_z_restriction": true,
+    "itensor_mps_joint_state_reconstructs": true,
+    "joint_two_qubit_state_normalized": true,
+    "kill_bad_u1_not_inside_su2_breaks_nesting": true,
+    "left_weyl_spinor_on_S3": true,
+    "o3_so3_spin3_u1_chain_nested": true,
+    "right_weyl_spinor_on_S3": true,
+    "spin3_action_is_su2": true,
+    "spin3_preserves_chirality_split": true,
+    "terrain_lindblad_density_action_valid": true,
+    "u1_hopf_phase_is_su2_subaction": true
+  },
+  "claim_ceiling": "Finite two-qubit tensor-network integration coherence only. This tests mutual consistency of nested O3/SO3/Spin3/U1 actions, gamma5 chirality split, and one terrain Lindblad density action on one object. It is not canonical, not PEPS3D admission, not layer completion, and not architecture closure.",
+  "classification": "PoC",
+  "codomain_or_output": "Boolean coherence receipt plus JSON metrics over the same 4-dimensional carrier.",
+  "dependency_receipts": [
+    "layers/g_su2_spin3_double_cover_results.json",
+    "layers/g_u1_hopf_bundle_chern_results.json",
+    "layers/l2_weyl_chirality_gamma5_genuine_results.json",
+    "layers/L4_terrain_octet_receipt.json"
+  ],
+  "domain": {
+    "chirality_site": "Qubit basis 1=L, 2=R",
+    "operators": [
+      "gamma5",
+      "Spin3_SU2",
+      "Hopf_U1_maximal_torus",
+      "terrain_Lindblad_jump",
+      "bad_global_U1_control"
+    ],
+    "spinor_site": "Qubit basis for each Weyl spinor"
+  },
+  "eligible_consumers": [
+    "local follow-up integration probes that preserve classification=PoC and promotion_allowed=false"
+  ],
+  "finite_map": "C^2_L/R Weyl spinors -> joint C^2_chirality tensor C^2_spinor state -> density rho; nested operators O3 > SO3 > Spin3=SU2 > U1 act through explicit finite matrices; terrain Lindblad maps rho to rho + dt*D(rho).",
+  "gamma5_spin3": {
+    "commutator_residual_hopf_u1": 0.0,
+    "commutator_residual_spin3": 0.0,
+    "gamma5_diagonal": [
+      -1,
+      -1,
+      1,
+      1
+    ],
+    "gamma5_hermitian_residual": 0.0,
+    "gamma5_sq_residual": 0.0,
+    "projector_orthogonality_residual": 0.0,
+    "projector_sum_residual": 0.0,
+    "spin3_su2_det_residual": 5.551115123125783e-17,
+    "spin3_su2_unitary_residual": 0.0,
+    "spin_preserve_PL_residual": 0.0,
+    "spin_preserve_PR_residual": 0.0
+  },
+  "generated_at": "2026-06-03T00:43:50.503",
+  "graveyard_companions": [
+    "decorative Z3 omitted by request and because direct finite matrix inclusion checks decide this probe",
+    "generic global U1 phase in U(2) is not accepted as the SU2 Hopf subaction",
+    "O3 reflection is retained only as an O3/SO3 boundary, not as an even Spin3 action"
+  ],
+  "kill_control": {
+    "bad_u1_det_residual_from_1": 1.3337392700073958,
+    "bad_u1_not_inside_su2_breaks_nesting": true
+  },
+  "kind": "integration_coherence_tn_receipt",
+  "nearby_variants": [
+    "replace terrain jump with a non-block-diagonal jump to test chirality-mixing failure",
+    "lift the same checks to a finite PEPS3D cell carrier before any nonclassical manifold promotion",
+    "sample multiple SU2 axes and U1 torus angles for a broader numerical stress receipt"
+  ],
+  "peps3d_embedding": "blocked_not_claimed: this is a 2-site tensor-network integration PoC, not a finite PEPS3D cell/bond/face embedding.",
+  "positive": {
+    "gamma5_commutes_with_even_spin_part": true,
+    "good_nested_actions_mutually_consistent": true,
+    "hopf_u1_is_su2_subaction": true,
+    "terrain_lindblad_valid_density_action": true
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "classification is PoC",
+    "promotion_allowed=false",
+    "single finite two-qubit object only",
+    "no PEPS3D carrier admission",
+    "no canonical sim template admission claimed",
+    "no layer completion or architecture closure claimed"
+  ],
+  "promotion_status": "diagnostic_only",
+  "quaternion_action": "not_applicable: this probe uses the equivalent SU2 spinor matrix action directly and makes no quaternion-map claim.",
+  "reduction_chain": {
+    "chain": "O(3) > SO(3) > Spin(3)=SU(2) > U(1)",
+    "hopf_so3_z_restriction_residual": 1.5700924586837752e-16,
+    "nested_chain_consistent": true,
+    "o3_so3_nested": true,
+    "reflection_o3_not_so3_boundary": true,
+    "so3_spin3_nested": true,
+    "spin3_u1_nested": true,
+    "spin_double_cover_minus_same_so3_residual": 0.0,
+    "spin_image_so3_det": 1.0,
+    "spin_image_so3_orthogonal_residual": 1.7137803725070883e-16,
+    "spin_so3_rodrigues_residual": 1.6883057536160649e-16,
+    "su2_gl2_nested": true
+  },
+  "result_path": "layers/integration_coherence_tn_receipt.json",
+  "root_constraints_in_force": [
+    "F01 finite carrier/probe/operator/path set: two qubit sites, finite matrices, finite density, finite subgroup checks",
+    "N01 order-sensitive/control pressure: subgroup nesting and bad-U1 kill-control decide whether action composition is admissible"
+  ],
+  "scientific_question": "Can the L/R Weyl spinor carrier, Hopf U(1) subaction, Spin(3)=SU(2) action, gamma5 chirality split, and terrain Lindblad density action cohere as one finite tensor-network object?",
+  "script": "layers/integration_coherence_tn.jl",
+  "sim_class": "integration_coherence_probe",
+  "sim_execution_kind": "nonclassical",
+  "spinor_state": {
+    "joint_norm": 1.0,
+    "left_components_re_im": [
+      [
+        0.8223475378368414,
+        0.19254721753056686
+      ],
+      [
+        0.429454754726727,
+        0.3197478845552039
+      ]
+    ],
+    "left_norm": 1.0,
+    "right_components_re_im": [
+      [
+        0.8905502222389267,
+        -0.17127047407594506
+      ],
+      [
+        0.25863884262915426,
+        -0.3327050878232116
+      ]
+    ],
+    "right_norm": 1.0
+  },
+  "tensor_network": {
+    "max_link_dim": 2,
+    "mps_length": 2,
+    "reconstruction_residual": 1.9279638981753172e-16,
+    "site_dimensions": [
+      2,
+      2
+    ],
+    "sites": 2
+  },
+  "terrain_lindblad": {
+    "drho_hermitian_residual": 0.0,
+    "dt": 0.1,
+    "gamma": 0.2,
+    "jump": "sqrt(gamma) * (P_L tensor sigma_z + P_R tensor sigma_x)",
+    "rho_next_min_eigenvalue": -1.4208341629029478e-16,
+    "rho_next_minus_rho_norm": 0.024674986820187286,
+    "rho_next_trace_residual": 0.0,
+    "terrain_gamma5_commutator_residual": 0.0,
+    "trace_drho_residual": 0.0
+  },
+  "tool_integration_depth": {
+    "ITensorMPS": "load_bearing",
+    "ITensors": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing"
+  },
+  "tool_manifest": {
+    "ITensorMPS": "load_bearing: SVD-factorized MPS reconstructs the same joint state",
+    "ITensors": "load_bearing: builds the explicit two-site tensor state carrying chirality and spinor indices",
+    "JSON": "supportive: receipt serialization",
+    "LinearAlgebra": "load_bearing: finite matrix subgroup, commutator, density, and Lindblad checks",
+    "Z3": "not_used: user requested no decorative Z3; direct finite matrix checks are decisive here"
+  },
+  "u1_su2_gl2_inclusions": {
+    "bad_u1_det_re_im": [
+      0.11056977982006955,
+      0.9938683634116449
+    ],
+    "bad_u1_in_gl2": true,
+    "bad_u1_in_su2": false,
+    "bad_u1_unitary": true,
+    "break_location": "bad global phase is in GL2(C) and U(2), but det != 1 so U1 subset SU2 fails",
+    "good_u1_closure_residual": 0.0,
+    "good_u1_equals_spin_z_residual": 0.0,
+    "good_u1_in_gl2": true,
+    "good_u1_in_su2": true
+  }
+}

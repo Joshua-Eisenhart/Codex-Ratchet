@@ -1,0 +1,79 @@
+{
+  "artifact_id": "substrate_scope_breach_repair_20260526",
+  "kind": "scope_breach_repair",
+  "generated_at": "2026-05-26T13:03:02-07:00",
+  "schema": "formal_lane_scope_repair_v1",
+  "status": "resolved_by_codex_formal_review",
+  "problem_statement": "Claude/informal execution wrote formal-lane substrate files outside the grok_sim-only boundary. Tracked repo files were not overwritten, but formal provenance is contaminated if these rows are treated as native Codex/formal admissions without re-adoption.",
+  "scope_rule": "Claude/informal sims may read formal artifacts for inspiration but must write only under system_v5/grok_sim. Formal substrate, lego, formal_scout, registry, matrix, and validator surfaces are Codex/formal-lane territory.",
+  "tracked_overwrite_status": "no tracked overwrite detected for the named files; source files are untracked and result JSONs are ignored/generated",
+  "provenance_policy": {
+    "default_for_external_scope_breach_rows": "provisional_external_source",
+    "may_be_used_as_inspiration": true,
+    "may_be_validated_as_raw_artifact": true,
+    "may_be_counted_as_formal_admission": false,
+    "adoption_requirement": "Codex/formal lane must independently review, rerun, and either adopt with provenance note, rewrite under formal ownership, or quarantine/block the row."
+  },
+  "affected_files": [
+    {
+      "path": "system_v5/legos/chiral_overlap_spinor_to_density_bridge_clifford_pytorch_z3.py",
+      "git_status": "untracked",
+      "source": "claude_out_of_scope",
+      "current_policy": "formal_rerun_adopted_as_substrate_only_blocked_for_L0_dependency"
+    },
+    {
+      "path": "system_v5/legos/results/chiral_overlap_spinor_to_density_bridge_clifford_pytorch_z3_results.json",
+      "git_status": "ignored_generated",
+      "source": "claude_out_of_scope",
+      "current_policy": "formal_rerun_adopted_as_substrate_only_blocked_for_L0_dependency"
+    },
+    {
+      "path": "system_v5/legos/peps3d_2x2x2_carrier_anchor_pyg_torch_rustworkx_z3.py",
+      "git_status": "untracked",
+      "source": "claude_out_of_scope",
+      "current_policy": "formal_rerun_blocked_from_admission_replaced_by_codex_peps3d_closure_row"
+    },
+    {
+      "path": "system_v5/legos/results/peps3d_2x2x2_carrier_anchor_pyg_torch_rustworkx_z3_results.json",
+      "git_status": "ignored_generated",
+      "source": "claude_out_of_scope",
+      "current_policy": "formal_rerun_blocked_from_admission_replaced_by_codex_peps3d_closure_row"
+    }
+  ],
+  "affected_continuation_rows": [
+    {
+      "row_id": "T1b_chiral_overlap_spinor_density_bridge",
+      "previous_status": "admit_candidate",
+      "repaired_status": "formal_rerun_adopted_as_substrate_only_blocked_for_L0_dependency",
+      "required_next_action": "none for scope breach; do not cite as L0 dependency because it has no PEPS3D anchor"
+    },
+    {
+      "row_id": "T1c_peps3d_closure_2x2x2",
+      "previous_status": "admit_candidate",
+      "repaired_status": "blocked_replaced_by_codex_peps3d_closure_row",
+      "required_next_action": "none for scope breach; cite system_v5/legos/peps3d_closure_2x2x2_pyg_xgi_pytorch_z3.py instead"
+    }
+  ],
+  "non_admission_lock": {
+    "stacking_unlocked": false,
+    "layer_unlocked": false,
+    "flux_unlocked": false,
+    "axis0_unlocked": false,
+    "physics_unlocked": false,
+    "final_manifold_admitted": false
+  },
+  "formal_resolution": {
+    "resolved_at": "2026-05-26T20:34:00-07:00",
+    "codex_rerun_commands": [
+      "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/legos/chiral_overlap_spinor_to_density_bridge_clifford_pytorch_z3.py",
+      "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/legos/validate_lego_results.py system_v5/legos/results/chiral_overlap_spinor_to_density_bridge_clifford_pytorch_z3_results.json",
+      "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/legos/peps3d_2x2x2_carrier_anchor_pyg_torch_rustworkx_z3.py",
+      "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/legos/validate_lego_results.py system_v5/legos/results/peps3d_2x2x2_carrier_anchor_pyg_torch_rustworkx_z3_results.json"
+    ],
+    "T1b_decision": "adopt_as_substrate_chiral_overlap_only; blocked for L0 because PEPS3D anchor is not applicable",
+    "T1c_decision": "block_external_row_for_formal_admission because it uses NumPy in the breached source; use the independent Codex formal PEPS3D closure row instead",
+    "replacement_T1c_source": "system_v5/legos/peps3d_closure_2x2x2_pyg_xgi_pytorch_z3.py",
+    "replacement_T1c_result": "system_v5/legos/results/peps3d_closure_2x2x2_pyg_xgi_pytorch_z3_results.json"
+  },
+  "next_required_work": "Scope breach is resolved. Continue from R02 repair and L0_response_quotient_peps3d_entropy_layer; do not resume the old saturated Phase 2 scout loop."
+}

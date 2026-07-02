@@ -1,0 +1,215 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T02:33:48-07:00",
+  "scope": "phase2_post_R_replay_K_candidate_map_discovery",
+  "classification": "formal_scout_controller_candidate",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "selected_candidate_map_id": "C_restrict_K",
+  "current_state_assertion": {
+    "phase2_carrier_geometry": "real_bounded",
+    "frontier_row_count": 18,
+    "contract_complete_rows": 17,
+    "killed_rows": 1,
+    "active_transition_decision": "blocked",
+    "wizard_v4_2_status": "BLOCKED",
+    "latest_admitted_packet": "phase2_boundary_projection_shape_bond_replay_packet",
+    "latest_admitted_map": "R_replay_K"
+  },
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After R_replay_K, the earned object is a finite table of boundary/interior replay signatures over explicit PEPS3D anchors, finite shapes, finite bond dimensions, and finite order-sensitive local paths. It is not the physical manifold and it does not open Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, or any downstream physics/game-theory layer.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "C_restrict_K",
+      "candidate_name": "finite replay restriction consistency",
+      "finite_map": "C_restrict_K : (R_replay_K, pi_restrict, boundary_anchor, bond_dim, local_order_ops) -> finite replay-restriction consistency signatures + control gap vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": "It ratchets directly from R_replay_K by adding only an explicit finite restriction projection pi_restrict from a parent PEPS3D carrier K=(V,E,F,C) to a subcarrier K'=(V',E',F',C') with inherited anchors. It asks whether boundary/interior replay signatures remain finite and anchor-preserving under that restriction. It does not require Hopf/Weyl data, topology closure, sheaf gluing, full PEPS3D closure, flux, Axis0, physics, or game theory.",
+      "geometry_it_would_earn_if_later_passed": "A bounded finite subcarrier restriction readout for the Phase 2 PEPS3D response-quotient carrier: parent replay rows can be projected to explicit smaller anchored carrier cells and checked against control gaps.",
+      "not_run_in_this_artifact": true
+    },
+    {
+      "candidate_id": "B_delete_bond_replay_K",
+      "candidate_name": "two-bond delete replay",
+      "decision": "rejected_for_post_R_replay",
+      "why_rejected": "It does not ratchet directly from R_replay_K at the current frontier. It requires later deletion/idempotence/orbit support that is not part of the stated 18-row post-R active state, so using it here would skip bounded Phase 2 order."
+    },
+    {
+      "candidate_id": "I_boundary_phase7_reclassification",
+      "candidate_name": "boundary contraction scale closure stress as Phase 2",
+      "decision": "rejected",
+      "why_rejected": "The active blocker already rejects this as Phase 7/downstream scale-closure material. It cannot be reclassified as the missing post-R Phase 2 carrier map."
+    },
+    {
+      "candidate_id": "bond_convergence_or_shape_law_from_R",
+      "candidate_name": "general bond convergence or shape law",
+      "decision": "rejected",
+      "why_rejected": "R_replay_K earns bounded finite replay signatures only. A convergence law or general shape law would overclaim beyond finite carrier-frontier evidence."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_from_R",
+      "candidate_name": "topology, sheaf, homology, or persistence closure",
+      "decision": "rejected",
+      "why_rejected": "Those are closure/topology consumers, not the next finite carrier-frontier map. They remain blocked until the lower finite carrier receipts explicitly earn them."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_R",
+      "candidate_name": "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are downstream consumers. Opening them from R_replay_K would skip the bounded Phase 2 carrier-frontier ratchet."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "C_restrict_K",
+    "finite_map": "C_restrict_K : (R_replay_K, pi_restrict, boundary_anchor, bond_dim, local_order_ops) -> finite replay-restriction consistency signatures + control gap vector",
+    "domain": {
+      "R_replay_K": "validated bounded shape/bond boundary projection replay receipt",
+      "K_parent": "finite PEPS3D carrier K=(V,E,F,C) with explicit site, edge, face, and cell anchors",
+      "pi_restrict": "finite anchor-preserving restriction projection K_parent -> K_sub with K_sub=(V',E',F',C')",
+      "boundary_anchor": "finite boundary/interior anchor tags inherited from R_replay_K",
+      "bond_dim": [
+        2,
+        3
+      ],
+      "local_order_ops": "finite noncommuting or order-sensitive local operation pair inherited from the Phase 2 carrier receipts"
+    },
+    "codomain_or_output": "finite replay-restriction consistency signatures, inherited response vectors on K_sub, and a finite control gap vector",
+    "PEPS3D_carrier_anchor": "Every row must carry an explicit V/E/F/C anchor in K_parent and K_sub. Scalar PEPS3D labels are not evidence.",
+    "N01_order_witness": "At least one restricted anchored local path must preserve a nonzero order-sensitive response gap inherited from R_replay_K, while the order-erased control collapses.",
+    "F01_finite_witness": "The state carriers, anchors, restriction maps, bond dimensions, probes, paths, rows, and outputs are finite and receipt-backed.",
+    "geometry_if_later_earned": "finite anchored subcarrier restriction geometry for PEPS3D response-quotient replay signatures",
+    "promotion_allowed": false,
+    "not_a_scout_run": true
+  },
+  "selected_candidate_map": {
+    "candidate_id": "C_restrict_K",
+    "finite_map": "C_restrict_K : (R_replay_K, pi_restrict, boundary_anchor, bond_dim, local_order_ops) -> finite replay-restriction consistency signatures + control gap vector",
+    "domain": {
+      "R_replay_K": "validated bounded shape/bond boundary projection replay receipt",
+      "K_parent": "finite PEPS3D carrier K=(V,E,F,C) with explicit site, edge, face, and cell anchors",
+      "pi_restrict": "finite anchor-preserving restriction projection K_parent -> K_sub with K_sub=(V',E',F',C')",
+      "boundary_anchor": "finite boundary/interior anchor tags inherited from R_replay_K",
+      "bond_dim": [
+        2,
+        3
+      ],
+      "local_order_ops": "finite noncommuting or order-sensitive local operation pair inherited from the Phase 2 carrier receipts"
+    },
+    "codomain_or_output": "finite replay-restriction consistency signatures, inherited response vectors on K_sub, and a finite control gap vector",
+    "PEPS3D_carrier_anchor": "Every row must carry an explicit V/E/F/C anchor in K_parent and K_sub. Scalar PEPS3D labels are not evidence.",
+    "F01_witness": "The carriers, probes, restriction maps, bond dimensions, operator paths, rows, and outputs are finite and receipt-backed.",
+    "N01_order_witness": "At least one restricted anchored local path must preserve a nonzero order-sensitive response gap inherited from R_replay_K, while the order-erased control collapses.",
+    "status": "admissible_candidate_not_run"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_spinor_density_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps_peps3d_local_environment_contraction_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_heldout_shape_anchor_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_bond_sweep_anchor_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_anchor_partition_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_patch_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_projection_shape_bond_replay_probe_results.json"
+  ],
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_spinor_density_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps_peps3d_local_environment_contraction_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_heldout_shape_anchor_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_bond_sweep_anchor_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_anchor_partition_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_patch_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_projection_shape_bond_replay_probe_results.json"
+  ],
+  "controller_dependency_artifacts": [
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_post_R_replay_active_frontier_blocker_20260525.json"
+  ],
+  "controls_required_if_later_run": {
+    "positive": [
+      "anchor-preserving restriction K_parent -> K_sub keeps explicit V/E/F/C anchors",
+      "restricted replay rows are finite for bond_dim in {2,3}",
+      "restricted rows retain at least one nonzero inherited order-sensitive gap"
+    ],
+    "negative": [
+      "no-anchor restriction must fail",
+      "scalar-label restriction must fail",
+      "anchor-scrambled restriction must fail",
+      "single-probe non-IC restriction must collapse relative to full finite effects"
+    ],
+    "boundary": [
+      "bond_dim=1 remains a control-only boundary row",
+      "zero-interior or empty-boundary restriction remains control-only",
+      "heldout shape rows cannot promote a shape law"
+    ],
+    "order_erased": [
+      "order-erased local paths must collapse the N01 witness",
+      "commuting-only restriction must not be admitted as nonclassical evidence"
+    ],
+    "downstream_leak": [
+      "Phase 7 boundary contraction receipts must not be reclassified as this map",
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, and axes 7-12 must remain blocked"
+    ]
+  },
+  "controls": {
+    "positive": [
+      "anchor-preserving restriction K_parent -> K_sub keeps explicit V/E/F/C anchors",
+      "restricted replay rows are finite for bond_dim in {2,3}",
+      "restricted rows retain at least one nonzero inherited order-sensitive gap"
+    ],
+    "negative": [
+      "no-anchor restriction must fail",
+      "scalar-label restriction must fail",
+      "anchor-scrambled restriction must fail",
+      "single-probe non-IC restriction must collapse relative to full finite effects"
+    ],
+    "boundary": [
+      "bond_dim=1 remains a control-only boundary row",
+      "zero-interior or empty-boundary restriction remains control-only",
+      "heldout shape rows cannot promote a shape law"
+    ],
+    "order_erased": [
+      "order-erased local paths must collapse the N01 witness",
+      "commuting-only restriction must not be admitted as nonclassical evidence"
+    ],
+    "downstream_leak": [
+      "Phase 7 boundary contraction receipts must not be reclassified as this map",
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, and axes 7-12 must remain blocked"
+    ]
+  },
+  "failure_conditions": [
+    "no explicit PEPS3D V/E/F/C anchor survives in K_sub",
+    "pi_restrict is not finite or not anchor-preserving",
+    "restricted response rows require dense 2^n state closure or dense environment closure",
+    "order-erased or commuting controls do not collapse",
+    "no nonzero inherited order-sensitive gap survives",
+    "single-probe or non-IC controls pass as if complete",
+    "the candidate requires topology, sheaf, homology, full PEPS3D closure, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12",
+    "the candidate consumes any Phase 7/downstream receipt as a Phase 2 dependency"
+  ],
+  "blocked_consumers": [
+    "Hopf/Weyl",
+    "nested Hopf tori",
+    "terrain",
+    "operator substages",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_R_replay_active_frontier_blocker_20260525.json",
+  "next_admissible_step": "Only if later authorized: author one bounded formal scout for C_restrict_K, then run/lint/validate it. This candidate artifact does not itself admit the map and does not open Phase 3 or downstream geometry."
+}

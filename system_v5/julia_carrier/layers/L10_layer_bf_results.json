@@ -1,0 +1,307 @@
+{
+  "N01_witness": {
+    "noncommuting_gap": 1.0609046761285033,
+    "order_test": "||Phi_Ni Phi_Ni^rotjump rho - Phi_Ni^rotjump Phi_Ni rho||_1",
+    "passes": true
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "bounded Julia L10 PoC ran; the Ni R-sheet GKSL channel's coherence weight is sustained by the Hopf coherent drive (below-geometry)",
+    "the drive-forced coherence collapses ONLY under removal of the Hopf coherent drive (positive), and SURVIVES two comparable-or-larger-magnitude controls (anti-tautology)",
+    "Z3 proves the collapse prediction and certifies the anti-tautology survivor, both with flipping verdicts",
+    "no promotion; downstream consumers blocked"
+  ],
+  "bloch_free": true,
+  "blocked_consumers": [
+    "L11 operator-substage stacking",
+    "L12 entropy/cut admission",
+    "L13 gluing/groupoid",
+    "stacking / order tests",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "physics/gravity"
+  ],
+  "carrier_language": "native Julia (LinearAlgebra), density-operator only; NO Bloch r-vector",
+  "classification": "L10_layer_bf_poc",
+  "controls": {
+    "negative": {
+      "antitaut_rotate_jump_residual_signature": 0.94069426836427,
+      "antitaut_scale_diss_residual_signature": 0.705882352941176,
+      "kill_drive_coherence_collapse_gap": 0.4444138980333943
+    },
+    "positive": {
+      "N01_order_noncommuting_gap": 1.0609046761285033,
+      "input_dependence_range": 0.2082701978300054,
+      "input_dependence_std": 0.08955590069386994,
+      "ni_coherence_signature": 0.4444446836153581
+    }
+  },
+  "dependency_forcing": {
+    "anti_tautology_negative_controls": {
+      "C1_scale_dissipator": {
+        "comparable_or_larger_than_erasure": true,
+        "hs_perturbation_to_generator": 1.3816656614391198,
+        "operation": "gamma -> 3*gamma on the sigma_+ dissipator (the coherent Hopf drive is untouched)",
+        "residual_signature": 0.705882352941176,
+        "survives": true
+      },
+      "C2_rotate_jump_operator": {
+        "comparable_or_larger_than_erasure": true,
+        "hs_perturbation_to_generator": 0.9643888210446936,
+        "operation": "sigma_+ -> U sigma_+ U^dag (SU(2) conjugation, angle 1.3) on the jump operator (the coherent Hopf drive is untouched)",
+        "residual_signature": 0.94069426836427,
+        "survives": true
+      },
+      "at_least_one_control_survives": true,
+      "below_geometry_kill_drive_hs_perturbation": 0.7418820397179406,
+      "decisive_both_controls_comparable_or_larger_and_survive": true,
+      "interpretation": "PROVEN NON-TAUTOLOGICAL: both controls perturb the generator by an HS amount AS-LARGE-OR-LARGER than the drive-removal erasure, yet both leave S substantially intact, while removing the Hopf drive collapses S to ~0. The collapse is SPECIFIC to erasing the below-geometry coherent drive, not guaranteed for every perturbation of comparable magnitude.",
+      "purpose": "DIFFERENT operations of comparable-or-LARGER HS magnitude that are NOT the below-geometry drive removal must LEAVE S intact; if every comparable perturbation collapsed S the collapse would be a tautology"
+    },
+    "below_geometry": "the Hopf coherent drive on the Ni R-sheet generator: -i[H0,rho] with H0 = n.sigma the Hopf-projected base Hamiltonian",
+    "dependency_forcing_genuine": true,
+    "positive_erasure": {
+      "S_after_erasure": 3.078558196380087e-5,
+      "S_full": 0.4444446836153581,
+      "collapse_delta": 0.4444138980333943,
+      "collapses": true,
+      "mechanism": "pure sigma_+ dissipator relaxes rho to the diagonal fixed point |0><0| (coherence -> 0 as a measured dynamical residual, not a coded zero)",
+      "operation": "kill_drive: force H0 -> 0 (remove the Hopf coherent drive; channel becomes pure-dissipative sigma_+)",
+      "relative": 6.926752214330471e-5
+    },
+    "structural_probe": {
+      "erasure_not_scalar_multiple_check": "HS(X_genuine - X_killed) on a generic input must be nonzero (else collapse is [X,X]=0)",
+      "h0_not_codiagonal": true,
+      "h0_offdiagonal_weight": 1.0,
+      "hs_genuine_minus_killed": 0.7418820397179406,
+      "interpretation": "removing the Hopf drive changes the generator by a measured nonzero HS amount (not [X,X]=0), and H0 carries off-diagonal weight (not the [diag,diag]=0 co-diagonal identity).",
+      "not_a_trivial_zero": true
+    }
+  },
+  "dependency_forcing_genuine": true,
+  "finite_map": "G:(K, psi_{v,s}, T_eta_k, A_Hopf, Y_ell, Ni-R-sheet) -> {X: rho->rho_dot = g D[sigma_+](rho) + eps w (-i)[H0,rho]}; Phi^T by Euler rerun; signature S = 2|Phi(rho0)[1,2]| read off ONE output density operator (matrix entry; NO Bloch vector).",
+  "fresh_rerun": true,
+  "honest_gaps": [
+    "finite-time channel uses Euler integration + per-step PSD reproject, not exact exp(T*Liouvillian).",
+    "GKSL flow runs on per-site 2x2 spinor-densities over PEPS3D cells; NOT a joint many-site tensor-network contraction.",
+    "the controls perturb the generator by an HS amount LARGER than (not exactly equal to) the kill-drive erasure; the anti-tautology argument is that even these larger perturbations leave S intact while only removing the drive collapses it, which is at least as strong as an HS-matched control.",
+    "only the drive-forced Ni-coherence signature is rebuilt to the genuine anti-tautology standard; the loop-holonomy and k-shell signatures of the originals were the by-construction collapses flagged above and are NOT re-asserted as forced."
+  ],
+  "ladder_real": {
+    "K_complex_grows": "V 8->64, E 12->144, F 2->36, C 1->27 across the rungs (structurally distinct anchors)",
+    "S_full_per_rung": [
+      0.6527114017654545,
+      0.6194633102185296,
+      0.4444448120701084,
+      0.6527146188469303
+    ],
+    "S_full_spread_std": 0.09983062515233689,
+    "ladder_s_distinct": true,
+    "note": "each rung evaluated at its own torus shell eta_n so S_full genuinely VARIES across the ladder (not a planted constant); the per-rung pass is re-derived from that rung's own measured collapse + control survival"
+  },
+  "name": "L10 terrain/channel/generator — Ni R-sheet Hopf-driven GKSL coherence (Bloch-free genuine rebuild v2)",
+  "negative_controls": {
+    "anti_tautology_controls": [
+      "scale_dissipator",
+      "rotate_jump_operator"
+    ],
+    "positive_below_geometry_erasure": "kill_drive collapses the Ni coherence weight (measured relaxation to diagonal)",
+    "z3_anti_tautology_broken_control": "all-controls-collapse makes the survivor claim false (z3 sat)",
+    "z3_collapse_broken_control": "no-drive-but-claims-nonzero makes the prediction false (z3 sat)"
+  },
+  "non_numpy": true,
+  "promotion_allowed": false,
+  "promotion_status": "blocked_poc",
+  "qit_readouts_derived": {
+    "S_vN_Ni_full": 0.6445046397242813,
+    "note": "DERIVED; entropy never the primary object"
+  },
+  "seed": 20260602,
+  "signature_definition": {
+    "S": "2|Phi(rho0)[1,2]| = off-diagonal coherence weight of the SINGLE evolved Ni R-sheet (Source) channel output. The Hopf coherent drive -i[H0,.] sustains this coherence against the sigma_+ dissipator's relaxation to the diagonal fixed point |0><0|; removing the drive lets rho relax to diagonal so S MEASURED-collapses (a dynamical fact, NOT tdist(X,X)=0).",
+    "S_full": 0.4444446836153581,
+    "bloch_free_note": "coherence weight is |rho_01| read straight off the density operator; no r=(rx,ry,rz), no dot-r ODE, no sigma-triple state",
+    "input_dependent": true,
+    "input_range": 0.2082701978300054,
+    "input_spread_std": 0.08955590069386994,
+    "shell_values": [
+      0.6527113487102852,
+      0.6194687866591284,
+      0.4444446836153581,
+      0.6527146188469303
+    ],
+    "site_values": [
+      0.44444455008846134,
+      0.4444446771416436,
+      0.4444444210169249,
+      0.4444448101161468,
+      0.44444446124652975,
+      0.44444477827689227,
+      0.4444446355703895,
+      0.44444460841830125
+    ],
+    "why_not_tdist_XX": "the previous version used S=trace_distance(Phi_L,Phi_R) with the erasure forcing the two sheets equal, which made the two channels the IDENTICAL function => tdist(X,X)=0 BY CONSTRUCTION. This version measures a property of ONE evolved object, so the collapse is a measured relaxation, not an algebraic identity."
+  },
+  "sim_id": "L10_layer_bf",
+  "status_ladder": "exists < runs < passes",
+  "stress_8_16_32_64": {
+    "16": {
+      "K_counts": {
+        "C": 3,
+        "E": 28,
+        "F": 6,
+        "V": 16
+      },
+      "S_C1_scale_diss": 0.6948600579888435,
+      "S_C2_rotate_jump": 0.9370719736021614,
+      "S_full": 0.6194633102185296,
+      "S_killed_positive": 3.078558196380087e-5,
+      "alive": true,
+      "dims": [
+        4,
+        2,
+        2
+      ],
+      "eta_shell": 0.6283185307179586,
+      "positive_rel": 4.969718376531544e-5,
+      "site_angles": [
+        3.392920065876977,
+        2.764601535159018
+      ]
+    },
+    "32": {
+      "K_counts": {
+        "C": 9,
+        "E": 64,
+        "F": 18,
+        "V": 32
+      },
+      "S_C1_scale_diss": 0.7058823529411764,
+      "S_C2_rotate_jump": 0.9983257975262502,
+      "S_full": 0.4444448120701084,
+      "S_killed_positive": 3.078558196380087e-5,
+      "alive": true,
+      "dims": [
+        4,
+        4,
+        2
+      ],
+      "eta_shell": 0.7853981633974483,
+      "positive_rel": 6.926750212340118e-5,
+      "site_angles": [
+        3.392920065876977,
+        2.764601535159018
+      ]
+    },
+    "64": {
+      "K_counts": {
+        "C": 27,
+        "E": 144,
+        "F": 36,
+        "V": 64
+      },
+      "S_C1_scale_diss": 0.5553287518900321,
+      "S_C2_rotate_jump": 0.49338734516274385,
+      "S_full": 0.6527146188469303,
+      "S_killed_positive": 3.078558196380087e-5,
+      "alive": true,
+      "dims": [
+        4,
+        4,
+        4
+      ],
+      "eta_shell": 1.1780972450961724,
+      "positive_rel": 4.716545497048301e-5,
+      "site_angles": [
+        3.7489672332838198,
+        3.2463124087094526
+      ]
+    },
+    "8": {
+      "K_counts": {
+        "C": 1,
+        "E": 12,
+        "F": 2,
+        "V": 8
+      },
+      "S_C1_scale_diss": 0.5553287518900302,
+      "S_C2_rotate_jump": 0.6764890652296379,
+      "S_full": 0.6527114017654545,
+      "S_killed_positive": 3.078558196380087e-5,
+      "alive": true,
+      "dims": [
+        2,
+        2,
+        2
+      ],
+      "eta_shell": 0.39269908169872414,
+      "positive_rel": 4.716568743939817e-5,
+      "site_angles": [
+        3.392920065876977,
+        2.764601535159018
+      ]
+    }
+  },
+  "stress_ok": true,
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Statistics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "writes result artifact only",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "eigen/svdvals/exp(matrix)/HS norm/traces drive the carrier, the coherence-weight signature, the HS-magnitude comparison, and the structural probe",
+      "role": "load_bearing"
+    },
+    "NumPy": {
+      "reason": "not used; Julia-only",
+      "role": "None"
+    },
+    "Random": {
+      "reason": "seed only; signature deterministic from the fixed seed state",
+      "role": "supportive"
+    },
+    "Statistics": {
+      "reason": "std/range certify input-dependence (signature varies with input, not a planted constant)",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "(a) collapse-prediction proof bound to the measured sig_is_zero flag with a flipping verdict; (b) certifies the anti-tautology survivor with a flipping verdict",
+      "role": "load_bearing"
+    }
+  },
+  "what_was_cosmetic_in_original": {
+    "L10_layer.jl_lines_143_146": "loop_weight returns 1.0 for BOTH loops under erase => inner and outer channels identical => loop_holonomy_gap = tdist(X,X) = 0.",
+    "L10_layer.jl_lines_408_424": "k_shell_spread observable forces every shell to (ETAS[1],k=1) => all shells identical => spread 0 by construction.",
+    "L10_layer_codex.jl_lines_155_163_126_138": "geometry_amplitude RETURNS 0.0 and h0_from_geometry RETURNS SZ under erase_A/remove_peps/identical_generators; the collapse is the erasure code SETTING zero (by-construction zero).",
+    "all_priors_no_anti_tautology": "no prior cut ran a DIFFERENT comparable-magnitude operation that LEAVES the signature intact, so the collapse was never shown to be specific rather than guaranteed.",
+    "bloch_leak": "L10_layer.jl bloch(rho)=[real(tr(rho*P)) for P in PAULI] + bloch(rp)[3]; L10_layer_codex.jl bloch_vec + dz=real(tr(X*SZ)). This rebuild removes all r-vector readouts.",
+    "previous_L10_layer_bf_tdist_XX_trap": "S = trace_distance(Phi_L, Phi_R) with merge_sheets forcing the two sheets equal made the Vortex(L)/Spiral(R) channels the IDENTICAL function (both Ne, both +H0), so S_merged = tdist(X,X) = 0 EXACTLY by construction — an algebraic identity, not a measured carrier collapse."
+  },
+  "z3_proof": {
+    "anti_tautology_certificate": {
+      "claim": "at least one comparable-or-larger-magnitude control survives (S nonzero)",
+      "status_broken_all_collapse": "sat",
+      "status_survivor_exists": "unsat",
+      "verdict_flips_unsat_to_sat": true
+    },
+    "collapse_prediction": {
+      "claim": "the measured coherence is zero IFF the Hopf coherent drive is absent (a free carrier flag predicts the measured collapse)",
+      "measured_sig_is_zero_full": false,
+      "measured_sig_is_zero_kill": true,
+      "status_broken_no_drive_claims_nonzero": "sat",
+      "status_full_drive_present": "unsat",
+      "status_killed_drive_absent": "unsat",
+      "verdict_flips_unsat_to_sat": true
+    },
+    "load_bearing": true
+  }
+}

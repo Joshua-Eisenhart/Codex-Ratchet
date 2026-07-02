@@ -1,0 +1,227 @@
+{
+  "schema": "codex_ratchet_constraint_registry_v0",
+  "generated_at": "2026-05-23",
+  "status": "working_machine_readable_constraint_ledger_not_canon",
+  "authority_boundary": {
+    "source_doc": "system_v5/docs/system_levels_20260523/09_EXTENDED_CONSTRAINT_CANDIDATE_LEDGER.md",
+    "naming_doc": "system_v5/docs/system_levels_20260523/10_NAMING_NOTATION_AND_CLAIM_GRAMMAR.md",
+    "may_do": [
+      "help agents classify claims",
+      "help sims declare constraints and controls",
+      "help docs distinguish root constraints from candidate fences"
+    ],
+    "may_not_do": [
+      "promote a candidate fence by listing it",
+      "replace formal scout receipts",
+      "replace proof gates"
+    ]
+  },
+  "roots": [
+    {
+      "id": "RC-F01",
+      "slug": "finitude",
+      "level": "root_constraint",
+      "human_statement": "No completed infinities at root.",
+      "forbidden_import": "continuum, infinite path family, unbounded witness, infinite registry, unbounded claim",
+      "cs_enforcement": "bounded data structures, finite grids, finite result artifacts, explicit claim ceilings",
+      "qit_translation": "finite-dimensional Hilbert spaces, finite density matrices, finite instruments, finite path sums",
+      "required_controls": [
+        "finite_capacity_overflow",
+        "dimension_sensitivity",
+        "bounded_claim_ceiling"
+      ],
+      "status": "root"
+    },
+    {
+      "id": "RC-N01",
+      "slug": "noncommutation",
+      "level": "root_constraint",
+      "human_statement": "Operation order matters at root.",
+      "forbidden_import": "commuting scalar update treated as sufficient",
+      "cs_enforcement": "ordered traces, reversed-order controls, order-shuffled controls",
+      "qit_translation": "noncommuting operators, CPTP channel composition, Kraus histories, commutator gaps",
+      "required_controls": [
+        "commuting_baseline",
+        "reverse_order",
+        "order_shuffle"
+      ],
+      "status": "root"
+    }
+  ],
+  "derived_constraints": [
+    {
+      "id": "DC-01",
+      "slug": "no-primitive-identity",
+      "human_statement": "Identity is not primitive.",
+      "forbidden_import": "object identity independent of probes",
+      "qit_translation": "state equivalence must be relative to distinguishability under probes",
+      "enforcement_gate": "same label can hide distinguishable states under a second probe",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-02",
+      "slug": "no-primitive-equality",
+      "human_statement": "Equality is not primitive.",
+      "forbidden_import": "single coordinate or scalar equality used as sameness",
+      "qit_translation": "rho and sigma are equivalent only relative to a named probe family and tolerance",
+      "enforcement_gate": "states equal under one readout are separated by another noncommuting readout",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-03",
+      "slug": "no-primitive-probability",
+      "human_statement": "Probability requires a state plus probe.",
+      "forbidden_import": "standalone probability distribution",
+      "qit_translation": "p(i) = Tr(E_i rho)",
+      "enforcement_gate": "same rho gives different distributions under noncommuting probes",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-04",
+      "slug": "no-primitive-time-causality",
+      "human_statement": "Time and causality are not primitive.",
+      "forbidden_import": "global clock or causal arrow not built from order-sensitive composition",
+      "qit_translation": "temporal-like order must arise from noncommuting process composition",
+      "enforcement_gate": "commuting controls erase order signal",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-05",
+      "slug": "no-primitive-metric-coordinate",
+      "human_statement": "Coordinates and metric distance are not primitive.",
+      "forbidden_import": "chart distance treated as physical fact",
+      "qit_translation": "use invariant distances or named chart-dependent readouts with controls",
+      "enforcement_gate": "coordinate distance changes under chart while trace distance remains controlled",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-06",
+      "slug": "no-closure-by-default",
+      "human_statement": "Closure, identity, inverse, and group structure must be earned.",
+      "forbidden_import": "operator family called a group without proof",
+      "qit_translation": "channel family composition, CPTP completeness, inverse availability checked explicitly",
+      "enforcement_gate": "amplitude damping lacks inverse and fails group closure",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-07",
+      "slug": "finite-witness-discipline",
+      "human_statement": "Every claim needs a bounded witness.",
+      "forbidden_import": "unbounded explanation as evidence",
+      "qit_translation": "finite carrier, finite probe family, finite path family, finite receipt",
+      "enforcement_gate": "claim rejected or demoted when no finite receipt can be named",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-08",
+      "slug": "no-cloning-broadcasting",
+      "human_statement": "Noncommuting states cannot be freely copied or broadcast.",
+      "forbidden_import": "copying a noncommuting carrier as a primitive runtime operation",
+      "qit_translation": "no-cloning/no-broadcasting constraints for noncommuting state sets",
+      "enforcement_gate": "copy map fails for nonorthogonal or noncommuting states",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-09",
+      "slug": "no-primitive-optimization-utility",
+      "human_statement": "Optimization requires a named functional.",
+      "forbidden_import": "best state or utility treated as primitive",
+      "qit_translation": "objective is D, S, I, I_c, evidence, or another named functional",
+      "enforcement_gate": "different functionals select different optima",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-10",
+      "slug": "no-outside-observer",
+      "human_statement": "The observer/probe is part of the modeled substrate.",
+      "forbidden_import": "external measurement label without back-action",
+      "qit_translation": "joint rho_AB, instrument updates, trace-out/back-action checks",
+      "enforcement_gate": "probe state changes target reduced state",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-11",
+      "slug": "no-global-total-order",
+      "human_statement": "No single scalar ranks all states globally.",
+      "forbidden_import": "entropy or purity used as total order",
+      "qit_translation": "vector/Pareto/multi-readout status required where scalar degeneracy exists",
+      "enforcement_gate": "same scalar value hides operationally distinct states",
+      "status": "working_derived_constraint"
+    },
+    {
+      "id": "DC-12",
+      "slug": "no-semantic-smuggling",
+      "human_statement": "Classical concepts must be re-proved after translation.",
+      "forbidden_import": "renaming a classical object as quantum without checking changed properties",
+      "qit_translation": "test property preservation under noncommuting finite carriers",
+      "enforcement_gate": "coherent information can be negative while classical mutual information is nonnegative",
+      "status": "working_derived_constraint"
+    }
+  ],
+  "candidate_fences": [
+    {
+      "id": "CF-13",
+      "slug": "no-primitive-tensor-factorization",
+      "human_statement": "Subsystem cuts are constructed, not primitive.",
+      "forbidden_import": "A|B split assumed without cut construction",
+      "qit_translation": "factorization and cut state must be specified and tested under alternate cuts",
+      "next_gate": "same readout tested across block, interleaved, and mediator cuts",
+      "status": "candidate_fence"
+    },
+    {
+      "id": "CF-14",
+      "slug": "no-classical-markov-chain",
+      "human_statement": "Classical Markov chains are baselines, not roots.",
+      "forbidden_import": "primitive real transition probabilities and total time order",
+      "qit_translation": "finite CPTP map or instrument iteration",
+      "next_gate": "CPTP path family separates behavior erased by classical Markov baseline",
+      "status": "candidate_fence"
+    },
+    {
+      "id": "CF-15",
+      "slug": "no-classical-markov-blanket",
+      "human_statement": "Classical Markov blankets are replaced by constructed cuts and mediators.",
+      "forbidden_import": "sharp classical blanket partition with primitive conditional independence",
+      "qit_translation": "A-M-B cut with noncommuting boundary operators and conditional information tests",
+      "next_gate": "mediator/cut test with product, dephased, and shuffled controls",
+      "status": "candidate_fence"
+    },
+    {
+      "id": "CF-16",
+      "slug": "no-primitive-scalarization",
+      "human_statement": "A scalar readout is not automatically the object.",
+      "forbidden_import": "Axis0 or flux collapsed to one scalar by convenience",
+      "qit_translation": "structured readout family with degeneracy controls",
+      "next_gate": "scalar-equal states separated by vector/cut/process readouts",
+      "status": "candidate_fence"
+    },
+    {
+      "id": "CF-17",
+      "slug": "no-primitive-smoothness-continuity",
+      "human_statement": "Smooth/continuous structure must be approximated or earned.",
+      "forbidden_import": "continuous gradient or field as root",
+      "qit_translation": "finite cell, graph, operator, or tensor approximation with scale checks",
+      "next_gate": "finite grid/lattice version reproduces claimed behavior with scale sensitivity reported",
+      "status": "candidate_fence"
+    },
+    {
+      "id": "CF-18",
+      "slug": "no-free-reversibility",
+      "human_statement": "Reversibility is not assumed.",
+      "forbidden_import": "inverse dynamics or unitary-only picture when dissipative channels are present",
+      "qit_translation": "unitary, CPTP, and dissipative cases separated explicitly",
+      "next_gate": "irreversible channel fails inverse and changes basin/readout behavior",
+      "status": "candidate_fence"
+    }
+  ],
+  "required_claim_fields": [
+    "level",
+    "carrier",
+    "operation",
+    "observable",
+    "controls",
+    "receipt",
+    "status",
+    "claim_ceiling"
+  ]
+}

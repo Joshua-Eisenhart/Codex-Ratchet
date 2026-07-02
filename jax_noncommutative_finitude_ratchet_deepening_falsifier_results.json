@@ -1,0 +1,194 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "subsubsubbasin_admission",
+    "full_layer_completion",
+    "official_g_structure_selection",
+    "layer_stacking",
+    "flux",
+    "Axis0",
+    "FEP",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "candidate_verdicts": {
+    "leaf_bin": "stable_readout_no_new_hierarchy",
+    "radial_bin": "stable_readout_no_new_hierarchy",
+    "recurrence_depth_bin": "rejected_noisy_or_control_leaky"
+  },
+  "checks": {
+    "f01_retraction": true,
+    "finite_bloch_ball": true,
+    "leaf_radial_candidates_do_not_overrefine": true,
+    "prior_subsub_hierarchy_present_A": true,
+    "prior_subsub_hierarchy_present_B": true,
+    "product_negative_collapses_prior_hierarchy": true,
+    "prune_still_fires": true,
+    "recurrence_candidate_rejected_as_noisy_or_control_leaky": true,
+    "reverse_order_same_cell_count_but_state_order_sensitive": true
+  },
+  "claim_ceiling": "Falsifier for deeper ratchet hierarchy only. Confirms current 4/16/64 diagnostic hierarchy and blocks tested fourth-level refinements. No layer completion, stacking admission, flux, Axis0, FEP, physics, or final manifold claim.",
+  "classification": "diagnostic_jax_ratchet_deepening_falsifier",
+  "current_hierarchy": {
+    "basins": 4,
+    "subbasins": 16,
+    "subsubbasins": 64,
+    "tested_subsubsub_capacity": 256
+  },
+  "finite_map": "final finite ratchet states -> tested fourth-level refinements {recurrence-depth, Hopf-leaf bin, radial-norm bin} with product/commuting controls",
+  "julia_reference_mode": "read_only",
+  "object": "jax_noncommutative_finitude_ratchet_deepening_falsifier",
+  "promotion_allowed": false,
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "rows": {
+    "A": {
+      "leaf": {
+        "bin_histogram": [
+          896,
+          1792,
+          896,
+          0
+        ],
+        "unique_cells": 64
+      },
+      "max_bloch_norm_seen": 0.985,
+      "max_q_norm_drift": 2.220446049250313e-16,
+      "pruned": 0,
+      "radial": {
+        "bin_histogram": [
+          0,
+          896,
+          896,
+          1792
+        ],
+        "unique_cells": 64
+      },
+      "recurrence": {
+        "bin_histogram": [
+          0,
+          202,
+          2165,
+          1217
+        ],
+        "unique_cells": 67
+      },
+      "recurrence_max": 0.4822392417658935,
+      "recurrence_mean": 0.3490270971015349,
+      "recurrence_min": 0.21099207750508595,
+      "subsub_cells": 64,
+      "survivors": 3584
+    },
+    "B": {
+      "leaf": {
+        "bin_histogram": [
+          553,
+          1111,
+          528,
+          0
+        ],
+        "unique_cells": 64
+      },
+      "max_bloch_norm_seen": 0.985,
+      "max_q_norm_drift": 2.220446049250313e-16,
+      "pruned": 1392,
+      "radial": {
+        "bin_histogram": [
+          0,
+          529,
+          564,
+          1099
+        ],
+        "unique_cells": 64
+      },
+      "recurrence": {
+        "bin_histogram": [
+          0,
+          130,
+          1308,
+          754
+        ],
+        "unique_cells": 67
+      },
+      "recurrence_max": 0.48222845229130906,
+      "recurrence_mean": 0.34903335295004373,
+      "recurrence_min": 0.21117165396840196,
+      "subsub_cells": 64,
+      "survivors": 2192
+    },
+    "D": {
+      "leaf": {
+        "bin_histogram": [
+          553,
+          1111,
+          528,
+          0
+        ],
+        "unique_cells": 64
+      },
+      "max_bloch_norm_seen": 0.985,
+      "max_q_norm_drift": 2.220446049250313e-16,
+      "pruned": 1392,
+      "radial": {
+        "bin_histogram": [
+          0,
+          529,
+          564,
+          1099
+        ],
+        "unique_cells": 64
+      },
+      "recurrence": {
+        "bin_histogram": [
+          0,
+          127,
+          1312,
+          753
+        ],
+        "unique_cells": 68
+      },
+      "recurrence_max": 0.48310921868930334,
+      "recurrence_mean": 0.34938014079339763,
+      "recurrence_min": 0.21258215077368425,
+      "subsub_cells": 64,
+      "survivors": 2192
+    },
+    "E": {
+      "leaf": {
+        "bin_histogram": [
+          3584,
+          0,
+          0,
+          0
+        ],
+        "unique_cells": 1
+      },
+      "max_bloch_norm_seen": 0.985,
+      "max_q_norm_drift": 2.220446049250313e-16,
+      "pruned": 0,
+      "radial": {
+        "bin_histogram": [
+          0,
+          0,
+          0,
+          3584
+        ],
+        "unique_cells": 1
+      },
+      "recurrence": {
+        "bin_histogram": [
+          0,
+          0,
+          1786,
+          1798
+        ],
+        "unique_cells": 2
+      },
+      "recurrence_max": 0.38071729536386667,
+      "recurrence_mean": 0.3751025363258285,
+      "recurrence_min": 0.37047564856367954,
+      "subsub_cells": 1,
+      "survivors": 3584
+    }
+  }
+}

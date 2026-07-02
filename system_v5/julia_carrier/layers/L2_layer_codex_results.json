@@ -1,0 +1,303 @@
+{
+    "F01_witness": {
+        "finite_carrier": "64-site/shell finite S3 spinor payload on PEPS3D K",
+        "finite_operators": [
+            "sigma_x",
+            "sigma_y",
+            "sigma_z",
+            "Ux(theta)",
+            "Uz(phi)",
+            "global U(1) phase"
+        ],
+        "finite_paths": [
+            "fiber segment psi -> exp(i alpha) psi",
+            "base-loop samples for derived entropy"
+        ],
+        "finite_probes": [
+            "pi_H(psi)",
+            "rho(psi)",
+            "fiber_transport_phase",
+            "von_neumann_entropy"
+        ]
+    },
+    "N01_witness": {
+        "density_order_gap_trace_distance": 0.20403336231235375,
+        "honest_boundary": "This Pauli/SU2 noncommuting gap survives density/Bloch reduction, so it is not by itself proof that S3 fiber geometry is load-bearing.",
+        "operation_A": "Ux(0.83)",
+        "operation_B": "Uz(1.11)",
+        "order_matters": true,
+        "spinor_order_gap_norm": 0.4249164650522829
+    },
+    "TOOL_INTEGRATION_DEPTH": {
+        "JSON": "supportive",
+        "LinearAlgebra": "load_bearing",
+        "Z3": "None"
+    },
+    "TOOL_MANIFEST": {
+        "JSON": {
+            "reason": "emits the receipt JSON",
+            "role": "supportive",
+            "used": true
+        },
+        "LinearAlgebra": {
+            "reason": "computes spinor/density maps, matrix exponentials, eigenspectra, norms, trace distances, and N01 gaps",
+            "role": "load_bearing",
+            "used": true
+        },
+        "Z3": {
+            "reason": "z3 omitted, not decorative; no SMT assertion changes this bounded numeric dependency-forcing verdict",
+            "role": "omitted",
+            "used": false
+        }
+    },
+    "ablation": {
+        "ablation_outcome_delta": 1.173,
+        "non_vacuous": true,
+        "removed_component": "global U(1) fiber phase retained by S3 but erased by rho=psi psi^dag",
+        "rerun_erased_signature": 0.0,
+        "rerun_present_signature": 1.173
+    },
+    "all_pass": true,
+    "allowed_claims": [
+        "bounded L2 Codex POC runs",
+        "S3 global U(1) fiber phase is load-bearing for the measured fiber signature",
+        "Bloch/density substitution collapses the fiber signature measured here"
+    ],
+    "blocked_consumers": [
+        "layer completion",
+        "stacking readiness",
+        "Axis0",
+        "FEP",
+        "flux",
+        "bridge",
+        "physics/gravity",
+        "G-structure selection"
+    ],
+    "canonical_admission": false,
+    "classification": "L2_layer_codex_poc",
+    "dependency_forcing_erasures": {
+        "bloch_substitution": {
+            "collapsed": true,
+            "erased_signature_available_from_rho": 0.0,
+            "interpretation": "Bloch/density erasure destroys global U(1) fiber phase while preserving rho and pi_H.",
+            "numeric_delta": 1.173,
+            "present_signature_S3_fiber_phase_abs": 1.173
+        },
+        "density_channel_gap_after_bloch": {
+            "density_order_gap_trace_distance": 0.20403336231235375,
+            "interpretation": "The Pauli channel/order gap is not accepted as the S3 dependency-forcing signature because Bloch still carries it.",
+            "reported_as_hand_written_channel_boundary": true,
+            "survives_bloch": true
+        },
+        "fiber_phase_zeroed": {
+            "alpha_zero_signature": 2.2239177364378672e-17,
+            "collapsed": true,
+            "numeric_delta": 1.173,
+            "present_signature": 1.173
+        },
+        "peps3d_anchor_removed": {
+            "collapsed_as_geometry_claim": true,
+            "present_K": {
+                "C": 128,
+                "E": 448,
+                "F": 192,
+                "V": 256,
+                "anchor_type": "finite combinatorial PEPS3D K with Julia-native S3 spinor payloads",
+                "shell_count": 4,
+                "sites_per_shell": 64
+            },
+            "present_to_absent_certificate": "without K=(V,E,F,C), this file has spinor algebra only and the manifold-geometry anchor is absent",
+            "removed_K": null
+        }
+    },
+    "eligible_consumers": [
+        "local L2 audit comparison only"
+    ],
+    "finite_map": {
+        "codomain_or_output": "derived Hopf/Bloch vector pi(psi), derived density rho(psi), S3 fiber transport phase, QIT readouts",
+        "domain": "finite set of S3 spinors psi(phi,chi,eta) in C^2, finite U(1) fiber phases alpha, finite PEPS3D K sites",
+        "map": "psi -> (pi_H(psi), rho(psi), phase_A(psi -> exp(i alpha) psi))"
+    },
+    "fresh_rerun": true,
+    "global_phase_witness": {
+        "S3_fiber_phase_measured": 1.173,
+        "alpha": 1.173,
+        "distinguished_on_S3_fiber": true,
+        "phase_match_err": 0.0,
+        "same_hopf_base": true,
+        "same_rho": true
+    },
+    "honest_gaps": [
+        "classification is L2_layer_codex_poc",
+        "promotion_allowed=false",
+        "PEPS3D anchor is combinatorial with spinor payloads, not full tensor-network contraction",
+        "Z3 omitted by design rather than used decoratively",
+        "Pauli/density channel noncommutation survives Bloch and is reported only as a boundary, not S3 load-bearing evidence"
+    ],
+    "internal_checks": {
+        "F01_present": true,
+        "N01_measured_gap": true,
+        "PEPS3D_anchor_present": true,
+        "ablation_nonvacuous": true,
+        "bloch_erasure_collapsed_signature": true,
+        "finite_map_present": true,
+        "negative_controls_pass": true,
+        "qit_readouts_present": true,
+        "spinor_density_valid": true,
+        "stress_8_16_32_64_present": true
+    },
+    "julia_native_spinor_density": {
+        "pi_dev_global_phase_pair": 1.2510471639264603e-16,
+        "psi0_on_S3": true,
+        "psi1_on_S3": true,
+        "rho0_min_eig": 1.167529760493415e-16,
+        "rho0_trace": 1.0,
+        "rho1_trace": 0.9999999999999999,
+        "rho_dev_global_phase_pair": 6.700788708272329e-17,
+        "spinor_distance_global_phase_pair": 1.1068986575318132
+    },
+    "name": "L2 S3 spinor carrier dependency-forcing cross-check",
+    "negative_controls": {
+        "bloch_pair_same_rho_negative_for_bloch_loadbearing": true,
+        "nonunit_density_trace": 5.0,
+        "nonunit_excluded_as_density_carrier": true,
+        "zero_spinor_excluded": true,
+        "zero_spinor_on_S3": false
+    },
+    "peps3d_embedding": {
+        "C": 128,
+        "E": 448,
+        "F": 192,
+        "V": 256,
+        "all_payload_spinors_on_S3": true,
+        "anchor_type": "finite combinatorial PEPS3D K with Julia-native S3 spinor payloads",
+        "geometry_claim_boundary": "finite K anchor only; no PEPS tensor contraction or layer-completion claim",
+        "shell_count": 4,
+        "sites_per_shell": 64
+    },
+    "promotion_allowed": false,
+    "promotion_blockers": [
+        "classification is L2_layer_codex_poc",
+        "promotion_allowed=false",
+        "PEPS3D anchor is combinatorial with spinor payloads, not full tensor-network contraction",
+        "Z3 omitted by design rather than used decoratively",
+        "Pauli/density channel noncommutation survives Bloch and is reported only as a boundary, not S3 load-bearing evidence"
+    ],
+    "qit_readouts_derived": {
+        "base_avg_density_entropy": 0.6394319749639749,
+        "base_avg_purity": 0.5527463131926171,
+        "base_vs_fiber_entropy_gap": 0.6394319749639753,
+        "derived_readout_boundary": "entropy is derived from rho outputs, not the layer definition",
+        "fiber_avg_density_entropy": -4.440892098500627e-16,
+        "fiber_avg_purity": 1.0000000000000004,
+        "pure_rho_entropy": 0.0
+    },
+    "quoted_math_sources": [
+        "registry: L2 S3 spinor carrier -- unit spinor / quaternionic carrier, NOT a Bloch substitution",
+        "reference: S^3 = { psi in C^2 : ||psi|| = 1 }",
+        "reference: pi(psi)=psi^dagger sigma psi in S^2",
+        "reference: rho(psi)=|psi><psi|=1/2(I+r.sigma)",
+        "reference: A=-i psi^dagger dpsi=dphi+cos(2 eta)dchi"
+    ],
+    "root_constraints_in_force": [
+        "F01: finite carrier/probe/operator/path set",
+        "N01: measured noncommuting SU(2) operation gap"
+    ],
+    "scale_stress_8_16_32_64": {
+        "all_scales_on_S3": true,
+        "resource_blocker": "none for this bounded LinearAlgebra/JSON run",
+        "rows": [
+            {
+                "K": {
+                    "C": 16,
+                    "E": 56,
+                    "F": 24,
+                    "V": 32,
+                    "anchor_type": "finite combinatorial PEPS3D K with Julia-native S3 spinor payloads",
+                    "shell_count": 4,
+                    "sites_per_shell": 8
+                },
+                "all_on_S3": true,
+                "fiber_phase_mean": 1.173,
+                "fiber_phase_spread": 0.0,
+                "max_spinor_norm_err": 1.1102230246251565e-16,
+                "sites_per_shell": 8
+            },
+            {
+                "K": {
+                    "C": 32,
+                    "E": 112,
+                    "F": 48,
+                    "V": 64,
+                    "anchor_type": "finite combinatorial PEPS3D K with Julia-native S3 spinor payloads",
+                    "shell_count": 4,
+                    "sites_per_shell": 16
+                },
+                "all_on_S3": true,
+                "fiber_phase_mean": 1.173,
+                "fiber_phase_spread": 2.220446049250313e-16,
+                "max_spinor_norm_err": 1.1102230246251565e-16,
+                "sites_per_shell": 16
+            },
+            {
+                "K": {
+                    "C": 64,
+                    "E": 224,
+                    "F": 96,
+                    "V": 128,
+                    "anchor_type": "finite combinatorial PEPS3D K with Julia-native S3 spinor payloads",
+                    "shell_count": 4,
+                    "sites_per_shell": 32
+                },
+                "all_on_S3": true,
+                "fiber_phase_mean": 1.1730000000000003,
+                "fiber_phase_spread": 2.220446049250313e-16,
+                "max_spinor_norm_err": 1.1102230246251565e-16,
+                "sites_per_shell": 32
+            },
+            {
+                "K": {
+                    "C": 128,
+                    "E": 448,
+                    "F": 192,
+                    "V": 256,
+                    "anchor_type": "finite combinatorial PEPS3D K with Julia-native S3 spinor payloads",
+                    "shell_count": 4,
+                    "sites_per_shell": 64
+                },
+                "all_on_S3": true,
+                "fiber_phase_mean": 1.173,
+                "fiber_phase_spread": 2.220446049250313e-16,
+                "max_spinor_norm_err": 1.1102230246251565e-16,
+                "sites_per_shell": 64
+            }
+        ]
+    },
+    "sim_class": "carrier_probe",
+    "sim_execution_kind": "nonclassical",
+    "sim_id": "L2_layer_codex",
+    "tier": "2 geometry",
+    "tool_integration_depth": {
+        "JSON": "supportive",
+        "LinearAlgebra": "load_bearing",
+        "Z3": "None"
+    },
+    "tool_manifest": {
+        "JSON": {
+            "reason": "emits the receipt JSON",
+            "role": "supportive",
+            "used": true
+        },
+        "LinearAlgebra": {
+            "reason": "computes spinor/density maps, matrix exponentials, eigenspectra, norms, trace distances, and N01 gaps",
+            "role": "load_bearing",
+            "used": true
+        },
+        "Z3": {
+            "reason": "z3 omitted, not decorative; no SMT assertion changes this bounded numeric dependency-forcing verdict",
+            "role": "omitted",
+            "used": false
+        }
+    },
+    "version": "1.0"
+}

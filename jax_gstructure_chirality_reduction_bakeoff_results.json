@@ -1,0 +1,285 @@
+{
+  "AUDIT_PASS": true,
+  "allowed_claims": [
+    "local JAX diagnostic finite invariant check",
+    "control leakage/falsifier evidence for candidate bakeoff"
+  ],
+  "candidate_profiles": {
+    "O3_reflection": {
+      "chirality_preserving": false,
+      "excluded_by_Spin3": true,
+      "proper_orientation": false,
+      "reflection_det_minus_one": true,
+      "role": "Pin/O3 boundary control, not Spin3 chirality carrier"
+    },
+    "Odd_chirality_mixer_negative": {
+      "mixes_chirality": true,
+      "rejected": true
+    },
+    "Pin3": {
+      "chirality_flip": true,
+      "chirality_preserving": false,
+      "reflection_det_minus_one": true,
+      "role": "parity/reflection extension; flips L/R, so not a Weyl-sheet preserving Spin3 carrier"
+    },
+    "Product_LR_negative": {
+      "lr_offdiag_zero": true,
+      "rejected_as_lr_coupling": true
+    },
+    "SL2C_Spin13": {
+      "chirality_preserving": true,
+      "det_one": true,
+      "finite_S3_norm": false,
+      "left_right_inequivalent_under_boosts": true,
+      "lorentz_eta_preserved": true,
+      "role": "relativistic chirality carrier; boosts do not preserve the S3 norm carrier"
+    },
+    "SO3_downstairs": {
+      "proper_orientation": true,
+      "q_minus_q_sign_carrier": false,
+      "role": "frame rotation quotient; loses spinor sign",
+      "spinor_double_cover": false
+    },
+    "Spin3_SU2": {
+      "chirality_preserving": true,
+      "excludes_reflection": true,
+      "finite_S3_norm": true,
+      "noncommuting": true,
+      "proper_orientation": true,
+      "selected_finite_chirality_carrier": true,
+      "spinor_double_cover": true
+    },
+    "Spin8_triality": {
+      "diagnostic_only": true,
+      "inner_and_order2_controls_killed": true,
+      "order3_cycles_8v_8s_8c": true
+    },
+    "Twistor_incidence": {
+      "diagnostic_only": true,
+      "incidence_projection": true,
+      "wrong_shift_control_killed": true
+    },
+    "U1_commuting_negative": {
+      "commuting": true,
+      "noncommuting_requirement_satisfied": false,
+      "rejected": true
+    },
+    "Wrong_sign_Hamiltonian_negative": {
+      "rejected": true
+    }
+  },
+  "carrier_layer": "S3/SU2 spinor carrier plus Weyl L/R gamma5 split",
+  "checks": {
+    "chk_gamma_anchor": true,
+    "chk_negatives": true,
+    "chk_pin3_reflection_flip": true,
+    "chk_selected_finite_carrier": true,
+    "chk_sl2c_weyl_split": true,
+    "chk_spin3_su2": true,
+    "chk_spin8_triality_diagnostic": true,
+    "chk_twistor_diagnostic": true
+  },
+  "classification": "diagnostic_only",
+  "codomain_or_output": "finite candidate profile JSON with AUDIT_PASS and selected finite chirality carrier list",
+  "dependency_receipts": [],
+  "domain": {
+    "candidate_rows": [
+      "O3_reflection",
+      "SO3_downstairs",
+      "Spin3_SU2",
+      "Pin3",
+      "SL2C_Spin13",
+      "Twistor_incidence",
+      "Spin8_triality",
+      "U1_commuting_negative",
+      "Product_LR_negative",
+      "Odd_chirality_mixer_negative",
+      "Wrong_sign_Hamiltonian_negative"
+    ],
+    "controls": [
+      "reflection det=-1 excluded by Spin3",
+      "q/-q double cover",
+      "wrong-sign Hamiltonian",
+      "chirality mixing forbidden",
+      "commuting U1 negative",
+      "product L/R negative"
+    ],
+    "spinor_carriers": "Weyl-basis Dirac C4 probes with gamma5 projectors PL/PR; SU2 unit spinors/quaternions"
+  },
+  "downstream_blocks": [
+    "full G-structure selection",
+    "layer completion",
+    "stacking readiness",
+    "Axis0",
+    "FEP",
+    "flux",
+    "physics"
+  ],
+  "finite_map": "candidate G-action/readout -> finite invariant profile -> selected diagnostic carrier set",
+  "gamma_anchor": {
+    "clifford_13_relations": true,
+    "clifford_error": 0.0,
+    "gamma5_LR_split": true,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_squared_error": 0.0,
+    "gamma5_squared_identity": true
+  },
+  "geometry_layer": "G-structure reduction diagnostics: O3/SO3/Spin3, Pin3, SL2C, twistor incidence, Spin8 triality",
+  "julia_refs_read_only": [
+    "system_v5/julia_carrier/layers/gstructure_selection.jl",
+    "system_v5/julia_carrier/layers/g_su2_spin3_double_cover.jl",
+    "system_v5/julia_carrier/layers/pin3_spin3_chirality_clifford_object.jl",
+    "system_v5/julia_carrier/layers/sl2c_spin13_chiral_gstructure.jl",
+    "system_v5/julia_carrier/layers/twistor_conformal_gstructure.jl",
+    "system_v5/julia_carrier/layers/s7_spin8_triality.jl"
+  ],
+  "name": "JAX G-structure chirality reduction bakeoff",
+  "object_id": "jax_gstructure_chirality_reduction_bakeoff",
+  "peps3d_embedding": "not_claimed; diagnostic G-structure bakeoff only",
+  "pin3_reflection_chirality": {
+    "left_spinor_flipped_to_right": true,
+    "left_weight_after_reflection": 0.0,
+    "pin_gamma5_anticommutator_norm": 0.0,
+    "pin_gamma5_commutator_norm": 4.0,
+    "pin_reflection_anticommutes_with_gamma5": true,
+    "pin_reflection_commutator_nonzero": true,
+    "reflection_density_leaks_to_right": true,
+    "right_projector_trace_after_reflection": 1.0,
+    "right_weight_after_reflection": 1.0,
+    "spin3_even_commutes_with_gamma5": true,
+    "spin3_gamma5_commutator_norm": 0.0
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "Julia native Grassmann/Clifford truth remains external read-only reference",
+    "no PEPS3D carrier admission",
+    "twistor and Spin8 rows are diagnostic/frontier controls",
+    "no full layer-completion claim gate run because no completion claim is made"
+  ],
+  "quaternion_action": "q -> R(q) in SO3 with q and -q identified",
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "root_constraints_in_force": {
+    "F01": "finite matrices, finite spinor probes, finite candidate rows, finite controls",
+    "N01": "noncommuting SU2 rotations required; commuting U1/product/odd-mixer negatives rejected"
+  },
+  "script": "jax_gstructure_chirality_reduction_bakeoff.py",
+  "selected_finite_chirality_carriers": [
+    "Spin3_SU2"
+  ],
+  "sl2c_weyl_reps": {
+    "boost_LR_rep_diff": 0.7263658026854266,
+    "boost_not_S3_norm_preserving": true,
+    "boost_spinor_norm_deviation": 0.14425194535624142,
+    "boosts_distinguish_L_R": true,
+    "chirality_mixer_forbidden": true,
+    "correct_HR_plus_HL_norm": 0.0,
+    "correct_hamiltonian_has_no_lr_mixing": true,
+    "det_errors": {
+      "boost": 8.228843275222614e-19,
+      "generic": 5.551115123125783e-16,
+      "rotation": 2.229561458824004e-18
+    },
+    "det_is_one": true,
+    "dirac_rep_commutes_with_gamma5": true,
+    "double_cover_Lambda_minusM_diff": 0.0,
+    "eta_residual": 1.9283377907738466e-15,
+    "gamma5_commutator_norm": 0.0,
+    "lorentz_eta_preserved": true,
+    "offdiag_mixer_gamma5_anticommutator_norm": 0.0,
+    "offdiag_mixer_gamma5_commutator_norm": 4.0,
+    "product_density_lr_offdiag_norm": 0.0,
+    "product_negative_lacks_lr_coupling": true,
+    "rotation_LR_rep_diff": 3.1031676915590914e-17,
+    "rotations_L_equals_R": true,
+    "sl2c_double_cover_sign": true,
+    "wrong_HR_plus_HL_norm": 2.8284271247461903,
+    "wrong_sign_hamiltonian_rejected": true
+  },
+  "spin3_su2": {
+    "axis_angle_anchor": true,
+    "commuting_u1_negative": true,
+    "homomorphism": true,
+    "homomorphism_error": 1.111015202185566e-16,
+    "image_in_SO3": true,
+    "max_axis_angle_error": 7.135936359693696e-16,
+    "max_det_minus_one": 9.992007221626409e-16,
+    "max_orthogonality_error": 1.167017564964616e-15,
+    "min_reflection_distance_over_finite_SU2_samples": 2.0032604177002065,
+    "noncommuting_positive": true,
+    "q_and_minus_q_same_SO3": true,
+    "q_sign_SO3_diff": 0.0,
+    "reflection_det": -1.0,
+    "reflection_det_minus_one_excluded_by_Spin3": true,
+    "spinor_2pi_sign_flip": true,
+    "spinor_4pi_returns": true,
+    "su2_xy_commutator_norm": 0.31898391771469536,
+    "u1_commutator_norm": 0.0,
+    "u_and_minus_u_same_SO3": true
+  },
+  "spin8_triality_diagnostic": {
+    "D4_root_count_24": true,
+    "det_T": 1.0,
+    "diagnostic_only": true,
+    "inner_weyl_landing_v_s_c": [
+      2,
+      3,
+      2
+    ],
+    "inner_weyl_not_triality": true,
+    "order2_landing_v_s_c": [
+      1,
+      3,
+      2
+    ],
+    "order2_outer_not_triality": true,
+    "order3_error": 0.0,
+    "triality_cycles_8v_8s_8c": true,
+    "triality_det_plus_one": true,
+    "triality_landing_v_s_c": [
+      2,
+      3,
+      1
+    ],
+    "triality_nontrivial": true,
+    "triality_order3": true,
+    "triality_preserves_roots": true
+  },
+  "spinor_state": "JAX complex Weyl-basis C4 spinor probes and SU2 unit spinors",
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "json": "supportive"
+  },
+  "tool_manifest": {
+    "jax": {
+      "reason": "load-bearing finite matrix/spinor computations, randomized SU2 samples, candidate invariant readouts",
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "linear algebra over finite spinor, Lorentz, twistor, and D4 root-system probes",
+      "used": true
+    },
+    "json": {
+      "reason": "receipt emission",
+      "used": true
+    }
+  },
+  "twistor_incidence_diagnostic": {
+    "bad_shift_hermitian_residual": 0.7211102550927979,
+    "diagnostic_only": true,
+    "fit_residual_to_x_plus_a": 0.0,
+    "hermitian_residual_after_translation": 0.0,
+    "incidence_line_rank_2": true,
+    "line_rank": 2,
+    "moved_line_rank": 2,
+    "translated_line_rank_2": true,
+    "translated_point_hermitian": true,
+    "translation_incidence_fit": true,
+    "wrong_complex_shift_breaks_hermitian_incidence": true
+  }
+}

@@ -1,0 +1,494 @@
+{
+  "F01_witness": {
+    "finite_carrier": "N quaternion neurons (N in {12,24,48}), each unit q in S^3 ~ Cl(3,0)+ ~ SU(2)",
+    "finite_operator": "weight rules: Hebbian W_ij=sum_mu xi_i (x) conj(xi_j); projection W=Xi pinv(Xi) (quaternion via 2x2 SU(2) blocks; classical via R^4 flatten); quaternion update xi_i <- normalize(sum_j W_ij xi_j)",
+    "finite_path": "async sweeps in DETERMINISTIC cyclic neuron order (1..N) to fixed-point convergence",
+    "finite_probe": "10 corruption seeds/pattern, 30% neuron replacement; 16 random starts for order probe"
+  },
+  "N01_witness": {
+    "noncommutative_product": "quaternion Hamilton product (geometric product on Cl(3,0)+); i*j=k, j*i=-k; preserved in the update under BOTH weight rules",
+    "order_sensitive_control": "W assembled ELEMENTWISE qmul(A,B) vs qmul(B,A); basin distance above floor; commuting complex-subalgebra control collapses it; erased B:=A control is 0"
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion / manifold admission",
+    "coupling / coexistence / nesting promotion",
+    "bridge / rho_AB / Xi / Phi0 / Axis0",
+    "flux / FEP / physics",
+    "ratchet-edge admission or ratchet-thesis closure (analogy only)"
+  ],
+  "carrier_verification": {
+    "carrier_verified": true,
+    "hamilton_product_eq_matrix_product_maxerr": 2.237726045655905e-16,
+    "i_squared_eq_minus_one_err": 0.0,
+    "i_times_j_eq_k_err": 0.0,
+    "j_times_i_eq_minus_k_err": 0.0,
+    "mat2quat_roundtrip_maxerr": 0.0,
+    "noncommutative_ij_ne_ji": true,
+    "pauli_anticommutator_sx_sy": 0.0,
+    "pauli_square_sx": 0.0
+  },
+  "claim_ceiling": "COMPUTES finite invariants on a Clifford carrier (Cl(3,0)+ ~ H ~ SU(2)): (i) capacity (max_reliable_M) under a pseudo-inverse/projection weight rule vs the Hebbian rule, quaternion AND classical, at N=12; (ii) the N-scaling of capacity over N in {12,24,48} with the quaternion/classical ratio; (iii) the parent's geometric-vs-classical + order-dependent-basin controls. Does NOT assert layer-completion / manifold admission / coupling / bridge (rho_AB/Xi/Phi0/Axis0) / flux / FEP / physics. A recovered pattern is a CANDIDATE attractor survivor. promotion_allowed=false.",
+  "classification": "hopfield_capacity_poc",
+  "control_A_geometric_vs_classical": {
+    "basin_label_mismatch_fraction": 0.9583333333333334,
+    "geometric_is_decorative": false,
+    "interpretation": "LOAD-BEARING: quaternion-product basins differ from the Euclidean-dot classical control.",
+    "max_recovered_config_distance": 1.3403777689288423,
+    "mean_recovered_config_distance_quat_vs_classical": 0.9795680180518572,
+    "trials": 24
+  },
+  "control_B_order_dependent_basin": {
+    "commuting_complex_subalgebra_arm": {
+      "assembly_noncommutativity_AB_minus_BA": 0.0,
+      "entry_algebra": "complex_subalgebra_(w,x,0,0)_qmul_commutes",
+      "erased_control_assembly_noncomm": 0.0,
+      "erased_control_max_basin_distance": 1.2386207151770795e-8,
+      "fraction_probes_order_dependent": 0.0,
+      "max_order_basin_distance": 1.0931390796396078e-8,
+      "mean_order_basin_distance": 5.1387643501890065e-9,
+      "n_probes": 16
+    },
+    "commuting_control_collapses_to_floor": true,
+    "erased_metric_control_is_zero": true,
+    "full_quaternion_arm": {
+      "assembly_noncommutativity_AB_minus_BA": 1.867838544025409,
+      "entry_algebra": "full_quaternion_qmul_noncommutes",
+      "erased_control_assembly_noncomm": 0.0,
+      "erased_control_max_basin_distance": 1.1871851896637512e-8,
+      "fraction_probes_order_dependent": 1.0,
+      "max_order_basin_distance": 1.27217045409484,
+      "mean_order_basin_distance": 1.1008375441231748,
+      "n_probes": 16
+    },
+    "load_bearing_flip": true,
+    "order_dependent_basin_real": true,
+    "order_floor": 1.0e-6
+  },
+  "lift_1_pseudoinverse_vs_hebbian_N12": {
+    "N": 12,
+    "capacity_summary": {
+      "classical_hebbian": 1,
+      "classical_projection": 5,
+      "quaternion_hebbian": 1,
+      "quaternion_projection": 2
+    },
+    "interpretation": "pseudoinverse(quaternion)=2 vs hebbian(quaternion)=1 ; pseudoinverse(classical)=5 vs hebbian(classical)=1. If the projection rule does NOT raise max_reliable_M above the Hebbian value, the weak capacity is the floor of THIS carrier+probe, not the update rule. Reported as measured.",
+    "per_rule": {
+      "classical_hebbian": {
+        "capacity_ladder": [
+          {
+            "M": 1,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 1.0,
+            "min_recall_overlap": 1.0,
+            "reliable": true,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 2,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.753692921719403,
+            "min_recall_overlap": 0.7536929217131122,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 3,
+            "basin_correct_fraction": 0.3333333333333333,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.6980355504830428,
+            "min_recall_overlap": 0.4987930794323261,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 4,
+            "basin_correct_fraction": 0.75,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.7604105512577033,
+            "min_recall_overlap": 0.2767262083426993,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 5,
+            "basin_correct_fraction": 0.2,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.6062266094579987,
+            "min_recall_overlap": 0.5053117687911518,
+            "reliable": false,
+            "trials_per_pattern": 10
+          }
+        ],
+        "max_reliable_M": 1
+      },
+      "classical_projection": {
+        "capacity_ladder": [
+          {
+            "M": 1,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 1.0,
+            "min_recall_overlap": 1.0,
+            "reliable": true,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 2,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.9992901084866498,
+            "min_recall_overlap": 0.999290108483195,
+            "reliable": true,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 3,
+            "basin_correct_fraction": 0.6666666666666666,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.8224411084418496,
+            "min_recall_overlap": 0.5015285261822416,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 4,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.994106059790216,
+            "min_recall_overlap": 0.986538032553379,
+            "reliable": true,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 5,
+            "basin_correct_fraction": 0.98,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.9682053066652881,
+            "min_recall_overlap": 0.3025257030899031,
+            "reliable": true,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 6,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.9355539106219877,
+            "min_recall_overlap": 0.7451855082223596,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 7,
+            "basin_correct_fraction": 0.5714285714285714,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.6592280330433212,
+            "min_recall_overlap": 0.3841329797248563,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 8,
+            "basin_correct_fraction": 0.6125,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.7501096887646824,
+            "min_recall_overlap": 0.3746920873747126,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 9,
+            "basin_correct_fraction": 0.2222222222222222,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.48968010213418944,
+            "min_recall_overlap": 0.2977323911762515,
+            "reliable": false,
+            "trials_per_pattern": 10
+          }
+        ],
+        "max_reliable_M": 5
+      },
+      "quaternion_hebbian": {
+        "capacity_ladder": [
+          {
+            "M": 1,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.9523195041819337,
+            "min_recall_overlap": 0.8663286179773863,
+            "reliable": true,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 2,
+            "basin_correct_fraction": 0.95,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.7590172316410626,
+            "min_recall_overlap": 0.6205122257504471,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 3,
+            "basin_correct_fraction": 0.7333333333333333,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.7028048732205394,
+            "min_recall_overlap": 0.4685009570701139,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 4,
+            "basin_correct_fraction": 0.8,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.6048860445792088,
+            "min_recall_overlap": 0.31398632817947364,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 5,
+            "basin_correct_fraction": 0.82,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.6054910147778466,
+            "min_recall_overlap": 0.2946803453585812,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 6,
+            "basin_correct_fraction": 0.6166666666666667,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.5757869914945464,
+            "min_recall_overlap": 0.31255868491894107,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 7,
+            "basin_correct_fraction": 0.6,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.5277094060528846,
+            "min_recall_overlap": 0.3404338151697679,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 8,
+            "basin_correct_fraction": 0.3125,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.5497756282446032,
+            "min_recall_overlap": 0.3162485877552156,
+            "reliable": false,
+            "trials_per_pattern": 10
+          }
+        ],
+        "max_reliable_M": 1
+      },
+      "quaternion_projection": {
+        "capacity_ladder": [
+          {
+            "M": 1,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.9523195041818939,
+            "min_recall_overlap": 0.8663286179773921,
+            "reliable": true,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 2,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.9644422630511931,
+            "min_recall_overlap": 0.8644537108936837,
+            "reliable": true,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 3,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.9456559301656727,
+            "min_recall_overlap": 0.5273012727121251,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 4,
+            "basin_correct_fraction": 0.95,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.815768601452152,
+            "min_recall_overlap": 0.4418814509893909,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 5,
+            "basin_correct_fraction": 0.88,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.7360336950045686,
+            "min_recall_overlap": 0.4092357633125185,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 6,
+            "basin_correct_fraction": 0.95,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.7188627483551024,
+            "min_recall_overlap": 0.5137730525741584,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 7,
+            "basin_correct_fraction": 0.9571428571428572,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.7010616609138675,
+            "min_recall_overlap": 0.4441547204325798,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 8,
+            "basin_correct_fraction": 0.95,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.6999987831733749,
+            "min_recall_overlap": 0.4208313792670861,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 9,
+            "basin_correct_fraction": 0.9777777777777777,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.6800261113657603,
+            "min_recall_overlap": 0.4736313071533474,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 10,
+            "basin_correct_fraction": 0.97,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.6699691981800115,
+            "min_recall_overlap": 0.4474007976969299,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 11,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.732875264348819,
+            "min_recall_overlap": 0.6228011719965422,
+            "reliable": false,
+            "trials_per_pattern": 10
+          },
+          {
+            "M": 12,
+            "basin_correct_fraction": 1.0,
+            "corrupt_frac": 0.3,
+            "mean_recall_overlap": 0.8124585570782791,
+            "min_recall_overlap": 0.7166348481789838,
+            "reliable": false,
+            "trials_per_pattern": 10
+          }
+        ],
+        "max_reliable_M": 2
+      }
+    },
+    "pseudoinverse_lifts_classical_capacity": true,
+    "pseudoinverse_lifts_quaternion_capacity": true,
+    "quaternion_projection_capacity_above_1": true,
+    "strict_bar": "mean recall overlap >= 0.95 AND basin-correct fraction >= 0.90 over 10 corruption trials/pattern at 30% corruption"
+  },
+  "non_numpy": true,
+  "object_id": "hopfield_capacity_scaling",
+  "promotion_allowed": false,
+  "reuses_object": "clifford_hopfield (carrier + recall machinery reused verbatim)",
+  "runtime_seconds": 36.12460994720459,
+  "scaling_N_quaternion_vs_classical": {
+    "Ns": [
+      12,
+      24,
+      48
+    ],
+    "any_N_hit_scan_ceiling": false,
+    "decisive_verdict": "STRUCTURAL_GAP: quaternion capacity stayed strictly below classical at every tested N and did not converge to parity -> 'geometric product is more constraining' SURVIVED this probe.",
+    "per_N": [
+      {
+        "M_cap_scanned": 16,
+        "N": 12,
+        "classical_best_capacity": 4,
+        "classical_hebbian_capacity": 2,
+        "classical_projection_capacity": 4,
+        "quaternion_best_capacity": 2,
+        "quaternion_hebbian_capacity": 1,
+        "quaternion_over_classical_ratio_best": 0.5,
+        "quaternion_over_classical_ratio_hebbian": 0.5,
+        "quaternion_over_classical_ratio_projection": 0.5,
+        "quaternion_projection_capacity": 2,
+        "quaternion_strictly_below_classical_best": true,
+        "scan_hit_M_cap_ceiling": false
+      },
+      {
+        "M_cap_scanned": 24,
+        "N": 24,
+        "classical_best_capacity": 11,
+        "classical_hebbian_capacity": 2,
+        "classical_projection_capacity": 11,
+        "quaternion_best_capacity": 6,
+        "quaternion_hebbian_capacity": 1,
+        "quaternion_over_classical_ratio_best": 0.5454545454545454,
+        "quaternion_over_classical_ratio_hebbian": 0.5,
+        "quaternion_over_classical_ratio_projection": 0.5454545454545454,
+        "quaternion_projection_capacity": 6,
+        "quaternion_strictly_below_classical_best": true,
+        "scan_hit_M_cap_ceiling": false
+      },
+      {
+        "M_cap_scanned": 28,
+        "N": 48,
+        "classical_best_capacity": 27,
+        "classical_hebbian_capacity": 2,
+        "classical_projection_capacity": 27,
+        "quaternion_best_capacity": 12,
+        "quaternion_hebbian_capacity": 1,
+        "quaternion_over_classical_ratio_best": 0.4444444444444444,
+        "quaternion_over_classical_ratio_hebbian": 0.5,
+        "quaternion_over_classical_ratio_projection": 0.4444444444444444,
+        "quaternion_projection_capacity": 12,
+        "quaternion_strictly_below_classical_best": true,
+        "scan_hit_M_cap_ceiling": false
+      }
+    ],
+    "quaternion_strictly_below_classical_all_N": true,
+    "ratio_converging_toward_parity": false,
+    "ratios_best_quaternion_over_classical": [
+      0.5,
+      0.5454545454545454,
+      0.4444444444444444
+    ],
+    "strict_bar": "mean recall overlap >= 0.95 AND basin-correct fraction >= 0.90 over 10 corruption trials/pattern at 30% corruption"
+  },
+  "seed": 20260602,
+  "sim_execution_kind": "nonclassical",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: pinv (SVD pseudo-inverse) builds the projection weight rule on BOTH arms; SU(2)/Pauli realization verifies the carrier + the mat2quat round-trip the quaternion projection depends on.",
+    "Random": "load_bearing: random unit quaternions, corruption seeds, random starts (signatures measured, not planted).",
+    "Statistics": "supportive: means over corruption trials and probes."
+  }
+}

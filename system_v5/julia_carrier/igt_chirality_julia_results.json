@@ -1,0 +1,212 @@
+{
+  "object_id": "igt_chirality_m_igt_v1",
+  "claim_ceiling": "IGT payoff-asymmetry probe only: no layer-completion, manifold admission, coupling, bridge, Axis0, flux, or physics claims. Chirality under M_IGT is a payoff-probe criterion, not a geometric or physical claim.",
+  "promotion_allowed": false,
+  "classification": "tool_lego_fit_probe",
+  "generated_at": "2026-06-04T08:45:50.942",
+  "root_constraints": {
+    "F01": "finite carrier/probe/operator set; all entries finite; operator dimensions positive",
+    "N01": "exists at least one nonzero commutator norm among carrier operators"
+  },
+  "probe_family": {
+    "name": "M_IGT",
+    "definition": "win-lose payoff asymmetry under row-axis operator relabeling swap; chiral iff exists (i,j) with |payoff[i,j] - payoff[j,i]| > tol",
+    "anti_circular": true,
+    "anti_circular_detail": "M_IGT references only payoff matrix numeric values; no gamma5, Gamma, handedness, z2_grading, left_right_split, sign_structure, or geometric operator referenced in the check"
+  },
+  "domain": "finite n×n payoff matrix (IGT observed win-lose probes) × finite Hamiltonian H derived from payoff × independent dephasing probe P",
+  "codomain": "verdict ∈ {survived: chiral under M_IGT, excluded: symmetric under M_IGT (UNSAT), excluded by F01, excluded by N01}",
+  "carriers": {
+    "chiral_2x2": {
+      "name": "chiral_2x2",
+      "dim": 2,
+      "f01": true,
+      "n01": true,
+      "n01_commutator_norm": 1.74153214776,
+      "chiral_under_M_IGT": true,
+      "M_IGT_max_asymmetry": 2,
+      "M_IGT_asymmetric_pairs": 1,
+      "anti_circular_check": {
+        "references_gamma5": false,
+        "references_handedness": false,
+        "references_geometric_operator": false,
+        "verdict": "M_IGT check references only payoff matrix values — no geometric operators"
+      },
+      "verdict": "survived: chiral under M_IGT",
+      "description": "2x2 chiral: payoff[1,2]=1.0 (W) vs payoff[2,1]=-1.0 (L); asymmetric under row-swap; H from seed 1042"
+    },
+    "chiral_4x4": {
+      "name": "chiral_4x4",
+      "dim": 4,
+      "f01": true,
+      "n01": true,
+      "n01_commutator_norm": 2.97758514874,
+      "chiral_under_M_IGT": true,
+      "M_IGT_max_asymmetry": 1.5,
+      "M_IGT_asymmetric_pairs": 5,
+      "anti_circular_check": {
+        "references_gamma5": false,
+        "references_handedness": false,
+        "references_geometric_operator": false,
+        "verdict": "M_IGT check references only payoff matrix values — no geometric operators"
+      },
+      "verdict": "survived: chiral under M_IGT",
+      "description": "4x4 chiral: TypeTwo IGT signature (W,w,w,L)/(L,W,L,L) embedded; off-diagonal elements asymmetric; H from seed 1043"
+    },
+    "chiral_8x8": {
+      "name": "chiral_8x8",
+      "dim": 8,
+      "f01": true,
+      "n01": true,
+      "n01_commutator_norm": 3.40409534617,
+      "chiral_under_M_IGT": true,
+      "M_IGT_max_asymmetry": 2.91039389989,
+      "M_IGT_asymmetric_pairs": 28,
+      "anti_circular_check": {
+        "references_gamma5": false,
+        "references_handedness": false,
+        "references_geometric_operator": false,
+        "verdict": "M_IGT check references only payoff matrix values — no geometric operators"
+      },
+      "verdict": "survived: chiral under M_IGT",
+      "description": "8x8 chiral: random (seed=7777) payoff matrix; generically asymmetric off-diagonal; H from seed 1044"
+    },
+    "nonchiral_2x2": {
+      "name": "nonchiral_2x2",
+      "dim": 2,
+      "f01": true,
+      "n01": true,
+      "n01_commutator_norm": 0.144182588349,
+      "chiral_under_M_IGT": false,
+      "M_IGT_max_asymmetry": 0,
+      "M_IGT_asymmetric_pairs": 0,
+      "anti_circular_check": {
+        "references_gamma5": false,
+        "references_handedness": false,
+        "references_geometric_operator": false,
+        "verdict": "M_IGT check references only payoff matrix values — no geometric operators"
+      },
+      "verdict": "excluded: symmetric under M_IGT (UNSAT)",
+      "description": "2x2 non-chiral: all payoffs equal (0.5); fully symmetric under row-swap; H from seed 2052"
+    },
+    "nonchiral_4x4": {
+      "name": "nonchiral_4x4",
+      "dim": 4,
+      "f01": true,
+      "n01": true,
+      "n01_commutator_norm": 1.95843960105,
+      "chiral_under_M_IGT": false,
+      "M_IGT_max_asymmetry": 0,
+      "M_IGT_asymmetric_pairs": 0,
+      "anti_circular_check": {
+        "references_gamma5": false,
+        "references_handedness": false,
+        "references_geometric_operator": false,
+        "verdict": "M_IGT check references only payoff matrix values — no geometric operators"
+      },
+      "verdict": "excluded: symmetric under M_IGT (UNSAT)",
+      "description": "4x4 non-chiral: symmetrized random payoff (seed=5555, M=(A+A')/2); M[i,j]=M[j,i] by construction; H from seed 2053"
+    },
+    "nonchiral_8x8": {
+      "name": "nonchiral_8x8",
+      "dim": 8,
+      "f01": true,
+      "n01": true,
+      "n01_commutator_norm": 2.66217732692,
+      "chiral_under_M_IGT": false,
+      "M_IGT_max_asymmetry": 0,
+      "M_IGT_asymmetric_pairs": 0,
+      "anti_circular_check": {
+        "references_gamma5": false,
+        "references_handedness": false,
+        "references_geometric_operator": false,
+        "verdict": "M_IGT check references only payoff matrix values — no geometric operators"
+      },
+      "verdict": "excluded: symmetric under M_IGT (UNSAT)",
+      "description": "8x8 non-chiral: symmetrized random matrix (seed=8888, M=(A+A')/2); M[i,j]=M[j,i] by construction; H from seed 2054"
+    }
+  },
+  "positive_checks": {
+    "chiral_pool_all_survived": true,
+    "nonchiral_pool_all_excluded": true,
+    "all_carriers_f01": true,
+    "all_carriers_n01": true
+  },
+  "load_bearing_flip": {
+    "base_carrier": "chiral_4x4",
+    "original_chiral_under_M_IGT": true,
+    "original_max_asymmetry": 1.5,
+    "original_verdict": "survived: chiral under M_IGT",
+    "erased_payoff_description": "payoff symmetrized via (M + M')/2 — all off-diagonal asymmetry erased",
+    "erased_chiral_under_M_IGT": false,
+    "erased_max_asymmetry": 0,
+    "erased_verdict": "excluded: symmetric under M_IGT (UNSAT)",
+    "flip_real": true,
+    "flip_error": false,
+    "interpretation": "LOAD-BEARING CONFIRMED: erasing win-lose asymmetry flips verdict from survived to excluded"
+  },
+  "boundary_checks": {
+    "size_ladder": {
+      "N8": {
+        "N": 8,
+        "hermitian_proxy": true,
+        "chiral_under_M_IGT": false,
+        "M_IGT_max_asymmetry": 0,
+        "M_IGT_asymmetric_pairs": 0,
+        "verdict": "boundary confirmed: real Hermitian proxy is always non-chiral under M_IGT",
+        "note": "boundary case only; Hermitian payoff proxies are always symmetric under row-swap"
+      },
+      "N16": {
+        "N": 16,
+        "hermitian_proxy": true,
+        "chiral_under_M_IGT": false,
+        "M_IGT_max_asymmetry": 0,
+        "M_IGT_asymmetric_pairs": 0,
+        "verdict": "boundary confirmed: real Hermitian proxy is always non-chiral under M_IGT",
+        "note": "boundary case only; Hermitian payoff proxies are always symmetric under row-swap"
+      },
+      "N32": {
+        "N": 32,
+        "hermitian_proxy": true,
+        "chiral_under_M_IGT": false,
+        "M_IGT_max_asymmetry": 0,
+        "M_IGT_asymmetric_pairs": 0,
+        "verdict": "boundary confirmed: real Hermitian proxy is always non-chiral under M_IGT",
+        "note": "boundary case only; Hermitian payoff proxies are always symmetric under row-swap"
+      },
+      "N64": {
+        "N": 64,
+        "hermitian_proxy": true,
+        "chiral_under_M_IGT": false,
+        "M_IGT_max_asymmetry": 0,
+        "M_IGT_asymmetric_pairs": 0,
+        "verdict": "boundary confirmed: real Hermitian proxy is always non-chiral under M_IGT",
+        "note": "boundary case only; Hermitian payoff proxies are always symmetric under row-swap"
+      }
+    },
+    "note": "real Hermitian payoff proxies always satisfy M[i,j]=M[j,i] so are always non-chiral under M_IGT — boundary case confirms check is non-trivial only for asymmetric inputs"
+  },
+  "chiral_carriers_survived": [
+    "chiral_2x2",
+    "chiral_4x4",
+    "chiral_8x8"
+  ],
+  "nonchiral_carriers_excluded": [
+    "nonchiral_2x2",
+    "nonchiral_4x4",
+    "nonchiral_8x8"
+  ],
+  "conclusion": "Chiral carriers (asymmetric payoffs) survived M_IGT probe. Non-chiral carriers (symmetric payoffs) excluded as UNSAT under M_IGT. Load-bearing flip confirmed. Anti-circular check passed.",
+  "tool_manifest": {
+    "julia_stdlib_LinearAlgebra": "load-bearing: commutator norms, Hermitian symmetrization, norm computations for F01/N01 checks",
+    "julia_stdlib_Random": "load-bearing: fixed-seed payoff matrix generation for chiral_8x8, nonchiral_8x8, size ladder",
+    "julia_stdlib_Dates": "supportive: timestamp only",
+    "julia_stdlib_Printf": "supportive: JSON float formatting and string escaping"
+  },
+  "tool_integration_depth": {
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Dates": "supportive",
+    "Printf": "supportive"
+  }
+}

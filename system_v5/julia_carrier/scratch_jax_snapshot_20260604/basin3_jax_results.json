@@ -1,0 +1,156 @@
+{
+  "object_id": "basin3_hopfield_chiral_quaternion_network_jax",
+  "engine": "real_jax",
+  "version": "4.0",
+  "x64_enabled": true,
+  "classification": "audit_lane",
+  "promotion_allowed": false,
+  "seed": 20260603,
+  "n_neurons": 12,
+  "m_values": [
+    2,
+    3,
+    4,
+    8
+  ],
+  "per_M_results": [
+    {
+      "M": 2,
+      "chance": 0.5,
+      "chiral": {
+        "recall_accuracy": 0.75,
+        "mean_recall_overlap": 0.5622414895380536,
+        "n_basins_found": 1.8
+      },
+      "nonchiral": {
+        "recall_accuracy": 1.0,
+        "mean_recall_overlap": 0.63217717048696,
+        "n_basins_found": 2.0
+      },
+      "realvec": {
+        "recall_accuracy": 0.9375,
+        "mean_recall_overlap": 0.8155316295549749,
+        "n_basins_found": 2.0
+      },
+      "classical": {
+        "recall_accuracy": 0.5,
+        "mean_recall_overlap": 1.0,
+        "n_basins_found": 1.0
+      },
+      "candidate_distinct_at_matched_dim": false,
+      "genuine_multistable_at_M": false
+    },
+    {
+      "M": 3,
+      "chance": 0.3333333333333333,
+      "chiral": {
+        "recall_accuracy": 0.7916666666666666,
+        "mean_recall_overlap": 0.5558116993995195,
+        "n_basins_found": 3.0
+      },
+      "nonchiral": {
+        "recall_accuracy": 0.8055555555555555,
+        "mean_recall_overlap": 0.5849221850514715,
+        "n_basins_found": 2.6666666666666665
+      },
+      "realvec": {
+        "recall_accuracy": 0.6944444444444443,
+        "mean_recall_overlap": 0.8575562990640995,
+        "n_basins_found": 2.3333333333333335
+      },
+      "classical": {
+        "recall_accuracy": 0.3333333333333333,
+        "mean_recall_overlap": 1.0,
+        "n_basins_found": 1.0
+      },
+      "candidate_distinct_at_matched_dim": false,
+      "genuine_multistable_at_M": true
+    },
+    {
+      "M": 4,
+      "chance": 0.25,
+      "chiral": {
+        "recall_accuracy": 0.65625,
+        "mean_recall_overlap": 0.5502458479391678,
+        "n_basins_found": 4.0
+      },
+      "nonchiral": {
+        "recall_accuracy": 0.875,
+        "mean_recall_overlap": 0.5839692819263618,
+        "n_basins_found": 4.0
+      },
+      "realvec": {
+        "recall_accuracy": 0.65625,
+        "mean_recall_overlap": 0.8046353456899534,
+        "n_basins_found": 3.5
+      },
+      "classical": {
+        "recall_accuracy": 0.25,
+        "mean_recall_overlap": 1.0,
+        "n_basins_found": 1.0
+      },
+      "candidate_distinct_at_matched_dim": false,
+      "genuine_multistable_at_M": true
+    },
+    {
+      "M": 8,
+      "chance": 0.125,
+      "chiral": {
+        "recall_accuracy": 0.671875,
+        "mean_recall_overlap": 0.5353636019406326,
+        "n_basins_found": 8.0
+      },
+      "nonchiral": {
+        "recall_accuracy": 0.328125,
+        "mean_recall_overlap": 0.5446941454260906,
+        "n_basins_found": 8.0
+      },
+      "realvec": {
+        "recall_accuracy": 0.265625,
+        "mean_recall_overlap": 0.7771090768353305,
+        "n_basins_found": 5.0
+      },
+      "classical": {
+        "recall_accuracy": 0.125,
+        "mean_recall_overlap": 1.0,
+        "n_basins_found": 1.0
+      },
+      "candidate_distinct_at_matched_dim": true,
+      "genuine_multistable_at_M": true
+    }
+  ],
+  "genuine_multistability": true,
+  "candidate_distinct_matched": true,
+  "recall_accuracy": 0.7916666666666666,
+  "per_model_summary": {
+    "chiral": 0.7916666666666666,
+    "nonchiral": 1.0,
+    "realvec": 0.9375,
+    "classical": 0.5
+  },
+  "n01_check": {
+    "passed": true,
+    "commutator_norm": 2.0,
+    "note": "verified via JAX: Hamilton product i*j != j*i"
+  },
+  "parity_vs_julia": {
+    "holds": true,
+    "note": "HOLDS (qualitative parity)",
+    "julia_chiral_recall": 0.875,
+    "jax_chiral_recall": 0.7916666666666666,
+    "recall_delta": 0.08333333333333337,
+    "julia_genuine_multistable": true,
+    "jax_genuine_multistable": true,
+    "julia_candidate_distinct": true,
+    "jax_candidate_distinct": true,
+    "flag_match": true,
+    "parity_criterion": "flag_match AND |recall_delta| < 0.30 (statistical, not bit-identical; RNG differs)"
+  },
+  "np_compute_remaining": 0,
+  "blocked_consumers": [
+    "layer-completion / manifold admission",
+    "coupling / coexistence / nesting promotion",
+    "bridge / rho_AB / Xi / Phi0 / Axis0",
+    "flux / FEP / physics"
+  ]
+}

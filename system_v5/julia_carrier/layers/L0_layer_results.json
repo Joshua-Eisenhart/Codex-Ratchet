@@ -1,0 +1,228 @@
+{
+  "F01_witness": {
+    "finite_PEPS3D_K_V_E_F_C": [
+      8,
+      12,
+      6,
+      1
+    ],
+    "finite_carrier_vertices": 8,
+    "finite_effect_families": {
+      "IC": 6,
+      "base": 4,
+      "trivial": 1
+    },
+    "finite_path_quotient": "K_V/~_E over a finite vertex set",
+    "finite_response_dim_base": 4
+  },
+  "N01_witness": {
+    "commutator_norm_P0_Qplus": 0.5,
+    "commuting_control_commutator_norm_Ca_Cb": 0.0,
+    "commuting_control_gap_vanishes": true,
+    "commuting_control_order_gap": 8.326672684688674e-17,
+    "n01_isolates_noncommutation": true,
+    "noncommuting_measured": true,
+    "order_gap_measured": true,
+    "sequential_order_response_gap": 0.16666666666666666
+  },
+  "ablation_outcome_delta": {
+    "erase_depolarize_carrier": {
+      "ablation_kind": "removed_and_rerun",
+      "classes_after": 1,
+      "control_gap_before": 8.0,
+      "delta_magnitude": 7.0,
+      "delta_witness": {
+        "after_classes": 1,
+        "erase_depolarize_classgap": 7.0,
+        "non_vacuous": true
+      },
+      "non_vacuous": true,
+      "recomputed": true
+    },
+    "erase_effect_family": {
+      "ablation_kind": "removed_and_rerun",
+      "classes_after": 1,
+      "control_gap_before": 8.0,
+      "delta_magnitude": 7.0,
+      "delta_witness": {
+        "after_classes": 1,
+        "erase_effect_classgap": 7.0,
+        "non_vacuous": true
+      },
+      "non_vacuous": true,
+      "recomputed": true
+    },
+    "erase_spinor_field": {
+      "ablation_kind": "removed_and_rerun",
+      "classes_after": 1,
+      "control_gap_before": 8.0,
+      "delta_magnitude": 7.0,
+      "delta_witness": {
+        "after_classes": 1,
+        "erase_spinor_classgap": 7.0,
+        "non_vacuous": true
+      },
+      "non_vacuous": true,
+      "recomputed": true
+    }
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "L1 spinor/density carrier (consumes L0 quotient as distinguishability prior)",
+    "L2..L6 Hopf region (needs L0 finite-probe quotient before fiber/base split)",
+    "G-structure selection (support lattice; tested LAST)",
+    "Axis0 / flux / FEP / physics (downstream; not drivers)",
+    "noncommutative-order ratchet (HYPOTHESIS; gated behind parent-complete layers)"
+  ],
+  "classification": "L0_layer_poc",
+  "controls": {
+    "negative": {
+      "constant_response_one_class": true,
+      "fresh_spinor_min_dist": 0.025834830717551133,
+      "fresh_spinor_new_class": true,
+      "n01_commuting_control_order_gap": 8.326672684688674e-17,
+      "n01_commuting_control_vanishes": true,
+      "n_classes_random": 8,
+      "random_response_all_distinct": true
+    },
+    "positive": {
+      "boundary_ic_vs_base_witness_gap": 1.0,
+      "boundary_witness_base_strictly_coarser": true,
+      "cube_base_eq_ic_classes_observed": [
+        8,
+        8
+      ],
+      "ic_recovers_planted_gap": 7.0,
+      "kill_e1_trivial_collapses": true,
+      "n01_isolates_noncommutation": true,
+      "n01_sequential_order_gap": 0.16666666666666666,
+      "positive_ic_eq_planted": true
+    }
+  },
+  "dependency_forcing": {
+    "all_erasures_collapse_signature": true,
+    "baseline_ic_classes": 8,
+    "erase_depolarize_E3_mixed": {
+      "classes_after": 1,
+      "collapses_to_one": true,
+      "erase_depolarize_gap": 7.0
+    },
+    "erase_effect_E1_trivial": {
+      "classes_after": 1,
+      "collapses_to_one": true,
+      "erase_effect_gap": 7.0
+    },
+    "erase_spinor_E2_constant": {
+      "classes_after": 1,
+      "collapses_to_one": true,
+      "erase_spinor_gap": 7.0
+    },
+    "interpretation": "Each below-geometry erasure (trivial effect family / constant spinor field / depolarized carrier) drives the quotient to 1 class. The L0 quotient signature is FORCED by the geometry below; it is not a property of hand-written channels."
+  },
+  "derived_readouts": {
+    "n_classes_IC_probe": 8,
+    "n_classes_base_probe": 8,
+    "n_classes_trivial_probe": 1,
+    "note": "class counts are DERIVED from measured responses; not assigned",
+    "planted_distinct_spinors": 8,
+    "response_dim_IC": 6
+  },
+  "finite_map": {
+    "codomain": "K_V / ~_E   (the surviving distinguishable classes)",
+    "domain": "vertices K_V of cube PEPS3D K=(V,E,F,C); spinor-derived densities rho_v",
+    "operator": "finite POVM effect family {E_a}, sum_a E_a = I",
+    "quotient": "v ~_E w iff max_a|p_a(v)-p_a(w)| <= tol",
+    "response": "R(v) = (p_a(v))_a, p_a = tr(E_a rho_v)  in  R^{|E|}",
+    "signature": "n_classes(E) = number of surviving classes"
+  },
+  "honest_note": "L0 quotient class-count is READ OUT from measured POVM responses and anchored to the planted distinct-spinor count under an IC probe. The decisive test is dependency-forcing: erasing the below-geometry (effect family / spinor field / carrier purity) collapses the quotient to a single class every time, so the signature is forced by the geometry below, not by hand-written channels.",
+  "honest_status_ladder": "passes",
+  "layer": "L0_layer",
+  "object": "finite_response_effect_path_quotient",
+  "peps3d_anchor": {
+    "K_V_E_F_C": [
+      8,
+      12,
+      6,
+      1
+    ],
+    "carrier": "cube cell complex; vertices carry spinor-derived densities",
+    "euler_characteristic": 2,
+    "euler_is_sphere_boundary_2": true
+  },
+  "promotion_allowed": false,
+  "required_load_bearing_erasures": [
+    "erase_effect",
+    "erase_spinor",
+    "erase_depolarize"
+  ],
+  "scale_stress": {
+    "expected_N_invariant": [],
+    "rows": [
+      {
+        "N": 8,
+        "erase_collapses": true,
+        "erase_depolarize_classes": 1,
+        "ic_classes": 8,
+        "ic_tracks_planted": true,
+        "planted_distinct": 8
+      },
+      {
+        "N": 16,
+        "erase_collapses": true,
+        "erase_depolarize_classes": 1,
+        "ic_classes": 16,
+        "ic_tracks_planted": true,
+        "planted_distinct": 16
+      },
+      {
+        "N": 32,
+        "erase_collapses": true,
+        "erase_depolarize_classes": 1,
+        "ic_classes": 32,
+        "ic_tracks_planted": true,
+        "planted_distinct": 32
+      },
+      {
+        "N": 64,
+        "erase_collapses": true,
+        "erase_depolarize_classes": 1,
+        "ic_classes": 64,
+        "ic_tracks_planted": true,
+        "planted_distinct": 64
+      }
+    ],
+    "scale_pass_ic_tracks_and_erase_collapses": true
+  },
+  "spinor_carrier": {
+    "carrier_psd_trace1": true,
+    "example_psi_vertex1": [
+      "0.984807753012208 + 0.0im",
+      "0.17364817766693033 + 0.0im"
+    ],
+    "n_vertex_spinors": 8,
+    "native": "ComplexF64 spinors psi_v in S^3 subset C^2, built in-Julia",
+    "rho_v_is_spinor_outer_product": true
+  },
+  "tool_manifest": {
+    "JSON": "load_bearing: receipt emission",
+    "LinearAlgebra": "load_bearing: spinor/density/trace/eigval/det algebra",
+    "Z3": "load_bearing: exact rational POVM proof (sum==I & PSD), verdict flips on broken family",
+    "numpy": "ABSENT (Julia-native, non-numpy by construction)"
+  },
+  "z3_loadbearing_proof": {
+    "base_each_effect_psd_status": [
+      "unsat",
+      "unsat",
+      "unsat",
+      "unsat"
+    ],
+    "base_psd_all_unsat": true,
+    "base_sum_minus_I_status": "unsat",
+    "broken_nonpsd_effect_status": "sat",
+    "broken_sum_drop_one_status": "sat",
+    "claim": "base effect family {1/2 P0,1/2 P1,1/2 Q+,1/2 Q-} is a genuine POVM (sum==I, each PSD)",
+    "tool_integration_depth": "load_bearing",
+    "z3_verdict_flips": true
+  }
+}

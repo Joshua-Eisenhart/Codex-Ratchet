@@ -1,0 +1,803 @@
+{
+  "F01_witness": "finite shell grids 8/16/32/64 with finite PEPS3D K=(V,E,F,C) anchors",
+  "N01_witness": "measured noncommuting horizontal-lift gap: H_eta then H_chi differs from H_chi then H_eta; erased connection gap is zero",
+  "all_pass": true,
+  "allowed_claims": [
+    "bounded Julia PoC for L4 Hopf c1 signature under FHS plaquette readout",
+    "dependency-forcing erasures collapse the measured L4 signature in this finite setup"
+  ],
+  "blocked_consumers": [
+    "layer completion",
+    "parent-complete L4",
+    "stacking readiness",
+    "nested Hopf tori L5",
+    "connection/holonomy L6 admission",
+    "Weyl/chirality",
+    "terrain",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics/gravity"
+  ],
+  "carrier_realization": {
+    "density_state": "Julia-native 2x2 ComplexF64 rank-1 density rho=psi*psi'",
+    "non_numpy": true,
+    "spinor_state": "Julia-native Vector{ComplexF64} normalized C2 spinor",
+    "torch_gap": "not torch-native because this requested artifact is Julia-only; blocks stronger nonclassical manifold admission under repo doctrine"
+  },
+  "checks": {
+    "fhs_hopf_c1_is_1_all_stress": true,
+    "fiber_base_split_collapses_under_constant_section": true,
+    "holonomy_collapses_under_trivialization": true,
+    "n01_horizontal_commutator_nonzero": true,
+    "nonvacuous_ablation_delta_present": true,
+    "peps3d_anchor_present_all_stress": true,
+    "phase_erased_c1_is_0_all_stress": true,
+    "qit_readouts_are_derived_and_finite": true,
+    "trivialized_c1_is_0_all_stress": true
+  },
+  "classification": "L4_layer_codex_poc",
+  "codomain_or_output": "integer first Chern readout c1, Berry/FHS plaquette fluxes, horizontal commutator gap, holonomy, derived density entropies",
+  "connection": {
+    "A_Hopf": "dphi + cos(2eta) dchi",
+    "curvature_nonzero_witness": "horizontal non-involutivity and FHS c1=1",
+    "fiber_base_split": {
+      "chi": 0.4487989505128276,
+      "eta": 0.6283185307179586,
+      "fiber_split_collapse_delta": 2.0,
+      "hopf_base_invariance_under_fiber_max": 4.47545209131181e-16,
+      "hopf_fiber_spinor_orbit_diameter": 2.0,
+      "trivial_base_invariance_under_fiber_max": 0.0,
+      "trivial_fiber_spinor_orbit_diameter": 0.0
+    },
+    "holonomy": {
+      "collapse_delta_abs": 3.141592653589794,
+      "eta": 0.5235987755982988,
+      "hopf_holonomy_phase": [
+        -1.0,
+        7.657137397853899e-16
+      ],
+      "hopf_horizontal_delta_phi": -3.141592653589794,
+      "trivial_holonomy_phase": [
+        1.0,
+        0.0
+      ],
+      "trivial_horizontal_delta_phi": 0.0
+    },
+    "n01_horizontal_noncommuting_gap": {
+      "d_chi": 0.0001,
+      "d_eta": 0.0001,
+      "eta": 0.6283185307179586,
+      "normalized_gap": 1.9021748233077906,
+      "predicted_first_order_gap": 1.902113032590307e-8,
+      "trivialized_vertical_phi_gap": 0.0,
+      "vertical_phi_gap": 1.9021748233077906e-8
+    }
+  },
+  "density_state": "rho=psi*psi' as a 2x2 ComplexF64 rank-1 density",
+  "dependency_forcing_erasures": {
+    "constant_section": "frozen section psi=[1,0] gives c1=0, zero curvature, zero fiber orbit",
+    "horizontal_connection_trivialized": "sets A=dphi or removes cos(2eta)dchi coupling; commutator gap and holonomy collapse to zero",
+    "phase_erased_section": "removes U(1) winding from second component; FHS c1 collapses to 0",
+    "trivial_m0_section": "same FHS method with m=0 gives c1=0 and zero net plaquette flux"
+  },
+  "dependency_receipts": [
+    "current-run read: system_v5/ops/MANIFOLD_GEOMETRY_LAYER_STACK_NONCOMMUTATIVE_ORDER_20260528.md",
+    "current-run read: system_v5/READ ONLY Reference Docs/Formal constraints and geometry .md",
+    "current-run result: system_v5/julia_carrier/layers/L4_layer_codex_results.json"
+  ],
+  "divergence_log": [
+    "Hopf section c1=1 while trivial/constant/phase-erased controls c1=0 using same FHS path",
+    "Horizontal commutator vertical gap is nonzero only with A_Hopf coupling",
+    "Holonomy and fiber orbit diameter collapse when bundle geometry is erased"
+  ],
+  "domain": "finite PEPS3D-anchored shell grids over projective spinor section theta=2eta, alpha=-2chi; shells 8,16,32,64",
+  "eligible_consumers": [
+    "local L4 PoC audit only",
+    "future L4 repair worker may use as comparison input after rerun"
+  ],
+  "finite_map": "finite lattice of normalized C2 spinors psi in S3, quotient by U(1) phase via Hopf projection pi(psi)=psi^dagger sigma psi in S2, with FHS plaquette readout c1",
+  "fresh_rerun": true,
+  "geometry_layer": "L4 Hopf fibration S3 -> S2 with U(1) fiber",
+  "honest_status": "passes local rerun for bounded L4_layer_codex_poc checks; promotion still blocked",
+  "math_from_docs_quoted": [
+    "psi(phi,chi;eta)=(e^(i(phi+chi)) cos eta, e^(i(phi-chi)) sin eta)",
+    "A_Hopf = dphi + cos(2eta) dchi",
+    "Hopf projection pi(psi)=psi^dagger sigma psi in S2"
+  ],
+  "name": "L4 Hopf fibration S3_to_S2_U1 finite-QIT dependency-forcing PoC",
+  "negative_controls": [
+    "trivial m=0 line-bundle section",
+    "globally constant section",
+    "phase-erased section",
+    "trivialized horizontal connection"
+  ],
+  "peps3d_embedding": "each stress shell carries an explicit finite combinatorial K=(V,E,F,C) anchor; this is not a PEPSKit tensor-contraction receipt",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "Julia-native rather than torch-native carrier under repo nonclassical admission doctrine",
+    "finite PEPS3D K anchor is combinatorial only; no PEPSKit tensor contraction or full cell-tensor payload",
+    "not run through validate_layer_distinctness.py",
+    "no full dedicated L4 evidence packet or layer-completion claim gate",
+    "does not prove parent-complete L4 or downstream stack compatibility"
+  ],
+  "promotion_status": "keep_but_open",
+  "quaternion_action": "not_applicable: this L4 artifact uses complex spinor/Hopf coordinates and makes no quaternion-map claim",
+  "root_constraints_in_force": {
+    "F01_witness": "finite shell grids plus finite PEPS3D K=(V,E,F,C) anchors; no continuum-only readout",
+    "N01_witness": "horizontal lift commutator [H_eta,H_chi] has measured vertical phi gap; trivialized connection gap is zero"
+  },
+  "run_command": "julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L4_layer_codex.jl\"",
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical_julia_poc",
+  "sim_id": "L4_layer_codex",
+  "spinor_state": "Julia-native normalized Vector{ComplexF64} in C2 representing a point of S3",
+  "stress_8_16_32_64": [
+    {
+      "constant_section": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 16,
+        "ntheta": 8,
+        "total_flux": 0.0
+      },
+      "dependency_forcing_delta": {
+        "abs_c1_hopf_minus_constant": 0.9999999999999996,
+        "abs_c1_hopf_minus_trivial_m0": 0.9999999999999996,
+        "abs_flux_sum_hopf_minus_constant": 6.283185307179584,
+        "abs_flux_sum_hopf_minus_phase_erased": 6.283185307179584
+      },
+      "fhs_grid": {
+        "nalpha": 16,
+        "ntheta": 8
+      },
+      "hopf": {
+        "abs_flux_sum": 6.283185307179584,
+        "c1": 0.9999999999999996,
+        "max_abs_plaquette_flux": 0.0759739542625265,
+        "nalpha": 16,
+        "ntheta": 8,
+        "total_flux": 6.283185307179584
+      },
+      "peps3d_anchor": {
+        "C_count": 1,
+        "E_count": 12,
+        "F_count": 6,
+        "K": "finite PEPS3D combinatorial anchor K=(V,E,F,C)",
+        "V_count": 8,
+        "anchor_boundary": "finite K anchor only; no PEPSKit contraction or tensor optimization claimed",
+        "dims": [
+          2,
+          2,
+          2
+        ],
+        "sample_cells": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        ],
+        "sample_edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "sample_faces": [
+          [
+            1,
+            2,
+            4,
+            3
+          ],
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            1,
+            3,
+            7,
+            5
+          ],
+          [
+            2,
+            4,
+            8,
+            6
+          ]
+        ],
+        "sample_vertices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "phase_erased": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 16,
+        "ntheta": 8,
+        "total_flux": 0.0
+      },
+      "qit_readouts_constant": {
+        "derived_only": true,
+        "ensemble_density_entropy_bits": 0.0,
+        "ensemble_density_trace": 1.0,
+        "pure_density_entropy_max_bits": 0.0
+      },
+      "qit_readouts_hopf": {
+        "derived_only": true,
+        "ensemble_density_entropy_bits": 0.9999999999999999,
+        "ensemble_density_trace": 1.0000000000000002,
+        "pure_density_entropy_max_bits": 4.805139755722375e-16
+      },
+      "shell": 8,
+      "trivial_m0": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 16,
+        "ntheta": 8,
+        "total_flux": 0.0
+      }
+    },
+    {
+      "constant_section": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 32,
+        "ntheta": 16,
+        "total_flux": 0.0
+      },
+      "dependency_forcing_delta": {
+        "abs_c1_hopf_minus_constant": 1.0000000000000016,
+        "abs_c1_hopf_minus_trivial_m0": 1.0000000000000016,
+        "abs_flux_sum_hopf_minus_constant": 6.283185307179596,
+        "abs_flux_sum_hopf_minus_phase_erased": 6.283185307179596
+      },
+      "fhs_grid": {
+        "nalpha": 32,
+        "ntheta": 16
+      },
+      "hopf": {
+        "abs_flux_sum": 6.283185307179596,
+        "c1": 1.0000000000000016,
+        "max_abs_plaquette_flux": 0.01921235539408024,
+        "nalpha": 32,
+        "ntheta": 16,
+        "total_flux": 6.283185307179596
+      },
+      "peps3d_anchor": {
+        "C_count": 3,
+        "E_count": 28,
+        "F_count": 16,
+        "K": "finite PEPS3D combinatorial anchor K=(V,E,F,C)",
+        "V_count": 16,
+        "anchor_boundary": "finite K anchor only; no PEPSKit contraction or tensor optimization claimed",
+        "dims": [
+          2,
+          2,
+          4
+        ],
+        "sample_cells": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        ],
+        "sample_edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "sample_faces": [
+          [
+            1,
+            2,
+            4,
+            3
+          ],
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            1,
+            3,
+            7,
+            5
+          ],
+          [
+            2,
+            4,
+            8,
+            6
+          ]
+        ],
+        "sample_vertices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "phase_erased": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 32,
+        "ntheta": 16,
+        "total_flux": 0.0
+      },
+      "qit_readouts_constant": {
+        "derived_only": true,
+        "ensemble_density_entropy_bits": 0.0,
+        "ensemble_density_trace": 1.0,
+        "pure_density_entropy_max_bits": 0.0
+      },
+      "qit_readouts_hopf": {
+        "derived_only": true,
+        "ensemble_density_entropy_bits": 0.9999999999999996,
+        "ensemble_density_trace": 1.0000000000000007,
+        "pure_density_entropy_max_bits": 6.406853007629834e-16
+      },
+      "shell": 16,
+      "trivial_m0": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 32,
+        "ntheta": 16,
+        "total_flux": 0.0
+      }
+    },
+    {
+      "constant_section": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 64,
+        "ntheta": 32,
+        "total_flux": 0.0
+      },
+      "dependency_forcing_delta": {
+        "abs_c1_hopf_minus_constant": 0.9999999999999997,
+        "abs_c1_hopf_minus_trivial_m0": 0.9999999999999997,
+        "abs_flux_sum_hopf_minus_constant": 6.2831853071795845,
+        "abs_flux_sum_hopf_minus_phase_erased": 6.2831853071795845
+      },
+      "fhs_grid": {
+        "nalpha": 64,
+        "ntheta": 32
+      },
+      "hopf": {
+        "abs_flux_sum": 6.2831853071795845,
+        "c1": 0.9999999999999997,
+        "max_abs_plaquette_flux": 0.004815236111302572,
+        "nalpha": 64,
+        "ntheta": 32,
+        "total_flux": 6.2831853071795845
+      },
+      "peps3d_anchor": {
+        "C_count": 9,
+        "E_count": 64,
+        "F_count": 42,
+        "K": "finite PEPS3D combinatorial anchor K=(V,E,F,C)",
+        "V_count": 32,
+        "anchor_boundary": "finite K anchor only; no PEPSKit contraction or tensor optimization claimed",
+        "dims": [
+          2,
+          4,
+          4
+        ],
+        "sample_cells": [
+          [
+            1,
+            2,
+            3,
+            4,
+            9,
+            10,
+            11,
+            12
+          ],
+          [
+            3,
+            4,
+            5,
+            6,
+            11,
+            12,
+            13,
+            14
+          ]
+        ],
+        "sample_edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            11
+          ]
+        ],
+        "sample_faces": [
+          [
+            1,
+            2,
+            4,
+            3
+          ],
+          [
+            1,
+            2,
+            10,
+            9
+          ],
+          [
+            1,
+            3,
+            11,
+            9
+          ],
+          [
+            2,
+            4,
+            12,
+            10
+          ]
+        ],
+        "sample_vertices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "phase_erased": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 64,
+        "ntheta": 32,
+        "total_flux": 0.0
+      },
+      "qit_readouts_constant": {
+        "derived_only": true,
+        "ensemble_density_entropy_bits": 0.0,
+        "ensemble_density_trace": 1.0,
+        "pure_density_entropy_max_bits": 0.0
+      },
+      "qit_readouts_hopf": {
+        "derived_only": true,
+        "ensemble_density_entropy_bits": 0.9999999999999993,
+        "ensemble_density_trace": 1.0000000000000013,
+        "pure_density_entropy_max_bits": 6.406853007629834e-16
+      },
+      "shell": 32,
+      "trivial_m0": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 64,
+        "ntheta": 32,
+        "total_flux": 0.0
+      }
+    },
+    {
+      "constant_section": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 128,
+        "ntheta": 64,
+        "total_flux": 0.0
+      },
+      "dependency_forcing_delta": {
+        "abs_c1_hopf_minus_constant": 0.9999999999999828,
+        "abs_c1_hopf_minus_trivial_m0": 0.9999999999999828,
+        "abs_flux_sum_hopf_minus_constant": 6.283185307179478,
+        "abs_flux_sum_hopf_minus_phase_erased": 6.283185307179478
+      },
+      "fhs_grid": {
+        "nalpha": 128,
+        "ntheta": 64
+      },
+      "hopf": {
+        "abs_flux_sum": 6.283185307179478,
+        "c1": 0.9999999999999828,
+        "max_abs_plaquette_flux": 0.0012045432122602957,
+        "nalpha": 128,
+        "ntheta": 64,
+        "total_flux": 6.283185307179478
+      },
+      "peps3d_anchor": {
+        "C_count": 27,
+        "E_count": 144,
+        "F_count": 108,
+        "K": "finite PEPS3D combinatorial anchor K=(V,E,F,C)",
+        "V_count": 64,
+        "anchor_boundary": "finite K anchor only; no PEPSKit contraction or tensor optimization claimed",
+        "dims": [
+          4,
+          4,
+          4
+        ],
+        "sample_cells": [
+          [
+            1,
+            2,
+            5,
+            6,
+            17,
+            18,
+            21,
+            22
+          ],
+          [
+            2,
+            3,
+            6,
+            7,
+            18,
+            19,
+            22,
+            23
+          ]
+        ],
+        "sample_edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            17
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            18
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "sample_faces": [
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            1,
+            2,
+            18,
+            17
+          ],
+          [
+            1,
+            5,
+            21,
+            17
+          ],
+          [
+            2,
+            3,
+            7,
+            6
+          ]
+        ],
+        "sample_vertices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "phase_erased": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 128,
+        "ntheta": 64,
+        "total_flux": 0.0
+      },
+      "qit_readouts_constant": {
+        "derived_only": true,
+        "ensemble_density_entropy_bits": 0.0,
+        "ensemble_density_trace": 1.0,
+        "pure_density_entropy_max_bits": 0.0
+      },
+      "qit_readouts_hopf": {
+        "derived_only": true,
+        "ensemble_density_entropy_bits": 1.0000000000000042,
+        "ensemble_density_trace": 0.9999999999999905,
+        "pure_density_entropy_max_bits": 1.121199276335221e-15
+      },
+      "shell": 64,
+      "trivial_m0": {
+        "abs_flux_sum": 0.0,
+        "c1": 0.0,
+        "max_abs_plaquette_flux": 0.0,
+        "nalpha": 128,
+        "ntheta": 64,
+        "total_flux": 0.0
+      }
+    }
+  ],
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "artifact emission only",
+      "role": "supportive"
+    },
+    "Julia": {
+      "reason": "native complex spinor lattice, FHS plaquette loop, connection-flow ablation, no NumPy bridge",
+      "role": "load_bearing"
+    },
+    "LinearAlgebra": {
+      "reason": "inner products, norms, traces, Hermitian density eigenspectra for FHS and QIT readouts",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "z3 omitted, not decorative; no SMT claim is needed because dependency forcing is measured by removed-and-rerun numeric collapse",
+      "role": "omitted"
+    }
+  },
+  "version": "1.0"
+}

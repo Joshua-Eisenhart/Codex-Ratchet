@@ -167,6 +167,8 @@ def route_command(args: argparse.Namespace, route: str, root: Path, repair_child
         str(args.opus_timeout_sec),
         "--haiku-timeout-sec",
         str(args.haiku_timeout_sec),
+        "--gemini-timeout-sec",
+        str(getattr(args, "gemini_timeout_sec", 90)),
         "--grok-timeout-sec",
         str(getattr(args, "grok_timeout_sec", 90)),
         "--sonnet-count",
@@ -196,12 +198,17 @@ def route_command(args: argparse.Namespace, route: str, root: Path, repair_child
         command.append("--parallel-model-groups")
     if getattr(args, "codex_local_children", False):
         command.append("--codex-local-children")
+    if getattr(args, "skip_claude_groups", False):
+        command.append("--skip-claude-groups")
     repair_mode = bool(repair_children)
-    if args.full_model_council and not (repair_mode and args.repair_single_model):
+    provider_only_repair = repair_mode and getattr(args, "skip_claude_groups", False)
+    if args.full_model_council and (not repair_mode or not args.repair_single_model or provider_only_repair):
         command.append("--full-model-council")
-    if args.attempt_gemini and not args.skip_gemini and not (repair_mode and args.repair_skip_gemini):
+    if args.attempt_gemini and not args.skip_gemini and (
+        not repair_mode or not args.repair_skip_gemini or provider_only_repair
+    ):
         command.append("--attempt-gemini")
-    if getattr(args, "attempt_grok", False) and not repair_mode:
+    if getattr(args, "attempt_grok", False) and (not repair_mode or provider_only_repair):
         command.append("--attempt-grok")
     if args.dry_run:
         command.append("--dry-run")
@@ -366,6 +373,8 @@ def external_capacity_preflight(args: argparse.Namespace, root: Path) -> dict[st
     """Run tiny bridge probes before launching the expensive v4.2 fanout."""
     if getattr(args, "codex_local_children", False):
         return {"status": "skipped", "reason": "codex_local_children", "probes": []}
+    if getattr(args, "skip_claude_groups", False):
+        return {"status": "skipped", "reason": "skip_claude_groups", "probes": []}
     if args.dry_run and not args.capacity_preflight_only or not args.capacity_preflight:
         return {"status": "skipped", "reason": "dry_run_or_disabled", "probes": []}
     bridge = CANONICAL_CLAUDE_BRIDGE
@@ -475,6 +484,7 @@ def main() -> int:
     parser.add_argument("--sonnet-timeout-sec", type=int, default=260)
     parser.add_argument("--opus-timeout-sec", type=int, default=320)
     parser.add_argument("--haiku-timeout-sec", type=int, default=160)
+    parser.add_argument("--gemini-timeout-sec", type=int, default=90)
     parser.add_argument("--grok-timeout-sec", type=int, default=90)
     parser.add_argument("--sonnet-count", type=int, default=0)
     parser.add_argument("--opus-count", type=int, default=0)
@@ -487,6 +497,7 @@ def main() -> int:
     parser.add_argument("--parallel-model-groups", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--full-model-council", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--codex-local-children", action="store_true", help="Use local Codex child receipts instead of Claude/Gemini fanout. Best for compact diagnostics during external quota blocks.")
+    parser.add_argument("--skip-claude-groups", action="store_true", help="Skip Claude groups and let direct provider lanes such as Gemini/Grok carry the active formal child obligation.")
     parser.add_argument("--attempt-gemini", action="store_true", default=False)
     parser.add_argument("--attempt-grok", action="store_true", default=False)
     parser.add_argument("--skip-gemini", action="store_true")
@@ -528,6 +539,7 @@ def main() -> int:
         "task": args.task,
         "attempt_gemini": args.attempt_gemini,
         "attempt_grok": args.attempt_grok,
+        "skip_claude_groups": args.skip_claude_groups,
     }
     (root / "run_config.json").write_text(json.dumps(run_config, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(root)

@@ -1,0 +1,48 @@
+{
+  "object_id": "dcm_order_probe",
+  "created_at": "2026-06-04T03:15:01.171",
+  "classification": "tool_lego_fit_probe",
+  "promotion_allowed": false,
+  "claim_ceiling": "finite 2x2 DM order probe; commutation check only; no manifold/layer/coupling claims",
+  "status": "runs",
+  "f01_gate": "200 sampled PSD density matrices, explicit finite parameter grid",
+  "n01_gate": "Uz/Ez commute (gap < 1e-12); Ux/Ez do NOT commute (gap ~0.35): N01 admission conditional on operator choice",
+  "finite_map": {
+    "domain": "2x2 PSD density matrices x (phi, q) grid",
+    "codomain": "order gap scalars in R>=0",
+    "map": "gap = mean_rho ||[U,E,U,E](rho) - [E,U,E,U](rho)||_HS"
+  },
+  "question_1": {
+    "max_gap_Uz": 1.415262216750919e-16,
+    "max_gap_Ux_control": 0.08973546203137964,
+    "uz_commutes_with_ez": true,
+    "zero_set": "full tested parameter space for Uz/Ez pair",
+    "condition_for_nonzero_gap": "operator pair must include a component that does NOT commute with Ez (e.g. Ux, composite Ux@Uz)",
+    "sin2_phi_q_1minusq_law": "rejected for Uz/Ez; the law would require nonzero gap, but gap is identically zero",
+    "negative_control_passed": false
+  },
+  "question_2": {
+    "invisible_on_rho_2pi": true,
+    "invisible_on_rho_4pi": true,
+    "relative_phase_2pi_real": -1.0,
+    "relative_phase_4pi_real": 1.0,
+    "interference_plus_prob_ref": 0.9999999999999998,
+    "interference_plus_prob_2pi": 3.7493994566546427e-33,
+    "interference_plus_prob_4pi": 0.9999999999999998,
+    "spinor_sign_observable_via_interference": true
+  },
+  "question_3": {
+    "max_gap_L": 1.415262216750919e-16,
+    "max_gap_R": 1.7109685898544713e-16,
+    "max_abs_delta": 1.0319055123155423e-16,
+    "all_gap_L_equal_gap_R": true,
+    "lr_flip_is_convention": true
+  },
+  "size_ladder_note": "2x2 algebra only; n_states ladder 50/100/200 is the analog of 8/16/32/64",
+  "blocked_downstream_consumers": [
+    "layer coupling", "bridge claims", "Axis0/FEP", "physics/gravity"
+  ],
+  "python_companion_path": "/tmp/dcm_order.py",
+  "python_companion_result": "/tmp/dcm_order_results.json",
+  "python_source_sha256": "1810a5949dfbcd2b98a7ef57f6360677ce07a2dbac1bb219137c573b7490dfb0"
+}

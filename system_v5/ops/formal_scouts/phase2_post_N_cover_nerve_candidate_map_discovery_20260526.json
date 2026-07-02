@@ -1,0 +1,175 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T01:12:00-07:00",
+  "classification": "formal_scout_controller_candidate",
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_N_cover_nerve_K",
+  "not_a_scout_run": true,
+  "claim_ceiling": "Candidate-map artifact only. No nested Hopf tori, Weyl sheet cover, terrain generator placement, operator substage cells, PEPS/PEPS3D closure, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, axes 7-12, general gluing law, sheaf theorem, homology theorem, shape law, bond convergence claim, or topology closure claim is opened.",
+  "current_state_inputs": {
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "transition_decision_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_N_cover_nerve_active_frontier_blocker_20260526.json",
+    "latest_earned_map": "N_cover_nerve_K : (T_triple_overlap_K, cover={K_0,K_1,K_2}, omega_01, omega_12, omega_02, omega_012, boundary_anchor, bond_dim, local_order_ops) -> finite cover-nerve incidence/readout table + control gap vector",
+    "frontier_rows": 22,
+    "contract_complete_rows": 21,
+    "killed_rows": 1,
+    "bounded_validator_all_pass": true
+  },
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "D_nerve_delete_K",
+      "finite_map": "D_nerve_delete_K : (N_cover_nerve_K, delta in {delta_v0,delta_v1,delta_v2,delta_e01,delta_e12,delta_e02,delta_sigma012}, boundary_anchor, bond_dim, local_order_ops) -> finite cover-nerve deletion-sensitivity table + control gap vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": [
+        "Uses only active Phase 2 carrier-frontier objects already earned by N_cover_nerve_K: one finite cover nerve, three vertices, three pairwise edges, one triple-overlap 2-simplex, inherited PEPS3D V/E/F/C anchors, finite response vectors, and local order paths.",
+        "The map is finite: the deletion operators are a finite set over the finite cover-nerve incidence/readout table.",
+        "It tests minimal dependence and support sensitivity of the already earned finite nerve readout; it does not claim homology, a sheaf/gluing theorem, topology closure, or full PEPS3D closure.",
+        "It keeps torch-native spinor-derived density only as finite response carrier data.",
+        "It keeps N01 through the inherited physical_filter/physical_shift order paths on the triple-simplex support plus an order-erased control.",
+        "It does not import later scale/closure stress, Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12."
+      ],
+      "chosen": true
+    },
+    {
+      "candidate_id": "H_nerve_homology_K",
+      "finite_map": "H_nerve_homology_K : N_cover_nerve_K -> homology or topology closure readout",
+      "decision": "rejected",
+      "why_rejected": "Homology/topology closure is not opened by finite incidence counts. A deletion-sensitivity table may use finite graph/simplex support counts, but it cannot promote those counts to topology closure."
+    },
+    {
+      "candidate_id": "S_sheaf_gluing_K",
+      "finite_map": "S_sheaf_gluing_K : N_cover_nerve_K -> general sheaf/gluing law",
+      "decision": "rejected",
+      "why_rejected": "A general sheaf or gluing theorem is a closure/promotion claim, not a bounded active carrier-frontier finite map."
+    },
+    {
+      "candidate_id": "Q_nerve_response_quotient_K",
+      "finite_map": "Q_nerve_response_quotient_K : N_cover_nerve_K rows -> quotient by equal nerve-response vectors",
+      "decision": "rejected_for_now",
+      "why_rejected": "Potentially Phase 2-only, but it is less direct than deletion sensitivity and risks duplicating the existing response-quotient rows unless a new quotient invariant is named later."
+    },
+    {
+      "candidate_id": "B_betti_or_persistence_K",
+      "finite_map": "B_betti_or_persistence_K : N_cover_nerve_K -> Betti/persistence invariant",
+      "decision": "rejected",
+      "why_rejected": "This would promote the finite nerve into topology/TDA closure. Phase 2 may use GUDHI as a finite incidence cross-check, not as a homology-closure admission."
+    },
+    {
+      "candidate_id": "hopf_weyl_flux_axis0_from_nerve",
+      "finite_map": "N_cover_nerve_K -> Hopf/Weyl/flux/Xi/Phi0/Axis0 readout",
+      "decision": "rejected",
+      "why_rejected": "Nested Hopf tori, Weyl sheets, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, and axes 7-12 remain blocked downstream consumers."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "D_nerve_delete_K",
+    "finite_map": "D_nerve_delete_K : (N_cover_nerve_K, delta in {delta_v0,delta_v1,delta_v2,delta_e01,delta_e12,delta_e02,delta_sigma012}, boundary_anchor, bond_dim, local_order_ops) -> finite cover-nerve deletion-sensitivity table + control gap vector",
+    "plain_question": "Does the finite cover nerve earned by N_cover_nerve_K actually depend on its anchored vertices, pairwise-overlap edges, and triple-overlap 2-simplex, so that finite deletion maps change the response/order/incidence readouts while no-anchor, label-only, order-erased, topology-closure, sheaf-closure, and dense-closure controls fail?",
+    "domain": {
+      "N_cover_nerve_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_cover_nerve_consistency_probe_results.json",
+      "cover_nerve": "finite cover nerve with cover vertices {K_0,K_1,K_2}, pairwise overlap edges {omega_01,omega_12,omega_02}, and triple-overlap simplex omega_012",
+      "deletion_maps": "finite deletion operators delta in {delta_v0,delta_v1,delta_v2,delta_e01,delta_e12,delta_e02,delta_sigma012}",
+      "carrier_rows": "bounded PEPS3D parent shape (5,5,5), three (4,4,4) restriction routes, shared (3,3,3) triple overlap, bond dimensions 2 and 3",
+      "finite_probe_effect_family": "finite SIC-effect local responses seeded by torch-native spinor-derived carrier data",
+      "finite_operator_paths": [
+        "physical_filter after physical_shift",
+        "physical_shift after physical_filter",
+        "order_erased"
+      ]
+    },
+    "codomain_or_output": {
+      "deletion_sensitivity_table": "finite table of response/order/incidence deltas under vertex, pairwise-edge, and triple-simplex deletions",
+      "anchor_loss_signature": "finite V/E/F/C support-count and incidence-readout loss under each deletion class",
+      "order_gap_vector": "finite noncommuting path gap retained on full support and reduced or blocked under deletion controls",
+      "control_gap_vector": "finite gaps for no-anchor, scalar-label, wrong-deletion, order-erased, dense-closure, topology-closure, sheaf-closure, and promotion controls"
+    },
+    "F01_witness": {
+      "finite_carriers": "one finite PEPS3D parent, three finite restrictions, three finite pairwise overlaps, one finite triple overlap, one finite cover nerve, and finitely many deletion rows",
+      "finite_probes": "finite SIC-effect local response family from active Phase 2 receipts",
+      "finite_operators": "physical_filter, physical_shift, order_erased, delta_v0, delta_v1, delta_v2, delta_e01, delta_e12, delta_e02, delta_sigma012, and finite incidence selectors",
+      "finite_paths": "bounded path set {filter_after_shift, shift_after_filter, order_erased} on each deletion-readout row"
+    },
+    "N01_witness": "D_nerve_delete_K(filter_after_shift(T_omega012)) != D_nerve_delete_K(shift_after_filter(T_omega012)) on full support, while order_erased collapses and triple-simplex deletion is not admitted as full support.",
+    "PEPS3D_anchor_requirement": "Every admitted deletion row must be computed from inherited PEPS3D site, edge, face, and cell anchors. No scalar cover labels are admitted.",
+    "torch_spinor_or_density_status": "Torch-native two-component spinors and spinor-derived local densities seed finite response tensors as carrier data only. No Hopf/Weyl geometry is admitted.",
+    "positive_case": "The full cover nerve has nonzero response/order/incidence support; deleting a vertex, pairwise edge, or triple simplex changes the finite readout by a nonzero amount and cannot be mistaken for the admitted full support.",
+    "negative_controls": [
+      "no_anchor",
+      "scalar_label",
+      "wrong_deletion_no_incidence_change",
+      "delete_triple_simplex_as_full_support",
+      "duplicate_cover_element",
+      "single_probe_non_ic",
+      "order_erased",
+      "dense_state_closure",
+      "dense_environment_closure",
+      "later_boundary_reclassification"
+    ],
+    "boundary_controls": [
+      "bond_dim_one remains control-only",
+      "finite deletion sensitivity is not homology or topology closure",
+      "no general gluing law",
+      "no sheaf theorem",
+      "no shape law",
+      "no bond convergence",
+      "no PEPS3D closure claim"
+    ],
+    "failure_conditions": [
+      "Any finite deletion row is indistinguishable from the admitted full cover-nerve support.",
+      "Any deletion row lacks inherited V/E/F/C anchor accounting.",
+      "Order gap is zero on the full support row or order-erased does not collapse.",
+      "Wrong-deletion, label-only, no-anchor, dense-closure, topology-closure, sheaf-closure, or promotion controls are admitted.",
+      "The map depends on Phase 7/downstream receipts or opens Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, axes 7-12, homology closure, sheaf closure, or full PEPS3D closure."
+    ],
+    "promotion_allowed": false,
+    "next_admissible_packet": {
+      "packet_id": "phase2_nerve_deletion_sensitivity_candidate_packet",
+      "allowed_next_action": "Author a formal_scout source for D_nerve_delete_K, then run/lint/validate it. This artifact itself does not authorize downstream geometry.",
+      "must_not_run_from_this_artifact": [
+        "nested Hopf tori",
+        "Weyl sheet cover",
+        "terrain generator placement",
+        "operator substages",
+        "flux",
+        "Xi/Phi0",
+        "Axis0",
+        "Holodeck/FEP",
+        "physics",
+        "IGT/game theory",
+        "axes 7-12"
+      ]
+    }
+  },
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_spinor_density_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps_peps3d_local_environment_contraction_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_heldout_shape_anchor_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_bond_sweep_anchor_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_anchor_partition_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_patch_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_projection_shape_bond_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_replay_restriction_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_restriction_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_triple_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cover_nerve_consistency_probe_results.json"
+  ],
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ]
+}

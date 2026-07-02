@@ -1,0 +1,86 @@
+{
+  "object": "JAX branch/prune audit of Julia unit-quaternion spinor branch/prune oracle",
+  "lane": "jax_audit_stress_tester_not_native_spinor_engine_not_pytorch_port",
+  "N": 400,
+  "rng": {
+    "jax_prng_key": 42,
+    "draw_rows": 1600
+  },
+  "integrator": {
+    "kind": "fixed_step_euler",
+    "dt": 0.001,
+    "t_end": 12.0,
+    "steps": 12000,
+    "retraction": "renormalize_to_unit_S3_after_every_step"
+  },
+  "prune_predicate": {
+    "kind": "monotone_latch",
+    "active_run": "B_chirality_prune",
+    "condition": "q0 < -0.01"
+  },
+  "runs": {
+    "A": {
+      "name": "A_no_prune",
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "survivors": 400,
+      "pruned": 0
+    },
+    "B": {
+      "name": "B_chirality_prune",
+      "populated_basins": [
+        1,
+        2
+      ],
+      "survivors": 297,
+      "pruned": 103
+    },
+    "C": {
+      "name": "C_trivial_control",
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "survivors": 400,
+      "pruned": 0
+    }
+  },
+  "max_norm_drift": 2.220446049250313e-16,
+  "checks": {
+    "chk1_baseline_all_basins": true,
+    "chk2_prune_kills_forbidden": true,
+    "chk3_allowed_basins_preserved": true,
+    "chk4_trivial_control_noop": true,
+    "chk5_real_prune_fired": true,
+    "chk6_bookkeeping_consistent": true,
+    "chk7_retraction_norm": true
+  },
+  "AUDIT_PASS": true,
+  "julia_reference_info_only": {
+    "A": {
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "survivors": 400,
+      "pruned": 0
+    },
+    "B": {
+      "populated_basins": [
+        1,
+        2
+      ],
+      "survivors": 293,
+      "pruned": 107
+    },
+    "C": "same as A"
+  }
+}

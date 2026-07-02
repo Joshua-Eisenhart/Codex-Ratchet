@@ -1,0 +1,141 @@
+{
+  "all_structural_facts_hold": true,
+  "anchor_gamma5_LR_split": {
+    "anchor_consistent": true,
+    "clifford_predicts_gamma5_sq": 1,
+    "clifford_pseudoscalar_Isq": -1,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_is_LR_split_diag": true,
+    "gamma5_sq_residual": 0.0,
+    "note": "gamma5 L/R split cross-checked vs independent CliffordAlgebras Cl(1,3) pseudoscalar I^2=-1."
+  },
+  "candidate_Cl13_even_Spin": {
+    "candidate": "Cl(1,3)-even=Spin",
+    "carries_all_three": false,
+    "carries_chirality": true,
+    "carries_norm": false,
+    "carries_rho": true,
+    "max_chir_commutator": 0.0,
+    "max_chiral_charge_dev_on_carrier": 1.2750647502366002,
+    "max_chirality_grading_leakage": 0.0,
+    "max_norm_dev": 3.7497098679513687,
+    "max_rho_hermiticity_dev": 1.7772239894833365e-16,
+    "max_rho_trace_dev": 2.220446049250313e-16,
+    "min_rho_eigenvalue": -4.4091483806128446e-16,
+    "samples": 500
+  },
+  "candidate_KILL_Cl13_odd": {
+    "candidate": "Cl(1,3)-ODD(vector)KILL",
+    "carries_all_three": false,
+    "carries_chirality": false,
+    "carries_norm": false,
+    "carries_rho": false,
+    "max_chir_commutator": 10.722885140586271,
+    "max_chiral_charge_dev_on_carrier": 1.8868349390615156,
+    "max_chirality_grading_leakage": 1.0000000000000002,
+    "max_norm_dev": 3.864042421401834,
+    "max_rho_hermiticity_dev": 1.7554167342883506e-16,
+    "max_rho_trace_dev": 2.220446049250313e-16,
+    "min_rho_eigenvalue": -4.069767269185066e-16,
+    "samples": 500
+  },
+  "candidate_SL2C_Spin13": {
+    "candidate": "SL(2,C)=Spin(1,3)",
+    "carries_all_three": false,
+    "carries_chirality": true,
+    "carries_norm": false,
+    "carries_rho": true,
+    "max_chir_commutator": 0.0,
+    "max_chiral_charge_dev_on_carrier": 1.3489636392070423,
+    "max_chirality_grading_leakage": 0.0,
+    "max_norm_dev": 4.267667526947911,
+    "max_rho_hermiticity_dev": 2.3714374201337736e-16,
+    "max_rho_trace_dev": 3.3306690738754696e-16,
+    "min_rho_eigenvalue": -4.537727775963901e-16,
+    "samples": 500
+  },
+  "candidate_SU2_Spin3": {
+    "candidate": "SU(2)=Spin(3)",
+    "carries_all_three": true,
+    "carries_chirality": true,
+    "carries_norm": true,
+    "carries_rho": true,
+    "max_chir_commutator": 0.0,
+    "max_chiral_charge_dev_on_carrier": 4.996003610813204e-16,
+    "max_chirality_grading_leakage": 0.0,
+    "max_norm_dev": 3.3306690738754696e-16,
+    "max_rho_hermiticity_dev": 1.6883057536160649e-16,
+    "max_rho_trace_dev": 2.220446049250313e-16,
+    "min_rho_eigenvalue": -3.8529460985966485e-16,
+    "samples": 500
+  },
+  "classification": "PoC",
+  "crosscheck_Cl_even_equals_SL2C": {
+    "Cl_even_profile": [
+      false,
+      true,
+      true
+    ],
+    "SL2C_profile": [
+      false,
+      true,
+      true
+    ],
+    "note": "Even Clifford module (independent bivector build) must reproduce the SL(2,C) 3-bit profile.",
+    "profiles_match": true
+  },
+  "genuineness_booleans": {
+    "Cl_even_equals_SL2C_crosscheck": true,
+    "SL2C_carries_chirality_and_rho": true,
+    "SL2C_does_NOT_carry_norm": true,
+    "SU2_carries_all_three": true,
+    "anchor_gamma5_LR_split": true,
+    "kill_control_breaks_chirality": true,
+    "z3_carrier_selection_load_bearing": true
+  },
+  "headline": {
+    "carries_ALL_three": "SU(2)=Spin(3) is the unique candidate that carries norm AND chirality AND rho (the FINITE Euclidean chirality carrier).",
+    "carries_chirality_not_norm": "SL(2,C)=Spin(1,3) (= Cl(1,3)-even, cross-checked) carries the L/R chirality split and acts consistently on rho, but does NOT carry |psi|=1 (boosts are non-unitary) -> the relativistic chirality carrier, NOT finite on the normalized-spinor carrier.",
+    "claim_ceiling": "PoC, promotion_allowed=false. NOT a G-structure admission; pre-admission selection evidence only.",
+    "honest_open": "Finitude (|psi|=1) and full relativistic chirality (SL(2,C)) are carried by DIFFERENT candidates on the normalized-spinor carrier; SU(2) carries both only because it is the rotation (Euclidean) subgroup. No single candidate carries finite + boost-covariant chirality on this carrier.",
+    "rejected": "Cl(1,3)-ODD (1-vector/odd Clifford-module action) is REJECTED: it anticommutes with gamma5 and MIXES L/R, failing carries-chirality (kill control)."
+  },
+  "honest_status": "passes local rerun (structural facts measured + controls bite)",
+  "kill_control_odd_vector": {
+    "carries_chirality": false,
+    "chiral_charge_scrambled": true,
+    "chirality_broken": true,
+    "expected": "odd 1-vector action MIXES L/R (anticommutes with gamma5) -> must FAIL carries-chirality",
+    "kill_control_pass": true,
+    "max_chiral_charge_dev": 1.8868349390615156,
+    "verdict": "KILL PASSED (odd/vector candidate rejected: it breaks chirality as required)"
+  },
+  "object_id": "gstructure_selection",
+  "promotion_allowed": false,
+  "question": "which candidate G-structure carries |psi|=1 (norm), the L/R gamma5 chirality split, and the 16-terrain density operators rho?",
+  "scoreboard": {
+    "Cl(1,3)-ODD(KILL)": "-/-/-",
+    "Cl(1,3)-even=Spin": "-/chir/rho",
+    "SL(2,C)=Spin(1,3)": "-/chir/rho",
+    "SU(2)=Spin(3)": "norm/chir/rho"
+  },
+  "seed": 20260601,
+  "z3_all_three_carrier_selection": {
+    "all_three_carriers_corrupted": [
+      "SU(2)=Spin(3)",
+      "Cl(1,3)-ODD(vector)KILL"
+    ],
+    "all_three_carriers_genuine": [
+      "SU(2)=Spin(3)"
+    ],
+    "kill_excluded_genuine_then_included_corrupted": true,
+    "note": "Z3 selection is driven by the measured booleans; forcing the kill control's bits true CHANGES the carrier set (verdict flips).",
+    "query": "over the MEASURED 3-bit profiles, which candidates carry norm AND chirality AND rho?",
+    "tool_integration_depth": "load_bearing"
+  }
+}

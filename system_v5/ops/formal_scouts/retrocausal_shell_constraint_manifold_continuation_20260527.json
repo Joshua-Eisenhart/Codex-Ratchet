@@ -1,0 +1,521 @@
+{
+  "artifact_id": "retrocausal_shell_constraint_manifold_continuation_20260527",
+  "kind": "retrocausal_shell_constraint_manifold_continuation",
+  "schema": "m_rpf_constraint_manifold_continuation_v1",
+  "created_at": "2026-05-27T06:20:00Z",
+  "updated_at": "2026-05-28T00:21:00Z",
+  "status": "continued",
+  "campaign_goal_path": "system_v5/ops/tmp/FORMAL_SIM_M_RPF_LONG_RUNNING_GOAL_20260527.md",
+  "matrix_path": "system_v5/ops/formal_scouts/retrocausal_shell_constraint_manifold_matrix_20260527.json",
+  "object_packet_path": "system_v5/ops/formal_scouts/retrocausal_shell_field_v43_object_packet_20260527.json",
+  "primary_object": "M_RPF(C)",
+  "plain_status": "The previous side-monitor setup was not the long-running goal. The campaign has now validated the v4.3 object gate, validated the existing L4/L5/L7 depth packet, repaired the completion-status contradiction in the new matrix, run bounded M_RPF(C) object-preservation repair rows at L0, L1, L2, L3, L4, L5, L6, L7, and L8, written the local object-preservation alignment audit, written the cross-row order-closure candidate map artifact, run the bounded M_RPF_stack_0_8 scout, repaired the monitor result-discovery mismatch, ran post-stack stress, ran variant stress, ran adversarial object-preservation audit, ran minimality/order-necessity, and wrote the continuation selector. The campaign is not final manifold admission: flux, Axis0, FEP, physics, and final manifold admission remain locked. Next bounded map is M_RPF_post_stack_bond5_admission_micro_probe.",
+  "completion_interpretation": {
+    "old_completion_audit_path": "system_v5/ops/formal_scouts/formal_layer_campaign_completion_audit_20260526.json",
+    "old_campaign_terminal_true_means_only": "complete_only_for_independent_finite_scope_layer_lego_receipts",
+    "not_complete_for_layer_depth_campaign": true,
+    "not_complete_for_M_RPF_manifold_object_preservation": true,
+    "not_complete_for_stacking": true,
+    "not_complete_for_flux_xi_phi0_axis0_physics_or_final_manifold": true
+  },
+  "commands_already_run": [
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/wizard_v4_3_object_preservation.py validate --input system_v5/ops/formal_scouts/retrocausal_shell_field_v43_object_packet_20260527.json --out /private/tmp/m_rpf_v43_packet_validate.json",
+      "status": "pass_ok_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/wizard_v4_3_object_preservation.py loop --max-loops 3 --out /private/tmp/m_rpf_v43_selftest.json",
+      "status": "pass_ok_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_l4_l5_l7_depth_variant_bond_sweep_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/l4_l5_l7_depth_variant_bond_sweep_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_l0_response_shell_object_preservation_probe.py",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_l0_response_shell_object_preservation_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_l0_response_shell_object_preservation_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_l1_boundary_environment_shell_object_preservation_probe.py",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_l1_boundary_environment_shell_object_preservation_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_l1_boundary_environment_shell_object_preservation_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe.py",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_l3_clifford_quaternion_shell_object_preservation_probe.py",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_l3_clifford_quaternion_shell_object_preservation_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_l3_clifford_quaternion_shell_object_preservation_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_l4_terrain_channel_shell_object_preservation_probe.py",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_l4_terrain_channel_shell_object_preservation_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_l4_terrain_channel_shell_object_preservation_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_l5_operator_substage_shell_object_preservation_probe.py",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_l5_operator_substage_shell_object_preservation_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_l5_operator_substage_shell_object_preservation_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_l6_entropy_cut_shell_object_preservation_probe.py",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_l6_entropy_cut_shell_object_preservation_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_l6_entropy_cut_shell_object_preservation_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_l7_hopf_shell_projection_object_preservation_probe.py",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_l7_hopf_shell_projection_object_preservation_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_l7_hopf_shell_projection_object_preservation_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_l8_gluing_groupoid_shell_object_preservation_probe.py",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_l8_gluing_groupoid_shell_object_preservation_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_l8_gluing_groupoid_shell_object_preservation_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_l4_l5_l7_depth_variant_bond_sweep_probe.py system_v5/ops/formal_scouts/sim_m_rpf_l0_response_shell_object_preservation_probe.py system_v5/ops/formal_scouts/sim_m_rpf_l1_boundary_environment_shell_object_preservation_probe.py system_v5/ops/formal_scouts/sim_m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe.py system_v5/ops/formal_scouts/sim_m_rpf_l3_clifford_quaternion_shell_object_preservation_probe.py system_v5/ops/formal_scouts/sim_m_rpf_l4_terrain_channel_shell_object_preservation_probe.py system_v5/ops/formal_scouts/sim_m_rpf_l5_operator_substage_shell_object_preservation_probe.py system_v5/ops/formal_scouts/sim_m_rpf_l6_entropy_cut_shell_object_preservation_probe.py system_v5/ops/formal_scouts/sim_m_rpf_l7_hopf_shell_projection_object_preservation_probe.py system_v5/ops/formal_scouts/sim_m_rpf_l8_gluing_groupoid_shell_object_preservation_probe.py",
+      "status": "pass_checked_10_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun <L4_L5_L7_depth_result_and_M_RPF_L0_L8_results>",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 -m json.tool system_v5/ops/formal_scouts/m_rpf_object_preservation_alignment_audit_20260527.json",
+      "status": "pass_valid_json"
+    },
+    {
+      "command": "git diff --check",
+      "status": "pass_clean"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_cross_row_order_closure_probe.py",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_cross_row_order_closure_probe.py",
+      "status": "pass_exit_0_violation_total_0"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_cross_row_order_closure_probe_results.json",
+      "status": "pass_all_pass_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/wizard_v4_3_object_preservation.py validate --input system_v5/ops/formal_scouts/retrocausal_shell_field_v43_object_packet_20260527.json --out /private/tmp/m_rpf_v43_stack_packet_validate.json",
+      "status": "pass_ok_true"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py system_v5/ops/formal_scouts/results/m_rpf_cross_row_order_closure_probe_results.json",
+      "status": "pass_all_pass_true_no_fresh_rerun"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/monitor_retrocausal_shell_field_v43.py --once",
+      "status": "pass_active_preserved_result_reports_nonempty"
+    }
+  ],
+  "active_receipts": {
+    "validated_existing_depth_packet_source": "system_v5/ops/formal_scouts/sim_l4_l5_l7_depth_variant_bond_sweep_probe.py",
+    "validated_existing_depth_packet_result": "system_v5/ops/formal_scouts/results/l4_l5_l7_depth_variant_bond_sweep_probe_results.json",
+    "first_repaired_M_RPF_row_source": "system_v5/ops/formal_scouts/sim_m_rpf_l0_response_shell_object_preservation_probe.py",
+    "first_repaired_M_RPF_row_result": "system_v5/ops/formal_scouts/results/m_rpf_l0_response_shell_object_preservation_probe_results.json",
+    "second_repaired_M_RPF_row_source": "system_v5/ops/formal_scouts/sim_m_rpf_l1_boundary_environment_shell_object_preservation_probe.py",
+    "second_repaired_M_RPF_row_result": "system_v5/ops/formal_scouts/results/m_rpf_l1_boundary_environment_shell_object_preservation_probe_results.json",
+    "third_repaired_M_RPF_row_source": "system_v5/ops/formal_scouts/sim_m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe.py",
+    "third_repaired_M_RPF_row_result": "system_v5/ops/formal_scouts/results/m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe_results.json",
+    "fourth_repaired_M_RPF_row_source": "system_v5/ops/formal_scouts/sim_m_rpf_l3_clifford_quaternion_shell_object_preservation_probe.py",
+    "fourth_repaired_M_RPF_row_result": "system_v5/ops/formal_scouts/results/m_rpf_l3_clifford_quaternion_shell_object_preservation_probe_results.json",
+    "fifth_repaired_M_RPF_row_source": "system_v5/ops/formal_scouts/sim_m_rpf_l4_terrain_channel_shell_object_preservation_probe.py",
+    "fifth_repaired_M_RPF_row_result": "system_v5/ops/formal_scouts/results/m_rpf_l4_terrain_channel_shell_object_preservation_probe_results.json",
+    "sixth_repaired_M_RPF_row_source": "system_v5/ops/formal_scouts/sim_m_rpf_l5_operator_substage_shell_object_preservation_probe.py",
+    "sixth_repaired_M_RPF_row_result": "system_v5/ops/formal_scouts/results/m_rpf_l5_operator_substage_shell_object_preservation_probe_results.json",
+    "seventh_repaired_M_RPF_row_source": "system_v5/ops/formal_scouts/sim_m_rpf_l6_entropy_cut_shell_object_preservation_probe.py",
+    "seventh_repaired_M_RPF_row_result": "system_v5/ops/formal_scouts/results/m_rpf_l6_entropy_cut_shell_object_preservation_probe_results.json",
+    "eighth_repaired_M_RPF_row_source": "system_v5/ops/formal_scouts/sim_m_rpf_l7_hopf_shell_projection_object_preservation_probe.py",
+    "eighth_repaired_M_RPF_row_result": "system_v5/ops/formal_scouts/results/m_rpf_l7_hopf_shell_projection_object_preservation_probe_results.json",
+    "ninth_repaired_M_RPF_row_source": "system_v5/ops/formal_scouts/sim_m_rpf_l8_gluing_groupoid_shell_object_preservation_probe.py",
+    "ninth_repaired_M_RPF_row_result": "system_v5/ops/formal_scouts/results/m_rpf_l8_gluing_groupoid_shell_object_preservation_probe_results.json"
+  },
+  "first_repaired_M_RPF_row_summary": {
+    "row": "L0_M_RPF_response_shell_object_preservation_repair",
+    "status": "object_preserved",
+    "finite_map": "M_RPF_L0_QK : PEPS3D-anchored event_x, shell stack, Omega_r branches, rho_omega, compatibility weights, and compression C -> rho_present, outward_record, response quotient signatures, entropy/path readouts, controls, and blocked consumers",
+    "max_sites": 64,
+    "max_peps3d_bond": 2,
+    "shell_count": 3,
+    "Omega_branch_counts": [
+      2,
+      3,
+      4
+    ],
+    "controls_passed": [
+      "no_shell_orientation",
+      "scrambled_Omega",
+      "single_future_argmax",
+      "forward_shadow_control",
+      "commuting_history_control",
+      "compatibility_weight_ablation",
+      "scalar_entropy_only",
+      "no_PEPS3D_anchor",
+      "dense_state_closure",
+      "QIT_readout_provenance",
+      "FEP_without_kill_control",
+      "Axis0_proxy_promotion"
+    ],
+    "promotion_allowed": false
+  },
+  "second_repaired_M_RPF_row_summary": {
+    "row": "L1_M_RPF_boundary_environment_shell_object_preservation_repair",
+    "status": "object_preserved",
+    "finite_map": "M_RPF_L1_EK_chi : PEPS3D-anchored event_x, boundary surface B_K, chi in {2,4}, shell stack, Omega_r branches, rho_omega, compatibility weights, boundary environment compressor E_chi, and compression C -> rho_present, outward_record, finite boundary environment signatures, entropy/path readouts, controls, and blocked consumers",
+    "max_sites": 64,
+    "max_peps3d_bond": 2,
+    "shell_count": 3,
+    "Omega_branch_count": 3,
+    "boundary_chi_values": [
+      2,
+      4
+    ],
+    "boundary_site_counts": [
+      8,
+      16,
+      32,
+      56
+    ],
+    "controls_passed": [
+      "boundary_erased",
+      "scalar_boundary_summary",
+      "chi_ablation",
+      "no_shell_orientation",
+      "scrambled_Omega",
+      "single_future_argmax",
+      "forward_shadow_control",
+      "scalar_entropy_only",
+      "no_PEPS3D_anchor",
+      "dense_state_closure",
+      "FEP_without_kill_control",
+      "Axis0_proxy_promotion"
+    ],
+    "promotion_allowed": false
+  },
+  "third_repaired_M_RPF_row_summary": {
+    "row": "L2_M_RPF_spinor_chirality_weyl_shell_object_preservation_repair",
+    "status": "object_preserved",
+    "finite_map": "M_RPF_L2_WK_s : PEPS3D-anchored event_x, shell stack, Omega_r branches, rho_omega, compatibility weights, L/R sheet cover, H_s in {+H0,-H0}, sheet ladder/projector operators, sheet adapter C_s, and compression C -> rho_present_s, outward_record_s, sheet signatures, mirror non-equivalence, entropy/path readouts, order gaps, controls, and blocked consumers",
+    "max_sites": 64,
+    "max_peps3d_bond": 2,
+    "shell_count": 3,
+    "Omega_branch_count": 3,
+    "sheet_count": 2,
+    "controls_passed": [
+      "sheet_erasure",
+      "chirality_sign_erased",
+      "ladder_projector_erased",
+      "order_erased",
+      "no_shell_orientation",
+      "scrambled_Omega",
+      "single_future_argmax",
+      "forward_shadow_control",
+      "scalar_entropy_only",
+      "no_PEPS3D_anchor",
+      "dense_state_closure",
+      "FEP_without_kill_control",
+      "Axis0_proxy_promotion"
+    ],
+    "promotion_allowed": false
+  },
+  "fourth_repaired_M_RPF_row_summary": {
+    "row": "L3_M_RPF_clifford_quaternion_shell_object_preservation_repair",
+    "status": "object_preserved",
+    "finite_map": "M_RPF_L3_QCl : PEPS3D-anchored event_x, shell stack, Omega_r branches, rho_omega, compatibility weights, quaternion units {I,J,K}, Clifford bivector checks, quaternion adapter C_q, and compression C -> rho_present_q, outward_record_q, exact quaternion invariants, quaternion action signatures, entropy/path readouts, order gaps, controls, and blocked consumers",
+    "max_sites": 64,
+    "max_peps3d_bond": 2,
+    "shell_count": 3,
+    "Omega_branch_count": 3,
+    "quaternion_units": [
+      "I",
+      "J",
+      "K"
+    ],
+    "controls_passed": [
+      "commuting_same_unit_control",
+      "quaternion_label_only",
+      "ij_order_swap",
+      "no_shell_orientation",
+      "scrambled_Omega",
+      "single_future_argmax",
+      "forward_shadow_control",
+      "scalar_entropy_only",
+      "no_PEPS3D_anchor",
+      "dense_state_closure",
+      "FEP_without_kill_control",
+      "Axis0_proxy_promotion"
+    ],
+    "promotion_allowed": false
+  },
+  "fifth_repaired_M_RPF_row_summary": {
+    "row": "L4_M_RPF_terrain_channel_shell_object_preservation_repair",
+    "status": "object_preserved",
+    "finite_map": "M_RPF_L4_TK : PEPS3D-anchored event_x, shell stack, Omega_r branches, rho_omega, compatibility weights, sheet, loop, terrain, terrain channel adapter C_tau, and compression C -> rho_present_tau, outward_record_tau, 8 terrain law signatures, 16 placement signatures, entropy/path readouts, order gaps, controls, and blocked consumers",
+    "max_sites": 64,
+    "max_peps3d_bond": 4,
+    "shell_count": 3,
+    "Omega_branch_count": 3,
+    "terrain_generator_count": 8,
+    "placement_count": 16,
+    "controls_passed": [
+      "terrain_label_only",
+      "terrain_family_erasure",
+      "loop_erasure",
+      "in_loop_order_erased",
+      "out_loop_order",
+      "no_shell_orientation",
+      "scrambled_Omega",
+      "single_future_argmax",
+      "forward_shadow_control",
+      "scalar_entropy_only",
+      "no_PEPS3D_anchor",
+      "dense_state_closure",
+      "FEP_without_kill_control",
+      "Axis0_proxy_promotion"
+    ],
+    "promotion_allowed": false
+  },
+  "sixth_repaired_M_RPF_row_summary": {
+    "row": "L5_M_RPF_operator_substage_shell_object_preservation_repair",
+    "status": "object_preserved",
+    "finite_map": "M_RPF_L5_CK : PEPS3D-anchored event_x, shell stack, Omega_r branches, rho_omega, compatibility weights, cell c=(sheet,loop,terrain,operator_slot), local tensor/channel adapter Phi_c, and compression C -> rho_present_c, outward_record_c, 64 cell signatures, projection pi(c), entropy/path readouts, order gaps, controls, and blocked consumers",
+    "max_sites": 64,
+    "max_peps3d_bond": 4,
+    "shell_count": 3,
+    "Omega_branch_count": 3,
+    "operator_substage_cell_count_at_64_sites": 64,
+    "projection_stage_count": 16,
+    "projection_fiber_size": 4,
+    "controls_passed": [
+      "native_only_16_row_collapse",
+      "operator_order_erased",
+      "terrain_operator_order",
+      "mixed_axis_control",
+      "no_shell_orientation",
+      "scrambled_Omega",
+      "single_future_argmax",
+      "forward_shadow_control",
+      "scalar_entropy_only",
+      "no_PEPS3D_anchor",
+      "dense_state_closure",
+      "FEP_without_kill_control",
+      "Axis0_proxy_promotion"
+    ],
+    "promotion_allowed": false
+  },
+  "seventh_repaired_M_RPF_row_summary": {
+    "row": "L6_M_RPF_entropy_cut_shell_object_preservation_repair",
+    "status": "object_preserved",
+    "finite_map": "M_RPF_L6_EK : PEPS3D-anchored event_x, shell stack, Omega_r branches, rho_omega, compatibility weights, finite cut family C_K, local pair density rho_uv, cut communication adapter E_c, and compression C -> rho_present_E, outward_record_E, entropy communication signatures, cut incidence readouts, QIT readouts, order gaps, controls, and blocked consumers",
+    "max_sites": 64,
+    "max_peps3d_bond": 2,
+    "shell_count": 3,
+    "Omega_branch_count": 3,
+    "cut_axis_count": 3,
+    "cut_signature_count_64": 48,
+    "entropy_role": "derived_geometric_readout_not_primary_object",
+    "controls_passed": [
+      "scalar_entropy_label",
+      "entropy_primary_promotion",
+      "cut_axis_erasure",
+      "order_erased",
+      "cut_channel_order",
+      "no_shell_orientation",
+      "scrambled_Omega",
+      "single_future_argmax",
+      "forward_shadow_control",
+      "no_PEPS3D_anchor",
+      "dense_state_closure",
+      "FEP_without_kill_control",
+      "Axis0_proxy_promotion"
+    ],
+    "promotion_allowed": false
+  },
+  "eighth_repaired_M_RPF_row_summary": {
+    "row": "L7_M_RPF_hopf_shell_projection_object_preservation_repair",
+    "status": "object_preserved",
+    "finite_map": "M_RPF_L7_HK : PEPS3D-anchored event_x, shell stack, Omega_r branches, rho_omega, compatibility weights, nested Hopf shell index eta_k, finite phase grid, fiber/base loop field, Hopf adapter C_H, and compression C -> rho_present_H, outward_record_H, shell projection classes, Hopf connection readouts, entropy/path readouts, order gaps, controls, and blocked consumers",
+    "max_sites": 64,
+    "max_peps3d_bond": 4,
+    "source_shell_count": 3,
+    "hopf_shell_count": 5,
+    "phase_grid_count": 64,
+    "projection_class_count_64": 64,
+    "controls_passed": [
+      "flattened_hopf_connection",
+      "fiber_loop_order_erased",
+      "base_loop_order",
+      "hopf_label_only",
+      "no_shell_orientation",
+      "scrambled_Omega",
+      "single_future_argmax",
+      "forward_shadow_control",
+      "scalar_entropy_only",
+      "no_PEPS3D_anchor",
+      "dense_state_closure",
+      "FEP_without_kill_control",
+      "Axis0_proxy_promotion"
+    ],
+    "promotion_allowed": false
+  },
+  "ninth_repaired_M_RPF_row_summary": {
+    "row": "L8_M_RPF_gluing_groupoid_shell_object_preservation_repair",
+    "status": "object_preserved",
+    "finite_map": "M_RPF_L8_GK : PEPS3D-anchored event_x, shell stack, Omega_r branches, rho_omega, compatibility weights, finite gluing groupoid objects/arrows, local transition adapters G_arrow, and compression C -> rho_present_G, outward_record_G, gluing signatures, equivariance residuals, inverse/composition checks, plaquette order gaps, entropy/path readouts, controls, and blocked consumers",
+    "max_sites": 64,
+    "max_peps3d_bond": 2,
+    "shell_count": 3,
+    "Omega_branch_count": 3,
+    "object_count_64": 64,
+    "oriented_generating_arrow_count_64": 288,
+    "min_plaquette_order_gap": 0.217032725598982,
+    "controls_passed": [
+      "object_label_only",
+      "arrow_erasure",
+      "inverse_erasure",
+      "composition_erasure",
+      "plaquette_order_erased",
+      "no_shell_orientation",
+      "scrambled_Omega",
+      "single_future_argmax",
+      "forward_shadow_control",
+      "scalar_entropy_only",
+      "no_PEPS3D_anchor",
+      "dense_state_closure",
+      "FEP_without_kill_control",
+      "Axis0_proxy_promotion"
+    ],
+    "promotion_allowed": false
+  },
+  "next_row": null,
+  "alignment_audit_path": "system_v5/ops/formal_scouts/m_rpf_object_preservation_alignment_audit_20260527.json",
+  "cross_row_candidate_path": "system_v5/ops/formal_scouts/m_rpf_cross_row_order_closure_candidate_or_blocker_20260527.json",
+  "cross_row_scout_source_path": "system_v5/ops/formal_scouts/sim_m_rpf_cross_row_order_closure_probe.py",
+  "cross_row_scout_result_path": "system_v5/ops/formal_scouts/results/m_rpf_cross_row_order_closure_probe_results.json",
+  "monitor_mismatch_repair": {
+    "heartbeat_path": "system_v5/ops/formal_scouts/retrocausal_shell_field_v43_monitor_heartbeat_20260527.json",
+    "old_status": "active_waiting_for_formal_results",
+    "old_result_reports_count": 0,
+    "cause": "monitor result_candidates scanned retrocausal_shell_field names but not m_rpf formal result receipts",
+    "repair": "monitor now scans m_rpf result receipts, narrows result_reports to *_results.json, recognizes M_RPF(C) primary-object spelling, and validates required fields through keys or text aliases",
+    "new_status": "active_preserved"
+  },
+  "post_stack_stress_candidate_path": "system_v5/ops/formal_scouts/m_rpf_post_stack_stress_candidate_or_blocker_20260527.json",
+  "post_stack_tranche_progress_path": "system_v5/ops/formal_scouts/m_rpf_post_stack_tranche_progress_20260528.json",
+  "post_stack_continuation_selector_path": "system_v5/ops/formal_scouts/m_rpf_post_stack_continuation_selector_20260528.json",
+  "cross_row_scout_status": {
+    "M_RPF_stack_0_8_ran": true,
+    "all_pass": true,
+    "max_sites": 64,
+    "max_peps3d_bond": 4,
+    "min_adapter_order_gap": 0.009743519349874165,
+    "min_adapter_drop_gap": 0.06656141050226655,
+    "promotion_allowed": false
+  },
+  "next_variant": "M_RPF_post_stack_bond5_admission_micro_probe",
+  "next_worker_prompt": "Run exactly one bounded formal scout or blocker for M_RPF_post_stack_bond5_admission_micro_probe. Preserve Omega_r -> compatibility weights -> ordered adapters A0..A8 -> compression C -> rho_present -> outward_record. Do not open flux, Xi/Phi0, Axis0, FEP/Holodeck, physics/gravity, IGT/game theory, axes7-12, or final manifold.",
+  "commands_to_run_next": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_m_rpf_post_stack_bond5_admission_micro_probe.py",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_m_rpf_post_stack_bond5_admission_micro_probe.py",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun system_v5/ops/formal_scouts/results/m_rpf_post_stack_bond5_admission_micro_probe_results.json",
+    "git diff --check"
+  ],
+  "remaining_required_work": [
+    "bond_dim=5 is not admitted by row-local receipts and needs a bounded micro-probe or blocker before deeper bond stress",
+    "flux and Axis0 remain unopened despite the bounded M_RPF_stack_0_8 pass",
+    "flux, Xi/Phi0, Axis0, Holodeck/FEP admission, physics/gravity proof, and final manifold admission remain locked"
+  ],
+  "downstream_locks": {
+    "stacking_unlocked": false,
+    "flux_unlocked": false,
+    "xi_phi0_unlocked": false,
+    "axis0_unlocked": false,
+    "holodeck_fep_unlocked": false,
+    "physics_unlocked": false,
+    "final_manifold_admitted": false
+  },
+  "wizard_truth": {
+    "status": "PARTIAL_OR_BLOCKED",
+    "full_wizard_claimed": false,
+    "codex_native_spawn_attempted": true,
+    "codex_native_spawn_result": "blocked_agent_thread_limit_reached",
+    "completed_current_turn_subagent_receipts": 0
+  },
+  "promotion_allowed": false
+}

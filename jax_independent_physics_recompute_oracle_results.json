@@ -1,0 +1,200 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "layer_stacking",
+    "flux",
+    "xi_phi0",
+    "axis0",
+    "fep_holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "classification": "independent_jax_recompute_oracle_diagnostic_only",
+  "executed_track": "jax",
+  "julia_reference_mode": "read_only",
+  "max_abs_metric_delta": 0.0,
+  "name": "jax_independent_physics_recompute_oracle",
+  "promotion_allowed": false,
+  "purpose": "Recompute high-risk diagnostic row physics without importing the original suite row functions.",
+  "ran_julia": false,
+  "results": [
+    {
+      "independent_controls_pass": true,
+      "layer_id": "boundary_environment_cut",
+      "max_abs_metric_delta": 0.0,
+      "metric_failures": [],
+      "metrics_match_receipt": true,
+      "recompute_pass": true,
+      "recomputed_metrics": {
+        "LN_classical": 0.0,
+        "MI_bell": 1.9999999999999998,
+        "MI_classical": 1.0,
+        "MI_product": 0.0,
+        "S_boundary": 1.0
+      }
+    },
+    {
+      "independent_controls_pass": true,
+      "layer_id": "nested_hopf_shells",
+      "max_abs_metric_delta": 0.0,
+      "metric_failures": [],
+      "metrics_match_receipt": true,
+      "recompute_pass": true,
+      "recomputed_metrics": {
+        "A_basins": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "B_basins": [
+          1,
+          2
+        ],
+        "B_pruned": 61,
+        "coupled_alignment_delta": 1.1443794658202862,
+        "initial_alignment": 1.324836953792706,
+        "zero_control_alignment_delta": 0.13423988215074623
+      }
+    },
+    {
+      "independent_controls_pass": true,
+      "layer_id": "weyl_gamma5_chirality",
+      "max_abs_metric_delta": 0.0,
+      "metric_failures": [],
+      "metrics_match_receipt": true,
+      "recompute_pass": true,
+      "recomputed_metrics": {
+        "A": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "B": [
+          1,
+          2
+        ],
+        "B_pruned": 75,
+        "C": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "inverted": [
+          3,
+          4
+        ],
+        "random": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "independent_controls_pass": true,
+      "layer_id": "qit_entropy_information",
+      "max_abs_metric_delta": 0.0,
+      "metric_failures": [],
+      "metrics_match_receipt": true,
+      "recompute_pass": true,
+      "recomputed_metrics": {
+        "I_AB_classical": 1.0,
+        "I_c_A_to_B_bell": 0.9999999999999997,
+        "LN_bell": 0.9999999999999997,
+        "LN_classical": 0.0,
+        "LN_product": 0.0,
+        "S_A_given_B_bell": -0.9999999999999997
+      }
+    },
+    {
+      "independent_controls_pass": true,
+      "layer_id": "conditional_mutual_information_readout",
+      "max_abs_metric_delta": 0.0,
+      "metric_failures": [],
+      "metrics_match_receipt": true,
+      "recompute_pass": true,
+      "recomputed_metrics": {
+        "CMI_GHZ": 0.9999999999999997,
+        "CMI_classical_shadow": 1.0,
+        "CMI_markov_control": -9.829804545646046e-17,
+        "LN_classical_AC": 0.0
+      }
+    },
+    {
+      "independent_controls_pass": true,
+      "layer_id": "spectral_triple_dirac",
+      "max_abs_metric_delta": 0.0,
+      "metric_failures": [],
+      "metrics_match_receipt": true,
+      "recompute_pass": true,
+      "recomputed_metrics": {
+        "commutator_norm": 5.0990195135927845,
+        "spectrum": [
+          -1.0,
+          -1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "independent_controls_pass": true,
+      "layer_id": "survivor_quotient_branch_prune",
+      "max_abs_metric_delta": 0.0,
+      "metric_failures": [],
+      "metrics_match_receipt": true,
+      "recompute_pass": true,
+      "recomputed_metrics": {
+        "A": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "B": [
+          1,
+          2
+        ],
+        "B_pruned": 77,
+        "C": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  ],
+  "root_constraints_in_force": {
+    "F01": "finite qubit densities, finite S3 branch ensembles, finite Dirac/gamma matrices",
+    "N01": "log-negativity/classical controls, gamma5 sign prune, nonzero Dirac commutator, monotone branch/prune order"
+  },
+  "rows_checked": 7,
+  "rows_recomputed_pass": 7,
+  "source_receipt": "jax_manifold_layer_independent_suite_results.json",
+  "target_rows": [
+    "boundary_environment_cut",
+    "nested_hopf_shells",
+    "weyl_gamma5_chirality",
+    "qit_entropy_information",
+    "conditional_mutual_information_readout",
+    "spectral_triple_dirac",
+    "survivor_quotient_branch_prune"
+  ],
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "jax.lax.scan": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "json": "supportive"
+  },
+  "tool_manifest": {
+    "jax": "load-bearing recomputation of finite row physics",
+    "jax.lax.scan": "load-bearing branch/prune and nested shell trajectory recomputation",
+    "jax.numpy": "load-bearing finite linear algebra and density/readout math",
+    "json": "receipt comparison only"
+  }
+}

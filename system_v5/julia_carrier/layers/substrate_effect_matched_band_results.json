@@ -1,0 +1,451 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^d), d in {2,4,8}; finite frame set {genuine Hopf rotor, flat=I, 2000 scale-swept random exp(-i s H_rand)} per d",
+    "finite_operator": "dissipative Weyl-L GKSL channel lifted to dim d; genuine Spin(2k+1) Hopf rotor frames; scale-swept random unitary generators",
+    "finite_path": "dressed compositions U Phi_WeylL(U' . U) U' at each d; z(d)=(E_hopf-band_mean)/band_std over the +/-10% commutator-matched scale-swept band",
+    "finite_probe": "21 density operators per carrier (20 spinor-derived + 1 maximally-mixed)"
+  },
+  "N01_witness": {
+    "noise_floor": 1.4210854715202004e-14,
+    "order_sensitive_control": "frame conjugation does not commute with the dissipative upper op; [U, H0_d] != 0 drives the dressed-vs-bare gap. The scale-swept band brackets the magnitude of this non-commutation so the matched-band z isolates whether geometry carries structure BEYOND it. Geometric (non-temporal) substrate axis; temporal-order spine validated separately in order_null_killtest.jl.",
+    "present_above_floor": true,
+    "top_level_separation": 0.21994584439805498
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "carrier_layer": "density operators in D(C^d), d in {2,4,8}; genuine higher-Hopf rotor frames (Spin(3)/Spin(5)/Spin(7)) from Clifford gamma towers (iter-6 verbatim); dissipative Weyl-L GKSL upper op lifted to dim d. NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "MEASURES whether a scale-swept random Hermitian-generator ensemble U=exp(-i s H_rand) populates a +/-10% commutator-matched band around the genuine higher-Hopf rotor at d in {2,4,8}, and IF SO recomputes z(d)=(E_hopf-band_mean)/band_std against that properly-matched band. Tests whether iter-6's needs_geometric_carrier was a genuine PEPS-bound or an artifact of Haar sampling missing the low-commutator regime. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics. A populated band with stable strongly-negative z is a CANDIDATE geometric suppression fact, NOT a proven nesting layer. promotion_allowed=false.",
+  "classification": "substrate_effect_matched_band_poc",
+  "codomain_or_output": "per-d band_populated flag + n_matched + bracket coverage (c_lo/c_hi vs c_hopf); z-vs-d series {z(2),z(4),z(8)} (10% matched-band and full-band); seed-robust z-sign; Z3 verdict-flip at top populated level",
+  "dependency_receipts": [
+    "layers/substrate_effect_scale_ladder.jl (iter-6 object under test; genuine Clifford gamma towers + Hopf rotors + Weyl-L GKSL + z/Z3 discipline reused verbatim; THIS object falsifies its needs_geometric_carrier verdict)",
+    "layers/substrate_effect_scale_ladder_results.json (iter-6 result: c_hopf below Haar band at d>2 -> empty matched band)",
+    "layers/substrate_effect_frame_conjugation.jl (iter-5 validated commutator-matched paired discriminator + dissipative Weyl-L GKSL upper op)",
+    "layers/order_null_killtest.jl (genuine Weyl GKSL gksl_step_evolve + hopf_h0 + noise-floor/Z3 discipline)",
+    "layers/G_hopf_fibration.jl (Hopf representative spinor / moment map)",
+    "layers/clifford_rotor_spinor_network_entanglement.jl (Clifford gamma generators / SU(2) rotor)",
+    "layers/L7_layer_bf.jl (per-sheet Weyl GKSL channel)"
+  ],
+  "domain": "for each d in {2,4,8}: finite set of 21 density operators; frame set {genuine Hopf rotor, flat=I, 2000 scale-swept random U=exp(-i s H_rand)}; upper op = Weyl-L GKSL lifted to dim d",
+  "downstream_blocks": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "finite_map": "(carrier dim d, genuine Hopf frame U_hopf(d) in Spin(2k+1)) |-> dressed dissipative-Weyl channel Phi_B^A(rho)=U Phi_WeylL(U' rho U) U'; observable z(d)=(E_hopf - band_mean)/band_std over a SCALE-SWEPT commutator-matched random band U_rand=exp(-i s H_rand) bracketing c_hopf",
+  "geometry_layer": "Clifford gamma towers Cl(3)/Cl(5)/Cl(7) (anticommutation verified); Hopf moment map psi'.Gamma.psi -> base sphere; Spin rotor exp(-i ang/2 n.Gamma) (reused from substrate_effect_scale_ladder.jl / substrate_effect_frame_conjugation.jl)",
+  "kill_conditions": [
+    "flat frame U=I must collapse E to floor at every d (anti-tautology)",
+    "the scale-swept band must BRACKET c_hopf (c_lo <= c_hopf <= c_hi) else the matched comparison is not honest",
+    "if the +/-10% band cannot populate even with near-identity (s->0) sampling => Hopf commutator structure unreachable => needs_geometric_carrier_confirmed",
+    "if z(d)->0 with a populated band => Hopf indistinguishable from commutator-matched random => no geometric signal (iter-6 effect was commutator mismatch)",
+    "z-sign must be seed-stable at d=4,8 else the suppression is a single-seed artifact"
+  ],
+  "levels": {
+    "d2": {
+      "E_finite": true,
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.49394199110451686,
+      "E_hopf_mean": 0.43419193919429366,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 0.8277228485915165,
+      "carrier": "C^2 (1-qubit density operators)",
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "commutator_matched_10pct": {
+        "E_hopf": 0.49394199110451686,
+        "E_matched_mean": 0.3090050539183984,
+        "E_matched_std": 0.13787087765305286,
+        "band_populated": true,
+        "c_hopf": 0.8277228485915165,
+        "n_matched": 51,
+        "outside_robust": true,
+        "per_tolerance": {
+          "tol_0.02": {
+            "E_matched_mean": 0.33912766060302646,
+            "E_matched_std": 0.14076130431730716,
+            "abs_gap": 0.1548143305014904,
+            "n": 12,
+            "outside": true,
+            "z_matched": 1.0998358622232187
+          },
+          "tol_0.05": {
+            "E_matched_mean": 0.28838219143640825,
+            "E_matched_std": 0.1338390867502985,
+            "abs_gap": 0.2055597996681086,
+            "n": 26,
+            "outside": true,
+            "z_matched": 1.5358727010116133
+          },
+          "tol_0.1": {
+            "E_matched_mean": 0.3090050539183984,
+            "E_matched_std": 0.13787087765305286,
+            "abs_gap": 0.18493693718611848,
+            "n": 51,
+            "outside": true,
+            "z_matched": 1.3413778191178682
+          }
+        }
+      },
+      "d": 2,
+      "flat_collapses": true,
+      "hopf_base_norm": 1.0,
+      "hopf_base_sphere": "S^2  (moment-map dim 3)",
+      "noise_floor": 1.4210854715202004e-14,
+      "scale_swept_band": {
+        "E_hi": 1.054382888080144,
+        "E_lo": 0.0002476569821659408,
+        "E_mean": 0.12103019878800848,
+        "E_std": 0.19404298651352672,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": true,
+        "brackets_c_hopf": true,
+        "c_hi": 2.6681261271785233,
+        "c_lo": 8.678339293422059e-5,
+        "n": 2000,
+        "note": "random U=exp(-i s H_rand), s log-uniform in [s_lo,s_hi]; commutator norm spans [c_lo,c_hi] which (if brackets_c_hopf) straddles the Hopf rotor c_hopf",
+        "s_hi": 1.5,
+        "s_lo": 0.001
+      },
+      "z_full_band": 1.92179990123226,
+      "z_matched_band": 1.3413778191178682
+    },
+    "d4": {
+      "E_finite": true,
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.5384103757523432,
+      "E_hopf_mean": 0.44446210580370354,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 1.4555592317812793,
+      "carrier": "C^4 (2-qubit density operators)",
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "commutator_matched_10pct": {
+        "E_hopf": 0.5384103757523432,
+        "E_matched_mean": 0.6762509582772521,
+        "E_matched_std": 0.13678725442386253,
+        "band_populated": true,
+        "c_hopf": 1.4555592317812793,
+        "n_matched": 56,
+        "outside_robust": false,
+        "per_tolerance": {
+          "tol_0.02": {
+            "n": 5,
+            "note": "too few matched (<8) even with scale-swept bracketing",
+            "outside": false
+          },
+          "tol_0.05": {
+            "E_matched_mean": 0.6832901846307154,
+            "E_matched_std": 0.13690899983038748,
+            "abs_gap": 0.14487980887837226,
+            "n": 30,
+            "outside": true,
+            "z_matched": -1.0582197595326792
+          },
+          "tol_0.1": {
+            "E_matched_mean": 0.6762509582772521,
+            "E_matched_std": 0.13678725442386253,
+            "abs_gap": 0.13784058252490894,
+            "n": 56,
+            "outside": true,
+            "z_matched": -1.0077004842701387
+          }
+        }
+      },
+      "d": 4,
+      "flat_collapses": true,
+      "hopf_base_norm": 0.9999999999999999,
+      "hopf_base_sphere": "S^4  (moment-map dim 5)",
+      "noise_floor": 1.4210854715202004e-14,
+      "scale_swept_band": {
+        "E_hi": 1.388307475832918,
+        "E_lo": 0.0006225630817024661,
+        "E_mean": 0.17552454003176768,
+        "E_std": 0.2669033739441128,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": true,
+        "brackets_c_hopf": true,
+        "c_hi": 3.082458798759302,
+        "c_lo": 0.0009417800376317969,
+        "n": 2000,
+        "note": "random U=exp(-i s H_rand), s log-uniform in [s_lo,s_hi]; commutator norm spans [c_lo,c_hi] which (if brackets_c_hopf) straddles the Hopf rotor c_hopf",
+        "s_hi": 1.5,
+        "s_lo": 0.001
+      },
+      "z_full_band": 1.3596150185668339,
+      "z_matched_band": -1.0077004842701387
+    },
+    "d8": {
+      "E_finite": true,
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.8207571055085415,
+      "E_hopf_mean": 0.7586838483892693,
+      "band_populated": true,
+      "brackets_c_hopf": true,
+      "c_hopf": 2.2950665868012075,
+      "carrier": "C^8 (3-qubit density operators)",
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "commutator_matched_10pct": {
+        "E_hopf": 0.8207571055085415,
+        "E_matched_mean": 1.0407029499065965,
+        "E_matched_std": 0.10553213623571152,
+        "band_populated": true,
+        "c_hopf": 2.2950665868012075,
+        "n_matched": 84,
+        "outside_robust": true,
+        "per_tolerance": {
+          "tol_0.02": {
+            "E_matched_mean": 1.0633134498569496,
+            "E_matched_std": 0.07847815542326045,
+            "abs_gap": 0.24255634434840811,
+            "n": 19,
+            "outside": true,
+            "z_matched": -3.0907498149034716
+          },
+          "tol_0.05": {
+            "E_matched_mean": 1.052354534730304,
+            "E_matched_std": 0.0837409000047217,
+            "abs_gap": 0.23159742922176252,
+            "n": 35,
+            "outside": true,
+            "z_matched": -2.765642943993962
+          },
+          "tol_0.1": {
+            "E_matched_mean": 1.0407029499065965,
+            "E_matched_std": 0.10553213623571152,
+            "abs_gap": 0.21994584439805498,
+            "n": 84,
+            "outside": true,
+            "z_matched": -2.0841598800463443
+          }
+        }
+      },
+      "d": 8,
+      "flat_collapses": true,
+      "hopf_base_norm": 0.9603352938171476,
+      "hopf_base_sphere": "S^8  (moment-map dim 7)",
+      "noise_floor": 1.4210854715202004e-14,
+      "scale_swept_band": {
+        "E_hi": 1.448796487171447,
+        "E_lo": 0.0009837773579109517,
+        "E_mean": 0.21237795253514274,
+        "E_std": 0.33288745082368365,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": true,
+        "brackets_c_hopf": true,
+        "c_hi": 3.336269313595438,
+        "c_lo": 0.0018837800458937246,
+        "n": 2000,
+        "note": "random U=exp(-i s H_rand), s log-uniform in [s_lo,s_hi]; commutator norm spans [c_lo,c_hi] which (if brackets_c_hopf) straddles the Hopf rotor c_hopf",
+        "s_hi": 1.5,
+        "s_lo": 0.001
+      },
+      "z_full_band": 1.8275821196264663,
+      "z_matched_band": -2.0841598800463443
+    }
+  },
+  "n_random_band": 2000,
+  "n_rho": 21,
+  "name": "Scale-swept commutator-matched band falsifier of iter-6 needs_geometric_carrier (density-operator only, NO PEPS)",
+  "negatives_run": [
+    "flat_frame_U_eq_I_each_d",
+    "scale_swept_commutator_matched_random_band_each_d",
+    "bracket_coverage_proof_c_lo_le_c_hopf_le_c_hi"
+  ],
+  "non_numpy": true,
+  "object_id": "substrate_effect_matched_band",
+  "precondition": {
+    "band_populated_all_d": true,
+    "band_populated_high_d_d4_d8": true,
+    "band_populated_per_d": {
+      "d2": true,
+      "d4": true,
+      "d8": true
+    },
+    "brackets_c_hopf_per_d": {
+      "d2": true,
+      "d4": true,
+      "d8": true
+    },
+    "n_matched_per_d": {
+      "d2": 51,
+      "d4": 56,
+      "d8": 84
+    },
+    "note": "Test-1 precondition: a +/-10% commutator-matched band around the Hopf rotor must have >=8 scale-swept random frames before z(d) is a valid same-commutator comparison. brackets_c_hopf proves the scale-swept range straddles c_hopf."
+  },
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "quaternion_action": "C^4 frame is Spin(5)=Sp(2) (quaternionic Hopf); C^8 is Spin(7) (octonionic Hopf); scale-swept control frames are exp(-i s H_rand), NOT geometry frames",
+  "required_negatives": [
+    "flat_frame_U_eq_I_each_d",
+    "scale_swept_commutator_matched_random_band_each_d",
+    "bracket_coverage_proof_c_lo_le_c_hopf_le_c_hi"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite density-operator carrier / Hopf-rotor + scale-swept random frame set / Weyl GKSL ops / dressed paths at d in {2,4,8}",
+    "N01 frame conjugation [U, H0_d] != 0 order-sensitive control (geometric substrate axis); scale-swept band brackets its magnitude"
+  ],
+  "script": "substrate_effect_matched_band.jl",
+  "seed": 20260602,
+  "seed_robust": {
+    "band_pop_robust_high_d_d4_d8": true,
+    "band_populated_per_seed": {
+      "seed_20260613": [
+        true,
+        true,
+        true
+      ],
+      "seed_20260625": [
+        true,
+        true,
+        true
+      ]
+    },
+    "band_populated_stable_per_d": {
+      "d2": true,
+      "d4": true,
+      "d8": true
+    },
+    "base_seed": 20260602,
+    "base_z_matched": [
+      1.3413778191178682,
+      -1.0077004842701387,
+      -2.0841598800463443
+    ],
+    "extra_seeds": [
+      20260613,
+      20260625
+    ],
+    "z_matched_per_seed": {
+      "seed_20260613": [
+        1.3193807409254477,
+        -0.5979177266255667,
+        -1.5022887200071424
+      ],
+      "seed_20260625": [
+        1.4262176009681136,
+        -0.7446093770411578,
+        -2.2118129472361927
+      ]
+    },
+    "z_sign_robust_high_d_d4_d8": true,
+    "z_sign_stable_per_d": {
+      "d2": true,
+      "d4": true,
+      "d8": true
+    }
+  },
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical_poc",
+  "sim_id": "substrate_effect_matched_band",
+  "spinor_state": "unit spinors on S^3/S^7/S^15 -> Hopf base via moment map; Spin(2k+1) rotor frames; GKSL state from Hopf-site Hamiltonian H0_d = n.Gamma",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm), HS norms, opnorm (Hermitian generator normalization), matrix exp (Spin rotors / GKSL / scale-swept random U=exp(-i s H_rand)), Clifford anticommutator check; every measured number flows through it.",
+    "Random": "load_bearing: random density operators AND the 2000-frame scale-swept random Hermitian generators + log-uniform scales that bracket c_hopf.",
+    "Statistics": "load_bearing: mean/std over the rho ensemble and the scale-swept commutator-matched band; the z(d) observable IS (E-mean)/std.",
+    "Z3": "load_bearing: binds the measured top-populated-level separation to flat=>sep==0; verdict flips UNSAT->SAT on the flat control."
+  },
+  "verdict": {
+    "all_clifford_genuine": true,
+    "all_flat_controls_collapse": true,
+    "band_populated_per_d": {
+      "d2": true,
+      "d4": true,
+      "d8": true
+    },
+    "brackets_c_hopf_per_d": [
+      true,
+      true,
+      true
+    ],
+    "decides": "whether iter-6's needs_geometric_carrier is a genuine finite-carrier exhaustion (PEPS-bound) or an artifact of using Haar-random (not commutator-matched) frames as the comparison band. A scale-swept bracketing band that populates + a stable z settles the iter-6 question on the density-operator carrier without PEPS.",
+    "interpretation": "The ONLY change vs iter-6 is the random control: a SCALE-SWEPT ensemble U=exp(-i s H_rand) (s log-uniform in [1e-3, 1.5]) whose commutator norm RANGE brackets the genuine Hopf rotor's LOW commutator c_hopf, where Haar-random SU(d) sampling could not reach. If the +/-10% commutator-matched band now POPULATES at d=4 AND d=8 and z(d) stays strongly negative and seed-stable, the Hopf rotor produces LESS substrate effect than commutator-matched random frames -> the geometry is load-bearing as a SUPPRESSION at scale and iter-6's needs_geometric_carrier was PREMATURE (it had the wrong random comparison). If the band populates but z->0, iter-6's effect was just the commutator mismatch -> no_geometric_signal_finite. If even near-identity scale-swept sampling cannot populate the band, the Hopf rotor's commutator structure is genuinely unreachable -> needs_geometric_carrier_confirmed (PEPS required). MIXED band population (one high-d populates, the other does not) is held open as a partial verdict, NOT collapsed.",
+    "iter6_needs_geometric_carrier_confirmed": false,
+    "iter6_needs_geometric_carrier_premature": true,
+    "n_matched_per_d": [
+      51,
+      56,
+      84
+    ],
+    "overall": "substrate_suppression_real_at_scale_finite",
+    "seed_robust_band_pop_high_d": true,
+    "seed_robust_z_sign_high_d": true,
+    "z3_load_bearing": true,
+    "z4_near_zero": false,
+    "z4_strong_nonzero": true,
+    "z8_near_zero": false,
+    "z8_strong_nonzero": true,
+    "z_full_series": [
+      1.92179990123226,
+      1.3596150185668339,
+      1.8275821196264663
+    ],
+    "z_matched_series": [
+      1.3413778191178682,
+      -1.0077004842701387,
+      -2.0841598800463443
+    ]
+  },
+  "version": "1.0",
+  "z3_load_bearing": {
+    "encoding": "FREE int sep, FREE bool is_flat; law Or([Not(is_flat), sep==0]); assert is_flat=true + sep==IntVal(measured |E_hopf-E_matched_mean| over the 10% scale-swept matched band). genuine nonzero separation: unsat; flat zero: sat.",
+    "flat_verdict": "sat",
+    "genuine_verdict": "unsat",
+    "level": "d=8 (top populated)",
+    "load_bearing_flip": true,
+    "measured_separation": 0.21994584439805498
+  },
+  "z_series": {
+    "band_populated_per_d": [
+      true,
+      true,
+      true
+    ],
+    "definition": "z(d) = (E_hopf(d) - band_mean(d)) / band_std(d) over the +/-10% commutator-matched SCALE-SWEPT random band U=exp(-i s H_rand). SIGNED: z<0 means the genuine Hopf rotor produces LESS substrate effect than scale-swept random frames of the SAME commutator norm.",
+    "dims": [
+      2,
+      4,
+      8
+    ],
+    "n_matched_per_d": [
+      51,
+      56,
+      84
+    ],
+    "z_full_band": [
+      1.92179990123226,
+      1.3596150185668339,
+      1.8275821196264663
+    ],
+    "z_matched_band": [
+      1.3413778191178682,
+      -1.0077004842701387,
+      -2.0841598800463443
+    ]
+  }
+}

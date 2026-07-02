@@ -1,0 +1,152 @@
+{
+  "all_pass": true,
+  "bloch_free": true,
+  "bloch_free_note": "No Bloch r-vector and no Pauli expectation tr(rho*sigma) anywhere. Geometry side = matrix rank / nullspace dim of measured complex matrices; entanglement side = SVD Schmidt von-Neumann entropy of the MPS reduced state.",
+  "blocked_consumers": [
+    "layer_stacking",
+    "g_structure_selection",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "FEP",
+    "physics"
+  ],
+  "carrier": "ITensors MPS spinor network + CliffordAlgebras.jl rotor gauge + explicit Clifford rep (Julia, non-numpy)",
+  "classification": "clifford_rotor_spinor_network_entanglement_poc",
+  "entanglement": {
+    "load_bearing": true,
+    "rotor_det_residual": 3.3306690738754696e-16,
+    "rotor_is_su2": true,
+    "rotor_unitary_residual": 2.220446049250313e-16,
+    "rows": [
+      {
+        "N_nodes": 6,
+        "entangled_cut_schmidt_entropy_bits": 0.899622,
+        "entangled_mps_bond": 2,
+        "entanglement_load_bearing": true,
+        "product_control_cut_schmidt_entropy_bits": 0.0,
+        "product_control_mps_bond": 1
+      },
+      {
+        "N_nodes": 8,
+        "entangled_cut_schmidt_entropy_bits": 0.97298,
+        "entangled_mps_bond": 2,
+        "entanglement_load_bearing": true,
+        "product_control_cut_schmidt_entropy_bits": 0.0,
+        "product_control_mps_bond": 1
+      },
+      {
+        "N_nodes": 12,
+        "entangled_cut_schmidt_entropy_bits": 0.999632,
+        "entangled_mps_bond": 2,
+        "entanglement_load_bearing": true,
+        "product_control_cut_schmidt_entropy_bits": 0.0,
+        "product_control_mps_bond": 1
+      },
+      {
+        "N_nodes": 16,
+        "entangled_cut_schmidt_entropy_bits": 1.0,
+        "entangled_mps_bond": 2,
+        "entanglement_load_bearing": true,
+        "product_control_cut_schmidt_entropy_bits": 0.0,
+        "product_control_mps_bond": 1
+      }
+    ]
+  },
+  "geometry_invariant": {
+    "Cl3": {
+      "anticommutation_residual": 0.0,
+      "burnside_image_rank_measured": 4,
+      "faithful_onto_full_algebra": true,
+      "genuine_clifford_rep": true,
+      "invariant_confirmed": true,
+      "irreducible_commutant_is_1": true,
+      "known_full_matrix_algebra_dim_d2": 4,
+      "module_dim_d_measured": 2,
+      "n": 3,
+      "package_anchor_matches": true,
+      "package_generator_squares": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "package_signature": [
+        3,
+        0,
+        0
+      ],
+      "schur_commutant_dim_measured": 1
+    },
+    "Cl6": {
+      "anticommutation_residual": 0.0,
+      "burnside_image_rank_measured": 64,
+      "faithful_onto_full_algebra": true,
+      "genuine_clifford_rep": true,
+      "invariant_confirmed": true,
+      "irreducible_commutant_is_1": true,
+      "known_full_matrix_algebra_dim_d2": 64,
+      "module_dim_d_measured": 8,
+      "n": 6,
+      "package_anchor_matches": true,
+      "package_generator_squares": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "package_signature": [
+        6,
+        0,
+        0
+      ],
+      "schur_commutant_dim_measured": 1
+    },
+    "anchor": "Clifford module faithfulness: Burnside image rank = irreducible module dim^2 (Cl(3,0)⊗C≅M2(C) -> rank 4; Cl(6,0)⊗C≅M8(C) -> rank 64); Schur commutant dim = 1",
+    "invariant_anchored": true
+  },
+  "honest_status_ladder": "passes local rerun (this run)",
+  "learned_from_jax_lego_readonly": "system_v5/legos/clifford_quaternion_rotor_spinor_network_peps3d_pytorch_jax_quimb_sympy_z3.py (pattern adapted to Julia/ITensors; re-anchored on module-faithfulness invariant + wrong-structure control; JAX file not modified).",
+  "object_id": "clifford_rotor_spinor_network_entanglement",
+  "promotion_allowed": false,
+  "verdict": {
+    "all_pass": true,
+    "bloch_free": true,
+    "entanglement_load_bearing": true,
+    "invariant_anchored": true,
+    "wrong_structure_controls_fire": true
+  },
+  "wrong_structure_controls": {
+    "W1_reducible_rho_plus_rho_C4": {
+      "burnside_rank_measured": 4,
+      "commutant_dim_measured": 4,
+      "full_M4_would_be": 16,
+      "invariant_fails_as_required": true,
+      "still_genuine_clifford_rep": true
+    },
+    "W2_commuting_abelian_generators": {
+      "anticommutation_residual": 2.0,
+      "breaks_clifford_relation": true,
+      "burnside_rank_measured": 2,
+      "commutant_dim_measured": 2,
+      "invariant_fails_as_required": true,
+      "irreducible_target_d2": 4
+    },
+    "W3_linear_dependency_e6_eq_e5_Cl6": {
+      "burnside_rank_measured": 32,
+      "commutant_dim_measured": 2,
+      "faithful_target_d2": 64,
+      "invariant_fails_as_required": true
+    },
+    "disclosure_e3_eq_e2_Cl3_does_NOT_fire": {
+      "burnside_rank_measured": 4,
+      "commutant_dim_measured": 1,
+      "honestly_does_not_fire": true,
+      "note": "M2(C) is already reached by sigma1,sigma2 (sigma1*sigma2=i*sigma3); dropping a dependent 3rd generator does not shrink the span, so this is NOT a valid faithfulness-kill for Cl(3). Cl(3) control is carried by W1+W2."
+    }
+  },
+  "wrong_structure_controls_all_fire": true,
+  "z3_omission_reason": "Every headline number is a continuous linear-algebra rank/nullspace or an SVD Schmidt entropy, not an integer identity over fixed literals. A Z3 block would be a decorative tautology; load is carried by the Clifford carrier + Burnside/Schur measurements + ITensors Schmidt readout + wrong-structure controls whose verdicts flip.",
+  "z3_used": false
+}

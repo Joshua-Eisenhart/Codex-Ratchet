@@ -1,0 +1,1546 @@
+{
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "carrier_layer": "density operators in D(C^d), d in {2,4,8}; Spin(3)/Spin(5)/Spin(7) Clifford gamma towers; fixed-base lift family is finite and does not vary shell eta or layer order",
+  "claim_ceiling": "Tests only whether the substrate matched-band z<0 observable can be reproduced by a single fixed Hopf base with spin^c/connection lift variation. Does not admit nesting, layer completion, manifold admission, bridge, Axis0, flux, FEP, or physics. promotion_allowed=false.",
+  "classification": "deflation_substrate_poc",
+  "codomain_or_output": "side-by-side genuine-vs-deflated matched-band z numbers, band bracket/population flags, flat floor control, Z3 flat=>sep==0 flip",
+  "dependency_receipts": [
+    "layers/substrate_effect_matched_band.jl (genuine Hopf rotor, scale-swept matched-band discriminator, flat/Z3 controls reused)",
+    "layers/substrate_effect_matched_band_results.json (existing genuine d>=4 matched-band z<0 suppression target)",
+    "layers/substrate_effect_scale_ladder.jl + _results.json (earlier Haar-band failure and scale ladder context)",
+    "layers/weyl_on_nested_hopf_tori_V2.jl + _results.json (single-base spin^c lift deflation pattern for the holonomy-law observable)"
+  ],
+  "domain": "for each d in {2,4,8}: 21 density operators; upper op Weyl-L GKSL lifted to d; frames {genuine Hopf rotor, flat=I, single-base spin lifts m=1..7, 2000 scale-swept random controls}",
+  "downstream_blocks": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "eta_base": 0.7853981633974483,
+  "finite_map": "(carrier dim d, frame U) |-> dressed dissipative-Weyl channel Phi_B^A(rho)=U Phi_WeylL(U' rho U) U'; observable z=(E_frame-band_mean)/band_std over a +/-10% commutator-matched scale-swept random band. Genuine U is the existing Hopf rotor; deflated U_m fixes the Hopf base and varies only spin^c/connection lift m.",
+  "geometry_layer": "genuine Hopf rotor plus single fixed Hopf-base connection lifts over the same Clifford generator; scale-swept random band is not geometry",
+  "kill_conditions": [
+    "flat frame must collapse E to floor at every d",
+    "decisive genuine or deflated comparison must have c bracketed by the scale-swept random band and >=8 frames in the +/-10% matched band",
+    "z<0 without outside_10pct is not counted as reproduction",
+    "deflated reproduction must occur at both d=4 and d=8 for substrate_deflated"
+  ],
+  "levels": {
+    "d2": {
+      "best_deflated_by_min_z": {
+        "E_flat_floor": false,
+        "E_matched_mean": 0.6440087893937929,
+        "E_matched_std": 0.20072230925403067,
+        "E_max": 1.0754675783873742,
+        "E_mean": 1.0020285694801119,
+        "abs_gap": 0.43145878899358125,
+        "band_populated": true,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": true,
+        "brackets_c": true,
+        "c": 1.9029619215297398,
+        "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+        "eta_base": 0.7853981633974483,
+        "label": "singlebase_spin_lift_m2",
+        "n_matched": 36,
+        "outside_10pct": true,
+        "outside_robust": true,
+        "per_tolerance": {
+          "tol_0.02": {
+            "E_matched_mean": 0.7119992864487066,
+            "E_matched_std": 0.11796199974022735,
+            "abs_gap": 0.3634682919386676,
+            "n": 9,
+            "outside": true,
+            "z_matched": 3.0812320301375644
+          },
+          "tol_0.05": {
+            "E_matched_mean": 0.7338044517215928,
+            "E_matched_std": 0.10089325317045936,
+            "abs_gap": 0.34166312666578136,
+            "n": 15,
+            "outside": true,
+            "z_matched": 3.3863822994045085
+          },
+          "tol_0.1": {
+            "E_matched_mean": 0.6440087893937929,
+            "E_matched_std": 0.20072230925403067,
+            "abs_gap": 0.43145878899358125,
+            "n": 36,
+            "outside": true,
+            "z_matched": 2.14953081497052
+          }
+        },
+        "single_fixed_base_norm": 1.0,
+        "spin_lift": 2,
+        "z_full_band": 4.91869042395321,
+        "z_matched_band": 2.14953081497052
+      },
+      "carrier": "C^2 (1-qubit density operators)",
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 2,
+      "deflated_lifts": [
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": 0.48840688251214515,
+          "E_matched_std": 0.13740014165122436,
+          "E_max": 0.7867671078999968,
+          "E_mean": 0.7106467016759647,
+          "abs_gap": 0.2983602253878517,
+          "band_populated": true,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": true,
+          "brackets_c": true,
+          "c": 1.345597279053462,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m1",
+          "n_matched": 59,
+          "outside_10pct": true,
+          "outside_robust": true,
+          "per_tolerance": {
+            "tol_0.02": {
+              "E_matched_mean": 0.48984840590179485,
+              "E_matched_std": 0.14215784081099897,
+              "abs_gap": 0.296918701998202,
+              "n": 13,
+              "outside": true,
+              "z_matched": 2.0886551195790877
+            },
+            "tol_0.05": {
+              "E_matched_mean": 0.46338320908577024,
+              "E_matched_std": 0.1189049992883322,
+              "abs_gap": 0.3233838988142266,
+              "n": 28,
+              "outside": true,
+              "z_matched": 2.719682946467662
+            },
+            "tol_0.1": {
+              "E_matched_mean": 0.48840688251214515,
+              "E_matched_std": 0.13740014165122436,
+              "abs_gap": 0.2983602253878517,
+              "n": 59,
+              "outside": true,
+              "z_matched": 2.1714695618379154
+            }
+          },
+          "single_fixed_base_norm": 1.0,
+          "spin_lift": 1,
+          "z_full_band": 3.4308733393236035,
+          "z_matched_band": 2.1714695618379154
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": 0.6440087893937929,
+          "E_matched_std": 0.20072230925403067,
+          "E_max": 1.0754675783873742,
+          "E_mean": 1.0020285694801119,
+          "abs_gap": 0.43145878899358125,
+          "band_populated": true,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": true,
+          "brackets_c": true,
+          "c": 1.9029619215297398,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m2",
+          "n_matched": 36,
+          "outside_10pct": true,
+          "outside_robust": true,
+          "per_tolerance": {
+            "tol_0.02": {
+              "E_matched_mean": 0.7119992864487066,
+              "E_matched_std": 0.11796199974022735,
+              "abs_gap": 0.3634682919386676,
+              "n": 9,
+              "outside": true,
+              "z_matched": 3.0812320301375644
+            },
+            "tol_0.05": {
+              "E_matched_mean": 0.7338044517215928,
+              "E_matched_std": 0.10089325317045936,
+              "abs_gap": 0.34166312666578136,
+              "n": 15,
+              "outside": true,
+              "z_matched": 3.3863822994045085
+            },
+            "tol_0.1": {
+              "E_matched_mean": 0.6440087893937929,
+              "E_matched_std": 0.20072230925403067,
+              "abs_gap": 0.43145878899358125,
+              "n": 36,
+              "outside": true,
+              "z_matched": 2.14953081497052
+            }
+          },
+          "single_fixed_base_norm": 1.0,
+          "spin_lift": 2,
+          "z_full_band": 4.91869042395321,
+          "z_matched_band": 2.14953081497052
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": 0.48840688251214515,
+          "E_matched_std": 0.13740014165122436,
+          "E_max": 0.7873182424815135,
+          "E_mean": 0.6961003283482528,
+          "abs_gap": 0.29891135996936835,
+          "band_populated": true,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": true,
+          "brackets_c": true,
+          "c": 1.3455972790534616,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m3",
+          "n_matched": 59,
+          "outside_10pct": true,
+          "outside_robust": true,
+          "per_tolerance": {
+            "tol_0.02": {
+              "E_matched_mean": 0.48984840590179485,
+              "E_matched_std": 0.14215784081099897,
+              "abs_gap": 0.29746983657971865,
+              "n": 13,
+              "outside": true,
+              "z_matched": 2.092532039616509
+            },
+            "tol_0.05": {
+              "E_matched_mean": 0.46338320908577024,
+              "E_matched_std": 0.1189049992883322,
+              "abs_gap": 0.32393503339574325,
+              "n": 28,
+              "outside": true,
+              "z_matched": 2.7243180298099547
+            },
+            "tol_0.1": {
+              "E_matched_mean": 0.48840688251214515,
+              "E_matched_std": 0.13740014165122436,
+              "abs_gap": 0.29891135996936835,
+              "n": 59,
+              "outside": true,
+              "z_matched": 2.1754807264181943
+            }
+          },
+          "single_fixed_base_norm": 1.0,
+          "spin_lift": 3,
+          "z_full_band": 3.433713609881273,
+          "z_matched_band": 2.1754807264181943
+        },
+        {
+          "E_flat_floor": true,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 3.7238012298709097e-16,
+          "E_mean": 1.7902364183256447e-16,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": false,
+          "brackets_c": false,
+          "c": 1.606605853464627e-16,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m4",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 1.0,
+          "spin_lift": 4,
+          "z_full_band": -0.6237287982555922,
+          "z_matched_band": "non_finite(NaN)"
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": 0.48840688251214515,
+          "E_matched_std": 0.13740014165122436,
+          "E_max": 0.7867671078999967,
+          "E_mean": 0.7106467016759646,
+          "abs_gap": 0.29836022538785156,
+          "band_populated": true,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": true,
+          "brackets_c": true,
+          "c": 1.345597279053462,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m5",
+          "n_matched": 59,
+          "outside_10pct": true,
+          "outside_robust": true,
+          "per_tolerance": {
+            "tol_0.02": {
+              "E_matched_mean": 0.48984840590179485,
+              "E_matched_std": 0.14215784081099897,
+              "abs_gap": 0.29691870199820186,
+              "n": 13,
+              "outside": true,
+              "z_matched": 2.088655119579087
+            },
+            "tol_0.05": {
+              "E_matched_mean": 0.46338320908577024,
+              "E_matched_std": 0.1189049992883322,
+              "abs_gap": 0.32338389881422647,
+              "n": 28,
+              "outside": true,
+              "z_matched": 2.719682946467661
+            },
+            "tol_0.1": {
+              "E_matched_mean": 0.48840688251214515,
+              "E_matched_std": 0.13740014165122436,
+              "abs_gap": 0.29836022538785156,
+              "n": 59,
+              "outside": true,
+              "z_matched": 2.1714695618379145
+            }
+          },
+          "single_fixed_base_norm": 1.0,
+          "spin_lift": 5,
+          "z_full_band": 3.4308733393236026,
+          "z_matched_band": 2.1714695618379145
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": 0.6440087893937929,
+          "E_matched_std": 0.20072230925403067,
+          "E_max": 1.0754675783873742,
+          "E_mean": 1.002028569480112,
+          "abs_gap": 0.43145878899358125,
+          "band_populated": true,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": true,
+          "brackets_c": true,
+          "c": 1.9029619215297402,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m6",
+          "n_matched": 36,
+          "outside_10pct": true,
+          "outside_robust": true,
+          "per_tolerance": {
+            "tol_0.02": {
+              "E_matched_mean": 0.7119992864487066,
+              "E_matched_std": 0.11796199974022735,
+              "abs_gap": 0.3634682919386676,
+              "n": 9,
+              "outside": true,
+              "z_matched": 3.0812320301375644
+            },
+            "tol_0.05": {
+              "E_matched_mean": 0.7338044517215928,
+              "E_matched_std": 0.10089325317045936,
+              "abs_gap": 0.34166312666578136,
+              "n": 15,
+              "outside": true,
+              "z_matched": 3.3863822994045085
+            },
+            "tol_0.1": {
+              "E_matched_mean": 0.6440087893937929,
+              "E_matched_std": 0.20072230925403067,
+              "abs_gap": 0.43145878899358125,
+              "n": 36,
+              "outside": true,
+              "z_matched": 2.14953081497052
+            }
+          },
+          "single_fixed_base_norm": 1.0,
+          "spin_lift": 6,
+          "z_full_band": 4.91869042395321,
+          "z_matched_band": 2.14953081497052
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": 0.48840688251214515,
+          "E_matched_std": 0.13740014165122436,
+          "E_max": 0.7873182424815138,
+          "E_mean": 0.6961003283482533,
+          "abs_gap": 0.2989113599693687,
+          "band_populated": true,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": true,
+          "brackets_c": true,
+          "c": 1.3455972790534623,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m7",
+          "n_matched": 59,
+          "outside_10pct": true,
+          "outside_robust": true,
+          "per_tolerance": {
+            "tol_0.02": {
+              "E_matched_mean": 0.48984840590179485,
+              "E_matched_std": 0.14215784081099897,
+              "abs_gap": 0.297469836579719,
+              "n": 13,
+              "outside": true,
+              "z_matched": 2.0925320396165112
+            },
+            "tol_0.05": {
+              "E_matched_mean": 0.46338320908577024,
+              "E_matched_std": 0.1189049992883322,
+              "abs_gap": 0.3239350333957436,
+              "n": 28,
+              "outside": true,
+              "z_matched": 2.7243180298099574
+            },
+            "tol_0.1": {
+              "E_matched_mean": 0.48840688251214515,
+              "E_matched_std": 0.13740014165122436,
+              "abs_gap": 0.2989113599693687,
+              "n": 59,
+              "outside": true,
+              "z_matched": 2.1754807264181966
+            }
+          },
+          "single_fixed_base_norm": 1.0,
+          "spin_lift": 7,
+          "z_full_band": 3.433713609881275,
+          "z_matched_band": 2.1754807264181966
+        }
+      ],
+      "deflated_reproduces_suppression": false,
+      "fixed_base_policy": "single fixed Hopf frame-site base psi_A(d) is held fixed across m; only spin^c/connection lift index m varies",
+      "flat": {
+        "E_flat_floor": true,
+        "E_matched_mean": "non_finite(NaN)",
+        "E_matched_std": "non_finite(NaN)",
+        "E_max": 0.0,
+        "E_mean": 0.0,
+        "abs_gap": "non_finite(NaN)",
+        "band_populated": false,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": false,
+        "brackets_c": false,
+        "c": 0.0,
+        "label": "flat_identity",
+        "n_matched": 0,
+        "outside_10pct": false,
+        "outside_robust": false,
+        "per_tolerance": {
+          "tol_0.02": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          },
+          "tol_0.05": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          },
+          "tol_0.1": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          }
+        },
+        "z_full_band": -0.6237287982555941,
+        "z_matched_band": "non_finite(NaN)"
+      },
+      "genuine": {
+        "E_flat_floor": false,
+        "E_matched_mean": 0.3090050539183984,
+        "E_matched_std": 0.13787087765305286,
+        "E_max": 0.49394199110451686,
+        "E_mean": 0.43419193919429366,
+        "abs_gap": 0.18493693718611848,
+        "band_populated": true,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": true,
+        "brackets_c": true,
+        "c": 0.8277228485915165,
+        "label": "genuine_hopf_rotor",
+        "n_matched": 51,
+        "outside_10pct": true,
+        "outside_robust": true,
+        "per_tolerance": {
+          "tol_0.02": {
+            "E_matched_mean": 0.33912766060302646,
+            "E_matched_std": 0.14076130431730716,
+            "abs_gap": 0.1548143305014904,
+            "n": 12,
+            "outside": true,
+            "z_matched": 1.0998358622232187
+          },
+          "tol_0.05": {
+            "E_matched_mean": 0.28838219143640825,
+            "E_matched_std": 0.1338390867502985,
+            "abs_gap": 0.2055597996681086,
+            "n": 26,
+            "outside": true,
+            "z_matched": 1.5358727010116133
+          },
+          "tol_0.1": {
+            "E_matched_mean": 0.3090050539183984,
+            "E_matched_std": 0.13787087765305286,
+            "abs_gap": 0.18493693718611848,
+            "n": 51,
+            "outside": true,
+            "z_matched": 1.3413778191178682
+          }
+        },
+        "z_full_band": 1.92179990123226,
+        "z_matched_band": 1.3413778191178682
+      },
+      "genuine_reproduces_suppression": false,
+      "hopf_base_norm_genuine_frame_site": 1.0,
+      "noise_floor": 1.4210854715202004e-14,
+      "scale_swept_band": {
+        "E_hi": 1.054382888080144,
+        "E_lo": 0.0002476569821659408,
+        "E_mean": 0.12103019878800848,
+        "E_std": 0.19404298651352672,
+        "c_hi": 2.6681261271785233,
+        "c_lo": 8.678339293422059e-5,
+        "n": 2000,
+        "note": "same scale-swept random ensemble is reused for genuine and all single-base lift variants at this d; matched comparison still keys on each frame's own c=||[U,H0]||",
+        "s_hi": 1.5,
+        "s_lo": 0.001
+      },
+      "side_by_side": {
+        "best_deflated_E": 1.0754675783873742,
+        "best_deflated_c": 1.9029619215297398,
+        "best_deflated_m": 2,
+        "best_deflated_n_matched": 36,
+        "best_deflated_outside": true,
+        "best_deflated_z": 2.14953081497052,
+        "genuine_E": 0.49394199110451686,
+        "genuine_c": 0.8277228485915165,
+        "genuine_n_matched": 51,
+        "genuine_outside": true,
+        "genuine_z": 1.3413778191178682
+      },
+      "suppressed_deflated_lift_count": 0,
+      "suppressed_deflated_lifts": [],
+      "valid_deflated_lift_count": 6
+    },
+    "d4": {
+      "best_deflated_by_min_z": {
+        "E_flat_floor": false,
+        "E_matched_mean": 0.9436460047742713,
+        "E_matched_std": 0.132963223446088,
+        "E_max": 0.8614841998011008,
+        "E_mean": 0.724258837592448,
+        "abs_gap": 0.0821618049731705,
+        "band_populated": true,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": true,
+        "brackets_c": true,
+        "c": 2.366246800023529,
+        "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+        "eta_base": 0.7853981633974483,
+        "label": "singlebase_spin_lift_m7",
+        "n_matched": 25,
+        "outside_10pct": false,
+        "outside_robust": false,
+        "per_tolerance": {
+          "tol_0.02": {
+            "n": 2,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          },
+          "tol_0.05": {
+            "E_matched_mean": 0.9594537171714568,
+            "E_matched_std": 0.11805225241078979,
+            "abs_gap": 0.09796951737035597,
+            "n": 11,
+            "outside": false,
+            "z_matched": -0.8298826610224145
+          },
+          "tol_0.1": {
+            "E_matched_mean": 0.9436460047742713,
+            "E_matched_std": 0.132963223446088,
+            "abs_gap": 0.0821618049731705,
+            "n": 25,
+            "outside": false,
+            "z_matched": -0.6179287989846627
+          }
+        },
+        "single_fixed_base_norm": 0.9999999999999999,
+        "spin_lift": 7,
+        "z_full_band": 2.570067397922692,
+        "z_matched_band": -0.6179287989846627
+      },
+      "carrier": "C^4 (2-qubit density operators)",
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 4,
+      "deflated_lifts": [
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": 0.9436460047742713,
+          "E_matched_std": 0.132963223446088,
+          "E_max": 0.8736547606299646,
+          "E_mean": 0.7227261476995763,
+          "abs_gap": 0.06999124414430669,
+          "band_populated": true,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": true,
+          "brackets_c": true,
+          "c": 2.36624680002353,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m1",
+          "n_matched": 25,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 2,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "E_matched_mean": 0.9594537171714568,
+              "E_matched_std": 0.11805225241078979,
+              "abs_gap": 0.08579895654149217,
+              "n": 11,
+              "outside": false,
+              "z_matched": -0.7267879671023564
+            },
+            "tol_0.1": {
+              "E_matched_mean": 0.9436460047742713,
+              "E_matched_std": 0.132963223446088,
+              "abs_gap": 0.06999124414430669,
+              "n": 25,
+              "outside": false,
+              "z_matched": -0.5263955124605243
+            }
+          },
+          "single_fixed_base_norm": 0.9999999999999999,
+          "spin_lift": 1,
+          "z_full_band": 2.615666524861463,
+          "z_matched_band": -0.5263955124605243
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 1.1926901753514836,
+          "E_mean": 1.0245764229507894,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": false,
+          "bracket_lo_ok": true,
+          "brackets_c": false,
+          "c": 3.346378316515213,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m2",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 1,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 0.9999999999999999,
+          "spin_lift": 2,
+          "z_full_band": 3.8109882999557034,
+          "z_matched_band": "non_finite(NaN)"
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": 0.9436460047742713,
+          "E_matched_std": 0.132963223446088,
+          "E_max": 0.861484199801101,
+          "E_mean": 0.7242588375924485,
+          "abs_gap": 0.08216180497317027,
+          "band_populated": true,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": true,
+          "brackets_c": true,
+          "c": 2.366246800023529,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m3",
+          "n_matched": 25,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 2,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "E_matched_mean": 0.9594537171714568,
+              "E_matched_std": 0.11805225241078979,
+              "abs_gap": 0.09796951737035575,
+              "n": 11,
+              "outside": false,
+              "z_matched": -0.8298826610224126
+            },
+            "tol_0.1": {
+              "E_matched_mean": 0.9436460047742713,
+              "E_matched_std": 0.132963223446088,
+              "abs_gap": 0.08216180497317027,
+              "n": 25,
+              "outside": false,
+              "z_matched": -0.617928798984661
+            }
+          },
+          "single_fixed_base_norm": 0.9999999999999999,
+          "spin_lift": 3,
+          "z_full_band": 2.570067397922693,
+          "z_matched_band": -0.617928798984661
+        },
+        {
+          "E_flat_floor": true,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 7.938119843512805e-16,
+          "E_mean": 5.23456038895879e-16,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": false,
+          "brackets_c": false,
+          "c": 1.1050482224346945e-15,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m4",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 0.9999999999999999,
+          "spin_lift": 4,
+          "z_full_band": -0.6576332754359268,
+          "z_matched_band": "non_finite(NaN)"
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": 0.9436460047742713,
+          "E_matched_std": 0.132963223446088,
+          "E_max": 0.8736547606299643,
+          "E_mean": 0.7227261476995762,
+          "abs_gap": 0.06999124414430702,
+          "band_populated": true,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": true,
+          "brackets_c": true,
+          "c": 2.3662468000235304,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m5",
+          "n_matched": 25,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 2,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "E_matched_mean": 0.9594537171714568,
+              "E_matched_std": 0.11805225241078979,
+              "abs_gap": 0.0857989565414925,
+              "n": 11,
+              "outside": false,
+              "z_matched": -0.7267879671023593
+            },
+            "tol_0.1": {
+              "E_matched_mean": 0.9436460047742713,
+              "E_matched_std": 0.132963223446088,
+              "abs_gap": 0.06999124414430702,
+              "n": 25,
+              "outside": false,
+              "z_matched": -0.5263955124605267
+            }
+          },
+          "single_fixed_base_norm": 0.9999999999999999,
+          "spin_lift": 5,
+          "z_full_band": 2.6156665248614615,
+          "z_matched_band": -0.5263955124605267
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 1.1926901753514834,
+          "E_mean": 1.0245764229507894,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": false,
+          "bracket_lo_ok": true,
+          "brackets_c": false,
+          "c": 3.346378316515213,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m6",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 1,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 0.9999999999999999,
+          "spin_lift": 6,
+          "z_full_band": 3.8109882999557025,
+          "z_matched_band": "non_finite(NaN)"
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": 0.9436460047742713,
+          "E_matched_std": 0.132963223446088,
+          "E_max": 0.8614841998011008,
+          "E_mean": 0.724258837592448,
+          "abs_gap": 0.0821618049731705,
+          "band_populated": true,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": true,
+          "brackets_c": true,
+          "c": 2.366246800023529,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m7",
+          "n_matched": 25,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 2,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "E_matched_mean": 0.9594537171714568,
+              "E_matched_std": 0.11805225241078979,
+              "abs_gap": 0.09796951737035597,
+              "n": 11,
+              "outside": false,
+              "z_matched": -0.8298826610224145
+            },
+            "tol_0.1": {
+              "E_matched_mean": 0.9436460047742713,
+              "E_matched_std": 0.132963223446088,
+              "abs_gap": 0.0821618049731705,
+              "n": 25,
+              "outside": false,
+              "z_matched": -0.6179287989846627
+            }
+          },
+          "single_fixed_base_norm": 0.9999999999999999,
+          "spin_lift": 7,
+          "z_full_band": 2.570067397922692,
+          "z_matched_band": -0.6179287989846627
+        }
+      ],
+      "deflated_reproduces_suppression": false,
+      "fixed_base_policy": "single fixed Hopf frame-site base psi_A(d) is held fixed across m; only spin^c/connection lift index m varies",
+      "flat": {
+        "E_flat_floor": true,
+        "E_matched_mean": "non_finite(NaN)",
+        "E_matched_std": "non_finite(NaN)",
+        "E_max": 0.0,
+        "E_mean": 0.0,
+        "abs_gap": "non_finite(NaN)",
+        "band_populated": false,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": false,
+        "brackets_c": false,
+        "c": 0.0,
+        "label": "flat_identity",
+        "n_matched": 0,
+        "outside_10pct": false,
+        "outside_robust": false,
+        "per_tolerance": {
+          "tol_0.02": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          },
+          "tol_0.05": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          },
+          "tol_0.1": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          }
+        },
+        "z_full_band": -0.6576332754359298,
+        "z_matched_band": "non_finite(NaN)"
+      },
+      "genuine": {
+        "E_flat_floor": false,
+        "E_matched_mean": 0.6762509582772521,
+        "E_matched_std": 0.13678725442386253,
+        "E_max": 0.5384103757523432,
+        "E_mean": 0.44446210580370354,
+        "abs_gap": 0.13784058252490894,
+        "band_populated": true,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": true,
+        "brackets_c": true,
+        "c": 1.4555592317812793,
+        "label": "genuine_hopf_rotor",
+        "n_matched": 56,
+        "outside_10pct": true,
+        "outside_robust": false,
+        "per_tolerance": {
+          "tol_0.02": {
+            "n": 5,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          },
+          "tol_0.05": {
+            "E_matched_mean": 0.6832901846307154,
+            "E_matched_std": 0.13690899983038748,
+            "abs_gap": 0.14487980887837226,
+            "n": 30,
+            "outside": true,
+            "z_matched": -1.0582197595326792
+          },
+          "tol_0.1": {
+            "E_matched_mean": 0.6762509582772521,
+            "E_matched_std": 0.13678725442386253,
+            "abs_gap": 0.13784058252490894,
+            "n": 56,
+            "outside": true,
+            "z_matched": -1.0077004842701387
+          }
+        },
+        "z_full_band": 1.3596150185668339,
+        "z_matched_band": -1.0077004842701387
+      },
+      "genuine_reproduces_suppression": true,
+      "hopf_base_norm_genuine_frame_site": 0.9999999999999999,
+      "noise_floor": 1.4210854715202004e-14,
+      "scale_swept_band": {
+        "E_hi": 1.388307475832918,
+        "E_lo": 0.0006225630817024661,
+        "E_mean": 0.17552454003176768,
+        "E_std": 0.2669033739441128,
+        "c_hi": 3.082458798759302,
+        "c_lo": 0.0009417800376317969,
+        "n": 2000,
+        "note": "same scale-swept random ensemble is reused for genuine and all single-base lift variants at this d; matched comparison still keys on each frame's own c=||[U,H0]||",
+        "s_hi": 1.5,
+        "s_lo": 0.001
+      },
+      "side_by_side": {
+        "best_deflated_E": 0.8614841998011008,
+        "best_deflated_c": 2.366246800023529,
+        "best_deflated_m": 7,
+        "best_deflated_n_matched": 25,
+        "best_deflated_outside": false,
+        "best_deflated_z": -0.6179287989846627,
+        "genuine_E": 0.5384103757523432,
+        "genuine_c": 1.4555592317812793,
+        "genuine_n_matched": 56,
+        "genuine_outside": true,
+        "genuine_z": -1.0077004842701387
+      },
+      "suppressed_deflated_lift_count": 0,
+      "suppressed_deflated_lifts": [],
+      "valid_deflated_lift_count": 4
+    },
+    "d8": {
+      "best_deflated_by_min_z": {
+        "E_flat_floor": true,
+        "E_matched_mean": "non_finite(NaN)",
+        "E_matched_std": "non_finite(NaN)",
+        "E_max": 1.9662719497417277e-15,
+        "E_mean": 1.6541336724554836e-15,
+        "abs_gap": "non_finite(NaN)",
+        "band_populated": false,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": false,
+        "brackets_c": false,
+        "c": 3.4528583470648988e-15,
+        "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+        "eta_base": 0.7853981633974483,
+        "label": "singlebase_spin_lift_m4",
+        "n_matched": 0,
+        "outside_10pct": false,
+        "outside_robust": false,
+        "per_tolerance": {
+          "tol_0.02": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          },
+          "tol_0.05": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          },
+          "tol_0.1": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          }
+        },
+        "single_fixed_base_norm": 0.9603352938171476,
+        "spin_lift": 4,
+        "z_full_band": -0.6379872596868434,
+        "z_matched_band": "non_finite(NaN)"
+      },
+      "carrier": "C^8 (3-qubit density operators)",
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "d": 8,
+      "deflated_lifts": [
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 1.2938581296067597,
+          "E_mean": 1.221011110162484,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": false,
+          "bracket_lo_ok": true,
+          "brackets_c": false,
+          "c": 3.7310016990605925,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m1",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 0.9603352938171476,
+          "spin_lift": 1,
+          "z_full_band": 3.2487862621304733,
+          "z_matched_band": "non_finite(NaN)"
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 1.7591306714447337,
+          "E_mean": 1.6898132016012553,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": false,
+          "bracket_lo_ok": true,
+          "brackets_c": false,
+          "c": 5.276433204048551,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m2",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 0.9603352938171476,
+          "spin_lift": 2,
+          "z_full_band": 4.646473500525077,
+          "z_matched_band": "non_finite(NaN)"
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 1.2679584630805556,
+          "E_mean": 1.213046067875496,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": false,
+          "bracket_lo_ok": true,
+          "brackets_c": false,
+          "c": 3.7310016990605925,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m3",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 0.9603352938171476,
+          "spin_lift": 3,
+          "z_full_band": 3.1709831894639637,
+          "z_matched_band": "non_finite(NaN)"
+        },
+        {
+          "E_flat_floor": true,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 1.9662719497417277e-15,
+          "E_mean": 1.6541336724554836e-15,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": true,
+          "bracket_lo_ok": false,
+          "brackets_c": false,
+          "c": 3.4528583470648988e-15,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m4",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 0.9603352938171476,
+          "spin_lift": 4,
+          "z_full_band": -0.6379872596868434,
+          "z_matched_band": "non_finite(NaN)"
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 1.2938581296067595,
+          "E_mean": 1.2210111101624836,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": false,
+          "bracket_lo_ok": true,
+          "brackets_c": false,
+          "c": 3.7310016990605908,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m5",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 0.9603352938171476,
+          "spin_lift": 5,
+          "z_full_band": 3.2487862621304724,
+          "z_matched_band": "non_finite(NaN)"
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 1.759130671444734,
+          "E_mean": 1.6898132016012553,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": false,
+          "bracket_lo_ok": true,
+          "brackets_c": false,
+          "c": 5.276433204048551,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m6",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 0.9603352938171476,
+          "spin_lift": 6,
+          "z_full_band": 4.646473500525078,
+          "z_matched_band": "non_finite(NaN)"
+        },
+        {
+          "E_flat_floor": false,
+          "E_matched_mean": "non_finite(NaN)",
+          "E_matched_std": "non_finite(NaN)",
+          "E_max": 1.267958463080556,
+          "E_mean": 1.2130460678754962,
+          "abs_gap": "non_finite(NaN)",
+          "band_populated": false,
+          "bracket_hi_ok": false,
+          "bracket_lo_ok": true,
+          "brackets_c": false,
+          "c": 3.7310016990605934,
+          "connection_lift_formula": "U_m = exp(-i * ETA_BASE * m * H_fixed), H_fixed=n_fixed.Gamma, ETA_BASE=pi/4",
+          "eta_base": 0.7853981633974483,
+          "label": "singlebase_spin_lift_m7",
+          "n_matched": 0,
+          "outside_10pct": false,
+          "outside_robust": false,
+          "per_tolerance": {
+            "tol_0.02": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.05": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            },
+            "tol_0.1": {
+              "n": 0,
+              "note": "too few matched (<8) under the scale-swept bracketing band",
+              "outside": false
+            }
+          },
+          "single_fixed_base_norm": 0.9603352938171476,
+          "spin_lift": 7,
+          "z_full_band": 3.170983189463965,
+          "z_matched_band": "non_finite(NaN)"
+        }
+      ],
+      "deflated_reproduces_suppression": false,
+      "fixed_base_policy": "single fixed Hopf frame-site base psi_A(d) is held fixed across m; only spin^c/connection lift index m varies",
+      "flat": {
+        "E_flat_floor": true,
+        "E_matched_mean": "non_finite(NaN)",
+        "E_matched_std": "non_finite(NaN)",
+        "E_max": 0.0,
+        "E_mean": 0.0,
+        "abs_gap": "non_finite(NaN)",
+        "band_populated": false,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": false,
+        "brackets_c": false,
+        "c": 0.0,
+        "label": "flat_identity",
+        "n_matched": 0,
+        "outside_10pct": false,
+        "outside_robust": false,
+        "per_tolerance": {
+          "tol_0.02": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          },
+          "tol_0.05": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          },
+          "tol_0.1": {
+            "n": 0,
+            "note": "too few matched (<8) under the scale-swept bracketing band",
+            "outside": false
+          }
+        },
+        "z_full_band": -0.6379872596868493,
+        "z_matched_band": "non_finite(NaN)"
+      },
+      "genuine": {
+        "E_flat_floor": false,
+        "E_matched_mean": 1.0407029499065965,
+        "E_matched_std": 0.10553213623571152,
+        "E_max": 0.8207571055085415,
+        "E_mean": 0.7586838483892693,
+        "abs_gap": 0.21994584439805498,
+        "band_populated": true,
+        "bracket_hi_ok": true,
+        "bracket_lo_ok": true,
+        "brackets_c": true,
+        "c": 2.2950665868012075,
+        "label": "genuine_hopf_rotor",
+        "n_matched": 84,
+        "outside_10pct": true,
+        "outside_robust": true,
+        "per_tolerance": {
+          "tol_0.02": {
+            "E_matched_mean": 1.0633134498569496,
+            "E_matched_std": 0.07847815542326045,
+            "abs_gap": 0.24255634434840811,
+            "n": 19,
+            "outside": true,
+            "z_matched": -3.0907498149034716
+          },
+          "tol_0.05": {
+            "E_matched_mean": 1.052354534730304,
+            "E_matched_std": 0.0837409000047217,
+            "abs_gap": 0.23159742922176252,
+            "n": 35,
+            "outside": true,
+            "z_matched": -2.765642943993962
+          },
+          "tol_0.1": {
+            "E_matched_mean": 1.0407029499065965,
+            "E_matched_std": 0.10553213623571152,
+            "abs_gap": 0.21994584439805498,
+            "n": 84,
+            "outside": true,
+            "z_matched": -2.0841598800463443
+          }
+        },
+        "z_full_band": 1.8275821196264663,
+        "z_matched_band": -2.0841598800463443
+      },
+      "genuine_reproduces_suppression": true,
+      "hopf_base_norm_genuine_frame_site": 0.9603352938171476,
+      "noise_floor": 1.4210854715202004e-14,
+      "scale_swept_band": {
+        "E_hi": 1.448796487171447,
+        "E_lo": 0.0009837773579109517,
+        "E_mean": 0.21237795253514274,
+        "E_std": 0.33288745082368365,
+        "c_hi": 3.336269313595438,
+        "c_lo": 0.0018837800458937246,
+        "n": 2000,
+        "note": "same scale-swept random ensemble is reused for genuine and all single-base lift variants at this d; matched comparison still keys on each frame's own c=||[U,H0]||",
+        "s_hi": 1.5,
+        "s_lo": 0.001
+      },
+      "side_by_side": {
+        "best_deflated_E": 1.9662719497417277e-15,
+        "best_deflated_c": 3.4528583470648988e-15,
+        "best_deflated_m": 4,
+        "best_deflated_n_matched": 0,
+        "best_deflated_outside": false,
+        "best_deflated_z": "non_finite(NaN)",
+        "genuine_E": 0.8207571055085415,
+        "genuine_c": 2.2950665868012075,
+        "genuine_n_matched": 84,
+        "genuine_outside": true,
+        "genuine_z": -2.0841598800463443
+      },
+      "suppressed_deflated_lift_count": 0,
+      "suppressed_deflated_lifts": [],
+      "valid_deflated_lift_count": 0
+    }
+  },
+  "n_random_band": 2000,
+  "n_rho": 21,
+  "name": "Single-base spin^c/connection-lift deflation control for substrate matched-band z",
+  "negatives_run": [
+    "flat_frame_U_eq_I_each_d",
+    "scale_swept_commutator_matched_random_band_brackets_c",
+    "Z3_flat_implies_zero_separation_flip"
+  ],
+  "non_numpy": true,
+  "object_id": "deflation_substrate_band",
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "quaternion_action": "d=4 uses Spin(5)=Sp(2) quaternionic Hopf generator; deflated m-lifts are connection choices on one fixed base, not a multi-shell nesting",
+  "required_negatives": [
+    "flat_frame_U_eq_I_each_d",
+    "scale_swept_commutator_matched_random_band_brackets_c",
+    "Z3_flat_implies_zero_separation_flip"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite density-operator carrier / finite frame set / Weyl GKSL ops / dressed paths at d in {2,4,8}",
+    "N01 frame conjugation [U,H0_d] != 0 order-sensitive control; matched band brackets this commutator magnitude"
+  ],
+  "script": "layers/deflation_substrate_band.jl",
+  "seed": 20260602,
+  "sim_class": "geometry_deflation_control",
+  "sim_execution_kind": "nonclassical_poc",
+  "sim_id": "deflation_substrate_band",
+  "spin_lifts_varied": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "spinor_state": "unit spinors on S^3/S^7/S^15 read through the Hopf moment map; fixed-base deflation holds psi_A(d) constant and varies only m",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: result receipt emission",
+    "LinearAlgebra": "load_bearing: matrix exp, svdvals trace norm, HS norms, opnorm Hermitian normalization, Clifford anticommutator checks",
+    "Random": "load_bearing: density operators and scale-swept random Hermitian generators",
+    "Statistics": "load_bearing: mean/std and z scores over matched bands",
+    "Z3": "load_bearing: flat=>sep==0 verdict flip on measured separation"
+  },
+  "verdict": {
+    "definition_substrate_deflated": "single-base lift family has at least one bracketed/populated z<0 outside-band lift at both d=4 and d=8",
+    "definition_substrate_survives": "genuine d=4/d=8 suppression is present but no valid single-base lift reproduces it at either high dimension",
+    "deflated_high_d_reproduces_suppression": {
+      "d4": false,
+      "d8": false
+    },
+    "genuine_high_d_reproduces_suppression": {
+      "d4": true,
+      "d8": true
+    },
+    "interpretation": "If substrate_deflated, this observable is not evidence that the matched-band suppression needs genuine multi-shell nesting; it can be generated by ordinary fixed-base connection-lift geometry. If substrate_survives, the single-base lift control fails and the matched-band observable remains nesting-dependent. mixed keeps the split explicit.",
+    "overall": "substrate_survives"
+  },
+  "version": "1.0",
+  "z3_load_bearing": {
+    "best_deflated_top_d8": {
+      "d": 8,
+      "encoding": "assert flat=>sep==0, is_flat=true, and sep=round(1e9*|E_frame-E_matched_mean|); nonzero separation flips UNSAT while flat zero stays SAT",
+      "flat_verdict": "sat",
+      "genuine_or_deflated_verdict": "sat",
+      "label": "best_singlebase_lift",
+      "load_bearing_flip": false,
+      "measured_separation": 0.0
+    },
+    "genuine_top_d8": {
+      "d": 8,
+      "encoding": "assert flat=>sep==0, is_flat=true, and sep=round(1e9*|E_frame-E_matched_mean|); nonzero separation flips UNSAT while flat zero stays SAT",
+      "flat_verdict": "sat",
+      "genuine_or_deflated_verdict": "unsat",
+      "label": "genuine_hopf_rotor",
+      "load_bearing_flip": true,
+      "measured_separation": 0.21994584439805498
+    }
+  }
+}

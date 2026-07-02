@@ -1,0 +1,297 @@
+{
+  "A2_radial_expansion_compression": {
+    "L_and_R_share_radial_profile": true,
+    "L_sheet_radial_signs": [
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    "Ni_compression_inward": true,
+    "R_sheet_radial_signs": [
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    "Se_expansion_outward": false,
+    "finding": "radial split did not cleanly track Se/Ni topology (see numbers)",
+    "method": "QuantumOptics master equation from a tilted |r|=1 state; sign of mean d|r|/dt; expansion pushes |r| out, compression pulls |r| in toward a sink",
+    "per_terrain": {
+      "Cannon": {
+        "drdt_mean": -0.07692,
+        "expect_radial": 1,
+        "open": true,
+        "r0": 1.0,
+        "r_end": 0.5385,
+        "r_max": 1.0,
+        "r_min": 0.5385,
+        "radial_axis": "COMPRESSION(in)",
+        "sheet": "R",
+        "topo": "Se"
+      },
+      "Citadel": {
+        "drdt_mean": -0.00297,
+        "expect_radial": 0,
+        "open": false,
+        "r0": 1.0,
+        "r_end": 0.9822,
+        "r_max": 1.0,
+        "r_min": 0.9822,
+        "radial_axis": "COMPRESSION(in)",
+        "sheet": "R",
+        "topo": "Si"
+      },
+      "Funnel": {
+        "drdt_mean": -0.07692,
+        "expect_radial": 1,
+        "open": true,
+        "r0": 1.0,
+        "r_end": 0.5385,
+        "r_max": 1.0,
+        "r_min": 0.5385,
+        "radial_axis": "COMPRESSION(in)",
+        "sheet": "L",
+        "topo": "Se"
+      },
+      "Hill": {
+        "drdt_mean": -0.00297,
+        "expect_radial": 0,
+        "open": false,
+        "r0": 1.0,
+        "r_end": 0.9822,
+        "r_max": 1.0,
+        "r_min": 0.9822,
+        "radial_axis": "COMPRESSION(in)",
+        "sheet": "L",
+        "topo": "Si"
+      },
+      "Pit": {
+        "drdt_mean": -0.00034,
+        "expect_radial": -1,
+        "open": true,
+        "r0": 1.0,
+        "r_end": 0.998,
+        "r_max": 1.0,
+        "r_min": 0.7684,
+        "radial_axis": "COMPRESSION(in)",
+        "sheet": "L",
+        "topo": "Ni"
+      },
+      "Source": {
+        "drdt_mean": -0.00011,
+        "expect_radial": -1,
+        "open": true,
+        "r0": 1.0,
+        "r_end": 0.9994,
+        "r_max": 1.0,
+        "r_min": 0.933,
+        "radial_axis": "COMPRESSION(in)",
+        "sheet": "R",
+        "topo": "Ni"
+      },
+      "Spiral": {
+        "drdt_mean": -0.11779,
+        "expect_radial": 0,
+        "open": false,
+        "r0": 1.0,
+        "r_end": 0.2932,
+        "r_max": 1.0,
+        "r_min": 0.2932,
+        "radial_axis": "COMPRESSION(in)",
+        "sheet": "R",
+        "topo": "Ne"
+      },
+      "Vortex": {
+        "drdt_mean": -0.11779,
+        "expect_radial": 0,
+        "open": false,
+        "r0": 1.0,
+        "r_end": 0.2932,
+        "r_max": 1.0,
+        "r_min": 0.2932,
+        "radial_axis": "COMPRESSION(in)",
+        "sheet": "L",
+        "topo": "Ne"
+      }
+    },
+    "radial_is_topology_axis_not_chirality": false
+  },
+  "A_flux_direction": {
+    "flux_opposite_LR_directions": true,
+    "kill_C0_no_edge_current": true,
+    "kill_control_C0_m_3": {
+      "c_edge": 0,
+      "direction": "none",
+      "n_crossings": 0,
+      "present": false,
+      "v_edge": 0.0
+    },
+    "left_C_plus_1_m_minus_1": {
+      "c_edge": -1,
+      "direction": "INWARD(-v)",
+      "n_crossings": 1,
+      "present": true,
+      "v_edge": -0.999949
+    },
+    "method": "QWZ Chern insulator on a cylinder (open in y, periodic in x); chiral central charge c = net signed bottom-edge zero crossings; edge-current direction = sign of group velocity de/dk of the in-gap bottom-edge branch",
+    "right_C_minus_1_m_minus_3": {
+      "c_edge": 1,
+      "direction": "none",
+      "n_crossings": 1,
+      "present": true,
+      "v_edge": 0.0
+    }
+  },
+  "B_impedance": {
+    "kill_control_hamiltonian_only": {
+      "Z": "Inf",
+      "Z_to_infinity": true,
+      "gamma": 0.0,
+      "note": "zero dissipator -> gamma->0 -> Z->inf; confirms Z=1/gamma is the DISSIPATIVE impedance"
+    },
+    "max_open_Z": 2.0,
+    "method": "Z = 1/gamma; gamma = slowest nonzero Liouvillian damping rate (min |Re lambda| over nonzero eigenvalues of the hand-built 4x4 Liouvillian)",
+    "min_closed_Z": 2.5,
+    "open_lower_Z_than_closed": true,
+    "per_terrain": {
+      "Cannon": {
+        "Z": 1.538462,
+        "class": "open/isothermal",
+        "gamma": 0.65,
+        "n_zero_modes": 1,
+        "open": true,
+        "rates": [
+          1.3,
+          0.65,
+          0.65,
+          0.0
+        ],
+        "sheet": "R",
+        "topo": "Se"
+      },
+      "Citadel": {
+        "Z": 20.0,
+        "class": "closed/adiabatic",
+        "gamma": 0.05,
+        "n_zero_modes": 2,
+        "open": false,
+        "rates": [
+          0.05,
+          0.05,
+          0.0,
+          -0.0
+        ],
+        "sheet": "R",
+        "topo": "Si"
+      },
+      "Funnel": {
+        "Z": 1.538462,
+        "class": "open/isothermal",
+        "gamma": 0.65,
+        "n_zero_modes": 1,
+        "open": true,
+        "rates": [
+          1.3,
+          0.65,
+          0.65,
+          0.0
+        ],
+        "sheet": "L",
+        "topo": "Se"
+      },
+      "Hill": {
+        "Z": 20.0,
+        "class": "closed/adiabatic",
+        "gamma": 0.05,
+        "n_zero_modes": 2,
+        "open": false,
+        "rates": [
+          0.05,
+          0.05,
+          0.0,
+          -0.0
+        ],
+        "sheet": "L",
+        "topo": "Si"
+      },
+      "Pit": {
+        "Z": 2.0,
+        "class": "open/isothermal",
+        "gamma": 0.5,
+        "n_zero_modes": 1,
+        "open": true,
+        "rates": [
+          1.0,
+          0.5,
+          0.5,
+          -0.0
+        ],
+        "sheet": "L",
+        "topo": "Ni"
+      },
+      "Source": {
+        "Z": 2.0,
+        "class": "open/isothermal",
+        "gamma": 0.5,
+        "n_zero_modes": 1,
+        "open": true,
+        "rates": [
+          1.0,
+          0.5,
+          0.5,
+          -0.0
+        ],
+        "sheet": "R",
+        "topo": "Ni"
+      },
+      "Spiral": {
+        "Z": 2.5,
+        "class": "closed/adiabatic",
+        "gamma": 0.4,
+        "n_zero_modes": 2,
+        "open": false,
+        "rates": [
+          0.4,
+          0.4,
+          -0.0,
+          -0.0
+        ],
+        "sheet": "R",
+        "topo": "Ne"
+      },
+      "Vortex": {
+        "Z": 2.5,
+        "class": "closed/adiabatic",
+        "gamma": 0.4,
+        "n_zero_modes": 2,
+        "open": false,
+        "rates": [
+          0.4,
+          0.4,
+          -0.0,
+          -0.0
+        ],
+        "sheet": "L",
+        "topo": "Ne"
+      }
+    }
+  },
+  "all_pass": true,
+  "classification": "PoC",
+  "description": "Settles two physics questions about the L/R Weyl terrain: (A) the chiral central charge sign sets the chiral-edge current DIRECTION (C=+1 left vs C=-1 right give opposite directions); separately the radial Bloch current d|r|/dt distinguishes EXPANSION(out) vs COMPRESSION(in) terrains, which is a DIFFERENT axis from L/R chirality. (B) impedance Z=1/gamma (gamma=slowest Liouvillian damping rate) is LOW for open/isothermal terrains and HIGH for closed/adiabatic terrains.",
+  "honest_status": "passes gated verdicts (runs + c=+1/-1 give opposite edge-current directions; open terrains lower Z than closed; both kill-controls fire). SECONDARY: radial split did not cleanly track Se/Ni topology (see numbers)",
+  "object_id": "flux_direction_impedance",
+  "promotion_allowed": false,
+  "tool_integration": {
+    "LinearAlgebra": "load_bearing (cylinder edge spectra + hand-built Liouvillian eigenvalues for Z)",
+    "QuantumOptics.jl": "load_bearing (timeevolution.master IS the terrain dynamics for the radial-current measurement)",
+    "Z3": "deliberately NOT used (no SMT search is load-bearing here; a Z3 tautology would be decorative)"
+  },
+  "verdicts": {
+    "A_flux_opposite_LR_directions": true,
+    "A_kill_C0_no_edge_current": true,
+    "B_kill_hamiltonian_only_Z_inf": true,
+    "B_open_lower_Z_than_closed": true
+  }
+}

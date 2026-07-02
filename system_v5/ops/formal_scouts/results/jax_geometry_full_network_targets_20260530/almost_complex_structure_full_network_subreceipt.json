@@ -1,0 +1,1649 @@
+{
+  "blocked_consumers": [
+    "official_g_structure_selection",
+    "layer_completion",
+    "layer_embedding",
+    "stacking",
+    "noncommutative_layer_order_claim",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "claim_ceiling": "Per-target subreceipt under aggregate formal scout. No official G-structure selection, no layer completion, no stacking, no downstream unlock.",
+  "classification": "formal_scout",
+  "finite_map": "finite canonical complex structure J -> J^2 = -I residual",
+  "promotion_allowed": false,
+  "proof_gate": {
+    "cvc5_required_negation_status": "unsat",
+    "min_gap": 0.041114354856732975,
+    "pass": true,
+    "z3_required_negation_status": "unsat"
+  },
+  "rows": [
+    {
+      "bond_dim": 2,
+      "carrier": {
+        "mps": {
+          "bond_stats": {
+            "bonds_sample": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "max_bond": 2,
+            "mean_bond": 2.0
+          },
+          "entangling": true,
+          "half_chain_entropy": 0.6931471824645996,
+          "pass": true
+        },
+        "mps_product_control": {
+          "bond_stats": {
+            "bonds_sample": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "max_bond": 1,
+            "mean_bond": 1.0
+          },
+          "entangling": false,
+          "half_chain_entropy": -0.0,
+          "pass": true
+        },
+        "peps2d": {
+          "bond_dim": 2,
+          "object": "quimb.tensor.PEPS",
+          "pass": true,
+          "plane_rows": [
+            {
+              "contract_value": 0.2928375658690082,
+              "peps2d_num_tensors": 4,
+              "z": 0
+            },
+            {
+              "contract_value": 0.46519491241238237,
+              "peps2d_num_tensors": 4,
+              "z": 1
+            }
+          ],
+          "virtual_l1": 0.2906415366333268
+        },
+        "peps3d": {
+          "bond_dim": 2,
+          "contract_value": 1.1012607181470528,
+          "cotengra_cost": 12.0,
+          "num_tensors": 8,
+          "object": "quimb.tensor.PEPS3D",
+          "pass": true,
+          "virtual_l1": 0.3114016463928502
+        },
+        "spinor_dtype": "torch.complex128"
+      },
+      "contract_smoke": {
+        "cotengra_cost": 12.0,
+        "opt_einsum_value": 1.05,
+        "pass": true
+      },
+      "controls": {
+        "order_control": {
+          "commuting_gap": 0.0,
+          "order_gap": 0.041114354856732975,
+          "pass": true
+        },
+        "peps3d_virtual_erase": {
+          "baseline_virtual_l1": 0.3114016463928502,
+          "erased_virtual_l1": 0.0,
+          "pass": true
+        },
+        "product_no_entanglement_carrier": {
+          "logneg_gap": 0.2488182667063749,
+          "mps_entanglement_gap": 0.6931471824645996,
+          "pass": true
+        },
+        "scalar_entropy_primary_rejected": {
+          "MI": 0.14733289763586216,
+          "S_AB": -0.0,
+          "log_negativity": 0.2488182667063749,
+          "pass": true
+        },
+        "scramble_control": {
+          "pass": true,
+          "scramble_gap": 2.5951478940205983
+        },
+        "target_invariant_negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 6.82842712474619,
+          "control_signal_lost": 6.82842712474619,
+          "pass": true,
+          "real_residual": 0.0
+        }
+      },
+      "pass": true,
+      "qit_readouts": {
+        "coherent_information_A_to_B": 0.07366644881793107,
+        "conditional_entropy_A_given_B": -0.07366644881793107,
+        "log_negativity": 0.2488182667063749,
+        "mutual_information": 0.14733289763586216,
+        "renyi2_S_AB": -0.0,
+        "von_neumann_S_A": 0.07366644881793108,
+        "von_neumann_S_AB": -0.0,
+        "von_neumann_S_B": 0.07366644881793107
+      },
+      "shape": [
+        2,
+        2,
+        2
+      ],
+      "site_count": 8,
+      "target": "almost_complex_structure",
+      "target_dynamics": {
+        "jax_commuting_order_gap": 0.0,
+        "jax_order_gap": 0.041114354856733044,
+        "jax_scramble_gap": 2.5951478940205983,
+        "jax_vs_torch_max_delta": 6.938893903907228e-17,
+        "pass": true,
+        "qutip_jax_density_trace": 1.0,
+        "target_family": "special_structure",
+        "torch_commuting_order_gap": 0.0,
+        "torch_order_gap": 0.041114354856732975,
+        "torch_scramble_gap": 2.5951478940205983
+      },
+      "target_invariant": {
+        "finite_map": "finite canonical complex structure J -> J^2 = -I residual",
+        "invariant_strength": 6.82842712474619,
+        "known_value": {
+          "hopf_base_unit_residual": 1.1102230246251565e-16,
+          "spinor_unit_residual": 0.0,
+          "target_negative_control": {
+            "control_failed_target_claim": true,
+            "control_kind": "paracomplex_sign_control",
+            "control_residual": 2.0,
+            "control_signal_delta": 6.82842712474619,
+            "control_signal_lost": 6.82842712474619,
+            "control_signal_span": 0.0,
+            "pass": true,
+            "real_residual": 0.0,
+            "real_signal_span": 6.82842712474619
+          },
+          "target_residual": 0.0,
+          "target_signal_span": 6.82842712474619
+        },
+        "negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 6.82842712474619,
+          "control_signal_lost": 6.82842712474619,
+          "control_signal_span": 0.0,
+          "pass": true,
+          "real_residual": 0.0,
+          "real_signal_span": 6.82842712474619
+        },
+        "node_span": 6.82842712474619,
+        "pass": true,
+        "residual": 0.0
+      },
+      "topology": {
+        "gudhi_simplices": 32,
+        "pass": true,
+        "rustworkx_connected": true,
+        "rustworkx_cycle_rank": 9,
+        "toponetx_dim": 2,
+        "xgi_hyperedges": 4
+      }
+    },
+    {
+      "bond_dim": 4,
+      "carrier": {
+        "mps": {
+          "bond_stats": {
+            "bonds_sample": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "max_bond": 2,
+            "mean_bond": 2.0
+          },
+          "entangling": true,
+          "half_chain_entropy": 0.6931471824645996,
+          "pass": true
+        },
+        "mps_product_control": {
+          "bond_stats": {
+            "bonds_sample": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "max_bond": 1,
+            "mean_bond": 1.0
+          },
+          "entangling": false,
+          "half_chain_entropy": -0.0,
+          "pass": true
+        },
+        "peps2d": {
+          "bond_dim": 4,
+          "object": "quimb.tensor.PEPS",
+          "pass": true,
+          "plane_rows": [
+            {
+              "contract_value": 0.2928375658690082,
+              "peps2d_num_tensors": 4,
+              "z": 0
+            },
+            {
+              "contract_value": 0.46519491241238237,
+              "peps2d_num_tensors": 4,
+              "z": 1
+            }
+          ],
+          "virtual_l1": 0.8719246098999806
+        },
+        "peps3d": {
+          "bond_dim": 4,
+          "contract_value": 1.183782154441158,
+          "cotengra_cost": 80.0,
+          "num_tensors": 8,
+          "object": "quimb.tensor.PEPS3D",
+          "pass": true,
+          "virtual_l1": 0.9342049391785505
+        },
+        "spinor_dtype": "torch.complex128"
+      },
+      "contract_smoke": {
+        "cotengra_cost": 80.0,
+        "opt_einsum_value": 1.05,
+        "pass": true
+      },
+      "controls": {
+        "order_control": {
+          "commuting_gap": 0.0,
+          "order_gap": 0.041114354856732975,
+          "pass": true
+        },
+        "peps3d_virtual_erase": {
+          "baseline_virtual_l1": 0.9342049391785505,
+          "erased_virtual_l1": 0.0,
+          "pass": true
+        },
+        "product_no_entanglement_carrier": {
+          "logneg_gap": 0.2488182667063749,
+          "mps_entanglement_gap": 0.6931471824645996,
+          "pass": true
+        },
+        "scalar_entropy_primary_rejected": {
+          "MI": 0.14733289763586216,
+          "S_AB": -0.0,
+          "log_negativity": 0.2488182667063749,
+          "pass": true
+        },
+        "scramble_control": {
+          "pass": true,
+          "scramble_gap": 2.5951478940205983
+        },
+        "target_invariant_negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 6.82842712474619,
+          "control_signal_lost": 6.82842712474619,
+          "pass": true,
+          "real_residual": 0.0
+        }
+      },
+      "pass": true,
+      "qit_readouts": {
+        "coherent_information_A_to_B": 0.07366644881793107,
+        "conditional_entropy_A_given_B": -0.07366644881793107,
+        "log_negativity": 0.2488182667063749,
+        "mutual_information": 0.14733289763586216,
+        "renyi2_S_AB": -0.0,
+        "von_neumann_S_A": 0.07366644881793108,
+        "von_neumann_S_AB": -0.0,
+        "von_neumann_S_B": 0.07366644881793107
+      },
+      "shape": [
+        2,
+        2,
+        2
+      ],
+      "site_count": 8,
+      "target": "almost_complex_structure",
+      "target_dynamics": {
+        "jax_commuting_order_gap": 0.0,
+        "jax_order_gap": 0.041114354856733044,
+        "jax_scramble_gap": 2.5951478940205983,
+        "jax_vs_torch_max_delta": 6.938893903907228e-17,
+        "pass": true,
+        "qutip_jax_density_trace": 1.0,
+        "target_family": "special_structure",
+        "torch_commuting_order_gap": 0.0,
+        "torch_order_gap": 0.041114354856732975,
+        "torch_scramble_gap": 2.5951478940205983
+      },
+      "target_invariant": {
+        "finite_map": "finite canonical complex structure J -> J^2 = -I residual",
+        "invariant_strength": 6.82842712474619,
+        "known_value": {
+          "hopf_base_unit_residual": 1.1102230246251565e-16,
+          "spinor_unit_residual": 0.0,
+          "target_negative_control": {
+            "control_failed_target_claim": true,
+            "control_kind": "paracomplex_sign_control",
+            "control_residual": 2.0,
+            "control_signal_delta": 6.82842712474619,
+            "control_signal_lost": 6.82842712474619,
+            "control_signal_span": 0.0,
+            "pass": true,
+            "real_residual": 0.0,
+            "real_signal_span": 6.82842712474619
+          },
+          "target_residual": 0.0,
+          "target_signal_span": 6.82842712474619
+        },
+        "negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 6.82842712474619,
+          "control_signal_lost": 6.82842712474619,
+          "control_signal_span": 0.0,
+          "pass": true,
+          "real_residual": 0.0,
+          "real_signal_span": 6.82842712474619
+        },
+        "node_span": 6.82842712474619,
+        "pass": true,
+        "residual": 0.0
+      },
+      "topology": {
+        "gudhi_simplices": 32,
+        "pass": true,
+        "rustworkx_connected": true,
+        "rustworkx_cycle_rank": 9,
+        "toponetx_dim": 2,
+        "xgi_hyperedges": 4
+      }
+    },
+    {
+      "bond_dim": 2,
+      "carrier": {
+        "mps": {
+          "bond_stats": {
+            "bonds_sample": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "max_bond": 2,
+            "mean_bond": 2.0
+          },
+          "entangling": true,
+          "half_chain_entropy": 0.6931471824645996,
+          "pass": true
+        },
+        "mps_product_control": {
+          "bond_stats": {
+            "bonds_sample": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "max_bond": 1,
+            "mean_bond": 1.0
+          },
+          "entangling": false,
+          "half_chain_entropy": -0.0,
+          "pass": true
+        },
+        "peps2d": {
+          "bond_dim": 2,
+          "object": "quimb.tensor.PEPS",
+          "pass": true,
+          "plane_rows": [
+            {
+              "contract_value": 0.3302865767538229,
+              "peps2d_num_tensors": 8,
+              "z": 0
+            },
+            {
+              "contract_value": 0.411880616092882,
+              "peps2d_num_tensors": 8,
+              "z": 1
+            }
+          ],
+          "virtual_l1": 0.7294448109162188
+        },
+        "peps3d": {
+          "bond_dim": 2,
+          "contract_value": 1.1082719404808974,
+          "cotengra_cost": 12.0,
+          "num_tensors": 16,
+          "object": "quimb.tensor.PEPS3D",
+          "pass": true,
+          "virtual_l1": 0.7286330638625997
+        },
+        "spinor_dtype": "torch.complex128"
+      },
+      "contract_smoke": {
+        "cotengra_cost": 12.0,
+        "opt_einsum_value": 1.05,
+        "pass": true
+      },
+      "controls": {
+        "order_control": {
+          "commuting_gap": 0.0,
+          "order_gap": 0.06011582571342553,
+          "pass": true
+        },
+        "peps3d_virtual_erase": {
+          "baseline_virtual_l1": 0.7286330638625997,
+          "erased_virtual_l1": 0.0,
+          "pass": true
+        },
+        "product_no_entanglement_carrier": {
+          "logneg_gap": 0.22439314979144764,
+          "mps_entanglement_gap": 0.6931471824645996,
+          "pass": true
+        },
+        "scalar_entropy_primary_rejected": {
+          "MI": 0.12221235057944568,
+          "S_AB": -0.0,
+          "log_negativity": 0.22439314979144764,
+          "pass": true
+        },
+        "scramble_control": {
+          "pass": true,
+          "scramble_gap": 3.374734043233078
+        },
+        "target_invariant_negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.902452273293827,
+          "control_signal_lost": 5.902452273293827,
+          "pass": true,
+          "real_residual": 0.0
+        }
+      },
+      "pass": true,
+      "qit_readouts": {
+        "coherent_information_A_to_B": 0.061106175289723015,
+        "conditional_entropy_A_given_B": -0.061106175289723015,
+        "log_negativity": 0.22439314979144764,
+        "mutual_information": 0.12221235057944568,
+        "renyi2_S_AB": -0.0,
+        "von_neumann_S_A": 0.061106175289722675,
+        "von_neumann_S_AB": -0.0,
+        "von_neumann_S_B": 0.061106175289723015
+      },
+      "shape": [
+        4,
+        2,
+        2
+      ],
+      "site_count": 16,
+      "target": "almost_complex_structure",
+      "target_dynamics": {
+        "jax_commuting_order_gap": 0.0,
+        "jax_order_gap": 0.06011582571342545,
+        "jax_scramble_gap": 3.374734043233078,
+        "jax_vs_torch_max_delta": 8.326672684688674e-17,
+        "pass": true,
+        "qutip_jax_density_trace": 1.0,
+        "target_family": "special_structure",
+        "torch_commuting_order_gap": 0.0,
+        "torch_order_gap": 0.06011582571342553,
+        "torch_scramble_gap": 3.374734043233078
+      },
+      "target_invariant": {
+        "finite_map": "finite canonical complex structure J -> J^2 = -I residual",
+        "invariant_strength": 5.902452273293827,
+        "known_value": {
+          "hopf_base_unit_residual": 1.1102230246251565e-16,
+          "spinor_unit_residual": 0.0,
+          "target_negative_control": {
+            "control_failed_target_claim": true,
+            "control_kind": "paracomplex_sign_control",
+            "control_residual": 2.0,
+            "control_signal_delta": 5.902452273293827,
+            "control_signal_lost": 5.902452273293827,
+            "control_signal_span": 0.0,
+            "pass": true,
+            "real_residual": 0.0,
+            "real_signal_span": 5.902452273293827
+          },
+          "target_residual": 0.0,
+          "target_signal_span": 5.902452273293827
+        },
+        "negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.902452273293827,
+          "control_signal_lost": 5.902452273293827,
+          "control_signal_span": 0.0,
+          "pass": true,
+          "real_residual": 0.0,
+          "real_signal_span": 5.902452273293827
+        },
+        "node_span": 5.902452273293827,
+        "pass": true,
+        "residual": 0.0
+      },
+      "topology": {
+        "gudhi_simplices": 64,
+        "pass": true,
+        "rustworkx_connected": true,
+        "rustworkx_cycle_rank": 17,
+        "toponetx_dim": 2,
+        "xgi_hyperedges": 5
+      }
+    },
+    {
+      "bond_dim": 4,
+      "carrier": {
+        "mps": {
+          "bond_stats": {
+            "bonds_sample": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "max_bond": 2,
+            "mean_bond": 2.0
+          },
+          "entangling": true,
+          "half_chain_entropy": 0.6931471824645996,
+          "pass": true
+        },
+        "mps_product_control": {
+          "bond_stats": {
+            "bonds_sample": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "max_bond": 1,
+            "mean_bond": 1.0
+          },
+          "entangling": false,
+          "half_chain_entropy": -0.0,
+          "pass": true
+        },
+        "peps2d": {
+          "bond_dim": 4,
+          "object": "quimb.tensor.PEPS",
+          "pass": true,
+          "plane_rows": [
+            {
+              "contract_value": 0.3302865767538229,
+              "peps2d_num_tensors": 8,
+              "z": 0
+            },
+            {
+              "contract_value": 0.411880616092882,
+              "peps2d_num_tensors": 8,
+              "z": 1
+            }
+          ],
+          "virtual_l1": 2.1883344327486567
+        },
+        "peps3d": {
+          "bond_dim": 4,
+          "contract_value": 1.204815821442692,
+          "cotengra_cost": 80.0,
+          "num_tensors": 16,
+          "object": "quimb.tensor.PEPS3D",
+          "pass": true,
+          "virtual_l1": 2.185899191587799
+        },
+        "spinor_dtype": "torch.complex128"
+      },
+      "contract_smoke": {
+        "cotengra_cost": 80.0,
+        "opt_einsum_value": 1.05,
+        "pass": true
+      },
+      "controls": {
+        "order_control": {
+          "commuting_gap": 0.0,
+          "order_gap": 0.06011582571342553,
+          "pass": true
+        },
+        "peps3d_virtual_erase": {
+          "baseline_virtual_l1": 2.185899191587799,
+          "erased_virtual_l1": 0.0,
+          "pass": true
+        },
+        "product_no_entanglement_carrier": {
+          "logneg_gap": 0.22439314979144764,
+          "mps_entanglement_gap": 0.6931471824645996,
+          "pass": true
+        },
+        "scalar_entropy_primary_rejected": {
+          "MI": 0.12221235057944568,
+          "S_AB": -0.0,
+          "log_negativity": 0.22439314979144764,
+          "pass": true
+        },
+        "scramble_control": {
+          "pass": true,
+          "scramble_gap": 3.374734043233078
+        },
+        "target_invariant_negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.902452273293827,
+          "control_signal_lost": 5.902452273293827,
+          "pass": true,
+          "real_residual": 0.0
+        }
+      },
+      "pass": true,
+      "qit_readouts": {
+        "coherent_information_A_to_B": 0.061106175289723015,
+        "conditional_entropy_A_given_B": -0.061106175289723015,
+        "log_negativity": 0.22439314979144764,
+        "mutual_information": 0.12221235057944568,
+        "renyi2_S_AB": -0.0,
+        "von_neumann_S_A": 0.061106175289722675,
+        "von_neumann_S_AB": -0.0,
+        "von_neumann_S_B": 0.061106175289723015
+      },
+      "shape": [
+        4,
+        2,
+        2
+      ],
+      "site_count": 16,
+      "target": "almost_complex_structure",
+      "target_dynamics": {
+        "jax_commuting_order_gap": 0.0,
+        "jax_order_gap": 0.06011582571342545,
+        "jax_scramble_gap": 3.374734043233078,
+        "jax_vs_torch_max_delta": 8.326672684688674e-17,
+        "pass": true,
+        "qutip_jax_density_trace": 1.0,
+        "target_family": "special_structure",
+        "torch_commuting_order_gap": 0.0,
+        "torch_order_gap": 0.06011582571342553,
+        "torch_scramble_gap": 3.374734043233078
+      },
+      "target_invariant": {
+        "finite_map": "finite canonical complex structure J -> J^2 = -I residual",
+        "invariant_strength": 5.902452273293827,
+        "known_value": {
+          "hopf_base_unit_residual": 1.1102230246251565e-16,
+          "spinor_unit_residual": 0.0,
+          "target_negative_control": {
+            "control_failed_target_claim": true,
+            "control_kind": "paracomplex_sign_control",
+            "control_residual": 2.0,
+            "control_signal_delta": 5.902452273293827,
+            "control_signal_lost": 5.902452273293827,
+            "control_signal_span": 0.0,
+            "pass": true,
+            "real_residual": 0.0,
+            "real_signal_span": 5.902452273293827
+          },
+          "target_residual": 0.0,
+          "target_signal_span": 5.902452273293827
+        },
+        "negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.902452273293827,
+          "control_signal_lost": 5.902452273293827,
+          "control_signal_span": 0.0,
+          "pass": true,
+          "real_residual": 0.0,
+          "real_signal_span": 5.902452273293827
+        },
+        "node_span": 5.902452273293827,
+        "pass": true,
+        "residual": 0.0
+      },
+      "topology": {
+        "gudhi_simplices": 64,
+        "pass": true,
+        "rustworkx_connected": true,
+        "rustworkx_cycle_rank": 17,
+        "toponetx_dim": 2,
+        "xgi_hyperedges": 5
+      }
+    },
+    {
+      "bond_dim": 2,
+      "carrier": {
+        "mps": {
+          "bond_stats": {
+            "bonds_sample": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "max_bond": 2,
+            "mean_bond": 2.0
+          },
+          "entangling": true,
+          "half_chain_entropy": 0.6931471824645996,
+          "pass": true
+        },
+        "mps_product_control": {
+          "bond_stats": {
+            "bonds_sample": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "max_bond": 1,
+            "mean_bond": 1.0
+          },
+          "entangling": false,
+          "half_chain_entropy": -0.0,
+          "pass": true
+        },
+        "peps2d": {
+          "bond_dim": 2,
+          "object": "quimb.tensor.PEPS",
+          "pass": true,
+          "plane_rows": [
+            {
+              "contract_value": 0.20690766499202073,
+              "peps2d_num_tensors": 16,
+              "z": 0
+            },
+            {
+              "contract_value": 0.20193081853759787,
+              "peps2d_num_tensors": 16,
+              "z": 1
+            }
+          ],
+          "virtual_l1": 1.7466451952687014
+        },
+        "peps3d": {
+          "bond_dim": 2,
+          "contract_value": 1.1150804428880947,
+          "cotengra_cost": 12.0,
+          "num_tensors": 32,
+          "object": "quimb.tensor.PEPS3D",
+          "pass": true,
+          "virtual_l1": 1.6628058230368163
+        },
+        "spinor_dtype": "torch.complex128"
+      },
+      "contract_smoke": {
+        "cotengra_cost": 12.0,
+        "opt_einsum_value": 1.05,
+        "pass": true
+      },
+      "controls": {
+        "order_control": {
+          "commuting_gap": 0.0,
+          "order_gap": 0.0869304747597402,
+          "pass": true
+        },
+        "peps3d_virtual_erase": {
+          "baseline_virtual_l1": 1.6628058230368163,
+          "erased_virtual_l1": 0.0,
+          "pass": true
+        },
+        "product_no_entanglement_carrier": {
+          "logneg_gap": 0.18282213740424985,
+          "mps_entanglement_gap": 0.6931471824645996,
+          "pass": true
+        },
+        "scalar_entropy_primary_rejected": {
+          "MI": 0.08442660522668839,
+          "S_AB": -3.2034265038149176e-16,
+          "log_negativity": 0.18282213740424985,
+          "pass": true
+        },
+        "scramble_control": {
+          "pass": true,
+          "scramble_gap": 4.9589335995953725
+        },
+        "target_invariant_negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.917799062123555,
+          "control_signal_lost": 5.917799062123555,
+          "pass": true,
+          "real_residual": 0.0
+        }
+      },
+      "pass": true,
+      "qit_readouts": {
+        "coherent_information_A_to_B": 0.0422133026133444,
+        "conditional_entropy_A_given_B": -0.0422133026133444,
+        "log_negativity": 0.18282213740424985,
+        "mutual_information": 0.08442660522668839,
+        "renyi2_S_AB": -6.406853007629834e-16,
+        "von_neumann_S_A": 0.042213302613344,
+        "von_neumann_S_AB": -3.2034265038149176e-16,
+        "von_neumann_S_B": 0.04221330261334408
+      },
+      "shape": [
+        4,
+        4,
+        2
+      ],
+      "site_count": 32,
+      "target": "almost_complex_structure",
+      "target_dynamics": {
+        "jax_commuting_order_gap": 0.0,
+        "jax_order_gap": 0.0869304747597403,
+        "jax_scramble_gap": 4.9589335995953725,
+        "jax_vs_torch_max_delta": 1.1102230246251565e-16,
+        "pass": true,
+        "qutip_jax_density_trace": 1.0,
+        "target_family": "special_structure",
+        "torch_commuting_order_gap": 0.0,
+        "torch_order_gap": 0.0869304747597402,
+        "torch_scramble_gap": 4.9589335995953725
+      },
+      "target_invariant": {
+        "finite_map": "finite canonical complex structure J -> J^2 = -I residual",
+        "invariant_strength": 5.917799062123555,
+        "known_value": {
+          "hopf_base_unit_residual": 2.220446049250313e-16,
+          "spinor_unit_residual": 0.0,
+          "target_negative_control": {
+            "control_failed_target_claim": true,
+            "control_kind": "paracomplex_sign_control",
+            "control_residual": 2.0,
+            "control_signal_delta": 5.917799062123555,
+            "control_signal_lost": 5.917799062123555,
+            "control_signal_span": 0.0,
+            "pass": true,
+            "real_residual": 0.0,
+            "real_signal_span": 5.917799062123555
+          },
+          "target_residual": 0.0,
+          "target_signal_span": 5.917799062123555
+        },
+        "negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.917799062123555,
+          "control_signal_lost": 5.917799062123555,
+          "control_signal_span": 0.0,
+          "pass": true,
+          "real_residual": 0.0,
+          "real_signal_span": 5.917799062123555
+        },
+        "node_span": 5.917799062123555,
+        "pass": true,
+        "residual": 0.0
+      },
+      "topology": {
+        "gudhi_simplices": 128,
+        "pass": true,
+        "rustworkx_connected": true,
+        "rustworkx_cycle_rank": 33,
+        "toponetx_dim": 2,
+        "xgi_hyperedges": 6
+      }
+    },
+    {
+      "bond_dim": 4,
+      "carrier": {
+        "mps": {
+          "bond_stats": {
+            "bonds_sample": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "max_bond": 2,
+            "mean_bond": 2.0
+          },
+          "entangling": true,
+          "half_chain_entropy": 0.6931471824645996,
+          "pass": true
+        },
+        "mps_product_control": {
+          "bond_stats": {
+            "bonds_sample": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "max_bond": 1,
+            "mean_bond": 1.0
+          },
+          "entangling": false,
+          "half_chain_entropy": -0.0,
+          "pass": true
+        },
+        "peps2d": {
+          "bond_dim": 4,
+          "object": "quimb.tensor.PEPS",
+          "pass": true,
+          "plane_rows": [
+            {
+              "contract_value": 0.20690766499202073,
+              "peps2d_num_tensors": 16,
+              "z": 0
+            },
+            {
+              "contract_value": 0.20193081853759787,
+              "peps2d_num_tensors": 16,
+              "z": 1
+            }
+          ],
+          "virtual_l1": 5.239935585806104
+        },
+        "peps3d": {
+          "bond_dim": 4,
+          "contract_value": 1.2252413286642838,
+          "cotengra_cost": 80.0,
+          "num_tensors": 32,
+          "object": "quimb.tensor.PEPS3D",
+          "pass": true,
+          "virtual_l1": 4.988417469110449
+        },
+        "spinor_dtype": "torch.complex128"
+      },
+      "contract_smoke": {
+        "cotengra_cost": 80.0,
+        "opt_einsum_value": 1.05,
+        "pass": true
+      },
+      "controls": {
+        "order_control": {
+          "commuting_gap": 0.0,
+          "order_gap": 0.0869304747597402,
+          "pass": true
+        },
+        "peps3d_virtual_erase": {
+          "baseline_virtual_l1": 4.988417469110449,
+          "erased_virtual_l1": 0.0,
+          "pass": true
+        },
+        "product_no_entanglement_carrier": {
+          "logneg_gap": 0.18282213740424985,
+          "mps_entanglement_gap": 0.6931471824645996,
+          "pass": true
+        },
+        "scalar_entropy_primary_rejected": {
+          "MI": 0.08442660522668839,
+          "S_AB": -3.2034265038149176e-16,
+          "log_negativity": 0.18282213740424985,
+          "pass": true
+        },
+        "scramble_control": {
+          "pass": true,
+          "scramble_gap": 4.9589335995953725
+        },
+        "target_invariant_negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.917799062123555,
+          "control_signal_lost": 5.917799062123555,
+          "pass": true,
+          "real_residual": 0.0
+        }
+      },
+      "pass": true,
+      "qit_readouts": {
+        "coherent_information_A_to_B": 0.0422133026133444,
+        "conditional_entropy_A_given_B": -0.0422133026133444,
+        "log_negativity": 0.18282213740424985,
+        "mutual_information": 0.08442660522668839,
+        "renyi2_S_AB": -6.406853007629834e-16,
+        "von_neumann_S_A": 0.042213302613344,
+        "von_neumann_S_AB": -3.2034265038149176e-16,
+        "von_neumann_S_B": 0.04221330261334408
+      },
+      "shape": [
+        4,
+        4,
+        2
+      ],
+      "site_count": 32,
+      "target": "almost_complex_structure",
+      "target_dynamics": {
+        "jax_commuting_order_gap": 0.0,
+        "jax_order_gap": 0.0869304747597403,
+        "jax_scramble_gap": 4.9589335995953725,
+        "jax_vs_torch_max_delta": 1.1102230246251565e-16,
+        "pass": true,
+        "qutip_jax_density_trace": 1.0,
+        "target_family": "special_structure",
+        "torch_commuting_order_gap": 0.0,
+        "torch_order_gap": 0.0869304747597402,
+        "torch_scramble_gap": 4.9589335995953725
+      },
+      "target_invariant": {
+        "finite_map": "finite canonical complex structure J -> J^2 = -I residual",
+        "invariant_strength": 5.917799062123555,
+        "known_value": {
+          "hopf_base_unit_residual": 2.220446049250313e-16,
+          "spinor_unit_residual": 0.0,
+          "target_negative_control": {
+            "control_failed_target_claim": true,
+            "control_kind": "paracomplex_sign_control",
+            "control_residual": 2.0,
+            "control_signal_delta": 5.917799062123555,
+            "control_signal_lost": 5.917799062123555,
+            "control_signal_span": 0.0,
+            "pass": true,
+            "real_residual": 0.0,
+            "real_signal_span": 5.917799062123555
+          },
+          "target_residual": 0.0,
+          "target_signal_span": 5.917799062123555
+        },
+        "negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.917799062123555,
+          "control_signal_lost": 5.917799062123555,
+          "control_signal_span": 0.0,
+          "pass": true,
+          "real_residual": 0.0,
+          "real_signal_span": 5.917799062123555
+        },
+        "node_span": 5.917799062123555,
+        "pass": true,
+        "residual": 0.0
+      },
+      "topology": {
+        "gudhi_simplices": 128,
+        "pass": true,
+        "rustworkx_connected": true,
+        "rustworkx_cycle_rank": 33,
+        "toponetx_dim": 2,
+        "xgi_hyperedges": 6
+      }
+    },
+    {
+      "bond_dim": 2,
+      "carrier": {
+        "mps": {
+          "bond_stats": {
+            "bonds_sample": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "max_bond": 2,
+            "mean_bond": 2.0
+          },
+          "entangling": true,
+          "half_chain_entropy": 0.6931471824645996,
+          "pass": true
+        },
+        "mps_product_control": {
+          "bond_stats": {
+            "bonds_sample": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "max_bond": 1,
+            "mean_bond": 1.0
+          },
+          "entangling": false,
+          "half_chain_entropy": -0.0,
+          "pass": true
+        },
+        "peps2d": {
+          "bond_dim": 2,
+          "object": "quimb.tensor.PEPS",
+          "pass": true,
+          "plane_rows": [
+            {
+              "contract_value": 0.3811786871002949,
+              "peps2d_num_tensors": 16,
+              "z": 0
+            },
+            {
+              "contract_value": 0.24069318105364124,
+              "peps2d_num_tensors": 16,
+              "z": 1
+            },
+            {
+              "contract_value": 0.4317522439822849,
+              "peps2d_num_tensors": 16,
+              "z": 2
+            },
+            {
+              "contract_value": 0.5032306837422069,
+              "peps2d_num_tensors": 16,
+              "z": 3
+            }
+          ],
+          "virtual_l1": 3.487127834089452
+        },
+        "peps3d": {
+          "bond_dim": 2,
+          "contract_value": 1.1218843226265656,
+          "cotengra_cost": 12.0,
+          "num_tensors": 64,
+          "object": "quimb.tensor.PEPS3D",
+          "pass": true,
+          "virtual_l1": 3.736411932169984
+        },
+        "spinor_dtype": "torch.complex128"
+      },
+      "contract_smoke": {
+        "cotengra_cost": 12.0,
+        "opt_einsum_value": 1.05,
+        "pass": true
+      },
+      "controls": {
+        "order_control": {
+          "commuting_gap": 0.0,
+          "order_gap": 0.12281235407516697,
+          "pass": true
+        },
+        "peps3d_virtual_erase": {
+          "baseline_virtual_l1": 3.736411932169984,
+          "erased_virtual_l1": 0.0,
+          "pass": true
+        },
+        "product_no_entanglement_carrier": {
+          "logneg_gap": 0.16267491544723037,
+          "mps_entanglement_gap": 0.6931471824645996,
+          "pass": true
+        },
+        "scalar_entropy_primary_rejected": {
+          "MI": 0.06840303164801999,
+          "S_AB": -0.0,
+          "log_negativity": 0.16267491544723037,
+          "pass": true
+        },
+        "scramble_control": {
+          "pass": true,
+          "scramble_gap": 7.5288051501962805
+        },
+        "target_invariant_negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.992245935110006,
+          "control_signal_lost": 5.992245935110006,
+          "pass": true,
+          "real_residual": 0.0
+        }
+      },
+      "pass": true,
+      "qit_readouts": {
+        "coherent_information_A_to_B": 0.03420151582400934,
+        "conditional_entropy_A_given_B": -0.03420151582400934,
+        "log_negativity": 0.16267491544723037,
+        "mutual_information": 0.06840303164801999,
+        "renyi2_S_AB": 6.406853007629836e-16,
+        "von_neumann_S_A": 0.034201515824010646,
+        "von_neumann_S_AB": -0.0,
+        "von_neumann_S_B": 0.03420151582400934
+      },
+      "shape": [
+        4,
+        4,
+        4
+      ],
+      "site_count": 64,
+      "target": "almost_complex_structure",
+      "target_dynamics": {
+        "jax_commuting_order_gap": 0.0,
+        "jax_order_gap": 0.12281235407516713,
+        "jax_scramble_gap": 7.5288051501962805,
+        "jax_vs_torch_max_delta": 1.6653345369377348e-16,
+        "pass": true,
+        "qutip_jax_density_trace": 1.0,
+        "target_family": "special_structure",
+        "torch_commuting_order_gap": 0.0,
+        "torch_order_gap": 0.12281235407516697,
+        "torch_scramble_gap": 7.5288051501962805
+      },
+      "target_invariant": {
+        "finite_map": "finite canonical complex structure J -> J^2 = -I residual",
+        "invariant_strength": 5.992245935110006,
+        "known_value": {
+          "hopf_base_unit_residual": 2.220446049250313e-16,
+          "spinor_unit_residual": 0.0,
+          "target_negative_control": {
+            "control_failed_target_claim": true,
+            "control_kind": "paracomplex_sign_control",
+            "control_residual": 2.0,
+            "control_signal_delta": 5.992245935110006,
+            "control_signal_lost": 5.992245935110006,
+            "control_signal_span": 0.0,
+            "pass": true,
+            "real_residual": 0.0,
+            "real_signal_span": 5.992245935110006
+          },
+          "target_residual": 0.0,
+          "target_signal_span": 5.992245935110006
+        },
+        "negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.992245935110006,
+          "control_signal_lost": 5.992245935110006,
+          "control_signal_span": 0.0,
+          "pass": true,
+          "real_residual": 0.0,
+          "real_signal_span": 5.992245935110006
+        },
+        "node_span": 5.992245935110006,
+        "pass": true,
+        "residual": 0.0
+      },
+      "topology": {
+        "gudhi_simplices": 256,
+        "pass": true,
+        "rustworkx_connected": true,
+        "rustworkx_cycle_rank": 65,
+        "toponetx_dim": 2,
+        "xgi_hyperedges": 8
+      }
+    },
+    {
+      "bond_dim": 4,
+      "carrier": {
+        "mps": {
+          "bond_stats": {
+            "bonds_sample": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "max_bond": 2,
+            "mean_bond": 2.0
+          },
+          "entangling": true,
+          "half_chain_entropy": 0.6931471824645996,
+          "pass": true
+        },
+        "mps_product_control": {
+          "bond_stats": {
+            "bonds_sample": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "max_bond": 1,
+            "mean_bond": 1.0
+          },
+          "entangling": false,
+          "half_chain_entropy": -0.0,
+          "pass": true
+        },
+        "peps2d": {
+          "bond_dim": 4,
+          "object": "quimb.tensor.PEPS",
+          "pass": true,
+          "plane_rows": [
+            {
+              "contract_value": 0.3811786871002949,
+              "peps2d_num_tensors": 16,
+              "z": 0
+            },
+            {
+              "contract_value": 0.24069318105364124,
+              "peps2d_num_tensors": 16,
+              "z": 1
+            },
+            {
+              "contract_value": 0.4317522439822849,
+              "peps2d_num_tensors": 16,
+              "z": 2
+            },
+            {
+              "contract_value": 0.5032306837422069,
+              "peps2d_num_tensors": 16,
+              "z": 3
+            }
+          ],
+          "virtual_l1": 10.461383502268363
+        },
+        "peps3d": {
+          "bond_dim": 4,
+          "contract_value": 1.2456529678796961,
+          "cotengra_cost": 80.0,
+          "num_tensors": 64,
+          "object": "quimb.tensor.PEPS3D",
+          "pass": true,
+          "virtual_l1": 11.209235796509951
+        },
+        "spinor_dtype": "torch.complex128"
+      },
+      "contract_smoke": {
+        "cotengra_cost": 80.0,
+        "opt_einsum_value": 1.05,
+        "pass": true
+      },
+      "controls": {
+        "order_control": {
+          "commuting_gap": 0.0,
+          "order_gap": 0.12281235407516697,
+          "pass": true
+        },
+        "peps3d_virtual_erase": {
+          "baseline_virtual_l1": 11.209235796509951,
+          "erased_virtual_l1": 0.0,
+          "pass": true
+        },
+        "product_no_entanglement_carrier": {
+          "logneg_gap": 0.16267491544723037,
+          "mps_entanglement_gap": 0.6931471824645996,
+          "pass": true
+        },
+        "scalar_entropy_primary_rejected": {
+          "MI": 0.06840303164801999,
+          "S_AB": -0.0,
+          "log_negativity": 0.16267491544723037,
+          "pass": true
+        },
+        "scramble_control": {
+          "pass": true,
+          "scramble_gap": 7.5288051501962805
+        },
+        "target_invariant_negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.992245935110006,
+          "control_signal_lost": 5.992245935110006,
+          "pass": true,
+          "real_residual": 0.0
+        }
+      },
+      "pass": true,
+      "qit_readouts": {
+        "coherent_information_A_to_B": 0.03420151582400934,
+        "conditional_entropy_A_given_B": -0.03420151582400934,
+        "log_negativity": 0.16267491544723037,
+        "mutual_information": 0.06840303164801999,
+        "renyi2_S_AB": 6.406853007629836e-16,
+        "von_neumann_S_A": 0.034201515824010646,
+        "von_neumann_S_AB": -0.0,
+        "von_neumann_S_B": 0.03420151582400934
+      },
+      "shape": [
+        4,
+        4,
+        4
+      ],
+      "site_count": 64,
+      "target": "almost_complex_structure",
+      "target_dynamics": {
+        "jax_commuting_order_gap": 0.0,
+        "jax_order_gap": 0.12281235407516713,
+        "jax_scramble_gap": 7.5288051501962805,
+        "jax_vs_torch_max_delta": 1.6653345369377348e-16,
+        "pass": true,
+        "qutip_jax_density_trace": 1.0,
+        "target_family": "special_structure",
+        "torch_commuting_order_gap": 0.0,
+        "torch_order_gap": 0.12281235407516697,
+        "torch_scramble_gap": 7.5288051501962805
+      },
+      "target_invariant": {
+        "finite_map": "finite canonical complex structure J -> J^2 = -I residual",
+        "invariant_strength": 5.992245935110006,
+        "known_value": {
+          "hopf_base_unit_residual": 2.220446049250313e-16,
+          "spinor_unit_residual": 0.0,
+          "target_negative_control": {
+            "control_failed_target_claim": true,
+            "control_kind": "paracomplex_sign_control",
+            "control_residual": 2.0,
+            "control_signal_delta": 5.992245935110006,
+            "control_signal_lost": 5.992245935110006,
+            "control_signal_span": 0.0,
+            "pass": true,
+            "real_residual": 0.0,
+            "real_signal_span": 5.992245935110006
+          },
+          "target_residual": 0.0,
+          "target_signal_span": 5.992245935110006
+        },
+        "negative_control": {
+          "control_failed_target_claim": true,
+          "control_kind": "paracomplex_sign_control",
+          "control_residual": 2.0,
+          "control_signal_delta": 5.992245935110006,
+          "control_signal_lost": 5.992245935110006,
+          "control_signal_span": 0.0,
+          "pass": true,
+          "real_residual": 0.0,
+          "real_signal_span": 5.992245935110006
+        },
+        "node_span": 5.992245935110006,
+        "pass": true,
+        "residual": 0.0
+      },
+      "topology": {
+        "gudhi_simplices": 256,
+        "pass": true,
+        "rustworkx_connected": true,
+        "rustworkx_cycle_rank": 65,
+        "toponetx_dim": 2,
+        "xgi_hyperedges": 8
+      }
+    }
+  ],
+  "schema": "FORMAL_SCOUT_SUBRECEIPT_v1",
+  "summary": {
+    "all_pass": true,
+    "bond_dims": [
+      2,
+      4
+    ],
+    "max_bond_dim": 4,
+    "max_jax_torch_delta": 1.6653345369377348e-16,
+    "max_sites": 64,
+    "max_target_invariant_residual": 0.0,
+    "min_entanglement_gap": 0.6931471824645996,
+    "min_log_negativity": 0.16267491544723037,
+    "min_logneg_gap": 0.16267491544723037,
+    "min_mutual_information": 0.06840303164801999,
+    "min_order_gap": 0.041114354856732975,
+    "min_peps3d_virtual_delta": 0.3114016463928502,
+    "min_scramble_gap": 2.5951478940205983,
+    "row_count": 8,
+    "site_counts": [
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "sympy_check": {
+    "pass": true,
+    "residual": "Matrix([[0, 0], [0, 0]])",
+    "statement": "J^2=-I"
+  },
+  "target": "almost_complex_structure",
+  "target_family": "special_structure",
+  "target_name": "almost complex structure"
+}

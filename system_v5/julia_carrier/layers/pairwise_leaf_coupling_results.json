@@ -1,0 +1,154 @@
+{
+  "all_pass": true,
+  "anchor": "steady-state shift = tracedistance(rho_joint, rho1_iso ⊗ rho2_iso); == 0 at g=0 (direct-sum Lindbladian theorem), > 0 at g>0 (measured)",
+  "carrier": "two single-qubit leaf carriers on T^2(theta1), T^2(theta2); QuantumOptics Lindblad",
+  "checks": {
+    "coupling_pulls_terrains_together": true,
+    "coupling_shifts_state_off_product": true,
+    "coupling_turns_on_locking": true,
+    "gamma_theta_is_dirac_gamma": true,
+    "identity_is_not_dirac_gamma": true,
+    "kill_g0_joint_equals_product": true,
+    "real_exchange_beats_identity_sham": true,
+    "shift_rises_with_coupling": true,
+    "wrong_structure_identity_inert": true
+  },
+  "claim_ceiling": "PoC: a genuine pairwise radial coupling of two terrain-carrying leaves; the joint steady state is MEASURED to differ from the product of isolated terrains iff the coupling is nonzero and carries exchange structure. NOT a coexistence/topology/emergence claim. promotion_allowed=false.",
+  "classification": "tool_lego_fit_probe",
+  "coupling_program_step": "step 2 (pairwise coupling) of CLAUDE.md coupling order",
+  "gamma_theta_axioms": {
+    "hermitian": true,
+    "involutive_gamma2_eq_I": true,
+    "is_dirac_gamma": true,
+    "traceless": true
+  },
+  "geometry": {
+    "dtheta": 0.10000000000000009,
+    "g_eff_formula": "g/dtheta (finite-difference radial hopping on the 2-leaf chain)",
+    "theta1": 0.7353981633974482,
+    "theta2": 0.8353981633974483
+  },
+  "honest_status": "kill_g0_product=true; coupling_shifts=true; coupling_locks=true; shift_monotone=true; terrains_pull_together=true; sham_inert=true; real>sham=true",
+  "identity_axioms": {
+    "hermitian": true,
+    "involutive_gamma2_eq_I": true,
+    "is_dirac_gamma": false,
+    "traceless": false
+  },
+  "kill_g0": {
+    "joint_equals_product": true,
+    "locking": 6.92519600542285e-16,
+    "shift": 7.49999595906487e-16
+  },
+  "object": "pairwise_leaf_coupling: two adjacent Clifford-torus leaves coupled by radial gamma^theta",
+  "promotion_allowed": false,
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "sweep": [
+    {
+      "C_xx": -2.4708425692915144e-16,
+      "g": 0.0,
+      "g_eff": 0.0,
+      "leaf1_z": -1.0,
+      "leaf2_z": 1.0000000000000004,
+      "locking": 2.0969594515873484e-15,
+      "shift": 7.926333123704379e-16
+    },
+    {
+      "C_xx": -0.1777777777777775,
+      "g": 0.02,
+      "g_eff": 0.19999999999999982,
+      "leaf1_z": -0.9111111111111115,
+      "leaf2_z": 0.9111111111111114,
+      "locking": 0.8809876543209889,
+      "shift": 0.17129342072220852
+    },
+    {
+      "C_xx": -0.3030303030303023,
+      "g": 0.05,
+      "g_eff": 0.4999999999999996,
+      "leaf1_z": -0.621212121212122,
+      "leaf2_z": 0.621212121212122,
+      "locking": 1.5989439853076206,
+      "shift": 0.4024256971453012
+    },
+    {
+      "C_xx": -0.28368794326241126,
+      "g": 0.1,
+      "g_eff": 0.9999999999999992,
+      "leaf1_z": -0.29078014184397233,
+      "leaf2_z": 0.290780141843972,
+      "locking": 1.4828227956340245,
+      "shift": 0.5983809250722665
+    },
+    {
+      "C_xx": -0.1814058956916101,
+      "g": 0.2,
+      "g_eff": 1.9999999999999984,
+      "leaf1_z": -0.09297052154195018,
+      "leaf2_z": 0.0929705215419504,
+      "locking": 0.9006535342784137,
+      "shift": 0.7029478458049887
+    },
+    {
+      "C_xx": -0.09750152346130402,
+      "g": 0.4,
+      "g_eff": 3.999999999999997,
+      "leaf1_z": -0.02498476538695904,
+      "leaf2_z": 0.02498476538695904,
+      "locking": 0.4631173824613872,
+      "shift": 0.737468107264573
+    },
+    {
+      "C_xx": -0.04968172643999373,
+      "g": 0.8,
+      "g_eff": 7.999999999999994,
+      "leaf1_z": -0.00636547120012404,
+      "leaf2_z": 0.00636547120012404,
+      "locking": 0.2298927209564972,
+      "shift": 0.7468147238561296
+    }
+  ],
+  "terrains": {
+    "leaf1": {
+      "H": "eps*sigma_z",
+      "J": "sqrt(gam)*sigma_-",
+      "iso_bloch": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "name": "Pit"
+    },
+    "leaf2": {
+      "H": "-eps*sigma_z",
+      "J": "sqrt(gam)*sigma_+",
+      "iso_bloch": [
+        -0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Source"
+    }
+  },
+  "tool_integration": {
+    "QuantumOptics.jl": "load_bearing (steadystate.eigenvector solves the Liouvillian null space; tracedistance/ptrace read the joint vs product states)",
+    "z3": "omitted deliberately (no decorative SMT; evidence = measured tracedistance + kill-controls)"
+  },
+  "which_survives": {
+    "leaves_pull_together": true,
+    "z_gap_coupled_max_g": 0.01273094240024808,
+    "z_gap_isolated": 2.0000000000000004
+  },
+  "wrong_structure_kill": {
+    "g_test": 0.4,
+    "identity_inert": true,
+    "locking_identity_sham": 3.182744224266699e-15,
+    "locking_real_exchange": 0.4631173824613876,
+    "opnorm_gamma": 1.0,
+    "opnorm_identity": 1.0,
+    "real_exchange_beats_sham": true,
+    "shift_identity_sham": 9.10537209966802e-16,
+    "shift_real_exchange": 0.7374681072645728
+  }
+}

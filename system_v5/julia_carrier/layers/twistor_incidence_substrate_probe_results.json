@@ -1,0 +1,224 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^4) on the twistor carrier (omega,pi); finite frame set {block-diagonal baseline, twistor incidence frame, flat=I, x=0 incidence, scale-swept random, random-off-diagonal}",
+    "finite_operator": "Weyl-L/R GKSL substrate on C^4; twistor incidence generator H_inc(x)=[0 i x;-i x^* 0]; block-diagonal / scale-swept / off-diagonal control frames",
+    "finite_path": "dressed compositions U Phi_WeylL(U' . U) U' for each frame; substrate effect E=max_rho||dressed-bare||_1; matched-band z=(E-band_mean)/band_std",
+    "finite_probe": "17 density operators (spinor-derived + maximally-mixed)"
+  },
+  "N01_witness": {
+    "c_block_diag": 2.4924654953554773e-16,
+    "c_twistor": 1.0438303197587364,
+    "noise_floor": 5.684341886080802e-14,
+    "order_sensitive_control": "the twistor incidence frame [U_tw, H_Weyl4] != 0 mixes the L/R Weyl blocks (omega<-i x pi), whereas the block-diagonal frame ~commutes with the block-diagonal substrate. The scale-swept band brackets the magnitude of this non-commutation so the matched-band z isolates whether the incidence GEOMETRY carries structure BEYOND it.",
+    "present_above_floor": true,
+    "twistor_matched_band_separation": 0.068094691676442
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "twistor canonical admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "carrier": "density operators in D(C^4) on the twistor carrier (omega,pi); genuine Weyl-L/R GKSL substrate H4=[+H0 0;0 -H0], L4=[SM 0;0 SP] (spinor-probe block form); twistor incidence coupling lives in the FRAME U=exp(-i ang/2 H_inc(x)). NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "MEASURES whether the genuine twistor incidence coupling on a C^4 carrier exposes a geometry-specific substrate effect beyond the block-diagonal baseline, using the iter-7 commutator-matched random band + a random-off-diagonal band as geometry-vs-generic controls. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics, and does NOT admit twistors as canonical anything. A twistor coupling outside the bands is a CANDIDATE worth pursuing, not a proven d>=4 substrate. promotion_allowed=false.",
+  "classification": "twistor_incidence_probe_poc",
+  "downstream_blocks": [
+    "layer-completion",
+    "manifold admission",
+    "twistor canonical admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "exploratory": true,
+  "incidence_relation": "omega^A = i x^{AA'} pi_{A'}  (cited verbatim from twistor_incidence_cp3_projective_line.jl: incident_twistor(x,pi)=vcat(im*(x*pi),pi)); coupling operator X_inc(x)=[0 (i x);0 0], Hermitian generator H_inc(x)=X_inc+X_inc'",
+  "kill_conditions": [
+    "flat frame U=I must collapse E to the noise floor (anti-tautology)",
+    "x=0 incidence (H_inc(0)=0 -> U=I) must collapse like flat (degenerate incidence -> no coupling)",
+    "the scale-swept band must BRACKET c_twistor else the matched comparison is not honest",
+    "if the twistor effect lands INSIDE the commutator-matched band => generic non-commutation, NOT geometry",
+    "if the twistor effect lands INSIDE the random-off-diagonal band => the incidence STRUCTURE adds nothing beyond a generic off-diagonal coupler",
+    "if the block-diagonal baseline is itself OUTSIDE its band => the d=4 effect is generic, not the coupling",
+    "the three+ conditions must hold at ALL seeds else inconclusive (no single-seed promotion)"
+  ],
+  "level": {
+    "E_block_diag_max": 0.5566366952642665,
+    "E_block_diag_mean": 0.4480816642060167,
+    "E_flat_max": 0.0,
+    "E_twistor_max": 0.516825158152056,
+    "E_twistor_mean": 0.34581922736158727,
+    "E_x0_incidence_max": 0.0,
+    "ang": 0.9,
+    "block_diag_commutes_with_substrate": true,
+    "block_matched_band": {
+      "E_ref": 0.5566366952642665,
+      "band_mean": "non_finite(NaN)",
+      "band_std": "non_finite(NaN)",
+      "c_ref": 2.4924654953554773e-16,
+      "n": 0,
+      "outside_band": false,
+      "populated": false,
+      "z": "non_finite(NaN)"
+    },
+    "c_block_diag": 2.4924654953554773e-16,
+    "c_twistor": 1.0438303197587364,
+    "carrier": "C^4 = twistor space PT slice (omega,pi in C^2 each); density operators in D(C^4)",
+    "cond_a_nonzero": true,
+    "cond_b_geometry_specific": false,
+    "cond_c_distinct_from_blockdiag": true,
+    "flat_collapses": true,
+    "incidence_point_x_is_hermitian": true,
+    "noise_floor": 5.684341886080802e-14,
+    "random_offdiag_band": {
+      "E_mean": 0.4535732573394476,
+      "E_std": 0.07899078723700872,
+      "matched_frobenius": 1.4973567777140826,
+      "n": 300,
+      "twistor_outside_offdiag": false,
+      "z_twistor_vs_offdiag": 0.8007503536181197
+    },
+    "scale_swept_band": {
+      "brackets_c_twistor": true,
+      "c_hi": 2.9055387863086017,
+      "c_lo": 0.0009860174448839418,
+      "n": 1200
+    },
+    "tw_vs_block_gap": 0.03981153711221053,
+    "twistor_distinct_from_blockdiag": true,
+    "twistor_matched_band": {
+      "E_ref": 0.516825158152056,
+      "band_mean": 0.448730466475614,
+      "band_std": 0.0925300423816414,
+      "c_ref": 1.0438303197587364,
+      "n": 57,
+      "outside_band": false,
+      "populated": true,
+      "z": 0.7359198150540613
+    },
+    "x0_collapses_to_floor": true
+  },
+  "n_random_band": 1200,
+  "n_rho": 17,
+  "name": "Twistor incidence coupling vs block-diagonal baseline: does omega=i x pi expose geometry-specific C^4 substrate structure the block-diagonal missed?",
+  "negatives_run": [
+    "flat_frame_U_eq_I",
+    "x0_degenerate_incidence_collapse",
+    "scale_swept_commutator_matched_band",
+    "random_offdiag_matched_frobenius_band",
+    "block_diagonal_baseline"
+  ],
+  "non_numpy": true,
+  "object_id": "twistor_incidence_substrate_probe",
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only_exploratory",
+  "required_negatives": [
+    "flat_frame_U_eq_I",
+    "x0_degenerate_incidence_collapse",
+    "scale_swept_commutator_matched_band",
+    "random_offdiag_matched_frobenius_band",
+    "block_diagonal_baseline"
+  ],
+  "reused_from": "twistor_incidence_cp3_projective_line.jl (incidence relation omega=i x pi, incidence_basis, random_x/random_hermitian_point) + order_null_killtest.jl (gksl_step_evolve, hopf_h0, rand_rho) + substrate_effect_matched_band.jl (substrate_effect E, scale-swept commutator-matched band, z3_separation_obstruction). Only NEW construction: wiring the genuine incidence coupling into the C^4 frame.",
+  "root_constraints_in_force": [
+    "F01 finite density-operator carrier in D(C^4) / twistor-incidence + block-diagonal + scale-swept + off-diagonal frame set / Weyl GKSL substrate / dressed paths",
+    "N01 twistor incidence frame [U_tw, H_Weyl4] != 0 order-sensitive control mixing L/R Weyl blocks via omega=i x pi; scale-swept band brackets its magnitude"
+  ],
+  "script": "twistor_incidence_substrate_probe.jl",
+  "seed": 20260602,
+  "seed_robustness": {
+    "block_baseline_inside_band_per_seed": [
+      true,
+      true,
+      true
+    ],
+    "cond_a_nonzero_per_seed": [
+      true,
+      true,
+      true
+    ],
+    "cond_b_geometry_specific_per_seed": [
+      false,
+      true,
+      true
+    ],
+    "cond_c_distinct_from_blockdiag_per_seed": [
+      true,
+      true,
+      true
+    ],
+    "extra_seed_detail": {
+      "seed_20260613": {
+        "E_block_diag_max": 0.6094449835224688,
+        "E_twistor_max": 0.5050979266643143,
+        "distinct_from_blockdiag": true,
+        "twistor_outside_band": true,
+        "twistor_outside_offdiag": false,
+        "twistor_z": 3.01880861279953
+      },
+      "seed_20260625": {
+        "E_block_diag_max": 0.6086922393160316,
+        "E_twistor_max": 0.2477689408494738,
+        "distinct_from_blockdiag": true,
+        "twistor_outside_band": true,
+        "twistor_outside_offdiag": true,
+        "twistor_z": 3.328628265988123
+      }
+    },
+    "seeds": [
+      20260602,
+      20260613,
+      20260625
+    ],
+    "twistor_outside_offdiag_per_seed": [
+      false,
+      false,
+      true
+    ]
+  },
+  "sim_class": "geometry_probe_exploratory",
+  "sim_execution_kind": "nonclassical_poc_exploratory",
+  "sim_id": "twistor_incidence_substrate_probe",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm), HS/Frobenius/opnorm, matrix exp (incidence frame exp(-i ang/2 H_inc), GKSL, scale-swept random U), eigen; every measured number flows through it.",
+    "Random": "load_bearing: random density operators, the genuine spacetime point x, the 1200-frame scale-swept band, the random-off-diagonal control band.",
+    "Statistics": "load_bearing: mean/std over the rho ensemble and the matched / off-diagonal bands; the z observable IS (E-mean)/std.",
+    "Z3": "load_bearing: binds the measured twistor matched-band separation to flat=>sep==0; verdict flips UNSAT->SAT on the flat control."
+  },
+  "verdict": {
+    "band_populated_base": true,
+    "block_baseline_inside_band_all_seeds": true,
+    "brackets_c_twistor_base": true,
+    "cond_a_nonzero_all_seeds": true,
+    "cond_b_geometry_specific_outside_matched_band_all_seeds": false,
+    "cond_c_distinct_from_blockdiag_all_seeds": true,
+    "interpretation": "The block-diagonal L(+)R baseline is the spinor-probe's inconclusive case: its frame ~commutes with the block-diagonal substrate so its order/substrate effect is generic. The genuine twistor incidence coupling omega=i x pi mixes the two Weyl blocks. twistor_coupling_exposes_structure fires ONLY if the coupling's substrate effect is geometry-specific (outside the commutator-matched random band AND the random-off-diagonal band) and distinct from the block-diagonal baseline, at all seeds. Otherwise the coupling is no better than generic non-commutation. EXPLORATORY, promotion_allowed=false; does NOT admit twistors as canonical.",
+    "overall": "twistor_no_better_than_blockdiag",
+    "reason": "the twistor incidence coupling did NOT clear all geometry-specific bars across seeds. Failing conditions: outside_commutator_matched_band(cond_b: lands inside the band -> generic non-commutation, not geometry); outside_random_offdiag_band(the incidence structure adds nothing beyond a generic matched-norm off-diagonal coupler). Plainly: on this single-point twistor lift, the coupling is no better than generic non-commutation for the substrate effect. The honest iter-7 d>=4 finding stands on the Hopf-rotor geometry, not on this incidence coupling. promotion_allowed=false.",
+    "twistor_outside_random_offdiag_all_seeds": false,
+    "z3_load_bearing": true
+  },
+  "version": "1.0",
+  "z3_load_bearing": {
+    "encoding": "FREE int sep, FREE bool is_flat; law Or([Not(is_flat), sep==0]); assert is_flat=true + sep==IntVal(measured |E_twistor - matched_band_mean|). genuine nonzero: unsat; flat: sat.",
+    "flat_verdict": "sat",
+    "genuine_verdict": "unsat",
+    "load_bearing_flip": true,
+    "measured_twistor_matched_band_separation": 0.068094691676442
+  }
+}

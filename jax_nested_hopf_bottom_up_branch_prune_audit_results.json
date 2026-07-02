@@ -1,0 +1,396 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "official_g_structure_selection",
+    "layer_stacking_readiness",
+    "Axis0",
+    "FEP",
+    "flux",
+    "Xi",
+    "Phi0",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "carrier_layer": "S3 unit-quaternion spinor carrier with finite nested Hopf-torus leaf grid",
+  "carrier_realization": "jax arrays: q in R^4 normalized to S3, rho in D(C^2), r in Bloch ball",
+  "checks": {
+    "cl3_jaxga": true,
+    "dlpack_snapshot": true,
+    "leaf_area_ratchet": true,
+    "local_16_lindblad": true,
+    "nested_branch_prune": true,
+    "noncommuting_order_sensitivity": true,
+    "path_geometry": true,
+    "riemannax_status_recorded": true
+  },
+  "cl3_jaxga": {
+    "metrics": {
+      "anticommutators_zero": [
+        true,
+        true,
+        true
+      ],
+      "basis_squares": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "pass": true,
+    "status": "ok"
+  },
+  "claim_ceiling": "JAX diagnostic cross-audit of the finite bottom-up object only: 16 Lindblad placements, finite nested Hopf-torus leaves, leaf-area ratchet/hop ensemble, and F01/N01 controls. Not Julia-native Grassmann/QuantumOptics evidence, not official G-structure selection, not layer completion, not Axis0/FEP/flux/physics admission.",
+  "classification": "tool_lego_fit_probe",
+  "codomain_or_output": "JSON receipt with local Lindblad readouts, nested survivor basins, F01/N01 controls, and blocked downstream consumers",
+  "dependency_receipts": [
+    "jax_gstructure_16_placement_spin3_audit_results.json",
+    "jax_gstructure_16_branch_prune_selector_audit_results.json",
+    "system_v5/julia_carrier/layers/sixteen_terrain_placement_lattice_results.json (read-only reference)",
+    "system_v5/julia_carrier/layers/nested_leaf_area_ratchet_results.json (read-only reference)",
+    "system_v5/julia_carrier/layers/emergent_basin_nested_terrains_results.json (read-only reference)"
+  ],
+  "dlpack_snapshot": {
+    "api": "array.__dlpack__",
+    "metrics": {
+      "max_roundtrip_gap": 0.0
+    },
+    "pass": true,
+    "status": "ok"
+  },
+  "domain": {
+    "leaves": "theta_k in (0,pi/2), k=0..8",
+    "placements": "{L,R} x {fiber,base} x {Se,Ne,Ni,Si}",
+    "state": "unit quaternion q in S3 plus spinor-derived density rho and Bloch vector r"
+  },
+  "finite_map": "{16 placement rows} x {9 theta leaves} x {4096 branch states} -> survivor placement/leaf basins plus control readouts",
+  "geometry_layer": "nested Hopf tori T^2_theta with leaf-area ratchet A(theta)=2*pi^2*sin(2theta)",
+  "leaf_area_ratchet": {
+    "areas": [
+      6.099750975388773,
+      11.602415825842423,
+      15.96935537647813,
+      18.77310315782272,
+      19.739208802178716,
+      18.77310315782272,
+      15.96935537647813,
+      11.602415825842424,
+      6.099750975388774
+    ],
+    "checks": {
+      "area_decreases_from_clifford_to_pole": true,
+      "area_matches_formula": true,
+      "clifford_leaf_maximum": true,
+      "finite_leaf_count": true,
+      "flat_control_has_no_ratchet_gradient": true
+    },
+    "max_leaf_zero_based": 4,
+    "pass": true,
+    "theta_grid": [
+      0.15707963267948966,
+      0.3141592653589793,
+      0.47123889803846897,
+      0.6283185307179586,
+      0.7853981633974483,
+      0.9424777960769379,
+      1.0995574287564276,
+      1.2566370614359172,
+      1.413716694115407
+    ]
+  },
+  "local_16_lindblad": {
+    "checks": {
+      "bloch_ball_finite": true,
+      "hermitian": true,
+      "ne_lr_opposite_chirality": true,
+      "pit_sink_south": true,
+      "positive_semidefinite": true,
+      "si_dephases_yz": true,
+      "sixteen_density_rows": true,
+      "source_sink_north": true,
+      "terrain_readouts_not_collapsed": true,
+      "trace_preserved": true
+    },
+    "metrics": {
+      "max_bloch_norm": 0.9999957374562136,
+      "max_hermiticity_error": 0.0,
+      "max_trace_error": 2.220446049250313e-16,
+      "min_eigenvalue": 2.131271893074456e-06,
+      "pit_final_bloch": [
+        -0.0006743729194632256,
+        -0.0011043183522763244,
+        -0.9999928112710104
+      ],
+      "source_final_bloch": [
+        0.0008565590954123227,
+        0.0009698476033615145,
+        0.999994900303366
+      ],
+      "unique_terrain_readout_count": 5
+    },
+    "pass": true,
+    "solver": "diffrax.Dopri5 + PIDController over 16 batched density matrices"
+  },
+  "name": "JAX bottom-up nested Hopf-tori branch/prune audit",
+  "nested_checks": {
+    "bookkeeping_consistent": true,
+    "double_cover_preserved": true,
+    "f01_expansive_prune_fires": true,
+    "flat_area_control_leaf_histogram_differs": true,
+    "genuine_populates_all_16_placement_basins": true,
+    "genuine_ratchet_concentrates_clifford_leaf": true,
+    "genuine_survivors_not_pruned": true,
+    "n01_off_collapses_to_one_placement_basin": true,
+    "ratchet_off_leaf_histogram_differs": true,
+    "s3_retraction_works": true
+  },
+  "nested_runs": {
+    "commuting_control": {
+      "central_leaf_fraction": 1.0,
+      "leaf_histogram": [
+        0,
+        0,
+        0,
+        0,
+        4096,
+        0,
+        0,
+        0,
+        0
+      ],
+      "max_bloch_norm_after_projection": 0.9994969657795956,
+      "max_double_cover_gap": 0.0,
+      "max_q_norm_drift": 3.3306690738754696e-16,
+      "mean_final_bloch_norm": 0.9992597585883443,
+      "name": "n01_off_single_commuting_sink",
+      "populated_leaves_zero_based": [
+        4
+      ],
+      "populated_placements": [
+        1
+      ],
+      "pruned": 0,
+      "survivors": 4096
+    },
+    "expansive_prune_control": {
+      "central_leaf_fraction": 0.0,
+      "leaf_histogram": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "max_bloch_norm_after_projection": 1.0000000000000002,
+      "max_double_cover_gap": null,
+      "max_q_norm_drift": 3.3306690738754696e-16,
+      "mean_final_bloch_norm": null,
+      "name": "f01_expansive_prune_control",
+      "populated_leaves_zero_based": [],
+      "populated_placements": [],
+      "pruned": 4096,
+      "survivors": 0
+    },
+    "flat_area_control": {
+      "central_leaf_fraction": 0.110595703125,
+      "leaf_histogram": [
+        459,
+        453,
+        453,
+        458,
+        453,
+        453,
+        459,
+        454,
+        454
+      ],
+      "max_bloch_norm_after_projection": 0.9994969657795956,
+      "max_double_cover_gap": 0.0,
+      "max_q_norm_drift": 3.3306690738754696e-16,
+      "mean_final_bloch_norm": 0.4927404122470775,
+      "name": "flat_area_no_ratchet_control",
+      "populated_leaves_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "populated_placements": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "pruned": 0,
+      "survivors": 4096
+    },
+    "genuine": {
+      "central_leaf_fraction": 1.0,
+      "leaf_histogram": [
+        0,
+        0,
+        0,
+        0,
+        4096,
+        0,
+        0,
+        0,
+        0
+      ],
+      "max_bloch_norm_after_projection": 0.9994969657795956,
+      "max_double_cover_gap": 0.0,
+      "max_q_norm_drift": 3.3306690738754696e-16,
+      "mean_final_bloch_norm": 0.4927404122470775,
+      "name": "genuine_ratchet_noncommuting",
+      "populated_leaves_zero_based": [
+        4
+      ],
+      "populated_placements": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "pruned": 0,
+      "survivors": 4096
+    },
+    "ratchet_off_control": {
+      "central_leaf_fraction": 0.110595703125,
+      "leaf_histogram": [
+        459,
+        453,
+        453,
+        458,
+        453,
+        453,
+        459,
+        454,
+        454
+      ],
+      "max_bloch_norm_after_projection": 0.9994969657795956,
+      "max_double_cover_gap": 0.0,
+      "max_q_norm_drift": 3.3306690738754696e-16,
+      "mean_final_bloch_norm": 0.4927404122470775,
+      "name": "ratchet_off_theta_frozen",
+      "populated_leaves_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "populated_placements": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "pruned": 0,
+      "survivors": 4096
+    }
+  },
+  "order_sensitivity": {
+    "metrics": {
+      "pit_then_hill_vs_hill_then_pit_gap": 0.0038980219342635565,
+      "same_generator_order_control_gap": 5.551115123125783e-17
+    },
+    "pass": true
+  },
+  "path_geometry": {
+    "pass": true,
+    "rows": {
+      "L": {
+        "base_density_delta": 1.1317759702883123,
+        "base_horizontal_residual": 0.0,
+        "fiber_density_delta": 1.4750863428847813e-16,
+        "fiber_vertical_connection_abs": 1.0
+      },
+      "R": {
+        "base_density_delta": 1.1317759702883126,
+        "base_horizontal_residual": 0.0,
+        "fiber_density_delta": 1.7164323253240537e-16,
+        "fiber_vertical_connection_abs": 1.0
+      }
+    }
+  },
+  "peps3d_embedding": "diagnostic finite cell anchor only: placement x leaf x branch index; not admitted PEPS3D evidence",
+  "promotion_allowed": false,
+  "promotion_status": "blocked_diagnostic_only",
+  "quaternion_action": "Spin(3)/SU(2) q target flow plus q/-q SO(3) double-cover invariant",
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "riemannax": {
+    "pass": false,
+    "status": "blocked_missing_package"
+  },
+  "root_constraints_in_force": {
+    "F01": "finite placement set, finite leaf grid, finite branch ensemble, S3 retraction, Bloch-ball prune",
+    "N01": "noncommuting/order-sensitive Lindblad generator control; N01-off single commuting sink collapses basin labels"
+  },
+  "sim_execution_kind": "nonclassical_diagnostic_jax_audit",
+  "sim_id": "jax_nested_hopf_bottom_up_branch_prune_audit",
+  "spinor_state": "q=(Re z1, Im z1, Re z2, Im z2), ||q||=1; rho=|psi><psi| for path geometry and density native ODEs",
+  "tool_integration_depth": {
+    "DLPack": "supportive",
+    "diffrax": "load_bearing",
+    "jax": "load_bearing",
+    "jaxga": "load_bearing",
+    "riemannax": "None"
+  },
+  "tool_manifest": {
+    "DLPack": "supportive snapshot interchange check only",
+    "diffrax": "load-bearing local 16 Lindblad density-matrix ODE solve",
+    "jax": "load-bearing batched S3 branch/prune and density readout computation",
+    "jaxga": "load-bearing Cl(3,0) basis square/anticommutator check when available",
+    "riemannax": "recorded as available or blocked; not faked if missing"
+  },
+  "version": "1.0"
+}

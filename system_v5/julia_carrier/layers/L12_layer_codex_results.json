@@ -1,0 +1,445 @@
+{
+  "N01_summary": {
+    "max_identity_order_gap": 0.0,
+    "min_trace_norm_gap": 0.08002435620044367,
+    "verdict": "noncommuting_gap_measured"
+  },
+  "QIT_math_quoted": [
+    "S(A|B)=S(rho_AB)-S(rho_B)",
+    "I_c(A=>B)=S(rho_B)-S(rho_AB)",
+    "I(A:B)=S(rho_A)+S(rho_B)-S(rho_AB)",
+    "readouts measure the dynamics; they do not define it"
+  ],
+  "ablation_outcome_delta": {
+    "non_vacuous": true,
+    "product_erasure_numeric_delta_after_Z_then_X_min": {
+      "I_A_B": 1.012179797997462,
+      "I_c": 1.012179797997462
+    },
+    "product_erasure_numeric_delta_initial_min": {
+      "I_A_B": 1.201752073385712,
+      "I_c": 1.201752073385712
+    }
+  },
+  "actual_tools_used": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "all_pass": true,
+  "allowed_claims": "Local finite-QIT L12 PoC: derived entropy/cut/communication readouts collapse under product erasure and N01 channel order gap is measured on finite cut states.",
+  "blocked_consumers": [
+    "full_layer_completion",
+    "parent_complete_layer_status",
+    "stacking_readiness",
+    "Axis0",
+    "flux",
+    "Xi",
+    "Phi0",
+    "bridge",
+    "basin",
+    "physics",
+    "G_structure_selection",
+    "final_manifold_admission"
+  ],
+  "carrier_realization": "Julia-native ComplexF64 spinors and spinor-derived density matrices; no NumPy; no Python bridge",
+  "classification": "L12_layer_codex_poc",
+  "codomain_or_output": "finite JSON table of QIT entropy/readout scalars and noncommuting channel-order gaps",
+  "dependency_forcing_summary": {
+    "erasure": "replace each entangled cut rho_AB by product_from_same_marginals(rho_A kron rho_B), then rerun the same derived readouts and channel sequence",
+    "max_product_MI_abs": 1.3322676295501878e-15,
+    "min_delta_I_A_B_after_Z_then_X": 1.012179797997462,
+    "min_delta_I_A_B_initial": 1.201752073385712,
+    "min_delta_I_c_after_Z_then_X": 1.012179797997462,
+    "min_delta_I_c_initial": 1.201752073385712,
+    "verdict": "collapsed_to_product_baseline"
+  },
+  "divergence_log": [
+    "Product erasure preserves local marginals but removes the entangled cut; MI collapses to zero and coherent information changes from positive entangled signature to product baseline.",
+    "Channel order gap is measured as trace norm of rotate_X_B∘dephase_Z_B versus dephase_Z_B∘rotate_X_B outputs, with identity order control at zero."
+  ],
+  "domain": "8/16/32/64-site 2x2xdepth finite K complexes with Julia-native C^2 spinors at vertices and bipartite cut states on x-cut edges",
+  "eligible_consumers": [],
+  "finite_map": "F: (finite PEPS3D K=(V,E,F,C), spinor payloads psi_v, cut edge e=(A,B), ordered dephasing channels Z_B/X_B) -> derived readout vector (S_A,S_B,S_AB,S(A|B),I_c(A=>B),I(A:B),N01 trace-norm order gap)",
+  "fresh_rerun": true,
+  "generated_at": "2026-06-02T00:52:45",
+  "honest_gaps": [
+    "This is a PoC/local-cell Julia layer, not a promoted nonclassical manifold admission.",
+    "The PEPS3D object is a finite K anchor with local cut states, not a package-level PEPS3D tensor-network contraction.",
+    "Z3 was omitted because a load-bearing flip claim was not needed; no decorative SMT is included."
+  ],
+  "name": "L12 entropy / cut / communication finite-QIT layer PoC",
+  "negatives_run": {
+    "entropy_identity_residual": true,
+    "identity_order_gap": true,
+    "product_erasure": true
+  },
+  "pass_conditions": {
+    "F01_witness_present": true,
+    "N01_noncommuting_gap_present": true,
+    "PEPS3D_K_anchor_present": true,
+    "QIT_readouts_derived_identity_residual_ok": true,
+    "blocked_consumers_present": true,
+    "finite_map_present": true,
+    "fresh_rerun_result_emitted": true,
+    "julia_native_spinor_density_present": true,
+    "load_bearing_tool_manifest_present": true,
+    "negative_controls_present": true,
+    "non_vacuous_product_erasure_delta_present": true,
+    "stress_8_16_32_64_present": true
+  },
+  "peps3d_embedding": "finite K=(V,E,F,C) anchor as 2x2xdepth cell complex; each vertex has a spinor payload; each x-cut edge carries a local bipartite cut density. This is an anchor/local-cell PoC, not a full PEPS3D contraction.",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "promotion_allowed=false by request",
+    "Julia-native local-cell PEPS3D anchor is not a full PEPS3D contraction",
+    "no downstream stacking claim",
+    "no Axis0/flux/physics admission",
+    "no dedicated layer-completion claim gate run because this file does not claim full layer completion"
+  ],
+  "promotion_status": "keep_but_open",
+  "quaternion_action": "not_applicable: no quaternion claim is made in this L12 file",
+  "receipt_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L12_layer_codex_results.json",
+  "required_negatives": [
+    "product cut erasure with same marginals",
+    "identity/order-erased channel control",
+    "QIT identity residual check"
+  ],
+  "root_constraints_in_force": {
+    "F01": "finite carrier/probe/operator/path set: finite K, finite cut-edge list, finite 2-qubit density states, finite channel operators",
+    "N01": "order-sensitive channel control: partial Z_B then X_B dephasing differs from X_B then Z_B by measured trace norm"
+  },
+  "sim_class": "entropy_cut_communication_probe",
+  "sim_execution_kind": "nonclassical_julia_poc",
+  "sim_id": "L12_layer_codex",
+  "spinor_state": "psi_v = (exp(i(phi+chi)) cos eta, exp(i(phi-chi)) sin eta) in C^2 at each K vertex",
+  "stress_results": [
+    {
+      "K_counts": {
+        "C": 1,
+        "E": 12,
+        "F": 6,
+        "V": 8,
+        "cut_edges": 4,
+        "depth": 2
+      },
+      "N01_witness": {
+        "gap_trace_norm_max": 0.08002435620044379,
+        "gap_trace_norm_mean": 0.08002435620044374,
+        "gap_trace_norm_min": 0.08002435620044371,
+        "identity_order_gap_max": 0.0,
+        "operation_A": "partial Z-basis dephasing on B, p=0.12",
+        "operation_B": "X-axis unitary rotation on B, theta=0.73"
+      },
+      "average_readouts_after_X_then_Z_entangled": {
+        "I_A_B": 0.9923254535284398,
+        "I_c_A_to_B": 0.3914494168355838,
+        "S_A": 0.600876036692856,
+        "S_AB": 0.2538713149221274,
+        "S_A_given_B": -0.3914494168355838,
+        "S_B": 0.6453207317577112
+      },
+      "average_readouts_after_Z_then_X_entangled": {
+        "I_A_B": 1.012179797997462,
+        "I_c_A_to_B": 0.411303761304606,
+        "S_A": 0.600876036692856,
+        "S_AB": 0.18957227538825008,
+        "S_A_given_B": -0.411303761304606,
+        "S_B": 0.600876036692856
+      },
+      "average_readouts_initial_entangled": {
+        "I_A_B": 1.201752073385712,
+        "I_c_A_to_B": 0.6008760366928559,
+        "S_A": 0.600876036692856,
+        "S_AB": 1.201284938930594e-16,
+        "S_A_given_B": -0.6008760366928559,
+        "S_B": 0.600876036692856
+      },
+      "average_readouts_product_erasure_after_Z_then_X": {
+        "I_A_B": 5.551115123125783e-17,
+        "I_c_A_to_B": -0.600876036692856,
+        "S_A": 0.600876036692856,
+        "S_AB": 1.201752073385712,
+        "S_A_given_B": 0.600876036692856,
+        "S_B": 0.6008760366928562
+      },
+      "average_readouts_product_erasure_same_marginals": {
+        "I_A_B": 5.551115123125783e-17,
+        "I_c_A_to_B": -0.600876036692856,
+        "S_A": 0.600876036692856,
+        "S_AB": 1.201752073385712,
+        "S_A_given_B": 0.600876036692856,
+        "S_B": 0.600876036692856
+      },
+      "dependency_forcing_deltas_after_Z_then_X": {
+        "delta_I_A_B_entangled_minus_product": 1.012179797997462,
+        "delta_I_c_entangled_minus_product": 1.012179797997462,
+        "product_baseline_I_A_B": 5.551115123125783e-17,
+        "product_baseline_I_c": -0.600876036692856
+      },
+      "dependency_forcing_deltas_initial": {
+        "delta_I_A_B_entangled_minus_product": 1.201752073385712,
+        "delta_I_c_entangled_minus_product": 1.201752073385712,
+        "product_baseline_I_A_B": 5.551115123125783e-17,
+        "product_baseline_I_c": -0.600876036692856
+      },
+      "negative_controls": {
+        "identity_order_gap_max": 0.0,
+        "product_erasure_MI_max_abs": 2.220446049250313e-16
+      },
+      "readout_identity_residual_max": 0.0,
+      "site_count": 8
+    },
+    {
+      "K_counts": {
+        "C": 3,
+        "E": 28,
+        "F": 16,
+        "V": 16,
+        "cut_edges": 8,
+        "depth": 4
+      },
+      "N01_witness": {
+        "gap_trace_norm_max": 0.08002435620044385,
+        "gap_trace_norm_mean": 0.08002435620044376,
+        "gap_trace_norm_min": 0.08002435620044371,
+        "identity_order_gap_max": 0.0,
+        "operation_A": "partial Z-basis dephasing on B, p=0.12",
+        "operation_B": "X-axis unitary rotation on B, theta=0.73"
+      },
+      "average_readouts_after_X_then_Z_entangled": {
+        "I_A_B": 1.2907977422193262,
+        "I_c_A_to_B": 0.514797524762036,
+        "S_A": 0.7760002174572904,
+        "S_AB": 0.28590248303644095,
+        "S_A_given_B": -0.514797524762036,
+        "S_B": 0.8007000077984769
+      },
+      "average_readouts_after_Z_then_X_entangled": {
+        "I_A_B": 1.3020914448598977,
+        "I_c_A_to_B": 0.5260912274026074,
+        "S_A": 0.7760002174572904,
+        "S_AB": 0.24990899005468298,
+        "S_A_given_B": -0.5260912274026074,
+        "S_B": 0.7760002174572904
+      },
+      "average_readouts_initial_entangled": {
+        "I_A_B": 1.5520004349145808,
+        "I_c_A_to_B": 0.7760002174572903,
+        "S_A": 0.7760002174572904,
+        "S_AB": 1.201284938930594e-16,
+        "S_A_given_B": -0.7760002174572903,
+        "S_B": 0.7760002174572904
+      },
+      "average_readouts_product_erasure_after_Z_then_X": {
+        "I_A_B": -1.942890293094024e-16,
+        "I_c_A_to_B": -0.7760002174572904,
+        "S_A": 0.7760002174572902,
+        "S_AB": 1.5520004349145808,
+        "S_A_given_B": 0.7760002174572904,
+        "S_B": 0.7760002174572904
+      },
+      "average_readouts_product_erasure_same_marginals": {
+        "I_A_B": -2.498001805406602e-16,
+        "I_c_A_to_B": -0.7760002174572904,
+        "S_A": 0.7760002174572902,
+        "S_AB": 1.5520004349145808,
+        "S_A_given_B": 0.7760002174572904,
+        "S_B": 0.7760002174572902
+      },
+      "dependency_forcing_deltas_after_Z_then_X": {
+        "delta_I_A_B_entangled_minus_product": 1.302091444859898,
+        "delta_I_c_entangled_minus_product": 1.3020914448598977,
+        "product_baseline_I_A_B": -1.942890293094024e-16,
+        "product_baseline_I_c": -0.7760002174572904
+      },
+      "dependency_forcing_deltas_initial": {
+        "delta_I_A_B_entangled_minus_product": 1.552000434914581,
+        "delta_I_c_entangled_minus_product": 1.5520004349145808,
+        "product_baseline_I_A_B": -2.498001805406602e-16,
+        "product_baseline_I_c": -0.7760002174572904
+      },
+      "negative_controls": {
+        "identity_order_gap_max": 0.0,
+        "product_erasure_MI_max_abs": 8.881784197001252e-16
+      },
+      "readout_identity_residual_max": 0.0,
+      "site_count": 16
+    },
+    {
+      "K_counts": {
+        "C": 7,
+        "E": 60,
+        "F": 36,
+        "V": 32,
+        "cut_edges": 16,
+        "depth": 8
+      },
+      "N01_witness": {
+        "gap_trace_norm_max": 0.0800243562004439,
+        "gap_trace_norm_mean": 0.08002435620044378,
+        "gap_trace_norm_min": 0.08002435620044371,
+        "identity_order_gap_max": 0.0,
+        "operation_A": "partial Z-basis dephasing on B, p=0.12",
+        "operation_B": "X-axis unitary rotation on B, theta=0.73"
+      },
+      "average_readouts_after_X_then_Z_entangled": {
+        "I_A_B": 1.3728152564513272,
+        "I_c_A_to_B": 0.5486848905961861,
+        "S_A": 0.8241303658551407,
+        "S_AB": 0.2945032488916183,
+        "S_A_given_B": -0.5486848905961861,
+        "S_B": 0.8431881394878044
+      },
+      "average_readouts_after_Z_then_X_entangled": {
+        "I_A_B": 1.3818950409094586,
+        "I_c_A_to_B": 0.5577646750543181,
+        "S_A": 0.8241303658551407,
+        "S_AB": 0.2663656908008227,
+        "S_A_given_B": -0.5577646750543181,
+        "S_B": 0.8241303658551407
+      },
+      "average_readouts_initial_entangled": {
+        "I_A_B": 1.6482607317102813,
+        "I_c_A_to_B": 0.8241303658551407,
+        "S_A": 0.8241303658551407,
+        "S_AB": 6.00642469465297e-17,
+        "S_A_given_B": -0.8241303658551407,
+        "S_B": 0.8241303658551407
+      },
+      "average_readouts_product_erasure_after_Z_then_X": {
+        "I_A_B": -3.3306690738754696e-16,
+        "I_c_A_to_B": -0.8241303658551411,
+        "S_A": 0.8241303658551407,
+        "S_AB": 1.6482607317102818,
+        "S_A_given_B": 0.8241303658551411,
+        "S_B": 0.8241303658551407
+      },
+      "average_readouts_product_erasure_same_marginals": {
+        "I_A_B": -2.7755575615628914e-16,
+        "I_c_A_to_B": -0.8241303658551411,
+        "S_A": 0.8241303658551407,
+        "S_AB": 1.6482607317102818,
+        "S_A_given_B": 0.8241303658551411,
+        "S_B": 0.8241303658551407
+      },
+      "dependency_forcing_deltas_after_Z_then_X": {
+        "delta_I_A_B_entangled_minus_product": 1.381895040909459,
+        "delta_I_c_entangled_minus_product": 1.3818950409094592,
+        "product_baseline_I_A_B": -3.3306690738754696e-16,
+        "product_baseline_I_c": -0.8241303658551411
+      },
+      "dependency_forcing_deltas_initial": {
+        "delta_I_A_B_entangled_minus_product": 1.6482607317102815,
+        "delta_I_c_entangled_minus_product": 1.6482607317102818,
+        "product_baseline_I_A_B": -2.7755575615628914e-16,
+        "product_baseline_I_c": -0.8241303658551411
+      },
+      "negative_controls": {
+        "identity_order_gap_max": 0.0,
+        "product_erasure_MI_max_abs": 8.881784197001252e-16
+      },
+      "readout_identity_residual_max": 0.0,
+      "site_count": 32
+    },
+    {
+      "K_counts": {
+        "C": 15,
+        "E": 124,
+        "F": 76,
+        "V": 64,
+        "cut_edges": 32,
+        "depth": 16
+      },
+      "N01_witness": {
+        "gap_trace_norm_max": 0.08002435620044387,
+        "gap_trace_norm_mean": 0.08002435620044376,
+        "gap_trace_norm_min": 0.08002435620044367,
+        "identity_order_gap_max": 0.0,
+        "operation_A": "partial Z-basis dephasing on B, p=0.12",
+        "operation_B": "X-axis unitary rotation on B, theta=0.73"
+      },
+      "average_readouts_after_X_then_Z_entangled": {
+        "I_A_B": 1.406008537431774,
+        "I_c_A_to_B": 0.5623992276178176,
+        "S_A": 0.8436093098139562,
+        "S_AB": 0.29801035906928747,
+        "S_A_given_B": -0.5623992276178176,
+        "S_B": 0.8604095866871053
+      },
+      "average_readouts_after_Z_then_X_entangled": {
+        "I_A_B": 1.4141762295147162,
+        "I_c_A_to_B": 0.5705669197007601,
+        "S_A": 0.8436093098139562,
+        "S_AB": 0.27304239011319614,
+        "S_A_given_B": -0.5705669197007601,
+        "S_B": 0.8436093098139562
+      },
+      "average_readouts_initial_entangled": {
+        "I_A_B": 1.6872186196279124,
+        "I_c_A_to_B": 0.8436093098139562,
+        "S_A": 0.8436093098139562,
+        "S_AB": 4.004283129768647e-17,
+        "S_A_given_B": -0.8436093098139562,
+        "S_B": 0.8436093098139562
+      },
+      "average_readouts_product_erasure_after_Z_then_X": {
+        "I_A_B": -2.8449465006019636e-16,
+        "I_c_A_to_B": -0.8436093098139563,
+        "S_A": 0.8436093098139561,
+        "S_AB": 1.6872186196279126,
+        "S_A_given_B": 0.8436093098139563,
+        "S_B": 0.8436093098139561
+      },
+      "average_readouts_product_erasure_same_marginals": {
+        "I_A_B": -2.42861286636753e-16,
+        "I_c_A_to_B": -0.8436093098139563,
+        "S_A": 0.8436093098139561,
+        "S_AB": 1.6872186196279129,
+        "S_A_given_B": 0.8436093098139563,
+        "S_B": 0.8436093098139561
+      },
+      "dependency_forcing_deltas_after_Z_then_X": {
+        "delta_I_A_B_entangled_minus_product": 1.4141762295147164,
+        "delta_I_c_entangled_minus_product": 1.4141762295147164,
+        "product_baseline_I_A_B": -2.8449465006019636e-16,
+        "product_baseline_I_c": -0.8436093098139563
+      },
+      "dependency_forcing_deltas_initial": {
+        "delta_I_A_B_entangled_minus_product": 1.6872186196279126,
+        "delta_I_c_entangled_minus_product": 1.6872186196279126,
+        "product_baseline_I_A_B": -2.42861286636753e-16,
+        "product_baseline_I_c": -0.8436093098139563
+      },
+      "negative_controls": {
+        "identity_order_gap_max": 0.0,
+        "product_erasure_MI_max_abs": 1.3322676295501878e-15
+      },
+      "readout_identity_residual_max": 0.0,
+      "site_count": 64
+    }
+  ],
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "result receipt emission",
+      "role": "supportive",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "Hermitian eigenvalues for entropy, Kronecker products for cut/product states, singular values for trace-norm N01 gap",
+      "role": "load_bearing",
+      "used": true
+    },
+    "Z3": {
+      "reason": "z3 omitted, not decorative: no structural SMT claim was needed that would flip beyond the numeric dependency-forcing and N01 reruns",
+      "role": "omitted",
+      "used": false
+    }
+  },
+  "version": "1.0"
+}

@@ -1,0 +1,469 @@
+{
+  "F01_witness": {
+    "K_64_counts": {
+      "C": 27,
+      "E": 144,
+      "F": 36,
+      "V": 64
+    },
+    "finite_carrier": "psi in C^2 (S^3), rho 2x2; 8 terrains x 2 loops x 4 shells x V sites",
+    "finite_table_size_64": 4096
+  },
+  "N01_witness": {
+    "noncommuting_gap": 0.19855563587908837,
+    "order_test": "||Phi_Vortex Phi_Pit rho - Phi_Pit Phi_Vortex rho||_1 (composed two-stage GKSL channels)",
+    "passes": true
+  },
+  "all_dependency_erasures_collapsed": true,
+  "all_pass": true,
+  "allowed_claims": [
+    "bounded Julia L10 PoC ran; GKSL generators FORCED by the Weyl-Hopf-loop carrier below",
+    "dependency-forcing erasures measured on 8/16/32/64 PEPS3D anchors",
+    "Z3 proves the sheet anti-symmetry with a flipping verdict",
+    "no promotion; downstream consumers blocked"
+  ],
+  "blocked_consumers": [
+    "L11 operator-substage stacking",
+    "L12 entropy/cut admission",
+    "L13 gluing/groupoid",
+    "stacking / order tests",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "physics/gravity",
+    "final manifold admission"
+  ],
+  "canonical_generators": {
+    "Ne": "pure -i[H_s,rho]",
+    "Ni": "L: D[sigma_-] (sink), R: D[sigma_+] (source) + coherent",
+    "Se": "isotropic sum_j D[sigma_j] + coherent",
+    "Si": "projector strata P_j(n-hat) dephasing + coherent"
+  },
+  "carrier_layer": "L7/L8 Weyl-Hopf-loop carrier (left/right sheets, nested torus, loop field)",
+  "carrier_realization": "Julia-native ComplexF64 spinor psi(phi,chi;eta) in C^2 at each PEPS3D site/shell/loop/sheet; rho=psi psi^dag; n-hat=Hopf projection; H_s forced by sheet sign; NOT numpy, NOT Bloch substitution",
+  "classification": "L10_layer_poc",
+  "controls": {
+    "negative": {
+      "collapse_torus_index_k_shell_spread_gap": 0.36223141012051363,
+      "erase_A_Hopf_loop_holonomy_collapse_gap": 0.1513161269296477,
+      "erase_loop_field_holonomy_collapse_gap": 0.1513161269296477,
+      "identical_generators_family_collapse_gap": 0.1895104921218368,
+      "merge_LR_sheets_chirality_collapse_gap": 0.08301536410639926,
+      "scramble_family_assignment_accuracy_gap": 1.0
+    }
+  },
+  "dependency_forcing_erasures": {
+    "collapse_torus_index_k": {
+      "collapse_rule": "relative magnitude 0.0 < 0.02",
+      "collapsed": true,
+      "erased_value": 0.0,
+      "full_signature_under_erasure": {
+        "chirality_split": 0.04837372304457479,
+        "family_assignment_accuracy": 0.75,
+        "family_distinguishability": 0.17268154553443102,
+        "k_shell_spread": 0.0,
+        "ladder_fixed_point_sign": 2.0,
+        "ladder_z_pit": -0.10931224169820686,
+        "ladder_z_source": 0.14221203365515145,
+        "loop_holonomy_gap": 0.2117939080527466
+      },
+      "full_value": 0.36223141012051363,
+      "site_resolved_spread_under_erasure": 0.7410033078789942,
+      "targeted_component": "k_shell_spread"
+    },
+    "erase_A_Hopf": {
+      "collapse_rule": "relative magnitude 0.0 < 0.02",
+      "collapsed": true,
+      "erased_value": 0.0,
+      "full_signature_under_erasure": {
+        "chirality_split": 0.08301536410639926,
+        "family_assignment_accuracy": 1.0,
+        "family_distinguishability": 0.1895104921218368,
+        "k_shell_spread": 0.36223141012051363,
+        "ladder_fixed_point_sign": 2.0,
+        "ladder_z_pit": -0.10931224169820686,
+        "ladder_z_source": 0.14221203365515145,
+        "loop_holonomy_gap": 0.0
+      },
+      "full_value": 0.1513161269296477,
+      "site_resolved_spread_under_erasure": 0.44039774273604865,
+      "targeted_component": "loop_holonomy_gap"
+    },
+    "erase_loop_field": {
+      "collapse_rule": "relative magnitude 0.0 < 0.02",
+      "collapsed": true,
+      "erased_value": 0.0,
+      "full_signature_under_erasure": {
+        "chirality_split": 0.08301536410639926,
+        "family_assignment_accuracy": 1.0,
+        "family_distinguishability": 0.1895104921218368,
+        "k_shell_spread": 0.36223141012051363,
+        "ladder_fixed_point_sign": 2.0,
+        "ladder_z_pit": -0.10931224169820686,
+        "ladder_z_source": 0.14221203365515145,
+        "loop_holonomy_gap": 0.0
+      },
+      "full_value": 0.1513161269296477,
+      "site_resolved_spread_under_erasure": 0.44039774273604865,
+      "targeted_component": "loop_holonomy_gap"
+    },
+    "identical_8_generators": {
+      "collapse_rule": "relative magnitude 0.0 < 0.02",
+      "collapsed": true,
+      "erased_value": 0.0,
+      "full_signature_under_erasure": {
+        "chirality_split": 0.0,
+        "family_assignment_accuracy": 0.25,
+        "family_distinguishability": 0.0,
+        "k_shell_spread": 7.647166195337481e-5,
+        "ladder_fixed_point_sign": 0.0,
+        "ladder_z_pit": 0.00020801630767863788,
+        "ladder_z_source": 0.00020801630767863788,
+        "loop_holonomy_gap": 2.548075549403296e-5
+      },
+      "full_value": 0.1895104921218368,
+      "site_resolved_spread_under_erasure": 0.00011191920618353732,
+      "targeted_component": "family_distinguishability"
+    },
+    "merge_LR_sheets_HL_eq_HR": {
+      "collapse_rule": "relative magnitude 0.0 < 0.02",
+      "collapsed": true,
+      "erased_value": 0.0,
+      "full_signature_under_erasure": {
+        "chirality_split": 0.0,
+        "family_assignment_accuracy": 1.0,
+        "family_distinguishability": 0.1895104921218368,
+        "k_shell_spread": 0.3712294629760836,
+        "ladder_fixed_point_sign": 0.0,
+        "ladder_z_pit": -0.10931224169820686,
+        "ladder_z_source": -0.10931224169820686,
+        "loop_holonomy_gap": 0.1527267004701294
+      },
+      "full_value": 0.08301536410639926,
+      "site_resolved_spread_under_erasure": 0.44039774273604865,
+      "targeted_component": "chirality_split"
+    },
+    "remove_PEPS3D_anchor": {
+      "collapse_rule": "relative magnitude 0.0 < 0.02",
+      "collapsed": true,
+      "erased_value": 0.0,
+      "full_signature_under_erasure": {
+        "chirality_split": 0.07084889002057795,
+        "family_assignment_accuracy": 1.0,
+        "family_distinguishability": 0.141293336200139,
+        "k_shell_spread": 0.33885160927109875,
+        "ladder_fixed_point_sign": 2.0,
+        "ladder_z_pit": -0.11310971880936094,
+        "ladder_z_source": 0.1460095107663088,
+        "loop_holonomy_gap": 0.14264246885580564
+      },
+      "full_value": 0.44039774273604865,
+      "site_resolved_spread_under_erasure": 0.0,
+      "targeted_component": "site_resolved_spread"
+    },
+    "scramble_family_assign": {
+      "collapse_rule": "family-assignment accuracy 0.0 <= 0.5 (chance) vs full 1.0",
+      "collapsed": true,
+      "erased_value": 0.0,
+      "full_signature_under_erasure": {
+        "chirality_split": 0.08301536410639924,
+        "family_assignment_accuracy": 0.0,
+        "family_distinguishability": 0.1895104921218368,
+        "k_shell_spread": 0.3622314101205136,
+        "ladder_fixed_point_sign": 0.0,
+        "ladder_z_pit": 0.00020801630767863788,
+        "ladder_z_source": 0.00013797015656180633,
+        "loop_holonomy_gap": 0.15131612692964766
+      },
+      "full_value": 1.0,
+      "site_resolved_spread_under_erasure": 0.36207993542770706,
+      "targeted_component": "family_assignment_accuracy"
+    },
+    "swap_sigma_minus_plus": {
+      "collapse_rule": "ladder sign flips +2 -> -2 (sigma_- <-> sigma_+ swap)",
+      "collapsed": true,
+      "erased_value": -2.0,
+      "full_signature_under_erasure": {
+        "chirality_split": 0.0855355119903124,
+        "family_assignment_accuracy": 0.75,
+        "family_distinguishability": 0.1895104921218368,
+        "k_shell_spread": 0.35873412684851147,
+        "ladder_fixed_point_sign": -2.0,
+        "ladder_z_pit": 0.1523009848486419,
+        "ladder_z_source": -0.11940119289169387,
+        "loop_holonomy_gap": 0.14732116168339635
+      },
+      "full_value": 2.0,
+      "site_resolved_spread_under_erasure": 0.44039774273604865,
+      "targeted_component": "ladder_fixed_point_sign"
+    }
+  },
+  "finite_map": {
+    "codomain": "{X_{tau,s,ell,k}: rho_{v,s,k}->rho_dot}; finite-time channel Phi^T=exp(T X) by Euler rerun; measured dynamical signature",
+    "domain": "(K=(V,E,F,C), psi_{v,s,k} in S^3 subset C^2, T_eta_k shells, A_Hopf, Y_ell loop, s in {L,R}, tau in 8 terrains)"
+  },
+  "fresh_rerun": true,
+  "full_signature": {
+    "chirality_split": 0.08301536410639926,
+    "family_assignment_accuracy": 1.0,
+    "family_distinguishability": 0.1895104921218368,
+    "k_shell_spread": 0.36223141012051363,
+    "ladder_fixed_point_sign": 2.0,
+    "ladder_z_pit": -0.10931224169820686,
+    "ladder_z_source": 0.14221203365515145,
+    "loop_holonomy_gap": 0.1513161269296477
+  },
+  "full_site_resolved_spread": 0.44039774273604865,
+  "geometry_layer": "L10 terrain",
+  "honest_gaps": [
+    "finite-time channel uses Euler integration + per-step PSD reproject, not exact exp(T*Liouvillian) matrix exponential.",
+    "GKSL flow runs on per-site 2x2 spinor-densities distributed over PEPS3D cells; it is NOT a full tensor-network contraction of a joint many-site state.",
+    "PEPS3D K=(V,E,F,C) is built and stressed but sites evolve independently (no inter-site bond Hamiltonian); the cell anchor forces site-resolved spread only via site-dependent Hopf angles.",
+    "Si strata m-hat is tied to the Hopf n-hat (forced, not free); a richer Si would carry independent strata directions."
+  ],
+  "julia_native_spinor_density": {
+    "backend": "Julia ComplexF64",
+    "rho_size": [
+      2,
+      2
+    ],
+    "spinor_length": 2,
+    "uses_numpy": false
+  },
+  "n_collapsed_of_8": 8,
+  "name": "L10 terrain/channel/generator — Weyl-Hopf-loop CARRIED GKSL flow (parent-complete)",
+  "negative_controls": {
+    "dependency_erasures": [
+      "erase_A_Hopf",
+      "collapse_torus_index_k",
+      "erase_loop_field",
+      "merge_LR_sheets_HL_eq_HR",
+      "swap_sigma_minus_plus",
+      "identical_8_generators",
+      "scramble_family_assign",
+      "remove_PEPS3D_anchor"
+    ],
+    "hand_written_channel_survival_condition": "any erasure with collapsed=false => terrain signature survived its below-geometry => hand-written channel; reported in survived_erasures_hand_written_signal",
+    "survived_erasures": [],
+    "z3_merge_control": "H_L:=H_R makes the anti-symmetry claim false (z3 verdict sat)"
+  },
+  "peps3d_embedding": {
+    "K_64": {
+      "C": 27,
+      "E": 144,
+      "F": 36,
+      "V": 64
+    },
+    "anchor": "K=(V,E,F,C) cubic finite cell complex; site angles (phi,chi) read from cell coordinates",
+    "stressed_site_counts": [
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "positive": {
+    "N01_order_noncommuting_gap": 0.19855563587908837,
+    "chirality_split_gap": 0.08301536410639926,
+    "family_distinguishability_gap": 0.1895104921218368,
+    "k_shell_spread_gap": 0.36223141012051363,
+    "loop_holonomy_gap": 0.1513161269296477
+  },
+  "promotion_allowed": false,
+  "promotion_status": "blocked_poc",
+  "qit_readouts_derived": {
+    "S_A": 0.7645632397998623,
+    "S_AB": 1.00854348150604,
+    "S_B": 0.5578903673196329,
+    "coherent_information_I_c_A_to_B": -0.45065311418640697,
+    "conditional_entropy_S_A_given_B": 0.45065311418640697,
+    "log_negativity": 0.17754059854467238,
+    "mutual_information_I_A_B": 0.3139101256134553,
+    "note": "DERIVED from channel-evolved states; entropy never the primary object"
+  },
+  "quaternion_action": "not_applicable; L10 uses spinor/Hopf/Weyl carrier; quaternion structure lives in L9, not claimed here",
+  "quoted_math_from_docs": [
+    "X(rho) = -i[H_s,rho] + sum_k D[L_k](rho); D[L](rho)=L rho L^dag - 1/2(L^dag L rho + rho L^dag L)",
+    "Se isotropic: X = lambda sum_{j=x,y,z} D[sigma_j](rho) - i eps [H_s,rho]",
+    "Ne pure: X = -i[H_s,rho]",
+    "Ni ladder: X = gamma D[sigma_-](rho) - i eps [H_L,rho] (L); D[sigma_+] (R)",
+    "Si projector strata: X = -i[K_s,rho] + sum_j kappa (P_j rho P_j - 1/2{P_j,rho})",
+    "Weyl sheets: H_L=+H0, H_R=-H0; H0=n.sigma, n=Hopf projection psi^dag sigma psi",
+    "Hopf chart: psi_s(phi,chi;eta)=(e^{i(phi+chi)} cos eta, e^{i(phi-chi)} sin eta)",
+    "Hopf connection: A_Hopf=dphi+cos(2 eta)dchi (gates loop field, outer loop horizontal)",
+    "forcing map: G:(K, psi_v, T_eta_k, A_Hopf, Y_ell, s) -> {X_{tau,s,ell,k}}"
+  ],
+  "required_load_bearing_erasures": [
+    "erase_a_hopf",
+    "collapse_torus_index_k",
+    "erase_loop_field",
+    "merge_lr_sheets",
+    "scramble_family_assignment",
+    "identical_generators"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite carrier/probe/operator/path",
+    "N01 noncommuting/order-sensitive control"
+  ],
+  "sim_class": "geometry_layer",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "L10_layer",
+  "spinor_state": "psi(phi,chi;eta)=(e^{i(phi+chi)} cos eta, e^{i(phi-chi)} sin eta); rho=psi psi^dag (2x2)",
+  "stress_8_16_32_64": {
+    "16": {
+      "K_counts": {
+        "C": 3,
+        "E": 28,
+        "F": 6,
+        "V": 16
+      },
+      "alive": true,
+      "dims": [
+        4,
+        2,
+        2
+      ],
+      "signature": {
+        "chirality_split": 0.14042354984095287,
+        "family_assignment_accuracy": 1.0,
+        "family_distinguishability": 0.09634140286257814,
+        "k_shell_spread": 0.3846791506651908,
+        "ladder_fixed_point_sign": 2.0,
+        "ladder_z_pit": -0.09942298308735575,
+        "ladder_z_source": 0.13232277504430034,
+        "loop_holonomy_gap": 0.1880314477315872
+      },
+      "site_resolved_spread": 0.4403977427360487
+    },
+    "32": {
+      "K_counts": {
+        "C": 9,
+        "E": 64,
+        "F": 18,
+        "V": 32
+      },
+      "alive": true,
+      "dims": [
+        4,
+        4,
+        2
+      ],
+      "signature": {
+        "chirality_split": 0.14042354984095287,
+        "family_assignment_accuracy": 1.0,
+        "family_distinguishability": 0.09634140286257814,
+        "k_shell_spread": 0.3846791506651908,
+        "ladder_fixed_point_sign": 2.0,
+        "ladder_z_pit": -0.09942298308735575,
+        "ladder_z_source": 0.13232277504430034,
+        "loop_holonomy_gap": 0.1880314477315872
+      },
+      "site_resolved_spread": 0.4481059547240789
+    },
+    "64": {
+      "K_counts": {
+        "C": 27,
+        "E": 144,
+        "F": 36,
+        "V": 64
+      },
+      "alive": true,
+      "dims": [
+        4,
+        4,
+        4
+      ],
+      "signature": {
+        "chirality_split": 0.08301536410639926,
+        "family_assignment_accuracy": 1.0,
+        "family_distinguishability": 0.1895104921218368,
+        "k_shell_spread": 0.36223141012051363,
+        "ladder_fixed_point_sign": 2.0,
+        "ladder_z_pit": -0.10931224169820686,
+        "ladder_z_source": 0.14221203365515145,
+        "loop_holonomy_gap": 0.1513161269296477
+      },
+      "site_resolved_spread": 0.4481059547240789
+    },
+    "8": {
+      "K_counts": {
+        "C": 1,
+        "E": 12,
+        "F": 2,
+        "V": 8
+      },
+      "alive": true,
+      "dims": [
+        2,
+        2,
+        2
+      ],
+      "signature": {
+        "chirality_split": 0.14042354984095287,
+        "family_assignment_accuracy": 1.0,
+        "family_distinguishability": 0.09634140286257814,
+        "k_shell_spread": 0.3846791506651908,
+        "ladder_fixed_point_sign": 2.0,
+        "ladder_z_pit": -0.09942298308735575,
+        "ladder_z_source": 0.13232277504430034,
+        "loop_holonomy_gap": 0.1880314477315872
+      },
+      "site_resolved_spread": 0.44039774273604865
+    }
+  },
+  "stress_ok": true,
+  "summary": {
+    "all_dependency_erasures_collapsed": true,
+    "layer": "L10",
+    "min_gaps": {
+      "N01_order_noncommuting_gap": 0.19855563587908837,
+      "chirality_split_gap": 0.08301536410639926,
+      "family_distinguishability_gap": 0.1895104921218368,
+      "k_shell_spread_gap": 0.36223141012051363,
+      "loop_holonomy_gap": 0.1513161269296477
+    },
+    "stress_ok": true,
+    "z3_load_bearing": true
+  },
+  "survived_erasures_hand_written_signal": [],
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "writes result artifact only",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "eigen/eigvals (PSD reproject, trace distance, fixed points, entropy), norms, traces, Kronecker, Hermitian — every measured signature number flows through it",
+      "role": "load_bearing"
+    },
+    "NumPy": {
+      "reason": "not used; Julia-only",
+      "role": "None"
+    },
+    "Random": {
+      "reason": "seed only; signature is deterministic (fixed seed state)",
+      "role": "supportive"
+    },
+    "Z3": {
+      "reason": "proves H_L+H_R=0 over exact rationals bound to measured n-hat; verdict flips unsat->sat on merge control; NOT a tautology over hardcoded literals",
+      "role": "load_bearing"
+    }
+  },
+  "z3_load_bearing": true,
+  "z3_proof": {
+    "bound_to": "measured Hopf-projection n-hat entries (integer-scaled measured values)",
+    "claim": "H_R = -H_L  (equivalently H_L + H_R = 0): Weyl sheet anti-symmetry forces chirality split",
+    "load_bearing": true,
+    "proven_unsat": true,
+    "status_genuine_sheets": "unsat",
+    "status_merged_control": "sat",
+    "verdict_flips_on_merge": true,
+    "z3_used": true
+  }
+}

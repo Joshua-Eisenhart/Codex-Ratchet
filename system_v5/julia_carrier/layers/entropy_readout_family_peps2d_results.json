@@ -1,0 +1,320 @@
+{
+  "all_pass": true,
+  "anti_tautology_control_summary": {
+    "antitautology_negative_control_keeps_signature": true,
+    "control_is_real_structural_change": "wrong-structure mass m=+3 is a gapped trivial atomic-limit phase, NOT a scalar multiple or co-diagonal of the measured operator",
+    "erasure_delta": 1.0000000000000002,
+    "erasure_delta_nonzero": true,
+    "genuine_invariant_value": -1,
+    "values_differ": true,
+    "wrong_structure_control_value": 0
+  },
+  "claim_ceiling": "POC: entropy readout on a CTMRG-contracted PEPS2D carrier, plus a geometry Chern invariant READ OUT of the contracted network with a genuine wrong-structure flip. Proves the 2D contraction and the on-network invariant measurement run and flip. Does NOT admit stacking, G-structure selection, flux, Xi/Phi0, Axis0, FEP, physics, or final manifold claims.",
+  "classification": "entropy_readout_family_peps2d_poc",
+  "domain": "1x1 InfiniteSquare PEPS2D, physical space C^2, virtual D=2; CTMRG env chi ladder [8,16,32,64]; BZ grid nk=6 for the on-network invariant",
+  "downstream_blocks": [
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics",
+    "full layer completion",
+    "G-structure selection",
+    "final manifold admission"
+  ],
+  "elapsed_seconds": 168.8105,
+  "engine": "PEPSKit v0.7 InfinitePEPS / CTMRGEnv / leading_boundary / expectation_value; TensorKit tsvd of converged CTMRG corner; contraction-only, no fixedpoint",
+  "entropy_readouts_corner_spectrum": {
+    "effective_rank": 11.582129357390942,
+    "min_entropy_corner": 1.997671249410108,
+    "renyi2_entropy_corner": 2.4125059796967103,
+    "renyi_half_entropy_corner": 2.4674632655125643,
+    "von_neumann_entropy_corner": 2.4494633375713897
+  },
+  "finite_map": "F01/N01 bounded map: QWZ occupied spinor u(m,k) -> InfinitePEPS physical single-site state -> CTMRG env -> measured Bloch r(k) -> projector -> FHS Chern; separately a fixed entangled InfinitePEPS(C^2, D=2) -> CTMRGEnv chi in [8,16,32,64] -> corner Schmidt spectrum -> entropy readouts",
+  "geometry_anchor": {
+    "antitautology_negative_control_survives": true,
+    "antitautology_noise_scale": 1.4920722795330332,
+    "bloch_readout_error_at_probe_k": 1.9229626863835638e-16,
+    "bz_grid_nk": 6,
+    "control_flip_int": "-1 -> 0",
+    "ctmrg_measured_bloch_probe": [
+      -0.5555858181960849,
+      -0.8309912525376333,
+      -0.02789151887800778
+    ],
+    "env_chi_for_invariant_readout": 2,
+    "erasure_collapses_invariant": true,
+    "erasure_delta": 1.0000000000000002,
+    "invariant": "FHS-plaquette Chern of the occupied-spinor projector, READ OUT of the CTMRG-contracted PEPS2D environment",
+    "invariant_topological_nontrivial": true,
+    "measured_chern_erased_int": 0,
+    "measured_chern_erased_raw": 1.2186131435049791e-16,
+    "measured_chern_noisy_int": -1,
+    "measured_chern_noisy_raw": -1.0,
+    "measured_chern_topological_int": -1,
+    "measured_chern_topological_raw": -1.0,
+    "measured_chern_wrong_structure_int": 0,
+    "measured_chern_wrong_structure_raw": -6.6261555863823264e-18,
+    "measurement_path": "QWZ occupied spinor u(m,k) encoded as physical single-site state of InfinitePEPS -> leading_boundary CTMRG -> Bloch r(k) = (<sx>,<sy>,<sz>) via expectation_value -> projector P(k) -> FHS plaquette Chern",
+    "network_carries_structure": true,
+    "pass": true,
+    "structural_bloch_probe": [
+      -0.555585818196085,
+      -0.8309912525376334,
+      -0.02789151887800767
+    ],
+    "topological_mass": -1.0,
+    "wrong_structure_control_flips_invariant": true,
+    "wrong_structure_control_mass": 3.0
+  },
+  "ladder": {
+    "corner_schmidt_ranks": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "ctmrg_truncation_errors": [
+      0.26557738845780887,
+      0.234828776724572,
+      0.19179885728050217,
+      0.22528214758103088
+    ],
+    "energy_densities": [
+      0.24430330021366573,
+      -0.44817442656281087,
+      -0.04486168219818612,
+      -0.08123566225769463
+    ],
+    "entropies_vary": true,
+    "env_chi_values": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "environment_schmidt_entropies": [
+      1.6973021750250155,
+      2.413165970940191,
+      3.084957291044039,
+      3.78179962810475
+    ],
+    "ranks_vary": true,
+    "rungs": [
+      {
+        "contractor": "leading_boundary(CTMRGEnv(peps, ComplexSpace(chi)), peps)",
+        "corner_schmidt_rank": 8,
+        "corner_singular_values_head": [
+          0.5906445188351869,
+          0.46188666443816956,
+          0.4016697381096002,
+          0.3410258136722275,
+          0.29753436587320947,
+          0.20322626486894846,
+          0.17200874858127146,
+          0.027348752871730414
+        ],
+        "corner_spectrum_head": [
+          0.34886094763005004,
+          0.21333929078581865,
+          0.1613385785130351,
+          0.11629860559080504,
+          0.08852669887557303,
+          0.04130091473258407,
+          0.02958700958849511,
+          0.0007479542836389838
+        ],
+        "ctmrg_converged": false,
+        "ctmrg_converged_threshold": 0.01,
+        "ctmrg_truncation_error": 0.26557738845780887,
+        "energy_density_contracted": 0.24430330021366573,
+        "env_chi": 8,
+        "environment_schmidt_entropy": 1.6973021750250155,
+        "peps_bond_dim_D": 2,
+        "unit_cell": "1x1 InfiniteSquare iPEPS"
+      },
+      {
+        "contractor": "leading_boundary(CTMRGEnv(peps, ComplexSpace(chi)), peps)",
+        "corner_schmidt_rank": 16,
+        "corner_singular_values_head": [
+          0.45428262213347814,
+          0.36358611033221017,
+          0.34813861484939657,
+          0.31378911078342697,
+          0.2827669312155118,
+          0.2634791705937886,
+          0.24860940810356127,
+          0.2396669080390679,
+          0.2103515029624591,
+          0.1932644298359657,
+          0.17982848610992738,
+          0.15809721946977787
+        ],
+        "corner_spectrum_head": [
+          0.20637270077246844,
+          0.13219485962650607,
+          0.12120049514925646,
+          0.09846360604625377,
+          0.07995713738903795,
+          0.06942127333679075,
+          0.061806637797603065,
+          0.05744022680900702,
+          0.044247754798565436,
+          0.037351139839820906,
+          0.032338284416588335,
+          0.0249947308040751
+        ],
+        "ctmrg_converged": false,
+        "ctmrg_converged_threshold": 0.01,
+        "ctmrg_truncation_error": 0.234828776724572,
+        "energy_density_contracted": -0.44817442656281087,
+        "env_chi": 16,
+        "environment_schmidt_entropy": 2.413165970940191,
+        "peps_bond_dim_D": 2,
+        "unit_cell": "1x1 InfiniteSquare iPEPS"
+      },
+      {
+        "contractor": "leading_boundary(CTMRGEnv(peps, ComplexSpace(chi)), peps)",
+        "corner_schmidt_rank": 32,
+        "corner_singular_values_head": [
+          0.3641442764995777,
+          0.3005448013362073,
+          0.2786535943787608,
+          0.25236737124837993,
+          0.23780065334205516,
+          0.23343353734587824,
+          0.22146686656484504,
+          0.21888285979369618,
+          0.20382935709613317,
+          0.19513128482828057,
+          0.1869591914074283,
+          0.18317171588156825
+        ],
+        "corner_spectrum_head": [
+          0.132601054107401,
+          0.0903271776102204,
+          0.07764782566020301,
+          0.06368929007081768,
+          0.056549150729908335,
+          0.054491216357809576,
+          0.04904757298605091,
+          0.04790970631146689,
+          0.04154640681422301,
+          0.03807621831873559,
+          0.03495373925171944,
+          0.03355187749899799
+        ],
+        "ctmrg_converged": false,
+        "ctmrg_converged_threshold": 0.01,
+        "ctmrg_truncation_error": 0.19179885728050217,
+        "energy_density_contracted": -0.04486168219818612,
+        "env_chi": 32,
+        "environment_schmidt_entropy": 3.084957291044039,
+        "peps_bond_dim_D": 2,
+        "unit_cell": "1x1 InfiniteSquare iPEPS"
+      },
+      {
+        "contractor": "leading_boundary(CTMRGEnv(peps, ComplexSpace(chi)), peps)",
+        "corner_schmidt_rank": 64,
+        "corner_singular_values_head": [
+          0.2514415647075274,
+          0.22746758523102167,
+          0.2222954193561263,
+          0.2089723353039417,
+          0.1954760559314798,
+          0.1901576282884078,
+          0.18699907508595728,
+          0.18152272336718678,
+          0.17724133625740165,
+          0.17230697782446935,
+          0.16762678443586335,
+          0.16287631051165186
+        ],
+        "corner_spectrum_head": [
+          0.06322286046256977,
+          0.051741502330832176,
+          0.04941525346671611,
+          0.043669436922383086,
+          0.03821088844252706,
+          0.03615992359627231,
+          0.034968654083003536,
+          0.03295049909864026,
+          0.031414491278309364,
+          0.02968969460700221,
+          0.028098738860307438,
+          0.02652869252588807
+        ],
+        "ctmrg_converged": false,
+        "ctmrg_converged_threshold": 0.01,
+        "ctmrg_truncation_error": 0.22528214758103088,
+        "energy_density_contracted": -0.08123566225769463,
+        "env_chi": 64,
+        "environment_schmidt_entropy": 3.78179962810475,
+        "peps_bond_dim_D": 2,
+        "unit_cell": "1x1 InfiniteSquare iPEPS"
+      }
+    ],
+    "varied_parameter": "CTMRG environment chi; PEPS unit cell fixed at 1x1, D=2"
+  },
+  "load_bearing_earned": {
+    "earned_by": "measured on-network Chern flip (-1 -> 0) + structural reproduction check + erasure collapse; NOT a hardcoded literal",
+    "pepskit_load_bearing": true,
+    "would_be_false_if": "topological and wrong-structure Chern landed on the same integer, or the CTMRG-measured projector failed to reproduce the structural one, or erasure did not collapse the signature"
+  },
+  "name": "entropy_readout_family_peps2d",
+  "peps2d_engagement": {
+    "expectation_value_calls_invariant": 219,
+    "fixedpoint_or_lbfgs_used": false,
+    "infinite_peps_constructed": true,
+    "leading_boundary_ctmrg_calls_invariant": 73,
+    "leading_boundary_ctmrg_calls_ladder": 4,
+    "mps_or_itensormps_used": false,
+    "peps2d_genuinely_engaged": true
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "PEPS2D only, not PEPS3D",
+    "encoded-projector readout is a product-state CTMRG contraction; the invariant flip is read THROUGH the network but does not by itself prove an entangled-bundle theorem",
+    "unoptimized random iPEPS for the entropy ladder (contraction-only carrier)",
+    "promotion_allowed=false"
+  ],
+  "rebuild_note": "Rebuilt to replace fabricated controls. The CTMRG contraction is unchanged; the geometry invariant is now MEASURED on the contracted PEPS2D network (encoded-projector readout via expectation_value), with a real wrong-structure flip (c1: -1 -> 0), a real erasure ablation (delta != 0), and an anti-tautology negative control. load_bearing is earned by the measured verdict-flip, not hardcoded.",
+  "required": {
+    "ctmrg_corner_rank_responds_to_chi": true,
+    "ctmrg_returned_all_rungs": true,
+    "ctmrg_truncation_errors_finite": true,
+    "env_schmidt_entropy_measured_all_rungs": true,
+    "env_schmidt_entropy_varies_across_ladder": true,
+    "fixedpoint_not_used": true,
+    "geometry_antitautology_negative_control_survives": true,
+    "geometry_erasure_collapses_invariant": true,
+    "geometry_invariant_topological_nontrivial": true,
+    "geometry_network_carries_structure": true,
+    "geometry_wrong_structure_control_flips": true,
+    "invariant_flip_measured_through_network": true,
+    "mps_not_used": true,
+    "peps2d_ladder_exact_8_16_32_64": true
+  },
+  "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/entropy_readout_family_peps2d_results.json",
+  "schema": "ENTROPY_READOUT_FAMILY_PEPS2D_POC_v2_rebuilt",
+  "seed": 20260602,
+  "sim_execution_kind": "nonclassical",
+  "sleep_wait_interactive_used": false,
+  "subagents_used": false,
+  "timestamp_utc": "2026-06-03T07:47:40.565",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "PEPSKit": "load_bearing",
+    "TensorKit": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: result artifact emission",
+    "LinearAlgebra": "supportive: eigensolvers, Berry-flux plaquette algebra, projector reconstruction",
+    "PEPSKit": "load_bearing: InfinitePEPS, CTMRGEnv, leading_boundary, expectation_value; the invariant flip is measured THROUGH this contraction/readout path",
+    "TensorKit": "load_bearing: TensorMap operators and tsvd of env.corners[1,1,1] for the PEPS2D boundary Schmidt spectrum"
+  }
+}

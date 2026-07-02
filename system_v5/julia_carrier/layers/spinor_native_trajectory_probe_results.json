@@ -1,0 +1,384 @@
+{
+  "F01_witness": {
+    "finite_carrier": "finite ensemble of pure spinors psi in S^3 subset C^2 (Ntraj up to 2000); finite genuine channel set (6 het + 3 commuting control); C^4 twistor lift",
+    "finite_operator": "Ti/Te/Fi/Fe + Weyl-L/R GKSL as MCWF spinor maps (unitary drift + dissipative jumps), reused from the validated kill-tests",
+    "finite_path": "ordered spinor words (forward vs reversed, permutations) with ensemble-averaged rho recovery; Hopf S^2 readout; C^4 quaternionic lift",
+    "finite_probe": "6 random density operators seeded into spinor ensembles; Ntraj ladder 125,250,500,1000,2000; 4 permutations for the survivor; forward/reversed words"
+  },
+  "N01_witness": {
+    "direct_het_order_gap": 0.3526088358673663,
+    "order_gap_formula": "Delta = mean_rho ||rho_fwd_word - rho_rev_word||_1 with rho recovered from the spinor ensemble",
+    "present_above_floor": true,
+    "trajectory_het_order_gap": 0.36609592255695517,
+    "trajectory_survivor_spread": 0.3608668368543507
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "carrier-fork decision (candidate evidence only)",
+    "any ratchet edge admission",
+    "pairwise nesting",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "d>=4 suppression switch (nested-Hopf order is an open blocker)"
+  ],
+  "carrier": "pure spinors psi in S^3 subset C^2 (ensemble), advanced by unitary drift + dissipative quantum jumps; rho recovered as <|psi><psi|>. Genuine layer channels Ti/Te/Fi/Fe + Weyl-L/R GKSL reused VERBATIM from order_null_killtest.jl / the _bf layers. Hopf map psi->psi^dag sigma psi as an S^2 readout (NOT a Bloch state carrier). NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "RE-EXPRESSES the genuine dissipative channels as a stochastic spinor unraveling and MEASURES (1) faithfulness to the direct GKSL order-gap/survivor, (2) S^3/S^2 ensemble revelation across orders, (3) a twistor/d>=4 quaternionic lift. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics, and does NOT by itself decide the spinor-vs-tensor carrier fork. promotion_allowed=false.",
+  "classification": "spinor_native_probe_poc",
+  "non_numpy": true,
+  "object_id": "spinor_native_trajectory_probe",
+  "preflight": {
+    "Grassmann_jl": "absent",
+    "QuantumOptics_jl": "absent",
+    "numga_jaxga": "python_side_not_julia_NA",
+    "unraveling_method": "hand-rolled Monte-Carlo wavefunction (MCWF) on genuine C^2 spinors (SAFE default; QuantumOptics.jl mctrajectories not available in this env)"
+  },
+  "promotion_allowed": false,
+  "reused_from": "order_null_killtest.jl + ratchet_survivor_reach_killtest.jl + L7/L10/L11 _bf layers + signed_operators_density_bloch_free.jl (channels, hopf_h0, rand_rho, gksl step). MCWF unraveling is the only new construction.",
+  "revelation_seed_robustness": {
+    "note": "REVELATION is counted ONLY if the decisive beyond-rho-pair + robust commuting-flatness (hist L1 + rho dist; mean-dir angle DROPPED as noise-amplified) hold at BOTH seeds. If the seeds disagree the revelation is FRAGILE, not promoted to revealing. This guards against smuggling a one-seed-lucky verdict.",
+    "revelation_robust_both_seeds": true,
+    "seed1_beyond_rho_pair": true,
+    "seed1_comm_flat": true,
+    "seed1_comm_hist_L1": 0.056999999999999974,
+    "seed1_comm_rho_dist": 0.041594317458560896,
+    "seed1_revelation_fires": true,
+    "seed2_beyond_rho_pair": true,
+    "seed2_comm_flat": true,
+    "seed2_comm_hist_L1": 0.05800000000000005,
+    "seed2_comm_rho_dist": 0.05520141304359367,
+    "seed2_revelation_fires": true
+  },
+  "script": "spinor_native_trajectory_probe.jl",
+  "seed": 20260602,
+  "seed_stability": {
+    "abs_diff": 0.0011269863363987352,
+    "seed_stable": true,
+    "worst_single_channel_delta_seed1": 0.019052558519967275,
+    "worst_single_channel_delta_seed2": 0.02017954485636601
+  },
+  "status_ladder": "exists < runs < passes local rerun",
+  "test1_faithfulness_order_gap": {
+    "Ntraj": 2000,
+    "abs_match_error": 0.013487086689588867,
+    "direct_density_het_gap_mean_1norm": 0.3526088358673663,
+    "het_word": "Ti Fi WeylL Te Fe WeylR (forward) vs reversed",
+    "note": "spinor-unraveled reversed-vs-forward order gap vs the DIRECT density order gap on the SAME genuine het schedule; the validated order_null_killtest.jl direct target is ~0.3526.",
+    "trajectory_spinor_het_gap_mean_1norm": 0.36609592255695517,
+    "validated_direct_target_from_order_null_killtest": 0.3525866472135488
+  },
+  "test1_faithfulness_per_channel": [
+    {
+      "channel": "Ti_zpinch",
+      "convergence": [
+        {
+          "Ntraj": 125,
+          "max_rho_delta": 0.14160717116083502,
+          "mean_rho_delta": 0.08856779449435058
+        },
+        {
+          "Ntraj": 250,
+          "max_rho_delta": 0.09485043554116601,
+          "mean_rho_delta": 0.04339176764172915
+        },
+        {
+          "Ntraj": 500,
+          "max_rho_delta": 0.05781915393428214,
+          "mean_rho_delta": 0.04797118018166948
+        },
+        {
+          "Ntraj": 1000,
+          "max_rho_delta": 0.0416854262065097,
+          "mean_rho_delta": 0.02296201163570916
+        },
+        {
+          "Ntraj": 2000,
+          "max_rho_delta": 0.02914172552435093,
+          "mean_rho_delta": 0.019052558519967275
+        }
+      ],
+      "mean_rho_delta_at_Ntraj_max": 0.019052558519967275,
+      "note": "trace-norm of (direct GKSL rho) - (trajectory-averaged rho) vs Ntraj; should fall ~1/sqrt(Ntraj) toward 0 for a stochastic channel, exactly 0 for a deterministic unitary.",
+      "stochastic": true
+    },
+    {
+      "channel": "Te_xpinch",
+      "convergence": [
+        {
+          "Ntraj": 125,
+          "max_rho_delta": 0.23701433419486645,
+          "mean_rho_delta": 0.0967213116226684
+        },
+        {
+          "Ntraj": 250,
+          "max_rho_delta": 0.07791844722672722,
+          "mean_rho_delta": 0.04539437897731018
+        },
+        {
+          "Ntraj": 500,
+          "max_rho_delta": 0.055514171788556735,
+          "mean_rho_delta": 0.044164396093020364
+        },
+        {
+          "Ntraj": 1000,
+          "max_rho_delta": 0.04074591638198839,
+          "mean_rho_delta": 0.02785085035112238
+        },
+        {
+          "Ntraj": 2000,
+          "max_rho_delta": 0.02135138129402398,
+          "mean_rho_delta": 0.015592391315144151
+        }
+      ],
+      "mean_rho_delta_at_Ntraj_max": 0.015592391315144151,
+      "note": "trace-norm of (direct GKSL rho) - (trajectory-averaged rho) vs Ntraj; should fall ~1/sqrt(Ntraj) toward 0 for a stochastic channel, exactly 0 for a deterministic unitary.",
+      "stochastic": true
+    },
+    {
+      "channel": "Fi_xrot",
+      "convergence": [
+        {
+          "Ntraj": 125,
+          "max_rho_delta": 0.24960227248895978,
+          "mean_rho_delta": 0.1459695496921255
+        },
+        {
+          "Ntraj": 250,
+          "max_rho_delta": 0.057602272488958835,
+          "mean_rho_delta": 0.044636216358792
+        },
+        {
+          "Ntraj": 500,
+          "max_rho_delta": 0.04729656122701477,
+          "mean_rho_delta": 0.036636216358793806
+        },
+        {
+          "Ntraj": 1000,
+          "max_rho_delta": 0.025115205056490716,
+          "mean_rho_delta": 0.012363783641206383
+        },
+        {
+          "Ntraj": 2000,
+          "max_rho_delta": 0.01560227248895251,
+          "mean_rho_delta": 0.01146954969211913
+        }
+      ],
+      "mean_rho_delta_at_Ntraj_max": 0.01146954969211913,
+      "note": "trace-norm of (direct GKSL rho) - (trajectory-averaged rho) vs Ntraj; should fall ~1/sqrt(Ntraj) toward 0 for a stochastic channel, exactly 0 for a deterministic unitary.",
+      "stochastic": false
+    },
+    {
+      "channel": "Fe_zrot",
+      "convergence": [
+        {
+          "Ntraj": 125,
+          "max_rho_delta": 0.24960227248895983,
+          "mean_rho_delta": 0.14596954969212547
+        },
+        {
+          "Ntraj": 250,
+          "max_rho_delta": 0.05760227248896002,
+          "mean_rho_delta": 0.04463621635879241
+        },
+        {
+          "Ntraj": 500,
+          "max_rho_delta": 0.04729656122700852,
+          "mean_rho_delta": 0.036636216358790975
+        },
+        {
+          "Ntraj": 1000,
+          "max_rho_delta": 0.025115205056482445,
+          "mean_rho_delta": 0.012363783641206097
+        },
+        {
+          "Ntraj": 2000,
+          "max_rho_delta": 0.01560227248896071,
+          "mean_rho_delta": 0.01146954969212887
+        }
+      ],
+      "mean_rho_delta_at_Ntraj_max": 0.01146954969212887,
+      "note": "trace-norm of (direct GKSL rho) - (trajectory-averaged rho) vs Ntraj; should fall ~1/sqrt(Ntraj) toward 0 for a stochastic channel, exactly 0 for a deterministic unitary.",
+      "stochastic": false
+    },
+    {
+      "channel": "WeylL_GKSL",
+      "convergence": [
+        {
+          "Ntraj": 125,
+          "max_rho_delta": 0.07099163649177814,
+          "mean_rho_delta": 0.03922819947036544
+        },
+        {
+          "Ntraj": 250,
+          "max_rho_delta": 0.04400915006162023,
+          "mean_rho_delta": 0.03142271536048979
+        },
+        {
+          "Ntraj": 500,
+          "max_rho_delta": 0.023466734327375203,
+          "mean_rho_delta": 0.016059506319632242
+        },
+        {
+          "Ntraj": 1000,
+          "max_rho_delta": 0.03042891099255606,
+          "mean_rho_delta": 0.021647660974545426
+        },
+        {
+          "Ntraj": 2000,
+          "max_rho_delta": 0.0063671020477794535,
+          "mean_rho_delta": 0.0046092431017821745
+        }
+      ],
+      "mean_rho_delta_at_Ntraj_max": 0.0046092431017821745,
+      "note": "trace-norm of (direct GKSL rho) - (trajectory-averaged rho) vs Ntraj; should fall ~1/sqrt(Ntraj) toward 0 for a stochastic channel, exactly 0 for a deterministic unitary.",
+      "stochastic": true
+    },
+    {
+      "channel": "WeylR_GKSL",
+      "convergence": [
+        {
+          "Ntraj": 125,
+          "max_rho_delta": 0.08289349322404954,
+          "mean_rho_delta": 0.04896634855807125
+        },
+        {
+          "Ntraj": 250,
+          "max_rho_delta": 0.047991574751308795,
+          "mean_rho_delta": 0.032883330207597095
+        },
+        {
+          "Ntraj": 500,
+          "max_rho_delta": 0.021965498753878557,
+          "mean_rho_delta": 0.015963197012899822
+        },
+        {
+          "Ntraj": 1000,
+          "max_rho_delta": 0.02490335120513345,
+          "mean_rho_delta": 0.020875415338693425
+        },
+        {
+          "Ntraj": 2000,
+          "max_rho_delta": 0.020152292560269163,
+          "mean_rho_delta": 0.009061080001748436
+        }
+      ],
+      "mean_rho_delta_at_Ntraj_max": 0.009061080001748436,
+      "note": "trace-norm of (direct GKSL rho) - (trajectory-averaged rho) vs Ntraj; should fall ~1/sqrt(Ntraj) toward 0 for a stochastic channel, exactly 0 for a deterministic unitary.",
+      "stochastic": true
+    }
+  ],
+  "test1_faithfulness_verdict": {
+    "FAITHFULNESS_GATE_PASS": true,
+    "faithful_tol_6x_floor": 0.1341640786499874,
+    "monte_carlo_floor_1_over_sqrt_Ntraj": 0.022360679774997897,
+    "note": "the spinor unraveling is FAITHFUL iff trajectory rho reproduces the direct GKSL rho, the order gap, and the survivor within ~MC error. If this fails the unraveling is WRONG -> spinor_native_unfaithful.",
+    "order_gap_faithful": true,
+    "order_gap_match_error": 0.013487086689588867,
+    "single_channel_faithful": true,
+    "survivor_faithful": true,
+    "survivor_match_error": 0.004374859243301943,
+    "worst_single_channel_delta_at_Ntraj_max": 0.019052558519967275
+  },
+  "test1c_survivor_faithfulness": {
+    "Ntraj": 1500,
+    "abs_match_error": 0.004374859243301943,
+    "direct_density_survivor_spread_max_1norm": 0.3564919776110488,
+    "horizon_reps": 8,
+    "n_perms": 4,
+    "note": "order-dependent survivor spread (max pairwise trace-distance over orderings) — direct density vs spinor ensemble. Persistence of a nonzero survivor across orders is the order-memory signature from ratchet_survivor_reach_killtest.jl.",
+    "trajectory_spinor_survivor_spread_max_1norm": 0.3608668368543507
+  },
+  "test2_revelation": {
+    "commuting_control": {
+      "mean_dir_angle_rad": 0.029989968786795558,
+      "note": "commuting z-pinches: MUST give ~same spinor distribution across orders (small hist L1, small mean-dir angle) and ~0 rho distance. If revelation fires here too, it is a metric artifact.",
+      "scalar_rho_trace_distance": 0.026436367956580904,
+      "spinor_hist_L1": 0.03200000000000003,
+      "spread_fwd": 1.1869177720573185,
+      "spread_rev": 1.1458913258898014
+    },
+    "decisive_beyond_rho": {
+      "best_beyond_rho_pair": {
+        "hist_L1": 1.147,
+        "mean_dir_angle": 0.1631325097671912,
+        "rho_dist": 0.07563282761356313
+      },
+      "dist_distinct_angle_threshold": 0.08996990636038668,
+      "dist_distinct_l1_threshold": 0.15,
+      "has_iso_rho_but_distribution_distinct_pair": true,
+      "hist_L1_over_rho_dist_ratio_max": 8.96272495480544,
+      "hist_L1_over_rho_dist_ratio_min": 1.2462629508339815,
+      "hist_L1_over_rho_dist_ratio_spread": 7.716462003971458,
+      "iso_rho_threshold": 0.2683281572999748,
+      "n_pairs": 15,
+      "note": "the DECISIVE test: a pair of orders with SMALL rho-distance (scalar rho calls them equal) but LARGE spinor-distribution difference would be structure the scalar rho HIDES. If absent, and the hist_L1/rho_dist ratio is near-constant across pairs, the distribution difference merely TRACKS rho and the revelation is COSMETIC."
+    },
+    "forward_vs_reversed": {
+      "mean_dir_angle_rad": 0.7596206431710353,
+      "scalar_rho_trace_distance": 0.34120581084335877,
+      "spinor_hist_L1": 0.545,
+      "spread_fwd": 1.0294242431605545,
+      "spread_rev": 1.3819373057270945
+    },
+    "interpretation": "REVELATION (beyond-rho) fires ONLY if there is an iso-rho-but-distribution-distinct pair AND the commuting control is flat. The weak 'noncommuting distinct + commuting flat' signal is NOT sufficient (the scalar rho distance passes it too).",
+    "orderA_vs_orderB": {
+      "mean_dir_angle_rad": 0.5745541262668666,
+      "scalar_rho_trace_distance": 0.34467231986754276,
+      "spinor_hist_L1": 0.583,
+      "spread_A": 1.0071987456314704,
+      "spread_B": 1.3893784500034145
+    }
+  },
+  "test2_revelation_verdict": {
+    "REVELATION_FIRES_beyond_rho": true,
+    "commuting_control_distribution_flat": true,
+    "decisive_iso_rho_distribution_distinct_pair_present": true,
+    "honest_caveat": "REVELATION_FIRES now requires the DECISIVE beyond-rho pair (iso-rho yet distribution-distinct), not the weak signal that merely tracks rho. If revelation does NOT fire, the spinor S^2 distribution is a cosmetic restatement of the scalar rho for this model and the tensor/density view is sufficient on this axis.",
+    "weak_noncommuting_distinct_NOT_used_for_verdict": true
+  },
+  "test3_twistor_d4_tie": {
+    "blocker_note": "the iter-7 d>=4 substrate-suppression switch depends on the nested-Hopf noncommutative stacking ORDER (an open blocker per project memory). This probe only tests a single quaternionic 4-spinor lift; it cannot settle the suppression switch and does not claim to.",
+    "c2_order_gap_1norm": 0.22903013820461912,
+    "c4_block_order_gap_1norm": 1.5143438349451264e-15,
+    "c4_order_gap_after_quaternionic_J_1norm": 2.186370520022335e-15,
+    "c4_reveals_structure_beyond_c2": false,
+    "honest_status": "INCONCLUSIVE: with block-diagonal L/R drives the C^4 order-gap is essentially the C^2 order-gap on the blocks; the quaternionic J did not expose a gap-changing feature here. The d>=4 / twistor tie is NOT demonstrated by this probe — reported honestly as inconclusive. A genuine d>=4 suppression test needs the full nested-Hopf noncommutative stacking order, which is an OPEN blocker, not resolvable at the single-4-spinor level.",
+    "lift": "Psi = (psi_L, psi_R) in C^4 = a Dirac/twistor 4-spinor; gamma5 = diag(1,1,-1,-1) chirality split; quaternionic J = Sp(1) structure on C^4 = H^2 (the quaternionic-Hopf S^7->S^4 carrier).",
+    "quaternionic_J_covariance_residual": 6.720266850772086e-16
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: eigen (ensemble seeding), svdvals (trace norm), HS norms, matrix algebra; every measured number flows through it.",
+    "Random": "load_bearing: the MCWF jumps and ensemble sampling are random; faithfulness is measured over fresh draws, not planted.",
+    "Statistics": "supportive: means over the ensemble and over test rhos.",
+    "Z3": "load_bearing: binds the trajectory-vs-direct delta to the faithfulness law; verdict flips SAT->UNSAT on the no-jump (wrong-structure) unraveling."
+  },
+  "verdict": {
+    "classification": "spinor_native_faithful_and_revealing",
+    "faithfulness_gate_pass": true,
+    "fork_evidence": "evidence FOR the spinor fork: the unraveling reproduces the validated direct GKSL order-gap/survivor AND shows a SEED-ROBUST beyond-rho S^3/S^2 structure (or twistor tie) the scalar rho hid. CANDIDATE evidence, not a closed decision.",
+    "interpretation": "spinor_native_faithful_and_revealing requires the faithfulness gate AND a SEED-ROBUST beyond-rho revelation (or twistor tie). spinor_native_faithful_only = reproduces rho but no robust beyond-rho structure (cosmetic, OR fragile-see-revelation_fragile). spinor_native_unfaithful = trajectory rho does not match. Candidate fork evidence; promotion_allowed=false.",
+    "revelation_fragile_seed_dependent": false,
+    "revelation_robust_both_seeds": true,
+    "seed_stable_faithfulness": true,
+    "twistor_d4_reveals_beyond_c2": false,
+    "z3_load_bearing_flip": true
+  },
+  "z3_load_bearing": {
+    "encoding": "FREE int delta, FREE bool faithful; law Or([Not(faithful), delta<=tol]); assert faithful=true + delta==IntVal(measured). converged unraveling: sat; no-jump (wrong-structure) unraveling: unsat.",
+    "faithful_tol": 0.1341640786499874,
+    "genuine_converged_delta": 0.019052558519967275,
+    "genuine_verdict": "sat",
+    "load_bearing_flip": true,
+    "note": "the no-jump unraveling DROPS the dissipative jumps; it cannot reproduce the GKSL rho, so the faithfulness verdict FLIPS to unsat. This proves the jump unraveling (not just the metric) carries the faithfulness.",
+    "wrong_structure_nojump_delta": 0.6047200536158718,
+    "wrong_structure_verdict": "unsat"
+  }
+}

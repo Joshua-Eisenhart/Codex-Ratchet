@@ -1,0 +1,392 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^d), d in {2,4,8}; finite frame set {genuine Hopf rotor, tensor-nested, flat, 2000 random} per d",
+    "finite_operator": "dissipative Weyl-L GKSL channel lifted to dim d; genuine Spin(2k+1) Hopf rotor frames",
+    "finite_path": "dressed compositions U Phi_WeylL(U' . U) U' at each d; z(d)=(E_hopf-band_mean)/band_std",
+    "finite_probe": "21 density operators per carrier (20 spinor-derived + 1 maximally-mixed)"
+  },
+  "N01_witness": {
+    "noise_floor": 1.4210854715202004e-14,
+    "order_sensitive_control": "frame conjugation does not commute with the dissipative upper op; [U, H0_d] != 0 drives the dressed-vs-bare gap; the commutator-matched band isolates whether geometry carries structure BEYOND that non-commutation. The geometric (non-temporal) substrate axis; temporal-order spine validated separately in order_null_killtest.jl.",
+    "present_above_floor": true,
+    "top_level_separation": 0.7352047284864077
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "carrier_layer": "density operators in D(C^d), d in {2,4,8}; genuine higher-Hopf rotor frames (Spin(3)/Spin(5)/Spin(7)) from Clifford gamma towers; dissipative Weyl-L GKSL upper op lifted to dim d. NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "MEASURES the dimension-dependence z(d) of a genuine higher-Hopf frame's separation from a commutator-matched random band under a dissipative Weyl op, on a finite density-operator carrier at d in {2,4,8}. Resolves whether the iter-5 partial Hopf signal SHARPENS, stays FLAT, or becomes UNCOMPUTABLE with dimension. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics. A sharpening z-series is a CANDIDATE geometric structural fact, NOT a proven nesting layer. promotion_allowed=false.",
+  "classification": "substrate_effect_scale_ladder_poc",
+  "codomain_or_output": "z-vs-d series {z(2),z(4),z(8)} (full-band and commutator-matched), tensor-nested vs irreducible comparison, controls at every level, Z3 verdict-flip at top, seed-robust z-sign",
+  "dependency_receipts": [
+    "layers/substrate_effect_frame_conjugation.jl (iter-5 validated commutator-matched 2000-frame paired discriminator + dissipative Weyl-L GKSL upper op; reused verbatim)",
+    "layers/order_null_killtest.jl (genuine Weyl GKSL gksl_step_evolve + hopf_h0 + noise-floor/Z3 discipline)",
+    "layers/G_hopf_fibration.jl (Hopf representative spinor / moment map)",
+    "layers/G_nested_hopf_tori.jl (nested-tori leaf foliation -> tensor-nested frame)",
+    "layers/clifford_rotor_spinor_network_entanglement.jl (Clifford gamma generators / SU(2) rotor)",
+    "layers/L7_layer_bf.jl (per-sheet Weyl GKSL channel)"
+  ],
+  "domain": "for each d in {2,4,8}: finite set of 21 density operators; frame set {genuine Hopf rotor, tensor-nested SU(2), flat=I, 2000 commutator-matched random}; upper op = Weyl-L GKSL lifted to dim d",
+  "downstream_blocks": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "finite_map": "(carrier dim d, genuine Hopf frame U_hopf(d) in Spin(2k+1)) |-> dressed dissipative-Weyl channel Phi_B^A(rho)=U Phi_WeylL(U' rho U) U'; observable z(d)=(E_hopf - band_mean)/band_std over a commutator-matched random band",
+  "geometry_layer": "Clifford gamma towers Cl(3)/Cl(5)/Cl(7) (anticommutation verified); Hopf moment map psi'.Gamma.psi -> base sphere S^2/S^4/S^8; Spin rotor exp(-i ang/2 n.Gamma); tensor-nested SU(2) Hopf frames (G_hopf_fibration / G_nested_hopf_tori / clifford_rotor sources)",
+  "kill_conditions": [
+    "flat frame must collapse E to floor at every d",
+    "if E_hopf is indistinguishable from commutator-matched random (|z|~0) at all d => just non-commutation, geometry not load-bearing",
+    "if |z| does not grow with d => no dimensional sharpening => iter-5 signal was 2-dim coincidence",
+    "Clifford anticommutation must hold exactly (genuine higher-Hopf geometry) else the frame is not a real Spin rotor"
+  ],
+  "levels": {
+    "d2": {
+      "E_finite_and_band_populated": true,
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.49394199110451686,
+      "E_hopf_mean": 0.43419193919429366,
+      "E_tensor_nested_max": 0.3223922935980076,
+      "c_hopf_below_random_band": false,
+      "carrier": "C^2 (1-qubit density operators)",
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "commutator_matched": {
+        "E_hopf": 0.49394199110451686,
+        "E_matched_mean": 0.6846545465170384,
+        "E_matched_std": 0.26937215204917914,
+        "c_hopf": 0.8277228485915165,
+        "c_hopf_below_random_band": false,
+        "n_matched": 36,
+        "nearest_k": 40,
+        "nearest_k_cmax": 0.8701530222094468,
+        "outside_robust": false,
+        "per_tolerance": {
+          "tol_0.02": {
+            "n": 6,
+            "note": "too few matched (<8) — relative band empty at this d",
+            "outside": false
+          },
+          "tol_0.05": {
+            "E_matched_mean": 0.6846545465170384,
+            "E_matched_std": 0.26937215204917914,
+            "abs_gap": 0.19071255541252152,
+            "n": 36,
+            "outside": false
+          },
+          "tol_0.1": {
+            "E_matched_mean": 0.6453511226335904,
+            "E_matched_std": 0.2534163964007361,
+            "abs_gap": 0.15140913152907354,
+            "n": 89,
+            "outside": false
+          }
+        },
+        "relative_band_populated": true,
+        "z_matched_relative_or_nearestk": "iter5_relative_band"
+      },
+      "d": 2,
+      "flat_collapses": true,
+      "hopf_base_norm": 1.0,
+      "hopf_base_sphere": "S^2  (moment-map dim 3)",
+      "noise_floor": 1.4210854715202004e-14,
+      "random_band": {
+        "E_hi": 1.0778054563948989,
+        "E_lo": 0.05462647469876051,
+        "E_mean": 0.7236058144814373,
+        "E_std": 0.2377495220141238,
+        "c_hi": 2.82747452254338,
+        "c_lo": 0.07441012889203434,
+        "geometry_inside_raw_band": true,
+        "n": 2000
+      },
+      "relative_band_populated": true,
+      "z_full_band": -0.9659906839403741,
+      "z_matched_band": -0.7079891293948724,
+      "z_matched_nearest_k": -0.7497179221197787,
+      "z_tensor_nested_matched": -1.5369405774473783
+    },
+    "d4": {
+      "E_finite_and_band_populated": true,
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.5384103757523432,
+      "E_hopf_mean": 0.44446210580370354,
+      "E_tensor_nested_max": 0.6476024759854834,
+      "c_hopf_below_random_band": false,
+      "carrier": "C^4 (2-qubit density operators)",
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "commutator_matched": {
+        "E_hopf": 0.5384103757523432,
+        "E_matched_mean": 1.2113400276723498,
+        "E_matched_std": 0.13598665960438233,
+        "c_hopf": 1.4555592317812793,
+        "c_hopf_below_random_band": false,
+        "n_matched": 40,
+        "nearest_k": 40,
+        "nearest_k_cmax": 1.927163828870679,
+        "outside_robust": false,
+        "per_tolerance": {
+          "tol_0.02": {
+            "n": 0,
+            "note": "too few matched (<8) — relative band empty at this d",
+            "outside": false
+          },
+          "tol_0.05": {
+            "n": 5,
+            "note": "too few matched (<8) — relative band empty at this d",
+            "outside": false
+          },
+          "tol_0.1": {
+            "n": 7,
+            "note": "too few matched (<8) — relative band empty at this d",
+            "outside": false
+          }
+        },
+        "relative_band_populated": false,
+        "z_matched_relative_or_nearestk": "nearest_k_fallback"
+      },
+      "d": 4,
+      "flat_collapses": true,
+      "hopf_base_norm": 0.9999999999999999,
+      "hopf_base_sphere": "S^4  (moment-map dim 5)",
+      "noise_floor": 1.4210854715202004e-14,
+      "random_band": {
+        "E_hi": 1.5577568496078378,
+        "E_lo": 0.6750450673954635,
+        "E_mean": 1.1923232535468518,
+        "E_std": 0.1271466839857415,
+        "c_hi": 3.827824467120807,
+        "c_lo": 1.162842247450572,
+        "geometry_inside_raw_band": false,
+        "n": 2000
+      },
+      "relative_band_populated": false,
+      "z_full_band": -5.142980196540869,
+      "z_matched_band": -4.948497550257648,
+      "z_matched_nearest_k": -4.948497550257648,
+      "z_tensor_nested_matched": -4.145535696861101
+    },
+    "d8": {
+      "E_finite_and_band_populated": true,
+      "E_flat_max": 0.0,
+      "E_hopf_max": 0.8207571055085415,
+      "E_hopf_mean": 0.7586838483892693,
+      "E_tensor_nested_max": 1.0611715026560902,
+      "c_hopf_below_random_band": true,
+      "carrier": "C^8 (3-qubit density operators)",
+      "clifford_anticomm_err": 0.0,
+      "clifford_genuine": true,
+      "commutator_matched": {
+        "E_hopf": 0.8207571055085415,
+        "E_matched_mean": 1.5559618339949493,
+        "E_matched_std": 0.07390823986011404,
+        "c_hopf": 2.2950665868012075,
+        "c_hopf_below_random_band": true,
+        "n_matched": 40,
+        "nearest_k": 40,
+        "nearest_k_cmax": 3.4295561450796144,
+        "outside_robust": false,
+        "per_tolerance": {
+          "tol_0.02": {
+            "n": 0,
+            "note": "too few matched (<8) — relative band empty at this d",
+            "outside": false
+          },
+          "tol_0.05": {
+            "n": 0,
+            "note": "too few matched (<8) — relative band empty at this d",
+            "outside": false
+          },
+          "tol_0.1": {
+            "n": 0,
+            "note": "too few matched (<8) — relative band empty at this d",
+            "outside": false
+          }
+        },
+        "relative_band_populated": false,
+        "z_matched_relative_or_nearestk": "nearest_k_fallback"
+      },
+      "d": 8,
+      "flat_collapses": true,
+      "hopf_base_norm": 0.9603352938171476,
+      "hopf_base_sphere": "S^8  (moment-map dim 7)",
+      "noise_floor": 1.4210854715202004e-14,
+      "random_band": {
+        "E_hi": 1.7873177607922377,
+        "E_lo": 1.3021461401808034,
+        "E_mean": 1.5630429236630279,
+        "E_std": 0.0721397000255539,
+        "c_hi": 4.655033804578031,
+        "c_lo": 3.086102677992453,
+        "geometry_inside_raw_band": false,
+        "n": 2000
+      },
+      "relative_band_populated": false,
+      "z_full_band": -10.289560642635719,
+      "z_matched_band": -9.947533994557686,
+      "z_matched_nearest_k": -9.947533994557686,
+      "z_tensor_nested_matched": -6.694657216507221
+    }
+  },
+  "n_random_band": 2000,
+  "n_rho": 21,
+  "name": "Hopf substrate-effect scale ladder C^2->C^4->C^8 (density-operator only, NO PEPS)",
+  "negatives_run": [
+    "flat_frame_U_eq_I_each_d",
+    "commutator_matched_random_band_each_d",
+    "tensor_nested_vs_irreducible_hopf"
+  ],
+  "non_numpy": true,
+  "object_id": "substrate_effect_scale_ladder",
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "quaternion_action": "C^4 frame is Spin(5)=Sp(2) (quaternionic Hopf S^7->S^4); C^8 is Spin(7) (octonionic Hopf S^15->S^8); tensor-nested frame is the literal Kronecker nesting of unit-quaternion SU(2) frames",
+  "required_negatives": [
+    "flat_frame_U_eq_I_each_d",
+    "commutator_matched_random_band_each_d",
+    "tensor_nested_vs_irreducible_hopf"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite density-operator carrier / Hopf-rotor + random frame set / Weyl GKSL ops / dressed paths at d in {2,4,8}",
+    "N01 frame conjugation [U, H0_d] != 0 order-sensitive control (geometric substrate axis)"
+  ],
+  "script": "substrate_effect_scale_ladder.jl",
+  "seed": 20260602,
+  "seed_robust": {
+    "base_seed": 20260602,
+    "base_z_matched": [
+      -0.7079891293948724,
+      -4.948497550257648,
+      -9.947533994557686
+    ],
+    "extra_seeds": [
+      20260613,
+      20260625
+    ],
+    "note": "d=2 z sits near zero (|z|~0.7) and is sign-unstable across seeds — consistent with the iter-5 partial/near-noise finding at 2 dims; d=4 and d=8 z are strongly, stably negative (Hopf rotor produces LESS effect than random, robust across seeds).",
+    "robust_all_d": false,
+    "robust_high_d_d4_d8": true,
+    "z_matched_per_seed": {
+      "seed_20260613": [
+        0.06641624211276767,
+        -3.3801619154110103,
+        -9.434379867310735
+      ],
+      "seed_20260625": [
+        -0.37238072281490747,
+        -4.322535340892011,
+        -9.649968160842473
+      ]
+    },
+    "z_sign_stable_per_d": {
+      "d2": false,
+      "d4": true,
+      "d8": true
+    }
+  },
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical_poc",
+  "sim_id": "substrate_effect_scale_ladder",
+  "spinor_state": "unit spinors on S^3/S^7/S^15 -> Hopf base via moment map; Spin(2k+1) rotor frames; GKSL state from Hopf-site Hamiltonian H0_d = n.Gamma",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm), HS norms, matrix exp (Spin rotors / GKSL), QR (Haar random band), Clifford anticommutator check; every measured number flows through it.",
+    "Random": "load_bearing: random density operators AND the 2000-frame commutator-matched random control band at each d.",
+    "Statistics": "load_bearing: mean/std over the rho ensemble and the random band at each d; the z(d) observable IS (E-mean)/std.",
+    "Z3": "load_bearing: binds the measured top-level (d=8) separation to flat=>sep==0; verdict flips UNSAT->SAT on the flat control."
+  },
+  "verdict": {
+    "abs_z_flat_or_drops": false,
+    "abs_z_grows_monotone": true,
+    "all_clifford_genuine": true,
+    "all_flat_controls_collapse": true,
+    "all_levels_computable": true,
+    "decides": "whether the owner's nested-Hopf substrate claim is finitely-validatable at scale on a density-operator carrier (no PEPS) or genuinely PEPS-bound. RESULT: the iter-5 discriminator is NOT matchable at d>2 on the density-operator carrier -> PEPS-bound for THIS test.",
+    "hopf_rotor_more_commuting_than_random_at_scale": true,
+    "interpretation": "needs_geometric_carrier (FIRED HERE): the ITER-5 VALIDATED commutator-matched RELATIVE band populated at d=2 but NOT at d=4 or d=8, because the genuine higher-Hopf rotor sits at/below the random-frame commutator-norm range — the rotor is structurally MORE COMMUTING with the dissipative Weyl Hamiltonian than a generic random unitary at higher d, so no equally-non-commuting random frame exists to match against. The iter-5 discriminator therefore cannot be applied at scale on this density-operator carrier; the true geometric (PEPS) carrier is genuinely required to test the nested-Hopf substrate claim at d>2. The signed z_full series (Hopf E far BELOW the random band, growing more negative with d) and the nearest-k z_matched are reported as SECONDARY observables but do NOT settle the iter-5 question. hopf_geometry_sharpens_with_dimension would require |z_matched| growing monotonically with the iter-5 band populated at every d. hopf_signal_is_2dim_artifact would require |z| flat/dropping with the band populated. mixed_z_series_held_open would hold a non-monotone populated series open.",
+    "iter5_discriminator_matchable_at_scale": false,
+    "iter5_relative_band_populated_per_d": [
+      true,
+      false,
+      false
+    ],
+    "mixed": false,
+    "overall": "needs_geometric_carrier",
+    "seed_robust_all_d": false,
+    "seed_robust_high_d_d4_d8": true,
+    "z3_load_bearing": true,
+    "z8_reenters_matched_band": false,
+    "z_full_series": [
+      -0.9659906839403741,
+      -5.142980196540869,
+      -10.289560642635719
+    ],
+    "z_matched_series": [
+      -0.7079891293948724,
+      -4.948497550257648,
+      -9.947533994557686
+    ]
+  },
+  "version": "1.0",
+  "z3_load_bearing": {
+    "encoding": "FREE int sep, FREE bool is_flat; law Or([Not(is_flat), sep==0]); assert is_flat=true + sep==IntVal(measured |E_hopf-E_matched_mean|). genuine nonzero separation: unsat; flat zero: sat.",
+    "flat_verdict": "sat",
+    "genuine_verdict": "unsat",
+    "level": "d=8 (top)",
+    "load_bearing_flip": true,
+    "measured_separation": 0.7352047284864077
+  },
+  "z_series": {
+    "definition": "z(d) = (E_hopf(d) - band_mean(d)) / band_std(d); z_matched uses the commutator-matched random sub-band (iter-5 paired discriminator at d=2; nearest-k fallback where the iter-5 RELATIVE band did not populate because the Hopf rotor sits at/below the random commutator-norm range at higher d). z_full uses the full random band. SIGNED z: z<0 means the genuine Hopf frame produces LESS substrate effect than random frames of comparable non-commutation.",
+    "dims": [
+      2,
+      4,
+      8
+    ],
+    "hopf_rotor_more_commuting_than_all_random": [
+      false,
+      false,
+      true
+    ],
+    "iter5_relative_band_populated": [
+      true,
+      false,
+      false
+    ],
+    "z_full_band": [
+      -0.9659906839403741,
+      -5.142980196540869,
+      -10.289560642635719
+    ],
+    "z_matched_band": [
+      -0.7079891293948724,
+      -4.948497550257648,
+      -9.947533994557686
+    ],
+    "z_tensor_nested_matched": [
+      -1.5369405774473783,
+      -4.145535696861101,
+      -6.694657216507221
+    ]
+  }
+}

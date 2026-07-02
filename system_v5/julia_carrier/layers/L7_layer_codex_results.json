@@ -1,0 +1,420 @@
+{
+  "N01_witness": {
+    "commuting_control_gap_norm": 8.777083671441753e-17,
+    "operator_gap_norm_sigma_x_sigma_z": 2.8284271247461903,
+    "state_gap_norm_H0_rho_minus_rho_H0": 0.7309162961102346
+  },
+  "actual_tools_used": [
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "file exists",
+    "fresh run emits JSON",
+    "bounded POC measured L/R dependency erasures"
+  ],
+  "artifacts_emitted": [
+    "layers/L7_layer_codex_results.json"
+  ],
+  "blocked_consumers": [
+    "stacking",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics",
+    "gravity",
+    "final manifold"
+  ],
+  "branch_status_before_run": "registry marks L7 partial; this file is a new bounded POC cross-check, not parent-complete admission",
+  "bridge_layer": "none",
+  "carrier_layer": "left_right_weyl_on_finite_spinor_density_payloads",
+  "carrier_realization": "Julia ComplexF64 spinors and spinor-derived density matrices; no NumPy and no dense-state closure claim",
+  "checks": {
+    "F01_finite_sites_8_16_32_64_present": true,
+    "N01_commuting_control_collapses": true,
+    "N01_operator_gap_positive": true,
+    "N01_state_gap_positive": true,
+    "chern_edges_opposite_abs1": true,
+    "dependency_chern_opposition_collapses_on_merge": true,
+    "dependency_circulation_collapses_on_merge": true,
+    "dependency_gamma5_projection_trivial_on_merge": true,
+    "finite_map_present": true,
+    "gamma5_LR_projection_values": true,
+    "gamma5_constructed_from_gammas": true,
+    "opposite_circulation_measured": true,
+    "qit_readouts_derived": true,
+    "z3_omitted_not_decorative": true
+  },
+  "chern_edge_readout": {
+    "left_H_plus_numeric": 1.0000000000000002,
+    "left_rounded": 1,
+    "method": "finite transition-function phase winding between two gauge-fixed eigenline patches at the equator",
+    "right_H_minus_numeric": -1.0000000000000002,
+    "right_after_HL_eq_HR_numeric": 1.0000000000000002,
+    "right_after_HL_eq_HR_rounded": 1,
+    "right_rounded": -1
+  },
+  "circulation_readout": {
+    "dot_r_L": [
+      0.7586734293654754,
+      -0.4334203910947754,
+      -0.5523030472458841
+    ],
+    "dot_r_R": [
+      -0.7586734293654754,
+      0.4334203910947754,
+      0.5523030472458841
+    ],
+    "dot_r_R_after_HL_eq_HR": [
+      0.7586734293654754,
+      -0.4334203910947754,
+      -0.5523030472458841
+    ],
+    "n_hat": [
+      0.3711336892730325,
+      -0.41125625027552243,
+      0.8325431408016674
+    ],
+    "r0": [
+      0.023732174652883353,
+      -0.7703734181114281,
+      0.6371511441985801
+    ],
+    "signed_split_after_HL_eq_HR": 0.0,
+    "signed_split_before": 2.0
+  },
+  "classification": "L7_layer_codex_poc",
+  "codomain_or_output": "finite table of rho_L/rho_R, gamma5 q_L/q_R, circulation split, Chern edge winding, entropy/readout scalars, and blocked consumers",
+  "construction": {
+    "gamma5_anticomm_residual": 0.0,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_sq_residual": 0.0,
+    "max_clifford_residual": 0.0
+  },
+  "cut_layer": "derived readouts only; no Ax0 bridge/cut-state claim",
+  "data_or_artifact_dependencies": [],
+  "dependency_receipts": [
+    "system_v5/ops/MANIFOLD_GEOMETRY_LAYER_STACK_NONCOMMUTATIVE_ORDER_20260528.md",
+    "system_v5/READ ONLY Reference Docs/Formal constraints and geometry .md",
+    "system_v5/READ ONLY Reference Docs/apple axes terrain operator math.md",
+    "system_v5/READ ONLY Reference Docs/AXIS_0_1_2_QIT_MATH.md"
+  ],
+  "domain": {
+    "K_site_counts": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "hamiltonians": {
+      "H0": "n dot sigma",
+      "H_L": "+H0",
+      "H_R": "-H0"
+    },
+    "sheet_set": [
+      "L",
+      "R"
+    ],
+    "spinor_carrier": "psi in S^3 subset C^2 sampled by finite Hopf-torus chart"
+  },
+  "downstream_blocks": [
+    "layer_completion",
+    "stacking",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "physics",
+    "gravity",
+    "final_manifold_admission"
+  ],
+  "eligible_consumers": [],
+  "fail_rule": "any dependency erasure fails to collapse its signature or any minimum witness is absent",
+  "finite_map": "F: (K=(V,E,F,C), v, s in {L,R}, psi_{v,s}, H_s) -> (rho_{v,s}, gamma5 projection q_s, Bloch circulation dot_r_s, transition winding C_s, derived entropy/readouts)",
+  "fresh_rerun": true,
+  "geometry_layer": "L7 Weyl spinor bundle",
+  "graph_surfaces_used": [
+    "finite PEPS3D K=(V,E,F,C) anchor only"
+  ],
+  "kill_conditions": [
+    "merged signed circulation split remains nonzero",
+    "gamma5 merged quotient norm remains nonzero",
+    "Chern edge signs remain opposite after H_R=H_L",
+    "N01 commuting control remains nonzero"
+  ],
+  "law_or_candidate_tested": "H_L=+H0, H_R=-H0 Weyl sheet sign flip plus gamma5 sheet projection",
+  "name": "Weyl spinor bundle L/R dependency-forcing POC",
+  "negatives_run": {
+    "chern_left_rounded": 1,
+    "chern_right_after_merge_rounded": 1,
+    "chern_right_rounded": -1,
+    "circulation_split_collapsed": true,
+    "gamma5_fro_norm_after_sheet_quotient": 3.163757407787533e-17,
+    "gamma5_fro_norm_before": 2.0,
+    "gamma5_projection_trivial_after_merge": true,
+    "merge_rule": "set H_L=H_R and quotient L/R sheet labels with P_merge=[I I]/sqrt(2)",
+    "opposite_chern_sign_collapsed_after_merge": true,
+    "opposite_residual_after_merge_norm_dot_rL_plus_dot_rRmerged": 2.067343477837206,
+    "opposite_residual_before_norm_dot_rL_plus_dot_rR": 0.0,
+    "signed_circulation_split_after_HL_eq_HR": 0.0,
+    "signed_circulation_split_before": 2.0
+  },
+  "pass_rule": "all required bounded checks true, with promotion_allowed=false and downstream consumers blocked",
+  "peps3d_embedding": {
+    "anchor_kind": "finite PEPS3D K=(V,E,F,C) grid cell complex; each vertex carries local L/R spinor-density payload and local Hamiltonian channel readout",
+    "stress": [
+      {
+        "gamma5_q_left_minmax": [
+          -1.0000000000000002,
+          -1.0
+        ],
+        "gamma5_q_right_minmax": [
+          1.0,
+          1.0000000000000002
+        ],
+        "max_abs_merged_signed_circulation_split": 0.0,
+        "mean_n01_state_commutator_gap": 1.161789455829022,
+        "mean_signed_circulation_split": 2.0,
+        "min_n01_state_commutator_gap": 0.7659843541229433,
+        "peps3d_counts": {
+          "C": 1,
+          "E": 12,
+          "F": 6,
+          "V": 8,
+          "dims": [
+            2,
+            2,
+            2
+          ]
+        },
+        "site_count": 8
+      },
+      {
+        "gamma5_q_left_minmax": [
+          -1.0000000000000002,
+          -0.9999999999999998
+        ],
+        "gamma5_q_right_minmax": [
+          0.9999999999999998,
+          1.0000000000000002
+        ],
+        "max_abs_merged_signed_circulation_split": 0.0,
+        "mean_n01_state_commutator_gap": 1.1548840024769225,
+        "mean_signed_circulation_split": 2.0,
+        "min_n01_state_commutator_gap": 0.4345675656189851,
+        "peps3d_counts": {
+          "C": 3,
+          "E": 28,
+          "F": 16,
+          "V": 16,
+          "dims": [
+            2,
+            2,
+            4
+          ]
+        },
+        "site_count": 16
+      },
+      {
+        "gamma5_q_left_minmax": [
+          -1.0000000000000002,
+          -0.9999999999999998
+        ],
+        "gamma5_q_right_minmax": [
+          0.9999999999999998,
+          1.0000000000000002
+        ],
+        "max_abs_merged_signed_circulation_split": 0.0,
+        "mean_n01_state_commutator_gap": 1.087843072101201,
+        "mean_signed_circulation_split": 2.0,
+        "min_n01_state_commutator_gap": 0.5530624084397321,
+        "peps3d_counts": {
+          "C": 9,
+          "E": 64,
+          "F": 42,
+          "V": 32,
+          "dims": [
+            2,
+            4,
+            4
+          ]
+        },
+        "site_count": 32
+      },
+      {
+        "gamma5_q_left_minmax": [
+          -1.0000000000000002,
+          -0.9999999999999999
+        ],
+        "gamma5_q_right_minmax": [
+          0.9999999999999999,
+          1.0000000000000002
+        ],
+        "max_abs_merged_signed_circulation_split": 0.0,
+        "mean_n01_state_commutator_gap": 1.199085911000946,
+        "mean_signed_circulation_split": 2.0,
+        "min_n01_state_commutator_gap": 0.5297838935025246,
+        "peps3d_counts": {
+          "C": 27,
+          "E": 144,
+          "F": 108,
+          "V": 64,
+          "dims": [
+            4,
+            4,
+            4
+          ]
+        },
+        "site_count": 64
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "no validator distinctness gate run",
+    "no full parent-complete L7 evidence packet",
+    "no lower L2-L6 completion asserted",
+    "no external proof/tool beyond LinearAlgebra"
+  ],
+  "promotion_status": "blocked",
+  "proof_surfaces_used": [
+    "numeric finite-map checks",
+    "measured quotient-collapse certificate"
+  ],
+  "purpose": "Test a finite Julia-native L/R Weyl spinor bundle signature and its collapse when L/R sheet geometry is erased.",
+  "qit_readouts_derived": {
+    "S_after_sheet_merge_bits": 0.0,
+    "S_block_diag_equal_LR_bits": 1.0,
+    "S_rho_L_bits": 0.0,
+    "S_rho_R_bits": 0.0,
+    "note": "entropy/readouts are derived outputs only; they do not define L7",
+    "trace_distance_rhoL_rhoR_same_local_state": 0.0
+  },
+  "quaternion_action": "not_applicable: L7 request uses Weyl/gamma5 language but no quaternion map is claimed",
+  "required_artifacts": [
+    "layers/L7_layer_codex_results.json"
+  ],
+  "required_inputs": [
+    "finite PEPS3D site count",
+    "L/R sheet label",
+    "H0=n dot sigma",
+    "Hopf-chart spinor"
+  ],
+  "required_negatives": [
+    "H_L=H_R sheet merge",
+    "gamma5 sheet quotient",
+    "commuting rho aligned with H0",
+    "Chern sign after merged H_R=H_L"
+  ],
+  "required_tools": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "result_summary": {
+    "all_pass": true,
+    "classification": "L7_layer_codex_poc",
+    "dependency_forcing_collapses": {
+      "chern_left_rounded": 1,
+      "chern_right_after_merge_rounded": 1,
+      "chern_right_rounded": -1,
+      "circulation_split_collapsed": true,
+      "gamma5_fro_norm_after_sheet_quotient": 3.163757407787533e-17,
+      "gamma5_fro_norm_before": 2.0,
+      "gamma5_projection_trivial_after_merge": true,
+      "merge_rule": "set H_L=H_R and quotient L/R sheet labels with P_merge=[I I]/sqrt(2)",
+      "opposite_chern_sign_collapsed_after_merge": true,
+      "opposite_residual_after_merge_norm_dot_rL_plus_dot_rRmerged": 2.067343477837206,
+      "opposite_residual_before_norm_dot_rL_plus_dot_rR": 0.0,
+      "signed_circulation_split_after_HL_eq_HR": 0.0,
+      "signed_circulation_split_before": 2.0
+    },
+    "honest_status": "passes local bounded POC checks; not canonical and not parent-complete",
+    "promotion_allowed": false
+  },
+  "root_constraints_in_force": {
+    "F01": "finite PEPS3D site/cell anchors with finite spinor/density payloads at 8/16/32/64 sites",
+    "N01": "measured noncommuting gaps ||[sigma_x,sigma_z]||_F and ||[H0,rho]||_F with commuting control"
+  },
+  "scientific_question": "Does H_L=+H0, H_R=-H0 force opposite circulation, opposite Chern edge sign, and nontrivial gamma5 sheet projection that collapses when H_L=H_R and sheet labels are merged?",
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "L7_layer_codex",
+  "source_math_quotes": [
+    "registry L7: Weyl spinor bundle -- left Weyl and right Weyl separately, then combined",
+    "below-terrain carrier: rho_{v,L,k}=psi_{v,L,k} psi_{v,L,k}^dag; rho_{v,R,k}=...; H_L=+H0, H_R=-H0",
+    "reference: dot r_L=2 n x r_L; dot r_R=-2 n x r_R",
+    "reference: gamma5 = i g0 g1 g2 g3"
+  ],
+  "spinor_state": {
+    "psi0": [
+      [
+        0.4264351214089358,
+        0.7979527926689876
+      ],
+      [
+        0.3816641214670752,
+        -0.18909501919795668
+      ]
+    ],
+    "q_left": -1.0,
+    "q_right": 1.0,
+    "rho0": [
+      [
+        [
+          0.81857557209929,
+          0.0
+        ],
+        [
+          0.011866087326441677,
+          0.38518670905571406
+        ]
+      ],
+      [
+        [
+          0.011866087326441677,
+          -0.38518670905571406
+        ],
+        [
+          0.18142442790070992,
+          0.0
+        ]
+      ]
+    ]
+  },
+  "tier": "2 geometry / Weyl bundle",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "receipt emission only",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "matrix products, commutators, eigenspaces, norms, entropy spectra, gamma5 algebra, and transition winding depend on it",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "z3 omitted, not decorative; no SMT check would change the numeric finite-map or quotient-collapse result",
+      "role": "omitted"
+    }
+  },
+  "topology_surfaces_used": [
+    "finite transition-function winding for Chern edge sign"
+  ],
+  "version": "1.0",
+  "witness_trace_id": "L7_layer_codex_fresh_rerun"
+}

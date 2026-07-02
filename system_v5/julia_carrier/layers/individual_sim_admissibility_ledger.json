@@ -1,0 +1,227 @@
+{
+  "artifact": "individual_sim_admissibility_ledger",
+  "date": "2026-06-02",
+  "status": "session_audit_not_registry_canon",
+  "promotion_allowed": false,
+  "method": "external opus-confirmed deep audit (50) + loop batch-2 two-stage breadth->opus-confirm (24)",
+  "fabricated_external_31": "PEPS2D 6/7, JAX lane 13/18, Julia by-construction 12/25 (see external audit)",
+  "fabricated_batch2_17": [
+    "L1_layer",
+    "L3_layer",
+    "L4_layer",
+    "L0_layer_codex",
+    "L1_layer_codex",
+    "L2_layer_codex",
+    "G_S3_spinor_carrier",
+    "G_nested_hopf_tori",
+    "G_SO3_frame_reduction",
+    "G_clifford_torus_T2",
+    "g_su2_spin3_double_cover",
+    "g_u1_hopf_bundle_chern",
+    "gstructure_selection",
+    "l2_weyl_chirality_gamma5_genuine",
+    "l5_operator_substage_noncommutation",
+    "emergence_3d_dirac_from_weyl_coupling",
+    "emergent_basin_nested_terrains"
+  ],
+  "cleared_false_positive_batch2": [
+    "L0_layer",
+    "L2_layer",
+    "G_S2_hopf_base",
+    "G_hopf_fibration",
+    "l3_clifford_quaternion_invariant"
+  ],
+  "genuine_islands_external": [
+    "G_Clifford_Cl3_Cl6",
+    "l1_boundary_closure",
+    "L10_layer_bf",
+    "clifford_module_gstructure",
+    "flux_direction_impedance"
+  ],
+  "genuine_bf_verified_subset": [
+    "R0_layer_bf",
+    "L0_layer",
+    "L1_layer_bf",
+    "L2_layer_bf",
+    "L3_layer",
+    "L4_layer_bf",
+    "L5_layer_bf",
+    "L6_layer",
+    "L7_layer_bf",
+    "L8_layer_bf",
+    "L9_layer",
+    "L10_layer_bf",
+    "L12_layer_bf"
+  ],
+  "disposition": {
+    "retract_superseded_by_genuine_bf_or_structure": [
+      "L1_layer->L1_layer_bf",
+      "L4_layer->L4_layer_bf",
+      "L2_layer_codex->L2_layer_bf",
+      "G_S3_spinor_carrier->L2_layer_bf",
+      "G_nested_hopf_tori->nested_hopf_tori_spinor_network",
+      "G_SO3_frame_reduction->frame_bundle_so3_spinor_network",
+      "G_clifford_torus_T2->clifford_module_gstructure(island)",
+      "l2_weyl_chirality_gamma5_genuine->L7_layer_bf",
+      "l5_operator_substage_noncommutation->L11_layer_bf",
+      "L0_layer_codex/L1_layer_codex->opus _layer/_bf"
+    ],
+    "rebuild_or_retract_no_clean_replacement": [
+      "L3_layer(verify vs L3_layer status)",
+      "g_su2_spin3_double_cover",
+      "g_u1_hopf_bundle_chern",
+      "gstructure_selection",
+      "emergence_3d_dirac_from_weyl_coupling",
+      "emergent_basin_nested_terrains"
+    ]
+  },
+  "note": "L3_layer flagged fabricated here but was in the verified subset earlier \u2014 DISAGREEMENT, re-audit L3 specifically. Cleared sims (L0_layer, L2_layer, G_S2_hopf_base, G_hopf_fibration, l3_clifford) stay admissible at PoC.",
+  "full_122_audit_two_threads": {
+    "fabricated": 62,
+    "honest": 59,
+    "pct_fab": "~51%",
+    "cross_thread_convergent": true,
+    "pattern": "_codex layer cluster = fabrication cluster; base/_bf/G_*/branch_prune honest; PEPS2D 6/7 fab; jax-lane heavily hit"
+  },
+  "scope_fork_resolved": {
+    "reframe": "NOT 'rebuild ~56 vs stop'. The _codex cluster (all 14, L0-L13) has genuine _bf/base replacements -> RETRACT, not rebuild.",
+    "retract_codex_cluster_all_superseded": [
+      "L0_layer_codex",
+      "L1_layer_codex",
+      "L2_layer_codex",
+      "L3_layer_codex",
+      "L4_layer_codex",
+      "L5_layer_codex",
+      "L6_layer_codex",
+      "L7_layer_codex",
+      "L8_layer_codex",
+      "L9_layer_codex",
+      "L10_layer_codex",
+      "L11_layer_codex",
+      "L12_layer_codex",
+      "L13_layer_codex"
+    ],
+    "codex_cluster_retraction_records": [
+      {
+        "sim": "L0_layer_codex",
+        "filename": "L0_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L0_layer.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L1_layer_codex",
+        "filename": "L1_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L1_layer_bf.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L2_layer_codex",
+        "filename": "L2_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L2_layer_bf.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L3_layer_codex",
+        "filename": "L3_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L3_layer.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L4_layer_codex",
+        "filename": "L4_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L4_layer_bf.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L5_layer_codex",
+        "filename": "L5_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L5_layer_bf.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L6_layer_codex",
+        "filename": "L6_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L6_layer.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L7_layer_codex",
+        "filename": "L7_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L7_layer_bf.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L8_layer_codex",
+        "filename": "L8_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L8_layer_bf.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L9_layer_codex",
+        "filename": "L9_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L9_layer.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L10_layer_codex",
+        "filename": "L10_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L10_layer_bf.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L11_layer_codex",
+        "filename": "L11_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L11_layer_bf.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L12_layer_codex",
+        "filename": "L12_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L12_layer_bf.jl",
+        "replacement_confirmed_by": "ls layers"
+      },
+      {
+        "sim": "L13_layer_codex",
+        "filename": "L13_layer_codex.jl",
+        "retracted": true,
+        "replacement_filename": "L13_layer_bf.jl",
+        "replacement_confirmed_by": "ls layers"
+      }
+    ],
+    "l3_layer_reaudit_current_run": {
+      "verdict": "genuine",
+      "command": "julia --project=system_v5/julia_carrier system_v5/julia_carrier/layers/L3_layer.jl .",
+      "result_file": "system_v5/julia_carrier/layers/L3_layer_results.json",
+      "decisive_number": {
+        "anti_tautology_non_below_control_nonortho_partner_max": 1.9694977528231998,
+        "anti_tautology_non_below_control_nonfibre_motion": 0.6856318131334184,
+        "erase2_antipodal_surviving_fraction": 0.015487322660346687,
+        "erase1_phase_surviving_fraction": 0.049213346283969395
+      },
+      "reason": "Targeted below-geometry erasures collapse their signatures, while non-below controls leave comparable nonzero signatures intact."
+    },
+    "peps2d_rebuilt_real_controls": "in progress, cross-thread convergent (frame_bundle SO(3) invariant flip-verified)",
+    "genuine_rebuild_or_retract_few": [
+      "emergence_3d_dirac_from_weyl_coupling",
+      "emergent_basin_nested_terrains",
+      "g_su2_spin3_double_cover",
+      "g_u1_hopf_bundle_chern",
+      "gstructure_selection"
+    ],
+    "jax_lane": "owner's separate app, run-only -> flag/retract, do not rebuild here",
+    "open_disagreement": "resolved_current_run: L3_layer genuine under anti-tautology standard; see l3_layer_reaudit_current_run"
+  }
+}

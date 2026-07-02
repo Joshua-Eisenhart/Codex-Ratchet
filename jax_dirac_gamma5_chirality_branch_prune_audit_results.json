@@ -1,0 +1,183 @@
+{
+  "name": "jax_dirac_gamma5_chirality_branch_prune_audit",
+  "object": "JAX cross-audit of Julia branch_prune_dirac_gamma5_chirality_object",
+  "lane": "jax_batched_stress_runner_not_native_spinor_engine_not_pytorch_port",
+  "classification": "diagnostic_jax_audit",
+  "promotion_allowed": false,
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "claim_boundary": "Cross-audit harness evidence only. This does not admit a layer, bridge, Axis0/FEP, flux, physics, or final manifold claim.",
+  "finite_map": "finite C4 Dirac spinor ensemble -> RK4 retracted flow toward nearest target -> gamma5 monotone chirality prune -> survivor basin sets",
+  "domain": {
+    "futures": 600,
+    "state": "normalized Dirac 4-spinor psi in C^4",
+    "initial_filter": "q_gamma5(psi)>0.1"
+  },
+  "codomain_or_output": {
+    "survivor_basin_sets": "labels {1,2,3,4}",
+    "gamma5_selector_controls": "rate-matched random prune and inverted-sign prune",
+    "reported_limits": "rotation covariance and boost variance reported, not used as selector proof"
+  },
+  "root_constraints_in_force": {
+    "F01": "finite ensemble, finite C4 spinors, finite targets, finite RK4 steps",
+    "N01": "Dirac gamma matrices anticommute; monotone order-sensitive prune latch"
+  },
+  "tool_manifest": {
+    "jax": "load_bearing batched complex spinor flow, gamma5 charge, latch, and controls",
+    "json": "supportive receipt serialization"
+  },
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "json": "supportive"
+  },
+  "blocked_consumers": [
+    "layer_stacking",
+    "flux",
+    "xi_phi0",
+    "axis0",
+    "fep_holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "parameters": {
+    "N": 600,
+    "rng_seed": 20260305,
+    "draw_rows": 6000,
+    "dt": 0.01,
+    "t_end": 12.0,
+    "steps": 1200,
+    "gamma5_prune_threshold": -0.01,
+    "inverted_sign_threshold": 0.99,
+    "rate_matched_random_seed": 11
+  },
+  "gamma5_verification": {
+    "g5_sq_eq_I": true,
+    "anticommutes": true,
+    "clifford_relations": true,
+    "rotation_commute": true,
+    "rot_unitary": true,
+    "boost_nonunitary": true,
+    "max_g5sq_error": 0.0,
+    "max_anticomm_error": 0.0,
+    "max_clifford_error": 0.0,
+    "boost_nonunitary_size": 0.7585837018395334
+  },
+  "runs": {
+    "A": {
+      "name": "A_no_prune",
+      "populated": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "survivors": 600,
+      "pruned": 0,
+      "max_norm_drift": 2.220446049250313e-16
+    },
+    "B_gamma5": {
+      "name": "B_gamma5_prune",
+      "populated": [
+        1,
+        2
+      ],
+      "survivors": 454,
+      "pruned": 146,
+      "max_norm_drift": 2.220446049250313e-16
+    },
+    "C_control": {
+      "name": "C_trivial_control",
+      "populated": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "survivors": 600,
+      "pruned": 0,
+      "max_norm_drift": 2.220446049250313e-16
+    },
+    "D_inverted_sign": {
+      "name": "D_inverted_sign_prune",
+      "populated": [
+        3,
+        4
+      ],
+      "survivors": 135,
+      "pruned": 465,
+      "max_norm_drift": 2.220446049250313e-16
+    },
+    "rate_matched_random_populated": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "reported_limits": {
+    "gamma5_prune_rotation_covariant": true,
+    "gamma5_prune_boost_changes": true,
+    "rotation_B": {
+      "name": "reported_rotation_gamma5_prune",
+      "populated": [
+        1,
+        2
+      ],
+      "survivors": 454,
+      "pruned": 146,
+      "max_norm_drift": 2.220446049250313e-16
+    },
+    "boost_B": {
+      "name": "reported_boost_gamma5_prune",
+      "populated": [
+        1,
+        2
+      ],
+      "survivors": 389,
+      "pruned": 211,
+      "max_norm_drift": 2.220446049250313e-16
+    }
+  },
+  "max_norm_drift": 2.220446049250313e-16,
+  "checks": {
+    "gamma5_genuine": true,
+    "A_reaches_forbidden": true,
+    "B_kills_all_forbidden": true,
+    "B_preserves_allowed": true,
+    "control_C_equals_A": true,
+    "B_pruned_some_A_none": true,
+    "rate_matched_random_KEEPS_forbidden": true,
+    "inverted_sign_flips_to_forbidden": true,
+    "norm_drift_small": true
+  },
+  "AUDIT_PASS": true,
+  "julia_reference_info_only": {
+    "A": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "B_gamma5": [
+      1,
+      2
+    ],
+    "C_control": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "inverted_survivors": [
+      3,
+      4
+    ],
+    "random_prune_survivors": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "B_pruned": 130
+  }
+}

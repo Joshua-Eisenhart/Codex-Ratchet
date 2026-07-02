@@ -1,0 +1,149 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^2); finite genuine word plus finite single-base lift schedules",
+    "finite_operator": "genuine Ti/Fi/WeylL/Te/Fe/WeylR channels vs same-base H0 lift channels",
+    "finite_path": "forward and reversed finite words; forward-then-reversed vs forward-then-forward residual",
+    "finite_probe": "20 random spinor-derived density operators"
+  },
+  "N01_witness": {
+    "deflated_gap_above_floor": false,
+    "deflated_irreversibility_above_floor": false,
+    "gap_formula": "Delta = mean_rho ||Phi_fwd(rho) - Phi_rev(rho)||_1",
+    "genuine_gap_above_floor": true,
+    "genuine_irreversibility_above_floor": true,
+    "irreversibility_formula": "I_order = mean_rho ||Phi_rev(Phi_fwd(rho)) - Phi_fwd(Phi_fwd(rho))||_1"
+  },
+  "bloch_free": true,
+  "claim_ceiling": "Bounded deflation POC. It tests whether a single fixed Hopf base with only spin^c/connection lift choices can reproduce the existing order gap and order-discriminating irreversibility. No layer completion, manifold admission, bridge, flux, FEP, physics, or ratchet-edge admission.",
+  "classification": "deflation_ordernull_poc",
+  "controls": {
+    "controls_flat": true,
+    "flat_same_lift_word": {
+      "fwd_rev_trace_gap_max": 0.0,
+      "fwd_rev_trace_gap_mean": 0.0,
+      "order_discriminating_irreversibility_max": 0.0,
+      "order_discriminating_irreversibility_mean": 0.0,
+      "raw_recovery_residual_max": 0.8086996427101043,
+      "raw_recovery_residual_mean": 0.38538664635156844
+    },
+    "forbidden_nonbase_axis_control_not_used_for_verdict": {
+      "description": "This intentionally changes axes/channel families, so it is not a single-base spin^c deflation. It proves the metric can see order gaps when noncommuting structure is smuggled in.",
+      "fwd_rev_trace_gap_max": 0.24365600289914413,
+      "fwd_rev_trace_gap_mean": 0.1370756140194277,
+      "order_discriminating_irreversibility_max": 0.08085502082993026,
+      "order_discriminating_irreversibility_mean": 0.03609503340094043,
+      "raw_recovery_residual_max": 0.8595482723845107,
+      "raw_recovery_residual_mean": 0.488278021765137
+    },
+    "same_base_commuting_dephase_strengths": {
+      "fwd_rev_trace_gap_max": 2.8314952192869797e-16,
+      "fwd_rev_trace_gap_mean": 1.6432418907321518e-16,
+      "order_discriminating_irreversibility_max": 4.442805806730631e-16,
+      "order_discriminating_irreversibility_mean": 1.8240570878107685e-16,
+      "raw_recovery_residual_max": 0.7396288711043353,
+      "raw_recovery_residual_mean": 0.35247089911461243
+    }
+  },
+  "deflated_construction": {
+    "best_candidate": "lift_only",
+    "best_gap_mean": 5.447517289532791e-16,
+    "best_order_discriminating_irreversibility_mean": 6.035711434234055e-16,
+    "candidates": {
+      "connection_dressed_same_base_dephase": {
+        "description": "same H0 lift plus same-base dephasing; dissipative but no distinct layer/channel family",
+        "fwd_rev_trace_gap_max": 8.305159065902539e-16,
+        "fwd_rev_trace_gap_mean": 5.01245364706198e-16,
+        "order_discriminating_irreversibility_max": 7.687407943314629e-16,
+        "order_discriminating_irreversibility_mean": 4.624254658636446e-16,
+        "raw_recovery_residual_max": 0.7390646023271104,
+        "raw_recovery_residual_mean": 0.35220199624856596
+      },
+      "lift_only": {
+        "description": "single fixed Hopf base H0; U_m=exp(-i angle_m H0); only spin^c lift angle varies",
+        "fwd_rev_trace_gap_max": 9.498622044206051e-16,
+        "fwd_rev_trace_gap_mean": 5.447517289532791e-16,
+        "order_discriminating_irreversibility_max": 8.136576476684803e-16,
+        "order_discriminating_irreversibility_mean": 6.035711434234055e-16,
+        "raw_recovery_residual_max": 0.9647314257480176,
+        "raw_recovery_residual_mean": 0.45974375301198567
+      }
+    },
+    "fixed_base": "single Hopf base H0 = hopf_h0(2pi*0.21, 2pi*0.13, pi/4)",
+    "forbidden_in_deflated_verdict": "changing base axis, jump basin, dephasing basis, Weyl chirality channel, terrain channel, or composing genuine layer families",
+    "gap_match_to_genuine": false,
+    "irreversibility_match_to_genuine": false,
+    "varied_only": "spin^c/connection lift angles on the same H0"
+  },
+  "genuine_construction": {
+    "fwd_rev_trace_gap_max": 0.35367127166592105,
+    "fwd_rev_trace_gap_mean": 0.3525866472135488,
+    "note": "raw recovery is reported, but verdict uses order-discriminating irreversibility: rev(fwd(rho)) vs fwd(fwd(rho)).",
+    "order_discriminating_irreversibility_max": 0.35230885545126034,
+    "order_discriminating_irreversibility_mean": 0.35230582685402956,
+    "raw_recovery_residual_max": 0.9500461671119156,
+    "raw_recovery_residual_mean": 0.4711415822867976,
+    "word": "Ti Fi WeylL Te Fe WeylR forward vs reversed"
+  },
+  "n_rho": 20,
+  "noise_floor": {
+    "definition": "eps(Float64) * max PTM HS scale * word_depth(6) * 8 safety",
+    "machine_eps": 2.220446049250313e-16,
+    "match_tolerance": 0.05,
+    "match_tolerance_note": "absolute 0.05 tolerance dominates numerical floor; target gap is ~0.35, so this is a permissive deflation match bar.",
+    "max_ptm_hs_scale": 2.0000000000000004,
+    "word_floor": 2.1316282072803012e-14
+  },
+  "non_numpy": true,
+  "object_id": "deflation_order_null",
+  "promotion_allowed": false,
+  "reused_from": "order_null_killtest.jl genuine channels: Ti/Fi/WeylL/Te/Fe/WeylR definitions copied verbatim; same seed and density-operator construction.",
+  "script": "deflation_order_null.jl",
+  "seed": 20260602,
+  "side_by_side": {
+    "deflated_best_gap_mean": 5.447517289532791e-16,
+    "deflated_best_order_discriminating_irreversibility_mean": 6.035711434234055e-16,
+    "forbidden_nonbase_gap_mean": 0.1370756140194277,
+    "forbidden_nonbase_order_discriminating_irreversibility_mean": 0.03609503340094043,
+    "gap_deficit": 0.35258664721354827,
+    "genuine_gap_mean": 0.3525866472135488,
+    "genuine_order_discriminating_irreversibility_mean": 0.35230582685402956,
+    "irreversibility_deficit": 0.35230582685402895
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: density operators, channel composition, trace norms, PTM scale, Hopf-base generator.",
+    "Random": "load_bearing: same spinor-derived rho ensemble as order_null_killtest.",
+    "Statistics": "supportive: ensemble means.",
+    "Z3": "load_bearing: measured same-gap/same-irreversibility reproduction is UNSAT for genuine-vs-deflated and SAT for flat controls."
+  },
+  "verdict": {
+    "blocked_consumers": [
+      "ratchet edge admission",
+      "layer completion",
+      "manifold admission",
+      "bridge/Xi/Phi0/Axis0",
+      "flux/FEP/physics"
+    ],
+    "overall": "order_null_survives",
+    "promotion_allowed": false,
+    "reading": "single fixed Hopf base with only spin^c/connection lift choices cannot reproduce the genuine order gap or order-discriminating irreversibility; ORDER-NULL survives this deflation control as a genuine multi-channel order DOF candidate."
+  },
+  "z3_verdict_flip": {
+    "encoding": "single_base_reproduces => abs_scaled_delta <= scaled_tolerance; measured literals supplied from genuine-vs-best-deflated gap and irreversibility.",
+    "flat_control_same_gap_verdict": "sat",
+    "gap_same_reproduction_verdict": "unsat",
+    "gap_scaled_delta": 352586647,
+    "gap_scaled_tolerance": 50000000,
+    "irreversibility_same_reproduction_verdict": "unsat",
+    "irreversibility_scaled_delta": 352305827,
+    "irreversibility_scaled_tolerance": 50000000,
+    "load_bearing_flip": true
+  }
+}

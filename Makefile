@@ -30,6 +30,16 @@ tools:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/cleanup_first_guard.py --context tools
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/sim_tools_load_bearing.py
 
+# Wizard MMM-load gate: prove required MMMs were actually read before any wizard
+# FULL/PARTIAL claim. RECEIPT=path to an mmm-load receipt JSON.
+wizard-mmm-gate:
+	@test -n "$(RECEIPT)" || (echo "RECEIPT is required, e.g. make wizard-mmm-gate RECEIPT=/tmp/wizard_mmm_load_receipt_session.json"; exit 2)
+	$(PYTHON) scripts/wizard_mmm_load_gate.py validate --input "$(RECEIPT)"
+
+# Self-test the MMM-load gate (hermetic; rejects fabricated/shallow/missing reads)
+wizard-mmm-selftest:
+	$(PYTHON) scripts/wizard_mmm_load_gate.py selftest
+
 # Show untracked / modified sim files
 status:
 	@git status --short $(PROBES)/
@@ -325,6 +335,14 @@ receipt-reconcile-all-c-with-tier-d:
 stage-gate:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/stage_gate.py
 
+# Fail closed when formal-scout/status evidence is narrated as full layer, G-structure, stack, Axis0, or final manifold completion
+layer-completion-claim-gate:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/validate_layer_completion_claims.py --use-default-status --require-status --resolve-status-receipts $(if $(CLAIM_FILE),--claim-file "$(CLAIM_FILE)",) $(if $(STATUS),--status "$(STATUS)",) $(if $(EVIDENCE),--evidence $(EVIDENCE),)
+
+install-pre-commit-hook:
+	cp scripts/hooks/pre-commit .git/hooks/pre-commit
+	chmod +x .git/hooks/pre-commit
+
 # Check one stage-gate claim, e.g. make stage-gate-claim CLAIM=scientific_coupling
 stage-gate-claim:
 	@test -n "$(CLAIM)" || (echo "CLAIM is required, e.g. make stage-gate-claim CLAIM=tool_micro"; exit 2)
@@ -349,4 +367,4 @@ telegram:
 telegram-log:
 	tail -f /tmp/telegram_bot.log
 
-.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit helper-process-audit helper-process-audit-strict semantic-naming-audit runner-preflight state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue mass-lego-batch runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-validate-run-boundary receipt-reconcile receipt-reconcile-all-c receipt-reconcile-strict receipt-reconcile-all-c-strict receipt-reconcile-scope-strict receipt-reconcile-all-c-scope-strict receipt-reconcile-run-boundary-strict receipt-reconcile-all-c-run-boundary-strict receipt-reconcile-all-c-with-tier-d stage-gate stage-gate-claim lego-registry lego-normalize
+.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit helper-process-audit helper-process-audit-strict semantic-naming-audit runner-preflight state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue mass-lego-batch runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-validate-run-boundary receipt-reconcile receipt-reconcile-all-c receipt-reconcile-strict receipt-reconcile-all-c-strict receipt-reconcile-scope-strict receipt-reconcile-all-c-scope-strict receipt-reconcile-run-boundary-strict receipt-reconcile-all-c-run-boundary-strict receipt-reconcile-all-c-with-tier-d stage-gate layer-completion-claim-gate install-pre-commit-hook stage-gate-claim lego-registry lego-normalize

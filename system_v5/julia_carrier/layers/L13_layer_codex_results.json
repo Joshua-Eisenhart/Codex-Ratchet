@@ -1,0 +1,1216 @@
+{
+  "all_pass": true,
+  "allowed_claims": [
+    "bounded Julia POC for finite transition-map cocycle/gluing survivor check",
+    "dependency-forcing broken-cocycle erasure collapses the declared gluing survivor signature for N=8,16,32,64"
+  ],
+  "blocked_consumers": [
+    "layer_completion",
+    "stacking_readiness",
+    "full_manifold_admission",
+    "Axis0",
+    "flux",
+    "FEP",
+    "Xi",
+    "Phi0",
+    "bridge",
+    "basin",
+    "physics"
+  ],
+  "classification": "L13_layer_codex_poc",
+  "honest_status": "passes local rerun for bounded POC; promotion still blocked",
+  "layer": "L13 gluing / groupoid / dynamic transition",
+  "math_quoted_from_request_and_registry": [
+    "transition maps g_ij on overlaps",
+    "cocycle g_ij g_jk = g_ik",
+    "groupoid composition",
+    "survivor dynamics under valid gluing",
+    "L13 gluing / groupoid / dynamic transition layer: compatibility of local patches, transitions, survivor dynamics"
+  ],
+  "minimum_standard": {
+    "8_16_32_64_site_shell_stress": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "F01_witness": true,
+    "Julia_native_spinor_density": true,
+    "N01_witness_measured_noncommuting_gap": true,
+    "PEPS3D_K_anchor": true,
+    "QIT_entropy_readouts_derived": true,
+    "Z3": "z3 omitted, not decorative",
+    "blocked_consumers": true,
+    "finite_map_domain_codomain": true,
+    "fresh_rerun": true,
+    "load_bearing_tool_manifest": true,
+    "negative_controls": true,
+    "non_vacuous_ablation": true
+  },
+  "name": "L13 finite gluing/groupoid/dynamic transition POC",
+  "negative_controls": {
+    "broken_cocycle_control": "U(pi/7) perturbation applied to every direct g_ik makes g_ij*g_jk != g_ik; survivor signature collapses to absent.",
+    "handwritten_channel_control": "Local Rx channel ignores gluing and therefore survives erasure; explicitly reported as not evidence."
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "Julia-only POC; not torch-native, so it is not nonclassical manifold admission under repo doctrine.",
+    "PEPS3D carrier is a finite combinatorial K=(V,E,F,C) anchor, not a full tensor-network contraction.",
+    "No quaternionic invariant is used; quaternion language is not claimed.",
+    "The hand-written local channel control survives cocycle erasure and is explicitly blocked from evidence use.",
+    "No layer completion, stack readiness, Axis0, flux, FEP, bridge, basin, or physics claim is made."
+  ],
+  "root_constraints_in_force": [
+    "F01 finite carrier/probe/operator/path set",
+    "N01 noncommuting or order-sensitive operation/control"
+  ],
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical_poc_blocked_from_admission",
+  "sim_id": "L13_layer_codex",
+  "stress_results": [
+    {
+      "broken": {
+        "F01_witness": {
+          "finite_carrier_dim_H": 2,
+          "finite_operator_count": 4,
+          "finite_overlap_count": 8,
+          "finite_patch_count": 8,
+          "finite_path_count": 16,
+          "finite_triple_count": 8,
+          "passes": true
+        },
+        "N01_witness": {
+          "density_commutator_norm_F_sigma_x_rho0": 1.0021834268673984,
+          "operator_commutator_norm_F_sigma_x_sigma_z": 2.8284271247461903,
+          "passes": true
+        },
+        "broken_cocycle": true,
+        "codomain_or_output": {
+          "cocycle_residuals": "finite table over triple overlaps",
+          "groupoid_composition_certificate": "max ||g_ij*g_jk - g_ik||_F",
+          "survivor_density_readout": "density and QIT readouts only if survivors are present"
+        },
+        "domain": {
+          "operator_registry": [
+            "sigma_x",
+            "sigma_z",
+            "Rx(0.23)",
+            "U_phase(h_i-h_j)"
+          ],
+          "overlap_edges": 8,
+          "patch_sites": 8,
+          "path_registry": [
+            "i->j->k",
+            "i->k direct"
+          ],
+          "triple_overlaps": 8
+        },
+        "finite_map": "Phi_L13: (K_N, psi_i in C^2, rho_i=psi_i psi_i^dagger, transitions g_ij on overlaps, direct maps g_ik on triple overlaps) -> cocycle residuals, gluing survivor set, survivor density/readouts",
+        "gluing_metrics": {
+          "global_gluing_present": false,
+          "max_cocycle_residual": 0.6293842454258953,
+          "max_dynamic_residual": 0.44504186791262895,
+          "max_section_residual": 1.594436429147036e-16,
+          "survivor_count": 0,
+          "survivor_fraction": 0.0
+        },
+        "julia_native_spinor_density": {
+          "density_type": "Matrix{ComplexF64}",
+          "rho0_entropy_bits": 0.0,
+          "rho0_trace": 1.0,
+          "spinor_type": "Vector{ComplexF64}"
+        },
+        "negative_control_handwritten_channel": {
+          "depends_on_gluing": false,
+          "readout_Tr_sigma_z_Rx_rho_Rxdag": 0.5261882606131497,
+          "status": "survives broken-cocycle erasure; reported as hand-written channel control, not evidence"
+        },
+        "peps3d_anchor": {
+          "C_count": 8,
+          "E_count": 8,
+          "F_count": 8,
+          "K": "finite periodic PEPS3D combinatorial carrier K=(V,E,F,C)",
+          "V_count": 8,
+          "note": "Index-only finite PEPS3D anchor; no continuum or Cartesian geometry claim.",
+          "sample_cell": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "sample_edge": [
+            1,
+            2
+          ],
+          "sample_face": [
+            1,
+            2,
+            3
+          ]
+        },
+        "qit_readouts_derived": {
+          "present": false,
+          "probe_Tr_sigma_x_rho": null,
+          "probe_Tr_sigma_z_rho": null,
+          "survivor_density_trace": null,
+          "survivor_mixed_density_entropy_bits": null
+        },
+        "sample_triples": [
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.4450418679126289,
+            "section_residual": 1.1491151892306092e-16,
+            "survives": false,
+            "triple": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258951,
+            "dynamic_residual": 0.44504186791262884,
+            "section_residual": 1.2719202621569003e-16,
+            "survives": false,
+            "triple": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.4450418679126288,
+            "section_residual": 1.594436429147036e-16,
+            "survives": false,
+            "triple": [
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.44504186791262884,
+            "section_residual": 0.0,
+            "survives": false,
+            "triple": [
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "site_count": 8
+      },
+      "dependency_forcing_erasure": {
+        "broken_max_cocycle_residual": 0.6293842454258953,
+        "broken_survivor_fraction": 0.0,
+        "collapsed_signature": true,
+        "erasure": "break every triple-overlap direct transition by composing g_ik with U(pi/7)",
+        "qit_readout_present_to_absent": true,
+        "survivor_fraction_delta": 1.0,
+        "valid_max_cocycle_residual": 3.1401849173675503e-16,
+        "valid_survivor_fraction": 1.0
+      },
+      "site_count": 8,
+      "valid": {
+        "F01_witness": {
+          "finite_carrier_dim_H": 2,
+          "finite_operator_count": 4,
+          "finite_overlap_count": 8,
+          "finite_patch_count": 8,
+          "finite_path_count": 16,
+          "finite_triple_count": 8,
+          "passes": true
+        },
+        "N01_witness": {
+          "density_commutator_norm_F_sigma_x_rho0": 1.0021834268673984,
+          "operator_commutator_norm_F_sigma_x_sigma_z": 2.8284271247461903,
+          "passes": true
+        },
+        "broken_cocycle": false,
+        "codomain_or_output": {
+          "cocycle_residuals": "finite table over triple overlaps",
+          "groupoid_composition_certificate": "max ||g_ij*g_jk - g_ik||_F",
+          "survivor_density_readout": "density and QIT readouts only if survivors are present"
+        },
+        "domain": {
+          "operator_registry": [
+            "sigma_x",
+            "sigma_z",
+            "Rx(0.23)",
+            "U_phase(h_i-h_j)"
+          ],
+          "overlap_edges": 8,
+          "patch_sites": 8,
+          "path_registry": [
+            "i->j->k",
+            "i->k direct"
+          ],
+          "triple_overlaps": 8
+        },
+        "finite_map": "Phi_L13: (K_N, psi_i in C^2, rho_i=psi_i psi_i^dagger, transitions g_ij on overlaps, direct maps g_ik on triple overlaps) -> cocycle residuals, gluing survivor set, survivor density/readouts",
+        "gluing_metrics": {
+          "global_gluing_present": true,
+          "max_cocycle_residual": 3.1401849173675503e-16,
+          "max_dynamic_residual": 2.3551386880256624e-16,
+          "max_section_residual": 1.594436429147036e-16,
+          "survivor_count": 8,
+          "survivor_fraction": 1.0
+        },
+        "julia_native_spinor_density": {
+          "density_type": "Matrix{ComplexF64}",
+          "rho0_entropy_bits": 0.0,
+          "rho0_trace": 1.0,
+          "spinor_type": "Vector{ComplexF64}"
+        },
+        "negative_control_handwritten_channel": {
+          "depends_on_gluing": false,
+          "readout_Tr_sigma_z_Rx_rho_Rxdag": 0.5261882606131497,
+          "status": "survives broken-cocycle erasure; reported as hand-written channel control, not evidence"
+        },
+        "peps3d_anchor": {
+          "C_count": 8,
+          "E_count": 8,
+          "F_count": 8,
+          "K": "finite periodic PEPS3D combinatorial carrier K=(V,E,F,C)",
+          "V_count": 8,
+          "note": "Index-only finite PEPS3D anchor; no continuum or Cartesian geometry claim.",
+          "sample_cell": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "sample_edge": [
+            1,
+            2
+          ],
+          "sample_face": [
+            1,
+            2,
+            3
+          ]
+        },
+        "qit_readouts_derived": {
+          "present": true,
+          "probe_Tr_sigma_x_rho": 0.10546986190606283,
+          "probe_Tr_sigma_z_rho": 0.6822212072876135,
+          "survivor_density_trace": 1.0,
+          "survivor_mixed_density_entropy_bits": 0.607701034473014
+        },
+        "sample_triples": [
+          {
+            "cocycle_residual": 1.5700924586837752e-16,
+            "dynamic_residual": 1.4220500840710912e-16,
+            "section_residual": 1.1491151892306092e-16,
+            "survives": true,
+            "triple": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "cocycle_residual": 3.1401849173675503e-16,
+            "dynamic_residual": 2.3551386880256624e-16,
+            "section_residual": 1.2719202621569003e-16,
+            "survives": true,
+            "triple": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "cocycle_residual": 1.5700924586837752e-16,
+            "dynamic_residual": 1.2412670766236366e-16,
+            "section_residual": 1.594436429147036e-16,
+            "survives": true,
+            "triple": [
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "cocycle_residual": 0.0,
+            "dynamic_residual": 0.0,
+            "section_residual": 0.0,
+            "survives": true,
+            "triple": [
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "site_count": 8
+      }
+    },
+    {
+      "broken": {
+        "F01_witness": {
+          "finite_carrier_dim_H": 2,
+          "finite_operator_count": 4,
+          "finite_overlap_count": 16,
+          "finite_patch_count": 16,
+          "finite_path_count": 32,
+          "finite_triple_count": 16,
+          "passes": true
+        },
+        "N01_witness": {
+          "density_commutator_norm_F_sigma_x_rho0": 1.0021834268673984,
+          "operator_commutator_norm_F_sigma_x_sigma_z": 2.8284271247461903,
+          "passes": true
+        },
+        "broken_cocycle": true,
+        "codomain_or_output": {
+          "cocycle_residuals": "finite table over triple overlaps",
+          "groupoid_composition_certificate": "max ||g_ij*g_jk - g_ik||_F",
+          "survivor_density_readout": "density and QIT readouts only if survivors are present"
+        },
+        "domain": {
+          "operator_registry": [
+            "sigma_x",
+            "sigma_z",
+            "Rx(0.23)",
+            "U_phase(h_i-h_j)"
+          ],
+          "overlap_edges": 16,
+          "patch_sites": 16,
+          "path_registry": [
+            "i->j->k",
+            "i->k direct"
+          ],
+          "triple_overlaps": 16
+        },
+        "finite_map": "Phi_L13: (K_N, psi_i in C^2, rho_i=psi_i psi_i^dagger, transitions g_ij on overlaps, direct maps g_ik on triple overlaps) -> cocycle residuals, gluing survivor set, survivor density/readouts",
+        "gluing_metrics": {
+          "global_gluing_present": false,
+          "max_cocycle_residual": 0.6293842454258955,
+          "max_dynamic_residual": 0.445041867912629,
+          "max_section_residual": 5.502328482176191e-16,
+          "survivor_count": 0,
+          "survivor_fraction": 0.0
+        },
+        "julia_native_spinor_density": {
+          "density_type": "Matrix{ComplexF64}",
+          "rho0_entropy_bits": 0.0,
+          "rho0_trace": 1.0,
+          "spinor_type": "Vector{ComplexF64}"
+        },
+        "negative_control_handwritten_channel": {
+          "depends_on_gluing": false,
+          "readout_Tr_sigma_z_Rx_rho_Rxdag": 0.5261882606131497,
+          "status": "survives broken-cocycle erasure; reported as hand-written channel control, not evidence"
+        },
+        "peps3d_anchor": {
+          "C_count": 16,
+          "E_count": 16,
+          "F_count": 16,
+          "K": "finite periodic PEPS3D combinatorial carrier K=(V,E,F,C)",
+          "V_count": 16,
+          "note": "Index-only finite PEPS3D anchor; no continuum or Cartesian geometry claim.",
+          "sample_cell": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "sample_edge": [
+            1,
+            2
+          ],
+          "sample_face": [
+            1,
+            2,
+            3
+          ]
+        },
+        "qit_readouts_derived": {
+          "present": false,
+          "probe_Tr_sigma_x_rho": null,
+          "probe_Tr_sigma_z_rho": null,
+          "survivor_density_trace": null,
+          "survivor_mixed_density_entropy_bits": null
+        },
+        "sample_triples": [
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.4450418679126289,
+            "section_residual": 1.1491151892306092e-16,
+            "survives": false,
+            "triple": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258951,
+            "dynamic_residual": 0.44504186791262884,
+            "section_residual": 1.2719202621569003e-16,
+            "survives": false,
+            "triple": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.4450418679126288,
+            "section_residual": 1.594436429147036e-16,
+            "survives": false,
+            "triple": [
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.44504186791262884,
+            "section_residual": 0.0,
+            "survives": false,
+            "triple": [
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "site_count": 16
+      },
+      "dependency_forcing_erasure": {
+        "broken_max_cocycle_residual": 0.6293842454258955,
+        "broken_survivor_fraction": 0.0,
+        "collapsed_signature": true,
+        "erasure": "break every triple-overlap direct transition by composing g_ik with U(pi/7)",
+        "qit_readout_present_to_absent": true,
+        "survivor_fraction_delta": 1.0,
+        "valid_max_cocycle_residual": 3.510833468576701e-16,
+        "valid_survivor_fraction": 1.0
+      },
+      "site_count": 16,
+      "valid": {
+        "F01_witness": {
+          "finite_carrier_dim_H": 2,
+          "finite_operator_count": 4,
+          "finite_overlap_count": 16,
+          "finite_patch_count": 16,
+          "finite_path_count": 32,
+          "finite_triple_count": 16,
+          "passes": true
+        },
+        "N01_witness": {
+          "density_commutator_norm_F_sigma_x_rho0": 1.0021834268673984,
+          "operator_commutator_norm_F_sigma_x_sigma_z": 2.8284271247461903,
+          "passes": true
+        },
+        "broken_cocycle": false,
+        "codomain_or_output": {
+          "cocycle_residuals": "finite table over triple overlaps",
+          "groupoid_composition_certificate": "max ||g_ij*g_jk - g_ik||_F",
+          "survivor_density_readout": "density and QIT readouts only if survivors are present"
+        },
+        "domain": {
+          "operator_registry": [
+            "sigma_x",
+            "sigma_z",
+            "Rx(0.23)",
+            "U_phase(h_i-h_j)"
+          ],
+          "overlap_edges": 16,
+          "patch_sites": 16,
+          "path_registry": [
+            "i->j->k",
+            "i->k direct"
+          ],
+          "triple_overlaps": 16
+        },
+        "finite_map": "Phi_L13: (K_N, psi_i in C^2, rho_i=psi_i psi_i^dagger, transitions g_ij on overlaps, direct maps g_ik on triple overlaps) -> cocycle residuals, gluing survivor set, survivor density/readouts",
+        "gluing_metrics": {
+          "global_gluing_present": true,
+          "max_cocycle_residual": 3.510833468576701e-16,
+          "max_dynamic_residual": 2.7755575615628914e-16,
+          "max_section_residual": 5.502328482176191e-16,
+          "survivor_count": 16,
+          "survivor_fraction": 1.0
+        },
+        "julia_native_spinor_density": {
+          "density_type": "Matrix{ComplexF64}",
+          "rho0_entropy_bits": 0.0,
+          "rho0_trace": 1.0,
+          "spinor_type": "Vector{ComplexF64}"
+        },
+        "negative_control_handwritten_channel": {
+          "depends_on_gluing": false,
+          "readout_Tr_sigma_z_Rx_rho_Rxdag": 0.5261882606131497,
+          "status": "survives broken-cocycle erasure; reported as hand-written channel control, not evidence"
+        },
+        "peps3d_anchor": {
+          "C_count": 16,
+          "E_count": 16,
+          "F_count": 16,
+          "K": "finite periodic PEPS3D combinatorial carrier K=(V,E,F,C)",
+          "V_count": 16,
+          "note": "Index-only finite PEPS3D anchor; no continuum or Cartesian geometry claim.",
+          "sample_cell": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "sample_edge": [
+            1,
+            2
+          ],
+          "sample_face": [
+            1,
+            2,
+            3
+          ]
+        },
+        "qit_readouts_derived": {
+          "present": true,
+          "probe_Tr_sigma_x_rho": 0.017034763744398593,
+          "probe_Tr_sigma_z_rho": 0.6822212072876137,
+          "survivor_density_trace": 1.0000000000000002,
+          "survivor_mixed_density_entropy_bits": 0.6210348625955212
+        },
+        "sample_triples": [
+          {
+            "cocycle_residual": 1.5700924586837752e-16,
+            "dynamic_residual": 1.4220500840710912e-16,
+            "section_residual": 1.1491151892306092e-16,
+            "survives": true,
+            "triple": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "cocycle_residual": 3.1401849173675503e-16,
+            "dynamic_residual": 2.3551386880256624e-16,
+            "section_residual": 1.2719202621569003e-16,
+            "survives": true,
+            "triple": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "cocycle_residual": 1.5700924586837752e-16,
+            "dynamic_residual": 1.2412670766236366e-16,
+            "section_residual": 1.594436429147036e-16,
+            "survives": true,
+            "triple": [
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "cocycle_residual": 0.0,
+            "dynamic_residual": 0.0,
+            "section_residual": 0.0,
+            "survives": true,
+            "triple": [
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "site_count": 16
+      }
+    },
+    {
+      "broken": {
+        "F01_witness": {
+          "finite_carrier_dim_H": 2,
+          "finite_operator_count": 4,
+          "finite_overlap_count": 32,
+          "finite_patch_count": 32,
+          "finite_path_count": 64,
+          "finite_triple_count": 32,
+          "passes": true
+        },
+        "N01_witness": {
+          "density_commutator_norm_F_sigma_x_rho0": 1.0021834268673984,
+          "operator_commutator_norm_F_sigma_x_sigma_z": 2.8284271247461903,
+          "passes": true
+        },
+        "broken_cocycle": true,
+        "codomain_or_output": {
+          "cocycle_residuals": "finite table over triple overlaps",
+          "groupoid_composition_certificate": "max ||g_ij*g_jk - g_ik||_F",
+          "survivor_density_readout": "density and QIT readouts only if survivors are present"
+        },
+        "domain": {
+          "operator_registry": [
+            "sigma_x",
+            "sigma_z",
+            "Rx(0.23)",
+            "U_phase(h_i-h_j)"
+          ],
+          "overlap_edges": 32,
+          "patch_sites": 32,
+          "path_registry": [
+            "i->j->k",
+            "i->k direct"
+          ],
+          "triple_overlaps": 32
+        },
+        "finite_map": "Phi_L13: (K_N, psi_i in C^2, rho_i=psi_i psi_i^dagger, transitions g_ij on overlaps, direct maps g_ik on triple overlaps) -> cocycle residuals, gluing survivor set, survivor density/readouts",
+        "gluing_metrics": {
+          "global_gluing_present": false,
+          "max_cocycle_residual": 0.6293842454258979,
+          "max_dynamic_residual": 0.44504186791263084,
+          "max_section_residual": 4.509747244882934e-16,
+          "survivor_count": 0,
+          "survivor_fraction": 0.0
+        },
+        "julia_native_spinor_density": {
+          "density_type": "Matrix{ComplexF64}",
+          "rho0_entropy_bits": 0.0,
+          "rho0_trace": 1.0,
+          "spinor_type": "Vector{ComplexF64}"
+        },
+        "negative_control_handwritten_channel": {
+          "depends_on_gluing": false,
+          "readout_Tr_sigma_z_Rx_rho_Rxdag": 0.5261882606131497,
+          "status": "survives broken-cocycle erasure; reported as hand-written channel control, not evidence"
+        },
+        "peps3d_anchor": {
+          "C_count": 32,
+          "E_count": 32,
+          "F_count": 32,
+          "K": "finite periodic PEPS3D combinatorial carrier K=(V,E,F,C)",
+          "V_count": 32,
+          "note": "Index-only finite PEPS3D anchor; no continuum or Cartesian geometry claim.",
+          "sample_cell": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "sample_edge": [
+            1,
+            2
+          ],
+          "sample_face": [
+            1,
+            2,
+            3
+          ]
+        },
+        "qit_readouts_derived": {
+          "present": false,
+          "probe_Tr_sigma_x_rho": null,
+          "probe_Tr_sigma_z_rho": null,
+          "survivor_density_trace": null,
+          "survivor_mixed_density_entropy_bits": null
+        },
+        "sample_triples": [
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.4450418679126289,
+            "section_residual": 1.1491151892306092e-16,
+            "survives": false,
+            "triple": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258951,
+            "dynamic_residual": 0.44504186791262884,
+            "section_residual": 1.2719202621569003e-16,
+            "survives": false,
+            "triple": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.4450418679126288,
+            "section_residual": 1.594436429147036e-16,
+            "survives": false,
+            "triple": [
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.44504186791262884,
+            "section_residual": 0.0,
+            "survives": false,
+            "triple": [
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "site_count": 32
+      },
+      "dependency_forcing_erasure": {
+        "broken_max_cocycle_residual": 0.6293842454258979,
+        "broken_survivor_fraction": 0.0,
+        "collapsed_signature": true,
+        "erasure": "break every triple-overlap direct transition by composing g_ik with U(pi/7)",
+        "qit_readout_present_to_absent": true,
+        "survivor_fraction_delta": 1.0,
+        "valid_max_cocycle_residual": 2.6131546473217737e-15,
+        "valid_survivor_fraction": 1.0
+      },
+      "site_count": 32,
+      "valid": {
+        "F01_witness": {
+          "finite_carrier_dim_H": 2,
+          "finite_operator_count": 4,
+          "finite_overlap_count": 32,
+          "finite_patch_count": 32,
+          "finite_path_count": 64,
+          "finite_triple_count": 32,
+          "passes": true
+        },
+        "N01_witness": {
+          "density_commutator_norm_F_sigma_x_rho0": 1.0021834268673984,
+          "operator_commutator_norm_F_sigma_x_sigma_z": 2.8284271247461903,
+          "passes": true
+        },
+        "broken_cocycle": false,
+        "codomain_or_output": {
+          "cocycle_residuals": "finite table over triple overlaps",
+          "groupoid_composition_certificate": "max ||g_ij*g_jk - g_ik||_F",
+          "survivor_density_readout": "density and QIT readouts only if survivors are present"
+        },
+        "domain": {
+          "operator_registry": [
+            "sigma_x",
+            "sigma_z",
+            "Rx(0.23)",
+            "U_phase(h_i-h_j)"
+          ],
+          "overlap_edges": 32,
+          "patch_sites": 32,
+          "path_registry": [
+            "i->j->k",
+            "i->k direct"
+          ],
+          "triple_overlaps": 32
+        },
+        "finite_map": "Phi_L13: (K_N, psi_i in C^2, rho_i=psi_i psi_i^dagger, transitions g_ij on overlaps, direct maps g_ik on triple overlaps) -> cocycle residuals, gluing survivor set, survivor density/readouts",
+        "gluing_metrics": {
+          "global_gluing_present": true,
+          "max_cocycle_residual": 2.6131546473217737e-15,
+          "max_dynamic_residual": 1.9377785251601364e-15,
+          "max_section_residual": 4.509747244882934e-16,
+          "survivor_count": 32,
+          "survivor_fraction": 1.0
+        },
+        "julia_native_spinor_density": {
+          "density_type": "Matrix{ComplexF64}",
+          "rho0_entropy_bits": 0.0,
+          "rho0_trace": 1.0,
+          "spinor_type": "Vector{ComplexF64}"
+        },
+        "negative_control_handwritten_channel": {
+          "depends_on_gluing": false,
+          "readout_Tr_sigma_z_Rx_rho_Rxdag": 0.5261882606131497,
+          "status": "survives broken-cocycle erasure; reported as hand-written channel control, not evidence"
+        },
+        "peps3d_anchor": {
+          "C_count": 32,
+          "E_count": 32,
+          "F_count": 32,
+          "K": "finite periodic PEPS3D combinatorial carrier K=(V,E,F,C)",
+          "V_count": 32,
+          "note": "Index-only finite PEPS3D anchor; no continuum or Cartesian geometry claim.",
+          "sample_cell": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "sample_edge": [
+            1,
+            2
+          ],
+          "sample_face": [
+            1,
+            2,
+            3
+          ]
+        },
+        "qit_readouts_derived": {
+          "present": true,
+          "probe_Tr_sigma_x_rho": 0.02414815416562522,
+          "probe_Tr_sigma_z_rho": 0.6822212072876133,
+          "survivor_density_trace": 0.9999999999999998,
+          "survivor_mixed_density_entropy_bits": 0.6300716909555119
+        },
+        "sample_triples": [
+          {
+            "cocycle_residual": 1.5700924586837752e-16,
+            "dynamic_residual": 1.4220500840710912e-16,
+            "section_residual": 1.1491151892306092e-16,
+            "survives": true,
+            "triple": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "cocycle_residual": 3.1401849173675503e-16,
+            "dynamic_residual": 2.3551386880256624e-16,
+            "section_residual": 1.2719202621569003e-16,
+            "survives": true,
+            "triple": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "cocycle_residual": 1.5700924586837752e-16,
+            "dynamic_residual": 1.2412670766236366e-16,
+            "section_residual": 1.594436429147036e-16,
+            "survives": true,
+            "triple": [
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "cocycle_residual": 0.0,
+            "dynamic_residual": 0.0,
+            "section_residual": 0.0,
+            "survives": true,
+            "triple": [
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "site_count": 32
+      }
+    },
+    {
+      "broken": {
+        "F01_witness": {
+          "finite_carrier_dim_H": 2,
+          "finite_operator_count": 4,
+          "finite_overlap_count": 64,
+          "finite_patch_count": 64,
+          "finite_path_count": 128,
+          "finite_triple_count": 64,
+          "passes": true
+        },
+        "N01_witness": {
+          "density_commutator_norm_F_sigma_x_rho0": 1.0021834268673984,
+          "operator_commutator_norm_F_sigma_x_sigma_z": 2.8284271247461903,
+          "passes": true
+        },
+        "broken_cocycle": true,
+        "codomain_or_output": {
+          "cocycle_residuals": "finite table over triple overlaps",
+          "groupoid_composition_certificate": "max ||g_ij*g_jk - g_ik||_F",
+          "survivor_density_readout": "density and QIT readouts only if survivors are present"
+        },
+        "domain": {
+          "operator_registry": [
+            "sigma_x",
+            "sigma_z",
+            "Rx(0.23)",
+            "U_phase(h_i-h_j)"
+          ],
+          "overlap_edges": 64,
+          "patch_sites": 64,
+          "path_registry": [
+            "i->j->k",
+            "i->k direct"
+          ],
+          "triple_overlaps": 64
+        },
+        "finite_map": "Phi_L13: (K_N, psi_i in C^2, rho_i=psi_i psi_i^dagger, transitions g_ij on overlaps, direct maps g_ik on triple overlaps) -> cocycle residuals, gluing survivor set, survivor density/readouts",
+        "gluing_metrics": {
+          "global_gluing_present": false,
+          "max_cocycle_residual": 0.6293842454258954,
+          "max_dynamic_residual": 0.44504186791262906,
+          "max_section_residual": 6.5906489508797204e-15,
+          "survivor_count": 0,
+          "survivor_fraction": 0.0
+        },
+        "julia_native_spinor_density": {
+          "density_type": "Matrix{ComplexF64}",
+          "rho0_entropy_bits": 0.0,
+          "rho0_trace": 1.0,
+          "spinor_type": "Vector{ComplexF64}"
+        },
+        "negative_control_handwritten_channel": {
+          "depends_on_gluing": false,
+          "readout_Tr_sigma_z_Rx_rho_Rxdag": 0.5261882606131497,
+          "status": "survives broken-cocycle erasure; reported as hand-written channel control, not evidence"
+        },
+        "peps3d_anchor": {
+          "C_count": 64,
+          "E_count": 64,
+          "F_count": 64,
+          "K": "finite periodic PEPS3D combinatorial carrier K=(V,E,F,C)",
+          "V_count": 64,
+          "note": "Index-only finite PEPS3D anchor; no continuum or Cartesian geometry claim.",
+          "sample_cell": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "sample_edge": [
+            1,
+            2
+          ],
+          "sample_face": [
+            1,
+            2,
+            3
+          ]
+        },
+        "qit_readouts_derived": {
+          "present": false,
+          "probe_Tr_sigma_x_rho": null,
+          "probe_Tr_sigma_z_rho": null,
+          "survivor_density_trace": null,
+          "survivor_mixed_density_entropy_bits": null
+        },
+        "sample_triples": [
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.4450418679126289,
+            "section_residual": 1.1491151892306092e-16,
+            "survives": false,
+            "triple": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258951,
+            "dynamic_residual": 0.44504186791262884,
+            "section_residual": 1.2719202621569003e-16,
+            "survives": false,
+            "triple": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.4450418679126288,
+            "section_residual": 1.594436429147036e-16,
+            "survives": false,
+            "triple": [
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "cocycle_residual": 0.6293842454258952,
+            "dynamic_residual": 0.44504186791262884,
+            "section_residual": 0.0,
+            "survives": false,
+            "triple": [
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "site_count": 64
+      },
+      "dependency_forcing_erasure": {
+        "broken_max_cocycle_residual": 0.6293842454258954,
+        "broken_survivor_fraction": 0.0,
+        "collapsed_signature": true,
+        "erasure": "break every triple-overlap direct transition by composing g_ik with U(pi/7)",
+        "qit_readout_present_to_absent": true,
+        "survivor_fraction_delta": 1.0,
+        "valid_max_cocycle_residual": 7.34091687651552e-15,
+        "valid_survivor_fraction": 1.0
+      },
+      "site_count": 64,
+      "valid": {
+        "F01_witness": {
+          "finite_carrier_dim_H": 2,
+          "finite_operator_count": 4,
+          "finite_overlap_count": 64,
+          "finite_patch_count": 64,
+          "finite_path_count": 128,
+          "finite_triple_count": 64,
+          "passes": true
+        },
+        "N01_witness": {
+          "density_commutator_norm_F_sigma_x_rho0": 1.0021834268673984,
+          "operator_commutator_norm_F_sigma_x_sigma_z": 2.8284271247461903,
+          "passes": true
+        },
+        "broken_cocycle": false,
+        "codomain_or_output": {
+          "cocycle_residuals": "finite table over triple overlaps",
+          "groupoid_composition_certificate": "max ||g_ij*g_jk - g_ik||_F",
+          "survivor_density_readout": "density and QIT readouts only if survivors are present"
+        },
+        "domain": {
+          "operator_registry": [
+            "sigma_x",
+            "sigma_z",
+            "Rx(0.23)",
+            "U_phase(h_i-h_j)"
+          ],
+          "overlap_edges": 64,
+          "patch_sites": 64,
+          "path_registry": [
+            "i->j->k",
+            "i->k direct"
+          ],
+          "triple_overlaps": 64
+        },
+        "finite_map": "Phi_L13: (K_N, psi_i in C^2, rho_i=psi_i psi_i^dagger, transitions g_ij on overlaps, direct maps g_ik on triple overlaps) -> cocycle residuals, gluing survivor set, survivor density/readouts",
+        "gluing_metrics": {
+          "global_gluing_present": true,
+          "max_cocycle_residual": 7.34091687651552e-15,
+          "max_dynamic_residual": 5.27382213679152e-15,
+          "max_section_residual": 6.5906489508797204e-15,
+          "survivor_count": 64,
+          "survivor_fraction": 1.0
+        },
+        "julia_native_spinor_density": {
+          "density_type": "Matrix{ComplexF64}",
+          "rho0_entropy_bits": 0.0,
+          "rho0_trace": 1.0,
+          "spinor_type": "Vector{ComplexF64}"
+        },
+        "negative_control_handwritten_channel": {
+          "depends_on_gluing": false,
+          "readout_Tr_sigma_z_Rx_rho_Rxdag": 0.5261882606131497,
+          "status": "survives broken-cocycle erasure; reported as hand-written channel control, not evidence"
+        },
+        "peps3d_anchor": {
+          "C_count": 64,
+          "E_count": 64,
+          "F_count": 64,
+          "K": "finite periodic PEPS3D combinatorial carrier K=(V,E,F,C)",
+          "V_count": 64,
+          "note": "Index-only finite PEPS3D anchor; no continuum or Cartesian geometry claim.",
+          "sample_cell": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "sample_edge": [
+            1,
+            2
+          ],
+          "sample_face": [
+            1,
+            2,
+            3
+          ]
+        },
+        "qit_readouts_derived": {
+          "present": true,
+          "probe_Tr_sigma_x_rho": -0.0677658251002274,
+          "probe_Tr_sigma_z_rho": 0.6822212072876129,
+          "survivor_density_trace": 0.9999999999999992,
+          "survivor_mixed_density_entropy_bits": 0.6256694354817651
+        },
+        "sample_triples": [
+          {
+            "cocycle_residual": 1.5700924586837752e-16,
+            "dynamic_residual": 1.4220500840710912e-16,
+            "section_residual": 1.1491151892306092e-16,
+            "survives": true,
+            "triple": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "cocycle_residual": 3.1401849173675503e-16,
+            "dynamic_residual": 2.3551386880256624e-16,
+            "section_residual": 1.2719202621569003e-16,
+            "survives": true,
+            "triple": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "cocycle_residual": 1.5700924586837752e-16,
+            "dynamic_residual": 1.2412670766236366e-16,
+            "section_residual": 1.594436429147036e-16,
+            "survives": true,
+            "triple": [
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "cocycle_residual": 0.0,
+            "dynamic_residual": 0.0,
+            "section_residual": 0.0,
+            "survives": true,
+            "triple": [
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "site_count": 64
+      }
+    }
+  ],
+  "stress_sizes": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "NumPy": "None",
+    "Z3": "None"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: emits the receipt",
+    "LinearAlgebra": "load_bearing: constructs ComplexF64 spinors/densities/unitaries and measures cocycle, section, dynamic, entropy, and commutator residuals",
+    "NumPy": "not used",
+    "Z3": "omitted: not load-bearing for this numeric finite-map POC; z3 omitted, not decorative"
+  },
+  "version": "1.0",
+  "z3_status": "z3 omitted, not decorative"
+}

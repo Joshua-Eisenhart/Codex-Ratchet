@@ -1,0 +1,387 @@
+{
+  "F01_witness": {
+    "dim_H": 2,
+    "finite_operators": [
+      "A=a_A.sigma",
+      "B=a_B.sigma",
+      "C=a_C.sigma (commuting erasure)"
+    ],
+    "finite_paths": [
+      "A",
+      "B",
+      "AB",
+      "BA",
+      "ABA",
+      "BAB"
+    ],
+    "finite_probe_counts": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "note": "dim(H)<inf, finite probe family, finite operator registry, finite path encodings (F01).",
+    "registry_admission": "bounded finite spectrum + finite enumerable carriers"
+  },
+  "N01_witness": {
+    "max_identity_err": 4.440892098500626e-16,
+    "min_order_gap": 0.10274142038780434,
+    "quoted_identity": "[A,rho] = i (a x r).sigma ; gap = sqrt(2)||a x r||",
+    "readout": "gap_A(rho) = ||A rho - rho A||_F",
+    "z3_verdict_flips": true
+  },
+  "ablation_outcome_delta": {
+    "delta": 2.0966148487506233,
+    "kind": "removed_and_rerun_numeric",
+    "non_vacuous": true,
+    "note": "remove the noncommuting operator structure (swap to commuting {A,C}) and re-measure the signature ||[op1,op2]||; the delta is the genuine collapse.",
+    "signature_erased_commuting": 0.0,
+    "signature_genuine_noncommuting": 2.0966148487506233
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "geometry_layers_L0_to_L13",
+    "stacking",
+    "pairwise_order_tests",
+    "G_structure_selection",
+    "Axis0",
+    "flux",
+    "FEP",
+    "physics",
+    "final_manifold_admission"
+  ],
+  "classification": "R0_layer_poc",
+  "controls": {
+    "negative": {
+      "erase_noncommutation_operator_delta_gap": 2.096614849,
+      "erase_noncommutation_state_delta_gap": 0.10274142
+    },
+    "positive": {
+      "min_mutual_information_derived": 0.005366781,
+      "min_order_gap_N01": 0.10274142,
+      "operator_noncommutation_gap": 2.096614849
+    }
+  },
+  "controls_detail": {
+    "DEPENDENCY_FORCING_commuting_collapses": {
+      "gap_parallel_state": 0.0,
+      "note": "swap noncommuting {A,B} -> commuting {A,C} (a_C || a_A): ||[A,C]||->0; and a probe with Bloch axis parallel to A gives [A,rho]->0. N01 collapses.",
+      "pass": true,
+      "sig_commuting_AC": 0.0,
+      "sig_noncommuting_AB": 2.0966148487506233
+    },
+    "DEPENDENCY_FORCING_finite_rejects_continuum": {
+      "admit_continuum": false,
+      "admit_finite": true,
+      "admit_unbounded": false,
+      "note": "finite registry ADMITS the finite/bounded family and REJECTS a continuum (real-interval index) family and an unbounded-spectrum op.",
+      "pass": true,
+      "reason_continuum": "continuum_real_interval_index_not_enumerable",
+      "reason_finite": "finite_enumerable_carriers_and_bounded_spectrum",
+      "reason_unbounded": "unbounded_or_nonfinite_spectrum"
+    },
+    "ablation_nonvacuous": {
+      "ablation_outcome_delta": 2.0966148487506233,
+      "pass": true
+    },
+    "n_ladder_nonvacuous": {
+      "pass": true,
+      "resolvable_by_N": [
+        [
+          8,
+          8
+        ],
+        [
+          16,
+          16
+        ],
+        [
+          32,
+          32
+        ],
+        [
+          64,
+          63
+        ]
+      ]
+    },
+    "positive": {
+      "N01_order_gap": {
+        "min_order_gap_N01": 0.10274142038780434,
+        "pass": true
+      },
+      "derived_qit_mutual_information": {
+        "min_mutual_information_derived": 0.0053667805448909525,
+        "pass": true
+      },
+      "operator_noncommutation_gap": {
+        "operator_noncommutation_gap": 2.0966148487506233,
+        "pass": true
+      }
+    },
+    "positive_N01_order_gap_present": {
+      "min_order_gap": 0.10274142038780434,
+      "pass": true
+    },
+    "positive_quoted_identity_holds": {
+      "identity": "||[A,rho]||_F == sqrt(2)*||a x r||",
+      "max_identity_err": 4.440892098500626e-16,
+      "pass": true
+    },
+    "qit_mutual_information_derived_nonneg": {
+      "min_mutual_information": 0.0053667805448909525,
+      "pass": true
+    },
+    "z3_n01_load_bearing": {
+      "broken_commuting_zero_axis_result": "unsat",
+      "claim": "EXISTS unit Bloch r with (a x r) != 0  <=>  [a.sigma, rho] can be nonzero (N01)",
+      "cross_check_matches_measured_gap": true,
+      "genuine_axis_aA_result": "sat",
+      "load_bearing": true,
+      "measured_min_order_gap": 0.10274142038780434,
+      "pass": true,
+      "verdict_flips_genuine_sat_broken_unsat": true
+    }
+  },
+  "dependency_forcing": {
+    "below_geometry": "R0 is the ROOT; the below-substrate is the bare F01 finite registry and the N01 noncommuting operator structure.",
+    "commuting_erasure_collapses_N01": true,
+    "finite_erasure_rejects_continuum": true,
+    "verdict": "BOTH below-substrate erasures collapse the R0 signature -> dependency-forcing PASSES (real-as-part-of-manifold-root)"
+  },
+  "finite_map": "(finite probe registry S_N subset S^3, ordered operator word w in {A,B}*) -> (N01 order gap ||[A,rho]||_F, resolvable finite-carrier quotient count, derived QIT MI)",
+  "honest_note": "R0 root F01/N01 lego. Order gap is READ OUT (||[A,rho]||_F) and matches the quoted identity sqrt(2)||a x r|| to 1e-9. Dependency-forcing: the COMMUTING erasure collapses N01 to 0 and the FINITE registry rejects a continuum family. PEPS3D honestly absent (no manifold claimed at root). The 8/16/32/64 ladder is non-vacuous via the resolvable-carrier count; the operator-intrinsic gap is honestly N-invariant.",
+  "item": "R0_layer",
+  "julia_native_spinor": {
+    "carrier": "psi in S^3 subset C^2, normalized 2-component ComplexF64 spinor",
+    "density": "rho = psi psi^dagger (2x2 PSD trace-1), built in Julia LinearAlgebra",
+    "numpy_used": false
+  },
+  "language": "julia",
+  "layer_id": "R0",
+  "negative_controls": {
+    "identity_operator_zero_gap": {
+      "gap_identity_op": 0.0,
+      "pass": true
+    },
+    "self_commutator_zero": {
+      "norm_self_commutator": 0.0,
+      "pass": true
+    }
+  },
+  "non_numpy": true,
+  "peps3d_anchor": {
+    "claimed": false,
+    "reason": "R0 is the root finite carrier/probe layer; NO manifold geometry (S3/Hopf/Weyl) is claimed here, so no PEPS3D K=(V,E,F,C) anchor is asserted. Manifold geometry begins at L1+. Honestly absent, not faked."
+  },
+  "positive": {
+    "N01_order_gap": {
+      "min_order_gap_N01": 0.10274142038780434,
+      "pass": true
+    },
+    "derived_qit_mutual_information": {
+      "min_mutual_information_derived": 0.0053667805448909525,
+      "pass": true
+    },
+    "operator_noncommutation_gap": {
+      "operator_noncommutation_gap": 2.0966148487506233,
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "qit_readouts_derived": {
+    "min_mutual_information": 0.0053667805448909525,
+    "note": "QIT readouts MEASURE the carrier; they do not define the layer.",
+    "von_neumann_entropy": "derived per-density readout (never primary)"
+  },
+  "rows": [
+    {
+      "layer_gate": {
+        "commuting_erasure_collapse_gap": 0.0,
+        "min_mutual_information_derived": 0.6316169205295188,
+        "min_order_gap_N01": 0.10274142038780434,
+        "operator_noncommutation_gap": 2.0966148487506233,
+        "resolvable_quotient_count": 8.0
+      },
+      "max_quoted_identity_err": 2.220446049250313e-16,
+      "pass": true,
+      "site_count": 8
+    },
+    {
+      "layer_gate": {
+        "commuting_erasure_collapse_gap": 0.0,
+        "min_mutual_information_derived": 0.10095149908215775,
+        "min_order_gap_N01": 0.20747572357746127,
+        "operator_noncommutation_gap": 2.0966148487506233,
+        "resolvable_quotient_count": 16.0
+      },
+      "max_quoted_identity_err": 4.440892098500626e-16,
+      "pass": true,
+      "site_count": 16
+    },
+    {
+      "layer_gate": {
+        "commuting_erasure_collapse_gap": 0.0,
+        "min_mutual_information_derived": 0.02248435575801744,
+        "min_order_gap_N01": 0.2950508121436243,
+        "operator_noncommutation_gap": 2.0966148487506233,
+        "resolvable_quotient_count": 32.0
+      },
+      "max_quoted_identity_err": 2.220446049250313e-16,
+      "pass": true,
+      "site_count": 32
+    },
+    {
+      "layer_gate": {
+        "commuting_erasure_collapse_gap": 0.0,
+        "min_mutual_information_derived": 0.0053667805448909525,
+        "min_order_gap_N01": 0.34214517587541093,
+        "operator_noncommutation_gap": 2.0966148487506233,
+        "resolvable_quotient_count": 63.0
+      },
+      "max_quoted_identity_err": 4.440892098500626e-16,
+      "pass": true,
+      "site_count": 64
+    }
+  ],
+  "scale_8_16_32_64": {
+    "honest_note": "the operator-intrinsic N01 order gap is N-INVARIANT (a property of {A,B}, not the probe count) -- stated honestly. The N-DEPENDENT signature is the resolvable finite-carrier quotient count, which GROWS with N (8/16/32/64) until the fixed angular grid saturates.",
+    "n_ladder_nonvacuous": true,
+    "resolvable_quotient_by_N": [
+      [
+        8,
+        8
+      ],
+      [
+        16,
+        16
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        64,
+        63
+      ]
+    ],
+    "site_counts": [
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "status_ladder": "exists < runs < passes",
+  "summary": {
+    "all_pass": true,
+    "layer": "R0",
+    "max_sites": 64,
+    "min_control_gaps": {
+      "min_mutual_information_derived": 0.0053667805448909525,
+      "min_order_gap_N01": 0.10274142038780434,
+      "operator_noncommutation_gap": 2.0966148487506233
+    },
+    "min_gaps": {
+      "min_mutual_information_derived": 0.0053667805448909525,
+      "min_order_gap_N01": 0.10274142038780434,
+      "operator_noncommutation_gap": 2.0966148487506233
+    },
+    "promotion_allowed": false,
+    "row_count": 4
+  },
+  "tool_ablations": {
+    "linear_algebra_noncommutation": {
+      "ablation_delta": 2.0966148487506233,
+      "ablation_kind": "numeric",
+      "after_removal": 0.0,
+      "control_gap_after_stub": 0.0,
+      "control_gap_before": 2.0966148487506233,
+      "delta_magnitude": 2.0966148487506233,
+      "delta_witness": {
+        "noncommuting_minus_commuting": 2.0966148487506233,
+        "pass": true
+      },
+      "non_vacuous": true,
+      "pass": true,
+      "recomputed": true,
+      "stub_action": "swap noncommuting {A,B} -> commuting {A,C} (a_C || a_A)"
+    },
+    "z3_n01_certificate": {
+      "ablation_kind": "certificate",
+      "certificate_value": 0.10274142038780434,
+      "delta_witness": {
+        "pass": true,
+        "z3_verdict_flips": true
+      },
+      "non_vacuous": true,
+      "pass": true,
+      "provable_with_tool": true,
+      "provable_without_tool": false,
+      "stub_action": "remove SMT proof that (a x r)!=0 is satisfiable for genuine axis"
+    }
+  },
+  "tool_ablations_by_tool": {
+    "linear_algebra_noncommutation": {
+      "ablation_delta": 2.0966148487506233,
+      "ablation_kind": "numeric",
+      "after_removal": 0.0,
+      "control_gap_after_stub": 0.0,
+      "control_gap_before": 2.0966148487506233,
+      "delta_magnitude": 2.0966148487506233,
+      "delta_witness": {
+        "noncommuting_minus_commuting": 2.0966148487506233,
+        "pass": true
+      },
+      "non_vacuous": true,
+      "pass": true,
+      "recomputed": true,
+      "stub_action": "swap noncommuting {A,B} -> commuting {A,C} (a_C || a_A)"
+    },
+    "z3_n01_certificate": {
+      "ablation_kind": "certificate",
+      "certificate_value": 0.10274142038780434,
+      "delta_witness": {
+        "pass": true,
+        "z3_verdict_flips": true
+      },
+      "non_vacuous": true,
+      "pass": true,
+      "provable_with_tool": true,
+      "provable_without_tool": false,
+      "stub_action": "remove SMT proof that (a x r)!=0 is satisfiable for genuine axis"
+    }
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "emit the R0_layer_results.json receipt",
+      "role": "receipt_io",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "spinor/density algebra, Frobenius order gaps, eigendecomposition for entropy & spectral bound",
+      "role": "load_bearing",
+      "used": true
+    },
+    "Random": {
+      "reason": "deterministic seed for the QIT MI cut; no randomized claim",
+      "role": "seed_only",
+      "used": true
+    },
+    "Z3": {
+      "reason": "SMT proof that (a x r)!=0 is satisfiable for a genuine axis and UNSAT for the commuting (zero) axis; verdict FLIPS",
+      "role": "load_bearing",
+      "used": true
+    }
+  },
+  "z3": {
+    "broken_commuting_zero_axis_result": "unsat",
+    "claim": "EXISTS unit Bloch r with (a x r) != 0  <=>  [a.sigma, rho] can be nonzero (N01)",
+    "cross_check_matches_measured_gap": true,
+    "genuine_axis_aA_result": "sat",
+    "load_bearing": true,
+    "measured_min_order_gap": 0.10274142038780434,
+    "pass": true,
+    "verdict_flips_genuine_sat_broken_unsat": true
+  }
+}

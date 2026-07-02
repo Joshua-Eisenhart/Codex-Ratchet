@@ -29,11 +29,14 @@ Evidence this failure is active:
 - "This is the obvious next step given the research direction" — obvious is not admitted
 
 **Intercept procedure:**
-1. When a proposed action feels like the natural next step given the research narrative: pause.
-2. Name the specific gate criterion the action requires.
-3. Cite the result file that satisfies that criterion from this session.
-4. If the file cannot be cited: the gate is not satisfied. The action is excluded under the active constraint set.
-5. Report: "Gate not satisfied: [gate name]. Blocking. [what evidence is needed]."
+1. Read the controlling docs for the turn: `AGENTS.md`, `CODEX.md` when
+   present, this contract, `ENFORCEMENT_AND_PROCESS_RULES.md`,
+   `LEGO_SIM_CONTRACT.md`, and task-relevant ledger/source/result files.
+2. When a proposed action feels like the natural next step given the research narrative: pause.
+3. Name the specific gate criterion the action requires.
+4. Cite the result file that satisfies that criterion from this session.
+5. If the file cannot be cited: the gate is not satisfied. The action is excluded under the active constraint set.
+6. Report: "Gate not satisfied: [gate name]. Blocking. [what evidence is needed]."
 
 Do not smooth over gate failures with narrative. A smooth narrative that leads to the right answer by a different path is still a harness violation.
 
@@ -57,6 +60,15 @@ Controllers must preserve this order and distinction:
 Do not rewrite this into "some locals are strong, so broad successor work can start."
 
 The allowed middle is narrow: record future coupling candidates while the lego stage is active, and run only explicit bounded exceptions when the parent legos, stop rule, and no-promotion boundary are named.
+
+For nonclassical manifold work, controllers must also preserve the finite-map
+gate. A candidate step is not admitted unless it declares the domain, codomain
+or output object, finite PEPS3D carrier anchor from the first finite
+carrier/probe step, torch-native spinor state or spinor-derived density,
+quaternionic map/invariant when quaternion language is used, F01/N01 witnesses,
+negative/control, receipt path, and blocked downstream consumers. PEPS3D is not
+a late layer after substages. A 16-stage-site inventory plus 64 operator rows
+does not satisfy 64-substage manifold-cell embedding.
 
 ## Sim-Mode Full Wizard Parallelism
 
@@ -147,6 +159,9 @@ Do not skip to bridge claims at all.
 7. **No claim of "canonical"** without SIM_TEMPLATE + tool manifest with non-empty reason fields + classification field set + passes local rerun.
 8. **No "28/28" claims** without specifying exactly which criteria (C1/C2/C3/C4) were tested per family.
 9. **Ban on absolute repo-state claims** unless the model cites a current file path and result from this run. "The repo has X" requires `ls` or `cat` evidence from this session.
+10. **No nonclassical manifold, flux, Xi, Phi0, Axis0, basin, or physics queueing** unless the lower dependency receipt chain is cited from this session. If the chain is missing, only a bounded lower micro-scout or blocked-reason artifact is admissible.
+11. **No label-first manifold claims.** `quaternion`, `Hopf`, `terrain`, `PEPS3D`, `substage`, `flux`, and `Axis0` language must be backed by explicit finite maps, carrier anchors, controls, and result paths.
+12. **No layer/manifold completion wording without the claim gate.** Before a closeout, status artifact, prompt, or worker report says a layer is fully simed/simmed/simulated, parent-complete, stack-ready, admitted, true-G-structure complete, Axis0/FEP/flux unlocked, physics/gravity advanced, or final-manifold admitted, run `make layer-completion-claim-gate CLAIM_FILE=<claim text file when applicable>`. A failing gate blocks the claim even if local scout/result validators are green.
 
 ---
 
@@ -169,8 +184,8 @@ Do not take agent output at face value. Verify claims against result files.
 
 Every agent prompt should have these sections in order:
 
-1. **Read order**: which files to read first (ENFORCEMENT_AND_PROCESS_RULES.md, SIM_TEMPLATE.py, relevant result JSONs)
-2. **Non-negotiable guardrails**: hard stage gate, template compliance, tool manifest, non-empty reasons, classification field
+1. **Read order**: which files to read first (`AGENTS.md`, `CODEX.md` when present, `ENFORCEMENT_AND_PROCESS_RULES.md`, `LLM_CONTROLLER_CONTRACT.md`, `LEGO_SIM_CONTRACT.md`, `SIM_TEMPLATE.py`, relevant ledger/audit/source/result JSONs)
+2. **Non-negotiable guardrails**: hard stage gate, template compliance, tool manifest, non-empty reasons, classification field, finite-map gate, PEPS3D-from-start rule for nonclassical manifold work, no NumPy claim-bearing bridge
 3. **Allowed claims**: what this agent is permitted to conclude (bounded by its task)
 4. **Required verification**: what must be run locally before the agent reports success
 5. **Stop rules**: conditions under which the agent must stop and report back rather than proceeding
@@ -182,6 +197,14 @@ For micro tool-stage workers, also include:
 3. **One variable**: what is allowed to be uncertain in this packet.
 4. **Out of scope**: all stack, coupling, bridge, axis, engine, and promotion claims.
 5. **Ledger loopback**: which tool/function row must be updated if the probe runs.
+
+For manifold/foundation workers, also include:
+
+1. **Finite map**: exact domain, codomain/output, and invariant or transition.
+2. **Carrier**: torch-native spinor/quaternion object and PEPS3D site/bond/face/cell anchor from the start.
+3. **Dependency receipts**: lower receipts required before this worker can advance.
+4. **Blocked consumers**: flux, Xi, Phi0, Axis0, bridge, basin, and physics unless explicitly earned.
+5. **Label ban**: no unearned manifold/layer/quaternion/Hopf/terrain/substage language.
 
 ---
 
@@ -195,6 +218,7 @@ Admission decisions: <per gate: admitted | blocked | not evaluated>
 Narrative substitutions intercepted: <if any adjacent-stage narratives were pressured and refused>
 Worker claims verified: <per worker: which claims were checked against result files>
 Worker claims not verified: <what was accepted on report only, if any>
+Layer completion claim gate: <pass | fail | not_applicable; command path and CLAIM_FILE when used>
 Status label changes to registry: <none | list with cited evidence path>
 Blocked actions: <named actions that were refused with gate criterion>
 ```

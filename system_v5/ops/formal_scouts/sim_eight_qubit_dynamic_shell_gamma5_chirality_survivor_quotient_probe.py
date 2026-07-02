@@ -48,7 +48,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded scalar minimizer for effective-gamma Choi fit"},
+    "python_math": {"tried": True, "used": True, "reason": "supportive local bounded scalar minimizer for effective-gamma Choi fit"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing eight-qubit density states, embedded Kraus updates, gamma5 projectors, trace norms, and effective-gamma Choi objective evaluation"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing four-qubit reduced entropy contraction inside orbit signatures"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing dynamic shell graph and quotient graph"},
@@ -57,7 +57,10 @@ TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic noncommuting update boundary"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing eight-qubit quotient/control witness"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    tool: ("supportive" if tool == "python_math" else "load_bearing")
+    for tool in TOOL_MANIFEST
+}
 
 DTYPE = torch.complex128
 N_QUBITS = 8

@@ -1,0 +1,48 @@
+{
+  "parity_status": "AGREE",
+  "metric_parity": {
+    "mean_trajectory_distance": {
+      "julia": 0.4490460229375453,
+      "jax": 0.45829203237971766,
+      "rel_diff": 0.020174929496726612,
+      "agree": true
+    },
+    "mean_order_gap_frobenius": {
+      "julia": 6.163097337659582e-17,
+      "jax": 5.927600863663641e-17,
+      "rel_diff": 0.0,
+      "agree": true
+    },
+    "max_commuting_control_gap": {
+      "julia": 0.0,
+      "jax": 0.0,
+      "rel_diff": 0.0,
+      "agree": true
+    }
+  },
+  "boolean_parity": {
+    "trajectories_differ": {
+      "julia": true,
+      "jax": true,
+      "agree": true
+    },
+    "commuting_control_near_zero": {
+      "julia": true,
+      "jax": true,
+      "agree": true
+    },
+    "axis4_split_real": {
+      "julia": true,
+      "jax": true,
+      "agree": true
+    },
+    "two_directions_earned": {
+      "julia": true,
+      "jax": true,
+      "agree": true
+    }
+  },
+  "julia_how_they_differ": "deductive front-loads variance reduction; inductive does not clearly back-load on this ensemble",
+  "jax_how_they_differ": "deductive front-loads variance reduction; inductive pattern unclear",
+  "note": "Different RNG seeds for Julia vs JAX (Julia: MersenneTwister, JAX/numpy: default_rng) \u2014 quantitative gaps expected; boolean verdicts should agree."
+}

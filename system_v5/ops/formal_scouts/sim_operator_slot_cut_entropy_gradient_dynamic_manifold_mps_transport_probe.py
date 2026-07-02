@@ -303,7 +303,7 @@ def contraction_report(params: torch.Tensor, source_signal: dict[str, float], *,
     }
     inputs = [("a", "b"), ("b", "c"), ("c", "d"), ("d", "e")]
     output = ("a", "e")
-    optimizer = ctg.HyperOptimizer(max_repeats=4, progbar=False, on_trial_error="raise")
+    optimizer = ctg.HyperOptimizer(max_repeats=4, progbar=False, on_trial_error="raise", parallel=False)
     tree = optimizer.search(inputs, output, sizes)
     seed = int(10_000 * (
         vals["metric_min"]

@@ -26,6 +26,20 @@ TOOL_ALIASES = {
     "torch_autograd": "pytorch",
     "pytorch": "pytorch",
     "pytorch_autograd": "pytorch",
+    "jax": "jax",
+    "jnp": "jax",
+    "jax_numpy": "jax",
+    "jax.numpy": "jax",
+    "julia": "julia",
+    "julia_jl": "julia",
+    "pepskit": "pepskit",
+    "pepskit_jl": "pepskit",
+    "tensorkit": "tensorkit",
+    "tensorkit_jl": "tensorkit",
+    "itensors": "itensors",
+    "itensors_jl": "itensors",
+    "quantumclifford": "quantumclifford",
+    "quantumclifford_jl": "quantumclifford",
     "pyg": "torch_geometric",
     "torch_geometric": "torch_geometric",
     "torch_geometric_nn": "torch_geometric",
@@ -77,6 +91,7 @@ TOOL_ALIASES = {
 
 CAPABILITY_PROBE_STEMS = {
     "pytorch": "pytorch",
+    "jax": "jax",
     "torch_geometric": "pyg",
     "auto_lirpa": "auto_lirpa",
     "le_wm": "lewm",
@@ -133,6 +148,36 @@ TWO_ROOT_TOOL_ADMISSIBILITY: dict[str, dict[str, Any]] = {
         "finite_carrier_root": True,
         "noncommutation_or_order_root": True,
         "admissibility_reason": "finite tensors/operators on bounded carriers with direct noncommuting matrix/operator composition and autograd pressure",
+    },
+    "jax": {
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "admissibility_reason": "finite x64 arrays/operators on bounded carriers with direct order-sensitive transforms, autodiff, and vectorized invariant checks",
+    },
+    "julia": {
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "admissibility_reason": "finite Julia-native carriers, solvers, and proof/simulation packages with by-construction constraints and order-sensitive maps",
+    },
+    "pepskit": {
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "admissibility_reason": "finite PEPS/CTMRG carrier checks when contraction changes the observable under erased-tool or wrong-structure controls",
+    },
+    "tensorkit": {
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "admissibility_reason": "finite symmetry-aware tensor spaces whose fusion/order constraints are load-bearing for the tested observable",
+    },
+    "itensors": {
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "admissibility_reason": "finite tensor-network carriers where bond/operator/contraction structure changes the tested order-sensitive observable",
+    },
+    "quantumclifford": {
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "admissibility_reason": "finite stabilizer/Clifford structures with explicit anticommutation or order-sensitive algebraic witnesses",
     },
     "torch_geometric": {
         "finite_carrier_root": True,
@@ -228,6 +273,7 @@ TWO_ROOT_TOOL_ADMISSIBILITY: dict[str, dict[str, Any]] = {
 
 TWO_ROOT_TOOL_MICRO_RECEIPTS = {
     "pytorch": "eight_qubit_mps_channel_order_graph_leakage_pyg_pytorch_opt_einsum_z3_probe_results.json",
+    "jax": "jax_results.json",
     "torch_geometric": "torch_geometric_message_order_sensitivity_micro_probe_results.json",
     "auto_lirpa": "auto_lirpa_two_order_adapter_bound_micro_probe_results.json",
     "le_wm": "lewm_branch_order_latent_dynamics_micro_probe_results.json",
@@ -360,7 +406,7 @@ def nonclassical_tool_names() -> set[str]:
 
 def normalized_execution_kind(value: Any) -> str:
     normalized = str(value or "").strip().lower().replace("-", "_")
-    if normalized in {
+    bridge_aliases = {
         "bridge",
         "qit_bridge",
         "nonclassical_bridge",
@@ -368,9 +414,14 @@ def normalized_execution_kind(value: Any) -> str:
         "semi_classical",
         "semiclassical_bridge",
         "semiclassical_szilard",
-    }:
+    }
+    if (
+        normalized in bridge_aliases
+        or normalized.endswith("_bridge")
+        or "_bridge_" in normalized
+    ):
         return "bridge"
-    if normalized == "nonclassical":
+    if normalized == "nonclassical" or normalized.startswith("nonclassical_"):
         return "nonclassical"
     if normalized == "classical":
         return "classical"

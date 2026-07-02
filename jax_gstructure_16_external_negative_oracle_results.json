@@ -1,0 +1,38 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "official_g_structure_selection",
+    "layer_stacking",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "bridge",
+    "basin_admission",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "classification": "external_negative_oracle_for_jax_gstructure_16_receipts",
+  "executed_track": "python_readonly_receipt_oracle",
+  "failures": {
+    "placement_corruption": [
+      "spin3_double_cover"
+    ],
+    "placement_original": [],
+    "selector_corruption": [
+      "B_allowed_only"
+    ],
+    "selector_original": []
+  },
+  "name": "jax_gstructure_16_external_negative_oracle",
+  "placement_external_accepts_original": true,
+  "placement_external_rejects_corruption": true,
+  "promotion_allowed": false,
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "selector_external_accepts_original": true,
+  "selector_external_rejects_corruption": true,
+  "source_receipts": [
+    "jax_gstructure_16_placement_spin3_audit_results.json",
+    "jax_gstructure_16_branch_prune_selector_audit_results.json"
+  ]
+}

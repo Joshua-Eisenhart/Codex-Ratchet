@@ -1,0 +1,161 @@
+{
+  "F01_witness": {
+    "finite_carrier": "N neurons (N in {12,24,48}); quaternion arm: unit q in S^3 ~ Cl(3,0)+ ~ SU(2); equal-DOF arm: unit complex pair (a,b), |a|^2+|b|^2=1, realized as diagonal 2x2 complex (abelian subalgebra). Both 4 real / 3 sphere DOF per neuron.",
+    "finite_operator": "projection weight W=Xi*pinv(Xi) over 2N x 2M complex blocks (qmat blocks for quaternion arm; diag(a,b) blocks for equal-DOF arm); update via the arm's product (Hamilton vs diagonal-complex).",
+    "finite_path": "async sweeps in DETERMINISTIC cyclic neuron order (1..N) to fixed-point convergence",
+    "finite_probe": "10 corruption seeds/pattern, 30% neuron replacement; 16 random starts for order probe; 8 matched probes for the geometric-vs-equal-DOF control."
+  },
+  "N01_witness": {
+    "commutative_control_product": "diagonal-complex product on the abelian subalgebra: diag(a,b)*diag(c,d)=diag(ac,bd) commutes. SAME DOF, SAME block dimension; the ONLY structural difference from the quaternion arm.",
+    "noncommutative_product": "quaternion Hamilton product (geometric product on Cl(3,0)+); i*j=k, j*i=-k.",
+    "order_sensitive_control": "W assembled ELEMENTWISE qmul(A,B) vs qmul(B,A); commuting (w,x,0,0) control collapses it; erased B:=A control is at the noise floor."
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion / manifold admission",
+    "coupling / coexistence / nesting promotion",
+    "bridge / rho_AB / Xi / Phi0 / Axis0",
+    "flux / FEP / physics",
+    "ratchet-edge admission or ratchet-thesis closure (analogy only)"
+  ],
+  "carrier_verification": {
+    "carrier_verified": true,
+    "hamilton_product_eq_matrix_product_maxerr": 2.237726045655905e-16,
+    "i_squared_eq_minus_one_err": 0.0,
+    "i_times_j_eq_k_err": 0.0,
+    "j_times_i_eq_minus_k_err": 0.0,
+    "mat2quat_roundtrip_maxerr": 0.0,
+    "pauli_anticommutator_sx_sy": 0.0,
+    "pauli_square_sx": 0.0
+  },
+  "claim_ceiling": "COMPUTES finite invariants on a Clifford carrier (Cl(3,0)+ ~ H ~ SU(2)): max_reliable_M for the quaternion (noncommutative Hamilton) arm vs an EQUAL-DOF commutative (diagonal-complex / abelian-subalgebra) arm at N in {12,24,48}, both under the projection weight rule and the SAME strict bar, with an explicit per-arm DOF-equality witness. Decides whether the parent's STRUCTURAL_GAP co-varies with the noncommutative geometry or was a representation-dimension (4N-vs-2N DOF) artifact. Does NOT assert layer-completion / manifold admission / coupling / bridge (rho_AB/Xi/Phi0/Axis0) / flux / FEP / physics. A recovered pattern is a CANDIDATE attractor survivor. promotion_allowed=false.",
+  "classification": "hopfield_equal_dof_poc",
+  "control_A_geometric_vs_equal_dof": {
+    "basin_label_mismatch_fraction": 0.20833333333333334,
+    "geometric_is_decorative": false,
+    "interpretation": "LOAD-BEARING: quaternion-product basins differ from the equal-DOF commutative basins.",
+    "note": "matched-index basin-label agreement between the quaternion (noncommutative) arm and the equal-DOF commutative arm on the same corruption stream.",
+    "trials": 24
+  },
+  "control_B_order_dependent_basin": {
+    "commuting_complex_subalgebra_arm": {
+      "assembly_noncommutativity_AB_minus_BA": 0.0,
+      "entry_algebra": "complex_subalgebra_(w,x,0,0)_qmul_commutes",
+      "erased_control_assembly_noncomm": 0.0,
+      "erased_control_max_basin_distance": 1.2386207151770795e-8,
+      "fraction_probes_order_dependent": 0.0,
+      "max_order_basin_distance": 1.0931390796396078e-8,
+      "mean_order_basin_distance": 5.1387643501890065e-9,
+      "n_probes": 16
+    },
+    "commuting_control_collapses_to_floor": true,
+    "erased_metric_control_is_zero": true,
+    "full_quaternion_arm": {
+      "assembly_noncommutativity_AB_minus_BA": 1.867838544025409,
+      "entry_algebra": "full_quaternion_qmul_noncommutes",
+      "erased_control_assembly_noncomm": 0.0,
+      "erased_control_max_basin_distance": 1.1871851896637512e-8,
+      "fraction_probes_order_dependent": 1.0,
+      "max_order_basin_distance": 1.27217045409484,
+      "mean_order_basin_distance": 1.1008375441231748,
+      "n_probes": 16
+    },
+    "load_bearing_flip": true,
+    "order_dependent_basin_real": true,
+    "order_floor": 1.0e-6,
+    "reported_noise_floor": 1.2386207151770795e-8
+  },
+  "dof_equality_witness": {
+    "N": 12,
+    "Xi_shape_both_arms": "2N x 2M complex",
+    "ambient_real_dof_match": true,
+    "block_dimension_match": true,
+    "dof_equalized": true,
+    "equal_dof_cpair_block_realization": "2x2 complex diagonal (cdiag); abelian subalgebra (4 real)",
+    "equal_dof_cpair_state_ambient_real_dof": 4,
+    "equal_dof_cpair_state_sphere_dof": 3,
+    "interpretation": "EQUAL DOF CONFIRMED: both arms carry 4 real / 3 sphere DOF per neuron in a 2x2 complex block; Xi is 2N x 2M complex for both. The ONLY remaining difference is commutative vs noncommutative product.",
+    "only_difference_between_arms": "the PRODUCT: quaternion Hamilton (noncommutative) vs diagonal-complex (commutative). State DOF, block dimension, projector construction, pattern count, strict bar are identical.",
+    "prior_R4_classical_arm_for_reference": {
+      "note": "the parent's classical control; its 4N x 4N real projector carries MORE weight DOF than the quaternion 2x2-complex-block projector -> the representation-dimension confound this file controls for.",
+      "projector_block_dim": "4x4 real per-neuron (4N x 4N projector)",
+      "state_ambient_real_dof": 4
+    },
+    "quaternion_block_realization": "2x2 complex (qmat); algebra-constrained quaternion subalgebra (4 real)",
+    "quaternion_state_ambient_real_dof": 4,
+    "quaternion_state_sphere_dof": 3,
+    "sphere_dof_match": true
+  },
+  "non_numpy": true,
+  "object_id": "hopfield_equal_dof_control",
+  "promotion_allowed": false,
+  "reuses_object": "hopfield_capacity_scaling (carrier + recall + projection + controls reused verbatim)",
+  "runtime_seconds": 82.53070521354675,
+  "scaling_quaternion_vs_equal_dof": {
+    "Ns": [
+      12,
+      24,
+      48
+    ],
+    "all_ratios_below_0p7": false,
+    "any_N_hit_scan_ceiling": false,
+    "decisive_verdict": "MIXED: under equal DOF the quaternion/equal-DOF ratio neither stayed uniformly below ~0.7 nor cleanly climbed to parity. Report exactly which N: N=12 ratio=1.0 q<c=false; N=24 ratio=1.5 q<c=false; N=48 ratio=1.333 q<c=false. No clean structural or artifact claim admitted.",
+    "per_N": [
+      {
+        "M_cap_scanned": 16,
+        "N": 12,
+        "equal_dof_commutative_projection_capacity": 2,
+        "quaternion_at_or_above_equal_dof": true,
+        "quaternion_over_equal_dof_ratio": 1.0,
+        "quaternion_projection_capacity": 2,
+        "quaternion_strictly_below_equal_dof": false,
+        "scan_hit_M_cap_ceiling": false
+      },
+      {
+        "M_cap_scanned": 24,
+        "N": 24,
+        "equal_dof_commutative_projection_capacity": 4,
+        "quaternion_at_or_above_equal_dof": true,
+        "quaternion_over_equal_dof_ratio": 1.5,
+        "quaternion_projection_capacity": 6,
+        "quaternion_strictly_below_equal_dof": false,
+        "scan_hit_M_cap_ceiling": false
+      },
+      {
+        "M_cap_scanned": 30,
+        "N": 48,
+        "equal_dof_commutative_projection_capacity": 9,
+        "quaternion_at_or_above_equal_dof": true,
+        "quaternion_over_equal_dof_ratio": 1.3333333333333333,
+        "quaternion_projection_capacity": 12,
+        "quaternion_strictly_below_equal_dof": false,
+        "scan_hit_M_cap_ceiling": false
+      }
+    ],
+    "quaternion_strictly_below_equal_dof_all_N": false,
+    "ratio_climbs_toward_parity": false,
+    "ratios_quaternion_over_equal_dof": [
+      1.0,
+      1.5,
+      1.3333333333333333
+    ],
+    "strict_bar": "mean recall overlap >= 0.95 AND basin-correct fraction >= 0.90 over 10 corruption trials/pattern at 30% corruption",
+    "weight_rule": "projection (pseudo-inverse) W=Xi*pinv(Xi), both arms"
+  },
+  "seed": 20260602,
+  "settles_confound_in": "hopfield_capacity_scaling (STRUCTURAL_GAP vs representation-dimension artifact)",
+  "sim_execution_kind": "nonclassical",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: pinv (SVD pseudo-inverse) builds the projection weight rule on BOTH arms over 2N x 2M complex blocks; SU(2)/Pauli realization verifies the carrier + the mat2quat round-trip the quaternion projection depends on; removing the equal-DOF complex-block construction would re-introduce the 4N-vs-2N confound and could FLIP the verdict.",
+    "Random": "load_bearing: random unit quaternions / unit complex pairs, corruption seeds, random starts (signatures measured, not planted).",
+    "Statistics": "supportive: means over corruption trials and probes."
+  }
+}

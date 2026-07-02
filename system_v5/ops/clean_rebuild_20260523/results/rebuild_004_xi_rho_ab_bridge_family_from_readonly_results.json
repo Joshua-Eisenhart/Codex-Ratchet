@@ -1,0 +1,150 @@
+{
+  "schema": "clean_rebuild_result_v1",
+  "name": "rebuild_004_xi_rho_ab_bridge_family_from_readonly",
+  "classification": "clean_rebuild_scout",
+  "sim_execution_kind": "nonclassical_clean_rebuild",
+  "source_alignment_category": "xi_rho_ab_bridge_family_readonly_rebuild",
+  "promotion_allowed": false,
+  "claim_ceiling": "Clean rebuild scout only: tests a minimal Xi -> rho_AB bridge family against fiber/base and product controls. It does not admit final Xi, Phi0, Axis0, shell/history unification, or physics claims.",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite spinor states, two-qubit cut states, partial traces, entropy, and bridge-family controls"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive clean rebuild receipt serialization"
+    },
+    "pathlib": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result path handling"
+    },
+    "time": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive runtime metadata"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "python_json": "supportive",
+    "pathlib": "supportive",
+    "time": "supportive"
+  },
+  "generated_at": "2026-05-23T23:06:37Z",
+  "runtime_seconds": 0.034664154052734375,
+  "all_pass": true,
+  "sections": {
+    "kernel_sanity_gate": {
+      "pass": true,
+      "source": "AXIS_0_1_2_QIT_MATH lines 17-23 and 143-147: cut-state entropy kernels require rho_AB",
+      "product": {
+        "S_A": -0.0,
+        "S_B": -0.0,
+        "S_AB": -0.0,
+        "conditional_entropy_A_given_B": 0.0,
+        "coherent_information_A_to_B": 0.0,
+        "mutual_information": 0.0
+      },
+      "bell": {
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "S_AB": -0.0,
+        "conditional_entropy_A_given_B": -0.6931471805599453,
+        "coherent_information_A_to_B": 0.6931471805599453,
+        "mutual_information": 1.3862943611198906
+      }
+    },
+    "bridge_family_gate": {
+      "pass": true,
+      "source": "AXIS_0_1_2_QIT_MATH lines 101-120 and 219-223: point, shell, and history bridge families are live but open",
+      "summary": {
+        "product_fiber": {
+          "mean_Ic": -1.8503717077085938e-17,
+          "span_Ic": 4.440892098500625e-16,
+          "mean_MI": 4.6259292692714846e-17,
+          "span_MI": 4.440892098500625e-16
+        },
+        "product_base": {
+          "mean_Ic": 9.251858538542969e-18,
+          "span_Ic": 2.2204460492503126e-16,
+          "mean_MI": 6.476300976980078e-17,
+          "span_MI": 2.2204460492503126e-16
+        },
+        "point_reference_fiber": {
+          "mean_Ic": 0.1925127601969353,
+          "span_Ic": 1.0269562977782698e-15,
+          "mean_MI": 0.3850255203938706,
+          "span_MI": 1.27675647831893e-15
+        },
+        "point_reference_base": {
+          "mean_Ic": 0.2871163781000427,
+          "span_Ic": 0.403720400107749,
+          "mean_MI": 0.5742327562000854,
+          "span_MI": 0.8074408002154989
+        },
+        "history_window_fiber": {
+          "mean_Ic": -7.401486830834375e-17,
+          "span_Ic": 3.330669073875469e-16,
+          "mean_MI": -7.401486830834375e-17,
+          "span_MI": 3.330669073875469e-16
+        },
+        "history_window_base": {
+          "mean_Ic": 0.036709112436322786,
+          "span_Ic": 0.041796978935850805,
+          "mean_MI": 0.07341822487264552,
+          "span_MI": 0.08359395787170192
+        },
+        "shell_cut_fiber": {
+          "mean_Ic": -0.28163136975693054,
+          "span_Ic": 1.887379141862766e-15,
+          "mean_MI": 0.2087072369215077,
+          "span_MI": 1.887379141862766e-15
+        },
+        "shell_cut_base": {
+          "mean_Ic": -0.3008013215379924,
+          "span_Ic": 0.1463959258324668,
+          "mean_MI": 0.22717187618054469,
+          "span_MI": 0.1553525475504468
+        }
+      },
+      "product_floor_MI": 6.476300976980078e-17,
+      "point_reference_base_span_Ic": 0.403720400107749,
+      "history_window_base_mean_Ic": 0.036709112436322786,
+      "shell_cut_is_finite_support": true
+    },
+    "axis0_nonadmission_gate": {
+      "pass": true,
+      "live_candidate_count": 5,
+      "live_candidates": [
+        "point_reference_fiber",
+        "point_reference_base",
+        "history_window_base",
+        "shell_cut_fiber",
+        "shell_cut_base"
+      ],
+      "admission": "blocked",
+      "reason": "Multiple Xi families are live and role-distinct. This rebuild proves the bridge family can be rerun cleanly, not that one Xi/Phi0 formula is final."
+    }
+  },
+  "xi_status": {
+    "bridge_family_rebuilt": true,
+    "final_xi_admitted": false,
+    "final_phi0_admitted": false,
+    "next_required_test": "rebuild QIT-FEP/path-history Axis0 candidate batch against these clean Xi families"
+  },
+  "source_boundary": {
+    "reads_formal_scout_results": false,
+    "reads_grok_sim": false,
+    "reads_external_audits": false,
+    "reads_cross_lane_synthesis_docs": false,
+    "primary_reference_docs": [
+      "system_v5/READ ONLY Reference Docs/AXES_0_6_AND_CONSTRAINT_MANIFOLD_EXPLICIT_ATLAS copy.md",
+      "system_v5/READ ONLY Reference Docs/AXIS_0_1_2_QIT_MATH.md",
+      "system_v5/READ ONLY Reference Docs/QIT_ENGINE_GEOMETRY_ENTROPY_BRIDGE_MASTER_TABLE copy.md"
+    ]
+  }
+}

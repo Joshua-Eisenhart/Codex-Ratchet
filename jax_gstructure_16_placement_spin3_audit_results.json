@@ -1,0 +1,758 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "full_layer_completion",
+    "official_g_structure_selection",
+    "layer_stacking",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "FEP",
+    "bridge",
+    "basin_admission",
+    "physics_gravity",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "candidates": {
+    "cl3_jaxga": {
+      "candidate": "Cl(3,0) via jaxga",
+      "checks": {
+        "cl3_anticommutators_zero": true,
+        "cl3_squares_positive": true,
+        "jaxga_available": true
+      },
+      "finite_map": "finite jaxga basis blades -> square signs and anticommutators",
+      "metrics": {
+        "max_anticommutator": 0.0,
+        "squares": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "pass": true
+    },
+    "custom_jvp_retraction": {
+      "candidate": "custom_jvp S3 retraction derivative",
+      "checks": {
+        "jvp_matches_finite_difference": true,
+        "jvp_output_on_s3": true,
+        "jvp_tangent_to_s3": true
+      },
+      "finite_map": "finite S3 retraction primal/tangent -> tangent-space JVP readout",
+      "metrics": {
+        "finite_difference_gap": 4.533856122980725e-06,
+        "output_norm_gap": 1.1102230246251565e-16,
+        "tangent_dot": 8.326672684688674e-17
+      },
+      "pass": true
+    },
+    "diffrax_event_prune": {
+      "candidate": "diffrax DiscreteTerminatingEvent prune",
+      "checks": {
+        "alive_norm_preserved": true,
+        "alive_path_not_pruned": true,
+        "forbidden_path_pruned": true
+      },
+      "finite_map": "finite S3 ODE trajectory -> monotone forbidden q0 event",
+      "metrics": {
+        "alive_norm_gap": 1.1719290327061316e-07,
+        "alive_result": "diffrax._solution.RESULTS<>",
+        "dead_result": "diffrax._solution.RESULTS<Terminating differential equation solve because an event occurred.>"
+      },
+      "pass": true
+    },
+    "dlpack_snapshot": {
+      "candidate": "DLPack checkpoint/snapshot boundary",
+      "checks": {
+        "jax_array_exports_dlpack_protocol": true,
+        "jax_from_dlpack_roundtrip_values": true
+      },
+      "finite_map": "finite JAX array -> DLPack protocol import -> value-preserving snapshot",
+      "metrics": {
+        "roundtrip_gap": 0.0,
+        "shape": [
+          4,
+          4
+        ]
+      },
+      "pass": true
+    },
+    "noncommuting_topology_rotors": {
+      "candidate": "N01 topology rotor noncommutation",
+      "checks": {
+        "different_topology_rotors_order_sensitive": true,
+        "same_word_control_zero": true
+      },
+      "finite_map": "two finite topology rotor flows -> AB vs BA order gap",
+      "metrics": {
+        "order_gap": 0.016106307280532594,
+        "same_word_gap": 7.264329320467944e-16
+      },
+      "pass": true
+    },
+    "optax_retraction": {
+      "candidate": "optax plus S3 retraction",
+      "checks": {
+        "loss_decreases": true,
+        "retraction_keeps_s3": true
+      },
+      "finite_map": "finite gradient steps -> retracted S3 optimizer state",
+      "metrics": {
+        "final_loss": 3.3569500302865762e-06,
+        "initial_loss": 1.1031421246258795,
+        "max_norm_drift": 2.220446049250313e-16
+      },
+      "pass": true
+    },
+    "riemannax": {
+      "candidate": "riemannax optional manifold optimizer",
+      "checks": {
+        "installed": false
+      },
+      "metrics": {
+        "status": "blocked_missing_package"
+      },
+      "pass": false
+    },
+    "spin3_su2": {
+      "candidate": "Spin(3) ~= SU(2)",
+      "checks": {
+        "double_cover_q_and_minus_q_same_so3": true,
+        "jaxlie_exp_quaternion_unit": true,
+        "quaternion_product_closed_on_s3": true,
+        "reflection_kill_not_so3": true,
+        "rotation_matrix_is_so3": true
+      },
+      "finite_map": "unit quaternions -> SO(3) rotations with q/-q double cover",
+      "metrics": {
+        "double_cover_gap": 0.0,
+        "jaxlie_quaternion_norm_gap": 1.1102230246251565e-16,
+        "product_norm_gap": 0.0,
+        "reflection_det": -1.0,
+        "rotation_det": 1.0000000000000009
+      },
+      "pass": true
+    },
+    "u1_chern": {
+      "candidate": "U(1) Hopf bundle Chern readout",
+      "checks": {
+        "chern_minus_one": true,
+        "chern_plus_one": true,
+        "trivial_bundle_zero": true
+      },
+      "finite_map": "finite S2 curvature quadrature -> c1 signs and trivial-bundle control",
+      "metrics": {
+        "c1_minus": -1.000000024511428,
+        "c1_plus": 1.000000024511428,
+        "trivial_c1": 0.0
+      },
+      "pass": true
+    }
+  },
+  "checks": {
+    "all_placement_rows_pass": true,
+    "base_paths_horizontal": true,
+    "cl3_jaxga_candidate_passes": true,
+    "custom_jvp_retraction_passes": true,
+    "diffrax_event_prune_passes": true,
+    "dlpack_snapshot_boundary_passes": true,
+    "eight_sheet_specific_terrains_present": true,
+    "fiber_and_base_paths_present": true,
+    "fiber_paths_density_invariant": true,
+    "four_topologies_present": true,
+    "no_julia_execution": true,
+    "no_pytorch_execution": true,
+    "noncommuting_topology_rotors_pass": true,
+    "optax_retraction_passes": true,
+    "promotion_blocked": true,
+    "riemannax_status_recorded": true,
+    "sixteen_placements_enumerated": true,
+    "spin3_su2_candidate_passes": true,
+    "two_weyl_sheets_present": true,
+    "u1_chern_candidate_passes": true
+  },
+  "claim_boundary": "JAX diagnostic for 16 placements and G-structure candidates; no full layer, official G-structure selection, stacking, Axis0, flux, bridge, or physics admission.",
+  "classification": "diagnostic_jax_gstructure_16_placement_spin3_audit",
+  "codomain_or_output": "16 placement rows, Spin(3)/SU(2) checks, Cl(3) jaxga checks, U(1) Chern signs, horizontal/fiber controls, DLPack snapshot status",
+  "domain": "P={L,R} x {fiber,base} x {Se,Ne,Ni,Si}; unit quaternion spinors q in S3; finite topology rotor axes; finite Hopf curvature samples",
+  "executed_track": "jax",
+  "finite_map": "placement and candidate G-structure maps -> bounded JAX invariant/control receipt",
+  "formal_admission_allowed": false,
+  "honesty_notes": [
+    "This is a JAX diagnostic/audit lane, not a Julia-native Grassmann/QuantumOptics proof.",
+    "riemannax is absent in this environment and is recorded instead of silently assumed.",
+    "DLPack is checked only as a finite JAX snapshot boundary; no live Julia exchange is claimed.",
+    "No PyTorch import, process, or retired-lane port is used."
+  ],
+  "julia_reference_mode": "read_only_external_reference_only",
+  "legacy_tensor_lane_used": false,
+  "name": "jax_gstructure_16_placement_spin3_audit",
+  "promotion_allowed": false,
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "reference_paths_read_only": [
+    "system_v5/READ ONLY Reference Docs/terrains.md",
+    "system_v5/ops/AXES_TERRAINS_OPERATORS_MANIFOLD_SOURCE_LAYOUT_20260522.md",
+    "system_v5/julia_carrier/layers/*_results.json"
+  ],
+  "root_constraints_in_force": {
+    "F01": "finite placement set P, finite S3 quaternions, finite Hopf path samples, finite ODE/scan steps, finite Chern quadrature",
+    "N01": "quaternion rotor noncommutation, Clifford anticommutators, chirality/path order controls, monotone prune event"
+  },
+  "rows": [
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 1,
+      "label": "Se / Funnel on Type 1 inner",
+      "metrics": {
+        "base_delta": 5.438959822042073e-16,
+        "connection_value": 1.0,
+        "density_delta": 2.227171939408469e-16,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 1.0,
+        "flow_no_op_gap": 0.06498855752999545,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Funnel",
+      "topology": "Se"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 2,
+      "label": "Ne / Vortex on Type 1 inner",
+      "metrics": {
+        "base_delta": 5.438959822042073e-16,
+        "connection_value": 1.0,
+        "density_delta": 2.227171939408469e-16,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 1.0,
+        "flow_no_op_gap": 0.14487300328403252,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Vortex",
+      "topology": "Ne"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 3,
+      "label": "Ni / Pit on Type 1 inner",
+      "metrics": {
+        "base_delta": 5.438959822042073e-16,
+        "connection_value": 1.0,
+        "density_delta": 2.227171939408469e-16,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 1.0,
+        "flow_no_op_gap": 0.0849744129511059,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Pit",
+      "topology": "Ni"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 4,
+      "label": "Si / Hill on Type 1 inner",
+      "metrics": {
+        "base_delta": 5.438959822042073e-16,
+        "connection_value": 1.0,
+        "density_delta": 2.227171939408469e-16,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 1.0,
+        "flow_no_op_gap": 0.11493663865884592,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ]
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Hill",
+      "topology": "Si"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 5,
+      "label": "Se / Funnel on Type 1 outer",
+      "metrics": {
+        "base_delta": 1.3590734200749714,
+        "connection_value": 0.0,
+        "density_delta": 0.9610100314654056,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 0.0,
+        "flow_no_op_gap": 0.06498855752999545,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Funnel",
+      "topology": "Se"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 6,
+      "label": "Ne / Vortex on Type 1 outer",
+      "metrics": {
+        "base_delta": 1.3590734200749714,
+        "connection_value": 0.0,
+        "density_delta": 0.9610100314654056,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 0.0,
+        "flow_no_op_gap": 0.14487300328403252,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Vortex",
+      "topology": "Ne"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 7,
+      "label": "Ni / Pit on Type 1 outer",
+      "metrics": {
+        "base_delta": 1.3590734200749714,
+        "connection_value": 0.0,
+        "density_delta": 0.9610100314654056,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 0.0,
+        "flow_no_op_gap": 0.0849744129511059,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Pit",
+      "topology": "Ni"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 8,
+      "label": "Si / Hill on Type 1 outer",
+      "metrics": {
+        "base_delta": 1.3590734200749714,
+        "connection_value": 0.0,
+        "density_delta": 0.9610100314654056,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 0.0,
+        "flow_no_op_gap": 0.11493663865884592,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ]
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Hill",
+      "topology": "Si"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 9,
+      "label": "Se / Cannon on Type 2 inner",
+      "metrics": {
+        "base_delta": 2.9893669801409083e-16,
+        "connection_value": 1.0,
+        "density_delta": 2.8370155439448913e-16,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 1.0,
+        "flow_no_op_gap": 0.06498855752999586,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ]
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Cannon",
+      "topology": "Se"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 10,
+      "label": "Ne / Spiral on Type 2 inner",
+      "metrics": {
+        "base_delta": 2.9893669801409083e-16,
+        "connection_value": 1.0,
+        "density_delta": 2.8370155439448913e-16,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 1.0,
+        "flow_no_op_gap": 0.1448730032840319,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 3.3306690738754696e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          -1.0,
+          -0.0,
+          -0.0
+        ]
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Spiral",
+      "topology": "Ne"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 11,
+      "label": "Ni / Source on Type 2 inner",
+      "metrics": {
+        "base_delta": 2.9893669801409083e-16,
+        "connection_value": 1.0,
+        "density_delta": 2.8370155439448913e-16,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 1.0,
+        "flow_no_op_gap": 0.08497441295110403,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          -0.0,
+          -1.0,
+          -0.0
+        ]
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Source",
+      "topology": "Ni"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 12,
+      "label": "Si / Citadel on Type 2 inner",
+      "metrics": {
+        "base_delta": 2.9893669801409083e-16,
+        "connection_value": 1.0,
+        "density_delta": 2.8370155439448913e-16,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 1.0,
+        "flow_no_op_gap": 0.11493663865884607,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          -0.5773502691896258,
+          -0.5773502691896258,
+          -0.5773502691896258
+        ]
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Citadel",
+      "topology": "Si"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 13,
+      "label": "Se / Cannon on Type 2 outer",
+      "metrics": {
+        "base_delta": 1.6638435450377995,
+        "connection_value": 0.0,
+        "density_delta": 1.1765150535296927,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 0.0,
+        "flow_no_op_gap": 0.06498855752999586,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ]
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Cannon",
+      "topology": "Se"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 14,
+      "label": "Ne / Spiral on Type 2 outer",
+      "metrics": {
+        "base_delta": 1.6638435450377995,
+        "connection_value": 0.0,
+        "density_delta": 1.1765150535296927,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 0.0,
+        "flow_no_op_gap": 0.1448730032840319,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 3.3306690738754696e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          -1.0,
+          -0.0,
+          -0.0
+        ]
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Spiral",
+      "topology": "Ne"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 15,
+      "label": "Ni / Source on Type 2 outer",
+      "metrics": {
+        "base_delta": 1.6638435450377995,
+        "connection_value": 0.0,
+        "density_delta": 1.1765150535296927,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 0.0,
+        "flow_no_op_gap": 0.08497441295110403,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          -0.0,
+          -1.0,
+          -0.0
+        ]
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Source",
+      "topology": "Ni"
+    },
+    {
+      "checks": {
+        "hopf_base_on_s2": true,
+        "path_class_control": true,
+        "s3_norm_retracted": true,
+        "topology_flow_nontrivial": true
+      },
+      "finite_map": "placement -> S3 quaternion path -> topology rotor flow -> Hopf base/density readout",
+      "index": 16,
+      "label": "Si / Citadel on Type 2 outer",
+      "metrics": {
+        "base_delta": 1.6638435450377995,
+        "connection_value": 0.0,
+        "density_delta": 1.1765150535296927,
+        "end_norm_gap": 0.0,
+        "fiber_vertical_connection_abs": 0.0,
+        "flow_no_op_gap": 0.11493663865884607,
+        "horizontal_connection_residual": 0.0,
+        "max_norm_drift": 2.220446049250313e-16,
+        "start_norm_gap": 0.0,
+        "topology_axis": [
+          -0.5773502691896258,
+          -0.5773502691896258,
+          -0.5773502691896258
+        ]
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Citadel",
+      "topology": "Si"
+    }
+  ],
+  "tool_integration_depth": {
+    "custom_jvp": "load_bearing",
+    "diffrax": "load_bearing",
+    "jax": "load_bearing",
+    "jax.dlpack": "supportive",
+    "jax.numpy": "load_bearing",
+    "jaxga": "load_bearing",
+    "jaxlie": "load_bearing",
+    "json": "supportive",
+    "optax": "load_bearing",
+    "riemannax": "blocked_or_supportive"
+  },
+  "tool_manifest": {
+    "custom_jvp": "load-bearing tangent-space derivative rule for S3 retraction",
+    "diffrax": "load-bearing S3 ODE event-prune check",
+    "jax": "load-bearing finite quaternion, Hopf, placement, scan, x64, and gradient computations",
+    "jax.dlpack": "supportive checkpoint/snapshot boundary check for future Julia/JAX file or zero-copy exchange",
+    "jax.numpy": "load-bearing finite linear algebra and invariant readouts",
+    "jaxga": "load-bearing Cl(3,0) blade square/anticommutator check when available",
+    "jaxlie": "load-bearing SO3 exp/quaternion unit check for Spin(3)/SU(2) candidate",
+    "json": "supportive receipt serialization",
+    "optax": "load-bearing optimizer with explicit S3 retraction",
+    "riemannax": "optional manifold optimizer; blocker recorded when missing"
+  }
+}

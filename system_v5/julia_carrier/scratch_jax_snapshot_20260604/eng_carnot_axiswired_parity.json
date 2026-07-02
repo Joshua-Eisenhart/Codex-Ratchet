@@ -1,0 +1,230 @@
+{
+  "object_id": "eng_carnot_axiswired_jax_parity_v1",
+  "classification": "tool_lego_fit_probe",
+  "promotion_allowed": false,
+  "claim_ceiling": "Carnot engine JAX parity probe. F01+N01. candidate only. promotion_allowed=false.",
+  "jax_available": false,
+  "jax_result_N32": {
+    "N": 32,
+    "clausius": {
+      "eta": 0.25,
+      "W_net": 25.0,
+      "DS_cycle": 0.0,
+      "eta_pass": true,
+      "DS_cycle_pass": true,
+      "W_net_pass": true
+    },
+    "refrigerator": {
+      "eta_refrigerator": -0.25,
+      "negative_eta_pass": true
+    },
+    "axis0_svn_readout": {
+      "mean_dS_stroke1": 0.4521789041494257,
+      "mean_dS_stroke2": 0.12082487681391332,
+      "mean_dS_stroke3": -0.1298598834555712,
+      "mean_dS_stroke4": -0.08163440881388825,
+      "s1_entropy_up": true
+    },
+    "n01_substage": {
+      "all_n01_hot_commutes": true,
+      "all_n01_cold_pass": true,
+      "all_n01_ctrl_pass": true,
+      "substage_results": [
+        {
+          "state_idx": 1,
+          "stroke1": {
+            "n01_hot": 7.850462293418876e-17,
+            "n01_cold": 0.4033013404971141,
+            "n01_ctrl": 0.0,
+            "n01_hot_pass": false,
+            "n01_cold_pass": true,
+            "n01_ctrl_pass": true
+          },
+          "stroke3": {
+            "n01_hot": 1.1274368112207335e-16,
+            "n01_cold": 0.403301340497114,
+            "n01_ctrl": 0.0,
+            "n01_hot_pass": false,
+            "n01_cold_pass": true,
+            "n01_ctrl_pass": true
+          }
+        },
+        {
+          "state_idx": 2,
+          "stroke1": {
+            "n01_hot": 5.551115123125783e-17,
+            "n01_cold": 0.36834061692581505,
+            "n01_ctrl": 0.0,
+            "n01_hot_pass": false,
+            "n01_cold_pass": true,
+            "n01_ctrl_pass": true
+          },
+          "stroke3": {
+            "n01_hot": 5.551115123125783e-17,
+            "n01_cold": 0.3683406169258151,
+            "n01_ctrl": 0.0,
+            "n01_hot_pass": false,
+            "n01_cold_pass": true,
+            "n01_ctrl_pass": true
+          }
+        },
+        {
+          "state_idx": 3,
+          "stroke1": {
+            "n01_hot": 1.1274368112207335e-16,
+            "n01_cold": 0.2493730149068649,
+            "n01_ctrl": 0.0,
+            "n01_hot_pass": false,
+            "n01_cold_pass": true,
+            "n01_ctrl_pass": true
+          },
+          "stroke3": {
+            "n01_hot": 5.887846720064156e-17,
+            "n01_cold": 0.2493730149068649,
+            "n01_ctrl": 0.0,
+            "n01_hot_pass": false,
+            "n01_cold_pass": true,
+            "n01_ctrl_pass": true
+          }
+        },
+        {
+          "state_idx": 4,
+          "stroke1": {
+            "n01_hot": 6.359601310784502e-17,
+            "n01_cold": 0.27989575576797354,
+            "n01_ctrl": 0.0,
+            "n01_hot_pass": false,
+            "n01_cold_pass": true,
+            "n01_ctrl_pass": true
+          },
+          "stroke3": {
+            "n01_hot": 1.1527756336890508e-16,
+            "n01_cold": 0.27989575576797354,
+            "n01_ctrl": 0.0,
+            "n01_hot_pass": false,
+            "n01_cold_pass": true,
+            "n01_ctrl_pass": true
+          }
+        }
+      ]
+    },
+    "direct_checks": {
+      "boundary_eta_near_zero": true,
+      "negative_reversed_eta_lt_0": true,
+      "adiabatic_entropy_preserved": true,
+      "isothermal_entropy_exchanged": true,
+      "n01_cold_direct_gap": 0.2980824412294736,
+      "n01_cold_direct_pass": true,
+      "n01_hot_direct_gap": 7.076311083754595e-17,
+      "n01_hot_commutes_direct": true
+    },
+    "cycle_closure": {
+      "mean_state_return_gap": 0.8528408759717658,
+      "cycle_closes_purity_fraction": 0.0,
+      "honest_caveat": "purity-window closure only; full state return not guaranteed"
+    },
+    "all_pass": true
+  },
+  "parity_vs_julia": {
+    "parity_pass": true,
+    "max_diff": 1.1102230246251565e-16,
+    "parity_tol": 1e-06,
+    "num_checks": 8,
+    "num_pass": 8,
+    "findings": [
+      {
+        "field": "eta",
+        "jax": 0.25,
+        "julia": 0.25,
+        "diff": 0.0,
+        "status": "PASS"
+      },
+      {
+        "field": "W_net",
+        "jax": 25.0,
+        "julia": 25.0,
+        "diff": 0.0,
+        "status": "PASS"
+      },
+      {
+        "field": "DS_cycle",
+        "jax": 0.0,
+        "julia": 0.0,
+        "diff": 0.0,
+        "status": "PASS"
+      },
+      {
+        "field": "mean_dS_stroke1",
+        "jax": 0.4521789041494257,
+        "julia": 0.4521789041494257,
+        "diff": 0.0,
+        "status": "PASS"
+      },
+      {
+        "field": "mean_dS_stroke2",
+        "jax": 0.12082487681391332,
+        "julia": 0.12082487681391327,
+        "diff": 5.551115123125783e-17,
+        "status": "PASS"
+      },
+      {
+        "field": "mean_dS_stroke3",
+        "jax": -0.1298598834555712,
+        "julia": -0.12985988345557126,
+        "diff": 5.551115123125783e-17,
+        "status": "PASS"
+      },
+      {
+        "field": "mean_dS_stroke4",
+        "jax": -0.08163440881388825,
+        "julia": -0.08163440881388817,
+        "diff": 8.326672684688674e-17,
+        "status": "PASS"
+      },
+      {
+        "field": "mean_state_return_gap",
+        "jax": 0.8528408759717658,
+        "julia": 0.8528408759717657,
+        "diff": 1.1102230246251565e-16,
+        "status": "PASS"
+      }
+    ],
+    "note": "Parity tolerance accounts for first-order Euler Lindblad integration differences. Clausius is analytical (exact match expected). vN entropy differences arise from Lindblad path."
+  },
+  "julia_result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/eng_carnot_axiswired_julia_results.json",
+  "parity_result_path": "/tmp/eng_carnot_axiswired_parity.json",
+  "honest_caveat": "cycle_closes is purity-window only. Lindblad is first-order Euler. Full state return not guaranteed. Clausius DS_cycle~0 is the primary closure criterion.",
+  "TOOL_MANIFEST": {
+    "numpy": {
+      "used": true,
+      "reason": "load_bearing: density matrix ops, eigvalsh, Frobenius norm \u2014 removal changes verdict"
+    },
+    "jax": {
+      "used": false,
+      "reason": "load_bearing when available: x64 float precision for parity audit; falls back to numpy"
+    },
+    "kraus_apply": {
+      "used": true,
+      "reason": "load_bearing: axis1 expand/compress channels"
+    },
+    "lindblad": {
+      "used": true,
+      "reason": "load_bearing: axis2 open_isothermal Lindblad"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "numpy": "load_bearing",
+    "jax": "load_bearing",
+    "kraus_apply": "load_bearing",
+    "lindblad": "load_bearing"
+  },
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "coupling",
+    "bridge",
+    "Phi0",
+    "Xi",
+    "Axis0"
+  ]
+}

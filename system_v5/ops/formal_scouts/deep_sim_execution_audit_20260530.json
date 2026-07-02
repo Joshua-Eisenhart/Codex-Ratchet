@@ -1,0 +1,1685 @@
+{
+  "claim_boundary": "Pass means this receipt satisfied the selected execution-depth profile only. It does not admit a manifold layer, select a G-structure, open stacking/order claims, or unlock Axis0/FEP/flux/physics.",
+  "execution_fail_count": 12,
+  "execution_pass_count": 57,
+  "generated_at": "2026-05-30T07:43:35.937068+00:00",
+  "input_count": 69,
+  "kind": "deep_sim_execution_audit",
+  "missing_by_criterion": {
+    "controls_or_negatives": 2,
+    "downstream_locked": 5,
+    "finite_map_domain_codomain": 3,
+    "full_representation_or_resource_note": 11,
+    "known_value_or_invariant_checks": 1,
+    "negative_or_ablation_kills_signature": 9,
+    "run_passed": 5
+  },
+  "not_formal_admission": true,
+  "profile_counts": {
+    "dual_backend": {
+      "fail": 0,
+      "pass": 1,
+      "total": 1
+    },
+    "geometry_full": {
+      "fail": 12,
+      "pass": 33,
+      "total": 45
+    },
+    "jax_geometry": {
+      "fail": 0,
+      "pass": 5,
+      "total": 5
+    },
+    "layer_full": {
+      "fail": 0,
+      "pass": 18,
+      "total": 18
+    }
+  },
+  "results": [
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=19",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/clifford_geometries_cl3_cl6_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=27",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/clifford_torus_t2_in_s3_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: host_numpy_only_supportive: host NumPy must not be claim-bearing",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['cvc5', 'e3nn_jax', 'jax', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'z3']",
+        "jax_backend_x64: needs JAX x64 evidence",
+        "jax_transform_used: needs JAX transform/autodiff/vectorization evidence where meaningful",
+        "known_value_or_invariant_checks: needs known math checks",
+        "controls_or_kill_conditions: needs JAX-side controls"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/geom_connection_holonomy_jax_probe_results.json",
+      "profile": "jax_geometry",
+      "score": 100.0,
+      "warnings": [
+        "host_numpy_only_supportive: host NumPy must not be claim-bearing"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'jax', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'z3']",
+        "jax_backend_x64: needs JAX x64 evidence",
+        "jax_transform_used: needs JAX transform/autodiff/vectorization evidence where meaningful",
+        "known_value_or_invariant_checks: needs known math checks",
+        "controls_or_kill_conditions: needs JAX-side controls"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/geom_left_right_weyl_jax_probe_results.json",
+      "profile": "jax_geometry",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: host_numpy_only_supportive: host NumPy must not be claim-bearing",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'e3nn_jax', 'jax', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'z3']",
+        "jax_backend_x64: needs JAX x64 evidence",
+        "jax_transform_used: needs JAX transform/autodiff/vectorization evidence where meaningful",
+        "known_value_or_invariant_checks: needs known math checks",
+        "controls_or_kill_conditions: needs JAX-side controls"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/geom_spinor_density_carrier_jax_probe_results.json",
+      "profile": "jax_geometry",
+      "score": 100.0,
+      "warnings": [
+        "host_numpy_only_supportive: host NumPy must not be claim-bearing"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: host_numpy_only_supportive: host NumPy must not be claim-bearing",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['cvc5', 'e3nn_jax', 'jax', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'z3']",
+        "jax_backend_x64: needs JAX x64 evidence",
+        "jax_transform_used: needs JAX transform/autodiff/vectorization evidence where meaningful",
+        "known_value_or_invariant_checks: needs known math checks",
+        "controls_or_kill_conditions: needs JAX-side controls"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/geom_su3_calabi_yau_jax_probe_results.json",
+      "profile": "jax_geometry",
+      "score": 100.0,
+      "warnings": [
+        "host_numpy_only_supportive: host NumPy must not be claim-bearing"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: host_numpy_only_supportive: host NumPy must not be claim-bearing",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn_jax', 'jax', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'z3']",
+        "jax_backend_x64: needs JAX x64 evidence",
+        "jax_transform_used: needs JAX transform/autodiff/vectorization evidence where meaningful",
+        "known_value_or_invariant_checks: needs known math checks",
+        "controls_or_kill_conditions: needs JAX-side controls"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/geom_symplectic_structure_jax_probe_results.json",
+      "profile": "jax_geometry",
+      "score": 100.0,
+      "warnings": [
+        "host_numpy_only_supportive: host NumPy must not be claim-bearing"
+      ]
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=0",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: controls_or_negatives",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_clifford_module_codex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 70.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: full_representation_or_resource_note",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=4",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_clifford_module_deep_probe_results.json",
+      "profile": "geometry_full",
+      "score": 90.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "run_passed: no true all_pass field",
+        "finite_map_domain_codomain: finite_map=True domain=False codomain=False",
+        "downstream_locked: locks=[]",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=0",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: run_passed",
+      "passed": [
+        "identity: needs explicit sim_id/name/object_id",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_g2_codex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 50.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+        "not_yet_embedded_as_spinor_network_carrier: standalone geometry still needs carrier embedding before layer stacking"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=0",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_g2_deep_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=0",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: controls_or_negatives",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "downstream_locked: locks=['flux', 'xi', 'axis0', 'physics', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_hybrid_reduction_chain_codex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 70.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+        "not_yet_embedded_as_spinor_network_carrier: standalone geometry still needs carrier embedding before layer stacking"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['e3nn', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=0",
+        "proof_or_exact_surface: tools=['e3nn', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_hybrid_reduction_chain_deep_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=0",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: negative_or_ablation_kills_signature",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_seiberg_witten_codex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 80.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+        "not_yet_embedded_as_spinor_network_carrier: standalone geometry still needs carrier embedding before layer stacking"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=0",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_seiberg_witten_deep_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=13",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_seiberg_witten_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "run_passed: no true all_pass field",
+        "finite_map_domain_codomain: finite_map=True domain=False codomain=False",
+        "downstream_locked: locks=[]",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=0",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: run_passed",
+      "passed": [
+        "identity: needs explicit sim_id/name/object_id",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_so3_codex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 50.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+        "not_yet_embedded_as_spinor_network_carrier: standalone geometry still needs carrier embedding before layer stacking"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=0",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_so3_deep_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: full_representation_or_resource_note",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=0",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_spin7_codex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 90.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=0",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_spin7_deep_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=12",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_spin7_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=0",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: negative_or_ablation_kills_signature",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_spin_c_codex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 80.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=2",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_spin_c_deep_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=30",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_spinc_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "run_passed: no true all_pass field",
+        "downstream_locked: locks=[]",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=0",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: run_passed",
+      "passed": [
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_su2_spin3_codex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 60.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+        "not_yet_embedded_as_spinor_network_carrier: standalone geometry still needs carrier embedding before layer stacking"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=0",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_su2_spin3_deep_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "run_passed: no true all_pass field",
+        "downstream_locked: locks=[]",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=0",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: run_passed",
+      "passed": [
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_su3_calabi_yau_codex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 60.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['cvc5', 'e3nn', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=0",
+        "proof_or_exact_surface: tools=['cvc5', 'e3nn', 'role', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_su3_calabi_yau_deep_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'jax', 'load_bearing_proof.smt_load_bearing cvc5 measured omega-preservation flip', 'load_bearing_proof.smt_load_bearing z3 measured omega-preservation flip', 'reason', 'sympy', 'sympy exact determinant and cy normalization mirror', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=30",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'jax', 'load_bearing_proof.smt_load_bearing cvc5 measured omega-preservation flip', 'load_bearing_proof.smt_load_bearing z3 measured omega-preservation flip', 'reason', 'sympy', 'sympy exact determinant and cy normalization mirror', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_sun_calabiyau_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'jax', 'numpy', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=34",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'jax', 'numpy', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_symplectic_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "run_passed: no true all_pass field",
+        "finite_map_domain_codomain: finite_map=True domain=False codomain=False",
+        "downstream_locked: locks=[]",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=0",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "next_repair": "repair first failed criterion: run_passed",
+      "passed": [
+        "identity: needs explicit sim_id/name/object_id",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_u1_codex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 50.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+        "not_yet_embedded_as_spinor_network_carrier: standalone geometry still needs carrier embedding before layer stacking"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=0",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/gstruct_u1_deep_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": [
+        "not_yet_bound_to_two_root_constraints: ok for standalone math, blocker before manifold use"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=27",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/hopf_fibration_s3_to_s2_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=47",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/hybrid_hopf_spin_twistor_clifford_reduction_graph_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 8 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 70 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l0_response_quotient_full_spinor_network_layer_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 4 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 84 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l0_response_quotient_mps_peps2d_peps3d_depth_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 8 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 70 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l1_boundary_environment_full_spinor_network_layer_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 4 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 84 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l1_boundary_environment_mps_peps2d_peps3d_depth_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 4 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 96 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l2_weyl_spinor_chirality_mps_peps2d_peps3d_depth_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 8 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 83 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l2_weyl_spinor_full_spinor_network_layer_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 8 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 82 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l3_clifford_quaternion_full_spinor_network_layer_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 4 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 122 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l3_clifford_quaternion_mps_peps2d_peps3d_depth_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 8 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 70 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l4_terrain_generator_full_spinor_network_layer_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 4 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 88 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l4_terrain_generator_mps_peps2d_peps3d_depth_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 8 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 70 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l5_operator_substage_full_spinor_network_layer_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 4 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 84 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l5_operator_substage_mps_peps2d_peps3d_depth_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 4 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 92 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l6_entropy_cut_communication_mps_peps2d_peps3d_depth_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 8 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 70 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l6_entropy_cut_full_spinor_network_layer_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 8 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 70 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l7_hopf_shell_full_spinor_network_layer_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 4 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 49 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l7_hopf_shell_mps_peps2d_peps3d_depth_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 8 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 70 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l8_groupoid_gluing_full_spinor_network_layer_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']",
+        "root_constraints_F01_N01: F01=True N01=True",
+        "torch_primary_spinor_or_density: needs torch-native spinor/density evidence",
+        "non_dense_network_views_MPS_PEPS2D_PEPS3D: 3/3 views present",
+        "peps3d_carrier_anchor: needs actual PEPS3D-like carrier anchor",
+        "scale_8_16_32_64_or_blocker: 8/16/32/64 present",
+        "dynamic_geometry_surface: needs transport/path/order/channel/update evidence",
+        "qit_entropy_family: 4 entropy/correlation terms",
+        "numeric_nonvacuous_ablations: 92 nonzero ablation/drop/gap values",
+        "proof_and_geometry_tool_depth: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'role', 'rustworkx', 'sympy', 'tool_integration_depth', 'tool_manifest', 'toponetx', 'torch', 'xgi', 'z3']"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/l8_groupoid_gluing_mps_peps2d_peps3d_depth_probe_results.json",
+      "profile": "layer_full",
+      "score": 100.0,
+      "warnings": [
+        "missing_jax_parity_for_layer: not a hard failure here, but required for dual-backend confidence"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['e3nn', 'e3nn_jax', 'geomstats', 'jax', 'sympy', 'sympy_structure_relations', 'tool_integration_depth', 'torch', 'z3', 'z3_reduction_gate']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=True nonzero_deltas=29",
+        "proof_or_exact_surface: tools=['e3nn', 'e3nn_jax', 'geomstats', 'jax', 'sympy', 'sympy_structure_relations', 'tool_integration_depth', 'torch', 'z3', 'z3_reduction_gate']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/layer_frame_bundle_gstructure_8_16_32_64_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=23",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/nested_hopf_tori_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=23",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/pin3_spin3_chirality_split_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=19",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/s2_hopf_base_surface_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=23",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/s3_spinor_carrier_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": false,
+      "failed": [
+        "known_value_or_invariant_checks: needs known math checks/certificates"
+      ],
+      "next_repair": "repair first failed criterion: known_value_or_invariant_checks",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'sympy', 'tool_integration_depth', 'torch', 'z3']",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=27",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'sympy', 'tool_integration_depth', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/sim_gstruct_almost_complex_probe_results.json",
+      "profile": "geometry_full",
+      "score": 90.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'jax', 'load_bearing_proof.smt_load_bearing cvc5 cross-check', 'load_bearing_proof.smt_load_bearing z3', 'numpy', 'reason', 'scipy', 'sympy', 'sympy exact rational flip', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=50",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'jax', 'load_bearing_proof.smt_load_bearing cvc5 cross-check', 'load_bearing_proof.smt_load_bearing z3', 'numpy', 'reason', 'scipy', 'sympy', 'sympy exact rational flip', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/sim_gstruct_clifford_module_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=23",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'e3nn', 'geomstats', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/sim_gstruct_g2_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'geomstats', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=16",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'geomstats', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/sim_gstruct_son_frame_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'sympy', 'tool_integration_depth', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=14",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'sympy', 'tool_integration_depth', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/sim_gstruct_spin_n_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'sympy', 'tool_integration_depth', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=27",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'sympy', 'tool_integration_depth', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/sim_gstruct_su2_spin3_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; address warning: not_yet_embedded_as_spinor_network_carrier: standalone geometry still needs carrier embedding before layer stacking",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['flux', 'xi', 'phi0', 'axis0', 'fep', 'gravity']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cvc5', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=17",
+        "proof_or_exact_surface: tools=['clifford', 'cvc5', 'reason', 'sympy', 'tool_integration_depth', 'tool_manifest', 'torch', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/sim_gstruct_u1_circle_bundle_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": [
+        "not_yet_embedded_as_spinor_network_carrier: standalone geometry still needs carrier embedding before layer stacking"
+      ]
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=19",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/so3_orientation_frame_reduction_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=23",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/su2_spin3_unit_quaternion_double_cover_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'physics']",
+        "tool_manifest_load_bearing: tools=['diffrax', 'jax', 'numpy', 'role', 'tool_integration_depth', 'tool_manifest', 'torch']",
+        "torch_and_jax_paths: needs both backends",
+        "backend_agreement_delta: max_delta=2.1190549315264207e-12",
+        "dynamic_or_state_evolution: needs state/dynamics comparison",
+        "same_controls: needs same controls across backends"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/terrain_gksl_dissipator_dual_backend_torch_jax_probe_results.json",
+      "profile": "dual_backend",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=19",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/twistor_incidence_spinor_geometry_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    },
+    {
+      "execution_pass": true,
+      "failed": [],
+      "next_repair": "passes execution-depth profile; no promotion implied",
+      "passed": [
+        "run_passed: no true all_pass field",
+        "identity: needs explicit sim_id/name/object_id",
+        "finite_map_domain_codomain: finite_map=True domain=True codomain=True",
+        "controls_or_negatives: needs removal/scramble/negative controls",
+        "downstream_locked: locks=['stacking', 'flux', 'xi', 'phi0', 'axis0', 'fep', 'holodeck', 'gravity', 'physics', 'final_manifold', 'manifold_admission']",
+        "tool_manifest_load_bearing: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "known_value_or_invariant_checks: needs known math checks/certificates",
+        "negative_or_ablation_kills_signature: negatives=False nonzero_deltas=23",
+        "proof_or_exact_surface: tools=['clifford', 'cotengra', 'cvc5', 'e3nn', 'geomstats', 'gudhi', 'opt_einsum', 'pyg', 'quimb', 'rustworkx', 'sympy', 'tool_integration_depth', 'toponetx', 'torch', 'xgi', 'z3']",
+        "full_representation_or_resource_note: needs scale/full-representation statement"
+      ],
+      "path": "system_v5/ops/formal_scouts/results/u1_hopf_principal_bundle_g_structure_full_function_probe_results.json",
+      "profile": "geometry_full",
+      "score": 100.0,
+      "warnings": []
+    }
+  ]
+}

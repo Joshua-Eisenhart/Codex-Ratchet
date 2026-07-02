@@ -1,0 +1,285 @@
+{
+  "anchor": {
+    "all_match": true,
+    "n_checked": 10,
+    "n_match": 10,
+    "rows": [
+      {
+        "C_known_in_convention": 0,
+        "C_measured": 0,
+        "C_raw": 0.0,
+        "m": -4.5,
+        "match": true,
+        "min_gap": 1.0
+      },
+      {
+        "C_known_in_convention": -1,
+        "C_measured": -1,
+        "C_raw": -1.0,
+        "m": -3.5,
+        "match": true,
+        "min_gap": 1.0
+      },
+      {
+        "C_known_in_convention": -1,
+        "C_measured": -1,
+        "C_raw": -1.0,
+        "m": -3.0,
+        "match": true,
+        "min_gap": 2.0
+      },
+      {
+        "C_known_in_convention": -1,
+        "C_measured": -1,
+        "C_raw": -1.0,
+        "m": -2.5,
+        "match": true,
+        "min_gap": 1.0
+      },
+      {
+        "C_known_in_convention": 1,
+        "C_measured": 1,
+        "C_raw": 1.0,
+        "m": -1.5,
+        "match": true,
+        "min_gap": 1.0
+      },
+      {
+        "C_known_in_convention": 1,
+        "C_measured": 1,
+        "C_raw": 1.0,
+        "m": -1.0,
+        "match": true,
+        "min_gap": 2.0
+      },
+      {
+        "C_known_in_convention": 1,
+        "C_measured": 1,
+        "C_raw": 1.0,
+        "m": -0.5,
+        "match": true,
+        "min_gap": 1.0
+      },
+      {
+        "C_known_in_convention": 0,
+        "C_measured": 0,
+        "C_raw": 0.0,
+        "m": 0.5,
+        "match": true,
+        "min_gap": 1.0
+      },
+      {
+        "C_known_in_convention": 0,
+        "C_measured": 0,
+        "C_raw": 0.0,
+        "m": 1.0,
+        "match": true,
+        "min_gap": 2.0
+      },
+      {
+        "C_known_in_convention": 0,
+        "C_measured": 0,
+        "C_raw": 0.0,
+        "m": 3.0,
+        "match": true,
+        "min_gap": 6.0
+      }
+    ]
+  },
+  "anchor_global_sign": -1,
+  "carrier": "QWZ two-band Chern insulator H(k)=sin kx sx + sin ky sy + (m+2-cos kx-cos ky) sz",
+  "classification": "tool_lego_fit_probe",
+  "controls": {
+    "KILL2_wrong_structure": {
+      "C": 9999,
+      "C_raw": "undefined_at_transition",
+      "expect": "winding deleted, band touches -> no |C|=1; |C|=1 would KILL",
+      "min_gap": 0.0,
+      "note": "pass = no chiral terrain (C in {0, undefined}); 9999 = band-touching, occupied band not smooth -> no |C|=1, kill-control satisfied",
+      "pass": true
+    },
+    "KILL3_gapped_wrong_structure": {
+      "C": 0,
+      "C_raw": 0.0,
+      "expect": "winding deleted, GAPPED (m=3) -> C=0; |C|=1 would KILL",
+      "min_gap": 6.0,
+      "pass": true
+    },
+    "boundary_m=-2": {
+      "C": -1,
+      "C_raw": -0.546519,
+      "expect": "gap-closing transition; C ill-defined, flagged not forced",
+      "flagged_unstable": true,
+      "min_gap": 0.0
+    },
+    "negative_KILL_m=3": {
+      "C": 0,
+      "C_raw": 0.0,
+      "expect": "C=0 (trivial); nonzero would KILL",
+      "min_gap": 6.0,
+      "pass": true
+    },
+    "positive_m=-1": {
+      "C": 1,
+      "C_raw": 1.0,
+      "expect": "abs(C)=1",
+      "min_gap": 2.0,
+      "pass": true
+    },
+    "positive_m=-3": {
+      "C": -1,
+      "C_raw": -1.0,
+      "expect": "abs(C)=1, opposite sign to m=-1",
+      "min_gap": 2.0,
+      "pass": true
+    }
+  },
+  "description": "8 terrains = 4 spin structures on T^2 x 2 Chern signs; C read out of the state (FHS + degree) on a QWZ Chern insulator.",
+  "family_signs": {
+    "Cminus_m=-1": 1,
+    "Cplus_m=-3": -1
+  },
+  "grid_L": 24,
+  "honest_status": "kill_ok=true; pos_ok=true; anchor=10/10; ss_independent=true; two_signs=true",
+  "ladder_status": "passes",
+  "measurement_methods": [
+    "FHS lattice Berry curvature (occupied band eigenvectors)",
+    "degree of d-hat map (triangulated solid angle, independent code path)"
+  ],
+  "n_terrains": 8,
+  "noncircular_anchor": "measured C compared to KNOWN QWZ phase diagram |C| pattern + opposite-sign relation (m in (-2,0): |C|=1; (-4,-2): |C|=1 opposite sign; else 0), up to one global BZ-orientation sign",
+  "object": "L4_terrain_generator",
+  "promotion_allowed": false,
+  "spin_structure_independent_C": true,
+  "terrains": [
+    {
+      "C_degree": -1,
+      "C_degree_raw": -1.0,
+      "C_fhs": 1,
+      "C_fhs_raw": 1.0,
+      "chern_family": "Cminus_m=-1",
+      "mass_m": -1.0,
+      "methods_agree": true,
+      "min_band_gap": 2.0,
+      "spin_structure": "PP",
+      "terrain": "PP__Cminus_m=-1",
+      "twist": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "C_degree": -1,
+      "C_degree_raw": -1.0,
+      "C_fhs": 1,
+      "C_fhs_raw": 1.0,
+      "chern_family": "Cminus_m=-1",
+      "mass_m": -1.0,
+      "methods_agree": true,
+      "min_band_gap": 2.0,
+      "spin_structure": "PA",
+      "terrain": "PA__Cminus_m=-1",
+      "twist": [
+        0.0,
+        0.1308996938995747
+      ]
+    },
+    {
+      "C_degree": -1,
+      "C_degree_raw": -1.0,
+      "C_fhs": 1,
+      "C_fhs_raw": 1.0,
+      "chern_family": "Cminus_m=-1",
+      "mass_m": -1.0,
+      "methods_agree": true,
+      "min_band_gap": 2.0,
+      "spin_structure": "AP",
+      "terrain": "AP__Cminus_m=-1",
+      "twist": [
+        0.1308996938995747,
+        0.0
+      ]
+    },
+    {
+      "C_degree": -1,
+      "C_degree_raw": -1.0,
+      "C_fhs": 1,
+      "C_fhs_raw": 1.0,
+      "chern_family": "Cminus_m=-1",
+      "mass_m": -1.0,
+      "methods_agree": true,
+      "min_band_gap": 2.000146,
+      "spin_structure": "AA",
+      "terrain": "AA__Cminus_m=-1",
+      "twist": [
+        0.1308996938995747,
+        0.1308996938995747
+      ]
+    },
+    {
+      "C_degree": 1,
+      "C_degree_raw": 1.0,
+      "C_fhs": -1,
+      "C_fhs_raw": -1.0,
+      "chern_family": "Cplus_m=-3",
+      "mass_m": -3.0,
+      "methods_agree": true,
+      "min_band_gap": 2.0,
+      "spin_structure": "PP",
+      "terrain": "PP__Cplus_m=-3",
+      "twist": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "C_degree": 1,
+      "C_degree_raw": 1.0,
+      "C_fhs": -1,
+      "C_fhs_raw": -1.0,
+      "chern_family": "Cplus_m=-3",
+      "mass_m": -3.0,
+      "methods_agree": true,
+      "min_band_gap": 2.0,
+      "spin_structure": "PA",
+      "terrain": "PA__Cplus_m=-3",
+      "twist": [
+        0.0,
+        0.1308996938995747
+      ]
+    },
+    {
+      "C_degree": 1,
+      "C_degree_raw": 1.0,
+      "C_fhs": -1,
+      "C_fhs_raw": -1.0,
+      "chern_family": "Cplus_m=-3",
+      "mass_m": -3.0,
+      "methods_agree": true,
+      "min_band_gap": 2.0,
+      "spin_structure": "AP",
+      "terrain": "AP__Cplus_m=-3",
+      "twist": [
+        0.1308996938995747,
+        0.0
+      ]
+    },
+    {
+      "C_degree": 1,
+      "C_degree_raw": 1.0,
+      "C_fhs": -1,
+      "C_fhs_raw": -1.0,
+      "chern_family": "Cplus_m=-3",
+      "mass_m": -3.0,
+      "methods_agree": true,
+      "min_band_gap": 2.000146,
+      "spin_structure": "AA",
+      "terrain": "AA__Cplus_m=-3",
+      "twist": [
+        0.1308996938995747,
+        0.1308996938995747
+      ]
+    }
+  ],
+  "two_opposite_chern_signs": true
+}

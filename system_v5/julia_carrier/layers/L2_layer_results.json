@@ -1,0 +1,324 @@
+{
+  "F01_witness": {
+    "finite_carrier": "S^3 sampled at finite vertex set on PEPS3D torus complex (V finite)",
+    "finite_operators": [
+      "sigma_x",
+      "sigma_y",
+      "sigma_z",
+      "U(1) phase e^{i alpha}",
+      "SU(2) action"
+    ],
+    "finite_paths": [
+      "Hopf fiber loop gamma_f (n steps)",
+      "Hopf base loop gamma_b (n steps)"
+    ],
+    "finite_probes": [
+      "pi(psi)=psi^dag sigma psi (3 real probes)",
+      "rho(psi)=|psi><psi| (Bloch readout)",
+      "Pancharatnam holonomy of a finite n-step loop"
+    ]
+  },
+  "N01_witness": {
+    "holonomy_order_gap_AB_vs_BA": 0.26431483051652416,
+    "holonomy_order_gap_AB_vs_BA_after_bloch": 0.26431483051652405,
+    "honest_boundary": "This SU(2) holonomy order gap is a CLOSED-loop gauge-invariant Berry phase: it is RECOVERED by the Bloch image (order_gap_after_bloch == order_gap to ~1e-16). It is a genuine N01 order-sensitive witness but is NOT S^3-fiber-load-bearing evidence on its own. The S^3-load-bearing signature is the OPEN-fiber collapse (fiber_holonomy_gap / fiber_phase_ablation_gap), which Bloch destroys.",
+    "order_gap_survives_bloch": true,
+    "order_matters": true,
+    "su2_commutator_gap_on_spinor": 1.0092661001425303
+  },
+  "ablation": {
+    "ablated_fiber_phase_range": 4.478052004722822e-16,
+    "ablation_nonvacuous": true,
+    "ablation_outcome_delta": 6.183452207065623,
+    "genuine_fiber_phase_range": 6.183452207065624,
+    "note": "OPEN fiber path: rho is stationary (Bloch frozen, rho_dev~0) yet the S^3 spinor accumulates ~2pi of fiber phase. Reconstructing from rho (the Bloch substitution) returns a constant spinor -> accumulated phase 0. The genuine-vs-ablated RANGE delta (~2pi vs 0) is the real removed-and-rerun proof the fiber U(1) is load-bearing and Bloch-invisible.",
+    "rho_dev_along_fiber": 4.3883531350914193e-16
+  },
+  "blocked_consumers": [
+    "L3 S2 projective/Hopf base (consumes pi_H but cannot reconstruct fiber phase)",
+    "L4 Hopf fibration S3->S2 U(1) (consumes the fiber/base split this layer establishes)",
+    "L7/L8 Weyl/chirality (consume left/right S^3 spinors)",
+    "Axis0 / Xi bridge / Phi0 (downstream blocked consumer, not a driver)",
+    "flux / FEP / gravity / physics (downstream blocked consumers)"
+  ],
+  "claim": "psi in S^3 subset C^2 ; pi_H(psi)=psi^dag sigma psi in S^2 loses fiber phase ; double cover SU(2)->SO(3) kernel {I,-I} ; the S^3 global U(1) OPEN-FIBER phase is the LOAD-BEARING extra structure the Bloch image cannot carry (it COLLAPSES under Bloch substitution). HONEST BOUNDARY: closed-loop Berry phases (base-loop holonomy, SU(2) order gap) are gauge-invariant and Bloch-RECOVERABLE, so they are real N01/torus witnesses but are NOT S^3-load-bearing evidence on their own; the dependency-forcing verdict rests only on the open-fiber collapse.",
+  "classification": "L2_layer_poc",
+  "controls": {
+    "bloch_recoverable_positive_gaps": [
+      "base_holonomy_gap",
+      "order_noncommute_gap"
+    ],
+    "negative": {
+      "bloch_substitution_collapse_gap": 6.183452207065623,
+      "eta_index_erasure_collapse_gap": 5.107284391111559,
+      "flat_connection_erasure_collapse_gap": 5.107284391111559
+    },
+    "positive": {
+      "base_holonomy_gap": 5.107284391111559,
+      "fiber_holonomy_gap": 6.283185307179586,
+      "fiber_phase_ablation_gap": 6.183452207065623,
+      "order_noncommute_gap": 0.26431483051652416
+    },
+    "required_load_bearing_erasures": [
+      "bloch_substitution_collapse",
+      "flat_connection_erasure_collapse",
+      "eta_index_erasure_collapse"
+    ],
+    "s3_load_bearing_note": "fiber_holonomy_gap and fiber_phase_ablation_gap are OPEN-fiber: they COLLAPSE under Bloch substitution => S^3 is strictly load-bearing for them. base_holonomy_gap and order_noncommute_gap are CLOSED-loop Berry phases: Bloch recovers them (order_gap_after_bloch==order_gap to ~1e-16) => they are genuine N01/torus witnesses but NOT S^3-load-bearing evidence by themselves. The dependency-forcing verdict rests ONLY on the open-fiber collapses.",
+    "s3_load_bearing_positive_gaps": [
+      "fiber_holonomy_gap",
+      "fiber_phase_ablation_gap"
+    ]
+  },
+  "dependency_forcing": {
+    "all_below_geometry_erasures_collapse_signature": true,
+    "bloch_discrimination_check": {
+      "bloch_control_discriminates": true,
+      "bloch_recoverable_berry_delta": 0.0,
+      "closed_loop_berry_bloch_reconstructed": -2.277158136277836,
+      "closed_loop_berry_genuine": -2.277158136277836,
+      "note": "The Bloch control collapses ONLY the open-fiber/global U(1) phase (Bloch-invisible, ~2pi delta), NOT the gauge-invariant closed-loop Berry phase (Bloch-recoverable, delta~0). The test discriminates; it is not a tautology that flags everything as collapsed."
+    },
+    "bloch_substitution_control": {
+      "S3_fiber_phase_expected_plus_a": 1.2345670000000002,
+      "S3_fiber_phase_recovered": 1.2345670000000002,
+      "S3_recovers_phase": true,
+      "bloch_channel_phase_A": 1.3317162923540038,
+      "bloch_channel_phase_B": 1.3317162923540038,
+      "bloch_channel_phase_gap": 0.0,
+      "bloch_reconstruction_dev_A_vs_B": 2.3714374201337736e-16,
+      "pi_dev_psiA_vs_psiB": 2.618455766672135e-16,
+      "psiA_psiB_differ_by_global_phase": 1.234567,
+      "rho_dev_psiA_vs_psiB": 2.469962980135675e-16,
+      "signature_collapses_under_bloch_substitution": true
+    },
+    "eta_index_collapse_control": {
+      "genuine_eta_holonomy_spread": 5.107284391111559,
+      "pinned_eta_holonomy_spread": 0.0,
+      "signature_merges_under_eta_collapse": true
+    },
+    "flat_connection_erasure_control": {
+      "flat_connection_holonomy_by_eta": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "flat_connection_holonomy_spread_over_eta": 0.0,
+      "genuine_connection_holonomy_spread_over_eta": 5.107284391111559,
+      "signature_collapses_under_flat_connection": true
+    },
+    "honest_note": "Every below-geometry erasure collapses/merges the layer signature: the S^3 fiber phase, the Hopf connection A, and the nested-torus index eta are each load-bearing. The layer is real-as-part-of-the-manifold, not hand-written channels."
+  },
+  "double_cover": {
+    "kernel_is_global_phase_U1": true,
+    "max_pi_dev_psi_vs_negpsi": 2.7194799110210365e-16,
+    "max_rho_dev_psi_vs_negpsi": 2.803040997532365e-16,
+    "min_spinor_distance_psi_vs_negpsi": 1.9999999999999993
+  },
+  "finite_map": {
+    "codomain": "Hopf base pi(psi) in S^2 (DERIVED) ; density rho(psi)=|psi><psi| (DERIVED) ; Hopf-connection holonomy / Pancharatnam phase gamma in R/2piZ (LAYER SIGNATURE)",
+    "domain": "(phi,chi,eta,alpha) in [0,2pi)^3 x U(1)  ->  psi in S^3 subset C^2 (Julia-native spinor) ; AND closed loops gamma in S^3",
+    "fiber": "U(1) global phase alpha : psi -> e^{i alpha} psi  (KERNEL of both pi and rho ; NOT kernel of holonomy)"
+  },
+  "item": "L2_layer",
+  "layer_id": "L2",
+  "layer_name": "S3 spinor carrier (unit spinor / quaternionic carrier; NO Bloch substitution)",
+  "layer_signature": {
+    "base_holonomy_two_methods_agree_at_256": true,
+    "base_loop_connection_holonomy": [
+      -0.28062911529304824,
+      -1.1610496093907527,
+      -2.554127284350292,
+      1.962751584313347,
+      4.440892098500626e-16,
+      -1.9627515843133456,
+      2.554127284350292,
+      1.1610496093907514,
+      0.28062911529304735
+    ],
+    "base_loop_pancharatnam_phase": [
+      0.280523863250532,
+      1.1607046178005866,
+      2.5536421955557795,
+      -1.9631073145999975,
+      -8.881784197001252e-16,
+      1.9631073145999975,
+      -2.5536421955557795,
+      -1.1607046178005853,
+      -0.280523863250532
+    ],
+    "etas": [
+      0.15,
+      0.30884954084936206,
+      0.46769908169872415,
+      0.6265486225480862,
+      0.7853981633974483,
+      0.9442477042468104,
+      1.1030972450961725,
+      1.2619467859455347,
+      1.4207963267948966
+    ],
+    "fiber_holonomy_eta_independent_spread": 0.0,
+    "fiber_holonomy_is_2pi": true,
+    "fiber_holonomy_mean": 6.283185307179586,
+    "fiber_loop_connection_holonomy": [
+      6.283185307179586,
+      6.283185307179586,
+      6.283185307179586,
+      6.283185307179586,
+      6.283185307179586,
+      6.283185307179586,
+      6.283185307179586,
+      6.283185307179586,
+      6.283185307179586
+    ],
+    "max_base_pancharatnam_plus_connection_err_at_256": 0.0004850887945124782,
+    "sign_convention": "pancharatnam == -connection (overlap-product vs line-integral); agreement <=> wrap(pan+con)==0",
+    "signature_nontrivial": true,
+    "signature_spread_over_eta": 5.107284391111559
+  },
+  "negative_controls": {
+    "nonunit_density_trace": 5.0,
+    "nonunit_excluded": true,
+    "trivial_loop_holonomy": 2.2879451447807586e-16,
+    "trivial_loop_no_signature": true,
+    "zero_excluded": true,
+    "zero_spinor_on_S3": false
+  },
+  "peps3d_anchor": {
+    "C": 192,
+    "E": 704,
+    "F": 640,
+    "V": 256,
+    "all_vertex_spinors_on_S3": true,
+    "carrier_is_julia_native_spinor": true,
+    "euler_char_single_shell_V_minus_E_plus_F": 0,
+    "nchi": 8,
+    "neta_shells": 4,
+    "nphi": 8,
+    "single_shell_is_torus_euler0": true
+  },
+  "positive_control": {
+    "all_on_S3": true,
+    "max_S3_norm_err": 2.220446049250313e-16,
+    "max_rho_trace_err": 4.440892098500626e-16,
+    "min_rho_eigval": -3.3687995677843945e-16,
+    "n": 2000,
+    "on_S3_pass": 2000,
+    "rho_is_valid_density": true,
+    "rho_psd_pass": 2000,
+    "rho_trace_pass": 2000
+  },
+  "promotion_allowed": false,
+  "qit_readouts_derived": {
+    "S_base_loop_avg_density": 0.6259776577072925,
+    "S_fiber_loop_avg_density": -8.881784197001256e-16,
+    "base_rho_traverses": true,
+    "entropy_is_derived_not_primary": true,
+    "fiber_rho_stationary": true,
+    "fiber_vs_base_entropy_gap": 0.6259776577072934
+  },
+  "scale_stress_8_16_32_64": {
+    "abs_err_to_ref64_by_scale": [
+      0.4979951646408898,
+      0.10056726891249923,
+      0.019361377103965793,
+      0.0
+    ],
+    "all_grids_on_S3": true,
+    "base_connection_holonomy_by_scale": [
+      2.2767609188704236,
+      2.2767609188704245,
+      2.2767609188704236,
+      2.2767609188704245
+    ],
+    "base_holonomy_ref64": -2.2831348961086864,
+    "base_pancharatnam_by_scale": [
+      -2.781130060749576,
+      -2.3837021650211856,
+      -2.302496273212652,
+      -2.2831348961086864
+    ],
+    "base_pancharatnam_plus_connection_err_by_scale": [
+      0.5043691418791525,
+      0.10694124615076106,
+      0.02573535434222851,
+      0.00637397723826183
+    ],
+    "base_two_methods_agree_at_finest": true,
+    "base_two_methods_agree_converges": true,
+    "converges_with_refinement": true,
+    "fiber_connection_holonomy_by_scale": [
+      6.283185307179586,
+      6.283185307179586,
+      6.283185307179586,
+      6.283185307179586
+    ],
+    "fiber_holonomy_is_2pi_all_scales": true,
+    "resource_blocker": "none — pure spinor loop integrals; 64x64 grid + 64-step loops run in <1s",
+    "scales": [
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "seed": 20260601,
+  "status_ladder": "exists < runs < passes",
+  "summary": {
+    "base_holonomy_signature_spread": 5.107284391111559,
+    "fiber_holonomy_value": 6.283185307179586,
+    "min_gaps": {
+      "base_holonomy_gap": 5.107284391111559,
+      "fiber_holonomy_gap": 6.283185307179586,
+      "fiber_phase_ablation_gap": 6.183452207065623,
+      "order_noncommute_gap": 0.26431483051652416
+    }
+  },
+  "tool_manifest": {
+    "JSON": "load-bearing: receipt emission",
+    "LinearAlgebra": "load-bearing: complex spinor algebra, eigvals/Hermitian for derived von Neumann entropy, opnorm for rho/pi deltas",
+    "Random": "load-bearing: seeded rotation-invariant sampling on S^3 (positive control + double-cover counting)",
+    "Z3": "load-bearing: SMT certificate that the Bloch/Hopf-base projection is global-phase-blind; verdict flips on a broken projection; cross-checked vs measured pi/rho deltas",
+    "decorative_imports": "none",
+    "numpy": "ABSENT — carrier is Julia-native; no numpy"
+  },
+  "verdict": {
+    "ALL_PASS": true,
+    "N01_order_gap": true,
+    "N01_order_gap_is_bloch_recoverable_not_s3_evidence": true,
+    "ablation_nonvacuous": true,
+    "base_holonomy_two_methods_agree": true,
+    "dependency_forcing_all_collapse": true,
+    "double_cover_kernel_U1": true,
+    "fiber_holonomy_is_2pi": true,
+    "ladder_status": "passes",
+    "layer_signature_nontrivial": true,
+    "negative_controls_ok": true,
+    "peps3d_torus_euler0": true,
+    "positive_on_S3": true,
+    "qit_fiber_vs_base": true,
+    "rho_valid_density": true,
+    "scale_stress_converges": true,
+    "z3_load_bearing_valid": true
+  },
+  "z3_smt_proof": {
+    "broken_kill_fires_sat": true,
+    "broken_result": "sat",
+    "genuine_phase_blind_proven_unsat": true,
+    "genuine_result": "unsat",
+    "load_bearing": true,
+    "loadbearing_query": "assert pi_z(e^{i a} psi) - pi_z(psi) != 0 under ca^2+sa^2==1 over FREE reals ; UNSAT => Hopf/Bloch z-projection is GLOBAL-PHASE-BLIND for ALL psi (so S^3 fiber phase is extra structure Bloch cannot carry)",
+    "matches_measured_bloch_phase_blindness": true,
+    "measured_pi_dev_psiA_vs_psiB": 2.618455766672135e-16,
+    "smt_proof_valid": true,
+    "verdict_flips_genuine_unsat_broken_sat": true,
+    "z3_role": "load-bearing: certifies the Bloch/Hopf-base projection is phase-blind (verdict flips on a broken projection), which is the algebraic reason S^3 carries strictly more than its Bloch image."
+  }
+}

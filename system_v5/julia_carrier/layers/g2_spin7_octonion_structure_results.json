@@ -1,0 +1,96 @@
+{
+  "bloch_free": true,
+  "classification": "g2_spin7_octonion_structure_poc",
+  "entanglement": {
+    "carrier": "ITensors 7-qubit spinor network; states = normalized complex amplitudes / rho=|psi><psi|; NO Bloch r-vector",
+    "readout": "half-cut von Neumann (Schmidt) entropy from ITensors SVD singular spectrum (nats)",
+    "ghz_cut_entropy_nats": 0.6931471805599453,
+    "ghz_cut_entropy_equals_log2": true,
+    "ghz_schmidt_rank": 2,
+    "product_control_cut_entropy_nats": -0.0,
+    "product_control_schmidt_rank": 1,
+    "fano_entangled_cut_entropy_nats": 1.9061547465398496,
+    "fano_schmidt_rank": 7,
+    "fano_bond_entropy_profile_nats": [
+      0.6615632381579821,
+      1.320888343149322,
+      1.3862943611198908,
+      1.9061547465398498,
+      1.3208883431493221,
+      0.6615632381579821
+    ],
+    "product_bond_entropy_profile_nats": [
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0
+    ],
+    "fano_max_bond_entropy": 1.9061547465398498,
+    "product_max_bond_entropy": -0.0,
+    "reduced_rho_trace_left": 0.9999999999999999,
+    "full_rho_trace": 0.9999999999999999,
+    "reduced_rho_purity_left": 0.15624999999999994,
+    "fano_entropy_from_reduced_rho_nats": 1.9061547465398496,
+    "svd_entropy_matches_reduced_rho": true,
+    "entanglement_load_bearing": true,
+    "log2_reference_nats": 0.6931471805599453
+  },
+  "geometry": {
+    "A1_g2_derivation_dim": {
+      "anchor": "dim Der(O) = dim g2 = 14 (G2 = Aut(O); Lie algebra = derivations of the octonions)",
+      "invariant_name": "dim_g2",
+      "measured_dim_g2": 14,
+      "expected_dim_g2": 14,
+      "anchor_pass": true,
+      "control_C1_sign_corrupted_der_dim": 3,
+      "control_C2_index_corrupted_der_dim": 0,
+      "control_C1_fires": true,
+      "control_C2_fires": true
+    },
+    "A2_spin7_cayley": {
+      "anchor": "Spin(7) = Stab_{SO(8)}(Cayley 4-form); dim spin(7) = 21; ||Phi||^2 = sum/24 = 14",
+      "invariant_name": "dim_spin7_and_cayley_norm",
+      "cayley_norm_sum_over_24": 14.0,
+      "expected_cayley_norm": 14.0,
+      "measured_dim_spin7": 21,
+      "expected_dim_spin7": 21,
+      "cayley_norm_pass": true,
+      "spin7_dim_pass": true,
+      "control_C3_omit_term_norm": 13.0,
+      "control_C3_omit_term_stab_dim": 9,
+      "control_C3_fires": true
+    },
+    "A3_g2_cross_product_identity": {
+      "anchor": "G2 cross product on Im(O): |u x v|^2 = |u|^2|v|^2 - (u.v)^2 (composition-norm identity)",
+      "invariant_name": "g2_composition_identity",
+      "cross_product_identity_maxerr": 4.440892098500626e-16,
+      "cross_product_antisymmetry_maxerr": 2.0206364052201326e-16,
+      "phi3form_alternating_maxerr": 1.090972496536833e-16,
+      "identity_pass": true,
+      "antisymmetry_pass": true,
+      "alternating_pass": true,
+      "control_C4_perturbed_form_identity_maxerr": 0.334911798608316,
+      "control_C4_fires": true
+    }
+  },
+  "no_z3": "omitted: every claim is a measured integer invariant (dim 14, dim 21) or a measured residual with a wrong-structure falsifier",
+  "object_id": "g2_spin7_octonion_structure",
+  "promotion_allowed": false,
+  "tolerance": 1.0e-9,
+  "tool_manifest": {
+    "ITensorMPS": "load_bearing: MPS bond-entropy profile of the entangled vs product networks",
+    "ITensors": "load_bearing: SVD of the joint spinor-network tensor across the cut measures the Schmidt entropy",
+    "JSON": "supportive: result emission",
+    "LinearAlgebra": "load_bearing: nullspace/eigvals compute dim Der(O)=14, dim Spin(7)=21, and reduced-rho entropy"
+  },
+  "verdict": {
+    "all_pass": true,
+    "entanglement_pass": true,
+    "geometry_pass": true,
+    "headline": "G2/Spin(7) octonion G-structure: dim Der(O) computed = 14 (=dim g2=14); Spin(7) Cayley-form stabilizer dim = 21 (=21), Cayley norm sum/24 = 14.0 (=14). Wrong-structure controls collapse the invariants: sign-corrupted table Der dim 3, index-corrupted Der dim 0, omit-Cayley-term stab dim 9 / norm 13.0. Entanglement load-bearing: GHZ cut entropy = 0.6931471805599453 nats (=log2), Fano-entangled cut = 1.9061547465398496, product control = -0.0 (~0). Bloch-free (density/spinor amplitudes only).",
+    "honest_status": "PASS",
+    "invariant_anchored": "dim(G2)=14 [Der(O)], dim(Spin7)=21 [Stab(Cayley)], ||Cayley||^2=14"
+  }
+}

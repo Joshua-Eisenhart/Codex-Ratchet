@@ -1,0 +1,11 @@
+PASS  Grassmann.geometric_product  (1.4s)  v1*v2 = DirectSum.Submanifold{DirectSum.Submanifold{3, 3, 0x0000000000000007}(), 2, 0x0000000000000003}()
+PASS  CliffordAlgebras.rotor  (1.0s)  algebra=CliffordAlgebras.CliffordAlgebra{3, 0, 0, (:e1, :e2, :e3), ((), (1,), (2,), (3,), (1, 2), (3, 1), (2, 3), (1, 2, 3))}
+PASS  ITensorMPS.random_mps_inner  (9.7s)  inner(psi,psi)=1.0
+FAIL  ITensorNetworks.exact_3d_2x2x2  (0.2s)  UndefVarError(:named_grid, 0x00000000000097f1, Main)
+PASS  DifferentialEquations.EnsembleProblem  (6.3s)  8 trajectories solved
+FAIL  Attractors.basins  (5.8s)  OrdinaryDiffEqCore.TypeNotConstantError(StaticArraysCore.SVector{2, Float64}, Vector{Float64})
+FAIL  Z3.unsat  (1.3s)  UndefVarError(:real_const, 0x0000000000009942, Main)
+PASS  IntervalArithmetic.interval  (0.3s)  [0,1]^2-[0,1] = (-1.0, 1.0)
+FAIL  QuantumClifford.stabilizer  (3.1s)  LoadError("/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/smoke_test_stack.jl", 113, UndefVarError(Symbol("@S_str"), 0x0000000000009962, Main))
+
+=== 5/9 PASS ===

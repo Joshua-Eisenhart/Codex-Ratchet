@@ -1,0 +1,110 @@
+{
+  "schema": "CODEx_RATCHET_SCOUT_ROUND_LEDGER_v1",
+  "name": "engine_priority_runtime_suite_20260523",
+  "created_at": "2026-05-23",
+  "classification": "formal_scout_round_ledger",
+  "promotion_allowed": false,
+  "primary_task": "getting operational runtime engines working",
+  "scripts": [
+    "system_v5/ops/formal_scouts/sim_runtime_priority_work_suite_probe.py",
+    "system_v5/ops/formal_scouts/sim_runtime_trajectory_receipt_coupling_probe.py"
+  ],
+  "results": [
+    "system_v5/ops/formal_scouts/results/runtime_priority_work_suite_probe_results.json",
+    "system_v5/ops/formal_scouts/results/runtime_trajectory_receipt_coupling_probe_results.json"
+  ],
+  "runtime_sources": [
+    "system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+    "system_v5/ops/formal_scouts/source_aligned_qit_engine_runtime.py"
+  ],
+  "sections": [
+    {
+      "name": "runtime_shell_cut_process_entropy",
+      "candidate_status": "open_or_nonrobust_runtime_shell_process",
+      "candidate_survived": false,
+      "survival_rate": 0.0,
+      "metrics": {
+        "mean_margin": 0.0012494931823059756,
+        "mean_path_entropy": 2.0546207699391377
+      },
+      "interpretation": "runtime rows produce finite process-history path entropy, but shell-cut margin is too small"
+    },
+    {
+      "name": "runtime_current_through_cut_flux",
+      "candidate_status": "open_or_nonrobust_runtime_cut_current",
+      "candidate_survived": false,
+      "survival_rate": 0.0,
+      "metrics": {
+        "mean_margin": -1.2916939224951722,
+        "mean_dependency_spread": 0.005953190835339757
+      },
+      "interpretation": "current-through-cut flux loses to controls in this runtime-row fixture"
+    },
+    {
+      "name": "runtime_two_agent_qit_selector",
+      "candidate_status": "open_or_nonrobust_runtime_two_agent_selector",
+      "candidate_survived": false,
+      "survival_rate": 0.125,
+      "selector_translation": {
+        "maximax": "maximize best finite QIT payoff",
+        "maximin": "maximize worst finite QIT payoff",
+        "minimax": "minimize worst finite QIT damage",
+        "minimin": "minimize best finite QIT damage"
+      },
+      "interpretation": "two-agent selector translation is executable, but only one of eight seeds survives"
+    },
+    {
+      "name": "source_aligned_runtime_trajectory_receipt_integrity",
+      "candidate_status": "source_runtime_receipts_operational",
+      "candidate_survived": true,
+      "metrics": {
+        "token_count": 16,
+        "terrain_realization_count": 8,
+        "mean_final_density_gap": 0.20406620613423798
+      },
+      "interpretation": "source-aligned runtime trajectories are operational and receipt-rich across both runtime types"
+    },
+    {
+      "name": "source_trajectory_cut_current",
+      "candidate_status": "open_or_nonrobust_source_trajectory_cut_current",
+      "candidate_survived": false,
+      "survival_rate": 0.0,
+      "metrics": {
+        "mean_margin": -0.00015064077253666014
+      },
+      "interpretation": "current-through-cut readout still fails controls after wiring to actual source trajectories"
+    },
+    {
+      "name": "source_trajectory_igt_selector",
+      "candidate_status": "open_or_nonrobust_source_trajectory_igt_selector",
+      "candidate_survived": false,
+      "survival_rate": 0.0,
+      "interpretation": "minimax/maximax/maximin/minimin selectors consume actual stage receipts but do not yet survive controls"
+    }
+  ],
+  "validation": {
+    "formal_scout_name_lint_all_pass": true,
+    "fresh_rerun_validation_all_pass": true,
+    "source_trajectory_fresh_rerun_validation_all_pass": true,
+    "custom_unitary_cache_bug_fixed_before_final_validation": true,
+    "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+  },
+  "claim_ceiling": {
+    "final_engines": false,
+    "axis0_final": false,
+    "xi_final": false,
+    "flux_final": false,
+    "igt_game_theory_final": false,
+    "holodeck_world_engine_final": false,
+    "physics_unification": false,
+    "yang_mills_or_standard_model": false,
+    "cognition_or_psychology": false
+  },
+  "recommended_next_gates": [
+    "port source-trajectory receipt coupling into the 8-qubit runtime suite",
+    "add EngineCore finite boundary/supportive science-method receipt without promoting NumPy-boundary dynamics",
+    "replace dense 8-qubit shell/flux carrier with MPS/process-tensor before 16 qubits",
+    "add two-agent memory update between selector rounds before population dynamics",
+    "continue shell-cut family only with engine-row coupling and path-history controls"
+  ]
+}

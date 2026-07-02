@@ -1,0 +1,191 @@
+{
+  "claim_ceiling": "contraction-only CTMRG cross-check of an external iPEPS tensor; NOT layer-completion / manifold admission / coupling / bridge / flux / physics",
+  "classification": "tool_lego_fit_probe",
+  "codomain_or_output": "per-site energy (raw + per-bond), correlation length, chi-convergence series",
+  "ctmrg_settings": {
+    "chi_ladder": [
+      16,
+      24,
+      32
+    ],
+    "maxiter": 100,
+    "miniter": 4,
+    "self_kill_seconds": 150.0,
+    "tol": 1.0e-8
+  },
+  "domain": "complex128 dense tensor [p,u,r,d,l]; p=physical, u/r/d/l virtual bonds",
+  "engine": "Julia 1.12 / PEPSKit v0.7.0 / TensorKit v0.15.3 (contraction lane)",
+  "exit_status": "ok",
+  "finite_map": "A (single-site iPEPS tensor, shape [p,u,r,d,l]) |-> (per-site CTMRG energy, correlation length) over chi-ladder",
+  "hamiltonian_convention": {
+    "Jx": 1.0,
+    "Jy": 1.0,
+    "Jz": 1.0,
+    "model": "heisenberg_XYZ (PEPSKit/MPSKitModels)",
+    "note": "term placed on every NN bond; raw per-site value sums 2 bonds (1x1 cell); per_bond = raw/2",
+    "source": "parsed from TENSOR_FORMAT.md",
+    "spin": "1//2"
+  },
+  "index_permutation": {
+    "jax_axis_order": "[p,u,r,d,l] = (physical, up, right, down, left)",
+    "note": "label-mapping is identity (p->P,u->N,r->E,d->S,l->W); perm=(1,2,3,4,5)",
+    "pepskit_convention": "PEPSTensor T : P <- N (x) E (x) S (x) W ; dense [P,N,E,S,W]",
+    "perm_applied_p_u_r_d_l_to_P_N_E_S_W": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "virtual_space_assignment": "N=E=ComplexSpace(D), S=W=ComplexSpace(D)' (dual) for 1x1 wraparound"
+  },
+  "landmine_guards": [
+    "no_fixedpoint",
+    "no_PEPSOptimize",
+    "no_LBFGS",
+    "no_HagerZhangLineSearch",
+    "ctmrg_maxiter_capped_100",
+    "in_process_self_kill_timer_150s"
+  ],
+  "object_id": "julia_ctmrg_heisenberg",
+  "promotion_allowed": false,
+  "results": {
+    "independent_control_D2": {
+      "anti_tautology_note": "index-permutation controls (e.g. (1,4,5,2,3)) are rot180 symmetry images and return the IDENTICAL CTMRG energy; rejected as tautological. Using a distinct random carrier instead.",
+      "chi_series": [
+        {
+          "chi": 16,
+          "correlation_length": 0.6526359823620197,
+          "energy_per_bond": -0.0076642568054343975,
+          "energy_raw_per_site": -0.015328513610868795,
+          "error": "",
+          "finite": true,
+          "truncation_error": 0.0008106627785652572,
+          "wall_seconds": 0.599
+        },
+        {
+          "chi": 24,
+          "correlation_length": 0.6570323395053763,
+          "energy_per_bond": -0.007659927373208225,
+          "energy_raw_per_site": -0.01531985474641645,
+          "error": "",
+          "finite": true,
+          "truncation_error": 0.0002392468334929097,
+          "wall_seconds": 1.644
+        },
+        {
+          "chi": 32,
+          "correlation_length": 0.6546777224828699,
+          "energy_per_bond": -0.007659863361291517,
+          "energy_raw_per_site": -0.015319726722583034,
+          "error": "",
+          "finite": true,
+          "truncation_error": 0.0001049771022252174,
+          "wall_seconds": 4.015
+        }
+      ],
+      "control_kind": "independent_fresh_random_tensor",
+      "delta": 0.13912501197615476,
+      "energy_control_chi16": -0.015328513610868795,
+      "energy_random_chi16": 0.12379649836528597,
+      "input_dependent": true
+    },
+    "jax_optimized": {
+      "D": 2,
+      "chi_converged": true,
+      "chi_series": [
+        {
+          "chi": 16,
+          "correlation_length": 16.431964289155143,
+          "energy_per_bond": 0.24984473259259887,
+          "energy_raw_per_site": 0.49968946518519775,
+          "error": "",
+          "finite": true,
+          "truncation_error": 2.107342425544695e-8,
+          "wall_seconds": 1.565
+        },
+        {
+          "chi": 24,
+          "correlation_length": 19.63155686438099,
+          "energy_per_bond": 0.24984694008232655,
+          "energy_raw_per_site": 0.4996938801646531,
+          "error": "",
+          "finite": true,
+          "truncation_error": 0.0,
+          "wall_seconds": 6.111
+        },
+        {
+          "chi": 32,
+          "correlation_length": 35.473928150477676,
+          "energy_per_bond": 0.2498469201586454,
+          "energy_raw_per_site": 0.4996938403172908,
+          "error": "",
+          "finite": true,
+          "truncation_error": 0.0,
+          "wall_seconds": 14.328
+        }
+      ],
+      "cross_check_match": false,
+      "jax_reported_energy": -0.061694,
+      "julia_energy_per_site_top_chi": 0.4996938403172908,
+      "max_dE_across_chi": 4.414979455358292e-6,
+      "p": 2
+    },
+    "random_D2": {
+      "D": 2,
+      "chi_converged": true,
+      "chi_series": [
+        {
+          "chi": 16,
+          "correlation_length": 1.3157687637309436,
+          "energy_per_bond": 0.061898249182642986,
+          "energy_raw_per_site": 0.12379649836528597,
+          "error": "",
+          "finite": true,
+          "truncation_error": 0.0005011516601041315,
+          "wall_seconds": 0.824
+        },
+        {
+          "chi": 24,
+          "correlation_length": 1.3218525715188492,
+          "energy_per_bond": 0.06189681466247063,
+          "energy_raw_per_site": 0.12379362932494126,
+          "error": "",
+          "finite": true,
+          "truncation_error": 0.00014337438535459143,
+          "wall_seconds": 4.717
+        },
+        {
+          "chi": 32,
+          "correlation_length": 1.3433662574620444,
+          "energy_per_bond": 0.06189703776927256,
+          "energy_raw_per_site": 0.12379407553854511,
+          "error": "",
+          "finite": true,
+          "truncation_error": 5.7810260529574684e-5,
+          "wall_seconds": 10.742
+        }
+      ],
+      "interpretation": "random carrier -> finite per-site energy not near AFM ground (~-0.66/bond); this is EXPECTED and is the positive sanity result.",
+      "max_dE_across_chi": 2.869040344716245e-6,
+      "p": 2
+    }
+  },
+  "root_constraints_in_force": {
+    "F01": "finite carrier (p x D^4 dense tensor), finite probe {chi=16,24,32}, finite operator heisenberg_XYZ, bounded CTMRG path (maxiter=100)",
+    "N01": "ordered CTMRG fixed-point sweep (N/E/S/W directional growth); transfer op and bond term noncommuting; input-dependence negative control (distinct random carrier must yield a different energy) applied"
+  },
+  "tests": {
+    "boundary_lowest_chi_finite": true,
+    "cross_check_jax": false,
+    "negative_input_dependent": true,
+    "positive_random_finite": true
+  },
+  "tool_manifest": {
+    "LinearAlgebra": "supportive",
+    "NPZ": "load_bearing when ipeps_heisenberg_D2.npy present: loads external JAX tensor",
+    "PEPSKit": "load_bearing: CTMRG leading_boundary contraction + expectation_value + correlation_length",
+    "TensorKit": "load_bearing: TensorMap carrier with explicit P<-NESW space split"
+  },
+  "wall_seconds": 135.79
+}

@@ -1,0 +1,110 @@
+{
+  "carrier_layer": "2D PEPSKit iPEPS carrier on square-lattice Hopf-torus substrate adapter",
+  "carrier_realization": "TensorKit ComplexSpace(2) spinor physical space; D=2 PEPS virtual channels; no NumPy.",
+  "claim_ceiling": "If optimization_robust=false, this is only a PEPSKit CTMRG contraction/control receipt on physical product-seeded iPEPS states. It is not an optimized ground-state substrate-effect result, not canonical, and not a bridge/flux/Axis0/physics claim.",
+  "classification": "nested_peps2d_substrate_effect_opt_poc",
+  "codomain_or_output": "Finite table of CTMRG truncation errors, environment entropies, energies, L/R splits, and nested-vs-flat split-collapse metric.",
+  "contraction_control_measurement": {
+    "answer": "not_evaluated",
+    "evaluated": false,
+    "flat_connection": 0.0,
+    "honesty_note": "No optimized ground-state numbers and no CTMRG contraction-control numbers are fabricated in fast receipt mode.",
+    "nested_connections": {
+      "cos2eta_inner": 0.8253356149096783,
+      "cos2eta_outer": -0.32328956686350335,
+      "eta_inner": 0.3,
+      "eta_outer": 0.95
+    },
+    "optimized_ground_states": false,
+    "reason": "Default fast receipt mode is active because PEPSKit CTMRG/fixedpoint runs were not returning promptly in the loaded checkout. Set NESTED_PEPS2D_OPT_RUN_CTM=1 to run the contraction-control path.",
+    "requested_command_for_ctm_control": "NESTED_PEPS2D_OPT_RUN_CTM=1 julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/nested_peps2d_substrate_effect_opt.jl\"",
+    "substrate_effect_appears_on_optimized_ground_states": false
+  },
+  "dependency_receipts": [
+    "layers/nested_peps2d_weyl_on_hopf_tori.jl"
+  ],
+  "divergence_log": [],
+  "domain": "Two eta shells with physical C^2 spinor index, finite D=2 virtual channels, CTMRG chi=6, LocalOperator nearest-neighbour Hamiltonians.",
+  "downstream_blocks": [
+    "optimized_ground_state_claims_when_optimization_robust_false",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics",
+    "final_manifold_admission"
+  ],
+  "engine": "Julia PEPSKit v0.7.0; InfinitePEPS / CTMRGEnv / leading_boundary / expectation_value",
+  "exit_policy": "write JSON and exit 0; promotion_allowed=false",
+  "fast_receipt_mode": true,
+  "finite_map": "For finite shell set {inner, outer}, map (substrate, chirality sign, shell connection) to CTMRG-contracted energy density <H_sgn(connection)> and L/R split E_L - E_R.",
+  "name": "PEPSKit substrate-effect optimizer robustness probe",
+  "negative_control": "flat substrate sets the connection to an eta-independent zero value, collapsing shell-dependent L/R split by construction on the fixed control state.",
+  "optimized_ground_state_measurement": {
+    "answer": "no",
+    "evaluated": false,
+    "optimization_robust": false,
+    "reason": "No robust PEPSKit fixedpoint optimizer receipt was obtained; therefore optimized ground states on the two substrates were not admitted or measured."
+  },
+  "optimizer_ladder": {
+    "controller_probe_before_driver": {
+      "admitted_robust": false,
+      "candidate": "optimizer_alg=(alg=:conjugategradient,tol=1e-2,maxiter=1,ls_maxiter=1,ls_maxfg=1), gradient_alg=(alg=:linsolver,solver_alg=(alg=:gmres),iterscheme=:diffgauge,maxiter=2), D=2, chi=6, physical product seed, reuse_env=true",
+      "outcome": "No completion inside the useful liveness window; process was terminated by the controller. No robust optimizer receipt was admitted."
+    },
+    "driver_policy": "No fixedpoint call is executed on the required exit-0 path until a candidate returns a complete local receipt. This avoids the known fixedpoint/LBFGS/HagerZhang segfault path and avoids converting a hang into a missing JSON.",
+    "line_search_boundary": "PEPSKit v0.7 named-tuple optimizer_alg does not expose an alternate line-search keyword; OptimKit 0.4 GradientDescent, ConjugateGradient, and LBFGS default to HagerZhangLineSearch.",
+    "optimization_robust": false,
+    "optimization_robust_reason": "No PEPSKit fixedpoint optimizer configuration returned a complete no-crash receipt in this run.",
+    "pepskit_optimizer_alg_symbols": [
+      ":gradientdescent",
+      ":conjugategradient",
+      ":lbfgs"
+    ],
+    "try_order_status": [
+      {
+        "requested": "different optimizer/gradient variant",
+        "status": "attempted by controller with conjugategradient + linsolver/diffgauge; no robust completion",
+        "step": "a"
+      },
+      {
+        "requested": "smaller D=2 and chi=6-12 with looser tol",
+        "status": "included in attempted controller candidate with D=2 chi=6 tol=1e-4/1e-3/1e-2",
+        "step": "b"
+      },
+      {
+        "requested": "physical seeding",
+        "status": "included in attempted controller candidate and used in contraction-control driver",
+        "step": "c"
+      },
+      {
+        "requested": "reuse_env and fewer iterations",
+        "status": "included in attempted controller candidate with reuse_env=true and maxiter=1",
+        "step": "d"
+      }
+    ]
+  },
+  "peps3d_embedding": "blocked: this file uses a 2D PEPSKit substrate adapter, not a full PEPS3D finite cell/tensor carrier.",
+  "promotion_allowed": false,
+  "quaternion_action": "not_applicable",
+  "root_constraints_in_force": [
+    "F01 finite PEPS carrier/probe/operator/path set",
+    "N01 order-sensitive Weyl L/R control sign in the chiral bond term"
+  ],
+  "seed": 20260602,
+  "sim_class": "carrier_probe",
+  "sim_execution_kind": "nonclassical_adapter_poc",
+  "sim_id": "nested_peps2d_substrate_effect_opt",
+  "spinor_state": "physical product-seeded C^2 spinor tensor plus small deterministic virtual perturbation",
+  "timestamp_utc": "2026-06-02T22:23:25.983",
+  "tool_integration_depth": "supportive",
+  "tool_manifest": {
+    "OptimKit": "not invoked on the exit-0 driver path because no fixedpoint optimizer configuration was admitted robust",
+    "PEPSKit": "load_bearing for iPEPS construction, CTMRG contraction, and LocalOperator expectation values",
+    "TensorKit": "load_bearing for C^2 spinor spaces and PEPS tensor construction"
+  },
+  "version": "1.0",
+  "wallclock_seconds": 0.11
+}

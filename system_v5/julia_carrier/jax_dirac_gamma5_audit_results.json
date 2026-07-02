@@ -1,0 +1,71 @@
+{
+  "audit_pass": true,
+  "dt": 0.001,
+  "gamma5_verification": {
+    "anticommutes": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "anticommutes_all": true,
+    "expected_diag": true,
+    "square_identity": true
+  },
+  "max_norm_drift": 3.3306690738754696e-16,
+  "n": 600,
+  "runs": {
+    "A": {
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pruned": 0,
+      "survivors": 600
+    },
+    "B": {
+      "populated_basins": [
+        1,
+        2
+      ],
+      "pruned": 118,
+      "survivors": 482
+    },
+    "C": {
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pruned": 0,
+      "survivors": 600
+    }
+  },
+  "seed": 42,
+  "selector_controls": {
+    "inverted_sign": {
+      "populated_basins": [
+        3,
+        4
+      ],
+      "pruned": 489,
+      "survivors": 111,
+      "survivors_within_forbidden": true
+    },
+    "rate_matched_random": {
+      "keeps_forbidden": true,
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pruned": 118,
+      "survivors": 482
+    }
+  },
+  "steps": 12000
+}

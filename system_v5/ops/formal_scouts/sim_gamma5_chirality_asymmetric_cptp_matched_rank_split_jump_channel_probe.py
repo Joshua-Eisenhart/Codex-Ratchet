@@ -46,12 +46,15 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded scalar search for equal-rate and combined-rate minimization"},
+    "python_math": {"tried": True, "used": True, "reason": "supportive local bounded scalar search for equal-rate and combined-rate minimization"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing Kraus, Choi, Stinespring projector, rank, CPTP checks, and bounded-search objective evaluation"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic rank-order sanity"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing matched-rank contradiction witness"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    tool: ("supportive" if tool == "python_math" else "load_bearing")
+    for tool in TOOL_MANIFEST
+}
 
 
 def choi_rank(choi: torch.Tensor, threshold: float = 1e-10) -> int:

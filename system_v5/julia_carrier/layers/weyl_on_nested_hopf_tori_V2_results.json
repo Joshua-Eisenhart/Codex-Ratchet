@@ -1,0 +1,426 @@
+{
+  "A_mixed_nesting_chirality_cocycle": {
+    "PRE_REGISTERED_PASS": "|winding|>=~0.5 magnitude, OPPOSITE L/R sign, controls (glued+decoupled)<1e-6, while per-sheet Chern + Hopf c1 still pass",
+    "decoupled_control_collapses": true,
+    "fail_mode": "sub_magnitude_signature_present",
+    "glued_control_collapses": true,
+    "hopf_c1_still_passes": true,
+    "invariant": "FHS Wilson-plaquette Berry phase on (eta-step x torus-cycle) rectangles of eta-transported chirality projectors; mixed eta<->torus curvature is nonzero iff the chirality frame is genuinely nested on the shell coordinate (zero for a product/glued section).",
+    "mixed_cocycle_pass": false,
+    "mixed_mag_nested_min_LR": 0.36602155334010655,
+    "nested_not_glued": false,
+    "per_sheet_chern_still_passes": true,
+    "signs_opposite_LR": true,
+    "structure_present_signed_opposite_controls_collapse": true,
+    "winding_L_decoupled": 3.8567330008667127e-16,
+    "winding_L_glued": -4.9188968499152315e-18,
+    "winding_L_nested": 0.36602155334010655,
+    "winding_R_decoupled": -3.8567330008667127e-16,
+    "winding_R_glued": 4.9188968499152315e-18,
+    "winding_R_nested": -0.36602155334010655
+  },
+  "B_holonomy_law": {
+    "PRE_REGISTERED_PASS": "R^2>=0.9 in the gamma5-ODD sector fitting Delta(i,j)=s(eta_j)-s(eta_i) ~ cos(2eta_j)-cos(2eta_i) with s=c_+ - c_-; per-chirality slopes flip sign under chirality reversal; dim/commutator/spectrum-matched control R^2<=0.5",
+    "chirality_sign_flip": true,
+    "holonomy_law_pass": true,
+    "observable": "c_chi(eta)=Im[T_eta^{-1} Phi_Weyl^chi(T_eta |+><+| T_eta') T_eta^{-1}']_{12}; the gamma5-ODD sector s=c_+ - c_- is a SIGNED functional connection LAW across the 8-rung shell ladder (Delta ~ cos(2eta)), not a one-point scalar gap; J_chi Choi above is the carrier this coherence is read from.",
+    "r2_control_wrong_structure": 0.061645075267098615,
+    "r2_gamma5_odd_law_fit": 1.0,
+    "r2_law_per_chirality_L": 0.6234762261718233,
+    "r2_law_per_chirality_R": 0.08458283286976875,
+    "slope_L": -0.13863071437792904,
+    "slope_R": 0.03274743589124167,
+    "slope_gamma5_odd": 0.17137815026917072
+  },
+  "C_grok_deflation": {
+    "eta_base": 0.7853981633974483,
+    "grok_deflation_verdict": "mixed_single_base_reproduces_B_only",
+    "reading": "single fixed Hopf base (eta=pi/4), ONLY the spin^c lift index m varied (NOT a layer-stack/order). If the single base reproduces BOTH the mixed cocycle (A) and the holonomy law (B), the 'noncommutative stacking order' is real geometry but NOT a stacking DOF (order_is_deflated). If it cannot, the multi-shell nesting is a genuine DOF (nesting_is_genuine_dof).",
+    "side_by_side_vs_layered": {
+      "layered_holonomy_r2_odd": 1.0,
+      "layered_mixed_winding_min_LR": 0.36602155334010655,
+      "singlebase_holonomy_r2_odd": 1.0,
+      "singlebase_mixed_winding_min_LR": 2.9999999999999964
+    },
+    "singlebase_mixed_mag": 2.9999999999999964,
+    "singlebase_r2_gamma5_odd_law": 1.0,
+    "singlebase_r2_law_L": 0.2637910253316821,
+    "singlebase_r2_law_R": 0.0007599229870575153,
+    "singlebase_reproduces_A_mixed_cocycle": false,
+    "singlebase_reproduces_B_holonomy_law": true,
+    "singlebase_sign_flip": true,
+    "singlebase_signs_opposite": false,
+    "singlebase_winding_L": -2.9999999999999964,
+    "singlebase_winding_R": -2.9999999999999964,
+    "spin_lifts_varied": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "D_reliable_carrier": {
+    "PRE_REGISTERED_PASS": "all 4 rungs complete, each nested cut separates from EXACTLY-ZERO flat/product controls (min>1e-3,max>1e-2), genuine and control truncated at EQUAL maxdim/cutoff, and the contraction is exact (bond < cap, discarded weight below the effect)",
+    "all_error_bounded": true,
+    "anti_fake_guard": "genuine and control share EQUAL maxdim=256 cutoff=1.0e-14; bond never saturates the cap (stabilizer gates) so the contraction is exact and the discarded weight is below the nested-cut effect; genuine is never truncated harder than control.",
+    "carrier": "exact ITensors MPS contraction; NO CTMRG/PEPS2D.",
+    "completed": [
+      "N8",
+      "N16",
+      "N32",
+      "N64"
+    ],
+    "cutoff_equal_genuine_and_control": 1.0e-14,
+    "maxdim_equal_genuine_and_control": 256,
+    "n_pass": 3,
+    "reliable_carrier_pass": false,
+    "rungs": {
+      "N16": {
+        "K": 4,
+        "N": 16,
+        "contraction_exact_no_truncation": true,
+        "controls_at_floor": true,
+        "cutoff": 1.0e-14,
+        "discarded_weight_flat": 0.0,
+        "discarded_weight_nested": 0.0,
+        "ent_flat": [
+          4.8051397557223685e-15,
+          2.883083853433423e-15,
+          6.406853007629834e-16
+        ],
+        "ent_nested": [
+          0.4229157158015071,
+          0.28069967185280953,
+          0.21009678959579733
+        ],
+        "ent_product": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "error_bounded_effect_gt_error": true,
+        "inter": [
+          4,
+          8,
+          12
+        ],
+        "max_flat": 4.8051397557223685e-15,
+        "max_nested": 0.4229157158015071,
+        "max_product": 0.0,
+        "maxbond_flat": 2,
+        "maxbond_nested": 2,
+        "maxdim_cap": 256,
+        "min_nested": 0.21009678959579733,
+        "n_s": 4,
+        "nest_separates": true,
+        "rung_partial": false,
+        "rung_pass": true,
+        "wall_seconds": 0.1
+      },
+      "N32": {
+        "K": 8,
+        "N": 32,
+        "contraction_exact_no_truncation": true,
+        "controls_at_floor": true,
+        "cutoff": 1.0e-14,
+        "discarded_weight_flat": 0.0,
+        "discarded_weight_nested": 0.0,
+        "ent_flat": [
+          7.047538308392801e-15,
+          7.047538308392801e-15,
+          4.8051397557223685e-15,
+          4.164454454959387e-15,
+          3.2034265038149143e-15,
+          1.9220559022889496e-15,
+          9.61027951144475e-16
+        ],
+        "ent_nested": [
+          0.422915715801508,
+          0.28069967185281164,
+          0.21009678959579964,
+          0.12111448091079684,
+          0.06578542534341074,
+          0.01266622183070593,
+          0.009670925552021512
+        ],
+        "ent_product": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "error_bounded_effect_gt_error": true,
+        "inter": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28
+        ],
+        "max_flat": 7.047538308392801e-15,
+        "max_nested": 0.422915715801508,
+        "max_product": 0.0,
+        "maxbond_flat": 2,
+        "maxbond_nested": 2,
+        "maxdim_cap": 256,
+        "min_nested": 0.009670925552021512,
+        "n_s": 4,
+        "nest_separates": true,
+        "rung_partial": false,
+        "rung_pass": true,
+        "wall_seconds": 0.46
+      },
+      "N64": {
+        "K": 16,
+        "N": 64,
+        "contraction_exact_no_truncation": true,
+        "controls_at_floor": true,
+        "cutoff": 1.0e-14,
+        "discarded_weight_flat": 0.0,
+        "discarded_weight_nested": 0.0,
+        "ent_flat": [
+          2.2423985526704407e-15,
+          1.2813706015259665e-15,
+          0.0,
+          -6.406853007629837e-16,
+          -3.2034265038149214e-15,
+          -3.844111804577906e-15,
+          -4.4847971053408916e-15,
+          -5.766167706866863e-15,
+          -5.766167706866863e-15,
+          -7.047538308392837e-15,
+          -5.125482406103878e-15,
+          -3.2034265038149214e-15,
+          -6.406853007629837e-16,
+          3.2034265038149176e-16,
+          1.601713251907458e-15
+        ],
+        "ent_nested": [
+          0.42291571580151,
+          0.2806996718528145,
+          0.21009678959580166,
+          0.1211144809107989,
+          0.06578542534341225,
+          0.012666221830708509,
+          0.009670925552022775,
+          0.06741550198154533,
+          0.4027649949792107,
+          0.2534732361965933,
+          0.18246923722105055,
+          0.09252587834704065,
+          0.03941664413392479,
+          0.00029669630197314435,
+          0.03948426628905972
+        ],
+        "ent_product": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "error_bounded_effect_gt_error": true,
+        "inter": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40,
+          44,
+          48,
+          52,
+          56,
+          60
+        ],
+        "max_flat": 2.2423985526704407e-15,
+        "max_nested": 0.42291571580151,
+        "max_product": 0.0,
+        "maxbond_flat": 2,
+        "maxbond_nested": 2,
+        "maxdim_cap": 256,
+        "min_nested": 0.00029669630197314435,
+        "n_s": 4,
+        "nest_separates": false,
+        "rung_partial": false,
+        "rung_pass": false,
+        "wall_seconds": 0.23
+      },
+      "N8": {
+        "K": 4,
+        "N": 8,
+        "contraction_exact_no_truncation": true,
+        "controls_at_floor": true,
+        "cutoff": 1.0e-14,
+        "discarded_weight_flat": 0.0,
+        "discarded_weight_nested": 0.0,
+        "ent_flat": [
+          6.406853007629834e-16,
+          3.2034265038149176e-16,
+          -6.406853007629837e-16
+        ],
+        "ent_nested": [
+          0.27286886547946887,
+          0.19007910858460075,
+          0.159635712094128
+        ],
+        "ent_product": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "error_bounded_effect_gt_error": true,
+        "inter": [
+          2,
+          4,
+          6
+        ],
+        "max_flat": 6.406853007629834e-16,
+        "max_nested": 0.27286886547946887,
+        "max_product": 0.0,
+        "maxbond_flat": 2,
+        "maxbond_nested": 2,
+        "maxdim_cap": 256,
+        "min_nested": 0.159635712094128,
+        "n_s": 2,
+        "nest_separates": true,
+        "rung_partial": false,
+        "rung_pass": true,
+        "wall_seconds": 45.67
+      }
+    },
+    "skipped": []
+  },
+  "F01_witness": {
+    "finite_carrier": "exact ITensors MPS on N in {8,16,32,64}; 2-qubit Choi matrices (4x4); per-shell projectors",
+    "finite_operator": "Qi-Wu-Zhang H0; gamma5; eta-transported chirality SU(2) rotors; Weyl GKSL channel; within/cross-shell gates",
+    "finite_path": "closed Wilson loops on (eta-step x torus) plaquettes; dressed GKSL Choi T^{-1} Phi T; cross-shell MPS compositions",
+    "finite_probe": "FHS Wilson plaquettes; 41x41 BZ occupied bands; 200x200 S^2 Berry grid; Schmidt cut entropy"
+  },
+  "N01_witness": {
+    "order_sensitive_control": "the eta-transport and the torus-cycle transport do NOT commute on the nested chirality frame -> nonzero MIXED Wilson curvature (zero for a glued/product section); [T_eta, Phi_Weyl] != 0 drives the holonomy law.",
+    "present_above_floor": false,
+    "weyl_chern_sign_flips_per_sheet": "C_L=-C_R; mixed cocycle g^L=-g^R; holonomy slope flips under chirality reversal"
+  },
+  "anti_tautology_controls": {
+    "decoupled_eta_seed": "decoupling the Weyl seed from eta drives the mixed cocycle to ~0",
+    "equal_truncation_guard": "genuine and control share EQUAL maxdim/cutoff; genuine never truncated harder",
+    "flat_product_carrier": "removing cross-shell links (flat) and no-gate (product) collapse the inter-shell cut to exactly 0",
+    "glued_product_section": "product (glued) section drives the mixed cocycle to ~0 while per-sheet Chern + Hopf c1 still pass",
+    "hopf_trivial_bundle": "winding m=0 collapses |c1|=1 to 0",
+    "weyl_chern_trivial_mass": "trivial mass m=3 collapses |C|=1 to 0",
+    "wrong_structure_transport": "dim/commutator/spectrum-matched control transport FAILS the cos(2eta) holonomy law fit (R^2<=0.5)"
+  },
+  "baseline_invariants": {
+    "c1_hopf": -1.0000102808713354,
+    "chern_left": 1.0000000000000013,
+    "chern_left_int": 1,
+    "chern_right": -1.0000000000000009,
+    "chern_right_int": -1,
+    "gamma5_LR_split": true,
+    "hopf_absC1_is_1": true,
+    "leaf_area_max_err": 1.4310330698208418e-11,
+    "note": "These are v1's anchors (per-sheet Chern, Hopf c1, gamma5, leaf area). They survive in BOTH glued and nested constructions; they are NOT the nested-not-glued discriminator. The mixed cocycle (criterion A) is.",
+    "trivial_bundle_is_0": true,
+    "weyl_chern_opposite_per_sheet": true,
+    "wrong_mass_control_flips_to_0": true
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/rho_AB/Xi/Phi0/Axis0",
+    "flux/FEP",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "carrier": "EXACT ITensors MPS contraction; mixed cocycle = FHS Wilson-plaquette Berry phase of eta-transported chirality projectors; holonomy law = trace-norm of GKSL Weyl Choi dressed by nested-Hopf rotor transport. NO CTMRG, NO PEPS2D optimization.",
+  "claim_ceiling": "Computes finite invariants and a finite map for ONE candidate nested layer (Weyl L/R gamma5 on nested Hopf tori). The mixed nesting-chirality cocycle, the substrate holonomy law, the grok single-base deflation control, and the exact-MPS carrier ladder are reported at PRE-REGISTERED bars. Does NOT assert layer-completion, manifold admission, coupling, bridge (rho_AB/Xi/Phi0/Axis0), flux, FEP, or physics. A criterion that passes is a CANDIDATE, not a proven layer. promotion_allowed=false.",
+  "classification": "weyl_nested_hopf_v2_poc",
+  "codomain_or_output": "signed mixed winding (g^L=-g^R), holonomy-law R^2 + signed slope, deflation verdict, per-rung inter-shell cut entropies; each with a wrong-structure/glued control that changes the output.",
+  "dependency_receipts": [
+    "layers/weyl_lr_spinor_network_entanglement.jl (Qi-Wu-Zhang H0, FHS Chern, occupied_left/right)",
+    "layers/l2_weyl_chirality_gamma5_genuine.jl (Weyl-basis gammas, gamma5, chiral charge q)",
+    "layers/nested_hopf_tori_spinor_network.jl (S^3 foliation, leaf area, Hopf c1, berry_curvature)",
+    "layers/G_nested_hopf_tori.jl (S3pt embedding, leaf area, Gauss linking)",
+    "layers/s3_hopf_spinor_network_entanglement.jl (FHS Wilson-loop link()/plaquette Berry phase)",
+    "layers/substrate_effect_matched_band.jl (GKSL dissipator + commutator flow + Hopf rotor frame)"
+  ],
+  "domain": "finite shell set {eta_1<...<eta_8}; finite torus grid (240 t-steps) for the mixed plaquette; finite 41x41 BZ for the Weyl Chern; finite 200x200 S^2 base for the Hopf Chern; 2-qubit Choi (4x4) per shell; exact MPS on N in {8,16,32,64}.",
+  "finite_map": "(nested-tori shell stack {eta_1<...<eta_8}, Weyl L/R gamma5 chirality split) |-> (A) mixed eta<->torus Wilson-plaquette winding g^L,g^R (opposite sign); (B) substrate-dressed Weyl Choi holonomy Delta_chi(eta_i,eta_j) fitting cos(2eta_j)-cos(2eta_i); (C) single-base spin^c-lift reproduction verdict; (D) exact-MPS inter-shell cut entropy ladder 8/16/32/64.",
+  "grok_deflation_reading": "GROK CONTROL MIXED: the single base reproduced only one of (A,B). The deflation is partial; the nesting-vs-spin-structure question stays OPEN.",
+  "honest_verdict": "SUB-MAGNITUDE (nested-not-glued signature PRESENT but below bar): the mixed nesting-chirality cocycle is chirality-signed (L=+0.366, R=-0.366, OPPOSITE sign) and BOTH the glued (product) and decoupled controls collapse to ~0, while per-sheet Chern + Hopf c1 still pass. This IS the 'Weyl ON nested tori' (not side-by-side glued) structural signature. But |w|min=0.366 < the PRE-REGISTERED 0.5 bar (the eta-band [eta_min,eta_max] subtends a partial solid angle, not a full monopole), so the criterion is FAIL at its pre-registered magnitude bar (NOT re-tuned). v2 is BETTER than v1: v1 had NO mixed cocycle at all (its only separator was a cut entropy a glued carrier can also carry); v2 exhibits the genuine chirality-signed mixed curvature with collapsing controls, just under-magnitude on this shell band.",
+  "name": "Weyl L/R (gamma5) on nested Hopf tori — V2 (mixed cocycle + holonomy law + grok deflation)",
+  "non_numpy": true,
+  "object_id": "weyl_on_nested_hopf_tori_V2",
+  "one_layer_done_right_candidate": false,
+  "promotion_allowed": false,
+  "root_constraints_in_force": [
+    "F01 finite carrier/probes/operators/paths: exact MPS + finite BZ/S^2/torus grids + 2-qubit Choi",
+    "N01 noncommuting/order-sensitive control: [T_eta, torus-cycle] mixed curvature + [T_eta, Phi_Weyl] holonomy + C_L=-C_R"
+  ],
+  "scorecard": {
+    "grok_deflation_verdict": {
+      "PRE_REGISTERED_READING": "reproduces both -> order_is_deflated; reproduces neither -> nesting_is_genuine_dof; one only -> mixed",
+      "deciding": "single-base reproduces A=false (|w|min=3.0), reproduces B=true (gamma5-odd R^2=1.0)",
+      "verdict": "mixed_single_base_reproduces_B_only"
+    },
+    "holonomy_law_fit": {
+      "PRE_REGISTERED_BAR": "R^2>=0.9 gamma5-odd, sign flips under chirality reversal, control R^2<=0.5",
+      "deciding": "gamma5-odd R^2=1.0, control R^2=0.0616, per-chirality sign flip=true (slopes L=-0.1386 R=0.0327)",
+      "pass": true
+    },
+    "mixed_cocycle_nested_not_glued": {
+      "PRE_REGISTERED_BAR": "|w|>=0.5, opposite L/R sign, controls<1e-6, chern+c1 still pass",
+      "deciding": "nested |w|min=0.366 opp_sign=true, glued~0=true, decoupled~0=true, chern+c1 still pass=true",
+      "pass": false
+    },
+    "reliable_carrier_error_bounded": {
+      "PRE_REGISTERED_BAR": "all 4 rungs pass, genuine==control truncation, contraction exact, effect>error",
+      "deciding": "rungs_pass=3/4, all_error_bounded=true, equal maxdim/cutoff genuine+control",
+      "pass": false
+    }
+  },
+  "seed": 20260602,
+  "sim_id": "weyl_on_nested_hopf_tori_V2",
+  "status_ladder": "exists < runs < passes local rerun < canonical by process",
+  "supersedes": "weyl_on_nested_hopf_tori_FULL (v1): fixes (a) smuggled scale_ladder threshold, (b) weak matched-band scalar-z, (c) missing mixed nesting-chirality cocycle.",
+  "tool_integration_depth": {
+    "ITensors/ITensorMPS": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "load_bearing"
+  },
+  "tool_manifest": {
+    "ITensors/ITensorMPS": "load_bearing: the EXACT finite spinor-network MPS carrier; inter-shell Schmidt cut entropy (NO CTMRG).",
+    "JSON": "supportive: receipt emission only.",
+    "LinearAlgebra": "load_bearing: eigen/svd/exp for FHS Chern, Wilson-plaquette phases, Choi trace norms, GKSL evolution, exact MPS svd.",
+    "Random": "load_bearing: the dim/commutator/spectrum-matched wrong-structure control transport.",
+    "Statistics": "load_bearing: least-squares R^2 of the holonomy-law fit across the shell ladder."
+  }
+}

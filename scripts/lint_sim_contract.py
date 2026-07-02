@@ -12,7 +12,10 @@ Checks, by AST parse only (no import side-effects):
       formal tool-admission scout for that tool passes
       (self-probe exception: a capability probe is trivially its own evidence)
   C7: bridge or nonclassical sims may not use numpy as a load-bearing tool.
-  C8: nonclassical sims require locally load-bearing pytorch.
+  C8: nonclassical sims require a locally load-bearing primary backend
+      (JAX or Julia-family). PyTorch may be present only as comparison/support
+      unless it is independently ablation-proven; decorative torch stubs do not
+      satisfy this gate.
   C9: safe-repair metadata sentinel may not coexist with promoted
       classification.
 
@@ -28,6 +31,7 @@ from __future__ import annotations
 
 import argparse
 import ast
+import hashlib
 import json
 import sys
 from collections import Counter, defaultdict
@@ -38,6 +42,7 @@ import two_root_constraints
 REPO = Path(__file__).resolve().parent.parent
 PROBES_DIR = REPO / "system_v4" / "probes"
 RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
+FORMAL_SCOUTS_DIR = REPO / "system_v5" / "ops" / "formal_scouts"
 FORMAL_SCOUT_RESULTS_DIR = REPO / "system_v5" / "ops" / "formal_scouts" / "results"
 SAFE_REPAIR_SENTINEL = "safe_repair_v1"
 
@@ -104,6 +109,7 @@ MICRO_TOOL_FUNCTION_TOOLS = {
     "z3",
 }
 FORMAL_TOOL_ADMISSION_RESULTS = {
+    "jax": ("jax_results.json",),
     "auto_lirpa": ("auto_lirpa_lewm_latent_surprise_bound_probe_results.json",),
     "cotengra": ("quimb_cotengra_tensor_network_geometry_contraction_probe_results.json",),
     "le_wm": ("lewm_branch_order_latent_dynamics_micro_probe_results.json",),
@@ -114,6 +120,12 @@ FORMAL_TOOL_ADMISSION_RESULTS = {
 ALIASES = {
     "pytorch": "pytorch", "torch": "pytorch",
     "pytorch_autograd": "pytorch", "torch_autograd": "pytorch",
+    "jax": "jax", "jnp": "jax", "jax.numpy": "jax", "jax_numpy": "jax",
+    "julia": "julia",
+    "pepskit": "pepskit", "pepskit_jl": "pepskit",
+    "tensorkit": "tensorkit", "tensorkit_jl": "tensorkit",
+    "itensors": "itensors", "itensors_jl": "itensors",
+    "quantumclifford": "quantumclifford",
     "auto_lirpa": "auto_lirpa",
     "pyg": "pyg", "torch_geometric": "pyg", "torch-geometric": "pyg",
     "z3": "z3", "z3-solver": "z3", "z3_solver": "z3",
@@ -136,6 +148,15 @@ ALIASES = {
     "networkx": "networkx", "nx": "networkx",
 }
 
+PRIMARY_NONCLASSICAL_BACKENDS = {
+    "jax",
+    "julia",
+    "pepskit",
+    "tensorkit",
+    "itensors",
+    "quantumclifford",
+}
+
 
 def canonical(tool: str) -> str:
     return ALIASES.get(tool.strip().lower().replace("-", "_"),
@@ -151,7 +172,7 @@ for _tool, _receipt in two_root_constraints.TWO_ROOT_TOOL_MICRO_RECEIPTS.items()
 
 def _normalized_execution_kind(value: object) -> str:
     normalized = str(value or "").strip().lower().replace("-", "_")
-    if normalized in {
+    bridge_aliases = {
         "bridge",
         "qit_bridge",
         "nonclassical_bridge",
@@ -159,9 +180,14 @@ def _normalized_execution_kind(value: object) -> str:
         "semi_classical",
         "semiclassical_bridge",
         "semiclassical_szilard",
-    }:
+    }
+    if (
+        normalized in bridge_aliases
+        or normalized.endswith("_bridge")
+        or "_bridge_" in normalized
+    ):
         return "bridge"
-    if normalized == "nonclassical":
+    if normalized == "nonclassical" or normalized.startswith("nonclassical_"):
         return "nonclassical"
     if normalized == "classical":
         return "classical"
@@ -427,7 +453,166 @@ def _is_local_load_bearing(tool: str, sources: dict[str, str]) -> bool:
     return source not in TRANSITIVE_ROLE_VALUES
 
 
-def _capability_ok(tool_canon: str) -> tuple[bool, str]:
+def _formal_scout_receipt_admissible(data: dict) -> bool:
+    return (
+        data.get("classification") == "formal_scout"
+        and data.get("promotion_allowed") is False
+        and data.get("all_pass") is True
+        and str(data.get("claim_ceiling") or "").lower().startswith("formal scout only")
+    )
+
+
+def _formal_scout_result_for_source(source_path: Path) -> Path | None:
+    if not source_path.name.endswith(".py"):
+        return None
+    stem = source_path.stem
+    if stem.startswith("sim_"):
+        stem = stem[4:]
+    return FORMAL_SCOUT_RESULTS_DIR / f"{stem}_results.json"
+
+
+def _source_has_numpy_or_tensor_numpy(source_path: Path) -> bool:
+    """Detect actual NumPy imports/usages or tensor.numpy() calls by AST.
+
+    This avoids counting docstring/plain-string mentions while catching the
+    specific substrate leakage the formal nonclassical lane must not hide.
+    """
+    try:
+        tree = ast.parse(source_path.read_text(encoding="utf-8"))
+    except (SyntaxError, UnicodeDecodeError, OSError):
+        return False
+    numpy_aliases: set[str] = set()
+    found = False
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name == "numpy" or alias.name.startswith("numpy."):
+                    numpy_aliases.add(alias.asname or alias.name.split(".", 1)[0])
+                    found = True
+        elif isinstance(node, ast.ImportFrom):
+            module = node.module or ""
+            if module == "numpy" or module.startswith("numpy."):
+                found = True
+        elif isinstance(node, ast.Attribute):
+            if node.attr == "numpy":
+                found = True
+            if isinstance(node.value, ast.Name) and node.value.id in numpy_aliases:
+                found = True
+    return found
+
+
+def _candidate_local_module_paths(module_name: str) -> list[Path]:
+    parts = [part for part in module_name.split(".") if part]
+    if not parts:
+        return []
+    return [
+        FORMAL_SCOUTS_DIR.joinpath(*parts).with_suffix(".py"),
+        FORMAL_SCOUTS_DIR.joinpath(*parts, "__init__.py"),
+    ]
+
+
+def _local_imported_modules(tree: ast.Module, source_path: Path) -> list[Path]:
+    """Resolve immediate formal-scout-local imports without importing code."""
+    paths: list[Path] = []
+    seen: set[Path] = set()
+
+    def add_module(module_name: str | None) -> None:
+        if not module_name:
+            return
+        for candidate in _candidate_local_module_paths(module_name):
+            if candidate.exists() and candidate not in seen and candidate != source_path:
+                seen.add(candidate)
+                paths.append(candidate)
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                add_module(alias.name)
+        elif isinstance(node, ast.ImportFrom):
+            if node.level:
+                continue
+            add_module(node.module)
+    return paths
+
+
+def _result_hashes_for_source(data: dict, source_path: Path) -> set[str]:
+    source_receipt = data.get("source_receipt") if isinstance(data.get("source_receipt"), dict) else {}
+    hashes = {
+        str(value)
+        for value in (
+            data.get("source_sha256"),
+            data.get("source_hash"),
+            data.get("source_digest"),
+            source_receipt.get("source_sha256"),
+            source_receipt.get("source_hash"),
+            source_receipt.get("source_digest"),
+        )
+        if value
+    }
+    source_keys = {source_path.name, source_path.stem, str(source_path)}
+    try:
+        source_keys.add(str(source_path.relative_to(REPO)))
+    except ValueError:
+        pass
+    for field in (
+        "source_dependency_hashes",
+        "source_dependencies",
+        "dependency_hashes",
+        "local_module_hashes",
+        "local_source_hashes",
+    ):
+        raw = data.get(field)
+        if not isinstance(raw, dict):
+            continue
+        for key in source_keys:
+            value = raw.get(key)
+            if isinstance(value, dict):
+                hashes.update(str(item) for item in value.values() if item)
+            elif value:
+                hashes.add(str(value))
+    return hashes
+
+
+def _local_source_result_ok(source_path: Path, result_path: Path) -> tuple[bool, str]:
+    if not result_path.exists():
+        return False, "missing_local_formal_scout_receipt"
+    try:
+        data = json.loads(result_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return False, "local_formal_scout_receipt_unreadable"
+    try:
+        source_hash = hashlib.sha256(source_path.read_bytes()).hexdigest()
+        source_mtime = source_path.stat().st_mtime
+        result_mtime = result_path.stat().st_mtime
+    except OSError:
+        return False, "local_formal_scout_receipt_unreadable"
+    source_hashes = _result_hashes_for_source(data, source_path)
+    hash_pinned = bool(source_hashes)
+    if hash_pinned:
+        if source_hash not in source_hashes:
+            return False, "stale_local_formal_scout_receipt"
+    elif result_mtime < source_mtime:
+        return False, "stale_local_formal_scout_receipt"
+    if _formal_scout_receipt_admissible(data):
+        return True, "ok"
+    return False, "local_formal_scout_receipt_not_admissible"
+
+
+def _capability_ok(tool_canon: str, consumer_path: Path | None = None) -> tuple[bool, str]:
+    local_source = FORMAL_SCOUTS_DIR / f"sim_{tool_canon}.py"
+    if local_source.exists():
+        return _local_source_result_ok(
+            local_source,
+            FORMAL_SCOUT_RESULTS_DIR / f"{tool_canon}_results.json",
+        )
+
+    local_module_source = FORMAL_SCOUTS_DIR / f"{tool_canon}.py"
+    if local_module_source.exists():
+        consumer_result = _formal_scout_result_for_source(consumer_path) if consumer_path else None
+        if consumer_result is None:
+            return False, "missing_local_formal_scout_receipt"
+        return _local_source_result_ok(local_module_source, consumer_result)
+
     candidates = [
         (
             PROBES_DIR / f"sim_{tool_canon}_capability.py",
@@ -587,7 +772,7 @@ def lint_sim(path: Path) -> list[dict]:
             # Self-probe exception
             if _is_capability_probe(path, canon):
                 continue
-            ok, detail = _capability_ok(canon)
+            ok, detail = _capability_ok(canon, path)
             if not ok:
                 violations.append({"sim": rel, "rule": f"C5_{detail}",
                                    "detail": f"{tool}->{canon}"})
@@ -613,16 +798,35 @@ def lint_sim(path: Path) -> list[dict]:
                 "detail": execution_kind,
             })
         micro_tool_probe = _is_formal_micro_tool_function_probe(path, cls, load_bearing)
+        primary_backends = sorted(local_load_bearing & PRIMARY_NONCLASSICAL_BACKENDS)
         if (
             execution_kind == "nonclassical"
-            and "pytorch" not in local_load_bearing
+            and not primary_backends
             and not micro_tool_probe
         ):
             violations.append({
                 "sim": rel,
-                "rule": "C8_nonclassical_requires_local_pytorch_load_bearing",
+                "rule": "C8_nonclassical_requires_local_primary_backend_load_bearing",
                 "detail": ",".join(sorted(load_bearing)) or "no_load_bearing_tools",
             })
+        if execution_kind == "nonclassical" and _source_has_numpy_or_tensor_numpy(path):
+            violations.append({
+                "sim": rel,
+                "rule": "C7_numpy_source_for_nonclassical",
+                "detail": "direct_numpy_or_tensor_numpy",
+            })
+        if execution_kind == "nonclassical":
+            for module_path in _local_imported_modules(tree, path):
+                if _source_has_numpy_or_tensor_numpy(module_path):
+                    try:
+                        module_rel = str(module_path.relative_to(REPO))
+                    except ValueError:
+                        module_rel = str(module_path)
+                    violations.append({
+                        "sim": rel,
+                        "rule": "C7_numpy_local_module_dependency_for_nonclassical",
+                        "detail": module_rel,
+                    })
 
     return violations
 

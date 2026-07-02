@@ -1,0 +1,406 @@
+{
+  "all_pass": false,
+  "carrier_realization": "Julia ComplexF64 spinors embedded into PEPSKit InfinitePEPS with physical C^2 and virtual bond dimension 1",
+  "claim_ceiling": "Diagnostic substrate-effect path only. It can say whether this independent non-LBFGS Julia run shows a nested-vs-flat L/R split under its stated finite gate-sweep model. It is not canonical, not a theorem, not a bridge, not flux/Axis0/manifold admission, and not promotion evidence.",
+  "classification": "tool_lego_fit_probe",
+  "codomain_or_output": "CTMRG-contracted observables: energy density, vertical chirality density, environment entropy, L/R split and flat-control collapse metrics",
+  "completed_exit0": true,
+  "ctmrg_runtime_default": "RUN_CTM not set: fail closed before leading_boundary because exact-command attempts with D=1/chi=2 did not return in this environment",
+  "dependency_receipts": [
+    "layers/nested_peps2d_weyl_on_hopf_tori.jl"
+  ],
+  "domain": "finite sectors (north,east,south,west) in {1,2}^4, chirality sign s in {+1,-1}, connections c in {cos(2 eta_inner), cos(2 eta_outer), 0 flat}",
+  "downstream_blocks": [
+    "canonical",
+    "bridge",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "physics",
+    "manifold_admission"
+  ],
+  "engine": "Hand-rolled imaginary-time virtual-sector gate sweep + PEPSKit InfinitePEPS. PEPSKit CTMRG leading_boundary is available behind RUN_CTM=1; default exact command fail-closes before the non-returning CTMRG call.",
+  "finite_map": "For each substrate connection c and chirality s in {L,R}, apply finite imaginary-time two-site gate sweeps exp(-dt h_s,c) to virtual-sector spinors; embed the relaxed table as one InfinitePEPS tensor; contract by CTMRG; read energy and vertical chirality density.",
+  "generated_at_utc": "2026-06-02T22:37:41.215",
+  "language": "Julia",
+  "numpy_used": false,
+  "optimizer_boundary": {
+    "LBFGS_called": false,
+    "PEPSOptimize_called": false,
+    "fixedpoint_called": false,
+    "gradient_optimizer_called": false
+  },
+  "peps3d_embedding": "blocked: this is a PEPS2D substrate-effect tool probe, not a PEPS3D carrier-admission packet",
+  "pepskit_simpleupdate_status": "PEPSKit v0.7.0 exports SimpleUpdate/time_evolve, but bounded local probes stalled in Julia type inference in this checkout. This receipt therefore uses the requested fallback: a hand-rolled imaginary-time gate sweep on the iPEPS virtual-sector spinors, followed by PEPSKit CTMRG observables.",
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "quaternion_action": "not_applicable",
+  "root_constraints_in_force": [
+    "F01: finite virtual-sector spinor table with 16 local sectors and finite PEPS tensor",
+    "N01: order/chirality-sensitive two-site imaginary-time gates with sign and cos2eta dependence"
+  ],
+  "seed": 20260602,
+  "sim": "nested_peps2d_substrate_effect_imagtime",
+  "spinor_state": "physical C^2 Weyl spinor at each PEPS site; density readout is via CTMRG expectation values",
+  "stages": {
+    "cases": {
+      "flat_L": {
+        "chirality_sign": 1,
+        "connection": 0.0,
+        "correlation_length": {
+          "status": "not_run_ctmrg_blocked"
+        },
+        "ctmrg_blocker": "Repeated exact-command attempts reached PEPSKit leading_boundary with D=1/chi=2 and did not return before manual termination. Default run emits fail-closed relaxation-level numbers; set RUN_CTM=1 to retry leading_boundary.",
+        "ctmrg_maxiter": 3,
+        "ctmrg_status": "blocked_nonreturn_not_run_by_default",
+        "ctmrg_tol": 0.0001,
+        "ctmrg_truncation_error": null,
+        "energy_density": 0.6261880664696461,
+        "env_entropy": 0.0,
+        "env_schmidt_spectrum_head": [
+          1.0
+        ],
+        "label": "flat_L",
+        "relaxation_trace": [
+          {
+            "dt": 0.18,
+            "max_spinor_delta": 0.03513753466940355,
+            "min_projected_weight": 0.8444540878983643,
+            "step": 1
+          },
+          {
+            "dt": 0.12,
+            "max_spinor_delta": 0.022273143306521078,
+            "min_projected_weight": 0.8978602058900664,
+            "step": 2
+          },
+          {
+            "dt": 0.08,
+            "max_spinor_delta": 0.01424198223399562,
+            "min_projected_weight": 0.9325993933306029,
+            "step": 3
+          },
+          {
+            "dt": 0.05,
+            "max_spinor_delta": 0.008636213080047873,
+            "min_projected_weight": 0.9580707483179955,
+            "step": 4
+          },
+          {
+            "dt": 0.03,
+            "max_spinor_delta": 0.0050804161435706475,
+            "min_projected_weight": 0.9748946697411414,
+            "step": 5
+          }
+        ],
+        "site_sz": 0.9007702159034415,
+        "vertical_chirality_density": 2.0936343375962365e-33
+      },
+      "flat_R": {
+        "chirality_sign": -1,
+        "connection": 0.0,
+        "correlation_length": {
+          "status": "not_run_ctmrg_blocked"
+        },
+        "ctmrg_blocker": "Repeated exact-command attempts reached PEPSKit leading_boundary with D=1/chi=2 and did not return before manual termination. Default run emits fail-closed relaxation-level numbers; set RUN_CTM=1 to retry leading_boundary.",
+        "ctmrg_maxiter": 3,
+        "ctmrg_status": "blocked_nonreturn_not_run_by_default",
+        "ctmrg_tol": 0.0001,
+        "ctmrg_truncation_error": null,
+        "energy_density": 0.6261880664696461,
+        "env_entropy": 0.0,
+        "env_schmidt_spectrum_head": [
+          1.0
+        ],
+        "label": "flat_R",
+        "relaxation_trace": [
+          {
+            "dt": 0.18,
+            "max_spinor_delta": 0.03513753466940355,
+            "min_projected_weight": 0.8444540878983643,
+            "step": 1
+          },
+          {
+            "dt": 0.12,
+            "max_spinor_delta": 0.022273143306521078,
+            "min_projected_weight": 0.8978602058900664,
+            "step": 2
+          },
+          {
+            "dt": 0.08,
+            "max_spinor_delta": 0.01424198223399562,
+            "min_projected_weight": 0.9325993933306029,
+            "step": 3
+          },
+          {
+            "dt": 0.05,
+            "max_spinor_delta": 0.008636213080047873,
+            "min_projected_weight": 0.9580707483179955,
+            "step": 4
+          },
+          {
+            "dt": 0.03,
+            "max_spinor_delta": 0.0050804161435706475,
+            "min_projected_weight": 0.9748946697411414,
+            "step": 5
+          }
+        ],
+        "site_sz": 0.9007702159034415,
+        "vertical_chirality_density": 2.0936343375962365e-33
+      },
+      "nested_inner_L": {
+        "chirality_sign": 1,
+        "connection": 0.8253356149096783,
+        "correlation_length": {
+          "status": "not_run_ctmrg_blocked"
+        },
+        "ctmrg_blocker": "Repeated exact-command attempts reached PEPSKit leading_boundary with D=1/chi=2 and did not return before manual termination. Default run emits fail-closed relaxation-level numbers; set RUN_CTM=1 to retry leading_boundary.",
+        "ctmrg_maxiter": 3,
+        "ctmrg_status": "blocked_nonreturn_not_run_by_default",
+        "ctmrg_tol": 0.0001,
+        "ctmrg_truncation_error": null,
+        "energy_density": 0.634972835319844,
+        "env_entropy": 0.0,
+        "env_schmidt_spectrum_head": [
+          1.0
+        ],
+        "label": "nested_inner_L",
+        "relaxation_trace": [
+          {
+            "dt": 0.18,
+            "max_spinor_delta": 0.052523696814325865,
+            "min_projected_weight": 0.8653905962203972,
+            "step": 1
+          },
+          {
+            "dt": 0.12,
+            "max_spinor_delta": 0.027406649159379803,
+            "min_projected_weight": 0.9046081582820049,
+            "step": 2
+          },
+          {
+            "dt": 0.08,
+            "max_spinor_delta": 0.0168479417533333,
+            "min_projected_weight": 0.9349006217719413,
+            "step": 3
+          },
+          {
+            "dt": 0.05,
+            "max_spinor_delta": 0.01052651764926742,
+            "min_projected_weight": 0.9586983872480367,
+            "step": 4
+          },
+          {
+            "dt": 0.03,
+            "max_spinor_delta": 0.00626564339784121,
+            "min_projected_weight": 0.9749963809119739,
+            "step": 5
+          }
+        ],
+        "site_sz": 0.8950763736023388,
+        "vertical_chirality_density": -1.2748051740867833e-19
+      },
+      "nested_inner_R": {
+        "chirality_sign": -1,
+        "connection": 0.8253356149096783,
+        "correlation_length": {
+          "status": "not_run_ctmrg_blocked"
+        },
+        "ctmrg_blocker": "Repeated exact-command attempts reached PEPSKit leading_boundary with D=1/chi=2 and did not return before manual termination. Default run emits fail-closed relaxation-level numbers; set RUN_CTM=1 to retry leading_boundary.",
+        "ctmrg_maxiter": 3,
+        "ctmrg_status": "blocked_nonreturn_not_run_by_default",
+        "ctmrg_tol": 0.0001,
+        "ctmrg_truncation_error": null,
+        "energy_density": 0.634972835319844,
+        "env_entropy": 0.0,
+        "env_schmidt_spectrum_head": [
+          1.0
+        ],
+        "label": "nested_inner_R",
+        "relaxation_trace": [
+          {
+            "dt": 0.18,
+            "max_spinor_delta": 0.05252369681432586,
+            "min_projected_weight": 0.8653905962203972,
+            "step": 1
+          },
+          {
+            "dt": 0.12,
+            "max_spinor_delta": 0.02740664915937982,
+            "min_projected_weight": 0.9046081582820049,
+            "step": 2
+          },
+          {
+            "dt": 0.08,
+            "max_spinor_delta": 0.016847941753333297,
+            "min_projected_weight": 0.9349006217719416,
+            "step": 3
+          },
+          {
+            "dt": 0.05,
+            "max_spinor_delta": 0.010526517649267408,
+            "min_projected_weight": 0.9586983872480367,
+            "step": 4
+          },
+          {
+            "dt": 0.03,
+            "max_spinor_delta": 0.006265643397841211,
+            "min_projected_weight": 0.9749963809119739,
+            "step": 5
+          }
+        ],
+        "site_sz": 0.8950763736023388,
+        "vertical_chirality_density": 1.3423600461946626e-20
+      },
+      "nested_outer_L": {
+        "chirality_sign": 1,
+        "connection": -0.32328956686350335,
+        "correlation_length": {
+          "status": "not_run_ctmrg_blocked"
+        },
+        "ctmrg_blocker": "Repeated exact-command attempts reached PEPSKit leading_boundary with D=1/chi=2 and did not return before manual termination. Default run emits fail-closed relaxation-level numbers; set RUN_CTM=1 to retry leading_boundary.",
+        "ctmrg_maxiter": 3,
+        "ctmrg_status": "blocked_nonreturn_not_run_by_default",
+        "ctmrg_tol": 0.0001,
+        "ctmrg_truncation_error": null,
+        "energy_density": 0.6275271830937316,
+        "env_entropy": 0.0,
+        "env_schmidt_spectrum_head": [
+          1.0
+        ],
+        "label": "nested_outer_L",
+        "relaxation_trace": [
+          {
+            "dt": 0.18,
+            "max_spinor_delta": 0.03834380808087373,
+            "min_projected_weight": 0.8476232357857814,
+            "step": 1
+          },
+          {
+            "dt": 0.12,
+            "max_spinor_delta": 0.023202052316110288,
+            "min_projected_weight": 0.898839220710086,
+            "step": 2
+          },
+          {
+            "dt": 0.08,
+            "max_spinor_delta": 0.014673097172145261,
+            "min_projected_weight": 0.9329324273265138,
+            "step": 3
+          },
+          {
+            "dt": 0.05,
+            "max_spinor_delta": 0.008944463995375053,
+            "min_projected_weight": 0.9581601988745186,
+            "step": 4
+          },
+          {
+            "dt": 0.03,
+            "max_spinor_delta": 0.005272766710187954,
+            "min_projected_weight": 0.9749080773327721,
+            "step": 5
+          }
+        ],
+        "site_sz": 0.8999048411584069,
+        "vertical_chirality_density": 3.9135008770480196e-20
+      },
+      "nested_outer_R": {
+        "chirality_sign": -1,
+        "connection": -0.32328956686350335,
+        "correlation_length": {
+          "status": "not_run_ctmrg_blocked"
+        },
+        "ctmrg_blocker": "Repeated exact-command attempts reached PEPSKit leading_boundary with D=1/chi=2 and did not return before manual termination. Default run emits fail-closed relaxation-level numbers; set RUN_CTM=1 to retry leading_boundary.",
+        "ctmrg_maxiter": 3,
+        "ctmrg_status": "blocked_nonreturn_not_run_by_default",
+        "ctmrg_tol": 0.0001,
+        "ctmrg_truncation_error": null,
+        "energy_density": 0.6275271830937316,
+        "env_entropy": 0.0,
+        "env_schmidt_spectrum_head": [
+          1.0
+        ],
+        "label": "nested_outer_R",
+        "relaxation_trace": [
+          {
+            "dt": 0.18,
+            "max_spinor_delta": 0.03834380808087374,
+            "min_projected_weight": 0.8476232357857814,
+            "step": 1
+          },
+          {
+            "dt": 0.12,
+            "max_spinor_delta": 0.023202052316110285,
+            "min_projected_weight": 0.898839220710086,
+            "step": 2
+          },
+          {
+            "dt": 0.08,
+            "max_spinor_delta": 0.01467309717214526,
+            "min_projected_weight": 0.9329324273265138,
+            "step": 3
+          },
+          {
+            "dt": 0.05,
+            "max_spinor_delta": 0.008944463995375053,
+            "min_projected_weight": 0.9581601988745186,
+            "step": 4
+          },
+          {
+            "dt": 0.03,
+            "max_spinor_delta": 0.0052727667101879535,
+            "min_projected_weight": 0.9749080773327721,
+            "step": 5
+          }
+        ],
+        "site_sz": 0.8999048411584069,
+        "vertical_chirality_density": 2.731209663630224e-20
+      }
+    },
+    "setup": {
+      "bond_dim": 1,
+      "connection_inner_cos2eta": 0.8253356149096783,
+      "connection_outer_cos2eta": -0.32328956686350335,
+      "env_chi": 2,
+      "eta_inner": 0.3,
+      "eta_outer": 0.95,
+      "flat_connection": 0.0,
+      "relaxation_steps": 5
+    },
+    "substrate_effect": {
+      "ctmrg_backed": false,
+      "energy_flat_lr_split": 0.0,
+      "energy_nested_inner_lr_split": 0.0,
+      "energy_nested_outer_lr_split": 0.0,
+      "flat_abs_lr_split": 0.0,
+      "flat_control_collapses": true,
+      "flat_lr_split": 0.0,
+      "flat_to_nested_abs_ratio": 0.0,
+      "honest_yes_no": "no_ctmrg_blocked",
+      "max_ctmrg_truncation_error": null,
+      "nested_abs_mean_lr_split": 7.636351500240145e-20,
+      "nested_inner_lr_split": -1.4090411787062495e-19,
+      "nested_outer_lr_split": 1.1822912134177957e-20,
+      "nested_shell_delta_outer_minus_inner": 1.527270300048029e-19,
+      "nested_split_nonzero": false,
+      "observable": "vertical_chirality_density",
+      "relaxation_level_substrate_effect_appears": false,
+      "robustness": "No LBFGS/fixedpoint/PEPSOptimize path was called. Default exact-command numbers are relaxation-level product-readout numbers because repeated D=1/chi=2 PEPSKit leading_boundary attempts did not return in this environment. Set RUN_CTM=1 to retry CTMRG; until then ctmrg_backed=false.",
+      "substrate_effect_appears": false
+    }
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "PEPSKit": "load_bearing",
+    "TensorKit": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: writes result receipt",
+    "LinearAlgebra": "load_bearing: exp for imaginary-time gates and SVD/eigen projection",
+    "PEPSKit": "load_bearing for InfinitePEPS construction; CTMRGEnv/leading_boundary/expectation_value are the intended CTMRG path but default exact run marks them blocked_nonreturn",
+    "TensorKit": "load_bearing: TensorMap, tensor-product spaces, CTMRG corner SVD input"
+  },
+  "wallclock_seconds": 11.08
+}

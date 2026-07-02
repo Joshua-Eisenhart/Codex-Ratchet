@@ -1,0 +1,1159 @@
+{
+  "schema": "candidate_fence_nonredundancy_audit_result_v1",
+  "name": "candidate_fence_nonredundancy_audit",
+  "classification": "registry_audit_gate",
+  "gate": "EG-CF-nonredundancy-review",
+  "claim_ceiling": "Non-redundancy audit only. Passing does not promote any CF to DC.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing registry and receipt parsing for candidate-fence non-redundancy and structural-signature audit"
+    },
+    "python_re": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive bounded token signatures for non-redundancy proxy"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_json": "load_bearing",
+    "python_re": "supportive"
+  },
+  "generated_at": "2026-05-23T20:13:14Z",
+  "runtime_seconds": 0.004476785659790039,
+  "receipted_candidate_fences": [
+    "CF-14",
+    "CF-15",
+    "CF-16",
+    "CF-17",
+    "CF-18",
+    "CF-19",
+    "CF-20",
+    "CF-21",
+    "CF-22",
+    "CF-23",
+    "CF-24",
+    "CF-25"
+  ],
+  "rows": [
+    {
+      "code": "CF-14",
+      "required_gate": "EG-CF14-finite-discrete-vs-continuum-smuggling",
+      "receipt_id": "REC-CF14-finite-discrete-vs-continuum-smuggling",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "continuum",
+        "derivative",
+        "discretization",
+        "limit",
+        "smoothness"
+      ],
+      "structural_signature": {
+        "carrier": "finite_sequence",
+        "operator_family": "finite_difference",
+        "positive_predicate": "finite_grid_derivative_defined",
+        "negative_predicate": "continuum_derivative_without_grid_rejected",
+        "boundary_predicate": "refined_grid_declared"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.06319702602230483,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 58,
+      "pass": true
+    },
+    {
+      "code": "CF-15",
+      "required_gate": "EG-CF15-product-entangled-matched-cut",
+      "receipt_id": "REC-CF15-product-entangled-matched-cut",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "factorization",
+        "independence",
+        "product"
+      ],
+      "structural_signature": {
+        "carrier": "two_qubit_density",
+        "operator_family": "partial_trace_factorization",
+        "positive_predicate": "entangled_vs_product_matched_cut_separated",
+        "negative_predicate": "primitive_factorization_rejected",
+        "boundary_predicate": "declared_product_state_allowed"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.07335907335907337,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 50,
+      "pass": true
+    },
+    {
+      "code": "CF-16",
+      "required_gate": "EG-CF16-cptp-instrument-vs-classical-markov-chain",
+      "receipt_id": "REC-CF16-cptp-instrument-vs-classical-markov-chain",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "cptp",
+        "kraus",
+        "markov",
+        "transition"
+      ],
+      "structural_signature": {
+        "carrier": "single_qubit_density",
+        "operator_family": "cptp_kraus_instrument",
+        "positive_predicate": "noncommuting_cptp_order_and_coherence_tracked",
+        "negative_predicate": "classical_transition_matrix_without_kraus_rejected",
+        "boundary_predicate": "commuting_diagonal_markov_ablation_allowed"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.07251908396946564,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 53,
+      "pass": true
+    },
+    {
+      "code": "CF-17",
+      "required_gate": "EG-CF17-cut-instrument-vs-classical-markov-blanket",
+      "receipt_id": "REC-CF17-cut-instrument-vs-classical-markov-blanket",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "blanket",
+        "mediator"
+      ],
+      "structural_signature": {
+        "carrier": "two_qubit_cut_density",
+        "operator_family": "boundary_instrument_backaction",
+        "positive_predicate": "cut_instrument_changes_remote_reduction",
+        "negative_predicate": "sharp_blanket_partition_without_instrument_rejected",
+        "boundary_predicate": "classical_correlated_cut_with_declared_instrument_allowed"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.05384615384615385,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 46,
+      "pass": true
+    },
+    {
+      "code": "CF-18",
+      "required_gate": "EG-CF18-path-resolved-vs-order-erasing-average",
+      "receipt_id": "REC-CF18-path-resolved-vs-order-erasing-average",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "aggregation",
+        "average",
+        "resolved"
+      ],
+      "structural_signature": {
+        "carrier": "path_family_density",
+        "operator_family": "ordered_path_composition",
+        "positive_predicate": "path_resolved_order_signal_survives",
+        "negative_predicate": "order_erasing_average_rejected",
+        "boundary_predicate": "commuting_average_ablation_allowed"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.05454545454545454,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 62,
+      "pass": true
+    },
+    {
+      "code": "CF-19",
+      "required_gate": "EG-CF19-vector-tensor-vs-scalar-loss",
+      "receipt_id": "REC-CF19-vector-tensor-vs-scalar-loss",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "projection"
+      ],
+      "structural_signature": {
+        "carrier": "single_qubit_readout_vector",
+        "operator_family": "vector_projection",
+        "positive_predicate": "vector_distinguishes_scalar_collapse",
+        "negative_predicate": "undeclared_scalarization_rejected",
+        "boundary_predicate": "declared_projection_with_loss_allowed"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.06299212598425197,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 42,
+      "pass": true
+    },
+    {
+      "code": "CF-20",
+      "required_gate": "EG-CF20-basis-scramble-gauge-invariance",
+      "receipt_id": "REC-CF20-basis-scramble-gauge-invariance",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "basis",
+        "gauge",
+        "invariance"
+      ],
+      "structural_signature": {
+        "carrier": "single_qubit_density_pair",
+        "operator_family": "unitary_basis_scramble",
+        "positive_predicate": "trace_distance_invariant_raw_coordinate_changes",
+        "negative_predicate": "undeclared_basis_coordinate_rejected",
+        "boundary_predicate": "declared_diagonal_basis_allowed"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.03088803088803089,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 39,
+      "pass": true
+    },
+    {
+      "code": "CF-21",
+      "required_gate": "EG-CF21-declared-instrument-vs-primitive-probe",
+      "receipt_id": "REC-CF21-declared-instrument-vs-primitive-probe",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "instrument_declared",
+        "observer_in_joint_system",
+        "probe_family_finite"
+      ],
+      "structural_signature": {
+        "carrier": "single_qubit_system_plus_probe",
+        "operator_family": "projective_instrument",
+        "positive_predicate": "declared_instrument_probabilities_and_backaction_tracked",
+        "negative_predicate": "unnamed_probe_probability_rejected",
+        "boundary_predicate": "declared_classical_readout_ablation_allowed"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.07509881422924901,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 44,
+      "pass": true
+    },
+    {
+      "code": "CF-22",
+      "required_gate": "EG-CF22-order-race-vs-primitive-simultaneity",
+      "receipt_id": "REC-CF22-order-race-vs-primitive-simultaneity",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "commuting_collapse_control",
+        "merge",
+        "no_global_now",
+        "race",
+        "simultaneity",
+        "simultaneous"
+      ],
+      "structural_signature": {
+        "carrier": "single_qubit_density",
+        "operator_family": "noncommuting_order_race",
+        "positive_predicate": "declared_order_contract_separates_ab_ba",
+        "negative_predicate": "same_time_average_erases_order_signal",
+        "boundary_predicate": "commuting_order_collapse_allowed"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.038910505836575876,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 39,
+      "pass": true
+    },
+    {
+      "code": "CF-23",
+      "required_gate": "EG-CF23-scoped-view-vs-global-oracle",
+      "receipt_id": "REC-CF23-scoped-view-vs-global-oracle",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "oracle",
+        "partial_trace_or_projection",
+        "scoped"
+      ],
+      "structural_signature": {
+        "carrier": "two_qubit_bell_pair",
+        "operator_family": "scoped_partial_trace",
+        "positive_predicate": "local_scope_invariant_global_oracle_differs",
+        "negative_predicate": "global_oracle_decision_fails_scoped_process",
+        "boundary_predicate": "declared_global_diagnostic_allowed"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.05405405405405406,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 45,
+      "pass": true
+    },
+    {
+      "code": "CF-24",
+      "required_gate": "EG-CF24-finite-epsilon-step-vs-limit-smuggling",
+      "receipt_id": "REC-CF24-finite-epsilon-step-vs-limit-smuggling",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "convergence",
+        "epsilon",
+        "finite_failure_case",
+        "limit",
+        "stopping_rule"
+      ],
+      "structural_signature": {
+        "carrier": "finite_scalar_recurrence",
+        "operator_family": "bounded_iteration",
+        "positive_predicate": "epsilon_reached_within_step_budget",
+        "negative_predicate": "eventual_limit_without_budget_rejected",
+        "boundary_predicate": "asymptotic_intuition_non_load_bearing"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.022988505747126436,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 39,
+      "pass": true
+    },
+    {
+      "code": "CF-25",
+      "required_gate": "EG-CF25-irreversible-channel-vs-free-inverse",
+      "receipt_id": "REC-CF25-irreversible-channel-vs-free-inverse",
+      "candidate_status_preserved": true,
+      "gate_implemented": true,
+      "receipt_all_pass": true,
+      "promotion_blocker_present": true,
+      "distinctive_tokens": [
+        "inverse_witness",
+        "irreversible_channel_control",
+        "reversibility"
+      ],
+      "structural_signature": {
+        "carrier": "single_qubit_density_channel",
+        "operator_family": "unitary_vs_amplitude_damping_channel",
+        "positive_predicate": "unitary_inverse_witness_and_irreversible_collapse_control",
+        "negative_predicate": "proposed_damping_inverse_fails_recovery",
+        "boundary_predicate": "unitary_subgroup_inverse_allowed"
+      },
+      "accepted_rc_dc_signature_jaccard": 0.045454545454545456,
+      "accepted_rc_dc_nonoverlap_pass": true,
+      "signature_size": 48,
+      "pass": true
+    }
+  ],
+  "pairwise_signature_overlap": [
+    {
+      "left": "CF-14",
+      "right": "CF-15",
+      "signature_jaccard": 0.17391304347826086,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-16",
+      "signature_jaccard": 0.18085106382978725,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-17",
+      "signature_jaccard": 0.18181818181818182,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-18",
+      "signature_jaccard": 0.18811881188118812,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-19",
+      "signature_jaccard": 0.14942528735632185,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-20",
+      "signature_jaccard": 0.15476190476190477,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-21",
+      "signature_jaccard": 0.2,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-22",
+      "signature_jaccard": 0.15476190476190477,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-23",
+      "signature_jaccard": 0.15730337078651685,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-24",
+      "signature_jaccard": 0.19753086419753085,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-25",
+      "signature_jaccard": 0.13978494623655913,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-16",
+      "signature_jaccard": 0.15730337078651685,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-17",
+      "signature_jaccard": 0.2631578947368421,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-18",
+      "signature_jaccard": 0.15463917525773196,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-19",
+      "signature_jaccard": 0.19480519480519481,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-20",
+      "signature_jaccard": 0.17105263157894737,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-21",
+      "signature_jaccard": 0.16049382716049382,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-22",
+      "signature_jaccard": 0.17105263157894737,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-23",
+      "signature_jaccard": 0.20253164556962025,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-24",
+      "signature_jaccard": 0.17105263157894737,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-25",
+      "signature_jaccard": 0.18072289156626506,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-17",
+      "signature_jaccard": 0.375,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-18",
+      "signature_jaccard": 0.2777777777777778,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-19",
+      "signature_jaccard": 0.23376623376623376,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-20",
+      "signature_jaccard": 0.21052631578947367,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-21",
+      "signature_jaccard": 0.29333333333333333,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-22",
+      "signature_jaccard": 0.2777777777777778,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-23",
+      "signature_jaccard": 0.2564102564102564,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-24",
+      "signature_jaccard": 0.2602739726027397,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-25",
+      "signature_jaccard": 0.21686746987951808,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-18",
+      "signature_jaccard": 0.2558139534883721,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-19",
+      "signature_jaccard": 0.2571428571428571,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-20",
+      "signature_jaccard": 0.2318840579710145,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-21",
+      "signature_jaccard": 0.34328358208955223,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-22",
+      "signature_jaccard": 0.3076923076923077,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-23",
+      "signature_jaccard": 0.2638888888888889,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-24",
+      "signature_jaccard": 0.25,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-25",
+      "signature_jaccard": 0.23684210526315788,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-19",
+      "signature_jaccard": 0.2235294117647059,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-20",
+      "signature_jaccard": 0.18823529411764706,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-21",
+      "signature_jaccard": 0.21839080459770116,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-22",
+      "signature_jaccard": 0.2625,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-23",
+      "signature_jaccard": 0.2159090909090909,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-24",
+      "signature_jaccard": 0.18823529411764706,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-25",
+      "signature_jaccard": 0.1827956989247312,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-20",
+      "signature_jaccard": 0.3064516129032258,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-21",
+      "signature_jaccard": 0.2835820895522388,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-22",
+      "signature_jaccard": 0.3064516129032258,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-23",
+      "signature_jaccard": 0.3384615384615385,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-24",
+      "signature_jaccard": 0.2857142857142857,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-25",
+      "signature_jaccard": 0.2676056338028169,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-20",
+      "right": "CF-21",
+      "signature_jaccard": 0.296875,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-20",
+      "right": "CF-22",
+      "signature_jaccard": 0.3,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-20",
+      "right": "CF-23",
+      "signature_jaccard": 0.2923076923076923,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-20",
+      "right": "CF-24",
+      "signature_jaccard": 0.3220338983050847,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-20",
+      "right": "CF-25",
+      "signature_jaccard": 0.2608695652173913,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-21",
+      "right": "CF-22",
+      "signature_jaccard": 0.31746031746031744,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-21",
+      "right": "CF-23",
+      "signature_jaccard": 0.2535211267605634,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-21",
+      "right": "CF-24",
+      "signature_jaccard": 0.31746031746031744,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-21",
+      "right": "CF-25",
+      "signature_jaccard": 0.24324324324324326,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-22",
+      "right": "CF-23",
+      "signature_jaccard": 0.3333333333333333,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-22",
+      "right": "CF-24",
+      "signature_jaccard": 0.3,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-22",
+      "right": "CF-25",
+      "signature_jaccard": 0.27941176470588236,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-23",
+      "right": "CF-24",
+      "signature_jaccard": 0.3125,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-23",
+      "right": "CF-25",
+      "signature_jaccard": 0.273972602739726,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-24",
+      "right": "CF-25",
+      "signature_jaccard": 0.2608695652173913,
+      "structural_exact_duplicate": false
+    }
+  ],
+  "max_pairwise_signature_jaccard": 0.375,
+  "structural_pairwise_overlap": [
+    {
+      "left": "CF-14",
+      "right": "CF-15",
+      "signature_jaccard": 0.17391304347826086,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-16",
+      "signature_jaccard": 0.18085106382978725,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-17",
+      "signature_jaccard": 0.18181818181818182,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-18",
+      "signature_jaccard": 0.18811881188118812,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-19",
+      "signature_jaccard": 0.14942528735632185,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-20",
+      "signature_jaccard": 0.15476190476190477,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-21",
+      "signature_jaccard": 0.2,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-22",
+      "signature_jaccard": 0.15476190476190477,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-23",
+      "signature_jaccard": 0.15730337078651685,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-24",
+      "signature_jaccard": 0.19753086419753085,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-14",
+      "right": "CF-25",
+      "signature_jaccard": 0.13978494623655913,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-16",
+      "signature_jaccard": 0.15730337078651685,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-17",
+      "signature_jaccard": 0.2631578947368421,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-18",
+      "signature_jaccard": 0.15463917525773196,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-19",
+      "signature_jaccard": 0.19480519480519481,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-20",
+      "signature_jaccard": 0.17105263157894737,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-21",
+      "signature_jaccard": 0.16049382716049382,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-22",
+      "signature_jaccard": 0.17105263157894737,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-23",
+      "signature_jaccard": 0.20253164556962025,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-24",
+      "signature_jaccard": 0.17105263157894737,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-15",
+      "right": "CF-25",
+      "signature_jaccard": 0.18072289156626506,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-17",
+      "signature_jaccard": 0.375,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-18",
+      "signature_jaccard": 0.2777777777777778,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-19",
+      "signature_jaccard": 0.23376623376623376,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-20",
+      "signature_jaccard": 0.21052631578947367,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-21",
+      "signature_jaccard": 0.29333333333333333,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-22",
+      "signature_jaccard": 0.2777777777777778,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-23",
+      "signature_jaccard": 0.2564102564102564,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-24",
+      "signature_jaccard": 0.2602739726027397,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-16",
+      "right": "CF-25",
+      "signature_jaccard": 0.21686746987951808,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-18",
+      "signature_jaccard": 0.2558139534883721,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-19",
+      "signature_jaccard": 0.2571428571428571,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-20",
+      "signature_jaccard": 0.2318840579710145,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-21",
+      "signature_jaccard": 0.34328358208955223,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-22",
+      "signature_jaccard": 0.3076923076923077,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-23",
+      "signature_jaccard": 0.2638888888888889,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-24",
+      "signature_jaccard": 0.25,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-17",
+      "right": "CF-25",
+      "signature_jaccard": 0.23684210526315788,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-19",
+      "signature_jaccard": 0.2235294117647059,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-20",
+      "signature_jaccard": 0.18823529411764706,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-21",
+      "signature_jaccard": 0.21839080459770116,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-22",
+      "signature_jaccard": 0.2625,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-23",
+      "signature_jaccard": 0.2159090909090909,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-24",
+      "signature_jaccard": 0.18823529411764706,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-18",
+      "right": "CF-25",
+      "signature_jaccard": 0.1827956989247312,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-20",
+      "signature_jaccard": 0.3064516129032258,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-21",
+      "signature_jaccard": 0.2835820895522388,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-22",
+      "signature_jaccard": 0.3064516129032258,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-23",
+      "signature_jaccard": 0.3384615384615385,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-24",
+      "signature_jaccard": 0.2857142857142857,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-19",
+      "right": "CF-25",
+      "signature_jaccard": 0.2676056338028169,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-20",
+      "right": "CF-21",
+      "signature_jaccard": 0.296875,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-20",
+      "right": "CF-22",
+      "signature_jaccard": 0.3,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-20",
+      "right": "CF-23",
+      "signature_jaccard": 0.2923076923076923,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-20",
+      "right": "CF-24",
+      "signature_jaccard": 0.3220338983050847,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-20",
+      "right": "CF-25",
+      "signature_jaccard": 0.2608695652173913,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-21",
+      "right": "CF-22",
+      "signature_jaccard": 0.31746031746031744,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-21",
+      "right": "CF-23",
+      "signature_jaccard": 0.2535211267605634,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-21",
+      "right": "CF-24",
+      "signature_jaccard": 0.31746031746031744,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-21",
+      "right": "CF-25",
+      "signature_jaccard": 0.24324324324324326,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-22",
+      "right": "CF-23",
+      "signature_jaccard": 0.3333333333333333,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-22",
+      "right": "CF-24",
+      "signature_jaccard": 0.3,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-22",
+      "right": "CF-25",
+      "signature_jaccard": 0.27941176470588236,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-23",
+      "right": "CF-24",
+      "signature_jaccard": 0.3125,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-23",
+      "right": "CF-25",
+      "signature_jaccard": 0.273972602739726,
+      "structural_exact_duplicate": false
+    },
+    {
+      "left": "CF-24",
+      "right": "CF-25",
+      "signature_jaccard": 0.2608695652173913,
+      "structural_exact_duplicate": false
+    }
+  ],
+  "structural_duplicate_pairs": [],
+  "threshold_calibration": {
+    "synthetic_duplicate_signature_jaccard": 1.0,
+    "synthetic_duplicate_rejected_by_threshold": true,
+    "structural_duplicate_pairs_detected": [],
+    "structural_nonduplicate_pass": true,
+    "ceiling_threshold_jaccard": 0.55,
+    "ceiling_threshold_structural_duplicate_pairs": 0,
+    "structural_duplicate_threshold_semantics": "Any nonempty structural_duplicate_pairs list blocks this ceiling audit.",
+    "note": "Token Jaccard is a ceiling proxy. Structural fixture signatures are checked separately for exact duplicate gates."
+  },
+  "nonoverlap_jaccard_threshold": 0.55,
+  "threshold_rationale": "A receipted CF must share less than 55 percent of its bounded text/token signature with accepted RC/DC wording and with any other receipted CF. This is only a conservative proxy for non-collapse, not a formal independence proof or a promotion criterion.",
+  "accepted_signature_size": 228,
+  "all_pass": true
+}

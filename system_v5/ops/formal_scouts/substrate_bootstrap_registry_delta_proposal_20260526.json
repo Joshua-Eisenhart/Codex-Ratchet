@@ -1,0 +1,291 @@
+{
+  "direct_edit_applied": false,
+  "exact_delta_candidates": [
+    {
+      "current_status": "NOT_STARTED",
+      "evidence_path": "system_v5/legos/results/finite_density_matrix_carrier_trace_psd_pytorch_sympy_z3_results.json",
+      "family": "density_matrix",
+      "proposed_note_append": "V5 substrate admit_candidate exists at system_v5/legos/results/finite_density_matrix_carrier_trace_psd_pytorch_sympy_z3_results.json after fresh rerun; does not by itself satisfy standalone torch module promotion.",
+      "proposed_status": "NOT_STARTED"
+    },
+    {
+      "current_status": "NOT_STARTED",
+      "evidence_path": "system_v5/legos/results/chiral_overlap_spinor_density_bridge_clifford_pytorch_z3_results.json",
+      "family": "chiral_overlap",
+      "proposed_note_append": "V5 substrate admit_candidate exists at system_v5/legos/results/chiral_overlap_spinor_density_bridge_clifford_pytorch_z3_results.json; it repairs the previously missing chiral-overlap bridge evidence but does not by itself satisfy registry standalone-module promotion.",
+      "proposed_status": "NOT_STARTED"
+    },
+    {
+      "current_status": "not_represented_in_28_family_registry",
+      "evidence_path": "system_v5/legos/results/peps3d_closure_2x2x2_pyg_xgi_pytorch_z3_results.json",
+      "family": "PEPS3D_closure",
+      "proposed_note_append": "V5 PEPS3D 2x2x2 seed-carrier admit_candidate exists with K=(V,E,F,C), local tensors, PyG/XGI/Z3 ablations, and downstream consumers blocked; registry scope needs explicit v5 PEPS3D evidence inventory before direct status edit.",
+      "proposed_status": "not_represented_in_28_family_registry"
+    },
+    {
+      "current_status": "NOT_STARTED",
+      "evidence_path": "system_v5/legos/results/cnot_entangling_gate_density_entropy_pytorch_sympy_z3_results.json",
+      "family": "CNOT",
+      "proposed_note_append": "V5 CNOT/equivalent entangling-gate admit_candidate exists at system_v5/legos/results/cnot_entangling_gate_density_entropy_pytorch_sympy_z3_results.json with finite map, QIT entropy readouts, order witness, and downstream consumers blocked; does not by itself satisfy standalone-module registry promotion.",
+      "proposed_status": "NOT_STARTED"
+    },
+    {
+      "current_status": "NOT_STARTED",
+      "evidence_path": "system_v5/legos/results/depolarizing_channel_cptp_entropy_pytorch_sympy_z3_results.json",
+      "family": "depolarizing",
+      "proposed_note_append": "V5 depolarizing CPTP admit_candidate exists at system_v5/legos/results/depolarizing_channel_cptp_entropy_pytorch_sympy_z3_results.json with finite map, Kraus/affine checks, entropy/coherence readouts, probe noncommutation, and downstream consumers blocked; does not by itself satisfy standalone-module registry promotion.",
+      "proposed_status": "NOT_STARTED"
+    },
+    {
+      "current_status": "not_represented_in_28_family_registry",
+      "evidence_path": "system_v5/legos/results/cl3_cl6_spinor_density_bridge_clifford_pytorch_sympy_z3_results.json",
+      "family": "Cl3_Cl6_bridge",
+      "proposed_note_append": "V5 Cl3/Cl6 spinor-density bridge admit_candidate exists with finite Cl3/Cl6 basis counts, Cl6 matrix carrier, spinor-derived density recovery, ablation deltas, and downstream consumers blocked; registry scope needs explicit v5 Clifford bridge evidence inventory before direct status edit.",
+      "proposed_status": "not_represented_in_28_family_registry"
+    },
+    {
+      "current_status": "NOT_STARTED_or_adjacent_repair_required",
+      "evidence_path": "system_v5/legos/results/two_point_spectral_triple_dirac_commutator_distance_pytorch_sympy_z3_results.json",
+      "family": "spectral_triple_wiring_repair",
+      "proposed_note_append": "V5 finite two-point spectral-triple row is repaired with finite map/domain/codomain, controls, ablation deltas, and blocked downstream consumers; this does not promote manifold reconstruction or satisfy unrelated eigenvalue-decomposition family promotion.",
+      "proposed_status": "NOT_STARTED"
+    },
+    {
+      "current_status": "not_represented_in_28_family_registry",
+      "evidence_path": "system_v5/legos/results/cvc5_finite_commutation_table_order_gate_pytorch_sympy_results.json",
+      "family": "cvc5_substrate_tool_row",
+      "proposed_note_append": "V5 cvc5 finite commutation-table order-gate admit_candidate exists with cvc5 Bool/BitVec load-bearing statuses, PyTorch/SymPy table construction, ablation deltas, and downstream consumers blocked; registry scope needs explicit tool-row evidence inventory before direct status edit.",
+      "proposed_status": "not_represented_in_28_family_registry"
+    }
+  ],
+  "family_rows": [
+    {
+      "classification": "admit_candidate",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "T1a density carrier repaired: fresh rerun pass, validator pass, explicit ablation_outcome_delta, entropy readout, and 8-qubit product-density scale floor. Registry promotion status remains NOT_STARTED unless standalone torch-module policy is owner-edited.",
+      "family": "density_matrix",
+      "family_number": 1,
+      "registry_row": "MIGRATION_REGISTRY.md family #1 density_matrix"
+    },
+    {
+      "classification": "repair_required",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "Adjacent coherent-information legos exist, but no standalone purify(rho) row.",
+      "family": "purification",
+      "family_number": 2,
+      "registry_row": "MIGRATION_REGISTRY.md family #2 purification"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "z_dephasing",
+      "family_number": 3,
+      "registry_row": "MIGRATION_REGISTRY.md family #3 z_dephasing"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "x_dephasing",
+      "family_number": 4,
+      "registry_row": "MIGRATION_REGISTRY.md family #4 x_dephasing"
+    },
+    {
+      "classification": "admit_candidate",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "T1e depolarizing CPTP row exists, reruns, validates, and includes finite map/domain/codomain, Kraus/affine checks, entropy/coherence readouts, ablation deltas, and blocked downstream consumers.",
+      "family": "depolarizing",
+      "family_number": 5,
+      "registry_row": "MIGRATION_REGISTRY.md family #5 depolarizing"
+    },
+    {
+      "classification": "repair_required",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "CPTP amplitude-damping lego reruns and validates, but lacks long-goal ablation_outcome_delta/scale/entropy fields.",
+      "family": "amplitude_damping",
+      "family_number": 6,
+      "registry_row": "MIGRATION_REGISTRY.md family #6 amplitude_damping"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "phase_damping",
+      "family_number": 7,
+      "registry_row": "MIGRATION_REGISTRY.md family #7 phase_damping"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "bit_flip",
+      "family_number": 8,
+      "registry_row": "MIGRATION_REGISTRY.md family #8 bit_flip"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "phase_flip",
+      "family_number": 9,
+      "registry_row": "MIGRATION_REGISTRY.md family #9 phase_flip"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "bit_phase_flip",
+      "family_number": 10,
+      "registry_row": "MIGRATION_REGISTRY.md family #10 bit_phase_flip"
+    },
+    {
+      "classification": "repair_required",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "Registry baseline is partial/incidental; no standalone v5 unitary rotation row.",
+      "family": "unitary_rotation",
+      "family_number": 11,
+      "registry_row": "MIGRATION_REGISTRY.md family #11 unitary_rotation"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "Registry says baseline missing; no v5 row.",
+      "family": "z_measurement",
+      "family_number": 12,
+      "registry_row": "MIGRATION_REGISTRY.md family #12 z_measurement"
+    },
+    {
+      "classification": "admit_candidate",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "T1d CNOT/equivalent entangling-gate row exists, reruns, validates, and includes finite map/domain/codomain, QIT entropy readouts, order witness, ablation deltas, and blocked downstream consumers.",
+      "family": "CNOT",
+      "family_number": 13,
+      "registry_row": "MIGRATION_REGISTRY.md family #13 CNOT"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "CZ",
+      "family_number": 14,
+      "registry_row": "MIGRATION_REGISTRY.md family #14 CZ"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "SWAP",
+      "family_number": 15,
+      "registry_row": "MIGRATION_REGISTRY.md family #15 SWAP"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "Pauli/Clifford commutator row is adjacent only; no Hadamard row.",
+      "family": "Hadamard",
+      "family_number": 16,
+      "registry_row": "MIGRATION_REGISTRY.md family #16 Hadamard"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "T_gate",
+      "family_number": 17,
+      "registry_row": "MIGRATION_REGISTRY.md family #17 T_gate"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "iSWAP",
+      "family_number": 18,
+      "registry_row": "MIGRATION_REGISTRY.md family #18 iSWAP"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 Cartan/KAK substrate lego result.",
+      "family": "cartan_kak",
+      "family_number": 19,
+      "registry_row": "MIGRATION_REGISTRY.md family #19 cartan_kak"
+    },
+    {
+      "classification": "repair_required",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "Finite two-point spectral-triple row is repaired and validator-green, but standalone eigenvalue-decomposition family remains adjacent/repair_required unless separately built.",
+      "family": "eigenvalue_decomposition",
+      "family_number": 20,
+      "registry_row": "MIGRATION_REGISTRY.md family #20 eigenvalue_decomposition"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "husimi_q",
+      "family_number": 21,
+      "registry_row": "MIGRATION_REGISTRY.md family #21 husimi_q"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "l1_coherence",
+      "family_number": 22,
+      "registry_row": "MIGRATION_REGISTRY.md family #22 l1_coherence"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "relative_entropy_coherence",
+      "family_number": 23,
+      "registry_row": "MIGRATION_REGISTRY.md family #23 relative_entropy_coherence"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 substrate lego result.",
+      "family": "wigner_negativity",
+      "family_number": 24,
+      "registry_row": "MIGRATION_REGISTRY.md family #24 wigner_negativity"
+    },
+    {
+      "classification": "repair_required",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "Hopf projection lego exists and reruns, but does not satisfy full Hopf connection/tori substrate row or ablation/scale requirements.",
+      "family": "hopf_connection",
+      "family_number": 25,
+      "registry_row": "MIGRATION_REGISTRY.md family #25 hopf_connection"
+    },
+    {
+      "classification": "admit_candidate",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "T1b chiral-overlap spinor-density bridge exists, reruns, validates, and includes explicit ablation_outcome_delta, entropy, scale, and controls; it still blocks Weyl closure/flux/Axis0/final manifold.",
+      "family": "chiral_overlap",
+      "family_number": 26,
+      "registry_row": "MIGRATION_REGISTRY.md family #26 chiral_overlap"
+    },
+    {
+      "classification": "repair_required",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "Bipartite MI/coherent-info lego exists and reruns, but lacks long-goal ablation/scale fields.",
+      "family": "mutual_information",
+      "family_number": 27,
+      "registry_row": "MIGRATION_REGISTRY.md family #27 mutual_information"
+    },
+    {
+      "classification": "missing_build",
+      "current_registry_status": "NOT_STARTED",
+      "evidence_or_blocker": "No matching v5 discord result.",
+      "family": "quantum_discord",
+      "family_number": 28,
+      "registry_row": "MIGRATION_REGISTRY.md family #28 quantum_discord"
+    }
+  ],
+  "generated_at": "2026-05-26T19:46:20.774525+00:00",
+  "reason_no_direct_edit": "Registry promotion status definitions require standalone torch modules tested against baselines and negative batteries; this packet records evidence-bound proposals only.",
+  "schema": "SUBSTRATE_BOOTSTRAP_REGISTRY_DELTA_PROPOSAL_v1",
+  "target": "system_v5/docs/MIGRATION_REGISTRY.md"
+}

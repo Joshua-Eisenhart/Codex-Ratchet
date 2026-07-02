@@ -1,0 +1,1299 @@
+{
+  "AUDIT_PASS": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "load_bearing",
+    "json": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "jax": "load-bearing deterministic batched S3 branch/prune robustness sweep and invariant checks",
+    "json": "supportive receipt serialization"
+  },
+  "based_on": [
+    "jax_nested_hopf_bottom_up_branch_prune_audit.py",
+    "jax_nested_hopf_bottom_up_branch_prune_audit_results.json"
+  ],
+  "blocked_consumers": [
+    "official_g_structure_selection",
+    "layer_stacking_readiness",
+    "Axis0",
+    "FEP",
+    "flux",
+    "Xi",
+    "Phi0",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "carrier_layer": "S3 unit-quaternion spinor carrier with finite nested Hopf-torus leaf grid",
+  "carrier_realization": "jax arrays: q in R^4 normalized to S3 and r in Bloch ball",
+  "checks": {
+    "all_cases_pass": true,
+    "at_least_five_deterministic_cases": true,
+    "promotion_allowed_false": true,
+    "ran_julia_false": true,
+    "ran_pytorch_false": true,
+    "rejected_lane_rejected": true
+  },
+  "claim_ceiling": "JAX-only deterministic robustness/negative sweep for the finite bottom-up nested Hopf receipt. It checks local structural survival across seeds/branch counts/light parameters and records a deliberately weakened rejected lane. It is not Julia-native evidence, not PyTorch evidence, not official G-structure selection, not layer completion, and not Axis0/FEP/flux/physics admission.",
+  "classification": "tool_lego_fit_probe",
+  "codomain_or_output": "JSON receipt with per-case structural invariants, negative/control lanes, and rejected weakened-control lane",
+  "dependency_receipts": [
+    "jax_nested_hopf_bottom_up_branch_prune_audit_results.json"
+  ],
+  "domain": {
+    "case_count": 5,
+    "case_parameters": [
+      {
+        "branches": 512,
+        "dt": 0.01,
+        "f01_tol": 0.001,
+        "hop_base": 0.06,
+        "hop_scale": 0.3,
+        "leaves": 9,
+        "name": "seed20260603_branches512_leaves9",
+        "radial_scale": 1.0,
+        "seed": 20260603,
+        "steps": 520
+      },
+      {
+        "branches": 640,
+        "dt": 0.009,
+        "f01_tol": 0.0008,
+        "hop_base": 0.055,
+        "hop_scale": 0.34,
+        "leaves": 9,
+        "name": "seed20260617_branches640_leaves9",
+        "radial_scale": 0.92,
+        "seed": 20260617,
+        "steps": 500
+      },
+      {
+        "branches": 768,
+        "dt": 0.008,
+        "f01_tol": 0.0012,
+        "hop_base": 0.05,
+        "hop_scale": 0.36,
+        "leaves": 11,
+        "name": "seed20260631_branches768_leaves11",
+        "radial_scale": 0.88,
+        "seed": 20260631,
+        "steps": 560
+      },
+      {
+        "branches": 896,
+        "dt": 0.011,
+        "f01_tol": 0.001,
+        "hop_base": 0.065,
+        "hop_scale": 0.28,
+        "leaves": 7,
+        "name": "seed20260709_branches896_leaves7",
+        "radial_scale": 0.95,
+        "seed": 20260709,
+        "steps": 480
+      },
+      {
+        "branches": 1024,
+        "dt": 0.0085,
+        "f01_tol": 0.0009,
+        "hop_base": 0.052,
+        "hop_scale": 0.38,
+        "leaves": 9,
+        "name": "seed20260721_branches1024_leaves9",
+        "radial_scale": 0.9,
+        "seed": 20260721,
+        "steps": 540
+      }
+    ],
+    "placements": "{L,R} x {fiber,base} x {Se,Ne,Ni,Si}",
+    "state": "unit quaternion q in S3 plus finite Bloch-ball control vector r"
+  },
+  "finite_map": "case grid x {genuine,N01-off,ratchet-off,F01-expansive,flat-area} -> survivor placement/leaf/prune invariants",
+  "geometry_layer": "nested Hopf tori T^2_theta with leaf-area ratchet A(theta)=2*pi^2*sin(2theta)",
+  "name": "JAX bottom-up nested Hopf robustness/negative sweep",
+  "negatives_run": [
+    "n01_off_control",
+    "ratchet_off_control",
+    "expansive_prune_control",
+    "flat_area_control",
+    "weakened_n01_masquerading_as_genuine"
+  ],
+  "peps3d_embedding": "diagnostic finite cell anchor only: placement x leaf x branch index; not admitted PEPS3D evidence",
+  "promotion_allowed": false,
+  "promotion_status": "blocked_diagnostic_only",
+  "quaternion_action": "Spin(3)/SU(2) q target flow plus q/-q SO(3) double-cover invariant",
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "rejected_lane": {
+    "checks": {
+      "would_not_collapse_if_n01_survived": false,
+      "would_populate_all_16_if_it_were_genuine": false
+    },
+    "expectation": "This lane intentionally runs the N01-off commuting sink while pretending to be genuine; it must fail all-16 structural admission.",
+    "lane_pass": false,
+    "name": "weakened_n01_masquerading_as_genuine",
+    "rejected": true,
+    "rejection_reason": "N01-off collapsed to one placement basin, so the weakened lane cannot be accepted as genuine robustness evidence.",
+    "run": {
+      "central_leaf_fraction": 1.0,
+      "leaf_histogram": [
+        0,
+        0,
+        0,
+        0,
+        512,
+        0,
+        0,
+        0,
+        0
+      ],
+      "max_bloch_norm_after_projection": 0.9969260402210454,
+      "max_double_cover_gap": 0.0,
+      "max_q_norm_drift": 3.3306690738754696e-16,
+      "mean_final_bloch_norm": 0.9954806854636069,
+      "name": "weakened_n01_masquerading_as_genuine",
+      "populated_leaves_zero_based": [
+        4
+      ],
+      "populated_placements": [
+        1
+      ],
+      "pruned": 0,
+      "survivors": 512
+    },
+    "source_case": "seed20260603_branches512_leaves9"
+  },
+  "required_negatives": [
+    "N01-off commuting sink collapses to one basin",
+    "ratchet-off leaf histogram differs from genuine",
+    "F01 expansive mode prunes branches",
+    "flat-area no-ratchet control differs from genuine",
+    "weakened N01 masquerade is rejected"
+  ],
+  "root_constraints_in_force": {
+    "F01": "finite placement set, finite theta leaf grid, finite branch ensemble, S3 retraction, Bloch-ball prune",
+    "N01": "noncommuting/order-sensitive target flow and branch evolution; N01-off commuting sink must collapse basin labels"
+  },
+  "rows": [
+    {
+      "case": {
+        "branches": 512,
+        "dt": 0.01,
+        "f01_tol": 0.001,
+        "hop_base": 0.06,
+        "hop_scale": 0.3,
+        "leaves": 9,
+        "name": "seed20260603_branches512_leaves9",
+        "radial_scale": 1.0,
+        "seed": 20260603,
+        "steps": 520
+      },
+      "case_pass": true,
+      "checks": {
+        "bookkeeping_consistent": true,
+        "double_cover_preserved": true,
+        "f01_expansive_prune_fires": true,
+        "flat_area_control_leaf_histogram_differs": true,
+        "genuine_populates_all_16_placement_basins": true,
+        "genuine_ratchet_concentrates_clifford_leaf": true,
+        "genuine_survivors_not_pruned": true,
+        "n01_off_collapses_to_one_placement_basin": true,
+        "promotion_allowed_false": true,
+        "ratchet_off_leaf_histogram_differs": true,
+        "s3_retraction_works": true
+      },
+      "runs": {
+        "expansive_prune_control": {
+          "central_leaf_fraction": 0.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 1.0000000000000002,
+          "max_double_cover_gap": null,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": null,
+          "name": "f01_expansive_prune_control",
+          "populated_leaves_zero_based": [],
+          "populated_placements": [],
+          "pruned": 512,
+          "survivors": 0
+        },
+        "flat_area_control": {
+          "central_leaf_fraction": 0.103515625,
+          "leaf_histogram": [
+            59,
+            53,
+            58,
+            58,
+            53,
+            59,
+            59,
+            54,
+            59
+          ],
+          "max_bloch_norm_after_projection": 0.9969260402210454,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.49875966248718173,
+          "name": "flat_area_no_ratchet_control",
+          "populated_leaves_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 512
+        },
+        "genuine": {
+          "central_leaf_fraction": 1.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            512,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 0.9969260402210454,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.49875966248718173,
+          "name": "genuine_ratchet_noncommuting",
+          "populated_leaves_zero_based": [
+            4
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 512
+        },
+        "n01_off_control": {
+          "central_leaf_fraction": 1.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            512,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 0.9969260402210454,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.9954806854636069,
+          "name": "n01_off_single_commuting_sink",
+          "populated_leaves_zero_based": [
+            4
+          ],
+          "populated_placements": [
+            1
+          ],
+          "pruned": 0,
+          "survivors": 512
+        },
+        "ratchet_off_control": {
+          "central_leaf_fraction": 0.103515625,
+          "leaf_histogram": [
+            59,
+            53,
+            58,
+            58,
+            53,
+            59,
+            59,
+            54,
+            59
+          ],
+          "max_bloch_norm_after_projection": 0.9969260402210454,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.49875966248718173,
+          "name": "ratchet_off_theta_frozen",
+          "populated_leaves_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 512
+        }
+      }
+    },
+    {
+      "case": {
+        "branches": 640,
+        "dt": 0.009,
+        "f01_tol": 0.0008,
+        "hop_base": 0.055,
+        "hop_scale": 0.34,
+        "leaves": 9,
+        "name": "seed20260617_branches640_leaves9",
+        "radial_scale": 0.92,
+        "seed": 20260617,
+        "steps": 500
+      },
+      "case_pass": true,
+      "checks": {
+        "bookkeeping_consistent": true,
+        "double_cover_preserved": true,
+        "f01_expansive_prune_fires": true,
+        "flat_area_control_leaf_histogram_differs": true,
+        "genuine_populates_all_16_placement_basins": true,
+        "genuine_ratchet_concentrates_clifford_leaf": true,
+        "genuine_survivors_not_pruned": true,
+        "n01_off_collapses_to_one_placement_basin": true,
+        "promotion_allowed_false": true,
+        "ratchet_off_leaf_histogram_differs": true,
+        "s3_retraction_works": true
+      },
+      "runs": {
+        "expansive_prune_control": {
+          "central_leaf_fraction": 0.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 1.0000000000000002,
+          "max_double_cover_gap": null,
+          "max_q_norm_drift": 4.440892098500626e-16,
+          "mean_final_bloch_norm": null,
+          "name": "f01_expansive_prune_control",
+          "populated_leaves_zero_based": [],
+          "populated_placements": [],
+          "pruned": 640,
+          "survivors": 0
+        },
+        "flat_area_control": {
+          "central_leaf_fraction": 0.1078125,
+          "leaf_histogram": [
+            75,
+            69,
+            69,
+            74,
+            69,
+            69,
+            75,
+            70,
+            70
+          ],
+          "max_bloch_norm_after_projection": 0.9932374921567102,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 4.440892098500626e-16,
+          "mean_final_bloch_norm": 0.4913956229716936,
+          "name": "flat_area_no_ratchet_control",
+          "populated_leaves_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 640
+        },
+        "genuine": {
+          "central_leaf_fraction": 1.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            640,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 0.9932374921567102,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 4.440892098500626e-16,
+          "mean_final_bloch_norm": 0.4913956229716936,
+          "name": "genuine_ratchet_noncommuting",
+          "populated_leaves_zero_based": [
+            4
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 640
+        },
+        "n01_off_control": {
+          "central_leaf_fraction": 1.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            640,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 0.9932374921567102,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.9905837361470603,
+          "name": "n01_off_single_commuting_sink",
+          "populated_leaves_zero_based": [
+            4
+          ],
+          "populated_placements": [
+            1
+          ],
+          "pruned": 0,
+          "survivors": 640
+        },
+        "ratchet_off_control": {
+          "central_leaf_fraction": 0.1078125,
+          "leaf_histogram": [
+            75,
+            69,
+            69,
+            74,
+            69,
+            69,
+            75,
+            70,
+            70
+          ],
+          "max_bloch_norm_after_projection": 0.9932374921567102,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 4.440892098500626e-16,
+          "mean_final_bloch_norm": 0.4913956229716936,
+          "name": "ratchet_off_theta_frozen",
+          "populated_leaves_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 640
+        }
+      }
+    },
+    {
+      "case": {
+        "branches": 768,
+        "dt": 0.008,
+        "f01_tol": 0.0012,
+        "hop_base": 0.05,
+        "hop_scale": 0.36,
+        "leaves": 11,
+        "name": "seed20260631_branches768_leaves11",
+        "radial_scale": 0.88,
+        "seed": 20260631,
+        "steps": 560
+      },
+      "case_pass": true,
+      "checks": {
+        "bookkeeping_consistent": true,
+        "double_cover_preserved": true,
+        "f01_expansive_prune_fires": true,
+        "flat_area_control_leaf_histogram_differs": true,
+        "genuine_populates_all_16_placement_basins": true,
+        "genuine_ratchet_concentrates_clifford_leaf": true,
+        "genuine_survivors_not_pruned": true,
+        "n01_off_collapses_to_one_placement_basin": true,
+        "promotion_allowed_false": true,
+        "ratchet_off_leaf_histogram_differs": true,
+        "s3_retraction_works": true
+      },
+      "runs": {
+        "expansive_prune_control": {
+          "central_leaf_fraction": 0.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 1.0000000000000002,
+          "max_double_cover_gap": null,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": null,
+          "name": "f01_expansive_prune_control",
+          "populated_leaves_zero_based": [],
+          "populated_placements": [],
+          "pruned": 768,
+          "survivors": 0
+        },
+        "flat_area_control": {
+          "central_leaf_fraction": 0.09114583333333333,
+          "leaf_histogram": [
+            70,
+            70,
+            70,
+            69,
+            70,
+            70,
+            70,
+            70,
+            69,
+            70,
+            70
+          ],
+          "max_bloch_norm_after_projection": 0.992818642103279,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.4863372920098571,
+          "name": "flat_area_no_ratchet_control",
+          "populated_leaves_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 768
+        },
+        "genuine": {
+          "central_leaf_fraction": 1.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            768,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 0.992818642103279,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.4863372920098571,
+          "name": "genuine_ratchet_noncommuting",
+          "populated_leaves_zero_based": [
+            5
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 768
+        },
+        "n01_off_control": {
+          "central_leaf_fraction": 1.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            768,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 0.992818642103279,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.9902418763228389,
+          "name": "n01_off_single_commuting_sink",
+          "populated_leaves_zero_based": [
+            5
+          ],
+          "populated_placements": [
+            1
+          ],
+          "pruned": 0,
+          "survivors": 768
+        },
+        "ratchet_off_control": {
+          "central_leaf_fraction": 0.09114583333333333,
+          "leaf_histogram": [
+            70,
+            70,
+            70,
+            69,
+            70,
+            70,
+            70,
+            70,
+            69,
+            70,
+            70
+          ],
+          "max_bloch_norm_after_projection": 0.992818642103279,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.4863372920098571,
+          "name": "ratchet_off_theta_frozen",
+          "populated_leaves_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 768
+        }
+      }
+    },
+    {
+      "case": {
+        "branches": 896,
+        "dt": 0.011,
+        "f01_tol": 0.001,
+        "hop_base": 0.065,
+        "hop_scale": 0.28,
+        "leaves": 7,
+        "name": "seed20260709_branches896_leaves7",
+        "radial_scale": 0.95,
+        "seed": 20260709,
+        "steps": 480
+      },
+      "case_pass": true,
+      "checks": {
+        "bookkeeping_consistent": true,
+        "double_cover_preserved": true,
+        "f01_expansive_prune_fires": true,
+        "flat_area_control_leaf_histogram_differs": true,
+        "genuine_populates_all_16_placement_basins": true,
+        "genuine_ratchet_concentrates_clifford_leaf": true,
+        "genuine_survivors_not_pruned": true,
+        "n01_off_collapses_to_one_placement_basin": true,
+        "promotion_allowed_false": true,
+        "ratchet_off_leaf_histogram_differs": true,
+        "s3_retraction_works": true
+      },
+      "runs": {
+        "expansive_prune_control": {
+          "central_leaf_fraction": 0.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 1.0000000000000002,
+          "max_double_cover_gap": null,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": null,
+          "name": "f01_expansive_prune_control",
+          "populated_leaves_zero_based": [],
+          "populated_placements": [],
+          "pruned": 896,
+          "survivors": 0
+        },
+        "flat_area_control": {
+          "central_leaf_fraction": 0.14285714285714285,
+          "leaf_histogram": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
+          "max_bloch_norm_after_projection": 0.9970184499894894,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.4926958991371793,
+          "name": "flat_area_no_ratchet_control",
+          "populated_leaves_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 896
+        },
+        "genuine": {
+          "central_leaf_fraction": 1.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            896,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 0.9970184499894894,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.4926958991371793,
+          "name": "genuine_ratchet_noncommuting",
+          "populated_leaves_zero_based": [
+            3
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 896
+        },
+        "n01_off_control": {
+          "central_leaf_fraction": 1.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            896,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 0.9970184499894894,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.9957651339122995,
+          "name": "n01_off_single_commuting_sink",
+          "populated_leaves_zero_based": [
+            3
+          ],
+          "populated_placements": [
+            1
+          ],
+          "pruned": 0,
+          "survivors": 896
+        },
+        "ratchet_off_control": {
+          "central_leaf_fraction": 0.14285714285714285,
+          "leaf_histogram": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
+          "max_bloch_norm_after_projection": 0.9970184499894894,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.4926958991371793,
+          "name": "ratchet_off_theta_frozen",
+          "populated_leaves_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 896
+        }
+      }
+    },
+    {
+      "case": {
+        "branches": 1024,
+        "dt": 0.0085,
+        "f01_tol": 0.0009,
+        "hop_base": 0.052,
+        "hop_scale": 0.38,
+        "leaves": 9,
+        "name": "seed20260721_branches1024_leaves9",
+        "radial_scale": 0.9,
+        "seed": 20260721,
+        "steps": 540
+      },
+      "case_pass": true,
+      "checks": {
+        "bookkeeping_consistent": true,
+        "double_cover_preserved": true,
+        "f01_expansive_prune_fires": true,
+        "flat_area_control_leaf_histogram_differs": true,
+        "genuine_populates_all_16_placement_basins": true,
+        "genuine_ratchet_concentrates_clifford_leaf": true,
+        "genuine_survivors_not_pruned": true,
+        "n01_off_collapses_to_one_placement_basin": true,
+        "promotion_allowed_false": true,
+        "ratchet_off_leaf_histogram_differs": true,
+        "s3_retraction_works": true
+      },
+      "runs": {
+        "expansive_prune_control": {
+          "central_leaf_fraction": 0.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 1.0000000000000002,
+          "max_double_cover_gap": null,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": null,
+          "name": "f01_expansive_prune_control",
+          "populated_leaves_zero_based": [],
+          "populated_placements": [],
+          "pruned": 1024,
+          "survivors": 0
+        },
+        "flat_area_control": {
+          "central_leaf_fraction": 0.109375,
+          "leaf_histogram": [
+            118,
+            112,
+            112,
+            117,
+            112,
+            112,
+            117,
+            112,
+            112
+          ],
+          "max_bloch_norm_after_projection": 0.9936948505448555,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.4885844776729718,
+          "name": "flat_area_no_ratchet_control",
+          "populated_leaves_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 1024
+        },
+        "genuine": {
+          "central_leaf_fraction": 1.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            1024,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 0.9936948505448555,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.4885844776729718,
+          "name": "genuine_ratchet_noncommuting",
+          "populated_leaves_zero_based": [
+            4
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 1024
+        },
+        "n01_off_control": {
+          "central_leaf_fraction": 1.0,
+          "leaf_histogram": [
+            0,
+            0,
+            0,
+            0,
+            1024,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_bloch_norm_after_projection": 0.9936948505448555,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.9913283579320553,
+          "name": "n01_off_single_commuting_sink",
+          "populated_leaves_zero_based": [
+            4
+          ],
+          "populated_placements": [
+            1
+          ],
+          "pruned": 0,
+          "survivors": 1024
+        },
+        "ratchet_off_control": {
+          "central_leaf_fraction": 0.109375,
+          "leaf_histogram": [
+            118,
+            112,
+            112,
+            117,
+            112,
+            112,
+            117,
+            112,
+            112
+          ],
+          "max_bloch_norm_after_projection": 0.9936948505448555,
+          "max_double_cover_gap": 0.0,
+          "max_q_norm_drift": 3.3306690738754696e-16,
+          "mean_final_bloch_norm": 0.4885844776729718,
+          "name": "ratchet_off_theta_frozen",
+          "populated_leaves_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "populated_placements": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "pruned": 0,
+          "survivors": 1024
+        }
+      }
+    }
+  ],
+  "sim_execution_kind": "nonclassical_diagnostic_jax_audit",
+  "sim_id": "jax_nested_hopf_bottom_up_robustness_sweep",
+  "spinor_state": "q=(Re z1, Im z1, Re z2, Im z2), ||q||=1",
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "json": "supportive"
+  },
+  "tool_manifest": {
+    "jax": "load-bearing deterministic batched S3 branch/prune robustness sweep and invariant checks",
+    "json": "supportive receipt serialization"
+  },
+  "version": "1.0"
+}

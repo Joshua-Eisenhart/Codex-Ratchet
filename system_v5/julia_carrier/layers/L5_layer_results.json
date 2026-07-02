@@ -1,0 +1,254 @@
+{
+  "F01_witness": {
+    "finite_carrier": "K=6 leaves; each leaf = 2-component ComplexF64 spinor psi(eta,phi,chi) on S^3",
+    "finite_operator": "radial leaf-step eta_k -> eta_{k+1} (1D Dirac hopping carrier, finite chain)",
+    "finite_path": "ordered ladder eta_1 -> eta_2 -> ... -> eta_K, a finite directed path through leaves",
+    "finite_probe": "leaf-area integral (Na=Nb=160 midpoint grid) + Hopf holonomy on finite (phi,chi) cycles"
+  },
+  "N01_witness": {
+    "control_gap_when_hopf_erased": 0.0,
+    "ops": "U_hopf=diag(e^{i holo},e^{-i holo})  vs  R=exp(-i eta sigma_y)",
+    "order_gap_UR_minus_RU": 0.9555767258282337,
+    "present": true
+  },
+  "ablation_nonvacuous": true,
+  "ablation_outcome_delta": {
+    "E1_area_spread_delta": 12.185340625592847,
+    "E1_distinct_leaves_delta": 5,
+    "E2_area_spread_delta": 12.185340625592847,
+    "E2_distinct_leaves_delta": 5,
+    "E3_holo_spread_delta": 5.804906304278862,
+    "N01_gap_delta_hopf_erased": 0.9555767258282337
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "L6 connection/holonomy (needs L5 leaf family + A_Hopf holonomy ladder as input)",
+    "L7/L8 Weyl sheet cover (needs per-leaf L/R spinor densities rho_{L,k}, rho_{R,k})",
+    "L10 terrain generators X_{tau,s,ell,k} (k = this layer's Hopf-torus/shell index)",
+    "Axis0 / flux / FEP / gravity bridges (downstream, NOT drivers; blocked until stack complete)"
+  ],
+  "checks": {
+    "DEPFORCE_E1_collapse_index_k": true,
+    "DEPFORCE_E2_collapse_latitude": true,
+    "DEPFORCE_E3_collapse_hopf_holonomy": true,
+    "F01_witness_present": true,
+    "N01_order_gap_measured": true,
+    "ablation_nonvacuous": true,
+    "area_ladder_strictly_ordered": true,
+    "area_matches_anchor_2pi2_sin2eta": true,
+    "finite_map_present": true,
+    "julia_native_spinor_density": true,
+    "negative_controls_fire": true,
+    "peps3d_anchor_present": true,
+    "qit_entropy_is_derived": true,
+    "scale_stress_8_16_32_64": true,
+    "z3_load_bearing_flip": true
+  },
+  "classification": "L5_layer_poc",
+  "controls": {
+    "negative": {
+      "erase_hopf_N01_order_delta_gap": 0.9555767258282337,
+      "erase_hopf_connection_holo_spread_delta_gap": 5.804906304278862,
+      "erase_latitude_area_spread_delta_gap": 12.185340625592847,
+      "erase_torus_index_k_area_spread_delta_gap": 12.185340625592847
+    },
+    "positive": {
+      "N01_order_gap": 0.9555767258282337,
+      "area_ladder_spread_gap": 12.185340625592847,
+      "holo_ladder_spread_gap": 5.804906304278862,
+      "rho_family_spread_gap": 0.7856949583871022
+    }
+  },
+  "dependency_forcing": {
+    "E1_collapse_torus_index_k": {
+      "area_spread": 0.0,
+      "area_spread_delta_vs_base": 12.185340625592847,
+      "baseline_distinct": 6,
+      "collapsed": true,
+      "distinct_leaves": 1,
+      "holo_spread": 0.0,
+      "meaning": "single eta => no nested family => leaf-area ladder A(eta_k) collapses to one value",
+      "rho_spread": 0.0
+    },
+    "E2_erase_latitude_dependence": {
+      "area_spread": 0.0,
+      "area_spread_delta_vs_base": 12.185340625592847,
+      "baseline_distinct": 6,
+      "collapsed": true,
+      "distinct_leaves": 1,
+      "holo_spread": 0.0,
+      "meaning": "K nodes but all at one latitude => A(eta_k) ladder flat => densities all coincide",
+      "rho_spread": 0.0
+    },
+    "E3_erase_hopf_connection": {
+      "area_spread": 12.185340625592847,
+      "baseline_holo_spread": 5.804906304278862,
+      "holo_collapsed": true,
+      "holo_spread": 0.0,
+      "holo_spread_delta_vs_base": 5.804906304278862,
+      "honest_note": "area_spread SURVIVES E3 by design: the metric (area) does not depend on the connection. Only the HOLONOMY signature is forced by A_Hopf. Reported honestly, not hidden.",
+      "meaning": "A_Hopf=0 => eta-dependent chi-holonomy 2pi cos(2eta) -> 0 for all leaves => holonomy ladder flat"
+    }
+  },
+  "dependency_forcing_all_collapse": true,
+  "doc_source": "MANIFOLD_GEOMETRY_LAYER_STACK_NONCOMMUTATIVE_ORDER_20260528.md (lines 202-204); leaf area A(eta)=2pi^2 sin(2eta)",
+  "finite_map": {
+    "codomain": "nested leaf family signature {A(eta_k), holo_chi(eta_k), rho_k, S_k}_k",
+    "domain": "ordered ladder (eta_1<...<eta_K) in (0,pi/2)  x  torus coords (phi,chi)",
+    "map": "G_L5 : eta_k -> ( leaf T_eta_k subset S^3 ,  A(eta_k)=2pi^2 sin(2eta_k) ,  rho_k=psi_k psi_k^dag )"
+  },
+  "honest_scope": {
+    "claim_ceiling": "L5 is the nested leaf FAMILY (ordered area + holonomy + density ladder) whose signature is FORCED by the below-geometry (eta, A_Hopf): all three erasures collapse it. The ratchet/entropy readings remain interpretive.",
+    "forced_standard_math": [
+      "A(eta)=2pi^2 sin(2eta), leaf area of the Clifford torus at latitude eta (re-MEASURED, not discovered)",
+      "Hopf connection A_Hopf = dphi + cos(2eta) dchi; chi-cycle holonomy = 2pi cos(2eta) distinguishes leaves",
+      "rho_k = psi_k psi_k^dag spinor-derived density on S^3 subset C^2"
+    ],
+    "novel_interpretive_NOT_proven": [
+      "reading the area ladder as an RG-style nested ratchet — A is a geometric monotone ONLY; no c-theorem proven",
+      "S_derived(eta_k) is a DERIVED readout consistent with an area trend, not a proof that area IS entropy"
+    ]
+  },
+  "layer_id": "L5",
+  "negative_controls": {
+    "flat_no_ladder": true,
+    "flat_product_area_spread": 0.0,
+    "scrambled_collapses": true,
+    "scrambled_distinct_leaves": 1
+  },
+  "nested_family": {
+    "K": 6,
+    "S_derived": [
+      0.48816262866656934,
+      0.6056003786353801,
+      0.6641634089990265,
+      0.6871955750696332,
+      0.6927654213280181,
+      0.6931471805599453
+    ],
+    "area_ladder_spread": 12.185340625592847,
+    "area_ladder_strictly_increasing": true,
+    "area_matches_anchor": true,
+    "areas_anchor": [
+      7.553868176588944,
+      11.602415825842423,
+      15.009812129401336,
+      17.587763825057692,
+      19.193812891687635,
+      19.739208802178716
+    ],
+    "areas_measured": [
+      7.553868176590871,
+      11.60241582583792,
+      15.009812129395083,
+      17.58776382506283,
+      19.193812891687,
+      19.739208802183718
+    ],
+    "distinct_leaf_count": 6,
+    "etas": [
+      0.19634954084936207,
+      0.3141592653589793,
+      0.43196898986859655,
+      0.5497787143782138,
+      0.667588438887831,
+      0.7853981633974483
+    ],
+    "holo_ladder_spread": 5.804906304278862,
+    "holonomy_chi": [
+      5.804906304278862,
+      5.0832036923152595,
+      4.080602435044668,
+      2.8525064375626386,
+      1.4667804802086177,
+      3.8473413874435795e-16
+    ],
+    "max_area_abs_err": 6.252776074688882e-12,
+    "rho_family_spread": 0.7856949583871022
+  },
+  "object": "L5_layer_nested_hopf_tori_torus_leaf_family",
+  "peps3d": {
+    "C": 320,
+    "E": 1088,
+    "F": 1024,
+    "K_leaves": 6,
+    "V": 384,
+    "euler_VEFC": 0,
+    "torus_grid": "8x8"
+  },
+  "post_erasure_residuals": {
+    "E1_area_spread_after": 0.0,
+    "E2_area_spread_after": 0.0,
+    "E3_holo_spread_after": 0.0,
+    "N01_order_gap_after": 0.0,
+    "flat_product_area_spread_after": 0.0,
+    "note": "residuals after below-geometry erasure: each ~0 => the L5 signature collapsed; the matched collapse-DELTAS (controls.negative) are the load-bearing quantities"
+  },
+  "promotion_allowed": false,
+  "qit_derived": {
+    "S_derived_spread_E2_flat": 0.0,
+    "S_derived_spread_nested": 0.20498455189337594,
+    "entropy_is_derived_not_primary": true,
+    "note": "S(eta_k) computed from area-fraction-mixed density rho_leaf_mixed; tracks the ladder, collapses under E2"
+  },
+  "required_load_bearing_erasures": [
+    "erase_torus_index_k",
+    "erase_latitude",
+    "erase_hopf_connection",
+    "erase_hopf_n01"
+  ],
+  "scale_stress_8_16_32_64": {
+    "16": {
+      "area_ladder_monotone": true,
+      "area_spread": 16.11213870270315,
+      "distinct_leaves": 16,
+      "of": 16
+    },
+    "32": {
+      "area_ladder_monotone": true,
+      "area_spread": 17.86287771549249,
+      "distinct_leaves": 32,
+      "of": 32
+    },
+    "64": {
+      "area_ladder_monotone": true,
+      "area_spread": 18.785540915791174,
+      "distinct_leaves": 64,
+      "of": 64
+    },
+    "8": {
+      "area_ladder_monotone": true,
+      "area_spread": 12.9880017785294,
+      "distinct_leaves": 8,
+      "of": 8
+    }
+  },
+  "scale_stress_all_pass": true,
+  "spinor": {
+    "construction": "rho_k = psi_k psi_k^dag,  psi=(e^{i phi} cos eta, e^{i chi} sin eta), NOT numpy",
+    "eltype": "ComplexF64",
+    "native_julia": true,
+    "rho_example_trace": 1.0
+  },
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "tool_manifest": {
+    "JSON": "load_bearing: receipt emission",
+    "LinearAlgebra": "load_bearing: eigvals/eigen/norm/tr for area metric, density spectra, order-gap norm, holonomy",
+    "Z3": "load_bearing: strict-area-ladder SAT/UNSAT verdict flips on collapsed input (see z3 block)",
+    "decorative_imports": "none"
+  },
+  "z3": {
+    "broken_collapsed_verdict": "unsat",
+    "claim": "strict area ladder a1<a2<a3 of the nested leaf family",
+    "genuine_verdict": "sat",
+    "load_bearing_flip": true,
+    "measured_areas": [
+      7.553868176590871,
+      15.009812129395083,
+      19.193812891687
+    ],
+    "note": "FREE reals x1,x2,x3 bound to MEASURED leaf areas (read from R^4 embedding, scaled to Int); strict-ladder asserted; UNSAT when erasure collapses the etas to one value",
+    "role": "load_bearing"
+  }
+}

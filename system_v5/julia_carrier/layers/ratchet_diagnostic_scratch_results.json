@@ -1,0 +1,137 @@
+{
+  "A_star_nonempty": true,
+  "all_gates_narrow_genuine": true,
+  "all_pass": true,
+  "any_gate_witness_only": false,
+  "carrier_valid_density_operators": true,
+  "checks": {
+    "A_star_nonempty": true,
+    "all_gates_narrow_genuine": true,
+    "carrier_size_in_target_band": true,
+    "carrier_valid": true,
+    "flat_control_order_gap_collapses": true,
+    "order_erased_control_collapses": true,
+    "ratchet_monotone_subset": true,
+    "ratchet_proper_subset": true,
+    "sign_erased_chirality_collapses": true
+  },
+  "claim_ceiling": "scratch_diagnostic_only_nonpromotional: does NOT admit layer completion / stacking / final flux / Axis0 / Xi / Phi0 / FEP / physics / final manifold.",
+  "classification": "ratchet_diagnostic_scratch_only",
+  "divergence_from_other_lane": {
+    "note": "Independent carrier + independent gate thresholds; numbers are NOT tuned to match. The narrowing direction agrees (both ratchets narrow ~6:1); the chirality-sharpening direction DISAGREES. This disagreement is preserved as a live finding.",
+    "other_lane_reported": "1440->249 counts, chiral ratio 1.128->1.478 (sharpens)",
+    "status": "held_open_not_reconciled",
+    "this_lane_measured": "1456->230 counts, chiral ratio 1.243->1.122 (does NOT sharpen)"
+  },
+  "dof_star": {
+    "G_values": [
+      "nested_Hopf_tori",
+      "SL2C"
+    ],
+    "chi_span": 5.799863360473465,
+    "distinct_G": 2,
+    "distinct_sheet": 2,
+    "eta_span": 0.9174131241814748,
+    "n": 230,
+    "sheet_values": [
+      "L",
+      "R"
+    ]
+  },
+  "findings": [
+    "All four gates are GENUINE admissibility conditions on this carrier: each removed >0 candidates (A1 -732, A2 -465, A3 -3, A4 -26). None held the count constant, so NONE is the witness-only failure mode the spec warned about. A3 (noncommuting-order) narrows WEAKLY (only 3 of 259) — its threshold 0.01 excludes few survivors because A1/A2 already selected geometries that overwhelmingly produce an order gap above 0.01; reported, not hidden.",
+    "Order-gap controls BOTH collapse cleanly: flat-G -> max gap 0.0 (trivial H,L,holonomy commute), order-erased -> identically 0.0 (same channel both slots). The order gap is a real geometric effect, not a numerical residue.",
+    "Sign-erased chirality control is LOAD-BEARING: real J_chiral mean|J| ~ 1.27 collapses to ~7.5e-17 when the gamma5 sign is replaced by |<g5>| (L and R then read identically). This is a genuine collapse from a nonzero baseline, not a vacuous 0->0.",
+    "PRE-FLUX RATIO DID NOT SHARPEN (measured, NOT tuned): actual/flat ratio 1.243 (before) -> 1.122 (after). This is OPPOSITE to the design-thread's reported 1.128 -> 1.478. On THIS carrier the ratchet EXCLUDES the Hopf geometry (strongest chiral amplifier, holonomy 2pi -> weight 1.5) and retains {nested_Hopf_tori, SL2C} whose mean holonomy amplification is lower, so the survivor-average geometric amplification DROPS. The raw chiral current itself did grow (mean|J| 1.27 -> 1.38), but relative to the flat baseline the geometry's amplifying advantage shrank. Reported as a divergence from the other lane, not reconciled.",
+    "Survivor A_* = 230 candidates spanning 2 geometries (nested_Hopf_tori, SL2C), both sheets, an eta-span ~0.92 and full chi-span — DoF_* is nonempty and multi-geometry, so the ratchet did not collapse to a single object."
+  ],
+  "gate_reports": [
+    {
+      "gate": "A1_hopf_admissibility",
+      "in": 1456,
+      "narrows_genuine": true,
+      "out": 724,
+      "removed": 732,
+      "survive_fraction": 0.49725274725274726,
+      "witness_only_no_narrowing": false
+    },
+    {
+      "gate": "A2_weyl_chirality",
+      "in": 724,
+      "narrows_genuine": true,
+      "out": 259,
+      "removed": 465,
+      "survive_fraction": 0.35773480662983426,
+      "witness_only_no_narrowing": false
+    },
+    {
+      "gate": "A3_noncommuting_order",
+      "in": 259,
+      "narrows_genuine": true,
+      "out": 256,
+      "removed": 3,
+      "survive_fraction": 0.9884169884169884,
+      "witness_only_no_narrowing": false
+    },
+    {
+      "gate": "A4_entropy_cut_window",
+      "in": 256,
+      "narrows_genuine": true,
+      "out": 230,
+      "removed": 26,
+      "survive_fraction": 0.8984375,
+      "witness_only_no_narrowing": false
+    }
+  ],
+  "lane": "julia_independent_truth_lane (does not read the PyTorch scratch)",
+  "narrowing_summary": [
+    "A1_hopf_admissibility: genuine CONDITION (removed 732 of 1456)",
+    "A2_weyl_chirality: genuine CONDITION (removed 465 of 724)",
+    "A3_noncommuting_order: genuine CONDITION (removed 3 of 259)",
+    "A4_entropy_cut_window: genuine CONDITION (removed 26 of 256)"
+  ],
+  "object": "ratchet_diagnostic_scratch",
+  "order_gap": {
+    "control_collapse_gap_real_minus_flat": 0.06190543071544767,
+    "flat_control_collapses": true,
+    "flat_control_max": 0.0,
+    "flat_control_mean": 0.0,
+    "max": 0.11418038854835798,
+    "mean": 0.06190543071544767,
+    "min": 0.010510674176364684,
+    "n": 230,
+    "order_erased_control_collapses": true,
+    "order_erased_control_max": 0.0,
+    "pool": "A_star"
+  },
+  "preflux_chirality": {
+    "after_actual_flat_ratio": 1.1219074679345686,
+    "after_mean_abs_J": 1.3824783406141083,
+    "after_mean_abs_J_flat": 1.2322570088237763,
+    "after_pool": "A_star",
+    "before_actual_flat_ratio": 1.2432951994250887,
+    "before_mean_abs_J": 1.270364329238987,
+    "before_mean_abs_J_flat": 1.0217720858460768,
+    "ratio_sharpens_after_constraints": false,
+    "sign_erased_after_mean_abs_J": 5.551115123125783e-17,
+    "sign_erased_before_mean_abs_J": 7.548906554800172e-17,
+    "sign_erased_control_collapses": true
+  },
+  "promotion_allowed": false,
+  "ratchet_counts": {
+    "A0": 1456,
+    "A1": 724,
+    "A2": 259,
+    "A3": 256,
+    "A4": 230,
+    "A_star": 230
+  },
+  "ratchet_monotone_subset": true,
+  "ratchet_proper_subset_somewhere": true,
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "tools": [
+    "LinearAlgebra",
+    "JSON"
+  ]
+}

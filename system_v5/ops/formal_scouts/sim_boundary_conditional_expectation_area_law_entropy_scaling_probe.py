@@ -39,11 +39,14 @@ TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing diagonal density states, conditional expectation, trace, positivity, and entropy spectra"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing finite cubic shell graph and boundary-node extraction"},
     "torch_geometric": {"tried": True, "used": True, "reason": "load-bearing graph tensor conversion for shell graph features"},
-    "python_math": {"tried": True, "used": True, "reason": "load-bearing closed-form log-log least-squares scaling fits"},
+    "python_math": {"tried": True, "used": True, "reason": "supportive closed-form log-log least-squares scaling fits"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic volume-versus-boundary exponent check"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing area-law scaling witness"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    tool: ("supportive" if tool == "python_math" else "load_bearing")
+    for tool in TOOL_MANIFEST
+}
 
 
 def cube_graph(length: int) -> tuple[nx.Graph, list[int], list[int]]:

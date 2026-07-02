@@ -1,0 +1,475 @@
+{
+  "AUDIT_PASS": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "load_bearing",
+    "julia": "None",
+    "pytorch": "None"
+  },
+  "TOOL_MANIFEST": {
+    "jax": {
+      "reason": "Computes S3 retractions, quaternion order words, finite dependency checks, and leaf-ratchet controls.",
+      "role": "load_bearing",
+      "used": true
+    },
+    "julia": {
+      "reason": "User prohibited running Julia; only local receipts are consumed.",
+      "role": "read_only_reference_only",
+      "used": false
+    },
+    "pytorch": {
+      "reason": "PyTorch lane is retired for this work.",
+      "role": "forbidden_this_task",
+      "used": false
+    }
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "full_layer_completion_claim",
+    "layer_stacking_readiness_claim",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "carrier_layer": "finite S3 unit-quaternion Weyl spinor samples on nested Hopf-torus leaves",
+  "carrier_realization": "JAX float64 unit quaternions and finite placement/leaf arrays",
+  "checks": {
+    "coverage_does_not_open_nesting_by_itself": true,
+    "coverage_receipt_closed": true,
+    "dependency_order_gate": true,
+    "eight_terrain_names": true,
+    "flux_axis_physics_still_blocked": true,
+    "four_topologies": true,
+    "leaf_area_order_ratchet_gate": true,
+    "noncommuting_order_dynamic_gate": true,
+    "pairwise_leaf_coupling_passes": true,
+    "ran_julia_false": true,
+    "ran_pytorch_false": true,
+    "sixteen_weyl_placements": true
+  },
+  "claim_ceiling": "Nesting-order gate only. It establishes a bounded JAX order-search target after independent layer/geometry coverage, but does not admit full layer completion, does not claim layer-stacking readiness, and does not unlock flux, Axis0, FEP, physics, or final manifold admission.",
+  "classification": "diagnostic_jax_nesting_order_gate",
+  "codomain_or_output": "JSON gate receipt with order pass/fail, dynamic order gap, and blocked downstream consumers",
+  "contract_classification": "tool_lego_fit_probe",
+  "dependency_order": {
+    "correct_order_pass": true,
+    "edge_count": 18,
+    "invalid_order_pass": {
+      "entropy_before_noncommutation": false,
+      "gluing_before_entropy": false,
+      "terrain_before_weyl": false,
+      "torus_before_spinor": false
+    },
+    "layer_order": [
+      "R0_root_F01_N01",
+      "L0_path_quotient",
+      "L1_density_carrier",
+      "L2_hopf_fibration",
+      "L3_clifford_quaternion",
+      "L4_hopf_connection_c1",
+      "L5_nested_hopf_tori",
+      "L6_weyl_sheets_on_nested_tori",
+      "L7_gamma5_chirality",
+      "L8_pin3_spin3_chirality_cover",
+      "L9_clifford_module_gstructure",
+      "L10_terrain_gksl_generator",
+      "L11_operator_noncommutation_substages",
+      "L12_qit_entropy_cut",
+      "L13_gluing_groupoid_cocycle"
+    ],
+    "pass": true
+  },
+  "dependency_receipts": [
+    "jax_independent_layer_geometry_coverage_gate_results.json",
+    "jax_nested_hopf_pairwise_leaf_coupling_audit_results.json"
+  ],
+  "domain": {
+    "layer_order": [
+      "R0_root_F01_N01",
+      "L0_path_quotient",
+      "L1_density_carrier",
+      "L2_hopf_fibration",
+      "L3_clifford_quaternion",
+      "L4_hopf_connection_c1",
+      "L5_nested_hopf_tori",
+      "L6_weyl_sheets_on_nested_tori",
+      "L7_gamma5_chirality",
+      "L8_pin3_spin3_chirality_cover",
+      "L9_clifford_module_gstructure",
+      "L10_terrain_gksl_generator",
+      "L11_operator_noncommutation_substages",
+      "L12_qit_entropy_cut",
+      "L13_gluing_groupoid_cocycle"
+    ],
+    "leaves": "theta_k in (0, pi/2), k=0..8",
+    "placements": [
+      {
+        "label": 1,
+        "path": "fiber",
+        "sheet": "L",
+        "terrain": "Funnel",
+        "topology": "Se"
+      },
+      {
+        "label": 2,
+        "path": "fiber",
+        "sheet": "L",
+        "terrain": "Vortex",
+        "topology": "Ne"
+      },
+      {
+        "label": 3,
+        "path": "fiber",
+        "sheet": "L",
+        "terrain": "Pit",
+        "topology": "Ni"
+      },
+      {
+        "label": 4,
+        "path": "fiber",
+        "sheet": "L",
+        "terrain": "Hill",
+        "topology": "Si"
+      },
+      {
+        "label": 5,
+        "path": "lifted_base",
+        "sheet": "L",
+        "terrain": "Funnel",
+        "topology": "Se"
+      },
+      {
+        "label": 6,
+        "path": "lifted_base",
+        "sheet": "L",
+        "terrain": "Vortex",
+        "topology": "Ne"
+      },
+      {
+        "label": 7,
+        "path": "lifted_base",
+        "sheet": "L",
+        "terrain": "Pit",
+        "topology": "Ni"
+      },
+      {
+        "label": 8,
+        "path": "lifted_base",
+        "sheet": "L",
+        "terrain": "Hill",
+        "topology": "Si"
+      },
+      {
+        "label": 9,
+        "path": "fiber",
+        "sheet": "R",
+        "terrain": "Cannon",
+        "topology": "Se"
+      },
+      {
+        "label": 10,
+        "path": "fiber",
+        "sheet": "R",
+        "terrain": "Spiral",
+        "topology": "Ne"
+      },
+      {
+        "label": 11,
+        "path": "fiber",
+        "sheet": "R",
+        "terrain": "Source",
+        "topology": "Ni"
+      },
+      {
+        "label": 12,
+        "path": "fiber",
+        "sheet": "R",
+        "terrain": "Citadel",
+        "topology": "Si"
+      },
+      {
+        "label": 13,
+        "path": "lifted_base",
+        "sheet": "R",
+        "terrain": "Cannon",
+        "topology": "Se"
+      },
+      {
+        "label": 14,
+        "path": "lifted_base",
+        "sheet": "R",
+        "terrain": "Spiral",
+        "topology": "Ne"
+      },
+      {
+        "label": 15,
+        "path": "lifted_base",
+        "sheet": "R",
+        "terrain": "Source",
+        "topology": "Ni"
+      },
+      {
+        "label": 16,
+        "path": "lifted_base",
+        "sheet": "R",
+        "terrain": "Citadel",
+        "topology": "Si"
+      }
+    ],
+    "terrains": [
+      "Cannon",
+      "Citadel",
+      "Funnel",
+      "Hill",
+      "Pit",
+      "Source",
+      "Spiral",
+      "Vortex"
+    ],
+    "topologies": [
+      "Se",
+      "Ne",
+      "Ni",
+      "Si"
+    ]
+  },
+  "dynamic_order_readout": {
+    "correct_populated_placement_count": 16,
+    "finitude_invalid_survivors": 0,
+    "label_erased_populated_placement_count": 1,
+    "max_connection_terrain_order_gap": 0.0021881908318736043,
+    "max_retraction_norm_drift": 2.220446049250313e-16,
+    "max_same_word_order_control_gap": 0.0,
+    "mean_connection_terrain_order_gap": 0.0015809105830317627,
+    "pass": true
+  },
+  "finite_map": "(coverage receipt, pairwise leaf receipt, layer order, 16 placements, 9 leaves, order word) -> dependency verdict, placement coverage, noncommuting order gap, finitude and label-erasure controls",
+  "generated_at": "2026-06-03T01:11:58.626087+00:00",
+  "geometry_layer": "nested Hopf leaf order plus Weyl sheet/path/topology placements",
+  "leaf_order_ratchet_readout": {
+    "areas": [
+      6.099750975388773,
+      11.602415825842423,
+      15.96935537647813,
+      18.77310315782272,
+      19.739208802178716,
+      18.77310315782272,
+      15.96935537647813,
+      11.602415825842424,
+      6.099750975388774
+    ],
+    "flat_final_leaves": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "genuine_final_leaves": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "pass": true,
+    "shuffled_final_leaves": [
+      0,
+      0,
+      5,
+      5,
+      5,
+      5,
+      7,
+      7,
+      8
+    ],
+    "theta_grid": [
+      0.15707963267948966,
+      0.3141592653589793,
+      0.47123889803846897,
+      0.6283185307179586,
+      0.7853981633974483,
+      0.9424777960769379,
+      1.0995574287564276,
+      1.2566370614359172,
+      1.413716694115407
+    ]
+  },
+  "name": "JAX nested Hopf/Weyl finite nesting-order gate",
+  "nesting_order_gate_closed": true,
+  "next_allowed_if_pass": [
+    "bounded_bottom_up_branch_prune_order_audit",
+    "bounded_noncommutative_finitude_ratchet_order_search",
+    "external_oracle_audit_for_order_receipt"
+  ],
+  "peps3d_embedding": "not_admitted; finite placement x leaf cell anchor only, no PEPS3D promotion",
+  "placement_summary": {
+    "placements": [
+      {
+        "label": 1,
+        "path": "fiber",
+        "sheet": "L",
+        "terrain": "Funnel",
+        "topology": "Se"
+      },
+      {
+        "label": 2,
+        "path": "fiber",
+        "sheet": "L",
+        "terrain": "Vortex",
+        "topology": "Ne"
+      },
+      {
+        "label": 3,
+        "path": "fiber",
+        "sheet": "L",
+        "terrain": "Pit",
+        "topology": "Ni"
+      },
+      {
+        "label": 4,
+        "path": "fiber",
+        "sheet": "L",
+        "terrain": "Hill",
+        "topology": "Si"
+      },
+      {
+        "label": 5,
+        "path": "lifted_base",
+        "sheet": "L",
+        "terrain": "Funnel",
+        "topology": "Se"
+      },
+      {
+        "label": 6,
+        "path": "lifted_base",
+        "sheet": "L",
+        "terrain": "Vortex",
+        "topology": "Ne"
+      },
+      {
+        "label": 7,
+        "path": "lifted_base",
+        "sheet": "L",
+        "terrain": "Pit",
+        "topology": "Ni"
+      },
+      {
+        "label": 8,
+        "path": "lifted_base",
+        "sheet": "L",
+        "terrain": "Hill",
+        "topology": "Si"
+      },
+      {
+        "label": 9,
+        "path": "fiber",
+        "sheet": "R",
+        "terrain": "Cannon",
+        "topology": "Se"
+      },
+      {
+        "label": 10,
+        "path": "fiber",
+        "sheet": "R",
+        "terrain": "Spiral",
+        "topology": "Ne"
+      },
+      {
+        "label": 11,
+        "path": "fiber",
+        "sheet": "R",
+        "terrain": "Source",
+        "topology": "Ni"
+      },
+      {
+        "label": 12,
+        "path": "fiber",
+        "sheet": "R",
+        "terrain": "Citadel",
+        "topology": "Si"
+      },
+      {
+        "label": 13,
+        "path": "lifted_base",
+        "sheet": "R",
+        "terrain": "Cannon",
+        "topology": "Se"
+      },
+      {
+        "label": 14,
+        "path": "lifted_base",
+        "sheet": "R",
+        "terrain": "Spiral",
+        "topology": "Ne"
+      },
+      {
+        "label": 15,
+        "path": "lifted_base",
+        "sheet": "R",
+        "terrain": "Source",
+        "topology": "Ni"
+      },
+      {
+        "label": 16,
+        "path": "lifted_base",
+        "sheet": "R",
+        "terrain": "Citadel",
+        "topology": "Si"
+      }
+    ],
+    "terrains": [
+      "Cannon",
+      "Citadel",
+      "Funnel",
+      "Hill",
+      "Pit",
+      "Source",
+      "Spiral",
+      "Vortex"
+    ],
+    "topologies": [
+      "Se",
+      "Ne",
+      "Ni",
+      "Si"
+    ]
+  },
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "quaternion_action": "finite quaternion left-product rotor terms for connection and terrain order words",
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "root_constraints_in_force": {
+    "F01": "finite layer order, finite 9-leaf Hopf-torus grid, finite 16 Weyl placements, finite control orders",
+    "N01": "connection-vs-terrain order gap survives while same-word/order-erased controls collapse"
+  },
+  "sim_class": "nesting_order_gate",
+  "sim_execution_kind": "nonclassical_diagnostic_jax_audit",
+  "sim_id": "jax_nested_hopf_nesting_order_gate",
+  "spinor_state": "q=(Re z0, Im z0, Re z1, Im z1), normalized to S3 after each map",
+  "still_blocked_consumers": [
+    "full_layer_completion_claim",
+    "layer_stacking_readiness_claim",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "version": "1.0"
+}

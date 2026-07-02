@@ -1,0 +1,199 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T03:56:03-07:00",
+  "scope": "phase2_post_W_loss_coordinate_deletion_response_K_candidate_map_discovery",
+  "classification": "formal_scout_controller_candidate",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "selected_candidate_map_id": "X_loss_active_coordinate_pair_deletion_collapse_K",
+  "current_state_assertion": {
+    "phase2_carrier_geometry": "real_bounded",
+    "frontier_row_count": 33,
+    "contract_complete_rows": 31,
+    "killed_rows": 2,
+    "active_transition_decision": "blocked",
+    "wizard_v4_2_status": "BLOCKED",
+    "latest_admitted_packet": "phase2_loss_coordinate_deletion_response_packet",
+    "latest_admitted_map": "W_loss_coordinate_deletion_response_K"
+  },
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After W_loss_coordinate_deletion_response_K, the earned object is a finite coordinate-deletion response table over U pair-support masks: V/E/C are active deletion coordinates, F is deletion-neutral, and dense/topology/downstream controls remain blocked. This artifact only names the next possible bounded carrier-frontier operation.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "X_loss_active_coordinate_pair_deletion_collapse_K",
+      "candidate_name": "finite active-coordinate pair deletion-collapse over W support masks",
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "X_loss_active_coordinate_pair_deletion_collapse_K : (W_loss_coordinate_deletion_response_K, U_loss_pair_support_mask_K, A={V,E,C}, Delta_A2={{V,E},{V,C},{E,C}}, Delta_F={{V,F},{E,F},{C,F}}, delta_{c,d}:{0,1}^4 -> {0,1}^4, support_mask:Pairs(C_Q)->{0,1}^4) -> finite active-coordinate-pair deletion-collapse table + F-boundary pair controls + nonpromotion controls",
+      "why_admissible": [
+        "It ratchets directly from W by adding a new finite operation family delta_{c,d}; W tested only single-coordinate deletions delta_c.",
+        "The operation is finite: three active-coordinate pair deletions {{V,E},{V,C},{E,C}} plus three F-containing boundary-control pairs {{V,F},{E,F},{C,F}} over the same three U support-mask rows.",
+        "The expected output is finite: changed pair count per coordinate-pair deletion, post-delete support-mask class count, active-pair collapse certificate, F-boundary equivalence-to-single-deletion controls, and control gap vector.",
+        "It remains PEPS3D-anchor explicit because every coordinate in the operation is one of the inherited V/E/F/C PEPS3D anchor categories.",
+        "It does not claim all-subset minimality, restoration, inverse, topology, sheaf/gluing, homology, full coordinate coverage, PEPS3D closure, or downstream geometry."
+      ],
+      "geometry_it_would_earn_if_later_passed": "A bounded finite coordinate-pair deletion-collapse readout for the Phase 2 PEPS3D support-mask carrier: deleting any two active coordinates collapses the three support-mask classes to two while deleting an active coordinate plus F behaves like the corresponding W single-coordinate deletion boundary control.",
+      "not_run_in_this_artifact": true
+    },
+    {
+      "candidate_id": "Y_loss_class_pair_row_deletion_coverage_stability_K",
+      "candidate_name": "finite class-pair row deletion coverage stability",
+      "decision": "deferred_lower_priority_candidate_not_run",
+      "finite_map": "Y_loss_class_pair_row_deletion_coverage_stability_K : (U_loss_pair_support_mask_K, Pairs(C_Q), epsilon_p:remove one class-pair row) -> finite row-deletion coverage-stability table + remaining-coordinate coverage vector + controls",
+      "why_deferred": "This is finite and carrier-local, but X is the smaller direct continuation of W because W already introduced coordinate-deletion operations and active/neutral coordinate sets."
+    },
+    {
+      "candidate_id": "V_loss_coordinate_incidence_balance_K",
+      "candidate_name": "finite coordinate-incidence balance over U/W support masks",
+      "decision": "rejected_as_duplicate_summary",
+      "why_rejected": "The incidence vector [V,E,F,C]=[2,2,0,2] is directly recoverable from U/W rows and was already rejected as a summary-only scout claim."
+    },
+    {
+      "candidate_id": "full_coordinate_coverage_from_W",
+      "candidate_name": "full V/E/F/C coordinate coverage",
+      "decision": "rejected",
+      "why_rejected": "W explicitly keeps F deletion-neutral. Full coordinate coverage would contradict the latest receipt."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_from_W",
+      "candidate_name": "topology, sheaf, homology, persistence, or gluing from coordinate-deletion rows",
+      "decision": "rejected",
+      "why_rejected": "W rows are finite carrier-frontier readouts only. Topology, sheaf, homology, persistence, and gluing closures remain blocked consumers."
+    },
+    {
+      "candidate_id": "restore_inverse_all_subset_from_W",
+      "candidate_name": "restore, inverse, or all-subset minimality from coordinate deletions",
+      "decision": "rejected",
+      "why_rejected": "X is allowed only as three active coordinate-pair deletions plus F boundary controls. Any all-subset, restoration, inverse, or minimality claim would overclaim beyond Phase 2 carrier-frontier evidence."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_W",
+      "candidate_name": "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are downstream consumers and cannot be opened from W coordinate-deletion rows."
+    }
+  ],
+  "selected_candidate_map": {
+    "candidate_id": "X_loss_active_coordinate_pair_deletion_collapse_K",
+    "finite_map": "X_loss_active_coordinate_pair_deletion_collapse_K : (W_loss_coordinate_deletion_response_K, U_loss_pair_support_mask_K, A={V,E,C}, Delta_A2={{V,E},{V,C},{E,C}}, Delta_F={{V,F},{E,F},{C,F}}, delta_{c,d}:{0,1}^4 -> {0,1}^4, support_mask:Pairs(C_Q)->{0,1}^4) -> finite active-coordinate-pair deletion-collapse table + F-boundary pair controls + nonpromotion controls",
+    "domain": {
+      "W_loss_coordinate_deletion_response_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_loss_coordinate_deletion_response_probe_results.json",
+      "U_loss_pair_support_mask_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json",
+      "Pairs_C_Q": "three unordered class pairs from U_loss_pair_support_mask_K",
+      "Coord": [
+        "V",
+        "E",
+        "F",
+        "C"
+      ],
+      "A_active": [
+        "V",
+        "E",
+        "C"
+      ],
+      "F_neutral": [
+        "F"
+      ],
+      "Delta_A2": [
+        [
+          "V",
+          "E"
+        ],
+        [
+          "V",
+          "C"
+        ],
+        [
+          "E",
+          "C"
+        ]
+      ],
+      "Delta_F_boundary": [
+        [
+          "V",
+          "F"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "C",
+          "F"
+        ]
+      ],
+      "delta_cd": "finite coordinate-pair deletion operation that zeros coordinates c and d in a pair support mask",
+      "support_mask": "finite map from class pairs to {0,1}^4 support masks inherited from U",
+      "legal_anchor_preserving_coordinate_names": "coordinate names must remain PEPS3D V/E/F/C anchor categories; coordinate-category scrambles are controls only"
+    },
+    "codomain_or_output": "finite active-coordinate-pair deletion table, post-delete support-mask class-count vector, active-pair collapse certificate, F-boundary pair-control table, and nonpromotion control gap vector",
+    "PEPS3D_carrier_anchor": "Every pair-deletion row is bound to inherited PEPS3D V/E/F/C coordinate anchors from U/W. Scalar coordinate labels alone are not evidence.",
+    "F01_witness": "finite class-pair set, finite coordinate set {V,E,F,C}, finite active coordinate-pair deletion operations, finite F-boundary control pairs, finite support masks, finite output rows, and finite controls",
+    "N01_order_witness": "Inherited from the Phase 2 carrier chain through W; order-erased rows must remain non-claim-bearing and X is not admitted as a new noncommuting operator.",
+    "positive_case": "active-pair deletions {{V,E},{V,C},{E,C}} each change all three anchored pair rows and reduce post-delete support-mask class count from 3 to 2; F-boundary pairs {{V,F},{E,F},{C,F}} reproduce the corresponding W single-active deletion response rather than activating F",
+    "status": "admissible_candidate_not_run"
+  },
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_loss_residue_class_separation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_coordinate_deletion_response_probe_results.json"
+  ],
+  "controller_dependency_artifacts": [
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_post_W_loss_coordinate_deletion_response_active_frontier_blocker_20260526.json"
+  ],
+  "controls": {
+    "positive": [
+      "active-coordinate pair deletion response for {V,E}, {V,C}, and {E,C} changes all three U support-mask pair rows",
+      "each active-coordinate pair deletion leaves exactly two post-delete support-mask classes",
+      "F-boundary pairs {V,F}, {E,F}, and {C,F} match W single-coordinate deletion responses for V, E, and C respectively"
+    ],
+    "negative": [
+      "norm-only pair table cannot emit coordinate-pair deletion response",
+      "scalar-label table cannot bind V/E/F/C pair deletion rows to PEPS3D anchors",
+      "no-anchor pair deletion counts cannot be claim-bearing evidence",
+      "illegal coordinate-category scramble must fail",
+      "fake-face-positive control must fail because F remains neutral"
+    ],
+    "boundary": [
+      "F-containing coordinate pairs are boundary controls, not active-pair positives",
+      "single-coordinate deletion rows remain W evidence, not new X evidence",
+      "bond and site values stay inherited from W; no convergence law is admitted",
+      "X is not all-subset minimality because it tests only active coordinate-pairs plus F boundary pairs"
+    ],
+    "order_erased": [
+      "order-erased source rows must stay non-claim-bearing",
+      "commuting-only evidence cannot admit the inherited carrier witness"
+    ],
+    "downstream_leak": [
+      "Phase 7/downstream receipts must not be dependencies",
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT, and axes 7-12 remain blocked"
+    ]
+  },
+  "failure_conditions": [
+    "any active-coordinate pair deletion fails to change all three anchored U support-mask rows",
+    "any active-coordinate pair deletion leaves a post-delete support-mask class count other than 2",
+    "any F-boundary pair fails to match the corresponding W single-coordinate deletion response",
+    "F becomes an active/full-coverage coordinate",
+    "no explicit PEPS3D V/E/F/C anchors survive in the pair-deletion table",
+    "no-anchor, scalar-label, norm-only, fake-face, or order-erased controls reproduce claim-bearing pair-deletion rows",
+    "the map requires dense full-state closure or dense environment closure",
+    "the map claims all-subset minimality, restoration, inverse, topology/sheaf/homology/persistence/gluing, full PEPS3D closure, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12"
+  ],
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_W_loss_coordinate_deletion_response_active_frontier_blocker_20260526.json",
+  "next_admissible_step": "Author one bounded formal_scout source for X_loss_active_coordinate_pair_deletion_collapse_K, then run/lint/validate it. This candidate artifact does not admit the map and does not open downstream geometry."
+}

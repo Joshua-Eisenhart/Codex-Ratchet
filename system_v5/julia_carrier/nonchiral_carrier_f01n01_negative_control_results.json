@@ -1,0 +1,311 @@
+{
+  "object_id": "nonchiral_carrier_f01n01_v1",
+  "claim_ceiling": "Finite-carrier negative control only: no layer-completion, manifold admission, coupling, bridge, flux, Axis0, gravity, or physics claims.",
+  "promotion_allowed": false,
+  "classification": "diagnostic_only_negative_control",
+  "generated_at": "2026-06-04T03:57:26.426",
+  "root_constraints": {
+    "F01": "finite-dimensional Hilbert carrier and finite operator/probe set with finite numeric entries",
+    "N01": "there exists at least one numerically nonzero commutator among the carrier operators"
+  },
+  "forced_or_chosen": "chosen_principle",
+  "honest_caveat": "This finite negative control only checks F01 finite dimension and N01 existence of a noncommuting operator pair. It shows chirality is not forced by those constraints alone; it does not admit geometry, Weyl physics, PEPS3D manifold structure, coupling, bridge, flux, or physics.",
+  "carriers": {
+    "qubit_dim2": {
+      "dim": 2,
+      "f01": true,
+      "n01": true,
+      "chiral": false,
+      "commutator_norm": 4,
+      "commutator_witness_pair": [
+        "H",
+        "Z_dephasing_probe"
+      ],
+      "verdict": "admitted nonchiral",
+      "description": "single qubit with H = X + i*real_antisymmetric = X + Y and Z dephasing probe; no gamma5 field",
+      "f01_detail": {
+        "finite_dim": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "chirality_structural_check": {
+        "chiral": false,
+        "basis": "no_gamma5_no_z2_grading_no_left_right_split_no_sign_structure",
+        "gamma5_present": false,
+        "gamma5_hermitian": false,
+        "gamma5_involution": false,
+        "gamma5_plus_count": 0,
+        "gamma5_minus_count": 0,
+        "z2_grading": false,
+        "left_right_split": false,
+        "sign_structure": false,
+        "chirality_label_classes": 0,
+        "labels_split": false,
+        "structurally_nonchiral": true
+      },
+      "structurally_nonchiral": true
+    },
+    "qutrit_dim3": {
+      "dim": 3,
+      "f01": true,
+      "n01": true,
+      "chiral": false,
+      "commutator_norm": 1.50593204063,
+      "commutator_witness_pair": [
+        "H",
+        "qutrit_dephasing_lindblad"
+      ],
+      "verdict": "admitted nonchiral",
+      "description": "fixed-seed random Hermitian qutrit Hamiltonian with diagonal dephasing Lindblad; no Z2 grading",
+      "f01_detail": {
+        "finite_dim": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "chirality_structural_check": {
+        "chiral": false,
+        "basis": "no_gamma5_no_z2_grading_no_left_right_split_no_sign_structure",
+        "gamma5_present": false,
+        "gamma5_hermitian": false,
+        "gamma5_involution": false,
+        "gamma5_plus_count": 0,
+        "gamma5_minus_count": 0,
+        "z2_grading": false,
+        "left_right_split": false,
+        "sign_structure": false,
+        "chirality_label_classes": 0,
+        "labels_split": false,
+        "structurally_nonchiral": true
+      },
+      "structurally_nonchiral": true
+    },
+    "fourbody_dim4": {
+      "dim": 4,
+      "f01": true,
+      "n01": true,
+      "chiral": false,
+      "commutator_norm": 3.06307035505,
+      "commutator_witness_pair": [
+        "H",
+        "two_qubit_dephasing_probe"
+      ],
+      "verdict": "admitted nonchiral",
+      "description": "two-qubit carrier with generic Hermitian interactions; all optional chirality labels same and no split operator",
+      "f01_detail": {
+        "finite_dim": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "chirality_structural_check": {
+        "chiral": false,
+        "basis": "no_gamma5_no_z2_grading_no_left_right_split_no_sign_structure",
+        "gamma5_present": false,
+        "gamma5_hermitian": false,
+        "gamma5_involution": false,
+        "gamma5_plus_count": 0,
+        "gamma5_minus_count": 0,
+        "z2_grading": false,
+        "left_right_split": false,
+        "sign_structure": false,
+        "chirality_label_classes": 1,
+        "labels_split": false,
+        "structurally_nonchiral": true
+      },
+      "structurally_nonchiral": true
+    },
+    "eightbody_dim8": {
+      "dim": 8,
+      "f01": true,
+      "n01": true,
+      "chiral": false,
+      "commutator_norm": 5.6786618142,
+      "commutator_witness_pair": [
+        "H",
+        "three_qubit_diagonal_probe"
+      ],
+      "verdict": "admitted nonchiral",
+      "description": "three-qubit finite carrier with generic noncommuting interaction algebra and no orientation or handedness structure",
+      "f01_detail": {
+        "finite_dim": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "chirality_structural_check": {
+        "chiral": false,
+        "basis": "no_gamma5_no_z2_grading_no_left_right_split_no_sign_structure",
+        "gamma5_present": false,
+        "gamma5_hermitian": false,
+        "gamma5_involution": false,
+        "gamma5_plus_count": 0,
+        "gamma5_minus_count": 0,
+        "z2_grading": false,
+        "left_right_split": false,
+        "sign_structure": false,
+        "chirality_label_classes": 0,
+        "labels_split": false,
+        "structurally_nonchiral": true
+      },
+      "structurally_nonchiral": true
+    },
+    "chiral_control_dim4": {
+      "dim": 4,
+      "f01": true,
+      "n01": true,
+      "chiral": true,
+      "commutator_norm": 8,
+      "commutator_witness_pair": [
+        "H",
+        "independent_noncommuting_probe"
+      ],
+      "verdict": "admitted chiral (control)",
+      "description": "4-level control with explicit gamma5 = diag(+1,+1,-1,-1), left/right split, sign structure, and an independent N01 witness probe",
+      "f01_detail": {
+        "finite_dim": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "chirality_structural_check": {
+        "chiral": true,
+        "basis": "valid_gamma5_z2_grading_operator_present",
+        "gamma5_present": true,
+        "gamma5_hermitian": true,
+        "gamma5_involution": true,
+        "gamma5_plus_count": 2,
+        "gamma5_minus_count": 2,
+        "z2_grading": true,
+        "left_right_split": true,
+        "sign_structure": true,
+        "chirality_label_classes": 2,
+        "labels_split": true,
+        "structurally_nonchiral": false
+      },
+      "structurally_nonchiral": false
+    }
+  },
+  "size_ladder": {
+    "N8": {
+      "N": 8,
+      "f01": true,
+      "density_matrix_shape": [
+        8,
+        8
+      ],
+      "finite_entries": true,
+      "hermitian_error": 0,
+      "trace_error": 0,
+      "min_eigenvalue": 0.00304650349999,
+      "positive_semidefinite": true,
+      "verdict": "finite density carrier confirmed"
+    },
+    "N16": {
+      "N": 16,
+      "f01": true,
+      "density_matrix_shape": [
+        16,
+        16
+      ],
+      "finite_entries": true,
+      "hermitian_error": 0,
+      "trace_error": 0,
+      "min_eigenvalue": 3.01728020162e-06,
+      "positive_semidefinite": true,
+      "verdict": "finite density carrier confirmed"
+    },
+    "N32": {
+      "N": 32,
+      "f01": true,
+      "density_matrix_shape": [
+        32,
+        32
+      ],
+      "finite_entries": true,
+      "hermitian_error": 0,
+      "trace_error": 0,
+      "min_eigenvalue": 2.58963148192e-05,
+      "positive_semidefinite": true,
+      "verdict": "finite density carrier confirmed"
+    },
+    "N64": {
+      "N": 64,
+      "f01": true,
+      "density_matrix_shape": [
+        64,
+        64
+      ],
+      "finite_entries": true,
+      "hermitian_error": 0,
+      "trace_error": 2.22044604925e-16,
+      "min_eigenvalue": 1.03666382538e-07,
+      "positive_semidefinite": true,
+      "verdict": "finite density carrier confirmed"
+    }
+  },
+  "boundary_checks": {
+    "dim1_excluded": {
+      "dim": 1,
+      "f01": true,
+      "n01": false,
+      "commutator_norm": 0,
+      "commutator_witness_pair": [
+        "none",
+        "none"
+      ],
+      "f01_detail": {
+        "finite_dim": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "reason": "1x1 operators reduce to scalar multiplication, so the computed commutator is zero for the sampled pair and N01 has no witness in dim=1",
+      "verdict": "dim=1 excluded by N01"
+    }
+  },
+  "structural_controls": {
+    "wrong_structure_added_gamma5": {
+      "base_carrier": "fourbody_dim4",
+      "base_chiral": false,
+      "after_adding_gamma5_chiral": true,
+      "classification_changed": true,
+      "added_gamma5_f01": true,
+      "added_gamma5_n01": true,
+      "added_gamma5_commutator_norm": 3.06307035505,
+      "added_gamma5_commutator_witness_pair": [
+        "H",
+        "two_qubit_dephasing_probe"
+      ],
+      "added_gamma5_structural_check": {
+        "chiral": true,
+        "basis": "valid_gamma5_z2_grading_operator_present",
+        "gamma5_present": true,
+        "gamma5_hermitian": true,
+        "gamma5_involution": true,
+        "gamma5_plus_count": 2,
+        "gamma5_minus_count": 2,
+        "z2_grading": true,
+        "left_right_split": false,
+        "sign_structure": false,
+        "chirality_label_classes": 2,
+        "labels_split": true,
+        "structurally_nonchiral": false
+      },
+      "verdict": "adding a valid gamma5 changes structural chirality classification"
+    }
+  },
+  "positive_check": {
+    "all_nonchiral_carriers_f01_n01_pass": true,
+    "chiral_control_f01_n01_pass": true,
+    "density_size_ladder_f01_pass": true
+  },
+  "tool_manifest": {
+    "julia_stdlib_LinearAlgebra": "load-bearing for numerical commutator norms, Hermitian checks, eigenvalue checks, and density matrix checks",
+    "julia_stdlib_Random": "load-bearing fixed-seed qutrit Hamiltonian and density matrix ladder",
+    "julia_stdlib_Dates": "supportive timestamp only",
+    "julia_stdlib_Printf": "supportive JSON float/escape formatting only"
+  },
+  "tool_integration_depth": {
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Dates": "supportive",
+    "Printf": "supportive"
+  },
+  "conclusion": "Non-chiral carriers satisfy F01+N01. Chiral carriers also satisfy F01+N01. Chirality is admitted but not forced."
+}

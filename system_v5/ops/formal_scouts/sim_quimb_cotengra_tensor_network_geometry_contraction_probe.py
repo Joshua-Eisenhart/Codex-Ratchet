@@ -26,6 +26,7 @@ RESULT_DIR = ROOT / "results"
 OUT_PATH = RESULT_DIR / "quimb_cotengra_tensor_network_geometry_contraction_probe_results.json"
 
 NAME = "quimb_cotengra_tensor_network_geometry_contraction_probe"
+SIM_ID = NAME
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
@@ -49,6 +50,26 @@ TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
     "sympy": "load_bearing",
 }
+
+FINITE_MAP = (
+    "QTN_micro : finite geometry-shaped tensor fixtures, quimb MPS carriers, "
+    "and cotengra contraction-tree problems -> MPS entropy readouts, contraction "
+    "cost/width witnesses, and wrong-layout/erased-bond/path-perturbation controls"
+)
+DOMAIN = (
+    "finite 8-site quimb MPS fixtures; finite two-site gate family; finite "
+    "rank-2 tensor chain/ring contraction problems with named indices; finite "
+    "erased-bond and wrong-layout negative controls"
+)
+CODOMAIN_OR_OUTPUT = (
+    "bounded entropy sums, max-bond readouts, dense entropy cross-check, "
+    "cotengra cost/width metadata, opt_einsum numeric contractions, and "
+    "control deltas that stay blocked from layer/stack/Axis0 claims"
+)
+ROOT_CONSTRAINTS_IN_FORCE = [
+    "F01 finite carrier/probe/operator/path set",
+    "N01 noncommuting/order-sensitive gate and contraction-order controls",
+]
 
 DTYPE = torch.complex128
 RTYPE = torch.float64
@@ -101,7 +122,23 @@ def mps_topology_readout() -> dict[str, Any]:
     return {
         "rows": rows,
         "unique_entropy_sums": len({round(v, 6) for v in sums.values()}),
+        "min_entropy_sum": float(min(sums.values())),
+        "max_entropy_sum": float(max(sums.values())),
         "pass": len({round(v, 6) for v in sums.values()}) == 4 and all(v["max_bond"] <= 8 for v in rows.values()),
+    }
+
+
+def erased_virtual_bond_control(mps_readout: dict[str, Any]) -> dict[str, Any]:
+    product = qtn.MPS_computational_state("0" * 8)
+    product_entropies = [float(product.entropy(i)) for i in range(1, 8)]
+    product_entropy_sum = float(sum(product_entropies))
+    structured_min_entropy = float(mps_readout["min_entropy_sum"])
+    return {
+        "structured_min_entropy_sum": structured_min_entropy,
+        "erased_bond_entropy_sum": product_entropy_sum,
+        "erased_bond_max_bond": int(product.max_bond()),
+        "entropy_delta": structured_min_entropy - product_entropy_sum,
+        "pass": structured_min_entropy > 0.1 and product_entropy_sum < 1.0e-9 and int(product.max_bond()) == 1,
     }
 
 
@@ -158,6 +195,44 @@ def collapsed_contraction_control() -> dict[str, Any]:
     return {"structured_vs_collapsed_norm": diff, "pass": diff > 0.1}
 
 
+def wrong_tensor_layout_control() -> dict[str, Any]:
+    generator = torch.Generator().manual_seed(19)
+    a = torch.randn((2, 3), generator=generator, dtype=RTYPE)
+    b = torch.randn((3, 4), generator=generator, dtype=RTYPE)
+    c = torch.randn((4, 5), generator=generator, dtype=RTYPE)
+    d = torch.randn((5, 2), generator=generator, dtype=RTYPE)
+    structured = oe.contract("ab,bc,cd,de->ae", a, b, c, d)
+    wrong_layout = oe.contract("ab,bc,cd,de->ae", a, torch.flip(b, dims=[0]), c, d)
+    delta = float(torch.linalg.vector_norm(torch.as_tensor(structured - wrong_layout)).item())
+    return {
+        "structured_shape": list(structured.shape),
+        "wrong_layout_shape": list(wrong_layout.shape),
+        "structured_vs_wrong_layout_l2": delta,
+        "pass": delta > 0.1,
+    }
+
+
+def contraction_path_perturbation_control() -> dict[str, Any]:
+    size_dict = {"a": 2, "b": 3, "c": 4, "d": 5, "e": 2}
+    chain_inputs = [("a", "b"), ("b", "c"), ("c", "d"), ("d", "e")]
+    ring_inputs = [("a", "b"), ("b", "c"), ("c", "d"), ("d", "e"), ("a", "e")]
+    chain_tree = ctg.array_contract_tree(chain_inputs, output=("a", "e"), size_dict=size_dict, optimize="greedy")
+    ring_tree = ctg.array_contract_tree(ring_inputs, output=(), size_dict=size_dict, optimize="greedy")
+    chain_cost = float(chain_tree.contraction_cost())
+    ring_cost = float(ring_tree.contraction_cost())
+    chain_width = float(chain_tree.contraction_width())
+    ring_width = float(ring_tree.contraction_width())
+    return {
+        "chain_cost": chain_cost,
+        "ring_cost": ring_cost,
+        "chain_width": chain_width,
+        "ring_width": ring_width,
+        "cost_delta": abs(ring_cost - chain_cost),
+        "width_delta": abs(ring_width - chain_width),
+        "pass": abs(ring_cost - chain_cost) > 0.0 or abs(ring_width - chain_width) > 0.0,
+    }
+
+
 def symbolic_inventory() -> dict[str, Any]:
     tensors, open_indices = sp.symbols("tensors open_indices", integer=True)
     claim = sp.And(sp.Eq(tensors, 4), sp.Eq(open_indices, 2))
@@ -170,6 +245,9 @@ def main() -> int:
     dense = dense_entropy_crosscheck()
     tree = contraction_tree_report()
     collapsed = collapsed_contraction_control()
+    erased = erased_virtual_bond_control(mps)
+    wrong_layout = wrong_tensor_layout_control()
+    path_perturbation = contraction_path_perturbation_control()
     symbolic = symbolic_inventory()
     positive = {
         "quimb_mps_topology_entropy_readouts_separate": mps,
@@ -179,6 +257,9 @@ def main() -> int:
     }
     graveyard_companions = {
         "collapsed_geometry_contraction_differs": collapsed,
+        "erased_virtual_bonds_kill_entropy_and_bond_depth": erased,
+        "wrong_tensor_layout_changes_contraction_value": wrong_layout,
+        "contraction_path_perturbation_changes_tree_metadata": path_perturbation,
         "single_gate_reuse_would_collapse_topology_entropy": {
             "unique_entropy_sums": mps["unique_entropy_sums"],
             "pass": mps["unique_entropy_sums"] == 4,
@@ -192,18 +273,65 @@ def main() -> int:
         }
     }
     nearby_variants = {
-        "total": 2,
+        "total": 5,
         "passed": sum(1 for row in graveyard_companions.values() if row["pass"]),
         "variants": sorted(graveyard_companions),
     }
     all_pass = all(row["pass"] for row in positive.values()) and all(row["pass"] for row in graveyard_companions.values()) and nearby_variants["passed"] == nearby_variants["total"]
     result = {
+        "sim_id": SIM_ID,
         "name": NAME,
         "classification": CLASSIFICATION,
+        "sim_execution_kind": "nonclassical",
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
+        "finite_map": FINITE_MAP,
+        "domain": DOMAIN,
+        "codomain_or_output": CODOMAIN_OR_OUTPUT,
+        "root_constraints_in_force": ROOT_CONSTRAINTS_IN_FORCE,
+        "carrier_layer": "finite tensor-network tool micro-fixture",
+        "geometry_layer": "geometry-shaped MPS and contraction-index fixture",
+        "carrier_realization": "quimb MPS carriers plus torch tensor fixtures; cotengra contraction trees over finite index problems",
+        "peps3d_embedding": "not_applicable_micro_tool_probe; downstream PEPS3D layer consumers stay blocked",
+        "spinor_state": "not_applicable_micro_tool_probe; this tests tensor-network internals used by spinor-network receipts",
+        "quaternion_action": "not_applicable",
+        "dependency_receipts": [
+            "system_v5/ops/formal_scouts/full_spinor_jax_internal_mirror_blockers_20260531.json"
+        ],
+        "downstream_blocks": [
+            "full_layer_completion_claim",
+            "official_g_structure_selection",
+            "layer_stacking_readiness",
+            "cross_layer_order_closure",
+            "flux",
+            "Xi/Phi0",
+            "Axis0",
+            "Holodeck/FEP",
+            "physics/gravity",
+            "final_manifold_admission",
+        ],
+        "bridge_layer": "none",
+        "cut_layer": "MPS entropy cuts only; not a shell interior/boundary bridge",
+        "law_or_candidate_tested": "quimb MPS construction/entropy and cotengra contraction-tree sensitivity to finite negative controls",
+        "allowed_claims": [
+            "quimb/cotengra internals have one falsifiable micro-tool receipt",
+            "wrong tensor layout, erased bonds, and path perturbation are non-vacuous controls for this fixture",
+        ],
+        "promotion_blockers": [
+            "not integrated into every layer receipt",
+            "not a full PEPS3D environment contraction",
+            "not a JAX replacement for quimb/cotengra internals",
+            "not layer completion or stacking evidence",
+        ],
         "tool_manifest": TOOL_MANIFEST,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "actual_tools_used": sorted(TOOL_MANIFEST),
+        "required_tools": sorted(TOOL_MANIFEST),
+        "proof_surfaces_used": ["sympy"],
+        "graph_surfaces_used": ["cotengra contraction tree"],
+        "topology_surfaces_used": [],
         "source_alignment_category": "tensor_network_tool_admission_for_dynamic_geometry_formal_scout",
         "positive": positive,
         "graveyard_companions": graveyard_companions,

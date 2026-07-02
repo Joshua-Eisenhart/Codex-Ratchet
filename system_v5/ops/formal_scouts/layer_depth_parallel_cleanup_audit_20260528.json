@@ -1,0 +1,60 @@
+{
+  "blocked_candidates": [
+    {
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "path": "system_v5/ops/formal_scouts/__pycache__/",
+      "reason": "Ignored runtime byproduct, but modified inside the 72 hour safety window and contains active layer-depth bytecode from the current packet."
+    },
+    {
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "path": "system_v5/ops/formal_scouts/.DS_Store",
+      "reason": "Ignored local filesystem byproduct, but modified inside the 72 hour safety window."
+    }
+  ],
+  "cleanup_result": "no_moves_performed",
+  "generated_at_utc": "2026-05-28T05:05:00Z",
+  "git_hygiene": {
+    "bulk_clean_blocked": true,
+    "bulk_stage_blocked": true,
+    "tracked_deletes_found": 0
+  },
+  "keep_active": {
+    "layer_depth_sources": [
+      "system_v5/ops/formal_scouts/formal_layer_depth_common.py",
+      "system_v5/ops/formal_scouts/sim_l0_response_quotient_mps_peps2d_peps3d_depth_probe.py",
+      "system_v5/ops/formal_scouts/sim_l1_boundary_environment_mps_peps2d_peps3d_depth_probe.py",
+      "system_v5/ops/formal_scouts/sim_weyl_spinor_layer_mps_peps2d_peps3d_admission_probe.py",
+      "system_v5/ops/formal_scouts/sim_l3_clifford_quaternion_mps_peps2d_peps3d_depth_probe.py",
+      "system_v5/ops/formal_scouts/sim_l4_terrain_generator_mps_peps2d_peps3d_depth_probe.py",
+      "system_v5/ops/formal_scouts/sim_l5_operator_substage_mps_peps2d_peps3d_depth_probe.py",
+      "system_v5/ops/formal_scouts/sim_l6_entropy_cut_communication_mps_peps2d_peps3d_depth_probe.py",
+      "system_v5/ops/formal_scouts/sim_l7_hopf_shell_mps_peps2d_peps3d_depth_probe.py",
+      "system_v5/ops/formal_scouts/sim_l8_groupoid_gluing_mps_peps2d_peps3d_depth_probe.py"
+    ],
+    "result_receipts": [
+      "system_v5/ops/formal_scouts/results/l0_response_quotient_mps_peps2d_peps3d_depth_probe_results.json",
+      "system_v5/ops/formal_scouts/results/l1_boundary_environment_mps_peps2d_peps3d_depth_probe_results.json",
+      "system_v5/ops/formal_scouts/results/weyl_spinor_layer_mps_peps2d_peps3d_admission_probe_results.json",
+      "system_v5/ops/formal_scouts/results/l3_clifford_quaternion_mps_peps2d_peps3d_depth_probe_results.json",
+      "system_v5/ops/formal_scouts/results/l4_terrain_generator_mps_peps2d_peps3d_depth_probe_results.json",
+      "system_v5/ops/formal_scouts/results/l5_operator_substage_mps_peps2d_peps3d_depth_probe_results.json",
+      "system_v5/ops/formal_scouts/results/l6_entropy_cut_communication_mps_peps2d_peps3d_depth_probe_results.json",
+      "system_v5/ops/formal_scouts/results/l7_hopf_shell_mps_peps2d_peps3d_depth_probe_results.json",
+      "system_v5/ops/formal_scouts/results/l8_groupoid_gluing_mps_peps2d_peps3d_depth_probe_results.json"
+    ]
+  },
+  "move_to_archive": [],
+  "move_to_quarantine": [],
+  "parallel_audit": {
+    "codex_cleanup_explorers_completed": 2,
+    "edits_by_explorers": 0,
+    "moves_by_explorers": 0,
+    "staging_by_explorers": 0
+  },
+  "policy": {
+    "skill": "safe-run-maintenance",
+    "rule": "move-only, fail-closed, no broad cleanup, no active evidence moves inside the recent safety window",
+    "safety_window_hours": 72
+  },
+  "schema": "layer_depth_parallel_cleanup_audit_v1"
+}

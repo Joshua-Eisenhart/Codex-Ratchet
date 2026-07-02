@@ -1,0 +1,196 @@
+{
+  "N01_witness": {
+    "order_sensitive_control": "[eta-transport, torus-cycle transport] != 0 on the nested chiral frame (nonzero mixed winding); == 0 (commuting) for glued/product and eta-decoupled sections.",
+    "sign_structure": "g^L = -g^R measured (opposite-sign mixed cocycle); controls collapse to ~0."
+  },
+  "Q1_reproduces_opposite_sign_cocycle": {
+    "band_A_eta_pi8_3pi8": {
+      "antisymmetry_abs_wL_plus_wR": 0.0,
+      "decoupled_collapses": true,
+      "glued_collapses": true,
+      "opposite_sign": true,
+      "w_L_decoupled": 2.59819696855201e-17,
+      "w_L_glued": -1.0784148773917227e-17,
+      "w_L_nested": 0.08753655580864897,
+      "w_R_decoupled": -2.598196968552009e-17,
+      "w_R_glued": 1.894228315375362e-17,
+      "w_R_nested": -0.08753655580864897,
+      "winding_ladder_L": [
+        0.08753655580864897,
+        0.10087899705432304,
+        0.1091625389908827,
+        0.11197079129763748,
+        0.10916253899088273,
+        0.10087899705432316,
+        0.08753655580864907
+      ],
+      "winding_ladder_R": [
+        -0.08753655580864897,
+        -0.10087899705432304,
+        -0.10916253899088268,
+        -0.1119707912976375,
+        -0.10916253899088268,
+        -0.10087899705432316,
+        -0.08753655580864908
+      ]
+    },
+    "band_B_eta_0p05_1p5": {
+      "antisymmetry_abs_wL_plus_wR": 0.0,
+      "decoupled_collapses": true,
+      "glued_collapses": true,
+      "opposite_sign": true,
+      "w_L_decoupled": 2.59819696855201e-17,
+      "w_L_glued": -3.0302092644866737e-17,
+      "w_L_nested": 0.062174193967165524,
+      "w_R_decoupled": -2.598196968552009e-17,
+      "w_R_glued": 1.269705574052142e-18,
+      "w_R_nested": -0.062174193967165524,
+      "winding_ladder_L": [
+        0.062174193967165524,
+        0.1358279314106214,
+        0.1865088695993102,
+        0.20563144042664586,
+        0.18995300272513843,
+        0.1421323136990363,
+        0.07027142532459496
+      ],
+      "winding_ladder_R": [
+        -0.062174193967165524,
+        -0.1358279314106214,
+        -0.1865088695993102,
+        -0.2056314404266459,
+        -0.18995300272513843,
+        -0.1421323136990363,
+        -0.07027142532459497
+      ]
+    },
+    "reproduces_opposite_sign_with_collapsing_controls": true
+  },
+  "Q2_magnitude_and_band_dependence": {
+    "integrated_abs_w_band_A": 0.707126975005347,
+    "integrated_abs_w_band_B": 0.9924991771525127,
+    "integrated_signed_L_band_A": 0.707126975005347,
+    "integrated_signed_L_band_B": 0.9924991771525127,
+    "integrated_signed_R_band_A": -0.707126975005347,
+    "integrated_signed_R_band_B": -0.9924991771525129,
+    "min_rung_abs_w_band_A": 0.08753655580864897,
+    "min_rung_abs_w_band_B": 0.062174193967165524,
+    "min_rung_sub_half_both_bands": true,
+    "w_varies_with_eta_band": true
+  },
+  "Z3_sign_opposition_gate": {
+    "load_bearing": true,
+    "status": "load_bearing_pass",
+    "tool_role": "load_bearing: structural opposite-sign gate; verdict flips genuine(SAT) vs glued-control(UNSAT)"
+  },
+  "all_checks": {
+    "B_pattern_reproduced": true,
+    "C_single_base_not_reproduce_A": true,
+    "Q1_decoupled_collapses_both_bands": true,
+    "Q1_glued_collapses_both_bands": true,
+    "Q1_opposite_sign_both_bands": true,
+    "Z3_load_bearing": true,
+    "anti_tautology_erased_chirality_same_sign": true,
+    "anti_tautology_grid_stable": true,
+    "gamma5_genuine": true
+  },
+  "anti_tautology_controls": {
+    "erased_chirality": {
+      "role": "R partner = plain copy of L (NO i sigma_y conj charge conjugation). Gives SAME sign, not opposite -> the opposite-sign signature genuinely requires the gamma5 charge-conjugation flip; it is not hand-set.",
+      "same_sign_not_opposite": true,
+      "sum_w_L": 0.707126975005347,
+      "sum_w_R": 0.707126975005347
+    },
+    "glued_through_same_Q1_logic": {
+      "glued_min_abs_w_band_A": 1.0784148773917227e-17,
+      "note": "the glued tensor-product section run through the SAME mixed-winding + opposite-sign test gives ~0 (opp-sign-nonzero=false) -> the Q1 test is non-vacuous; it discriminates nested from glued."
+    },
+    "grid_robustness": {
+      "min_abs_w_by_nt": {
+        "nt_120_min_abs_w": 0.08753416314767666,
+        "nt_240_min_abs_w": 0.08753655580864897,
+        "nt_480_min_abs_w": 0.08753715325198172
+      },
+      "role": "mixed winding stable under torus refinement -> not a discretization artifact.",
+      "stable_across_nt_120_240_480": true
+    }
+  },
+  "bar_ruling_advice": "ADVISORY (controller decides). The mixed eta<->torus cocycle SHOULD test PRESENCE (opposite-sign + collapsing controls), reading (a), NOT a full-monopole magnitude >=0.5, reading (b). Geometric reason: the mixed Wilson winding integrates the mixed eta<->torus Berry curvature over a FINITE eta-band [eta_min,eta_max] x [0,2pi] RECTANGLE on the foliation, not over a closed surface enclosing a monopole. A genuine nested chiral band over a PARTIAL latitude range subtends a PARTIAL solid angle, so its integrated mixed curvature is a fraction of 2pi by construction; it reaches |w|=1 (a full monopole) only if the band sweeps the entire degeneracy-enclosing sphere. Demanding |w|>=0.5 is therefore a STRONGER, DIFFERENT claim (full-sphere monopole charge), not the test of 'is the chirality frame nested-not-glued'. The nested-not-glued discriminator is exactly that the nested section gives nonzero opposite-sign winding while the glued/product section (same chiral support) gives ~0 -- which is reading (a).",
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/rho_AB/Xi/Phi0/Axis0",
+    "flux/FEP",
+    "physics/gravity",
+    "final_manifold_admission",
+    "declaring weyl_on_nested_hopf_tori_V2 passes"
+  ],
+  "claim_ceiling": "Computes finite invariants and a finite map for an INDEPENDENTLY-authored nested gamma5-chiral section on nested Hopf tori, to test whether v2's mixed nesting-chirality cocycle is construction-independent. Does NOT assert layer-completion, manifold admission, coupling, bridge (rho_AB/Xi/Phi0/Axis0), flux, FEP, or physics. Does NOT declare v2 passes. A signature that reproduces is a CANDIDATE-supporting receipt, not a proven layer. promotion_allowed=false.",
+  "classification": "cocycle_reauthor_poc",
+  "codomain_or_output": "signed mixed eta<->torus Wilson-plaquette winding (w_L, w_R) per band; integrated band winding; holonomy-law R^2 + slope; single-base deflation verdict; each with a glued/decoupled/wrong-structure control that changes the output.",
+  "domain": "finite shell set {eta_1<...<eta_8} on two bands ([pi/8,3pi/8] and [0.05,1.5]); finite torus grid (240 t-steps) for the mixed plaquette; 4-component chiral spinor section per (eta,t).",
+  "finite_map": "(nested-tori shell ladder {eta_k}, INDEPENDENT gamma5-chiral Hopf-spinor section over diagonal torus cycle a=b=t) |-> (Q1) signed mixed winding w_L, w_R with glued + decoupled controls; (Q2) |w| magnitude across two eta-bands; (B) gamma5-odd coherence law R^2; (C) single-base reproduction verdict.",
+  "finite_map_F01_witness": {
+    "finite_carrier": "4-component chiral spinor sections on a finite (eta x t) lattice; 8-shell ladder; 240-step torus.",
+    "finite_operator": "Weyl gammas; gamma5; SU(2) charge conjugation i sigma_y conj; FHS link overlaps.",
+    "finite_path": "closed Wilson loops on (eta-step x torus-cycle) rectangles, closed in t.",
+    "finite_probe": "FHS Wilson plaquette Berry phase; least-squares R^2 of the coherence law."
+  },
+  "gamma5_genuine_measured": {
+    "gamma5_anticomm_residual": 0.0,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_sq_residual": 0.0,
+    "is_genuine": true
+  },
+  "honest_verdict": "CONSTRUCTION-INDEPENDENT: an INDEPENDENTLY-authored genuinely-nested gamma5-chiral section (Hopf eigen-spinor over the diagonal torus cycle a=b=t, charge-conjugate R-partner; NOT v2's [cos(eta/2);sin(eta/2)cis(chi m t)]) reproduced the OPPOSITE-SIGN mixed cocycle (w_L=-w_R) on BOTH eta-bands, with BOTH the glued/product and eta-decoupled controls collapsing to ~0. So the nested-not-glued SIGNATURE is construction-independent and real. |w|<0.5 holds for this nested band too: it is a partial-solid-angle property of a finite latitude band, NOT a defect of v2's specific section. The 0.5 monopole bar tests a STRONGER/DIFFERENT claim (full-sphere monopole), which this mixed cocycle should not be asked to clear. ANTI-SMUGGLING: this does NOT declare v2 'passes'; it reports the signature is real and advises reading (a) for the bar. promotion_allowed=false.",
+  "independence_note": "Author did NOT author v2 and did NOT read or reuse v2's cocycle construction. The spinor section here (Hopf eigen-spinor over the diagonal torus cycle a=b=t lifted into gamma5 chiral sectors with genuine charge conjugation) is a DIFFERENT but legitimate genuinely-nested construction. Reused only the genuine geometry primitives (gamma5 split, S^3 foliation, FHS Wilson link/plaquette) as named in the task.",
+  "object_id": "cocycle_independent_reauthor",
+  "promotion_allowed": false,
+  "root_constraints_in_force": [
+    "F01 finite carrier/probes/operators/paths: finite shell ladder {eta_1<...<eta_8}; finite torus grid (240 t-steps); 4-component chiral spinor sections; FHS Wilson plaquettes.",
+    "N01 noncommuting/order-sensitive control: the eta-leg and the torus-cycle leg of the Wilson rectangle do NOT commute on the genuinely-nested chiral frame -> nonzero mixed curvature; they DO commute (zero curvature) for the glued/product and eta-decoupled sections."
+  ],
+  "seed": 20260602,
+  "spot_check_B_holonomy_law": {
+    "control": "dim/spectrum-MATCHED permutation control: same multiset of measured s-values, eta-assignment scrambled (destroys cos(2eta) ordering); mean R^2 over 500 shuffles.",
+    "note": "INDEPENDENT observable; NOT v2's GKSL-Choi observable. Reproduction of the PATTERN (cos(2eta) law R^2->1, scrambled control low) is what is tested, not v2's exact number. An earlier Im P[1,2]-at-t=0 observable was REJECTED as degenerate (real embedded point -> Im=0 identically).",
+    "observable": "s(eta) = <sigma_z>_L - <sigma_z>_R of the chiral spinor at torus angle t=pi/2 (scalar coherence of the rank-1 chiral projector, NOT a Bloch 3-vector). gamma5-ODD functional connection across the shell ladder.",
+    "pattern_reproduced_R2ge0p9_control_le0p5": true,
+    "r2_genuine_gamma5_odd": 1.0,
+    "r2_wrong_structure_control_max_over_500_shuffles": 0.8437245150714474,
+    "r2_wrong_structure_control_mean_over_500_shuffles": 0.14049626380560828,
+    "slope_gamma5_odd": -1.9999999999999998
+  },
+  "spot_check_C_grok_deflation": {
+    "reading": "frozen-eta single-base ladder makes the eta-leg trivial -> the mixed cocycle (A) cannot form; the per-shell chirality coherence law (B) still tracks cos(2eta) when eta varies. Independent reproduction of v2's 'single base reproduces B not A' pattern.",
+    "single_base_reproduces_A_mixed_cocycle": false,
+    "single_base_reproduces_B_holonomy_pattern": true,
+    "single_base_w_L": 5.807570706163652e-17,
+    "single_base_w_R": -5.807570706163652e-17
+  },
+  "status": "passes local rerun",
+  "status_ladder": "exists < runs < passes local rerun < canonical by process",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission only.",
+    "LinearAlgebra": "load_bearing: eigen/overlap/Wilson-plaquette phases of the chiral sections; the entire mixed winding.",
+    "Random": "load_bearing: the dim/spectrum-matched wrong-structure transport control for the law fit.",
+    "Statistics": "load_bearing: least-squares R^2 of the gamma5-odd coherence law.",
+    "Z3": "load_bearing: structural opposite-sign gate (genuine SAT vs glued-control UNSAT)."
+  },
+  "verdict": "cocycle_genuine_signature"
+}

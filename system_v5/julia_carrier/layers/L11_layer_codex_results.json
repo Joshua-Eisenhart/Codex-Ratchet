@@ -1,0 +1,1180 @@
+{
+  "F01_witness": {
+    "finite_carrier": "single-cell H=C^2 density state at each finite site",
+    "finite_operator_set": [
+      "Ti",
+      "Te",
+      "Fi",
+      "Fe"
+    ],
+    "finite_path_set": [
+      "adjacent pair orders Phi_a Phi_b vs Phi_b Phi_a",
+      "full sequence vs reverse sequence"
+    ],
+    "finite_probe_set": [
+      "I",
+      "X",
+      "Y",
+      "Z"
+    ]
+  },
+  "N01_witness": {
+    "gap_formula": "||Phi_a Phi_b rho - Phi_b Phi_a rho||_1",
+    "measured_max_adjacent_pair_gap": 0.373849864104,
+    "measured_max_sequence_gap": 0.218199382496
+  },
+  "blocked_consumers": [
+    "full layer completion",
+    "parent-complete L11 status",
+    "stacking readiness",
+    "Axis0",
+    "flux",
+    "FEP",
+    "physics/gravity",
+    "final manifold admission"
+  ],
+  "carrier_realization": "Julia-native ComplexF64 spinor psi in C^2 and spinor-derived density rho=psi psi^dagger; no NumPy",
+  "classification": "L11_layer_codex_poc",
+  "codomain_or_output": [
+    "4x4 Pauli transfer matrices",
+    "fixed algebra basis labels over {I,X,Y,Z}",
+    "trace-norm substage order gaps",
+    "von Neumann entropy and purity readouts",
+    "PEPS3D K=(V,E,F,C) finite local-cell anchors"
+  ],
+  "dependency_forcing_ablation": {
+    "adjacent_pair_collapse_delta": 0.373849864104,
+    "collapsed": true,
+    "erased_max_adjacent_pair_gap": 0.0,
+    "erased_max_sequence_gap": 0.0,
+    "interpretation": "order signature collapses under commuting erasure; not just surviving hand-written channels",
+    "present_max_adjacent_pair_gap": 0.373849864104,
+    "present_max_sequence_gap": 0.218199382496,
+    "removed_geometry": "basis distinction/order-sensitive substage geometry erased by replacing Te, Fi, Fe with same-basis z-dephasing channels",
+    "sequence_collapse_delta": 0.218199382496
+  },
+  "domain": {
+    "density_space": "D(C^2)={rho>=0, Tr rho=1}",
+    "hilbert_carrier": "H=C^2",
+    "operator_substages": [
+      "Ti z-basis pinch",
+      "Te x-basis pinch",
+      "Fi x-rotation",
+      "Fe z-rotation"
+    ],
+    "stress_site_counts": [
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "finite_map": "D(C^2) x finite PEPS3D local cell K_N x {Ti,Te,Fi,Fe} -> Pauli-transfer matrices, fixed Pauli algebras, order-gap scalars, derived entropy readouts",
+  "fixed_algebras": {
+    "Fe": {
+      "defects": {
+        "I": 0.0,
+        "X": 0.465685971025,
+        "Y": 0.465685971025,
+        "Z": 0.0
+      },
+      "fixed_basis": [
+        "I",
+        "Z"
+      ]
+    },
+    "Fi": {
+      "defects": {
+        "I": 0.0,
+        "X": 0.0,
+        "Y": 0.806379860771,
+        "Z": 0.806379860771
+      },
+      "fixed_basis": [
+        "I",
+        "X"
+      ]
+    },
+    "Te": {
+      "defects": {
+        "I": 0.0,
+        "X": 0.0,
+        "Y": 0.61,
+        "Z": 0.61
+      },
+      "fixed_basis": [
+        "I",
+        "X"
+      ]
+    },
+    "Ti": {
+      "defects": {
+        "I": 0.0,
+        "X": 0.73,
+        "Y": 0.73,
+        "Z": 0.0
+      },
+      "fixed_basis": [
+        "I",
+        "Z"
+      ]
+    }
+  },
+  "fresh_rerun": true,
+  "name": "L11 operator-substage local cell layer: Ti/Te/Fi/Fe finite QIT channel-order collapse test",
+  "negative_controls": {
+    "Ti_with_same_Ti_gap": 0.0,
+    "identity_with_Ti_gap": 0.0,
+    "maximally_mixed_Te_Fi_gap": 0.0,
+    "same_basis_z_pinches_gap": 0.0
+  },
+  "pair_order_gaps_after_commuting_erasure_on_example_state": {
+    "Fi_erased_Fe_erased": 0.0,
+    "Te_erased_Fe_erased": 0.0,
+    "Te_erased_Fi_erased": 0.0,
+    "Ti_erased_Fe_erased": 0.0,
+    "Ti_erased_Fi_erased": 0.0,
+    "Ti_erased_Te_erased": 0.0
+  },
+  "pair_order_gaps_on_example_state": {
+    "Fi_Fe": 0.356680732899,
+    "Te_Fe": 0.262739476239,
+    "Te_Fi": 0.0,
+    "Ti_Fe": 0.0,
+    "Ti_Fi": 0.274463133309,
+    "Ti_Te": 0.0
+  },
+  "pauli_transfer_matrices": {
+    "Fe": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.891568288195,
+        -0.452886285379,
+        0.0
+      ],
+      [
+        0.0,
+        0.452886285379,
+        0.891568288195,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Fi": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.674875760071,
+        -0.73793137111
+      ],
+      [
+        0.0,
+        0.0,
+        0.73793137111,
+        0.674875760071
+      ]
+    ],
+    "Te": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.39,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.39
+      ]
+    ],
+    "Ti": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.27,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.27,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "peps3d_embedding": {
+    "honest_boundary": "finite K=(V,E,F,C) local-cell anchor only; no PEPS tensor contraction or full manifold admission claimed",
+    "stress_K_anchors": [
+      {
+        "C_count": 3,
+        "C_sample": [
+          [
+            1,
+            2,
+            5,
+            6
+          ],
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          [
+            3,
+            4,
+            7,
+            8
+          ]
+        ],
+        "E_count": 11,
+        "E_sample": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "F_count": 3,
+        "F_sample": [
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            2,
+            3,
+            7,
+            6
+          ],
+          [
+            3,
+            4,
+            8,
+            7
+          ]
+        ],
+        "V_count": 8,
+        "V_sample": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "anchor_level": "finite PEPS3D K=(V,E,F,C) combinatorial local-cell anchor; no tensor-network contraction claimed",
+        "site_count": 8
+      },
+      {
+        "C_count": 9,
+        "C_sample": [
+          [
+            1,
+            2,
+            5,
+            6
+          ],
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          [
+            3,
+            4,
+            7,
+            8
+          ],
+          [
+            5,
+            6,
+            9,
+            10
+          ]
+        ],
+        "E_count": 27,
+        "E_sample": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "F_count": 9,
+        "F_sample": [
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            2,
+            3,
+            7,
+            6
+          ],
+          [
+            3,
+            4,
+            8,
+            7
+          ],
+          [
+            5,
+            6,
+            10,
+            9
+          ]
+        ],
+        "V_count": 16,
+        "V_sample": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "anchor_level": "finite PEPS3D K=(V,E,F,C) combinatorial local-cell anchor; no tensor-network contraction claimed",
+        "site_count": 16
+      },
+      {
+        "C_count": 21,
+        "C_sample": [
+          [
+            1,
+            2,
+            5,
+            6
+          ],
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          [
+            3,
+            4,
+            7,
+            8
+          ],
+          [
+            5,
+            6,
+            9,
+            10
+          ]
+        ],
+        "E_count": 59,
+        "E_sample": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "F_count": 21,
+        "F_sample": [
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            2,
+            3,
+            7,
+            6
+          ],
+          [
+            3,
+            4,
+            8,
+            7
+          ],
+          [
+            5,
+            6,
+            10,
+            9
+          ]
+        ],
+        "V_count": 32,
+        "V_sample": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "anchor_level": "finite PEPS3D K=(V,E,F,C) combinatorial local-cell anchor; no tensor-network contraction claimed",
+        "site_count": 32
+      },
+      {
+        "C_count": 45,
+        "C_sample": [
+          [
+            1,
+            2,
+            5,
+            6
+          ],
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          [
+            3,
+            4,
+            7,
+            8
+          ],
+          [
+            5,
+            6,
+            9,
+            10
+          ]
+        ],
+        "E_count": 123,
+        "E_sample": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "F_count": 45,
+        "F_sample": [
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            2,
+            3,
+            7,
+            6
+          ],
+          [
+            3,
+            4,
+            8,
+            7
+          ],
+          [
+            5,
+            6,
+            10,
+            9
+          ]
+        ],
+        "V_count": 64,
+        "V_sample": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "anchor_level": "finite PEPS3D K=(V,E,F,C) combinatorial local-cell anchor; no tensor-network contraction claimed",
+        "site_count": 64
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "Julia POC only; repo nonclassical manifold doctrine still requires stronger carrier admission before downstream claims",
+    "PEPS3D anchor is finite K combinatorial cell support, not a contracted PEPS3D tensor-network proof",
+    "no dedicated full-layer evidence packet or layer-completion claim gate run",
+    "no Z3 proof because it would be decorative for this numeric channel-order collapse"
+  ],
+  "qit_readouts_derived_not_primary": {
+    "example_entropy_after_Ti_Te_Fi_Fe": 0.948663260735,
+    "example_entropy_after_erased_sequence": 0.928913741735,
+    "example_entropy_before": 0.0,
+    "example_purity_after_Ti_Te_Fi_Fe": 0.535159798254,
+    "example_purity_after_erased_sequence": 0.548458476579,
+    "example_purity_before": 1.0
+  },
+  "sim_class": "operator_substage_local_cell_probe",
+  "sim_execution_kind": "nonclassical_poc_julia_finite_qit",
+  "sim_id": "L11_layer_codex",
+  "spinor_state": {
+    "example_density_purity": 1.0,
+    "example_density_trace": 1.0,
+    "example_phi_chi_eta": [
+      0.31,
+      0.22,
+      0.628318530718
+    ]
+  },
+  "stress_results": [
+    {
+      "K": {
+        "C_count": 3,
+        "C_sample": [
+          [
+            1,
+            2,
+            5,
+            6
+          ],
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          [
+            3,
+            4,
+            7,
+            8
+          ]
+        ],
+        "E_count": 11,
+        "E_sample": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "F_count": 3,
+        "F_sample": [
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            2,
+            3,
+            7,
+            6
+          ],
+          [
+            3,
+            4,
+            8,
+            7
+          ]
+        ],
+        "V_count": 8,
+        "V_sample": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "anchor_level": "finite PEPS3D K=(V,E,F,C) combinatorial local-cell anchor; no tensor-network contraction claimed",
+        "site_count": 8
+      },
+      "N": 8,
+      "max_adjacent_pair_order_gap": 0.373735401792,
+      "max_adjacent_pair_order_gap_erased": 0.0,
+      "max_sequence_order_gap_erased": 0.0,
+      "max_sequence_order_gap_forward_vs_reverse": 0.198199793819,
+      "mean_entropy_after": 0.955660641165,
+      "mean_entropy_after_erased": 0.847721200152,
+      "mean_entropy_before": -0.0,
+      "mean_entropy_delta": 0.955660641165,
+      "mean_entropy_delta_erased": 0.847721200152,
+      "pair_gap_collapse_delta": 0.373735401792,
+      "sequence_gap_collapse_delta": 0.198199793819
+    },
+    {
+      "K": {
+        "C_count": 9,
+        "C_sample": [
+          [
+            1,
+            2,
+            5,
+            6
+          ],
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          [
+            3,
+            4,
+            7,
+            8
+          ],
+          [
+            5,
+            6,
+            9,
+            10
+          ]
+        ],
+        "E_count": 27,
+        "E_sample": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "F_count": 9,
+        "F_sample": [
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            2,
+            3,
+            7,
+            6
+          ],
+          [
+            3,
+            4,
+            8,
+            7
+          ],
+          [
+            5,
+            6,
+            10,
+            9
+          ]
+        ],
+        "V_count": 16,
+        "V_sample": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "anchor_level": "finite PEPS3D K=(V,E,F,C) combinatorial local-cell anchor; no tensor-network contraction claimed",
+        "site_count": 16
+      },
+      "N": 16,
+      "max_adjacent_pair_order_gap": 0.373135494496,
+      "max_adjacent_pair_order_gap_erased": 0.0,
+      "max_sequence_order_gap_erased": 0.0,
+      "max_sequence_order_gap_forward_vs_reverse": 0.205073053595,
+      "mean_entropy_after": 0.956236355344,
+      "mean_entropy_after_erased": 0.860024695655,
+      "mean_entropy_before": -0.0,
+      "mean_entropy_delta": 0.956236355344,
+      "mean_entropy_delta_erased": 0.860024695655,
+      "pair_gap_collapse_delta": 0.373135494496,
+      "sequence_gap_collapse_delta": 0.205073053595
+    },
+    {
+      "K": {
+        "C_count": 21,
+        "C_sample": [
+          [
+            1,
+            2,
+            5,
+            6
+          ],
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          [
+            3,
+            4,
+            7,
+            8
+          ],
+          [
+            5,
+            6,
+            9,
+            10
+          ]
+        ],
+        "E_count": 59,
+        "E_sample": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "F_count": 21,
+        "F_sample": [
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            2,
+            3,
+            7,
+            6
+          ],
+          [
+            3,
+            4,
+            8,
+            7
+          ],
+          [
+            5,
+            6,
+            10,
+            9
+          ]
+        ],
+        "V_count": 32,
+        "V_sample": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "anchor_level": "finite PEPS3D K=(V,E,F,C) combinatorial local-cell anchor; no tensor-network contraction claimed",
+        "site_count": 32
+      },
+      "N": 32,
+      "max_adjacent_pair_order_gap": 0.373840250765,
+      "max_adjacent_pair_order_gap_erased": 0.0,
+      "max_sequence_order_gap_erased": 0.0,
+      "max_sequence_order_gap_forward_vs_reverse": 0.208186154509,
+      "mean_entropy_after": 0.957548123287,
+      "mean_entropy_after_erased": 0.865610262868,
+      "mean_entropy_before": -0.0,
+      "mean_entropy_delta": 0.957548123287,
+      "mean_entropy_delta_erased": 0.865610262868,
+      "pair_gap_collapse_delta": 0.373840250765,
+      "sequence_gap_collapse_delta": 0.208186154509
+    },
+    {
+      "K": {
+        "C_count": 45,
+        "C_sample": [
+          [
+            1,
+            2,
+            5,
+            6
+          ],
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          [
+            3,
+            4,
+            7,
+            8
+          ],
+          [
+            5,
+            6,
+            9,
+            10
+          ]
+        ],
+        "E_count": 123,
+        "E_sample": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "F_count": 45,
+        "F_sample": [
+          [
+            1,
+            2,
+            6,
+            5
+          ],
+          [
+            2,
+            3,
+            7,
+            6
+          ],
+          [
+            3,
+            4,
+            8,
+            7
+          ],
+          [
+            5,
+            6,
+            10,
+            9
+          ]
+        ],
+        "V_count": 64,
+        "V_sample": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "anchor_level": "finite PEPS3D K=(V,E,F,C) combinatorial local-cell anchor; no tensor-network contraction claimed",
+        "site_count": 64
+      },
+      "N": 64,
+      "max_adjacent_pair_order_gap": 0.373849864104,
+      "max_adjacent_pair_order_gap_erased": 0.0,
+      "max_sequence_order_gap_erased": 0.0,
+      "max_sequence_order_gap_forward_vs_reverse": 0.218199382496,
+      "mean_entropy_after": 0.957897390686,
+      "mean_entropy_after_erased": 0.8682775061,
+      "mean_entropy_before": -0.0,
+      "mean_entropy_delta": 0.957897390686,
+      "mean_entropy_delta_erased": 0.8682775061,
+      "pair_gap_collapse_delta": 0.373849864104,
+      "sequence_gap_collapse_delta": 0.218199382496
+    }
+  ],
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "writes the required result artifact",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "matrix channels, SVD trace norm, Pauli transfer matrices, fixed-algebra defects, eigenspectrum entropy",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "z3 omitted, not decorative; no load-bearing SMT claim is made",
+      "role": "omitted"
+    }
+  },
+  "verdict": {
+    "all_pass": true,
+    "collapse_ok": true,
+    "fixed_algebras_ok": true,
+    "honest_status": "passes local L11_layer_codex_poc checks; promotion still blocked",
+    "negative_controls_ok": true,
+    "ptm_ok": true,
+    "stress_8_16_32_64_ok": true
+  },
+  "version": "1.0"
+}

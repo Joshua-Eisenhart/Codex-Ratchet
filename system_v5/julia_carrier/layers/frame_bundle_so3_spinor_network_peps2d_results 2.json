@@ -1,0 +1,277 @@
+{
+  "all_pass": true,
+  "carrier": "InfinitePEPS physical ComplexSpace(2) spinor carrier, virtual ComplexSpace(2), CTMRG environment chi ladder 8/16/32/64",
+  "claim_ceiling": "POC evidence only: SO(3) pi0 reduction + PEPS2D CTMRG contraction runs. Not canonical, not full layer completion, not bridge/axis/physics evidence.",
+  "classification": "frame_bundle_so3_spinor_network_peps2d_poc",
+  "downstream_blocks": [
+    "full_layer_completion",
+    "G_structure_selection",
+    "Axis0",
+    "FEP",
+    "flux",
+    "bridge",
+    "physics"
+  ],
+  "engine": "PEPSKit v0.7-style InfinitePEPS / CTMRGEnv / leading_boundary / expectation_value; contraction-only",
+  "frame_element": {
+    "angle": 0.9,
+    "axis": [
+      0.3,
+      1.0,
+      -0.4
+    ],
+    "pass": true,
+    "so3_det": 0.9999999999999998,
+    "so3_orthonormality_err": 2.4902799884605145e-16,
+    "su2_det_imag": 2.7755575615628914e-17,
+    "su2_det_real": 1.0,
+    "su2_unitarity_err": 0.0
+  },
+  "geometry_invariant_anchor": {
+    "known_invariant": "pi0(O3)=Z/2 via det components; pi0(SO3)=0 connected det=+1 component",
+    "matches_known_invariant": true,
+    "o3_component_count": 2,
+    "o3_det_components_observed": [
+      -1,
+      1
+    ],
+    "pass": true,
+    "so3_all_det_plus1": true,
+    "so3_lie_algebra_dimension_rank_check": 3,
+    "so3_path_max_det_deviation": 6.661338147750939e-16
+  },
+  "honest_status": "runs if this file exits 0; promotion_allowed=false; no completion claim",
+  "item": "frame_bundle_so3_spinor_network_peps2d",
+  "peps2d_ctmrg_ladder": {
+    "all_rungs_converged_by_threshold_1e_minus_2": true,
+    "contraction_api": "leading_boundary(CTMRGEnv(randn, ComplexF64, peps, ComplexSpace(chi)), peps; tol,miniter,maxiter,trunc,verbosity)",
+    "entropies_vary_across_8_16_32_64": true,
+    "environment_schmidt_entropies": [
+      0.6269699124527373,
+      0.6622517881629124,
+      0.7798463240466365,
+      1.1460956974435301
+    ],
+    "evidence": "InfinitePEPS object was contracted by CTMRG leading_boundary for chi 8/16/32/64; observables were measured by expectation_value against the CTMRG env; entropy came from tsvd(env.corners[1,1,1]).",
+    "fixedpoint_used": false,
+    "ladder_chi": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "mps_used": false,
+    "peps2d_genuinely_engaged": true,
+    "peps_type": "InfinitePEPS{TensorMap{ComplexF64, ComplexSpace, 1, 4, Vector{ComplexF64}}}",
+    "rungs": [
+      {
+        "bond_dim_D": 2,
+        "chi": 8,
+        "contracted_energy_density": 0.06885847009659747,
+        "contracted_observable": "heisenberg_XYZ(InfiniteSquare(); Jx=-1, Jy=1, Jz=-1) plus single-site SU2-rotated frame spin operator",
+        "ctmrg_converged": true,
+        "ctmrg_info": {
+          "summary": "PEPSKit CTMRG info trimmed intentionally; full environment tensors stay out of the JSON artifact.",
+          "truncation_error": 0.0018604994308055382
+        },
+        "ctmrg_truncation_error": 0.0018604994308055382,
+        "environment_schmidt_entropy": 0.6269699124527373,
+        "environment_schmidt_spectrum_head": [
+          0.8420212718,
+          0.0791153256,
+          0.0451504469,
+          0.0253157113,
+          0.0051852597,
+          0.0018693652,
+          0.0010964039,
+          0.0002462154
+        ],
+        "frame_operator_expectation": 0.07041905040823992,
+        "spectrum_length": 8,
+        "unit_cell": "1x1 InfiniteSquare iPEPS"
+      },
+      {
+        "bond_dim_D": 2,
+        "chi": 16,
+        "contracted_energy_density": 0.06913405277692643,
+        "contracted_observable": "heisenberg_XYZ(InfiniteSquare(); Jx=-1, Jy=1, Jz=-1) plus single-site SU2-rotated frame spin operator",
+        "ctmrg_converged": true,
+        "ctmrg_info": {
+          "summary": "PEPSKit CTMRG info trimmed intentionally; full environment tensors stay out of the JSON artifact.",
+          "truncation_error": 0.00039094084592764824
+        },
+        "ctmrg_truncation_error": 0.00039094084592764824,
+        "environment_schmidt_entropy": 0.6622517881629124,
+        "environment_schmidt_spectrum_head": [
+          0.8380942725,
+          0.0781019311,
+          0.0452084366,
+          0.0250828328,
+          0.0054586727,
+          0.0021746888,
+          0.0019857242,
+          0.0011233366,
+          0.0009545582,
+          0.0006967009
+        ],
+        "frame_operator_expectation": 0.07564866340233142,
+        "spectrum_length": 16,
+        "unit_cell": "1x1 InfiniteSquare iPEPS"
+      },
+      {
+        "bond_dim_D": 2,
+        "chi": 32,
+        "contracted_energy_density": 0.07111454289514021,
+        "contracted_observable": "heisenberg_XYZ(InfiniteSquare(); Jx=-1, Jy=1, Jz=-1) plus single-site SU2-rotated frame spin operator",
+        "ctmrg_converged": true,
+        "ctmrg_info": {
+          "summary": "PEPSKit CTMRG info trimmed intentionally; full environment tensors stay out of the JSON artifact.",
+          "truncation_error": 6.699642128023911e-5
+        },
+        "ctmrg_truncation_error": 6.699642128023911e-5,
+        "environment_schmidt_entropy": 0.7798463240466365,
+        "environment_schmidt_spectrum_head": [
+          0.8161501752,
+          0.0777068213,
+          0.0466543662,
+          0.0248799603,
+          0.0168564057,
+          0.0060130346,
+          0.0021686482,
+          0.0019507851,
+          0.001597725,
+          0.0010812425
+        ],
+        "frame_operator_expectation": 0.07126511491051397,
+        "spectrum_length": 32,
+        "unit_cell": "1x1 InfiniteSquare iPEPS"
+      },
+      {
+        "bond_dim_D": 2,
+        "chi": 64,
+        "contracted_energy_density": 0.07042382914089174,
+        "contracted_observable": "heisenberg_XYZ(InfiniteSquare(); Jx=-1, Jy=1, Jz=-1) plus single-site SU2-rotated frame spin operator",
+        "ctmrg_converged": true,
+        "ctmrg_info": {
+          "summary": "PEPSKit CTMRG info trimmed intentionally; full environment tensors stay out of the JSON artifact.",
+          "truncation_error": 1.5271480332431947e-5
+        },
+        "ctmrg_truncation_error": 1.5271480332431947e-5,
+        "environment_schmidt_entropy": 1.1460956974435301,
+        "environment_schmidt_spectrum_head": [
+          0.7311690402,
+          0.0733448314,
+          0.0690110121,
+          0.0402616367,
+          0.0236709383,
+          0.0221923311,
+          0.0072956569,
+          0.0068986405,
+          0.0050740953,
+          0.0038334572
+        ],
+        "frame_operator_expectation": 0.07078565790072668,
+        "spectrum_length": 64,
+        "unit_cell": "1x1 InfiniteSquare iPEPS"
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "seed": 20260602,
+  "sim_execution_kind": "nonclassical_poc_julia_peps2d",
+  "timestamp_utc": "2026-06-02T23:11:46.184",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "PEPSKit": "load_bearing",
+    "Random": "supportive",
+    "TensorKit": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: result artifact emission",
+    "LinearAlgebra": "load_bearing: SO(3)/SU(2) maps, determinant, path determinant, rank/dimension check",
+    "PEPSKit": "load_bearing: InfinitePEPS, CTMRGEnv, leading_boundary, expectation_value, correlation_length probe",
+    "Random": "supportive: deterministic frame and PEPS/environment seeds",
+    "TensorKit": "load_bearing: ComplexSpace, TensorMap, CTMRG corner SVD via tsvd"
+  },
+  "wallclock_seconds": 201.99,
+  "wrong_structure_control_exact_structural": {
+    "admits_genuine": true,
+    "basis": "Exact integer cofactor expansion derives determinant from wired orthonormal frame entries; SO(3) reduction asserts det=+1. Genuine frame admitted, reflection excluded, same reflection admitted without reduction.",
+    "excludes_reflection": true,
+    "genuine_under_SO3_reduction": {
+      "admitted": true,
+      "det_derived_by_cofactor_expansion": 1,
+      "entries_bounded_to_minus1_0_plus1": true,
+      "orthonormal_exact": true,
+      "reduction_det_plus1_enforced": true
+    },
+    "junk_fails_orthonormality": true,
+    "junk_orthonormality_control": {
+      "admitted": false,
+      "det_derived_by_cofactor_expansion": 1,
+      "entries_bounded_to_minus1_0_plus1": true,
+      "orthonormal_exact": false,
+      "reduction_det_plus1_enforced": false
+    },
+    "measured_genuine_frame_wired": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "measured_reflected_frame_wired": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        -1
+      ]
+    ],
+    "pass": true,
+    "reflection_under_SO3_reduction": {
+      "admitted": false,
+      "det_derived_by_cofactor_expansion": -1,
+      "entries_bounded_to_minus1_0_plus1": true,
+      "orthonormal_exact": true,
+      "reduction_det_plus1_enforced": true
+    },
+    "reflection_valid_O3_without_reduction": true,
+    "reflection_without_reduction": {
+      "admitted": true,
+      "det_derived_by_cofactor_expansion": -1,
+      "entries_bounded_to_minus1_0_plus1": true,
+      "orthonormal_exact": true,
+      "reduction_det_plus1_enforced": false
+    },
+    "tool_role": "load_bearing"
+  },
+  "wrong_structure_control_numeric": {
+    "admitted_by_SO3_reduction": false,
+    "excluded_by_SO3_reduction": true,
+    "pass": true,
+    "reflected_frame_det": -0.9999999999999998,
+    "reflected_frame_orthonormality_err": 3.532708032038494e-16,
+    "would_flip_component_count_if_admitted": true
+  }
+}

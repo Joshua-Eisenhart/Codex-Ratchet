@@ -19,6 +19,8 @@ VALID_CLASSIFICATIONS = {
     "canonical",
     "classical_baseline",
     "tool_lego_fit_probe",
+    "formal_scout",
+    "diagnostic_only",
     "supporting",
     "audit",
     "controller_audit",
@@ -47,7 +49,16 @@ RUN_BOUNDARY_FIELDS = (
 TOOL_ALIASES = {
     key: value
     for key, value in two_root_constraints.TOOL_ALIASES.items()
-    if value in {"numpy", "pytorch", "torch_geometric", "auto_lirpa", "le_wm", "z3", "cvc5", "sympy", "clifford", "geomstats", "e3nn", "rustworkx", "networkx", "xgi", "toponetx", "gudhi", "quimb", "cotengra", "kahypar", "opt_einsum", "python_json", "python_pathlib", "python_re", "hashlib", "time", "engine_core", "scipy"}
+    if value in {"numpy", "pytorch", "jax", "julia", "pepskit", "tensorkit", "itensors", "quantumclifford", "torch_geometric", "auto_lirpa", "le_wm", "z3", "cvc5", "sympy", "clifford", "geomstats", "e3nn", "rustworkx", "networkx", "xgi", "toponetx", "gudhi", "quimb", "cotengra", "kahypar", "opt_einsum", "python_json", "python_pathlib", "python_re", "hashlib", "time", "engine_core", "scipy"}
+}
+
+PRIMARY_NONCLASSICAL_BACKENDS = {
+    "jax",
+    "julia",
+    "pepskit",
+    "tensorkit",
+    "itensors",
+    "quantumclifford",
 }
 
 TRANSITIVE_ROLE_VALUES = two_root_constraints.TRANSITIVE_ROLE_VALUES
@@ -403,13 +414,14 @@ def validate_result_payload(
             )
         )
     if execution_kind == "nonclassical":
-        if "pytorch" not in local_load_bearing_canonical:
+        if not (local_load_bearing_canonical & PRIMARY_NONCLASSICAL_BACKENDS):
             hard_findings.append(
                 _finding(
-                    "nonclassical_requires_local_load_bearing_pytorch",
+                    "nonclassical_requires_local_load_bearing_jax_or_julia_primary",
                     "hard",
                     load_bearing_tools=sorted(load_bearing_canonical),
                     local_load_bearing_tools=sorted(local_load_bearing_canonical),
+                    accepted_primary_backends=sorted(PRIMARY_NONCLASSICAL_BACKENDS),
                 )
             )
         classical_admin = sorted(
@@ -430,6 +442,7 @@ def validate_result_payload(
             for tool in local_load_bearing_canonical
             if not two_root_constraints.is_two_root_tool(tool)
             and not two_root_constraints.is_classical_or_admin_tool(tool)
+            and tool not in PRIMARY_NONCLASSICAL_BACKENDS
         )
         if missing_two_root:
             hard_findings.append(

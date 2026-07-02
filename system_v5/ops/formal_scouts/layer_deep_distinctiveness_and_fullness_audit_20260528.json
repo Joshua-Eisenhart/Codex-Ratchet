@@ -1,0 +1,2317 @@
+{
+  "blocked_consumers_remain_blocked": [
+    "stacking",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "classification": "deep_audit_not_promotion",
+  "core_source_stats": {
+    "system_v5/ops/formal_scouts/formal_layer_depth_common.py": {
+      "common_runner_import": null,
+      "function_defs": [
+        "as_jsonable",
+        "density_to_spinor",
+        "layer_order_gap",
+        "layer_gate",
+        "layer_spinors",
+        "mps_view",
+        "carrier_views",
+        "flat_sig",
+        "gap",
+        "row_task",
+        "extra_tool_witnesses",
+        "z3_gate",
+        "cvc5_gate",
+        "tool_ablations",
+        "run_depth"
+      ],
+      "has_autograd_terms": false,
+      "has_numpy_claim_terms": false,
+      "line_count": 445,
+      "nonempty_noncomment_lines": 404,
+      "path": "system_v5/ops/formal_scouts/formal_layer_depth_common.py",
+      "sha256_16": "f1b913bb120d1c89"
+    },
+    "system_v5/ops/formal_scouts/layer_bond4_individual_runner.py": {
+      "common_runner_import": null,
+      "function_defs": [
+        "_run_rows",
+        "_single_layer_summary",
+        "run_layer"
+      ],
+      "has_autograd_terms": false,
+      "has_numpy_claim_terms": false,
+      "line_count": 247,
+      "nonempty_noncomment_lines": 238,
+      "path": "system_v5/ops/formal_scouts/layer_bond4_individual_runner.py",
+      "sha256_16": "f9564b776bd2ee0e"
+    },
+    "system_v5/ops/formal_scouts/layer_full_spinor_network_individual_runner.py": {
+      "common_runner_import": null,
+      "function_defs": [
+        "as_jsonable",
+        "normalize_density",
+        "entropy_from_density",
+        "renyi2_from_density",
+        "density",
+        "product_density",
+        "bell_density",
+        "partial_trace_two_qubit",
+        "qit_readouts",
+        "two_site_density_from_spinors",
+        "layer_spinors",
+        "peps2d_arrays",
+        "peps2d_view",
+        "peps3d_view",
+        "mps_view",
+        "pyg_view",
+        "topology_view",
+        "entropy_package",
+        "layer_specific_receipt",
+        "row_task",
+        "geometry_tool_gate",
+        "z3_gate",
+        "quaternion_action_for",
+        "cvc5_gate",
+        "run_layer"
+      ],
+      "has_autograd_terms": false,
+      "has_numpy_claim_terms": false,
+      "line_count": 561,
+      "nonempty_noncomment_lines": 501,
+      "path": "system_v5/ops/formal_scouts/layer_full_spinor_network_individual_runner.py",
+      "sha256_16": "50635de8995196c7"
+    },
+    "system_v5/ops/formal_scouts/layer_l4_l5_l7_individual_runner.py": {
+      "common_runner_import": null,
+      "function_defs": [
+        "_shape_site_count",
+        "_site_spinors",
+        "_actual_peps3d_witness",
+        "_run_gate",
+        "_rows",
+        "_layer_controls",
+        "_summary",
+        "_z3_gate",
+        "run_individual_layer"
+      ],
+      "has_autograd_terms": false,
+      "has_numpy_claim_terms": false,
+      "line_count": 440,
+      "nonempty_noncomment_lines": 414,
+      "path": "system_v5/ops/formal_scouts/layer_l4_l5_l7_individual_runner.py",
+      "sha256_16": "864c9396c389b4f7"
+    }
+  },
+  "duplicate_numeric_signature_groups": [
+    {
+      "layers": [
+        "L0_response_quotient",
+        "L4_terrain_generator"
+      ],
+      "receipt_key": "full_spinor_network_result",
+      "signature": [
+        [
+          "min_entanglement_gap_vs_product_mps",
+          2.079441308975
+        ],
+        [
+          "min_mutual_information",
+          0.102052460503
+        ],
+        [
+          "min_log_negativity",
+          0.203080553426
+        ],
+        [
+          "min_pyg_message_gap",
+          2.915475845337
+        ]
+      ]
+    },
+    {
+      "layers": [
+        "L0_response_quotient",
+        "L1_boundary_environment"
+      ],
+      "receipt_key": "bond4_result",
+      "signature": [
+        [
+          "baseline_order_or_label",
+          0.500002119043
+        ],
+        [
+          "bond4_peps3d_erased",
+          0.710041475601
+        ],
+        [
+          "bond4_required_controls",
+          0.710041475601
+        ],
+        [
+          "bond4_scalar_entropy_primary",
+          0.710041475601
+        ]
+      ]
+    },
+    {
+      "layers": [
+        "L4_terrain_generator",
+        "L5_operator_substage",
+        "L7_hopf_shell"
+      ],
+      "receipt_key": "bond4_result",
+      "signature": []
+    },
+    {
+      "layers": [
+        "L0_response_quotient",
+        "L1_boundary_environment"
+      ],
+      "receipt_key": "mps_peps2d_peps3d_depth_result",
+      "signature": [
+        [
+          "label_only",
+          1.496220450267
+        ],
+        [
+          "layer_order",
+          0.25
+        ],
+        [
+          "order_reversed",
+          0.500002119043
+        ],
+        [
+          "peps2d_erased",
+          0.677295563045
+        ],
+        [
+          "peps3d_erased",
+          8.021736126425
+        ],
+        [
+          "phase_erased",
+          1.496131780623
+        ],
+        [
+          "scalar_entropy_primary",
+          8.182551203797
+        ]
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "evidence": {
+        "all_promotion_allowed_false": true,
+        "all_results_formal_scout": true,
+        "receipt_count": 27
+      },
+      "impact": "The green reruns prove bounded scout execution, not strong independent layer claim.",
+      "required_repair": "Keep stronger claim language blocked until a layer-specific lift artifact moves a layer beyond formal_scout with explicit consumer eligibility.",
+      "severity": "critical_claim_boundary",
+      "title": "Current layer receipts remain formal_scout rows with promotion_allowed=false."
+    },
+    {
+      "evidence": {
+        "bond4_wrappers": [
+          "L0_response_quotient",
+          "L1_boundary_environment",
+          "L2_weyl_spinor_chirality",
+          "L3_clifford_quaternion",
+          "L4_terrain_generator",
+          "L5_operator_substage",
+          "L6_entropy_cut_communication",
+          "L7_hopf_shell",
+          "L8_groupoid_gluing"
+        ],
+        "full_spinor_wrappers": [
+          "L0_response_quotient",
+          "L1_boundary_environment",
+          "L2_weyl_spinor_chirality",
+          "L3_clifford_quaternion",
+          "L4_terrain_generator",
+          "L5_operator_substage",
+          "L6_entropy_cut_communication",
+          "L7_hopf_shell",
+          "L8_groupoid_gluing"
+        ],
+        "mps_depth_wrappers": [
+          "L0_response_quotient",
+          "L1_boundary_environment",
+          "L2_weyl_spinor_chirality",
+          "L4_terrain_generator",
+          "L6_entropy_cut_communication"
+        ]
+      },
+      "impact": "Shared plumbing is allowed, but it increases label-drift risk: layer identity can become configuration text unless the common runner has layer-specific math and non-vacuous per-layer ablations.",
+      "required_repair": "Add or verify per-layer implementation sections for each layer, and make validators require layer-specific source hooks/witnesses instead of wrapper presence alone.",
+      "severity": "high",
+      "title": "Many per-layer files are wrappers over shared runners rather than layer-local implementations."
+    },
+    {
+      "evidence": {
+        "autograd_terms_found": false,
+        "next_packet": "tool_depth_pytorch_autograd_per_row_spinor_phase",
+        "searched_sources": [
+          "system_v5/ops/formal_scouts/layer_full_spinor_network_individual_runner.py",
+          "system_v5/ops/formal_scouts/formal_layer_depth_common.py",
+          "system_v5/ops/formal_scouts/layer_bond4_individual_runner.py",
+          "system_v5/ops/formal_scouts/layer_l4_l5_l7_individual_runner.py"
+        ]
+      },
+      "impact": "This misses the source-native runtime requirement for per-row spinor phase gradients and leaves the PyTorch tool-depth packet genuinely open.",
+      "required_repair": "Run tool_depth_pytorch_autograd_per_row_spinor_phase before calling any layer gradient-capable.",
+      "severity": "high",
+      "title": "PyTorch is used for tensors/spinors, but autograd/gradient maps are absent from the active layer runners."
+    },
+    {
+      "evidence": {
+        "count": 9,
+        "missing_tool_ablations": [
+          {
+            "has_ablation_outcome_delta": true,
+            "layer": "L0_response_quotient",
+            "receipt_key": "bond4_result",
+            "result_path": "system_v5/ops/formal_scouts/results/l0_response_quotient_peps3d_bond4_tool_ablation_layer_probe_results.json"
+          },
+          {
+            "has_ablation_outcome_delta": true,
+            "layer": "L1_boundary_environment",
+            "receipt_key": "bond4_result",
+            "result_path": "system_v5/ops/formal_scouts/results/l1_boundary_environment_peps3d_bond4_tool_ablation_layer_probe_results.json"
+          },
+          {
+            "has_ablation_outcome_delta": true,
+            "layer": "L2_weyl_spinor_chirality",
+            "receipt_key": "bond4_result",
+            "result_path": "system_v5/ops/formal_scouts/results/l2_weyl_spinor_peps3d_bond4_tool_ablation_layer_probe_results.json"
+          },
+          {
+            "has_ablation_outcome_delta": true,
+            "layer": "L3_clifford_quaternion",
+            "receipt_key": "bond4_result",
+            "result_path": "system_v5/ops/formal_scouts/results/l3_clifford_quaternion_peps3d_bond4_tool_ablation_layer_probe_results.json"
+          },
+          {
+            "has_ablation_outcome_delta": true,
+            "layer": "L4_terrain_generator",
+            "receipt_key": "bond4_result",
+            "result_path": "system_v5/ops/formal_scouts/results/l4_terrain_generator_peps3d_bond4_tool_ablation_layer_probe_results.json"
+          },
+          {
+            "has_ablation_outcome_delta": true,
+            "layer": "L5_operator_substage",
+            "receipt_key": "bond4_result",
+            "result_path": "system_v5/ops/formal_scouts/results/l5_operator_substage_peps3d_bond4_tool_ablation_layer_probe_results.json"
+          },
+          {
+            "has_ablation_outcome_delta": true,
+            "layer": "L6_entropy_cut_communication",
+            "receipt_key": "bond4_result",
+            "result_path": "system_v5/ops/formal_scouts/results/l6_entropy_cut_peps3d_bond4_tool_ablation_layer_probe_results.json"
+          },
+          {
+            "has_ablation_outcome_delta": true,
+            "layer": "L7_hopf_shell",
+            "receipt_key": "bond4_result",
+            "result_path": "system_v5/ops/formal_scouts/results/l7_hopf_shell_peps3d_bond4_tool_ablation_layer_probe_results.json"
+          },
+          {
+            "has_ablation_outcome_delta": true,
+            "layer": "L8_groupoid_gluing",
+            "receipt_key": "bond4_result",
+            "result_path": "system_v5/ops/formal_scouts/results/l8_groupoid_gluing_peps3d_bond4_tool_ablation_layer_probe_results.json"
+          }
+        ]
+      },
+      "impact": "Validators accepted these rows, but a stricter strong-claim standard should require explicit per-tool ablation fields and measured deltas for every load-bearing tool.",
+      "required_repair": "Tighten the validator or repair those receipts so tool_ablations and ablation_outcome_delta both exist and agree.",
+      "severity": "medium",
+      "title": "Some receipts rely on ablation_outcome_delta without a tool_ablations field."
+    },
+    {
+      "evidence": {
+        "duplicate_signature_groups": [
+          {
+            "layers": [
+              "L0_response_quotient",
+              "L4_terrain_generator"
+            ],
+            "receipt_key": "full_spinor_network_result",
+            "signature": [
+              [
+                "min_entanglement_gap_vs_product_mps",
+                2.079441308975
+              ],
+              [
+                "min_mutual_information",
+                0.102052460503
+              ],
+              [
+                "min_log_negativity",
+                0.203080553426
+              ],
+              [
+                "min_pyg_message_gap",
+                2.915475845337
+              ]
+            ]
+          },
+          {
+            "layers": [
+              "L0_response_quotient",
+              "L1_boundary_environment"
+            ],
+            "receipt_key": "bond4_result",
+            "signature": [
+              [
+                "baseline_order_or_label",
+                0.500002119043
+              ],
+              [
+                "bond4_peps3d_erased",
+                0.710041475601
+              ],
+              [
+                "bond4_required_controls",
+                0.710041475601
+              ],
+              [
+                "bond4_scalar_entropy_primary",
+                0.710041475601
+              ]
+            ]
+          },
+          {
+            "layers": [
+              "L4_terrain_generator",
+              "L5_operator_substage",
+              "L7_hopf_shell"
+            ],
+            "receipt_key": "bond4_result",
+            "signature": []
+          },
+          {
+            "layers": [
+              "L0_response_quotient",
+              "L1_boundary_environment"
+            ],
+            "receipt_key": "mps_peps2d_peps3d_depth_result",
+            "signature": [
+              [
+                "label_only",
+                1.496220450267
+              ],
+              [
+                "layer_order",
+                0.25
+              ],
+              [
+                "order_reversed",
+                0.500002119043
+              ],
+              [
+                "peps2d_erased",
+                0.677295563045
+              ],
+              [
+                "peps3d_erased",
+                8.021736126425
+              ],
+              [
+                "phase_erased",
+                1.496131780623
+              ],
+              [
+                "scalar_entropy_primary",
+                8.182551203797
+              ]
+            ]
+          }
+        ]
+      },
+      "impact": "Duplicates are not automatically wrong, but they are exactly the pattern that can make labels look like separate layer sims when the measured dynamics are the same.",
+      "required_repair": "Add a layer-distinctiveness gate: same-source shared plumbing may pass only if each layer has a required unique witness and at least one layer-specific control gap absent from sibling layers.",
+      "severity": "medium",
+      "title": "Duplicate numeric signatures across different layers suggest shared-scaffold leakage or insufficient layer-specific separation."
+    },
+    {
+      "evidence": {
+        "candidate_count": 12,
+        "current_truth": {
+          "axis0_unlocked": false,
+          "candidate_structures_have_standalone_finite_function": true,
+          "final_manifold_admitted": false,
+          "flux_unlocked": false,
+          "layer_embedding_unlocked": false,
+          "official_layered_ratchet_g_structure_selected": false,
+          "physics_unlocked": false,
+          "stacking_unlocked": false
+        },
+        "g_structure_status_path": "system_v5/ops/formal_scouts/g_structure_candidate_space_status_20260528.json"
+      },
+      "impact": "A layer can run over candidate geometry surfaces, but it is still not situated inside a chosen G-structure.",
+      "required_repair": "Run deeper standalone G-structure choice and embedding criteria after tool-depth packets; keep layer embedding locked until a separate gate passes.",
+      "severity": "high",
+      "title": "Standalone geometry/G-candidate scouts exist; G-structure choice and layer embedding remain locked."
+    },
+    {
+      "evidence": {
+        "open_tool_packets": [
+          {
+            "packet": "tool_depth_pytorch_autograd_per_row_spinor_phase",
+            "receipt": null,
+            "status": "next"
+          },
+          {
+            "packet": "tool_depth_quimb_cotengra_peps2d_peps3d_contraction",
+            "receipt": null,
+            "status": "pending"
+          },
+          {
+            "packet": "tool_depth_clifford_sympy_hopf_twistor_algebra",
+            "receipt": null,
+            "status": "pending"
+          },
+          {
+            "packet": "tool_depth_topology_graph_persistence_separability",
+            "receipt": null,
+            "status": "pending"
+          },
+          {
+            "packet": "tool_depth_e3nn_geomstats_orientation_family",
+            "receipt": null,
+            "status": "pending"
+          }
+        ],
+        "repair_matrix": "system_v5/ops/formal_scouts/layer_lego_factory_repair_matrix_20260528.json"
+      },
+      "impact": "The project already knew these were missing; the green layer reruns should not have overridden this queue.",
+      "required_repair": "Continue the tool-depth queue in order, beginning with tool_depth_pytorch_autograd_per_row_spinor_phase.",
+      "severity": "high",
+      "title": "The current repair matrix explicitly says deeper per-tool packets remain open."
+    },
+    {
+      "evidence": {
+        "entropy_coverage_status": {
+          "entropy_is_derived_readout_not_primary_object": true,
+          "proxy_controls": [
+            "scalar_entropy_primary_rejected",
+            "product_mps_control_loses_entanglement",
+            "peps2d_erased",
+            "peps3d_erased",
+            "label_only",
+            "phase_erased",
+            "order_reversed"
+          ],
+          "readout_family": [
+            "von_neumann_S_A",
+            "von_neumann_S_B",
+            "von_neumann_S_AB",
+            "renyi2_S_AB",
+            "mutual_information",
+            "conditional_entropy_A_given_B",
+            "coherent_information_A_to_B",
+            "log_negativity",
+            "carrier_path_entropy",
+            "mps_half_chain_entropy"
+          ]
+        },
+        "sample_entropy_keys_by_layer": {
+          "L0_response_quotient": [
+            "carrier_entangler_coupling",
+            "carrier_path_entropy",
+            "coherent_information_A_to_B",
+            "conditional_entropy_A_given_B",
+            "log_negativity",
+            "mps_half_chain_entropy",
+            "mutual_information",
+            "renyi2_S_AB",
+            "von_neumann_S_A",
+            "von_neumann_S_AB",
+            "von_neumann_S_B"
+          ],
+          "L1_boundary_environment": [
+            "carrier_entangler_coupling",
+            "carrier_path_entropy",
+            "coherent_information_A_to_B",
+            "conditional_entropy_A_given_B",
+            "log_negativity",
+            "mps_half_chain_entropy",
+            "mutual_information",
+            "renyi2_S_AB",
+            "von_neumann_S_A",
+            "von_neumann_S_AB",
+            "von_neumann_S_B"
+          ],
+          "L2_weyl_spinor_chirality": [
+            "carrier_entangler_coupling",
+            "carrier_path_entropy",
+            "coherent_information_A_to_B",
+            "conditional_entropy_A_given_B",
+            "log_negativity",
+            "mps_half_chain_entropy",
+            "mutual_information",
+            "renyi2_S_AB",
+            "von_neumann_S_A",
+            "von_neumann_S_AB",
+            "von_neumann_S_B"
+          ],
+          "L3_clifford_quaternion": [
+            "carrier_entangler_coupling",
+            "carrier_path_entropy",
+            "coherent_information_A_to_B",
+            "conditional_entropy_A_given_B",
+            "log_negativity",
+            "mps_half_chain_entropy",
+            "mutual_information",
+            "renyi2_S_AB",
+            "von_neumann_S_A",
+            "von_neumann_S_AB",
+            "von_neumann_S_B"
+          ],
+          "L4_terrain_generator": [
+            "carrier_entangler_coupling",
+            "carrier_path_entropy",
+            "coherent_information_A_to_B",
+            "conditional_entropy_A_given_B",
+            "log_negativity",
+            "mps_half_chain_entropy",
+            "mutual_information",
+            "renyi2_S_AB",
+            "von_neumann_S_A",
+            "von_neumann_S_AB",
+            "von_neumann_S_B"
+          ],
+          "L5_operator_substage": [
+            "carrier_entangler_coupling",
+            "carrier_path_entropy",
+            "coherent_information_A_to_B",
+            "conditional_entropy_A_given_B",
+            "log_negativity",
+            "mps_half_chain_entropy",
+            "mutual_information",
+            "renyi2_S_AB",
+            "von_neumann_S_A",
+            "von_neumann_S_AB",
+            "von_neumann_S_B"
+          ],
+          "L6_entropy_cut_communication": [
+            "carrier_entangler_coupling",
+            "carrier_path_entropy",
+            "coherent_information_A_to_B",
+            "conditional_entropy_A_given_B",
+            "log_negativity",
+            "mps_half_chain_entropy",
+            "mutual_information",
+            "renyi2_S_AB",
+            "von_neumann_S_A",
+            "von_neumann_S_AB",
+            "von_neumann_S_B"
+          ],
+          "L7_hopf_shell": [
+            "carrier_entangler_coupling",
+            "carrier_path_entropy",
+            "coherent_information_A_to_B",
+            "conditional_entropy_A_given_B",
+            "log_negativity",
+            "mps_half_chain_entropy",
+            "mutual_information",
+            "renyi2_S_AB",
+            "von_neumann_S_A",
+            "von_neumann_S_AB",
+            "von_neumann_S_B"
+          ],
+          "L8_groupoid_gluing": [
+            "carrier_entangler_coupling",
+            "carrier_path_entropy",
+            "coherent_information_A_to_B",
+            "conditional_entropy_A_given_B",
+            "log_negativity",
+            "mps_half_chain_entropy",
+            "mutual_information",
+            "renyi2_S_AB",
+            "von_neumann_S_A",
+            "von_neumann_S_AB",
+            "von_neumann_S_B"
+          ]
+        }
+      },
+      "impact": "Von Neumann/Renyi/MI/conditional/coherent/log-negativity-style readouts are present where emitted, but this does not yet test every relevant entropy pattern across every layer, G-candidate, and perturbation/control family.",
+      "required_repair": "Create an entropy-variant packet after carrier/tool depth is stronger, keeping entropy as derived readout rather than primary object.",
+      "severity": "medium",
+      "title": "QIT entropy readouts exist, but the current layer set is not an exhaustive entropy-variant campaign."
+    }
+  ],
+  "full_layer_completion_admitted": false,
+  "generated_at_utc": "2026-05-28T17:55:26.057834+00:00",
+  "inputs": {
+    "g_structure_status_path": "system_v5/ops/formal_scouts/g_structure_candidate_space_status_20260528.json",
+    "repair_matrix_path": "system_v5/ops/formal_scouts/layer_lego_factory_repair_matrix_20260528.json",
+    "result_count_checked": 27,
+    "source_native_runtime_design_path": "/Users/joshuaeisenhart/Desktop/source-native-spinor-peps3d-runtime-design.md",
+    "status_path": "system_v5/ops/formal_scouts/layer_g_structure_entropy_individual_sim_status_20260528.json",
+    "tool_by_tool_status_path": "system_v5/ops/formal_scouts/tool_by_tool_layer_g_structure_geometry_depth_status_20260528.json"
+  },
+  "layer_rows": {
+    "L0_response_quotient": {
+      "receipts": {
+        "bond4_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": false,
+          "max_sites": 64,
+          "peps2d_bond_dim": null,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l0_response_quotient_peps3d_bond4_tool_ablation_layer_probe_results.json",
+          "sim_class": "individual_manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l0_response_quotient_peps3d_bond4_tool_ablation_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_bond4_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 52,
+            "nonempty_noncomment_lines": 46,
+            "path": "system_v5/ops/formal_scouts/sim_l0_response_quotient_peps3d_bond4_tool_ablation_layer_probe.py",
+            "sha256_16": "e9227f3bd3afb0f0"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 9.093439,
+            "layer": "L0",
+            "max_peps3d_bond": 4,
+            "max_sites": 64,
+            "min_gaps": {
+              "baseline_order_or_label": 0.5000021190430511,
+              "bond4_peps3d_erased": 0.7100414756007959,
+              "bond4_required_controls": 0.7100414756007959,
+              "bond4_scalar_entropy_primary": 0.7100414756007959
+            },
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "full_spinor_network_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 4,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l0_response_quotient_full_spinor_network_layer_probe_results.json",
+          "sim_class": "individual_full_spinor_network_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l0_response_quotient_full_spinor_network_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_full_spinor_network_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 64,
+            "nonempty_noncomment_lines": 58,
+            "path": "system_v5/ops/formal_scouts/sim_l0_response_quotient_full_spinor_network_layer_probe.py",
+            "sha256_16": "be6c5f4bca0ab4bb"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 8.937543,
+            "layer": "L0",
+            "max_sites": 64,
+            "min_entanglement_gap_vs_product_mps": 2.0794413089752197,
+            "min_log_negativity": 0.20308055342612366,
+            "min_mutual_information": 0.10205246050277372,
+            "min_pyg_message_gap": 2.915475845336914,
+            "peps2d_bond_dim": 4,
+            "peps3d_bond_dim": 4,
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "mps_peps2d_peps3d_depth_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 2,
+          "peps3d_bond_dim": 2,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l0_response_quotient_mps_peps2d_peps3d_depth_probe_results.json",
+          "sim_class": "manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l0_response_quotient_mps_peps2d_peps3d_depth_probe.py",
+          "source_stats": {
+            "common_runner_import": "formal_layer_depth_common",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 24,
+            "nonempty_noncomment_lines": 18,
+            "path": "system_v5/ops/formal_scouts/sim_l0_response_quotient_mps_peps2d_peps3d_depth_probe.py",
+            "sha256_16": "9d896e0e8b8a4536"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "FEP/Holodeck",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 6.38813,
+            "max_sites": 64,
+            "min_control_gaps": {
+              "label_only": 1.496220450267285,
+              "layer_order": 0.2500000000000001,
+              "order_reversed": 0.5000021190430511,
+              "peps2d_erased": 0.677295563045467,
+              "peps3d_erased": 8.021736126425342,
+              "phase_erased": 1.4961317806230257,
+              "scalar_entropy_primary": 8.18255120379685
+            },
+            "peps2d_bond_dim": 2,
+            "peps3d_bond_dim": 2,
+            "promotion_allowed": false
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        }
+      }
+    },
+    "L1_boundary_environment": {
+      "receipts": {
+        "bond4_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": false,
+          "max_sites": 64,
+          "peps2d_bond_dim": null,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l1_boundary_environment_peps3d_bond4_tool_ablation_layer_probe_results.json",
+          "sim_class": "individual_manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l1_boundary_environment_peps3d_bond4_tool_ablation_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_bond4_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 52,
+            "nonempty_noncomment_lines": 46,
+            "path": "system_v5/ops/formal_scouts/sim_l1_boundary_environment_peps3d_bond4_tool_ablation_layer_probe.py",
+            "sha256_16": "8fc3f479f4430ece"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 9.247119,
+            "layer": "L1",
+            "max_peps3d_bond": 4,
+            "max_sites": 64,
+            "min_gaps": {
+              "baseline_order_or_label": 0.5000021190430511,
+              "bond4_peps3d_erased": 0.7100414756007959,
+              "bond4_required_controls": 0.7100414756007959,
+              "bond4_scalar_entropy_primary": 0.7100414756007959
+            },
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "full_spinor_network_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 4,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l1_boundary_environment_full_spinor_network_layer_probe_results.json",
+          "sim_class": "individual_full_spinor_network_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l1_boundary_environment_full_spinor_network_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_full_spinor_network_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 64,
+            "nonempty_noncomment_lines": 58,
+            "path": "system_v5/ops/formal_scouts/sim_l1_boundary_environment_full_spinor_network_layer_probe.py",
+            "sha256_16": "9457623d020e2185"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 9.01693,
+            "layer": "L1",
+            "max_sites": 64,
+            "min_entanglement_gap_vs_product_mps": 2.0794413089752197,
+            "min_log_negativity": 0.20308055962883817,
+            "min_mutual_information": 0.10205246612969611,
+            "min_pyg_message_gap": 2.915475845336914,
+            "peps2d_bond_dim": 4,
+            "peps3d_bond_dim": 4,
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "mps_peps2d_peps3d_depth_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 2,
+          "peps3d_bond_dim": 2,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l1_boundary_environment_mps_peps2d_peps3d_depth_probe_results.json",
+          "sim_class": "manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l1_boundary_environment_mps_peps2d_peps3d_depth_probe.py",
+          "source_stats": {
+            "common_runner_import": "formal_layer_depth_common",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 24,
+            "nonempty_noncomment_lines": 18,
+            "path": "system_v5/ops/formal_scouts/sim_l1_boundary_environment_mps_peps2d_peps3d_depth_probe.py",
+            "sha256_16": "7b5fb657d1571615"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "FEP/Holodeck",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 6.608173,
+            "max_sites": 64,
+            "min_control_gaps": {
+              "label_only": 1.496220450267285,
+              "layer_order": 0.2500000000000001,
+              "order_reversed": 0.5000021190430511,
+              "peps2d_erased": 0.677295563045467,
+              "peps3d_erased": 8.021736126425342,
+              "phase_erased": 1.4961317806230257,
+              "scalar_entropy_primary": 8.18255120379685
+            },
+            "peps2d_bond_dim": 2,
+            "peps3d_bond_dim": 2,
+            "promotion_allowed": false
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        }
+      }
+    },
+    "L2_weyl_spinor_chirality": {
+      "receipts": {
+        "bond4_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": false,
+          "max_sites": 64,
+          "peps2d_bond_dim": null,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l2_weyl_spinor_peps3d_bond4_tool_ablation_layer_probe_results.json",
+          "sim_class": "individual_manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l2_weyl_spinor_peps3d_bond4_tool_ablation_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_bond4_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 52,
+            "nonempty_noncomment_lines": 46,
+            "path": "system_v5/ops/formal_scouts/sim_l2_weyl_spinor_peps3d_bond4_tool_ablation_layer_probe.py",
+            "sha256_16": "10bb17490edad832"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 27.892379,
+            "layer": "L2",
+            "max_peps3d_bond": 4,
+            "max_sites": 64,
+            "min_gaps": {
+              "baseline_order_or_label": 0.037236921023430514,
+              "bond4_peps3d_erased": 0.7572960187150583,
+              "bond4_required_controls": 0.009434862672818112,
+              "bond4_scalar_entropy_primary": 0.7418482983659443
+            },
+            "promotion_allowed": false,
+            "row_count": 8
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "full_spinor_network_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 4,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l2_weyl_spinor_full_spinor_network_layer_probe_results.json",
+          "sim_class": "individual_full_spinor_network_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l2_weyl_spinor_full_spinor_network_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_full_spinor_network_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 64,
+            "nonempty_noncomment_lines": 58,
+            "path": "system_v5/ops/formal_scouts/sim_l2_weyl_spinor_full_spinor_network_layer_probe.py",
+            "sha256_16": "2ba2a4f28a98058d"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 30.099869,
+            "layer": "L2",
+            "max_sites": 64,
+            "min_entanglement_gap_vs_product_mps": 2.079441547393799,
+            "min_log_negativity": 0.12598602205091244,
+            "min_mutual_information": 0.04316704244885996,
+            "min_pyg_message_gap": 1.2298386096954346,
+            "peps2d_bond_dim": 4,
+            "peps3d_bond_dim": 4,
+            "promotion_allowed": false,
+            "row_count": 8
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "mps_peps2d_peps3d_depth_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 2,
+          "peps3d_bond_dim": 2,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l2_weyl_spinor_chirality_mps_peps2d_peps3d_depth_probe_results.json",
+          "sim_class": "manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l2_weyl_spinor_chirality_mps_peps2d_peps3d_depth_probe.py",
+          "source_stats": {
+            "common_runner_import": "formal_layer_depth_common",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 24,
+            "nonempty_noncomment_lines": 18,
+            "path": "system_v5/ops/formal_scouts/sim_l2_weyl_spinor_chirality_mps_peps2d_peps3d_depth_probe.py",
+            "sha256_16": "8f2e16368c487fc4"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "FEP/Holodeck",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 9.465771,
+            "max_sites": 64,
+            "min_control_gaps": {
+              "label_only": 1.1787707982607536,
+              "layer_order": 0.0029573252988086447,
+              "order_reversed": 0.0064850890190528265,
+              "peps2d_erased": 0.7205049933091209,
+              "peps3d_erased": 8.02173696022248,
+              "phase_erased": 1.9168494169391124,
+              "scalar_entropy_primary": 8.260296619526303
+            },
+            "peps2d_bond_dim": 2,
+            "peps3d_bond_dim": 2,
+            "promotion_allowed": false
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        }
+      }
+    },
+    "L3_clifford_quaternion": {
+      "receipts": {
+        "bond4_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": false,
+          "max_sites": 64,
+          "peps2d_bond_dim": null,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l3_clifford_quaternion_peps3d_bond4_tool_ablation_layer_probe_results.json",
+          "sim_class": "individual_manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l3_clifford_quaternion_peps3d_bond4_tool_ablation_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_bond4_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 52,
+            "nonempty_noncomment_lines": 46,
+            "path": "system_v5/ops/formal_scouts/sim_l3_clifford_quaternion_peps3d_bond4_tool_ablation_layer_probe.py",
+            "sha256_16": "e64fb3b81b4b390d"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 22.197087,
+            "layer": "L3",
+            "max_peps3d_bond": 4,
+            "max_sites": 64,
+            "min_gaps": {
+              "baseline_order_or_label": 0.48626400935479075,
+              "bond4_peps3d_erased": 0.7345879741191816,
+              "bond4_required_controls": 0.047571279629537964,
+              "bond4_scalar_entropy_primary": 0.7203591191564951
+            },
+            "promotion_allowed": false,
+            "row_count": 8
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "full_spinor_network_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 4,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l3_clifford_quaternion_full_spinor_network_layer_probe_results.json",
+          "sim_class": "individual_full_spinor_network_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l3_clifford_quaternion_full_spinor_network_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_full_spinor_network_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 64,
+            "nonempty_noncomment_lines": 58,
+            "path": "system_v5/ops/formal_scouts/sim_l3_clifford_quaternion_full_spinor_network_layer_probe.py",
+            "sha256_16": "e18d733c799ca103"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 30.67429,
+            "layer": "L3",
+            "max_sites": 64,
+            "min_entanglement_gap_vs_product_mps": 2.079441547393799,
+            "min_log_negativity": 0.07495133483954947,
+            "min_mutual_information": 0.016930405817572186,
+            "min_pyg_message_gap": 1.2416900396347046,
+            "peps2d_bond_dim": 4,
+            "peps3d_bond_dim": 4,
+            "promotion_allowed": false,
+            "row_count": 8
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "mps_peps2d_peps3d_depth_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 2,
+          "peps3d_bond_dim": 2,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l3_clifford_quaternion_mps_peps2d_peps3d_depth_probe_results.json",
+          "sim_class": "manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l3_clifford_quaternion_mps_peps2d_peps3d_depth_probe.py",
+          "source_stats": {
+            "common_runner_import": null,
+            "function_defs": [
+              "as_jsonable",
+              "normalize_spinor",
+              "normalize_density",
+              "quat_unitary",
+              "fake_quat_unitary",
+              "apply_sequence_to_spinor",
+              "action_sequence",
+              "transformed_spinors",
+              "quaternion_path_density",
+              "quaternion_signature",
+              "coords_for_shape",
+              "plane_indices",
+              "peps2d_arrays",
+              "mps_path_view",
+              "peps2d_projection_view",
+              "peps3d_environment_view",
+              "carrier_signature",
+              "gap",
+              "row_task",
+              "sympy_quaternion_gate",
+              "fake_quaternion_table_control",
+              "clifford_quaternion_gate",
+              "tool_witnesses",
+              "z3_gate",
+              "cvc5_gate",
+              "run_rows",
+              "tool_ablations",
+              "main"
+            ],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 881,
+            "nonempty_noncomment_lines": 809,
+            "path": "system_v5/ops/formal_scouts/sim_l3_clifford_quaternion_mps_peps2d_peps3d_depth_probe.py",
+            "sha256_16": "52f0d9e17f354073"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "L4 terrain/channel/generator placement",
+              "L5 operator substage cells",
+              "L6 entropy/cut/communication stacking",
+              "L7 Hopf/fibration/shell projection",
+              "L8 gluing/groupoid/equivariant/dynamic stacking",
+              "layer_stacking",
+              "bridge",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "FEP/Holodeck",
+              "physics",
+              "IGT/game_theory",
+              "axes7_12",
+              "PEPS3D_closure_theorem",
+              "final_manifold_admission"
+            ],
+            "boundary_chi": 4,
+            "controls_passed_as_rejections": [
+              "dense_closure_proxy_blocked",
+              "fake_quaternion_table_control_rejected",
+              "order_erasure_control_rejected",
+              "order_reversal_control_rejected",
+              "peps2d_erase_control_rejected",
+              "peps3d_erase_control_rejected",
+              "scalar_entropy_primary_control_rejected"
+            ],
+            "elapsed_seconds": 15.482276,
+            "max_mps_bond_cap": 32,
+            "max_mps_bond_seen": 2,
+            "max_sites": 64,
+            "min_control_gaps": {
+              "fake_quaternion_table": 0.5853904153126644,
+              "order_erasure": 1.9196196263963725,
+              "order_reversal": 0.48626400935479075,
+              "peps2d_erased": 0.8019184440435282,
+              "peps3d_erased": 8.01140531319252,
+              "scalar_entropy_primary": 8.349372544296344
+            },
+            "peps2d_bond_dim": 2,
+            "peps3d_bond_dim": 2,
+            "promotion_allowed": false
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        }
+      }
+    },
+    "L4_terrain_generator": {
+      "receipts": {
+        "bond4_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": false,
+          "max_sites": 64,
+          "peps2d_bond_dim": null,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l4_terrain_generator_peps3d_bond4_tool_ablation_layer_probe_results.json",
+          "sim_class": "individual_manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l4_terrain_generator_peps3d_bond4_tool_ablation_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_l4_l5_l7_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 45,
+            "nonempty_noncomment_lines": 39,
+            "path": "system_v5/ops/formal_scouts/sim_l4_terrain_generator_peps3d_bond4_tool_ablation_layer_probe.py",
+            "sha256_16": "146d071acbae693b"
+          },
+          "summary": {
+            "actual_quimb_peps3d_object": true,
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 4.50906,
+            "layer": "L4",
+            "max_peps3d_bond": 4,
+            "max_sites": 64,
+            "placement_count": 16,
+            "promotion_allowed": false,
+            "row_count": 4,
+            "site_counts": [
+              8,
+              16,
+              32,
+              64
+            ],
+            "terrain_generator_count": 8
+          },
+          "tool_integration_count": 13,
+          "tool_manifest_count": 13
+        },
+        "full_spinor_network_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 4,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l4_terrain_generator_full_spinor_network_layer_probe_results.json",
+          "sim_class": "individual_full_spinor_network_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l4_terrain_generator_full_spinor_network_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_full_spinor_network_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 64,
+            "nonempty_noncomment_lines": 58,
+            "path": "system_v5/ops/formal_scouts/sim_l4_terrain_generator_full_spinor_network_layer_probe.py",
+            "sha256_16": "3e9cf598dcb3b10e"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 4.515309,
+            "layer": "L4",
+            "max_sites": 64,
+            "min_entanglement_gap_vs_product_mps": 2.0794413089752197,
+            "min_log_negativity": 0.20308055342612366,
+            "min_mutual_information": 0.10205246050277372,
+            "min_pyg_message_gap": 2.915475845336914,
+            "peps2d_bond_dim": 4,
+            "peps3d_bond_dim": 4,
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "mps_peps2d_peps3d_depth_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 2,
+          "peps3d_bond_dim": 2,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l4_terrain_generator_mps_peps2d_peps3d_depth_probe_results.json",
+          "sim_class": "manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l4_terrain_generator_mps_peps2d_peps3d_depth_probe.py",
+          "source_stats": {
+            "common_runner_import": "formal_layer_depth_common",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 24,
+            "nonempty_noncomment_lines": 18,
+            "path": "system_v5/ops/formal_scouts/sim_l4_terrain_generator_mps_peps2d_peps3d_depth_probe.py",
+            "sha256_16": "3b265ca11decd675"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "FEP/Holodeck",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 33.159965,
+            "max_sites": 64,
+            "min_control_gaps": {
+              "label_only": 5.077071052127423,
+              "layer_order": 0.001455744416733134,
+              "order_reversed": 0.0032265176945905304,
+              "peps2d_erased": 0.6808206230782157,
+              "peps3d_erased": 8.021736841108604,
+              "phase_erased": 1.5657254085402148,
+              "scalar_entropy_primary": 8.195540556774896
+            },
+            "peps2d_bond_dim": 2,
+            "peps3d_bond_dim": 2,
+            "promotion_allowed": false
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        }
+      }
+    },
+    "L5_operator_substage": {
+      "receipts": {
+        "bond4_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": false,
+          "max_sites": 64,
+          "peps2d_bond_dim": null,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l5_operator_substage_peps3d_bond4_tool_ablation_layer_probe_results.json",
+          "sim_class": "individual_manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l5_operator_substage_peps3d_bond4_tool_ablation_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_l4_l5_l7_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 45,
+            "nonempty_noncomment_lines": 39,
+            "path": "system_v5/ops/formal_scouts/sim_l5_operator_substage_peps3d_bond4_tool_ablation_layer_probe.py",
+            "sha256_16": "a6e36cca2f0b9bfd"
+          },
+          "summary": {
+            "L5_full_substage_count": 64,
+            "actual_quimb_peps3d_object": true,
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 0.783545,
+            "layer": "L5",
+            "max_peps3d_bond": 4,
+            "max_sites": 64,
+            "projection_stage_count_seen": 16,
+            "promotion_allowed": false,
+            "row_count": 4,
+            "site_counts": [
+              8,
+              16,
+              32,
+              64
+            ]
+          },
+          "tool_integration_count": 13,
+          "tool_manifest_count": 13
+        },
+        "full_spinor_network_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 4,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l5_operator_substage_full_spinor_network_layer_probe_results.json",
+          "sim_class": "individual_full_spinor_network_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l5_operator_substage_full_spinor_network_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_full_spinor_network_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 64,
+            "nonempty_noncomment_lines": 58,
+            "path": "system_v5/ops/formal_scouts/sim_l5_operator_substage_full_spinor_network_layer_probe.py",
+            "sha256_16": "586b69209616778d"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 1.49041,
+            "layer": "L5",
+            "max_sites": 64,
+            "min_entanglement_gap_vs_product_mps": 2.079441547393799,
+            "min_log_negativity": 0.20308055962883817,
+            "min_mutual_information": 0.10205246612969611,
+            "min_pyg_message_gap": 2.915475845336914,
+            "peps2d_bond_dim": 4,
+            "peps3d_bond_dim": 4,
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "mps_peps2d_peps3d_depth_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 2,
+          "peps3d_bond_dim": 2,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l5_operator_substage_mps_peps2d_peps3d_depth_probe_results.json",
+          "sim_class": "manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l5_operator_substage_mps_peps2d_peps3d_depth_probe.py",
+          "source_stats": {
+            "common_runner_import": null,
+            "function_defs": [
+              "as_jsonable",
+              "gap",
+              "mps_path_view",
+              "carrier_depth_row",
+              "carrier_signature",
+              "tool_witnesses",
+              "z3_depth_gate",
+              "cvc5_depth_gate",
+              "tool_ablations",
+              "main"
+            ],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 622,
+            "nonempty_noncomment_lines": 585,
+            "path": "system_v5/ops/formal_scouts/sim_l5_operator_substage_mps_peps2d_peps3d_depth_probe.py",
+            "sha256_16": "fb57348f53931658"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "L6 entropy/cut/communication stacking",
+              "L7 Hopf/fibration/shell projection",
+              "L8 gluing/groupoid/equivariant/dynamic stacking",
+              "matrix/layer stacking",
+              "bridge",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game theory",
+              "axes7-12",
+              "final manifold"
+            ],
+            "boundary_chi": 4,
+            "controls_failed_to_reject": [],
+            "controls_rejected": [
+              "dense_closure_proxy_control_rejected",
+              "order_reversal_control_rejected",
+              "peps2d_erase_control_rejected",
+              "peps3d_erase_control_rejected",
+              "scalar_entropy_primary_control_rejected",
+              "sixteen_row_collapse_control_rejected"
+            ],
+            "elapsed_seconds": 1.573396,
+            "max_mps_bond_cap": 32,
+            "max_peps3d_bond": 2,
+            "max_peps3d_sites": 64,
+            "max_sites": 64,
+            "peps2d_bond_dim": 2,
+            "projection_stage_count": 16,
+            "promotion_allowed": false,
+            "substage_count": 64
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        }
+      }
+    },
+    "L6_entropy_cut_communication": {
+      "receipts": {
+        "bond4_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": false,
+          "max_sites": 64,
+          "peps2d_bond_dim": null,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l6_entropy_cut_peps3d_bond4_tool_ablation_layer_probe_results.json",
+          "sim_class": "individual_manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l6_entropy_cut_peps3d_bond4_tool_ablation_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_bond4_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 52,
+            "nonempty_noncomment_lines": 46,
+            "path": "system_v5/ops/formal_scouts/sim_l6_entropy_cut_peps3d_bond4_tool_ablation_layer_probe.py",
+            "sha256_16": "788402ca02e16eb0"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 9.867947,
+            "layer": "L6",
+            "max_peps3d_bond": 4,
+            "max_sites": 64,
+            "min_gaps": {
+              "baseline_order_or_label": 0.005612554469500992,
+              "bond4_peps3d_erased": 0.7392158956646184,
+              "bond4_required_controls": 0.03405869979952368,
+              "bond4_scalar_entropy_primary": 0.7301259623368538
+            },
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "full_spinor_network_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 4,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l6_entropy_cut_full_spinor_network_layer_probe_results.json",
+          "sim_class": "individual_full_spinor_network_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l6_entropy_cut_full_spinor_network_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_full_spinor_network_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 64,
+            "nonempty_noncomment_lines": 58,
+            "path": "system_v5/ops/formal_scouts/sim_l6_entropy_cut_full_spinor_network_layer_probe.py",
+            "sha256_16": "c466a425f2256fc1"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 9.818667,
+            "layer": "L6",
+            "max_sites": 64,
+            "min_entanglement_gap_vs_product_mps": 2.079441547393799,
+            "min_log_negativity": 0.2166792995805729,
+            "min_mutual_information": 0.1147254619134559,
+            "min_pyg_message_gap": 3.8891489505767822,
+            "peps2d_bond_dim": 4,
+            "peps3d_bond_dim": 4,
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "mps_peps2d_peps3d_depth_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 2,
+          "peps3d_bond_dim": 2,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l6_entropy_cut_communication_mps_peps2d_peps3d_depth_probe_results.json",
+          "sim_class": "manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l6_entropy_cut_communication_mps_peps2d_peps3d_depth_probe.py",
+          "source_stats": {
+            "common_runner_import": "formal_layer_depth_common",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 24,
+            "nonempty_noncomment_lines": 18,
+            "path": "system_v5/ops/formal_scouts/sim_l6_entropy_cut_communication_mps_peps2d_peps3d_depth_probe.py",
+            "sha256_16": "d8be88ea3e9ce1db"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "FEP/Holodeck",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 7.554492,
+            "max_sites": 64,
+            "min_control_gaps": {
+              "label_only": 2.09311527652816,
+              "layer_order": 0.001162032231338811,
+              "order_reversed": 0.005612554469500992,
+              "peps2d_erased": 0.7068008105806156,
+              "peps3d_erased": 8.021736483766972,
+              "phase_erased": 2.0902156484548744,
+              "scalar_entropy_primary": 8.310097954509807
+            },
+            "peps2d_bond_dim": 2,
+            "peps3d_bond_dim": 2,
+            "promotion_allowed": false
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        }
+      }
+    },
+    "L7_hopf_shell": {
+      "receipts": {
+        "bond4_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": false,
+          "max_sites": 64,
+          "peps2d_bond_dim": null,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l7_hopf_shell_peps3d_bond4_tool_ablation_layer_probe_results.json",
+          "sim_class": "individual_manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l7_hopf_shell_peps3d_bond4_tool_ablation_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_l4_l5_l7_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 45,
+            "nonempty_noncomment_lines": 39,
+            "path": "system_v5/ops/formal_scouts/sim_l7_hopf_shell_peps3d_bond4_tool_ablation_layer_probe.py",
+            "sha256_16": "7b7d37e59f90b014"
+          },
+          "summary": {
+            "L7_phase_grid_count": 64,
+            "L7_shell_count": 5,
+            "actual_quimb_peps3d_object": true,
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 0.842288,
+            "layer": "L7",
+            "max_peps3d_bond": 4,
+            "max_sites": 64,
+            "promotion_allowed": false,
+            "row_count": 4,
+            "site_counts": [
+              8,
+              16,
+              32,
+              64
+            ]
+          },
+          "tool_integration_count": 13,
+          "tool_manifest_count": 13
+        },
+        "full_spinor_network_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 4,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l7_hopf_shell_full_spinor_network_layer_probe_results.json",
+          "sim_class": "individual_full_spinor_network_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l7_hopf_shell_full_spinor_network_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_full_spinor_network_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 64,
+            "nonempty_noncomment_lines": 58,
+            "path": "system_v5/ops/formal_scouts/sim_l7_hopf_shell_full_spinor_network_layer_probe.py",
+            "sha256_16": "0ccb660666fd222f"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 1.301656,
+            "layer": "L7",
+            "max_sites": 64,
+            "min_entanglement_gap_vs_product_mps": 2.0794413089752197,
+            "min_log_negativity": 0.23142719104877715,
+            "min_mutual_information": 0.12922673949674687,
+            "min_pyg_message_gap": 5.540477275848389,
+            "peps2d_bond_dim": 4,
+            "peps3d_bond_dim": 4,
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "mps_peps2d_peps3d_depth_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 2,
+          "peps3d_bond_dim": 2,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l7_hopf_shell_mps_peps2d_peps3d_depth_probe_results.json",
+          "sim_class": "manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l7_hopf_shell_mps_peps2d_peps3d_depth_probe.py",
+          "source_stats": {
+            "common_runner_import": null,
+            "function_defs": [
+              "as_jsonable",
+              "hopf_spinors",
+              "mps_hopf_view",
+              "carrier_views",
+              "flat_sig",
+              "gap",
+              "row_task",
+              "extra_tool_witnesses",
+              "z3_gate",
+              "cvc5_gate",
+              "tool_ablations",
+              "main"
+            ],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 372,
+            "nonempty_noncomment_lines": 335,
+            "path": "system_v5/ops/formal_scouts/sim_l7_hopf_shell_mps_peps2d_peps3d_depth_probe.py",
+            "sha256_16": "5b89b5fdc8f6d565"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "FEP/Holodeck",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 5.287572,
+            "max_sites": 64,
+            "min_control_gaps": {
+              "base_shell_loop": 0.44428829381583657,
+              "order_reversed": 0.8885765876316732,
+              "peps2d_erased": 0.7919658463913425,
+              "peps3d_erased": 8.021735173514326,
+              "phase_erased": 3.8826638588798126,
+              "scalar_entropy_primary": 8.901362255835082
+            },
+            "peps2d_bond_dim": 2,
+            "peps3d_bond_dim": 2,
+            "promotion_allowed": false
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        }
+      }
+    },
+    "L8_groupoid_gluing": {
+      "receipts": {
+        "bond4_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": false,
+          "max_sites": 64,
+          "peps2d_bond_dim": null,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l8_groupoid_gluing_peps3d_bond4_tool_ablation_layer_probe_results.json",
+          "sim_class": "individual_manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l8_groupoid_gluing_peps3d_bond4_tool_ablation_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_bond4_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 52,
+            "nonempty_noncomment_lines": 46,
+            "path": "system_v5/ops/formal_scouts/sim_l8_groupoid_gluing_peps3d_bond4_tool_ablation_layer_probe.py",
+            "sha256_16": "fb0338cbb6d14264"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 4.944533,
+            "layer": "L8",
+            "max_peps3d_bond": 4,
+            "max_sites": 64,
+            "min_gaps": {
+              "baseline_order_or_label": 0.02220363039807853,
+              "bond4_peps3d_erased": 0.7711388117136252,
+              "bond4_required_controls": 0.05687508417061718,
+              "bond4_scalar_entropy_primary": 0.7649534282827752
+            },
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "full_spinor_network_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 4,
+          "peps3d_bond_dim": 4,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l8_groupoid_gluing_full_spinor_network_layer_probe_results.json",
+          "sim_class": "individual_full_spinor_network_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l8_groupoid_gluing_full_spinor_network_layer_probe.py",
+          "source_stats": {
+            "common_runner_import": "layer_full_spinor_network_individual_runner",
+            "function_defs": [],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 64,
+            "nonempty_noncomment_lines": 58,
+            "path": "system_v5/ops/formal_scouts/sim_l8_groupoid_gluing_full_spinor_network_layer_probe.py",
+            "sha256_16": "1e02119feda4af32"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "cross_layer_order_closure",
+              "post_stack_stress",
+              "PEPS3D_closure_theorem",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "Holodeck/FEP",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 5.555839,
+            "layer": "L8",
+            "max_sites": 64,
+            "min_entanglement_gap_vs_product_mps": 2.079441547393799,
+            "min_log_negativity": 0.1972960083976146,
+            "min_mutual_information": 0.09686601719362813,
+            "min_pyg_message_gap": 2.041800022125244,
+            "peps2d_bond_dim": 4,
+            "peps3d_bond_dim": 4,
+            "promotion_allowed": false,
+            "row_count": 4
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        },
+        "mps_peps2d_peps3d_depth_result": {
+          "all_pass": true,
+          "classification": "formal_scout",
+          "has_ablation_outcome_delta_field": true,
+          "has_tool_ablations_field": true,
+          "max_sites": 64,
+          "peps2d_bond_dim": 2,
+          "peps3d_bond_dim": 2,
+          "promotion_allowed": false,
+          "result_path": "system_v5/ops/formal_scouts/results/l8_groupoid_gluing_mps_peps2d_peps3d_depth_probe_results.json",
+          "sim_class": "manifold_layer_depth_probe",
+          "source_path": "system_v5/ops/formal_scouts/sim_l8_groupoid_gluing_mps_peps2d_peps3d_depth_probe.py",
+          "source_stats": {
+            "common_runner_import": null,
+            "function_defs": [
+              "as_jsonable",
+              "groupoid_spinors",
+              "mps_groupoid_view",
+              "carrier_views",
+              "flat_sig",
+              "gap",
+              "row_task",
+              "extra_tool_witnesses",
+              "z3_gate",
+              "cvc5_gate",
+              "tool_ablations",
+              "main"
+            ],
+            "has_autograd_terms": false,
+            "has_numpy_claim_terms": false,
+            "line_count": 370,
+            "nonempty_noncomment_lines": 333,
+            "path": "system_v5/ops/formal_scouts/sim_l8_groupoid_gluing_mps_peps2d_peps3d_depth_probe.py",
+            "sha256_16": "9fa6d0bbf223b248"
+          },
+          "summary": {
+            "all_pass": true,
+            "blocked_consumers": [
+              "stacking",
+              "flux",
+              "Xi/Phi0",
+              "Axis0",
+              "FEP/Holodeck",
+              "physics/gravity",
+              "IGT/game_theory",
+              "axes7_12",
+              "final_manifold_admission"
+            ],
+            "elapsed_seconds": 3.18448,
+            "max_sites": 64,
+            "min_control_gaps": {
+              "label_only_gluing": 1.729911468255451,
+              "order_reversed": 0.02220363039807853,
+              "peps2d_erased": 0.7347550803231496,
+              "peps3d_erased": 8.021736364653096,
+              "phase_erased": 1.7199889302252784,
+              "plaquette_order": 0.217032725598982,
+              "scalar_entropy_primary": 8.229768410496952
+            },
+            "peps2d_bond_dim": 2,
+            "peps3d_bond_dim": 2,
+            "promotion_allowed": false
+          },
+          "tool_integration_count": 15,
+          "tool_manifest_count": 15
+        }
+      }
+    }
+  },
+  "main_verdict": "The layer receipts run and pass as bounded formal scouts, but they are still bounded scouts and do not have promotion admission yet. The deeper audit found real missing work: autograd gradients, PEPS contraction-depth, true G-structure selection/embedding, stricter per-tool ablations, and layer-distinctiveness gates.",
+  "next_admissible_actions": [
+    {
+      "order": 1,
+      "packet": "tool_depth_pytorch_autograd_per_row_spinor_phase",
+      "stop": "fresh rerun passes or concrete resource/blocker artifact is written",
+      "why": "First explicit missing packet in repair matrix; needed to make PyTorch more than tensor execution by adding per-row spinor phase gradients."
+    },
+    {
+      "order": 2,
+      "packet": "tool_depth_quimb_cotengra_peps2d_peps3d_contraction",
+      "stop": "fresh rerun passes or exact contraction/resource ceiling is recorded",
+      "why": "Needed to separate real PEPS contraction/readout depth from PEPS object construction/signature scaffolding."
+    },
+    {
+      "order": 3,
+      "packet": "tool_depth_clifford_sympy_hopf_twistor_algebra",
+      "stop": "fresh rerun passes or first algebraic finite-map blocker is recorded",
+      "why": "Needed before G-structure selection/embedding, especially Hopf, nested tori, Clifford tori, twistor, Spin/SU/Pin alternatives."
+    },
+    {
+      "order": 4,
+      "packet": "layer_distinctiveness_gate_repair",
+      "stop": "validator blocks cloned layer rows unless a unique layer witness and sibling-negative control is present",
+      "why": "Needed because duplicate signatures and wrapper-heavy rows can hide label-only separation."
+    }
+  ],
+  "not_a_full_wizard_claim": true,
+  "official_g_structure_selected": false,
+  "open_tool_depth_packets": [
+    {
+      "packet": "tool_depth_pytorch_autograd_per_row_spinor_phase",
+      "receipt": null,
+      "status": "next"
+    },
+    {
+      "packet": "tool_depth_quimb_cotengra_peps2d_peps3d_contraction",
+      "receipt": null,
+      "status": "pending"
+    },
+    {
+      "packet": "tool_depth_clifford_sympy_hopf_twistor_algebra",
+      "receipt": null,
+      "status": "pending"
+    },
+    {
+      "packet": "tool_depth_topology_graph_persistence_separability",
+      "receipt": null,
+      "status": "pending"
+    },
+    {
+      "packet": "tool_depth_e3nn_geomstats_orientation_family",
+      "receipt": null,
+      "status": "pending"
+    }
+  ],
+  "positive_evidence": {
+    "layer_receipts_passed_and_fresh_rerun_previous_audit": "system_v5/ops/formal_scouts/layer_independent_rerun_missingness_audit_20260528.json",
+    "mps_peps2d_peps3d_present_by_status": {
+      "mps_present": true,
+      "peps2d_present": true,
+      "peps3d_present": true,
+      "pytorch_spinor_network_present": true
+    },
+    "no_numpy_claim_terms_in_checked_layer_sources": true,
+    "status_max_sites": 64,
+    "status_scale_sites": [
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "purpose": "Audit whether the current green per-layer formal scouts meet the stronger claim-lift standard or still hide shared-scaffold/tool-depth gaps.",
+  "schema": "layer_deep_distinctiveness_and_promotion_boundary_audit_v1",
+  "stacking_or_downstream_unlocked": false
+}

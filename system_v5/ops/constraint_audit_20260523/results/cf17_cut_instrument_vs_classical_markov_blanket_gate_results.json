@@ -1,0 +1,69 @@
+{
+  "schema": "cf17_cut_instrument_vs_classical_markov_blanket_gate_result_v1",
+  "name": "cf17_cut_instrument_vs_classical_markov_blanket_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-17",
+  "gate": "EG-CF17-cut-instrument-vs-classical-markov-blanket",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-17 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite cut states, local effects, conditional reduced states, and product/classical controls"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:09:27Z",
+  "runtime_seconds": 0.0029859542846679688,
+  "positive": {
+    "pass": true,
+    "cut_instrument_trace_distance_on_B": 0.4384062043356595,
+    "product_control_trace_distance_on_B": 0.0,
+    "matched_marginal_gap": 2.220446049250313e-16,
+    "effect_probabilities": {
+      "x_effect": 0.4999999999999998,
+      "z_effect": 0.4999999999999999
+    },
+    "cut_mutual_information": 1.3862943611198906,
+    "product_mutual_information": 0.0
+  },
+  "negative": {
+    "pass": false,
+    "expected": "fail",
+    "negative_case_type": "executable_rejection",
+    "has_rho_cut": false,
+    "has_boundary_instrument": false,
+    "has_product_control": false,
+    "has_matched_cut_control": false,
+    "negative_rejected": true,
+    "attempted_claim": {
+      "partition": [
+        "internal",
+        "blanket",
+        "external"
+      ],
+      "missing_fields": [
+        "rho_cut",
+        "boundary_instrument",
+        "product_control",
+        "matched_cut_control"
+      ]
+    }
+  },
+  "boundary": {
+    "pass": true,
+    "classical_correlated_probe_gap": 0.31000000000000005,
+    "classical_mutual_information": 0.6931471805599453,
+    "interpretation": "classical correlation can be represented as a declared separable boundary case, but it still requires named instruments and does not license a primitive sharp blanket"
+  },
+  "all_pass": true
+}

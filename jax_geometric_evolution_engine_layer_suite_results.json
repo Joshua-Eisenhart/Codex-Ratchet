@@ -1,0 +1,119 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "official_layer_completion",
+    "layer_stacking",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "bridge",
+    "basin_admission",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "classification": "diagnostic_jax_geometric_evolution_engine_layer_suite",
+  "honesty_notes": [
+    "This is a JAX diagnostic/audit suite, not a Julia-native spinor proof.",
+    "Each layer is independent and receipt-bounded; no aggregate layer admission is claimed.",
+    "No retired legacy tensor-lane import or sim path is used."
+  ],
+  "layers": {
+    "branch_prune": {
+      "A_populated": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "B_populated": [
+        1,
+        2
+      ],
+      "B_pruned": 244,
+      "C_populated": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "finite_map": "finite S3 attractor branch ensemble -> monotone chirality prune basin readout",
+      "max_norm_drift": 3.3306690738754696e-16,
+      "pass": true
+    },
+    "dirac_u1": {
+      "berry_phase": 1.5707371847888136,
+      "expected_phase": 1.5707963267948961,
+      "finite_map": "finite spinor loop on S2 -> U(1) Berry/Dirac monopole phase",
+      "gauge_phase_error": 0.0,
+      "pass": true,
+      "phase_error": 5.9142006082701926e-05
+    },
+    "hamiltonian_shell": {
+      "control_far_shell_probability": 0.0,
+      "coupled_far_shell_probability": 0.15489896740538087,
+      "finite_map": "finite shell coupling Hamiltonian -> unitary amplitude transport",
+      "norm_error": 1.9857728461580848e-08,
+      "pass": true
+    },
+    "hopf_s3": {
+      "base_norm_error": 2.220446049250313e-16,
+      "fiber_invariance_error": 1.1188630228279524e-16,
+      "finite_map": "S3 unit quaternion -> S2 Hopf base; U(1) fiber rotation leaves base invariant",
+      "pass": true,
+      "raw_bad_s3_norm_error": 0.057458295645870905,
+      "retracted_bad_base_norm_error": 0.0
+    },
+    "jaxga_clifford": {
+      "anti_commutator_norm": 0.0,
+      "finite_map": "Cl(3,0) ordered geometric product and rotor action",
+      "pass": true,
+      "product_status": "ok_after_runtime_compat_patch",
+      "rotated_vector_norm_error": 1.1102230246251565e-16,
+      "rotor_norm_error": 1.1102230246251565e-16,
+      "vanilla_error": "ValueError: Jitted function has invalid argnames {'out_size'} in static_argnames. Function does not take these args."
+    },
+    "qit_logneg_erepr": {
+      "LN_dephased_AC": 0.0,
+      "LN_linked_AC": 1.0,
+      "LN_product_AC": 0.0,
+      "LN_trivial_AC": 0.0,
+      "coherent_information_dephased": 0.0,
+      "coherent_information_linked": 1.0,
+      "finite_map": "finite density cut rho_AC -> log-negativity/coherent information with dephasing kill",
+      "pass": true
+    },
+    "weyl_chirality": {
+      "chirality_gap": 2.0,
+      "energy_L": 1.0,
+      "energy_R": -1.0,
+      "finite_map": "left/right Weyl Hamiltonians H_L=+sigma.k, H_R=-sigma.k on one finite spinor",
+      "pass": true,
+      "unitary_norm_error": 0.0,
+      "zero_control_gap": 0.0
+    }
+  },
+  "pass_count": 7,
+  "promotion_allowed": false,
+  "purpose": "Run independent finite JAX maps for the Geometric Evolution Engine audit lane.",
+  "root_constraints_in_force": {
+    "F01": "finite carriers: S3 quaternions, Cl(3,0) basis, 2-qubit/4-qubit densities, finite branch batch, finite Hamiltonian",
+    "N01": "order-sensitive Clifford product, chirality sign, U(1) phase holonomy, monotone branch/prune order, Hamiltonian coupling control"
+  },
+  "script": "jax_geometric_evolution_engine_layer_suite.py",
+  "sim_execution_kind": "nonclassical_diagnostic",
+  "tool_integration_depth": {
+    "custom_vjp/retract_s3": "load_bearing",
+    "diffrax": "load_bearing",
+    "jax": "load_bearing",
+    "jax.scipy.linalg": "load_bearing",
+    "jaxga": "load_bearing"
+  },
+  "tool_manifest": {
+    "custom_vjp/retract_s3": "imported from tool-stack audit for manifold projection semantics",
+    "diffrax": "load-bearing ODE integrator for Hamiltonian transport",
+    "jax": "load-bearing jit, vmap, random, lax.scan, complex/x64 linear algebra",
+    "jax.scipy.linalg": "load-bearing finite unitary exponential for Weyl chirality",
+    "jaxga": "load-bearing Clifford package surface with runtime compatibility patch recorded if needed"
+  },
+  "total_layers": 7
+}

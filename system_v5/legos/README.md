@@ -17,6 +17,7 @@ Current legos:
 |---|---|---|
 | `finite_density_matrix_carrier_trace_psd_pytorch_sympy_z3.py` | `results/finite_density_matrix_carrier_trace_psd_pytorch_sympy_z3_results.json` | pytorch, sympy, z3 |
 | `unit_spinor_hopf_projection_phase_invariance_geomstats_pytorch_sympy.py` | `results/unit_spinor_hopf_projection_phase_invariance_geomstats_pytorch_sympy_results.json` | geomstats, pytorch, sympy |
+| `hopf_fibration_s3_s2_spinor_network_peps3d_entropy_pytorch_jax_quimb_sympy_z3.py` | `results/hopf_fibration_s3_s2_spinor_network_peps3d_entropy_pytorch_jax_quimb_sympy_z3_results.json` | pytorch, jax, quimb, cotengra, opt_einsum, sympy, z3, cvc5, rustworkx, xgi, toponetx, gudhi |
 | `weyl_spinor_chirality_hamiltonian_sign_expectation_clifford_pytorch_z3.py` | `results/weyl_spinor_chirality_hamiltonian_sign_expectation_clifford_pytorch_z3_results.json` | clifford, pytorch, z3 |
 | `pauli_clifford_commutator_representation_gap_clifford_sympy_z3.py` | `results/pauli_clifford_commutator_representation_gap_clifford_sympy_z3_results.json` | clifford, sympy, z3 |
 | `density_operator_cptp_amplitude_damping_trace_psd_pytorch_sympy_z3.py` | `results/density_operator_cptp_amplitude_damping_trace_psd_pytorch_sympy_z3_results.json` | pytorch, sympy, z3 |

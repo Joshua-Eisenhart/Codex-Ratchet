@@ -56,8 +56,17 @@ Every lego sim must declare at least the following fields.
 
 ### Constraint and structure context
 - `root_constraints_in_force`
+- `finite_map`
+- `domain`
+- `codomain_or_output`
 - `carrier_layer`
 - `geometry_layer`
+- `carrier_realization`
+- `peps3d_embedding`
+- `spinor_state`
+- `quaternion_action`
+- `dependency_receipts`
+- `downstream_blocks`
 - `bridge_layer`
 - `cut_layer`
 - `law_or_candidate_tested`
@@ -87,6 +96,7 @@ Allowed `classification` values:
 `sim_execution_kind` controls runner admission:
 - `classical` sims are baselines/controls and may use graph/proof tools only as baseline or comparison surfaces.
 - `nonclassical` sims require the claim-relevant nonclassical stack: PyTorch/PyG for tensor or graph dynamics, Clifford for geometric product/spinor/rotor claims, and z3/cvc5 for structural proof or UNSAT claims.
+- `nonclassical` manifold sims additionally require torch-native spinor or spinor-derived density state, quaternionic map/invariant when quaternion language is used, PEPS3D site/bond/face/cell embedding from the first admitted finite carrier/probe step, and explicit NumPy/dense-state/Cartesian adapter blocks.
 - `bridge` sims connect a named classical-side baseline to a named nonclassical tool plan and remain gated until bridge work is explicitly opened.
 
 ### Inputs
@@ -136,6 +146,50 @@ Examples:
 - `clifford_restricted_layer`
 - `left_right_weyl`
 - or explicit composite/nested layer description
+
+### `finite_map`
+The exact finite map, transition, quotient, or invariant under test.
+This field must not contain only a label such as `manifold`, `layer`,
+`quaternion shell`, `terrain`, `flux`, or `Axis0`.
+
+### `domain`
+The finite input object. For nonclassical manifold work, this must include the
+active finite probes/effects/operators/paths and the PEPS3D carrier anchors used
+by the claim.
+
+### `codomain_or_output`
+The finite output object, quotient, invariant, or blocked readout produced by
+the map.
+
+### `carrier_realization`
+The concrete computation substrate. Nonclassical manifold claims must name
+torch tensors and the spinor/quaternion/PEPS3D realization. Scalar rows, dense
+full-state closure, NumPy bridges, and label-only tensors must be fenced as
+controls/adapters, not admitted carriers.
+
+### `peps3d_embedding`
+How the object is anchored in finite PEPS3D sites, bonds, faces, or cells.
+For 64-substage work, this must show each substage as a local cell/tensor/channel
+action or an explicit projection from a richer PEPS3D cell carrier to the
+16-stage placement quotient.
+
+### `spinor_state`
+The torch-native spinor or spinor-derived density object. Missing spinor state
+blocks nonclassical manifold admission.
+
+### `quaternion_action`
+The explicit quaternionic map/invariant and its control. If quaternion language
+is not used, this should be `not_applicable`. If quaternion language is used
+without a map/invariant, the sim is `diagnostic_only` or `broken`.
+
+### `dependency_receipts`
+The lower receipt paths required by this sim. Empty dependency receipts are only
+allowed for true root/finite-carrier probes.
+
+### `downstream_blocks`
+Consumers that must not cite this sim. For foundation/manifold work, default
+blocks include flux, Xi, Phi0, Axis0, bridge, basin, and physics unless the sim
+explicitly earns a narrower consumer.
 
 ### `geometry_layer`
 Which geometry surface is being directly tested.
@@ -380,18 +434,26 @@ Must be explicit about:
 - root constraints
 - admissibility
 - finite witness structure
+- domain/codomain finite map
+- PEPS3D carrier admission if the lego is nonclassical manifold work
 
 ## Tier 2 legos
 Must be explicit about:
 - carrier ladder
 - geometry richness
 - reduced-geometry negatives
+- torch-native spinor state
+- nested Hopf torus index/projection when Hopf language is used
+- quaternion map/invariant and controls when quaternion language is used
+- PEPS3D site/bond/face/cell anchor
 
 ## Tier 3 legos
 Must be explicit about:
 - candidate-law family
 - proof/synthesis pressure
 - transport negatives
+- noncommuting/order-sensitive witness on the finite carrier
+- blocked downstream consumers
 
 ## Tier 4 legos
 Must be explicit about:
@@ -399,15 +461,22 @@ Must be explicit about:
 - differential candidate family
 - no-single-law or fake-law kills
 - graph/tensor support if required
+- sheet/terrain/substage labels translated into explicit finite maps before
+  they are used as computation-layer objects
 
 ## Tier 5 legos
 Must be explicit kill surfaces.
 
 ## Tier 6 legos
 Must be explicit about placement and downstream relation.
+Placement means a finite carrier cell/tensor/channel action, not only a token
+row. A stage/substage schedule without PEPS3D-carried local state/action
+evidence is scaffold-only.
 
 ## Tier 7 legos
 Should generally be blocked unless lower tiers justify them.
+Flux, Xi, Phi0, Axis0, basin, bridge, and physics consumers remain blocked
+unless the lower dependency receipts are cited and current.
 
 ---
 
@@ -425,8 +494,17 @@ scientific_question: ...
 sim_execution_kind: classical | nonclassical | bridge
 sim_class: ...
 root_constraints_in_force: [...]
+finite_map: ...
+domain: ...
+codomain_or_output: ...
 carrier_layer: ...
 geometry_layer: ...
+carrier_realization: ...
+peps3d_embedding: ...
+spinor_state: ...
+quaternion_action: ...
+dependency_receipts: [...]
+downstream_blocks: [...]
 law_or_candidate_tested: ...
 branch_status_before_run: ...
 required_tools: [...]

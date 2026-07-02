@@ -1,0 +1,433 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "foundation_role_registry_schema_20260523",
+  "title": "Codex Ratchet Foundation Role Registry",
+  "type": "object",
+  "required": [
+    "schema",
+    "date",
+    "status",
+    "purpose",
+    "core_rule",
+    "notation",
+    "counters",
+    "status_ladder",
+    "layer_model",
+    "conversion_pipeline",
+    "allowed_process_gate_placeholders",
+    "allowed_thesis_kinds",
+    "gate_coverage",
+    "items",
+    "llm_rules",
+    "next_machine_steps"
+  ],
+  "properties": {
+    "schema": {
+      "const": "foundation_role_registry_v1"
+    },
+    "date": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "core_rule": {
+      "type": "string"
+    },
+    "notation": {
+      "type": "object",
+      "required": [
+        "TH",
+        "RC",
+        "DC",
+        "CF",
+        "PL",
+        "EG",
+        "SIM",
+        "REC",
+        "OBJ",
+        "REL",
+        "GR",
+        "MC",
+        "M(C)"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "status_ladder": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "layer_model": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "name",
+          "role",
+          "statement"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "conversion_pipeline": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/registry_item"
+      },
+      "minItems": 1
+    },
+    "llm_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "next_machine_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "counters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "last_validated": {
+      "type": "string"
+    },
+    "allowed_process_gate_placeholders": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_thesis_kinds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "gate_coverage": {
+      "type": "object",
+      "required": [
+        "eg_rows",
+        "constraint_targets",
+        "note",
+        "candidate_note"
+      ],
+      "properties": {
+        "eg_rows": {
+          "type": "object",
+          "required": [
+            "implemented",
+            "total",
+            "unimplemented"
+          ],
+          "properties": {
+            "implemented": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "unimplemented": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "constraint_targets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          }
+        },
+        "note": {
+          "type": "string"
+        },
+        "candidate_note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "registry_item": {
+      "type": "object",
+      "required": [
+        "code",
+        "role",
+        "name"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "TH",
+            "RC",
+            "DC",
+            "CF",
+            "PL",
+            "EG",
+            "SIM",
+            "REC",
+            "OBJ",
+            "REL",
+            "MC",
+            "GR"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "statement": {
+          "type": "string"
+        },
+        "finite_translation": {
+          "type": "string"
+        },
+        "root_pressure": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbidden_primitive": {
+          "type": "string"
+        },
+        "cs_form": {
+          "type": "string"
+        },
+        "qit_math_form": {
+          "type": "string"
+        },
+        "process_form": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "formal_status": {
+          "type": "string"
+        },
+        "gate_needed": {
+          "type": "string"
+        },
+        "enforces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "positive_case": {
+          "type": "string"
+        },
+        "negative_case": {
+          "type": "string"
+        },
+        "boundary_case": {
+          "type": "string"
+        },
+        "observable": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "claim_ceiling": {
+          "type": "string"
+        },
+        "pass_threshold": {
+          "type": "string"
+        },
+        "fail_threshold": {
+          "type": "string"
+        },
+        "implementation_path": {
+          "type": "string"
+        },
+        "result_path": {
+          "type": "string"
+        },
+        "sim": {
+          "type": "string"
+        },
+        "gate": {
+          "type": "string"
+        },
+        "enforces_observables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "candidate_basin": {
+          "type": "string"
+        },
+        "receipt": {
+          "type": "string"
+        },
+        "required_gate": {
+          "type": "string"
+        },
+        "admission_gate": {
+          "type": "string"
+        },
+        "source_role": {
+          "type": "string"
+        },
+        "target_role": {
+          "type": "string"
+        },
+        "semantic_smuggling_risk": {
+          "type": "string"
+        },
+        "display_code": {
+          "type": "string"
+        },
+        "llm_note": {
+          "type": "string"
+        },
+        "built_from": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gate_implemented": {
+          "type": "boolean"
+        },
+        "receipt_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "derivation_note": {
+          "type": "string"
+        },
+        "motivation_note": {
+          "type": "string"
+        },
+        "promotion_priority": {
+          "type": "string"
+        },
+        "thesis_kind": {
+          "type": "string"
+        },
+        "pending_gates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blocked_by": {
+          "type": "string"
+        },
+        "ceiling_kind": {
+          "type": "string"
+        },
+        "ceiling_reason": {
+          "type": "string"
+        },
+        "lift_condition": {
+          "type": "string"
+        },
+        "uncertainty_variable": {
+          "type": "string"
+        },
+        "is_emergent_surface": {
+          "type": "boolean"
+        },
+        "is_final_ontology": {
+          "type": "boolean"
+        },
+        "pending_FTR_fixture_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "derivation_status": {
+          "enum": [
+            "asserted_by_prior_registry",
+            "root_pressure_sketch",
+            "formal_derivation_receipted"
+          ]
+        },
+        "promotion_blocker": {
+          "type": "string"
+        },
+        "derived_from_snapshot_id": {
+          "type": "string"
+        },
+        "archived_predecessors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "coverage_note": {
+          "type": "string"
+        },
+        "covered_by_aggregate": {
+          "type": "string"
+        },
+        "standalone_future_gate": {
+          "type": "boolean"
+        },
+        "coverage_status": {
+          "type": "string"
+        },
+        "gap": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,326 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T02:22:00-07:00",
+  "classification": "formal_scout_controller_candidate",
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_A_delete_anchor_orbit_K",
+  "not_a_scout_run": true,
+  "not_a_stop": true,
+  "claim_ceiling": "Candidate-map artifact only. No Phase 3, Hopf/Weyl, terrain, operator substage, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, axes 7-12, topology closure, sheaf/gluing theorem, homology/persistence closure, all-subset minimality, restoration/inverse closure, bond convergence, shape law, or PEPS/PEPS3D closure claim is opened.",
+  "current_state_inputs": {
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "transition_decision_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_A_delete_anchor_orbit_active_frontier_blocker_20260526.json",
+    "latest_earned_source_path": "system_v5/ops/formal_scouts/sim_peps3d_delete_anchor_orbit_probe.py",
+    "latest_earned_result_path": "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_orbit_probe_results.json",
+    "latest_earned_map": "A_delete_anchor_orbit_K : (I_delete_idempotence_K rows, anchor-preserving finite cover relabeling pi, support_atom a) -> finite deletion-anchor orbit table + control gap vector",
+    "frontier_rows": 26,
+    "contract_complete_rows": 25,
+    "killed_rows": 1,
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "working_geometry_plain_answer": "The current earned geometry is still Phase 2 PEPS3D-anchored finite response-quotient carrier geometry. After A_delete_anchor_orbit_K, deletion/idempotence rows have a finite anchor-preserving relabeling table. This does not earn symmetry closure, topology, bond convergence, or downstream geometry.",
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_spinor_density_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps_peps3d_local_environment_contraction_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_heldout_shape_anchor_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_bond_sweep_anchor_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_anchor_partition_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_patch_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_projection_shape_bond_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_replay_restriction_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_restriction_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_triple_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cover_nerve_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_nerve_deletion_sensitivity_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_one_delete_necessity_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_deletion_idempotence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_orbit_probe_results.json"
+  ],
+  "controls_to_preserve": [
+    "no_anchor",
+    "scalar_label",
+    "bond_dim_one_control",
+    "bond_convergence_claim",
+    "shape_law_claim",
+    "wrong_deletion_no_incidence_change",
+    "restore_or_inverse_claim",
+    "single_probe_non_ic",
+    "order_erased",
+    "dense_state_closure",
+    "dense_environment_closure",
+    "all_subset_minimality_claim",
+    "topology_closure",
+    "homology_or_persistence_closure",
+    "sheaf_closure",
+    "general_gluing_law",
+    "promotion"
+  ],
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "B_delete_bond_replay_K",
+      "finite_map": "B_delete_bond_replay_K : (A_delete_anchor_orbit_K and I_delete_idempotence_K rows at bond_dim in {2,3}, support_atom, deletion_kind, normalized_anchor_response_signature) -> finite two-bond deletion replay table + control gap vector",
+      "decision": "admissible_candidate_not_run",
+      "chosen": true,
+      "why_admissible": [
+        "Uses only the two finite bond dimensions already present in D/M/I/A receipts.",
+        "Tests a finite replay/readout question, not convergence: do normalized anchor/response signatures preserve support kind across bond 2 and bond 3?",
+        "Keeps PEPS3D V/E/F/C anchors explicit and keeps bond_dim_one and convergence wording as controls.",
+        "Does not import topology, sheaf, homology, Hopf/Weyl, flux, Axis0, or downstream geometry."
+      ],
+      "domain": {
+        "A_delete_anchor_orbit_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_orbit_probe_results.json",
+        "I_delete_idempotence_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_deletion_idempotence_probe_results.json",
+        "bond_dims": [
+          2,
+          3
+        ],
+        "support_atoms": [
+          "v0",
+          "v1",
+          "v2",
+          "e01",
+          "e12",
+          "e02",
+          "sigma012"
+        ],
+        "finite_replay_scope": "bond 2 versus bond 3 only; no extrapolation"
+      },
+      "codomain_or_output": {
+        "two_bond_replay_table": "finite table over support atoms comparing normalized bond-2 and bond-3 deletion/orbit signatures",
+        "replay_gap_vector": "finite support-kind and normalized-signature gaps",
+        "control_gap_vector": "finite rejection gaps for bond_dim_one, scalar/no-anchor, order-erased, dense closure, convergence, topology/sheaf/homology, all-subset, restore/inverse, and promotion controls"
+      },
+      "positive_case": "Every support atom has an anchored bond-2 and bond-3 row with matching support kind and finite normalized signature class, while no convergence beyond the tested two rows is claimed.",
+      "negative_controls": [
+        "no_anchor",
+        "scalar_label",
+        "bond_dim_one_control",
+        "bond_convergence_claim",
+        "shape_law_claim",
+        "wrong_deletion_no_incidence_change",
+        "restore_or_inverse_claim",
+        "single_probe_non_ic",
+        "order_erased",
+        "dense_state_closure",
+        "dense_environment_closure",
+        "all_subset_minimality_claim",
+        "topology_closure",
+        "homology_or_persistence_closure",
+        "sheaf_closure",
+        "general_gluing_law",
+        "promotion"
+      ],
+      "boundary_controls": [
+        "two-bond replay is not bond convergence",
+        "two-bond replay is not a shape law",
+        "two-bond replay is not PEPS3D closure",
+        "no downstream consumer is opened"
+      ],
+      "blocked_consumers": [
+        "nested Hopf tori",
+        "Weyl sheet cover",
+        "terrain generator placement",
+        "operator substage cells",
+        "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+        "flux",
+        "Xi/Phi0",
+        "Axis0",
+        "Holodeck/FEP",
+        "physics",
+        "IGT/game theory",
+        "axes 7-12"
+      ]
+    },
+    {
+      "candidate_id": "DD_pair_delete_interaction_K",
+      "finite_map": "DD_pair_delete_interaction_K : (A_delete_anchor_orbit_K, ordered deletion pair (delta_i, delta_j), support_atoms, bond_dim, local_order_ops) -> finite pair-deletion interaction table + control gap vector",
+      "decision": "deferred",
+      "why_deferred": "Bounded but broader than two-bond replay and risks all-subset/topology language. Keep it after the narrower finite bond-replay check."
+    },
+    {
+      "candidate_id": "H_delete_anchor_loss_idempotence_K",
+      "finite_map": "H_delete_anchor_loss_idempotence_K : (I_delete_idempotence_K rows, full_anchor_counts, repeated_deleted_anchor_counts, deletion_kind, bond_dim) -> finite V/E/F/C anchor-loss idempotence table + mismatch/control gaps",
+      "decision": "deferred",
+      "why_deferred": "Admissible but mostly re-expresses I_delete_idempotence_K after A_delete_anchor_orbit_K."
+    },
+    {
+      "candidate_id": "Q_delete_class_partition_K",
+      "finite_map": "Q_delete_class_partition_K : (A_delete_anchor_orbit_K rows, deletion/orbit profile) -> finite class partition + control gaps",
+      "decision": "rejected_for_now",
+      "why_rejected": "Still too close to duplicate response quotient evidence unless sharpened into a new invariant."
+    },
+    {
+      "candidate_id": "homology_sheaf_topology_or_downstream_from_bond_replay",
+      "finite_map": "B_delete_bond_replay_K -> homology/sheaf/Hopf/Weyl/flux/Axis0 readout",
+      "decision": "rejected",
+      "why_rejected": "All such consumers remain blocked downstream."
+    }
+  ],
+  "selected_candidate_map_id": "B_delete_bond_replay_K",
+  "chosen_finite_map_artifact": {
+    "candidate_id": "B_delete_bond_replay_K",
+    "finite_map": "B_delete_bond_replay_K : (A_delete_anchor_orbit_K and I_delete_idempotence_K rows at bond_dim in {2,3}, support_atom, deletion_kind, normalized_anchor_response_signature) -> finite two-bond deletion replay table + control gap vector",
+    "plain_question": "Across the already tested bond dimensions 2 and 3 only, do deletion/idempotence/orbit rows preserve support kind and normalized PEPS3D anchor-response signatures, while bond_dim_one, scalar/no-anchor, order-erased, dense closure, convergence, topology/sheaf/homology, all-subset, restore/inverse, and promotion controls fail?",
+    "domain": {
+      "A_delete_anchor_orbit_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_orbit_probe_results.json",
+      "I_delete_idempotence_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_deletion_idempotence_probe_results.json",
+      "support_atoms": [
+        "v0",
+        "v1",
+        "v2",
+        "e01",
+        "e12",
+        "e02",
+        "sigma012"
+      ],
+      "bond_dims": [
+        2,
+        3
+      ],
+      "finite_operator_paths": [
+        "physical_filter after physical_shift on full support",
+        "physical_shift after physical_filter on full support",
+        "order_erased",
+        "bond_2_row",
+        "bond_3_row",
+        "bond_dim_one_control"
+      ],
+      "finite_admissibility_predicate": "finite predicate requiring explicit V/E/F/C anchor accounting for both bond rows, support-kind replay agreement, normalized finite signature comparison, inherited full-support N01 gap, order-erased collapse, no dense closure, no bond convergence or shape law, no restoration/inverse, no all-subset minimality, no topology/sheaf/homology closure, and no downstream promotion"
+    },
+    "codomain_or_output": {
+      "two_bond_replay_table": "finite table over seven support atoms comparing bond 2 and bond 3 rows",
+      "support_kind_replay_vector": "finite agreement vector for support kind and V/E/F/C anchor kind",
+      "normalized_signature_gap_vector": "finite gap vector comparing normalized anchor/response signatures for bond 2 and bond 3",
+      "control_gap_vector": "finite gaps for bond_dim_one, scalar/no-anchor, order-erased, dense closure, convergence, topology/sheaf/homology, all-subset, restore/inverse, and promotion controls"
+    },
+    "earned_structure_if_passed": "Only a finite two-bond replay table for active Phase 2 carrier rows. It would not earn bond convergence, shape law, PEPS3D closure, topology, sheaf/gluing, homology, all-subset minimality, or downstream geometry.",
+    "F01_witness": {
+      "finite_carriers": "one finite PEPS3D parent/cover carrier, seven finite support atoms, two finite bond dimensions, and finite bond replay rows",
+      "finite_probes": "finite SIC-effect response family inherited from Phase 2 carrier receipts",
+      "finite_operators": "finite bond-row replay maps, physical_filter, physical_shift, order_erased, and finite admissibility predicates",
+      "finite_paths": "bounded path set {filter_after_shift, shift_after_filter, order_erased, bond2_row, bond3_row, bond1_control}",
+      "finite_outputs": "finite two-bond replay table, support-kind replay vector, normalized signature gap vector, and control gap vector"
+    },
+    "N01_witness": "The full-support carrier must retain physical_filter after physical_shift != physical_shift after physical_filter, while order_erased collapses. Bond replay is not assumed to be a new noncommuting operator; it is a finite carrier replay readout over the inherited N01 carrier.",
+    "PEPS3D_anchor_requirement": "Every replay row must preserve inherited PEPS3D site, edge, face, and cell anchor kind from D/M/I/A receipts. Scalar labels and bond-only rows are controls only.",
+    "torch_spinor_or_density_status": "Torch-native spinors and spinor-derived local density responses are inherited carrier readouts from Phase 2 receipts only. No Hopf/Weyl, Bloch-only, or dense-state geometry is admitted.",
+    "quaternion_action": "not_applicable",
+    "positive_case": "Each support atom has one bond-2 row and one bond-3 row with matching support kind, explicit V/E/F/C anchor accounting, and finite normalized signature replay; no claim is made beyond these two bond rows.",
+    "negative_controls": [
+      "no_anchor",
+      "scalar_label",
+      "bond_dim_one_control",
+      "bond_convergence_claim",
+      "shape_law_claim",
+      "wrong_deletion_no_incidence_change",
+      "restore_or_inverse_claim",
+      "single_probe_non_ic",
+      "order_erased",
+      "dense_state_closure",
+      "dense_environment_closure",
+      "all_subset_minimality_claim",
+      "topology_closure",
+      "homology_or_persistence_closure",
+      "sheaf_closure",
+      "general_gluing_law",
+      "promotion"
+    ],
+    "boundary_controls": [
+      "bond_dim_one remains a control",
+      "two-bond replay is not bond convergence",
+      "two-bond replay is not a shape law",
+      "two-bond replay is not PEPS3D closure",
+      "no downstream consumer is opened"
+    ],
+    "failure_conditions": [
+      "Any support atom lacks either the bond-2 or bond-3 anchored row.",
+      "Any bond row lacks inherited V/E/F/C PEPS3D anchor accounting.",
+      "A scalar-label, no-anchor, or bond-only row reproduces the admitted replay table.",
+      "The map requires any bond value beyond {2,3}.",
+      "The inherited full-support order gap is zero or order-erased does not collapse.",
+      "Dense full-state or dense-environment closure is used.",
+      "Bond convergence, shape law, topology, sheaf, homology, all-subset, restore/inverse, or promotion controls are admitted.",
+      "The map opens Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, axes 7-12, or any Phase 7/downstream receipt."
+    ],
+    "promotion_allowed": false,
+    "eligible_consumers": [
+      "future_formal_scout_source_only",
+      "active_carrier_frontier_matrix_only_after_result_receipt"
+    ],
+    "next_admissible_packet": {
+      "packet_id": "phase2_delete_bond_replay_candidate_packet",
+      "allowed_next_action": "Author a formal_scout source for B_delete_bond_replay_K, then run/lint/validate it. This artifact itself does not authorize downstream geometry.",
+      "fallback_if_killed": "Preserve system_v5/ops/formal_scouts/phase2_post_A_delete_anchor_orbit_active_frontier_blocker_20260526.json and return to candidate discovery for a fresh bounded Phase 2 carrier-frontier map.",
+      "must_not_run_from_this_artifact": [
+        "Phase 3 nested Hopf tori",
+        "Weyl sheet cover",
+        "terrain generator placement",
+        "operator substages",
+        "flux",
+        "Xi/Phi0",
+        "Axis0",
+        "Holodeck/FEP",
+        "physics",
+        "IGT/game theory",
+        "axes 7-12",
+        "topology closure",
+        "sheaf/gluing theorem",
+        "homology/persistence closure",
+        "all-subset minimality",
+        "restore/inverse closure",
+        "bond convergence",
+        "shape law",
+        "Phase 7 I_boundary reclassification"
+      ]
+    }
+  },
+  "tool_depth_requirements_for_future_scout": {
+    "load_bearing_expected": [
+      "pytorch",
+      "rustworkx",
+      "xgi",
+      "toponetx",
+      "gudhi",
+      "torch_geometric",
+      "z3",
+      "cvc5",
+      "sympy"
+    ],
+    "not_applicable_unless_scope_changes": [
+      "clifford",
+      "geomstats",
+      "e3nn"
+    ],
+    "notes": "Candidate artifact did not run tools. Future scout should keep bond replay finite to bond dimensions 2 and 3 and reject convergence wording."
+  },
+  "wizard_v4_2": {
+    "status": "BLOCKED",
+    "accepted_parent_count": 0,
+    "accepted_child_count": 0,
+    "blocked_reason": "Full Wizard v4.2 is not claimed. This artifact is controller discovery only; Codex sidecars for post-A are advisory until integrated."
+  },
+  "multi_model_parallelism_truth": {
+    "status": "partial",
+    "counting_boundary": "Codex-native sidecars are advisory discovery/falsifier lanes. Direct Gemini/Grok are API-key provider lanes when used and are not Wizard children. No new scout run is claimed by this artifact."
+  },
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_packet_runs": "system_v5/ops/formal_scouts/phase2_post_A_delete_anchor_orbit_active_frontier_blocker_20260526.json"
+}

@@ -1,0 +1,116 @@
+{
+  "schema": "cf21_declared_instrument_vs_primitive_probe_gate_result_v1",
+  "name": "cf21_declared_instrument_vs_primitive_probe_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-21",
+  "gate": "EG-CF21-declared-instrument-vs-primitive-probe",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-21 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite density states, declared projective instruments, in-system probe reductions, and primitive-probe negative control"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:09:30Z",
+  "runtime_seconds": 0.0013146400451660156,
+  "positive": {
+    "pass": true,
+    "same_input_state": "rho_from_bloch(0.58, 0.0, 0.22)",
+    "instrument_declared": true,
+    "observer_probe_inside_joint_state": true,
+    "probe_family_finite": true,
+    "z_probabilities": [
+      0.61,
+      0.39
+    ],
+    "x_probabilities": [
+      0.7899999999999999,
+      0.21000000000000002
+    ],
+    "probability_gap_between_instruments": 0.17999999999999994,
+    "back_action_trace_distance": 0.3101612483854164,
+    "z_probe_reduced": [
+      [
+        {
+          "real": 0.61,
+          "imag": 0.0
+        },
+        {
+          "real": 0.0,
+          "imag": 0.0
+        }
+      ],
+      [
+        {
+          "real": 0.0,
+          "imag": 0.0
+        },
+        {
+          "real": 0.39,
+          "imag": 0.0
+        }
+      ]
+    ],
+    "x_probe_reduced": [
+      [
+        {
+          "real": 0.7899999999999999,
+          "imag": 0.0
+        },
+        {
+          "real": 0.0,
+          "imag": 0.0
+        }
+      ],
+      [
+        {
+          "real": 0.0,
+          "imag": 0.0
+        },
+        {
+          "real": 0.21000000000000002,
+          "imag": 0.0
+        }
+      ]
+    ]
+  },
+  "negative": {
+    "pass": false,
+    "expected": "fail",
+    "negative_case_type": "executable_rejection",
+    "negative_rejected": true,
+    "attempted_claim": {
+      "claim": "p(outcome=0) for the state",
+      "instrument_declared": false,
+      "probe_inside_joint_system": false,
+      "instrument_variation_control_available": true
+    },
+    "ambiguity_witness": {
+      "z_probability_0": 0.61,
+      "x_probability_0": 0.7899999999999999,
+      "gap": 0.17999999999999994
+    }
+  },
+  "boundary": {
+    "pass": true,
+    "basis_declared": "Z",
+    "state_diagonal_in_declared_basis": true,
+    "classical_readout_allowed_as_declared_ablation": true,
+    "born_probability_0": 0.73,
+    "diagonal_probability_0": 0.73,
+    "coherence_before": 0.0,
+    "interpretation": "a classical probability table is admissible only after the instrument/probe family is declared"
+  },
+  "all_pass": true
+}

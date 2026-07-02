@@ -1,0 +1,95 @@
+{
+  "all_pass": true,
+  "bloch_free": true,
+  "carrier": "Julia + LinearAlgebra + ITensors/ITensorMPS + JSON + Z3 (non-numpy)",
+  "checks": {
+    "cp1_quotient_genuine": true,
+    "entanglement_load_bearing": true,
+    "geometry_invariant_anchored_|c1|=1": true,
+    "geometry_wrong_structure_fails": true,
+    "ghz_analytic_anchor_1bit": true,
+    "z3_load_bearing": true
+  },
+  "claim_ceiling": "PoC spinor-network base view only; no layer stacking, G-structure, flux, Xi/Phi0, Axis0, FEP, or final-manifold claim.",
+  "classification": "s2_cp1_base_spinor_network_poc",
+  "description": "S^2/CP^1 Hopf base as a finite spinor network; base map pi(psi)=psi^dag sigma psi; first Chern number from projector-field Berry curvature; CP^1 fiber/antipodal quotient; spinor-network MPS cut entanglement vs product control. Bloch-free (density-operator/projector only).",
+  "entanglement": {
+    "N": 8,
+    "entangled_cut_entropy": [
+      0.06628562004555402,
+      0.014605301294476687,
+      0.059779124431737274,
+      0.07470089567599542,
+      0.14562030246561694,
+      0.07859843798863402,
+      0.07859843798863402
+    ],
+    "entangled_cut_max": 0.14562030246561694,
+    "entangled_cut_mean": 0.07402687427009262,
+    "entangled_max_bond": 2,
+    "ghz_analytic_anchor_1bit": true,
+    "ghz_cut_entropy": [
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999,
+      -6.406853007629837e-16
+    ],
+    "ghz_cut_max": 0.9999999999999999,
+    "load_bearing": true,
+    "method": "spinor-network MPS; von Neumann (Schmidt) entropy across each cut by SVD of orthogonalized MPS",
+    "product_cut_entropy": [
+      6.406853007629834e-16,
+      3.2034265038149176e-16,
+      3.2034265038149176e-16,
+      6.406853007629834e-16,
+      9.61027951144475e-16,
+      9.61027951144475e-16,
+      6.406853007629834e-16
+    ],
+    "product_cut_max": 9.61027951144475e-16,
+    "product_max_bond": 1
+  },
+  "geometry": {
+    "c1_hopf_numeric": -1.0000045692369373,
+    "c1_hopf_qerr": 4.569236937257415e-6,
+    "c1_hopf_rounded": -1,
+    "c1_kill_frozen_numeric": 0.0,
+    "c1_kill_frozen_rounded": 0,
+    "c1_trivial_numeric": 0.0,
+    "c1_trivial_rounded": 0,
+    "cp1_quotient": {
+      "antipodal_overlap_max": 2.0816681711721685e-16,
+      "fiber_global_phase_move_max": 4.839349969133127e-16,
+      "relphase_move_max": 0.9371384552990724,
+      "relphase_moved_count": 399
+    },
+    "cp1_quotient_genuine": true,
+    "grid": {
+      "nphi": 300,
+      "ntheta": 300
+    },
+    "invariant_anchored_abs_c1_is_1": true,
+    "known_invariant_anchor": "eigenline bundle O(m) over CP^1 has c1=-m; Hopf m=1 => c1=-1, |c1|=1 (algebraic geometry; convention fixed up front)",
+    "method": "c1 = (1/2pi) int_S2 i Tr(P[dP_theta,dP_phi]); P=|psi><psi| projector field over CP^1",
+    "wrong_structure_control_fails": true
+  },
+  "learned_from_readonly": "system_v5/legos/hopf_fibration_s3_s2_spinor_network_peps3d_entropy_pytorch_jax_quimb_sympy_z3.py",
+  "object_id": "s2_cp1_base_spinor_network",
+  "promotion_allowed": false,
+  "status": "passes",
+  "z3_structural": {
+    "corruptions": {
+      "broken_hopf_0": false,
+      "broken_hopf_sign": false,
+      "broken_kill_nonzero": false,
+      "broken_triv_nonzero": false
+    },
+    "sat_on_genuine_tuple": true,
+    "status": "load_bearing_pass",
+    "tool_role": "load_bearing",
+    "unsat_on_all_corruptions": true
+  }
+}

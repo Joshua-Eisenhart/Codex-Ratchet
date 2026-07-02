@@ -1,0 +1,2367 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Attractors": "load_bearing",
+    "Dates": "supportive",
+    "DynamicalSystems": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "SHA": "supportive",
+    "StaticArrays": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Attractors": {
+      "reason": "maps the finite ratchet table and measures parent/sub-basin fractions",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "timestamps the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "DynamicalSystems": {
+      "reason": "supplies DeterministicIteratedMap for the finite ratchet table",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "writes the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "builds finite ratchet maps, controls, scale rungs, and result receipt",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "embeds source and table hashes for stale-receipt and bit-identical-control checks",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "StaticArrays": {
+      "reason": "represents one-dimensional discrete map states for DynamicalSystems",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "proves bounded parent-basin reachability and order/control counterexample status",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    }
+  },
+  "actual_tools_used": [
+    "DynamicalSystems",
+    "JSON",
+    "SHA",
+    "StaticArrays",
+    "Dates",
+    "Attractors",
+    "Julia",
+    "Z3"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "The finite schedule fixture has Z3-certified bounded convergence into a parent basin.",
+    "Attractors maps the genuine 64-state ratchet to a parent basin fraction of 1.0 with four nonempty sub-basins.",
+    "Parent-erased, order-erased, and sub-basin-collapsed controls flip distinct parts of the claim.",
+    "promotion_allowed=false; no layer, manifold, PEPS, flux, Axis0, FEP, bridge admission, or physics claim is made."
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/geometric_constraint_manifold_ratchet_subbasins_results.json"
+  ],
+  "backend_primary_result": {
+    "all_pass": true,
+    "backend": "Julia + Z3 + Attractors.jl + DynamicalSystems.jl",
+    "claim_bearing": true,
+    "claim_scope": "finite ratchet/sub-basin proof-pattern scout only; not proof promotion or admission",
+    "summary": "Z3 proves bounded finite parent-basin reachability and controls; Attractors maps the finite table into parent/sub-basin fractions."
+  },
+  "blocked_consumers": [
+    "layer completion",
+    "parent-complete layer status",
+    "G-structure selection",
+    "PEPS2D",
+    "PEPS3D",
+    "stacking readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "bridge admission",
+    "gravity",
+    "physics",
+    "final manifold admission",
+    "manifold basin admission"
+  ],
+  "blocked_until": "A target layer exports a real carrier transition map with finite states and sub-basin readouts, replacing this schedule fixture.",
+  "branch_status_before_run": "ratchet_subbasin_scout_not_admission",
+  "carrier_layer": "finite schedule fixture",
+  "carrier_realization": "Julia finite transition tables, Z3 SMT queries, DynamicalSystems deterministic maps, and Attractors basin mapping",
+  "claim_ceiling": "Diagnostic finite proof/mapping scout only. It proves a ratchet/sub-basin pattern on the terrain/operator schedule fixture. It does not admit a PEPS carrier, layer, manifold basin, Axis0, flux, FEP, physics, or final manifold status.",
+  "classification": "formal_scout",
+  "codomain_or_output": "bounded parent-basin convergence certificate, four sub-basin coverage readout, and controls",
+  "controls": {
+    "bit_identical_control_check_64": {
+      "genuine": "8fed7e6dd7637b72a39200d1618018081f6e2f0c84d388a47f30196efe818705",
+      "order_erased_genuine": "5e8d183d9a208d4beb13f58e9699b3a6366ab88611a6eafb3a8fdcaf2eda479e",
+      "order_erased_reverse": "5e8d183d9a208d4beb13f58e9699b3a6366ab88611a6eafb3a8fdcaf2eda479e",
+      "order_refiner": "49474e896a3449cc29a161494ba6cd03e0faa4a0661d08a594f704b920e1870b",
+      "parent_erased": "49474e896a3449cc29a161494ba6cd03e0faa4a0661d08a594f704b920e1870b",
+      "parent_ratchet": "5e8d183d9a208d4beb13f58e9699b3a6366ab88611a6eafb3a8fdcaf2eda479e",
+      "reverse_order": "d03a5819f7a2fa3150250073d68a5f5af95b3298c9466010d8c58560a562378f",
+      "subbasin_collapsed": "c0173657ed4871640424cc92908f9209f9a8eda2dfa31a20016873847651f704"
+    },
+    "order_erased_control_64": {
+      "commutation_proven": true,
+      "order_sensitive_witness_exists": false,
+      "query": "exists x where A_then_B differs from B_then_A",
+      "status": "unsat"
+    },
+    "parent_erased_control_64": {
+      "counterexample_exists": true,
+      "k": 15,
+      "proves_all_reach_parent_basin": false,
+      "query": "exists state not reaching the parent basin within k",
+      "status": "sat"
+    },
+    "subbasin_collapsed_control_64": {
+      "attractor_count": 1,
+      "attractor_rows": [
+        {
+          "attractor_label": "NeTi::Ti",
+          "attractor_state": 1,
+          "fraction": 1.0,
+          "in_parent_basin": true,
+          "label": 1,
+          "subbasin": "Ti"
+        }
+      ],
+      "basin_entropy": {
+        "basin_entropy": 0.0,
+        "boundary_basin_entropy": null,
+        "box_side": 8,
+        "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+        "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+      },
+      "nonempty_subbasin_count": 1,
+      "parent_basin_fraction": 1.0,
+      "raw_basin_labels": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "subbasin_fractions": {
+        "Fe": 0.0,
+        "Fi": 0.0,
+        "Te": 0.0,
+        "Ti": 1.0
+      }
+    }
+  },
+  "data_or_artifact_dependencies": [],
+  "decorative_tool_name_overclaim_guard": {
+    "Attractors": "load_bearing for finite table basin labels/fractions/entropy only; not a proof engine",
+    "DynamicalSystems": "load_bearing for deterministic map execution only; not a carrier admission",
+    "Z3": "load_bearing for finite bounded proof only; not continuous/manifold admission",
+    "bit_identical_controls_checked": "64-state table hashes differ across genuine, parent-erased, order-erased, and sub-basin-collapsed tables.",
+    "shared_premise_tested": "Removing parent ratchet prevents full parent-basin convergence; collapsing sub-basin selector removes sub-basin coverage; order-erased selector removes N01 gap."
+  },
+  "demotion_condition": "Demote to broken if parent-basin Z3 reachability stops proving UNSAT, if any sub-basin becomes empty, if parent-erased/order-erased/subbasin-collapsed controls stop flipping, if source hash mismatches, or if downstream wording treats this as PEPS/layer/manifold admission.",
+  "dependency_receipts": [
+    "system_v5/julia_carrier/layers/constraint_basin_synthesis_terrain64_results.json",
+    "system_v5/julia_carrier/layers/attractors_constraint_basin_same_map_bridge_results.json",
+    "system_v5/julia_carrier/layers/attractors_constraint_basin_empirical_scout_results.json"
+  ],
+  "domain": "8/16/32/64 finite terrain/operator schedule states; no continuous, PEPS, spinor, or manifold carrier is claimed",
+  "downstream_blocks": [
+    "layer completion",
+    "parent-complete layer status",
+    "G-structure selection",
+    "PEPS2D",
+    "PEPS3D",
+    "stacking readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "bridge admission",
+    "gravity",
+    "physics",
+    "final manifold admission",
+    "manifold basin admission"
+  ],
+  "eligible_consumers": [
+    "proof-pattern design for exported carrier maps",
+    "bounded comparison against terrain/operator and Attractors basin scouts"
+  ],
+  "entropy_as_output": {
+    "boundary": "Attractors.basin_entropy diagnostic only; no Wada/fractal claim",
+    "genuine_64": {
+      "basin_entropy": 1.3862943611198906,
+      "boundary_basin_entropy": 1.3862943611198906,
+      "box_side": 8,
+      "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+      "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+    },
+    "subbasin_collapsed_64": {
+      "basin_entropy": 0.0,
+      "boundary_basin_entropy": null,
+      "box_side": 8,
+      "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+      "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+    }
+  },
+  "fail_rule": "Any missing proof, empty sub-basin, failed Attractors parent fraction, bit-identical control, missing source hash match, or promotion-like downstream claim fails the scout.",
+  "finite_map": {
+    "codomain_or_output": "next finite state, Z3 parent reachability proof, Attractors parent/sub-basin fractions, and negative-control deltas",
+    "domain": "finite states (native_word, substage) over prefixes of 16 terrain/operator words x 4 substages",
+    "map": "F = A_after_B. A ratchets word index toward target parent word NeTi; B refines substage by a word-dependent order-sensitive shift and becomes identity inside the parent basin."
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-03T08:52:49.869",
+  "geometry_layer": "terrain/operator order grammar fixture, not a geometric manifold carrier admission",
+  "graph_surfaces_used": [],
+  "kill_conditions": [
+    "genuine parent-basin reachability query becomes SAT",
+    "external fixed-point query becomes SAT",
+    "any parent sub-basin has no witness",
+    "Attractors maps genuine table to parent fraction below 1.0",
+    "order-erased control remains order-sensitive",
+    "sub-basin-collapsed control still has four nonempty sub-basins",
+    "control table hashes are bit-identical"
+  ],
+  "law_or_candidate_tested": "F01/N01 constraints ratchet all finite states into one parent attractor basin with four nonempty sub-basins",
+  "name": "Finite geometric-constraint ratchet into parent attractor basin with sub-basins",
+  "negatives_run": [
+    "parent_ratchet_erased",
+    "order_erased_refiner",
+    "subbasin_selector_collapsed",
+    "bit_identical_control_check"
+  ],
+  "next_lego_target": "Replace the schedule fixture with one exported terrain/channel carrier map whose states carry real density/channel data, then rerun the same parent/sub-basin proof.",
+  "object_id": "geometric_constraint_manifold_ratchet_subbasins",
+  "one_layer_done_right_candidate": false,
+  "out_of_scope": [
+    "PEPS2D or PEPS3D carrier construction",
+    "spinor-network carrier admission",
+    "continuous or infinite-time attractor theorem",
+    "Basins.jl Wada/fractal boundary proof",
+    "per-layer completion",
+    "manifold basin admission",
+    "flux/Xi/Phi0/Axis0/FEP/physics claims"
+  ],
+  "pass_rule": "All 8/16/32/64 rungs must prove parent-basin reachability, no external fixed points, four nonempty sub-basins, Attractors parent fraction 1.0, nonzero N01 order gap, zero order-erased gap, and flipping controls.",
+  "peps3d_embedding": "absent; this absence blocks manifold, PEPS3D, flux, Axis0, FEP, physics, and basin-admission consumers",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "finite schedule fixture only",
+    "no PEPS2D or PEPS3D carrier",
+    "no spinor-network or spinor-derived density carrier",
+    "no exported per-layer carrier map",
+    "no layer-completion claim gate"
+  ],
+  "promotion_condition": "Promotion requires a real target-layer carrier map, PEPS3D or explicit blocked carrier boundary where required, spinor/density carrier evidence, fresh controls, and a passing layer-completion claim gate for completion-like wording.",
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [
+    "Z3 parent reachability",
+    "Z3 no external fixed point",
+    "Z3 order witness",
+    "Z3 sub-basin nonempty witnesses"
+  ],
+  "purpose": "Show a finite F01/N01 constraint map that monotonically ratchets every finite state into one parent attractor basin while preserving four nonempty sub-basins.",
+  "quaternion_action": "not_applicable",
+  "required_inputs": [
+    "16 native words",
+    "4 substages",
+    "parent ratchet A",
+    "word-dependent substage refiner B",
+    "8/16/32/64 state rungs"
+  ],
+  "required_negatives": [
+    "parent_ratchet_erased",
+    "order_erased_refiner",
+    "subbasin_selector_collapsed",
+    "bit_identical_control_check"
+  ],
+  "required_tools": [
+    "DynamicalSystems",
+    "JSON",
+    "SHA",
+    "StaticArrays",
+    "Dates",
+    "Attractors",
+    "Julia",
+    "Z3"
+  ],
+  "result_summary": {
+    "all_rungs_pass": true,
+    "collapsed_nonempty_subbasin_count_64": 1,
+    "nonempty_subbasin_count_64": 4,
+    "order_erased_gap_count_64": 0,
+    "order_gap_count_64": 60,
+    "parent_basin_fraction_64": 1.0,
+    "parent_erased_parent_fraction_64": 0.0625,
+    "source_sha256": "2c904055b81b6672139c8f1e7ca7525821bd8c6bf024aaa2d30ad07243abf401",
+    "state_rungs": [
+      "8",
+      "16",
+      "32",
+      "64"
+    ],
+    "subbasin_fractions_64": {
+      "Fe": 0.25,
+      "Fi": 0.25,
+      "Te": 0.25,
+      "Ti": 0.25
+    }
+  },
+  "root_constraints": [
+    "F01 finite carrier/probe/operator/path set: finite (terrain/operator word, substage) states at 8/16/32/64 state rungs",
+    "N01 noncommuting/order-sensitive operation/control: parent ratchet A and substage refiner B have A_after_B != B_after_A, while order-erased B=id commutes"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite distinguishable terrain/operator schedule states",
+    "N01 order-sensitive parent/substage composition with Z3 SAT witness and order-erased UNSAT control"
+  ],
+  "scale_ladder": {
+    "rungs": {
+      "16": {
+        "attractors_genuine": {
+          "attractor_count": 4,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NeTi::Te",
+              "attractor_state": 2,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 2,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NeTi::Fi",
+              "attractor_state": 3,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 3,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NeTi::Fe",
+              "attractor_state": 4,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 4,
+              "subbasin": "Fe"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 1.3862943611198906,
+            "boundary_basin_entropy": 1.3862943611198906,
+            "box_side": 4,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 4,
+          "parent_basin_fraction": 1.0,
+          "raw_basin_labels": [
+            1,
+            2,
+            3,
+            4,
+            3,
+            4,
+            1,
+            2,
+            2,
+            3,
+            4,
+            1,
+            2,
+            3,
+            4,
+            1
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.25,
+            "Fi": 0.25,
+            "Te": 0.25,
+            "Ti": 0.25
+          }
+        },
+        "attractors_parent_erased_control": {
+          "attractor_count": 11,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.0625,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NeTi::Te",
+              "attractor_state": 2,
+              "fraction": 0.0625,
+              "in_parent_basin": true,
+              "label": 2,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NeTi::Fi",
+              "attractor_state": 3,
+              "fraction": 0.0625,
+              "in_parent_basin": true,
+              "label": 3,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NeTi::Fe",
+              "attractor_state": 4,
+              "fraction": 0.0625,
+              "in_parent_basin": true,
+              "label": 4,
+              "subbasin": "Fe"
+            },
+            {
+              "attractor_label": "FeSi::Te",
+              "attractor_state": 6,
+              "fraction": 0.125,
+              "in_parent_basin": false,
+              "label": 5,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "FeSi::Fi",
+              "attractor_state": 7,
+              "fraction": 0.125,
+              "in_parent_basin": false,
+              "label": 6,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "TiSe::Te",
+              "attractor_state": 10,
+              "fraction": 0.25,
+              "in_parent_basin": false,
+              "label": 7,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NiFe::Ti",
+              "attractor_state": 13,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 8,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NiFe::Te",
+              "attractor_state": 14,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 9,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NiFe::Fi",
+              "attractor_state": 15,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 10,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NiFe::Fe",
+              "attractor_state": 16,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 11,
+              "subbasin": "Fe"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.8664339756999315,
+            "boundary_basin_entropy": 1.155245300933242,
+            "box_side": 4,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 4,
+          "parent_basin_fraction": 0.25,
+          "raw_basin_labels": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            5,
+            6,
+            7,
+            7,
+            7,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.0625,
+            "Fi": 0.0625,
+            "Te": 0.0625,
+            "Ti": 0.0625
+          }
+        },
+        "attractors_subbasin_collapsed_control": {
+          "attractor_count": 1,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 1.0,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box_side": 4,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 1,
+          "parent_basin_fraction": 1.0,
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.0,
+            "Fi": 0.0,
+            "Te": 0.0,
+            "Ti": 1.0
+          }
+        },
+        "controls_pass": true,
+        "direct_collapsed_metrics": {
+          "fixed_parent_state_count": 1,
+          "max_parent_energy_delta_one_step": 0,
+          "nonempty_subbasin_count": 1,
+          "parent_bad_reach_count": 0,
+          "strict_parent_energy_decrease_count": 12,
+          "subbasin_final_counts": {
+            "Fe": 0,
+            "Fi": 0,
+            "Te": 0,
+            "Ti": 16
+          }
+        },
+        "direct_ratchet_metrics": {
+          "fixed_parent_state_count": 4,
+          "max_parent_energy_delta_one_step": 0,
+          "nonempty_subbasin_count": 4,
+          "parent_bad_reach_count": 0,
+          "strict_parent_energy_decrease_count": 12,
+          "subbasin_final_counts": {
+            "Fe": 4,
+            "Fi": 4,
+            "Te": 4,
+            "Ti": 4
+          }
+        },
+        "horizon_k": 3,
+        "order_erased_gap_count": 0,
+        "order_gap_count": 12,
+        "parent_basin_labels": [
+          "NeTi::Ti",
+          "NeTi::Te",
+          "NeTi::Fi",
+          "NeTi::Fe"
+        ],
+        "proof_pass": true,
+        "state_count": 16,
+        "table_hashes": {
+          "genuine": "ffcd30e0fa5512cf7a3696a511990b15b84ea4a0dc9798aa5b2c921d924be2f9",
+          "order_erased_genuine": "4b68e1a643884a02240519684a53e98bd085677d670d182efadcf6a8147ca51f",
+          "order_erased_reverse": "4b68e1a643884a02240519684a53e98bd085677d670d182efadcf6a8147ca51f",
+          "order_refiner": "b2e12a7158a6eb9874db5e883ad20573822abc777cf9a2f6f8558b2e113a2ed2",
+          "parent_erased": "b2e12a7158a6eb9874db5e883ad20573822abc777cf9a2f6f8558b2e113a2ed2",
+          "parent_ratchet": "4b68e1a643884a02240519684a53e98bd085677d670d182efadcf6a8147ca51f",
+          "reverse_order": "f6db76fcf8f87005d970a0b35ed255d896d1abeb8aff0097c458a625375264b6",
+          "subbasin_collapsed": "000cea319a8b592aef6aaffdc401487ec9d75f0893b73b88ec5bea815c84e783"
+        },
+        "word_count": 4,
+        "z3_no_external_fixed_point": {
+          "counterexample_exists": false,
+          "proves_no_external_fixed_point": true,
+          "query": "exists fixed point outside parent basin",
+          "status": "unsat"
+        },
+        "z3_order_erased_control": {
+          "commutation_proven": true,
+          "order_sensitive_witness_exists": false,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "unsat"
+        },
+        "z3_order_sensitive_witness": {
+          "commutation_proven": false,
+          "order_sensitive_witness_exists": true,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "sat"
+        },
+        "z3_parent_erased_control": {
+          "counterexample_exists": true,
+          "k": 3,
+          "proves_all_reach_parent_basin": false,
+          "query": "exists state not reaching the parent basin within k",
+          "status": "sat"
+        },
+        "z3_parent_reachability": {
+          "counterexample_exists": false,
+          "k": 3,
+          "proves_all_reach_parent_basin": true,
+          "query": "exists state not reaching the parent basin within k",
+          "status": "unsat"
+        },
+        "z3_subbasin_nonempty": {
+          "Fe": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Fe",
+            "target_state": 4,
+            "target_subbasin": "Fe"
+          },
+          "Fi": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Fi",
+            "target_state": 3,
+            "target_subbasin": "Fi"
+          },
+          "Te": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Te",
+            "target_state": 2,
+            "target_subbasin": "Te"
+          },
+          "Ti": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Ti",
+            "target_state": 1,
+            "target_subbasin": "Ti"
+          }
+        }
+      },
+      "32": {
+        "attractors_genuine": {
+          "attractor_count": 4,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NeTi::Te",
+              "attractor_state": 2,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 2,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NeTi::Fi",
+              "attractor_state": 3,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 3,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NeTi::Fe",
+              "attractor_state": 4,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 4,
+              "subbasin": "Fe"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 1.3862943611198906,
+            "boundary_basin_entropy": 1.3862943611198906,
+            "box_side": 8,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 4,
+          "parent_basin_fraction": 1.0,
+          "raw_basin_labels": [
+            1,
+            2,
+            3,
+            4,
+            3,
+            4,
+            1,
+            2,
+            2,
+            3,
+            4,
+            1,
+            2,
+            3,
+            4,
+            1,
+            3,
+            4,
+            1,
+            2,
+            1,
+            2,
+            3,
+            4,
+            4,
+            1,
+            2,
+            3,
+            4,
+            1,
+            2,
+            3
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.25,
+            "Fi": 0.25,
+            "Te": 0.25,
+            "Ti": 0.25
+          }
+        },
+        "attractors_parent_erased_control": {
+          "attractor_count": 19,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.03125,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NeTi::Te",
+              "attractor_state": 2,
+              "fraction": 0.03125,
+              "in_parent_basin": true,
+              "label": 2,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NeTi::Fi",
+              "attractor_state": 3,
+              "fraction": 0.03125,
+              "in_parent_basin": true,
+              "label": 3,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NeTi::Fe",
+              "attractor_state": 4,
+              "fraction": 0.03125,
+              "in_parent_basin": true,
+              "label": 4,
+              "subbasin": "Fe"
+            },
+            {
+              "attractor_label": "FeSi::Te",
+              "attractor_state": 6,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 5,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "FeSi::Fi",
+              "attractor_state": 7,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 6,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "TiSe::Te",
+              "attractor_state": 10,
+              "fraction": 0.125,
+              "in_parent_basin": false,
+              "label": 7,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NiFe::Ti",
+              "attractor_state": 13,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 8,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NiFe::Te",
+              "attractor_state": 14,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 9,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NiFe::Fi",
+              "attractor_state": 15,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 10,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NiFe::Fe",
+              "attractor_state": 16,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 11,
+              "subbasin": "Fe"
+            },
+            {
+              "attractor_label": "SeFi::Te",
+              "attractor_state": 18,
+              "fraction": 0.125,
+              "in_parent_basin": false,
+              "label": 12,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "SiTe::Te",
+              "attractor_state": 22,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 13,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "SiTe::Fi",
+              "attractor_state": 23,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 14,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "FiNe::Te",
+              "attractor_state": 26,
+              "fraction": 0.125,
+              "in_parent_basin": false,
+              "label": 15,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "TeNi::Ti",
+              "attractor_state": 29,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 16,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "TeNi::Te",
+              "attractor_state": 30,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 17,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "TeNi::Fi",
+              "attractor_state": 31,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 18,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "TeNi::Fe",
+              "attractor_state": 32,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 19,
+              "subbasin": "Fe"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 1.3862943611198906,
+            "boundary_basin_entropy": 1.3862943611198906,
+            "box_side": 8,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 4,
+          "parent_basin_fraction": 0.125,
+          "raw_basin_labels": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            5,
+            6,
+            7,
+            7,
+            7,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            12,
+            12,
+            12,
+            13,
+            14,
+            13,
+            14,
+            15,
+            15,
+            15,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.03125,
+            "Fi": 0.03125,
+            "Te": 0.03125,
+            "Ti": 0.03125
+          }
+        },
+        "attractors_subbasin_collapsed_control": {
+          "attractor_count": 1,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 1.0,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box_side": 8,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 1,
+          "parent_basin_fraction": 1.0,
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.0,
+            "Fi": 0.0,
+            "Te": 0.0,
+            "Ti": 1.0
+          }
+        },
+        "controls_pass": true,
+        "direct_collapsed_metrics": {
+          "fixed_parent_state_count": 1,
+          "max_parent_energy_delta_one_step": 0,
+          "nonempty_subbasin_count": 1,
+          "parent_bad_reach_count": 0,
+          "strict_parent_energy_decrease_count": 28,
+          "subbasin_final_counts": {
+            "Fe": 0,
+            "Fi": 0,
+            "Te": 0,
+            "Ti": 32
+          }
+        },
+        "direct_ratchet_metrics": {
+          "fixed_parent_state_count": 4,
+          "max_parent_energy_delta_one_step": 0,
+          "nonempty_subbasin_count": 4,
+          "parent_bad_reach_count": 0,
+          "strict_parent_energy_decrease_count": 28,
+          "subbasin_final_counts": {
+            "Fe": 8,
+            "Fi": 8,
+            "Te": 8,
+            "Ti": 8
+          }
+        },
+        "horizon_k": 7,
+        "order_erased_gap_count": 0,
+        "order_gap_count": 28,
+        "parent_basin_labels": [
+          "NeTi::Ti",
+          "NeTi::Te",
+          "NeTi::Fi",
+          "NeTi::Fe"
+        ],
+        "proof_pass": true,
+        "state_count": 32,
+        "table_hashes": {
+          "genuine": "6b21af29d97f1ab376b0aabdf1ee2c0ef7987d9642e7f88aff2c95ccf613dfab",
+          "order_erased_genuine": "50f93e14660f216bc54d5f2493807379846f8f197510b5bfa6430d701c3dc1c2",
+          "order_erased_reverse": "50f93e14660f216bc54d5f2493807379846f8f197510b5bfa6430d701c3dc1c2",
+          "order_refiner": "9b55bd28fcba6e2cca30c42f82a57fb0494d4ff05c6fd8a346f436102ae725fa",
+          "parent_erased": "9b55bd28fcba6e2cca30c42f82a57fb0494d4ff05c6fd8a346f436102ae725fa",
+          "parent_ratchet": "50f93e14660f216bc54d5f2493807379846f8f197510b5bfa6430d701c3dc1c2",
+          "reverse_order": "d37f3f709c5edd1f52bd8dc46bd37e569aae90eecf8a4de3ecd5e1c32e064ad8",
+          "subbasin_collapsed": "6f4ca0ffa75370868b3f60544b876f916328269e2bf96c95b006084dc9fe0e3c"
+        },
+        "word_count": 8,
+        "z3_no_external_fixed_point": {
+          "counterexample_exists": false,
+          "proves_no_external_fixed_point": true,
+          "query": "exists fixed point outside parent basin",
+          "status": "unsat"
+        },
+        "z3_order_erased_control": {
+          "commutation_proven": true,
+          "order_sensitive_witness_exists": false,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "unsat"
+        },
+        "z3_order_sensitive_witness": {
+          "commutation_proven": false,
+          "order_sensitive_witness_exists": true,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "sat"
+        },
+        "z3_parent_erased_control": {
+          "counterexample_exists": true,
+          "k": 7,
+          "proves_all_reach_parent_basin": false,
+          "query": "exists state not reaching the parent basin within k",
+          "status": "sat"
+        },
+        "z3_parent_reachability": {
+          "counterexample_exists": false,
+          "k": 7,
+          "proves_all_reach_parent_basin": true,
+          "query": "exists state not reaching the parent basin within k",
+          "status": "unsat"
+        },
+        "z3_subbasin_nonempty": {
+          "Fe": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Fe",
+            "target_state": 4,
+            "target_subbasin": "Fe"
+          },
+          "Fi": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Fi",
+            "target_state": 3,
+            "target_subbasin": "Fi"
+          },
+          "Te": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Te",
+            "target_state": 2,
+            "target_subbasin": "Te"
+          },
+          "Ti": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Ti",
+            "target_state": 1,
+            "target_subbasin": "Ti"
+          }
+        }
+      },
+      "64": {
+        "attractors_genuine": {
+          "attractor_count": 4,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NeTi::Te",
+              "attractor_state": 2,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 2,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NeTi::Fi",
+              "attractor_state": 3,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 3,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NeTi::Fe",
+              "attractor_state": 4,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 4,
+              "subbasin": "Fe"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 1.3862943611198906,
+            "boundary_basin_entropy": 1.3862943611198906,
+            "box_side": 8,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 4,
+          "parent_basin_fraction": 1.0,
+          "raw_basin_labels": [
+            1,
+            2,
+            3,
+            4,
+            3,
+            4,
+            1,
+            2,
+            2,
+            3,
+            4,
+            1,
+            2,
+            3,
+            4,
+            1,
+            3,
+            4,
+            1,
+            2,
+            1,
+            2,
+            3,
+            4,
+            4,
+            1,
+            2,
+            3,
+            4,
+            1,
+            2,
+            3,
+            1,
+            2,
+            3,
+            4,
+            3,
+            4,
+            1,
+            2,
+            2,
+            3,
+            4,
+            1,
+            2,
+            3,
+            4,
+            1,
+            3,
+            4,
+            1,
+            2,
+            1,
+            2,
+            3,
+            4,
+            4,
+            1,
+            2,
+            3,
+            4,
+            1,
+            2,
+            3
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.25,
+            "Fi": 0.25,
+            "Te": 0.25,
+            "Ti": 0.25
+          }
+        },
+        "attractors_parent_erased_control": {
+          "attractor_count": 35,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.015625,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NeTi::Te",
+              "attractor_state": 2,
+              "fraction": 0.015625,
+              "in_parent_basin": true,
+              "label": 2,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NeTi::Fi",
+              "attractor_state": 3,
+              "fraction": 0.015625,
+              "in_parent_basin": true,
+              "label": 3,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NeTi::Fe",
+              "attractor_state": 4,
+              "fraction": 0.015625,
+              "in_parent_basin": true,
+              "label": 4,
+              "subbasin": "Fe"
+            },
+            {
+              "attractor_label": "FeSi::Te",
+              "attractor_state": 6,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 5,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "FeSi::Fi",
+              "attractor_state": 7,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 6,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "TiSe::Te",
+              "attractor_state": 10,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 7,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NiFe::Ti",
+              "attractor_state": 13,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 8,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NiFe::Te",
+              "attractor_state": 14,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 9,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NiFe::Fi",
+              "attractor_state": 15,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 10,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NiFe::Fe",
+              "attractor_state": 16,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 11,
+              "subbasin": "Fe"
+            },
+            {
+              "attractor_label": "SeFi::Te",
+              "attractor_state": 18,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 12,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "SiTe::Te",
+              "attractor_state": 22,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 13,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "SiTe::Fi",
+              "attractor_state": 23,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 14,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "FiNe::Te",
+              "attractor_state": 26,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 15,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "TeNi::Ti",
+              "attractor_state": 29,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 16,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "TeNi::Te",
+              "attractor_state": 30,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 17,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "TeNi::Fi",
+              "attractor_state": 31,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 18,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "TeNi::Fe",
+              "attractor_state": 32,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 19,
+              "subbasin": "Fe"
+            },
+            {
+              "attractor_label": "NeFi::Te",
+              "attractor_state": 34,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 20,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "TeSi::Te",
+              "attractor_state": 38,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 21,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "TeSi::Fi",
+              "attractor_state": 39,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 22,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "FiSe::Te",
+              "attractor_state": 42,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 23,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NiTe::Ti",
+              "attractor_state": 45,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 24,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NiTe::Te",
+              "attractor_state": 46,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 25,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NiTe::Fi",
+              "attractor_state": 47,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 26,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NiTe::Fe",
+              "attractor_state": 48,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 27,
+              "subbasin": "Fe"
+            },
+            {
+              "attractor_label": "TiNe::Te",
+              "attractor_state": 50,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 28,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "SiFe::Te",
+              "attractor_state": 54,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 29,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "SiFe::Fi",
+              "attractor_state": 55,
+              "fraction": 0.03125,
+              "in_parent_basin": false,
+              "label": 30,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "SeTi::Te",
+              "attractor_state": 58,
+              "fraction": 0.0625,
+              "in_parent_basin": false,
+              "label": 31,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "FeNi::Ti",
+              "attractor_state": 61,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 32,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "FeNi::Te",
+              "attractor_state": 62,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 33,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "FeNi::Fi",
+              "attractor_state": 63,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 34,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "FeNi::Fe",
+              "attractor_state": 64,
+              "fraction": 0.015625,
+              "in_parent_basin": false,
+              "label": 35,
+              "subbasin": "Fe"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 1.2996509635498974,
+            "boundary_basin_entropy": 1.2996509635498974,
+            "box_side": 8,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 4,
+          "parent_basin_fraction": 0.0625,
+          "raw_basin_labels": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            5,
+            6,
+            7,
+            7,
+            7,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            12,
+            12,
+            12,
+            13,
+            14,
+            13,
+            14,
+            15,
+            15,
+            15,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            20,
+            20,
+            20,
+            21,
+            22,
+            21,
+            22,
+            23,
+            23,
+            23,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            28,
+            28,
+            28,
+            29,
+            30,
+            29,
+            30,
+            31,
+            31,
+            31,
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.015625,
+            "Fi": 0.015625,
+            "Te": 0.015625,
+            "Ti": 0.015625
+          }
+        },
+        "attractors_subbasin_collapsed_control": {
+          "attractor_count": 1,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 1.0,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box_side": 8,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 1,
+          "parent_basin_fraction": 1.0,
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.0,
+            "Fi": 0.0,
+            "Te": 0.0,
+            "Ti": 1.0
+          }
+        },
+        "controls_pass": true,
+        "direct_collapsed_metrics": {
+          "fixed_parent_state_count": 1,
+          "max_parent_energy_delta_one_step": 0,
+          "nonempty_subbasin_count": 1,
+          "parent_bad_reach_count": 0,
+          "strict_parent_energy_decrease_count": 60,
+          "subbasin_final_counts": {
+            "Fe": 0,
+            "Fi": 0,
+            "Te": 0,
+            "Ti": 64
+          }
+        },
+        "direct_ratchet_metrics": {
+          "fixed_parent_state_count": 4,
+          "max_parent_energy_delta_one_step": 0,
+          "nonempty_subbasin_count": 4,
+          "parent_bad_reach_count": 0,
+          "strict_parent_energy_decrease_count": 60,
+          "subbasin_final_counts": {
+            "Fe": 16,
+            "Fi": 16,
+            "Te": 16,
+            "Ti": 16
+          }
+        },
+        "horizon_k": 15,
+        "order_erased_gap_count": 0,
+        "order_gap_count": 60,
+        "parent_basin_labels": [
+          "NeTi::Ti",
+          "NeTi::Te",
+          "NeTi::Fi",
+          "NeTi::Fe"
+        ],
+        "proof_pass": true,
+        "state_count": 64,
+        "table_hashes": {
+          "genuine": "8fed7e6dd7637b72a39200d1618018081f6e2f0c84d388a47f30196efe818705",
+          "order_erased_genuine": "5e8d183d9a208d4beb13f58e9699b3a6366ab88611a6eafb3a8fdcaf2eda479e",
+          "order_erased_reverse": "5e8d183d9a208d4beb13f58e9699b3a6366ab88611a6eafb3a8fdcaf2eda479e",
+          "order_refiner": "49474e896a3449cc29a161494ba6cd03e0faa4a0661d08a594f704b920e1870b",
+          "parent_erased": "49474e896a3449cc29a161494ba6cd03e0faa4a0661d08a594f704b920e1870b",
+          "parent_ratchet": "5e8d183d9a208d4beb13f58e9699b3a6366ab88611a6eafb3a8fdcaf2eda479e",
+          "reverse_order": "d03a5819f7a2fa3150250073d68a5f5af95b3298c9466010d8c58560a562378f",
+          "subbasin_collapsed": "c0173657ed4871640424cc92908f9209f9a8eda2dfa31a20016873847651f704"
+        },
+        "word_count": 16,
+        "z3_no_external_fixed_point": {
+          "counterexample_exists": false,
+          "proves_no_external_fixed_point": true,
+          "query": "exists fixed point outside parent basin",
+          "status": "unsat"
+        },
+        "z3_order_erased_control": {
+          "commutation_proven": true,
+          "order_sensitive_witness_exists": false,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "unsat"
+        },
+        "z3_order_sensitive_witness": {
+          "commutation_proven": false,
+          "order_sensitive_witness_exists": true,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "sat"
+        },
+        "z3_parent_erased_control": {
+          "counterexample_exists": true,
+          "k": 15,
+          "proves_all_reach_parent_basin": false,
+          "query": "exists state not reaching the parent basin within k",
+          "status": "sat"
+        },
+        "z3_parent_reachability": {
+          "counterexample_exists": false,
+          "k": 15,
+          "proves_all_reach_parent_basin": true,
+          "query": "exists state not reaching the parent basin within k",
+          "status": "unsat"
+        },
+        "z3_subbasin_nonempty": {
+          "Fe": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Fe",
+            "target_state": 4,
+            "target_subbasin": "Fe"
+          },
+          "Fi": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Fi",
+            "target_state": 3,
+            "target_subbasin": "Fi"
+          },
+          "Te": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Te",
+            "target_state": 2,
+            "target_subbasin": "Te"
+          },
+          "Ti": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Ti",
+            "target_state": 1,
+            "target_subbasin": "Ti"
+          }
+        }
+      },
+      "8": {
+        "attractors_genuine": {
+          "attractor_count": 4,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NeTi::Te",
+              "attractor_state": 2,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 2,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NeTi::Fi",
+              "attractor_state": 3,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 3,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NeTi::Fe",
+              "attractor_state": 4,
+              "fraction": 0.25,
+              "in_parent_basin": true,
+              "label": 4,
+              "subbasin": "Fe"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.6931471805599453,
+            "boundary_basin_entropy": 0.6931471805599453,
+            "box_side": 2,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 4,
+          "parent_basin_fraction": 1.0,
+          "raw_basin_labels": [
+            1,
+            2,
+            3,
+            4,
+            3,
+            4,
+            1,
+            2
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.25,
+            "Fi": 0.25,
+            "Te": 0.25,
+            "Ti": 0.25
+          }
+        },
+        "attractors_parent_erased_control": {
+          "attractor_count": 6,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 0.125,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            },
+            {
+              "attractor_label": "NeTi::Te",
+              "attractor_state": 2,
+              "fraction": 0.125,
+              "in_parent_basin": true,
+              "label": 2,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "NeTi::Fi",
+              "attractor_state": 3,
+              "fraction": 0.125,
+              "in_parent_basin": true,
+              "label": 3,
+              "subbasin": "Fi"
+            },
+            {
+              "attractor_label": "NeTi::Fe",
+              "attractor_state": 4,
+              "fraction": 0.125,
+              "in_parent_basin": true,
+              "label": 4,
+              "subbasin": "Fe"
+            },
+            {
+              "attractor_label": "FeSi::Te",
+              "attractor_state": 6,
+              "fraction": 0.25,
+              "in_parent_basin": false,
+              "label": 5,
+              "subbasin": "Te"
+            },
+            {
+              "attractor_label": "FeSi::Fi",
+              "attractor_state": 7,
+              "fraction": 0.25,
+              "in_parent_basin": false,
+              "label": 6,
+              "subbasin": "Fi"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.6931471805599453,
+            "boundary_basin_entropy": 0.6931471805599453,
+            "box_side": 2,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 4,
+          "parent_basin_fraction": 0.5,
+          "raw_basin_labels": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            5,
+            6
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.125,
+            "Fi": 0.125,
+            "Te": 0.125,
+            "Ti": 0.125
+          }
+        },
+        "attractors_subbasin_collapsed_control": {
+          "attractor_count": 1,
+          "attractor_rows": [
+            {
+              "attractor_label": "NeTi::Ti",
+              "attractor_state": 1,
+              "fraction": 1.0,
+              "in_parent_basin": true,
+              "label": 1,
+              "subbasin": "Ti"
+            }
+          ],
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box_side": 2,
+            "claim_boundary": "finite-map entropy diagnostic only; no Wada/fractal/infinite-time theorem",
+            "method": "Attractors.basin_entropy over one-dimensional finite ratchet basin labels"
+          },
+          "nonempty_subbasin_count": 1,
+          "parent_basin_fraction": 1.0,
+          "raw_basin_labels": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "subbasin_fractions": {
+            "Fe": 0.0,
+            "Fi": 0.0,
+            "Te": 0.0,
+            "Ti": 1.0
+          }
+        },
+        "controls_pass": true,
+        "direct_collapsed_metrics": {
+          "fixed_parent_state_count": 1,
+          "max_parent_energy_delta_one_step": 0,
+          "nonempty_subbasin_count": 1,
+          "parent_bad_reach_count": 0,
+          "strict_parent_energy_decrease_count": 4,
+          "subbasin_final_counts": {
+            "Fe": 0,
+            "Fi": 0,
+            "Te": 0,
+            "Ti": 8
+          }
+        },
+        "direct_ratchet_metrics": {
+          "fixed_parent_state_count": 4,
+          "max_parent_energy_delta_one_step": 0,
+          "nonempty_subbasin_count": 4,
+          "parent_bad_reach_count": 0,
+          "strict_parent_energy_decrease_count": 4,
+          "subbasin_final_counts": {
+            "Fe": 2,
+            "Fi": 2,
+            "Te": 2,
+            "Ti": 2
+          }
+        },
+        "horizon_k": 1,
+        "order_erased_gap_count": 0,
+        "order_gap_count": 4,
+        "parent_basin_labels": [
+          "NeTi::Ti",
+          "NeTi::Te",
+          "NeTi::Fi",
+          "NeTi::Fe"
+        ],
+        "proof_pass": true,
+        "state_count": 8,
+        "table_hashes": {
+          "genuine": "2b4023e77ad379c0c5583efd2fee96c0adda34f78bc1257aa6725e504b607305",
+          "order_erased_genuine": "8ca1c9bb83291edf6e5df5989b3584f41d8205f2461f926638d7d4c990e6181b",
+          "order_erased_reverse": "8ca1c9bb83291edf6e5df5989b3584f41d8205f2461f926638d7d4c990e6181b",
+          "order_refiner": "9bb9d478d2bb7688e186a9c4d38bdbb96a438f373bafe182ace4867469edc084",
+          "parent_erased": "9bb9d478d2bb7688e186a9c4d38bdbb96a438f373bafe182ace4867469edc084",
+          "parent_ratchet": "8ca1c9bb83291edf6e5df5989b3584f41d8205f2461f926638d7d4c990e6181b",
+          "reverse_order": "8ca1c9bb83291edf6e5df5989b3584f41d8205f2461f926638d7d4c990e6181b",
+          "subbasin_collapsed": "086cd98d7e27fc0160e1598a5702873fc70e8ffab4e09c6a33629d299059ff0d"
+        },
+        "word_count": 2,
+        "z3_no_external_fixed_point": {
+          "counterexample_exists": false,
+          "proves_no_external_fixed_point": true,
+          "query": "exists fixed point outside parent basin",
+          "status": "unsat"
+        },
+        "z3_order_erased_control": {
+          "commutation_proven": true,
+          "order_sensitive_witness_exists": false,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "unsat"
+        },
+        "z3_order_sensitive_witness": {
+          "commutation_proven": false,
+          "order_sensitive_witness_exists": true,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "sat"
+        },
+        "z3_parent_erased_control": {
+          "counterexample_exists": true,
+          "k": 1,
+          "proves_all_reach_parent_basin": false,
+          "query": "exists state not reaching the parent basin within k",
+          "status": "sat"
+        },
+        "z3_parent_reachability": {
+          "counterexample_exists": false,
+          "k": 1,
+          "proves_all_reach_parent_basin": true,
+          "query": "exists state not reaching the parent basin within k",
+          "status": "unsat"
+        },
+        "z3_subbasin_nonempty": {
+          "Fe": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Fe",
+            "target_state": 4,
+            "target_subbasin": "Fe"
+          },
+          "Fi": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Fi",
+            "target_state": 3,
+            "target_subbasin": "Fi"
+          },
+          "Te": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Te",
+            "target_state": 2,
+            "target_subbasin": "Te"
+          },
+          "Ti": {
+            "nonempty_witness_exists": true,
+            "status": "sat",
+            "target_label": "NeTi::Ti",
+            "target_state": 1,
+            "target_subbasin": "Ti"
+          }
+        }
+      }
+    }
+  },
+  "scientific_question": "Can a geometric constraint manifold fixture converge under the two root constraints into an attractor basin with sub-basins, and do erased/order/collapse controls break the claim?",
+  "sim_class": "constraint_basin_ratchet_probe",
+  "sim_execution_kind": "bridge",
+  "sim_id": "geometric_constraint_manifold_ratchet_subbasins",
+  "source_receipt_coherence": {
+    "coherence_rule": "Result is stale if source_sha256 does not match the current source file hash.",
+    "source_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/geometric_constraint_manifold_ratchet_subbasins.jl",
+    "source_sha256": "2c904055b81b6672139c8f1e7ca7525821bd8c6bf024aaa2d30ad07243abf401"
+  },
+  "spinor_state": "not_applicable_to_this_finite_ratchet_scout",
+  "summary": {
+    "all_pass": true,
+    "sim_execution_kind": "bridge",
+    "tests_passed": 1,
+    "tests_total": 1
+  },
+  "tier": "tool-stage finite proof and attractor-mapping scout",
+  "tool_ablations": {
+    "order_erased_refiner": {
+      "baseline_order_gap_count": 60,
+      "control_order_gap_count": 0,
+      "outcome_delta": 60,
+      "what_changed": "replace order-sensitive refiner B with identity so A and B commute"
+    },
+    "parent_ratchet_erased": {
+      "baseline_parent_bad_reach_count": 0,
+      "control_parent_bad_reach_count": 60,
+      "outcome_delta": 60,
+      "what_changed": "remove parent word-ratchet A, leaving only the order-sensitive substage refiner B"
+    },
+    "subbasin_selector_collapsed": {
+      "baseline_nonempty_subbasins": 4,
+      "control_nonempty_subbasins": 1,
+      "outcome_delta": 3,
+      "what_changed": "force every state into the Ti sub-basin before parent ratchet"
+    }
+  },
+  "tool_integration_depth": {
+    "Attractors": "load_bearing",
+    "Dates": "supportive",
+    "DynamicalSystems": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "SHA": "supportive",
+    "StaticArrays": "supportive",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "Attractors": {
+      "reason": "maps the finite ratchet table and measures parent/sub-basin fractions",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "timestamps the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "DynamicalSystems": {
+      "reason": "supplies DeterministicIteratedMap for the finite ratchet table",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "writes the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "builds finite ratchet maps, controls, scale rungs, and result receipt",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "embeds source and table hashes for stale-receipt and bit-identical-control checks",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "StaticArrays": {
+      "reason": "represents one-dimensional discrete map states for DynamicalSystems",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "proves bounded parent-basin reachability and order/control counterexample status",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    }
+  },
+  "topology_surfaces_used": [],
+  "version": "0.1.0",
+  "witness_trace_id": "geometric_constraint_manifold_ratchet_subbasins:F01_N01_parent_basin_subbasins",
+  "z3_proof": {
+    "load_bearing": true,
+    "ratchet64": {
+      "no_external_fixed_point": {
+        "counterexample_exists": false,
+        "proves_no_external_fixed_point": true,
+        "query": "exists fixed point outside parent basin",
+        "status": "unsat"
+      },
+      "order_erased_control": {
+        "commutation_proven": true,
+        "order_sensitive_witness_exists": false,
+        "query": "exists x where A_then_B differs from B_then_A",
+        "status": "unsat"
+      },
+      "order_sensitive_witness": {
+        "commutation_proven": false,
+        "order_sensitive_witness_exists": true,
+        "query": "exists x where A_then_B differs from B_then_A",
+        "status": "sat"
+      },
+      "parent_reachability": {
+        "counterexample_exists": false,
+        "k": 15,
+        "proves_all_reach_parent_basin": true,
+        "query": "exists state not reaching the parent basin within k",
+        "status": "unsat"
+      },
+      "subbasin_nonempty": {
+        "Fe": {
+          "nonempty_witness_exists": true,
+          "status": "sat",
+          "target_label": "NeTi::Fe",
+          "target_state": 4,
+          "target_subbasin": "Fe"
+        },
+        "Fi": {
+          "nonempty_witness_exists": true,
+          "status": "sat",
+          "target_label": "NeTi::Fi",
+          "target_state": 3,
+          "target_subbasin": "Fi"
+        },
+        "Te": {
+          "nonempty_witness_exists": true,
+          "status": "sat",
+          "target_label": "NeTi::Te",
+          "target_state": 2,
+          "target_subbasin": "Te"
+        },
+        "Ti": {
+          "nonempty_witness_exists": true,
+          "status": "sat",
+          "target_label": "NeTi::Ti",
+          "target_state": 1,
+          "target_subbasin": "Ti"
+        }
+      }
+    }
+  }
+}

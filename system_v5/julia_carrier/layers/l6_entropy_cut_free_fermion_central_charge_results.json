@@ -1,0 +1,127 @@
+{
+  "all_pass": true,
+  "boundary": {
+    "S_full_chain": 2.3234998612464832e-10,
+    "S_half_cut": 2.341637306699516,
+    "S_single_site": 0.6931346805078614,
+    "all_nonnegative": true
+  },
+  "classification": "PoC",
+  "communication_mutual_information": {
+    "I_critical": 0.09852216205024922,
+    "I_gapped_m0.5": 4.757899032759028e-6,
+    "I_gapped_m1.0": 2.713440583335114e-10,
+    "I_vs_gap_distance_critical": [
+      0.39775962896605366,
+      0.24033402356353362,
+      0.12560706907435293,
+      0.05610327039397722,
+      0.02242500350778931
+    ],
+    "I_vs_gap_distance_gaps": [
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "gap": 20,
+    "interval_width": 20
+  },
+  "description": "Entanglement entropy across a cut of a critical free-fermion chain via the correlation matrix (Peschel). Measured S(L) ~ (c/3) log L, c recovered ~1; gapped kill-control gives area law. Mutual information across a gap for disjoint intervals.",
+  "honest_status": "passes (runs + measured c~1, log>>linear, gapped area-law kill-control fires, MI across gap >0, z3 discriminates)",
+  "kill_control_gapped": {
+    "S_of_L": [
+      0.8919006782506753,
+      0.8944251092394747,
+      0.8947078816523109,
+      0.8947458001858377,
+      0.89474639251565,
+      0.8947464024915972,
+      0.8947464025002028,
+      0.8947464025116816
+    ],
+    "S_saturation": 0.8947464025116816,
+    "S_spread_over_Ls": 0.002845724261006266,
+    "m": 0.5,
+    "r2_log": 0.41217185762791575,
+    "recovered_c": 0.002235882066051806,
+    "second_gap_m1.0_c": 3.236230231354203e-5
+  },
+  "known_invariant_anchor": {
+    "formula": "S(L) = (c/3) log L + const, c=1 for free Dirac fermion at half filling",
+    "name": "Calabrese-Cardy 1+1D CFT central charge",
+    "noncircular": "c is recovered from the MEASURED slope and compared to the independent theory value 1; S is never set equal to the target",
+    "predicted_c": 1.0
+  },
+  "layer": "L6_entropy_cut",
+  "method": {
+    "N": 400,
+    "block_lengths": [
+      8,
+      12,
+      16,
+      24,
+      32,
+      48,
+      64,
+      96
+    ],
+    "carrier": "free-fermion correlation matrix (Gaussian state, exact, O(N^3))",
+    "pbc": true,
+    "tools": [
+      "LinearAlgebra",
+      "Z3",
+      "JSON"
+    ]
+  },
+  "object_id": "L6_entropy_cut_free_fermion_central_charge",
+  "positive_critical": {
+    "S_of_L": [
+      1.4187158605998849,
+      1.5537505023011844,
+      1.6493124821597518,
+      1.7834057141331738,
+      1.8777721380197676,
+      2.008519425960692,
+      2.0981931201852486,
+      2.21530353393979
+    ],
+    "m": 0.0,
+    "r2_linear": 0.8782925637207106,
+    "r2_log": 0.9995234465233626,
+    "recovered_c": 0.9679693876660992,
+    "slope_log": 0.3226564625553664
+  },
+  "promotion_allowed": false,
+  "verdicts": {
+    "critical_c_near_1": true,
+    "critical_logfit_strong": true,
+    "entropies_nonnegative": true,
+    "gapped_area_law": true,
+    "kill_control_gap_differs": true,
+    "log_beats_linear": true,
+    "mutual_info_crit_positive": true,
+    "mutual_info_decays": true,
+    "mutual_info_gap_small": true,
+    "z3_load_bearing": true
+  },
+  "z3": {
+    "encoding": "free real variables (c,b) over Z3 C API Real sort; measured S(L) fed as rational constants; Z3 solves for the line, verdict derived from data not pinned literals",
+    "load_bearing": true,
+    "note": "Free-variable real-arithmetic. PRIMARY: critical area-law refutation is UNSAT (no constant fits the growing spectrum), gapped is SAT (constant fits) -> the genuine-UNSAT / broken-SAT flip. SECONDARY: a c~1 log line exists for critical (SAT) and not for gapped (UNSAT). Both flip on the measured S(L), so Z3 derives the criticality claim from the data, not from pinned literals.",
+    "primary_query_area_law_refutation": {
+      "claim": "free b: a flat (slope-0) line fits S(L_i) within tau=0.10",
+      "crit_result": "unsat",
+      "gap_result": "sat",
+      "genuine_polarity": "genuine critical -> UNSAT (area-law structurally excluded), broken/flat -> SAT (kill fires)"
+    },
+    "secondary_query_c_near_1_existence": {
+      "claim": "free c,b with c in [0.85,1.15]: c/3*log(L_i)+b fits S(L_i) within tau=0.06",
+      "crit_result": "sat",
+      "gap_result": "unsat",
+      "genuine_polarity": "genuine critical -> SAT (c~1 Calabrese-Cardy witness), broken/gapped -> UNSAT (kill fires)"
+    },
+    "tool_role": "load_bearing"
+  }
+}

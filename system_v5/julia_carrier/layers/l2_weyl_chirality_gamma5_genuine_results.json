@@ -1,0 +1,95 @@
+{
+  "all_pass": true,
+  "chiral_charge_controls": {
+    "pos_neg_boundary_ok": true,
+    "q_left_handed_negative": -1.0,
+    "q_neutral_boundary": 2.2371143170757382e-17,
+    "q_right_handed_positive": 1.0
+  },
+  "classification": "PoC",
+  "construction": {
+    "clifford_algebra_ok": true,
+    "gamma5_anticommutes_all": true,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_hermitian": true,
+    "gamma5_sq_residual": 0.0,
+    "gamma5_squares_to_I": true,
+    "max_anticomm_residual": 0.0,
+    "max_clifford_residual": 0.0,
+    "weyl_block_diagonal_chirality_split": true
+  },
+  "genuineness_booleans": {
+    "chiral_charge_controls": true,
+    "clifford_algebra_measured": true,
+    "gamma5_anticommutes_measured": true,
+    "gamma5_sq_I_measured": true,
+    "killcontrol_A_rotation_vs_boost": true,
+    "killcontrol_B_wrong_structure": true,
+    "noncircular_clifford_crosscheck": true,
+    "weyl_chirality_split_measured": true,
+    "z3_loadbearing_proof": true
+  },
+  "honest_status_ladder": "passes",
+  "killcontrol_A_rotation_vs_boost_selector": {
+    "boost_generator_hermitian": true,
+    "chirality_charge_separates_L_R": true,
+    "claim_ceiling": "gamma5 chiral charge q is invariant under UNITARY SPATIAL ROTATIONS ONLY. It is NOT boost-invariant: a non-unitary Lorentz boost changes q on the normalized-spinor carrier. No full Lorentz-invariance is claimed. Rotation-invariance alone does not single out chirality (spin is also rotation-invariant); the genuine selector is that q tracks gamma5's L/R chirality eigenstructure.",
+    "killcontrol_A_pass": true,
+    "max_norm_delta_rotation": 3.3306690738754696e-16,
+    "max_norm_drop_under_boost_raw": 1.0509303902405982,
+    "max_q_delta_boost": 1.136453695978751,
+    "max_q_delta_rotation": 4.440892098500626e-16,
+    "max_spin_delta_rotation": 2.220446049250313e-16,
+    "n_transforms": 2000,
+    "proxy_is_frame_dependent": true,
+    "proxy_sign_flips": 216,
+    "q_changes_under_boost": true,
+    "q_invariant_under_rotation": true,
+    "rotation_generator_anti_hermitian": true,
+    "sample_boost_is_non_unitary": true,
+    "sample_rotation_is_unitary": true,
+    "selector_singles_out_chirality": true,
+    "spin_also_rotation_invariant": true,
+    "spin_charge_fails_to_separate_L_R": true
+  },
+  "killcontrol_B_wrong_structure": {
+    "fake1_anticommutes_all": false,
+    "fake1_passes_full_test": false,
+    "fake1_random_hermitian_sq_ok": true,
+    "fake2_anticommutes_all": false,
+    "fake2_passes_full_test": false,
+    "fake2_perturbed_g5_sq_ok": false,
+    "killcontrol_B_pass": true
+  },
+  "layer": "L2_weyl_chirality",
+  "noncircular_anchor": {
+    "cross_check_our_gamma5_matches_clifford": true,
+    "known_invariant_pseudoscalar_anticommutes_generators": true,
+    "known_invariant_pseudoscalar_sq_is_minus1": true,
+    "measured_Isq_scalar": -1,
+    "package": "CliffordAlgebras.CliffordAlgebra(1,3)",
+    "predicted_gamma5_sq_from_clifford": 1
+  },
+  "object": "weyl_basis_dirac_gamma5_chiral_charge",
+  "promotion_allowed": false,
+  "rotation_vs_boost_contrast": {
+    "genuine_q_max_delta_under_boost": 1.136453695978751,
+    "genuine_q_max_delta_under_rotation": 4.440892098500626e-16,
+    "interpretation": "The gamma5 chiral charge q is invariant under UNITARY SPATIAL ROTATIONS (max |Δq| ~ 1e-16) but is NOT boost-invariant: a genuine non-unitary Lorentz boost changes q on the normalized-spinor carrier (max |Δq| ~ 1). The carrier is not boost-covariant; no full Lorentz-invariance is claimed. Rotation-invariance alone does not single out chirality, since the spin charge Sigma12 is ALSO rotation-invariant (max |Δ| ~ 1e-16) yet does not separate left- from right-handed states. The genuine selector is that q tracks gamma5's L/R chirality eigenstructure (q=-1 on L, +1 on R), and a coordinate proxy sign(Re psi[1]) is frame-dependent.",
+    "proxy_sign_flips_under_boost": 216,
+    "spin_max_delta_under_rotation": 2.220446049250313e-16
+  },
+  "z3_loadbearing_proof": {
+    "anticomm_g0_status": "unsat",
+    "g5sq_minus_I_status": "unsat",
+    "tool_integration_depth": "load_bearing",
+    "wrong_anti_g0_status": "sat",
+    "wrong_sq_g5sq_status": "sat",
+    "z3_verdict_flips_per_clause": true
+  }
+}

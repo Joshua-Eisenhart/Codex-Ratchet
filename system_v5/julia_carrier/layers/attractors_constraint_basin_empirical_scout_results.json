@@ -1,0 +1,1165 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Attractors": "load_bearing",
+    "Dates": "supportive",
+    "DynamicalSystems": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "SHA": "supportive",
+    "StaticArrays": "supportive",
+    "Statistics": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "Attractors": {
+      "reason": "maps basins_of_attraction, attractor centroids, basin fractions, and basin_entropy",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "timestamps the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "DynamicalSystems": {
+      "reason": "constructs the CoupledODEs empirical basin carrier used by Attractors",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "writes the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "executes the finite grid ladder, control cases, and result emission",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "embeds a source hash so the result can be checked against the source that emitted it",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "StaticArrays": {
+      "reason": "supplies small fixed-size state vectors for the ODE rule",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Statistics": {
+      "reason": "computes attractor centroids and fraction summaries",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    }
+  },
+  "actual_tools_used": [
+    "DynamicalSystems",
+    "StaticArrays",
+    "SHA",
+    "Statistics",
+    "JSON",
+    "Dates",
+    "Attractors",
+    "Julia"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "Attractors.jl mapped the selected left-bias constraint to a left target basin on 8/16/32/64 finite grids.",
+    "Erased and wrong-sign controls changed the empirical basin fractions.",
+    "A finite selector witness records order-sensitive constraint selection.",
+    "promotion_allowed=false; no proof, layer, manifold, PEPS, flux, Axis0, FEP, bridge admission, or physics claim is made."
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/attractors_constraint_basin_empirical_scout_results.json"
+  ],
+  "backend_primary_result": {
+    "all_pass": true,
+    "backend": "Julia + Attractors.jl + DynamicalSystems.jl",
+    "claim_bearing": true,
+    "claim_scope": "empirical finite-grid basin mapping only; not proof or admission",
+    "summary": "Attractors supplies empirical basin maps/fractions/entropy; DynamicalSystems supplies the ODE carrier; Julia emits the finite ladder receipt."
+  },
+  "blocked_consumers": [
+    "layer completion",
+    "parent-complete layer status",
+    "G-structure selection",
+    "PEPS2D",
+    "PEPS3D",
+    "stacking readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "bridge admission",
+    "gravity",
+    "physics",
+    "final manifold admission",
+    "manifold basin admission"
+  ],
+  "blocked_until": "A per-layer carrier exports selected constraints as a real finite map or dynamical system and this scout is rerun against that carrier instead of this double-well fixture.",
+  "branch_status_before_run": "empirical_scout_not_admission",
+  "carrier_layer": "empirical JuliaDynamics double-well fixture",
+  "carrier_realization": "Julia CoupledODEs sampled through AttractorsViaRecurrences on finite grids",
+  "claim_ceiling": "Empirical Attractors.jl basin scout only. It maps finite-grid selected-constraint basins and records a finite order-sensitive selector witness. It is not an SMT proof, not a PEPS carrier, not a layer admission, and not a manifold basin theorem.",
+  "classification": "formal_scout",
+  "codomain_or_output": "selected-constraint basin fractions, entropy diagnostics, and negative-control deltas",
+  "controls": {
+    "constraint_active_left_64": {
+      "basin_entropy": {
+        "basin_entropy": 0.0,
+        "boundary_basin_entropy": null,
+        "box": [
+          8,
+          8
+        ],
+        "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+        "method": "Attractors.basin_entropy over the discrete basin label array",
+        "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+      },
+      "basin_map_pass": true,
+      "basin_side_report": {
+        "attractor_count": 1,
+        "attractor_rows": [
+          {
+            "centroid": [
+              -1.2625515489416164,
+              -1.2963056644543684e-6
+            ],
+            "fraction": 1.0,
+            "label": 1,
+            "point_count": 2,
+            "side": "left_target"
+          }
+        ],
+        "raw_label_fractions": {
+          "1": 1.0
+        },
+        "side_fraction_entropy": 0.0,
+        "side_fractions": {
+          "center_separator": 0.0,
+          "diverged_or_unmapped": 0.0,
+          "left_target": 1.0,
+          "right_control": 0.0
+        }
+      },
+      "bias": 0.75,
+      "case_id": "constraint_active_left",
+      "constraint_interpretation": "constraint_active_left",
+      "elapsed_sec": 0.024221,
+      "grid_side": 64,
+      "grid_state_count": 4096,
+      "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+    },
+    "constraint_erased_symmetric_64": {
+      "basin_entropy": {
+        "basin_entropy": 0.0,
+        "boundary_basin_entropy": null,
+        "box": [
+          8,
+          8
+        ],
+        "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+        "method": "Attractors.basin_entropy over the discrete basin label array",
+        "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+      },
+      "basin_map_pass": true,
+      "basin_side_report": {
+        "attractor_count": 2,
+        "attractor_rows": [
+          {
+            "centroid": [
+              -1.000000384350756,
+              -1.5280470320095325e-6
+            ],
+            "fraction": 0.5,
+            "label": 1,
+            "point_count": 2,
+            "side": "left_target"
+          },
+          {
+            "centroid": [
+              0.9999995881956001,
+              -1.6181707684384248e-7
+            ],
+            "fraction": 0.5,
+            "label": 2,
+            "point_count": 2,
+            "side": "right_control"
+          }
+        ],
+        "raw_label_fractions": {
+          "1": 0.5,
+          "2": 0.5
+        },
+        "side_fraction_entropy": 0.6931471805599453,
+        "side_fractions": {
+          "center_separator": 0.0,
+          "diverged_or_unmapped": 0.0,
+          "left_target": 0.5,
+          "right_control": 0.5
+        }
+      },
+      "bias": 0.0,
+      "case_id": "constraint_erased_symmetric",
+      "constraint_interpretation": "constraint_erased_symmetric",
+      "elapsed_sec": 0.021501,
+      "grid_side": 64,
+      "grid_state_count": 4096,
+      "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+    },
+    "selector_order_witness": {
+      "A_then_B_biases": [
+        0.75,
+        0.75
+      ],
+      "B_then_A_biases": [
+        0.75,
+        -0.75
+      ],
+      "claim_boundary": "This finite selector is the N01 witness for the scout. The ODE basin maps are empirical selected-constraint surfaces, not formal noncommutative dynamics.",
+      "finite_selector_domain": "two y-sign cells before projection",
+      "operation_A": "project y to the basin-readout axis",
+      "operation_B": "select constraint bias from the current y-sign cell",
+      "order_erased_control": {
+        "order_gap_count": 0,
+        "order_sensitive": false,
+        "rule": "select fixed left bias regardless of y-sign"
+      },
+      "order_gap_count": 1,
+      "order_sensitive": true
+    },
+    "wrong_sign_control_right_64": {
+      "basin_entropy": {
+        "basin_entropy": 0.0,
+        "boundary_basin_entropy": null,
+        "box": [
+          8,
+          8
+        ],
+        "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+        "method": "Attractors.basin_entropy over the discrete basin label array",
+        "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+      },
+      "basin_map_pass": true,
+      "basin_side_report": {
+        "attractor_count": 1,
+        "attractor_rows": [
+          {
+            "centroid": [
+              1.262550699500546,
+              -1.265250912987568e-6
+            ],
+            "fraction": 1.0,
+            "label": 1,
+            "point_count": 2,
+            "side": "right_control"
+          }
+        ],
+        "raw_label_fractions": {
+          "1": 1.0
+        },
+        "side_fraction_entropy": 0.0,
+        "side_fractions": {
+          "center_separator": 0.0,
+          "diverged_or_unmapped": 0.0,
+          "left_target": 0.0,
+          "right_control": 1.0
+        }
+      },
+      "bias": -0.75,
+      "case_id": "wrong_sign_control_right",
+      "constraint_interpretation": "wrong_sign_control_right",
+      "elapsed_sec": 0.032752,
+      "grid_side": 64,
+      "grid_state_count": 4096,
+      "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+    }
+  },
+  "data_or_artifact_dependencies": [],
+  "decorative_tool_name_overclaim_guard": {
+    "Attractors": "load_bearing for empirical basin labels/fractions/entropy only; not a proof engine",
+    "DynamicalSystems": "load_bearing for the ODE carrier only; not a nonclassical carrier admission",
+    "bit_identical_controls_checked": "64-grid active, erased, and wrong-sign controls have different side fractions.",
+    "shared_premise_tested": "Removing or reversing the selected bias changes target basin fractions; order-erased selector removes the N01 selector gap."
+  },
+  "demotion_condition": "Demote to broken if Attractors no longer maps the active case to the left basin, if erased or wrong-sign controls stop changing basin fractions, if the selector order gap disappears, or if a downstream report cites this as formal proof or layer/manifold admission.",
+  "dependency_receipts": [
+    "system_v5/julia_carrier/layers/constraint_basin_synthesis_terrain64_results.json",
+    "system_v5/julia_carrier/layers/jax_weyl_terrain_64_microstep_diagnostic_results.json",
+    "system_v5/julia_carrier/layers/jax_terrain_choi_holonomy_ladder_probe_results.json"
+  ],
+  "domain": "finite empirical basin grids plus finite selector cells; no PEPS, spinor, or infinite continuum state space is claimed",
+  "downstream_blocks": [
+    "layer completion",
+    "parent-complete layer status",
+    "G-structure selection",
+    "PEPS2D",
+    "PEPS3D",
+    "stacking readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "bridge admission",
+    "gravity",
+    "physics",
+    "final manifold admission",
+    "manifold basin admission"
+  ],
+  "eligible_consumers": [
+    "empirical companion evidence for the finite Z3 basin proof-pattern scout",
+    "future per-layer basin-mapping harness once a real carrier exports selected constraints"
+  ],
+  "entropy_as_output": {
+    "active_left_64": {
+      "basin_entropy": 0.0,
+      "boundary_basin_entropy": null,
+      "box": [
+        8,
+        8
+      ],
+      "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+      "method": "Attractors.basin_entropy over the discrete basin label array",
+      "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+    },
+    "boundary": "Attractors.basin_entropy diagnostic only; no Wada/fractal claim",
+    "erased_symmetric_64": {
+      "basin_entropy": 0.0,
+      "boundary_basin_entropy": null,
+      "box": [
+        8,
+        8
+      ],
+      "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+      "method": "Attractors.basin_entropy over the discrete basin label array",
+      "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+    },
+    "wrong_sign_right_64": {
+      "basin_entropy": 0.0,
+      "boundary_basin_entropy": null,
+      "box": [
+        8,
+        8
+      ],
+      "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+      "method": "Attractors.basin_entropy over the discrete basin label array",
+      "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+    }
+  },
+  "fail_rule": "Any missing basin flip, bit-identical side fractions, disappeared selector order gap, or promotion-like downstream claim fails the scout.",
+  "finite_map": {
+    "codomain_or_output": "Attractors.jl basin labels, attractor centroids, side fractions, basin entropy, and selector order-gap report",
+    "domain": "finite grids in x in [-2,2], y in [-1,1] at side lengths 8,16,32,64, plus two y-sign selector cells",
+    "map": "Selected constraint bias enters dx/dt = x - x^3 - bias, dy/dt = -y. Positive bias selects the left basin, zero bias exposes symmetric controls, negative bias selects the right basin."
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-03T08:35:27.773",
+  "geometry_layer": "selected-constraint basin fixture, not a native terrain/manifold carrier",
+  "graph_surfaces_used": [],
+  "kill_conditions": [
+    "active selected constraint does not map to the left basin",
+    "erased bias does not expose a multi-basin/symmetric control",
+    "wrong-sign bias does not map to the right basin",
+    "selector order gap disappears",
+    "Attractors is described as formal proof rather than empirical mapping"
+  ],
+  "law_or_candidate_tested": "selected constraints create target empirical attractor basins; erased and wrong-sign controls alter basin fractions; selector order changes the selected constraint",
+  "name": "Attractors.jl empirical constraint-basin synthesis scout",
+  "negatives_run": [
+    "constraint_erased_symmetric",
+    "wrong_sign_control_right",
+    "order_selector_erased",
+    "decorative_tool_name_overclaim_guard"
+  ],
+  "next_lego_target": "Attach this empirical basin-mapping surface to one exported terrain/channel carrier map after the carrier has a real PEPS or explicitly blocked PEPS boundary.",
+  "object_id": "attractors_constraint_basin_empirical_scout",
+  "one_layer_done_right_candidate": false,
+  "out_of_scope": [
+    "formal SMT reachability proof",
+    "infinite-time continuous attractor theorem",
+    "Basins.jl Wada/fractal boundary proof",
+    "PEPS2D or PEPS3D carrier construction",
+    "spinor-network carrier admission",
+    "terrain/operator layer completion",
+    "manifold basin admission",
+    "flux/Xi/Phi0/Axis0/FEP/physics claims"
+  ],
+  "pass_rule": "All 8/16/32/64 active constraints must map to left target, erased controls must expose symmetric left/right basins, wrong-sign controls must map to right, and the finite selector must show an order gap with an order-erased zero-gap control.",
+  "peps3d_embedding": "absent; blocks manifold, PEPS3D, flux, Axis0, FEP, physics, and basin-admission consumers",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "double-well fixture only",
+    "no PEPS2D or PEPS3D carrier",
+    "no spinor-network carrier",
+    "no interval or SMT proof for the continuous basin",
+    "no per-layer rebuilt carrier map",
+    "no layer-completion claim gate"
+  ],
+  "promotion_condition": "Promotion requires a real target-layer carrier, formal reachability or interval proof where claimed, fresh controls, and a passing layer-completion claim gate for any completion-like wording.",
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [],
+  "purpose": "Empirically map how selected finite constraints create left/right attractor basins on a finite JuliaDynamics grid, with erased and wrong-sign controls.",
+  "quaternion_action": "not_applicable",
+  "required_inputs": [
+    "double-well basin fixture",
+    "constraint bias cases +0.75, 0.0, -0.75",
+    "finite grid side lengths 8,16,32,64",
+    "finite two-cell selector order witness"
+  ],
+  "required_negatives": [
+    "constraint_erased_symmetric",
+    "wrong_sign_control_right",
+    "order_selector_erased",
+    "decorative_tool_name_overclaim_guard"
+  ],
+  "required_tools": [
+    "DynamicalSystems",
+    "StaticArrays",
+    "SHA",
+    "Statistics",
+    "JSON",
+    "Dates",
+    "Attractors",
+    "Julia"
+  ],
+  "result_summary": {
+    "all_rungs_pass": true,
+    "controls_pass": true,
+    "grid_side_rungs": [
+      "8",
+      "16",
+      "32",
+      "64"
+    ],
+    "left_target_fraction_active_64": 1.0,
+    "left_target_fraction_erased_64": 0.5,
+    "left_target_fraction_wrong_sign_64": 0.0,
+    "selector_order_gap_count": 1,
+    "source_sha256": "1ff940872838a7c19fd2b51e2e3845d99fa621b25797657b8f5665c68f9d51cd"
+  },
+  "root_constraints": [
+    "F01 finite carrier/probe/operator/path set: finite 8/16/32/64 by 8/16/32/64 grid samples and finite two-cell selector domain",
+    "N01 noncommuting/order-sensitive operation/control: project-then-select and select-then-project choose different constraint bias on one selector cell; order-erased control has zero gap"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite distinguishable grid cells and selector cells",
+    "N01 order-sensitive constraint selection, recorded separately from the empirical ODE basin maps"
+  ],
+  "scale_ladder": {
+    "rungs": {
+      "16": {
+        "constraint_active_left": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              4,
+              4
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 1,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  -1.2625519663052502,
+                  -4.201553819699152e-14
+                ],
+                "fraction": 1.0,
+                "label": 1,
+                "point_count": 2,
+                "side": "left_target"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 1.0
+            },
+            "side_fraction_entropy": 0.0,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 1.0,
+              "right_control": 0.0
+            }
+          },
+          "bias": 0.75,
+          "case_id": "constraint_active_left",
+          "constraint_interpretation": "constraint_active_left",
+          "elapsed_sec": 0.001386,
+          "grid_side": 16,
+          "grid_state_count": 256,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        },
+        "constraint_erased_symmetric": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              4,
+              4
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 2,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  -1.0000006662090721,
+                  -1.3176111776668054e-13
+                ],
+                "fraction": 0.5,
+                "label": 1,
+                "point_count": 2,
+                "side": "left_target"
+              },
+              {
+                "centroid": [
+                  0.9999992300732183,
+                  -9.372646784502136e-17
+                ],
+                "fraction": 0.5,
+                "label": 2,
+                "point_count": 2,
+                "side": "right_control"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 0.5,
+              "2": 0.5
+            },
+            "side_fraction_entropy": 0.6931471805599453,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 0.5,
+              "right_control": 0.5
+            }
+          },
+          "bias": 0.0,
+          "case_id": "constraint_erased_symmetric",
+          "constraint_interpretation": "constraint_erased_symmetric",
+          "elapsed_sec": 0.00109,
+          "grid_side": 16,
+          "grid_state_count": 256,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        },
+        "wrong_sign_control_right": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              4,
+              4
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 1,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  1.2625502955559338,
+                  -2.1862242633597244e-13
+                ],
+                "fraction": 1.0,
+                "label": 1,
+                "point_count": 2,
+                "side": "right_control"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 1.0
+            },
+            "side_fraction_entropy": 0.0,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 0.0,
+              "right_control": 1.0
+            }
+          },
+          "bias": -0.75,
+          "case_id": "wrong_sign_control_right",
+          "constraint_interpretation": "wrong_sign_control_right",
+          "elapsed_sec": 0.002466,
+          "grid_side": 16,
+          "grid_state_count": 256,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        }
+      },
+      "32": {
+        "constraint_active_left": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              8,
+              8
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 1,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  -1.2625536435371603,
+                  -2.2579414227411296e-9
+                ],
+                "fraction": 1.0,
+                "label": 1,
+                "point_count": 2,
+                "side": "left_target"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 1.0
+            },
+            "side_fraction_entropy": 0.0,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 1.0,
+              "right_control": 0.0
+            }
+          },
+          "bias": 0.75,
+          "case_id": "constraint_active_left",
+          "constraint_interpretation": "constraint_active_left",
+          "elapsed_sec": 0.006427,
+          "grid_side": 32,
+          "grid_state_count": 1024,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        },
+        "constraint_erased_symmetric": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              8,
+              8
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 2,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  -1.0000004267623048,
+                  -5.366244006875802e-9
+                ],
+                "fraction": 0.5,
+                "label": 1,
+                "point_count": 2,
+                "side": "left_target"
+              },
+              {
+                "centroid": [
+                  0.9999982359379214,
+                  -9.75981656154716e-10
+                ],
+                "fraction": 0.5,
+                "label": 2,
+                "point_count": 2,
+                "side": "right_control"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 0.5,
+              "2": 0.5
+            },
+            "side_fraction_entropy": 0.6931471805599453,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 0.5,
+              "right_control": 0.5
+            }
+          },
+          "bias": 0.0,
+          "case_id": "constraint_erased_symmetric",
+          "constraint_interpretation": "constraint_erased_symmetric",
+          "elapsed_sec": 0.005756,
+          "grid_side": 32,
+          "grid_state_count": 1024,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        },
+        "wrong_sign_control_right": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              8,
+              8
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 1,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  1.2625504343628005,
+                  -2.4622695739821136e-9
+                ],
+                "fraction": 1.0,
+                "label": 1,
+                "point_count": 2,
+                "side": "right_control"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 1.0
+            },
+            "side_fraction_entropy": 0.0,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 0.0,
+              "right_control": 1.0
+            }
+          },
+          "bias": -0.75,
+          "case_id": "wrong_sign_control_right",
+          "constraint_interpretation": "wrong_sign_control_right",
+          "elapsed_sec": 0.007977,
+          "grid_side": 32,
+          "grid_state_count": 1024,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        }
+      },
+      "64": {
+        "constraint_active_left": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              8,
+              8
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 1,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  -1.2625515489416164,
+                  -1.2963056644543684e-6
+                ],
+                "fraction": 1.0,
+                "label": 1,
+                "point_count": 2,
+                "side": "left_target"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 1.0
+            },
+            "side_fraction_entropy": 0.0,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 1.0,
+              "right_control": 0.0
+            }
+          },
+          "bias": 0.75,
+          "case_id": "constraint_active_left",
+          "constraint_interpretation": "constraint_active_left",
+          "elapsed_sec": 0.024221,
+          "grid_side": 64,
+          "grid_state_count": 4096,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        },
+        "constraint_erased_symmetric": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              8,
+              8
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 2,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  -1.000000384350756,
+                  -1.5280470320095325e-6
+                ],
+                "fraction": 0.5,
+                "label": 1,
+                "point_count": 2,
+                "side": "left_target"
+              },
+              {
+                "centroid": [
+                  0.9999995881956001,
+                  -1.6181707684384248e-7
+                ],
+                "fraction": 0.5,
+                "label": 2,
+                "point_count": 2,
+                "side": "right_control"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 0.5,
+              "2": 0.5
+            },
+            "side_fraction_entropy": 0.6931471805599453,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 0.5,
+              "right_control": 0.5
+            }
+          },
+          "bias": 0.0,
+          "case_id": "constraint_erased_symmetric",
+          "constraint_interpretation": "constraint_erased_symmetric",
+          "elapsed_sec": 0.021501,
+          "grid_side": 64,
+          "grid_state_count": 4096,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        },
+        "wrong_sign_control_right": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              8,
+              8
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 1,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  1.262550699500546,
+                  -1.265250912987568e-6
+                ],
+                "fraction": 1.0,
+                "label": 1,
+                "point_count": 2,
+                "side": "right_control"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 1.0
+            },
+            "side_fraction_entropy": 0.0,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 0.0,
+              "right_control": 1.0
+            }
+          },
+          "bias": -0.75,
+          "case_id": "wrong_sign_control_right",
+          "constraint_interpretation": "wrong_sign_control_right",
+          "elapsed_sec": 0.032752,
+          "grid_side": 64,
+          "grid_state_count": 4096,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        }
+      },
+      "8": {
+        "constraint_active_left": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              2,
+              2
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 1,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  -1.26255196765253,
+                  -2.2015615428687607e-42
+                ],
+                "fraction": 1.0,
+                "label": 1,
+                "point_count": 1,
+                "side": "left_target"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 1.0
+            },
+            "side_fraction_entropy": 0.0,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 1.0,
+              "right_control": 0.0
+            }
+          },
+          "bias": 0.75,
+          "case_id": "constraint_active_left",
+          "constraint_interpretation": "constraint_active_left",
+          "elapsed_sec": 0.000741,
+          "grid_side": 8,
+          "grid_state_count": 64,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        },
+        "constraint_erased_symmetric": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              2,
+              2
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 2,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  -1.000000742732829,
+                  -2.4697019019774037e-44
+                ],
+                "fraction": 0.5,
+                "label": 1,
+                "point_count": 1,
+                "side": "left_target"
+              },
+              {
+                "centroid": [
+                  0.9999992571931172,
+                  -1.662343539090662e-44
+                ],
+                "fraction": 0.5,
+                "label": 2,
+                "point_count": 1,
+                "side": "right_control"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 0.5,
+              "2": 0.5
+            },
+            "side_fraction_entropy": 0.6931471805599453,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 0.5,
+              "right_control": 0.5
+            }
+          },
+          "bias": 0.0,
+          "case_id": "constraint_erased_symmetric",
+          "constraint_interpretation": "constraint_erased_symmetric",
+          "elapsed_sec": 0.000859,
+          "grid_side": 8,
+          "grid_state_count": 64,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        },
+        "wrong_sign_control_right": {
+          "basin_entropy": {
+            "basin_entropy": 0.0,
+            "boundary_basin_entropy": null,
+            "box": [
+              2,
+              2
+            ],
+            "claim_boundary": "empirical discrete-grid entropy only; no fractal-boundary, Wada, or infinite-time theorem is claimed",
+            "method": "Attractors.basin_entropy over the discrete basin label array",
+            "nonfinite_boundary_entropy_note": "boundary entropy undefined for this basin array, usually because no mixed boundary boxes were present at the default scale"
+          },
+          "basin_map_pass": true,
+          "basin_side_report": {
+            "attractor_count": 1,
+            "attractor_rows": [
+              {
+                "centroid": [
+                  1.2625502870987064,
+                  -2.898536372579957e-41
+                ],
+                "fraction": 1.0,
+                "label": 1,
+                "point_count": 1,
+                "side": "right_control"
+              }
+            ],
+            "raw_label_fractions": {
+              "1": 1.0
+            },
+            "side_fraction_entropy": 0.0,
+            "side_fractions": {
+              "center_separator": 0.0,
+              "diverged_or_unmapped": 0.0,
+              "left_target": 0.0,
+              "right_control": 1.0
+            }
+          },
+          "bias": -0.75,
+          "case_id": "wrong_sign_control_right",
+          "constraint_interpretation": "wrong_sign_control_right",
+          "elapsed_sec": 2.473728,
+          "grid_side": 8,
+          "grid_state_count": 64,
+          "system": "dx/dt = x - x^3 - bias, dy/dt = -y"
+        }
+      }
+    }
+  },
+  "scientific_question": "Can a selected constraint parameter produce a target attractor basin, while erased and wrong-sign controls change the basin surface?",
+  "sim_class": "constraint_basin_empirical_probe",
+  "sim_execution_kind": "bridge",
+  "sim_id": "attractors_constraint_basin_empirical_scout",
+  "source_receipt_coherence": {
+    "coherence_rule": "Result must be treated as stale if source_sha256 does not match the current source file hash.",
+    "source_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/attractors_constraint_basin_empirical_scout.jl",
+    "source_sha256": "1ff940872838a7c19fd2b51e2e3845d99fa621b25797657b8f5665c68f9d51cd"
+  },
+  "spinor_state": "not_applicable_to_this_empirical_basin_scout",
+  "summary": {
+    "all_pass": true,
+    "sim_execution_kind": "bridge",
+    "tests_passed": 1,
+    "tests_total": 1
+  },
+  "tier": "tool-stage empirical basin scout",
+  "tool_ablations": {
+    "constraint_erased_bias": {
+      "baseline_left_target_fraction": 1.0,
+      "control_left_target_fraction": 0.5,
+      "outcome_delta": 0.5,
+      "what_changed": "bias is set to zero instead of the selected left-basin constraint"
+    },
+    "order_selector_erased": {
+      "baseline_order_gap_count": 1,
+      "control_order_gap_count": 0,
+      "outcome_delta": 1,
+      "what_changed": "selector ignores the pre-projection y-sign cell"
+    },
+    "wrong_sign_bias": {
+      "baseline_left_target_fraction": 1.0,
+      "control_left_target_fraction": 0.0,
+      "outcome_delta": 1.0,
+      "what_changed": "bias sign is reversed, selecting the right basin"
+    }
+  },
+  "tool_integration_depth": {
+    "Attractors": "load_bearing",
+    "Dates": "supportive",
+    "DynamicalSystems": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "SHA": "supportive",
+    "StaticArrays": "supportive",
+    "Statistics": "supportive"
+  },
+  "tool_manifest": {
+    "Attractors": {
+      "reason": "maps basins_of_attraction, attractor centroids, basin fractions, and basin_entropy",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "timestamps the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "DynamicalSystems": {
+      "reason": "constructs the CoupledODEs empirical basin carrier used by Attractors",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "writes the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "executes the finite grid ladder, control cases, and result emission",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "embeds a source hash so the result can be checked against the source that emitted it",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "StaticArrays": {
+      "reason": "supplies small fixed-size state vectors for the ODE rule",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Statistics": {
+      "reason": "computes attractor centroids and fraction summaries",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    }
+  },
+  "topology_surfaces_used": [],
+  "version": "0.1.0",
+  "witness_trace_id": "attractors_constraint_basin_empirical_scout:left_bias_selects_left_basin"
+}

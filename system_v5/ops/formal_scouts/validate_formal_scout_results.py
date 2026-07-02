@@ -13,7 +13,9 @@ from typing import Any
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
+REPO_ROOT = ROOT.parents[2]
 RESULTS = ROOT / "results"
+LAYER_COMPLETION_CLAIM_GATE = REPO_ROOT / "scripts" / "validate_layer_completion_claims.py"
 
 
 def pass_values(section: dict[str, Any]) -> list[bool]:
@@ -61,14 +63,64 @@ def validate(path: pathlib.Path) -> dict[str, Any]:
         errors.append("legacy rosetta_to_sim_contract key present")
     if data.get("blockers"):
         errors.append("blockers present")
+    errors.extend(layer_completion_claim_errors(path))
     return {"path": str(path), "pass": not errors, "errors": errors}
+
+
+def layer_completion_claim_errors(path: pathlib.Path) -> list[str]:
+    if not LAYER_COMPLETION_CLAIM_GATE.exists():
+        return [f"layer completion claim gate missing: {LAYER_COMPLETION_CLAIM_GATE}"]
+    cmd = [sys.executable, str(LAYER_COMPLETION_CLAIM_GATE), "--evidence", str(path)]
+    for claim_file in companion_claim_files(path):
+        cmd.extend(["--claim-file", str(claim_file)])
+    proc = subprocess.run(
+        cmd,
+        cwd=REPO_ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if proc.returncode == 0:
+        return []
+    detail = tail_text(proc.stdout or proc.stderr, 1200)
+    return [f"layer completion claim gate failed: {detail}"]
+
+
+def companion_claim_files(path: pathlib.Path) -> list[pathlib.Path]:
+    candidates = [
+        path.with_suffix(".md"),
+        path.with_name(f"{path.stem}_report.md"),
+        path.with_name(f"{path.stem}_closeout.md"),
+    ]
+    if path.name.endswith("_results.json"):
+        stem = path.name.removesuffix("_results.json")
+        candidates.extend(
+            [
+                path.with_name(f"{stem}.md"),
+                path.with_name(f"{stem}_report.md"),
+                path.with_name(f"{stem}_closeout.md"),
+            ]
+        )
+    seen: set[pathlib.Path] = set()
+    existing: list[pathlib.Path] = []
+    for candidate in candidates:
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        if candidate.exists():
+            existing.append(candidate)
+    return existing
 
 
 def script_for_result(path: pathlib.Path) -> pathlib.Path:
     stem = path.name
     if not stem.endswith("_results.json"):
         raise ValueError(f"result name does not end with _results.json: {path}")
-    return ROOT / f"sim_{stem.removesuffix('_results.json')}.py"
+    script_stem = stem.removesuffix("_results.json")
+    direct_script = ROOT / f"{script_stem}.py"
+    if script_stem.startswith("sim_") and direct_script.exists():
+        return direct_script
+    return ROOT / f"sim_{script_stem}.py"
 
 
 def tail_text(value: str | bytes | None, limit: int = 800) -> str:

@@ -1,0 +1,240 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "layer_stacking",
+    "flux",
+    "xi_phi0",
+    "axis0",
+    "fep_holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "capacity_budget": {
+    "H_path_max": 9.0,
+    "S_max": 3.0,
+    "carrier_dim_per_branch": 8,
+    "finite_branches": 512,
+    "finite_shells": 3,
+    "observed_boundary_entropy": 1.0,
+    "pass": true
+  },
+  "checks": {
+    "allowed_basins_preserved_after_prune": true,
+    "baseline_reaches_all_basins": true,
+    "bookkeeping_consistent": true,
+    "capacity_budget_finite_and_respected": true,
+    "chirality_prune_kills_forbidden_basins": true,
+    "hopf_map_stays_on_s2": true,
+    "qit_link_controls_pass": true,
+    "quaternion_order_witness_present": true,
+    "real_prune_fired": true,
+    "spinor_norm_retraction_works": true,
+    "trivial_control_matches_baseline": true
+  },
+  "claim_boundary": "diagnostic JAX branch/prune shell probe only; Julia was not executed; no full-layer or manifold admission claim",
+  "classification": "diagnostic_jax_nested_hopf_shell_branch_prune_qit",
+  "codomain_or_output": "basin sets, survivor/pruned counts, Hopf map norm/alignment metrics, QIT link controls",
+  "configuration": {
+    "branches": 512,
+    "dt": 0.002,
+    "shells": 3,
+    "steps": 3000,
+    "targets": [
+      [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      [
+        0.5,
+        0.5,
+        -0.5,
+        -0.5
+      ],
+      [
+        -0.5,
+        -0.5,
+        0.5,
+        -0.5
+      ],
+      [
+        -0.5,
+        -0.5,
+        -0.5,
+        0.5
+      ]
+    ]
+  },
+  "domain": "finite unit-quaternion spinors q=(q0,q1,q2,q3) on three nested S3 shells",
+  "executed_track": "jax",
+  "finite_map": "N finite branches x 3 unit-quaternion shells -> attractor basin labels, alive mask, Hopf-map S2 readouts, QIT link controls",
+  "formal_admission_allowed": false,
+  "geometry_metrics": {
+    "A_no_prune": {
+      "max_hopf_norm_drift": 4.440892098500626e-16,
+      "max_spinor_norm_drift": 2.220446049250313e-16,
+      "mean_adjacent_hopf_alignment": 0.01660201420074301
+    },
+    "B_chirality_prune": {
+      "max_hopf_norm_drift": 4.440892098500626e-16,
+      "max_spinor_norm_drift": 2.220446049250313e-16,
+      "mean_adjacent_hopf_alignment": -0.04761904760590794
+    },
+    "C_trivial_control": {
+      "max_hopf_norm_drift": 4.440892098500626e-16,
+      "max_spinor_norm_drift": 2.220446049250313e-16,
+      "mean_adjacent_hopf_alignment": 0.01660201420074301
+    },
+    "max_hopf_norm_drift": 4.440892098500626e-16,
+    "max_spinor_norm_drift": 2.220446049250313e-16
+  },
+  "julia_reference_mode": "read_only",
+  "legacy_tensor_lane_used": false,
+  "name": "jax_nested_hopf_shell_branch_prune_qit_probe",
+  "promotion_allowed": false,
+  "purpose": "JAX-only batched stress test of nested S3 spinor shells with branch/prune constraints and separate QIT link controls.",
+  "qit_link_controls": {
+    "dephased_cmi_shadow": 1.0,
+    "dephased_logneg": -3.203426503814918e-16,
+    "linked_logneg": 0.9999999999999997,
+    "pass": true,
+    "product_logneg": 0.0
+  },
+  "quaternion_order_witness": {
+    "pass": true,
+    "same_axis_control_gap": 0.0,
+    "shared_axis_order_gap": 0.2068094748052543
+  },
+  "ran_julia": false,
+  "root_constraints_in_force": {
+    "F01": "finite branch registry, finite shell count, finite target set, finite QIT density controls",
+    "N01": "quaternion rotor order witness plus monotone chirality/dephasing controls"
+  },
+  "runs": {
+    "A_no_prune": {
+      "name": "A_no_prune",
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pruned": 0,
+      "shell_rows": [
+        {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "shell": 0
+        },
+        {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "shell": 1
+        },
+        {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "shell": 2
+        }
+      ],
+      "survivors": 512
+    },
+    "B_chirality_prune": {
+      "name": "B_chirality_prune",
+      "populated_basins": [
+        1,
+        2
+      ],
+      "pruned": 491,
+      "shell_rows": [
+        {
+          "populated_basins": [
+            1,
+            2
+          ],
+          "shell": 0
+        },
+        {
+          "populated_basins": [
+            1,
+            2
+          ],
+          "shell": 1
+        },
+        {
+          "populated_basins": [
+            1,
+            2
+          ],
+          "shell": 2
+        }
+      ],
+      "survivors": 21
+    },
+    "C_trivial_control": {
+      "name": "C_trivial_control",
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pruned": 0,
+      "shell_rows": [
+        {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "shell": 0
+        },
+        {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "shell": 1
+        },
+        {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "shell": 2
+        }
+      ],
+      "survivors": 512
+    }
+  },
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "json": "supportive",
+    "numpy": "supportive"
+  },
+  "tool_manifest": {
+    "jax": "load-bearing batched spinor dynamics, PRNG ensemble, JIT scan, and finite QIT controls",
+    "jax.numpy": "load-bearing quaternion, Hopf-map, entropy, and branch/prune algebra",
+    "json": "supportive receipt serialization",
+    "numpy": "supportive host-side classification of finite JAX results"
+  }
+}

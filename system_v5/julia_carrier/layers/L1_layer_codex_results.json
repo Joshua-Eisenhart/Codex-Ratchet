@@ -1,0 +1,415 @@
+{
+  "F01_witness": {
+    "carrier": "C^2 spinor per finite PEPS3D site",
+    "finite_site_stress": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "operator_registry": [
+      "I",
+      "sigma_x",
+      "sigma_y",
+      "sigma_z"
+    ],
+    "path_registry": [
+      "identity",
+      "density_reduction",
+      "dephase_erasure"
+    ],
+    "probe_registry": [
+      "sigma_x",
+      "sigma_y",
+      "sigma_z",
+      "coherence_abs",
+      "commutator_gap",
+      "entropy_vn"
+    ]
+  },
+  "N01_witness": {
+    "collapsed_under_diagonal_erasure": true,
+    "erased_gap_max": 0.0,
+    "erased_gap_mean": 0.0,
+    "measured_gap": "||sigma_z*rho - rho*sigma_z||_F",
+    "operator_pair_control_note": "Pauli operators still do not commute algebraically; the state-carried L1 N01 structure collapses when rho is diagonal.",
+    "operator_pair_control_sigma_x_sigma_z_gap": 2.8284271247461903,
+    "primary_gap_max": 1.4140553144355787,
+    "primary_gap_mean": 1.2904058099141027
+  },
+  "ablation_outcome_delta": {
+    "kind": "removed_and_rerun_numeric_delta",
+    "n01_mean_gap_delta": 1.2904058099141027,
+    "nonvacuous": true,
+    "removed": "off-diagonal coherence by dephasing rho"
+  },
+  "actual_tools_used": [
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "L1 spinor-to-density carrier runs in Julia over finite ComplexF64 matrices",
+    "diagonal erasure collapses off-diagonal coherence and state-carried N01 gap",
+    "QIT entropy/purity are derived readouts on this carrier"
+  ],
+  "blocked_consumers": [
+    "L2-L13 stacking readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "bridge",
+    "physics/gravity",
+    "final manifold admission"
+  ],
+  "carrier_realization": "Julia-native ComplexF64 spinor psi and Matrix{ComplexF64} density rho; no NumPy and no Python bridge",
+  "check_summary": {
+    "ablation_nonvacuous": true,
+    "all_pass": true,
+    "carrier_valid": true,
+    "dependency_forcing_collapses_all": true,
+    "negative_controls_ok": true
+  },
+  "classification": "L1_layer_codex_poc",
+  "codomain_or_output": "finite JSON receipt of density validity, Bloch/Pauli readouts, coherence, N01 commutator gaps, entropy/purity, erasure deltas, and stress rows",
+  "dependency_forcing": {
+    "all_dependency_forcing_erasures_collapsed": true,
+    "coherence_after_max": 0.0,
+    "coherence_before_max": 0.49994405090513666,
+    "coherence_collapsed": true,
+    "erasure": "rho -> diag(rho), keep only classical probabilities",
+    "n01_after_max": 0.0,
+    "n01_before_max": 1.4140553144355787,
+    "n01_collapsed": true
+  },
+  "divergence_log": [],
+  "domain": "K=(V,E,F,C) cube anchor with V=8 sites; each site carries one Julia-native ComplexF64 spinor psi_v in C^2",
+  "eligible_consumers": [
+    "bounded L2 S3 spinor carrier probes that preserve promotion_allowed=false",
+    "local audit scripts checking L1 carrier fields"
+  ],
+  "finite_map": "finite PEPS3D site set V carrying psi_v in C^2, ||psi_v||=1 -> rho_v=psi_v psi_v^dag in D(C^2) -> finite readouts {Tr(sigma_i rho_v), |rho_12|, ||[sigma_z,rho_v]||_F, S(rho_v)}; erasure E(rho)=diag(rho)",
+  "fresh_rerun_command": "julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L1_layer_codex.jl\"",
+  "graph_surfaces_used": [
+    "finite K=(V,E,F,C) cell anchor only"
+  ],
+  "honest_gaps": [
+    "PEPS3D is a finite K=(V,E,F,C) carrier anchor with spinor payloads, not a PEPSKit contraction or promotion receipt.",
+    "This is L1-only PoC evidence; no stacking, flux, Axis0, FEP, bridge, terrain, or full-manifold admission is claimed.",
+    "Z3 omitted, not decorative; no load-bearing SMT variable was needed for the finite matrix collapse check."
+  ],
+  "imports": [
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "negative_controls": {
+    "basis_density_gaps_zero": true,
+    "basis_density_sigma_z_commutator_gaps": [
+      0.0,
+      0.0
+    ],
+    "identity_control_gap": 0.0,
+    "identity_gap_zero": true,
+    "operator_pair_sigma_x_sigma_z_gap_nonzero": 2.8284271247461903
+  },
+  "non_numpy": true,
+  "peps3d_embedding": {
+    "K": {
+      "C": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      ],
+      "E": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "F": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          5,
+          6,
+          7,
+          8
+        ],
+        [
+          1,
+          2,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7,
+          6
+        ],
+        [
+          3,
+          4,
+          8,
+          7
+        ],
+        [
+          4,
+          1,
+          5,
+          8
+        ]
+      ],
+      "V": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "anchor_type": "finite cube cell complex with spinor payload at each vertex",
+    "geometry_claim_ceiling": "carrier anchor only; no PEPS contraction or stacking admission"
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "PEPS3D is a finite K=(V,E,F,C) carrier anchor with spinor payloads, not a PEPSKit contraction or promotion receipt.",
+    "This is L1-only PoC evidence; no stacking, flux, Axis0, FEP, bridge, terrain, or full-manifold admission is claimed.",
+    "Z3 omitted, not decorative; no load-bearing SMT variable was needed for the finite matrix collapse check."
+  ],
+  "promotion_status": "keep_but_open",
+  "proof_surfaces_used": [
+    "direct finite matrix equality/inequality measurements"
+  ],
+  "qit_readouts_derived": {
+    "dephased_density_entropy_mean": 0.6082136327562531,
+    "dephased_density_purity_mean": 0.5803595450251758,
+    "entropy_delta_dephased_minus_pure": 0.6082136327562531,
+    "note": "Entropy and purity are derived readouts of rho; they do not define L1.",
+    "pure_density_entropy_mean": -1.3877787807814457e-17,
+    "pure_density_purity_mean": 1.0
+  },
+  "quaternion_action": "not_applicable: L1 request is spinor/density; no quaternion map claim is made",
+  "required_tools": [
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L1_layer_codex_results.json",
+  "root_constraints_in_force": [
+    "F01 finite carrier/probe/operator/path set: finite sites, finite Pauli operator set, finite erasure/control paths",
+    "N01 order-sensitive state/operator relation: sigma_z*rho != rho*sigma_z exactly when rho carries off-diagonal coherence"
+  ],
+  "scale_stress_8_16_32_64": {
+    "16": {
+      "coherence_collapsed": true,
+      "coherence_max": 0.4998903417374228,
+      "coherence_mean": 0.46099658507795965,
+      "entropy_delta_erased_minus_pure": 0.617244196688325,
+      "entropy_erased_mean": 0.6172441966883249,
+      "entropy_pure_mean": -1.249000902703301e-16,
+      "erased_coherence_max": 0.0,
+      "erased_n01_gap_max": 0.0,
+      "erased_n01_gap_mean": 0.0,
+      "example_bloch": [
+        1.6653345369377348e-16,
+        -0.8660254037844388,
+        0.5000000000000002
+      ],
+      "example_erased_bloch": [
+        0.0,
+        0.0,
+        0.5000000000000002
+      ],
+      "n01_collapsed": true,
+      "n01_gap_max": 1.413903401968769,
+      "n01_gap_mean": 1.3038952456498665,
+      "n01_gap_mean_delta_removed_and_rerun": 1.3038952456498665,
+      "purity_erased_mean": 0.5721781615720539,
+      "purity_pure_mean": 1.0000000000000002,
+      "rho_bloch_roundtrip_max_error": 2.7755575615628914e-16,
+      "rho_min_eigenvalue": -9.787524297176581e-17,
+      "rho_trace_max_error": 4.440892098500626e-16,
+      "site_count": 16,
+      "spinor_norm_max_error": 2.220446049250313e-16
+    },
+    "32": {
+      "coherence_collapsed": true,
+      "coherence_max": 0.49999714718608634,
+      "coherence_mean": 0.46315527282812025,
+      "entropy_delta_erased_minus_pure": 0.6213425780988544,
+      "entropy_erased_mean": 0.6213425780988544,
+      "entropy_pure_mean": -4.5102810375396984e-17,
+      "erased_coherence_max": 0.0,
+      "erased_n01_gap_max": 0.0,
+      "erased_n01_gap_mean": 0.0,
+      "example_bloch": [
+        0.6123724356957945,
+        -0.6123724356957945,
+        0.5
+      ],
+      "example_erased_bloch": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "n01_collapsed": true,
+      "n01_gap_max": 1.4142054933968398,
+      "n01_gap_mean": 1.3100009366362773,
+      "n01_gap_mean_delta_removed_and_rerun": 1.3100009366362773,
+      "purity_erased_mean": 0.5684482148540286,
+      "purity_pure_mean": 1.0,
+      "rho_bloch_roundtrip_max_error": 1.5700924586837752e-16,
+      "rho_min_eigenvalue": -1.7748317779939818e-16,
+      "rho_trace_max_error": 2.220446049250313e-16,
+      "site_count": 32,
+      "spinor_norm_max_error": 0.0
+    },
+    "64": {
+      "coherence_collapsed": true,
+      "coherence_max": 0.49999378333084593,
+      "coherence_mean": 0.46418445324106045,
+      "entropy_delta_erased_minus_pure": 0.6232993128021078,
+      "entropy_erased_mean": 0.6232993128021078,
+      "entropy_pure_mean": -2.6020852139652106e-17,
+      "erased_coherence_max": 0.0,
+      "erased_n01_gap_max": 0.0,
+      "erased_n01_gap_mean": 0.0,
+      "example_bloch": [
+        0.8001031451912655,
+        -0.33141357403559174,
+        0.5000000000000002
+      ],
+      "example_erased_bloch": [
+        0.0,
+        0.0,
+        0.5000000000000002
+      ],
+      "n01_collapsed": true,
+      "n01_gap_max": 1.414195978977434,
+      "n01_gap_mean": 1.3129118984324948,
+      "n01_gap_mean_delta_removed_and_rerun": 1.3129118984324948,
+      "purity_erased_mean": 0.5666631309775959,
+      "purity_pure_mean": 1.0,
+      "rho_bloch_roundtrip_max_error": 2.0014830212433605e-16,
+      "rho_min_eigenvalue": -1.5436859774783514e-16,
+      "rho_trace_max_error": 2.220446049250313e-16,
+      "site_count": 64,
+      "spinor_norm_max_error": 0.0
+    },
+    "8": {
+      "coherence_collapsed": true,
+      "coherence_max": 0.49994405090513666,
+      "coherence_mean": 0.45622734933639053,
+      "entropy_delta_erased_minus_pure": 0.6082136327562531,
+      "entropy_erased_mean": 0.6082136327562531,
+      "entropy_pure_mean": -1.3877787807814457e-17,
+      "erased_coherence_max": 0.0,
+      "erased_n01_gap_max": 0.0,
+      "erased_n01_gap_mean": 0.0,
+      "example_bloch": [
+        -0.8660254037844386,
+        -1.0605752387249068e-16,
+        0.5000000000000002
+      ],
+      "example_erased_bloch": [
+        0.0,
+        0.0,
+        0.5000000000000002
+      ],
+      "n01_collapsed": true,
+      "n01_gap_max": 1.4140553144355787,
+      "n01_gap_mean": 1.2904058099141027,
+      "n01_gap_mean_delta_removed_and_rerun": 1.2904058099141027,
+      "purity_erased_mean": 0.5803595450251758,
+      "purity_pure_mean": 1.0,
+      "rho_bloch_roundtrip_max_error": 1.2412670766236366e-16,
+      "rho_min_eigenvalue": -5.13423980212951e-17,
+      "rho_trace_max_error": 2.220446049250313e-16,
+      "site_count": 8,
+      "spinor_norm_max_error": 0.0
+    }
+  },
+  "script": "layers/L1_layer_codex.jl",
+  "sim_class": "carrier_probe",
+  "sim_execution_kind": "nonclassical",
+  "spinor_state": {
+    "psi_in_C2_norm_one": true,
+    "rho_equals_half_I_plus_r_dot_sigma_checked": true,
+    "rho_equals_psi_psi_dagger": true
+  },
+  "status": "passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "tool_manifest": {
+    "JSON": "load_bearing: emits auditable result receipt",
+    "LinearAlgebra": "load_bearing: norm, eigvals, Hermitian, traces, and finite matrix commutators decide all carrier validity and collapse checks",
+    "Z3": "omitted: z3 omitted, not decorative"
+  },
+  "topology_surfaces_used": [
+    "finite cell-complex carrier anchor only"
+  ],
+  "z3": "z3 omitted, not decorative"
+}

@@ -1,0 +1,123 @@
+{
+  "anchored_invariant": "Penrose null<->intersection: incident lines L(x1),L(x2) meet in CP^3 iff det(x1-x2)=0 (null-separated); measured intersection_dim == 2 - rank(x1-x2)",
+  "classification": "tool_lego_fit_probe",
+  "decorative_invariants_demoted": [
+    "Plucker/Klein-quadric relation p01 p23 - p02 p13 + p03 p12 == 0 (tautology for ANY 4x2; carries no incidence info)",
+    "linear-combo line-closure residual ~ 0 (only confirms linearity of pi -> i x pi; not the specific structure)"
+  ],
+  "incidence_relation": "omega^A = i x^{AA'} pi_{A'}  (Z=(omega,pi) in C^4, twistor space PT=CP^3)",
+  "kill_control_A_random_pairs": {
+    "generic_triple_is_rank3_not_a_line": true,
+    "generic_triple_rank_max": 3,
+    "generic_triple_rank_min": 3,
+    "kill_control_healthy": true,
+    "min_residual_of_random_pairs": 0.762476299148893,
+    "random_pairs_fail_incidence": true
+  },
+  "kill_control_B_noise_sweep": {
+    "kill_control_healthy": true,
+    "large_noise_breaks_line": true,
+    "rows": [
+      {
+        "abs_plucker_rel": 1.3877787807814457e-17,
+        "noise": 0.0,
+        "rank": 2
+      },
+      {
+        "abs_plucker_rel": 3.925231146709438e-17,
+        "noise": 0.001,
+        "rank": 4
+      },
+      {
+        "abs_plucker_rel": 5.815852873680767e-17,
+        "noise": 0.1,
+        "rank": 4
+      },
+      {
+        "abs_plucker_rel": 1.3877787807814457e-17,
+        "noise": 1.0,
+        "rank": 4
+      }
+    ],
+    "zero_noise_is_line": true
+  },
+  "object_id": "G_twistor_incidence",
+  "promotion_allowed": false,
+  "summary": {
+    "all_genuine_tests_pass": true,
+    "all_kill_controls_healthy": true,
+    "boundary_pass": true,
+    "decorative_invariants_removed_from_verdict": [
+      "Plucker/Klein-quadric relation (tautology for any 4x2)",
+      "linear-combo line-closure residual (only confirms map linearity)"
+    ],
+    "genuinely_measured_headline_invariants": [
+      "incidence residual ||omega - i x pi|| ~ 0 for built incident twistors (and LARGE for non-incident)",
+      "rank of incident subspace == 2 by SVD (off-line twistor raises it to 3)",
+      "null-separation <-> intersection: generic pairs DISJOINT, null pairs MEET; intersection_dim == 2 - rank(x1-x2)"
+    ],
+    "honest_status": "passes",
+    "kill_A_healthy": true,
+    "kill_B_healthy": true,
+    "ladder": "exists < runs < passes",
+    "negative_offline_pass": true,
+    "null_intersection_geometry_pass": true,
+    "positive_pass": true,
+    "z3_load_bearing": true
+  },
+  "test1_positive": {
+    "DEMOTED_closure_only_confirms_linearity": true,
+    "DEMOTED_max_abs_plucker_relation": 6.206335383118183e-17,
+    "DEMOTED_max_incidence_residual_of_linear_combos": 1.4895204919483639e-15,
+    "DEMOTED_plucker_is_tautology_for_any_4x2": true,
+    "expected_rank": 2,
+    "incidence_residual_is_zero": true,
+    "incident_twistors_per_point": 8,
+    "max_incidence_residual_of_built_twistors": 0.0,
+    "measured_rank_max": 2,
+    "measured_rank_min": 2,
+    "n_spacetime_points": 40,
+    "pass": true,
+    "rank_all_equal_2": true
+  },
+  "test2_negative_offline": {
+    "min_incidence_residual_of_offline_twistor": 0.46733488126171546,
+    "offline_raises_rank_to_3": true,
+    "offline_residual_is_large": true,
+    "pass": true,
+    "rank_with_offline_max": 3,
+    "rank_with_offline_min": 3
+  },
+  "test3_boundary_x_zero": {
+    "DEMOTED_abs_plucker_relation": 1.4105716751530864e-48,
+    "measured_rank": 2,
+    "omega_block_norm": 0.0,
+    "omega_forced_zero": true,
+    "pass": true,
+    "rank_is_2": true,
+    "x_is_zero": true
+  },
+  "test4_null_separation_intersection": {
+    "generic_intersection_dim_max": 0,
+    "generic_lines_disjoint": true,
+    "generic_max_abs_det_x1_minus_x2": 24.09729911257499,
+    "generic_min_abs_det_x1_minus_x2": 0.033834803962850483,
+    "intersection_dim_equals_2_minus_rank_all_pairs": true,
+    "n_pairs_each_class": 60,
+    "null_intersection_dim_max": 1,
+    "null_intersection_dim_min": 1,
+    "null_lines_meet_in_one_point": true,
+    "null_max_abs_det_x1_minus_x2": 5.161064032754533e-15,
+    "null_separation_holds": true,
+    "pass": true
+  },
+  "title": "Twistor incidence: a spacetime point <-> a projective line in CP^3",
+  "z3_structural_proof": {
+    "genuine_omega_sat": true,
+    "instance": "x=[[2,0],[1,3]], pi=[1,1]; x*pi computed inside Z3 -> i*x*pi=(2i,4i)",
+    "load_bearing": true,
+    "perturbed_omega_sat": false,
+    "verdicts_flip": true,
+    "xpi_computed_inside_z3": true
+  }
+}

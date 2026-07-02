@@ -1,0 +1,89 @@
+{
+  "carrier": "LinearAlgebra 2x2 complex Hilbert space, spin-1/2; non-numpy (Julia native + Z3)",
+  "classification": "tool_lego_fit_probe_PoC",
+  "controls": {
+    "boundary_2form_to_maximally_mixed": [
+      0.0306122449,
+      0.0244897959,
+      0.0183673469,
+      0.012244898,
+      0.006122449,
+      0.0
+    ],
+    "boundary_falls_to_zero": true,
+    "negative_self_commutator_max": 0.0
+  },
+  "honest_status": "passes: structure constants match su(2) Levi-Civita to 1e-9, kill-control commuting set gives strict null, Z3 UNSAT",
+  "kill_control_commuting_set": {
+    "interpretation": "commuting set carries NO substage structure (null); if it did, positive result = artifact",
+    "max_2form": 7.393428435748071e-17,
+    "max_commutator_opnorm": 9.274747390849399e-16,
+    "max_structure_const": 2.1313255537492576e-17
+  },
+  "measured_not_planted": {
+    "commutator_2form_table": {
+      "imag": {
+        "w(S1,S1)": 0.0,
+        "w(S1,S2)": 0.030612244897959218,
+        "w(S1,S3)": -0.3673469387755102,
+        "w(S2,S1)": -0.030612244897959218,
+        "w(S2,S2)": 0.0,
+        "w(S2,S3)": -0.06887755102040817,
+        "w(S3,S1)": 0.3673469387755102,
+        "w(S3,S2)": 0.06887755102040817,
+        "w(S3,S3)": 0.0
+      },
+      "real": {
+        "w(S1,S1)": 0.0,
+        "w(S1,S2)": 0.0,
+        "w(S1,S3)": 0.0,
+        "w(S2,S1)": 0.0,
+        "w(S2,S2)": 0.0,
+        "w(S2,S3)": 0.0,
+        "w(S3,S1)": 0.0,
+        "w(S3,S2)": 0.0,
+        "w(S3,S3)": 0.0
+      }
+    },
+    "jacobi_residual": 0.0,
+    "max_abs_2form": 0.36734694,
+    "min_offdiag_noncommutation": 0.5,
+    "noncommutation_opnorms": {
+      "[S1,S2]": 0.5,
+      "[S1,S3]": 0.5,
+      "[S2,S3]": 0.5
+    },
+    "recovered_structure_constants_c123_c231_c312": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "structure_const_max_err_vs_levi_civita": 0.0,
+    "twoform_antisymmetry_err": 0.0
+  },
+  "noncircular_anchor": "su(2) Levi-Civita structure constants eps_{ijk}; Jacobi identity; 2-form antisymmetry",
+  "object": "L5 operator substage: finite noncommuting operator set + commutator 2-form Tr(rho[A,B])",
+  "promotion_allowed": false,
+  "verdict": {
+    "all_pass": true,
+    "anchor_ok": true,
+    "boundary_falls": true,
+    "contrast_noncomm_vs_comm_ok": true,
+    "kill_ok": true,
+    "negctrl_ok": true,
+    "positive_ok": true,
+    "z3_ok": true
+  },
+  "z3_structural_proof": {
+    "abelian_forbids_measured_c123": "unsat",
+    "broken_input_kill_set_struct_const": 2.1313255537492576e-17,
+    "encoding": "FREE integer variable c123; abelian law forces c123==0; the MEASURED |c123| wires in as an Or-bound that boxes c123 away from 0 (>=ceil|m| or <=-ceil|m|). Z3 DERIVES UNSAT when measured!=0 (no integer is both 0 and outside (-1,1)); SAT when measured~0. Not a pinned-literal comparison.",
+    "expected": "unsat",
+    "genuine_input_measured_c123": 1.0,
+    "kill_set_abelian_is_SAT": true,
+    "kill_set_abelian_result": "sat",
+    "tool_role": "load_bearing",
+    "verdict_flips_on_input": true,
+    "z3_unsat": true
+  }
+}

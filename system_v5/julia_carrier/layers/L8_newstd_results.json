@@ -1,0 +1,270 @@
+{
+  "all_pass": true,
+  "bf_core": {
+    "S_blind_max": 1.8209139102959215e-16,
+    "S_parity": 2.0,
+    "S_rotor_max": 1.778643791361209e-16,
+    "S_tw_min": 1.9999999999999998,
+    "construction_ok": true,
+    "dependency_forcing_genuine": true,
+    "double_cover_present": true,
+    "input_dependent_swap": true,
+    "negative_controls_ok": true,
+    "orientation_signature_present": true,
+    "pin_vs_spin_distinct": true,
+    "swap_ratio_min": 0.9999999999999983
+  },
+  "bloch_free": true,
+  "carrier_language": "native Julia (LinearAlgebra) + ITensors-MPS; density-operator only; NO Bloch r-vector",
+  "claim_ceiling": "candidate orientation-cover object; F01+N01 constraint survival only; no layer-completion, manifold admission, coupling, bridge, flux, or physics claimed",
+  "classification": "L8_newstd_poc",
+  "criterion1_finitude_vs_flat": {
+    "compact_S_max": 2.0,
+    "compact_S_parity": 2.0,
+    "compact_bounded_in_0_2": true,
+    "compact_invariant_range_reversal_max_theoretical": [
+      2.0,
+      2.0,
+      2.0
+    ],
+    "deciding_number": "compact S_max=2.0 ∈ [0,2]; flat tr(P^2) ratios=[4.0, 4.0, 4.0] (unbounded)",
+    "flat_HS_norms_lambda_1_2_4_8": [
+      30.0,
+      120.0,
+      480.0,
+      1920.0
+    ],
+    "flat_growth_ratios": [
+      4.0,
+      4.0,
+      4.0
+    ],
+    "flat_unbounded_F01_violation": true,
+    "met": true,
+    "note": "SU(2)/Dirac compact carrier bounds all orientation scores in [0,2]; flat R^4 operator norms are unbounded (F01 violated). Unitarity opnorm=1 is the compactness mechanism."
+  },
+  "criterion2_noncommutation": {
+    "clifford_anticomm_max_residual": 0.0,
+    "clifford_anticomm_satisfied": true,
+    "deciding_number": "min ||[g_mu,g_nu]||=4.0 >0; flat max=0.0~0; {Ga,Gb}=2delta resid=0.0",
+    "flat_Cartesian_commutators_max": 0.0,
+    "flat_commutes_exactly": true,
+    "geometric_commutator_norms": {
+      "[g1,g2]": 4.0,
+      "[g1,g3]": 4.0,
+      "[g1,g4]": 4.0,
+      "[g2,g1]": 4.0,
+      "[g2,g3]": 4.0,
+      "[g2,g4]": 4.0,
+      "[g3,g1]": 4.0,
+      "[g3,g2]": 4.0,
+      "[g3,g4]": 4.0,
+      "[g4,g1]": 4.0,
+      "[g4,g2]": 4.0,
+      "[g4,g3]": 4.0
+    },
+    "input_dependent_commutator_expectation": true,
+    "max_offdiag_comm_norm": 4.0,
+    "met": true,
+    "min_offdiag_comm_norm": 4.0,
+    "nonzero_geometric_commutators": true,
+    "note": "Clifford algebra gives input-dependent nonzero commutators (geometric/bundle level). Flat diagonal matrices commute exactly. Anti-commutator {Gamma_a,Gamma_b}=2delta_{ab} verified for spatial gammas.",
+    "q_val_range_C01": [
+      0.0024963948353321132,
+      1.7824428551672877
+    ]
+  },
+  "criterion3_topological_invariant": {
+    "all_rotors_proper": true,
+    "deciding_number": "genuine det_P=-1.0; wrong-A det=0.0058 flip=true; wrong-B det=-0.0152 flip=true",
+    "det_parity_genuine": -1.0,
+    "det_rotor_mean": 1.0,
+    "invariant_anchored": true,
+    "invariant_flips": true,
+    "met": true,
+    "note": "Z/2 Pin class (det M(W)) anchored at -1 for parity, +1 for rotors. Wrong-A (random Hermitian generators, same HS norm) and Wrong-B (random Hermitian parity) each move det away from genuine -1.",
+    "topological_invariant": "Z/2 Pin class (det of induced O(3) map: improper=-1 Pin, proper=+1 Spin)",
+    "wrong_structure_A_flips": true,
+    "wrong_structure_A_random_generators_det": 0.005781926342735796,
+    "wrong_structure_B_flips": true,
+    "wrong_structure_B_random_parity_det": -0.015224428265691535
+  },
+  "criterion4_exact_carrier": {
+    "carrier": "ITensors-MPS bond_dim=2 (exact for product states)",
+    "carrier_exact_bond_dim_2": true,
+    "chiral_charge_means": {
+      "N_16": 0.055073311754009105,
+      "N_32": -0.1063426894672906,
+      "N_64": 0.25249453174784,
+      "N_8": 0.19572588690223078
+    },
+    "contraction_error_bound": 1.0e-8,
+    "deciding_number": "max_trunc=0.0; effect=2.0; bond_dim=2 exact",
+    "effect_size_orientation_score": 2.0,
+    "equal_truncation_budget_genuine_control": true,
+    "error_bound_below_effect": true,
+    "max_truncation_error": 0.0,
+    "met": true,
+    "note": "ITensors-MPS bond_dim=2 is exact for product-state chiral carriers at all N. Contraction error << claimed orientation effect (~2). Equal bond_dim budget for genuine and control.",
+    "truncation_errors_per_N": {
+      "N_16": 0.0,
+      "N_32": 0.0,
+      "N_64": 0.0,
+      "N_8": 0.0
+    }
+  },
+  "criterion5_scale_ladder": {
+    "N_16": {
+      "anti_tautology_ratio_min": 0.9999999999999998,
+      "anti_tautology_score_min": 2.0,
+      "blind_erasure_score_max": 1.401158334541034e-16,
+      "hold_at_scale": true,
+      "parity_swap_mean": 0.7515637246840826,
+      "positive_score_min": 2.0,
+      "sites": 16
+    },
+    "N_32": {
+      "anti_tautology_ratio_min": 0.9999999999999992,
+      "anti_tautology_score_min": 1.9999999999999998,
+      "blind_erasure_score_max": 1.5878954153939263e-16,
+      "hold_at_scale": true,
+      "parity_swap_mean": 0.629935897742636,
+      "positive_score_min": 2.0,
+      "sites": 32
+    },
+    "N_64": {
+      "anti_tautology_ratio_min": 0.9999999999999978,
+      "anti_tautology_score_min": 1.9999999999999998,
+      "blind_erasure_score_max": 2.0240572557017057e-16,
+      "hold_at_scale": true,
+      "parity_swap_mean": 0.6699903185150314,
+      "positive_score_min": 2.0,
+      "sites": 64
+    },
+    "N_8": {
+      "anti_tautology_ratio_min": 0.9999999999999994,
+      "anti_tautology_score_min": 2.0,
+      "blind_erasure_score_max": 1.6661268171153374e-16,
+      "hold_at_scale": true,
+      "parity_swap_mean": 0.5866519911622641,
+      "positive_score_min": 2.0,
+      "sites": 8
+    },
+    "completed_rungs": [
+      "N_8",
+      "N_16",
+      "N_32",
+      "N_64"
+    ],
+    "deciding_number": "4/4 rungs completed: N_8, N_16, N_32, N_64",
+    "met": true,
+    "partial": true
+  },
+  "criterion6_neural_dynamics": {
+    "deciding_number": "E_rotor: -0.0->-1.99; E_parity stable: -2.0; decreases=true",
+    "energy_decreases_from_rotor": true,
+    "energy_function": "E(W) = -S(W) = -||W g5 W^-1 - g5||/||g5||; attractors at E=-2 (reversal/Pin) and E=0 (preserver/Spin)",
+    "energy_trajectory_rotor": [
+      -7.899919781699107e-17,
+      -0.5059102635716415,
+      -0.7257703303517008,
+      -1.013679337151322,
+      -1.138450395634145,
+      -1.273957897852952,
+      -1.386552384875437,
+      -1.4825324816764307,
+      -1.5264554611898482,
+      -1.5732754987939188,
+      -1.6761397725809617,
+      -1.735155215374165,
+      -1.7923929168702226,
+      -1.82792414787305,
+      -1.867584533440244,
+      -1.8880841983858514,
+      -1.8913146439194852,
+      -1.9338116653927866,
+      -1.9338116653927866,
+      -1.9677970380457759,
+      -1.9677970380457759,
+      -1.9677970380457759,
+      -1.980307393848392,
+      -1.9848404847742387,
+      -1.9848404847742387,
+      -1.9902057129100121,
+      -1.9902057129100121,
+      -1.9902057129100121,
+      -1.9902057129100121,
+      -1.9902057129100121,
+      -1.9902057129100121
+    ],
+    "final_energy_from_parity": -2.0,
+    "final_energy_from_rotor": -1.9902057129100121,
+    "flat_landscape_degenerate": true,
+    "initial_energy_from_parity": -2.0,
+    "initial_energy_from_rotor": -7.899919781699107e-17,
+    "met": true,
+    "note": "Hopfield-style compact-geometry energy minimizer: two attractors (Pin reversal E~-2, Spin preserver E~0) topologically separated on SU(2). Random walk on compact manifold settles; no flat Euclidean gradient. NN dynamics applicable (N/A not reported).",
+    "parity_attractor_stable": true
+  },
+  "finite_map": {
+    "F01_finitude": "SU(2) is compact; all scores bounded in [0,2]; flat R^4 control has unbounded HS norm (grows as lambda^2)",
+    "N01_noncommutation": "Clifford algebra: ||[g_mu,g_nu]||_F > 0 for all mu!=nu; flat Cartesian diagonal matrices commute exactly; {Ga,Gb}=2delta anti-commutator verified",
+    "codomain": "R^1 orientation-reversal score S(W) in [0,2]; Z/2 Pin class det(M(W)) in {-1,+1}",
+    "domain": "SU(2) unitaries acting on C^4 Dirac spinor space (compact, finite)",
+    "map": "W -> S(W) = ||W g5 W^-1 - g5||_F / ||g5||_F; W -> det(M(W))"
+  },
+  "layer": "L8",
+  "layer_name": "chirality orientation cover (L/R sheet; gamma5/Pin/Spin/reflection) — NEW STANDARD upgrade",
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_deciding_number": "min ||[g_mu,g_nu]||=4.0 >0; flat max=0.0~0; {Ga,Gb}=2delta resid=0.0",
+    "exact_carrier": "MET",
+    "exact_carrier_deciding_number": "max_trunc=0.0; effect=2.0; bond_dim=2 exact",
+    "finitude": "MET",
+    "finitude_deciding_number": "compact S_max=2.0 ∈ [0,2]; flat tr(P^2) ratios=[4.0, 4.0, 4.0] (unbounded)",
+    "invariant_anchored": "MET",
+    "invariant_anchored_deciding_number": "genuine det_P=-1.0; wrong-A det=0.0058 flip=true; wrong-B det=-0.0152 flip=true",
+    "met_count": 6,
+    "neural_dynamics": "MET",
+    "neural_dynamics_deciding_number": "E_rotor: -0.0->-1.99; E_parity stable: -2.0; decreases=true",
+    "overall_fraction": "6/6",
+    "scale_ladder": "MET",
+    "scale_ladder_deciding_number": "4/4 rungs completed: N_8, N_16, N_32, N_64",
+    "verdict": "GENUINELY-UPGRADED",
+    "weakest_criterion": "scale_ladder",
+    "weakest_number": "4/4 rungs completed: N_8, N_16, N_32, N_64"
+  },
+  "non_numpy": true,
+  "object_id": "L8_newstd",
+  "promotion_allowed": false,
+  "script": "L8_newstd.jl",
+  "seed": 20260603,
+  "status_ladder": "exists < runs < passes",
+  "tool_manifest": {
+    "ITensors_ITensorMPS": {
+      "reason": "Exact MPS carrier for scale ladder criterion 4; random_mps, siteinds, maxlinkdim, inner, apply; removing ITensors would eliminate criterion 4 carrier evidence entirely",
+      "role": "load_bearing"
+    },
+    "JSON": {
+      "reason": "Result emission only",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "All matrix ops: HS/Frobenius norm, trace, det, svdvals, eigvals, opnorm, exp; every number flows through it",
+      "role": "load_bearing"
+    },
+    "QuantumClifford": {
+      "reason": "Clifford sublevel verified directly via gamma matrix algebra; no stabilizer formalism needed",
+      "role": "omitted"
+    },
+    "Random": {
+      "reason": "Haar-random Dirac spinors and rotor axes; numbers are fresh samples not planted",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "Dependency-forcing is a measured collapse-vs-intact comparison; the structural claims (Clifford relations, Pin det) are verified algebraically, not via SMT",
+      "role": "omitted"
+    }
+  },
+  "upgrades_from": "L8_layer_bf.jl (genuine anti-tautology dependency-forcing geometry reused verbatim)"
+}

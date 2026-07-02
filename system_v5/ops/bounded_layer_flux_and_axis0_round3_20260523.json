@@ -1,0 +1,116 @@
+{
+  "schema": "CODEx_RATCHET_SCOUT_ROUND_LEDGER_v1",
+  "name": "bounded_layer_flux_and_axis0_round3_20260523",
+  "created_at": "2026-05-23",
+  "classification": "formal_scout_round_ledger",
+  "promotion_allowed": false,
+  "scope": [
+    "bounded geometry flux correction",
+    "shell-cut Axis0 candidate response",
+    "IGT token-row state sweep",
+    "Holodeck science-method world-memory ablation"
+  ],
+  "user_correction_addressed": {
+    "flux_requires_bounded_geometry_layers": true,
+    "whole_manifold_stack_runs_at_once": "implemented in a dense 3/8-qubit finite layer stack fixture",
+    "each_layer_constrains_next": [
+      "carrier_polarity",
+      "bounded_geometry_links",
+      "per_engine_stage_operators",
+      "closure_transport"
+    ],
+    "per_engine_isolation": true,
+    "qubit_counts_tested": [
+      3,
+      8
+    ],
+    "dense_16q_boundary": "blocked for this fixture; use MPS/process tensors before 16-qubit full-stack flux"
+  },
+  "scouts": [
+    {
+      "script": "system_v5/ops/formal_scouts/sim_bounded_layered_flux_geometry_probe.py",
+      "result": "system_v5/ops/formal_scouts/results/bounded_layered_flux_geometry_probe_results.json",
+      "candidate_status": "open_or_nonrobust_layered_flux_fixture",
+      "candidate_survived": false,
+      "metrics": {
+        "comparison_count": 4,
+        "survived_count": 0,
+        "survival_rate": 0.0
+      },
+      "interpretation": "bounded-layer flux scalar fixture is killed/nonrobust under controls"
+    },
+    {
+      "script": "system_v5/ops/formal_scouts/sim_shell_cut_axis0_response_probe.py",
+      "result": "system_v5/ops/formal_scouts/results/shell_cut_axis0_response_probe_results.json",
+      "candidate_status": "open_candidate_family_survived_fixture",
+      "candidate_survived": true,
+      "metrics": {
+        "structured_response_norm": 0.6515760520116705,
+        "product_response_norm": 0.0,
+        "structured_minus_product_response_norm": 0.6515760520116705,
+        "negative_coherent_information_count": 0
+      },
+      "interpretation": "finite shell-cut response survives this first fixture only; Axis0 remains open"
+    },
+    {
+      "script": "system_v5/ops/formal_scouts/sim_stage_capability_state_sweep_probe.py",
+      "result": "system_v5/ops/formal_scouts/results/stage_capability_state_sweep_probe_results.json",
+      "candidate_status": "open_or_nonrobust_under_state_sweep",
+      "candidate_survived": false,
+      "metrics": {
+        "seed_count": 24,
+        "survival_count": 0,
+        "survival_rate": 0.0,
+        "mean_min_pairwise_gap": 0.004442902789490134,
+        "min_min_pairwise_gap": 0.0018662523593489752,
+        "max_min_pairwise_gap": 0.008382169612571232
+      },
+      "interpretation": "IGT token rows have measurable separation but do not survive the robustness threshold"
+    },
+    {
+      "script": "system_v5/ops/formal_scouts/sim_holodeck_science_world_memory_ablation_probe.py",
+      "result": "system_v5/ops/formal_scouts/results/holodeck_science_world_memory_ablation_probe_results.json",
+      "candidate_status": "open_or_nonrobust_world_memory_fixture",
+      "candidate_survived": false,
+      "metrics": {
+        "seed_count": 16,
+        "survival_count": 0,
+        "survival_rate": 0.0,
+        "mean_margin": -0.26199466214083544,
+        "min_margin": -0.352178272319717,
+        "max_margin": -0.20809673674025253
+      },
+      "interpretation": "toy world-memory loop is beaten by wrong/raw/product/passive controls in this fixture"
+    }
+  ],
+  "validation": {
+    "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "formal_scout_name_lint_all_pass": true,
+    "fresh_rerun_validation_all_pass": true,
+    "commands": [
+      "python sim_stage_capability_state_sweep_probe.py",
+      "python sim_shell_cut_axis0_response_probe.py",
+      "python sim_holodeck_science_world_memory_ablation_probe.py",
+      "python sim_bounded_layered_flux_geometry_probe.py",
+      "python lint_formal_scout_names.py <four scripts>",
+      "python validate_formal_scout_results.py --fresh-rerun --fresh-rerun-timeout 180 <four results>"
+    ]
+  },
+  "claim_ceiling": {
+    "axis0_final": false,
+    "flux_final": false,
+    "physics_unification": false,
+    "yang_mills_or_standard_model": false,
+    "holodeck_world_engine_final": false,
+    "igt_game_theory_final": false,
+    "cognition_or_psychology": false
+  },
+  "recommended_next_gates": [
+    "shell-cut stress sweep over seeds, graph rewires, local-unitary gauge transforms, product controls, and path-order scrambles",
+    "8-qubit MPS/process-tensor flux current-through-cut rescue or falsifier with per-engine isolation",
+    "finite QIT game-theory selector table mapping minimax, maximax, maximin, and minimin to channel outcome selectors",
+    "Holodeck typed hypothesis-bank with held-out observations and expected-evidence policy selection",
+    "16-qubit only after dense carrier is replaced by MPS/process tensor machinery"
+  ]
+}
+

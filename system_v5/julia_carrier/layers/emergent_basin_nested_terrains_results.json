@@ -1,0 +1,273 @@
+{
+  "F01_prune_control": {
+    "expansive_pruned": 42,
+    "expansive_seeds": 42,
+    "expansive_survivors": 0,
+    "fires_on_expansive": true,
+    "genuine_pruned": 0,
+    "quiet_on_genuine": true
+  },
+  "N01_off_control": {
+    "attractors_found": 1,
+    "basin_centroids": {
+      "1": [
+        0.0,
+        0.0,
+        -1.0,
+        0.785
+      ]
+    },
+    "basins_reached": 1,
+    "collapses_to_one": true,
+    "design": "single shared commuting sink (pure sigma_- toward one pole, theta-independent); replaces the theta-selected distinct noncommuting terrains",
+    "note": "a naive zero-Bloch-flow control does NOT collapse (frozen r => each seed is its own fixed point => many spurious attractors); the honest control is a single commuting sink"
+  },
+  "all_pass": true,
+  "checks": {
+    "F01_prune_fires_on_expansive": true,
+    "F01_prune_quiet_on_genuine": true,
+    "N01_off_collapses_to_one_basin": true,
+    "genuine_multiple_basins": true,
+    "ratchet_reshapes_basin_structure": true
+  },
+  "classification": "PoC",
+  "genuine": {
+    "attractors_found": 9,
+    "basin_centroids": {
+      "1": [
+        -0.0,
+        0.001,
+        0.247,
+        0.785
+      ],
+      "2": [
+        -0.0,
+        0.001,
+        0.26,
+        0.785
+      ],
+      "3": [
+        0.25,
+        0.0,
+        0.0,
+        0.785
+      ],
+      "4": [
+        -0.001,
+        -0.0,
+        -0.267,
+        0.785
+      ],
+      "5": [
+        -0.25,
+        0.0,
+        -0.0,
+        0.785
+      ],
+      "6": [
+        -0.001,
+        -0.0,
+        -0.01,
+        0.785
+      ],
+      "7": [
+        -0.5,
+        0.0,
+        -0.0,
+        0.785
+      ],
+      "8": [
+        -0.25,
+        -0.0,
+        0.0,
+        0.785
+      ],
+      "9": [
+        0.5,
+        -0.0,
+        -0.0,
+        0.785
+      ]
+    },
+    "basin_fractions": {
+      "1": 0.047619047619047616,
+      "2": 0.09523809523809523,
+      "3": 0.19047619047619047,
+      "4": 0.14285714285714285,
+      "5": 0.14285714285714285,
+      "6": 0.07142857142857142,
+      "7": 0.09523809523809523,
+      "8": 0.11904761904761904,
+      "9": 0.09523809523809523
+    },
+    "basins_reached": 9,
+    "pruned_F01": 0,
+    "seeds": 42,
+    "survivors": 42
+  },
+  "honest_scope": {
+    "claim_ceiling": "The terrain flows, the ratchet weight A(theta), and the Attractors.jl basin counts are measured. The retrocausal-survivor identification is interpretive and unproven (PoC, promotion_allowed=false).",
+    "forced_standard_math": [
+      "terrain Bloch flows = exact images of Lindblad dissipators (Pit/Source/Hill/Vortex), verified component-wise",
+      "A(theta)=2 pi^2 sin(2 theta) leaf-area monotone, maximal at the Clifford torus theta=pi/4",
+      "Attractors.jl AttractorsViaRecurrences basin mapping (an external recurrence counter)"
+    ],
+    "novel_interpretive_NOT_proven": [
+      "identifying the emergent global basin with 'the present survivor of the retrocausal possibility field' — the basins are measured; the retrocausal reading is an interpretation laid over them, not a theorem"
+    ]
+  },
+  "object": "emergent_basin_nested_terrains",
+  "promotion_allowed": false,
+  "ratchet_off_control": {
+    "attractors_found": 19,
+    "basin_centroids": {
+      "1": [
+        0.0,
+        0.0,
+        -1.0,
+        0.196
+      ],
+      "10": [
+        -0.25,
+        0.0,
+        -0.0,
+        0.785
+      ],
+      "11": [
+        -0.25,
+        0.0,
+        -0.0,
+        0.982
+      ],
+      "12": [
+        -0.0,
+        0.0,
+        -0.0,
+        0.393
+      ],
+      "13": [
+        -0.0,
+        0.0,
+        -0.0,
+        0.589
+      ],
+      "14": [
+        -0.5,
+        0.0,
+        -0.0,
+        0.785
+      ],
+      "15": [
+        -0.5,
+        0.0,
+        -0.0,
+        0.982
+      ],
+      "16": [
+        -0.25,
+        -0.0,
+        0.0,
+        0.785
+      ],
+      "17": [
+        -0.25,
+        -0.0,
+        0.0,
+        0.982
+      ],
+      "18": [
+        0.5,
+        -0.0,
+        -0.0,
+        0.785
+      ],
+      "19": [
+        0.5,
+        -0.0,
+        -0.0,
+        0.982
+      ],
+      "2": [
+        -0.0,
+        0.0,
+        0.26,
+        0.393
+      ],
+      "3": [
+        -0.0,
+        0.0,
+        0.26,
+        0.589
+      ],
+      "4": [
+        0.25,
+        0.0,
+        0.0,
+        0.785
+      ],
+      "5": [
+        0.25,
+        0.0,
+        0.0,
+        0.982
+      ],
+      "6": [
+        0.0,
+        0.0,
+        1.0,
+        1.178
+      ],
+      "7": [
+        0.0,
+        0.0,
+        1.0,
+        1.374
+      ],
+      "8": [
+        0.0,
+        0.0,
+        -0.26,
+        0.393
+      ],
+      "9": [
+        0.0,
+        0.0,
+        -0.26,
+        0.589
+      ]
+    },
+    "basin_fractions": {
+      "1": 0.14285714285714285,
+      "10": 0.023809523809523808,
+      "11": 0.023809523809523808,
+      "12": 0.047619047619047616,
+      "13": 0.047619047619047616,
+      "14": 0.023809523809523808,
+      "15": 0.023809523809523808,
+      "16": 0.023809523809523808,
+      "17": 0.023809523809523808,
+      "18": 0.023809523809523808,
+      "19": 0.023809523809523808,
+      "2": 0.047619047619047616,
+      "3": 0.047619047619047616,
+      "4": 0.047619047619047616,
+      "5": 0.047619047619047616,
+      "6": 0.14285714285714285,
+      "7": 0.14285714285714285,
+      "8": 0.047619047619047616,
+      "9": 0.047619047619047616
+    },
+    "basins_reached": 19,
+    "differs_from_ratchet_on": true
+  },
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "tools": [
+    "DifferentialEquations(EnsembleProblem,DiscreteCallback/terminate!)",
+    "Attractors+DynamicalSystems(AttractorsViaRecurrences)",
+    "LinearAlgebra",
+    "StaticArrays",
+    "JSON"
+  ],
+  "z3_omitted": "deliberate: no decorative SMT; evidence is measured basin counts + kill-controls"
+}

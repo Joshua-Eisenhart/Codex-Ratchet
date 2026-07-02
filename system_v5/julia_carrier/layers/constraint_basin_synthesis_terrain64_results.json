@@ -1,0 +1,740 @@
+{
+  "actual_tools_used": [
+    "Julia",
+    "Z3",
+    "JSON",
+    "Dates"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "The finite 64-state fixture has a Z3-certified bounded basin under the named constraints.",
+    "The constraint-erased and wrong-target controls produce Z3 SAT counterexamples.",
+    "The order-erased control collapses the N01 order witness.",
+    "promotion_allowed=false; no layer, manifold, PEPS, flux, Axis0, FEP, bridge, or physics claim is made."
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/constraint_basin_synthesis_terrain64_results.json"
+  ],
+  "backend_primary_result": {
+    "all_pass": true,
+    "backend": "Julia + Z3",
+    "claim_bearing": true,
+    "summary": "Z3 is the proof backend; Julia supplies the finite map and controls."
+  },
+  "blocked_consumers": [
+    "layer completion",
+    "parent-complete layer status",
+    "G-structure selection",
+    "PEPS2D",
+    "PEPS3D",
+    "stacking readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "bridge",
+    "gravity",
+    "physics",
+    "final manifold admission",
+    "manifold basin admission"
+  ],
+  "blocked_until": "A target layer exports an admitted finite map/carrier and the proof is rerun against that map instead of this finite schedule fixture.",
+  "branch_status_before_run": "proof_scout_not_admission",
+  "carrier_layer": "finite schedule fixture",
+  "carrier_realization": "Julia-native finite integer transition tables plus Z3 SMT proof queries",
+  "claim_ceiling": "Diagnostic proof-pattern scout only. This proves a finite SMT basin certificate shape over the terrain/operator schedule fixture. It does not admit a layer, a PEPS carrier, a manifold basin, Axis0, flux, FEP, physics, or final manifold status.",
+  "classification": "formal_scout",
+  "codomain_or_output": "bounded survivor-basin certificate, negative-control counterexamples, and diagnostic result JSON",
+  "controls": {
+    "bit_identical_control_check": {
+      "genuine_vs_constraint_erased": 60,
+      "genuine_vs_identity": 63,
+      "order_erased_vs_constraint_erased": 60
+    },
+    "constraint_erased_control": {
+      "counterexample_exists": true,
+      "k": 15,
+      "proves_all_reach": false,
+      "query": "exists state not reaching target within k",
+      "status": "sat"
+    },
+    "order_erased_control": {
+      "commutation_proven": true,
+      "order_sensitive_witness_exists": false,
+      "query": "exists x where A_then_B differs from B_then_A",
+      "status": "unsat"
+    },
+    "wrong_target_control": {
+      "counterexample_exists": true,
+      "k": 15,
+      "proves_all_reach": false,
+      "query": "exists state not reaching target within k",
+      "status": "sat"
+    }
+  },
+  "data_or_artifact_dependencies": [],
+  "demotion_condition": "Demote to broken if any genuine Z3 proof flips from UNSAT/SAT as expected, if erased controls stop producing counterexamples, or if a downstream report cites this as PEPS/manifold/layer admission.",
+  "dependency_receipts": [
+    "system_v5/julia_carrier/layers/sixteen_terrain_placement_lattice_results.json",
+    "system_v5/julia_carrier/layers/jax_weyl_terrain_64_microstep_diagnostic_results.json",
+    "system_v5/julia_carrier/layers/jax_terrain_choi_holonomy_ladder_probe_results.json"
+  ],
+  "domain": "64 finite terrain/operator microstates; no continuous, PEPS, or infinite-time state space is claimed",
+  "downstream_blocks": [
+    "layer completion",
+    "parent-complete layer status",
+    "G-structure selection",
+    "PEPS2D",
+    "PEPS3D",
+    "stacking readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "bridge",
+    "gravity",
+    "physics",
+    "final manifold admission",
+    "manifold basin admission"
+  ],
+  "eligible_consumers": [
+    "proof-pattern design for later per-layer constraint-basin packets",
+    "bounded scout comparison against JAX terrain/operator stress probes"
+  ],
+  "fail_rule": "Any missing proof flip, bit-identical control, failed scale rung, or promotion-like downstream claim fails the scout.",
+  "finite_map": {
+    "codomain_or_output": "next finite state plus Z3 reachability/no-extra-fixed/order-control proof statuses",
+    "domain": "finite states (native_word, substage) in 16 terrain/operator words x {Ti,Te,Fi,Fe}; scale rungs use prefixes with 8/16/32/64 states",
+    "map": "F_C = contract_word_gated_after_project_substage. project_substage sets substage Ti; contract_word_gated moves one word toward NeTi only after the Ti projection. The target NeTi::Ti is fixed."
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-03T08:15:40.832",
+  "geometry_layer": "terrain/operator order grammar fixture, not a geometric manifold carrier",
+  "graph_surfaces_used": [],
+  "kill_conditions": [
+    "genuine reachability query becomes SAT",
+    "non-target fixed-point query becomes SAT",
+    "order-erased control remains order-sensitive",
+    "constraint-erased or wrong-target control becomes UNSAT",
+    "control transition tables are bit-identical"
+  ],
+  "law_or_candidate_tested": "bounded reachability to a target survivor basin under F_C, exclusion of non-target fixed points, and N01 order sensitivity with erased/wrong controls",
+  "name": "Finite constraint-basin synthesis proof over 16 terrain/operator words x 4 substages",
+  "negatives_run": [
+    "order_erased_control",
+    "constraint_erased_control",
+    "wrong_target_control",
+    "bit_identical_control_check"
+  ],
+  "next_lego_target": "Port this proof shape onto one exported per-layer finite map with a real carrier, starting with a terrain/channel map that already has controls.",
+  "object_id": "constraint_basin_synthesis_terrain64",
+  "one_layer_done_right_candidate": false,
+  "out_of_scope": [
+    "continuous or infinite-time attractor proof",
+    "PEPS2D or PEPS3D carrier construction",
+    "spinor-network carrier admission",
+    "per-layer completion",
+    "manifold basin admission",
+    "flux/Xi/Phi0/Axis0/FEP/physics claims"
+  ],
+  "pass_rule": "All 8/16/32/64 rungs must prove bounded reachability UNSAT, prove no other fixed point UNSAT, show genuine order SAT, show order-erased commutation UNSAT, and show erased/wrong controls SAT.",
+  "peps3d_embedding": "absent; this absence blocks manifold, PEPS3D, flux, Axis0, FEP, physics, and basin-admission consumers",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "no PEPS3D carrier",
+    "no spinor-network carrier",
+    "finite schedule fixture only",
+    "no continuous terrain/Lindblad basin boundary proof",
+    "no per-layer rebuilt carrier map",
+    "no layer-completion claim gate"
+  ],
+  "promotion_condition": "Promotion requires a real JAX or Julia carrier map exported by the target layer, PEPS3D or explicit blocked carrier boundary as required by the manifold gate, fresh controls, and a passing layer-completion claim gate for any completion-like wording.",
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [
+    "Z3 finite bounded reachability",
+    "Z3 fixed-point exclusion",
+    "Z3 order-sensitivity witness"
+  ],
+  "purpose": "Prove, on a finite 64-state fixture, that a named constraint set creates a bounded survivor basin and that erased/wrong controls flip the proof.",
+  "quaternion_action": "not_applicable",
+  "required_inputs": [
+    "16 native words",
+    "4 substages",
+    "target NeTi::Ti",
+    "constraint flags project_substage then gated word contraction"
+  ],
+  "required_negatives": [
+    "order_erased_control",
+    "constraint_erased_control",
+    "wrong_target_control",
+    "bit_identical_control_check"
+  ],
+  "required_tools": [
+    "Julia",
+    "Z3",
+    "JSON"
+  ],
+  "result_summary": {
+    "all_rungs_pass": true,
+    "state_rungs": [
+      "8",
+      "16",
+      "32",
+      "64"
+    ],
+    "terrain64_constraint_erased_bad_reach_count": 60,
+    "terrain64_order_gap_count": 45,
+    "terrain64_wrong_target_bad_reach_count": 64
+  },
+  "root_constraints": [
+    "F01 finite carrier/probe/operator/path set: 16 words x 4 substages, checked at 8/16/32/64 state rungs",
+    "N01 noncommuting/order-sensitive operation/control: gated word contraction and substage projection have A∘B != B∘A, while order-erased control commutes"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite distinguishable terrain/operator schedule states",
+    "N01 order-sensitive composition, witnessed by a Z3 SAT noncommutation query"
+  ],
+  "scale_ladder": {
+    "rungs": {
+      "16": {
+        "constraint_erased_bad_reach_count": 12,
+        "control_table_hamming": {
+          "genuine_vs_constraint_erased": 12,
+          "genuine_vs_identity": 15,
+          "order_erased_vs_constraint_erased": 12
+        },
+        "controls_pass": true,
+        "genuine_bad_reach_count": 0,
+        "horizon_k": 3,
+        "order_erased_gap_count": 0,
+        "order_gap_count": 9,
+        "proof_pass": true,
+        "sample_transitions": [
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Ti",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Te",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Fi",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Fe",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Ti",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Te",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Fi",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Fe",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          }
+        ],
+        "state_count": 16,
+        "target_label": "NeTi::Ti",
+        "target_state": 1,
+        "word_count": 4,
+        "wrong_target_bad_reach_count": 16,
+        "z3_constraint_erased_control": {
+          "counterexample_exists": true,
+          "k": 3,
+          "proves_all_reach": false,
+          "query": "exists state not reaching target within k",
+          "status": "sat"
+        },
+        "z3_no_other_fixed_point": {
+          "counterexample_exists": false,
+          "proves_no_other_fixed_point": true,
+          "query": "exists non-target fixed point",
+          "status": "unsat"
+        },
+        "z3_order_erased_control": {
+          "commutation_proven": true,
+          "order_sensitive_witness_exists": false,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "unsat"
+        },
+        "z3_order_sensitive_genuine": {
+          "commutation_proven": false,
+          "order_sensitive_witness_exists": true,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "sat"
+        },
+        "z3_reachability": {
+          "counterexample_exists": false,
+          "k": 3,
+          "proves_all_reach": true,
+          "query": "exists state not reaching target within k",
+          "status": "unsat"
+        },
+        "z3_wrong_target_control": {
+          "counterexample_exists": true,
+          "k": 3,
+          "proves_all_reach": false,
+          "query": "exists state not reaching target within k",
+          "status": "sat"
+        }
+      },
+      "32": {
+        "constraint_erased_bad_reach_count": 28,
+        "control_table_hamming": {
+          "genuine_vs_constraint_erased": 28,
+          "genuine_vs_identity": 31,
+          "order_erased_vs_constraint_erased": 28
+        },
+        "controls_pass": true,
+        "genuine_bad_reach_count": 0,
+        "horizon_k": 7,
+        "order_erased_gap_count": 0,
+        "order_gap_count": 21,
+        "proof_pass": true,
+        "sample_transitions": [
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Ti",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Te",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Fi",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Fe",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Ti",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Te",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Fi",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Fe",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          }
+        ],
+        "state_count": 32,
+        "target_label": "NeTi::Ti",
+        "target_state": 1,
+        "word_count": 8,
+        "wrong_target_bad_reach_count": 32,
+        "z3_constraint_erased_control": {
+          "counterexample_exists": true,
+          "k": 7,
+          "proves_all_reach": false,
+          "query": "exists state not reaching target within k",
+          "status": "sat"
+        },
+        "z3_no_other_fixed_point": {
+          "counterexample_exists": false,
+          "proves_no_other_fixed_point": true,
+          "query": "exists non-target fixed point",
+          "status": "unsat"
+        },
+        "z3_order_erased_control": {
+          "commutation_proven": true,
+          "order_sensitive_witness_exists": false,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "unsat"
+        },
+        "z3_order_sensitive_genuine": {
+          "commutation_proven": false,
+          "order_sensitive_witness_exists": true,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "sat"
+        },
+        "z3_reachability": {
+          "counterexample_exists": false,
+          "k": 7,
+          "proves_all_reach": true,
+          "query": "exists state not reaching target within k",
+          "status": "unsat"
+        },
+        "z3_wrong_target_control": {
+          "counterexample_exists": true,
+          "k": 7,
+          "proves_all_reach": false,
+          "query": "exists state not reaching target within k",
+          "status": "sat"
+        }
+      },
+      "64": {
+        "constraint_erased_bad_reach_count": 60,
+        "control_table_hamming": {
+          "genuine_vs_constraint_erased": 60,
+          "genuine_vs_identity": 63,
+          "order_erased_vs_constraint_erased": 60
+        },
+        "controls_pass": true,
+        "genuine_bad_reach_count": 0,
+        "horizon_k": 15,
+        "order_erased_gap_count": 0,
+        "order_gap_count": 45,
+        "proof_pass": true,
+        "sample_transitions": [
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Ti",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Te",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Fi",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Fe",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Ti",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Te",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Fi",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Fe",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          }
+        ],
+        "state_count": 64,
+        "target_label": "NeTi::Ti",
+        "target_state": 1,
+        "word_count": 16,
+        "wrong_target_bad_reach_count": 64,
+        "z3_constraint_erased_control": {
+          "counterexample_exists": true,
+          "k": 15,
+          "proves_all_reach": false,
+          "query": "exists state not reaching target within k",
+          "status": "sat"
+        },
+        "z3_no_other_fixed_point": {
+          "counterexample_exists": false,
+          "proves_no_other_fixed_point": true,
+          "query": "exists non-target fixed point",
+          "status": "unsat"
+        },
+        "z3_order_erased_control": {
+          "commutation_proven": true,
+          "order_sensitive_witness_exists": false,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "unsat"
+        },
+        "z3_order_sensitive_genuine": {
+          "commutation_proven": false,
+          "order_sensitive_witness_exists": true,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "sat"
+        },
+        "z3_reachability": {
+          "counterexample_exists": false,
+          "k": 15,
+          "proves_all_reach": true,
+          "query": "exists state not reaching target within k",
+          "status": "unsat"
+        },
+        "z3_wrong_target_control": {
+          "counterexample_exists": true,
+          "k": 15,
+          "proves_all_reach": false,
+          "query": "exists state not reaching target within k",
+          "status": "sat"
+        }
+      },
+      "8": {
+        "constraint_erased_bad_reach_count": 4,
+        "control_table_hamming": {
+          "genuine_vs_constraint_erased": 4,
+          "genuine_vs_identity": 7,
+          "order_erased_vs_constraint_erased": 4
+        },
+        "controls_pass": true,
+        "genuine_bad_reach_count": 0,
+        "horizon_k": 1,
+        "order_erased_gap_count": 0,
+        "order_gap_count": 3,
+        "proof_pass": true,
+        "sample_transitions": [
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Ti",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Te",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Fi",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "NeTi::Ti",
+            "from": "NeTi::Fe",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Ti",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "NeTi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Te",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Fi",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          },
+          {
+            "constraint_erased_next": "FeSi::Ti",
+            "from": "FeSi::Fe",
+            "genuine_next": "NeTi::Ti",
+            "reverse_order_next": "FeSi::Ti"
+          }
+        ],
+        "state_count": 8,
+        "target_label": "NeTi::Ti",
+        "target_state": 1,
+        "word_count": 2,
+        "wrong_target_bad_reach_count": 8,
+        "z3_constraint_erased_control": {
+          "counterexample_exists": true,
+          "k": 1,
+          "proves_all_reach": false,
+          "query": "exists state not reaching target within k",
+          "status": "sat"
+        },
+        "z3_no_other_fixed_point": {
+          "counterexample_exists": false,
+          "proves_no_other_fixed_point": true,
+          "query": "exists non-target fixed point",
+          "status": "unsat"
+        },
+        "z3_order_erased_control": {
+          "commutation_proven": true,
+          "order_sensitive_witness_exists": false,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "unsat"
+        },
+        "z3_order_sensitive_genuine": {
+          "commutation_proven": false,
+          "order_sensitive_witness_exists": true,
+          "query": "exists x where A_then_B differs from B_then_A",
+          "status": "sat"
+        },
+        "z3_reachability": {
+          "counterexample_exists": false,
+          "k": 1,
+          "proves_all_reach": true,
+          "query": "exists state not reaching target within k",
+          "status": "unsat"
+        },
+        "z3_wrong_target_control": {
+          "counterexample_exists": true,
+          "k": 1,
+          "proves_all_reach": false,
+          "query": "exists state not reaching target within k",
+          "status": "sat"
+        }
+      }
+    }
+  },
+  "scientific_question": "Can finite F01/N01 constraints force all allowed terrain/operator microstates into a target survivor basin within a bounded horizon?",
+  "sim_class": "constraint_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "constraint_basin_synthesis_terrain64",
+  "spinor_state": "not_applicable_to_this_finite_proof_scout",
+  "tier": "tool-stage finite proof scout",
+  "tool_ablations": {
+    "constraint_erased_transition": {
+      "baseline_bad_reach_count": 0,
+      "control_bad_reach_count": 60,
+      "outcome_delta": 60,
+      "what_changed": "remove the word-contraction constraint, leaving only substage projection"
+    },
+    "order_gate_erased": {
+      "baseline_order_gap_count": 45,
+      "control_order_gap_count": 0,
+      "outcome_delta": 45,
+      "what_changed": "remove substage gating from word contraction"
+    },
+    "wrong_target_claim": {
+      "baseline_bad_reach_count": 0,
+      "outcome_delta": 64,
+      "what_changed": "keep the genuine map but claim the FeSi::Ti state is the basin target",
+      "wrong_target_bad_reach_count": 64
+    }
+  },
+  "tool_integration_depth": {
+    "Dates": "supportive",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "Dates": {
+      "reason": "timestamps the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "writes the result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "builds the finite transition fixture, controls, scale rungs, and result receipt",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "proves no bounded-reachability counterexample, proves no non-target fixed point, and flips to SAT on erased/wrong controls",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    }
+  },
+  "topology_surfaces_used": [],
+  "version": "0.1.0",
+  "witness_trace_id": "constraint_basin_synthesis_terrain64:NeTi::Ti",
+  "z3_proof": {
+    "load_bearing": true,
+    "terrain64": {
+      "constraint_erased_control": {
+        "counterexample_exists": true,
+        "k": 15,
+        "proves_all_reach": false,
+        "query": "exists state not reaching target within k",
+        "status": "sat"
+      },
+      "no_other_fixed_point": {
+        "counterexample_exists": false,
+        "proves_no_other_fixed_point": true,
+        "query": "exists non-target fixed point",
+        "status": "unsat"
+      },
+      "order_erased_control": {
+        "commutation_proven": true,
+        "order_sensitive_witness_exists": false,
+        "query": "exists x where A_then_B differs from B_then_A",
+        "status": "unsat"
+      },
+      "order_sensitive_genuine": {
+        "commutation_proven": false,
+        "order_sensitive_witness_exists": true,
+        "query": "exists x where A_then_B differs from B_then_A",
+        "status": "sat"
+      },
+      "reachability": {
+        "counterexample_exists": false,
+        "k": 15,
+        "proves_all_reach": true,
+        "query": "exists state not reaching target within k",
+        "status": "unsat"
+      },
+      "wrong_target_control": {
+        "counterexample_exists": true,
+        "k": 15,
+        "proves_all_reach": false,
+        "query": "exists state not reaching target within k",
+        "status": "sat"
+      }
+    }
+  }
+}

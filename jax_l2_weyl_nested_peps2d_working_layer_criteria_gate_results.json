@@ -1,0 +1,919 @@
+{
+  "AUDIT_PASS": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "jax.scipy.linalg.expm": "load_bearing",
+    "json": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "jax": {
+      "reason": "fresh finite nested-PEPS2D spinor, control, and QIT computations",
+      "role": "load_bearing",
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "complex128 spinor grids, PEPS2D tensor signatures, entropy algebra",
+      "role": "load_bearing",
+      "used": true
+    },
+    "jax.scipy.linalg.expm": {
+      "reason": "finite two-qubit entangling unitary for QIT readouts",
+      "role": "load_bearing",
+      "used": true
+    },
+    "json": {
+      "reason": "receipt serialization and read-only dependency reconciliation",
+      "role": "supportive",
+      "used": true
+    }
+  },
+  "ablation_outcome_delta": {
+    "PEPS2D_virtual_bonds": {
+      "claim_delta": "claim_fails",
+      "delta_magnitude": 0.020896365265915862,
+      "non_vacuous": true,
+      "pass": true,
+      "stub_action": "erase virtual PEPS2D bond modulation"
+    },
+    "interlayer_coupling_g": {
+      "claim_delta": "claim_fails",
+      "delta_magnitude": 0.11339720047048327,
+      "non_vacuous": true,
+      "pass": true,
+      "stub_action": "set g_inter to zero"
+    },
+    "layer_order": {
+      "claim_delta": "claim_fails",
+      "delta_magnitude": 0.22679440094096653,
+      "non_vacuous": true,
+      "pass": true,
+      "stub_action": "shuffle inner and outer shell order"
+    },
+    "noncommuting_order": {
+      "claim_delta": "claim_fails",
+      "delta_magnitude": 0.3188390503059498,
+      "non_vacuous": true,
+      "pass": true,
+      "stub_action": "replace order-sensitive action pair with commuting diagonal controls"
+    },
+    "qit_entangling_readout": {
+      "claim_delta": "claim_fails",
+      "delta_magnitude": 0.6261773102070611,
+      "non_vacuous": true,
+      "pass": true,
+      "stub_action": "replace entangling readout with product/dephased controls"
+    }
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "layer_stacking",
+    "cross_layer_order_closure",
+    "PEPS3D_closure_theorem",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "FEP",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "claim_ceiling": "Bounded L2 single-layer working-criteria packet. It supports JAX fresh-run criteria plus current read-only receipt reconciliation; downstream consumers remain blocked.",
+  "classification": "diagnostic_jax_l2_weyl_nested_peps2d_working_criteria_gate",
+  "codomain_or_output": "JSON criteria receipt with fresh JAX nested-PEPS2D rows, QIT readouts, controls, non-vacuous ablations, dependency receipt statuses, and locks",
+  "criteria": {
+    "F01_finite_carrier_probe_operator_path_set": true,
+    "N01_noncommuting_or_order_sensitive_witness": true,
+    "bond_dimension_sweep_D_2_4": true,
+    "bounded_single_layer_working_criteria_pass": true,
+    "current_l2_receipts_green": true,
+    "entropy_qit_family_present": true,
+    "finite_map_domain_codomain_declared": true,
+    "five_non_vacuous_ablations": true,
+    "fresh_jax_nested_peps2d_mirror_runs": true,
+    "interlayer_g0_control_run": true,
+    "nested_peps2d_shells_engaged_in_jax": true,
+    "nested_weyl_peps2d_julia_result_available": false,
+    "product_and_dephased_qit_controls_run": true,
+    "read_only_peps2d_references_green": true,
+    "scale_8_16_32_64_sites": true,
+    "shuffled_layer_order_control_run": true,
+    "spinor_or_density_carrier": true
+  },
+  "dependency_receipts": {
+    "jax_entropy_qit": {
+      "classification": "diagnostic_jax_qit_entropy_geometry_separation_stress",
+      "exists": true,
+      "passes": true,
+      "path": "jax_qit_entropy_geometry_separation_stress_results.json",
+      "promotion_allowed": false
+    },
+    "jax_nesting_order": {
+      "claim_ceiling_head": "Nesting-order gate only. It establishes a bounded JAX order-search target after independent layer/geometry coverage, but does not admit full layer completion, does not claim layer-stacking readiness, and does not unlock flux, Axis0, FEP, physics, or final mani",
+      "classification": "diagnostic_jax_nesting_order_gate",
+      "exists": true,
+      "passes": true,
+      "path": "jax_nested_hopf_nesting_order_gate_results.json",
+      "promotion_allowed": false
+    },
+    "jax_reference_runner": {
+      "classification": "diagnostic_jax_julia_reference_geometric_constraint_layer_runner",
+      "exists": true,
+      "passes": true,
+      "path": "jax_julia_reference_geometric_constraint_layer_runner_results.json",
+      "promotion_allowed": false
+    },
+    "jax_terrain_64": {
+      "classification": "diagnostic_jax_64_microstep_suite",
+      "exists": true,
+      "passes": true,
+      "path": "jax_weyl_terrain_64_microstep_diagnostic_results.json",
+      "promotion_allowed": false
+    },
+    "julia_nested_hopf_peps2d_readonly": {
+      "claim_ceiling_head": "Runs a PEPS2D CTMRG contraction ladder for nested Hopf tori shells and reads a known topological invariant (c1) off the contracted network, flipped by a wrong-structure control. Not canonical, not PEPS3D admission, not flux/Axis0/physics progress, not layer co",
+      "classification": "nested_hopf_tori_spinor_network_peps2d_poc",
+      "exists": true,
+      "passes": true,
+      "path": "system_v5/julia_carrier/layers/nested_hopf_tori_spinor_network_peps2d_results.json",
+      "promotion_allowed": false
+    },
+    "julia_nested_weyl_peps2d_source_readonly": {
+      "exists": true,
+      "path": "system_v5/julia_carrier/layers/nested_peps2d_weyl_on_hopf_tori.jl",
+      "result_exists": false,
+      "result_path": "system_v5/julia_carrier/layers/nested_peps2d_weyl_on_hopf_tori_results.json",
+      "role": "read_only_reference_source; not run by this JAX gate"
+    },
+    "julia_weyl_lr_peps2d_readonly": {
+      "claim_ceiling_head": "POC only: L/R Weyl sheet Chern invariant measured ON a PEPSKit InfinitePEPS CTMRG-contracted network, with a wrong-structure control that flips c1 to 0 and a nonzero erasure ablation, plus the CTMRG-corner entropy ladder. Not canonical, not bridge/axis/flux/ma",
+      "classification": "weyl_lr_spinor_network_entanglement_peps2d_poc",
+      "exists": true,
+      "passes": true,
+      "path": "system_v5/julia_carrier/layers/weyl_lr_spinor_network_entanglement_peps2d_results.json",
+      "promotion_allowed": false
+    },
+    "l2_bond4_peps3d_ablation": {
+      "claim_ceiling_head": "Individual L2 layer-depth scout only; no stacking, flux, Xi/Phi0, Axis0, FEP, physics, or final manifold admission.",
+      "classification": "formal_scout",
+      "exists": true,
+      "passes": true,
+      "path": "system_v5/ops/formal_scouts/results/l2_weyl_spinor_peps3d_bond4_tool_ablation_layer_probe_results.json",
+      "promotion_allowed": false,
+      "summary": {
+        "all_pass": true,
+        "max_sites": 64,
+        "promotion_allowed": false
+      }
+    },
+    "l2_full_spinor_network": {
+      "claim_ceiling_head": "Formal scout only: individual L2 carrier-depth receipt; no stacking, flux, Xi/Phi0, Axis0, FEP, physics, or final manifold admission.",
+      "classification": "formal_scout",
+      "exists": true,
+      "passes": true,
+      "path": "system_v5/ops/formal_scouts/results/l2_weyl_spinor_full_spinor_network_layer_probe_results.json",
+      "promotion_allowed": false,
+      "summary": {
+        "all_pass": true,
+        "max_sites": 64,
+        "min_log_negativity": 0.21257890380031383,
+        "min_mutual_information": 0.11083342945912283,
+        "peps2d_bond_dim": 4,
+        "peps3d_bond_dim": 4,
+        "promotion_allowed": false
+      }
+    },
+    "l2_jax_native": {
+      "classification": "formal_scout",
+      "exists": true,
+      "passes": true,
+      "path": "system_v5/ops/formal_scouts/results/jax_native_l2_weyl_spinor_chirality_layer_probe_results.json",
+      "promotion_allowed": false
+    },
+    "l2_mps_peps2d_peps3d_depth": {
+      "claim_ceiling_head": "Formal layer-depth scout only; downstream stacking, flux, Xi/Phi0, Axis0, FEP/Holodeck, physics, and final manifold remain locked.",
+      "classification": "formal_scout",
+      "exists": true,
+      "passes": true,
+      "path": "system_v5/ops/formal_scouts/results/l2_weyl_spinor_chirality_mps_peps2d_peps3d_depth_probe_results.json",
+      "promotion_allowed": false,
+      "summary": {
+        "all_pass": true,
+        "max_sites": 64,
+        "peps2d_bond_dim": 2,
+        "peps3d_bond_dim": 2,
+        "promotion_allowed": false
+      }
+    }
+  },
+  "domain": {
+    "bond_dims_D": [
+      2,
+      4
+    ],
+    "g_inter_values": [
+      0.0,
+      0.37
+    ],
+    "grid_shapes": {
+      "16": [
+        4,
+        4
+      ],
+      "32": [
+        4,
+        8
+      ],
+      "64": [
+        8,
+        8
+      ],
+      "8": [
+        2,
+        4
+      ]
+    },
+    "sheets": [
+      "L",
+      "R"
+    ],
+    "shell_etas": [
+      0.3,
+      0.95
+    ],
+    "site_counts": [
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "finite_map": "L2_JAX_nested_PEPS2D : finite L/R Weyl spinor grids on two nested Hopf tori shells with PEPS2D virtual-bond tensors and inter-shell coupling -> PEPS2D signatures, order gaps, QIT readouts, controls, and ablation deltas",
+  "formal_layer_admission_allowed": false,
+  "fresh_jax_nested_peps2d_probe": {
+    "all_pass": true,
+    "bond_dims": [
+      2,
+      4
+    ],
+    "g_inter": 0.37,
+    "row_count": 8,
+    "rows": [
+      {
+        "bond_dim_D": 2,
+        "checks": {
+          "dephased_control_collapses_logneg": true,
+          "finite": true,
+          "flat_control_collapses_substrate_signal": true,
+          "interlayer_g_control": true,
+          "noncommuting_order_witness": true,
+          "peps2d_virtual_load_bearing": true,
+          "product_control_collapses_qit": true,
+          "shuffled_layer_order_control": true
+        },
+        "dephased_control_logneg": 0.0,
+        "flat_control_split_LR": 0.0,
+        "g0_response": 0.0,
+        "grid_shape": [
+          2,
+          4
+        ],
+        "inner_peps2d": {
+          "bond_dim": 2,
+          "chiral_connection_response": 0.0,
+          "edge_correlation": 3.469446951953614e-18,
+          "peps2d_erased_gap": 0.04779798048235727,
+          "signature_l2": 1.0366407972510476,
+          "tensor_count": 8,
+          "virtual_l1": 0.04779798048235727
+        },
+        "interlayer_response": -0.11339720047048332,
+        "nested_energy_split_LR": 0.08223310890284224,
+        "noncommuting_order": {
+          "commuting_control_gap": 1.0842021724855044e-19,
+          "gap": 0.3188390503059498,
+          "pass": true
+        },
+        "outer_peps2d": {
+          "bond_dim": 2,
+          "chiral_connection_response": -0.0,
+          "edge_correlation": 0.0,
+          "peps2d_erased_gap": 0.020896365265915862,
+          "signature_l2": 0.7691084605216431,
+          "tensor_count": 8,
+          "virtual_l1": 0.020896365265915862
+        },
+        "pass": true,
+        "product_control_qit": {
+          "S_A": -0.0,
+          "S_AB": -0.0,
+          "S_B": -0.0,
+          "coherent_information_A_to_B": 0.0,
+          "conditional_entropy_A_given_B": 0.0,
+          "log_negativity": 0.0,
+          "mutual_information": 0.0
+        },
+        "qit": {
+          "S_A": 0.5665455843322634,
+          "S_AB": -0.0,
+          "S_B": 0.5665455843322635,
+          "coherent_information_A_to_B": 0.5665455843322635,
+          "conditional_entropy_A_given_B": -0.5665455843322635,
+          "log_negativity": 0.6261773102070611,
+          "mutual_information": 1.133091168664527
+        },
+        "raw_nested_energy_L": -1.0207141441256593,
+        "raw_nested_energy_R": -1.0207141441256593,
+        "shell_etas": [
+          0.3,
+          0.95
+        ],
+        "shuffled_order_gap": 0.22679440094096665,
+        "shuffled_order_response": 0.11339720047048332,
+        "site_count": 8
+      },
+      {
+        "bond_dim_D": 4,
+        "checks": {
+          "dephased_control_collapses_logneg": true,
+          "finite": true,
+          "flat_control_collapses_substrate_signal": true,
+          "interlayer_g_control": true,
+          "noncommuting_order_witness": true,
+          "peps2d_virtual_load_bearing": true,
+          "product_control_collapses_qit": true,
+          "shuffled_layer_order_control": true
+        },
+        "dephased_control_logneg": 0.0,
+        "flat_control_split_LR": 0.0,
+        "g0_response": 0.0,
+        "grid_shape": [
+          2,
+          4
+        ],
+        "inner_peps2d": {
+          "bond_dim": 4,
+          "chiral_connection_response": 0.0,
+          "edge_correlation": 3.469446951953614e-18,
+          "peps2d_erased_gap": 0.04809467127132878,
+          "signature_l2": 1.0366545195926131,
+          "tensor_count": 8,
+          "virtual_l1": 0.04809467127132878
+        },
+        "interlayer_response": -0.11339720047048332,
+        "nested_energy_split_LR": 0.08223310890284224,
+        "noncommuting_order": {
+          "commuting_control_gap": 1.0842021724855044e-19,
+          "gap": 0.3188390503059498,
+          "pass": true
+        },
+        "outer_peps2d": {
+          "bond_dim": 4,
+          "chiral_connection_response": -0.0,
+          "edge_correlation": 0.0,
+          "peps2d_erased_gap": 0.02101351232853534,
+          "signature_l2": 0.7691116522748996,
+          "tensor_count": 8,
+          "virtual_l1": 0.02101351232853534
+        },
+        "pass": true,
+        "product_control_qit": {
+          "S_A": -0.0,
+          "S_AB": -0.0,
+          "S_B": -0.0,
+          "coherent_information_A_to_B": 0.0,
+          "conditional_entropy_A_given_B": 0.0,
+          "log_negativity": 0.0,
+          "mutual_information": 0.0
+        },
+        "qit": {
+          "S_A": 0.5665455843322634,
+          "S_AB": -0.0,
+          "S_B": 0.5665455843322635,
+          "coherent_information_A_to_B": 0.5665455843322635,
+          "conditional_entropy_A_given_B": -0.5665455843322635,
+          "log_negativity": 0.6261773102070611,
+          "mutual_information": 1.133091168664527
+        },
+        "raw_nested_energy_L": -1.0207141441256593,
+        "raw_nested_energy_R": -1.0207141441256593,
+        "shell_etas": [
+          0.3,
+          0.95
+        ],
+        "shuffled_order_gap": 0.22679440094096665,
+        "shuffled_order_response": 0.11339720047048332,
+        "site_count": 8
+      },
+      {
+        "bond_dim_D": 2,
+        "checks": {
+          "dephased_control_collapses_logneg": true,
+          "finite": true,
+          "flat_control_collapses_substrate_signal": true,
+          "interlayer_g_control": true,
+          "noncommuting_order_witness": true,
+          "peps2d_virtual_load_bearing": true,
+          "product_control_collapses_qit": true,
+          "shuffled_layer_order_control": true
+        },
+        "dephased_control_logneg": 0.0,
+        "flat_control_split_LR": 0.0,
+        "g0_response": 0.0,
+        "grid_shape": [
+          4,
+          4
+        ],
+        "inner_peps2d": {
+          "bond_dim": 2,
+          "chiral_connection_response": 0.260552872891674,
+          "edge_correlation": 8.673617379884035e-19,
+          "peps2d_erased_gap": 0.26475067700761723,
+          "signature_l2": 1.0688463016557095,
+          "tensor_count": 16,
+          "virtual_l1": 0.046958720211339164
+        },
+        "interlayer_response": -0.11339720047048327,
+        "nested_energy_split_LR": 0.05702142886931727,
+        "noncommuting_order": {
+          "commuting_control_gap": 1.0842021724855044e-19,
+          "gap": 0.3188390503059498,
+          "pass": true
+        },
+        "outer_peps2d": {
+          "bond_dim": 2,
+          "chiral_connection_response": -0.28906358732633264,
+          "edge_correlation": 0.0,
+          "peps2d_erased_gap": 0.28978435652242757,
+          "signature_l2": 0.8216240863373979,
+          "tensor_count": 16,
+          "virtual_l1": 0.020425860254811364
+        },
+        "pass": true,
+        "product_control_qit": {
+          "S_A": -0.0,
+          "S_AB": 2.220446049250313e-16,
+          "S_B": -0.0,
+          "coherent_information_A_to_B": -2.220446049250313e-16,
+          "conditional_entropy_A_given_B": 2.220446049250313e-16,
+          "log_negativity": 2.2204460492503128e-16,
+          "mutual_information": -2.220446049250313e-16
+        },
+        "qit": {
+          "S_A": 0.5670379451490943,
+          "S_AB": -0.0,
+          "S_B": 0.567037945149094,
+          "coherent_information_A_to_B": 0.567037945149094,
+          "conditional_entropy_A_given_B": -0.567037945149094,
+          "log_negativity": 0.6264534086257738,
+          "mutual_information": 1.1340758902981882
+        },
+        "raw_nested_energy_L": 0.14720540238150276,
+        "raw_nested_energy_R": 0.1472054023815027,
+        "shell_etas": [
+          0.3,
+          0.95
+        ],
+        "shuffled_order_gap": 0.22679440094096653,
+        "shuffled_order_response": 0.11339720047048327,
+        "site_count": 16
+      },
+      {
+        "bond_dim_D": 4,
+        "checks": {
+          "dephased_control_collapses_logneg": true,
+          "finite": true,
+          "flat_control_collapses_substrate_signal": true,
+          "interlayer_g_control": true,
+          "noncommuting_order_witness": true,
+          "peps2d_virtual_load_bearing": true,
+          "product_control_collapses_qit": true,
+          "shuffled_layer_order_control": true
+        },
+        "dephased_control_logneg": 0.0,
+        "flat_control_split_LR": 0.0,
+        "g0_response": 0.0,
+        "grid_shape": [
+          4,
+          4
+        ],
+        "inner_peps2d": {
+          "bond_dim": 4,
+          "chiral_connection_response": 0.260552872891674,
+          "edge_correlation": 8.673617379884035e-19,
+          "peps2d_erased_gap": 0.2648074017174047,
+          "signature_l2": 1.0688603536437418,
+          "tensor_count": 16,
+          "virtual_l1": 0.047277483353263657
+        },
+        "interlayer_response": -0.11339720047048327,
+        "nested_energy_split_LR": 0.05702142886931727,
+        "noncommuting_order": {
+          "commuting_control_gap": 1.0842021724855044e-19,
+          "gap": 0.3188390503059498,
+          "pass": true
+        },
+        "outer_peps2d": {
+          "bond_dim": 4,
+          "chiral_connection_response": -0.28906358732633264,
+          "edge_correlation": 0.0,
+          "peps2d_erased_gap": 0.2897994659282494,
+          "signature_l2": 0.8216294155012622,
+          "tensor_count": 16,
+          "virtual_l1": 0.020639111762143208
+        },
+        "pass": true,
+        "product_control_qit": {
+          "S_A": -0.0,
+          "S_AB": 2.220446049250313e-16,
+          "S_B": -0.0,
+          "coherent_information_A_to_B": -2.220446049250313e-16,
+          "conditional_entropy_A_given_B": 2.220446049250313e-16,
+          "log_negativity": 2.2204460492503128e-16,
+          "mutual_information": -2.220446049250313e-16
+        },
+        "qit": {
+          "S_A": 0.5670379451490943,
+          "S_AB": -0.0,
+          "S_B": 0.567037945149094,
+          "coherent_information_A_to_B": 0.567037945149094,
+          "conditional_entropy_A_given_B": -0.567037945149094,
+          "log_negativity": 0.6264534086257738,
+          "mutual_information": 1.1340758902981882
+        },
+        "raw_nested_energy_L": 0.14720540238150276,
+        "raw_nested_energy_R": 0.1472054023815027,
+        "shell_etas": [
+          0.3,
+          0.95
+        ],
+        "shuffled_order_gap": 0.22679440094096653,
+        "shuffled_order_response": 0.11339720047048327,
+        "site_count": 16
+      },
+      {
+        "bond_dim_D": 2,
+        "checks": {
+          "dephased_control_collapses_logneg": true,
+          "finite": true,
+          "flat_control_collapses_substrate_signal": true,
+          "interlayer_g_control": true,
+          "noncommuting_order_witness": true,
+          "peps2d_virtual_load_bearing": true,
+          "product_control_collapses_qit": true,
+          "shuffled_layer_order_control": true
+        },
+        "dephased_control_logneg": 0.0,
+        "flat_control_split_LR": 0.0,
+        "g0_response": 0.0,
+        "grid_shape": [
+          4,
+          8
+        ],
+        "inner_peps2d": {
+          "bond_dim": 2,
+          "chiral_connection_response": 0.26055287289167395,
+          "edge_correlation": 0.22516854156683463,
+          "peps2d_erased_gap": 0.2648437897854943,
+          "signature_l2": 1.0923289800634126,
+          "tensor_count": 32,
+          "virtual_l1": 0.04748087421097343
+        },
+        "interlayer_response": -0.11339720047048327,
+        "nested_energy_split_LR": 0.05702142886931716,
+        "noncommuting_order": {
+          "commuting_control_gap": 1.0842021724855044e-19,
+          "gap": 0.3188390503059498,
+          "pass": true
+        },
+        "outer_peps2d": {
+          "bond_dim": 2,
+          "chiral_connection_response": -0.2890635873263325,
+          "edge_correlation": 0.6330854413648108,
+          "peps2d_erased_gap": 0.289807906399515,
+          "signature_l2": 1.037244891356131,
+          "tensor_count": 32,
+          "virtual_l1": 0.02075729013387273
+        },
+        "pass": true,
+        "product_control_qit": {
+          "S_A": -0.0,
+          "S_AB": -0.0,
+          "S_B": -0.0,
+          "coherent_information_A_to_B": 0.0,
+          "conditional_entropy_A_given_B": 0.0,
+          "log_negativity": 0.0,
+          "mutual_information": 0.0
+        },
+        "qit": {
+          "S_A": 0.567144654436725,
+          "S_AB": -0.0,
+          "S_B": 0.567144654436725,
+          "coherent_information_A_to_B": 0.567144654436725,
+          "conditional_entropy_A_given_B": -0.567144654436725,
+          "log_negativity": 0.6265132296173136,
+          "mutual_information": 1.13428930887345
+        },
+        "raw_nested_energy_L": 1.005459385313148,
+        "raw_nested_energy_R": 1.005459385313148,
+        "shell_etas": [
+          0.3,
+          0.95
+        ],
+        "shuffled_order_gap": 0.22679440094096653,
+        "shuffled_order_response": 0.11339720047048327,
+        "site_count": 32
+      },
+      {
+        "bond_dim_D": 4,
+        "checks": {
+          "dephased_control_collapses_logneg": true,
+          "finite": true,
+          "flat_control_collapses_substrate_signal": true,
+          "interlayer_g_control": true,
+          "noncommuting_order_witness": true,
+          "peps2d_virtual_load_bearing": true,
+          "product_control_collapses_qit": true,
+          "shuffled_layer_order_control": true
+        },
+        "dephased_control_logneg": 0.0,
+        "flat_control_split_LR": 0.0,
+        "g0_response": 0.0,
+        "grid_shape": [
+          4,
+          8
+        ],
+        "inner_peps2d": {
+          "bond_dim": 4,
+          "chiral_connection_response": 0.26055287289167395,
+          "edge_correlation": 0.22516854156683463,
+          "peps2d_erased_gap": 0.264885205404688,
+          "signature_l2": 1.0923390223464118,
+          "tensor_count": 32,
+          "virtual_l1": 0.047711345298356196
+        },
+        "interlayer_response": -0.11339720047048327,
+        "nested_energy_split_LR": 0.05702142886931716,
+        "noncommuting_order": {
+          "commuting_control_gap": 1.0842021724855044e-19,
+          "gap": 0.3188390503059498,
+          "pass": true
+        },
+        "outer_peps2d": {
+          "bond_dim": 4,
+          "chiral_connection_response": -0.2890635873263325,
+          "edge_correlation": 0.6330854413648108,
+          "peps2d_erased_gap": 0.28981385021292305,
+          "signature_l2": 1.0372465520829457,
+          "tensor_count": 32,
+          "virtual_l1": 0.020840111738432036
+        },
+        "pass": true,
+        "product_control_qit": {
+          "S_A": -0.0,
+          "S_AB": -0.0,
+          "S_B": -0.0,
+          "coherent_information_A_to_B": 0.0,
+          "conditional_entropy_A_given_B": 0.0,
+          "log_negativity": 0.0,
+          "mutual_information": 0.0
+        },
+        "qit": {
+          "S_A": 0.567144654436725,
+          "S_AB": -0.0,
+          "S_B": 0.567144654436725,
+          "coherent_information_A_to_B": 0.567144654436725,
+          "conditional_entropy_A_given_B": -0.567144654436725,
+          "log_negativity": 0.6265132296173136,
+          "mutual_information": 1.13428930887345
+        },
+        "raw_nested_energy_L": 1.005459385313148,
+        "raw_nested_energy_R": 1.005459385313148,
+        "shell_etas": [
+          0.3,
+          0.95
+        ],
+        "shuffled_order_gap": 0.22679440094096653,
+        "shuffled_order_response": 0.11339720047048327,
+        "site_count": 32
+      },
+      {
+        "bond_dim_D": 2,
+        "checks": {
+          "dephased_control_collapses_logneg": true,
+          "finite": true,
+          "flat_control_collapses_substrate_signal": true,
+          "interlayer_g_control": true,
+          "noncommuting_order_witness": true,
+          "peps2d_virtual_load_bearing": true,
+          "product_control_collapses_qit": true,
+          "shuffled_layer_order_control": true
+        },
+        "dephased_control_logneg": 0.0,
+        "flat_control_split_LR": 0.0,
+        "g0_response": 0.0,
+        "grid_shape": [
+          8,
+          8
+        ],
+        "inner_peps2d": {
+          "bond_dim": 2,
+          "chiral_connection_response": 0.18552810934956993,
+          "edge_correlation": 0.22516854156683463,
+          "peps2d_erased_gap": 0.1915321597640738,
+          "signature_l2": 1.07690525856378,
+          "tensor_count": 64,
+          "virtual_l1": 0.04758034116170999
+        },
+        "interlayer_response": -0.11339720047048327,
+        "nested_energy_split_LR": 0.03817835635949851,
+        "noncommuting_order": {
+          "commuting_control_gap": 1.0842021724855044e-19,
+          "gap": 0.3188390503059498,
+          "pass": true
+        },
+        "outer_peps2d": {
+          "bond_dim": 2,
+          "chiral_connection_response": -0.20461728752931918,
+          "edge_correlation": 0.6330854413648109,
+          "peps2d_erased_gap": 0.20566663126713128,
+          "signature_l2": 1.016949903018577,
+          "tensor_count": 64,
+          "virtual_l1": 0.02074918940378298
+        },
+        "pass": true,
+        "product_control_qit": {
+          "S_A": -0.0,
+          "S_AB": -0.0,
+          "S_B": -0.0,
+          "coherent_information_A_to_B": 0.0,
+          "conditional_entropy_A_given_B": 0.0,
+          "log_negativity": 0.0,
+          "mutual_information": 0.0
+        },
+        "qit": {
+          "S_A": 0.5670718828298567,
+          "S_AB": -0.0,
+          "S_B": 0.5670718828298565,
+          "coherent_information_A_to_B": 0.5670718828298565,
+          "conditional_entropy_A_given_B": -0.5670718828298565,
+          "log_negativity": 0.6264724347013687,
+          "mutual_information": 1.1341437656597133
+        },
+        "raw_nested_energy_L": 1.8725946762799182,
+        "raw_nested_energy_R": 1.8725946762799182,
+        "shell_etas": [
+          0.3,
+          0.95
+        ],
+        "shuffled_order_gap": 0.22679440094096653,
+        "shuffled_order_response": 0.11339720047048327,
+        "site_count": 64
+      },
+      {
+        "bond_dim_D": 4,
+        "checks": {
+          "dephased_control_collapses_logneg": true,
+          "finite": true,
+          "flat_control_collapses_substrate_signal": true,
+          "interlayer_g_control": true,
+          "noncommuting_order_witness": true,
+          "peps2d_virtual_load_bearing": true,
+          "product_control_collapses_qit": true,
+          "shuffled_layer_order_control": true
+        },
+        "dephased_control_logneg": 0.0,
+        "flat_control_split_LR": 0.0,
+        "g0_response": 0.0,
+        "grid_shape": [
+          8,
+          8
+        ],
+        "inner_peps2d": {
+          "bond_dim": 4,
+          "chiral_connection_response": 0.18552810934956993,
+          "edge_correlation": 0.22516854156683463,
+          "peps2d_erased_gap": 0.1915525957356106,
+          "signature_l2": 1.0769088933756137,
+          "tensor_count": 64,
+          "virtual_l1": 0.047662538478602766
+        },
+        "interlayer_response": -0.11339720047048327,
+        "nested_energy_split_LR": 0.03817835635949851,
+        "noncommuting_order": {
+          "commuting_control_gap": 1.0842021724855044e-19,
+          "gap": 0.3188390503059498,
+          "pass": true
+        },
+        "outer_peps2d": {
+          "bond_dim": 4,
+          "chiral_connection_response": -0.20461728752931918,
+          "edge_correlation": 0.6330854413648109,
+          "peps2d_erased_gap": 0.20567289230422736,
+          "signature_l2": 1.0169511692610946,
+          "tensor_count": 64,
+          "virtual_l1": 0.020811157414479167
+        },
+        "pass": true,
+        "product_control_qit": {
+          "S_A": -0.0,
+          "S_AB": -0.0,
+          "S_B": -0.0,
+          "coherent_information_A_to_B": 0.0,
+          "conditional_entropy_A_given_B": 0.0,
+          "log_negativity": 0.0,
+          "mutual_information": 0.0
+        },
+        "qit": {
+          "S_A": 0.5670718828298567,
+          "S_AB": -0.0,
+          "S_B": 0.5670718828298565,
+          "coherent_information_A_to_B": 0.5670718828298565,
+          "conditional_entropy_A_given_B": -0.5670718828298565,
+          "log_negativity": 0.6264724347013687,
+          "mutual_information": 1.1341437656597133
+        },
+        "raw_nested_energy_L": 1.8725946762799182,
+        "raw_nested_energy_R": 1.8725946762799182,
+        "shell_etas": [
+          0.3,
+          0.95
+        ],
+        "shuffled_order_gap": 0.22679440094096653,
+        "shuffled_order_response": 0.11339720047048327,
+        "site_count": 64
+      }
+    ],
+    "shell_count": 2,
+    "sites": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "summary": {
+      "min_log_negativity": 0.6261773102070611,
+      "min_mutual_information": 1.133091168664527,
+      "min_peps2d_erased_gap": 0.020896365265915862,
+      "min_shuffled_order_gap": 0.22679440094096653
+    }
+  },
+  "generated_at": "2026-06-03T01:45:30.601036+00:00",
+  "name": "JAX L2 Weyl nested-PEPS2D working-criteria gate",
+  "peps2d_embedding": "finite 2D shell tensors A[y,x,physical,left,right,up,down] with bond dimensions D=2,4 for two nested Hopf-torus shells",
+  "peps3d_embedding": "read from current L2 formal-scout dependency receipts only; this JAX gate does not construct a new PEPS3D object",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "layer-completion claim gate has not admitted stronger wording",
+    "fresh run is a JAX finite PEPS2D mirror, not a PEPSKit CTMRG rerun",
+    "Julia nested Weyl PEPS2D source exists read-only, but no result JSON was present",
+    "downstream consumers remain locked by current L2 receipts"
+  ],
+  "ran_jax": true,
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "root_constraints_in_force": [
+    "F01",
+    "N01"
+  ],
+  "sim_execution_kind": "nonclassical_diagnostic",
+  "sim_id": "jax_l2_weyl_nested_peps2d_working_layer_criteria_gate",
+  "spinor_state": "JAX complex128 two-component Weyl spinors psi(phi,chi,eta); density and two-qubit QIT readouts are spinor-derived",
+  "tool_ablations": {
+    "PEPS2D_virtual_bonds": {
+      "claim_delta": "claim_fails",
+      "delta_magnitude": 0.020896365265915862,
+      "non_vacuous": true,
+      "pass": true,
+      "stub_action": "erase virtual PEPS2D bond modulation"
+    },
+    "interlayer_coupling_g": {
+      "claim_delta": "claim_fails",
+      "delta_magnitude": 0.11339720047048327,
+      "non_vacuous": true,
+      "pass": true,
+      "stub_action": "set g_inter to zero"
+    },
+    "layer_order": {
+      "claim_delta": "claim_fails",
+      "delta_magnitude": 0.22679440094096653,
+      "non_vacuous": true,
+      "pass": true,
+      "stub_action": "shuffle inner and outer shell order"
+    },
+    "noncommuting_order": {
+      "claim_delta": "claim_fails",
+      "delta_magnitude": 0.3188390503059498,
+      "non_vacuous": true,
+      "pass": true,
+      "stub_action": "replace order-sensitive action pair with commuting diagonal controls"
+    },
+    "qit_entangling_readout": {
+      "claim_delta": "claim_fails",
+      "delta_magnitude": 0.6261773102070611,
+      "non_vacuous": true,
+      "pass": true,
+      "stub_action": "replace entangling readout with product/dephased controls"
+    }
+  },
+  "wallclock_seconds": 7.571743
+}

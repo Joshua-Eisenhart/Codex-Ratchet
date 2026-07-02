@@ -1,0 +1,203 @@
+{
+  "blocked_actions": [
+    "stage all",
+    "commit all",
+    "run formal_scout forward science",
+    "regenerate readiness index from current estate",
+    "cross-lane evidence synthesis",
+    "validator run that consumes quarantined recent formal results"
+  ],
+  "buckets": [
+    {
+      "allowed_next_action": "review_then_commit_as_process_packet_or_archive",
+      "name": "recovery_control_artifacts",
+      "paths": [
+        "system_v5/ops/CROSS_LANE_SIM_INDEPENDENCE_RESET_20260523.md",
+        "system_v5/ops/FORMAL_GROK_BOUNDARY_DAMAGE_AUDIT_20260523.md",
+        "system_v5/ops/FORMAL_GROK_BOUNDARY_QUARANTINE_MANIFEST_20260523.json",
+        "system_v5/ops/CLAUDE_SELF_VIOLATION_INVENTORY_20260523.md",
+        "system_v5/ops/FORMAL_GROK_SIM_REDO_PLAN_20260523.md",
+        "system_v5/ops/LIVE_CLAUDE_PROCESS_STOP_AND_EXPANDED_QUARANTINE_20260523.md",
+        "system_v5/ops/EXPANDED_QUARANTINE_FULL_INVENTORY_20260523.json",
+        "system_v5/ops/EXPANDED_QUARANTINE_INVENTORY_SUMMARY_20260523.md",
+        "system_v5/ops/EXPANDED_QUARANTINE_SURFACE_CLASSIFICATION_20260523.md",
+        "system_v5/ops/EXPANDED_QUARANTINE_ACTION_MANIFEST_20260523.json",
+        "system_v5/ops/EXPANDED_QUARANTINE_ACTION_PLAN_20260523.md"
+      ],
+      "stage_with": "only other recovery-control docs",
+      "status": "keep_for_review"
+    },
+    {
+      "allowed_next_action": "none",
+      "name": "tracked_restore_candidates",
+      "paths": [],
+      "stage_with": "none",
+      "status": "none_remaining_after_restore"
+    },
+    {
+      "allowed_next_action": "diff review; keep only boundary-rule edits if approved",
+      "name": "tracked_manual_review",
+      "paths": [
+        "system_v5/docs/MULTIMODEL_PROPOSAL_SPLIT.md"
+      ],
+      "stage_with": "recovery-control docs only if retained",
+      "status": "manual_review"
+    },
+    {
+      "allowed_next_action": "none unless restoring from archive",
+      "name": "untracked_formal_scout_sources",
+      "paths": [],
+      "stage_with": "none",
+      "status": "archived_and_removed"
+    },
+    {
+      "allowed_next_action": "none unless restoring from archive",
+      "name": "recent_formal_results",
+      "paths": [],
+      "stage_with": "none",
+      "status": "archived_and_removed_untracked_ignored"
+    },
+    {
+      "allowed_next_action": "none unless restoring from archive",
+      "name": "external_audit_packets",
+      "paths": [],
+      "stage_with": "none",
+      "status": "archived_and_removed"
+    },
+    {
+      "allowed_next_action": "keep quarantined for manual review; rerun independently from clean baseline if useful",
+      "name": "clean_rebuild_second_wave",
+      "paths": [
+        "system_v5/ops/clean_rebuild_20260523/README.md",
+        "system_v5/ops/clean_rebuild_20260523/results/rebuild_001_source_engine_chart_from_readonly_results.json",
+        "system_v5/ops/clean_rebuild_20260523/results/rebuild_002_flux_preaxis_weyl_hopf_from_readonly_results.json",
+        "system_v5/ops/clean_rebuild_20260523/results/rebuild_003_spinor_entropy_carrier_from_readonly_results.json",
+        "system_v5/ops/clean_rebuild_20260523/results/rebuild_004_xi_rho_ab_bridge_family_from_readonly_results.json",
+        "system_v5/ops/clean_rebuild_20260523/results/rebuild_005_qit_fep_axis0_batch_from_clean_xi_results.json",
+        "system_v5/ops/clean_rebuild_20260523/results/rebuild_006_matched_control_ensemble_from_clean_axis0_batch_results.json",
+        "system_v5/ops/clean_rebuild_20260523/results/rebuild_007_point_reference_survivor_stress_results.json",
+        "system_v5/ops/clean_rebuild_20260523/results/rebuild_008_clean_rebuild_status_classifier_results.json",
+        "system_v5/ops/clean_rebuild_20260523/sim_rebuild_001_source_engine_chart_from_readonly.py",
+        "system_v5/ops/clean_rebuild_20260523/sim_rebuild_002_flux_preaxis_weyl_hopf_from_readonly.py",
+        "system_v5/ops/clean_rebuild_20260523/sim_rebuild_003_spinor_entropy_carrier_from_readonly.py",
+        "system_v5/ops/clean_rebuild_20260523/sim_rebuild_004_xi_rho_ab_bridge_family_from_readonly.py",
+        "system_v5/ops/clean_rebuild_20260523/sim_rebuild_005_qit_fep_axis0_batch_from_clean_xi.py",
+        "system_v5/ops/clean_rebuild_20260523/sim_rebuild_006_matched_control_ensemble_from_clean_axis0_batch.py",
+        "system_v5/ops/clean_rebuild_20260523/sim_rebuild_007_point_reference_survivor_stress.py",
+        "system_v5/ops/clean_rebuild_20260523/sim_rebuild_008_clean_rebuild_status_classifier.py"
+      ],
+      "stage_with": "do not stage as completed rebuild",
+      "status": "manual_review_independent_rerun_candidate"
+    },
+    {
+      "allowed_next_action": "review core docs, registries, validator, scripts, and local process results; transcripts/prompts archived outside repo",
+      "name": "constraint_audit_second_wave",
+      "paths": [
+        "system_v5/ops/constraint_audit_20260523/CONSTRAINT_AXIOM_REGISTRY_AND_CURRENT_SIM_AUDIT_20260523.md",
+        "system_v5/ops/constraint_audit_20260523/FOUNDATION_NAMING_NOTATION_AND_ENFORCEMENT_STANDARD_20260523.md",
+        "system_v5/ops/constraint_audit_20260523/HUMAN_FACING_AXIOMS_BOUNDED_WORK_AND_SIM_PROCESS_20260523.md",
+        "system_v5/ops/constraint_audit_20260523/ROOT_DERIVATION_EXTENDED_AXIOM_PROCESS_MAP_20260523.md",
+        "system_v5/ops/constraint_audit_20260523/foundation_operational_process_spec_20260523.json",
+        "system_v5/ops/constraint_audit_20260523/foundation_role_registry_20260523.json",
+        "system_v5/ops/constraint_audit_20260523/foundation_role_registry_schema_20260523.json",
+        "system_v5/ops/constraint_audit_20260523/results/candidate_fence_nonredundancy_audit_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf14_finite_discrete_vs_continuum_smuggling_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf15_product_entangled_matched_cut_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf16_cptp_instrument_vs_classical_markov_chain_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf17_cut_instrument_vs_classical_markov_blanket_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf18_path_resolved_vs_order_erasing_average_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf19_vector_tensor_vs_scalar_loss_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf20_basis_scramble_gauge_invariance_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf21_declared_instrument_vs_primitive_probe_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf22_order_race_vs_primitive_simultaneity_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf23_scoped_view_vs_global_oracle_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf24_finite_epsilon_step_vs_limit_smuggling_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/cf25_irreversible_channel_vs_free_inverse_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/constraint_axiom_registry_enforcement_audit_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/constraint_axiom_torch_gate_pack_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/foundation_role_registry_validation_results.json",
+        "system_v5/ops/constraint_audit_20260523/results/ftr_finite_translation_anti_smuggling_gate_results.json",
+        "system_v5/ops/constraint_audit_20260523/sim_candidate_fence_nonredundancy_audit.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf14_finite_discrete_vs_continuum_smuggling_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf15_product_entangled_matched_cut_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf16_cptp_instrument_vs_classical_markov_chain_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf17_cut_instrument_vs_classical_markov_blanket_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf18_path_resolved_vs_order_erasing_average_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf19_vector_tensor_vs_scalar_loss_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf20_basis_scramble_gauge_invariance_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf21_declared_instrument_vs_primitive_probe_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf22_order_race_vs_primitive_simultaneity_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf23_scoped_view_vs_global_oracle_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf24_finite_epsilon_step_vs_limit_smuggling_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_cf25_irreversible_channel_vs_free_inverse_gate.py",
+        "system_v5/ops/constraint_audit_20260523/sim_constraint_axiom_registry_enforcement_audit.py",
+        "system_v5/ops/constraint_audit_20260523/sim_constraint_axiom_torch_gate_pack.py",
+        "system_v5/ops/constraint_audit_20260523/sim_ftr_finite_translation_anti_smuggling_gate.py",
+        "system_v5/ops/constraint_audit_20260523/validate_foundation_role_registry.py"
+      ],
+      "stage_with": "do not stage with formal source/results",
+      "status": "manual_review_process_control_candidate_transcripts_archived"
+    },
+    {
+      "allowed_next_action": "review conceptual docs; current receipt anchors are empty pending clean independent reruns",
+      "name": "system_levels_docs",
+      "paths": [
+        "system_v5/docs/system_levels_20260523/00_LEVEL_MAP_AND_AUTHORITY.md",
+        "system_v5/docs/system_levels_20260523/01_HUMAN_FACING_MODEL.md",
+        "system_v5/docs/system_levels_20260523/02_CS_ENGINEERING_MODEL.md",
+        "system_v5/docs/system_levels_20260523/03_LLM_CONTROLLER_MODEL.md",
+        "system_v5/docs/system_levels_20260523/04_SYSTEM_RUNTIME_MODEL.md",
+        "system_v5/docs/system_levels_20260523/05_PHYSICS_QIT_FEP_AXIS0_FLUX_MODEL.md",
+        "system_v5/docs/system_levels_20260523/06_MATH_PROOF_AGENDA.md",
+        "system_v5/docs/system_levels_20260523/07_FULL_RICH_SYSTEM_MANUAL.md",
+        "system_v5/docs/system_levels_20260523/08_DETAILED_SIM_AND_PROOF_PROGRAM.md",
+        "system_v5/docs/system_levels_20260523/09_EXTENDED_CONSTRAINT_CANDIDATE_LEDGER.md",
+        "system_v5/docs/system_levels_20260523/10_NAMING_NOTATION_AND_CLAIM_GRAMMAR.md",
+        "system_v5/docs/system_levels_20260523/11_LEGACY_SOURCE_VETTING_AND_QIT_TRANSLATION.md",
+        "system_v5/docs/system_levels_20260523/12_PRE_MANIFOLD_TO_RATCHET_DERIVATION.md",
+        "system_v5/docs/system_levels_20260523/13_AXES_0_6_QIT_ENGINE_ATLAS.md",
+        "system_v5/docs/system_levels_20260523/README.md",
+        "system_v5/docs/system_levels_20260523/machine_readable/axes_qit_engine_registry_20260523.json",
+        "system_v5/docs/system_levels_20260523/machine_readable/constraint_registry_20260523.json",
+        "system_v5/docs/system_levels_20260523/machine_readable/system_level_registry_20260523.json"
+      ],
+      "stage_with": "docs-only review commit after quarantine cleanup",
+      "status": "manual_review_non_evidence_docs_with_receipt_anchors_quarantined"
+    },
+    {
+      "allowed_next_action": "none unless restoring from archive",
+      "name": "legacy_high_entropy_intake",
+      "paths": [],
+      "stage_with": "none",
+      "status": "archived_and_removed"
+    },
+    {
+      "allowed_next_action": "none unless restoring from archive for manual inspection",
+      "name": "top_level_ops_generated_docs",
+      "paths": [],
+      "stage_with": "none",
+      "status": "archived_and_removed"
+    }
+  ],
+  "cleanup_actions_already_performed": [
+    "Restored 11 contaminated tracked canonical files to HEAD",
+    "Kept system_v5/docs/MULTIMODEL_PROPOSAL_SPLIT.md boundary-rule patch as the only tracked dirty file",
+    "Archived and removed formal-scout untracked source plus untracked/ignored recent formal result files to /Users/joshuaeisenhart/Desktop/Codex Ratchet Cleanup Archive/20260523-formal-scout-quarantine/formal_scout_quarantine_20260523.tar.gz",
+    "Archived and removed legacy high-entropy intake chunks to /Users/joshuaeisenhart/Desktop/Codex Ratchet Cleanup Archive/20260523-legacy-high-entropy-intake/legacy_high_entropy_intake_20260523.tar.gz",
+    "Archived and removed untracked external audit packets to /Users/joshuaeisenhart/Desktop/Codex Ratchet Cleanup Archive/20260523-external-audit-packets/external_audit_packets_20260523.tar.gz",
+    "Archived and removed top-level generated ops docs to /Users/joshuaeisenhart/Desktop/Codex Ratchet Cleanup Archive/20260523-top-level-generated-ops/top_level_generated_ops_20260523.tar.gz",
+    "Archived and removed .DS_Store/__pycache__ quarantine noise to /Users/joshuaeisenhart/Desktop/Codex Ratchet Cleanup Archive/20260523-quarantine-local-noise/",
+    "Quarantined system-level receipt anchors and emptied current anchor arrays in system-level machine-readable registries",
+    "Marked older damage/stop/self-inventory/redo docs as historical snapshots superseded by expanded quarantine inventory",
+    "Archived and removed constraint-audit external transcripts and prompt drafts to /Users/joshuaeisenhart/Desktop/Codex Ratchet Cleanup Archive/20260523-constraint-audit-advisory-transcripts/constraint_audit_advisory_transcripts_20260523.tar.gz"
+  ],
+  "generated_at": "2026-05-23T21:35:00",
+  "kind": "expanded_quarantine_action_manifest",
+  "policy": "tracked canonical restore plus archive-first cleanup executed for formal-scout contamination, legacy intake, external audits, top-level generated ops docs, and local metadata/cache noise; remaining actions proposal/manual-review only",
+  "preconditions_for_execution": [
+    "No live Claude Code or standalone Codex writer process rooted in this repo",
+    "User explicitly approves destructive cleanup before additional delete/move commands",
+    "No formal scout or index generation runs during cleanup"
+  ],
+  "repo": "/Users/joshuaeisenhart/Desktop/Codex Ratchet"
+}

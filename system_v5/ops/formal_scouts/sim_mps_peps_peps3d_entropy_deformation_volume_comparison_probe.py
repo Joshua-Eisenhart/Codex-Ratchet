@@ -254,7 +254,7 @@ def contraction_cost(carrier: str, params: list[float]) -> dict[str, float]:
     sizes = {ix: 2 + (n + int(abs(curvature) * 5) + int(abs(torsion) * 7) + int(abs(metric_min) * 3)) % 3 for n, ix in enumerate(labels)}
     for ix in output:
         sizes[ix] = 2
-    tree = ctg.HyperOptimizer(max_repeats=8, progbar=False, on_trial_error="raise").search(inputs, output, sizes)
+    tree = ctg.HyperOptimizer(max_repeats=8, progbar=False, on_trial_error="raise", parallel=False).search(inputs, output, sizes)
     gen = torch.Generator().manual_seed(int(2000 * (metric_min + abs(curvature) + abs(torsion))) + len(inputs))
     arrays = [torch.randn(*(sizes[ix] for ix in term), generator=gen, dtype=torch.float64) for term in inputs]
     ref = oe.contract(expr, *arrays)

@@ -1,0 +1,138 @@
+{
+  "schema": "clean_rebuild_result_v1",
+  "name": "rebuild_002_flux_preaxis_weyl_hopf_from_readonly",
+  "classification": "clean_rebuild_scout",
+  "sim_execution_kind": "nonclassical_clean_rebuild",
+  "source_alignment_category": "preaxis_flux_weyl_hopf_readonly_rebuild",
+  "promotion_allowed": false,
+  "claim_ceiling": "Clean rebuild scout only: tests pre-joint Weyl/Hopf flux candidate currents from read-only source math. It does not promote flux to a root, Axis3, final manifold law, final Axis0, or physics claim.",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite complex spinors, density matrices, Bloch readouts, and Weyl sheet dynamics"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive clean rebuild receipt serialization"
+    },
+    "pathlib": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result path handling"
+    },
+    "time": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive runtime metadata"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "python_json": "supportive",
+    "pathlib": "supportive",
+    "time": "supportive"
+  },
+  "generated_at": "2026-05-24T02:11:39Z",
+  "runtime_seconds": 0.008213996887207031,
+  "all_pass": true,
+  "sections": {
+    "hopf_loop_gate": {
+      "pass": true,
+      "source": "AXES atlas lines 123, 129-132, 351-359: Hopf connection, fiber loop density-stationary, lifted-base density-traversing",
+      "fiber_connection_integral": 6.283185307179586,
+      "base_connection_integral": 0.0,
+      "fiber_density_path_variation": 4.733206541541195e-16,
+      "base_density_path_variation": 0.953587109568754
+    },
+    "preaxis_flux_candidate_gate": {
+      "pass": true,
+      "source": "Weyl Flux dependency rows 7, 10, 12-18 and AXES atlas lines 139-144: left/right sheets with H_left=+H0, H_right=-H0",
+      "rows": [
+        {
+          "eta": 0.39269908169872414,
+          "cap_flux_from_clifford": 4.442882938158366,
+          "cap_sign": 1,
+          "j_bloch": 0.361739098298784,
+          "j_no_chirality": 0.0,
+          "rho_distance_left_right": 0.25578816942737725,
+          "orientation_left": 0.11187835202383736,
+          "orientation_right": -0.11187835202383732,
+          "orientation_product": -0.012516765651569669
+        },
+        {
+          "eta": 0.37,
+          "cap_flux_from_clifford": 4.639934798023832,
+          "cap_sign": 1,
+          "j_bloch": 0.3408762750021041,
+          "j_no_chirality": 0.0,
+          "rho_distance_left_right": 0.24103592559959824,
+          "orientation_left": 0.09934561621372034,
+          "orientation_right": -0.09934561621372029,
+          "orientation_product": -0.00986955146088381
+        },
+        {
+          "eta": 0.63,
+          "cap_flux_from_clifford": 1.9215043054095533,
+          "cap_sign": 1,
+          "j_bloch": 0.5305368196867425,
+          "j_no_chirality": 0.0,
+          "rho_distance_left_right": 0.3751461828696403,
+          "orientation_left": 0.24065019422275866,
+          "orientation_right": -0.24065019422275874,
+          "orientation_product": -0.05791251597945148
+        },
+        {
+          "eta": 1.1780972450961724,
+          "cap_flux_from_clifford": -4.442882938158366,
+          "cap_sign": -1,
+          "j_bloch": 0.46397056910194945,
+          "j_no_chirality": 0.0,
+          "rho_distance_left_right": 0.3280767356829701,
+          "orientation_left": 0.18405008531789344,
+          "orientation_right": -0.18405008531789335,
+          "orientation_product": -0.03387443390552384
+        }
+      ],
+      "min_bloch_chiral_current": 0.3408762750021041,
+      "max_no_chirality_current": 0.0,
+      "opposite_orientation_count": 4,
+      "seat_flux_signs_observed": [
+        -1,
+        1
+      ]
+    },
+    "negative_controls_gate": {
+      "pass": true,
+      "controls": {
+        "no_chirality_collapses_current": true,
+        "flattened_transport_collapses_current": true,
+        "fiber_only_density_is_stationary": true,
+        "base_loop_density_is_not_stationary": true
+      },
+      "j_chirality_current": 0.3408762750021041,
+      "no_chirality_current": 0.0,
+      "flat_gap": 0.0,
+      "fiber_only_variation": 5.048222705440021e-16,
+      "base_variation": 0.953587109568754
+    }
+  },
+  "placement_status": {
+    "pre_joint_candidate_survived": true,
+    "final_flux_placement": "open",
+    "not_axis3_identity": true,
+    "not_root": true,
+    "next_required_test": "couple this clean pre-axis current to rebuilt engine basins without importing formal_scout receipts"
+  },
+  "source_boundary": {
+    "reads_formal_scout_results": false,
+    "reads_grok_sim": false,
+    "reads_external_audits": false,
+    "reads_cross_lane_synthesis_docs": false,
+    "primary_reference_docs": [
+      "system_v5/READ ONLY Reference Docs/Weyl Flux.md",
+      "system_v5/READ ONLY Reference Docs/AXES_0_6_AND_CONSTRAINT_MANIFOLD_EXPLICIT_ATLAS copy.md"
+    ]
+  }
+}

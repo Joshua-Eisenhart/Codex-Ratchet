@@ -15,6 +15,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = ROOT / "results"
 OUT_PATH = RESULT_DIR / "e3nn_noncommuting_irrep_action_micro_probe_results.json"
 
+SIM_ID = "e3nn_noncommuting_irrep_action_micro_probe"
 CLASSIFICATION = "formal_scout"
 SIM_EXECUTION_KIND = "nonclassical"
 PROMOTION_ALLOWED = False
@@ -24,6 +25,28 @@ CLAIM_CEILING = (
     "irrep-action evidence only; it does not admit canonical, manifold, axis, "
     "bridge, engine, or final basin claims."
 )
+ROOT_CONSTRAINTS_IN_FORCE = ["F01_FINITE_CARRIER_PROBE_OPERATOR_PATH_SET", "N01_NONCOMMUTING_OR_ORDER_SENSITIVE_IRREP_ACTION"]
+FINITE_MAP = (
+    "E3NNIrrepOrderAction : finite typed l=1 feature plus two e3nn SO(3) "
+    "irrep actions -> ordered action gap, commutator witness, norm preservation, "
+    "and scalar/same-axis controls"
+)
+DOMAIN = {
+    "irrep": "e3nn.o3.Irrep('1e') finite D_from_angles matrices",
+    "carrier": "one finite torch float64 l=1 feature vector",
+    "ordered_actions": ["B(A(feature))", "A(B(feature))"],
+    "controls": [
+        "identity action",
+        "same-axis commuting irrep actions",
+        "scalar 0e irrep kills the vector order-gap claim",
+        "raw dimension mismatch cannot stand in for typed irrep action",
+    ],
+}
+CODOMAIN_OR_OUTPUT = {
+    "ordered_feature_gap": "finite norm between A then B and B then A typed-feature outputs",
+    "commutator_gap": "finite norm of [B,A] acting on the feature",
+    "control_gaps": "finite checks proving the claim dies for commuting/scalar wrong structures",
+}
 
 TOOL_MANIFEST = {
     "e3nn": {
@@ -59,9 +82,20 @@ def irrep_rotation(alpha: float, beta: float, gamma: float) -> torch.Tensor:
     )
 
 
+def scalar_irrep_rotation(alpha: float, beta: float, gamma: float) -> torch.Tensor:
+    irrep = o3.Irrep("0e")
+    return irrep.D_from_angles(
+        torch.tensor(alpha, dtype=torch.float64),
+        torch.tensor(beta, dtype=torch.float64),
+        torch.tensor(gamma, dtype=torch.float64),
+    )
+
+
 def main() -> int:
     action_a = irrep_rotation(0.0, 0.62, 0.0)
     action_b = irrep_rotation(1.07, 0.0, 0.0)
+    same_axis_a = irrep_rotation(0.23, 0.0, 0.0)
+    same_axis_b = irrep_rotation(0.91, 0.0, 0.0)
     feature = torch.tensor([0.41, -0.27, 0.871033868], dtype=torch.float64)
     feature = feature / torch.linalg.norm(feature)
 
@@ -75,6 +109,16 @@ def main() -> int:
 
     identity = torch.eye(3, dtype=torch.float64)
     identity_gap = float(torch.linalg.norm((identity @ feature) - feature).item())
+    same_axis_gap = float(torch.linalg.norm((same_axis_b @ (same_axis_a @ feature)) - (same_axis_a @ (same_axis_b @ feature))).item())
+    scalar_a = scalar_irrep_rotation(0.0, 0.62, 0.0)
+    scalar_b = scalar_irrep_rotation(1.07, 0.0, 0.0)
+    scalar_feature = torch.ones(1, dtype=torch.float64)
+    scalar_gap = float(torch.linalg.norm((scalar_b @ (scalar_a @ scalar_feature)) - (scalar_a @ (scalar_b @ scalar_feature))).item())
+    typed_dimension_mismatch_rejected = False
+    try:
+        _ = action_a @ scalar_feature
+    except RuntimeError:
+        typed_dimension_mismatch_rejected = True
 
     positive = {
         "ordered_irrep_actions_diverge": {
@@ -99,7 +143,21 @@ def main() -> int:
             "pass": identity_gap < 1.0e-12,
             "identity_gap": identity_gap,
             "claim": "identity action leaves the same feature unchanged.",
-        }
+        },
+        "same_axis_irrep_actions_commute_control": {
+            "pass": same_axis_gap < 1.0e-12,
+            "same_axis_gap": same_axis_gap,
+            "claim": "when both typed actions use the same SO(3) axis family, the order gap disappears.",
+        },
+        "scalar_irrep_kills_vector_order_gap_claim": {
+            "pass": scalar_gap < 1.0e-12,
+            "scalar_gap": scalar_gap,
+            "claim": "0e scalar irrep is a wrong carrier for this vector-feature order claim.",
+        },
+        "typed_dimension_mismatch_rejected": {
+            "pass": typed_dimension_mismatch_rejected,
+            "claim": "a scalar feature cannot be silently used as the l=1 typed feature.",
+        },
     }
     boundary = {
         "finite_l1_irrep_only": {
@@ -111,17 +169,28 @@ def main() -> int:
             "claim": "probe keeps the computational surface on torch tensors.",
         },
     }
-    nearby_variants = {"total": len(graveyard_companions), "passed": 1}
+    nearby_variants = {
+        "total": len(graveyard_companions),
+        "passed": sum(1 for row in graveyard_companions.values() if row["pass"]),
+    }
 
     receipt = {
+        "sim_id": SIM_ID,
         "name": "e3nn_noncommuting_irrep_action_micro_probe",
         "timestamp_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "classification": CLASSIFICATION,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "SIM_EXECUTION_KIND": SIM_EXECUTION_KIND,
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
+        "root_constraints_in_force": ROOT_CONSTRAINTS_IN_FORCE,
+        "finite_map": FINITE_MAP,
+        "domain": DOMAIN,
+        "codomain_or_output": CODOMAIN_OR_OUTPUT,
         "tool_manifest": TOOL_MANIFEST,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "graveyard_companions": graveyard_companions,
         "boundary": boundary,
@@ -137,6 +206,8 @@ def main() -> int:
             "after_ba": [float(v.item()) for v in after_ba],
             "ordered_gap": ordered_gap,
             "commutator_gap": commutator_gap,
+            "same_axis_gap": same_axis_gap,
+            "scalar_gap": scalar_gap,
         },
         "blockers": [],
         "all_pass": all(row["pass"] for row in positive.values())

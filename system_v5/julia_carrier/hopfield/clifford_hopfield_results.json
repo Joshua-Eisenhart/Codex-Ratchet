@@ -1,0 +1,195 @@
+{
+  "F01_witness": {
+    "finite_carrier": "12 quaternion neurons, each unit q in S^3 ~ Cl(3,0)+ ~ SU(2)",
+    "finite_operator": "Hebbian quaternion weight W_ij = sum_mu xi_i (x) conj(xi_j); quaternion update xi_i <- normalize(sum_j W_ij xi_j)",
+    "finite_path": "async sweeps in DETERMINISTIC cyclic neuron order (1..N) to fixed-point convergence (recall is a pure function of (W, state0))",
+    "finite_probe": "8 corruption seeds/pattern, 30% neuron replacement; 16 random starts for order probe"
+  },
+  "N01_witness": {
+    "noncommutative_product": "quaternion Hamilton product (geometric product on Cl(3,0)+); i*j=k, j*i=-k",
+    "order_sensitive_control": "W assembled ELEMENTWISE W[i,j]=qmul(A[i,j],B[i,j]) vs qmul(B[i,j],A[i,j]); basin distance above floor; commuting complex-subalgebra (w,x,0,0) control collapses it; erased B:=A control is 0"
+  },
+  "artifacts_emitted": [
+    "patterns.npy (M,N,4) Float64 -- M=3 stored quaternion patterns",
+    "weights.npy (N,N,4) Float64 -- Hebbian quaternion weight tensor",
+    "probe.npy (N,4) Float64 -- the corrupted recall probe",
+    "HOPFIELD_SPEC.md -- quaternion convention + energy + update for the JAX mirror",
+    "clifford_hopfield_results.json -- this file"
+  ],
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion / manifold admission",
+    "coupling / coexistence / nesting promotion",
+    "bridge / rho_AB / Xi / Phi0 / Axis0",
+    "flux / FEP / physics",
+    "ratchet-edge admission or ratchet-thesis closure (analogy only)"
+  ],
+  "capacity_ladder": [
+    {
+      "M": 1,
+      "basin_correct_fraction": 1.0,
+      "corrupt_frac": 0.3,
+      "mean_recall_overlap": 0.9695909239028045,
+      "min_recall_overlap": 0.8975704078590429,
+      "reliable": true,
+      "trials_per_pattern": 8
+    },
+    {
+      "M": 2,
+      "basin_correct_fraction": 0.9375,
+      "corrupt_frac": 0.3,
+      "mean_recall_overlap": 0.7235429240710258,
+      "min_recall_overlap": 0.5637133115344256,
+      "reliable": false,
+      "trials_per_pattern": 8
+    },
+    {
+      "M": 3,
+      "basin_correct_fraction": 0.7083333333333334,
+      "corrupt_frac": 0.3,
+      "mean_recall_overlap": 0.6236848331887679,
+      "min_recall_overlap": 0.42659995389338895,
+      "reliable": false,
+      "trials_per_pattern": 8
+    },
+    {
+      "M": 4,
+      "basin_correct_fraction": 0.625,
+      "corrupt_frac": 0.3,
+      "mean_recall_overlap": 0.5487388088396118,
+      "min_recall_overlap": 0.3147575723084472,
+      "reliable": false,
+      "trials_per_pattern": 8
+    },
+    {
+      "M": 5,
+      "basin_correct_fraction": 0.7,
+      "corrupt_frac": 0.3,
+      "mean_recall_overlap": 0.6206060155770845,
+      "min_recall_overlap": 0.41891204753960193,
+      "reliable": false,
+      "trials_per_pattern": 8
+    },
+    {
+      "M": 6,
+      "basin_correct_fraction": 0.6458333333333334,
+      "corrupt_frac": 0.3,
+      "mean_recall_overlap": 0.6015245639387995,
+      "min_recall_overlap": 0.3445888447600784,
+      "reliable": false,
+      "trials_per_pattern": 8
+    },
+    {
+      "M": 7,
+      "basin_correct_fraction": 0.5535714285714286,
+      "corrupt_frac": 0.3,
+      "mean_recall_overlap": 0.559057774990774,
+      "min_recall_overlap": 0.30586798629924045,
+      "reliable": false,
+      "trials_per_pattern": 8
+    },
+    {
+      "M": 8,
+      "basin_correct_fraction": 0.453125,
+      "corrupt_frac": 0.3,
+      "mean_recall_overlap": 0.5296841022404731,
+      "min_recall_overlap": 0.34794608122404763,
+      "reliable": false,
+      "trials_per_pattern": 8
+    }
+  ],
+  "capacity_note": "reliable = mean recall overlap >= 0.95 AND basin-correct fraction >= 0.90 over 8 corruption trials/pattern at 30% corruption. The real capacity is max_reliable_M; if recall fails above M=2, that is reported honestly here.",
+  "carrier_verification": {
+    "carrier_verified": true,
+    "hamilton_product_eq_matrix_product_maxerr": 2.237726045655905e-16,
+    "i_squared_eq_minus_one_err": 0.0,
+    "i_times_j_eq_k_err": 0.0,
+    "j_times_i_eq_minus_k_err": 0.0,
+    "noncommutative_ij_ne_ji": true,
+    "pauli_anticommutator_sx_sy": 0.0,
+    "pauli_square_sx": 0.0
+  },
+  "claim_ceiling": "COMPUTES a finite map on a Clifford carrier (Cl(3,0)+ ~ H ~ SU(2)): Hebbian quaternion recall, a geometric-vs-classical basin difference, and an order-dependent (noncommutative) weight-assembly basin probe. Does NOT assert layer-completion / manifold admission / coupling / bridge (rho_AB/Xi/Phi0/Axis0) / flux / FEP / physics. The link to the ratchet survivors is a DIAGNOSTIC analogy, not proven identity. A recovered pattern is a CANDIDATE attractor survivor. promotion_allowed=false.",
+  "classification": "clifford_hopfield_poc",
+  "control_1_geometric_vs_classical": {
+    "basin_label_mismatch_fraction": 0.625,
+    "classical_basin_correct_fraction": 0.6666666666666666,
+    "geometric_is_decorative": false,
+    "interpretation": "LOAD-BEARING: quaternion-product (Cl(3,0)+ geometric) basins differ from the Euclidean-dot classical control; the Clifford structure changed the attractor outcome.",
+    "max_recovered_config_distance": 1.1138058671945192,
+    "mean_recovered_config_distance_quat_vs_classical": 0.7453766101312113,
+    "quaternion_basin_correct_fraction": 0.7083333333333334,
+    "trials": 24
+  },
+  "control_2_order_dependent_basin": {
+    "commuting_complex_subalgebra_arm": {
+      "assembly_noncommutativity_AB_minus_BA": 0.0,
+      "entry_algebra": "complex_subalgebra_(w,x,0,0)_qmul_commutes",
+      "erased_control_assembly_noncomm": 0.0,
+      "erased_control_max_basin_distance": 1.2386207151770795e-8,
+      "fraction_probes_order_dependent": 0.0,
+      "max_order_basin_distance": 1.0931390796396078e-8,
+      "mean_order_basin_distance": 5.1387643501890065e-9,
+      "n_probes": 16
+    },
+    "commuting_control_collapses_to_floor": true,
+    "design_note": "W assembled ELEMENTWISE W[i,j]=qmul(A[i,j],B[i,j]) so the ONLY source of order-dependence is the quaternion Hamilton product. Commuting control restricts entries to the complex subalgebra (w,x,0,0) where qmul commutes exactly -> W_AB==W_BA -> basin gap collapses. Erased control B:=A gives 0. An earlier matrix-product framing was mathematically wrong (matrix mult noncommutes over a commutative ring) and was replaced; this is reported, not hidden.",
+    "erased_metric_control_is_zero": true,
+    "full_quaternion_arm": {
+      "assembly_noncommutativity_AB_minus_BA": 1.867838544025409,
+      "entry_algebra": "full_quaternion_qmul_noncommutes",
+      "erased_control_assembly_noncomm": 0.0,
+      "erased_control_max_basin_distance": 1.1871851896637512e-8,
+      "fraction_probes_order_dependent": 1.0,
+      "max_order_basin_distance": 1.27217045409484,
+      "mean_order_basin_distance": 1.1008375441231748,
+      "n_probes": 16
+    },
+    "load_bearing_flip": true,
+    "order_dependent_basin_real": true,
+    "order_floor": 1.0e-6,
+    "ratchet_link": "DIAGNOSTIC analogy to order_null_killtest.jl / ratchet_survivor_reach_killtest.jl: order-dependent survivor (forward!=reversed above floor, commuting control flat) <-> order-dependent Hopfield basin (qmul(A,B)!=qmul(B,A) basin above floor, complex-subalgebra control flat). NOT a proof the two objects are identical."
+  },
+  "max_reliable_M": 1,
+  "n_neurons": 12,
+  "non_numpy": true,
+  "object_id": "clifford_hopfield",
+  "promotion_allowed": false,
+  "recall_headline": {
+    "M_stored": 3,
+    "corrupt_frac": 0.3,
+    "corrupted_neuron_indices": [
+      12,
+      8,
+      7,
+      3
+    ],
+    "energy_first": -54.13385388107307,
+    "energy_last": -169.37019521325976,
+    "energy_monotone_nonincreasing": true,
+    "probe_overlap_before_recall": 0.8990020679436362,
+    "recovered_basin_distance": 0.8365330397997389,
+    "recovered_basin_is_target_pattern_1": true,
+    "recovered_basin_label": 1,
+    "recovered_overlap_after_recall": 0.6337643517947553,
+    "sweeps_to_converge": 38
+  },
+  "runtime_seconds": 0.46660590171813965,
+  "seed": 20260602,
+  "sim_execution_kind": "nonclassical",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "NPZ": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: SU(2)/Pauli matrix realization that VERIFIES the quaternion carrier (anticommutator, Hamilton=matrix-product) at 0.0 error.",
+    "NPZ": "load_bearing: writes patterns/weights/probe .npy for the JAX mirror cross-validation.",
+    "Random": "load_bearing: random unit quaternions, corruption seeds, random starts (signatures measured, not planted).",
+    "Statistics": "supportive: means over corruption trials and probes."
+  }
+}

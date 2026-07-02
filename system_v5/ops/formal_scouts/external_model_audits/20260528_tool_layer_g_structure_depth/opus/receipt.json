@@ -1,0 +1,36 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "claude-opus-4-7",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "5.0",
+    "--effort",
+    "high"
+  ],
+  "cwd": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "generated_at": "2026-05-28T07:40:39.696887+00:00",
+  "model": "claude-opus-4-7",
+  "output_path": "/tmp/codex_ratchet_multimodel_audit_20260528/opus/20260528T073843Z-opus-layer-gstructure-depth-audit-1fdb0236feb5.json",
+  "parsed": {
+    "duration_ms": 83245,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001",
+      "claude-opus-4-7"
+    ],
+    "result_preview": "## 1. Verdict\n\n**PARTIAL_ON_TRACK.** The packet executes the right *structural* move for this stage: keep layers, G-structure candidates, and geometry surfaces as separate sim surfaces; refuse promotion; lock every downstream consumer (selection, embedding, stacking, flux, Xi/Phi0, Axis0, FEP, gravity, manifold). Boundary discipline is clean \u2014 classification=formal_scout, promotion_allowed=false, Bloch adapter rejected, scalar entropy demoted to readout, no single blended all-tools claim. What it does *not* yet earn is tool *depth*: each of the 15 tools is exercised through exactly one `function_surface`, and the stop condition for \"we have actually worked this tool through all layer/G/geometry surfaces\" is satisfied at the breadth axis but not yet at the per-tool internal axis. That's the canonical shallow risk the frame names, and it's present here.\n\n## 2. Findings\n\n- **P1 \u2014 One function_surface per tool is breadth-coverage, not depth.** `new_tool_by_tool_result.tool_rows` shows each",
+    "result_subtype": "success",
+    "total_cost_usd": 0.549792
+  },
+  "prompt_path": "/tmp/codex_ratchet_multimodel_audit_20260528/opus/20260528T073843Z-opus-layer-gstructure-depth-audit-1fdb0236feb5.prompt.txt",
+  "receipt_path": "/tmp/codex_ratchet_multimodel_audit_20260528/opus/20260528T073843Z-opus-layer-gstructure-depth-audit-1fdb0236feb5.receipt.json",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 600.0
+}

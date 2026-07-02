@@ -1,0 +1,839 @@
+{
+  "AUDIT_PASS": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "jax.scipy.linalg.expm": "load_bearing",
+    "json": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "jax": {
+      "reason": "fresh finite spinor, PEPS2D, QIT, and Hopfield computations",
+      "role": "load_bearing",
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "complex spinor grids, density checks, quaternion algebra, PEPS2D signatures",
+      "role": "load_bearing",
+      "used": true
+    },
+    "jax.scipy.linalg.expm": {
+      "reason": "finite two-qubit entangling unitary for QIT controls",
+      "role": "load_bearing",
+      "used": true
+    },
+    "json": {
+      "reason": "receipt serialization",
+      "role": "supportive",
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "JAX compatibility diagnostic for spinor-derived physical legs inside PEPS2D shell arrays",
+    "bounded evidence that PEPS2D virtual bonds are load-bearing under the named readout",
+    "bounded evidence that geometric Hopfield recall is not equivalent to dot-only control"
+  ],
+  "blocked_consumers": [
+    "layer_stacking",
+    "stacking_readiness",
+    "PEPS3D_closure",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "FEP",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "bond_dims": [
+    2,
+    4
+  ],
+  "carrier_layer": "left Weyl spinor grids on two nested Hopf-torus shells",
+  "carrier_realization": "JAX complex128 two-component spinors with spinor-derived densities; PEPS2D array stores physical spinor leg plus virtual shell bonds",
+  "checks": {
+    "classical_dot_hopfield_control_not_equivalent": true,
+    "density_trace_psd_rank_one": true,
+    "finite_scale_sweep_8_16_32_64": true,
+    "geometric_hopfield_energy_decreases": true,
+    "geometric_hopfield_recall_improves": true,
+    "hopf_map_unit_s2": true,
+    "inter_shell_g0_control": true,
+    "noncommuting_quaternion_order_witness": true,
+    "peps2d_virtual_bonds_load_bearing": true,
+    "qit_entangling_readout_survives": true,
+    "qit_product_and_dephased_controls_collapse": true,
+    "shuffled_shell_order_control": true,
+    "spinor_physical_leg_roundtrip": true,
+    "tensor_only_control_rejected": true
+  },
+  "claim_ceiling": "Bounded JAX compatibility diagnostic only: tests spinor-derived physical legs, finite PEPS2D shell virtual bonds, pseudo-3D shell controls, and geometric/QIT Hopfield attractor controls. It is not layer completion.",
+  "classification": "diagnostic_jax_spinor_peps2d_qit_hopfield_compatibility",
+  "codomain_or_output": "JSON diagnostic receipt containing row-level scale checks, controls, QIT readouts, Hopfield recall gaps, and downstream blocks",
+  "domain": {
+    "bond_dims_D": [
+      2,
+      4
+    ],
+    "g_inter_values": [
+      0.0,
+      0.42
+    ],
+    "grid_shapes": {
+      "16": [
+        4,
+        4
+      ],
+      "32": [
+        4,
+        8
+      ],
+      "64": [
+        8,
+        8
+      ],
+      "8": [
+        2,
+        4
+      ]
+    },
+    "sheets": [
+      "L"
+    ],
+    "shell_etas": [
+      0.33,
+      0.91
+    ],
+    "site_counts": [
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "finite_map": "finite Weyl spinor grid on nested Hopf-torus shells -> PEPS2D physical-leg roundtrip, virtual-bond gap, pseudo-3D inter-shell controls, QIT readouts, and geometric Hopfield recall/control gaps",
+  "formal_layer_admission_allowed": false,
+  "generated_at": "2026-06-03T03:39:51.988203+00:00",
+  "geometry_layer": "finite nested Hopf-torus shell PEPS2D compatibility",
+  "julia_reference_mode": "read_only",
+  "name": "JAX spinor/PEPS2D/QIT-Hopfield compatibility probe",
+  "peps2d_embedding": "finite PEPS2D shell tensors A[y,x,physical,left,right,up,down] with D=2,4; physical spinor extraction is tested explicitly",
+  "peps3d_embedding": "not claimed by this probe; pseudo-3D is limited to explicit inter-shell coupling controls between two PEPS2D shells",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "JAX-only diagnostic; Julia remains read-only reference",
+    "pseudo-3D coupling is explicit two-shell control only, not full PEPS3D",
+    "no layer-completion claim gate admission",
+    "no downstream consumer unlock"
+  ],
+  "quaternion_action": "spinor-to-quaternion map q=(Re alpha, Im alpha, Re beta, Im beta); Hamilton product used for order witness and geometric Hopfield recall",
+  "ran_jax": true,
+  "ran_julia": false,
+  "root_constraints_in_force": [
+    "F01",
+    "N01"
+  ],
+  "row_count": 8,
+  "rows": [
+    {
+      "bond_dim_D": 2,
+      "checks": {
+        "classical_dot_hopfield_control_not_equivalent": true,
+        "density_trace_psd_rank_one": true,
+        "finite": true,
+        "geometric_hopfield_energy_decreases": true,
+        "geometric_hopfield_recall_improves": true,
+        "hopf_map_unit_s2": true,
+        "inter_shell_g0_control": true,
+        "noncommuting_quaternion_order_witness": true,
+        "peps2d_virtual_bonds_load_bearing": true,
+        "qit_entangling_readout_survives": true,
+        "qit_product_and_dephased_controls_collapse": true,
+        "shuffled_shell_order_control": true,
+        "spinor_physical_leg_roundtrip": true,
+        "tensor_only_control_rejected": true
+      },
+      "geometric_hopfield": {
+        "classical_control_gap": 0.2943096311545753,
+        "dot_only_overlap_after": 0.5120155679629125,
+        "energy_after": -7.000000000000001,
+        "energy_before": -2.8782303216836134,
+        "geometric_overlap_after": 0.8063251991174878,
+        "geometric_recall_gain": 0.24502843662091633,
+        "overlap_before": 0.5612967624965715,
+        "pass": true
+      },
+      "grid_shape": [
+        2,
+        4
+      ],
+      "inner_density_checks": {
+        "max_hermitian_error": 3.639326888776486e-17,
+        "max_rank_one_det_abs": 1.428198718151915e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -7.310424461450297e-17,
+        "pass": true
+      },
+      "inner_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.045244140383013394,
+        "spinor_roundtrip_error": 0.0,
+        "tensor_only_rejection_gap": 0.6480860567897366
+      },
+      "inner_shell_eta": 0.33,
+      "inter_shell_controls": {
+        "g0_response": 0.0,
+        "inter_shell_response": -0.084828847739323,
+        "pass": true,
+        "shuffled_order_gap": 0.169657695478646,
+        "shuffled_order_response": 0.084828847739323
+      },
+      "noncommuting_order": {
+        "commuting_control_gap": 0.0,
+        "order_gap": 0.2068094748052543,
+        "pass": true
+      },
+      "outer_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 5.551360978274532e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -1.8086680528334804e-17,
+        "pass": true
+      },
+      "outer_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 0.0,
+        "pass": true,
+        "peps2d_virtual_gap": 0.015599074181754073,
+        "spinor_roundtrip_error": 1.1102230246251565e-16,
+        "tensor_only_rejection_gap": 1.579007479379901
+      },
+      "outer_shell_eta": 0.91,
+      "pass": true,
+      "qit_controls": {
+        "dephased_log_negativity": 0.0,
+        "linked_log_negativity": 0.6196838754435674,
+        "linked_mutual_information": 1.1100703922802102,
+        "pass": true,
+        "product_log_negativity": 0.0,
+        "product_mutual_information": 2.220446049250313e-16
+      },
+      "site_count": 8
+    },
+    {
+      "bond_dim_D": 4,
+      "checks": {
+        "classical_dot_hopfield_control_not_equivalent": true,
+        "density_trace_psd_rank_one": true,
+        "finite": true,
+        "geometric_hopfield_energy_decreases": true,
+        "geometric_hopfield_recall_improves": true,
+        "hopf_map_unit_s2": true,
+        "inter_shell_g0_control": true,
+        "noncommuting_quaternion_order_witness": true,
+        "peps2d_virtual_bonds_load_bearing": true,
+        "qit_entangling_readout_survives": true,
+        "qit_product_and_dephased_controls_collapse": true,
+        "shuffled_shell_order_control": true,
+        "spinor_physical_leg_roundtrip": true,
+        "tensor_only_control_rejected": true
+      },
+      "geometric_hopfield": {
+        "classical_control_gap": 0.2943096311545753,
+        "dot_only_overlap_after": 0.5120155679629125,
+        "energy_after": -7.000000000000001,
+        "energy_before": -2.8782303216836134,
+        "geometric_overlap_after": 0.8063251991174878,
+        "geometric_recall_gain": 0.24502843662091633,
+        "overlap_before": 0.5612967624965715,
+        "pass": true
+      },
+      "grid_shape": [
+        2,
+        4
+      ],
+      "inner_density_checks": {
+        "max_hermitian_error": 3.639326888776486e-17,
+        "max_rank_one_det_abs": 1.428198718151915e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -7.310424461450297e-17,
+        "pass": true
+      },
+      "inner_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.04636098615979024,
+        "spinor_roundtrip_error": 0.0,
+        "tensor_only_rejection_gap": 0.6480860567897366
+      },
+      "inner_shell_eta": 0.33,
+      "inter_shell_controls": {
+        "g0_response": 0.0,
+        "inter_shell_response": -0.084828847739323,
+        "pass": true,
+        "shuffled_order_gap": 0.169657695478646,
+        "shuffled_order_response": 0.084828847739323
+      },
+      "noncommuting_order": {
+        "commuting_control_gap": 0.0,
+        "order_gap": 0.2068094748052543,
+        "pass": true
+      },
+      "outer_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 5.551360978274532e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -1.8086680528334804e-17,
+        "pass": true
+      },
+      "outer_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 0.0,
+        "pass": true,
+        "peps2d_virtual_gap": 0.01599321583357322,
+        "spinor_roundtrip_error": 0.0,
+        "tensor_only_rejection_gap": 1.579007479379901
+      },
+      "outer_shell_eta": 0.91,
+      "pass": true,
+      "qit_controls": {
+        "dephased_log_negativity": 0.0,
+        "linked_log_negativity": 0.6196838754435674,
+        "linked_mutual_information": 1.1100703922802102,
+        "pass": true,
+        "product_log_negativity": 0.0,
+        "product_mutual_information": 2.220446049250313e-16
+      },
+      "site_count": 8
+    },
+    {
+      "bond_dim_D": 2,
+      "checks": {
+        "classical_dot_hopfield_control_not_equivalent": true,
+        "density_trace_psd_rank_one": true,
+        "finite": true,
+        "geometric_hopfield_energy_decreases": true,
+        "geometric_hopfield_recall_improves": true,
+        "hopf_map_unit_s2": true,
+        "inter_shell_g0_control": true,
+        "noncommuting_quaternion_order_witness": true,
+        "peps2d_virtual_bonds_load_bearing": true,
+        "qit_entangling_readout_survives": true,
+        "qit_product_and_dephased_controls_collapse": true,
+        "shuffled_shell_order_control": true,
+        "spinor_physical_leg_roundtrip": true,
+        "tensor_only_control_rejected": true
+      },
+      "geometric_hopfield": {
+        "classical_control_gap": 0.2937548555113514,
+        "dot_only_overlap_after": 0.5193641393900328,
+        "energy_after": -15.0,
+        "energy_before": -6.810809364659759,
+        "geometric_overlap_after": 0.8131189949013842,
+        "geometric_recall_gain": 0.2450678405421054,
+        "overlap_before": 0.5680511543592788,
+        "pass": true
+      },
+      "grid_shape": [
+        4,
+        4
+      ],
+      "inner_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 1.5470217270852137e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -3.362253125424218e-17,
+        "pass": true
+      },
+      "inner_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.04361335791876861,
+        "spinor_roundtrip_error": 1.1102230246251565e-16,
+        "tensor_only_rejection_gap": 0.6480860567897369
+      },
+      "inner_shell_eta": 0.33,
+      "inter_shell_controls": {
+        "g0_response": 0.0,
+        "inter_shell_response": -0.08482884773932302,
+        "pass": true,
+        "shuffled_order_gap": 0.16965769547864604,
+        "shuffled_order_response": 0.08482884773932302
+      },
+      "noncommuting_order": {
+        "commuting_control_gap": 0.0,
+        "order_gap": 0.2068094748052543,
+        "pass": true
+      },
+      "outer_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 5.65095527872506e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -4.395837071140408e-18,
+        "pass": true
+      },
+      "outer_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.015038875392633804,
+        "spinor_roundtrip_error": 0.0,
+        "tensor_only_rejection_gap": 1.5790074793799012
+      },
+      "outer_shell_eta": 0.91,
+      "pass": true,
+      "qit_controls": {
+        "dephased_log_negativity": 0.0,
+        "linked_log_negativity": 0.6196287710511577,
+        "linked_mutual_information": 1.1098761685404974,
+        "pass": true,
+        "product_log_negativity": 2.2204460492503128e-16,
+        "product_mutual_information": 2.220446049250313e-16
+      },
+      "site_count": 16
+    },
+    {
+      "bond_dim_D": 4,
+      "checks": {
+        "classical_dot_hopfield_control_not_equivalent": true,
+        "density_trace_psd_rank_one": true,
+        "finite": true,
+        "geometric_hopfield_energy_decreases": true,
+        "geometric_hopfield_recall_improves": true,
+        "hopf_map_unit_s2": true,
+        "inter_shell_g0_control": true,
+        "noncommuting_quaternion_order_witness": true,
+        "peps2d_virtual_bonds_load_bearing": true,
+        "qit_entangling_readout_survives": true,
+        "qit_product_and_dephased_controls_collapse": true,
+        "shuffled_shell_order_control": true,
+        "spinor_physical_leg_roundtrip": true,
+        "tensor_only_control_rejected": true
+      },
+      "geometric_hopfield": {
+        "classical_control_gap": 0.2937548555113514,
+        "dot_only_overlap_after": 0.5193641393900328,
+        "energy_after": -15.0,
+        "energy_before": -6.810809364659759,
+        "geometric_overlap_after": 0.8131189949013842,
+        "geometric_recall_gain": 0.2450678405421054,
+        "overlap_before": 0.5680511543592788,
+        "pass": true
+      },
+      "grid_shape": [
+        4,
+        4
+      ],
+      "inner_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 1.5470217270852137e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -3.362253125424218e-17,
+        "pass": true
+      },
+      "inner_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.04370727967360214,
+        "spinor_roundtrip_error": 0.0,
+        "tensor_only_rejection_gap": 0.6480860567897369
+      },
+      "inner_shell_eta": 0.33,
+      "inter_shell_controls": {
+        "g0_response": 0.0,
+        "inter_shell_response": -0.08482884773932302,
+        "pass": true,
+        "shuffled_order_gap": 0.16965769547864604,
+        "shuffled_order_response": 0.08482884773932302
+      },
+      "noncommuting_order": {
+        "commuting_control_gap": 0.0,
+        "order_gap": 0.2068094748052543,
+        "pass": true
+      },
+      "outer_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 5.65095527872506e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -4.395837071140408e-18,
+        "pass": true
+      },
+      "outer_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.015072670496997552,
+        "spinor_roundtrip_error": 1.1102230246251565e-16,
+        "tensor_only_rejection_gap": 1.5790074793799012
+      },
+      "outer_shell_eta": 0.91,
+      "pass": true,
+      "qit_controls": {
+        "dephased_log_negativity": 0.0,
+        "linked_log_negativity": 0.6196287710511577,
+        "linked_mutual_information": 1.1098761685404974,
+        "pass": true,
+        "product_log_negativity": 2.2204460492503128e-16,
+        "product_mutual_information": 2.220446049250313e-16
+      },
+      "site_count": 16
+    },
+    {
+      "bond_dim_D": 2,
+      "checks": {
+        "classical_dot_hopfield_control_not_equivalent": true,
+        "density_trace_psd_rank_one": true,
+        "finite": true,
+        "geometric_hopfield_energy_decreases": true,
+        "geometric_hopfield_recall_improves": true,
+        "hopf_map_unit_s2": true,
+        "inter_shell_g0_control": true,
+        "noncommuting_quaternion_order_witness": true,
+        "peps2d_virtual_bonds_load_bearing": true,
+        "qit_entangling_readout_survives": true,
+        "qit_product_and_dephased_controls_collapse": true,
+        "shuffled_shell_order_control": true,
+        "spinor_physical_leg_roundtrip": true,
+        "tensor_only_control_rejected": true
+      },
+      "geometric_hopfield": {
+        "classical_control_gap": 0.24137528014844856,
+        "dot_only_overlap_after": 0.7079891857271339,
+        "energy_after": -31.000000000000004,
+        "energy_before": -19.066662236798887,
+        "geometric_overlap_after": 0.9493644658755824,
+        "geometric_recall_gain": 0.19757949021202714,
+        "overlap_before": 0.7517849756635553,
+        "pass": true
+      },
+      "grid_shape": [
+        4,
+        8
+      ],
+      "inner_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 2.8345451571621556e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -8.767646086086391e-17,
+        "pass": true
+      },
+      "inner_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.04385266390540677,
+        "spinor_roundtrip_error": 1.1102230246251565e-16,
+        "tensor_only_rejection_gap": 0.6480860567897366
+      },
+      "inner_shell_eta": 0.33,
+      "inter_shell_controls": {
+        "g0_response": 0.0,
+        "inter_shell_response": -0.084828847739323,
+        "pass": true,
+        "shuffled_order_gap": 0.169657695478646,
+        "shuffled_order_response": 0.084828847739323
+      },
+      "noncommuting_order": {
+        "commuting_control_gap": 0.0,
+        "order_gap": 0.2068094748052543,
+        "pass": true
+      },
+      "outer_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 5.910169461918883e-17,
+        "max_trace_error": 4.440892098500626e-16,
+        "min_eigenvalue": -1.781486011947512e-16,
+        "pass": true
+      },
+      "outer_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.015121837670806477,
+        "spinor_roundtrip_error": 1.1102230246251565e-16,
+        "tensor_only_rejection_gap": 1.5790074793799005
+      },
+      "outer_shell_eta": 0.91,
+      "pass": true,
+      "qit_controls": {
+        "dephased_log_negativity": 2.2204460492503128e-16,
+        "linked_log_negativity": 0.6194679271488088,
+        "linked_mutual_information": 1.1093093589596996,
+        "pass": true,
+        "product_log_negativity": 2.2204460492503128e-16,
+        "product_mutual_information": -2.220446049250313e-16
+      },
+      "site_count": 32
+    },
+    {
+      "bond_dim_D": 4,
+      "checks": {
+        "classical_dot_hopfield_control_not_equivalent": true,
+        "density_trace_psd_rank_one": true,
+        "finite": true,
+        "geometric_hopfield_energy_decreases": true,
+        "geometric_hopfield_recall_improves": true,
+        "hopf_map_unit_s2": true,
+        "inter_shell_g0_control": true,
+        "noncommuting_quaternion_order_witness": true,
+        "peps2d_virtual_bonds_load_bearing": true,
+        "qit_entangling_readout_survives": true,
+        "qit_product_and_dephased_controls_collapse": true,
+        "shuffled_shell_order_control": true,
+        "spinor_physical_leg_roundtrip": true,
+        "tensor_only_control_rejected": true
+      },
+      "geometric_hopfield": {
+        "classical_control_gap": 0.24137528014844856,
+        "dot_only_overlap_after": 0.7079891857271339,
+        "energy_after": -31.000000000000004,
+        "energy_before": -19.066662236798887,
+        "geometric_overlap_after": 0.9493644658755824,
+        "geometric_recall_gain": 0.19757949021202714,
+        "overlap_before": 0.7517849756635553,
+        "pass": true
+      },
+      "grid_shape": [
+        4,
+        8
+      ],
+      "inner_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 2.8345451571621556e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -8.767646086086391e-17,
+        "pass": true
+      },
+      "inner_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.044051504598104294,
+        "spinor_roundtrip_error": 1.1102230246251565e-16,
+        "tensor_only_rejection_gap": 0.6480860567897366
+      },
+      "inner_shell_eta": 0.33,
+      "inter_shell_controls": {
+        "g0_response": 0.0,
+        "inter_shell_response": -0.084828847739323,
+        "pass": true,
+        "shuffled_order_gap": 0.169657695478646,
+        "shuffled_order_response": 0.084828847739323
+      },
+      "noncommuting_order": {
+        "commuting_control_gap": 0.0,
+        "order_gap": 0.2068094748052543,
+        "pass": true
+      },
+      "outer_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 5.910169461918883e-17,
+        "max_trace_error": 4.440892098500626e-16,
+        "min_eigenvalue": -1.781486011947512e-16,
+        "pass": true
+      },
+      "outer_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.015191874070689382,
+        "spinor_roundtrip_error": 1.1102230246251565e-16,
+        "tensor_only_rejection_gap": 1.5790074793799005
+      },
+      "outer_shell_eta": 0.91,
+      "pass": true,
+      "qit_controls": {
+        "dephased_log_negativity": 2.2204460492503128e-16,
+        "linked_log_negativity": 0.6194679271488088,
+        "linked_mutual_information": 1.1093093589596996,
+        "pass": true,
+        "product_log_negativity": 2.2204460492503128e-16,
+        "product_mutual_information": -2.220446049250313e-16
+      },
+      "site_count": 32
+    },
+    {
+      "bond_dim_D": 2,
+      "checks": {
+        "classical_dot_hopfield_control_not_equivalent": true,
+        "density_trace_psd_rank_one": true,
+        "finite": true,
+        "geometric_hopfield_energy_decreases": true,
+        "geometric_hopfield_recall_improves": true,
+        "hopf_map_unit_s2": true,
+        "inter_shell_g0_control": true,
+        "noncommuting_quaternion_order_witness": true,
+        "peps2d_virtual_bonds_load_bearing": true,
+        "qit_entangling_readout_survives": true,
+        "qit_product_and_dephased_controls_collapse": true,
+        "shuffled_shell_order_control": true,
+        "spinor_physical_leg_roundtrip": true,
+        "tensor_only_control_rejected": true
+      },
+      "geometric_hopfield": {
+        "classical_control_gap": 0.2401961418403712,
+        "dot_only_overlap_after": 0.7084440847805479,
+        "energy_after": -63.0,
+        "energy_before": -39.47372672354861,
+        "geometric_overlap_after": 0.9486402266209191,
+        "geometric_recall_gain": 0.19424707384546558,
+        "overlap_before": 0.7543931527754535,
+        "pass": true
+      },
+      "grid_shape": [
+        8,
+        8
+      ],
+      "inner_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 2.817186366989792e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -1.0960314997794845e-16,
+        "pass": true
+      },
+      "inner_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 3.3306690738754696e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.04389527897684109,
+        "spinor_roundtrip_error": 1.1102230246251565e-16,
+        "tensor_only_rejection_gap": 0.6480860567897366
+      },
+      "inner_shell_eta": 0.33,
+      "inter_shell_controls": {
+        "g0_response": 0.0,
+        "inter_shell_response": -0.08482884773932302,
+        "pass": true,
+        "shuffled_order_gap": 0.16965769547864604,
+        "shuffled_order_response": 0.08482884773932302
+      },
+      "noncommuting_order": {
+        "commuting_control_gap": 0.0,
+        "order_gap": 0.2068094748052543,
+        "pass": true
+      },
+      "outer_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 1.1102400894316496e-16,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -2.4087906285584633e-16,
+        "pass": true
+      },
+      "outer_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.015135682235167463,
+        "spinor_roundtrip_error": 2.220446049250313e-16,
+        "tensor_only_rejection_gap": 1.5790074793799016
+      },
+      "outer_shell_eta": 0.91,
+      "pass": true,
+      "qit_controls": {
+        "dephased_log_negativity": 2.2204460492503128e-16,
+        "linked_log_negativity": 0.6191934874730451,
+        "linked_mutual_information": 1.1083426157801857,
+        "pass": true,
+        "product_log_negativity": 4.440892098500625e-16,
+        "product_mutual_information": -4.440892098500625e-16
+      },
+      "site_count": 64
+    },
+    {
+      "bond_dim_D": 4,
+      "checks": {
+        "classical_dot_hopfield_control_not_equivalent": true,
+        "density_trace_psd_rank_one": true,
+        "finite": true,
+        "geometric_hopfield_energy_decreases": true,
+        "geometric_hopfield_recall_improves": true,
+        "hopf_map_unit_s2": true,
+        "inter_shell_g0_control": true,
+        "noncommuting_quaternion_order_witness": true,
+        "peps2d_virtual_bonds_load_bearing": true,
+        "qit_entangling_readout_survives": true,
+        "qit_product_and_dephased_controls_collapse": true,
+        "shuffled_shell_order_control": true,
+        "spinor_physical_leg_roundtrip": true,
+        "tensor_only_control_rejected": true
+      },
+      "geometric_hopfield": {
+        "classical_control_gap": 0.2401961418403712,
+        "dot_only_overlap_after": 0.7084440847805479,
+        "energy_after": -63.0,
+        "energy_before": -39.47372672354861,
+        "geometric_overlap_after": 0.9486402266209191,
+        "geometric_recall_gain": 0.19424707384546558,
+        "overlap_before": 0.7543931527754535,
+        "pass": true
+      },
+      "grid_shape": [
+        8,
+        8
+      ],
+      "inner_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 2.817186366989792e-17,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -1.0960314997794845e-16,
+        "pass": true
+      },
+      "inner_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 3.3306690738754696e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.04397480683243723,
+        "spinor_roundtrip_error": 1.1102230246251565e-16,
+        "tensor_only_rejection_gap": 0.6480860567897366
+      },
+      "inner_shell_eta": 0.33,
+      "inter_shell_controls": {
+        "g0_response": 0.0,
+        "inter_shell_response": -0.08482884773932302,
+        "pass": true,
+        "shuffled_order_gap": 0.16965769547864604,
+        "shuffled_order_response": 0.08482884773932302
+      },
+      "noncommuting_order": {
+        "commuting_control_gap": 0.0,
+        "order_gap": 0.2068094748052543,
+        "pass": true
+      },
+      "outer_density_checks": {
+        "max_hermitian_error": 5.551115123125783e-17,
+        "max_rank_one_det_abs": 1.1102400894316496e-16,
+        "max_trace_error": 2.220446049250313e-16,
+        "min_eigenvalue": -2.4087906285584633e-16,
+        "pass": true
+      },
+      "outer_peps2d_spinor_tests": {
+        "max_hopf_norm_drift": 2.220446049250313e-16,
+        "pass": true,
+        "peps2d_virtual_gap": 0.01516483832393214,
+        "spinor_roundtrip_error": 2.220446049250313e-16,
+        "tensor_only_rejection_gap": 1.5790074793799016
+      },
+      "outer_shell_eta": 0.91,
+      "pass": true,
+      "qit_controls": {
+        "dephased_log_negativity": 2.2204460492503128e-16,
+        "linked_log_negativity": 0.6191934874730451,
+        "linked_mutual_information": 1.1083426157801857,
+        "pass": true,
+        "product_log_negativity": 4.440892098500625e-16,
+        "product_mutual_information": -4.440892098500625e-16
+      },
+      "site_count": 64
+    }
+  ],
+  "scales": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "sim_execution_kind": "nonclassical_diagnostic",
+  "sim_id": "jax_spinor_peps2d_qit_hopfield_compatibility_probe",
+  "spinor_state": "psi[y,x] in C^2, normalized; rho[y,x] = psi psi^dagger",
+  "summary": {
+    "max_spinor_roundtrip_error": 2.220446049250313e-16,
+    "min_classical_control_gap": 0.2401961418403712,
+    "min_energy_drop": 4.1217696783163875,
+    "min_geometric_recall_gain": 0.19424707384546558,
+    "min_inter_shell_order_gap": 0.169657695478646,
+    "min_linked_log_negativity": 0.6191934874730451,
+    "min_peps2d_virtual_gap": 0.015038875392633804,
+    "min_tensor_only_rejection_gap": 0.6480860567897366
+  },
+  "wallclock_seconds": 25.479741
+}

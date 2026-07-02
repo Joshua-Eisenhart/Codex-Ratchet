@@ -1,0 +1,493 @@
+{
+  "all_native_pairs_load_bearing": true,
+  "all_pass": true,
+  "all_states_valid_density": true,
+  "bloch_free": true,
+  "channels_trace_preserving": true,
+  "classification": "signed_operators_density_poc",
+  "contraction_Te": {
+    "D0": 0.11746512579782231,
+    "claim": "D_Te(exp(t L_Te) rho) / D_Te(rho) = exp(-2 ke t)",
+    "max_resid": 3.3306690738754696e-16,
+    "pass": true,
+    "rows": [
+      {
+        "measured_ratio": 1.0,
+        "predicted_exp_minus_2kt": 1.0,
+        "resid": 0.0,
+        "t": 0.0
+      },
+      {
+        "measured_ratio": 0.7408182206817181,
+        "predicted_exp_minus_2kt": 0.7408182206817179,
+        "resid": 2.220446049250313e-16,
+        "t": 0.25
+      },
+      {
+        "measured_ratio": 0.5488116360940268,
+        "predicted_exp_minus_2kt": 0.5488116360940265,
+        "resid": 3.3306690738754696e-16,
+        "t": 0.5
+      },
+      {
+        "measured_ratio": 0.3011942119122022,
+        "predicted_exp_minus_2kt": 0.30119421191220214,
+        "resid": 5.551115123125783e-17,
+        "t": 1.0
+      },
+      {
+        "measured_ratio": 0.09071795328941257,
+        "predicted_exp_minus_2kt": 0.09071795328941251,
+        "resid": 5.551115123125783e-17,
+        "t": 2.0
+      }
+    ]
+  },
+  "contraction_Ti": {
+    "D0": 0.15033225659990318,
+    "claim": "D_Ti(exp(t L_Ti) rho) / D_Ti(rho) = exp(-2 ki t)",
+    "max_resid": 2.7755575615628914e-16,
+    "pass": true,
+    "rows": [
+      {
+        "measured_ratio": 1.0,
+        "predicted_exp_minus_2kt": 1.0,
+        "resid": 0.0,
+        "t": 0.0
+      },
+      {
+        "measured_ratio": 0.6703200460356391,
+        "predicted_exp_minus_2kt": 0.6703200460356393,
+        "resid": 2.220446049250313e-16,
+        "t": 0.25
+      },
+      {
+        "measured_ratio": 0.44932896411722184,
+        "predicted_exp_minus_2kt": 0.44932896411722156,
+        "resid": 2.7755575615628914e-16,
+        "t": 0.5
+      },
+      {
+        "measured_ratio": 0.20189651799465544,
+        "predicted_exp_minus_2kt": 0.20189651799465538,
+        "resid": 5.551115123125783e-17,
+        "t": 1.0
+      },
+      {
+        "measured_ratio": 0.04076220397836622,
+        "predicted_exp_minus_2kt": 0.04076220397836621,
+        "resid": 6.938893903907228e-18,
+        "t": 2.0
+      }
+    ]
+  },
+  "honest_gaps": {
+    "kill_control_count": "two commuting witnesses shown (Si vs Fe, Se vs Ne); both give Delta=0 to machine precision.",
+    "scope": "single-qubit (C^2) proof-of-concept; promotion_allowed=false. The native-frame pairing (Ti/Fi with Se/Ne ; Te/Fe with Ni/Si) is the owner's stipulated structure, not derived from a larger carrier.",
+    "z3": "OMITTED honestly: load-bearing claims are numerical residuals on HS norms / contraction rates / spectra of 2x2 complex channels; no exact rational SAT/UNSAT predicate would settle them better than the measured residuals. Adding Z3 would be decorative."
+  },
+  "kill_control": {
+    "claim": "commuting (Phi,O) => Delta = [Phi,O] rho = 0 (no signed content)",
+    "delta_is_zero": true,
+    "hs_norms_per_state": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "interpretation": "signed operator carries content ONLY when [Phi,O] != 0",
+    "max_hs_norm": 0.0,
+    "pair": "Phi=Si(z-dephase), O=Fe(z-rotation); both diagonal in z"
+  },
+  "kill_control_2": {
+    "claim": "isotropic depolarize commutes with any unitary => Delta = 0",
+    "delta_is_zero": true,
+    "max_hs_norm": 1.3615092990768423e-16,
+    "pair": "Phi=Se(isotropic depolarize), O=Ne(unitary rotation)"
+  },
+  "max_trace_deviation_all_channels": 2.220446049250313e-16,
+  "min_native_pair_max_hs_norm": 0.02248162521142781,
+  "n_test_states": 10,
+  "object": "signed_density_operator_commutator_native_pairs",
+  "params": {
+    "Fe_phi": 1.1,
+    "Fi_theta": 0.7,
+    "ke": 0.6,
+    "ki": 0.8,
+    "q": 0.4,
+    "we": 0.9,
+    "wi": 1.3
+  },
+  "promotion_allowed": false,
+  "representation_note": "state is a 2x2 complex density matrix throughout; dynamics integrate the Liouvillian on vec(rho) in C^{2x2}; NO Bloch r=(rx,ry,rz), NO sigma-expectation triple, NO dot-r ODE anywhere.",
+  "signed_norms": {
+    "Fe_Ni": {
+      "claim": "||Delta_{Ni,Fe}||_HS = ||[Phi_Ni, Fe] rho||_HS > 0",
+      "hs_norms_per_state": [
+        0.2341686382299948,
+        0.1117123981234401,
+        0.19968747085959754,
+        0.1420065059949082,
+        0.20349682342147607,
+        0.20967739020868392,
+        0.19277123593115225,
+        0.19449954703917852,
+        0.15664508677543248,
+        0.2157113488363929
+      ],
+      "identity_resid_vs_commutator": 0.0,
+      "load_bearing_nonzero": true,
+      "max_hs_norm": 0.2341686382299948,
+      "mean_hs_norm": 0.1860376445420257,
+      "min_hs_norm": 0.1117123981234401,
+      "operator": "Fe",
+      "terrain": "Ni"
+    },
+    "Fe_Si": {
+      "claim": "||Delta_{Si,Fe}||_HS = ||[Phi_Si, Fe] rho||_HS > 0",
+      "hs_norms_per_state": [
+        0.18448458780428442,
+        0.18448458780428445,
+        0.16965472519721198,
+        0.22199632956335735,
+        0.2342997233929541,
+        0.11069075268257064,
+        0.13572378015776962,
+        0.11548350527207515,
+        0.07067045950404692,
+        0.09936398611916526
+      ],
+      "identity_resid_vs_commutator": 0.0,
+      "load_bearing_nonzero": true,
+      "max_hs_norm": 0.2342997233929541,
+      "mean_hs_norm": 0.15268524374977197,
+      "min_hs_norm": 0.07067045950404692,
+      "operator": "Fe",
+      "terrain": "Si"
+    },
+    "Fi_Ne": {
+      "claim": "||Delta_{Ne,Fi}||_HS = ||[Phi_Ne, Fi] rho||_HS > 0",
+      "hs_norms_per_state": [
+        0.15149282224346106,
+        0.15149282224346095,
+        0.3124009532296486,
+        0.31240095322964856,
+        0.1866031050210559,
+        0.0908956933460767,
+        0.24992076258371895,
+        0.1500654024746242,
+        0.09879188190572967,
+        0.30018502377873063
+      ],
+      "identity_resid_vs_commutator": 0.0,
+      "load_bearing_nonzero": true,
+      "max_hs_norm": 0.3124009532296486,
+      "mean_hs_norm": 0.20042494200561553,
+      "min_hs_norm": 0.0908956933460767,
+      "operator": "Fi",
+      "terrain": "Ne"
+    },
+    "Fi_Se": {
+      "claim": "||Delta_{Se,Fi}||_HS = ||[Phi_Se, Fi] rho||_HS > 0",
+      "hs_norms_per_state": [
+        0.08726946801779975,
+        0.08726946801779979,
+        0.0706080607782292,
+        0.052523247210669546,
+        0.07759842278575885,
+        0.05236168081067978,
+        0.05648644862258331,
+        0.043466687982284834,
+        0.01847560014846967,
+        0.08203259804194933
+      ],
+      "identity_resid_vs_commutator": 0.0,
+      "load_bearing_nonzero": true,
+      "max_hs_norm": 0.08726946801779979,
+      "mean_hs_norm": 0.0628091682416224,
+      "min_hs_norm": 0.01847560014846967,
+      "operator": "Fi",
+      "terrain": "Se"
+    },
+    "Te_Ni": {
+      "claim": "||Delta_{Ni,Te}||_HS = ||[Phi_Ni, Te] rho||_HS > 0",
+      "hs_norms_per_state": [
+        0.10073934422036954,
+        0.10073934422036954,
+        0.11983040634124692,
+        0.09914242361392289,
+        0.10294697360729937,
+        0.09952496693948829,
+        0.11563138965288047,
+        0.10652056989110466,
+        0.0939973954409975,
+        0.08750203310562348
+      ],
+      "identity_resid_vs_commutator": 0.0,
+      "load_bearing_nonzero": true,
+      "max_hs_norm": 0.11983040634124692,
+      "mean_hs_norm": 0.10265748470333028,
+      "min_hs_norm": 0.08750203310562348,
+      "operator": "Te",
+      "terrain": "Ni"
+    },
+    "Te_Si": {
+      "claim": "||Delta_{Si,Te}||_HS = ||[Phi_Si, Te] rho||_HS > 0",
+      "hs_norms_per_state": [
+        0.03741305720563743,
+        0.037413057205637396,
+        0.04791209067797568,
+        0.02993044576450994,
+        0.047910942057595454,
+        0.02244783432338246,
+        0.03832967254238054,
+        0.02368457391611644,
+        0.011461524250322602,
+        0.028643430989083507
+      ],
+      "identity_resid_vs_commutator": 0.0,
+      "load_bearing_nonzero": true,
+      "max_hs_norm": 0.04791209067797568,
+      "mean_hs_norm": 0.03251466289326414,
+      "min_hs_norm": 0.011461524250322602,
+      "operator": "Te",
+      "terrain": "Si"
+    },
+    "Ti_Ne": {
+      "claim": "||Delta_{Ne,Ti}||_HS = ||[Phi_Ne, Ti] rho||_HS > 0",
+      "hs_norms_per_state": [
+        0.18221227808243431,
+        0.1822122780824343,
+        0.18221227808243434,
+        5.721958498152797e-17,
+        0.14285725337949542,
+        0.1093273668494606,
+        0.14576982246594744,
+        0.08676392402362874,
+        0.050807806727299745,
+        0.12270134876711461
+      ],
+      "identity_resid_vs_commutator": 0.0,
+      "load_bearing_nonzero": true,
+      "max_hs_norm": 0.18221227808243434,
+      "mean_hs_norm": 0.12048643564602494,
+      "min_hs_norm": 5.721958498152797e-17,
+      "operator": "Ti",
+      "terrain": "Ne"
+    },
+    "Ti_Se": {
+      "claim": "||Delta_{Se,Ti}||_HS = ||[Phi_Se, Ti] rho||_HS > 0",
+      "hs_norms_per_state": [
+        0.02248162521142781,
+        0.022481625211427807,
+        0.0184176649983473,
+        0.012892365498843147,
+        0.020508117491279045,
+        0.013488975126856683,
+        0.014734131998677786,
+        0.011088899022826204,
+        0.00446288091348982,
+        0.020792528553724904
+      ],
+      "identity_resid_vs_commutator": 0.0,
+      "load_bearing_nonzero": true,
+      "max_hs_norm": 0.02248162521142781,
+      "mean_hs_norm": 0.016134881402690048,
+      "min_hs_norm": 0.00446288091348982,
+      "operator": "Ti",
+      "terrain": "Se"
+    }
+  },
+  "spec_preservation": {
+    "Fe_pass": true,
+    "Fi_pass": true,
+    "claim": "spec(Fi(rho))=spec(rho) ; spec(Fe(rho))=spec(rho)",
+    "max_resid_Fe": 4.440892098500626e-16,
+    "max_resid_Fi": 4.440892098500626e-16,
+    "rows": [
+      {
+        "resid_Fe": 0.0,
+        "resid_Fi": 2.4355233146959177e-18,
+        "spec_Fe": [
+          0.0,
+          1.0
+        ],
+        "spec_Fi": [
+          2.4355233146959177e-18,
+          1.0
+        ],
+        "spec_rho": [
+          0.0,
+          1.0
+        ],
+        "state": 1
+      },
+      {
+        "resid_Fe": 2.7369110631344083e-48,
+        "resid_Fi": 8.194872959698855e-18,
+        "spec_Fe": [
+          2.7369110631344083e-48,
+          1.0
+        ],
+        "spec_Fi": [
+          -8.194872959698855e-18,
+          1.0
+        ],
+        "spec_rho": [
+          0.0,
+          1.0
+        ],
+        "state": 2
+      },
+      {
+        "resid_Fe": 1.6653345369377343e-16,
+        "resid_Fi": 5.551115123125784e-17,
+        "spec_Fe": [
+          1.6653345369377343e-16,
+          1.0
+        ],
+        "spec_Fi": [
+          5.551115123125783e-17,
+          1.0
+        ],
+        "spec_rho": [
+          -1.232595164407831e-32,
+          1.0
+        ],
+        "state": 3
+      },
+      {
+        "resid_Fe": 1.6653345369377343e-16,
+        "resid_Fi": 5.342840090913832e-17,
+        "spec_Fe": [
+          1.6653345369377343e-16,
+          1.0
+        ],
+        "spec_Fi": [
+          -5.3428400909138335e-17,
+          1.0
+        ],
+        "spec_rho": [
+          -1.232595164407831e-32,
+          1.0
+        ],
+        "state": 4
+      },
+      {
+        "resid_Fe": 4.440892098500626e-16,
+        "resid_Fi": 4.440892098500626e-16,
+        "spec_Fe": [
+          -6.123430348210101e-17,
+          0.9999999999999996
+        ],
+        "spec_Fi": [
+          2.6160666103212186e-17,
+          1.0000000000000004
+        ],
+        "spec_rho": [
+          7.330728654019382e-18,
+          1.0
+        ],
+        "state": 5
+      },
+      {
+        "resid_Fe": 1.1102230246251565e-16,
+        "resid_Fi": 0.0,
+        "spec_Fe": [
+          0.19999999999999998,
+          0.7999999999999999
+        ],
+        "spec_Fi": [
+          0.2,
+          0.8
+        ],
+        "spec_rho": [
+          0.2,
+          0.8
+        ],
+        "state": 6
+      },
+      {
+        "resid_Fe": 2.498001805406602e-16,
+        "resid_Fi": 5.551115123125783e-17,
+        "spec_Fe": [
+          0.10000000000000023,
+          0.9
+        ],
+        "spec_Fi": [
+          0.10000000000000003,
+          0.9
+        ],
+        "spec_rho": [
+          0.09999999999999998,
+          0.9
+        ],
+        "state": 7
+      },
+      {
+        "resid_Fe": 4.440892098500626e-16,
+        "resid_Fi": 1.1102230246251565e-16,
+        "spec_Fe": [
+          0.25,
+          0.75
+        ],
+        "spec_Fi": [
+          0.25000000000000017,
+          0.7500000000000003
+        ],
+        "spec_rho": [
+          0.25000000000000006,
+          0.7500000000000004
+        ],
+        "state": 8
+      },
+      {
+        "resid_Fe": 1.1102230246251565e-16,
+        "resid_Fi": 5.551115123125783e-17,
+        "spec_Fe": [
+          0.34999999999999987,
+          0.6499999999999999
+        ],
+        "spec_Fi": [
+          0.35000000000000003,
+          0.65
+        ],
+        "spec_rho": [
+          0.35,
+          0.65
+        ],
+        "state": 9
+      },
+      {
+        "resid_Fe": 1.1102230246251565e-16,
+        "resid_Fi": 3.3306690738754696e-16,
+        "spec_Fe": [
+          0.02499999999999988,
+          0.9749999999999999
+        ],
+        "spec_Fi": [
+          0.024999999999999873,
+          0.9750000000000001
+        ],
+        "spec_rho": [
+          0.024999999999999852,
+          0.9749999999999998
+        ],
+        "state": 10
+      }
+    ]
+  },
+  "tool_manifest": {
+    "JSON": "load_bearing: receipt emission",
+    "LinearAlgebra": "load_bearing: 2x2 complex density algebra, kron Liouvillian, matrix exp, eigvals (spectrum), HS norms, commutators",
+    "Printf": "load_bearing: console formatting only",
+    "Z3": "OMITTED (honest): no load-bearing exact predicate; see honest_gaps.z3",
+    "numpy": "ABSENT (Julia-native, non-numpy by construction)"
+  }
+}

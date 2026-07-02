@@ -1,0 +1,376 @@
+{
+  "actual_tools_used": [
+    "LinearAlgebra",
+    "JSON",
+    "Dates"
+  ],
+  "allowed_claims": "PoC verdict about whether this curvature observable reproduces named local source invariants; no stronger status.",
+  "blocked_consumers": [
+    "layer_completion",
+    "g_structure_selection",
+    "layer_stacking",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "FEP",
+    "physics",
+    "gravity",
+    "final_manifold_admission"
+  ],
+  "break_details": [
+    "The quotient/base Berry curvature recovers the Hopf Chern/linking class, but the source layer's leaf area, two-cycle tangent rank, pairwise disjointness, and Z3 disjointness survivor are not all integrals/eigenspaces of the fixed-leaf curvature. The leaf torus itself is flat in this U(1) observable.",
+    "The rotor holonomy detects the SU(2) double-cover phase, but it does not reproduce Burnside rank, Schur commutant dimension, or the MPS entanglement survivor/control structure."
+  ],
+  "break_layer": "G_nested_hopf_tori",
+  "carrier_layer": "finite spinor geometry carriers adapted from requested Julia layer sources",
+  "carrier_realization": "Julia ComplexF64 spinor fields and LinearAlgebra eigenspaces; no NumPy",
+  "classification": "curvature_frame_poc",
+  "clifford_boundary": {
+    "break_reason": "The rotor holonomy detects the SU(2) double-cover phase, but it does not reproduce Burnside rank, Schur commutant dimension, or the MPS entanglement survivor/control structure.",
+    "curvature_attempt": "SU(2) rotor holonomy only; source invariant is not a Chern integral",
+    "curvature_reproduces_known_invariant": false,
+    "known_invariant_from_source": "Burnside image rank d^2 plus Schur commutant dim 1 for Cl(3)/Cl(6), with MPS Schmidt entropy",
+    "rotor_2pi_eigenvalues": [
+      [
+        -1.0,
+        -0.0
+      ],
+      [
+        -1.0,
+        0.0
+      ]
+    ],
+    "rotor_4pi_eigenvalues": [
+      [
+        1.0,
+        -0.0
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "source_layer": "clifford_rotor_spinor_network_entanglement.jl"
+  },
+  "codomain_or_output": "curvature fluxes, Chern numbers, holonomy eigenvalues, break verdict, result JSON",
+  "dependency_receipts": [
+    "system_v5/julia_carrier/layers/G_hopf_fibration_results.json",
+    "system_v5/julia_carrier/layers/weyl_lr_spinor_network_entanglement_results.json",
+    "system_v5/julia_carrier/layers/G_nested_hopf_tori_results.json",
+    "system_v5/julia_carrier/layers/clifford_rotor_spinor_network_entanglement_results.json"
+  ],
+  "domain": "finite CP1/S2, Brillouin-zone, nested-Hopf quotient, and fixed-leaf torus spinor grids",
+  "downstream_blocks": [
+    "layer_completion",
+    "g_structure_selection",
+    "layer_stacking",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "FEP",
+    "physics",
+    "gravity",
+    "final_manifold_admission"
+  ],
+  "eligible_consumers": [
+    "next bounded curvature/metric comparison scout"
+  ],
+  "finite_map": "normalized finite spinor field -> U(1) link variables -> Wilson plaquette curvature phases -> Chern/holonomy readouts",
+  "generated_at": "2026-06-02T22:52:27.431",
+  "geometry_layer": "Hopf fibration, Weyl L/R sheet, nested Hopf tori; Clifford rotor recorded as boundary/break source",
+  "kill_conditions": [
+    "Any claimed unified layer must reproduce both source invariant and survivor/degeneracy structure through the same curvature/holonomy computation.",
+    "A flat/constant control must give F=0.",
+    "If a source invariant requires metric rank, disjointness, algebraic commutant rank, or MPS entropy outside curvature/holonomy, verdict becomes per_layer_needed."
+  ],
+  "layers": [
+    {
+      "connection": "U(1) Berry connection from normalized spinor links",
+      "curvature": {
+        "chern": 1.0,
+        "max_abs_plaquette_flux": 0.001606308,
+        "total_flux_over_2pi": 1.0
+      },
+      "finite_carrier": "bounded CP1 spinor grid u(theta,phi)=[cos(theta/2), exp(i phi) sin(theta/2)]",
+      "invariant_reproduced_by_integral_F_over_2pi": true,
+      "known_invariant_from_source": {
+        "H_measured": 1,
+        "known_Hopf_invariant": 1,
+        "match": true,
+        "two_methods_agree": true
+      },
+      "layer": "G_hopf_fibration",
+      "source": "system_v5/julia_carrier/layers/G_hopf_fibration.jl",
+      "survivor_or_degeneracy_readout": {
+        "holonomy_eigenspaces": {
+          "equator": {
+            "eigenvalue_im": -8.153200337090993e-17,
+            "eigenvalue_re": -0.9999999999999887,
+            "fixed_x": 1.5707963267948966,
+            "phase": -3.141592653589793
+          },
+          "north_pole": {
+            "eigenvalue_im": 0.0,
+            "eigenvalue_re": 1.0,
+            "fixed_x": 0.0,
+            "phase": 0.0
+          },
+          "south_pole": {
+            "eigenvalue_im": -9.020562075079397e-17,
+            "eigenvalue_re": 1.0,
+            "fixed_x": 3.141592653589793,
+            "phase": -9.020562075079397e-17
+          }
+        },
+        "note": "Chern 1 matches the Hopf bundle curvature; source fiber-linking H=1 is the same bundle class. Pole holonomies are gauge-degenerate, equator holonomy is -1."
+      }
+    },
+    {
+      "connection": "U(1) Berry connection from occupied eigenspace links",
+      "curvature": {
+        "flat_constant_spinor_chern": 0.0,
+        "flat_constant_spinor_max_abs_F": 0.0,
+        "left_chern": 1.0,
+        "left_plus_right": -0.0,
+        "right_chern": -1.0,
+        "trivial_mass_left_chern": 0.0
+      },
+      "finite_carrier": "bounded Brillouin-zone spinor grid of occupied QWZ/Weyl-sheet eigenvectors",
+      "invariant_reproduced_by_integral_F_over_2pi": true,
+      "known_invariant_from_source": {
+        "chern_left_control": -0.0,
+        "chern_left_control_int": 0,
+        "chern_left_int": 1,
+        "chern_left_sheet_plusH0": 1.0,
+        "chern_right_control": 0.0,
+        "chern_right_control_int": 0,
+        "chern_right_int": -1,
+        "chern_right_sheet_minusH0": -1.0,
+        "chirality_sum_cL_plus_cR": 0,
+        "control_trivial_mass": 3.0,
+        "invariant": "FHS lattice Chern number (Qi-Wu-Zhang Weyl sheet)"
+      },
+      "layer": "weyl_lr_spinor_network_entanglement",
+      "source": "system_v5/julia_carrier/layers/weyl_lr_spinor_network_entanglement.jl",
+      "survivor_or_degeneracy_readout": {
+        "flat_euclidean_control": "constant spinor field gives F=0 exactly on the finite Wilson plaquettes",
+        "gap_singularity_controls": [
+          {
+            "k_at_min": [
+              2.7149566142134014,
+              0.0
+            ],
+            "mass": -1.0,
+            "min_gap": 1.9999999999999996
+          },
+          {
+            "k_at_min": [
+              0.0,
+              0.0
+            ],
+            "mass": 0.0,
+            "min_gap": 0.0
+          },
+          {
+            "k_at_min": [
+              0.0,
+              0.0
+            ],
+            "mass": 3.0,
+            "min_gap": 6.0
+          }
+        ],
+        "topological_phase_mass_minus1": "occupied holonomy eigenspaces integrate to C_L=1 and C_R=-1; the composite L/R Chern cancels to 0"
+      }
+    },
+    {
+      "break_reason": "The quotient/base Berry curvature recovers the Hopf Chern/linking class, but the source layer's leaf area, two-cycle tangent rank, pairwise disjointness, and Z3 disjointness survivor are not all integrals/eigenspaces of the fixed-leaf curvature. The leaf torus itself is flat in this U(1) observable.",
+      "connection": "same U(1) Berry-link observable applied to either the quotient base (theta, b-a) or a fixed leaf torus (a,b)",
+      "curvature": {
+        "base_quotient_chern": 1.0,
+        "fixed_leaf_theta_pi4_chern": 0.0,
+        "fixed_leaf_theta_pi4_max_abs_F": 0.0,
+        "near_endpoint_leaf_chern": 0.0,
+        "near_endpoint_leaf_max_abs_F": 0.0
+      },
+      "finite_carrier": "bounded spinor grids u(theta,a,b)=[cos(theta)e^(ia), sin(theta)e^(ib)]",
+      "invariant_reproduced_by_integral_F_over_2pi": false,
+      "known_invariant_from_source": {
+        "area_invariant": "Area(θ)=2π² sin 2θ (closed form, compared post-hoc)",
+        "linking_invariant": "Gauss linking number ∈ ℤ; Hopf link = ±1",
+        "rank_invariant": "2-torus tangent plane is 2-dim; degeneration drops rank to 1",
+        "z3_invariant": "free Int q; q==Q1 ∧ q==Q2 with Q1,Q2 the MEASURED |z1|^2 of two leaves ⇒ UNSAT iff Q1≠Q2 (disjoint); broken collapsed measure ⇒ SAT"
+      },
+      "layer": "G_nested_hopf_tori",
+      "partial_reproduction": {
+        "area_profile_has_same_sin2theta_shape": true,
+        "fixed_leaf_torus_curvature_is_flat": true,
+        "hopf_core_linking_reproduced": true
+      },
+      "profile": [
+        {
+          "analytic_leaf_area": 0.0,
+          "approx_base_curvature_row_flux": 0.00378149,
+          "tangent_rank": 1,
+          "theta": 0.0
+        },
+        {
+          "analytic_leaf_area": 9.869604,
+          "approx_base_curvature_row_flux": 0.08246149,
+          "tangent_rank": 2,
+          "theta": 0.261799
+        },
+        {
+          "analytic_leaf_area": 17.094656,
+          "approx_base_curvature_row_flux": 0.134177857,
+          "tangent_rank": 2,
+          "theta": 0.523599
+        },
+        {
+          "analytic_leaf_area": 19.739209,
+          "approx_base_curvature_row_flux": 0.154205564,
+          "tangent_rank": 2,
+          "theta": 0.785398
+        },
+        {
+          "analytic_leaf_area": 17.094656,
+          "approx_base_curvature_row_flux": 0.130280524,
+          "tangent_rank": 2,
+          "theta": 1.047198
+        },
+        {
+          "analytic_leaf_area": 9.869604,
+          "approx_base_curvature_row_flux": 0.075969006,
+          "tangent_rank": 2,
+          "theta": 1.308997
+        },
+        {
+          "analytic_leaf_area": 0.0,
+          "approx_base_curvature_row_flux": 0.00378149,
+          "tangent_rank": 1,
+          "theta": 1.570796
+        }
+      ],
+      "source": "system_v5/julia_carrier/layers/G_nested_hopf_tori.jl"
+    }
+  ],
+  "name": "Council curvature reframe unified observable PoC",
+  "negatives_run": {
+    "clifford_boundary_break": {
+      "break_reason": "The rotor holonomy detects the SU(2) double-cover phase, but it does not reproduce Burnside rank, Schur commutant dimension, or the MPS entanglement survivor/control structure.",
+      "curvature_attempt": "SU(2) rotor holonomy only; source invariant is not a Chern integral",
+      "curvature_reproduces_known_invariant": false,
+      "known_invariant_from_source": "Burnside image rank d^2 plus Schur commutant dim 1 for Cl(3)/Cl(6), with MPS Schmidt entropy",
+      "rotor_2pi_eigenvalues": [
+        [
+          -1.0,
+          -0.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ],
+      "rotor_4pi_eigenvalues": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "source_layer": "clifford_rotor_spinor_network_entanglement.jl"
+    },
+    "constant_spinor_flat_control": {
+      "chern": 0.0,
+      "max_abs_F": 0.0,
+      "passed": true
+    },
+    "nested_fixed_leaf_flatness": {
+      "chern": 0.0,
+      "max_abs_F": 0.0,
+      "passed": true
+    },
+    "weyl_trivial_mass_control": {
+      "chern": 0.0,
+      "passed": true
+    }
+  },
+  "peps3d_embedding": "not_admitted_in_this_poc: no PEPS3D site/bond/face/cell claim is made",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "nested Hopf fixed-leaf torus geometry needs metric/tangent/disjointness observables beyond U(1) curvature",
+    "Clifford source invariant is algebraic rank/commutant plus MPS entropy, not a Chern integral",
+    "no PEPS3D carrier admission in this Julia PoC",
+    "no non-Abelian composite A_hopf + A_weyl global carrier was constructed"
+  ],
+  "promotion_status": "diagnostic_only",
+  "purpose": "Test whether one Wilson-plaquette/FHS field-strength observable can replace per-layer ad hoc invariants across genuine geometry layers.",
+  "quaternion_action": "Clifford/SU(2) rotor boundary row only; no quaternionic promotion claim",
+  "required_negatives": [
+    "constant-spinor flat control",
+    "Weyl trivial mass control",
+    "nested fixed-leaf flatness break",
+    "Clifford rotor algebraic-invariant break"
+  ],
+  "required_tools": [
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "result_summary": {
+    "flat_control_F_zero": true,
+    "hopf_reproduced": true,
+    "nested_full_layer_reproduced": false,
+    "verdict": "per_layer_needed",
+    "weyl_reproduced": true
+  },
+  "root_constraints_in_force": [
+    "F01 finite carrier/probe/operator/path set: bounded spinor grids and finite Wilson loops",
+    "N01 noncommuting/order-sensitive operation/control domain: Berry/Wilson plaquette order around each finite cell"
+  ],
+  "scientific_question": "Does F=dA+A wedge A / holonomy reproduce both the known invariant and survivor/degeneracy structure across Hopf, Weyl, and nested Hopf-tori carriers?",
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "curvature_unified_frame",
+  "source_receipt_summary": {
+    "G_hopf_fibration": {
+      "all_pass": true,
+      "classification": "tool_lego_fit_probe",
+      "promotion_allowed": false
+    },
+    "G_nested_hopf_tori": {
+      "all_pass": true,
+      "classification": "PoC",
+      "promotion_allowed": false
+    },
+    "clifford_rotor_spinor_network_entanglement": {
+      "all_pass": true,
+      "classification": "clifford_rotor_spinor_network_entanglement_poc",
+      "promotion_allowed": false
+    },
+    "weyl_lr_spinor_network_entanglement": {
+      "all_pass": true,
+      "classification": "weyl_lr_spinor_network_entanglement_poc",
+      "promotion_allowed": false
+    }
+  },
+  "spinor_state": "normalized two-component spinors / occupied eigenspinors on finite grids",
+  "tool_integration_depth": {
+    "Dates": "supportive",
+    "ITensors/ITensorMPS": "None",
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "tool_manifest": {
+    "Dates": "supportive: timestamp only",
+    "ITensors/ITensorMPS": "not_run_here: source Clifford/Weyl receipts read, but this curvature PoC does not execute MPS entanglement",
+    "JSON": "supportive: reads source receipts and emits result JSON",
+    "LinearAlgebra": "load_bearing: eigenspaces, norms, determinants, and finite spinor Wilson links",
+    "Z3": "not_run_here: source Hopf/nested receipts include Z3; this PoC tests curvature/holonomy rather than SMT disjointness"
+  },
+  "verdict": "per_layer_needed",
+  "version": "0.1"
+}

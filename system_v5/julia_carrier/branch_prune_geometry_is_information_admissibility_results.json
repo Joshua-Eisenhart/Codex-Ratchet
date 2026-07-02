@@ -1,0 +1,96 @@
+{
+  "TOL": 0.3,
+  "all_pass": true,
+  "checks": {
+    "constraint_nonvacuous": true,
+    "control_trivial_admits_all": true,
+    "defective_all_pruned": true,
+    "genuine_all_admitted": true,
+    "pure_qit_dephasing_kills": true,
+    "random_prune_hits_genuine": true,
+    "survivors_carry_geo_eq_info": true
+  },
+  "claim_ceiling": "PoC: 'geometry IS information' as the ADMISSIBILITY CONSTRAINT of a branch/prune possibility field. Futures share the geometric Hopf linking (geo=L) but a product/dephased future fakes the geometry with info=0; the constraint |geo-info|<TOL prunes them, admitting only futures where geometry genuinely IS information (entanglement). Pure-QIT: dephasing kills the info. promotion_allowed=false; not canonical/bridge.",
+  "classification": "julia_geometry_is_information_admissibility_poc",
+  "futures": [
+    {
+      "L": 1,
+      "admit": true,
+      "geo": 1.0,
+      "info": 1.0,
+      "mode": "genuine"
+    },
+    {
+      "L": 1,
+      "admit": false,
+      "geo": 1.0,
+      "info": -0.0,
+      "mode": "product"
+    },
+    {
+      "L": 1,
+      "admit": false,
+      "geo": 1.0,
+      "info": -0.0,
+      "mode": "dephased"
+    },
+    {
+      "L": 2,
+      "admit": true,
+      "geo": 2.0,
+      "info": 2.0,
+      "mode": "genuine"
+    },
+    {
+      "L": 2,
+      "admit": false,
+      "geo": 2.0,
+      "info": -0.0,
+      "mode": "product"
+    },
+    {
+      "L": 2,
+      "admit": false,
+      "geo": 2.0,
+      "info": 0.0,
+      "mode": "dephased"
+    },
+    {
+      "L": 3,
+      "admit": true,
+      "geo": 3.0,
+      "info": 3.0,
+      "mode": "genuine"
+    },
+    {
+      "L": 3,
+      "admit": false,
+      "geo": 3.0,
+      "info": -0.0,
+      "mode": "product"
+    },
+    {
+      "L": 3,
+      "admit": false,
+      "geo": 3.0,
+      "info": -0.0,
+      "mode": "dephased"
+    }
+  ],
+  "name": "branch_prune_geometry_is_information_admissibility",
+  "promotion_allowed": false,
+  "survivors": [
+    {
+      "L": 1,
+      "mode": "genuine"
+    },
+    {
+      "L": 2,
+      "mode": "genuine"
+    },
+    {
+      "L": 3,
+      "mode": "genuine"
+    }
+  ]
+}

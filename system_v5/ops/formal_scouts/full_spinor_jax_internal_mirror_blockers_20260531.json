@@ -1,0 +1,83 @@
+{
+  "kind": "blocked_reason",
+  "generated_at": "2026-05-31T19:27:55Z",
+  "scope": "L0-L8 full-spinor standalone receipts plus nested_hopf_tori deep-network receipt",
+  "claim_boundary": "These receipts may be cited as execution-depth scout evidence only. They do not admit full layers, select a G-structure, open stacking/order claims, or unlock Axis0/FEP/flux/physics/final manifold work.",
+  "evidence_paths": [
+    "system_v5/ops/formal_scouts/deep_sim_execution_audit_full_spinor_after_nested_hopf_topology_jax_repair_20260531.json",
+    "system_v5/ops/formal_scouts/results/l0_response_quotient_full_spinor_network_layer_probe_results.json",
+    "system_v5/ops/formal_scouts/results/l1_boundary_environment_full_spinor_network_layer_probe_results.json",
+    "system_v5/ops/formal_scouts/results/l2_weyl_spinor_full_spinor_network_layer_probe_results.json",
+    "system_v5/ops/formal_scouts/results/l3_clifford_quaternion_full_spinor_network_layer_probe_results.json",
+    "system_v5/ops/formal_scouts/results/l4_terrain_generator_full_spinor_network_layer_probe_results.json",
+    "system_v5/ops/formal_scouts/results/l5_operator_substage_full_spinor_network_layer_probe_results.json",
+    "system_v5/ops/formal_scouts/results/l6_entropy_cut_full_spinor_network_layer_probe_results.json",
+    "system_v5/ops/formal_scouts/results/l7_hopf_shell_full_spinor_network_layer_probe_results.json",
+    "system_v5/ops/formal_scouts/results/l8_groupoid_gluing_full_spinor_network_layer_probe_results.json",
+    "system_v5/ops/formal_scouts/results/nested_hopf_tori_full_deep_network_probe_results.json"
+  ],
+  "observed_status": {
+    "execution_pass_count": 10,
+    "execution_fail_count": 0,
+    "warning_total": 10,
+    "warning_type": "target_specific_jax_parity_partial"
+  },
+  "blocking_condition": "Every audited receipt still declares complete_target_internal_jax_mirror=false. Present JAX numeric deltas are fail-bearing, but some target internals remain intentionally unmirrored rather than silently promoted.",
+  "unmirrored_internal_classes": [
+    {
+      "class": "quimb_cotengra_tensor_network_internals",
+      "applies_to": "L0-L8 and nested_hopf_tori",
+      "unmirrored": [
+        "quimb object constructors",
+        "MPS Schmidt entropy implementation internals",
+        "cotengra contraction-tree internals"
+      ],
+      "why_blocked": "JAX numeric signatures mirror virtual-carrier values, but they do not execute quimb/cotengra object construction or contraction planning internals.",
+      "next_admissible_step": "Write a one-tool/function micro-probe for quimb/cotengra internal falsifiers: wrong tensor layout, erased virtual bonds, and contraction path perturbation must fail or change the claimed value."
+    },
+    {
+      "class": "solver_proof_internals",
+      "applies_to": "L0-L8 and nested_hopf_tori",
+      "unmirrored": [
+        "z3 proof gate internals",
+        "cvc5 proof gate internals"
+      ],
+      "why_blocked": "Solver proofs are not JAX numeric computations. They need solver-native wrong-claim controls, not JAX parity.",
+      "next_admissible_step": "Write a z3/cvc5 non-vacuous proof-control micro-probe for the exact required-condition gates in these receipts."
+    },
+    {
+      "class": "topology_library_internals",
+      "applies_to": "L0-L8 and nested_hopf_tori",
+      "unmirrored": [
+        "GUDHI persistence internals",
+        "TopoNetX complex-construction internals"
+      ],
+      "why_blocked": "JAX now mirrors finite topology signatures, but not the internal GUDHI/TopoNetX algorithms.",
+      "next_admissible_step": "Write a topology internal-control micro-probe with torus, disk/cylinder, collapsed-face, and wrong-incidence cases; require GUDHI/TopoNetX to separate them."
+    },
+    {
+      "class": "geometry_library_internals",
+      "applies_to": "L0-L8",
+      "unmirrored": [
+        "geomstats library internals beyond JAX S3 distance signature",
+        "e3nn library internals beyond JAX norm-equivariance signature",
+        "clifford library internals beyond JAX anticommutator and layer side signatures"
+      ],
+      "why_blocked": "JAX mirrors numeric side witnesses, but not the library implementations themselves.",
+      "next_admissible_step": "Write per-library internal-control micro-probes: wrong metric for geomstats, broken equivariant action for e3nn, and wrong Clifford relation for clifford."
+    }
+  ],
+  "blocked_consumers": [
+    "full_layer_completion_claim",
+    "official_g_structure_selection",
+    "layer_stacking_readiness",
+    "cross_layer_order_closure",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "recommended_next_move": "Keep the current receipts as bounded standalone execution evidence, then run one micro-probe per unmirrored internal class before any stronger parity or completion wording is attempted."
+}

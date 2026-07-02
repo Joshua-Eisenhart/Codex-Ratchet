@@ -1,0 +1,116 @@
+{
+  "schema": "clean_rebuild_result_v1",
+  "name": "rebuild_008_clean_rebuild_status_classifier",
+  "classification": "clean_rebuild_classifier",
+  "sim_execution_kind": "receipt_native_clean_rebuild",
+  "source_alignment_category": "clean_rebuild_status_classifier",
+  "promotion_allowed": false,
+  "claim_ceiling": "Clean rebuild classifier only. Reads clean rebuild receipts to summarize current rebuilt state. It does not admit formal evidence, Axis0, Xi, Phi0, or canonical promotion.",
+  "TOOL_MANIFEST": {
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing clean rebuild receipt ingestion and classification"
+    },
+    "pathlib": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive local result path handling"
+    },
+    "time": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive runtime metadata"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_json": "load_bearing",
+    "pathlib": "supportive",
+    "time": "supportive"
+  },
+  "generated_at": "2026-05-23T23:06:42Z",
+  "runtime_seconds": 0.0014319419860839844,
+  "all_pass": true,
+  "receipt_rows": {
+    "source_engine_chart_rebuilt": {
+      "filename": "rebuild_001_source_engine_chart_from_readonly_results.json",
+      "label": "source_engine_chart_rebuilt",
+      "all_pass": true,
+      "classification": "clean_rebuild_scout",
+      "promotion_allowed": false
+    },
+    "preaxis_flux_rebuilt": {
+      "filename": "rebuild_002_flux_preaxis_weyl_hopf_from_readonly_results.json",
+      "label": "preaxis_flux_rebuilt",
+      "all_pass": true,
+      "classification": "clean_rebuild_scout",
+      "promotion_allowed": false
+    },
+    "spinor_entropy_carrier_rebuilt": {
+      "filename": "rebuild_003_spinor_entropy_carrier_from_readonly_results.json",
+      "label": "spinor_entropy_carrier_rebuilt",
+      "all_pass": true,
+      "classification": "clean_rebuild_scout",
+      "promotion_allowed": false
+    },
+    "xi_bridge_family_rebuilt": {
+      "filename": "rebuild_004_xi_rho_ab_bridge_family_from_readonly_results.json",
+      "label": "xi_bridge_family_rebuilt",
+      "all_pass": true,
+      "classification": "clean_rebuild_scout",
+      "promotion_allowed": false
+    },
+    "axis0_candidate_batch_rebuilt": {
+      "filename": "rebuild_005_qit_fep_axis0_batch_from_clean_xi_results.json",
+      "label": "axis0_candidate_batch_rebuilt",
+      "all_pass": true,
+      "classification": "clean_rebuild_scout",
+      "promotion_allowed": false
+    },
+    "matched_control_ensemble_ran": {
+      "filename": "rebuild_006_matched_control_ensemble_from_clean_axis0_batch_results.json",
+      "label": "matched_control_ensemble_ran",
+      "all_pass": true,
+      "classification": "clean_rebuild_scout",
+      "promotion_allowed": false
+    },
+    "point_reference_survivor_stressed": {
+      "filename": "rebuild_007_point_reference_survivor_stress_results.json",
+      "label": "point_reference_survivor_stressed",
+      "all_pass": true,
+      "classification": "clean_rebuild_scout",
+      "promotion_allowed": false
+    }
+  },
+  "missing": [],
+  "failed": [],
+  "terminal_status": {
+    "source_engine_chart_rebuilt": true,
+    "preaxis_flux_rebuilt": true,
+    "spinor_entropy_carrier_rebuilt": true,
+    "xi_bridge_family_rebuilt": true,
+    "axis0_candidate_batch_rebuilt": true,
+    "matched_controls_ran": true,
+    "point_reference_initial_survivor": [
+      "MI",
+      "Phi_logZ_plus_MI"
+    ],
+    "history_window_initial_survivor": [],
+    "final_survivors_after_rebuild_007": [],
+    "point_reference_mi_killed_by_amplitude_scramble": true,
+    "formal_admission_blocked": true
+  },
+  "classification_summary": {
+    "clean_rebuild_stack_base": "rebuilt",
+    "current_axis0_survivor": "killed_or_nonrobust",
+    "done_for_current_clean_candidate": true,
+    "next_allowed_work": "formal estate reset and isolated rerun, or a genuinely new Xi/Axis0 candidate from read-only sources"
+  },
+  "source_boundary": {
+    "reads_formal_scout_results": false,
+    "reads_grok_sim": false,
+    "reads_external_audits": false,
+    "reads_cross_lane_synthesis_docs": false,
+    "reads_clean_rebuild_results": true
+  }
+}

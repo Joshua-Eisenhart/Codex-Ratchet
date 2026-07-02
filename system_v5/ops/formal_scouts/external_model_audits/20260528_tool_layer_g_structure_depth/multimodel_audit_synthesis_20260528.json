@@ -1,0 +1,126 @@
+{
+  "adjudicated_reason": "All three external models agree the boundary and breadth work are correct. Opus correctly tightens the verdict because the current receipt is single-function-surface-per-tool and should not be promoted to deep tool coverage.",
+  "adjudicated_verdict": "PARTIAL_ON_TRACK",
+  "classification": "controller_external_audit_not_formal_scout_result",
+  "converged_findings": [
+    {
+      "evidence": [
+        "new_tool_by_tool_result.blocked_consumers",
+        "status_artifact.required_boundary",
+        "layer_dependency_status.locked_consumers"
+      ],
+      "finding": "The campaign is structurally on track because separate layer rows, separate G-structure candidates, and blocked downstream consumers are preserved.",
+      "severity": "P1"
+    },
+    {
+      "evidence": [
+        "new_tool_by_tool_result.tool_rows",
+        "status_artifact.next_admissible_packets"
+      ],
+      "finding": "The tool breadth pass is not yet deep tool coverage: every tool has exactly one function_surface in the current scout.",
+      "severity": "P1"
+    },
+    {
+      "evidence": [
+        "new_tool_by_tool_result.blocked_consumers",
+        "layer_dependency_status.not_claimed"
+      ],
+      "finding": "Do not use this receipt to open official G-structure selection, layer embedding, stacking, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics/gravity, or final manifold admission.",
+      "severity": "P1"
+    },
+    {
+      "evidence": [
+        "new_tool_by_tool_result.tool_ablations",
+        "opus finding P3"
+      ],
+      "finding": "Ablation rows are receipt metadata inside this scout, not independent rerun-with-tool-removed packets; future deepening should include stronger executable controls for each tool family.",
+      "severity": "P2"
+    },
+    {
+      "evidence": [
+        "new_tool_by_tool_result.tool_ablations.z3",
+        "new_tool_by_tool_result.tool_ablations.cvc5",
+        "opus finding P1"
+      ],
+      "finding": "z3/cvc5 map_unprovable rows should be audited next with explicit SAT and UNSAT controls before treating solver depth as strong.",
+      "severity": "P2"
+    },
+    {
+      "evidence": [
+        "new_tool_by_tool_result.tool_rows.quimb/cotengra",
+        "status_artifact.coverage"
+      ],
+      "finding": "Resource/contraction telemetry is too thin for full-depth PEPS2D/PEPS3D claims; current PEPS evidence is a bond-4 carrier/view plus cost witness, not a full contraction-depth campaign.",
+      "severity": "P2"
+    }
+  ],
+  "created_at": "2026-05-28T07:41:58.938162+00:00",
+  "formal_tui_message": "External audit converged: the tool-by-tool scout is structurally on track but only breadth-level. Keep all downstream locks. Next run z3/cvc5 non-vacuous solver controls, then PyTorch per-row gradients, then PEPS2D/PEPS3D contraction-depth, with separate layers and G-structure candidates preserved.",
+  "input_packet": "system_v5/ops/formal_scouts/external_model_audits/20260528_tool_layer_g_structure_depth/audit_packet.json",
+  "model_routes": {
+    "gemini": {
+      "model": "models/gemini-3.1-pro-preview",
+      "receipt": "system_v5/ops/formal_scouts/external_model_audits/20260528_tool_layer_g_structure_depth/gemini/receipt.json",
+      "response": "system_v5/ops/formal_scouts/external_model_audits/20260528_tool_layer_g_structure_depth/gemini/response.md",
+      "route": "direct Generative Language API",
+      "status": "completed"
+    },
+    "grok": {
+      "model": "grok-4.3",
+      "receipt": "system_v5/ops/formal_scouts/external_model_audits/20260528_tool_layer_g_structure_depth/grok/receipt.json",
+      "response": "system_v5/ops/formal_scouts/external_model_audits/20260528_tool_layer_g_structure_depth/grok/response.md",
+      "route": "xAI chat completions API",
+      "status": "completed"
+    },
+    "opus": {
+      "cost_usd": 0.549792,
+      "model": "claude-opus-4-7",
+      "raw": "system_v5/ops/formal_scouts/external_model_audits/20260528_tool_layer_g_structure_depth/opus/raw.json",
+      "receipt": "system_v5/ops/formal_scouts/external_model_audits/20260528_tool_layer_g_structure_depth/opus/receipt.json",
+      "response": "system_v5/ops/formal_scouts/external_model_audits/20260528_tool_layer_g_structure_depth/opus/response.md",
+      "route": "claude_bridge",
+      "status": "completed"
+    }
+  },
+  "model_verdicts": {
+    "gemini": "ON_TRACK, but shallow and must deepen per tool before downstream movement",
+    "grok": "ON_TRACK, but single-surface per tool; keep downstream locked",
+    "opus": "PARTIAL_ON_TRACK; structural boundaries are correct, tool depth is shallow, z3/cvc5 and ablation non-vacuity need stricter audit"
+  },
+  "next_bounded_packets_priority_order": [
+    {
+      "packet": "tool_depth_z3_cvc5_non_vacuous_solver_controls",
+      "stop_condition": "fresh rerun passes with explicit SAT positive controls, UNSAT negative controls, and named formulas, or writes blocker",
+      "why": "Opus flagged map_unprovable/vacuous-solver risk; this is cheap and protects proof-tool claims."
+    },
+    {
+      "packet": "tool_depth_pytorch_autograd_per_row_spinor_phase",
+      "stop_condition": "fresh rerun passes per-row finite nonzero gradients and resource ceiling, or writes blocker",
+      "why": "Deepen from one global autograd witness to per-layer/per-G gradient maps including Weyl L/R separation."
+    },
+    {
+      "packet": "tool_depth_quimb_cotengra_peps2d_peps3d_contraction",
+      "stop_condition": "fresh rerun passes with per-row contraction cost, memory/ceiling, and failure controls, or writes blocker",
+      "why": "Turn PEPS2D/PEPS3D from construction/cost witness into contraction/readout/resource-depth evidence."
+    },
+    {
+      "packet": "tool_depth_clifford_sympy_hopf_twistor_algebra",
+      "stop_condition": "fresh rerun passes finite algebraic maps or records first non-finite relation as blocker",
+      "why": "Deepen G-structure math for Hopf/nested tori/Clifford/twistor/Spin alternatives without Bloch adapters."
+    },
+    {
+      "packet": "tool_depth_topology_graph_persistence_separability",
+      "stop_condition": "fresh rerun passes separability/topology controls or names first mismatch",
+      "why": "Deepen PyG/rustworkx/XGI/TopoNetX/GUDHI and test layer/G separability before any embedding discussion."
+    },
+    {
+      "packet": "tool_depth_e3nn_geomstats_orientation_family",
+      "stop_condition": "fresh rerun passes orientation/equivariance families or writes blocker",
+      "why": "Deepen orientation/equivariance/distance checks across S3/S2/SO3 representative and adversarial rows."
+    }
+  ],
+  "not_authority_until_verified": "External model outputs are audit lenses only; repo receipts and validators remain authority.",
+  "prompt": "system_v5/ops/formal_scouts/external_model_audits/20260528_tool_layer_g_structure_depth/multimodel_audit_prompt.md",
+  "schema": "external_model_audit_synthesis_v1",
+  "subject": "tool_by_tool_layer_g_structure_geometry_depth_probe"
+}

@@ -1,0 +1,48 @@
+{
+  "classification": "jax_all_top_level_run_receipt",
+  "started_at": "2026-06-02T15:51:33-0700",
+  "updated_at": "2026-06-02T15:51:54-0700",
+  "script_count": 42,
+  "completed_count": 5,
+  "pass_count": 4,
+  "fail_count": 1,
+  "rows": [
+    {
+      "script": "jax_branch_prune_audit.py",
+      "returncode": 0,
+      "seconds": 5.668,
+      "stdout_tail": "A basins=[1, 2, 3, 4] surv=400 pruned=0 | B basins=[1, 2] surv=297 pruned=103 | C basins=[1, 2, 3, 4] surv=400 pruned=0\nAUDIT_PASS=True\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_dirac_gamma5_chirality_branch_prune_audit.py",
+      "returncode": 0,
+      "seconds": 6.616,
+      "stdout_tail": "A basins=[1, 2, 3, 4] surv=600 pruned=0 | B basins=[1, 2] surv=454 pruned=146 | C basins=[1, 2, 3, 4] surv=600 pruned=0 | random=[1, 2, 3, 4] inverted=[3, 4]\nAUDIT_PASS=True\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_emergent_basin_recurrence_prune_mirror.py",
+      "returncode": 0,
+      "seconds": 6.545,
+      "stdout_tail": "jax_emergent_basin_recurrence_prune_mirror A basins=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] surv=3072 pruned=0 | B basins=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] surv=1740 pruned=1332 | C basins=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] surv=3072 pruned=0 | D basins=[1] surv=3072 pruned=0\nAUDIT_PASS=True wrote=jax_emergent_basin_recurrence_prune_mirror_results.json\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_external_negative_oracle_audit.py",
+      "returncode": 0,
+      "seconds": 0.726,
+      "stdout_tail": "external_negative_oracle rows=19 accept_original=19 reject_corruption=19 AUDIT_PASS=True\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_flux_impedance_falsifier.py",
+      "returncode": 1,
+      "seconds": 1.54,
+      "stdout_tail": "jax_flux_impedance_falsifier flux=False impedance=True controls=False AUDIT_PASS=False\n",
+      "stderr_tail": ""
+    }
+  ],
+  "promotion_allowed": false,
+  "claim_boundary": "Top-level JAX execution sweep only; does not admit full layer/manifold/G-structure/Axis0/flux."
+}

@@ -1,0 +1,306 @@
+{
+  "aggregate": {
+    "any_candidate_distinct": false,
+    "any_lr_divergence_distinct": true,
+    "any_multistable": false,
+    "best_lr_hs_divergence_CAND": 0.3221141423807393,
+    "lr_hs_divergence_M4_CAND": 0.04338539777604301,
+    "lr_hs_divergence_M4_neg_max": 0.002798699714920544,
+    "n_M_values_candidate_survives": 0
+  },
+  "blocked_consumers": [
+    "layer-completion / manifold admission",
+    "coupling / coexistence / nesting promotion",
+    "bridge / rho_AB / Xi / Phi0 / Axis0",
+    "flux / FEP / physics"
+  ],
+  "boundary_check": "erased_control: zero-pattern initial state must NOT converge to stored patterns",
+  "claim_ceiling": "exploration_probe — promotion_allowed: false",
+  "classification": "basin_probe_v2_exploration",
+  "dynamics": "nonlinear Hopfield recall: W=sum_k |xi_k><xi_k| in real-vectorized DM space; NONLINEAR project_to_density_matrix (PSD + trace=1 projection); light N01 perturbation eps=0.003",
+  "dynamics_nonlinear": true,
+  "f01_check": "finite: 80 seeds x 4 M values x 4 models; max_iter=200",
+  "f01_finite_map": "domain: M stored patterns (2x2 or 4x4 density matrices), N_SEEDS initial states; codomain: recalled attractor DM, basin label, L/R HS divergence, recall accuracy",
+  "lr_hs_divergence_report": "||rho_L - rho_R||_HS at M=4 = 0.043385 (candidate) vs 0.002799 (best negative proxy)",
+  "models": [
+    "candidate_chiral_LR_weyl_4x4_gamma5_split",
+    "neg_nonchiral_single_sector_2x2",
+    "neg_realvector_real_only_2x2",
+    "neg_classical_diagonal_commuting_2x2"
+  ],
+  "n01_check": "||[iσ_y, σ_z]||_F = 2.828427 > 0.1 PASSED",
+  "n01_commutator_norm": 2.8284271247461903,
+  "negative_check": "realvec model uses real-only patterns (im=0); classical model uses diagonal/commuting patterns (N01 killed)",
+  "object_id": "basin_probe_v2_hopfield_spinor",
+  "open_issues": [
+    "4x4 candidate vs 2x2 negatives: dim mismatch inflates HS space; fair comparison requires equal-dimension negatives (equal_dof control pending)",
+    "Recall accuracy at chance (1/M) for M>2 suggests weak pattern separation in HS space — Hopfield capacity for density matrices may require larger N (N neurons, not just M)",
+    "L/R HS divergence for 2x2 negatives uses imaginary-part norm as proxy (no gamma5 split) — reduces comparability; proper 4x4 non-chiral control needed",
+    "Julia carrier quaternionic Hopfield (clifford_hopfield.jl) achieves genuine multistability on unit quaternions — density matrix carrier is harder due to convexity of DM set",
+    "Size ladder (8/16/32/64 qubit) not done in this probe; larger DM dimension would open capacity",
+    "JAX audit lane not yet run against this result JSON",
+    "equal_dof_control.jl in hopfield/ should be cross-referenced for fair 4x4 vs 4x4 comparison"
+  ],
+  "overall_summary": "CANDIDATE FACES DEATH at all M values. No M where candidate recall accuracy exceeds negatives. L/R HS divergence (M=4): 0.0434. Primary failure: recall accuracy at or below negative models and uniform-random floor. Open question: 4x4 candidate vs 2x2 negatives — dimension mismatch may inflate negative advantage via larger HS space. exploration_probe — promotion_allowed: false.",
+  "parameters": {
+    "CLUSTER_THRESH": 0.05,
+    "EPS_PERTURB": 0.003,
+    "MAX_ITER": 200,
+    "M_VALUES": [
+      2,
+      3,
+      4,
+      8
+    ],
+    "N_SEEDS": 80,
+    "SEED": 20260603,
+    "WARM_CORRUPT": 0.3,
+    "WARM_TRIALS": 8
+  },
+  "per_M": {
+    "M_2": {
+      "M": 2,
+      "basins_genuine_clustering": false,
+      "candidate": {
+        "erased_control": {
+          "closest_dist": 0.1908078306396268,
+          "converges_to_pattern": false,
+          "interpretation": "OK: erased state does not cleanly converge to any stored pattern"
+        },
+        "lr_hs_divergence_mean": 0.3221141423807393,
+        "lr_hs_divergence_std": 0.0008356140450892009,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.5
+      },
+      "candidate_distinct": false,
+      "lr_divergence_distinct": true,
+      "lr_neg_max": 2.061581502167313e-5,
+      "multistable": false,
+      "neg_classical": {
+        "erased_control": {
+          "closest_dist": 0.2666003810164042,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 0.0,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.5
+      },
+      "neg_max_num_basins": 1,
+      "neg_max_recall_accuracy": 0.5,
+      "neg_nonchiral": {
+        "erased_control": {
+          "closest_dist": 0.13184603403982853,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 2.061581502167313e-5,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.5
+      },
+      "neg_realvector": {
+        "erased_control": {
+          "closest_dist": 0.14165377096605067,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 0.0,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.5
+      },
+      "verdict": "CANDIDATE_FACES_DEATH"
+    },
+    "M_3": {
+      "M": 3,
+      "basins_genuine_clustering": false,
+      "candidate": {
+        "erased_control": {
+          "closest_dist": 0.11213166107034324,
+          "converges_to_pattern": false,
+          "interpretation": "OK: erased state does not cleanly converge to any stored pattern"
+        },
+        "lr_hs_divergence_mean": 0.22354413426940425,
+        "lr_hs_divergence_std": 0.0005619442004928822,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.3333333333333333
+      },
+      "candidate_distinct": false,
+      "lr_divergence_distinct": false,
+      "lr_neg_max": 0.23588323039546394,
+      "multistable": false,
+      "neg_classical": {
+        "erased_control": {
+          "closest_dist": 0.10244013545455387,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 0.0,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.3333333333333333
+      },
+      "neg_max_num_basins": 1,
+      "neg_max_recall_accuracy": 0.3333333333333333,
+      "neg_nonchiral": {
+        "erased_control": {
+          "closest_dist": 0.19613366402840307,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 0.23588323039546394,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.3333333333333333
+      },
+      "neg_realvector": {
+        "erased_control": {
+          "closest_dist": 0.10013227563851616,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 0.0,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.3333333333333333
+      },
+      "verdict": "CANDIDATE_FACES_DEATH"
+    },
+    "M_4": {
+      "M": 4,
+      "basins_genuine_clustering": false,
+      "candidate": {
+        "erased_control": {
+          "closest_dist": 0.0632071501202872,
+          "converges_to_pattern": false,
+          "interpretation": "OK: erased state does not cleanly converge to any stored pattern"
+        },
+        "lr_hs_divergence_mean": 0.04338539777604301,
+        "lr_hs_divergence_std": 9.16147066298914e-5,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.25
+      },
+      "candidate_distinct": false,
+      "lr_divergence_distinct": true,
+      "lr_neg_max": 0.002798699714920544,
+      "multistable": false,
+      "neg_classical": {
+        "erased_control": {
+          "closest_dist": 0.07243996210128789,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 0.0,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.25
+      },
+      "neg_max_num_basins": 1,
+      "neg_max_recall_accuracy": 0.25,
+      "neg_nonchiral": {
+        "erased_control": {
+          "closest_dist": 0.05144184238585051,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 0.002798699714920544,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.25
+      },
+      "neg_realvector": {
+        "erased_control": {
+          "closest_dist": 0.08862548697104267,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 0.0,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.25
+      },
+      "verdict": "CANDIDATE_FACES_DEATH"
+    },
+    "M_8": {
+      "M": 8,
+      "basins_genuine_clustering": false,
+      "candidate": {
+        "erased_control": {
+          "closest_dist": 0.19187563368218483,
+          "converges_to_pattern": false,
+          "interpretation": "OK: erased state does not cleanly converge to any stored pattern"
+        },
+        "lr_hs_divergence_mean": 0.07481426481989019,
+        "lr_hs_divergence_std": 0.00022128113228187823,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.125
+      },
+      "candidate_distinct": false,
+      "lr_divergence_distinct": false,
+      "lr_neg_max": 0.10671167469008035,
+      "multistable": false,
+      "neg_classical": {
+        "erased_control": {
+          "closest_dist": 0.07134151733667597,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 0.0,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.125
+      },
+      "neg_max_num_basins": 1,
+      "neg_max_recall_accuracy": 0.125,
+      "neg_nonchiral": {
+        "erased_control": {
+          "closest_dist": 0.1466746211302096,
+          "converges_to_pattern": false
+        },
+        "lr_proxy_mean": 0.10671167469008035,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.125
+      },
+      "neg_realvector": {
+        "erased_control": {
+          "closest_dist": 0.016770520993630477,
+          "converges_to_pattern": true
+        },
+        "lr_proxy_mean": 0.0,
+        "num_basins_clustering": 1,
+        "recall_accuracy": 0.125
+      },
+      "verdict": "CANDIDATE_FACES_DEATH"
+    }
+  },
+  "positive_check": "FAIL — candidate does not exceed negatives at any M",
+  "primary_multistability_metric": "recall_accuracy: fraction of warm-start (corrupted) probes converging to correct stored pattern; NOT clustering of random inits (which collapses when patterns share centroid in HS space)",
+  "promotion_allowed": false,
+  "runtime_seconds": 3.5301060676574707,
+  "status_ladder": "exists < runs < passes local rerun < canonical by process",
+  "timestamp": "2026-06-03T23:18:47.430",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "writes result artifact for JAX audit lane",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "executes finite map, Hopfield recall, basin statistics, result emission; removing Julia flips all verdicts",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "density matrix ops, HS norm, PSD projection, gamma5 split; removing flips NL recall step",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Random": {
+      "reason": "seeded random patterns, warm-start corruptions; removing changes measured signatures",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Statistics": {
+      "reason": "mean/std for basin and divergence aggregates",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    }
+  },
+  "v1_bug_fixed": "v1 used linear IFS operators (Ti,Te,Fi,Fe on Bloch sphere) -> unique stationary measure near I/2 (no multi-basin structure); v2 uses Hopfield recall with stored patterns and nonlinear PSD projection",
+  "version": "2.0",
+  "why_nonlinear": "project_to_density_matrix applies eigen-clamping + renormalization; this maps the full ball of Hermitian matrices nonlinearly back to the density matrix convex set; NOT a linear CPTP map"
+}

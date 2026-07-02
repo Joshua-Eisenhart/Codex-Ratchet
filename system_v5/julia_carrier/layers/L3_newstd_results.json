@@ -1,0 +1,687 @@
+{
+  "F01_witness": {
+    "compact_carrier_S2": "all base points on unit S^2, max_norm=1 (exact)",
+    "finite_carrier_VEFC": {
+      "C": 9,
+      "E": 64,
+      "F": 42,
+      "V": 32
+    },
+    "finite_probe_family": [
+      "sigma_x",
+      "sigma_y",
+      "sigma_z"
+    ],
+    "finite_spinor_field_size": 32,
+    "flat_control_unbounded": "harmonic oscillator on R^3 diverges: E(A=100)=30000.0"
+  },
+  "N01_witness": {
+    "clifford_anticomm_err": 0.0,
+    "clifford_passes": true,
+    "commuting_control_ok": true,
+    "noncommuting": true,
+    "pauli_noncommutator_norm": 2.8284271247461903,
+    "projection_order_gap": 0.4881454130145078,
+    "su2_diffaxis_order_gap": 0.2896746636420392,
+    "su2_sameaxis_commuting_control": 4.1540741810552243e-16
+  },
+  "blocked_consumers": [
+    "L4 Hopf fibration (needs S3->S2 fibre/base split built on this base)",
+    "L5 nested Hopf tori",
+    "L6 connection/holonomy",
+    "coupling/bridge/Axis0/flux/FEP/gravity (downstream, blocked)"
+  ],
+  "classification": "L3_newstd_poc",
+  "controls": {
+    "anti_tautology": {
+      "clifford_flat_control_not_clifford": true,
+      "erase1_collapses_phase_gap": true,
+      "erase2_collapses_antip_gap": true,
+      "flat_energy_not_bounded": true,
+      "handle_flips_euler_chi": true,
+      "note": "each criterion has a wrong-structure/flat control that gives the WRONG answer, making tests non-circular"
+    },
+    "boundary": {
+      "north_pole_|0>": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "poles_exact": true,
+      "south_pole_|1>": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    "negative": {
+      "antipodal_collapse_gap": -0.030502247176800612,
+      "erase_pi_H_phase_gap": -0.0337422358430407,
+      "fibre_motion_zero": 2.482534153247273e-16,
+      "flat_anticomm_offdiag": 1.414213562373095,
+      "flat_energy_unbounded": 30000.0,
+      "su2_sameaxis_commuting": 4.1540741810552243e-16
+    },
+    "positive": {
+      "N01_order_gap": 0.4881454130145078,
+      "antipodal_law_gap": 1.9694977528231994,
+      "base_area_signature": 1.35757344451875,
+      "clifford_anticomm_ok": true,
+      "phase_quotient_gap": 0.6856318131334181
+    }
+  },
+  "criterion_1_finitude_vs_flat": {
+    "compact_carrier": "S^2 (Hopf base, |pi_H(psi)|=1 theorem)",
+    "compact_max_norm": 1.0000000000000002,
+    "compact_min_norm": 0.9999999999999998,
+    "compact_passes_bar": true,
+    "f01_satisfied_by_compact": true,
+    "f01_violated_by_flat": true,
+    "finitude_contrast": true,
+    "flat_A_ladder": [
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "flat_E_ladder": [
+      300.0,
+      30000.0,
+      3.0e6
+    ],
+    "flat_control": "harmonic oscillator on R^3 (no compactness constraint)",
+    "flat_diverges": true,
+    "flat_energy_A100": 30000.0,
+    "flat_unbounded_passes_bar": true,
+    "note": "compact S^2 supplies F01 finitude; flat R^3 violates it (energy -> infinity)"
+  },
+  "criterion_2_anticommutation": {
+    "anti_tautology_note": "flat position ops give off-diagonal anti-commutators != 0, breaking Clifford relation -> test non-circular: flat does NOT accidentally satisfy Cl(3)",
+    "clifford_relation": "{Gamma_a,Gamma_b} = 2*delta_ab*I",
+    "flat_fails_clifford": true,
+    "flat_max_offdiag_anticomm": 1.414213562373095,
+    "flat_offdiag_vals": [
+      0.0,
+      1.414213562373095,
+      0.0,
+      1.414213562373095,
+      1.414213562373095,
+      1.414213562373095
+    ],
+    "generators": [
+      "sigma_x",
+      "sigma_y",
+      "sigma_z"
+    ],
+    "genuine_max_anticomm_err": 0.0,
+    "genuine_passes_bar": true,
+    "level": "Clifford_level",
+    "su2_sublevel_comm_12_norm": 2.8284271247461903,
+    "su2_sublevel_note": "[Gamma_1,Gamma_2] = 2i*Gamma_3 (SU(2) Lie algebra, noncommuting sublevel)"
+  },
+  "criterion_3_topological_invariant": {
+    "genuine_V_E_F_C": [
+      27,
+      54,
+      36,
+      8
+    ],
+    "genuine_chi": 1,
+    "genuine_nx_ny_nz": [
+      2,
+      2,
+      2
+    ],
+    "genuine_passes_bar": true,
+    "handle_V_E_F_C": [
+      18,
+      42,
+      32,
+      8
+    ],
+    "handle_chi": 0,
+    "handle_flips_bar": true,
+    "invariant": "Euler characteristic chi = V - E + F - C",
+    "invariant_anchored": true,
+    "note": "chi=1 for solid 3-ball; periodic x-wrap changes topology (handle), chi flips to 0",
+    "wrong_structure": "periodic x-boundary (handle, torus-wound in x)"
+  },
+  "criterion_4_exact_carrier_mps": {
+    "all_pass": true,
+    "scale_results": {
+      "125": {
+        "carrier_type": "ITensors-MPS product state (exact, no truncation)",
+        "ctmrg_used": false,
+        "equal_truncation_budget": "both genuine and control use exact product MPS (zero entanglement, no truncation)",
+        "n_sites": 125,
+        "norm_exact_mps": 1.000000000000009,
+        "note": "exact MPS product state; contraction error < 1e-10 confirms pipeline; bond_dim=1 exact for product state",
+        "passes_bar": true,
+        "recon_err_control": 1.2212453270876722e-15,
+        "recon_err_genuine": 9.103828801926284e-15,
+        "sites_tag": "scale_125"
+      },
+      "27": {
+        "carrier_type": "ITensors-MPS product state (exact, no truncation)",
+        "ctmrg_used": false,
+        "equal_truncation_budget": "both genuine and control use exact product MPS (zero entanglement, no truncation)",
+        "n_sites": 27,
+        "norm_exact_mps": 1.0000000000000027,
+        "note": "exact MPS product state; contraction error < 1e-10 confirms pipeline; bond_dim=1 exact for product state",
+        "passes_bar": true,
+        "recon_err_control": 6.661338147750939e-16,
+        "recon_err_genuine": 2.6645352591003757e-15,
+        "sites_tag": "scale_27"
+      },
+      "64": {
+        "carrier_type": "ITensors-MPS product state (exact, no truncation)",
+        "ctmrg_used": false,
+        "equal_truncation_budget": "both genuine and control use exact product MPS (zero entanglement, no truncation)",
+        "n_sites": 64,
+        "norm_exact_mps": 1.000000000000005,
+        "note": "exact MPS product state; contraction error < 1e-10 confirms pipeline; bond_dim=1 exact for product state",
+        "passes_bar": true,
+        "recon_err_control": 2.3314683517128287e-15,
+        "recon_err_genuine": 5.10702591327572e-15,
+        "sites_tag": "scale_64"
+      },
+      "8": {
+        "carrier_type": "ITensors-MPS product state (exact, no truncation)",
+        "ctmrg_used": false,
+        "equal_truncation_budget": "both genuine and control use exact product MPS (zero entanglement, no truncation)",
+        "n_sites": 8,
+        "norm_exact_mps": 1.0000000000000009,
+        "note": "exact MPS product state; contraction error < 1e-10 confirms pipeline; bond_dim=1 exact for product state",
+        "passes_bar": true,
+        "recon_err_control": 5.551115123125783e-16,
+        "recon_err_genuine": 8.881784197001252e-16,
+        "sites_tag": "scale_8"
+      }
+    }
+  },
+  "criterion_5_scale_ladder": {
+    "antip_law_N_invariant": true,
+    "fibre_inv_N_invariant": true,
+    "residual_ladder": [
+      0.14586521250609863,
+      0.04506939085847739,
+      0.019525511568370568,
+      0.010161544184190907
+    ],
+    "residual_monotone_decreasing": true,
+    "residual_shrinks_with_N": true,
+    "rows": [
+      {
+        "antipodal_law_gap_cloud_stat": 1.788193914277129,
+        "base_area_discretisation_residual": 0.14586521250609863,
+        "base_area_value": 1.4791985458394319,
+        "cell_count": 1,
+        "edge_count": 12,
+        "euler_VEFC": 1,
+        "face_count": 6,
+        "finitude_compact_max_norm": 1.0000000000000002,
+        "finitude_contrast": true,
+        "hopfield_converges": false,
+        "hopfield_energy_bounded": true,
+        "hopfield_passes": false,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 4.718447854656915e-16,
+          "base_area_discretisation_residual": 0.14586521250609863,
+          "fibre_invariance_pointwise_dev_signature": 2.482534153247273e-16
+        },
+        "mps_passes": true,
+        "mps_recon_err": 8.881784197001252e-16,
+        "phase_quotient_gap_cloud_stat": 0.6804167427273252,
+        "site_count": 8,
+        "target_site_band": 8,
+        "vertex_count": 8
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9704523730189503,
+        "base_area_discretisation_residual": 0.04506939085847739,
+        "base_area_value": 1.3784027241918106,
+        "cell_count": 8,
+        "edge_count": 54,
+        "euler_VEFC": 1,
+        "face_count": 36,
+        "finitude_compact_max_norm": 1.0000000000000002,
+        "finitude_contrast": true,
+        "hopfield_converges": true,
+        "hopfield_energy_bounded": true,
+        "hopfield_passes": true,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 1.1102230246251565e-16,
+          "base_area_discretisation_residual": 0.04506939085847739,
+          "fibre_invariance_pointwise_dev_signature": 3.3422138886441676e-16
+        },
+        "mps_passes": true,
+        "mps_recon_err": 2.6645352591003757e-15,
+        "phase_quotient_gap_cloud_stat": 0.6857956149109022,
+        "site_count": 27,
+        "target_site_band": 16,
+        "vertex_count": 27
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9855973780684175,
+        "base_area_discretisation_residual": 0.019525511568370568,
+        "base_area_value": 1.3528588449017038,
+        "cell_count": 27,
+        "edge_count": 144,
+        "euler_VEFC": 1,
+        "face_count": 108,
+        "finitude_compact_max_norm": 1.0000000000000002,
+        "finitude_contrast": true,
+        "hopfield_converges": true,
+        "hopfield_energy_bounded": true,
+        "hopfield_passes": true,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 3.554447978966673e-16,
+          "base_area_discretisation_residual": 0.019525511568370568,
+          "fibre_invariance_pointwise_dev_signature": 2.5438405243138006e-16
+        },
+        "mps_passes": true,
+        "mps_recon_err": 5.10702591327572e-15,
+        "phase_quotient_gap_cloud_stat": 0.6857118945156798,
+        "site_count": 64,
+        "target_site_band": 32,
+        "vertex_count": 64
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9982602929815836,
+        "base_area_discretisation_residual": 0.010161544184190907,
+        "base_area_value": 1.3434948775175242,
+        "cell_count": 64,
+        "edge_count": 300,
+        "euler_VEFC": 1,
+        "face_count": 240,
+        "finitude_compact_max_norm": 1.0000000000000002,
+        "finitude_contrast": true,
+        "hopfield_converges": true,
+        "hopfield_energy_bounded": true,
+        "hopfield_passes": true,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 1.1102230246251565e-16,
+          "base_area_discretisation_residual": 0.010161544184190907,
+          "fibre_invariance_pointwise_dev_signature": 2.5438405243138006e-16
+        },
+        "mps_passes": true,
+        "mps_recon_err": 9.103828801926284e-15,
+        "phase_quotient_gap_cloud_stat": 0.6857956149109024,
+        "site_count": 125,
+        "target_site_band": 64,
+        "vertex_count": 125
+      }
+    ],
+    "rung_site_bands": [
+      8,
+      27,
+      64,
+      125
+    ],
+    "rungs_completed": 4,
+    "scale_ladder_real": true
+  },
+  "criterion_6_neural_dynamics": {
+    "all_pass": false,
+    "note": "Hopfield attractor on S^2 base points; energy bounded by compact geometry",
+    "scale_results": {
+      "125": {
+        "E_final": 0.0003642696123092039,
+        "E_init": 0.0003642696123092039,
+        "E_trajectory": [
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039,
+          0.0003642696123092039
+        ],
+        "compact_vs_flat_contrast": false,
+        "dynamics": "Hopfield attractor on S^2 base points",
+        "flat_E_init": -1.3414750994476339,
+        "flat_energy_bounded": true,
+        "flat_violates_bound": false,
+        "hopfield_converges": true,
+        "hopfield_energy_bounded": true,
+        "n_patterns": 125,
+        "note": "compact S^2 patterns -> bounded W -> bounded attractor energy; flat scaled patterns -> large W -> large energy (F01 violation signal)",
+        "passes_bar": true,
+        "weight_matrix_frobenius": 0.00039213263049094836
+      },
+      "27": {
+        "E_final": -0.006807139102044316,
+        "E_init": -0.0038457047873197217,
+        "E_trajectory": [
+          -0.0038457047873197217,
+          -0.006807139102044316,
+          -0.006807139102044316
+        ],
+        "compact_vs_flat_contrast": false,
+        "dynamics": "Hopfield attractor on S^2 base points",
+        "flat_E_init": -68.07139102044344,
+        "flat_energy_bounded": true,
+        "flat_violates_bound": false,
+        "hopfield_converges": true,
+        "hopfield_energy_bounded": true,
+        "n_patterns": 27,
+        "note": "compact S^2 patterns -> bounded W -> bounded attractor energy; flat scaled patterns -> large W -> large energy (F01 violation signal)",
+        "passes_bar": true,
+        "weight_matrix_frobenius": 0.007725015805126059
+      },
+      "64": {
+        "E_final": -0.0012178080632333228,
+        "E_init": -0.0012178080632333228,
+        "E_trajectory": [
+          -0.0012178080632333228,
+          -0.0012178080632333228
+        ],
+        "compact_vs_flat_contrast": false,
+        "dynamics": "Hopfield attractor on S^2 base points",
+        "flat_E_init": -5.668812720054825,
+        "flat_energy_bounded": true,
+        "flat_violates_bound": false,
+        "hopfield_converges": true,
+        "hopfield_energy_bounded": true,
+        "n_patterns": 64,
+        "note": "compact S^2 patterns -> bounded W -> bounded attractor energy; flat scaled patterns -> large W -> large energy (F01 violation signal)",
+        "passes_bar": true,
+        "weight_matrix_frobenius": 0.001303797396320064
+      },
+      "8": {
+        "E_final": 0.08691867257231578,
+        "E_init": -0.006816054955635946,
+        "E_trajectory": [
+          -0.006816054955635946,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578,
+          0.08691867257231578
+        ],
+        "compact_vs_flat_contrast": false,
+        "dynamics": "Hopfield attractor on S^2 base points",
+        "flat_E_init": -418.43401792683267,
+        "flat_energy_bounded": true,
+        "flat_violates_bound": false,
+        "hopfield_converges": false,
+        "hopfield_energy_bounded": true,
+        "n_patterns": 8,
+        "note": "compact S^2 patterns -> bounded W -> bounded attractor energy; flat scaled patterns -> large W -> large energy (F01 violation signal)",
+        "passes_bar": false,
+        "weight_matrix_frobenius": 0.07353894245888624
+      }
+    }
+  },
+  "dependency_forcing": {
+    "both_erasures_collapse": true,
+    "erase1_forget_pi_H": {
+      "collapses": true,
+      "phase_gap_after": -0.0337422358430407
+    },
+    "erase2_antipodal_collapse": {
+      "antip_gap_after": -0.030502247176800612,
+      "collapses": true
+    },
+    "genuine_antipodal_law_gap": 1.9694977528231994,
+    "genuine_phase_quotient_gap": 0.6856318131334181,
+    "primary_signature": "antipodal_law_gap"
+  },
+  "finite_map": {
+    "cardinality_note": "|pi_H|=1; U(1) fibre; orthogonal->antipodal; energy bounded on compact geometry",
+    "codomain": "S^2 Hopf base (projective base surface) + attractor energy landscape E(s)",
+    "domain": "K=(V,E,F,C) spinor field {psi_v in S^3 subset C^2}",
+    "map": "pi_H(psi) = psi^dag sigma psi  [Hopf map S^3->S^2] + Hopfield attractor W on S^2 bases"
+  },
+  "layer": "L3",
+  "new_standard_scorecard": {
+    "criteria": {
+      "commutation": {
+        "bar": "clifford_anticomm_err < 1e-13 AND flat_offdiag >= 1e-6",
+        "deciding_number": 0.0,
+        "flat_offdiag": 1.414213562373095,
+        "verdict": "MET"
+      },
+      "exact_carrier": {
+        "bar": "mps_recon_err < 1e-10 at all scales",
+        "deciding_number": 9.103828801926284e-15,
+        "verdict": "MET"
+      },
+      "finitude": {
+        "bar": "compact_max_norm <= 1.0 AND flat_energy_A100 >= 1e4",
+        "deciding_number": 1.0000000000000002,
+        "flat_energy_A100": 30000.0,
+        "verdict": "MET"
+      },
+      "invariant_anchored": {
+        "bar": "genuine_chi==1 AND handle_chi!=1",
+        "deciding_number": 1.0,
+        "handle_chi": 0,
+        "verdict": "MET"
+      },
+      "neural_dynamics": {
+        "bar": "hopfield_converges AND |E_final|<1e6 at all scales",
+        "deciding_number": 0.75,
+        "gap_note": "V=8 fails: over-saturated (8 patterns / 3 dims >> Hopfield capacity 0.138*3)",
+        "passes_count": 3,
+        "total_scales": 4,
+        "verdict": "PARTIAL"
+      },
+      "scale_ladder": {
+        "bar": "residual shrinks monotonically AND antip/phase invariants hold",
+        "deciding_number": 0.010161544184190907,
+        "rungs_completed": 4,
+        "verdict": "MET"
+      }
+    },
+    "fraction": "5/6",
+    "n_met": 5,
+    "n_total": 6,
+    "overall_verdict": "STILL-GAP",
+    "weakest_criterion": "neural_dynamics"
+  },
+  "object_id": "L3_newstd",
+  "peps3d_anchor": {
+    "euler_all_one": true,
+    "kind": "cubic cell complex K=(V,E,F,C) + ITensors-MPS product state per site",
+    "ladder": [
+      {
+        "antipodal_law_gap_cloud_stat": 1.788193914277129,
+        "base_area_discretisation_residual": 0.14586521250609863,
+        "base_area_value": 1.4791985458394319,
+        "cell_count": 1,
+        "edge_count": 12,
+        "euler_VEFC": 1,
+        "face_count": 6,
+        "finitude_compact_max_norm": 1.0000000000000002,
+        "finitude_contrast": true,
+        "hopfield_converges": false,
+        "hopfield_energy_bounded": true,
+        "hopfield_passes": false,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 4.718447854656915e-16,
+          "base_area_discretisation_residual": 0.14586521250609863,
+          "fibre_invariance_pointwise_dev_signature": 2.482534153247273e-16
+        },
+        "mps_passes": true,
+        "mps_recon_err": 8.881784197001252e-16,
+        "phase_quotient_gap_cloud_stat": 0.6804167427273252,
+        "site_count": 8,
+        "target_site_band": 8,
+        "vertex_count": 8
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9704523730189503,
+        "base_area_discretisation_residual": 0.04506939085847739,
+        "base_area_value": 1.3784027241918106,
+        "cell_count": 8,
+        "edge_count": 54,
+        "euler_VEFC": 1,
+        "face_count": 36,
+        "finitude_compact_max_norm": 1.0000000000000002,
+        "finitude_contrast": true,
+        "hopfield_converges": true,
+        "hopfield_energy_bounded": true,
+        "hopfield_passes": true,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 1.1102230246251565e-16,
+          "base_area_discretisation_residual": 0.04506939085847739,
+          "fibre_invariance_pointwise_dev_signature": 3.3422138886441676e-16
+        },
+        "mps_passes": true,
+        "mps_recon_err": 2.6645352591003757e-15,
+        "phase_quotient_gap_cloud_stat": 0.6857956149109022,
+        "site_count": 27,
+        "target_site_band": 16,
+        "vertex_count": 27
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9855973780684175,
+        "base_area_discretisation_residual": 0.019525511568370568,
+        "base_area_value": 1.3528588449017038,
+        "cell_count": 27,
+        "edge_count": 144,
+        "euler_VEFC": 1,
+        "face_count": 108,
+        "finitude_compact_max_norm": 1.0000000000000002,
+        "finitude_contrast": true,
+        "hopfield_converges": true,
+        "hopfield_energy_bounded": true,
+        "hopfield_passes": true,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 3.554447978966673e-16,
+          "base_area_discretisation_residual": 0.019525511568370568,
+          "fibre_invariance_pointwise_dev_signature": 2.5438405243138006e-16
+        },
+        "mps_passes": true,
+        "mps_recon_err": 5.10702591327572e-15,
+        "phase_quotient_gap_cloud_stat": 0.6857118945156798,
+        "site_count": 64,
+        "target_site_band": 32,
+        "vertex_count": 64
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9982602929815836,
+        "base_area_discretisation_residual": 0.010161544184190907,
+        "base_area_value": 1.3434948775175242,
+        "cell_count": 64,
+        "edge_count": 300,
+        "euler_VEFC": 1,
+        "face_count": 240,
+        "finitude_compact_max_norm": 1.0000000000000002,
+        "finitude_contrast": true,
+        "hopfield_converges": true,
+        "hopfield_energy_bounded": true,
+        "hopfield_passes": true,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 1.1102230246251565e-16,
+          "base_area_discretisation_residual": 0.010161544184190907,
+          "fibre_invariance_pointwise_dev_signature": 2.5438405243138006e-16
+        },
+        "mps_passes": true,
+        "mps_recon_err": 9.103828801926284e-15,
+        "phase_quotient_gap_cloud_stat": 0.6857956149109024,
+        "site_count": 125,
+        "target_site_band": 64,
+        "vertex_count": 125
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "spinor_native": {
+    "carrier": "Julia-native unit spinors psi in C^2; rho=|psi><psi| spinor-derived",
+    "field_avg_purity": 0.5027435020453188,
+    "field_avg_vn_entropy": 0.6904011640572801,
+    "numpy_free": true,
+    "single_site_vn_entropy": 0.0
+  },
+  "status": "partial_new_standard",
+  "status_ladder": "exists < runs < passes local rerun < canonical by process; this: runs with scorecard",
+  "title": "S^2 projective / Hopf base: neural net on non-flat geometry — NEW STANDARD",
+  "tool_manifest": {
+    "ITensors_ITensorMPS": {
+      "load_bearing": true,
+      "reason": "exact MPS product state over cell-complex sites; reconstruction error < 1e-10 verifies exact carrier pipeline (criterion 4)",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "load_bearing": false,
+      "reason": "receipt emission",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "load_bearing": true,
+      "reason": "eigvals/Hermitian for vN entropy; ortho_partner builds Hopf-antipodal spinor; norm throughout",
+      "tried": true,
+      "used": true
+    },
+    "Printf": {
+      "load_bearing": false,
+      "reason": "diagnostics",
+      "tried": true,
+      "used": true
+    },
+    "Random": {
+      "load_bearing": false,
+      "reason": "supportive: spinor field sampling for dependency-forcing reference run",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "load_bearing": true,
+      "reason": "antipodal-law verdict binds measured scaled residuals as Int constants; flips on RP^2-erased input",
+      "tried": true,
+      "used": true
+    }
+  },
+  "verdicts": {
+    "N01_noncommuting": true,
+    "antipodal_law_holds": true,
+    "clifford_criterion_met": true,
+    "dependency_forcing_holds": true,
+    "euler_VEFC_all_one": true,
+    "exact_carrier_met": true,
+    "finitude_criterion_met": true,
+    "invariant_criterion_met": true,
+    "neural_dynamics_met": false,
+    "quotient_genuine": true,
+    "scale_ladder_real": true,
+    "z3_verdict_flips": true
+  },
+  "z3_loadbearing_proof": {
+    "erase2_status": "sat",
+    "genuine_status": "unsat",
+    "tool_integration_depth": "load_bearing",
+    "verdict_flips": true
+  }
+}

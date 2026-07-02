@@ -1,0 +1,260 @@
+{
+  "F01_witness": {
+    "finite_carrier": "K=6 leaves; each = 2-component ComplexF64 spinor psi(eta,phi,chi) on S^3",
+    "finite_operator": "H_base(eta) = sin(2eta) sigma_x + cos(2eta) sigma_z (Hopf-base direction observable)",
+    "finite_path": "ordered ladder eta_1 -> ... -> eta_K (finite directed path through leaves)",
+    "finite_probe": "leaf-area integral (Na=Nb=120 midpoint grid) + density rho_k on a 24x24 (phi,chi) grid"
+  },
+  "N01_witness": {
+    "anti_tautology_control": "unitary basis rotation preserves the gap on an off-diagonal rho; codiagonal sigma_z trap refused",
+    "operator": "H_base=sin(2eta) sigma_x + cos(2eta) sigma_z",
+    "order_gap": 0.6984011233337132,
+    "present": true,
+    "state": "rho=diag(cos^2 eta,sin^2 eta)"
+  },
+  "ablation_outcome_delta": {
+    "anti_taut_area_spread_delta": 0.0,
+    "input_dep_area_spread_delta": 2.4143500492233727,
+    "input_dep_gap_spread_delta": 0.139166612700928,
+    "positive_area_spread_delta": 12.185340625592993
+  },
+  "ablation_proves_specificity": true,
+  "all_pass": true,
+  "anti_tautology_control": {
+    "area_spread_after_control": 12.185340625592993,
+    "area_spread_baseline": 12.185340625592993,
+    "delta_vs_baseline": 0.0,
+    "operation": "rigid azimuthal (phi,chi) chart shift dphi=dchi=0.7 (comparable magnitude, NOT the below-geometry)",
+    "proves": "the erasure-induced collapse is specific to the eta->metric coupling, not a generic perturbation artifact",
+    "signature_left_intact": true,
+    "signature_survives_nonzero": true
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "L6 connection/holonomy",
+    "L7/L8 Weyl sheet cover",
+    "L10 terrain generators",
+    "Axis0 / flux / FEP / gravity bridges",
+    "layer completion / admission",
+    "G-structure admission"
+  ],
+  "checks": {
+    "ANTITAUT_control_signature_intact": true,
+    "F01_witness_present": true,
+    "INPUTDEP_signature_varies": true,
+    "N01_order_gap_measured": true,
+    "ORDERGAP_unitarily_invariant": true,
+    "POSITIVE_erasure_measured_collapse": true,
+    "STRUCTURAL_no_builtin_zero": true,
+    "ablation_proves_specificity": true,
+    "area_ladder_strictly_ordered": true,
+    "area_matches_anchor_2pi2_sin2eta": true,
+    "bloch_free_density_only": true,
+    "dependency_forcing_genuine": true,
+    "distinct_etas_not_singleton": true,
+    "finite_map_present": true,
+    "julia_native_spinor_density": true,
+    "peps3d_anchor_present": true,
+    "scale_stress_8_16_32_64": true
+  },
+  "classification": "L5_layer_bf_poc",
+  "controls": {
+    "anti_tautology_survivor": {
+      "azimuthal_shift_area_spread": 12.185340625592993,
+      "azimuthal_shift_delta_vs_base": 0.0,
+      "basis_rotation_order_gap": 0.6984011233337128
+    },
+    "negative": {
+      "erase_eta_to_metric_area_spread_delta_gap": 12.185340625592993
+    },
+    "positive": {
+      "N01_order_gap": 0.6984011233337132,
+      "area_ladder_spread_gap": 12.185340625592993,
+      "order_gap_spread_gap": 0.6984011233337132
+    }
+  },
+  "dependency_forcing_genuine": true,
+  "doc_source": "MANIFOLD_GEOMETRY_LAYER_STACK_NONCOMMUTATIVE_ORDER_20260528.md (lines 202-204); A(eta)=2pi^2 sin(2eta)",
+  "finite_map": {
+    "codomain": "nested leaf signature {A_measured(eta_k), rho_k, ||[H_base,rho]||_k}_k",
+    "domain": "ordered ladder eta_1<...<eta_K in (0,pi/2)  x  torus chart (phi,chi)",
+    "map": "G_L5 : eta_k -> (leaf T_eta_k subset S^3, A(eta_k), rho_k=psi_k psi_k^dag, order gap)"
+  },
+  "honest_scope": {
+    "claim_ceiling": "L5_layer_bf_poc: the nested leaf area + order-gap signature is FORCED by the eta->metric / eta->Hopf-base below-geometry, proven by a MEASURED collapse plus an anti-tautology survivor. NOT layer admission; promotion blocked.",
+    "forced_standard_math": [
+      "A(eta)=2pi^2 sin(2eta), Clifford-torus leaf area at latitude eta (re-MEASURED from the S^3 induced metric)",
+      "rho_k = avg psi psi^dag = diag(cos^2 eta, sin^2 eta) on S^3 subset C^2",
+      "H_base(eta) = sin(2eta) sigma_x + cos(2eta) sigma_z, the eta-dependent Hopf-base direction observable"
+    ],
+    "novel_interpretive_NOT_proven": [
+      "reading the area ladder as an RG-style nested ratchet (geometric monotone only; no c-theorem)",
+      "entropy as primary (it is a derived readout)"
+    ],
+    "what_is_genuinely_forced": [
+      "erasing the eta->induced-metric coupling collapses the area ladder on DISTINCT etas (measured, not a singleton/fill/hardcoded zero)",
+      "a comparable-magnitude azimuthal shift leaves the area ladder INTACT (anti-tautology specificity)",
+      "the order gap ||[H_base,rho]|| is a basis-independent invariant on an off-diagonal rho (no co-diagonal cheat); codex-style sigma_z trap refused"
+    ]
+  },
+  "input_dependence": {
+    "area_input_dependent": true,
+    "gap_input_dependent": true,
+    "ladder_A_area_spread": 12.185340625592993,
+    "ladder_A_gap_spread": 0.6984011233337132,
+    "ladder_B_area_spread": 9.77099057636962,
+    "ladder_B_gap_spread": 0.5592345106327852,
+    "note": "the surviving area/order-gap spreads change with the eta ladder => not fixed constants"
+  },
+  "layer_id": "L5",
+  "nested_family": {
+    "K": 6,
+    "area_ladder_strictly_increasing": true,
+    "area_matches_anchor": true,
+    "areas_anchor": [
+      7.553868176588944,
+      11.602415825842423,
+      15.009812129401336,
+      17.587763825057692,
+      19.193812891687635,
+      19.739208802178716
+    ],
+    "areas_measured": [
+      7.55386817658794,
+      11.60241582584262,
+      15.009812129405638,
+      17.58776382505942,
+      19.193812891694865,
+      19.739208802180933
+    ],
+    "baseline_area_spread": 12.185340625592993,
+    "baseline_order_gap_spread": 0.6984011233337132,
+    "distinct_eta_count": 6,
+    "etas": [
+      0.19634954084936207,
+      0.3141592653589793,
+      0.43196898986859655,
+      0.5497787143782138,
+      0.667588438887831,
+      0.7853981633974483
+    ],
+    "max_area_abs_err": 7.229772336359019e-12,
+    "order_gaps": [
+      0.4999999999999996,
+      0.6724985119639557,
+      0.6984011233337132,
+      0.5720614028176958,
+      0.32101976096009355,
+      0.0
+    ]
+  },
+  "object": "L5_layer_nested_hopf_tori_torus_leaf_family",
+  "order_gap_anti_tautology": {
+    "gap_baseline": 0.6984011233337132,
+    "gap_basis_rotated": 0.6984011233337128,
+    "note": "gap is a basis-independent structural invariant on a genuinely off-diagonal rotated rho; the codex-style erase-to-sigma_z zero is rejected as the co-diagonal tautology",
+    "refused_codiagonal_trap_value": 1.467474848528901e-17,
+    "rotated_rho_offdiagonal_magnitude": 0.3026554826744329,
+    "unitarily_invariant": true
+  },
+  "peps3d": {
+    "C": 320,
+    "E": 1088,
+    "F": 1024,
+    "K_leaves": 6,
+    "V": 384,
+    "euler_VEFC": 0,
+    "torus_grid": "8x8"
+  },
+  "positive_erasure": {
+    "area_spread_after_erasure": 0.0,
+    "area_spread_baseline": 12.185340625592993,
+    "area_spread_delta": 12.185340625592993,
+    "collapsed": true,
+    "distinct_etas_in": 6,
+    "erasure": "replace S^3 induced metric by fixed-radius flat-torus metric (eta no longer enters area)",
+    "why_not_tautology": "distinct etas enter; the flat metric DROPS the eta-coupling, so equal areas are MEASURED out, not constructed via a singleton/fill/hardcoded zero"
+  },
+  "post_erasure_residuals": {
+    "flat_metric_area_spread_after": 0.0,
+    "note": "residual ~0 after erasing eta->metric; matched DELTA (controls.negative) is the load-bearing quantity"
+  },
+  "promotion_allowed": false,
+  "qit_derived": {
+    "S_derived": [
+      0.16172969479895372,
+      0.31506232335243345,
+      0.4641541035772636,
+      0.5862245822102183,
+      0.6656457623658545,
+      0.6931471805599453
+    ],
+    "S_derived_spread": 0.5314174857609916,
+    "entropy_is_derived_not_primary": true,
+    "note": "S(rho_k) from diag(cos^2 eta, sin^2 eta); tracks the leaf populations, not a primary object"
+  },
+  "required_load_bearing_erasures": [
+    "erase_eta_to_metric"
+  ],
+  "scale_stress_8_16_32_64": {
+    "16": {
+      "anti_tautology_survives": true,
+      "area_spread_flat_erased": 0.0,
+      "area_spread_real": 16.11213870270087,
+      "area_spread_shift_control": 16.11213870270087,
+      "distinct_etas": true,
+      "positive_collapses": true
+    },
+    "32": {
+      "anti_tautology_survives": true,
+      "area_spread_flat_erased": 0.0,
+      "area_spread_real": 17.86287771549133,
+      "area_spread_shift_control": 17.86287771549133,
+      "distinct_etas": true,
+      "positive_collapses": true
+    },
+    "64": {
+      "anti_tautology_survives": true,
+      "area_spread_flat_erased": 0.0,
+      "area_spread_real": 18.78554091578771,
+      "area_spread_shift_control": 18.78554091578771,
+      "distinct_etas": true,
+      "positive_collapses": true
+    },
+    "8": {
+      "anti_tautology_survives": true,
+      "area_spread_flat_erased": 0.0,
+      "area_spread_real": 12.988001778522943,
+      "area_spread_shift_control": 12.988001778522943,
+      "distinct_etas": true,
+      "positive_collapses": true
+    }
+  },
+  "scale_stress_all_pass": true,
+  "spinor": {
+    "bloch_vector_state_used": false,
+    "construction": "rho_k = avg_{phi,chi} psi psi^dag on S^3 subset C^2 (density-operator only; NO Bloch r-vector)",
+    "eltype": "ComplexF64",
+    "native_julia": true,
+    "rho_trace": 1.0
+  },
+  "status": "passes local rerun",
+  "status_ladder": "exists < runs < passes local rerun < canonical by process",
+  "structural_no_builtin_zero": {
+    "H_base": "sin(2eta) sigma_x + cos(2eta) sigma_z",
+    "H_not_codiagonal_with_rho": true,
+    "H_not_scalar_multiple_of_rho": true,
+    "note": "commutator ||[H_base,rho]|| therefore has NO algebraic zero forced by construction",
+    "rho": "diag(cos^2 eta, sin^2 eta)"
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission",
+    "LinearAlgebra": "load_bearing: induced-metric area integral, density spectra, commutator HS-norm order gaps, unitary-invariance control",
+    "Z3": "omitted (not decorative): the decisive claim is a MEASURED numeric collapse + anti-tautology survivor, not an SMT structural theorem in this POC"
+  }
+}

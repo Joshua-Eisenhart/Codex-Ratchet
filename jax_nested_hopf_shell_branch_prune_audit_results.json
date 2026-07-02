@@ -1,0 +1,95 @@
+{
+  "object": "JAX nested Hopf shell branch/prune audit",
+  "lane": "jax_batched_stress_runner_not_native_spinor_engine_not_pytorch_port",
+  "classification": "diagnostic_jax_audit",
+  "promotion_allowed": false,
+  "claim_boundary": "JAX constrained numerical audit only. This does not admit a layer, stacking, Axis0/FEP, flux, physics, or final manifold claim.",
+  "finite_map": "batched nested S3 unit-quaternion shell futures -> retracted flow, Hopf S2 base readouts, chirality-pruned survivor basins",
+  "domain": {
+    "futures": 512,
+    "shells_per_future": 3,
+    "state": "unit quaternion q=(q0,q1,q2,q3) on S3 per shell"
+  },
+  "codomain_or_output": {
+    "survivor_outer_basin_sets": "basin labels {1,2,3,4} after prune/no-prune/control",
+    "hopf_base_invariants": "S2 base norm and U1 fiber invariance",
+    "nested_alignment": "adjacent shell Hopf-base distance before/after coupled flow"
+  },
+  "root_constraints_in_force": {
+    "F01": "finite ensemble, finite shells, finite steps, finite targets",
+    "N01": "order-sensitive branch/evolve/prune latch; forbidden crossing at any step is irreversible"
+  },
+  "blocked_consumers": [
+    "layer_stacking",
+    "flux",
+    "xi_phi0",
+    "axis0",
+    "fep_holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "parameters": {
+    "N": 512,
+    "shells": 3,
+    "rng_seed": 314159,
+    "draw_rows": 6144,
+    "dt": 0.002,
+    "t_end": 8.0,
+    "steps": 4000,
+    "coupling": 0.42,
+    "prune_q0_threshold": -0.01
+  },
+  "runs": {
+    "A": {
+      "name": "A_no_prune",
+      "populated_outer_basins": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "survivors": 512,
+      "pruned": 0,
+      "mean_adjacent_base_distance_survivors": 1.0597665290250053
+    },
+    "B": {
+      "name": "B_chirality_prune",
+      "populated_outer_basins": [
+        1,
+        2
+      ],
+      "survivors": 331,
+      "pruned": 181,
+      "mean_adjacent_base_distance_survivors": 1.0242683954590839
+    },
+    "C": {
+      "name": "C_trivial_control",
+      "populated_outer_basins": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "survivors": 512,
+      "pruned": 0,
+      "mean_adjacent_base_distance_survivors": 1.0597665290250053
+    }
+  },
+  "initial_mean_adjacent_base_distance": 1.3408494534583155,
+  "max_norm_drift": 2.220446049250313e-16,
+  "max_base_norm_drift": 6.661338147750939e-16,
+  "hopf_fiber_max_delta": 4.477603233993732e-16,
+  "checks": {
+    "chk_baseline_all_outer_basins": true,
+    "chk_prune_kills_forbidden_outer_basins": true,
+    "chk_allowed_outer_basins_preserved": true,
+    "chk_trivial_control_noop": true,
+    "chk_real_prune_fired": true,
+    "chk_bookkeeping_consistent": true,
+    "chk_retraction_norm": true,
+    "chk_hopf_base_norm": true,
+    "chk_hopf_fiber_invariance": true,
+    "chk_nested_alignment_improves": true
+  },
+  "AUDIT_PASS": true
+}

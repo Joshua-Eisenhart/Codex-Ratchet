@@ -19,6 +19,77 @@ This file is the durable Codex authority surface for this repository.
 
 Codex Ratchet is a nonclassical constraint-admissibility research system. The main product is working sims, proof/tool checks, clean queue movement, and bounded evidence. Wizard exists to improve that work; it must not become the work.
 
+## Mandatory Repo-Read Gate
+
+For every substantive Codex Ratchet turn, Codex must read the current request,
+this `AGENTS.md`, `CODEX.md` when present, and the three process docs named in
+Authority Order before planning, sim work, doc edits, or status claims. For
+manifold, sim, proof, queue, or result work, also read the task-relevant ledger,
+audit, source, and result files before answering.
+
+If those documents were not read in the current turn, say the run is partial
+and do not make route, layer, sim, manifold, flux, Axis0, or repo-state claims.
+Worker reports, old summaries, and plausible reasoning are not substitutes for
+reading the files and citing the gate or result path that controls the move.
+
+## Nonclassical Manifold Foundation Gate
+
+No nonclassical manifold, basin, flux, Xi, Phi0, Axis0, or physics work is
+admissible from labels alone. Every candidate step must be an explicit finite
+map, invariant, or blocked readout over the two root constraints:
+
+```text
+F01 finite carrier/probe/operator/path set
+N01 noncommuting or order-sensitive operation/control
+domain
+codomain or output object
+finite PEPS3D carrier anchor from the first admitted carrier step
+JAX- or Julia-native finite spinor state, spinor-derived density, or explicit carrier tensor
+quaternionic map/invariant if quaternion language is used
+negative/control condition
+receipt path or blocked-reason artifact
+blocked downstream consumers
+```
+
+Current Codex engine canon: JAX and Julia are the primary nonclassical
+execution engines. PyTorch is sidelined and may appear only as legacy evidence,
+explicit comparison/mirror output, or a bounded helper with a real ablation. Do
+not emit decorative torch stubs, placeholder `torch_*` fields, or no-op
+PyTorch paths to satisfy stale gates. A PyTorch path is claim-bearing only when
+removing it changes the relevant observable and the result explains that role.
+
+PEPS3D is not a late layer appended after stage/substage labels. For new
+nonclassical manifold work, it is the finite spinor-network carrier from the
+first admitted finite carrier/probe step. A valid substage manifold claim must
+embed each substage as a finite PEPS3D-carried local cell, tensor, or channel
+action, or define an explicit projection from a richer finite PEPS3D carrier.
+The existing 16-stage-site plus 64 operator-row scaffold is not sufficient.
+
+Quaternion, Hopf, terrain, manifold, layer, shell, flux, and Axis0 language is
+label-only unless tied to explicit math under this gate. NumPy, `.numpy()`,
+dense-state closure, Cartesian xyz primitives, scalar PEPS3D labels, and
+decorative PyTorch/JAX/Julia tool labels are not claim-bearing evidence for
+nonclassical manifold work unless fenced as classical/control/adapter surfaces
+with downstream promotion blocked.
+
+Before any response, closeout, status artifact, or worker report claims full
+layer completion, parent-complete layer status, true G-structure completion,
+official G-structure selection, layer stacking readiness, Axis0/FEP/flux
+unlocking, physics/gravity progress, or final manifold admission, run:
+
+```text
+make layer-completion-claim-gate CLAIM_FILE=<claim text file when applicable>
+```
+
+The gate must pass against the current status/result evidence. If it fails, the
+claim is blocked; report the exact violation instead of softening the wording
+into another completion-like phrase.
+
+Sensitive completion claims never admit through generic `scripts/stage_gate.py`.
+That script may block a bad claim, but `ok=true` from the text gate is not
+admission. Admission requires a dedicated full-layer/G-structure/manifold
+evidence packet that satisfies the Nonclassical Manifold Foundation Gate.
+
 ## Wizard Runtime Default
 
 Wizard is the default routing, preflight, receipt, and collapse-resistance layer around normal repo work. Run Wizard v4.2 Max Assembly by default at the start of every substantive Codex Ratchet turn. The point is better repo execution, not more visible orchestration.
@@ -221,6 +292,19 @@ Every visible follow-up option should have:
 ## Sim And Proof Process
 
 Use the interpreter from `Makefile` for sims.
+
+Python/JAX work uses the Makefile interpreter. Julia carrier work uses the
+local Julia project under `system_v5/julia_carrier`. For PEPS2D work, verify
+cheap invariant/preflight flips before expensive CTMRG, and do not make CTMRG
+convergence the only gate when the local lane is known to hang. A PEPSKit or
+CTMRG `load_bearing` label is valid only when tool removal or bypass changes
+the verdict; otherwise it is decorative-tool/name-overclaim evidence and must
+be demoted or blocked.
+
+Before editing any shared sim, gate, queue, result, or skill file in this repo,
+inspect live processes for that exact path or lane. If a result JSON predates
+its source or has no source hash tying it to the current file, treat it as a
+stale-receipt fabrication risk until rerun or explicitly blocked.
 
 Tool-stage work is micro-first:
 

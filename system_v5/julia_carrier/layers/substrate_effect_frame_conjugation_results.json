@@ -1,0 +1,635 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^2); finite SU(2) frame set {Hopf, nested-tori, Clifford, random, flat}",
+    "finite_operator": "genuine upper Weyl ops {Te-dephasing, WeylL-GKSL, Fi-unitary}; substrate frames from genuine geometry",
+    "finite_path": "dressed compositions U_A Phi_B(U_A' . U_A) U_A' and nested U_A U_A'",
+    "finite_probe": "21 density operators (20 spinor-derived + 1 maximally-mixed)"
+  },
+  "N01_witness": {
+    "genuine_substrate_spread": 0.06456177737680358,
+    "noise_floor": 1.4210854715202004e-14,
+    "order_sensitive_control": "frame conjugation does not commute with the upper op in general; [U_A, V] != 0 drives the dressed-vs-bare gap. The substrate axis is the geometric (non-temporal) control; the temporal-order spine is validated separately in order_null_killtest.jl.",
+    "present_above_floor": true
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "carrier_layer": "density operators rho in D(C^2); substrate frames U_A in SU(2) from genuine geometry; upper Weyl operations from L7/L10/L11 _bf channels. NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "MEASURES the operational difference E(A) between a bare and a substrate-dressed Weyl operation on a finite density-operator carrier, against four anti-tautology requirements and a random-unitary control. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics. A real structured effect here is a CANDIDATE geometric interface, NOT a proven nesting layer.",
+  "classification": "substrate_effect_frame_conjugation_poc",
+  "codomain_or_output": "finite table of substrate effects E(A) (mean,max) per (upper-op, substrate), substrate spread, random-vs-geometry distinguishability, nesting ordering, Z3 verdict-flip",
+  "dependency_receipts": [
+    "layers/order_null_killtest.jl (genuine Weyl GKSL + Phi_Te + hopf_h0 + PTM/noise-floor/Z3 discipline)",
+    "layers/G_hopf_fibration.jl (Hopf representative spinor fiber_rep)",
+    "layers/G_nested_hopf_tori.jl (nested-tori leaf spinor / foliation)",
+    "layers/clifford_rotor_spinor_network_entanglement.jl (Clifford rotor SU(2))",
+    "layers/L7_layer_bf.jl (per-sheet Weyl GKSL channel)"
+  ],
+  "domain": "finite set of 21 density operators; finite substrate frame set {Hopf, nested-tori, Clifford, random-su2, flat=I}; upper Weyl ops {Te-dephasing, WeylL-GKSL, Fi-unitary}",
+  "downstream_blocks": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "finite_map": "(substrate A -> U_A in SU(2)) |-> dressed channel Phi_B^A(rho)=U_A Phi_B(U_A' rho U_A) U_A'; substrate effect E(A)=max_rho ||Phi_B^A(rho)-Phi_B(rho)||_1",
+  "geometry_layer": "Hopf frame (G_hopf_fibration), nested-Hopf-tori leaf frame (G_nested_hopf_tori), Clifford rotor (clifford_rotor_spinor_network_entanglement)",
+  "kill_conditions": [
+    "flat must collapse E to floor",
+    "random unitary indistinguishable from geometry => not geometry, just non-commutation",
+    "nested frame trivial (== a single existing frame) => nesting not real"
+  ],
+  "n_rho": 21,
+  "name": "Geometric substrate-effect via frame conjugation (density-operator only)",
+  "negatives_run": [
+    "flat_substrate_U_eq_I",
+    "random_su2_non_geometry_frame",
+    "unitary_upper_op_trap_exposer"
+  ],
+  "noise_floor": {
+    "definition": "eps(Float64) * trace_scale(1) * conjugation_depth(4) * 16 safety",
+    "machine_eps": 2.220446049250313e-16,
+    "value": 1.4210854715202004e-14
+  },
+  "non_numpy": true,
+  "object_id": "substrate_effect_frame_conjugation",
+  "per_upper_op": [
+    {
+      "flat_control": {
+        "E_max": 0.0,
+        "E_mean": 0.0,
+        "collapses_to_floor": true
+      },
+      "geometry_effects": {
+        "Clifford_rotor": {
+          "E_max": 0.3881700156510177,
+          "E_mean": 0.16938251946619703,
+          "above_floor": true
+        },
+        "Hopf_frame": {
+          "E_max": 0.3399802721944541,
+          "E_mean": 0.1680170064590082,
+          "above_floor": true
+        },
+        "NestedTori_leaf": {
+          "E_max": 0.40454204957125767,
+          "E_mean": 0.17653622202664052,
+          "above_floor": true
+        }
+      },
+      "n_geometry_frames_distinguishable": 0,
+      "n_geometry_frames_total": 3,
+      "nesting": {
+        "nested_frame_min_dist_to_single_geom": 1.5330064466097963,
+        "nested_frame_nontrivial": true,
+        "nesting_compounds": true,
+        "ordering": {
+          "E_flat_max": 0.0,
+          "E_nested_max": 0.48174286001662614,
+          "E_single_max": 0.40454204957125767,
+          "flat_lt_single": true,
+          "nested_distinct_from_flat": true,
+          "nested_distinct_from_single": true
+        }
+      },
+      "positive_all_above_floor": true,
+      "random_unitary_control": {
+        "E_max_hi": 0.5062910815337024,
+        "E_max_lo": 0.02843209169876991,
+        "E_max_mean": 0.3844546747589042,
+        "E_max_std": 0.1094700809137563,
+        "commutator_matched_discriminator": {
+          "Clifford_rotor": {
+            "E_geo": 0.3881700156510177,
+            "E_matched_mean": 0.37851719924932503,
+            "E_matched_std": 0.012108904576675227,
+            "c_geo": 1.198307831431598,
+            "geom_outside_matched_band": false,
+            "n_matched": 83,
+            "outside_at_each_tolerance": [
+              false,
+              false,
+              false
+            ],
+            "per_tolerance": {
+              "tol_0.02": {
+                "E_matched_mean": 0.3772433897582207,
+                "E_matched_std": 0.007587975842528495,
+                "abs_gap": 0.010926625892797026,
+                "n": 33,
+                "outside": false
+              },
+              "tol_0.05": {
+                "E_matched_mean": 0.37851719924932503,
+                "E_matched_std": 0.012108904576675227,
+                "abs_gap": 0.009652816401692688,
+                "n": 83,
+                "outside": false
+              },
+              "tol_0.1": {
+                "E_matched_mean": 0.37749995444814943,
+                "E_matched_std": 0.017837868511440796,
+                "abs_gap": 0.010670061202868286,
+                "n": 155,
+                "outside": false
+              }
+            }
+          },
+          "Hopf_frame": {
+            "E_geo": 0.3399802721944541,
+            "E_matched_mean": 0.34857486356168865,
+            "E_matched_std": 0.010177694665007385,
+            "c_geo": 1.0816501943328263,
+            "geom_outside_matched_band": false,
+            "n_matched": 59,
+            "outside_at_each_tolerance": [
+              false,
+              false,
+              false
+            ],
+            "per_tolerance": {
+              "tol_0.02": {
+                "E_matched_mean": 0.35014998661941166,
+                "E_matched_std": 0.007069552542762891,
+                "abs_gap": 0.010169714424957566,
+                "n": 23,
+                "outside": false
+              },
+              "tol_0.05": {
+                "E_matched_mean": 0.34857486356168865,
+                "E_matched_std": 0.010177694665007385,
+                "abs_gap": 0.00859459136723456,
+                "n": 59,
+                "outside": false
+              },
+              "tol_0.1": {
+                "E_matched_mean": 0.35051583861173863,
+                "E_matched_std": 0.017974582537556474,
+                "abs_gap": 0.010535566417284536,
+                "n": 121,
+                "outside": false
+              }
+            }
+          },
+          "NestedTori_leaf": {
+            "E_geo": 0.40454204957125767,
+            "E_matched_mean": 0.40209325751031694,
+            "E_matched_std": 0.01144341626034984,
+            "c_geo": 1.3012874652504032,
+            "geom_outside_matched_band": false,
+            "n_matched": 88,
+            "outside_at_each_tolerance": [
+              false,
+              false,
+              false
+            ],
+            "per_tolerance": {
+              "tol_0.02": {
+                "E_matched_mean": 0.3989662799875795,
+                "E_matched_std": 0.008042415506534109,
+                "abs_gap": 0.0055757695836781695,
+                "n": 36,
+                "outside": false
+              },
+              "tol_0.05": {
+                "E_matched_mean": 0.40209325751031694,
+                "E_matched_std": 0.01144341626034984,
+                "abs_gap": 0.00244879206094073,
+                "n": 88,
+                "outside": false
+              },
+              "tol_0.1": {
+                "E_matched_mean": 0.4014117050942524,
+                "E_matched_std": 0.01827316015823984,
+                "abs_gap": 0.0031303444770052757,
+                "n": 183,
+                "outside": false
+              }
+            }
+          }
+        },
+        "discriminator": "PAIRED: per geometry frame, compare E(geometry) to E of random SU(2) frames matched (+/-5%) on the commutator norm ||[U,V]||. geometry_distinguishable iff E(geometry) lands OUTSIDE the matched-random effect band -> geometry carries structure BEYOND non-commutation. Otherwise E is a function of the commutator norm alone => 'just non-commutation', geometry NOT load-bearing.",
+        "geometry_distinguishable_from_random": false,
+        "geometry_inside_raw_random_band": true,
+        "n_random": 2000
+      },
+      "substrate_dependent": true,
+      "substrate_spread": 0.06456177737680358,
+      "upper_op": "Te_dephasing",
+      "upper_op_kind": "nonunitary",
+      "verdict": "substrate_effect_is_just_noncommutation"
+    },
+    {
+      "flat_control": {
+        "E_max": 0.0,
+        "E_mean": 0.0,
+        "collapses_to_floor": true
+      },
+      "geometry_effects": {
+        "Clifford_rotor": {
+          "E_max": 0.430268428281297,
+          "E_mean": 0.40309114505067545,
+          "above_floor": true
+        },
+        "Hopf_frame": {
+          "E_max": 0.3738527422021123,
+          "E_mean": 0.3312473843776909,
+          "above_floor": true
+        },
+        "NestedTori_leaf": {
+          "E_max": 0.687352176667575,
+          "E_mean": 0.5666014873804649,
+          "above_floor": true
+        }
+      },
+      "n_geometry_frames_distinguishable": 1,
+      "n_geometry_frames_total": 3,
+      "nesting": {
+        "nested_frame_min_dist_to_single_geom": 1.5330064466097963,
+        "nested_frame_nontrivial": true,
+        "nesting_compounds": true,
+        "ordering": {
+          "E_flat_max": 0.0,
+          "E_nested_max": 0.6992018845615193,
+          "E_single_max": 0.687352176667575,
+          "flat_lt_single": true,
+          "nested_distinct_from_flat": true,
+          "nested_distinct_from_single": true
+        }
+      },
+      "positive_all_above_floor": true,
+      "random_unitary_control": {
+        "E_max_hi": 0.9740374211306746,
+        "E_max_lo": 0.07848199065556903,
+        "E_max_mean": 0.6736346337563238,
+        "E_max_std": 0.20915998356805426,
+        "commutator_matched_discriminator": {
+          "Clifford_rotor": {
+            "E_geo": 0.430268428281297,
+            "E_matched_mean": 0.5728666503420518,
+            "E_matched_std": 0.2567487545505336,
+            "c_geo": 0.7294710671559693,
+            "geom_outside_matched_band": false,
+            "n_matched": 30,
+            "outside_at_each_tolerance": [
+              false,
+              false,
+              false
+            ],
+            "per_tolerance": {
+              "tol_0.02": {
+                "E_matched_mean": 0.5358585733599821,
+                "E_matched_std": 0.24582206015421632,
+                "abs_gap": 0.10559014507868508,
+                "n": 9,
+                "outside": false
+              },
+              "tol_0.05": {
+                "E_matched_mean": 0.5728666503420518,
+                "E_matched_std": 0.2567487545505336,
+                "abs_gap": 0.14259822206075473,
+                "n": 30,
+                "outside": false
+              },
+              "tol_0.1": {
+                "E_matched_mean": 0.5752219685929689,
+                "E_matched_std": 0.2446181805516278,
+                "abs_gap": 0.1449535403116719,
+                "n": 54,
+                "outside": false
+              }
+            }
+          },
+          "Hopf_frame": {
+            "E_geo": 0.3738527422021123,
+            "E_matched_mean": 0.7013404967595467,
+            "E_matched_std": 0.20690547895129327,
+            "c_geo": 0.9771809965215125,
+            "geom_outside_matched_band": true,
+            "n_matched": 52,
+            "outside_at_each_tolerance": [
+              true,
+              true,
+              true
+            ],
+            "per_tolerance": {
+              "tol_0.02": {
+                "E_matched_mean": 0.7938275600208664,
+                "E_matched_std": 0.14672453463635937,
+                "abs_gap": 0.4199748178187541,
+                "n": 25,
+                "outside": true
+              },
+              "tol_0.05": {
+                "E_matched_mean": 0.7013404967595467,
+                "E_matched_std": 0.20690547895129327,
+                "abs_gap": 0.3274877545574344,
+                "n": 52,
+                "outside": true
+              },
+              "tol_0.1": {
+                "E_matched_mean": 0.671426464114943,
+                "E_matched_std": 0.22197722683412138,
+                "abs_gap": 0.2975737219128307,
+                "n": 106,
+                "outside": true
+              }
+            }
+          },
+          "NestedTori_leaf": {
+            "E_geo": 0.687352176667575,
+            "E_matched_mean": 0.7094921275535704,
+            "E_matched_std": 0.17128926218472595,
+            "c_geo": 2.1659579002487597,
+            "geom_outside_matched_band": false,
+            "n_matched": 258,
+            "outside_at_each_tolerance": [
+              false,
+              false,
+              false
+            ],
+            "per_tolerance": {
+              "tol_0.02": {
+                "E_matched_mean": 0.728075026428501,
+                "E_matched_std": 0.16032229588070837,
+                "abs_gap": 0.040722849760925994,
+                "n": 107,
+                "outside": false
+              },
+              "tol_0.05": {
+                "E_matched_mean": 0.7094921275535704,
+                "E_matched_std": 0.17128926218472595,
+                "abs_gap": 0.022139950885995408,
+                "n": 258,
+                "outside": false
+              },
+              "tol_0.1": {
+                "E_matched_mean": 0.7046130882393132,
+                "E_matched_std": 0.1740240602242779,
+                "abs_gap": 0.017260911571738258,
+                "n": 500,
+                "outside": false
+              }
+            }
+          }
+        },
+        "discriminator": "PAIRED: per geometry frame, compare E(geometry) to E of random SU(2) frames matched (+/-5%) on the commutator norm ||[U,V]||. geometry_distinguishable iff E(geometry) lands OUTSIDE the matched-random effect band -> geometry carries structure BEYOND non-commutation. Otherwise E is a function of the commutator norm alone => 'just non-commutation', geometry NOT load-bearing.",
+        "geometry_distinguishable_from_random": true,
+        "geometry_inside_raw_random_band": true,
+        "n_random": 2000
+      },
+      "substrate_dependent": true,
+      "substrate_spread": 0.3134994344654627,
+      "upper_op": "WeylL_GKSL",
+      "upper_op_kind": "nonunitary",
+      "verdict": "substrate_effect_partial_frame_specific_candidate"
+    },
+    {
+      "flat_control": {
+        "E_max": 0.0,
+        "E_mean": 0.0,
+        "collapses_to_floor": true
+      },
+      "geometry_effects": {
+        "Clifford_rotor": {
+          "E_max": 0.5606126285392461,
+          "E_mean": 0.29104520328398226,
+          "above_floor": true
+        },
+        "Hopf_frame": {
+          "E_max": 0.48041857815967703,
+          "E_mean": 0.2262389161732029,
+          "above_floor": true
+        },
+        "NestedTori_leaf": {
+          "E_max": 0.5596579985021946,
+          "E_mean": 0.28067122116764687,
+          "above_floor": true
+        }
+      },
+      "n_geometry_frames_distinguishable": 0,
+      "n_geometry_frames_total": 3,
+      "nesting": {
+        "nested_frame_min_dist_to_single_geom": 0.6310400863568751,
+        "nested_frame_nontrivial": true,
+        "nesting_compounds": true,
+        "ordering": {
+          "E_flat_max": 0.0,
+          "E_nested_max": 0.35451018756172586,
+          "E_single_max": 0.48041857815967703,
+          "flat_lt_single": true,
+          "nested_distinct_from_flat": true,
+          "nested_distinct_from_single": true
+        }
+      },
+      "positive_all_above_floor": true,
+      "random_unitary_control": {
+        "E_max_hi": 1.10365833527697,
+        "E_max_lo": 0.05353677863377263,
+        "E_max_mean": 0.7696934895228792,
+        "E_max_std": 0.237130825190723,
+        "commutator_matched_discriminator": {
+          "Clifford_rotor": {
+            "E_geo": 0.5606126285392461,
+            "E_matched_mean": 0.5360204754909111,
+            "E_matched_std": 0.025440222041041117,
+            "c_geo": 0.521222605928315,
+            "geom_outside_matched_band": false,
+            "n_matched": 83,
+            "outside_at_each_tolerance": [
+              false,
+              false,
+              false
+            ],
+            "per_tolerance": {
+              "tol_0.02": {
+                "E_matched_mean": 0.5327093673926437,
+                "E_matched_std": 0.020757877227464198,
+                "abs_gap": 0.027903261146602354,
+                "n": 33,
+                "outside": false
+              },
+              "tol_0.05": {
+                "E_matched_mean": 0.5360204754909111,
+                "E_matched_std": 0.025440222041041117,
+                "abs_gap": 0.024592153048334953,
+                "n": 83,
+                "outside": false
+              },
+              "tol_0.1": {
+                "E_matched_mean": 0.5377215841145615,
+                "E_matched_std": 0.03531532430886014,
+                "abs_gap": 0.022891044424684592,
+                "n": 155,
+                "outside": false
+              }
+            }
+          },
+          "Hopf_frame": {
+            "E_geo": 0.48041857815967703,
+            "E_matched_mean": 0.48837492152989737,
+            "E_matched_std": 0.02398994803649516,
+            "c_geo": 0.4704805544994937,
+            "geom_outside_matched_band": false,
+            "n_matched": 59,
+            "outside_at_each_tolerance": [
+              false,
+              false,
+              false
+            ],
+            "per_tolerance": {
+              "tol_0.02": {
+                "E_matched_mean": 0.487692315757202,
+                "E_matched_std": 0.019743605249913896,
+                "abs_gap": 0.007273737597524976,
+                "n": 23,
+                "outside": false
+              },
+              "tol_0.05": {
+                "E_matched_mean": 0.48837492152989737,
+                "E_matched_std": 0.02398994803649516,
+                "abs_gap": 0.007956343370220331,
+                "n": 59,
+                "outside": false
+              },
+              "tol_0.1": {
+                "E_matched_mean": 0.49179700706516993,
+                "E_matched_std": 0.032822663816414396,
+                "abs_gap": 0.011378428905492899,
+                "n": 121,
+                "outside": false
+              }
+            }
+          },
+          "NestedTori_leaf": {
+            "E_geo": 0.5596579985021946,
+            "E_matched_mean": 0.5799884453649308,
+            "E_matched_std": 0.023176428146373097,
+            "c_geo": 0.5660151973548906,
+            "geom_outside_matched_band": false,
+            "n_matched": 88,
+            "outside_at_each_tolerance": [
+              false,
+              false,
+              false
+            ],
+            "per_tolerance": {
+              "tol_0.02": {
+                "E_matched_mean": 0.5810877956843542,
+                "E_matched_std": 0.019169275790149366,
+                "abs_gap": 0.02142979718215965,
+                "n": 36,
+                "outside": false
+              },
+              "tol_0.05": {
+                "E_matched_mean": 0.5799884453649308,
+                "E_matched_std": 0.023176428146373097,
+                "abs_gap": 0.020330446862736218,
+                "n": 88,
+                "outside": false
+              },
+              "tol_0.1": {
+                "E_matched_mean": 0.5772659130966049,
+                "E_matched_std": 0.03567768941341245,
+                "abs_gap": 0.017607914594410357,
+                "n": 183,
+                "outside": false
+              }
+            }
+          }
+        },
+        "discriminator": "PAIRED: per geometry frame, compare E(geometry) to E of random SU(2) frames matched (+/-5%) on the commutator norm ||[U,V]||. geometry_distinguishable iff E(geometry) lands OUTSIDE the matched-random effect band -> geometry carries structure BEYOND non-commutation. Otherwise E is a function of the commutator norm alone => 'just non-commutation', geometry NOT load-bearing.",
+        "geometry_distinguishable_from_random": false,
+        "geometry_inside_raw_random_band": true,
+        "n_random": 2000
+      },
+      "substrate_dependent": true,
+      "substrate_spread": 0.08019405037956906,
+      "upper_op": "Fi_unitary",
+      "upper_op_kind": "unitary",
+      "verdict": "substrate_effect_is_just_noncommutation"
+    }
+  ],
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "quaternion_action": "SU(2)~unit quaternions: each U_A is a unit quaternion frame; nesting U_A*U_A' is quaternion product (control checks it is not a trivial single rotation)",
+  "required_negatives": [
+    "flat_substrate_U_eq_I",
+    "random_su2_non_geometry_frame",
+    "unitary_upper_op_trap_exposer"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite density-operator carrier / SU(2) frame set / Weyl ops / dressed paths",
+    "N01 frame conjugation [U_A, V] != 0 order-sensitive control (geometric substrate axis)"
+  ],
+  "script": "substrate_effect_frame_conjugation.jl",
+  "seed": 20260602,
+  "seed_robust": {
+    "Te_hopf_E_max": [
+      0.29796572584834324,
+      0.3347193784141034,
+      0.34280330298040795
+    ],
+    "all_above_floor": true,
+    "relative_std": 0.07349444823997762,
+    "robust": true,
+    "seeds": [
+      20260603,
+      20260604,
+      20260605
+    ]
+  },
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical_poc",
+  "sim_id": "substrate_effect_frame_conjugation",
+  "spinor_state": "SU(2) frames built from genuine 2-spinors on S^3 (Hopf fiber_rep, nested-tori leaf spinor); upper GKSL state from Hopf-site Hamiltonian H0",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm), HS norms, matrix exp (Clifford rotor / GKSL), all SU(2) frame and channel algebra; every measured number flows through it.",
+    "Random": "load_bearing: random density operators AND the random-su2 control band (the sharper requirement-3 control is measured, not planted).",
+    "Statistics": "load_bearing: mean/std over the rho ensemble and the random-unitary control band (the distinguishability test depends on these).",
+    "Z3": "load_bearing: binds the measured across-substrate spread to the flat=>spread==0 law; verdict flips UNSAT->SAT on the flat control."
+  },
+  "verdict": {
+    "decides": "whether the owner's geometric substrate-nesting claim is finitely-validatable on a density-operator carrier or genuinely PEPS-bound.",
+    "interpretation": "substrate_effect_real_and_nests requires (per non-unitary Weyl op) all four anti-tautology requirements AND ALL THREE geometry frames knob-robustly distinguishable from commutator-matched random unitaries. substrate_effect_partial_frame_and_dissipation_specific means 1..(k-1) of k geometry frames clear the commutator-matched discriminator: a single geometry frame at a DISSIPATIVE (GKSL) upper op carries structure beyond non-commutation, but it is NOT clean across the geometry family — a frame-specific, dissipation-gated CANDIDATE signal, not a proven geometric-substrate effect. substrate_effect_is_just_noncommutation means geometry frames are indistinguishable from commutator-matched random SU(2) conjugation (the unitary upper op confirms the trap: E(A)=||[U_A,V]|| by construction). substrate_effect_trivial_or_needs_geometric_carrier means the finite 2-dim frame does not carry the structure — the real geometric PEPS carrier is required (Path B forced).",
+    "nonunitary_upper_op_verdicts": [
+      "substrate_effect_is_just_noncommutation",
+      "substrate_effect_partial_frame_specific_candidate"
+    ],
+    "overall": "substrate_effect_partial_frame_and_dissipation_specific",
+    "seed_robust": true,
+    "unitary_control_verdict": [
+      "substrate_effect_is_just_noncommutation"
+    ],
+    "z3_load_bearing": true
+  },
+  "version": "1.0",
+  "z3_load_bearing": {
+    "encoding": "FREE int spread, FREE bool is_flat; law Or([Not(is_flat), spread==0]); assert is_flat=true + spread==IntVal(measured). genuine multi-substrate spread: unsat; flat zero spread: sat.",
+    "flat_spread": 0.0,
+    "flat_verdict": "sat",
+    "genuine_substrate_spread": 0.06456177737680358,
+    "genuine_verdict": "unsat",
+    "load_bearing_flip": true,
+    "upper_op": "Te_dephasing"
+  }
+}

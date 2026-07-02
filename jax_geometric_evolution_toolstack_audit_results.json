@@ -1,0 +1,131 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "layer_stacking",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "bridge",
+    "basin_admission",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "classification": "diagnostic_jax_geometric_evolution_toolstack_audit",
+  "finite_map": {
+    "codomain_or_output": "anti-commutation/rotor invariants, event-pruned trajectories, tangent-projected gradients",
+    "domain": "finite Cl(3,0) multivector coefficients, S3 unit quaternions, finite branch batch"
+  },
+  "honesty_notes": [
+    "jaxga is not counted as load-bearing unless its geometric product runs.",
+    "riemannax is absent in this environment and is recorded as a blocked optional surface.",
+    "This diagnostic does not touch the retired legacy tensor lane and does not claim Julia-equivalent spinor geometry truth."
+  ],
+  "jax_enable_x64": true,
+  "load_bearing_checks": {
+    "blocked_surfaces_are_explicit": true,
+    "custom_clifford_primitive": true,
+    "custom_vjp_tangent_projection": true,
+    "diffrax_event_pruning": true,
+    "jaxga_package_product": true,
+    "jaxlie_so3_manifold": true,
+    "lax_scan_stepwise_retraction": true,
+    "optax_retracted_optimization": true
+  },
+  "promotion_allowed": false,
+  "purpose": "Exercise the JAX lane as batched/manifold-aware audit machinery while recording package blockers.",
+  "root_constraints_in_force": {
+    "F01": "finite Clifford basis, finite S3/quaternion states, finite ODE/scan steps",
+    "N01": "order-sensitive Clifford product e1*e2=-e2*e1 plus monotone prune/retraction controls"
+  },
+  "script": "jax_geometric_evolution_toolstack_audit.py",
+  "sim_execution_kind": "nonclassical_diagnostic",
+  "surfaces": {
+    "custom_clifford_primitive": {
+      "anti_commutator_norm": 0.0,
+      "e1e2_minus_e12_norm": 0.0,
+      "pass": true,
+      "rotated_vector_norm_error": 0.0,
+      "rotor_unit_error": 0.0
+    },
+    "custom_vjp_tangent_projection": {
+      "gradient_norm": 0.4292499212669349,
+      "pass": true,
+      "tangent_dot": 2.3245294578089215e-16
+    },
+    "diffrax_event_pruning": {
+      "alive_final_q0": 0.4999767489339917,
+      "alive_norm_drift": 1.1719290327061316e-07,
+      "alive_result": "diffrax._solution.RESULTS<>",
+      "alive_success": true,
+      "dead_event_pruned": true,
+      "dead_result": "diffrax._solution.RESULTS<Terminating differential equation solve because an event occurred.>",
+      "pass": true
+    },
+    "jaxga_package": {
+      "anti_commutator_norm": 0.0,
+      "error": null,
+      "indices12": [
+        [
+          0,
+          1
+        ]
+      ],
+      "indices21": [
+        [
+          0,
+          1
+        ]
+      ],
+      "installed": true,
+      "pass": true,
+      "prod12": "Multivector(1.0 e_{0, 1})",
+      "prod21": "Multivector(-1.0 e_{0, 1})",
+      "product_status": "ok_after_runtime_compat_patch",
+      "runtime_patch_applied": true,
+      "vanilla_error": "ValueError: Jitted function has invalid argnames {'out_size'} in static_argnames. Function does not take these args."
+    },
+    "jaxlie_so3_manifold": {
+      "log_exp_roundtrip_error": 0.0,
+      "pass": true,
+      "quaternion_norm_error": 1.1102230246251565e-16,
+      "rotated_norm_error": 2.220446049250313e-16
+    },
+    "lax_scan_stepwise_retraction": {
+      "max_norm_drift": 3.3306690738754696e-16,
+      "pass": true,
+      "pruned": 86,
+      "survivors": 42
+    },
+    "optax_retracted_optimization": {
+      "final_loss": 3.3569500302865762e-06,
+      "initial_loss": 1.1031421246258795,
+      "loss_improvement": 1.103138767675849,
+      "max_norm_drift": 2.220446049250313e-16,
+      "pass": true
+    },
+    "riemannax": {
+      "installed": false,
+      "pass": false,
+      "status": "blocked_missing_package"
+    }
+  },
+  "tool_integration_depth": {
+    "custom_clifford_jax": "load_bearing",
+    "diffrax": "load_bearing",
+    "jax": "load_bearing",
+    "jaxga": "load_bearing",
+    "jaxlie": "load_bearing",
+    "optax": "load_bearing",
+    "riemannax": "blocked_or_supportive"
+  },
+  "tool_manifest": {
+    "custom_clifford_jax": "load-bearing cross-check geometric product for anti-commutation and rotor invariants",
+    "custom_vjp": "load-bearing tangent-space gradient projection for S3 retraction",
+    "diffrax": "load-bearing ODE solve with DiscreteTerminatingEvent pruning check",
+    "jax": "load-bearing JIT, grad, random, lax.scan, x64 arrays",
+    "jaxga": "load-bearing audited Clifford package surface; runtime shim is recorded if needed for JAX compatibility",
+    "jaxlie": "load-bearing SO3 exp/log/quaternion manifold transport check",
+    "optax": "load-bearing optimization with explicit S3 retraction after each update",
+    "riemannax": "optional manifold package surface; recorded as missing if unavailable"
+  }
+}

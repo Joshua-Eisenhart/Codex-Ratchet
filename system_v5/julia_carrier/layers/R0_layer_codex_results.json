@@ -1,0 +1,587 @@
+{
+  "all_pass": true,
+  "blocked_consumers": [
+    "L0 stacking admission",
+    "full R0 parent-complete admission",
+    "G-structure selection",
+    "layer stacking readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics/gravity"
+  ],
+  "carrier_realization": {
+    "julia_native_spinor_density": "ComplexF64 spinors psi in C^2, rho=psi*psi'",
+    "numpy_used": false,
+    "reason": "User requested Julia-native, non-numpy layer sim",
+    "torch_used": false
+  },
+  "classification": "R0_layer_codex_poc",
+  "dependency_forcing_summary": {
+    "commuting_control_collapsed_signature": true,
+    "finite_control_rejected_unbounded_family": true,
+    "site_8_commuting_operator_gap": 0.0,
+    "site_8_commuting_rho_gap": 0.0,
+    "site_8_noncommuting_operator_gap": 2.8284271247461903,
+    "site_8_noncommuting_rho_gap": 1.4142135623730951,
+    "site_8_operator_gap_delta": 2.8284271247461903,
+    "site_8_rho_gap_delta": 1.4142135623730951
+  },
+  "eligible_consumers": [
+    "bounded R0 POC cross-check only"
+  ],
+  "finite_map": {
+    "codomain_or_output": "finite registry verdicts, per-site/operator Frobenius commutator gaps ||[A,rho_v]||_F, operator commutator gaps ||[A,B]||_F, derived QIT readouts",
+    "domain": "finite PEPS3D K=(V,E,F,C), H=C^2 site spinor densities rho_v, finite operators/probes O={sigma_x,sigma_z}, finite paths Gamma=edges(K)",
+    "map": "R0(K,O,Gamma,{rho_v}) -> (F01 registry witness, N01 order-gap witness, dependency-forcing control deltas)"
+  },
+  "fresh_rerun_command": "julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/R0_layer_codex.jl\"",
+  "honest_gaps": [
+    "This proves the requested R0 finite/noncommuting dependency controls, not downstream manifold completion.",
+    "The PEPS3D stress carries finite site anchors; it does not prove later geometry layers.",
+    "Z3 was omitted rather than included decoratively."
+  ],
+  "name": "R0 root finite carrier/probe finite-QIT POC",
+  "negative_controls": {
+    "commuting_control": "swap to commuting operators {I,sigma_z,P0,P1}; measured N01 gap collapses to zero",
+    "finite_control": "continuum/unbounded probe family rejected by finite registry"
+  },
+  "passes_local_rerun": true,
+  "peps3d_embedding": {
+    "anchor_type": "finite K=(V,E,F,C) lattice anchors",
+    "geometry_claim_boundary": "anchor only; no full manifold geometry or layer-completion admission claimed",
+    "stress_site_counts": [
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "promotion_allowed=false by request",
+    "no external validate_layer_distinctness.py run in this script",
+    "no layer-completion-claim-gate claim made",
+    "PEPS3D is a finite anchor only, not a full manifold geometry admission"
+  ],
+  "root_constraints_in_force": [
+    "F01",
+    "N01"
+  ],
+  "sim_class": "root_finite_carrier_probe",
+  "sim_execution_kind": "nonclassical_poc_julia_native",
+  "sim_id": "R0_layer_codex",
+  "source_math_quotes": [
+    "R0 root finite carrier/probe layer: F01 finite carrier/probe/operator/path set; N01 noncommuting/order-sensitive operation/control.",
+    "Root constraint 1: dim(H_S)<inf and finite probe/operator/path families.",
+    "Root constraint 2: AB != BA in general, A*rho != rho*A in general."
+  ],
+  "stress_results": {
+    "16": {
+      "F01_witness": {
+        "all_finite": true,
+        "density_count": 16,
+        "dim_H": 2,
+        "operator_registry": {
+          "accepted": true,
+          "cardinality": 2,
+          "max_items": 4096,
+          "name": "finite_operator_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        },
+        "path_registry": {
+          "accepted": true,
+          "cardinality": 27,
+          "max_items": 4096,
+          "name": "finite_path_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        },
+        "probe_registry": {
+          "accepted": true,
+          "cardinality": 2,
+          "max_items": 4096,
+          "name": "finite_probe_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        }
+      },
+      "N01_witness": {
+        "operator_commutator_max_frobenius": 2.8284271247461903,
+        "operator_set": [
+          "sigma_x",
+          "sigma_z"
+        ],
+        "present": true,
+        "rho_commutator_gap": {
+          "max_gap": 1.4142135623730951,
+          "mean_gap": 0.7071067811865477,
+          "min_gap": 0.0,
+          "n_measurements": 32
+        }
+      },
+      "ablation_outcome_delta": {
+        "kind": "removed-and-rerun numeric delta",
+        "non_vacuous": true,
+        "operator_gap_after": 0.0,
+        "operator_gap_before": 2.8284271247461903,
+        "operator_gap_delta": 2.8284271247461903,
+        "removed": "noncommuting operator set {sigma_x, sigma_z}",
+        "replacement": "commuting set {I, sigma_z, P0, P1}",
+        "rho_gap_after": 0.0,
+        "rho_gap_before": 1.4142135623730951,
+        "rho_gap_delta": 1.4142135623730951
+      },
+      "commuting_erasure_control": {
+        "collapsed": true,
+        "operator_commutator_max_frobenius": 0.0,
+        "operator_gap_delta": 2.8284271247461903,
+        "operator_set": [
+          "I",
+          "sigma_z",
+          "P0",
+          "P1"
+        ],
+        "rho_commutator_gap": {
+          "max_gap": 0.0,
+          "mean_gap": 0.0,
+          "min_gap": 0.0,
+          "n_measurements": 64
+        },
+        "rho_gap_delta": 1.4142135623730951
+      },
+      "finite_control": {
+        "continuum_registry": {
+          "accepted": false,
+          "cardinality": "unbounded",
+          "name": "continuum_probe_family_control",
+          "reason": "rejected: continuum/unbounded probe family is not a finite registry item"
+        },
+        "rejected": true
+      },
+      "negative_controls": {
+        "commuting_operator_control_collapses_N01": true,
+        "continuum_probe_family_rejected": true
+      },
+      "pass": true,
+      "peps3d_anchor": {
+        "C_count": 1,
+        "E_count": 27,
+        "F_count": 0,
+        "K": "finite PEPS3D anchor K=(V,E,F,C)",
+        "V_count": 16,
+        "note": "R0 claims a finite carrier/probe anchor only, not full manifold geometry admission"
+      },
+      "qit_derived_readouts": {
+        "note": "QIT entropy/readouts are derived outputs, not the primary R0 witness",
+        "probe_expectations_first_four_sites": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            -1.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            -1.0
+          ]
+        ],
+        "renyi2_entropy_max": -0.0,
+        "renyi2_entropy_min": -0.0,
+        "von_neumann_entropy_max": 0.0,
+        "von_neumann_entropy_min": 0.0
+      },
+      "site_count": 16
+    },
+    "32": {
+      "F01_witness": {
+        "all_finite": true,
+        "density_count": 32,
+        "dim_H": 2,
+        "operator_registry": {
+          "accepted": true,
+          "cardinality": 2,
+          "max_items": 4096,
+          "name": "finite_operator_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        },
+        "path_registry": {
+          "accepted": true,
+          "cardinality": 64,
+          "max_items": 4096,
+          "name": "finite_path_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        },
+        "probe_registry": {
+          "accepted": true,
+          "cardinality": 2,
+          "max_items": 4096,
+          "name": "finite_probe_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        }
+      },
+      "N01_witness": {
+        "operator_commutator_max_frobenius": 2.8284271247461903,
+        "operator_set": [
+          "sigma_x",
+          "sigma_z"
+        ],
+        "present": true,
+        "rho_commutator_gap": {
+          "max_gap": 1.4142135623730951,
+          "mean_gap": 0.7071067811865475,
+          "min_gap": 0.0,
+          "n_measurements": 64
+        }
+      },
+      "ablation_outcome_delta": {
+        "kind": "removed-and-rerun numeric delta",
+        "non_vacuous": true,
+        "operator_gap_after": 0.0,
+        "operator_gap_before": 2.8284271247461903,
+        "operator_gap_delta": 2.8284271247461903,
+        "removed": "noncommuting operator set {sigma_x, sigma_z}",
+        "replacement": "commuting set {I, sigma_z, P0, P1}",
+        "rho_gap_after": 0.0,
+        "rho_gap_before": 1.4142135623730951,
+        "rho_gap_delta": 1.4142135623730951
+      },
+      "commuting_erasure_control": {
+        "collapsed": true,
+        "operator_commutator_max_frobenius": 0.0,
+        "operator_gap_delta": 2.8284271247461903,
+        "operator_set": [
+          "I",
+          "sigma_z",
+          "P0",
+          "P1"
+        ],
+        "rho_commutator_gap": {
+          "max_gap": 0.0,
+          "mean_gap": 0.0,
+          "min_gap": 0.0,
+          "n_measurements": 128
+        },
+        "rho_gap_delta": 1.4142135623730951
+      },
+      "finite_control": {
+        "continuum_registry": {
+          "accepted": false,
+          "cardinality": "unbounded",
+          "name": "continuum_probe_family_control",
+          "reason": "rejected: continuum/unbounded probe family is not a finite registry item"
+        },
+        "rejected": true
+      },
+      "negative_controls": {
+        "commuting_operator_control_collapses_N01": true,
+        "continuum_probe_family_rejected": true
+      },
+      "pass": true,
+      "peps3d_anchor": {
+        "C_count": 1,
+        "E_count": 64,
+        "F_count": 0,
+        "K": "finite PEPS3D anchor K=(V,E,F,C)",
+        "V_count": 32,
+        "note": "R0 claims a finite carrier/probe anchor only, not full manifold geometry admission"
+      },
+      "qit_derived_readouts": {
+        "note": "QIT entropy/readouts are derived outputs, not the primary R0 witness",
+        "probe_expectations_first_four_sites": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            -1.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            -1.0
+          ]
+        ],
+        "renyi2_entropy_max": -0.0,
+        "renyi2_entropy_min": -0.0,
+        "von_neumann_entropy_max": 0.0,
+        "von_neumann_entropy_min": 0.0
+      },
+      "site_count": 32
+    },
+    "64": {
+      "F01_witness": {
+        "all_finite": true,
+        "density_count": 64,
+        "dim_H": 2,
+        "operator_registry": {
+          "accepted": true,
+          "cardinality": 2,
+          "max_items": 4096,
+          "name": "finite_operator_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        },
+        "path_registry": {
+          "accepted": true,
+          "cardinality": 144,
+          "max_items": 4096,
+          "name": "finite_path_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        },
+        "probe_registry": {
+          "accepted": true,
+          "cardinality": 2,
+          "max_items": 4096,
+          "name": "finite_probe_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        }
+      },
+      "N01_witness": {
+        "operator_commutator_max_frobenius": 2.8284271247461903,
+        "operator_set": [
+          "sigma_x",
+          "sigma_z"
+        ],
+        "present": true,
+        "rho_commutator_gap": {
+          "max_gap": 1.4142135623730951,
+          "mean_gap": 0.7071067811865476,
+          "min_gap": 0.0,
+          "n_measurements": 128
+        }
+      },
+      "ablation_outcome_delta": {
+        "kind": "removed-and-rerun numeric delta",
+        "non_vacuous": true,
+        "operator_gap_after": 0.0,
+        "operator_gap_before": 2.8284271247461903,
+        "operator_gap_delta": 2.8284271247461903,
+        "removed": "noncommuting operator set {sigma_x, sigma_z}",
+        "replacement": "commuting set {I, sigma_z, P0, P1}",
+        "rho_gap_after": 0.0,
+        "rho_gap_before": 1.4142135623730951,
+        "rho_gap_delta": 1.4142135623730951
+      },
+      "commuting_erasure_control": {
+        "collapsed": true,
+        "operator_commutator_max_frobenius": 0.0,
+        "operator_gap_delta": 2.8284271247461903,
+        "operator_set": [
+          "I",
+          "sigma_z",
+          "P0",
+          "P1"
+        ],
+        "rho_commutator_gap": {
+          "max_gap": 0.0,
+          "mean_gap": 0.0,
+          "min_gap": 0.0,
+          "n_measurements": 256
+        },
+        "rho_gap_delta": 1.4142135623730951
+      },
+      "finite_control": {
+        "continuum_registry": {
+          "accepted": false,
+          "cardinality": "unbounded",
+          "name": "continuum_probe_family_control",
+          "reason": "rejected: continuum/unbounded probe family is not a finite registry item"
+        },
+        "rejected": true
+      },
+      "negative_controls": {
+        "commuting_operator_control_collapses_N01": true,
+        "continuum_probe_family_rejected": true
+      },
+      "pass": true,
+      "peps3d_anchor": {
+        "C_count": 1,
+        "E_count": 144,
+        "F_count": 0,
+        "K": "finite PEPS3D anchor K=(V,E,F,C)",
+        "V_count": 64,
+        "note": "R0 claims a finite carrier/probe anchor only, not full manifold geometry admission"
+      },
+      "qit_derived_readouts": {
+        "note": "QIT entropy/readouts are derived outputs, not the primary R0 witness",
+        "probe_expectations_first_four_sites": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            -1.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            -1.0
+          ]
+        ],
+        "renyi2_entropy_max": -0.0,
+        "renyi2_entropy_min": -0.0,
+        "von_neumann_entropy_max": 0.0,
+        "von_neumann_entropy_min": 0.0
+      },
+      "site_count": 64
+    },
+    "8": {
+      "F01_witness": {
+        "all_finite": true,
+        "density_count": 8,
+        "dim_H": 2,
+        "operator_registry": {
+          "accepted": true,
+          "cardinality": 2,
+          "max_items": 4096,
+          "name": "finite_operator_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        },
+        "path_registry": {
+          "accepted": true,
+          "cardinality": 12,
+          "max_items": 4096,
+          "name": "finite_path_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        },
+        "probe_registry": {
+          "accepted": true,
+          "cardinality": 2,
+          "max_items": 4096,
+          "name": "finite_probe_set",
+          "reason": "accepted: finite nonempty Julia vector under cap"
+        }
+      },
+      "N01_witness": {
+        "operator_commutator_max_frobenius": 2.8284271247461903,
+        "operator_set": [
+          "sigma_x",
+          "sigma_z"
+        ],
+        "present": true,
+        "rho_commutator_gap": {
+          "max_gap": 1.4142135623730951,
+          "mean_gap": 0.7071067811865477,
+          "min_gap": 0.0,
+          "n_measurements": 16
+        }
+      },
+      "ablation_outcome_delta": {
+        "kind": "removed-and-rerun numeric delta",
+        "non_vacuous": true,
+        "operator_gap_after": 0.0,
+        "operator_gap_before": 2.8284271247461903,
+        "operator_gap_delta": 2.8284271247461903,
+        "removed": "noncommuting operator set {sigma_x, sigma_z}",
+        "replacement": "commuting set {I, sigma_z, P0, P1}",
+        "rho_gap_after": 0.0,
+        "rho_gap_before": 1.4142135623730951,
+        "rho_gap_delta": 1.4142135623730951
+      },
+      "commuting_erasure_control": {
+        "collapsed": true,
+        "operator_commutator_max_frobenius": 0.0,
+        "operator_gap_delta": 2.8284271247461903,
+        "operator_set": [
+          "I",
+          "sigma_z",
+          "P0",
+          "P1"
+        ],
+        "rho_commutator_gap": {
+          "max_gap": 0.0,
+          "mean_gap": 0.0,
+          "min_gap": 0.0,
+          "n_measurements": 32
+        },
+        "rho_gap_delta": 1.4142135623730951
+      },
+      "finite_control": {
+        "continuum_registry": {
+          "accepted": false,
+          "cardinality": "unbounded",
+          "name": "continuum_probe_family_control",
+          "reason": "rejected: continuum/unbounded probe family is not a finite registry item"
+        },
+        "rejected": true
+      },
+      "negative_controls": {
+        "commuting_operator_control_collapses_N01": true,
+        "continuum_probe_family_rejected": true
+      },
+      "pass": true,
+      "peps3d_anchor": {
+        "C_count": 1,
+        "E_count": 12,
+        "F_count": 0,
+        "K": "finite PEPS3D anchor K=(V,E,F,C)",
+        "V_count": 8,
+        "note": "R0 claims a finite carrier/probe anchor only, not full manifold geometry admission"
+      },
+      "qit_derived_readouts": {
+        "note": "QIT entropy/readouts are derived outputs, not the primary R0 witness",
+        "probe_expectations_first_four_sites": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            -1.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            -1.0
+          ]
+        ],
+        "renyi2_entropy_max": -0.0,
+        "renyi2_entropy_min": -0.0,
+        "von_neumann_entropy_max": 0.0,
+        "von_neumann_entropy_min": 0.0
+      },
+      "site_count": 8
+    }
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "tool_manifest": [
+    {
+      "reason": "computes density matrices, commutators, Frobenius norms, eigenspectrum entropy",
+      "role": "load_bearing",
+      "tool": "Julia LinearAlgebra"
+    },
+    {
+      "reason": "writes result receipt",
+      "role": "supportive",
+      "tool": "JSON"
+    },
+    {
+      "reason": "z3 omitted, not decorative; R0 structural claims are directly measured and ablated here",
+      "role": "omitted",
+      "tool": "Z3"
+    }
+  ],
+  "version": "1.0"
+}

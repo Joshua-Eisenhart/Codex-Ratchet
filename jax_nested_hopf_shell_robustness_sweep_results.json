@@ -1,0 +1,307 @@
+{
+  "object": "JAX nested Hopf shell robustness sweep",
+  "lane": "jax_batched_stress_runner_not_native_spinor_engine_not_pytorch_port",
+  "classification": "diagnostic_jax_audit",
+  "promotion_allowed": false,
+  "claim_boundary": "Parameter robustness audit only. This does not admit a layer, stacking, Axis0/FEP, flux, physics, or final manifold claim.",
+  "finite_map": "finite nested S3 unit-quaternion futures -> retracted JAX flow under coupling sweep -> Hopf S2 base readouts and chirality-pruned basin sets",
+  "domain": {
+    "futures": 512,
+    "shells_per_future": 3,
+    "state": "unit quaternion q=(q0,q1,q2,q3) on S3 per shell",
+    "couplings": [
+      0.0,
+      0.21,
+      0.42,
+      0.63
+    ]
+  },
+  "codomain_or_output": {
+    "per_coupling_survivor_outer_basin_sets": "basin labels {1,2,3,4}",
+    "hopf_base_invariants": "S2 base norm and U1 fiber invariance",
+    "nested_alignment": "adjacent shell Hopf-base distance before/after flow"
+  },
+  "root_constraints_in_force": {
+    "F01": "finite ensemble, finite shells, finite coupling grid, finite steps, finite targets",
+    "N01": "order-sensitive branch/evolve/prune latch; forbidden crossing at any step is irreversible"
+  },
+  "tool_manifest": {
+    "jax": "load_bearing batched S3 evolution, retraction, latch, and invariant checks",
+    "json": "supportive receipt serialization"
+  },
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "json": "supportive"
+  },
+  "blocked_consumers": [
+    "layer_stacking",
+    "flux",
+    "xi_phi0",
+    "axis0",
+    "fep_holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "sweep_parameters": {
+    "N": 512,
+    "shells": 3,
+    "rng_seed": 271828,
+    "draw_rows": 6144,
+    "dt": 0.002,
+    "t_end": 8.0,
+    "steps": 4000,
+    "prune_q0_threshold": -0.01,
+    "couplings": [
+      0.0,
+      0.21,
+      0.42,
+      0.63
+    ]
+  },
+  "rows": [
+    {
+      "coupling": 0.0,
+      "initial_mean_adjacent_base_distance": 1.3220154999595783,
+      "final_A_mean_adjacent_base_distance": 1.161761575898248,
+      "alignment_delta": 0.16025392406133032,
+      "alignment_improved": true,
+      "max_norm_drift": 2.220446049250313e-16,
+      "max_base_norm_drift": 4.440892098500626e-16,
+      "hopf_fiber_max_delta": 4.611102534756203e-16,
+      "runs": {
+        "A": {
+          "name": "A_no_prune",
+          "populated_outer_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "survivors": 512,
+          "pruned": 0,
+          "mean_adjacent_base_distance_survivors": 1.161761575898248
+        },
+        "B": {
+          "name": "B_chirality_prune",
+          "populated_outer_basins": [
+            1,
+            2
+          ],
+          "survivors": 216,
+          "pruned": 296,
+          "mean_adjacent_base_distance_survivors": 1.0138889803786952
+        },
+        "C": {
+          "name": "C_trivial_control",
+          "populated_outer_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "survivors": 512,
+          "pruned": 0,
+          "mean_adjacent_base_distance_survivors": 1.161761575898248
+        }
+      },
+      "checks": {
+        "baseline_all_outer_basins": true,
+        "prune_kills_forbidden_outer_basins": true,
+        "allowed_outer_basins_preserved": true,
+        "trivial_control_noop": true,
+        "real_prune_fired": true,
+        "bookkeeping_consistent": true,
+        "retraction_norm": true,
+        "hopf_base_norm": true,
+        "hopf_fiber_invariance": true
+      },
+      "row_pass": true
+    },
+    {
+      "coupling": 0.21,
+      "initial_mean_adjacent_base_distance": 1.3220154999595783,
+      "final_A_mean_adjacent_base_distance": 1.1772578269580551,
+      "alignment_delta": 0.1447576730015232,
+      "alignment_improved": true,
+      "max_norm_drift": 2.220446049250313e-16,
+      "max_base_norm_drift": 4.440892098500626e-16,
+      "hopf_fiber_max_delta": 4.611102534756203e-16,
+      "runs": {
+        "A": {
+          "name": "A_no_prune",
+          "populated_outer_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "survivors": 512,
+          "pruned": 0,
+          "mean_adjacent_base_distance_survivors": 1.1772578269580551
+        },
+        "B": {
+          "name": "B_chirality_prune",
+          "populated_outer_basins": [
+            1,
+            2
+          ],
+          "survivors": 216,
+          "pruned": 296,
+          "mean_adjacent_base_distance_survivors": 1.0237176495065063
+        },
+        "C": {
+          "name": "C_trivial_control",
+          "populated_outer_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "survivors": 512,
+          "pruned": 0,
+          "mean_adjacent_base_distance_survivors": 1.1772578269580551
+        }
+      },
+      "checks": {
+        "baseline_all_outer_basins": true,
+        "prune_kills_forbidden_outer_basins": true,
+        "allowed_outer_basins_preserved": true,
+        "trivial_control_noop": true,
+        "real_prune_fired": true,
+        "bookkeeping_consistent": true,
+        "retraction_norm": true,
+        "hopf_base_norm": true,
+        "hopf_fiber_invariance": true,
+        "positive_coupling_alignment_improves": true
+      },
+      "row_pass": true
+    },
+    {
+      "coupling": 0.42,
+      "initial_mean_adjacent_base_distance": 1.3220154999595783,
+      "final_A_mean_adjacent_base_distance": 1.0436864120261649,
+      "alignment_delta": 0.2783290879334135,
+      "alignment_improved": true,
+      "max_norm_drift": 2.220446049250313e-16,
+      "max_base_norm_drift": 4.440892098500626e-16,
+      "hopf_fiber_max_delta": 4.611102534756203e-16,
+      "runs": {
+        "A": {
+          "name": "A_no_prune",
+          "populated_outer_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "survivors": 512,
+          "pruned": 0,
+          "mean_adjacent_base_distance_survivors": 1.0436864120261649
+        },
+        "B": {
+          "name": "B_chirality_prune",
+          "populated_outer_basins": [
+            1,
+            2
+          ],
+          "survivors": 342,
+          "pruned": 170,
+          "mean_adjacent_base_distance_survivors": 1.015550528995453
+        },
+        "C": {
+          "name": "C_trivial_control",
+          "populated_outer_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "survivors": 512,
+          "pruned": 0,
+          "mean_adjacent_base_distance_survivors": 1.0436864120261649
+        }
+      },
+      "checks": {
+        "baseline_all_outer_basins": true,
+        "prune_kills_forbidden_outer_basins": true,
+        "allowed_outer_basins_preserved": true,
+        "trivial_control_noop": true,
+        "real_prune_fired": true,
+        "bookkeeping_consistent": true,
+        "retraction_norm": true,
+        "hopf_base_norm": true,
+        "hopf_fiber_invariance": true,
+        "positive_coupling_alignment_improves": true
+      },
+      "row_pass": true
+    },
+    {
+      "coupling": 0.63,
+      "initial_mean_adjacent_base_distance": 1.3220154999595783,
+      "final_A_mean_adjacent_base_distance": 0.19118788559510755,
+      "alignment_delta": 1.1308276143644709,
+      "alignment_improved": true,
+      "max_norm_drift": 2.220446049250313e-16,
+      "max_base_norm_drift": 4.440892098500626e-16,
+      "hopf_fiber_max_delta": 4.611102534756203e-16,
+      "runs": {
+        "A": {
+          "name": "A_no_prune",
+          "populated_outer_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "survivors": 512,
+          "pruned": 0,
+          "mean_adjacent_base_distance_survivors": 0.19118788559510755
+        },
+        "B": {
+          "name": "B_chirality_prune",
+          "populated_outer_basins": [
+            1,
+            2
+          ],
+          "survivors": 386,
+          "pruned": 126,
+          "mean_adjacent_base_distance_survivors": 0.08867627498414594
+        },
+        "C": {
+          "name": "C_trivial_control",
+          "populated_outer_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "survivors": 512,
+          "pruned": 0,
+          "mean_adjacent_base_distance_survivors": 0.19118788559510755
+        }
+      },
+      "checks": {
+        "baseline_all_outer_basins": true,
+        "prune_kills_forbidden_outer_basins": true,
+        "allowed_outer_basins_preserved": true,
+        "trivial_control_noop": true,
+        "real_prune_fired": true,
+        "bookkeeping_consistent": true,
+        "retraction_norm": true,
+        "hopf_base_norm": true,
+        "hopf_fiber_invariance": true,
+        "positive_coupling_alignment_improves": true
+      },
+      "row_pass": true
+    }
+  ],
+  "checks": {
+    "all_rows_pass": true,
+    "at_least_four_rows": true,
+    "some_positive_coupling_alignment_improves": true,
+    "zero_coupling_present": true,
+    "positive_coupling_beats_zero_control": true,
+    "promotion_blocked": true
+  },
+  "AUDIT_PASS": true
+}

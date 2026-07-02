@@ -1,0 +1,112 @@
+{
+  "H_leaf_sweep": {
+    "mean_abs_H": [
+      0.6841363268136302,
+      0.3093363727773535,
+      8.765114540128459e-7,
+      0.30933637066167324,
+      0.6841363268136302
+    ],
+    "theta": [
+      0.4853981633974483,
+      0.6353981633974483,
+      0.7853981633974483,
+      0.9353981633974483,
+      1.0853981633974483
+    ]
+  },
+  "all_pass": true,
+  "carrier": "LinearAlgebra + Z3 (non-numpy), Julia",
+  "classification": "poc_geometry_probe",
+  "geometry_clifford": {
+    "Foff": 0.0,
+    "Hmax": 1.9298451746091517e-6,
+    "Kmax": 0.0,
+    "theta": 0.7853981633974483
+  },
+  "geometry_kill_leaf": {
+    "Hmax": 0.5773513094714497,
+    "Kmax": 0.0,
+    "theta": 0.5235987755982988
+  },
+  "known_invariant_anchors": [
+    "Gaussian curvature K (Theorema Egregium intrinsic invariant) == 0 for a flat torus",
+    "Clifford torus = unique minimal flat torus in S^3 (H==0); kill leaf has H!=0",
+    "H^1(T^2;Z2)=Z2xZ2 => 4 spin structures; Arf invariant (Omega_2^Spin=Z2): exactly 1 odd"
+  ],
+  "n_odd_arf": 1,
+  "n_valid_spin": 4,
+  "object": "Clifford torus T^2 (theta=pi/4 leaf of S^3) in S^3",
+  "promotion_allowed": false,
+  "spin_kill_broken_pairing_n_odd": 0,
+  "spin_structures": [
+    {
+      "arf": 0,
+      "arf_product": 0,
+      "arf_routes_agree": true,
+      "arf_well_defined": true,
+      "bc": "AA",
+      "q_alpha": 0,
+      "q_alphabeta": 1,
+      "q_beta": 0,
+      "valid": true
+    },
+    {
+      "arf": 0,
+      "arf_product": 0,
+      "arf_routes_agree": true,
+      "arf_well_defined": true,
+      "bc": "AP",
+      "q_alpha": 0,
+      "q_alphabeta": 0,
+      "q_beta": 1,
+      "valid": true
+    },
+    {
+      "arf": 0,
+      "arf_product": 0,
+      "arf_routes_agree": true,
+      "arf_well_defined": true,
+      "bc": "PA",
+      "q_alpha": 1,
+      "q_alphabeta": 0,
+      "q_beta": 0,
+      "valid": true
+    },
+    {
+      "arf": 1,
+      "arf_product": 1,
+      "arf_routes_agree": true,
+      "arf_well_defined": true,
+      "bc": "PP",
+      "q_alpha": 1,
+      "q_alphabeta": 1,
+      "q_beta": 1,
+      "valid": true
+    }
+  ],
+  "verdicts": {
+    "arf_two_routes_agree": true,
+    "boundary_min_H_at_pi4": true,
+    "flat": true,
+    "four_spin_structures": true,
+    "kill_leaf_flat": true,
+    "kill_leaf_not_minimal": true,
+    "minimal_in_S3": true,
+    "spin_kill_control": true,
+    "z3_exactly_one_odd": true
+  },
+  "z3_detail": {
+    "broken_at_least_one": "unsat",
+    "broken_at_most_one": "unsat",
+    "encoding": "free Bool bits (a,b); Arf-oddness DERIVED as a*b*s; only the MEASURED pairing s is wired in",
+    "flips_on_measured_pairing": true,
+    "genuine_at_least_one": "sat",
+    "genuine_at_most_one": "unsat",
+    "measured_pairing_broken": 0,
+    "measured_pairing_genuine": 1
+  },
+  "z3_exactly_one_odd_broken": "sat",
+  "z3_exactly_one_odd_genuine": "unsat",
+  "z3_tool_role": "load_bearing"
+}

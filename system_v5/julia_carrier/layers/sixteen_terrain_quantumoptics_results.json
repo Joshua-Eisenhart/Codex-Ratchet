@@ -1,0 +1,216 @@
+{
+  "all_pass": true,
+  "checks": {
+    "Ne_LR_opposite_chirality": true,
+    "Ne_circulates": true,
+    "Ni_sinks_opposite_LR": true,
+    "Si_dephases_off_sx": true,
+    "Si_preserves_sx_axis": true,
+    "crosscheck_vs_handrolled_RK4": true,
+    "fiber_vs_base_differ": true,
+    "sixteen_placements": true,
+    "terrains_distinct": true
+  },
+  "claim_ceiling": "PoC: the 16-terrain placement lattice solved with the QuantumOptics Lindblad master equation; each terrain's steady state + dynamical type MEASURED, cross-checked vs an independent RK4 integrator. NOT a G-structure admission. promotion_allowed=false.",
+  "classification": "sixteen_terrain_qo_poc",
+  "name": "sixteen_terrain_quantumoptics",
+  "placements": {
+    "Cannon_b": {
+      "steady": [
+        -0.0,
+        -0.0,
+        -0.538
+      ],
+      "circulation": 22.44,
+      "coh_off_sx": 0.538,
+      "rx": -0.0,
+      "sz": -0.538,
+      "purity": 0.645
+    },
+    "Cannon_f": {
+      "steady": [
+        0.0,
+        0.0,
+        -0.538
+      ],
+      "circulation": -18.61,
+      "coh_off_sx": 0.538,
+      "rx": 0.0,
+      "sz": -0.538,
+      "purity": 0.645
+    },
+    "Citadel_b": {
+      "steady": [
+        0.001,
+        0.0,
+        0.0
+      ],
+      "circulation": -0.29,
+      "coh_off_sx": 0.0,
+      "rx": 0.001,
+      "sz": 0.0,
+      "purity": 0.5
+    },
+    "Citadel_f": {
+      "steady": [
+        0.857,
+        -0.0,
+        0.0
+      ],
+      "circulation": -0.46,
+      "coh_off_sx": 0.0,
+      "rx": 0.857,
+      "sz": 0.0,
+      "purity": 0.867
+    },
+    "Funnel_b": {
+      "steady": [
+        -0.0,
+        0.0,
+        -0.538
+      ],
+      "circulation": 65.11,
+      "coh_off_sx": 0.538,
+      "rx": -0.0,
+      "sz": -0.538,
+      "purity": 0.645
+    },
+    "Funnel_f": {
+      "steady": [
+        0.0,
+        0.0,
+        -0.538
+      ],
+      "circulation": 18.61,
+      "coh_off_sx": 0.538,
+      "rx": 0.0,
+      "sz": -0.538,
+      "purity": 0.645
+    },
+    "Hill_b": {
+      "steady": [
+        0.001,
+        0.0,
+        0.0
+      ],
+      "circulation": -0.29,
+      "coh_off_sx": 0.0,
+      "rx": 0.001,
+      "sz": 0.0,
+      "purity": 0.5
+    },
+    "Hill_f": {
+      "steady": [
+        0.857,
+        -0.0,
+        0.0
+      ],
+      "circulation": -0.46,
+      "coh_off_sx": 0.0,
+      "rx": 0.857,
+      "sz": 0.0,
+      "purity": 0.867
+    },
+    "Pit_b": {
+      "steady": [
+        -0.0,
+        0.0,
+        -1.0
+      ],
+      "circulation": 58.26,
+      "coh_off_sx": 1.0,
+      "rx": -0.0,
+      "sz": -1.0,
+      "purity": 1.0
+    },
+    "Pit_f": {
+      "steady": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "circulation": 16.24,
+      "coh_off_sx": 1.0,
+      "rx": -0.0,
+      "sz": -1.0,
+      "purity": 1.0
+    },
+    "Source_b": {
+      "steady": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "circulation": 23.41,
+      "coh_off_sx": 1.0,
+      "rx": 0.0,
+      "sz": 1.0,
+      "purity": 1.0
+    },
+    "Source_f": {
+      "steady": [
+        -0.0,
+        0.0,
+        1.0
+      ],
+      "circulation": -16.27,
+      "coh_off_sx": 1.0,
+      "rx": -0.0,
+      "sz": 1.0,
+      "purity": 1.0
+    },
+    "Spiral_b": {
+      "steady": [
+        -0.0,
+        -0.0,
+        0.286
+      ],
+      "circulation": -39.98,
+      "coh_off_sx": 0.286,
+      "rx": -0.0,
+      "sz": 0.286,
+      "purity": 0.541
+    },
+    "Spiral_f": {
+      "steady": [
+        -0.0,
+        0.0,
+        0.286
+      ],
+      "circulation": -80.16,
+      "coh_off_sx": 0.286,
+      "rx": -0.0,
+      "sz": 0.286,
+      "purity": 0.541
+    },
+    "Vortex_b": {
+      "steady": [
+        0.0,
+        0.0,
+        0.286
+      ],
+      "circulation": 120.33,
+      "coh_off_sx": 0.286,
+      "rx": 0.0,
+      "sz": 0.286,
+      "purity": 0.541
+    },
+    "Vortex_f": {
+      "steady": [
+        0.0,
+        -0.0,
+        0.286
+      ],
+      "circulation": 80.16,
+      "coh_off_sx": 0.286,
+      "rx": 0.0,
+      "sz": 0.286,
+      "purity": 0.541
+    }
+  },
+  "promotion_allowed": false,
+  "tool_integration": {
+    "QuantumOptics.jl": "load_bearing (timeevolution.master IS the dynamics)",
+    "crosscheck": "independent hand-rolled RK4 sixteen_terrain_placement_lattice.jl agrees on steady states"
+  }
+}

@@ -79,7 +79,7 @@ TOOL_MANIFEST = {
         "tried": True,
         "used": True,
         "reason": (
-            "load-bearing: closed-form ordinary least-squares regression for "
+            "supportive: closed-form ordinary least-squares regression for "
             "per-seed slopes, intercepts, r-values, R^2, and regression standard errors"
         ),
     },
@@ -103,7 +103,7 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "python_math": "load_bearing",
+    "python_math": "supportive",
     "sympy": "load_bearing",
     "z3": "load_bearing",
 }

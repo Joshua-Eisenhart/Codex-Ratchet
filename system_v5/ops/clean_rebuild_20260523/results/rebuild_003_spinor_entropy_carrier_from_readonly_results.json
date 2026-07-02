@@ -1,0 +1,129 @@
+{
+  "schema": "clean_rebuild_result_v1",
+  "name": "rebuild_003_spinor_entropy_carrier_from_readonly",
+  "classification": "clean_rebuild_scout",
+  "sim_execution_kind": "nonclassical_clean_rebuild",
+  "source_alignment_category": "spinor_entropy_carrier_readonly_rebuild",
+  "promotion_allowed": false,
+  "claim_ceiling": "Clean rebuild scout only: rebuilds finite spinor, Bloch, density, torus average entropy, and b0 sign behavior from read-only source math. It does not admit Axis0, Xi, Phi0, final entropy gradient, or physics claims.",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite spinor, density, eigenvalue entropy, Bloch, and cut-state carrier checks"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive clean rebuild receipt serialization"
+    },
+    "pathlib": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive local result paths"
+    },
+    "time": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive runtime metadata"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "python_json": "supportive",
+    "pathlib": "supportive",
+    "time": "supportive"
+  },
+  "generated_at": "2026-05-23T23:06:36Z",
+  "runtime_seconds": 0.007147073745727539,
+  "all_pass": true,
+  "sections": {
+    "spinor_density_gate": {
+      "pass": true,
+      "source": "AXES atlas lines 103-123: spinor, Hopf map, density reduction, torus stratum",
+      "rows": [
+        {
+          "eta": 0.31,
+          "norm_gap": 2.220446049250313e-16,
+          "trace_gap": 4.440892098500626e-16,
+          "purity_gap": 6.661338147750939e-16,
+          "bloch_formula_gap": 4.1540741810552243e-16
+        },
+        {
+          "eta": 0.7853981633974483,
+          "norm_gap": 0.0,
+          "trace_gap": 1.1102230246251565e-16,
+          "purity_gap": 1.1102230246251565e-16,
+          "bloch_formula_gap": 1.2167576591228984e-16
+        },
+        {
+          "eta": 1.09,
+          "norm_gap": 2.220446049250313e-16,
+          "trace_gap": 4.440892098500626e-16,
+          "purity_gap": 8.881784197001252e-16,
+          "bloch_formula_gap": 4.972820174300706e-16
+        }
+      ],
+      "max_norm_gap": 2.220446049250313e-16,
+      "max_trace_gap": 4.440892098500626e-16,
+      "max_purity_gap": 8.881784197001252e-16,
+      "max_bloch_formula_gap": 4.972820174300706e-16
+    },
+    "torus_entropy_gate": {
+      "pass": true,
+      "source": "AXES atlas lines 208-224, 231-233: rho_bar entropy and b0 = sign(cos(2 eta))",
+      "rows": [
+        {
+          "eta": 0.39269908169872414,
+          "b0_sign_cos_2eta": 1,
+          "entropy_numeric": 0.4164955306996875,
+          "entropy_analytic": 0.4164955306996875,
+          "entropy_gap": 0.0
+        },
+        {
+          "eta": 0.7853981633974483,
+          "b0_sign_cos_2eta": 0,
+          "entropy_numeric": 0.6931471805599453,
+          "entropy_analytic": 0.6931471805599453,
+          "entropy_gap": 0.0
+        },
+        {
+          "eta": 1.1780972450961724,
+          "b0_sign_cos_2eta": -1,
+          "entropy_numeric": 0.4164955306996876,
+          "entropy_analytic": 0.4164955306996876,
+          "entropy_gap": 0.0
+        }
+      ],
+      "max_entropy_gap": 0.0,
+      "clifford_torus_entropy": 0.6931471805599453,
+      "b0_signs": [
+        1,
+        0,
+        -1
+      ]
+    },
+    "two_qubit_cut_gate": {
+      "pass": true,
+      "source": "AXES/Weyl flux docs require rho_AB only as a later branch; this gate establishes the finite cut carrier control before Axis0",
+      "product_reduced_entropy": -0.0,
+      "max_entangled_reduced_entropy": 0.6931471805599453,
+      "log2": 0.6931471805599453
+    }
+  },
+  "axis0_status": {
+    "carrier_entropy_rebuilt": true,
+    "axis0_formula_admitted": false,
+    "next_required_test": "rebuild Xi/rho_AB candidate family against these carrier controls without importing contaminated bridge receipts"
+  },
+  "source_boundary": {
+    "reads_formal_scout_results": false,
+    "reads_grok_sim": false,
+    "reads_external_audits": false,
+    "reads_cross_lane_synthesis_docs": false,
+    "primary_reference_docs": [
+      "system_v5/READ ONLY Reference Docs/AXES_0_6_AND_CONSTRAINT_MANIFOLD_EXPLICIT_ATLAS copy.md",
+      "system_v5/READ ONLY Reference Docs/Weyl Flux.md"
+    ]
+  }
+}

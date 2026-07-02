@@ -1,0 +1,270 @@
+{
+  "bloch_free": true,
+  "classification": "g2_spin7_newstd_poc",
+  "entanglement_block": {
+    "carrier": "ITensors 7-qubit spinor network; NO Bloch r-vector",
+    "ghz_cut_entropy_nats": 0.6931471805599453,
+    "ghz_cut_entropy_equals_log2": true,
+    "ghz_schmidt_rank": 2,
+    "product_control_cut_entropy_nats": -0.0,
+    "product_control_schmidt_rank": 1,
+    "fano_entangled_cut_entropy_nats": 1.9061547465398496,
+    "fano_schmidt_rank": 7,
+    "fano_bond_entropy_profile_nats": [
+      0.6615632381579821,
+      1.320888343149322,
+      1.3862943611198908,
+      1.9061547465398498,
+      1.3208883431493221,
+      0.6615632381579821
+    ],
+    "product_bond_entropy_profile_nats": [
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0
+    ],
+    "fano_max_bond_entropy": 1.9061547465398498,
+    "product_max_bond_entropy": -0.0,
+    "reduced_rho_trace_left": 0.9999999999999999,
+    "full_rho_trace": 0.9999999999999999,
+    "reduced_rho_purity_left": 0.15624999999999994,
+    "fano_entropy_from_reduced_rho_nats": 1.9061547465398496,
+    "svd_entropy_matches_reduced_rho": true,
+    "entanglement_load_bearing": true,
+    "log2_reference_nats": 0.6931471805599453
+  },
+  "finite_map": {
+    "F01_witness": "compact G2 carrier: Cayley norm sum/24=14 bounded; flat Euclidean R^8 form grows as lambda^4 (unbounded)",
+    "N01_witness": "octonion left-mult generators satisfy {L_a,L_b}=-2delta_ab*I_8 (Clifford anticommutation); G2 derivation generators noncommuting: [D1,D2]!=0",
+    "anti_tautology": "wrong-structure controls: sign-corrupted oct table (Der dim collapses), index-corrupted (Der=0), omit-Cayley-term (stab dim collapses), flat Cartesian operators (Clifford relation fails), random Hopfield weights (no G2 attractor convergence)",
+    "carrier": "ITensors exact 7-qubit spinor network; density-operator readout; NO Bloch vector",
+    "codomain": "derivation algebra Der(O) (dim=14, computed); Spin(7) stabilizer (dim=21, computed); Clifford anticommutator residuals (real); entanglement spectrum (Schmidt coefficients)",
+    "domain": "7-imaginary-octonion R^7 unit sphere S^6 (compact, dim=7) + 8-dim octonion algebra O"
+  },
+  "geometry_blocks": {
+    "A1_g2_derivation_dim": {
+      "anchor": "dim Der(O) = dim g2 = 14 (G2 = Aut(O))",
+      "invariant_name": "dim_g2",
+      "measured_dim_g2": 14,
+      "expected_dim_g2": 14,
+      "anchor_pass": true,
+      "control_C1_sign_corrupted_der_dim": 3,
+      "control_C2_index_corrupted_der_dim": 0,
+      "control_C1_fires": true,
+      "control_C2_fires": true
+    },
+    "A2_spin7_cayley": {
+      "anchor": "Spin(7) = Stab_{SO(8)}(Cayley 4-form); dim spin(7)=21; ||Phi||^2=14",
+      "invariant_name": "dim_spin7_and_cayley_norm",
+      "cayley_norm_sum_over_24": 14.0,
+      "expected_cayley_norm": 14.0,
+      "measured_dim_spin7": 21,
+      "expected_dim_spin7": 21,
+      "cayley_norm_pass": true,
+      "spin7_dim_pass": true,
+      "control_C3_omit_term_norm": 13.0,
+      "control_C3_omit_term_stab_dim": 9,
+      "control_C3_fires": true
+    },
+    "A3_g2_cross_product_identity": {
+      "anchor": "G2 cross product |u x v|^2 = |u|^2|v|^2 - (u.v)^2",
+      "invariant_name": "g2_composition_identity",
+      "cross_product_identity_maxerr": 4.440892098500626e-16,
+      "cross_product_antisymmetry_maxerr": 2.0206364052201326e-16,
+      "phi3form_alternating_maxerr": 1.090972496536833e-16,
+      "identity_pass": true,
+      "antisymmetry_pass": true,
+      "alternating_pass": true,
+      "control_C4_perturbed_form_identity_maxerr": 0.334911798608316,
+      "control_C4_fires": true
+    }
+  },
+  "new_standard_blocks": {
+    "anticommutation": {
+      "criterion": "ANTI-COMMUTATION (N01): Clifford level + geometric sublevel",
+      "level1_clifford": {
+        "anticomm_maxerr": 0.0,
+        "anticomm_pass": true,
+        "diag_maxerr": 0.0,
+        "relation": "{L_a, L_b} = -2*delta_ab*I_8 on genuine octonion left-mult generators"
+      },
+      "level2_geometric": {
+        "g2_commutator_norm": 0.6102808871180492,
+        "g2_noncomm_pass": true,
+        "g2_noncommutative": true,
+        "relation": "[D_i, D_j] != 0 for independent G2 derivation generators"
+      },
+      "flat_control": {
+        "flat_anticomm_residual_from_clifford_bar": 4.0,
+        "flat_comm_maxerr": 0.0,
+        "flat_wrong_pass": true,
+        "interpretation": "flat control FAILS the Clifford relation; genuine geometry PASSES",
+        "relation": "flat Cartesian operators C_a: {C_a,C_a} != -2*I (gives +2*diag, WRONG Clifford)"
+      },
+      "deciding_number": 0.0,
+      "bar": "anticomm_maxerr < 1e-10 AND flat_anticomm_residual > 0.5 AND g2_commutator_norm > 1e-6",
+      "commutation_criterion_met": true
+    },
+    "finitude_vs_flat": {
+      "criterion": "FINITUDE vs FLAT (F01)",
+      "compact_cayley_norm_sum_over_24": 14.0,
+      "compact_bounded": true,
+      "flat_scaled_norms": [
+        14.0,
+        140000.0,
+        1.4e9,
+        1.4e13
+      ],
+      "compact_norms_under_scaling": [
+        14.0,
+        14.0,
+        14.0,
+        14.0
+      ],
+      "flat_unbounded_at_lam1000": 1.4e13,
+      "flat_unbounded": true,
+      "finitude_pass": true,
+      "deciding_number": 14.0,
+      "bar": "compact in [13.5,14.5] AND flat > 1e3 at lambda=1000"
+    },
+    "neural_dynamics": {
+      "criterion": "NEURAL-NET DYNAMICS (Hopfield-on-G2 attractor)",
+      "g2_convergence": {
+        "converged_count_of_3": 3,
+        "convergence_steps": [
+          1,
+          1,
+          1
+        ],
+        "energy_decreasing_count_of_3": 3,
+        "g2_converged": true,
+        "g2_energy_decreasing": true
+      },
+      "random_control": {
+        "converged_to_octonion_pattern": false,
+        "interpretation": "random control without G2 structure should not reliably converge to stored octonion patterns",
+        "random_control_different_from_g2": true
+      },
+      "neural_pass": true,
+      "deciding_number": 3,
+      "bar": "converged_count >= 1 AND energy_decreasing_count >= 1"
+    },
+    "scale_ladder": {
+      "criterion": "SCALE LADDER 8/16/32/64",
+      "results": {
+        "N=16": {
+          "expected_per_block": 14,
+          "nblocks": 2,
+          "passed": true,
+          "per_block_der_dim": 14,
+          "total_expected": 28,
+          "total_measured": 28
+        },
+        "N=32": {
+          "expected_per_block": 14,
+          "nblocks": 4,
+          "passed": true,
+          "per_block_der_dim": 14,
+          "total_expected": 56,
+          "total_measured": 56
+        },
+        "N=64": {
+          "expected_per_block": 14,
+          "nblocks": 8,
+          "passed": true,
+          "per_block_der_dim": 14,
+          "total_expected": 112,
+          "total_measured": 112
+        },
+        "N=8": {
+          "expected_per_block": 14,
+          "nblocks": 1,
+          "passed": true,
+          "per_block_der_dim": 14,
+          "total_expected": 14,
+          "total_measured": 14
+        }
+      },
+      "completed": [
+        "N=8",
+        "N=16",
+        "N=32",
+        "N=64"
+      ],
+      "failed": [],
+      "n_complete": 4,
+      "scale_pass": true,
+      "deciding_number": 4,
+      "bar": ">=2 of {8,16,32,64} complete with per_block_der_dim == 14"
+    }
+  },
+  "new_standard_scorecard": {
+    "commutation": {
+      "bar": "anticomm_maxerr < 1e-10 AND flat_anticomm_residual > 0.5",
+      "deciding_number": 0.0,
+      "status": "MET"
+    },
+    "exact_carrier": {
+      "bar": "cut entropy > 0.5 AND ITensors cutoff=1e-16",
+      "deciding_number": 1.9061547465398496,
+      "status": "MET"
+    },
+    "finitude": {
+      "bar": "compact in [13.5,14.5] AND flat > 1e3",
+      "deciding_number": 14.0,
+      "status": "MET"
+    },
+    "invariant_anchored": {
+      "bar": "dim Der(O)==14 AND controls != 14",
+      "deciding_number": 14.0,
+      "status": "MET"
+    },
+    "neural_dynamics": {
+      "bar": "converged_count >= 1 AND energy_decreasing",
+      "deciding_number": 3.0,
+      "status": "MET"
+    },
+    "overall_fraction": "6/6",
+    "scale_ladder": {
+      "bar": ">=2 of {8,16,32,64} complete",
+      "deciding_number": 4.0,
+      "status": "MET"
+    },
+    "verdict": "GENUINELY-UPGRADED",
+    "weakest_criterion": "1_finitude",
+    "weakest_label": "MET"
+  },
+  "object_id": "g2_spin7_newstd",
+  "promotion_allowed": false,
+  "tolerance": 1.0e-9,
+  "tool_manifest": {
+    "ITensorMPS": {
+      "reason": "MPS bond-entropy profile of entangled vs product networks",
+      "role": "load_bearing"
+    },
+    "ITensors": {
+      "reason": "SVD of joint spinor-network tensor measures Schmidt entropy; exact contraction with cutoff=1e-16",
+      "role": "load_bearing"
+    },
+    "JSON": {
+      "reason": "result emission",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "nullspace/eigvals compute dim Der(O)=14, dim Spin(7)=21, Clifford anticommutation matrix products, G2 commutator norm",
+      "role": "load_bearing"
+    }
+  },
+  "verdict": {
+    "entanglement_pass": true,
+    "geometry_pass": true,
+    "honest_status": "PASS",
+    "new_standard_fraction": "6/6",
+    "promotion_allowed": false,
+    "verdict": "GENUINELY-UPGRADED",
+    "weakest_criterion": "1_finitude"
+  }
+}

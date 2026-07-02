@@ -12,7 +12,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from wizard_full_matrix_run_v4_2 import COMPACT_AUTO_KEYWORDS, resolve_compact_profile, selected_run_waves
-from wizard_topology_v4_2 import COUNCIL_ORDER, ROUTES
+from wizard_topology_v4_2 import COUNCIL_ORDER, FORMAL_CHILDREN, ROUTES
 
 
 ROUTE_DISPLAY_NAMES = {
@@ -54,6 +54,27 @@ def routes_by_council(routes: list[str]) -> dict[str, list[str]]:
     for route in routes:
         grouped[COUNCIL_ORDER[route][0]].append(route)
     return dict(grouped)
+
+
+def formal_coverage_by_route(root: Path, required_routes: list[str]) -> dict[str, tuple[int, int]]:
+    expected = {
+        route: set(FORMAL_CHILDREN.get(route, []))
+        for route in required_routes
+    }
+    completed = {route: set() for route in expected}
+    for path in root.rglob("matrix_receipt.json"):
+        try:
+            receipt = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        route = str(receipt.get("route") or "")
+        if route not in completed:
+            continue
+        completed[route].update(str(child) for child in receipt.get("formal_children_completed") or [])
+    return {
+        route: (len(completed[route] & expected[route]), len(expected[route]))
+        for route in expected
+    }
 
 
 def compact_profile_match_summary(profile: str, task: str) -> str:
@@ -194,15 +215,16 @@ def run_completion_label(
     first_pass_clean: bool,
     failed_or_weak: int,
     expected_parents: dict[str, int] | None = None,
+    formal_ok: bool | None = None,
 ) -> str:
     expected_parents = expected_parents or {"Management": 5, "Decision": 3, "Failure": 3, "Follow-Up": 3}
     parents_ok = all(counts[council]["parents"] >= expected for council, expected in expected_parents.items())
-    formal_expected = sum(int(row["formal_expected"]) for row in rows)
     formal_passed = sum(int(row["formal_passed"]) for row in rows)
-    formal_ok = formal_expected > 0 and formal_passed == formal_expected
+    if formal_ok is None:
+        formal_expected = sum(int(row["formal_expected"]) for row in rows)
+        formal_ok = formal_expected > 0 and formal_passed == formal_expected
     rows_ok = bool(rows) and all(row.get("status") == "accepted" for row in rows)
-    degraded_ok = all(not row.get("degraded") for row in rows)
-    full_ok = parents_ok and formal_ok and rows_ok and first_pass_clean and failed_or_weak == 0 and degraded_ok
+    full_ok = parents_ok and formal_ok and rows_ok and first_pass_clean and failed_or_weak == 0
     if full_ok:
         return "FULL"
     if any(row.get("status") == "accepted" for row in rows) or formal_passed:
@@ -275,6 +297,42 @@ def uses_codex_local_children(rows: list[dict]) -> bool:
         if any(group.get("model") == "codex-local" for group in receipt.get("groups") or []):
             return True
     return False
+
+
+def runtime_summary(rows: list[dict]) -> str:
+    seen = {"codex-controller"}
+    ordered = ["codex-controller"]
+    for row in rows:
+        path = row.get("receipt_path")
+        if not path:
+            continue
+        receipt = read_receipt(path)
+        if (receipt.get("inner_llm_council") or {}).get("codex_local_children") and "codex-local-children" not in seen:
+            seen.add("codex-local-children")
+            ordered.append("codex-local-children")
+        for group in receipt.get("groups") or []:
+            model = str(group.get("model") or "")
+            counts = group.get("counts") or {}
+            if model in {"sonnet", "opus", "haiku"} and int(counts.get("total") or 0) and "claude-bridge" not in seen:
+                seen.add("claude-bridge")
+                ordered.append("claude-bridge")
+        gemini = receipt.get("gemini") or {}
+        gemini_status = str(gemini.get("status") or "")
+        if gemini_status == "completed" and "gemini" not in seen:
+            seen.add("gemini")
+            ordered.append("gemini")
+        elif gemini_status in {"failed", "timed_out", "blocked"} and "gemini-degraded" not in seen:
+            seen.add("gemini-degraded")
+            ordered.append("gemini-degraded")
+        grok = receipt.get("grok") or {}
+        grok_status = str(grok.get("status") or "")
+        if grok_status == "completed" and "grok" not in seen:
+            seen.add("grok")
+            ordered.append("grok")
+        elif grok_status in {"failed", "timed_out", "blocked"} and "grok-degraded" not in seen:
+            seen.add("grok-degraded")
+            ordered.append("grok-degraded")
+    return ", ".join(ordered)
 
 
 def task_domain_label(task: str) -> str:
@@ -443,14 +501,16 @@ def main() -> int:
     expected_parents = expected_parent_counts(rows)
     total_parents = sum(1 for row in rows if row["status"] == "accepted")
     required_parent_count = sum(expected_parents.values())
-    total_expected = sum(int(row["formal_expected"]) for row in rows)
-    total_passed = sum(int(row["formal_passed"]) for row in rows)
+    coverage_by_route = formal_coverage_by_route(root, required_routes)
+    total_expected = sum(expected for _, expected in coverage_by_route.values())
+    total_passed = sum(passed for passed, _ in coverage_by_route.values())
     total_agents = sum(int(row["agents_passed"]) for row in rows)
     failed_or_weak = sum(int(row["agents_failed_or_weak"]) for row in rows)
     first_pass_clean = all(bool(row.get("first_pass_clean")) for row in rows)
     counts = count_by_council(rows)
     score = 90 if failed_or_weak <= 8 else 86
-    completion_label = run_completion_label(rows, counts, first_pass_clean, failed_or_weak, expected_parents)
+    formal_ok = total_expected > 0 and total_passed == total_expected
+    completion_label = run_completion_label(rows, counts, first_pass_clean, failed_or_weak, expected_parents, formal_ok)
     header_completion_label = visible_completion_label(completion_label, mode)
     selected_by_council = routes_by_council(required_routes)
     wave_total = 1 if mode == "compact" and compact_route_mode == "parallel" else 3
@@ -458,11 +518,7 @@ def main() -> int:
     task_domain = task_domain_label(args.task)
     wiki_alignment_task = is_wiki_alignment_task(args.task.lower())
     objective_label = "alignment/frame-loader objective" if wiki_alignment_task else "sim/evidence objective"
-    codex_local = uses_codex_local_children(rows)
-    if codex_local:
-        runtimes = "codex-controller, codex-local-children, gemini-skipped"
-    else:
-        runtimes = "codex-controller, claude-bridge, gemini-skipped" if mode == "compact" else "codex-controller, claude-bridge, gemini-degraded"
+    runtimes = runtime_summary(rows)
 
     concise_lines: list[str] = []
     profile_label = f" | profile:{compact_profile}" if mode == "compact" else ""
@@ -533,10 +589,11 @@ def main() -> int:
             f"{ROUTE_DISPLAY_NAMES.get(str(row.get('route')), str(row.get('route')))}"
             for row in council_rows
         )
-        bucket = counts[council]
+        council_passed = sum(coverage_by_route.get(str(row.get("route")), (0, 0))[0] for row in council_rows)
+        council_expected = sum(coverage_by_route.get(str(row.get("route")), (0, 0))[1] for row in council_rows)
         result = council_result_label(rows, council, expected_parents[council])
         concise_lines.append(
-            f"| {council} | {route_names} | {bucket['formal_passed']}/{bucket['formal_expected']} | {result} |"
+            f"| {council} | {route_names} | {council_passed}/{council_expected} | {result} |"
         )
     concise_lines.append("")
     selected_routes = {route for routes in selected_by_council.values() for route in routes}

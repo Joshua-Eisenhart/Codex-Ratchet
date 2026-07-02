@@ -1,0 +1,337 @@
+{
+  "F01_witness": {
+    "finite_carrier_VEFC": {
+      "C": 9,
+      "E": 64,
+      "F": 42,
+      "V": 32
+    },
+    "finite_path": "fibre(global-phase) and relative-phase moves on base",
+    "finite_probe_family": [
+      "sigma_x",
+      "sigma_y",
+      "sigma_z"
+    ],
+    "finite_spinor_field_size": 32
+  },
+  "N01_witness": {
+    "commuting_control_ok": true,
+    "noncommuting": true,
+    "pauli_noncommutator_norm": 2.8284271247461903,
+    "projection_order_gap": 0.4881454130145078,
+    "su2_diffaxis_order_gap": 0.2896746636420392,
+    "su2_sameaxis_commuting_control": 4.1540741810552243e-16
+  },
+  "ablation_outcome_delta": {
+    "erase_base_antipodal": {
+      "ablation_kind": "feature_removal",
+      "claim_key": "antipodal_law_gap",
+      "collapses_signature": true,
+      "delta_magnitude": 2.0,
+      "feature": "S^2 base antipodal structure (collapse n~-n to RP^2)",
+      "non_vacuous": true,
+      "recomputed": true,
+      "value_after_removal": -0.030502247176800612,
+      "value_with_feature": 1.9694977528231994
+    },
+    "erase_projection_pi_H": {
+      "ablation_kind": "feature_removal",
+      "claim_key": "phase_quotient_gap",
+      "collapses_signature": true,
+      "delta_magnitude": 0.7193740489764588,
+      "feature": "pi_H = psi^dag sigma psi (the Hopf projection to S^2 base)",
+      "non_vacuous": true,
+      "recomputed": true,
+      "value_after_removal": -0.0337422358430407,
+      "value_with_feature": 0.6856318131334181
+    }
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "L4 Hopf fibration (needs S3->S2 fibre/base split built on this base)",
+    "L5 nested Hopf tori",
+    "L6 connection/holonomy",
+    "Axis0 / flux / FEP / gravity bridge (downstream, blocked)"
+  ],
+  "classification": "L3_layer_poc",
+  "controls": {
+    "boundary": {
+      "north_pole_|0>": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "poles_exact": true,
+      "south_pole_|1>": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    "negative": {
+      "antipodal_collapse_gap": -0.030502247176800612,
+      "erase_pi_H_phase_gap": -0.0337422358430407,
+      "fibre_motion_must_be_zero": 2.482534153247273e-16,
+      "su2_sameaxis_commuting_gap": 4.1540741810552243e-16
+    },
+    "positive": {
+      "N01_order_gap": 0.4881454130145078,
+      "N01_su2_diffaxis_gap": 0.2896746636420392,
+      "antipodal_law_gap": 1.9694977528231994,
+      "base_area_signature_gap": 1.35757344451875,
+      "phase_quotient_gap_claim": 0.6856318131334181
+    }
+  },
+  "dependency_forcing": {
+    "both_below_erasures_collapse_signature": true,
+    "erase1_forget_pi_H": {
+      "antipodal_gap_after": 0.4216438329248131,
+      "collapses": true,
+      "phase_gap_after": -0.0337422358430407,
+      "surviving_fraction_phase": 0.049213346283969395
+    },
+    "erase2_antipodal_collapse": {
+      "antipodal_gap_after": -0.030502247176800612,
+      "collapses": true,
+      "phase_gap_after": 0.6856318131334181,
+      "surviving_fraction_antipodal": 0.015487322660346687
+    },
+    "genuine_antipodal_law_gap": 1.9694977528231994,
+    "genuine_phase_quotient_gap": 0.6856318131334181,
+    "honest_note": "both declared below-geometry erasures collapse the L3 signature: the S^2 base is forced by the geometry below, not a hand-written channel.",
+    "primary_signature": "antipodal_law_gap (quotient fact tying S^3 to S^2 base)",
+    "secondary_signature": "phase_quotient_gap (U(1) fibre quotient)"
+  },
+  "finite_map": {
+    "cardinality_note": "|pi_H|=1 (image on unit S^2); fibre U(1); orthogonal->antipodal",
+    "codomain": "S^2 Hopf base (projective base surface, quotient S^3/U(1))",
+    "domain": "K=(V,E,F,C) spinor field {psi_v in S^3 subset C^2}",
+    "map": "pi_H(psi) = psi^dag sigma psi"
+  },
+  "layer": "L3",
+  "math_anchor": "pi_H: S^3 -> S^2, pi_H(psi)=psi^dag sigma psi; |pi_H|=1 (Formal constraints and geometry .md)",
+  "negative_controls": {
+    "fibre_invariance_zero": true,
+    "poles_exact": true,
+    "random_partner_not_antipodal": true
+  },
+  "noncircularity_note": "antipodal law (orthogonal spinors -> antipodal base) and U(1) fibre quotient are theorems of S^3/U(1)=S^2 checked against the math, not planted; targets (0 antipodal residual, 1 norm) are theorems not knobs.",
+  "object_id": "L3_layer",
+  "peps3d_anchor": {
+    "euler_all_one": true,
+    "kind": "cubic cell complex K=(V,E,F,C)",
+    "ladder": [
+      {
+        "antipodal_law_gap_cloud_stat": 1.788193914277129,
+        "base_area_value": 1.4791985458394319,
+        "cell_count": 1,
+        "edge_count": 12,
+        "euler_VEFC": 1,
+        "face_count": 6,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 4.718447854656915e-16,
+          "base_area_discretisation_residual": 0.14586521250609863,
+          "fibre_invariance_pointwise_dev_signature": 2.482534153247273e-16
+        },
+        "phase_quotient_gap_cloud_stat": 0.6804167427273252,
+        "site_count": 8,
+        "target_site_band": 8,
+        "vertex_count": 8
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9704523730189503,
+        "base_area_value": 1.3784027241918106,
+        "cell_count": 8,
+        "edge_count": 54,
+        "euler_VEFC": 1,
+        "face_count": 36,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 1.1102230246251565e-16,
+          "base_area_discretisation_residual": 0.04506939085847739,
+          "fibre_invariance_pointwise_dev_signature": 3.3422138886441676e-16
+        },
+        "phase_quotient_gap_cloud_stat": 0.6857956149109022,
+        "site_count": 27,
+        "target_site_band": 16,
+        "vertex_count": 27
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9855973780684175,
+        "base_area_value": 1.3528588449017038,
+        "cell_count": 27,
+        "edge_count": 144,
+        "euler_VEFC": 1,
+        "face_count": 108,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 3.554447978966673e-16,
+          "base_area_discretisation_residual": 0.019525511568370568,
+          "fibre_invariance_pointwise_dev_signature": 2.5438405243138006e-16
+        },
+        "phase_quotient_gap_cloud_stat": 0.6857118945156798,
+        "site_count": 64,
+        "target_site_band": 32,
+        "vertex_count": 64
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9982602929815836,
+        "base_area_value": 1.3434948775175242,
+        "cell_count": 64,
+        "edge_count": 300,
+        "euler_VEFC": 1,
+        "face_count": 240,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 1.1102230246251565e-16,
+          "base_area_discretisation_residual": 0.010161544184190907,
+          "fibre_invariance_pointwise_dev_signature": 2.5438405243138006e-16
+        },
+        "phase_quotient_gap_cloud_stat": 0.6857956149109024,
+        "site_count": 125,
+        "target_site_band": 64,
+        "vertex_count": 125
+      }
+    ],
+    "note": "V counts carried S^3 spinors (sites); euler V-E+F-C=1 for each solid 3-ball complex."
+  },
+  "promotion_allowed": false,
+  "required_load_bearing_erasures": [
+    "pi_h",
+    "antipodal",
+    "phase"
+  ],
+  "scale_stress": {
+    "antipodal_law_pointwise_dev_N_invariant": true,
+    "base_area_discretisation_residual_ladder": [
+      0.14586521250609863,
+      0.04506939085847739,
+      0.019525511568370568,
+      0.010161544184190907
+    ],
+    "expected_N_invariant": [
+      "euler_VEFC",
+      "antipodal_law_pointwise_dev_signature",
+      "fibre_invariance_pointwise_dev_signature"
+    ],
+    "fibre_invariance_pointwise_dev_N_invariant": true,
+    "note": "base_area_discretisation_residual = |base_area - 4/3| (4/3 = uniform-S^2 mean chordal distance) converges MONOTONICALLY to 0 over the Fibonacci-equidistributed base cloud -> real per-N geometric convergence. The antipodal-law and fibre-invariance deviations are POINTWISE theorems holding ~1e-16 at every N, declared N-invariant.",
+    "residual_monotone_decreasing": true,
+    "residual_shrinks_with_N": true,
+    "rows": [
+      {
+        "antipodal_law_gap_cloud_stat": 1.788193914277129,
+        "base_area_value": 1.4791985458394319,
+        "cell_count": 1,
+        "edge_count": 12,
+        "euler_VEFC": 1,
+        "face_count": 6,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 4.718447854656915e-16,
+          "base_area_discretisation_residual": 0.14586521250609863,
+          "fibre_invariance_pointwise_dev_signature": 2.482534153247273e-16
+        },
+        "phase_quotient_gap_cloud_stat": 0.6804167427273252,
+        "site_count": 8,
+        "target_site_band": 8,
+        "vertex_count": 8
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9704523730189503,
+        "base_area_value": 1.3784027241918106,
+        "cell_count": 8,
+        "edge_count": 54,
+        "euler_VEFC": 1,
+        "face_count": 36,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 1.1102230246251565e-16,
+          "base_area_discretisation_residual": 0.04506939085847739,
+          "fibre_invariance_pointwise_dev_signature": 3.3422138886441676e-16
+        },
+        "phase_quotient_gap_cloud_stat": 0.6857956149109022,
+        "site_count": 27,
+        "target_site_band": 16,
+        "vertex_count": 27
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9855973780684175,
+        "base_area_value": 1.3528588449017038,
+        "cell_count": 27,
+        "edge_count": 144,
+        "euler_VEFC": 1,
+        "face_count": 108,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 3.554447978966673e-16,
+          "base_area_discretisation_residual": 0.019525511568370568,
+          "fibre_invariance_pointwise_dev_signature": 2.5438405243138006e-16
+        },
+        "phase_quotient_gap_cloud_stat": 0.6857118945156798,
+        "site_count": 64,
+        "target_site_band": 32,
+        "vertex_count": 64
+      },
+      {
+        "antipodal_law_gap_cloud_stat": 1.9982602929815836,
+        "base_area_value": 1.3434948775175242,
+        "cell_count": 64,
+        "edge_count": 300,
+        "euler_VEFC": 1,
+        "face_count": 240,
+        "layer_gate": {
+          "antipodal_law_pointwise_dev_signature": 1.1102230246251565e-16,
+          "base_area_discretisation_residual": 0.010161544184190907,
+          "fibre_invariance_pointwise_dev_signature": 2.5438405243138006e-16
+        },
+        "phase_quotient_gap_cloud_stat": 0.6857956149109024,
+        "site_count": 125,
+        "target_site_band": 64,
+        "vertex_count": 125
+      }
+    ],
+    "scale_ladder_real": true
+  },
+  "signature_genuine": {
+    "antipodal_law_gap": 1.9694977528231994,
+    "base_area_signature": 1.35757344451875,
+    "fibre_motion": 2.482534153247273e-16,
+    "nonfibre_motion": 0.6856318131334184,
+    "nonortho_partner_max": 1.9694977528231998,
+    "nonortho_partner_min": 0.5168377589955547,
+    "ortho_antipodal_dev": 3.554447978966673e-16,
+    "phase_quotient_gap": 0.6856318131334181
+  },
+  "spinor_native": {
+    "carrier": "Julia-native unit spinors psi in C^2 (S^3); rho=|psi><psi| spinor-derived density",
+    "field_avg_purity": 0.5027435020453188,
+    "field_avg_vn_entropy": 0.6904011640572801,
+    "numpy_free": true,
+    "single_site_vn_entropy": 0.0
+  },
+  "status": "passes",
+  "status_ladder": "runs < passes ; this run: passes",
+  "title": "S^2 projective / Hopf base : projective base surface + quotient geometry",
+  "tools": {
+    "JSON": "supportive: receipt emission",
+    "LinearAlgebra": "load_bearing: eigvals/Hermitian for derived von Neumann entropy; ortho_partner builds the Hopf-antipodal spinor",
+    "Random": "supportive: spinor field sampling",
+    "Z3": "load_bearing: antipodal-law verdict flips on erased input"
+  },
+  "verdicts": {
+    "N01_commuting_control_ok": true,
+    "N01_noncommuting": true,
+    "antipodal_law_holds": true,
+    "antipodal_law_specific": true,
+    "dependency_forcing_holds": true,
+    "euler_VEFC_all_one": true,
+    "quotient_gaps_N_invariant": true,
+    "quotient_genuine": true,
+    "residual_shrinks_with_N": true,
+    "scale_ladder_real": true,
+    "z3_verdict_flips": true
+  },
+  "z3_loadbearing_proof": {
+    "binding": "Int constants bound == measured (scaled) residual entries, not hardcoded literals",
+    "claim": "orthogonal-pair base coords satisfy pi_H(perp)+pi_H(psi)=0 (antipodal law)",
+    "erase2_residual_nonzero_status": "sat",
+    "genuine_residual_nonzero_status": "unsat",
+    "tool_integration_depth": "load_bearing",
+    "verdict_flips_on_erased_input": true
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "cf16_cptp_instrument_vs_classical_markov_chain_gate_result_v1",
+  "name": "cf16_cptp_instrument_vs_classical_markov_chain_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-16",
+  "gate": "EG-CF16-cptp-instrument-vs-classical-markov-chain",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-16 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite density state evolution, Kraus completeness, order gap, and commuting Markov ablation"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:09:26Z",
+  "runtime_seconds": 0.0017230510711669922,
+  "positive": {
+    "pass": true,
+    "path_count": 4,
+    "kraus_completeness_gaps": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "noncommuting_order_trace_distance": 0.12536667535146517,
+    "coherence_norm_after_channel": 0.1502123765211291
+  },
+  "negative": {
+    "pass": false,
+    "expected": "fail",
+    "negative_case_type": "executable_rejection",
+    "row_stochastic_gap": 0.0,
+    "has_complex_coherence_carrier": false,
+    "has_kraus_registry": false,
+    "has_probe": false,
+    "negative_rejected": true,
+    "attempted_claim": {
+      "transition_matrix": [
+        [
+          0.82,
+          0.18
+        ],
+        [
+          0.11,
+          0.89
+        ]
+      ],
+      "missing_fields": [
+        "kraus_registry",
+        "measurement_probe",
+        "coherence_carrier",
+        "commuting_ablation"
+      ]
+    }
+  },
+  "boundary": {
+    "pass": true,
+    "commuting_order_trace_distance": 0.0,
+    "coherence_norm": 0.0,
+    "interpretation": "diagonal commuting CPTP ablation may be represented by a classical Markov chain, but only as a derived boundary case"
+  },
+  "all_pass": true
+}

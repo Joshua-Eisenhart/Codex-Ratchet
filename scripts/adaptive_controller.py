@@ -607,7 +607,7 @@ def _runner_class_from_execution_kind(execution_kind: str) -> str:
         return "classical"
     if "bridge" in execution_kind or execution_kind in {"semiclassical", "semiclassical_szilard"}:
         return "bridge"
-    if execution_kind == "nonclassical":
+    if execution_kind == "nonclassical" or execution_kind.startswith("nonclassical_"):
         return "nonclassical"
     return ""
 
@@ -623,11 +623,6 @@ def runner_class_for(sim_path: pathlib.Path | str, source_text: str | None = Non
     stem = path.stem.lower()
     if stem.startswith("sim_"):
         stem = stem[4:]
-    family = sim_family(path.name)
-    if family in {"axis", "axis0"}:
-        return "bridge"
-    if any(token in stem for token in BRIDGE_RUNNER_TOKENS):
-        return "bridge"
 
     text = source_text
     if text is None:
@@ -641,6 +636,11 @@ def runner_class_for(sim_path: pathlib.Path | str, source_text: str | None = Non
     explicit_runner_class = _runner_class_from_execution_kind(execution_kind)
     if explicit_runner_class:
         return explicit_runner_class
+    family = sim_family(path.name)
+    if family in {"axis", "axis0"}:
+        return "bridge"
+    if any(token in stem for token in BRIDGE_RUNNER_TOKENS):
+        return "bridge"
     if classification == "classical_baseline" or "classical" in stem:
         return "classical"
     if classification == "canonical":
@@ -659,13 +659,13 @@ def runner_class_reason(sim_path: pathlib.Path | str, source_text: str | None = 
             text = path.read_text()
         except Exception:
             text = ""
-    if any(token in stem for token in BRIDGE_RUNNER_TOKENS):
-        return "bridge_token"
     classification = _source_classification(text)
     execution_kind = _source_execution_kind(text)
     explicit_runner_class = _runner_class_from_execution_kind(execution_kind)
     if explicit_runner_class:
         return f"sim_execution_kind_{explicit_runner_class}"
+    if any(token in stem for token in BRIDGE_RUNNER_TOKENS):
+        return "bridge_token"
     if classification == "classical_baseline":
         return "classification_classical_baseline"
     if classification == "canonical":

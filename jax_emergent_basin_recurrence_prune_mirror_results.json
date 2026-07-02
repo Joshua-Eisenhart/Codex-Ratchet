@@ -1,0 +1,165 @@
+{
+  "AUDIT_PASS": true,
+  "allowed_claims": [
+    "JAX can reproduce the finite recurrence/prune control shape of the Julia emergent-basin object",
+    "commuting/product collapse is a real negative against basin multiplicity in this finite JAX diagnostic"
+  ],
+  "blocked_consumers": [
+    "full_layer_completion",
+    "official_g_structure_selection",
+    "layer_stacking",
+    "Axis0",
+    "FEP",
+    "flux",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "checks": {
+    "A_reaches_all_16_basins": true,
+    "B_preserves_all_16_recurrence_basins": true,
+    "B_prune_fires": true,
+    "C_noop_equals_A": true,
+    "D_commuting_product_collapses": true,
+    "D_product_negative_has_zero_MI": true,
+    "bookkeeping": true,
+    "finite_survivors": true,
+    "genuine_noncommuting_generators_present": true,
+    "product_negative_commutes": true,
+    "q_retraction": true
+  },
+  "classification": "diagnostic_only",
+  "codomain_or_output": "survivor counts, pruned counts, populated recurrence basin labels, negative/control readouts",
+  "domain": {
+    "branches": 3072,
+    "placements": "{L,R} x {fiber,base} x {Se,Ne,Ni,Si}",
+    "state": "unit quaternion q in S3, Bloch vector r in closed ball, nested leaf coordinate theta in (0,pi/2)"
+  },
+  "finite_map": "finite branch ensemble over 16 Weyl terrain placements -> monotone survivor mask -> recurrence basin labels",
+  "julia_reference_readonly": "system_v5/julia_carrier/layers/emergent_basin_nested_terrains.jl",
+  "julia_result_reference_readonly": "system_v5/julia_carrier/layers/emergent_basin_nested_terrains_results.json",
+  "noncommutation_control": {
+    "genuine_max_commutator_norm": 2.9966648127543394,
+    "product_negative_max_commutator_norm": 0.0
+  },
+  "object": "jax_emergent_basin_recurrence_prune_mirror",
+  "product_negative_mutual_information_bits_abs": 0.0,
+  "promotion_allowed": false,
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "root_constraints_in_force": [
+    "F01 finite branch/state/control set",
+    "N01 noncommuting terrain-generator control"
+  ],
+  "runs": {
+    "A": {
+      "max_q_norm_drift": 3.3306690738754696e-16,
+      "max_recurrence_residual": 0.001046580425875251,
+      "max_survivor_bloch_norm": 0.9999010831612565,
+      "mean_survivor_theta": 0.7853981634421574,
+      "name": "A_no_prune",
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "product_mode": false,
+      "prune_active": false,
+      "pruned": 0,
+      "survivors": 3072
+    },
+    "B": {
+      "max_q_norm_drift": 3.3306690738754696e-16,
+      "max_recurrence_residual": 0.001029640771598721,
+      "max_survivor_bloch_norm": 0.9999010831612565,
+      "mean_survivor_theta": 0.7853981633697004,
+      "name": "B_monotone_chirality_finitude_prune",
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "product_mode": false,
+      "prune_active": true,
+      "pruned": 1332,
+      "survivors": 1740
+    },
+    "C": {
+      "max_q_norm_drift": 3.3306690738754696e-16,
+      "max_recurrence_residual": 0.001046580425875251,
+      "max_survivor_bloch_norm": 0.9999010831612565,
+      "mean_survivor_theta": 0.7853981634421574,
+      "name": "C_trivial_noop_control",
+      "populated_basins": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "product_mode": false,
+      "prune_active": false,
+      "pruned": 0,
+      "survivors": 3072
+    },
+    "D": {
+      "max_q_norm_drift": 3.3306690738754696e-16,
+      "max_recurrence_residual": 0.00031810345460949314,
+      "max_survivor_bloch_norm": 0.9999713371902145,
+      "mean_survivor_theta": 0.7892552553058085,
+      "name": "D_commuting_product_negative",
+      "populated_basins": [
+        1
+      ],
+      "product_mode": true,
+      "prune_active": false,
+      "pruned": 0,
+      "survivors": 3072
+    }
+  },
+  "sim_execution_kind": "jax_audit_lane",
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing"
+  },
+  "tool_manifest": {
+    "jax": "load-bearing batched branch evolution, S3 retraction, survivor-mask latch, recurrence labels",
+    "jax.numpy": "load-bearing finite linear algebra and density entropy for product negative"
+  }
+}

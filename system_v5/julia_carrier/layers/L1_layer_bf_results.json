@@ -1,0 +1,170 @@
+{
+  "bloch_free": true,
+  "blocked_consumers": [
+    "L2..L13 stacking readiness — blocked; this is L1-only PoC carrier evidence.",
+    "Axis0 cut-state kernel Phi_0(rho_AB) — needs a bipartite bridge Xi; not built here.",
+    "flux / Weyl-sheet chirality — downstream; blocked.",
+    "FEP / Holodeck readouts — downstream; blocked.",
+    "order/ratchet pairwise tests — gated behind parent-complete."
+  ],
+  "carrier_language": "native Julia (LinearAlgebra), density-operator only; NO Bloch r-vector",
+  "checks": {
+    "ctrl1_purity_flips_below_1": true,
+    "ctrl1_rank_flips_1_to_2": true,
+    "ctrl2_coherence_flips_to_0": true,
+    "ctrl3_amplitude_flips_under_phase": true,
+    "inv1_psd": true,
+    "inv1_purity_is_1": true,
+    "inv1_rank_is_1": true,
+    "inv1_trace_is_1": true,
+    "inv2_input_dependent": true,
+    "inv2_maxmixed_S_is_0": true,
+    "inv2_plus_state_S_is_1": true,
+    "inv3_rho_phase_invariant": true,
+    "scale_stress_all_hold": true,
+    "z3_load_bearing_ok": true
+  },
+  "classification": "L1_layer_bf_poc",
+  "controls": {
+    "negative": {
+      "classical_mixture_coherence_max": 0.0,
+      "classical_mixture_purity_mean": 0.6824793433634002,
+      "classical_mixture_rank": 2,
+      "coherence_flip_delta_pure_minus_mix": 0.7604303357146068,
+      "purity_flip_delta_pure_minus_mix": 0.3175206566365998,
+      "raw_amplitude_phase_flip_max_dev": 1.9531656278448053
+    },
+    "positive": {
+      "coherence_input_spread_std": 0.23350198123307359,
+      "coherence_signature_max": 0.9999992302749968,
+      "coherence_signature_mean": 0.7604303357146068,
+      "rho_phase_invariance_max_dev": 3.728969589373966e-16,
+      "spinor_carrier_purity_mean": 1.0,
+      "spinor_carrier_rank": 1
+    }
+  },
+  "finite_map": "psi in S^3 subset C^2  -->  rho = psi psi^dag in D(C^2). KNOWN invariants: rank(rho)=1, tr(rho)=1, tr(rho^2)=1 (pure); coherence S(rho)=2|rho_01| (density-operator readout, |+> -> 1, I/2 -> 0); U(1) global-phase fibre rho(e^{ia}psi)=rho(psi). WRONG-STRUCTURE control = classical/diagonal mixture diag(rho): rank 1->2, purity 1-><1, coherence nonzero->0 (audit-confirmed depol/diagonal separation). NO Bloch r-vector anywhere.",
+  "honesty_note": "L1 re-framed as a CARRIER (like L2_layer_bf.jl). KNOWN invariants of psi->rho=psi psi^dag: (1) rank=1, tr(rho^2) mean 1.0==1 (pure); (2) coherence S=2|rho_01| measured off Haar spinors (mean 0.7604, std 0.2335 => input-dependent; |+>->S=1.0, I/2->S=0.0); (3) rho is U(1)-phase-blind (max dev 3.73e-16). WRONG-STRUCTURE control (classical/diagonal mixture): rank FLIPS 1->2, purity FLIPS to mean 0.6825, coherence FLIPS to max 0.0 (delta 0.7604); raw amplitude phase-FLIPS (max dev 1.9532). DROPPED the prior rigged z-phase/bit-flip controls (algebraically guaranteed to survive). BLOCH-FREE: no r-vector constructed. Z3 load-bearing: carrier/classical claims UNSAT, broken claims SAT (verdict flips).",
+  "invariant_coherence_readout": {
+    "anchors": "|+> -> S==1 (quantum max); I/2 -> S==0",
+    "definition": "S(rho)=2|rho_01| (off-diagonal coherence weight, read off the density operator; NO Bloch vector)",
+    "input_dependent": true,
+    "maxmixed_S": 0.0,
+    "maxmixed_zero": true,
+    "pass": true,
+    "plus_is_max": true,
+    "plus_state_S": 0.9999999999999998,
+    "spinor_max": 0.9999992302749968,
+    "spinor_mean": 0.7604303357146068,
+    "spinor_min": 0.03121607091239113,
+    "spinor_std_input_spread": 0.23350198123307359
+  },
+  "invariant_purity_rank": {
+    "anchors": "rank(rho)==1, tr(rho)==1, PSD, tr(rho^2)==1 (pure state)",
+    "pass": true,
+    "psd_all": true,
+    "purity_is_1_all": true,
+    "purity_mean": 1.0,
+    "rank1_all": true,
+    "trace1_all": true
+  },
+  "invariant_u1_phase_fibre": {
+    "anchor": "rho(e^{ia}psi) == rho(psi) (the density map quotients the U(1) global phase)",
+    "pass": true,
+    "rho_phase_invariance_max_dev": 3.728969589373966e-16
+  },
+  "layer": "L1",
+  "layer_name": "spinor / density carrier (Bloch-free, invariant-anchored)",
+  "non_numpy": true,
+  "prior_was_misframed": "The prior L1_layer_bf.jl proved the carrier via a 'dependency-forcing erasure' and a set of 'anti-tautology controls' (z-phase U_z rho U_z^dag, bit-flip sigma_x rho sigma_x). Both of those controls are ALGEBRAICALLY GUARANTEED to leave |rho_01| intact (U_z diagonal-unitary, sigma_x population swap), so they prove nothing — the mirror image of the [diag,diag]=0 tautology. This rebuild DROPS them and re-frames L1 as a CARRIER (like L2): anchor to KNOWN invariants (purity/rank, coherence readout, U(1) phase fibre) with a wrong-structure control (the classical/diagonal mixture) on which each invariant FLIPS. The ONLY survivor-vs-flip evidence kept is the audit-confirmed depol/diagonal structural separation.",
+  "promotion_allowed": false,
+  "scale_stress_8_16_32_64": {
+    "N_16": {
+      "holds_at_this_scale": true,
+      "invariant_coherent": true,
+      "invariant_pure_rank1": true,
+      "sites": 16,
+      "wrong_structure_coherence_flips_to_0": true,
+      "wrong_structure_rank_flips_to_2": true
+    },
+    "N_32": {
+      "holds_at_this_scale": true,
+      "invariant_coherent": true,
+      "invariant_pure_rank1": true,
+      "sites": 32,
+      "wrong_structure_coherence_flips_to_0": true,
+      "wrong_structure_rank_flips_to_2": true
+    },
+    "N_64": {
+      "holds_at_this_scale": true,
+      "invariant_coherent": true,
+      "invariant_pure_rank1": true,
+      "sites": 64,
+      "wrong_structure_coherence_flips_to_0": true,
+      "wrong_structure_rank_flips_to_2": true
+    },
+    "N_8": {
+      "holds_at_this_scale": true,
+      "invariant_coherent": true,
+      "invariant_pure_rank1": true,
+      "sites": 8,
+      "wrong_structure_coherence_flips_to_0": true,
+      "wrong_structure_rank_flips_to_2": true
+    }
+  },
+  "scale_stress_all_hold": true,
+  "script": "layers/L1_layer_bf.jl",
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes",
+  "test_type": "invariant-anchored (carrier): KNOWN invariants of the spinor->density map, each with a wrong-structure control that FLIPS",
+  "tools_used": {
+    "JSON": "load_bearing — emits the receipt.",
+    "LinearAlgebra": "load_bearing — eigvals/rank/tr/exp(matrix)/HS norm drive the carrier invariants (rank, purity, PSD, coherence matrix element, phase-invariance).",
+    "Random": "load_bearing — Haar-random spinor sampling; every invariant number is measured off fresh samples, never planted to a target.",
+    "Statistics": "load_bearing — mean/std certify input-dependence of the coherence readout and the flip deltas.",
+    "Z3": "load_bearing — derives the (rank, coherence-is-zero) pair from a free is_pure flag and proves measured==derived by refuting the negation (UNSAT for the spinor carrier and for the classical mixture); a BROKEN claim (classical-says-pure, or pure-says-classical) flips the verdict to SAT. The verdict flips on broken input, so Z3 is load-bearing."
+  },
+  "verdict": {
+    "all_pass": true,
+    "carrier_is_spinor_to_density_map": true,
+    "claim_ceiling": "PoC: L1 is the spinor->density carrier psi -> rho=psi psi^dag. Its realness is anchored to three KNOWN invariants (purity/rank, coherence readout, U(1) phase fibre), each measured and each FLIPPED by a wrong-structure control (classical/diagonal mixture: rank 1->2, purity 1-><1, coherence nonzero->0; raw amplitude: phase-flips). The flip is the evidence the invariants are measured, not by-construction. The rigged z-phase/bit-flip 'controls' (algebraically guaranteed to survive) were DROPPED. promotion_allowed=false; not canonical.",
+    "honest_status": "genuine_carrier",
+    "invariant_coherence_at_anchor": true,
+    "invariant_purity_rank_at_anchor": true,
+    "invariant_u1_phase_at_anchor": true,
+    "scale_stress_all_hold": true,
+    "wrong_structure_coherence_flips": true,
+    "wrong_structure_phase_flips": true,
+    "wrong_structure_rank_purity_flips": true,
+    "z3_load_bearing_ok": true
+  },
+  "wrong_structure_coherence": {
+    "classical_mixture_coherence_max": 0.0,
+    "coherence_flip_delta_pure_minus_mix": 0.7604303357146068,
+    "coherence_flips_to_0": true,
+    "control": "classical/diagonal mixture m = diag(rho) has S(m)==0 by structure",
+    "note": "audit-confirmed depol/diagonal separation: the spinor carrier is coherent, the classical mixture is not. Structural flip, not an erasure tautology."
+  },
+  "wrong_structure_purity_rank": {
+    "classical_mixture_purity_mean": 0.6824793433634002,
+    "control": "classical/diagonal mixture m = diag(rho) (forget the spinor, keep populations)",
+    "n_nontrivial_samples": 255,
+    "purity_flip_delta": 0.3175206566365998,
+    "purity_flips_below_1": true,
+    "rank_flips_1_to_2": true
+  },
+  "wrong_structure_u1_phase": {
+    "amplitude_flips_under_phase": true,
+    "control": "raw amplitude psi_0 = psi[1] (a NON-density coordinate) under e^{ia}",
+    "note": "phase-blindness is a property of the density map rho, not of arbitrary functions of psi; the raw amplitude is NOT phase-invariant, so the invariant is measured, not trivial.",
+    "raw_amplitude_phase_flip_max_dev": 1.9531656278448053
+  },
+  "z3_anchor": {
+    "broken_classical_says_pure_sat": "sat",
+    "broken_pure_says_classical_sat": "sat",
+    "classical_mixture_claim_unsat": "unsat",
+    "encoding": "free is_pure flag -> predicted (rank, coherence-is-zero) pair; assert measured != predicted; UNSAT => proven, SAT => kill",
+    "load_bearing_ok": true,
+    "pure_carrier_claim_unsat": "unsat"
+  }
+}

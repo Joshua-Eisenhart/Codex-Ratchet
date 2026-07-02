@@ -1,0 +1,376 @@
+{
+  "F01_N01_antitautology": {
+    "F01": {
+      "bounded_invariant": 1.941755,
+      "compact_carrier": "S^3 = {psi in C^2 : ||psi||=1} is compact; all holonomy values bounded in (-pi,pi]",
+      "flat_control_gives_0": 0.0
+    },
+    "H_vs_eta": {
+      "H": [
+        1.84012,
+        3.141399,
+        -1.941755,
+        -0.0,
+        -3.141399
+      ],
+      "eta": [
+        0.3927,
+        0.5236,
+        0.6283,
+        0.7854,
+        1.0472
+      ]
+    },
+    "H_vs_m": {
+      "H": [
+        -1.941755,
+        2.398807,
+        0.454449,
+        -1.492516
+      ],
+      "m": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "N01": {
+      "interpretation": "A_Hopf transport P->Q1->R != P->Q2->R; enclosed curvature dA = -2 sin(2eta) deta^dchi",
+      "order_gap": 0.769826,
+      "order_matters": true,
+      "phase_AB": -0.516176,
+      "phase_BA": 0.25365
+    },
+    "dependency_forcing": {
+      "EA_collapsed": true,
+      "EA_holonomy_after": -0.0,
+      "EA_holonomy_before": -1.941755,
+      "EB_collapsed": true,
+      "EB_gap_after": 0.0,
+      "EB_gap_before": 0.769826,
+      "antitautology_gap_drift": 0.0,
+      "antitautology_holds": true,
+      "antitautology_holonomy_drift": 0.0,
+      "dependency_forcing_genuine": true,
+      "input_dep_eta": true,
+      "input_dep_winding": true,
+      "structural_no_builtin_zero": true
+    }
+  },
+  "all_pass": true,
+  "baseline_holonomy": {
+    "H_base": -1.941755,
+    "H_fiber": -0.0,
+    "base_density_visible": true,
+    "base_nontrivial": true,
+    "base_solid_angle_S2": -8.68286,
+    "density_spread_base": 1.344997,
+    "density_spread_fiber": 7.364e-16,
+    "fiber_density_stationary": true,
+    "fiber_trivial": true
+  },
+  "blocked_consumers": [
+    "L7 Weyl spinor bundle",
+    "L8 chirality cover",
+    "L10 terrain generator",
+    "G-structure selection",
+    "Axis0 / flux / FEP / physics bridge"
+  ],
+  "carrier": {
+    "bloch_vector_used": false,
+    "chart": "psi(phi,chi;eta)=(e^{i(phi+chi)} cos eta, e^{i(phi-chi)} sin eta) [quoted from doc]",
+    "exact_carrier": "Julia-native dense exact arithmetic; no CTMRG; no approximate contraction",
+    "julia_native_spinor": true,
+    "on_S3_norm_dev": 1.1102230246251565e-16,
+    "rho_is_psd": true,
+    "rho_is_pure": true,
+    "rho_trace": 0.9999999999999999,
+    "uses_numpy": false
+  },
+  "claim_ceiling": "carrier computes invariants and finite maps; does NOT assert layer-completion, manifold admission, coupling, bridge, flux, or physics.",
+  "classification": "L6_newstd_poc",
+  "connection_A_Hopf": {
+    "A_chi_expected": 0.30901699437494745,
+    "A_chi_measured": 0.3090169943211468,
+    "A_phi_expected": 1.0,
+    "A_phi_measured": 0.999999999924387,
+    "matches_doc": true
+  },
+  "controls_summary": {
+    "N01_loop_order_ok": true,
+    "carrier_ok": true,
+    "connection_ok": true,
+    "criterion_1_finitude": true,
+    "criterion_2_noncommutation": true,
+    "criterion_3_invariant": true,
+    "criterion_4_exact_carrier": true,
+    "criterion_5_scale_ladder": true,
+    "criterion_6_neural": true,
+    "dependency_forcing_genuine": true,
+    "holonomy_ok": true
+  },
+  "criterion_1_finitude_vs_flat": {
+    "H_base_genuine": -1.941755,
+    "H_flat_control": 0.0,
+    "MET": true,
+    "S3_holonomy_bounded_in_minus_pi_pi": true,
+    "S3_is_compact": true,
+    "flat_control_description": "R^2 flat connection A_flat = x dx + y dy = exact form; curvature F=dA=0; any closed-loop integral = 0 (Stokes theorem on flat R^2)",
+    "threshold_H_base_gt_0p1": true,
+    "threshold_H_flat_lt_1e4": true,
+    "verdict": "MET: compact S^3 carrier gives bounded nonzero holonomy; flat R^2 control gives zero (no curvature). Non-flatness is load-bearing for F01."
+  },
+  "criterion_2_noncommutation": {
+    "F_at_ETA0": -1.902113,
+    "MET": true,
+    "clifford_note": "No Clifford sublevel in this object; anticommutator check not applicable. Noncommutation is at the geometric/connection level: covariant derivations fail to commute by curvature F.",
+    "clifford_sublevel_present": false,
+    "comm_norm_flat_control": 0.0,
+    "comm_norm_genuine": 2.689994,
+    "comm_vs_eta": [
+      2.0,
+      2.44949,
+      2.689994,
+      2.828427,
+      2.44949
+    ],
+    "description": "Curvature commutator [nabla_eta, nabla_chi] = F_{eta,chi} * J in SO(2) rep; F = -2 sin(2 eta)",
+    "eta_vals": [
+      0.3927,
+      0.5236,
+      0.6283,
+      0.7854,
+      1.0472
+    ],
+    "flat_control_description": "Flat connection F=0 -> [nabla_eta,nabla_chi]=0 -> norm=0 exactly.",
+    "input_dependent": true,
+    "threshold_flat_lt_1e12": true,
+    "threshold_genuine_gt_1p0": true,
+    "verdict": "MET: curvature commutator ||[nabla_eta,nabla_chi]|| > 1.0 (input-dependent, varies with eta); flat control gives 0 exactly. Non-flatness is load-bearing for N01."
+  },
+  "criterion_3_topological_invariant": {
+    "MET": true,
+    "c1_closed_loop": 1.0,
+    "c1_half_sphere": 0.5,
+    "c1_integer_gap": 1.0e-5,
+    "c1_is_integer": true,
+    "invariant_type": "first_Chern_number_c1_Hopf_U1_bundle",
+    "threshold_c1_closed_near_1": true,
+    "threshold_c1_half_near_0p5": true,
+    "verdict": "MET: c1 ~ 1 (integer, topological invariant of Hopf bundle); half-sphere wrong-structure gives non-integer ~0.5, flipping the invariant. Chern class anchored.",
+    "wrong_structure_control": "half-sphere (open / non-closed): integral over half of S^2 gives ~0.5, not integer -> structure flipped",
+    "wrong_structure_flips_integrality": true
+  },
+  "criterion_4_exact_carrier": {
+    "MET": true,
+    "carrier_type": "Julia-native dense exact ComplexF64 arithmetic on S^3 spinors",
+    "contraction_error_bound": "discretization error O(1/n^2) = O(6e-6) for n=400; genuine holonomy ~ pi*cos(2*ETA0) >> 6e-6",
+    "equal_truncation_budget": "genuine and control loops use identical n=400 discrete states; no truncation applied",
+    "no_CTMRG": true,
+    "no_approximate_contraction": true,
+    "verdict": "MET: exact Julia-native dense arithmetic; no CTMRG; equal sampling budget (n=400) for genuine and control; discretization error bounded below claimed effect."
+  },
+  "criterion_5_scale_ladder": {
+    "MET": "MET",
+    "all_4_passed": true,
+    "rungs_8_16_32_64": {
+      "sites_16": {
+        "base_holonomy": -2.03691,
+        "base_holonomy_erased": 0.0,
+        "base_nontrivial": true,
+        "c1_at_scale": 1.0016,
+        "comm_norm": 2.689994,
+        "erased_collapsed": true,
+        "fiber_holonomy": 0.0,
+        "n": 16,
+        "peps3d_C": 768,
+        "peps3d_E": 2048,
+        "peps3d_F": 1024,
+        "peps3d_V": 1024,
+        "peps3d_euler": -768,
+        "residual_vs_n400": 0.09515,
+        "rung_pass": true
+      },
+      "sites_32": {
+        "base_holonomy": -1.96448,
+        "base_holonomy_erased": -0.0,
+        "base_nontrivial": true,
+        "c1_at_scale": 1.0004,
+        "comm_norm": 2.689994,
+        "erased_collapsed": true,
+        "fiber_holonomy": -0.0,
+        "n": 32,
+        "peps3d_C": 3072,
+        "peps3d_E": 8192,
+        "peps3d_F": 4096,
+        "peps3d_V": 4096,
+        "peps3d_euler": -3072,
+        "residual_vs_n400": 0.02273,
+        "rung_pass": true
+      },
+      "sites_64": {
+        "base_holonomy": -1.94727,
+        "base_holonomy_erased": 0.0,
+        "base_nontrivial": true,
+        "c1_at_scale": 1.0001,
+        "comm_norm": 2.689994,
+        "erased_collapsed": true,
+        "fiber_holonomy": 0.0,
+        "n": 64,
+        "peps3d_C": 12288,
+        "peps3d_E": 32768,
+        "peps3d_F": 16384,
+        "peps3d_V": 16384,
+        "peps3d_euler": -12288,
+        "residual_vs_n400": 0.005517,
+        "rung_pass": true
+      },
+      "sites_8": {
+        "base_holonomy": -2.39767,
+        "base_holonomy_erased": -0.0,
+        "base_nontrivial": true,
+        "c1_at_scale": 1.0065,
+        "comm_norm": 2.689994,
+        "erased_collapsed": true,
+        "fiber_holonomy": -0.0,
+        "n": 8,
+        "peps3d_C": 192,
+        "peps3d_E": 512,
+        "peps3d_F": 256,
+        "peps3d_V": 256,
+        "peps3d_euler": -192,
+        "residual_vs_n400": 0.4559,
+        "rung_pass": true
+      }
+    },
+    "rungs_passed": 4,
+    "verdict": "4/4 rungs: base_holonomy>0.1, erased_collapsed, comm_curv>1.0, c1 near 1"
+  },
+  "criterion_6_neural_dynamics": {
+    "H_gap_between_memories": 1.84012,
+    "H_memory_1_final": -0.0,
+    "H_memory_2_final": 1.84012,
+    "MET": true,
+    "description": "Hopfield-style attractor on S^2 base: memories are eta* values; energy = -cos(geodesic distance); retrieval via geodesic gradient flow; Berry phase is the order parameter tracking convergence",
+    "memories_distinguishable_by_holonomy": true,
+    "memory_1_eta": 0.7853981633974483,
+    "memory_2_eta": 0.39269908169872414,
+    "non_flatness_role": "S^2 geometry compresses storage; geodesic gradient flow uses Riemannian structure of S^2; flat Euclidean space would have no curvature to guide convergence",
+    "retrieval_1": {
+      "converged": true,
+      "delta_holonomy": 1.7859,
+      "final_eta": 0.786208,
+      "holonomy_final": 0.01017,
+      "holonomy_start": -1.77572,
+      "holonomy_trajectory": [
+        -1.77572,
+        2.50806,
+        1.28979,
+        0.64951,
+        0.32533,
+        0.16274,
+        0.08138,
+        0.04069,
+        0.02035,
+        0.01017
+      ],
+      "start_eta": 1.1854,
+      "steps": 9
+    },
+    "retrieval_2": {
+      "converged": true,
+      "delta_holonomy": 1.75557,
+      "final_eta": 0.393509,
+      "holonomy_final": 1.84732,
+      "holonomy_start": 0.09175,
+      "start_eta": 0.7927,
+      "steps": 9
+    },
+    "threshold_converged_steps_le_20": true,
+    "threshold_delta_holonomy_gt_0p01": true,
+    "threshold_memories_distinguishable": true,
+    "verdict": "MET: geodesic gradient flow on S^2 converges to stored memory in <= 20 steps; Berry phase shifts by > 0.01 during retrieval; two memories are distinguishable by their asymptotic holonomy."
+  },
+  "finite_map": {
+    "F01": "S^3 is compact: all holonomy values are bounded; the carrier is finite; no infinite extent",
+    "N01": "Berry curvature F = -2 sin(2 eta) deta ^ dchi gives non-Abelian (order-sensitive) parallel transport; loop order gap > 0",
+    "codomain": "U(1) Berry holonomy in (-pi,pi]; loop-order gap; first Chern number; attractor-basin holonomy",
+    "domain": "closed loops u in [0,2pi) on the compact Hopf carrier S^3 = {psi in C^2 : ||psi||=1}",
+    "map": "Hol: loop -> -arg prod_i <psi_i|psi_{i+1}> (gauge-invariant Bargmann/Berry = S^2-base solid angle)"
+  },
+  "honest_status": "passes_new_standard: 6/6 criteria MET",
+  "layer": "L6",
+  "new_standard_scorecard": {
+    "commutation": {
+      "deciding_number": "||[nabla_eta,nabla_chi]||=2.689994, flat=0.0",
+      "status": "MET",
+      "threshold": "genuine>1.0 AND flat<1e-12 AND input_dependent"
+    },
+    "exact_carrier": {
+      "deciding_number": "Julia-native dense ComplexF64; no CTMRG",
+      "status": "MET",
+      "threshold": "exact dense arithmetic, no truncation difference"
+    },
+    "finitude": {
+      "deciding_number": "H_base=-1.9418, H_flat=0.0",
+      "status": "MET",
+      "threshold": "|H_base|>0.1 AND |H_flat|<1e-4"
+    },
+    "invariant_anchored": {
+      "deciding_number": "c1_closed=1.0, c1_half=0.5",
+      "status": "MET",
+      "threshold": "|c1-1|<0.05 AND |c1_half-0.5|<0.1"
+    },
+    "met_count": 6,
+    "neural_dynamics": {
+      "deciding_number": "converged=true, steps=9, delta_hol=1.7859, mem_gap=1.84012",
+      "status": "MET",
+      "threshold": "converged AND steps<=20 AND delta_hol>0.01 AND memories_distinguishable"
+    },
+    "overall_fraction": "6/6 (6 MET, 0 PARTIAL)",
+    "overall_verdict": "GENUINELY-UPGRADED",
+    "partial_count": 0,
+    "scale_ladder": {
+      "deciding_number": "4/4 rungs passed",
+      "status": "MET",
+      "threshold": "all 4 rungs: |H_base|>0.1, erased_collapsed, comm>0.01, c1 near integer"
+    },
+    "total": 6,
+    "weakest_criterion": "finitude (MET)"
+  },
+  "object_id": "L6_newstd",
+  "peps3d_anchor": {
+    "C": 3072,
+    "E": 8192,
+    "F": 4096,
+    "V": 4096,
+    "euler": -3072,
+    "holonomy_lives_on": "F (faces) -- per-plaquette Wilson-product phase is discrete Berry curvature"
+  },
+  "promotion_allowed": false,
+  "promotion_note": "promotion_allowed=false; L6_newstd_poc; not canonical; candidate only.",
+  "status_ladder": "exists < runs < passes",
+  "tool_manifest": {
+    "Clifford_algebra": {
+      "reason": "No Clifford sublevel in L6; the geometry is U(1) Hopf bundle. Anticommutator check explicitly marked N/A.",
+      "role": "not_applicable"
+    },
+    "JSON": {
+      "role": "io",
+      "use": "result emission"
+    },
+    "LinearAlgebra": {
+      "role": "load_bearing",
+      "use": "svd (trace_dist), norm (hs_dist, commutator norm, spinor norm), eigvals (Hermitian density), Wilson overlap products, all commutator computations"
+    },
+    "Z3_SMT": {
+      "reason": "The holonomy and Chern invariants are real-valued integrals; an SMT claim over these measured literals would be a tautology (the values are not Boolean constraints). The dependency-forcing is carried by measured positive/anti-tautology controls with real comparison. Omission is explicit, not decorative.",
+      "role": "omitted"
+    },
+    "numpy_scipy": {
+      "reason": "Julia-native; no numpy or scipy",
+      "role": "ABSENT"
+    }
+  }
+}

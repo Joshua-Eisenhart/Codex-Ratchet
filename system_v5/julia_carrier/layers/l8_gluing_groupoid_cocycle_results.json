@@ -1,0 +1,161 @@
+{
+  "all_pass": true,
+  "batch_kill_control": {
+    "every_coboundary_glues": true,
+    "every_coboundary_trivial": true,
+    "generic_glues_iff_trivial": true,
+    "n_generic_nontrivial_of_batch": 156,
+    "n_trials": 300
+  },
+  "carrier": "Julia (non-numpy): LinearAlgebra + Z3 SAT for the gluing/global-section decision",
+  "classification": "PoC",
+  "honest_status": "passes (runs to completion; all measured contrasts hold; kill-controls confirm non-artifact)",
+  "kill_control": {
+    "coboundary_telescoping_theorem": "any coboundary loop product = +1 (verified, not planted)",
+    "description": "random coboundaries g=h_i h_j^{-1} must glue AND be trivial; generic 1-cochain glues IFF loop product +1"
+  },
+  "known_invariants_anchored": [
+    "H^1(S^1;Z/2)=Z/2: loop product in {+1,-1}; Mobius=-1, cylinder=+1",
+    "pi_1(U(1))=Z winding number: coboundary w=0; clutching z->z^k gives w=k",
+    "global section exists IFF cocycle is a coboundary (trivial class)"
+  ],
+  "n_checks": 28,
+  "n_passed": 28,
+  "object": "L8 gluing/groupoid: Cech 1-cocycle on finite cyclic cover of S^1",
+  "promotion_allowed": false,
+  "rows": [
+    {
+      "N_arcs": 4,
+      "coboundary_glues": true,
+      "coboundary_has_flips": true,
+      "coboundary_loop_product": 1,
+      "coboundary_overlaps": [
+        1,
+        -1,
+        1,
+        -1
+      ],
+      "glue_contrast_nontrivial_vs_trivial": true,
+      "pass": true,
+      "u1_cocycle_holds_w0_w1_w2": [
+        true,
+        true,
+        true
+      ],
+      "u1_cocycle_max_err": 0.0,
+      "u1_winding_measured": [
+        0,
+        1,
+        2
+      ],
+      "z2_cylinder_glues": true,
+      "z2_cylinder_loop_product": 1,
+      "z2_mobius_glues": false,
+      "z2_mobius_loop_product": -1
+    },
+    {
+      "N_arcs": 6,
+      "coboundary_glues": true,
+      "coboundary_has_flips": true,
+      "coboundary_loop_product": 1,
+      "coboundary_overlaps": [
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "glue_contrast_nontrivial_vs_trivial": true,
+      "pass": true,
+      "u1_cocycle_holds_w0_w1_w2": [
+        true,
+        true,
+        true
+      ],
+      "u1_cocycle_max_err": 4.475e-16,
+      "u1_winding_measured": [
+        0,
+        1,
+        2
+      ],
+      "z2_cylinder_glues": true,
+      "z2_cylinder_loop_product": 1,
+      "z2_mobius_glues": false,
+      "z2_mobius_loop_product": -1
+    },
+    {
+      "N_arcs": 8,
+      "coboundary_glues": true,
+      "coboundary_has_flips": true,
+      "coboundary_loop_product": 1,
+      "coboundary_overlaps": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "glue_contrast_nontrivial_vs_trivial": true,
+      "pass": true,
+      "u1_cocycle_holds_w0_w1_w2": [
+        true,
+        true,
+        true
+      ],
+      "u1_cocycle_max_err": 1.608e-16,
+      "u1_winding_measured": [
+        0,
+        1,
+        2
+      ],
+      "z2_cylinder_glues": true,
+      "z2_cylinder_loop_product": 1,
+      "z2_mobius_glues": false,
+      "z2_mobius_loop_product": -1
+    },
+    {
+      "N_arcs": 12,
+      "coboundary_glues": true,
+      "coboundary_has_flips": true,
+      "coboundary_loop_product": 1,
+      "coboundary_overlaps": [
+        1,
+        -1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      "glue_contrast_nontrivial_vs_trivial": true,
+      "pass": true,
+      "u1_cocycle_holds_w0_w1_w2": [
+        true,
+        true,
+        true
+      ],
+      "u1_cocycle_max_err": 6.474e-16,
+      "u1_winding_measured": [
+        0,
+        1,
+        2
+      ],
+      "z2_cylinder_glues": true,
+      "z2_cylinder_loop_product": 1,
+      "z2_mobius_glues": false,
+      "z2_mobius_loop_product": -1
+    }
+  ],
+  "tools_load_bearing": {
+    "Z3": "global-section existence = Boolean SAT over patch signs; SAT/UNSAT flips with measured cocycle (LOAD-BEARING)"
+  }
+}

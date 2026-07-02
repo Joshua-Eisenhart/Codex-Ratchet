@@ -30,18 +30,46 @@ CLAIM_CEILING = (
     "branch-order sensitivity under two root-constraint pressure. Observed "
     "differences are tool receipts, not promoted attractor-basin or manifold claims."
 )
+ROOT_CONSTRAINTS_IN_FORCE = ["F01_FINITE_CARRIER_PROBE_OPERATOR_PATH_SET", "N01_NONCOMMUTING_OR_ORDER_SENSITIVE_GRAPH_ACTION"]
+FINITE_MAP = (
+    "PyGMessageOrder : finite directed graph with node features and edge-order "
+    "tokens -> gated MessagePassing output plus erased-edge, erased-token, "
+    "direction-flip, and linear-stub controls"
+)
+DOMAIN = {
+    "node_features": "four finite 3-component torch feature vectors",
+    "edge_index": "five directed finite graph edges",
+    "edge_attr": "five finite 3-component edge-order tokens",
+    "controls": [
+        "reverse directed edges",
+        "erase all edges",
+        "erase edge tokens",
+        "simple linear source-sum stub",
+        "permute edge list while preserving edge-token pairing",
+    ],
+}
+CODOMAIN_OR_OUTPUT = {
+    "message_output": "4x3 torch tensor produced through torch_geometric.nn.MessagePassing.propagate",
+    "branch_gap": "finite norm between forward and reversed directed message outputs",
+    "control_gaps": "finite gaps proving the output depends on edges and edge tokens",
+}
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing tensor fixture and controls"},
-    "torch_geometric": {"tried": True, "used": True, "reason": "load-bearing MessagePassing adapter"},
+    "torch_geometric": {"tried": True, "used": True, "reason": "load-bearing MessagePassing.propagate adapter with directed edge_index and edge_attr controls"},
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
     "torch_geometric": "load_bearing",
 }
 NEARBY_VARIANTS = {
-    "total": 1,
-    "passed": 1,
-    "variants": ["collapsed_edge_control_differs"],
+    "total": 4,
+    "passed": 4,
+    "variants": [
+        "erased_edges_kill_message_claim",
+        "erased_edge_tokens_change_gated_output",
+        "linear_source_sum_stub_fails_to_reproduce_gated_output",
+        "edge_list_permutation_preserves_paired_graph_output",
+    ],
 }
 WHY_NOT_V4_PROBES = [
     "This is a v5 formal scout for a tiny torch_geometric MessagePassing fixture.",
@@ -69,6 +97,10 @@ def blocked_receipt(started: float, blocker: str, detail: str) -> dict[str, Any]
         "sim_execution_kind": SIM_EXECUTION_KIND,
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
+        "root_constraints_in_force": ROOT_CONSTRAINTS_IN_FORCE,
+        "finite_map": FINITE_MAP,
+        "domain": DOMAIN,
+        "codomain_or_output": CODOMAIN_OR_OUTPUT,
         "TOOL_MANIFEST": {
             **TOOL_MANIFEST,
             "torch_geometric": {"tried": True, "used": False, "reason": blocker},
@@ -97,16 +129,20 @@ def blocked_receipt(started: float, blocker: str, detail: str) -> dict[str, Any]
 def run_probe() -> dict[str, Any]:
     from torch_geometric.nn import MessagePassing
 
-    class OrderedMessageProbe(MessagePassing):
+    class GatedOrderMessageProbe(MessagePassing):
         def __init__(self) -> None:
             super().__init__(aggr="add")
 
-        def forward(self, x: torch.Tensor, edge_index: torch.Tensor) -> torch.Tensor:
-            return self.propagate(edge_index, x=x)
+        def forward(self, x: torch.Tensor, edge_index: torch.Tensor, edge_attr: torch.Tensor) -> torch.Tensor:
+            return self.propagate(edge_index, x=x, edge_attr=edge_attr)
 
-        def message(self, x_j: torch.Tensor) -> torch.Tensor:
-            weights = torch.tensor([1.0, -0.5, 0.25], dtype=x_j.dtype, device=x_j.device)
-            return x_j * weights
+        def message(self, x_j: torch.Tensor, edge_attr: torch.Tensor) -> torch.Tensor:
+            gate = torch.sigmoid(edge_attr[:, :1] + 0.25 * edge_attr[:, 1:2] - 0.15 * edge_attr[:, 2:3])
+            signed = torch.tanh(x_j + edge_attr)
+            return gate * signed
+
+        def update(self, aggr_out: torch.Tensor, x: torch.Tensor) -> torch.Tensor:
+            return torch.tanh(x + aggr_out)
 
     x = torch.tensor(
         [
@@ -119,12 +155,36 @@ def run_probe() -> dict[str, Any]:
     )
     forward_edges = torch.tensor([[0, 1, 2, 0, 3], [1, 2, 3, 3, 2]], dtype=torch.long)
     reverse_edges = forward_edges.flip(0)
-    probe = OrderedMessageProbe()
-    forward = probe(x, forward_edges)
-    reverse = probe(x, reverse_edges)
+    edge_attr = torch.tensor(
+        [
+            [0.40, -0.10, 0.20],
+            [0.15, 0.35, -0.25],
+            [-0.30, 0.20, 0.50],
+            [0.70, -0.45, 0.10],
+            [-0.20, 0.55, -0.35],
+        ],
+        dtype=torch.float32,
+    )
+    probe = GatedOrderMessageProbe()
+    forward = probe(x, forward_edges, edge_attr)
+    reverse = probe(x, reverse_edges, edge_attr)
     branch_gap = torch.linalg.vector_norm(forward - reverse)
-    collapsed = probe(x, torch.tensor([[0, 1, 2], [1, 2, 3]], dtype=torch.long))
-    collapsed_gap = torch.linalg.vector_norm(forward - collapsed)
+    empty_edges = torch.empty((2, 0), dtype=torch.long)
+    empty_attr = torch.empty((0, 3), dtype=torch.float32)
+    erased_edges = probe(x, empty_edges, empty_attr)
+    erased_edge_gap = torch.linalg.vector_norm(forward - erased_edges)
+    erased_tokens = probe(x, forward_edges, torch.zeros_like(edge_attr))
+    erased_token_gap = torch.linalg.vector_norm(forward - erased_tokens)
+    perm = torch.tensor([4, 2, 0, 3, 1], dtype=torch.long)
+    permuted = probe(x, forward_edges[:, perm], edge_attr[perm])
+    permutation_gap = torch.linalg.vector_norm(forward - permuted)
+    linear_stub = torch.zeros_like(x)
+    for edge_idx in range(forward_edges.shape[1]):
+        src = int(forward_edges[0, edge_idx].item())
+        dst = int(forward_edges[1, edge_idx].item())
+        linear_stub[dst] = linear_stub[dst] + x[src]
+    linear_stub = torch.tanh(x + linear_stub)
+    linear_stub_gap = torch.linalg.vector_norm(forward - linear_stub)
     positive = {
         "pyg_message_passing_executes": {
             "pass": bool(forward.shape == x.shape and reverse.shape == x.shape),
@@ -137,10 +197,23 @@ def run_probe() -> dict[str, Any]:
         },
     }
     graveyard = {
-        "collapsed_edge_control_differs": {
-            "pass": bool(collapsed_gap.item() > 0.10),
-            "forward_collapsed_l2": float(collapsed_gap.item()),
-        }
+        "erased_edges_kill_message_claim": {
+            "pass": bool(erased_edge_gap.item() > 0.10),
+            "forward_erased_edges_l2": float(erased_edge_gap.item()),
+        },
+        "erased_edge_tokens_change_gated_output": {
+            "pass": bool(erased_token_gap.item() > 0.10),
+            "forward_erased_tokens_l2": float(erased_token_gap.item()),
+        },
+        "linear_source_sum_stub_fails_to_reproduce_gated_output": {
+            "pass": bool(linear_stub_gap.item() > 0.10),
+            "forward_linear_stub_l2": float(linear_stub_gap.item()),
+        },
+        "edge_list_permutation_preserves_paired_graph_output": {
+            "pass": bool(permutation_gap.item() < 1e-6),
+            "forward_permuted_l2": float(permutation_gap.item()),
+            "reason": "PyG add aggregation is not claiming raw edge-list sequence dependence; the load-bearing object is paired directed edge/token structure.",
+        },
     }
     return {
         "positive": positive,
@@ -148,7 +221,8 @@ def run_probe() -> dict[str, Any]:
         "boundary": {
             "node_count": int(x.shape[0]),
             "edge_count": int(forward_edges.shape[1]),
-            "root_constraint_wording": "observed branch pressure remains evidence-bound and not promoted",
+            "edge_token_count": int(edge_attr.shape[0]),
+            "root_constraint_wording": "observed directed graph/token branch pressure remains evidence-bound and not promoted",
         },
         "blockers": [],
         "all_pass": all(row["pass"] for row in positive.values()) and all(row["pass"] for row in graveyard.values()),
@@ -166,6 +240,10 @@ def main() -> int:
             "sim_execution_kind": SIM_EXECUTION_KIND,
             "promotion_allowed": PROMOTION_ALLOWED,
             "claim_ceiling": CLAIM_CEILING,
+            "root_constraints_in_force": ROOT_CONSTRAINTS_IN_FORCE,
+            "finite_map": FINITE_MAP,
+            "domain": DOMAIN,
+            "codomain_or_output": CODOMAIN_OR_OUTPUT,
             "TOOL_MANIFEST": TOOL_MANIFEST,
             "tool_manifest": TOOL_MANIFEST,
             "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,

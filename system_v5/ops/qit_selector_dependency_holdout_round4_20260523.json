@@ -1,0 +1,125 @@
+{
+  "schema": "CODEx_RATCHET_SCOUT_ROUND_LEDGER_v1",
+  "name": "qit_selector_dependency_holdout_round4_20260523",
+  "created_at": "2026-05-23",
+  "classification": "formal_scout_round_ledger",
+  "promotion_allowed": false,
+  "native_review_agents_completed": 3,
+  "review_findings": [
+    "bounded-layer flux scaffold has the right declared stack shape but current candidate is negative and carrier-to-geometry dependency was degenerate",
+    "shell-cut response fixture is meaningful but mostly CMI-style and not Axis0 promotion",
+    "IGT and Holodeck repairs are structurally valid formal scouts but need payoff selector and held-out prediction tests"
+  ],
+  "new_scouts": [
+    {
+      "script": "system_v5/ops/formal_scouts/sim_layer_dependency_flux_ablation_probe.py",
+      "result": "system_v5/ops/formal_scouts/results/layer_dependency_flux_ablation_probe_results.json",
+      "candidate_status": "open_or_nonrobust_layer_dependency_flux",
+      "candidate_survived": false,
+      "metrics": {
+        "case_count": 24,
+        "dependency_count": 0,
+        "dependency_rate": 0.0,
+        "survival_count": 0,
+        "survival_rate": 0.0,
+        "mean_live_minus_best_control": -0.051136971335821506,
+        "min_live_minus_best_control": -0.0586962126871152,
+        "max_live_minus_best_control": -0.036735018113428185
+      },
+      "interpretation": "every-dependency flux ablation is a clean negative in this dense fixture"
+    },
+    {
+      "script": "system_v5/ops/formal_scouts/sim_qit_payoff_selector_strategy_probe.py",
+      "result": "system_v5/ops/formal_scouts/results/qit_payoff_selector_strategy_probe_results.json",
+      "candidate_status": "open_or_nonrobust_qit_selector_strategy",
+      "candidate_survived": false,
+      "metrics": {
+        "seed_count": 12,
+        "survival_count": 0,
+        "survival_rate": 0.0,
+        "minimin_specialization_rate": 0.0
+      },
+      "selector_translation": {
+        "maximax": "argmax_i max_j utility[i,j]",
+        "maximin": "argmax_i min_j utility[i,j]",
+        "minimax": "argmin_i max_j damage[i,j]",
+        "minimin": "argmin_i min_j damage[i,j]"
+      },
+      "interpretation": "selector translation is executable but does not produce stable noncommuting strategy advantages"
+    },
+    {
+      "script": "system_v5/ops/formal_scouts/sim_science_hypothesis_bank_holdout_probe.py",
+      "result": "system_v5/ops/formal_scouts/results/science_hypothesis_bank_holdout_probe_results.json",
+      "candidate_status": "open_or_nonrobust_hypothesis_bank_holdout",
+      "candidate_survived": false,
+      "metrics": {
+        "seed_count": 24,
+        "survival_count": 0,
+        "survival_rate": 0.0,
+        "mean_heldout_gain": -0.0008884018290811828,
+        "min_heldout_gain": -0.0038635897604356595,
+        "max_heldout_gain": 0.0
+      },
+      "interpretation": "finite science-method loop is executable but static hypothesis bank does not beat held-out controls"
+    },
+    {
+      "script": "system_v5/ops/formal_scouts/sim_shell_cut_response_stress_probe.py",
+      "result": "system_v5/ops/formal_scouts/results/shell_cut_response_stress_probe_results.json",
+      "candidate_status": "open_or_nonrobust_shell_cut_stress",
+      "candidate_survived": false,
+      "metrics": {
+        "case_count": 16,
+        "survival_count": 10,
+        "survival_rate": 0.625,
+        "mean_conditional_mutual_information_abs_response": 0.7601611481595272,
+        "mean_path_entropy_abs_response": 0.028370940312575366
+      },
+      "interpretation": "shell-cut response remains partially live under stress, but does not pass survival threshold"
+    }
+  ],
+  "expanded_scout_validation": {
+    "formal_scout_name_lint_all_pass": true,
+    "fresh_rerun_validation_all_pass": true,
+    "validated_results": [
+      "system_v5/ops/formal_scouts/results/stage_capability_state_sweep_probe_results.json",
+      "system_v5/ops/formal_scouts/results/shell_cut_axis0_response_probe_results.json",
+      "system_v5/ops/formal_scouts/results/holodeck_science_world_memory_ablation_probe_results.json",
+      "system_v5/ops/formal_scouts/results/bounded_layered_flux_geometry_probe_results.json",
+      "system_v5/ops/formal_scouts/results/layer_dependency_flux_ablation_probe_results.json",
+      "system_v5/ops/formal_scouts/results/qit_payoff_selector_strategy_probe_results.json",
+      "system_v5/ops/formal_scouts/results/science_hypothesis_bank_holdout_probe_results.json",
+      "system_v5/ops/formal_scouts/results/shell_cut_response_stress_probe_results.json"
+    ]
+  },
+  "survival_summary": {
+    "positive_or_live": [
+      "shell_cut_axis0_response_probe: open_candidate_family_survived_fixture",
+      "shell_cut_response_stress_probe: partial signal 10/16 but open_or_nonrobust"
+    ],
+    "negative_or_nonrobust": [
+      "bounded_layered_flux_geometry_probe",
+      "layer_dependency_flux_ablation_probe",
+      "stage_capability_state_sweep_probe",
+      "qit_payoff_selector_strategy_probe",
+      "holodeck_science_world_memory_ablation_probe",
+      "science_hypothesis_bank_holdout_probe",
+      "shell_cut_response_stress_probe"
+    ],
+    "receipt_pass_is_not_candidate_survival": true
+  },
+  "claim_ceiling": {
+    "axis0_final": false,
+    "flux_final": false,
+    "igt_game_theory_final": false,
+    "holodeck_world_engine_final": false,
+    "physics_unification": false,
+    "yang_mills_or_standard_model": false,
+    "cognition_or_psychology": false
+  },
+  "recommended_next_gates": [
+    "shell-cut stress suite over seeds, graph rewires, local-unitary controls, shell relabel controls, process-history path entropy, and 6-qubit nested shell extension",
+    "flux current-through-cut observable with MPS/process tensor scaling and per-layer dependency pass requirements",
+    "two-character QIT strategy carrier with separate states/memories before population dynamics",
+    "process-tensor Holodeck memory with multi-step active instrument selection"
+  ]
+}

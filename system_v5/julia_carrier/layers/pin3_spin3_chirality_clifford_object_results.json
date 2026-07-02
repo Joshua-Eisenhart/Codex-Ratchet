@@ -1,0 +1,194 @@
+{
+  "all_pass": true,
+  "checks": {
+    "boundary_refl_improper": true,
+    "double_cover_R_negR_same": true,
+    "kill_control_pass": true,
+    "kill_nonversor_fails_O3": true,
+    "neg_identity_proper": true,
+    "pi_rotor_is_real_rotation": true,
+    "pin_sign_distinguishes": true,
+    "reflections_improper": true,
+    "spin_match_analytic": true,
+    "spin_rotations_proper": true,
+    "three_refl_odd_improper": true,
+    "two_pi_SO3_is_identity": true,
+    "two_pi_versor_is_minus_one": true,
+    "two_refl_even_proper": true,
+    "z3_kill_ws1_violation_seen": true,
+    "z3_kill_ws2_violation_seen": true,
+    "z3_pin_minus_rsq_forced": true,
+    "z3_pin_plus_rsq_forced": true,
+    "z3_pin_signs_distinct": true,
+    "z3_reflection_forces_det": true,
+    "z3_rotation_forces_det": true,
+    "z3_three_refl_forces_det": true
+  },
+  "classification": "PoC",
+  "controls": {
+    "boundary_renormalized_reflection_det": -1.0,
+    "negative_identity_det": 1.0,
+    "negative_identity_err": 0.0
+  },
+  "honest_status": "ran to completion; 22/22 structural checks passed",
+  "item": "G_Pin3_Spin3_chirality",
+  "kill_control": {
+    "genuine_reflection_det": -1.0,
+    "genuine_rotor_det": 1.0,
+    "kill_control_pass": true,
+    "kill_nonversor_fails_O3": true,
+    "nonversor_ortho_err": 0.9295499966410782,
+    "note": "parity sign is load-bearing: wrong parity -> wrong chirality (det)",
+    "versor_ortho_err": 0.0,
+    "ws1_flips": true,
+    "ws1_forced_even_on_reflection_det": 1.0,
+    "ws2_flips": true,
+    "ws2_forced_odd_on_rotor_det": -1.0
+  },
+  "pin_reflections": {
+    "all_det_minus_one": true,
+    "tests": [
+      {
+        "axis": [
+          0.5247855376824327,
+          -0.6214684788256827,
+          -0.5817018731837228
+        ],
+        "det": -0.9999999999999998,
+        "ortho_err": 2.407795892725302e-16,
+        "parity_sign": -1
+      },
+      {
+        "axis": [
+          -0.7592272847742875,
+          0.41213927903004116,
+          0.5037014440468294
+        ],
+        "det": -1.0000000000000002,
+        "ortho_err": 2.3587468301497764e-16,
+        "parity_sign": -1
+      },
+      {
+        "axis": [
+          0.975635660268046,
+          -0.013369780440046605,
+          -0.21898928600349082
+        ],
+        "det": -1.0000000000000004,
+        "ortho_err": 4.57195786893587e-16,
+        "parity_sign": -1
+      },
+      {
+        "axis": [
+          0.5689599390995201,
+          -0.7501609623056653,
+          0.33696159771182893
+        ],
+        "det": -1.0000000000000007,
+        "ortho_err": 5.376888191152289e-16,
+        "parity_sign": -1
+      },
+      {
+        "axis": [
+          -0.9062126261562482,
+          0.2862943948458722,
+          -0.3111497961992452
+        ],
+        "det": -1.0000000000000002,
+        "ortho_err": 2.498001805406602e-16,
+        "parity_sign": -1
+      },
+      {
+        "axis": [
+          -0.8483600668703603,
+          -0.00023999638671368112,
+          -0.5294196250059607
+        ],
+        "det": -1.0000000000000004,
+        "ortho_err": 4.440892131587851e-16,
+        "parity_sign": -1
+      }
+    ],
+    "three_reflections_det": -0.9999999999999994,
+    "three_reflections_parity": -1,
+    "two_reflections_det": 1.0,
+    "two_reflections_parity": 1
+  },
+  "pin_sign": {
+    "Pin+_r2_measured": 1,
+    "Pin-_r2_measured": -1,
+    "distinguishes": true,
+    "expected_Pin+": 1,
+    "expected_Pin-": -1
+  },
+  "promotion_allowed": false,
+  "spin_even_rotations": {
+    "all_det_plus_one": true,
+    "double_cover_R_vs_negR_O3_diff": 0.0,
+    "max_ortho_err": 4.440892098500626e-16,
+    "pi_rotor_SO3_not_identity": 2.0,
+    "tests": [
+      {
+        "det": 1.0000000000000004,
+        "match_analytic_SO3_err": 2.220446049250313e-16,
+        "ortho_err": 4.440892098500626e-16,
+        "parity_sign": 1,
+        "theta": 5.047694404200973
+      },
+      {
+        "det": 1.0,
+        "match_analytic_SO3_err": 0.0,
+        "ortho_err": 0.0,
+        "parity_sign": 1,
+        "theta": 5.609475255177335
+      },
+      {
+        "det": 1.0,
+        "match_analytic_SO3_err": 0.0,
+        "ortho_err": 0.0,
+        "parity_sign": 1,
+        "theta": 1.4952712128239933
+      },
+      {
+        "det": 1.0,
+        "match_analytic_SO3_err": 0.0,
+        "ortho_err": 0.0,
+        "parity_sign": 1,
+        "theta": 1.146623604454452
+      },
+      {
+        "det": 1.0000000000000002,
+        "match_analytic_SO3_err": 0.0,
+        "ortho_err": 2.220446049250313e-16,
+        "parity_sign": 1,
+        "theta": 2.893570860541359
+      },
+      {
+        "det": 1.0,
+        "match_analytic_SO3_err": 1.1443916996305594e-16,
+        "ortho_err": 1.1102230246251565e-16,
+        "parity_sign": 1,
+        "theta": 3.3493162919542265
+      }
+    ],
+    "two_pi_rotation_SO3_identity_err": 2.4492935982947064e-16,
+    "two_pi_versor_bivec_residual": 1.2246467991473532e-16,
+    "two_pi_versor_scalar_measured": -1.0
+  },
+  "status_ladder": "passes",
+  "tools": {
+    "CliffordAlgebras": true,
+    "LinearAlgebra": true,
+    "Z3": true
+  },
+  "z3": {
+    "kill_ws1_violates_law_sat": true,
+    "kill_ws2_violates_law_sat": true,
+    "pin_minus_rsq_forced_unsat": true,
+    "pin_plus_rsq_forced_unsat": true,
+    "pin_signs_distinct_measured": true,
+    "reflection_parity_forces_det_unsat": true,
+    "rotation_parity_forces_det_unsat": true,
+    "three_refl_parity_forces_det_unsat": true
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "full_layer_completion",
+    "official_g_structure_selection",
+    "layer_stacking",
+    "layer_stacking_readiness",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "checks": {
+    "all_rows_promotion_blocked": true,
+    "axis0_still_blocked": true,
+    "coverage_gate_closed": true,
+    "flux_still_blocked": true,
+    "julia_reference_missing_empty": true,
+    "julia_reference_rows_complete": true,
+    "julia_reference_runner_pass": true,
+    "l6_l12_reference_rows_closed": true,
+    "nesting_order_gate_closed": true,
+    "no_julia_execution": true,
+    "no_pytorch_execution": true,
+    "stack_status_oracle_pass": true
+  },
+  "claim_ceiling": "Fresh JAX foundation/reference coverage receipt after adding L6 and L12 Julia-reference JAX rows. This is not layer completion, stacking readiness, flux/Axis0/FEP/physics progress, official G-structure selection, or final admission.",
+  "classification": "diagnostic_coverage_refresh",
+  "formal_admission_allowed": false,
+  "l6_l12_closed": {
+    "L12_layer_results.json": true,
+    "L6_layer_results.json": true
+  },
+  "name": "jax_foundation_reference_coverage_refresh",
+  "promotion_allowed": false,
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "reference_runner": {
+    "future_phase_reference_layers": [
+      "basin_hierarchy_discovery_codex_results.json",
+      "flux_direction_impedance_results.json",
+      "nested_peps2d_substrate_effect_imagtime_results.json",
+      "nested_peps2d_substrate_effect_opt_results.json",
+      "ratchet_diagnostic_scratch_results.json",
+      "ratchet_order_test_codex_results.json",
+      "ratchet_order_test_results.json"
+    ],
+    "independent_reference_layers": 95,
+    "independent_rows": 95,
+    "path": "jax_julia_reference_geometric_constraint_layer_runner_results.json",
+    "red_independent_reference_rows": [
+      "L9_layer_results.json",
+      "entropy_readout_family_peps2d_results.json",
+      "g_u1_hopf_bundle_chern_results.json",
+      "signed_operators_density_bloch_free_results.json"
+    ],
+    "red_independent_reference_rows_unresolved": []
+  },
+  "row_summaries": {
+    "coverage_gate": {
+      "classification": "coverage_gate",
+      "pass": true,
+      "path": "jax_independent_layer_geometry_coverage_gate_results.json",
+      "promotion_allowed": false,
+      "ran_julia": false,
+      "ran_pytorch": false
+    },
+    "entropy_geometry_stress": {
+      "classification": "diagnostic_jax_qit_entropy_geometry_separation_stress",
+      "pass": true,
+      "path": "jax_qit_entropy_geometry_separation_stress_results.json",
+      "promotion_allowed": false,
+      "ran_julia": false,
+      "ran_pytorch": null
+    },
+    "geometric_engine_suite": {
+      "classification": "diagnostic_jax_geometric_evolution_engine_layer_suite",
+      "pass": true,
+      "path": "jax_geometric_evolution_engine_layer_suite_results.json",
+      "promotion_allowed": false,
+      "ran_julia": null,
+      "ran_pytorch": null
+    },
+    "geometry_is_information_audit": {
+      "classification": null,
+      "pass": true,
+      "path": "system_v5/julia_carrier/jax_geometry_is_information_audit_results.json",
+      "promotion_allowed": null,
+      "ran_julia": null,
+      "ran_pytorch": null
+    },
+    "independent_layer_suite": {
+      "classification": "diagnostic_jax_layer_suite",
+      "pass": true,
+      "path": "jax_manifold_layer_independent_suite_results.json",
+      "promotion_allowed": false,
+      "ran_julia": false,
+      "ran_pytorch": null
+    },
+    "julia_reference_runner": {
+      "classification": "diagnostic_jax_julia_reference_geometric_constraint_layer_runner",
+      "pass": true,
+      "path": "jax_julia_reference_geometric_constraint_layer_runner_results.json",
+      "promotion_allowed": false,
+      "ran_julia": false,
+      "ran_pytorch": null
+    },
+    "nesting_order_gate": {
+      "classification": "diagnostic_jax_nesting_order_gate",
+      "pass": true,
+      "path": "jax_nested_hopf_nesting_order_gate_results.json",
+      "promotion_allowed": false,
+      "ran_julia": false,
+      "ran_pytorch": false
+    },
+    "stack_status_oracle": {
+      "classification": "status_oracle",
+      "pass": true,
+      "path": "jax_nested_hopf_stack_status_oracle_results.json",
+      "promotion_allowed": false,
+      "ran_julia": false,
+      "ran_pytorch": false
+    }
+  }
+}

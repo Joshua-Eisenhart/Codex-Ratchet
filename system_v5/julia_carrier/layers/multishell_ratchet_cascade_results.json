@@ -1,0 +1,420 @@
+{
+  "actual_tools_used": [
+    "DifferentialEquations",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "local PoC script exists and runs",
+    "ratchet-on steady profile concentrates at the Clifford-torus leaf in this finite cascade",
+    "A=const control is uniform in this finite cascade"
+  ],
+  "artifacts_emitted": [
+    "layers/multishell_ratchet_cascade_results.json"
+  ],
+  "blocked_consumers": [
+    "layer_completion",
+    "manifold_admission",
+    "G_structure_admission",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics"
+  ],
+  "carrier_layer": "finite nested theta leaves over qubit density matrices",
+  "carrier_realization": "Julia Float64 2x2 density matrices integrated by DifferentialEquations; no NumPy",
+  "checks": {
+    "area_positive_and_nonuniform": true,
+    "control_A_const_uniform": true,
+    "control_generator_uniform_stationary": true,
+    "density_sanity_ok": true,
+    "detailed_balance_area_stationary": true,
+    "gamma_channel_ok": true,
+    "hop_generator_adjacent_rates_positive": true,
+    "hop_generator_column_sums_zero": true,
+    "hop_generator_nonadjacent_rates_zero": true,
+    "hopping_off_preserves_initial_weights": true,
+    "max_leaf_is_clifford_torus": true,
+    "metadata_contract_ok": true,
+    "no_numpy_pycall_or_z3_boundary": true,
+    "ratchet_on_concentrates_vs_control": true,
+    "ratchet_on_matches_area_stationary_profile": true,
+    "ratchet_on_peak_at_clifford_leaf": true,
+    "ratchet_on_skew_left_matches_area_stationary_profile": true,
+    "ratchet_on_skew_right_matches_area_stationary_profile": true,
+    "steady_state_control": true,
+    "steady_state_ratchet_on": true,
+    "terrain_off_still_converges_to_area_weights": true,
+    "terrain_only_changes_internal_density": true,
+    "terrain_only_preserves_leaf_weights": true,
+    "theta_grid_in_open_interval": true,
+    "total_trace_preserved": true,
+    "trace_rhs_matches_hop_generator": true
+  },
+  "classification": "PoC",
+  "codomain_or_output": "Steady leaf trace-weight profile plus A=const control profile.",
+  "density_sanity": {
+    "ratchet_off_A_const": {
+      "max_hermitian_error": 0.0,
+      "min_eigenvalue": 0.04495207922252387,
+      "min_leaf_trace": 0.12499999999999994,
+      "ok": true,
+      "total_trace": 1.0000000000000004
+    },
+    "ratchet_on": {
+      "max_hermitian_error": 0.0,
+      "min_eigenvalue": 0.014039917560559138,
+      "min_leaf_trace": 0.03717926104056999,
+      "ok": true,
+      "total_trace": 1.0000000000000004
+    },
+    "terrain_off_hopping_on": {
+      "max_hermitian_error": 0.0,
+      "min_eigenvalue": 0.018589630520059932,
+      "min_leaf_trace": 0.037179261040119864,
+      "ok": true,
+      "total_trace": 0.9999999999999997
+    },
+    "terrain_only_hopping_off": {
+      "max_hermitian_error": 0.0,
+      "min_eigenvalue": 5.5367299592807875e-12,
+      "min_leaf_trace": 0.125,
+      "ok": true,
+      "total_trace": 1.0000000000000002
+    }
+  },
+  "dependency_receipts": [
+    "system_v5/julia_carrier/layers/nested_leaf_area_ratchet_results.json",
+    "system_v5/julia_carrier/layers/emergent_basin_nested_terrains_results.json"
+  ],
+  "domain": {
+    "N": 8,
+    "adjacency": "path graph on leaves 1..8",
+    "gamma_theta": "sigma_x channel rho -> sigma_x*rho*sigma_x",
+    "state": "8 unnormalized real 2x2 qubit density matrices, one per theta leaf",
+    "thetas": [
+      0.1,
+      0.28,
+      0.46,
+      0.66,
+      0.7853981633974483,
+      0.95,
+      1.18,
+      1.4707963267948965
+    ]
+  },
+  "downstream_blocks": [
+    "layer_completion",
+    "manifold_admission",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics"
+  ],
+  "eligible_consumers": [
+    "local PoC comparison only"
+  ],
+  "expected_ratchet_A_normalized_weights": [
+    0.037179261040569955,
+    0.09940694033957723,
+    0.14889001839013463,
+    0.18128672119196657,
+    0.18714142183789045,
+    0.17709194389514318,
+    0.131824432264148,
+    0.03717926104057001
+  ],
+  "finite_map": "For each leaf i, rho_i is an unnormalized 2x2 qubit density. Local terrain Lindblad maps preserve tr(rho_i). Adjacent transfer maps rho_i -> gamma_theta*rho_i*gamma_theta with q_{i->j}=k*A(theta_j)/max(A), producing a finite trace-weight Markov cascade.",
+  "gamma_channel_checks": {
+    "gamma_hermitian": true,
+    "gamma_unitary": true,
+    "psd_preserving_sample": true,
+    "trace_preserving_sample": true
+  },
+  "geometry_layer": "leaf-area ratchet A(theta)=2*pi^2*sin(2theta)",
+  "graph_surfaces_used": [],
+  "honest_scope": {
+    "claim_ceiling": "PoC local cascade/control measurement only; no promotion, no layer/manifold completion, no Axis/bridge/physics claim.",
+    "forced_standard_math": [
+      "A(theta)=2*pi^2*sin(2theta) is maximal at theta=pi/4",
+      "destination-weighted nearest-neighbor rates q_{i->j}=k*A(theta_j)/max(A) have detailed-balance stationary trace weights proportional to A(theta_i)"
+    ],
+    "novel_interpretive_NOT_proven": [
+      "calling the concentration a ratchet pull toward the Clifford torus is a PoC interpretation of this finite cascade measurement"
+    ]
+  },
+  "hop_generator": {
+    "adjacent_only": true,
+    "control_stationarity_norm_inf": 0.0,
+    "ratchet_Q_column_sum_max_abs": 0.0,
+    "ratchet_detailed_balance_max_abs": 1.3877787807814457e-17,
+    "ratchet_stationarity_norm_inf": 6.245004513516506e-17,
+    "trace_rhs_matches_Qw_norm_inf": 4.163336342344337e-17
+  },
+  "kill_conditions": [
+    "FAIL if ratchet-on max weight is not at the Clifford-torus leaf",
+    "FAIL if ratchet-on Clifford leaf weight does not exceed A=const Clifford weight by the configured margin",
+    "FAIL if A=const control is not uniform",
+    "FAIL if either integration is not steady"
+  ],
+  "law_or_candidate_tested": "Destination-ratchet weighted adjacent hopping has steady leaf trace weights proportional to A(theta); A=const kills concentration and yields uniform weights.",
+  "leaf_weight_profile": [
+    {
+      "A_theta": 3.9215754031528274,
+      "distance_to_clifford_theta": 0.6853981633974483,
+      "expected_ratchet_weight_A_normalized": 0.037179261040569955,
+      "leaf": 1,
+      "ratchet_off_A_const_weight": 0.12500000000000006,
+      "ratchet_on_weight": 0.037179261040569976,
+      "theta": 0.1
+    },
+    {
+      "A_theta": 10.485195273595748,
+      "distance_to_clifford_theta": 0.5053981633974483,
+      "expected_ratchet_weight_A_normalized": 0.09940694033957723,
+      "leaf": 2,
+      "ratchet_off_A_const_weight": 0.125,
+      "ratchet_on_weight": 0.09940694033957721,
+      "theta": 0.28
+    },
+    {
+      "A_theta": 15.704546501249483,
+      "distance_to_clifford_theta": 0.32539816339744826,
+      "expected_ratchet_weight_A_normalized": 0.14889001839013463,
+      "leaf": 3,
+      "ratchet_off_A_const_weight": 0.12500000000000006,
+      "ratchet_on_weight": 0.14889001839013477,
+      "theta": 0.46
+    },
+    {
+      "A_theta": 19.121669631057898,
+      "distance_to_clifford_theta": 0.12539816339744825,
+      "expected_ratchet_weight_A_normalized": 0.18128672119196657,
+      "leaf": 4,
+      "ratchet_off_A_const_weight": 0.12499999999999994,
+      "ratchet_on_weight": 0.18128672119196645,
+      "theta": 0.66
+    },
+    {
+      "A_theta": 19.739208802178716,
+      "distance_to_clifford_theta": 0.0,
+      "expected_ratchet_weight_A_normalized": 0.18714142183789045,
+      "leaf": 5,
+      "ratchet_off_A_const_weight": 0.12500000000000008,
+      "ratchet_on_weight": 0.18714142183789048,
+      "theta": 0.7853981633974483
+    },
+    {
+      "A_theta": 18.679215020381903,
+      "distance_to_clifford_theta": 0.16460183660255168,
+      "expected_ratchet_weight_A_normalized": 0.17709194389514318,
+      "leaf": 6,
+      "ratchet_off_A_const_weight": 0.12499999999999989,
+      "ratchet_on_weight": 0.17709194389514318,
+      "theta": 0.95
+    },
+    {
+      "A_theta": 13.904511188040113,
+      "distance_to_clifford_theta": 0.39460183660255166,
+      "expected_ratchet_weight_A_normalized": 0.131824432264148,
+      "leaf": 7,
+      "ratchet_off_A_const_weight": 0.12500000000000008,
+      "ratchet_on_weight": 0.13182443226414797,
+      "theta": 1.18
+    },
+    {
+      "A_theta": 3.9215754031528336,
+      "distance_to_clifford_theta": 0.6853981633974482,
+      "expected_ratchet_weight_A_normalized": 0.03717926104057001,
+      "leaf": 8,
+      "ratchet_off_A_const_weight": 0.12499999999999994,
+      "ratchet_on_weight": 0.03717926104057,
+      "theta": 1.4707963267948965
+    }
+  ],
+  "name": "Nested-leaf Lindblad terrain cascade with area-ratchet hopping",
+  "negatives_run": [
+    "A=const control"
+  ],
+  "object": "multishell_ratchet_cascade",
+  "parameters": {
+    "CONCENTRATION_MARGIN": 0.025,
+    "DEPHASE_RATE": 0.08,
+    "HOP_STRENGTH": 1.25,
+    "N": 8,
+    "STEADY_TOL": 2.0e-7,
+    "TERRAIN_RATE": 0.35,
+    "TMAX": 120.0,
+    "UNIFORM_TOL": 0.0002
+  },
+  "peps3d_embedding": "not_applicable_blocked: this PoC is not finite PEPS3D-carried",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "classification is PoC",
+    "promotion_allowed=false",
+    "not torch-native",
+    "not PEPS3D-carried",
+    "no proof/graph/topology tooling",
+    "single finite cascade only"
+  ],
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [],
+  "public_status": "passes local rerun",
+  "purpose": "Measure whether destination-weighted area-ratchet hopping concentrates finite leaf trace weight near theta=pi/4, with A=const as the uniform kill-control.",
+  "quaternion_action": "not_applicable",
+  "ratchet": {
+    "A_theta_formula": "2*pi^2*sin(2theta)",
+    "concentration_delta_vs_control": 0.0621414218378904,
+    "control_clifford_weight": 0.12500000000000008,
+    "control_uniform_max_abs_error": 1.1102230246251565e-16,
+    "max_A_leaf": 5,
+    "max_A_theta": 0.7853981633974483,
+    "max_A_value": 19.739208802178716,
+    "ratchet_expected_profile_max_abs_error": 1.3877787807814457e-16,
+    "ratchet_on_clifford_weight": 0.18714142183789048,
+    "ratchet_skew_left_L1_error": 9.43689570931383e-16,
+    "ratchet_skew_right_L1_error": 6.661338147750939e-16,
+    "terrain_off_L1_error": 9.178158927314328e-11
+  },
+  "ratchet_off_A_const_weights": [
+    0.12500000000000006,
+    0.125,
+    0.12500000000000006,
+    0.12499999999999994,
+    0.12500000000000008,
+    0.12499999999999989,
+    0.12500000000000008,
+    0.12499999999999994
+  ],
+  "ratchet_on_skew_left_weights": [
+    0.03717926104057006,
+    0.09940694033957734,
+    0.14889001839013483,
+    0.1812867211919665,
+    0.18714142183789054,
+    0.17709194389514296,
+    0.1318244322641479,
+    0.03717926104056995
+  ],
+  "ratchet_on_skew_right_weights": [
+    0.03717926104056988,
+    0.09940694033957709,
+    0.14889001839013458,
+    0.18128672119196662,
+    0.1871414218378904,
+    0.17709194389514332,
+    0.1318244322641481,
+    0.037179261040570045
+  ],
+  "ratchet_on_weights": [
+    0.037179261040569976,
+    0.09940694033957721,
+    0.14889001839013477,
+    0.18128672119196645,
+    0.18714142183789048,
+    0.17709194389514318,
+    0.13182443226414797,
+    0.03717926104057
+  ],
+  "required_artifacts": [
+    "layers/multishell_ratchet_cascade_results.json"
+  ],
+  "required_negatives": [
+    "A=const adjacent hopping control must yield uniform leaf weights"
+  ],
+  "required_tools": [
+    "DifferentialEquations",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "root_constraints_in_force": [
+    "F01: finite N=8 leaf/probe set and finite adjacent path graph",
+    "N01: order-sensitive adjacent gamma^theta transfer channel is represented, but no stronger nonclassical manifold claim is admitted"
+  ],
+  "scientific_question": "Does the coupled finite leaf cascade concentrate steady trace weight at the Clifford-torus leaf when hopping rates are weighted by A(theta), while the A=const control remains uniform?",
+  "sim_class": "constraint_probe",
+  "sim_execution_boundary": "Julia density-matrix PoC over qubit Lindblad equations; treated as diagnostic/control evidence only, not nonclassical manifold admission.",
+  "sim_execution_kind": "classical",
+  "sim_id": "multishell_ratchet_cascade",
+  "source_boundary_checks": {
+    "no_pycall": true,
+    "no_pythoncall": true,
+    "no_z3_import": true
+  },
+  "spinor_state": "not_applicable_blocked: density-matrix PoC, not torch-native spinor or spinor-derived PEPS3D carrier",
+  "status": "passes",
+  "status_ladder": "exists < runs < passes local rerun < canonical by process",
+  "steady_state": {
+    "ratchet_off_derivative_norm": 2.7590543618740946e-10,
+    "ratchet_off_retcode": "Success",
+    "ratchet_on_derivative_norm": 6.05466763876774e-10,
+    "ratchet_on_retcode": "Success",
+    "ratchet_on_skew_left_derivative_norm": 5.996993927552701e-10,
+    "ratchet_on_skew_left_retcode": "Success",
+    "ratchet_on_skew_right_derivative_norm": 1.6748200532962882e-10,
+    "ratchet_on_skew_right_retcode": "Success",
+    "terrain_off_derivative_norm": 1.3223532845269953e-10,
+    "terrain_off_retcode": "Success",
+    "terrain_only_derivative_norm": 7.25079129275044e-12,
+    "terrain_only_retcode": "Success"
+  },
+  "terrain_off_hopping_on_weights": [
+    0.03717926104073718,
+    0.09940694033715343,
+    0.1488900184010044,
+    0.1812867211682547,
+    0.18714142186660856,
+    0.17709194387583818,
+    0.13182443227028368,
+    0.03717926104011988
+  ],
+  "terrain_only_hopping_off_weights": [
+    0.12500000000000003,
+    0.12500000000000003,
+    0.12500000000000003,
+    0.12500000000000003,
+    0.12499999999999997,
+    0.12500000000000003,
+    0.12500000000000003,
+    0.12500000000000003
+  ],
+  "tier": "PoC bounded cascade/control",
+  "tool_integration_depth": {
+    "DifferentialEquations": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "tool_manifest": {
+    "DifferentialEquations": "load-bearing: integrates the coupled Lindblad/hopping ODE to steady state",
+    "JSON": "supportive: writes the receipt artifact",
+    "LinearAlgebra": "load-bearing: density-matrix traces, Lindblad products, gamma channel, derivative norm",
+    "Z3": "not used: deliberately omitted because SMT would be decorative for this numeric PoC/control measurement"
+  },
+  "tools": [
+    "DifferentialEquations",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "topology_surfaces_used": [],
+  "uniform_control_target": [
+    0.125,
+    0.125,
+    0.125,
+    0.125,
+    0.125,
+    0.125,
+    0.125,
+    0.125
+  ],
+  "version": "1.0",
+  "witness_trace_id": "multishell_ratchet_cascade_v1",
+  "z3_omitted": "deliberate: no decorative solver block; evidence is the DifferentialEquations steady-state profile plus A=const kill-control"
+}

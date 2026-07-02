@@ -1,0 +1,382 @@
+{
+  "F01_N01_dependency_forcing": {
+    "F01_witness": {
+      "bounded_invariant": 0.578986,
+      "finite_carrier": "K cut cells; each a 3-qubit pure |psi_ABE> in C^8, rho_AB in C^{4x4}",
+      "flat_control_gives_0": 1.1102230246251564e-16
+    },
+    "I_A_B_spread": 0.296688,
+    "I_c_baseline_is_zero": true,
+    "I_c_note": "I_c(A>B)=S_B-S_AB is exactly 0 for GHZ-type purified cut; NOT a usable signature. I(A:B) is the live signature.",
+    "N01_witness": {
+      "N01_ok": true,
+      "identity_ctrl_gap": 0.0,
+      "order_gap": 0.107603
+    },
+    "ablation": {
+      "I_A_B_collapse_gap_mean": 0.33218120577976085,
+      "I_A_B_collapse_gap_ref": 0.4234600295355251,
+      "control_change_mean": 1.1796119636642288e-16
+    },
+    "ablation_nonvacuous": true,
+    "anti_tautology": {
+      "anti_tautology_holds": true,
+      "control_intact": true,
+      "magnitude_comparable": true
+    },
+    "collapse_input_dependent": true,
+    "dep_forcing_genuine": true,
+    "input_dependent": true,
+    "min_codiag_gap": 0.356258,
+    "negative_controls": {
+      "identity_order_null": true,
+      "zero_angle_I_A_B": 0.0,
+      "zero_angle_null": true
+    },
+    "real_erasure": {
+      "I_A_B_drop_min": 0.209706,
+      "erase_drops": true,
+      "erased_not_product_zero": true
+    },
+    "structural_no_builtin_zero": true
+  },
+  "all_pass": true,
+  "bloch_free": true,
+  "blocked_consumers": [
+    "L13 gluing/groupoid/dynamic (needs L12 cut readouts as transition/compatibility data)",
+    "pairwise/subset/stack order tests (gated behind parent-complete + dep-forcing)",
+    "Axis0 entropy ratchet / Phi_0=I_c(A>B) (downstream; Xi: geometry/history->rho_AB OPEN)",
+    "flux / FEP / gravity bridges (downstream, NOT drivers; blocked until stack complete)"
+  ],
+  "claim_ceiling": "carrier computes invariants and finite maps; does NOT assert layer-completion, manifold admission, coupling, bridge (rho_AB/Xi/Phi0/Axis0), flux, or physics.",
+  "classification": "L12_newstd_poc",
+  "controls_summary": {
+    "N01_order_gap": true,
+    "ablation_nonvacuous": true,
+    "anti_tautology_holds": true,
+    "criterion_1_finitude": true,
+    "criterion_2_noncomm": true,
+    "criterion_3_invariant": true,
+    "criterion_4_carrier": true,
+    "criterion_5_scale": true,
+    "criterion_6_neural": true,
+    "dep_forcing_genuine": true,
+    "negative_controls_fire": true
+  },
+  "criterion_1_finitude_vs_flat": {
+    "MET": true,
+    "description": "compact finite cut complex: I(A:B) bounded in (0,log2]; flat product state: I(A:B)=0 identically (no quantum structure)",
+    "flat_control_description": "alpha=0 gives pure product |00> for system ABE; I(A:B)=S_A+S_B-S_AB=0 for any product state (standard QIT). NOTE: this is a DIFFERENT STATE (never entangled), NOT the product-erasure tautology (which applies a map to rho_AB). Flat R^N Euclidean space would also give I(A:B)=0 everywhere (no quantum structure, no finite cut complex).",
+    "flat_max_I_A_B": 1.1102230246251564e-16,
+    "genuine_min_I_A_B": 0.395925,
+    "resolvable_classes_K8": 7,
+    "threshold_flat_lt_1e9": true,
+    "threshold_genuine_gt_0p1": true,
+    "verdict": "MET: genuine min I(A:B) > 0.1 (bounded nonzero quantum cut structure); flat/product control gives I(A:B)=0 (collapses to zero). Non-flatness load-bearing for F01."
+  },
+  "criterion_2_noncommutation": {
+    "MET": true,
+    "alpha_sweep": [
+      0.05,
+      0.12,
+      0.2,
+      0.3,
+      0.7854
+    ],
+    "beta_sweep": [
+      0.1,
+      0.35,
+      0.7,
+      1.1,
+      1.7
+    ],
+    "clifford_note": "No Clifford sublevel in this density-operator object; anticommutator {Gamma_a,Gamma_b}=2delta check not applicable.",
+    "clifford_sublevel_present": false,
+    "description": "cut-crossing channels (dephase_B, rotB) do not commute on entangled cut states (tilted B-frame makes dephasing axis non-aligned with cut correlation)",
+    "flat_control_description": "rho_A (x) I/2: maximally mixed B subsystem. ALL unitaries U_B leave I/2 invariant: U_B*(I/2)*U_B†=I/2. Dephasing also leaves I/2 invariant. Both channel orderings give the SAME result -> order gap = 0 exactly. This is the geometric flat/Cartesian limit: no B-subsystem structure means no sensitivity to channel ordering.",
+    "flat_gaps": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "flat_max_gap": 1.5322565909094936e-17,
+    "gap_spread_alpha_sweep": 0.0,
+    "genuine_gaps_cut_family": [
+      0.107603,
+      0.107603,
+      0.107603,
+      0.107603,
+      0.107603,
+      0.107603,
+      0.107603,
+      0.107603
+    ],
+    "genuine_max_gap": 0.107603,
+    "input_dependence_note": "not part of the channel-order N01 pass bar; L12 input dependence is carried by the I(A:B) and collapse dependency-forcing section",
+    "input_dependence_recorded": false,
+    "input_dependent": false,
+    "sweep_gaps": [
+      0.10760341,
+      0.10760341,
+      0.10760341,
+      0.10760341,
+      0.10760341
+    ],
+    "threshold_flat_lt_1e6": true,
+    "threshold_genuine_gt_1e3": true,
+    "verdict": "MET: cut-crossing channel order gap > 1e-3 (structurally nonzero on the cut family); flat/product control gap < 1e-9 (zero). Non-flatness load-bearing for N01."
+  },
+  "criterion_3_topological_invariant": {
+    "C": 1,
+    "E": 12,
+    "F": 6,
+    "MET": true,
+    "V": 8,
+    "chi_genuine": 1,
+    "chi_wrong_structure": 8,
+    "invariant_type": "Euler_characteristic_chi=V-E+F-C_of_PEPS3D_cut_complex",
+    "threshold_flip_required": true,
+    "verdict": "MET: chi_wrong=8 != chi_genuine=1 -> topology FLIPPED by wrong structure.",
+    "wrong_structure_description": "disconnect the complex: E=0, F=0, C=0 -> chi_wrong=V; isolated vertices have no topological connectivity. For any non-trivial grid chi_wrong=V != chi_genuine -> FLIPS.",
+    "wrong_structure_flips_invariant": true
+  },
+  "criterion_4_exact_carrier": {
+    "MET": true,
+    "carrier_type": "Julia-native dense ComplexF64 4x4 density matrices; exact arithmetic",
+    "contraction_error_bound": "exact dense; discretization error is O(machine precision) ~ 1e-16; claimed effect (I(A:B) > 0.1) >> 1e-16",
+    "equal_truncation_budget": "genuine and control states use identical construction; no MPS bond truncation applied",
+    "no_CTMRG": true,
+    "no_approximate_contraction": true,
+    "rho_psd": true,
+    "rho_trace_dev": 0.0,
+    "verdict": "MET: exact Julia-native dense arithmetic; no CTMRG; equal budget."
+  },
+  "criterion_5_scale_ladder": {
+    "MET": "MET",
+    "all_4_passed": true,
+    "n_ladder_nonvacuous": true,
+    "resolvable_classes_by_K": [
+      [
+        8,
+        7
+      ],
+      [
+        16,
+        11
+      ],
+      [
+        32,
+        12
+      ],
+      [
+        64,
+        14
+      ]
+    ],
+    "rungs_K_8_16_32_64": {
+      "K_16": {
+        "K": 16,
+        "chi_genuine": 1,
+        "chi_wrong": 18,
+        "collapse_ok": true,
+        "finitude_ok": true,
+        "flat_max_I_A_B": 1.1102230246251564e-16,
+        "intact_ok": true,
+        "invariant_flipped": true,
+        "max_ctrl_change": 2.220446049250313e-16,
+        "min_I_A_B": 0.3959247809710599,
+        "min_drop": 0.209706434482827,
+        "n01_max_gap": 0.1076034136349285,
+        "n01_ok": true,
+        "resolvable_classes": 11,
+        "rung_pass": true
+      },
+      "K_32": {
+        "K": 32,
+        "chi_genuine": 1,
+        "chi_wrong": 36,
+        "collapse_ok": true,
+        "finitude_ok": true,
+        "flat_max_I_A_B": 1.1102230246251564e-16,
+        "intact_ok": true,
+        "invariant_flipped": true,
+        "max_ctrl_change": 2.220446049250313e-16,
+        "min_I_A_B": 0.3959247809710599,
+        "min_drop": 0.1693499243008254,
+        "n01_max_gap": 0.1076034136349285,
+        "n01_ok": true,
+        "resolvable_classes": 12,
+        "rung_pass": true
+      },
+      "K_64": {
+        "K": 64,
+        "chi_genuine": 1,
+        "chi_wrong": 64,
+        "collapse_ok": true,
+        "finitude_ok": true,
+        "flat_max_I_A_B": 1.1102230246251565e-16,
+        "intact_ok": true,
+        "invariant_flipped": true,
+        "max_ctrl_change": 3.3306690738754696e-16,
+        "min_I_A_B": 0.3959247809710599,
+        "min_drop": 0.143790285753165,
+        "n01_max_gap": 0.10760341363492854,
+        "n01_ok": true,
+        "resolvable_classes": 14,
+        "rung_pass": true
+      },
+      "K_8": {
+        "K": 8,
+        "chi_genuine": 1,
+        "chi_wrong": 8,
+        "collapse_ok": true,
+        "finitude_ok": true,
+        "flat_max_I_A_B": 1.1102230246251564e-16,
+        "intact_ok": true,
+        "invariant_flipped": true,
+        "max_ctrl_change": 2.220446049250313e-16,
+        "min_I_A_B": 0.3959247809710599,
+        "min_drop": 0.209706434482827,
+        "n01_max_gap": 0.10760341363492854,
+        "n01_ok": true,
+        "resolvable_classes": 7,
+        "rung_pass": true
+      }
+    },
+    "rungs_passed": 4,
+    "verdict": "4/4 rungs: collapse+anti-taut+finitude+N01+topology re-measured at each K"
+  },
+  "criterion_6_neural_dynamics": {
+    "I_mem1": 0.69315,
+    "I_mem2": 0.4165,
+    "MET": true,
+    "description": "Hopfield-style attractor on the cut geometry: memories are stored alpha* values (cut angles encoding entanglement strengths); energy = |I(A:B)(alpha) - I(A:B)(alpha*)|; retrieval via gradient descent on the cut-angle parameter space; I(A:B) is the order parameter tracking convergence (holonomy analog for L12).",
+    "flat_control_I_A_B": -2.220446049250313e-16,
+    "flat_has_no_attractor": true,
+    "mem_gap": 0.27665,
+    "memories_distinguishable": true,
+    "memory_1_alpha": 0.7853981633974483,
+    "memory_2_alpha": 0.39269908169872414,
+    "non_flatness_role": "flat/product baseline has I(A:B)=0 everywhere -> no energy landscape -> no attractor basin -> no retrieval possible. Non-flat cut geometry provides a curved I(A:B) landscape whose basin structure enables retrieval.",
+    "retrieval_1": {
+      "I_final": 0.69315,
+      "I_start": 0.46818,
+      "I_trajectory": [
+        0.46818,
+        0.62087,
+        0.6709,
+        0.68638,
+        0.6911,
+        0.69253,
+        0.69296,
+        0.69309,
+        0.69313,
+        0.69314,
+        0.69315,
+        0.69315
+      ],
+      "alpha_final": 0.78451,
+      "alpha_start": 0.4354,
+      "converged": true,
+      "delta_I_A_B": 0.22497,
+      "steps": 11
+    },
+    "retrieval_2": {
+      "I_final": 0.4171,
+      "I_start": 0.68951,
+      "alpha_final": 0.39359,
+      "alpha_start": 0.7427,
+      "converged": true,
+      "delta_I_A_B": 0.2724,
+      "steps": 11
+    },
+    "threshold_converged": true,
+    "threshold_delta_gt_0p01": true,
+    "threshold_mem_gap_gt_0p05": true,
+    "threshold_steps_le_20": true,
+    "verdict": "MET: cut-geometry attractor converges to stored memory in <=20 steps; I(A:B) shifts by >0.01 during retrieval; two memories distinguishable by I(A:B) gap>0.05."
+  },
+  "doc_source": "MANIFOLD_GEOMETRY_LAYER_STACK_NONCOMMUTATIVE_ORDER_20260528.md l.70-71; QIT_ENGINE_FULL_EXPLICIT_MATH_PACKET Axis-0 l.1496-1507",
+  "finite_map": {
+    "F01": "compact finite cut complex; all I(A:B) bounded in [0,log2]; flat/product control gives I(A:B)=0 (collapses)",
+    "N01": "cut-crossing channels do not commute on entangled cut states; flat/product control gives zero order gap; noncommutation is input-dependent",
+    "codomain": "per-cut rho_AB(v) + DERIVED readout (S_A,S_B,S_AB,I_c,I(A:B)) + N01 order gap + topological invariant chi + attractor basin membership",
+    "domain": "PEPS3D cut cells v of K=(V,E,F,C); each carries a purified |psi_ABE(v)>, angle alpha(v) from a Hopf-latitude sweep, B-half tilted by a fixed generic unitary"
+  },
+  "fresh_rerun_command": "julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L12_newstd.jl\"",
+  "genuine_geometry_reuse": "psi/rho_AB_from_ket/entangled_cut (GHZ-type purified cut with B-tilt), cut_alpha/cut_beta/cut_family (Hopf-latitude sweep), dephase_B/rotB/zx/xz/cut_readouts, peps3d_complex, anti-tautology local-unitary control, structural co-diagonality check, all thresholds.",
+  "honest_status": "passes_new_standard: 6/6 MET",
+  "language": "julia",
+  "layer_id": "L12",
+  "new_standard_scorecard": {
+    "commutation": {
+      "deciding_number": "genuine_max_gap=0.107603, flat_max=1.5322565909094936e-17, sweep_spread=0.0, input_dependent=false",
+      "status": "MET",
+      "threshold": "genuine>1e-3 AND flat<1e-6; input dependence recorded separately in dependency-forcing"
+    },
+    "exact_carrier": {
+      "deciding_number": "Julia-native dense ComplexF64; rho_trace_dev=0.0",
+      "status": "MET",
+      "threshold": "exact dense, no CTMRG, rho valid"
+    },
+    "finitude": {
+      "deciding_number": "genuine_min_I_A_B=0.3959, flat_max=1.1102230246251564e-16",
+      "status": "MET",
+      "threshold": "|genuine_min|>0.1 AND flat_max<1e-9"
+    },
+    "invariant_anchored": {
+      "deciding_number": "chi_genuine=1, chi_wrong=8, flipped=true",
+      "status": "MET",
+      "threshold": "wrong_structure flips chi (chi_wrong != chi_genuine)"
+    },
+    "met_count": 6,
+    "neural_dynamics": {
+      "deciding_number": "converged=true, steps=11, delta_I=0.22497, mem_gap=0.27665",
+      "status": "MET",
+      "threshold": "converged AND steps<=20 AND delta_I>0.01 AND mem_gap>0.05"
+    },
+    "overall_fraction": "6/6 (6 MET, 0 PARTIAL)",
+    "overall_verdict": "GENUINELY-UPGRADED",
+    "partial_count": 0,
+    "scale_ladder": {
+      "deciding_number": "4/4 rungs passed",
+      "status": "MET",
+      "threshold": "all 4 rungs: collapse+anti-taut+finitude+N01+topology re-measured at each K"
+    },
+    "total": 6,
+    "weakest_criterion": "finitude (MET)"
+  },
+  "non_numpy": true,
+  "object_id": "L12_newstd",
+  "peps3d_anchor": {
+    "C": 1,
+    "E": 12,
+    "F": 6,
+    "V": 8,
+    "euler_VEFC": 1,
+    "grid": "2x2x2",
+    "honest_note": "finite K=(V,E,F,C) anchor with a local cut state per cell; chi=V-E+F-C is the topological invariant; an anchor PoC, NOT a full PEPS3D tensor-network contraction.",
+    "n_cut_cells": 8
+  },
+  "promotion_allowed": false,
+  "status_ladder": "exists < runs < passes",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": null
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "receipt emission",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "eigvals (von Neumann spectra), svdvals (trace norm/trace distance), kron (cut states+channels), partial traces, commutator (structural co-diagonality), norm (HS distance for anti-taut magnitude check)",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "L12 collapse is DIRECTLY measured + anti-tautology controlled; a z3 binding over measured MI literals would be an equality tautology (the prior L12_layer.jl z3 was exactly this: mi==m => is_product=>mi==0).",
+      "role": "omitted"
+    }
+  }
+}

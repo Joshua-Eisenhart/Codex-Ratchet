@@ -1,0 +1,85 @@
+{
+  "classification": "PoC",
+  "kernel": {
+    "R(+I)_minus_I3": 0.0,
+    "R(-I)_minus_I3": 0.0,
+    "adjoint_rotation_match_err_conj": 7.952832160537328e-16,
+    "adjoint_rotation_match_err_transpose": 3.386579529667889,
+    "anchor": "R(U) must equal independent Rodrigues Rot(n,theta); cover degree=2 measured, fails (degree 0) under transpose map",
+    "both_plusI_minusI_in_kernel": true,
+    "generic_hits_to_identity_in_scan": 0,
+    "kernel_group": "Z/2 = pi_1(SO(3))",
+    "kernel_order": 2,
+    "measured_cover_degree_conj": 2,
+    "measured_cover_degree_transpose": 0,
+    "two_to_one_pass": true,
+    "weak_obs_R(U)=R(-U)_conj_err": 0.0,
+    "weak_obs_R(U)=R(-U)_transpose_err": 0.0,
+    "weak_obs_note": "R(U)=R(-U) holds for BOTH conj and transpose -> NOT a discriminator; excluded from verdict"
+  },
+  "kill_K1_wrong_structure_transpose": {
+    "homomorphism_BROKEN": true,
+    "map": "X -> U X U^transpose (not a homomorphism rep)",
+    "max_homomorphism_err": 0.9991533054884906,
+    "max_orthogonality_err": 0.9999885485224419,
+    "verdict": "KILL PASSED (control failed as required)"
+  },
+  "kill_K2_trivial_downstairs_SO3": {
+    "Rot(2pi)_minus_I3": 3.4638242249419736e-16,
+    "Rot(4pi)_minus_I3": 6.927648449883947e-16,
+    "downstairs_sign_flip_present": false,
+    "map": "SO(3) rotation matrices directly (1-to-1, no spin lift)",
+    "verdict": "KILL PASSED (no sign flip downstairs; flip is genuinely an SU(2) property)"
+  },
+  "object_id": "G_SU2_Spin3_double_cover",
+  "pos_homomorphism": {
+    "max_err": 7.656716496459005e-16,
+    "pass": true,
+    "samples": 400
+  },
+  "pos_image_in_SO3": {
+    "max_det_minus_1": 1.3322676295501878e-15,
+    "max_orthogonality_err": 1.4266473864373183e-15,
+    "pass": true,
+    "samples": 400
+  },
+  "pos_surjectivity_axisangle_anchor": {
+    "anchor": "known axis-angle map U(n,theta) -> rotation theta about n",
+    "max_angle_err_vs_input": 7.771561172376096e-16,
+    "max_axis_err_vs_input": 3.477763656540197e-16,
+    "pass": true,
+    "samples": 300
+  },
+  "promotion_allowed": false,
+  "seed": 20260601,
+  "spinor_sign": {
+    "R_image(2pi)_minus_I3": 3.463824224941973e-16,
+    "R_image(4pi)_minus_I3": 6.927648449883946e-16,
+    "note": "SO(3) image period = 2pi; spinor period = 4pi (signed return -1 at 2pi, +1 at 4pi). Period split is the measured cover signature; U(2pi)=-I tautology dropped from verdict.",
+    "signed_spinor_return_at_2pi": -1.0,
+    "signed_spinor_return_at_4pi": 1.0,
+    "so3_image_gap_at_2pi": 3.4638242249419736e-16,
+    "spinor_sign_flip_genuine": true
+  },
+  "summary": {
+    "all_pass": true,
+    "headline": "SU(2)=Spin(3) -> SO(3) is a surjective group homomorphism; the conjugation rep MEASURABLY matches independent Rodrigues rotations with cover degree 2 (vs 0 under the broken transpose map), and the spinor period 4pi vs SO(3) period 2pi is the genuine, measured double-cover signature.",
+    "kernel": "measured cover degree = 2 (preimages {U,-U}); kernel Z/2",
+    "ladder_status": "passes",
+    "n_checks": 10,
+    "n_pass": 10,
+    "spinor_sign": "SO(3) image period 2pi; spinor period 4pi (signed return -1 at 2pi, +1 at 4pi)"
+  },
+  "z3_kernel_is_Z2": {
+    "anchor": "Z3 query is driven by the MEASURED cover degree from the computed rep; flips UNSAT->SAT when the rep is broken (transpose). Not a hardcoded {+1,-1} literal.",
+    "expect_broken_transpose_rep": "sat",
+    "expect_sat_sanity": "sat",
+    "expect_true_rep": "unsat",
+    "kernel_is_exactly_Z2": true,
+    "measured_cover_degree_fed_to_z3": 2,
+    "query": "given the MEASURED preimage set of size=cover_degree, exists a preimage beyond it?",
+    "result_broken_transpose_rep": "sat",
+    "result_sat_sanity": "sat",
+    "result_true_rep": "unsat"
+  }
+}

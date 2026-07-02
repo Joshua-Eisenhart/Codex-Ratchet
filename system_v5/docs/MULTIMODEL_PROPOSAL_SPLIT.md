@@ -8,6 +8,16 @@ Scope: geometric-constraint-manifold and nested-tower exploration
 `system_v5/grok_sim` is a separate informal experiment. It is not the formal sim
 surface and not the source of truth for the current formal workstream.
 
+After the 2026-05-23 cross-lane contamination incident, formal and informal
+sim lanes must be treated as evidentially independent. They may use the same
+source docs, contracts, and source-code specifications, but neither lane may
+use the other lane's sim outputs, result JSONs, readiness indexes, synthesis
+docs, or conclusions as evidence for its own claims.
+
+Current reset protocol:
+
+`system_v5/ops/CROSS_LANE_SIM_INDEPENDENCE_RESET_20260523.md`
+
 Use it as:
 
 - a proposal mine;
@@ -21,6 +31,7 @@ Do not use it as:
 - a formal sim substrate;
 - a source file copied into `system_v4/probes`;
 - proof that a bridge, cycle, axis, or target-system claim has been admitted.
+- a source of result evidence for formal-scout validation.
 
 ## Role Split
 
@@ -51,6 +62,8 @@ Codex should:
 - translate useful proposals into clean formal-scout harnesses;
 - keep names literal and math-first;
 - write receipts that fence claim ceilings.
+- rerun any accepted proposal inside the destination lane without citing
+  `grok_sim` results as evidence.
 
 ## Required Proposal Fields
 
@@ -82,3 +95,21 @@ that:
 - includes immediate negative controls.
 
 Formal promotion remains a separate later decision.
+
+## Independent Rerun Rule
+
+If a Grok/Gemini/Claude informal sim suggests a useful formal target, the formal
+lane must rebuild and rerun the target from source docs and repo contracts only.
+The informal result can motivate the target selection, but it cannot count as a
+passing control, negative control, boundary result, validator result, or
+readiness/index row.
+
+If a formal scout suggests a useful informal attack or alternate construction,
+the informal lane must rerun it independently inside `system_v5/grok_sim`.
+Formal-scout result JSONs and indexes cannot be copied into the informal lane as
+evidence.
+
+Cross-lane agreement is a hypothesis-selection signal only. It is not validation
+unless each lane has its own independently generated receipt set and the
+comparison document explicitly states that the two receipt sets do not depend on
+each other.

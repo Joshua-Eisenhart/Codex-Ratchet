@@ -1,0 +1,135 @@
+{
+  "all_pass": true,
+  "anchored_invariant": "pi_0(O(3)) = Z/2 ; pi_0(SO(3)) = 0 (det components)",
+  "carrier": "Julia (LinearAlgebra + Random); Z3 structural proof; JSON",
+  "claims_measured_not_planted": true,
+  "classification": "PoC",
+  "det_plus1_vs_det_minus1_contrast": {
+    "flipped_target_g_det_range": [
+      -1.0000000000000013,
+      -0.999999999999999
+    ],
+    "interpretation": "SO(3) reduction admits det=+1 frames (rotations) and EXCLUDES det=-1 frames (reflections); orientation is a genuine, structurally-enforced (Z3 UNSAT) constraint, not a numerical accident.",
+    "kill_control_reflected_g_det": -1.0,
+    "oriented_pair_g_det_range": [
+      0.9999999999999986,
+      1.0000000000000013
+    ],
+    "z3_det_m1_feasible": true,
+    "z3_det_p1_feasible": true,
+    "z3_so3_reduction_excludes_det_m1": true
+  },
+  "honest_status": "runs ; passes local rerun (this run)",
+  "item": "G_SO3_frame_reduction",
+  "kill_control_numeric": {
+    "admitted_by_SO3_reduction": false,
+    "excluded": true,
+    "note": "reflected target is genuinely orthonormal (in O(3)) yet det=-1, so the SO(3) reduction excludes it -> if it were admitted the orientation constraint would be vacuous (fail-closed).",
+    "pass": true,
+    "reflected_g_det": -1.0,
+    "reflected_g_orthonormality_err": 7.364386412590295e-16
+  },
+  "kill_control_z3_structural": {
+    "broken_input_reduction_excludes_UNSAT": true,
+    "broken_input_wired_reflected_as_genuine": true,
+    "feasible_det_minus1_reflection": true,
+    "feasible_det_plus1_rotation": true,
+    "junk_frame_UNSAT_fails_orthonormality": true,
+    "measured_genuine_frame_wired_in": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "measured_reflected_frame_wired_in": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        -1
+      ]
+    ],
+    "pass": true,
+    "raw_check_broken_input": "unsat",
+    "raw_check_det_minus1": "sat",
+    "raw_check_det_plus1": "sat",
+    "raw_check_junk_orthonormality": "unsat",
+    "raw_check_reduction_vs_measured_genuine": "sat",
+    "raw_check_reduction_vs_measured_reflection": "unsat",
+    "raw_check_reflected_no_reduction": "sat",
+    "reduction_admits_measured_genuine_SAT": true,
+    "reduction_excludes_measured_reflection_UNSAT": true,
+    "reflected_frame_SAT_without_reduction": true,
+    "tool_role": "load_bearing",
+    "tool_role_basis": "SO(3) reduction (DERIVED det == +1) is applied to the MEASURED frame matrices: genuine rotation frame -> SAT (admitted), reflected frame -> UNSAT (excluded). The UNSAT consults the orthonormality structure (same reflected frame is SAT without the reduction; junk frame is UNSAT on orthonormality alone), so it is NOT a 1!=-1 tautology. Verdict flips when the wired frame is swapped.",
+    "verdict_flips_on_input": true
+  },
+  "negative_and_boundary_controls": {
+    "column_swap_is_reflection_detm1": true,
+    "identity_in_SO3": true,
+    "junk_orthonormality_err": 0.75,
+    "junk_rejected": true,
+    "pass": true
+  },
+  "object": "oriented orthonormal frame bundle, structure group reduced O(3) -> SO(3)",
+  "orientation_constraint": {
+    "all_flipped_g_det_minus1": true,
+    "flipped_target_g_det_range": [
+      -1.0000000000000013,
+      -0.999999999999999
+    ],
+    "ntrials": 500,
+    "pass": true
+  },
+  "pi0_anchor_known_invariant": {
+    "matches_known_pi0_O3_Z2_SO3_0": true,
+    "max_det_deviation_along_SO3_path": 6.661338147750939e-16,
+    "o3_component_count": 2,
+    "o3_det_signs_observed": [
+      -1,
+      1
+    ],
+    "pass": true,
+    "so3_all_det_plus1": true
+  },
+  "promotion_allowed": false,
+  "simple_transitivity": {
+    "all_g_det_plus1": true,
+    "g_det_range": [
+      0.9999999999999986,
+      1.0000000000000013
+    ],
+    "max_orthonormality_err_of_g": 2.5726972650319156e-15,
+    "max_reconstruction_err": 1.864381496268959e-15,
+    "max_uniqueness_gap_independent_solve": 1.8870857467059117e-15,
+    "npairs": 2000,
+    "pass": true
+  },
+  "title": "SO(3) orientation / orthonormal-frame-bundle reduction",
+  "tool_manifest": {
+    "JSON": "supportive (results emission)",
+    "LinearAlgebra": "load_bearing (frame algebra, det, orthonormality)",
+    "Random": "load_bearing (random SO(3)/O(3) sampling for controls)",
+    "Z3": "load_bearing (SO(3) reduction reconciled against the MEASURED determinant on an orthonormal integer frame: measured +1 -> SAT, measured -1 -> UNSAT; verdict flips on the wired-in measured value, not a 1!=-1 tautology)"
+  }
+}

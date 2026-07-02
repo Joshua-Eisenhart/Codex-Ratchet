@@ -1,0 +1,37 @@
+{
+  "object_id": "G_U1_hopf_bundle",
+  "description": "U(1) Hopf principal bundle S^3->S^2; first Chern number read by integrating Berry curvature of the eigenstate line bundle over S^2",
+  "classification": "PoC",
+  "promotion_allowed": false,
+  "method": "numeric integration of F = i Tr(P[dP_theta,dP_phi]) over S^2 midpoint grid; c1 = (1/2pi) int F",
+  "known_invariant_anchor": "eigenstate bundle psi=(cos(t/2), sin(t/2)e^{i m phi}) is O(m) over CP^1; with convention F=i Tr(P[dP_t,dP_p]) the readout gives c1=-m. Hopf<=>m=1<=>c1=-1, |c1|=1. Anchored to algebraic geometry (tautological bundle = O(-1)); sign convention fixed up front, not chosen to hit a target.",
+  "grid": {"ntheta": 400, "nphi": 400},
+  "measured_chern_numbers": {
+    "hopf_m+1":   {"numeric": -1.00000257, "rounded": -1, "known": -1, "abs_known": 1, "qerr": 2.570e-06},
+    "anti_m-1":   {"numeric": 1.00000257, "rounded": 1, "known":  1, "qerr": 2.570e-06},
+    "winding2_m2":{"numeric": -2.00000514, "rounded": -2, "known": -2, "qerr": 5.140e-06},
+    "trivial_m0": {"numeric": 0.00000000, "rounded": 0, "known":  0, "qerr": 0.000e+00},
+    "KILL_frozenP":  {"numeric": 0.00000000, "rounded": 0, "expected": 0},
+    "KILL_random_w0":{"numeric": -0.00000002, "rounded": 0, "expected": 0}
+  },
+  "controls": {
+    "positive": "m=+1 Hopf -> c1=-1, |c1|=1",
+    "negative": "m=0 trivial fiber -> 0",
+    "boundary": "m=+2 -> -2 ; m=-1 -> +1",
+    "kill_frozen": "globally-constant projector -> 0 (would be nonzero only if Hopf value were hardcoded)",
+    "kill_random": "smooth winding-0 random field -> 0 net flux, no quantized Hopf value"
+  },
+  "checks": {
+    "KILL_frozen_is_0": true
+    , "KILL_random_is_0": true
+    , "anti_is_+1": true
+    , "hopf_absC1_is_1": true
+    , "hopf_is_-1": true
+    , "trivial_is_0": true
+    , "winding2_is_-2": true
+    , "z3_load_bearing": true
+  },
+  "z3_structural": {"status": "load_bearing_pass", "tool_role": "load_bearing", "encoding": "free-variable bundle-classification theory; anti & winding2 DERIVED from measured hopf via sign-flip mirror and magnitude doubling; measured tuple bound last", "sat_on_genuine_tuple": true, "unsat_on_all_corruptions": true},
+  "all_pass": true,
+  "honest_status": "passes"
+}

@@ -1,0 +1,253 @@
+{
+  "F01_witness": {
+    "cL_int": 1,
+    "cR_int": -1,
+    "chern_quantized": true,
+    "compact_BZ_torus": "T^2 periodic boundary conditions on k-space",
+    "finitude_contrast_ratio": 1.0000000000000013,
+    "flat_open_noninteger": true
+  },
+  "N01_witness": {
+    "clifford_anticomm_2delta_ok": true,
+    "flat_commutes": true,
+    "max_clifford_error": 0.0,
+    "su2_comm_norm_JxJy": 0.5
+  },
+  "all_pass": true,
+  "anticommutation": {
+    "abelian_control_Ca_Cb_comm_norm": 0.0,
+    "abelian_control_commutes": true,
+    "anticomm_met": true,
+    "bar": "max Clifford error < 1e-14 AND flat [T_x,T_y]=0 AND [J_x,J_y]>1e-6",
+    "clifford_anticomm_2delta_ok": true,
+    "clifford_anticomm_diag_errors": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "clifford_anticomm_offdiag_errors": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "deciding_number": 0.0,
+    "flat_cartesian_comm_norm": 0.0,
+    "flat_commutes": true,
+    "max_clifford_error": 0.0,
+    "su2_comm_norm_JxJy": 0.5,
+    "su2_noncomm": true
+  },
+  "blocked_consumers": [
+    "Weyl L/R layer coupling (needs shell-local checks first)",
+    "nested Hopf tori (dependency: weyl_lr shell-local -> nesting order test)",
+    "flux / Xi / Phi0 / Axis0 (downstream; gated separately)",
+    "bridge claims (not admitted from this level)"
+  ],
+  "claim_ceiling": "carrier-level invariants and finite maps; NOT layer-completion, manifold admission, coupling, bridge, flux, or physics",
+  "classification": "weyl_lr_newstd_poc",
+  "core_entanglement": {
+    "ent_pass": true,
+    "note": "verbatim from original weyl_lr_spinor_network_entanglement.jl",
+    "rows": [
+      {
+        "N": 4,
+        "cut_entropy_entangled": 2.046614,
+        "cut_entropy_product": 0.0,
+        "max_bond": 16,
+        "pass": true,
+        "schmidt_rank_entangled": 16
+      },
+      {
+        "N": 6,
+        "cut_entropy_entangled": 3.093269,
+        "cut_entropy_product": 0.0,
+        "max_bond": 64,
+        "pass": true,
+        "schmidt_rank_entangled": 64
+      }
+    ]
+  },
+  "exact_carrier": {
+    "N_test": 4,
+    "bar": "contraction error < 1e-10 for genuine AND control (equal MPS cutoff)",
+    "contraction_error_control": 1.6017132519074587e-15,
+    "contraction_error_genuine": 0.0,
+    "control_below_bound": true,
+    "cut_entropy_control_method1": 9.61027951144475e-16,
+    "cut_entropy_control_method2": -6.406853007629837e-16,
+    "cut_entropy_genuine_method1": 2.046613551706527,
+    "cut_entropy_genuine_method2": 2.046613551706527,
+    "deciding_number": 0.0,
+    "equal_truncation_budget": "cutoff=1e-14 for both genuine and control",
+    "error_bound": 1.0e-10,
+    "exact_carrier_met": true,
+    "genuine_below_bound": true,
+    "mps_cutoff": 1.0e-14
+  },
+  "finite_map": {
+    "codomain": "chirality pair (C_L, C_R) with C_L + C_R = 0; L|R entanglement spectrum",
+    "domain": "L/R Weyl sheets: BZ k-points (compact torus T^2) x {L,R} chirality",
+    "geometry_role": "compact BZ T^2 SUPPLIES integer quantization (F01); Clifford gamma matrices SUPPLY anticommutation (N01)",
+    "operator": "FHS Berry flux + ITensors MPS L|R Schmidt decomposition",
+    "response": "Chern number C (integer-quantized) + L|R cut entropy S",
+    "signature": "C_L = -1, C_R = +1 (TOPOLOGICAL); C = 0 (TRIVIAL control)"
+  },
+  "finitude_vs_flat": {
+    "bar": "compact |C_L|=|C_R|=1 integer AND flat open-patch value non-integer",
+    "compact_BZ_cL_int": 1,
+    "compact_BZ_cR_int": -1,
+    "compact_BZ_c_left": 1.0000000000000013,
+    "compact_BZ_c_right": -1.0000000000000009,
+    "compact_quantized": true,
+    "deciding_number": 1.3322676295501878e-15,
+    "finitude_met": true,
+    "flat_noninteger": true,
+    "flat_noninteger_left": true,
+    "flat_noninteger_right": true,
+    "flat_open_patch_c_left": 0.8506706096400972,
+    "flat_open_patch_c_right": -0.850670609640096,
+    "mechanism": "compact T^2 BZ: boundary wrap closure quantizes flux; open k-space: no closure, no quantization",
+    "trivial_integer": true,
+    "trivial_m3_c": -3.1060104311167155e-19,
+    "trivial_zero": true
+  },
+  "honest_status": "passes_local_rerun",
+  "neural_dynamics": {
+    "bar": "converged AND energy_monotone within max_steps",
+    "converged": true,
+    "deciding_number": 6.0,
+    "energy_monotone_decreasing": true,
+    "final_hamming": 0.5555555555555556,
+    "geometry": "BZ_torus_NxN_nearest_neighbor_W",
+    "geometry_load_bearing": true,
+    "initial_hamming": 0.3055555555555556,
+    "max_steps": 40,
+    "n_nodes": 36,
+    "neural_dynamics_met": true,
+    "nk": 6,
+    "random_W_control_converged": true,
+    "steps_to_converge": 6
+  },
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_deciding_number": 0.0,
+    "exact_carrier": "MET",
+    "exact_deciding_number": 0.0,
+    "finitude": "MET",
+    "finitude_deciding_number": 1.3322676295501878e-15,
+    "fraction": "6/6",
+    "invariant_anchored": "MET",
+    "invariant_deciding_number": 1.0,
+    "n_met": 6,
+    "neural_deciding_number": 6.0,
+    "neural_dynamics": "MET",
+    "scale_deciding_number": 4.0,
+    "scale_ladder": "MET"
+  },
+  "object_id": "weyl_lr_newstd_poc",
+  "promotion_allowed": false,
+  "scale_ladder": {
+    "bar": ">=2 rungs complete, all completed rungs pass (S_ent>1e-3, S_prd<1e-9)",
+    "deciding_number": 4.0,
+    "honest_note": "partial is honest: reports which rungs completed within budget",
+    "n_complete": 4,
+    "n_pass": 4,
+    "rows": [
+      {
+        "N_per_sheet": 8,
+        "completed": true,
+        "cut_entropy_entangled": 3.5080657321511137,
+        "cut_entropy_product": -1.2813706015259676e-15,
+        "max_bond_budget": 64,
+        "max_bond_used": 64,
+        "n_sites": 16,
+        "pass": true,
+        "schmidt_rank_entangled": 64,
+        "schmidt_rank_product": 1
+      },
+      {
+        "N_per_sheet": 16,
+        "completed": true,
+        "cut_entropy_entangled": 3.966819783294371,
+        "cut_entropy_product": 4.164454454959387e-15,
+        "max_bond_budget": 64,
+        "max_bond_used": 64,
+        "n_sites": 32,
+        "pass": true,
+        "schmidt_rank_entangled": 64,
+        "schmidt_rank_product": 1
+      },
+      {
+        "N_per_sheet": 32,
+        "completed": true,
+        "cut_entropy_entangled": 2.479063419513473,
+        "cut_entropy_product": -6.40685300762985e-15,
+        "max_bond_budget": 48,
+        "max_bond_used": 48,
+        "n_sites": 64,
+        "pass": true,
+        "schmidt_rank_entangled": 48,
+        "schmidt_rank_product": 1
+      },
+      {
+        "N_per_sheet": 64,
+        "completed": true,
+        "cut_entropy_entangled": 2.9095466218335844,
+        "cut_entropy_product": -7.688223609155824e-15,
+        "max_bond_budget": 32,
+        "max_bond_used": 32,
+        "n_sites": 128,
+        "pass": true,
+        "schmidt_rank_entangled": 32,
+        "schmidt_rank_product": 1
+      }
+    ],
+    "rungs": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "scale_ladder_met": true
+  },
+  "tool_manifest": {
+    "ITensors_ITensorMPS": {
+      "reason": "MPS spinor network build and L|R Schmidt cut entropy — exact carrier for entanglement criterion",
+      "role": "load_bearing"
+    },
+    "JSON": {
+      "reason": "receipt emission only",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "eigen for BZ Hamiltonian, opnorm for commutator/anticommutator checks, Berry-flux loop integral for Chern number",
+      "role": "load_bearing"
+    },
+    "numpy": {
+      "reason": "Julia-native ComplexF64 throughout; no numpy",
+      "role": "ABSENT"
+    }
+  },
+  "topological_invariant": {
+    "antitautology_note": "m_ctrl=3.0 puts system in trivially-gapped phase (no band inversion); C=0 forced by band structure, not planted",
+    "bar": "|C_L|=1 AND |C_R|=1 AND C_L+C_R=0 AND control gives C=0",
+    "cL_int": 1,
+    "cLc_int": 0,
+    "cR_int": -1,
+    "cRc_int": 0,
+    "c_left_ctrl": -3.1060104311167155e-19,
+    "c_left_genuine": 1.0000000000000013,
+    "c_right_ctrl": 2.0209774538466096e-16,
+    "c_right_genuine": -1.0000000000000009,
+    "chirality_sum": 0,
+    "control_fires_C0": true,
+    "control_verdict_differs": true,
+    "deciding_number": 1.0,
+    "geom_both_C1": true,
+    "geom_integer_quant": true,
+    "geom_opposite_chiral": true,
+    "invariant_met": true
+  },
+  "verdict": "GENUINELY-UPGRADED",
+  "weakest_criterion": "commutation(2)"
+}

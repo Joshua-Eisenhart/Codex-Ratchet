@@ -5,8 +5,8 @@ sim_topology_coupled_admissibility_falsifier_probe.py
 Falsifier target: the claim that GUDHI persistence is constraint-load-bearing
 (not merely decorative) in the current formal-scout estate. This probe tests
 whether H1 gating is non-vacuous on the scalar-admitted survivor cloud. Positive
-H1 records a topology gate surface; it does not by itself promote topology as a
-constraint layer or prove an interior-threshold admission change.
+H1 records a topology gate surface; it is not downstream topology promotion and
+does not prove an interior-threshold survivor-set change.
 
 Standalone (no engine_core, no canonical_qit_engine_specs imports).
 """
@@ -23,18 +23,39 @@ import z3
 # --- Metadata ---
 NAME = "topology_coupled_admissibility_falsifier_probe"
 CLASSIFICATION = "formal_scout"
+SIM_EXECUTION_KIND = "nonclassical"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
-    "Does not admit topology as a constraint layer; tests only whether H1 "
-    "lifetime gating changes scalar-admitted sets."
+    "Formal scout only: tests whether finite GUDHI H1 lifetime gating is "
+    "non-vacuous on one scalar survivor cloud. It is topology-threshold tool "
+    "evidence only and does not promote any layer, bridge, axis, engine, basin, "
+    "physics, or final-manifold claim."
 )
+ROOT_CONSTRAINTS_IN_FORCE = ["F01_FINITE_CARRIER_PROBE_OPERATOR_PATH_SET", "N01_ORDER_SENSITIVE_THRESHOLD_CONTROL"]
+FINITE_MAP = (
+    "Z3GudhiTopologyGate : finite single-qubit density survivor cloud plus "
+    "finite Rips H1 lifetime sum -> scalar survivor ids, tau threshold sweep, "
+    "and z3 non-empty interior tau interval witness"
+)
+DOMAIN = {
+    "carrier": "ten finite single-qubit density matrices",
+    "scalar_filter": {"entropy_ceil": 0.85, "purity_floor": 0.50},
+    "topology_readout": "GUDHI Vietoris-Rips H1 lifetime sum over trace-distance survivor cloud",
+    "z3_surface": "finite tau interval inequalities tied to positive tau_max",
+    "controls": ["zero-H1 branch exclusion", "tau=0 boundary", "tau>tau_max exclusion"],
+}
+CODOMAIN_OR_OUTPUT = {
+    "scalar_survivor_set": "finite ids passing entropy/purity filter",
+    "h1_tau_max": "finite positive H1 lifetime sum",
+    "z3_interval_witness": "sat/unsat status for non-empty interior tau interval",
+}
 TOOL_MANIFEST = {
     "gudhi":  {"tried": True, "used": True,
                "reason": "load-bearing: Vietoris-Rips H1 on survivor distance matrix; H1_sum is the topology-gate quantity"},
     "torch":  {"tried": True, "used": True,
                "reason": "load-bearing: qubit density matrices, entropy, purity, trace-distance metric"},
     "z3":     {"tried": True, "used": True,
-               "reason": "load-bearing: proves interesting τ-interval is non-empty (separates scalar vs topology-coupled sets)"},
+                "reason": "load-bearing: proves interesting tau-interval is non-empty (separates scalar vs topology-coupled sets)"},
 }
 TOOL_INTEGRATION_DEPTH = {"gudhi": "load_bearing", "torch": "load_bearing", "z3": "load_bearing"}
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -131,19 +152,19 @@ def run() -> dict[str, Any]:
     # Predicates
     pred_a = len(survivors) > 0
     pred_b = tau_max > 1e-12
-    pred_c = sweep[0]["cloud_passes"]    # τ=0 is first entry; gate is vacuous iff H1_sum > 0
-    pred_d = not sweep[-1]["cloud_passes"]  # τ = 2×τ_max is last entry; must exclude all
+    pred_c = sweep[0]["cloud_passes"]    # tau=0 is first entry; gate is vacuous iff H1_sum > 0
+    pred_d = not sweep[-1]["cloud_passes"]  # tau = 2*tau_max is last entry; must exclude all
 
     z3_res = z3_check(tau_mid, tau_max)
     pred_z3 = z3_res["interesting_interval_non_empty"] is True
     all_pass = pred_a and pred_b and pred_c and pred_d and pred_z3
 
     if pred_b:
-        verdict = "killed_zero_h1_decorative_fixture — positive H1 makes the topology gate non-vacuous"
+        verdict = "killed_zero_h1_decorative_fixture - positive H1 makes the topology gate non-vacuous"
     elif tau_max <= 1e-12:
-        verdict = "open — survivor cloud has zero H1; topology gate vacuously decorative"
+        verdict = "open - survivor cloud has zero H1; topology gate vacuously decorative"
     else:
-        verdict = "open — all interior τ left cloud admission unchanged; topology decorative at this scale"
+        verdict = "open - all interior tau left cloud admission unchanged; topology decorative at this scale"
 
     positive = {
         "scalar_admission_set_is_nonempty": {
@@ -160,7 +181,7 @@ def run() -> dict[str, Any]:
         "positive_h1_gate_is_nonvacuous": {
             "pass": pred_b,
             "tau_max_h1_lifetime_sum": round(tau_max, 8),
-            "claim": "Positive H1 makes the topology threshold surface non-vacuous without promoting topology as a layer.",
+            "claim": "Positive H1 makes the topology threshold surface non-vacuous while downstream promotion remains blocked.",
         },
         "z3_interior_interval_exists_for_positive_h1": {
             "pass": pred_z3,
@@ -204,9 +225,14 @@ def run() -> dict[str, Any]:
     return {
         "schema": "FORMAL_SCOUT_RESULT_v1",
         "name": NAME, "classification": CLASSIFICATION,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "promotion_allowed": PROMOTION_ALLOWED, "claim_ceiling": CLAIM_CEILING,
-        "promotion_boundary": "formal_scout only; no topology-layer or v4 probe promotion from this falsifier receipt",
-        "promotion_condition": "blocked unless an independent fixture with positive H1 and topology-changing admission is produced",
+        "root_constraints_in_force": ROOT_CONSTRAINTS_IN_FORCE,
+        "finite_map": FINITE_MAP,
+        "domain": DOMAIN,
+        "codomain_or_output": CODOMAIN_OR_OUTPUT,
+        "promotion_boundary": "formal_scout only; no v4 probe promotion or downstream topology promotion from this falsifier receipt",
+        "promotion_condition": "blocked unless a later independent fixture shows positive H1 and a controlled survivor-set change",
         "source_alignment_category": "standalone_formal_scout",
         "TOOL_MANIFEST": TOOL_MANIFEST, "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

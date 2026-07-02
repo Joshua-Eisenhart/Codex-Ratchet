@@ -1,0 +1,274 @@
+{
+  "all_pass": true,
+  "all_pass_newstd": true,
+  "all_pass_original": true,
+  "anchor_to_known_math": {
+    "H_measured": 1,
+    "known_H": 1,
+    "match": true,
+    "two_methods_agree": true
+  },
+  "blocked_consumers": [
+    "Nested Hopf tori (depends on S^1 fiber geometry; not yet earned)",
+    "Weyl spinor carrier (depends on Hopf bundle; not yet earned)",
+    "flux / coupling / bridge / physics (downstream; gated)"
+  ],
+  "claim_ceiling": "carrier-level invariants and finite maps; NOT layer-completion, manifold admission, coupling, bridge, flux, or physics",
+  "classification": "hopf_fibration_newstd_poc",
+  "controls_summary": {
+    "anchor_to_known_ok": true,
+    "boundary_link1_ok": true,
+    "geometry_ok": true,
+    "killcontrol_link0_ok": true,
+    "positive_link1_ok": true,
+    "random_not_1_ok": true,
+    "z3_load_bearing_ok": true
+  },
+  "exact_carrier": {
+    "N_resolution": 1200,
+    "bar": "method_discrepancy < 0.05 for both genuine and control at N=1200",
+    "control_below_bound": true,
+    "control_crossing": 0.0,
+    "control_gauss": 1.3695895449212162e-17,
+    "control_method_discrepancy": 1.3695895449212162e-17,
+    "deciding_number": 3.99801822226209e-6,
+    "equal_truncation_budget": "both genuine and control use N=1200 points, zero truncation",
+    "error_bound": 0.05,
+    "exact_carrier_met": true,
+    "genuine_below_bound": true,
+    "genuine_crossing": 1.0,
+    "genuine_gauss": 1.0000039980182223,
+    "genuine_method_discrepancy": 3.99801822226209e-6
+  },
+  "finite_map": {
+    "F01_witness": "all fibers are closed loops on S^3 (bounded); flat control grows without bound",
+    "N01_witness": "SU(2) generators [J_x,J_y]=J_z (||>0); flat translation generators [T_x,T_y]=0",
+    "codomain": "Z (linking number = topological invariant of the bundle)",
+    "domain": "base points (theta,phi) in S^2; fibers = U(1) orbits on S^3",
+    "geometry_role": "compact S^3 total space SUPPLIES F01 finitude; SU(2) Lie algebra SUPPLIES N01 noncommutation",
+    "object_id": "hopf_fibration_newstd_poc",
+    "operator": "Gauss linking integral + signed-crossing count: fiber pair -> Z"
+  },
+  "finitude_vs_flat": {
+    "bar": "contrast_ratio > 5.0: flat line diameter (T=50) vs max compact fiber diameter",
+    "compact_bounded_below_1000": true,
+    "contrast_ratio_flat_over_compact": 18.31254019875506,
+    "deciding_number": 18.31254019875506,
+    "finitude_met": true,
+    "flat_T_vals": [
+      1.0,
+      5.0,
+      10.0,
+      50.0,
+      200.0
+    ],
+    "flat_grows": true,
+    "flat_line_diameters": [
+      1.0,
+      5.0,
+      10.0,
+      50.0,
+      200.0
+    ],
+    "hopf_fiber_bounding_box_diameters": [
+      2.9281174313233254,
+      3.265421691535699,
+      3.999999999999999,
+      5.656245093941477,
+      3.061298285681451,
+      3.999999999999999,
+      7.38764868398671,
+      10.921477732160643
+    ],
+    "max_compact_fiber_diameter": 10.921477732160643,
+    "mechanism": "S^3 compact: fibers are closed loops with finite bounding box; flat R^3 line grows without bound"
+  },
+  "geometry_checks": {
+    "base_point_U1_invariance": 1.9229626863835638e-16,
+    "base_points_distinct_sep": 0.9999999999999999,
+    "distinct_fibers_disjoint_minsep": 0.517661023214069,
+    "fiber_num_nonzero_singvals": 2,
+    "fiber_on_S3_max_dev": 1.1102230246251565e-16,
+    "fiber_radius_max_dev": 1.1102230246251565e-16,
+    "geometry_ok": true,
+    "is_great_circle": true,
+    "same_fiber_overlap_minsep": 0.0
+  },
+  "honest_status_ladder": "passes_local_rerun",
+  "layer": "geometry",
+  "linking_measurements": {
+    "boundary_other_pair": {
+      "crossing": 1.0,
+      "gauss": 1.0000028143198594
+    },
+    "genuine_two_fibers": {
+      "crossing": 1.0,
+      "gauss": 1.0000039980182223
+    },
+    "random_ratematched": {
+      "crossing": 0.0,
+      "gauss": -0.0004636118670673401
+    },
+    "trivial_killcontrol": {
+      "crossing": 0.0,
+      "gauss": 1.3695895449212162e-17
+    }
+  },
+  "neural_dynamics": {
+    "bar": "converged==true AND energy_monotone==true within 160 async steps on S^2-geometry graph",
+    "converged": true,
+    "deciding_number": 16.0,
+    "energies_per_sweep": [
+      -0.0,
+      -0.25,
+      -0.25
+    ],
+    "energy_monotone": true,
+    "final_hamming_from_pattern": 0.375,
+    "geometry": "S2_base_great_circle_adjacency_threshold_pi_over_3",
+    "geometry_weight_matrix_nonzero_entries": 12,
+    "initial_hamming_from_pattern": 0.25,
+    "max_async_steps_budget": 160,
+    "n_nodes": 8,
+    "neural_dynamics_met": true,
+    "random_weight_control_converged": true,
+    "steps_to_converge": 16,
+    "update_rule": "asynchronous_single_node (guaranteed convergence for symmetric W, zero diag)"
+  },
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_bar": "min_input_dep_norm > 1e-6 AND flat_comm_norm < 1e-15",
+    "commutation_deciding_number": 0.5,
+    "exact_bar": "method_discrepancy < 0.05 for genuine and control at N=1200",
+    "exact_carrier": "MET",
+    "exact_deciding_number": 3.99801822226209e-6,
+    "finitude": "MET",
+    "finitude_bar": "contrast_ratio > 5.0 (flat line T=50 vs max compact fiber diameter)",
+    "finitude_deciding_number": 18.31254019875506,
+    "fraction": "6/6",
+    "invariant_anchored": "MET",
+    "invariant_bar": "H_genuine=1 AND H_trivial=0 (measured, not planted) AND z3_gap UNSAT",
+    "invariant_deciding_number": 1.0,
+    "n_met": 6,
+    "neural_bar": "converged==true AND energy_monotone==true within 20*nV=160 async steps",
+    "neural_deciding_number": 16.0,
+    "neural_dynamics": "MET",
+    "scale_bar": "gauss_genuine rounds to 1 at all N in {8,16,32,64}",
+    "scale_deciding_number": 4.0,
+    "scale_ladder": "MET"
+  },
+  "noncommutation": {
+    "bar": "min_input_dep_norm > 1e-6 AND flat_comm_norm < 1e-15",
+    "clifford_anticomm_2delta_ok": true,
+    "clifford_anticomm_diagonal_errors": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "clifford_anticomm_offdiag_errors": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "comm_norm_JxJy": 0.5,
+    "comm_norm_JxJz": 0.5,
+    "comm_norm_JyJz": 0.5,
+    "deciding_number": 0.5,
+    "flat_cartesian_control_comm_norm": 0.0,
+    "flat_control_commutes": true,
+    "floor_bar": 1.0e-6,
+    "input_dep_norms_per_spinor": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "min_input_dep_comm_norm": 0.5,
+    "noncomm_above_floor": true,
+    "noncomm_contrast_met": true,
+    "su2_generators": "J_x=i*sigma_x/2, J_y=i*sigma_y/2, J_z=i*sigma_z/2 (Lie algebra of S^3 = SU(2))"
+  },
+  "object_id": "hopf_fibration_newstd_poc",
+  "promotion_allowed": false,
+  "scale_stress": {
+    "rows": [
+      {
+        "N": 8,
+        "gauss_genuine": 1.052127141622239,
+        "gauss_genuine_rounded": 1,
+        "gauss_trivial": -2.208718528794109e-18,
+        "gauss_trivial_rounded": 0,
+        "genuine_rounds_to_1": true,
+        "trivial_rounds_to_0": true
+      },
+      {
+        "N": 16,
+        "gauss_genuine": 1.0222849384658763,
+        "gauss_genuine_rounded": 1,
+        "gauss_trivial": 0.0,
+        "gauss_trivial_rounded": 0,
+        "genuine_rounds_to_1": true,
+        "trivial_rounds_to_0": true
+      },
+      {
+        "N": 32,
+        "gauss_genuine": 1.0056193489033163,
+        "gauss_genuine_rounded": 1,
+        "gauss_trivial": -3.451122701240795e-18,
+        "gauss_trivial_rounded": 0,
+        "genuine_rounds_to_1": true,
+        "trivial_rounds_to_0": true
+      },
+      {
+        "N": 64,
+        "gauss_genuine": 1.0014054183737102,
+        "gauss_genuine_rounded": 1,
+        "gauss_trivial": 4.175858468501362e-18,
+        "gauss_trivial_rounded": 0,
+        "genuine_rounds_to_1": true,
+        "trivial_rounds_to_0": true
+      }
+    ],
+    "rungs_completed": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "scale_pass": true
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "receipt emission only",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "fiber geometry (SVD, opnorm, norm, cross-product), commutator norms, Hopfield energy; all geometric checks depend on it",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "gap-forced UNSAT from measured linking brackets; verdict flips on broken measurements (anti-tautology control present)",
+      "role": "load_bearing"
+    },
+    "numpy": {
+      "reason": "Julia-native ComplexF64 / Float64 throughout",
+      "role": "ABSENT"
+    }
+  },
+  "z3_load_bearing": {
+    "broken_genuine_sat": "sat",
+    "broken_trivial_sat": "sat",
+    "claim": "free ints Lg,Lt DERIVED from measured brackets satisfy Lg > Lt (Hopf nontriviality gap)",
+    "genuine_bracket": [
+      0,
+      2
+    ],
+    "genuine_unsat": "unsat",
+    "is_load_bearing": true,
+    "tool_role": "load_bearing",
+    "trivial_bracket": [
+      -1,
+      1
+    ]
+  }
+}

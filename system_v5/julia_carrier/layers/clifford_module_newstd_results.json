@@ -1,0 +1,165 @@
+{
+  "all_pass": true,
+  "carrier": "LinearAlgebra (exact 4x4 dense) + CliffordAlgebras.jl Cl(1,3) anchor",
+  "claim_ceiling": "geometry-carrier candidate; NOT layer-complete, NOT manifold-admitted, NOT bridge/coupling/physics",
+  "classification": "clifford_module_newstd_poc",
+  "finite_map": {
+    "codomain": "irreducible Cl(1,3)-module M4(C); Burnside rank 16=4^2; Weyl split into 2+2",
+    "domain": "4-complex-dimensional spinor space C^4 (module over Cl(1,3))",
+    "map": "gamma-matrix module action ρ: Cl(1,3) → End(C^4), certified faithful+irreducible"
+  },
+  "genuineness_booleans": {
+    "clifford_relation_measured": true,
+    "dim4_invariant_confirmed": true,
+    "faithful_measured": true,
+    "irreducible_measured": true,
+    "killcontrol_K1_reducible_fires": true,
+    "killcontrol_K2_nonfaithful_fires": true,
+    "module_action_controls": true,
+    "noncircular_gamma5_crosscheck": true,
+    "noncircular_pseudoscalar_minus1": true,
+    "noncircular_signature_matches_pkg": true,
+    "ns1_finitude_met": true,
+    "ns2_anticommutation_met": true,
+    "ns3_invariant_anchored_met": true,
+    "ns4_exact_carrier_met": true,
+    "ns5_scale_ladder_met": true,
+    "ns6_neural_dynamics_met": true,
+    "weyl_split_under_even_subalgebra": true
+  },
+  "geometry_scout": "Clifford-module G-structure (NEW STANDARD): Dirac spinor as irreducible Cl(1,3)-module, neural-net on compact geometry",
+  "honest_status_ladder": "passes local rerun (this run)",
+  "new_standard_scorecard": {
+    "commutation": {
+      "bar": {
+        "bivec_gt": 1.0e-6,
+        "flat_gt": 0.1,
+        "genuine_lt": 1.0e-11
+      },
+      "deciding_number": {
+        "bivector_comm": 4.0,
+        "flat_anticomm": 2.0,
+        "flat_bivec_comm": 0.0,
+        "spatial_anticomm": 0.0
+      },
+      "status": "MET"
+    },
+    "exact_carrier": {
+      "bar": "< 1e-12; equal truncation budget (both exact dense)",
+      "deciding_number": 0.0,
+      "status": "MET"
+    },
+    "finitude": {
+      "bar": {
+        "compact_norm_le": 1.0,
+        "flat_anticomm_err_gt": 0.1
+      },
+      "deciding_number": {
+        "compact_max_norm": 1.0,
+        "flat_anticomm_error": 2.0
+      },
+      "status": "MET"
+    },
+    "invariant_anchored": {
+      "bar": "genuine==target; K1<k1_target; K2<target",
+      "deciding_number": {
+        "K1_rank": 16,
+        "K1_target": 64,
+        "K2_rank": 8,
+        "burnside_rank": 16,
+        "target": 16
+      },
+      "status": "MET"
+    },
+    "neural_dynamics": {
+      "bar": ">=0.90 (90% seeds monotone convergence)",
+      "compact_attractors_std": 3.6020391365357295e-17,
+      "deciding_number": 1.0,
+      "flat_attractors_std": 3.2655420113909875e-14,
+      "status": "MET"
+    },
+    "overall_fraction": "6/6",
+    "scale_ladder": {
+      "bar": ">=2 rungs fully complete",
+      "deciding_number": 4,
+      "rungs": [
+        {
+          "algebra": "Cl(1,3)",
+          "burnside_full_ok": true,
+          "burnside_rank": 16,
+          "burnside_target": 16,
+          "clifford_ok": true,
+          "clifford_resid": 0.0,
+          "dim": 4,
+          "n_gens": 4,
+          "rung_ok": true
+        },
+        {
+          "algebra": "Cl(4,0)",
+          "burnside_full_ok": true,
+          "burnside_rank": 16,
+          "burnside_target": 16,
+          "clifford_ok": true,
+          "clifford_resid": 0.0,
+          "dim": 4,
+          "n_gens": 4,
+          "rung_ok": true
+        },
+        {
+          "algebra": "Cl(6,0)",
+          "burnside_partial_ok": true,
+          "burnside_rank_partial": 22,
+          "burnside_target_partial": 22,
+          "clifford_ok": true,
+          "clifford_resid": 0.0,
+          "dim": 8,
+          "n_gens": 6,
+          "note": "degree-0/1/2 span only (22 of 64 words); honest partial at d=8",
+          "rung_ok": true
+        },
+        {
+          "algebra": "Cl(8,0)",
+          "burnside_rank_gens": 8,
+          "clifford_ok": true,
+          "clifford_resid": 0.0,
+          "dim": 16,
+          "n_gens": 8,
+          "note": "generator LI + Clifford relation only; full Burnside at dim=16 not computed",
+          "rung_ok": true
+        }
+      ],
+      "status": "MET(4/4)"
+    },
+    "verdict": "GENUINELY-UPGRADED",
+    "weakest_criterion": "scale_ladder (n_rungs=4/4)"
+  },
+  "no_bloch": true,
+  "object_id": "clifford_module_newstd",
+  "promotion_allowed": false,
+  "root_constraints": {
+    "F01": "finite/compact carrier: C^4 under bounded gamma operators, operator norms bounded by 1",
+    "N01": "non-commuting: bivectors [b12,b01]!=0; anti-commuting: {Γ_a,Γ_b}=2δ_ab measured"
+  },
+  "scorecard_fraction": "6/6",
+  "tool_manifest": {
+    "load_bearing": [
+      "CliffordAlgebras"
+    ],
+    "load_bearing_reason": "CliffordAlgebras.CliffordAlgebra(1,3) is the independent non-circular anchor: its signature/generator-squares/pseudoscalar-square are READ and cross-checked against the explicit 4x4 rep. Removing it removes the non-circular verification. LinearAlgebra (rank/nullspace) carries the Burnside/Schur/Weyl measurements.",
+    "omitted": [],
+    "tried": [
+      "LinearAlgebra",
+      "CliffordAlgebras",
+      "Random",
+      "JSON"
+    ],
+    "used": [
+      "LinearAlgebra",
+      "CliffordAlgebras",
+      "Random",
+      "JSON"
+    ]
+  },
+  "verdict": "GENUINELY-UPGRADED",
+  "weakest_criterion": "scale_ladder (n_rungs=4/4)"
+}

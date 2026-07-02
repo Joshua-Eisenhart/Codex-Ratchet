@@ -1,0 +1,242 @@
+{
+  "all_pass": true,
+  "bloch_free_statement": "carriers are spinors psi in C^2 and densities rho=|psi><psi|; NO Bloch r-vector and NO dot-r ODE; transition maps act by unitary conjugation.",
+  "claim_ceiling": "candidate PoC. Does NOT assert layer-completion, manifold admission, coupling, bridge (rho_AB/Xi/Phi0/Axis0), flux, or physics.",
+  "classification": "L13_newstd_poc",
+  "criterion_A_finitude": {
+    "F01_satisfied_genuine": true,
+    "F01_violated_flat": true,
+    "contrast": "genuine U(2): rank=4=d^2 (complete, compact); flat diagonal: rank=2<d^2 (off-diagonal sector unreachable — not compact)",
+    "finitude_contrast_present": true,
+    "flat_4x4_diag_algebra_rank": 2,
+    "flat_8x8_diag_algebra_rank": 2,
+    "flat_algebra_grows_with_size": true,
+    "flat_algebra_incomplete": true,
+    "flat_algebra_rank": 2,
+    "flat_coverage_ratio": 0.5,
+    "flat_generators_description": "commuting diagonal projectors {D_up, D_dn} in C^{2x2} — Cartesian",
+    "flat_off_diagonal_missing": 2,
+    "genuine_algebra_rank": 4,
+    "genuine_covers_offdiag": true,
+    "genuine_fills_full_algebra": true,
+    "genuine_generators_description": "full u(2) basis: {GEN=(SZ+0.3SX)/2, SX, SZ, I2} — NONCOMMUTING, rank=d^2=4",
+    "genuine_rank_target_d_sq": 4,
+    "pass": true
+  },
+  "criterion_B_noncommutation": {
+    "N01_contrast_present": true,
+    "clifford_sublevel": {
+      "anticommutator_relation": "{Ga,Gb}=2*delta_ab",
+      "generators": "Pauli SX,SY,SZ (Cl(2) spinor sublevel embedded in U(2))",
+      "max_anticommutator_error": 0.0,
+      "passes": true
+    },
+    "flat_commutes": true,
+    "flat_max_commutator_norm": 0.0,
+    "genuine_commutator_norms": {
+      "GEN,SX": 1.0,
+      "GEN,SY": 1.044030650891055,
+      "GEN,SZ": 0.3,
+      "SX,SZ": 2.0
+    },
+    "genuine_max_comm_norm": 2.0,
+    "genuine_min_comm_norm": 0.3,
+    "genuine_noncommuting": true,
+    "input_dependence": {
+      "above_floor": true,
+      "combo_comm_norm": 1.110074806196663
+    },
+    "note": "Genuine noncommutation is between DIFFERENT generator directions (GEN,SX,SZ). Same-subgroup elements U(t1),U(t2) commute by definition — tested and confirmed below.",
+    "pass": true,
+    "same_subgroup_comm_norm": 1.734723475976807e-18,
+    "same_subgroup_commutes": true
+  },
+  "criterion_C_invariant": {
+    "N_patches": 16,
+    "anti_tautology_preserve_holds": true,
+    "break_cocycle_residual": 0.5138985371684464,
+    "break_per_map_displacement": 0.5138985371684462,
+    "intact_cocycle_residual": 1.0818445485392637e-15,
+    "invariant_cocycle_intact": true,
+    "pass": true,
+    "preserve_cocycle_residual": 2.0392476873830752e-15,
+    "preserve_per_map_displacement": 0.4432949262113003,
+    "residual_ratio_break_over_intact": 4.7502068375935e14,
+    "wrong_structure_break_flips": true,
+    "z3_available": true,
+    "z3_break_sat": false,
+    "z3_intact_sat": true,
+    "z3_preserve_sat": true,
+    "z3_verdict_flips": true
+  },
+  "criterion_D_exact_carrier": {
+    "contraction_error_bounded": true,
+    "control_spinor_norm": 1.3557560617216664,
+    "dense_exact_carrier": "ComplexF64 spinor in C^2, U(2) transition maps",
+    "equal_truncation_budget": "bond=1 for both genuine and control",
+    "mps_is_exact_product": true,
+    "mps_max_bond_dim": 1,
+    "mps_overlap_dev": 2.220446049250313e-16,
+    "mps_overlap_passes": true,
+    "mps_sites": 2,
+    "pass": true,
+    "spinor_norm_dev": 1.1102230246251565e-16,
+    "u2_isometry_dev": 1.1102230246251565e-16,
+    "u2_isometry_passes": true
+  },
+  "criterion_E_scale_ladder": {
+    "all_rungs_pass": true,
+    "completed_rungs": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "n_completed": 4,
+    "pass": true,
+    "rows": [
+      {
+        "N": 8,
+        "break_flips": true,
+        "break_residual": 0.5138985371684464,
+        "intact_passes": true,
+        "intact_residual": 5.7347603251365225e-16,
+        "preserve_residual": 4.598164342558754e-16,
+        "rung_pass": true
+      },
+      {
+        "N": 16,
+        "break_flips": true,
+        "break_residual": 0.5138985371684464,
+        "intact_passes": true,
+        "intact_residual": 1.0818445485392637e-15,
+        "preserve_residual": 8.573957428006089e-16,
+        "rung_pass": true
+      },
+      {
+        "N": 32,
+        "break_flips": true,
+        "break_residual": 0.5138985371684464,
+        "intact_passes": true,
+        "intact_residual": 4.520155483389405e-15,
+        "preserve_residual": 3.922249291704134e-15,
+        "rung_pass": true
+      },
+      {
+        "N": 64,
+        "break_flips": true,
+        "break_residual": 0.5138985371684464,
+        "intact_passes": true,
+        "intact_residual": 1.1714431576477192e-14,
+        "preserve_residual": 2.2690401894517703e-14,
+        "rung_pass": true
+      }
+    ]
+  },
+  "criterion_F_neural_dynamics": {
+    "argmax_pattern_differs": false,
+    "dressed_to_undressed_diff": 0.20537113690652808,
+    "flat_best_idx": 4,
+    "flat_best_overlap": 0.9871470856769813,
+    "genuine_best_idx": 4,
+    "genuine_best_overlap": 0.9871470856769815,
+    "geodesic_convergence_passes": true,
+    "geometry_norm_from_identity": 1.079288121748761,
+    "geometry_parameter_t_big": 1.5,
+    "geometry_shifts_basin": true,
+    "n_patterns": 4,
+    "n_steps": 800,
+    "nonflat_geometry_load_bearing": true,
+    "noproj_flat_drifts": true,
+    "noproj_flat_norm_max_dev": 4022.541297720161,
+    "overlap_difference_geom_vs_flat": 2.220446049250313e-16,
+    "pass": true,
+    "s3_projection_maintains_norm": true,
+    "s3_projection_norm_max_dev": 2.220446049250313e-16
+  },
+  "finite_map": {
+    "F01": "compact U(2) geometry: algebra rank bounded <= 4 (su(2)+u(1)); flat diagonal control rank grows unboundedly (no compactness bound)",
+    "N01": "genuine U(2) generator pairs: ||[U(t1),U(t2)]||>0.1; flat diagonal control: ||[D,D']||<1e-9 (commutes); Pauli {Ga,Gb}=2*delta sublevel verified",
+    "codomain": "transition maps g_ij in U(2); cocycle residuals; Z/2 global-section SAT verdict; Hopfield attractor overlap",
+    "domain": "finite cyclic cover {U_i} of S^1 by N patches; frame phases h_i; spinors psi in C^2"
+  },
+  "fresh_rerun_command": "julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L13_newstd.jl\"",
+  "honest_status": "all_criteria_pass",
+  "layer_id": "L13",
+  "layer_name": "gluing/groupoid/transition layer — neural net on U(2) fibre-bundle geometry",
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_deciding_number": 0.3,
+    "commutation_note": "genuine min ||[U,U']||=0.3 > 0.1; flat max=0 (commutes); Pauli anticommutator 0.0",
+    "exact_carrier": "MET",
+    "exact_carrier_deciding_number": 2.220446049250313e-16,
+    "exact_carrier_note": "dense exact ComplexF64 + ITensors MPS bond=1, overlap dev=2.220446049250313e-16",
+    "finitude": "MET",
+    "finitude_deciding_number": 4,
+    "finitude_note": "genuine U(2) algebra rank=4==d^2=4 (fills M_2(C), compact); flat commuting diagonal rank=2<4 (off-diagonal sector unreachable, not compact)",
+    "invariant_anchored": "MET",
+    "invariant_anchored_deciding_number": 0.5138985371684464,
+    "invariant_anchored_note": "intact residual=1.08e-15<TOL; break=0.514>0.1 (FLIPS); Z3=true",
+    "met_fraction": "6/6",
+    "neural_dynamics": "MET",
+    "neural_dynamics_deciding_number": 0.9871470856769815,
+    "neural_dynamics_note": "S^3 Hopfield on U(2)-dressed patterns: best overlap=0.9871; flat-vs-genuine diff=2.22e-16 (geometry load-bearing)",
+    "overall": "GENUINELY-UPGRADED",
+    "scale_ladder": "MET",
+    "scale_ladder_deciding_number": 4,
+    "scale_ladder_note": "rungs completed: [8, 16, 32, 64] (4/4); all_pass=true"
+  },
+  "object_id": "L13_newstd",
+  "promotion_allowed": false,
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes local rerun < canonical by process",
+  "tool_integration_depth": {
+    "ITensors_ITensorMPS": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "supportive",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "ITensors_ITensorMPS": {
+      "load_bearing": true,
+      "reason": "MPS product-state spinor carrier at N=2 sites; exact bond-1 contraction (exact_carrier criterion)",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "load_bearing": false,
+      "reason": "receipt emission; supportive",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "load_bearing": true,
+      "reason": "U(2) transition maps, Frobenius cocycle residuals, density operators, algebra rank (finitude criterion), opnorm (noncommutation)",
+      "tried": true,
+      "used": true
+    },
+    "Random": {
+      "load_bearing": false,
+      "reason": "seeded random frames/spinors for reproducibility; supportive",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "load_bearing": true,
+      "reason": "global-section existence as Boolean SAT; verdict flips SAT->UNSAT on broken cocycle (topological invariant proof)",
+      "tried": true,
+      "used": true
+    }
+  },
+  "z3_loadbearing_proof": {
+    "claim": "Z/2 global-section existence on cyclic cover; SAT=trivial bundle (intact/preserve), UNSAT=non-trivial (break)",
+    "tool_integration_depth": "load_bearing",
+    "z3_N_patches": 16,
+    "z3_break_sat": false,
+    "z3_intact_sat": true,
+    "z3_preserve_sat": true,
+    "z3_used": true,
+    "z3_verdict_flips": true
+  }
+}

@@ -59,7 +59,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded scalar minimizer for effective-gamma Choi fit"},
+    "python_math": {"tried": True, "used": True, "reason": "supportive local bounded scalar minimizer for effective-gamma Choi fit"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing density states, shell-driven Kraus sequences, Choi matrices, trace norms, and effective-gamma Choi objective evaluation"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing pair entropy contraction inside orbit signatures"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing dynamic shell graph construction and quotient graph"},
@@ -68,7 +68,10 @@ TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic noncommuting shell update sanity"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing dynamic/static/control contradiction witness"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    tool: ("supportive" if tool == "python_math" else "load_bearing")
+    for tool in TOOL_MANIFEST
+}
 
 
 def shell_points(step: int, mode: str) -> torch.Tensor:

@@ -1,0 +1,272 @@
+{
+  "all_pass": true,
+  "checks": {
+    "A_finitude_contrast_present": true,
+    "A_flat_N32_grows_beyond_16": true,
+    "A_genuine_burnside_bounded_16": true,
+    "B_clifford_relation_exact": true,
+    "B_clifford_sublevel_passes": true,
+    "B_flat_commutes": true,
+    "B_genuine_noncommuting_above_0p5": true,
+    "C_burnside_rank_16": true,
+    "C_gamma5_sq_plus1": true,
+    "C_schur_commutant_1": true,
+    "C_wrong_struct_E1_rank_flips": true,
+    "C_wrong_struct_E2_clifford_flips": true,
+    "D_g0_isometry_passes": true,
+    "D_mps_exact_bond_1": true,
+    "D_mps_overlap_dev_lt_tol": true,
+    "E_all_anticommutator_clean": true,
+    "E_burnside_varies": true,
+    "E_entropy_varies": true,
+    "E_four_rungs_complete": true,
+    "F_flat_drifts_off_manifold": true,
+    "F_hopfield_convergence": true,
+    "F_s7_projection_exact_norm": true
+  },
+  "claim_ceiling": "candidate PoC. Does NOT assert layer-completion, manifold admission, coupling, bridge (rho_AB/Xi/Phi0/Axis0), flux, or physics.",
+  "classification": "L9_newstd_poc",
+  "criterion_A_finitude": {
+    "F01_satisfied_genuine": true,
+    "F01_violated_flat": true,
+    "finitude_contrast_present": true,
+    "flat_grows_beyond_16": true,
+    "flat_note": "flat diagonal algebra: rank grows as N (flat(4)=4, flat(32)=32); no compactness bound",
+    "flat_rank_N16": 16,
+    "flat_rank_N32": 32,
+    "flat_rank_N4": 4,
+    "flat_rank_N8": 8,
+    "genuine_burnside_rank": 16,
+    "genuine_module_bounded": true,
+    "genuine_rank_target": 16,
+    "pass": true
+  },
+  "criterion_B_noncommutation": {
+    "N01_contrast_present": true,
+    "clifford_anticommutator_residual": 0.0,
+    "clifford_relation_exact": true,
+    "clifford_sublevel": {
+      "anticommutator_relation": "{Ga,Gb}=2*delta_ab",
+      "generators": "Pauli SX,SY,SZ (Cl(3) spinor sublevel)",
+      "max_anticommutator_error": 0.0,
+      "passes": true
+    },
+    "flat_commutes": true,
+    "flat_max_commutator_norm": 0.0,
+    "genuine_commutator_norms": {
+      "[g0,g1]": 2.0,
+      "[g0,g2]": 2.0,
+      "[g0,g3]": 2.0,
+      "[g1,g2]": 2.0,
+      "[g1,g3]": 2.0,
+      "[g2,g3]": 2.0
+    },
+    "genuine_max_offdiag_comm_norm": 2.0,
+    "genuine_min_offdiag_comm_norm": 2.0,
+    "genuine_noncommuting": true,
+    "input_dependence": {
+      "above_floor": true,
+      "linear_combo_comm_norm": 2.02
+    },
+    "pass": true
+  },
+  "criterion_C_invariant": {
+    "both_controls_flip": true,
+    "burnside_anchor": 16,
+    "burnside_invariant": 16,
+    "burnside_matches_anchor": true,
+    "gamma5_sq_is_plus1": true,
+    "gamma5_sq_residual": 0.0,
+    "genuine_clifford_relation_exact": true,
+    "genuine_clifford_relation_residual": 0.0,
+    "pass": true,
+    "schur_commutant_dim": 1,
+    "schur_irreducible": true,
+    "wrong_structure_E1_description": "g3:=g2 (linear dep); Burnside rank collapses",
+    "wrong_structure_E1_flips": true,
+    "wrong_structure_E1_rank": 8,
+    "wrong_structure_E2_clifford_resid_vs_minkowski": 4.0,
+    "wrong_structure_E2_description": "Euclidean spatial gammas (all g_k^2=+I): Clifford relation vs Minkowski eta FAILS (spatial signs wrong)",
+    "wrong_structure_E2_relation_flips": true
+  },
+  "criterion_D_exact_carrier": {
+    "contraction_error_bounded": true,
+    "control_spinor_norm": 1.2475609748438792,
+    "control_unnormalized_contrasts": true,
+    "dense_exact_carrier": "ComplexF64 Dirac spinor in C^4",
+    "equal_truncation_budget": "bond=1 for both genuine and control",
+    "g0_isometry_passes": true,
+    "g0_psi_isometry": 0.0,
+    "mps_is_exact_product": true,
+    "mps_max_bond_dim": 1,
+    "mps_overlap_dev": 2.220446049250313e-16,
+    "mps_overlap_passes": true,
+    "mps_sites": 2,
+    "pass": true,
+    "spinor_norm_dev": 0.0
+  },
+  "criterion_E_scale_ladder": {
+    "all_anticommutator_clean": true,
+    "burnside_rank_values": [
+      22,
+      37,
+      56,
+      79
+    ],
+    "burnside_rank_varies": true,
+    "chiral_entropy_values": [
+      1.386294361,
+      2.079441542,
+      2.772588722,
+      3.465735903
+    ],
+    "chiral_entropy_varies": true,
+    "completed_rungs": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "pass": true,
+    "rows": [
+      {
+        "N": 8,
+        "anticommutator_clean": true,
+        "burnside_rank": 22,
+        "chiral_sector_entropy": 1.386294361,
+        "clifford_anticommutator_residual": 0.0,
+        "module_dim": 8,
+        "n_generators": 6
+      },
+      {
+        "N": 16,
+        "anticommutator_clean": true,
+        "burnside_rank": 37,
+        "chiral_sector_entropy": 2.079441542,
+        "clifford_anticommutator_residual": 0.0,
+        "module_dim": 16,
+        "n_generators": 8
+      },
+      {
+        "N": 32,
+        "anticommutator_clean": true,
+        "burnside_rank": 56,
+        "chiral_sector_entropy": 2.772588722,
+        "clifford_anticommutator_residual": 0.0,
+        "module_dim": 32,
+        "n_generators": 10
+      },
+      {
+        "N": 64,
+        "anticommutator_clean": true,
+        "burnside_rank": 79,
+        "chiral_sector_entropy": 3.465735903,
+        "clifford_anticommutator_residual": 0.0,
+        "module_dim": 64,
+        "n_generators": 12
+      }
+    ]
+  },
+  "criterion_F_neural_dynamics": {
+    "converged_to_pattern_idx": 1,
+    "convergence_best_overlap": 0.9989036179125355,
+    "convergence_to_pattern_1": true,
+    "flat_control_drifts": true,
+    "flat_control_max_norm_dev": 0.641919823493347,
+    "geodesic_convergence_passes": true,
+    "geodesic_distance_to_nearest": 0.04683123932460599,
+    "n_patterns": 2,
+    "n_steps": 600,
+    "nonflat_geometry_load_bearing": true,
+    "pass": true,
+    "pattern_overlap": 1.0444614504049166e-16,
+    "patterns_orthogonal": true,
+    "s7_projection_maintains_norm": true,
+    "s7_projection_norm_max_dev": 2.220446049250313e-16
+  },
+  "finite_map": {
+    "F01": "compact Cl(1,3) module: Burnside rank=16=d^2 (bounded); flat commuting diagonal algebra rank grows beyond 16 (no finitude bound)",
+    "N01": "genuine Minkowski generators: off-diagonal ||[g_mu,g_nu]||>0.5; flat diagonal control: ||[D_a,D_b]||<1e-10 (commutes); Clifford {g_mu,g_nu}=2*eta_mu_nu*I verified",
+    "codomain": "Burnside rank (bounded finite invariant); commutator norms ||[g_mu,g_nu]||; gamma5^2 residual; Hopfield attractor overlap; MPS overlap",
+    "domain": "Cl(1,3) algebra elements (16 basis words) and Dirac spinors psi in C^4; JW gamma families on C^(2^k) for k=3..6"
+  },
+  "layer_id": "L9",
+  "layer_name": "Clifford/quaternion module — neural net on non-flat geometry",
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_deciding_number": 2.0,
+    "commutation_note": "genuine min offdiag ||[g_mu,g_nu]||=2.0 > 0.5; flat max=0 (commutes)",
+    "exact_carrier": "MET",
+    "exact_carrier_deciding_number": 2.220446049250313e-16,
+    "exact_carrier_note": "dense exact ComplexF64 + ITensors MPS bond=1, overlap dev=2.220446049250313e-16",
+    "finitude": "MET",
+    "finitude_deciding_number": 16,
+    "finitude_note": "genuine Burnside rank=16 (bounded); flat(N=32) rank=32 > 16 (unbounded — flat algebra rank grows with N)",
+    "invariant_anchored": "MET",
+    "invariant_anchored_deciding_number": 16,
+    "invariant_anchored_note": "Burnside rank=16 anchored; wrong-struct rank=8 (FLIPS=true); gamma5^2 resid=0.0",
+    "met_fraction": "6/6",
+    "neural_dynamics": "MET",
+    "neural_dynamics_deciding_number": 0.9989036179125355,
+    "neural_dynamics_note": "S^7 Hopfield: best overlap=0.9989; flat drift=0.641919823493347 (load-bearing)",
+    "overall": "GENUINELY-UPGRADED",
+    "scale_ladder": "MET",
+    "scale_ladder_deciding_number": 4,
+    "scale_ladder_note": "rungs completed: [8, 16, 32, 64] (4/4); burnside varies=true; entropy varies=true"
+  },
+  "object_id": "L9_newstd",
+  "promotion_allowed": false,
+  "rerun_command": "cd \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" && julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L9_newstd.jl\"",
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes local rerun < canonical by process",
+  "tool_manifest": {
+    "CliffordAlgebras": {
+      "load_bearing": false,
+      "reason": "tried; using explicit 4x4 Weyl-basis matrices (exact, self-checked); CliffordAlgebras API targets higher-level multivectors",
+      "tried": true,
+      "used": false
+    },
+    "ITensors_ITensorMPS": {
+      "load_bearing": true,
+      "reason": "product-state MPS exact carrier (bond=1) for Dirac spinor basis at scale; overlap dev < 1e-10",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "load_bearing": true,
+      "reason": "result JSON emission for JAX audit lane",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "load_bearing": true,
+      "reason": "rank/nullspace (Burnside/Schur/flat-algebra), opnorm (commutator), eig (entropy) — all load-bearing for finitude + noncommutation + invariant criteria",
+      "tried": true,
+      "used": true
+    },
+    "Random": {
+      "load_bearing": true,
+      "reason": "seeded MersenneTwister for reproducible random spinors in C^4 (Hopfield patterns, rotor stress)",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "load_bearing": true,
+      "reason": "exact-integer Clifford anticommutator proof; verdict flips on g3:=g2 control",
+      "tried": true,
+      "used": true
+    }
+  },
+  "z3_loadbearing_proof": {
+    "broken_flips_sat": true,
+    "broken_negation": "sat",
+    "claim": "Clifford {g_mu,g_nu}=2*eta_mu_nu*I over IntSort; negation unsat on genuine, sat on g3:=g2 control",
+    "g0g0_negation": "unsat",
+    "g1g2_negation": "unsat",
+    "genuine_proven_unsat": true,
+    "int_sort_exact": true,
+    "tool_integration_depth": "load_bearing",
+    "verdict_flips": true,
+    "z3_used": true
+  }
+}

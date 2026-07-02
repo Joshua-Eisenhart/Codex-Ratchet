@@ -1,0 +1,176 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_AM_support_cell_pair_stratum_projection_active_frontier_blocker_20260526.json",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "AN_support_multiplicity_stratum_fiber_boundary_K",
+      "candidate_name": "finite support-multiplicity stratum/fiber boundary split",
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "AN_support_multiplicity_stratum_fiber_boundary_K : (AM_support_cell_pair_stratum_projection_K, support_cell_pair_key, incidence_row_count, stratum_ids, source_balance_row_ids, fiber_ids, frontier_pair_ids, signature_pair_keys, balance_class_pair_keys, residue_delta_support_patterns) -> finite support-multiplicity stratum/fiber boundary table + exact-retention control vector",
+      "geometry_it_would_earn_if_later_passed": "A bounded finite PEPS3D support-multiplicity boundary stratification over support-cell pair projection rows, retaining exact witness rows rather than count-only labels.",
+      "not_run_in_this_artifact": true,
+      "why_admissible": "It ratchets directly from AM by using the already-earned finite support-cell-pair projection rows and the observed finite multiplicity distribution {2:36, 3:162, 4:144, 59:9}. It keeps exact support-cell pair keys plus strata/source/fiber/frontier/signature/balance/residue witnesses, and treats the nine high-multiplicity rows as boundary rows only, not topology, hubs, closure, orientation, chirality, or downstream geometry."
+    },
+    {
+      "candidate_id": "AN_signature_projection_after_AM_K",
+      "candidate_name": "signature projection after support-cell projection",
+      "decision": "deferred_not_selected",
+      "why_deferred": "Signature grouping remains finite, but after AM the next pressure is the support-multiplicity boundary exposed by exact support-cell projection. Signature projection risks becoming label-first unless the multiplicity boundary is fenced first."
+    },
+    {
+      "candidate_id": "AN_support_component_topology_K",
+      "candidate_name": "support-cell component or topology closure",
+      "decision": "rejected",
+      "why_rejected": "Connected components, topology, sheaf closure, homology, persistence, all-subset minimality, hub claims, and full PEPS3D closure remain blocked. High-multiplicity support rows are boundary readouts only."
+    },
+    {
+      "candidate_id": "AN_restore_inverse_AM_K",
+      "candidate_name": "restore/inverse reconstruction from AM projection rows",
+      "decision": "rejected",
+      "why_rejected": "AM is a finite projection readout. Restore/inverse reconstruction is explicitly blocked by AL and AM controls."
+    },
+    {
+      "candidate_id": "AN_count_only_multiplicity_summary_K",
+      "candidate_name": "multiplicity counts only",
+      "decision": "rejected",
+      "why_rejected": "The multiplicity distribution is a boundary/control summary. A fresh map must retain exact support-cell pair keys and all witness rows."
+    },
+    {
+      "candidate_id": "AN_orientation_or_chirality_from_support_multiplicity_K",
+      "candidate_name": "support multiplicity promoted to orientation or chirality",
+      "decision": "rejected",
+      "why_rejected": "Support-cell pair keys and multiplicities are PEPS3D carrier-frontier readouts only. They do not admit orientation, chirality, Weyl sheets, Hopf geometry, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "F01_witness": "Support-cell pair keys, multiplicity classes, witness id sets, controls, and outputs are finite and receipt-backed by AM.",
+    "N01_order_witness": "No fresh N01 is claimed. The candidate preserves the inherited Phase 2 order-sensitive carrier witness while order-erased and commuting-only variants remain controls.",
+    "PEPS3D_carrier_anchor": "Every row must retain exact PEPS3D support-cell pair keys from AM. Multiplicity classes without support-cell pair keys are scalar-label controls.",
+    "candidate_id": "AN_support_multiplicity_stratum_fiber_boundary_K",
+    "codomain_or_output": {
+      "control_gap_vector": "finite failure/collapse statuses for count-only, scalar-label, support-erased, witness-erased, topology/hub, restore/inverse, fresh-N01/order-erased, orientation/chirality, dense-closure, and downstream controls",
+      "multiplicity_exact_retention_vector": "finite coverage vector for support rows, incidence rows, strata, sources, fibers, frontier pairs, signatures, balance classes, and residue patterns per multiplicity class",
+      "support_multiplicity_boundary_table": "finite table keyed by multiplicity class and support-cell pair key, retaining all AM witness ids and high-multiplicity boundary flags"
+    },
+    "domain": {
+      "AM_support_cell_pair_stratum_projection_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_support_cell_pair_stratum_projection_probe_results.json",
+      "balance_class_pair_keys": 6,
+      "fiber_ids": 153,
+      "frontier_pair_ids": 387,
+      "incidence_rows": 1665,
+      "local_order_witness": "inherited Phase 2 order-sensitive carrier witness only; no fresh N01 operator is admitted",
+      "residue_delta_support_patterns": 41,
+      "signature_pair_keys": 5,
+      "source_balance_row_ids": 135,
+      "strata": 104,
+      "support_cell_pair_projection_rows": 351,
+      "support_row_multiplicity_counts": {
+        "2": 36,
+        "3": 162,
+        "4": 144,
+        "59": 9
+      }
+    },
+    "expected_live_counts_from_local_audit": {
+      "balance_key_support": 6,
+      "fiber_coverage": 153,
+      "frontier_pair_coverage": 387,
+      "incidence_row_count": 1665,
+      "residue_pattern_support": 41,
+      "signature_key_support": 5,
+      "source_row_coverage": 135,
+      "strata_count": 104,
+      "support_cell_pair_projection_rows": 351,
+      "support_row_multiplicity_counts": {
+        "2": 36,
+        "3": 162,
+        "4": 144,
+        "59": 9
+      }
+    },
+    "finite_map": "AN_support_multiplicity_stratum_fiber_boundary_K : (AM_support_cell_pair_stratum_projection_K, support_cell_pair_key, incidence_row_count, stratum_ids, source_balance_row_ids, fiber_ids, frontier_pair_ids, signature_pair_keys, balance_class_pair_keys, residue_delta_support_patterns) -> finite support-multiplicity stratum/fiber boundary table + exact-retention control vector",
+    "geometry_if_later_earned": "finite support-multiplicity boundary stratification over PEPS3D support-cell pair projection rows",
+    "not_a_scout_run": true,
+    "plain_question": "Do AM support-cell projection rows split into finite support-multiplicity boundary classes that retain exact support keys and all stratum/source/fiber/frontier/signature/balance/residue witnesses, while count-only, scalar-label, topology/hub, restore/inverse, fresh-N01, orientation/chirality, dense-closure, and downstream controls fail or remain blocked?",
+    "promotion_allowed": false
+  },
+  "classification": "formal_scout_controller_candidate",
+  "controls_required_if_later_run": {
+    "boundary": [
+      "nine multiplicity-59 rows remain boundary rows only",
+      "high-multiplicity rows do not become topology, hub, closure, connected-component, homology, persistence, or sheaf evidence"
+    ],
+    "downstream_leak": [
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, and axes 7-12 remain blocked"
+    ],
+    "negative": [
+      "multiplicity-count-only control must fail",
+      "scalar-label control must fail",
+      "support-cell-pair-erased control must fail",
+      "stratum/source/fiber/frontier/signature/balance/residue-erased controls must fail"
+    ],
+    "order_erased": [
+      "order-erased local paths must not recover a fresh N01 witness",
+      "commuting-only variants remain controls"
+    ],
+    "positive": [
+      "finite multiplicity classes {2,3,4,59} are produced from AM rows",
+      "all 351 support rows and 1665 incidence rows remain covered",
+      "each multiplicity row retains exact support-cell pair keys and all stratum/source/fiber/frontier/signature/balance/residue witnesses"
+    ]
+  },
+  "created_at": "2026-05-26T08:39:09-07:00",
+  "current_state_assertion": {
+    "active_transition_decision": "blocked",
+    "contract_complete_rows": 54,
+    "frontier_row_count": 57,
+    "killed_rows": 3,
+    "latest_admitted_map": "AM_support_cell_pair_stratum_projection_K",
+    "latest_admitted_packet": "phase2_support_cell_pair_stratum_projection_packet",
+    "phase2_carrier_geometry": "real_bounded",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_support_cell_pair_stratum_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_stratum_support_cell_pair_source_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_signature_balance_residue_fiber_stratification_probe_results.json"
+  ],
+  "failure_conditions": [
+    "Any multiplicity row lacks exact PEPS3D support-cell pair keys.",
+    "The map collapses to multiplicity counts, cardinalities, or scalar labels.",
+    "The map loses coverage of 351 support rows or 1665 incidence rows.",
+    "High-multiplicity rows are promoted to topology, hub, closure, connected-component, homology, persistence, sheaf, orientation, or chirality evidence.",
+    "The candidate requires dense full-state closure or dense environment closure.",
+    "Order-erased or commuting-only controls are treated as fresh N01 evidence.",
+    "The candidate opens Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12."
+  ],
+  "kind": "candidate_map_discovery",
+  "next_admissible_step": "Author one bounded formal_scout source for AN_support_multiplicity_stratum_fiber_boundary_K, then run/lint/validate it. Do not open Phase 3 or downstream geometry from this artifact.",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "scope": "phase2_post_AM_support_cell_pair_stratum_projection_K_candidate_map_discovery",
+  "selected_candidate_map_id": "AN_support_multiplicity_stratum_fiber_boundary_K",
+  "wizard_v4_2": {
+    "accepted_child_count": 0,
+    "accepted_codex_native_sidecars": 0,
+    "accepted_parent_count": 0,
+    "attempted_codex_native_sidecars": 0,
+    "blocked_reason": "Full Wizard v4.2 remains BLOCKED. Post-AM candidate discovery was done by the controller from current receipts after the AM sidecar lane was closed; direct provider lanes, if later used, remain API lanes and not Wizard children.",
+    "status": "BLOCKED"
+  },
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After AM_support_cell_pair_stratum_projection_K, the earned object includes 351 finite support-cell-pair projection rows retaining 1665 incidence rows, 104 strata, 135 source rows, 153 fibers, 387 frontier pairs, 5 signature keys, 6 balance classes, and 41 residue patterns. This remains carrier-frontier projection geometry only."
+}

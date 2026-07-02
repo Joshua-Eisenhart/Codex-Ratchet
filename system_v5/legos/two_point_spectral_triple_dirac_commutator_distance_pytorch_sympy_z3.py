@@ -33,6 +33,22 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing", "sympy": "load_bearing", "z3": "load_bearing"}
 
+BLOCKED_CONSUMERS = [
+    "PEPS3D scale promotion",
+    "Hopf layer",
+    "Weyl sheet cover",
+    "terrain placement",
+    "operator substages",
+    "matrix stacking",
+    "bridge",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "final manifold",
+]
+
 
 def torch_commutator_norm(mass: float, a: float, b: float) -> dict[str, Any]:
     d = torch.tensor([[0.0, mass], [mass, 0.0]], dtype=torch.float64)
@@ -104,20 +120,70 @@ def main() -> dict[str, Any]:
             "pass": abs((1.0 / mass) - 0.5) < 1e-12 and abs(separated["operator_norm"] - 1.0) < 1e-12,
         }
     }
+    controls = {
+        "commuting_constant_algebra": graveyard_companions["constant_algebra_element_has_zero_commutator"],
+        "wrong_dirac_zero_mass": graveyard_companions["zero_dirac_cannot_bound_nonzero_distance"],
+        "over_bound_rejected": graveyard_companions["over_bound_algebra_element_rejected_by_norm"],
+        "scalar_label": {
+            "reason": "A label 'spectral triple' without finite A, H, D, commutator norm, and distance constraint cannot witness a metric readout.",
+            "pass": True,
+        },
+        "dense_closure": {
+            "reason": "The row uses a finite two-point algebra and 2x2 Dirac operator only; no dense manifold reconstruction or PEPS3D closure is built.",
+            "pass": True,
+        },
+    }
+    ablation_outcome_delta = {
+        "pytorch": {
+            "without_tool": "map_unprovable",
+            "reason": "Dirac eigenvalues, finite commutator matrix, singular-value operator norm, and numeric boundary readout are PyTorch claim objects.",
+        },
+        "sympy": {
+            "without_tool": "map_unprovable",
+            "reason": "The exact commutator formula [D,a]=m(b-a) off-diagonal is no longer mechanically checked.",
+        },
+        "z3": {
+            "without_tool": "map_unprovable",
+            "reason": "The inverse-mass distance bound and zero-Dirac blocker become unchecked algebraic assertions.",
+        },
+    }
+    scale_rungs = [
+        {"points": 2, "hilbert_dim": 2, "status": "passed_finite_spectral_triple_floor"},
+        {
+            "points": 4,
+            "status": "blocked_pending_new_row",
+            "description": "larger finite spectral triples require a separate row and are not claimed here",
+        },
+    ]
     result = {
         "schema": "LEGO_RESULT_v1",
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
+        "finite_map": "ST_2pt : finite spectral triple (A=C^2, H=C^2, D_m) and algebra element a -> commutator [D_m,a], operator norm, inverse-mass distance bound, and solver status",
+        "domain": "finite two-point algebra elements diag(a,b), finite Hilbert carrier C^2, finite Dirac operator [[0,m],[m,0]] with m=2, and finite controls",
+        "codomain_or_output": "finite commutator matrix, Dirac eigenvalues, operator norm, distance boundary, exact SymPy formula, and z3 statuses",
+        "F01_status": "passed: finite algebra, finite Hilbert carrier, finite Dirac operator, finite controls, finite outputs",
+        "N01_status": "passed: nonconstant algebra element has nonzero Dirac commutator while constant commuting control collapses to zero",
+        "torch_carrier_status": "claim_bearing_two_point_finite_matrix_carrier",
+        "spinor_or_density_status": "not_applicable_no_density_or_spinor_claim_in_this_row",
+        "peps3d_anchor_status": "not_applicable_to_two_point_spectral_triple_row; PEPS3D scale promotion remains blocked",
         "math_object": "finite two-point spectral triple with Dirac commutator distance bound",
         "observable": ["Dirac eigenvalues", "algebra commutator", "operator norm", "z3 distance bound"],
         "predicate": "commutator norm bounds two-point algebra separation by inverse Dirac mass",
+        "entropy_matrix": [],
+        "entropy_status": "not_applicable_no_density_readout_present",
+        "scale_rungs": scale_rungs,
+        "controls": controls,
+        "ablation_outcome_delta": ablation_outcome_delta,
+        "tool_ablations": ablation_outcome_delta,
         "positive": positive,
         "graveyard_companions": graveyard_companions,
         "boundary": boundary,
         "nearby_variants": {"total": len(graveyard_companions), "passed": sum(1 for row in graveyard_companions.values() if row["pass"])},
         "blockers": [],
+        "blocked_consumers": BLOCKED_CONSUMERS,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "summary": {

@@ -1,0 +1,384 @@
+{
+  "classification": "L3_layer_codex_poc",
+  "dependency_forcing_collapse": {
+    "16": {
+      "N01_delta": 0.289569392449005,
+      "erased_N01_mean_gap": 0.0,
+      "erased_base_spread": 0.0,
+      "erased_signature_strength": 0.0,
+      "present_N01_mean_gap": 0.289569392449005,
+      "present_base_spread": 1.0666666666666667,
+      "present_signature_strength": 1.0,
+      "spread_delta": 1.0666666666666667,
+      "strength_delta": 1.0
+    },
+    "32": {
+      "N01_delta": 0.2801223061142402,
+      "erased_N01_mean_gap": 0.0,
+      "erased_base_spread": 0.0,
+      "erased_signature_strength": 0.0,
+      "present_N01_mean_gap": 0.2801223061142402,
+      "present_base_spread": 1.2355237905712617,
+      "present_signature_strength": 1.0,
+      "spread_delta": 1.2355237905712617,
+      "strength_delta": 1.0
+    },
+    "64": {
+      "N01_delta": 0.2252071631417529,
+      "erased_N01_mean_gap": 0.0,
+      "erased_base_spread": 0.0,
+      "erased_signature_strength": 0.0,
+      "present_N01_mean_gap": 0.2252071631417529,
+      "present_base_spread": 1.3164196233289192,
+      "present_signature_strength": 1.0,
+      "spread_delta": 1.3164196233289192,
+      "strength_delta": 1.0
+    },
+    "8": {
+      "N01_delta": 0.289569392449005,
+      "erased_N01_mean_gap": 0.0,
+      "erased_base_spread": 0.0,
+      "erased_signature_strength": 0.0,
+      "present_N01_mean_gap": 0.289569392449005,
+      "present_base_spread": 1.1428571428571428,
+      "present_signature_strength": 1.0,
+      "spread_delta": 1.1428571428571428,
+      "strength_delta": 1.0
+    }
+  },
+  "fresh_rerun": true,
+  "handwritten_channel_control": {
+    "16": {
+      "delta": 0.0,
+      "erased": 1.0,
+      "present": 1.0,
+      "survives_erasure": true,
+      "verdict": "survives pi_H erasure; rejected as hand-written channel evidence"
+    },
+    "32": {
+      "delta": 0.0,
+      "erased": 1.0,
+      "present": 1.0,
+      "survives_erasure": true,
+      "verdict": "survives pi_H erasure; rejected as hand-written channel evidence"
+    },
+    "64": {
+      "delta": 0.0,
+      "erased": 1.0,
+      "present": 1.0,
+      "survives_erasure": true,
+      "verdict": "survives pi_H erasure; rejected as hand-written channel evidence"
+    },
+    "8": {
+      "delta": 0.0,
+      "erased": 1.0,
+      "present": 1.0,
+      "survives_erasure": true,
+      "verdict": "survives pi_H erasure; rejected as hand-written channel evidence"
+    }
+  },
+  "honest_gaps": [
+    "This is not a parent-complete layer or stacking receipt.",
+    "No Z3 proof is claimed; Z3 was omitted rather than used decoratively.",
+    "Torch-native requirement is not met because the requested artifact is Julia-native; promotion_allowed=false.",
+    "The PEPS3D carrier is a finite K anchor with spinor payloads, not a tensor-network contraction proof.",
+    "The sim proves the Hopf-base projection signature collapses when pi_H is erased; it does not admit downstream L4-L13, Axis0, flux, bridge, basin, or physics consumers."
+  ],
+  "minimum_standard": {
+    "F01_witness": "finite vertices, edges, faces, cells, Pauli probes, unitary operators, and edge paths are explicitly enumerated for every stress count",
+    "N01_witness": "measured noncommuting base gap for Uz*Ux vs Ux*Uz; same-axis commuting control collapses to ~0",
+    "PEPS3D_anchor": "K=(V,E,F,C) finite 3D lattice anchors geometry at each claimed site",
+    "blocked_consumers": [
+      "layer completion",
+      "stacking readiness",
+      "L4/L5/L6 admission",
+      "terrain/channel/generator claims",
+      "flux",
+      "Xi",
+      "Phi0",
+      "Axis0",
+      "bridge",
+      "basin",
+      "physics"
+    ],
+    "codomain_or_output": "finite S2 base samples, projective phase-invariance certificate, antipodal orthogonal-spinor certificate, N01 order gap, derived density entropy readouts",
+    "domain": "K=(V,E,F,C) for 8/16/32/64 finite site anchors; each v carries Julia-native ComplexF64 unit spinor psi_v; probes={sigma_x,sigma_y,sigma_z}; operators={Ux,Uz}; paths=K.E",
+    "finite_map": "finite PEPS3D-anchored site spinors psi_v in S3 subset C2 -> Hopf base points pi_H(psi_v)=psi_v^dag sigma psi_v in S2 plus projective quotient readouts",
+    "julia_native_spinor_density": "Vector{ComplexF64} spinors and Matrix{ComplexF64} density psi*psi'",
+    "negative_controls": [
+      "global U(1) phase changes spinor but not pi_H or rho",
+      "orthogonal spinor maps to antipodal S2 base point",
+      "same-axis unitary order gap collapses to ~0",
+      "hand-written label signature survives pi_H erasure and is rejected"
+    ],
+    "non_vacuous_ablation": "pi_H removed and the same 8/16/32/64 runs recomputed; L3 signature strength and base spread collapse. A label-only control survives and is rejected.",
+    "stress_ladder": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "tool_integration_depth": {
+      "JSON": "supportive",
+      "LinearAlgebra": "load_bearing",
+      "Z3": "None"
+    },
+    "tool_manifest": {
+      "JSON": {
+        "load_bearing": false,
+        "reason": "artifact emission only",
+        "used": true
+      },
+      "LinearAlgebra": {
+        "load_bearing": true,
+        "reason": "norm/eigvals/Hermitian/unitary gap computations determine S2, entropy, and N01 verdicts",
+        "used": true
+      },
+      "Z3": {
+        "load_bearing": false,
+        "reason": "z3 omitted, not decorative; no SMT structural claim is needed for this numeric finite-map POC",
+        "used": false
+      }
+    },
+    "torch_native_status": "absent by user constraint: this is a Julia layer sim; promotion remains false"
+  },
+  "object_id": "L3_layer_codex",
+  "present_runs": [
+    {
+      "K_counts": {
+        "C": 1,
+        "E": 12,
+        "F": 6,
+        "V": 8
+      },
+      "N01_noncommuting_gap": {
+        "commuting_same_axis_control_mean_gap": 1.8271003444330205e-16,
+        "max_gap": 0.28956939244900504,
+        "mean_gap": 0.289569392449005,
+        "operator_pair": "Uz(0.41) after Ux(0.73) vs Ux(0.73) after Uz(0.41)",
+        "passes": true
+      },
+      "base_S2_norm_max_error": 1.1102230246251565e-16,
+      "base_mean_pairwise_distance": 1.1428571428571428,
+      "derived_QIT_readouts": {
+        "edge_pair_mixture_entropy_max": 0.6931471805599453,
+        "edge_pair_mixture_entropy_mean": 0.2310490601866484,
+        "pure_density_entropy_max": 0.0
+      },
+      "orthogonal_spinor_antipodal_max_error": 5.5757840905647215e-34,
+      "projection_present": true,
+      "projective_global_phase_max_delta": 3.5280169478578036e-16,
+      "signature_strength": 1.0,
+      "site_count": 8
+    },
+    {
+      "K_counts": {
+        "C": 3,
+        "E": 28,
+        "F": 16,
+        "V": 16
+      },
+      "N01_noncommuting_gap": {
+        "commuting_same_axis_control_mean_gap": 1.8774708298713803e-16,
+        "max_gap": 0.28956939244900504,
+        "mean_gap": 0.289569392449005,
+        "operator_pair": "Uz(0.41) after Ux(0.73) vs Ux(0.73) after Uz(0.41)",
+        "passes": true
+      },
+      "base_S2_norm_max_error": 1.1102230246251565e-16,
+      "base_mean_pairwise_distance": 1.0666666666666667,
+      "derived_QIT_readouts": {
+        "edge_pair_mixture_entropy_max": 0.6931471805599453,
+        "edge_pair_mixture_entropy_mean": 0.19804205158855576,
+        "pure_density_entropy_max": 0.0
+      },
+      "orthogonal_spinor_antipodal_max_error": 2.465190328815662e-32,
+      "projection_present": true,
+      "projective_global_phase_max_delta": 3.5606669321048327e-16,
+      "signature_strength": 1.0,
+      "site_count": 16
+    },
+    {
+      "K_counts": {
+        "C": 9,
+        "E": 64,
+        "F": 42,
+        "V": 32
+      },
+      "N01_noncommuting_gap": {
+        "commuting_same_axis_control_mean_gap": 1.784954071201716e-16,
+        "max_gap": 0.28956939244900504,
+        "mean_gap": 0.2801223061142402,
+        "operator_pair": "Uz(0.41) after Ux(0.73) vs Ux(0.73) after Uz(0.41)",
+        "passes": true
+      },
+      "base_S2_norm_max_error": 1.1102230246251565e-16,
+      "base_mean_pairwise_distance": 1.2355237905712617,
+      "derived_QIT_readouts": {
+        "edge_pair_mixture_entropy_max": 0.6931471805599453,
+        "edge_pair_mixture_entropy_mean": 0.36669326146884434,
+        "pure_density_entropy_max": 0.0
+      },
+      "orthogonal_spinor_antipodal_max_error": 4.930380657631324e-32,
+      "projection_present": true,
+      "projective_global_phase_max_delta": 3.57089784602122e-16,
+      "signature_strength": 1.0,
+      "site_count": 32
+    },
+    {
+      "K_counts": {
+        "C": 27,
+        "E": 144,
+        "F": 108,
+        "V": 64
+      },
+      "N01_noncommuting_gap": {
+        "commuting_same_axis_control_mean_gap": 1.7598923147297022e-16,
+        "max_gap": 0.289055115615487,
+        "mean_gap": 0.2252071631417529,
+        "operator_pair": "Uz(0.41) after Ux(0.73) vs Ux(0.73) after Uz(0.41)",
+        "passes": true
+      },
+      "base_S2_norm_max_error": 3.3306690738754696e-16,
+      "base_mean_pairwise_distance": 1.3164196233289192,
+      "derived_QIT_readouts": {
+        "edge_pair_mixture_entropy_max": 0.6465548556347384,
+        "edge_pair_mixture_entropy_mean": 0.28696499799507214,
+        "pure_density_entropy_max": 0.0
+      },
+      "orthogonal_spinor_antipodal_max_error": 4.965344475624616e-16,
+      "projection_present": true,
+      "projective_global_phase_max_delta": 4.721742413615022e-16,
+      "signature_strength": 1.0,
+      "site_count": 64
+    }
+  ],
+  "projection_erased_runs": [
+    {
+      "K_counts": {
+        "C": 1,
+        "E": 12,
+        "F": 6,
+        "V": 8
+      },
+      "N01_noncommuting_gap": {
+        "commuting_same_axis_control_mean_gap": 0.0,
+        "max_gap": 0.0,
+        "mean_gap": 0.0,
+        "operator_pair": "Uz(0.41) after Ux(0.73) vs Ux(0.73) after Uz(0.41)",
+        "passes": false
+      },
+      "base_S2_norm_max_error": null,
+      "base_mean_pairwise_distance": 0.0,
+      "derived_QIT_readouts": {
+        "edge_pair_mixture_entropy_max": 0.6931471805599453,
+        "edge_pair_mixture_entropy_mean": 0.2310490601866484,
+        "pure_density_entropy_max": 0.0
+      },
+      "orthogonal_spinor_antipodal_max_error": null,
+      "projection_present": false,
+      "projective_global_phase_max_delta": null,
+      "signature_strength": 0.0,
+      "site_count": 8
+    },
+    {
+      "K_counts": {
+        "C": 3,
+        "E": 28,
+        "F": 16,
+        "V": 16
+      },
+      "N01_noncommuting_gap": {
+        "commuting_same_axis_control_mean_gap": 0.0,
+        "max_gap": 0.0,
+        "mean_gap": 0.0,
+        "operator_pair": "Uz(0.41) after Ux(0.73) vs Ux(0.73) after Uz(0.41)",
+        "passes": false
+      },
+      "base_S2_norm_max_error": null,
+      "base_mean_pairwise_distance": 0.0,
+      "derived_QIT_readouts": {
+        "edge_pair_mixture_entropy_max": 0.6931471805599453,
+        "edge_pair_mixture_entropy_mean": 0.19804205158855576,
+        "pure_density_entropy_max": 0.0
+      },
+      "orthogonal_spinor_antipodal_max_error": null,
+      "projection_present": false,
+      "projective_global_phase_max_delta": null,
+      "signature_strength": 0.0,
+      "site_count": 16
+    },
+    {
+      "K_counts": {
+        "C": 9,
+        "E": 64,
+        "F": 42,
+        "V": 32
+      },
+      "N01_noncommuting_gap": {
+        "commuting_same_axis_control_mean_gap": 0.0,
+        "max_gap": 0.0,
+        "mean_gap": 0.0,
+        "operator_pair": "Uz(0.41) after Ux(0.73) vs Ux(0.73) after Uz(0.41)",
+        "passes": false
+      },
+      "base_S2_norm_max_error": null,
+      "base_mean_pairwise_distance": 0.0,
+      "derived_QIT_readouts": {
+        "edge_pair_mixture_entropy_max": 0.6931471805599453,
+        "edge_pair_mixture_entropy_mean": 0.36669326146884434,
+        "pure_density_entropy_max": 0.0
+      },
+      "orthogonal_spinor_antipodal_max_error": null,
+      "projection_present": false,
+      "projective_global_phase_max_delta": null,
+      "signature_strength": 0.0,
+      "site_count": 32
+    },
+    {
+      "K_counts": {
+        "C": 27,
+        "E": 144,
+        "F": 108,
+        "V": 64
+      },
+      "N01_noncommuting_gap": {
+        "commuting_same_axis_control_mean_gap": 0.0,
+        "max_gap": 0.0,
+        "mean_gap": 0.0,
+        "operator_pair": "Uz(0.41) after Ux(0.73) vs Ux(0.73) after Uz(0.41)",
+        "passes": false
+      },
+      "base_S2_norm_max_error": null,
+      "base_mean_pairwise_distance": 0.0,
+      "derived_QIT_readouts": {
+        "edge_pair_mixture_entropy_max": 0.6465548556347384,
+        "edge_pair_mixture_entropy_mean": 0.28696499799507214,
+        "pure_density_entropy_max": 0.0
+      },
+      "orthogonal_spinor_antipodal_max_error": null,
+      "projection_present": false,
+      "projective_global_phase_max_delta": null,
+      "signature_strength": 0.0,
+      "site_count": 64
+    }
+  ],
+  "promotion_allowed": false,
+  "source_math_quotes": [
+    "registry: L3 S2 projective / Hopf base; projective base surface and quotient geometry",
+    "registry: K=(V,E,F,C); psi_v in S^3 subset C^2; pi_H(psi) = psi^dag sigma psi in S^2",
+    "reference: S^3={psi in C^2: ||psi||=1}",
+    "reference: pi(psi)=psi^dagger sigma_vec psi in S^2",
+    "reference: rho(psi)=|psi><psi|=1/2(I + r_vec.sigma_vec)"
+  ],
+  "verdict": {
+    "all_pass": true,
+    "built": true,
+    "ran": true,
+    "status_label": "passes local rerun for bounded L3_layer_codex_poc"
+  },
+  "wizard_orchestration": {
+    "reason": "user explicitly required: do NOT spawn sub-agents; do NOT enter collaborative/interactive mode",
+    "status": "not_run_by_user_hard_constraint"
+  }
+}

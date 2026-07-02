@@ -1,0 +1,253 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^4) on the quaternionic Hopf carrier; finite frame set {Hopf-rotor baseline U_hopf, twistor-dressed U_inc*U_hopf, twistor-alone U_inc, flat=I, x=0 incidence on Hopf, twistor-on-flat, scale-swept random}",
+    "finite_operator": "dissipative Weyl-L GKSL substrate on C^4; genuine Spin(5)=Sp(2) Hopf rotor frame; twistor incidence generator H_inc(x)=[0 i x;-i x^* 0]; scale-swept random control frames",
+    "finite_path": "dressed compositions U Phi_WeylL(U' . U) U' for each frame; substrate effect E=max_rho||dressed-bare||_1; matched-band z=(E-band_mean)/band_std around the Hopf rotor's c_hopf",
+    "finite_probe": "21 density operators (spinor-derived + maximally-mixed)"
+  },
+  "N01_witness": {
+    "c_combined": 2.089357329896889,
+    "c_hopf": 1.4555592317812793,
+    "c_twistor_alone": 1.2072712552533293,
+    "hopf_matched_band_separation": 0.13623245901806746,
+    "noise_floor": 1.4210854715202004e-14,
+    "order_sensitive_control": "the Hopf rotor does NOT commute with the dissipative GKSL Hamiltonian ([U_hopf, H0] != 0, c_hopf>0) because frame-site psi_A != upper-op-site psi_B; the incidence frame U_inc mixes the (omega,pi) Weyl blocks via omega=i x pi, and U_combined=U_inc*U_hopf composes the two non-commuting frames. The scale-swept band brackets the magnitude of the Hopf non-commutation so the matched-band z isolates whether dressing with the incidence GEOMETRY moves the signal beyond it.",
+    "present_above_floor": true
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "twistor canonical admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "carrier": "density operators in D(C^4) on the quaternionic Hopf carrier (Spin(5)=Sp(2)); genuine Hopf-rotor frame U_hopf=exp(-i ang/2 n.Gamma) at a genuine Hopf base point (the substrate carrying the iter-7 d=4 signal); dissipative Weyl-L GKSL upper op; twistor incidence frame U_inc DRESSES the Hopf rotor: U_combined=U_inc*U_hopf. NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "MEASURES whether composing the genuine twistor incidence frame omega=i x pi with the genuine quaternionic Hopf-rotor substrate (the substrate carrying the surviving iter-7 d=4 z<0 signal) moves, leaves unchanged, or washes out that signal, using the SAME iter-7 scale-swept commutator-matched band (matched on the Hopf rotor's c_hopf) as the geometry-vs-generic control. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics, and does NOT admit twistors as canonical anything. promotion_allowed=false.",
+  "classification": "twistor_hopf_fairtest_poc",
+  "downstream_blocks": [
+    "layer-completion",
+    "manifold admission",
+    "twistor canonical admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "exploratory": true,
+  "incidence_relation": "omega^A = i x^{AA'} pi_{A'}  (verbatim from twistor_incidence_substrate_probe.jl / twistor_incidence_cp3_projective_line.jl: incident_twistor(x,pi)=vcat(im*(x*pi),pi)); coupling X_inc(x)=[0 (i x);0 0], Hermitian generator H_inc(x)=X_inc+X_inc'; frame U_inc=exp(-i ang/2 H_inc)",
+  "kill_conditions": [
+    "flat frame U=I must collapse E to the noise floor (anti-tautology)",
+    "x=0 incidence on Hopf (U_inc(0)=I) must give U_combined=U_hopf so z_combined==z_hopf exactly (wiring control)",
+    "the scale-swept band must BRACKET c_hopf and POPULATE else the matched comparison is not honest -> inconclusive",
+    "the Hopf-alone baseline must reproduce the iter-7 d=4 DIRECTIONAL signal (z_hopf negative and seed-stable in sign) else there is no signal to test the twistor against -> inconclusive",
+    "if the combined frame FLIPS sign vs the Hopf negative-suppression sign => twistor_destroys (scatters the directional signal)",
+    "if |z_combined - z_hopf| <= 0.5 std => twistor_orthogonal (twistors independent of the substrate effect here)",
+    "the enhance/orthogonal/destroy class must be seed-stable else inconclusive (no single-seed promotion); a sign that scatters with the random spacetime point x is the genuine 'unstable' finding"
+  ],
+  "level": {
+    "E_combined_max": 0.7305001227318553,
+    "E_combined_mean": 0.6256811137382436,
+    "E_flat_max": 0.0,
+    "E_hopf_max": 0.5384103757523432,
+    "E_hopf_mean": 0.44446210580370354,
+    "E_twistor_alone_max": 0.48985405151239947,
+    "E_twistor_alone_mean": 0.32902228700520764,
+    "E_twistor_on_flat_max": 0.48985405151239947,
+    "E_x0_incidence_on_hopf_max": 0.5384103757523432,
+    "ang": 0.9,
+    "c_combined": 2.089357329896889,
+    "c_hopf": 1.4555592317812793,
+    "c_twistor_alone": 1.2072712552533293,
+    "carrier": "C^4 = quaternionic Hopf S^7->S^4 (Spin(5)=Sp(2)); density operators in D(C^4)",
+    "clifford_anticomm_err": 0.0,
+    "clifford_genuine": true,
+    "combined_outside_band": false,
+    "d": 4,
+    "flat_collapses": true,
+    "hopf_base_norm": 0.9999999999999999,
+    "hopf_outside_band": false,
+    "incidence_point_x_is_hermitian": true,
+    "matched_band_around_c_hopf": {
+      "band_mean": 0.6746428347704106,
+      "band_std": 0.13943755088961557,
+      "c_ref": 1.4555592317812793,
+      "n_matched": 41,
+      "populated": true
+    },
+    "noise_floor": 1.4210854715202004e-14,
+    "scale_swept_band": {
+      "brackets_c_hopf": true,
+      "c_hi": 3.082458798759302,
+      "c_lo": 0.0009828546906273134,
+      "n": 1400
+    },
+    "twistor_alone_outside_band": true,
+    "x0_E_matches_hopf": true,
+    "x0_wiring_matches_hopf": true,
+    "z_combined": 0.40058999605969503,
+    "z_combined_x0": -0.9770141410896883,
+    "z_hopf": -0.9770141410896883,
+    "z_twistor_alone": -1.325244039923632,
+    "z_twistor_on_flat": -1.325244039923632
+  },
+  "n_random_band": 1400,
+  "n_rho": 21,
+  "name": "FAIR test: does the genuine twistor incidence coupling omega=i x pi interact with the HOPF-ROTOR substrate that actually carries the iter-7 d>=4 suppression signal?",
+  "negatives_run": [
+    "flat_frame_U_eq_I",
+    "x0_degenerate_incidence_wiring_control",
+    "twistor_on_flat_substrate",
+    "scale_swept_commutator_matched_band_around_c_hopf"
+  ],
+  "non_numpy": true,
+  "object_id": "twistor_on_hopf_rotor_probe",
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only_exploratory",
+  "required_negatives": [
+    "flat_frame_U_eq_I",
+    "x0_degenerate_incidence_wiring_control",
+    "twistor_on_flat_substrate",
+    "scale_swept_commutator_matched_band_around_c_hopf"
+  ],
+  "reused_from": "substrate_effect_matched_band.jl + substrate_effect_scale_ladder.jl (genuine quaternionic Hopf-rotor frame, distinct frame/upper-op sites, dissipative Weyl-L GKSL, scale-swept commutator-matched band, substrate_effect E + matched-band z, z3_separation_obstruction — all verbatim) + twistor_incidence_substrate_probe.jl / twistor_incidence_cp3_projective_line.jl (incidence_coupling / incidence_hamiltonian omega=i x pi, random_hermitian_point — verbatim). Only NEW construction: composing U_inc with U_hopf and measuring its z against the SAME band that carries the iter-7 signal.",
+  "root_constraints_in_force": [
+    "F01 finite density-operator carrier in D(C^4) / Hopf-rotor + twistor-dressed + twistor-alone + flat + scale-swept frame set / Weyl GKSL substrate / dressed paths",
+    "N01 [U_hopf, H0] != 0 order-sensitive control (frame-site != upper-op-site) and the incidence frame U_inc mixing the (omega,pi) Weyl blocks via omega=i x pi; scale-swept band brackets the Hopf non-commutation magnitude"
+  ],
+  "script": "twistor_on_hopf_rotor_probe.jl",
+  "seed": 20260602,
+  "seed_robustness": {
+    "band_populated_per_seed": [
+      true,
+      true,
+      true
+    ],
+    "brackets_c_hopf_per_seed": [
+      true,
+      true,
+      true
+    ],
+    "combined_outside_per_seed": [
+      false,
+      true,
+      true
+    ],
+    "extra_seed_detail": {
+      "seed_20260613": {
+        "combined_outside": true,
+        "hopf_outside": false,
+        "x0_wiring_matches_hopf": true,
+        "z_combined": -1.0301056699946312,
+        "z_hopf": -0.6703351963205046,
+        "z_twistor_alone": -1.7701713374298997
+      },
+      "seed_20260625": {
+        "combined_outside": true,
+        "hopf_outside": false,
+        "x0_wiring_matches_hopf": true,
+        "z_combined": 1.9768216568855028,
+        "z_hopf": -0.7598432686443073,
+        "z_twistor_alone": -2.2023802123825784
+      }
+    },
+    "hopf_outside_per_seed": [
+      false,
+      false,
+      false
+    ],
+    "seeds": [
+      20260602,
+      20260613,
+      20260625
+    ],
+    "x0_wiring_matches_hopf_per_seed": [
+      true,
+      true,
+      true
+    ],
+    "z_combined_per_seed": [
+      0.40058999605969503,
+      -1.0301056699946312,
+      1.9768216568855028
+    ],
+    "z_hopf_per_seed": [
+      -0.9770141410896883,
+      -0.6703351963205046,
+      -0.7598432686443073
+    ],
+    "z_twistor_alone_per_seed": [
+      -1.325244039923632,
+      -1.7701713374298997,
+      -2.2023802123825784
+    ]
+  },
+  "sim_class": "geometry_probe_exploratory",
+  "sim_execution_kind": "nonclassical_poc_exploratory",
+  "sim_id": "twistor_on_hopf_rotor_probe",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm), HS/Frobenius/opnorm, matrix exp (Hopf rotor exp(-i ang/2 n.Gamma), incidence frame exp(-i ang/2 H_inc), GKSL, scale-swept random U), Clifford anticommutator check; every measured number flows through it.",
+    "Random": "load_bearing: random density operators, the genuine spacetime point x, the scale-swept commutator-matched band bracketing c_hopf.",
+    "Statistics": "load_bearing: mean/std over the rho ensemble and the matched band; the z observable IS (E-band_mean)/band_std.",
+    "Z3": "load_bearing: binds the measured Hopf matched-band separation to flat=>sep==0; verdict flips UNSAT->SAT on the flat control."
+  },
+  "verdict": {
+    "band_populated_all_seeds": true,
+    "brackets_c_hopf_all_seeds": true,
+    "hopf_baseline_reproduces_iter7_signal_all_seeds": true,
+    "hopf_strict_outside_flag_count_diagnostic_only": 0,
+    "hopf_z_negative_and_sign_stable": true,
+    "interpretation": "FAIR test vs the RIGHT substrate. The iter-7 d=4 geometry-specific suppression (substrate_effect_matched_band.jl: z_matched_band(d=4)=-1.0077) is DIRECTIONAL — z<0, the Hopf rotor produces LESS substrate effect than commutator-matched random — and lives on the genuine quaternionic Hopf-rotor frame, NOT on the block-diagonal substrate the prior twistor probe used. Here the Hopf-rotor substrate is the BASELINE (z_hopf, reproducing the iter-7 negative signal: z_hopf stable negative across seeds) and the genuine incidence frame omega=i x pi DRESSES it (U_combined=U_inc*U_hopf). The verdict compares z_combined to z_hopf against the SAME Hopf-c-matched band, SIGN-AWARE: enhance => keeps the negative sign and deepens it (twistors strengthen the real signal); orthogonal => z_combined ~ z_hopf (twistors independent here); destroy => z_combined FLIPS sign (scatters/washes the directional signal). The x=0 wiring control (U_inc(0)=I => U_combined=U_hopf => z_combined==z_hopf) guards against a by-construction composition; the strict >std outside flag is recorded as a diagnostic but is NOT the gate (the iter-7 finding itself sat at |z|~1, i.e. AT the 1-std boundary). EXPLORATORY, promotion_allowed=false; closes the twistor question fairly and admits twistors as nothing canonical.",
+    "overall": "inconclusive",
+    "per_seed_classification": [
+      "destroy",
+      "orthogonal",
+      "destroy"
+    ],
+    "reason": "the per-seed enhance/orthogonal/destroy classification was NOT stable across seeds (per-seed classes: [\"destroy\", \"orthogonal\", \"destroy\"]; z_combined per seed: [0.401, -1.03, 1.98] flips sign while z_hopf [-0.977, -0.67, -0.76] stays negative). The genuine finding: dressing the Hopf rotor with the incidence frame makes the substrate-effect z DEPEND ON THE RANDOM SPACETIME POINT x (it scatters to both sides of the band seed-to-seed), so the twistor-vs-Hopf interaction is UNSTABLE on this single-point incidence lift and cannot be closed at one carrier -- it does NOT reinforce the Hopf suppression. Held open. promotion_allowed=false; admits twistors as nothing canonical.",
+    "stable_class": "unstable_across_seeds",
+    "x0_wiring_control_holds_all_seeds": true,
+    "z3_load_bearing": true,
+    "z_combined_per_seed": [
+      0.40058999605969503,
+      -1.0301056699946312,
+      1.9768216568855028
+    ],
+    "z_combined_sign_per_seed": [
+      1.0,
+      -1.0,
+      1.0
+    ],
+    "z_hopf_per_seed": [
+      -0.9770141410896883,
+      -0.6703351963205046,
+      -0.7598432686443073
+    ],
+    "z_twistor_alone_per_seed": [
+      -1.325244039923632,
+      -1.7701713374298997,
+      -2.2023802123825784
+    ]
+  },
+  "version": "1.0",
+  "z3_load_bearing": {
+    "encoding": "FREE int sep, FREE bool is_flat; law Or([Not(is_flat), sep==0]); assert is_flat=true + sep==IntVal(measured |E_hopf - matched_band_mean|). genuine nonzero: unsat; flat: sat.",
+    "flat_verdict": "sat",
+    "genuine_verdict": "unsat",
+    "load_bearing_flip": true,
+    "measured_hopf_matched_band_separation": 0.13623245901806746
+  }
+}

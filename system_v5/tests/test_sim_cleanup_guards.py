@@ -1406,6 +1406,72 @@ def test_lint_v5_formal_tool_admission_is_curated_not_globbed(
     assert "C5_missing_probe" not in opt_einsum_rules
 
 
+def test_lint_local_formal_scout_receipts_are_pinned_to_source(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "lint_sim_contract_local_receipt_pinning_under_test",
+        REPO_ROOT / "scripts" / "lint_sim_contract.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    formal_scouts = repo / "system_v5" / "ops" / "formal_scouts"
+    formal_results = formal_scouts / "results"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+    formal_results.mkdir(parents=True)
+
+    integration = probes / "sim_integration_local_flux_dependency.py"
+    integration.write_text(
+        "\n".join(
+            [
+                'classification = "formal_scout"',
+                'TOOL_MANIFEST = {"local_flux_dependency": {"tried": True, "used": True, "reason": "load-bearing local formal scout dependency"}}',
+                'TOOL_INTEGRATION_DEPTH = {"local_flux_dependency": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    local_source = formal_scouts / "sim_local_flux_dependency.py"
+    local_source.write_text("# source v1\n", encoding="utf-8")
+    source_hash = hashlib.sha256(local_source.read_bytes()).hexdigest()
+    local_result = formal_results / "local_flux_dependency_results.json"
+    base_receipt = {
+        "classification": "formal_scout",
+        "promotion_allowed": False,
+        "all_pass": True,
+        "claim_ceiling": "Formal scout only: local dependency fixture.",
+    }
+    local_result.write_text(json.dumps(base_receipt), encoding="utf-8")
+    os.utime(local_result, (100.0, 100.0))
+    os.utime(local_source, (200.0, 200.0))
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES_DIR", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+    monkeypatch.setattr(module, "FORMAL_SCOUTS_DIR", formal_scouts)
+    monkeypatch.setattr(module, "FORMAL_SCOUT_RESULTS_DIR", formal_results)
+
+    stale_rules = {v["rule"] for v in module.lint_sim(integration)}
+    assert "C5_stale_local_formal_scout_receipt" in stale_rules
+
+    local_result.write_text(json.dumps({**base_receipt, "source_sha256": "wrong"}), encoding="utf-8")
+    os.utime(local_result, (300.0, 300.0))
+    hash_mismatch_rules = {v["rule"] for v in module.lint_sim(integration)}
+    assert "C5_stale_local_formal_scout_receipt" in hash_mismatch_rules
+
+    local_result.write_text(
+        json.dumps({**base_receipt, "source_sha256": source_hash}),
+        encoding="utf-8",
+    )
+    os.utime(local_result, (100.0, 100.0))
+    pinned_rules = {v["rule"] for v in module.lint_sim(integration)}
+    assert "C5_stale_local_formal_scout_receipt" not in pinned_rules
+    assert "C5_missing_probe" not in pinned_rules
+
+
 def test_lint_splits_admin_and_internal_load_bearing_overclaims(tmp_path, monkeypatch) -> None:
     module = _load_module(
         "lint_sim_contract_admin_overclaim_under_test",
@@ -1635,6 +1701,50 @@ def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
         + "\n",
         encoding="utf-8",
     )
+    prefixed_nonclassical_numpy = probes / "sim_prefixed_nonclassical_numpy.py"
+    prefixed_nonclassical_numpy.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "nonclassical_peps3d_flux_axis0_runtime_bound_loop4"',
+                'TOOL_MANIFEST = {"numpy": {"used": True, "reason": "prefixed nonclassical fixture"}}',
+                'TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    prefixed_nonclassical_missing_pytorch = probes / "sim_prefixed_nonclassical_z3_only.py"
+    prefixed_nonclassical_missing_pytorch.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "nonclassical_peps3d_flux_axis0_axis_face_boundary_functional"',
+                'TOOL_MANIFEST = {"z3": {"used": True, "reason": "symbolic fixture"}}',
+                'TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "engine_core.py").write_text(
+        "import numpy as np\nVALUE = np.array([1.0])\n",
+        encoding="utf-8",
+    )
+    prefixed_nonclassical_local_numpy_dep = probes / "sim_prefixed_nonclassical_local_numpy_dep.py"
+    prefixed_nonclassical_local_numpy_dep.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "nonclassical_peps3d_flux_axis0_runtime_bound_loop4"',
+                'TOOL_MANIFEST = {"pytorch": {"used": True, "reason": "tensor dynamics fixture"}}',
+                'TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing"}',
+                "import engine_core",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     nonclassical_pytorch = probes / "sim_nonclassical_pytorch_row.py"
     nonclassical_pytorch.write_text(
         "\n".join(
@@ -1675,6 +1785,32 @@ def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
         + "\n",
         encoding="utf-8",
     )
+    named_bridge_numpy = probes / "sim_named_runtime_bridge_numpy.py"
+    named_bridge_numpy.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "axis0_runtime_bridge"',
+                'TOOL_MANIFEST = {"numpy": {"used": True, "reason": "bridge suffix fixture"}}',
+                'TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    containing_bridge_numpy = probes / "sim_containing_bridge_classifier_numpy.py"
+    containing_bridge_numpy.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "axis0_runtime_bridge_classifier"',
+                'TOOL_MANIFEST = {"numpy": {"used": True, "reason": "bridge infix fixture"}}',
+                'TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     micro_tool_function = probes / "sim_cvc5_order_gap_countermodel_micro_probe.py"
     micro_tool_function.write_text(
         "\n".join(
@@ -1692,22 +1828,41 @@ def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
     monkeypatch.setattr(module, "REPO", repo)
     monkeypatch.setattr(module, "PROBES_DIR", probes)
     monkeypatch.setattr(module, "RESULTS_DIR", results)
+    monkeypatch.setattr(module, "FORMAL_SCOUTS_DIR", probes)
 
     bridge_rules = {violation["rule"] for violation in module.lint_sim(bridge)}
     z3_rules = {violation["rule"] for violation in module.lint_sim(nonclassical_missing_pytorch)}
+    prefixed_numpy_rules = {
+        violation["rule"] for violation in module.lint_sim(prefixed_nonclassical_numpy)
+    }
+    prefixed_z3_rules = {
+        violation["rule"] for violation in module.lint_sim(prefixed_nonclassical_missing_pytorch)
+    }
+    prefixed_local_numpy_dep_rules = {
+        violation["rule"] for violation in module.lint_sim(prefixed_nonclassical_local_numpy_dep)
+    }
     pytorch_rules = {violation["rule"] for violation in module.lint_sim(nonclassical_pytorch)}
     transitive_pytorch_rules = {
         violation["rule"] for violation in module.lint_sim(nonclassical_transitive_pytorch)
     }
     bridge_alias_rules = {violation["rule"] for violation in module.lint_sim(nonclassical_bridge_numpy)}
+    named_bridge_rules = {violation["rule"] for violation in module.lint_sim(named_bridge_numpy)}
+    containing_bridge_rules = {
+        violation["rule"] for violation in module.lint_sim(containing_bridge_numpy)
+    }
     micro_rules = {violation["rule"] for violation in module.lint_sim(micro_tool_function)}
 
     assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in bridge_rules
     assert "C8_nonclassical_requires_local_pytorch_load_bearing" in z3_rules
+    assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in prefixed_numpy_rules
+    assert "C8_nonclassical_requires_local_pytorch_load_bearing" in prefixed_z3_rules
+    assert "C7_numpy_local_module_dependency_for_nonclassical" in prefixed_local_numpy_dep_rules
     assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" not in pytorch_rules
     assert "C8_nonclassical_requires_local_pytorch_load_bearing" not in pytorch_rules
     assert "C8_nonclassical_requires_local_pytorch_load_bearing" in transitive_pytorch_rules
     assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in bridge_alias_rules
+    assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in named_bridge_rules
+    assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in containing_bridge_rules
     assert "C8_nonclassical_requires_local_pytorch_load_bearing" not in micro_rules
 
 
@@ -1762,6 +1917,28 @@ def test_adaptive_controller_honors_explicit_sim_execution_kind(tmp_path) -> Non
         + "\n",
         encoding="utf-8",
     )
+    prefixed_nonclassical = probes / "sim_peps3d_flux_axis0_channel.py"
+    prefixed_nonclassical.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "nonclassical_peps3d_flux_axis0_runtime_bound_loop4"',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    named_bridge = probes / "sim_axis0_runtime_bridge_classifier.py"
+    named_bridge.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "axis0_runtime_bridge_classifier"',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
 
     assert module.runner_class_for(classical) == "classical"
     assert module.runner_class_reason(classical) == "sim_execution_kind_classical"
@@ -1771,6 +1948,10 @@ def test_adaptive_controller_honors_explicit_sim_execution_kind(tmp_path) -> Non
     assert module.runner_class_reason(semiclassical) == "sim_execution_kind_bridge"
     assert module.runner_class_for(nonclassical) == "nonclassical"
     assert module.runner_class_reason(nonclassical) == "sim_execution_kind_nonclassical"
+    assert module.runner_class_for(prefixed_nonclassical) == "nonclassical"
+    assert module.runner_class_reason(prefixed_nonclassical) == "sim_execution_kind_nonclassical"
+    assert module.runner_class_for(named_bridge) == "bridge"
+    assert module.runner_class_reason(named_bridge) == "sim_execution_kind_bridge"
 
 
 def test_lint_accepts_explicit_path_arguments(tmp_path, monkeypatch, capsys) -> None:
@@ -9977,6 +10158,14 @@ def test_sim_inventory_separates_execution_lanes_and_engine_roles(tmp_path) -> N
         'SIM_EXECUTION_KIND = "nonclassical"\n' + source_contract,
         encoding="utf-8",
     )
+    (module.PROBES / "sim_peps3d_prefixed_nonclassical_probe.py").write_text(
+        'SIM_EXECUTION_KIND = "nonclassical_peps3d_flux_axis0_runtime_bound_loop4"\n' + source_contract,
+        encoding="utf-8",
+    )
+    (module.PROBES / "sim_axis0_runtime_bridge_classifier.py").write_text(
+        'SIM_EXECUTION_KIND = "axis0_runtime_bridge_classifier"\n' + source_contract,
+        encoding="utf-8",
+    )
     (module.PROBES / "sim_negative_graveyard_control.py").write_text("# no result yet\n", encoding="utf-8")
 
     result_payload = {
@@ -9999,6 +10188,26 @@ def test_sim_inventory_separates_execution_lanes_and_engine_roles(tmp_path) -> N
         json.dumps({"classification": "canonical", "sim_execution_kind": "nonclassical", **result_payload}),
         encoding="utf-8",
     )
+    (result_dir / "peps3d_prefixed_nonclassical_probe_results.json").write_text(
+        json.dumps(
+            {
+                "classification": "canonical",
+                "sim_execution_kind": "nonclassical_peps3d_flux_axis0_runtime_bound_loop4",
+                **result_payload,
+            }
+        ),
+        encoding="utf-8",
+    )
+    (result_dir / "axis0_runtime_bridge_classifier_results.json").write_text(
+        json.dumps(
+            {
+                "classification": "canonical",
+                "sim_execution_kind": "axis0_runtime_bridge_classifier",
+                **result_payload,
+            }
+        ),
+        encoding="utf-8",
+    )
 
     index = module.build_index()
     rows = {row["stem"]: row for row in index["rows"]}
@@ -10015,12 +10224,17 @@ def test_sim_inventory_separates_execution_lanes_and_engine_roles(tmp_path) -> N
         "semiclassical_szilard_engine_token_match"
     ]
     assert rows["sim_bridge_xi_cut_boundary"]["sim_execution_lane"] == "semiclassical_bridge"
+    assert rows["sim_axis0_runtime_bridge_classifier"]["sim_execution_lane"] == "semiclassical_bridge"
     assert rows["sim_bridge_xi_cut_boundary"]["engine_types"] == ["none"]
     assert rows["sim_bridge_xi_cut_boundary"]["engine_roles"] == ["nonclassical_inspiration_or_boundary_signal"]
     assert "numpy_load_bearing_blocked_for_bridge_or_nonclassical" in rows["sim_bridge_xi_cut_boundary"][
         "promotion_blockers"
     ]
+    assert "numpy_load_bearing_blocked_for_bridge_or_nonclassical" in rows[
+        "sim_axis0_runtime_bridge_classifier"
+    ]["promotion_blockers"]
     assert rows["sim_weyl_spinor_nonclassical_probe"]["sim_execution_lane"] == "nonclassical"
+    assert rows["sim_peps3d_prefixed_nonclassical_probe"]["sim_execution_lane"] == "nonclassical"
     assert "nonclassical_inspiration_or_boundary_signal" in rows["sim_weyl_spinor_nonclassical_probe"]["engine_roles"]
     assert "nonclassical_requires_local_load_bearing_pytorch" in rows["sim_weyl_spinor_nonclassical_probe"][
         "promotion_blockers"
@@ -10035,21 +10249,21 @@ def test_sim_inventory_separates_execution_lanes_and_engine_roles(tmp_path) -> N
         "canonical_process_not_evaluated",
         "wizard_admission_not_accepted",
     ]
-    assert index["summary"]["public_status_counts"] == {"exists": 5}
+    assert index["summary"]["public_status_counts"] == {"exists": 7}
     assert index["summary"]["sim_execution_lane_counts"] == {
         "classical": 1,
-        "nonclassical": 1,
-        "semiclassical_bridge": 1,
+        "nonclassical": 2,
+        "semiclassical_bridge": 2,
         "semiclassical_szilard": 1,
         "unknown": 1,
     }
     assert index["summary"]["runner_execution_kind_counts"] == {
-        "bridge": 2,
+        "bridge": 3,
         "classical": 1,
-        "nonclassical": 1,
+        "nonclassical": 2,
         "unknown": 1,
     }
-    assert index["summary"]["engine_type_counts"] == {"carnot": 1, "none": 3, "szilard": 1}
+    assert index["summary"]["engine_type_counts"] == {"carnot": 1, "none": 5, "szilard": 1}
     assert "canonical_result_not_execution_lane_evidence" not in rows["sim_semiclassical_szilard_measure_feedback_erasure"][
         "garbage_candidate_flags"
     ]

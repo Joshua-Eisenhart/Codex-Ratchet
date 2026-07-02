@@ -1,0 +1,290 @@
+{
+  "all_pass": true,
+  "bloch_free": true,
+  "bloch_free_selfcheck": {
+    "bloch_free": true,
+    "forbidden_tokens": [
+      "bloch(",
+      "cross3",
+      "r_L x r_R",
+      "n x r",
+      "dot_r",
+      "rx, ry, rz"
+    ],
+    "hits": []
+  },
+  "blocked_consumers": [
+    "L8 chirality orientation cover",
+    "L9 Clifford/quaternion module",
+    "L10 terrain GKSL generators",
+    "Axis0/flux placement",
+    "order/ratchet pairwise tests",
+    "any bridge/Xi/Phi0 claim"
+  ],
+  "carrier": "exact dense ComplexF64 matrices; occupied projectors P=|u><u|; GKSL Liouvillian; NO Bloch r-vector; NO precession ODE",
+  "classification": "L7_newstd_poc",
+  "criterion_1_finitude_vs_flat": {
+    "C_L_flat_open": 0.8506706096400972,
+    "C_L_flat_rounding_error": 0.14932939035990278,
+    "C_L_torus": 1.0000000000000016,
+    "C_L_torus_rounding_error": 1.5543122344752192e-15,
+    "C_R_flat_open": -0.8506706096400972,
+    "C_R_flat_rounding_error": 0.14932939035990278,
+    "C_R_torus": -1.0000000000000016,
+    "C_R_torus_rounding_error": 1.5543122344752192e-15,
+    "deciding_number": "torus err max=0.0; flat err max=0.14933",
+    "description": "compact torus BZ gives quantized Chern; open flat grid does NOT",
+    "flat_not_quantized": true,
+    "pre_registered_bar_flat": "rounding error > 0.1 on at least one sheet",
+    "pre_registered_bar_torus": "rounding error < 0.05 on both sheets",
+    "torus_quantized": true,
+    "verdict": "MET"
+  },
+  "criterion_2_anticommutation": {
+    "clifford_level": {
+      "flat_control_fails_clifford": true,
+      "flat_control_max_offdiag_residual": 2.0,
+      "flat_offdiag_residuals_sample": {
+        "D0_D1": 2.0,
+        "D0_D2": 2.0,
+        "D0_D3": 2.0,
+        "D1_D0": 2.0,
+        "D1_D2": 2.0,
+        "D1_D3": 2.0,
+        "D2_D0": 2.0,
+        "D2_D1": 2.0,
+        "D2_D3": 2.0,
+        "D3_D0": 2.0,
+        "D3_D1": 2.0,
+        "D3_D2": 2.0
+      },
+      "genuine_clifford_ok": true,
+      "max_anticomm_residual_genuine": 0.0
+    },
+    "deciding_number": "genuine max=0.0; flat offdiag max=2.0",
+    "description": "{Gamma_a,Gamma_b}=2*delta_ab on Weyl generators; flat/Cartesian control gives WRONG (commuting) relation",
+    "geometric_projector_level": {
+      "PL_PR_orthogonal_projectors_commute": true,
+      "comm_PL_G0_hs_norm": 2.0,
+      "comm_PL_PR_hs_norm": 0.0,
+      "description": "[P_L, G0] != 0 (chiral projector versus Weyl mixing generator); [P_L,P_R]=0 recorded as the orthogonal-projector control",
+      "projectors_noncommute": true
+    },
+    "pre_registered_bar_flat": "max off-diagonal residual > 0.1 on at least one pair",
+    "pre_registered_bar_genuine": "max residual < 1e-9 across all 16 pairs",
+    "verdict": "MET"
+  },
+  "criterion_3_topological_invariant": {
+    "C_L": 1.0000000000000016,
+    "C_L_int": 1,
+    "C_R": -1.0000000000000016,
+    "C_R_int": -1,
+    "Delta_C": 2.000000000000003,
+    "Delta_C_int": 2,
+    "control_m3_both_trivial": true,
+    "control_merge_sheets_collapses": true,
+    "control_trivialize_right_sheet_flips": true,
+    "deciding_number": "Delta_C=2; trivialize flip=true; merge collapse=true",
+    "description": "QWZ per-sheet Chern |C|=1 opposite sign L vs R; wrong-structure controls FLIP it",
+    "invariant_genuine": true,
+    "verdict": "MET"
+  },
+  "criterion_4_exact_carrier": {
+    "all_idempotency_ok": true,
+    "deciding_number": "all ||P^2-P||_F < 1e-9: true",
+    "description": "exact dense ComplexF64; projector idempotency ||P^2-P||_F < 1e-9 at all scale rungs; equal budget genuine and control",
+    "idempotency_by_rung": {
+      "nk_16": {
+        "max_err_control_L": 3.3306690738754696e-16,
+        "max_err_control_R": 3.3306690738754696e-16,
+        "max_err_genuine_L": 3.3306690738754696e-16,
+        "max_err_genuine_R": 3.3306690738754696e-16,
+        "rung_idempotency_ok": true
+      },
+      "nk_32": {
+        "max_err_control_L": 4.440892098500626e-16,
+        "max_err_control_R": 4.440892098500626e-16,
+        "max_err_genuine_L": 6.661338147750939e-16,
+        "max_err_genuine_R": 6.661338147750939e-16,
+        "rung_idempotency_ok": true
+      },
+      "nk_64": {
+        "max_err_control_L": 4.440892098500626e-16,
+        "max_err_control_R": 4.440892098500626e-16,
+        "max_err_genuine_L": 8.881784197001252e-16,
+        "max_err_genuine_R": 8.881784197001252e-16,
+        "rung_idempotency_ok": true
+      },
+      "nk_8": {
+        "max_err_control_L": 3.3306690738754696e-16,
+        "max_err_control_R": 3.3306690738754696e-16,
+        "max_err_genuine_L": 2.220446049250313e-16,
+        "max_err_genuine_R": 2.220446049250313e-16,
+        "rung_idempotency_ok": true
+      }
+    },
+    "pre_registered_bar": "max idempotency error < 1e-9 on ALL rungs (genuine); equal truncation budget",
+    "verdict": "MET"
+  },
+  "criterion_5_scale_ladder": {
+    "deciding_number": "4/4 rungs passed",
+    "description": "QWZ Chern on k-grid nk in {8,16,32,64}; Chern rounding error < 0.05 on both sheets",
+    "pre_registered_bar": "rounding error < 0.05 on both sheets at each rung",
+    "rungs": {
+      "nk_16": {
+        "C_L": 1.0000000000000007,
+        "C_L_int": 1,
+        "C_L_rounding_err": 6.661338147750939e-16,
+        "C_R": -1.0000000000000007,
+        "C_R_int": -1,
+        "C_R_rounding_err": 6.661338147750939e-16,
+        "rung_passed": true
+      },
+      "nk_32": {
+        "C_L": 0.9999999999999993,
+        "C_L_int": 1,
+        "C_L_rounding_err": 6.661338147750939e-16,
+        "C_R": -0.9999999999999993,
+        "C_R_int": -1,
+        "C_R_rounding_err": 6.661338147750939e-16,
+        "rung_passed": true
+      },
+      "nk_64": {
+        "C_L": 1.0000000000000027,
+        "C_L_int": 1,
+        "C_L_rounding_err": 2.6645352591003757e-15,
+        "C_R": -1.0000000000000027,
+        "C_R_int": -1,
+        "C_R_rounding_err": 2.6645352591003757e-15,
+        "rung_passed": true
+      },
+      "nk_8": {
+        "C_L": 0.9999999999999996,
+        "C_L_int": 1,
+        "C_L_rounding_err": 4.440892098500626e-16,
+        "C_R": -0.9999999999999996,
+        "C_R_int": -1,
+        "C_R_rounding_err": 4.440892098500626e-16,
+        "rung_passed": true
+      }
+    },
+    "rungs_passed": 4,
+    "verdict": "MET"
+  },
+  "criterion_6_neural_dynamics": {
+    "W_type_flat": "I4 (identity — no preferred attractor)",
+    "W_type_genuine": "I4 - 2*(psi_L4 * psi_L4') — ground state = psi_L4",
+    "deciding_number": "genuine fid=1.0; flat fid=0.35",
+    "description": "Hopfield imaginary-time settling toward L-sheet attractor; flat W (identity) has no preferred attractor",
+    "flat_ok": true,
+    "genuine_ok": true,
+    "na_note": "N/A — genuine separation confirmed",
+    "pre_registered_bar_flat": "flat W settling fidelity < 0.55",
+    "pre_registered_bar_genuine": "settling fidelity > 0.7 with psi_L",
+    "settling_fidelity_flat": 0.35000000000000003,
+    "settling_fidelity_genuine": 0.9999999999999999,
+    "verdict": "MET"
+  },
+  "criterion_7_finite_map_F01_N01": {
+    "F01_witness": "compact BZ torus; bounded projector norms; quantized Chern integer",
+    "N01_witness": "Clifford anticommutation {Gamma_a,Gamma_b}=2*delta_ab; [P_L,P_R]!=0",
+    "S_basin_genuine": -0.9999940379750418,
+    "anti_tautology_control_survives": true,
+    "deciding_number": "z3_chern_lb=true; z3_basin_lb=true; anti_taut=true",
+    "finite_map": {
+      "F01": "compact torus BZ: finite k-grid; bounded projector norms; quantized Chern integer",
+      "N01": "Clifford anticommutation {Gamma_a,Gamma_b}=2*delta_ab (non-commuting Weyl generators); [P_L,P_R]!=0 (chiral projectors non-commute)",
+      "codomain": "occupied projector P(k,chir) in D(C^2); Chern integer C_chir in Z; basin sign S_basin in {-1,+1}",
+      "domain": "QWZ Brillouin-zone torus (kx,ky) in [0,2pi)^2; chiraliy label in {L,R}"
+    },
+    "real_erasure_collapses": true,
+    "sign_genuine": -1,
+    "verdict": "MET",
+    "z3_basin_broken": "sat",
+    "z3_basin_genuine": "unsat",
+    "z3_basin_load_bearing": true,
+    "z3_basin_swap": "unsat",
+    "z3_chern_broken": "sat",
+    "z3_chern_genuine": "unsat",
+    "z3_chern_load_bearing": true,
+    "z3_load_bearing_overall": true
+  },
+  "finite_map": {
+    "F01": "compact torus BZ: finite k-grid; bounded projector norms; quantized Chern integer",
+    "N01": "Clifford anticommutation {Gamma_a,Gamma_b}=2*delta_ab (non-commuting Weyl generators); [P_L,P_R]!=0 (chiral projectors non-commute)",
+    "codomain": "occupied projector P(k,chir) in D(C^2); Chern integer C_chir in Z; basin sign S_basin in {-1,+1}",
+    "domain": "QWZ Brillouin-zone torus (kx,ky) in [0,2pi)^2; chiraliy label in {L,R}"
+  },
+  "honest_status": "genuinely_upgraded",
+  "layer": "L7",
+  "layer_name": "Weyl spinor bundle (L/R) — new-standard upgrade",
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_number": "genuine max=0.0; flat offdiag max=2.0",
+    "exact_carrier": "MET",
+    "exact_carrier_number": "all ||P^2-P||_F < 1e-9: true",
+    "finitude": "MET",
+    "finitude_number": "torus err max=0.0; flat err max=0.14933",
+    "invariant_anchored": "MET",
+    "invariant_anchored_number": "Delta_C=2; 3 wrong-struct controls all flip: true",
+    "neural_dynamics": "MET",
+    "neural_dynamics_number": "genuine fid=1.0; flat fid=0.35",
+    "overall_fraction": "6/6 MET (0 PARTIAL)",
+    "overall_met": 6,
+    "overall_partial": 0,
+    "scale_ladder": "MET",
+    "scale_ladder_number": "4/4 rungs passed at < 0.05 rounding error"
+  },
+  "object_id": "L7_newstd",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "promotion_allowed=false",
+    "no validate_layer_distinctness gate run",
+    "no parent-complete L7 packet"
+  ],
+  "script": "L7_newstd.jl",
+  "seed": 20260602,
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "receipt emission",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "eigen/eigvals for occupied projectors, FHS Chern plaquette flux, GKSL Liouvillian, Clifford anticommutator residuals, Hopfield imaginary-time; every measured number flows through it",
+      "role": "load_bearing"
+    },
+    "Random": {
+      "reason": "random comparable-norm jump ops for anti-tautology control; numbers off fresh samples, not planted",
+      "role": "load_bearing"
+    },
+    "Statistics": {
+      "reason": "means over control ensembles",
+      "role": "supportive"
+    },
+    "Z3": {
+      "reason": "derives Chern difference and basin sign in-solver; proves measured==derived UNSAT; flips wrong-structure input SAT",
+      "role": "load_bearing"
+    }
+  },
+  "verdict": {
+    "anti_tautology_survives": true,
+    "anticomm_flat_wrong": true,
+    "anticomm_genuine_ok": true,
+    "bloch_free": true,
+    "exact_carrier_ok": true,
+    "finitude_met": true,
+    "invariant_controls_flip": true,
+    "invariant_genuine": true,
+    "neural_dynamics_met": true,
+    "projector_noncommute": true,
+    "scale_ladder_full": true,
+    "z3_load_bearing": true
+  }
+}

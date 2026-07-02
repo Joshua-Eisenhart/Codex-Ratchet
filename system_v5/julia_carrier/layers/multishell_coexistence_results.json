@@ -1,0 +1,300 @@
+{
+  "all_pass": true,
+  "checks": {
+    "coexistence_holds_when_coupled_weak": true,
+    "decoupled_anchor_matches_known_sinks": true,
+    "decoupled_three_terrains_distinct": true,
+    "kill_identical_terrains_not_3distinct": true,
+    "steady_state_converged_all_couplings": true
+  },
+  "classification": "PoC",
+  "coexistence_verdict": "COEXISTENCE HOLDS at weak/moderate coupling (Jhop<=0.3): a stable joint steady state keeps all 3 terrains distinct, each near its own sink. At STRONG coupling (Jhop=3) the two z-axis sinks (Pit, Source) PARTIALLY COLLAPSE toward each other (|rz1-rz3| shrinks) while the Hill leaf (sigma_x-basis, commutes with its own dephasing) stays robust. So: coexistence at weak coupling, partial collapse at strong.",
+  "coupled_sweep": {
+    "coexist_by_coupling": {
+      "0.0": true,
+      "0.1": true,
+      "0.3": true,
+      "1.0": false,
+      "3.0": false
+    },
+    "coexistence_holds_weak_moderate": true,
+    "converged_all": true,
+    "partial_collapse_at_strong": true,
+    "rows": [
+      {
+        "Jhop": 0.0,
+        "all_distinct": true,
+        "coexist": true,
+        "converged_drift": 3.28e-15,
+        "each_at_own_sink": true,
+        "leaf1_bloch": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "leaf2_bloch": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "leaf3_bloch": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "min_pairwise_sep": 1.4142,
+        "pit_source_z_gap": 2.0
+      },
+      {
+        "Jhop": 0.1,
+        "all_distinct": true,
+        "coexist": true,
+        "converged_drift": 9.8e-15,
+        "each_at_own_sink": true,
+        "leaf1_bloch": [
+          -0.1803,
+          0.2253,
+          -0.9565
+        ],
+        "leaf2_bloch": [
+          1.0,
+          -0.0,
+          -0.0
+        ],
+        "leaf3_bloch": [
+          0.1803,
+          -0.2253,
+          0.9565
+        ],
+        "min_pairwise_sep": 1.2797,
+        "pit_source_z_gap": 1.9129
+      },
+      {
+        "Jhop": 0.3,
+        "all_distinct": true,
+        "coexist": true,
+        "converged_drift": 2.39e-14,
+        "each_at_own_sink": true,
+        "leaf1_bloch": [
+          -0.4011,
+          0.5014,
+          -0.7094
+        ],
+        "leaf2_bloch": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "leaf3_bloch": [
+          0.4011,
+          -0.5014,
+          0.7094
+        ],
+        "min_pairwise_sep": 1.0551,
+        "pit_source_z_gap": 1.4188
+      },
+      {
+        "Jhop": 1.0,
+        "all_distinct": true,
+        "coexist": false,
+        "converged_drift": 8.45e-13,
+        "each_at_own_sink": false,
+        "leaf1_bloch": [
+          -0.3395,
+          0.4244,
+          -0.1801
+        ],
+        "leaf2_bloch": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "leaf3_bloch": [
+          0.3395,
+          -0.4244,
+          0.1801
+        ],
+        "min_pairwise_sep": 0.8055,
+        "pit_source_z_gap": 0.3603
+      },
+      {
+        "Jhop": 3.0,
+        "all_distinct": true,
+        "coexist": false,
+        "converged_drift": 4.3e-13,
+        "each_at_own_sink": false,
+        "leaf1_bloch": [
+          -0.1347,
+          0.1684,
+          -0.0238
+        ],
+        "leaf2_bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "leaf3_bloch": [
+          0.1347,
+          -0.1684,
+          0.0238
+        ],
+        "min_pairwise_sep": 0.434,
+        "pit_source_z_gap": 0.0477
+      }
+    ]
+  },
+  "decoupled_reference": {
+    "anchor_matches_known_sinks": true,
+    "anchor_rows": [
+      {
+        "abs_err": 0.0,
+        "bloch_measured": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "known_sink": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "leaf": 1,
+        "matches_known_sink": true,
+        "terrain": "Pit"
+      },
+      {
+        "abs_err": 0.0,
+        "bloch_measured": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "known_sink": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "leaf": 2,
+        "matches_known_sink": true,
+        "terrain": "Hill"
+      },
+      {
+        "abs_err": 0.0,
+        "bloch_measured": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "known_sink": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "leaf": 3,
+        "matches_known_sink": true,
+        "terrain": "Source"
+      }
+    ],
+    "convergence_drift": 3.28e-15,
+    "three_terrains_distinct": true
+  },
+  "honest_scope": {
+    "claim_ceiling": "The per-leaf steady Bloch vectors, the decoupled anchor against known Lindblad sinks, and the coexist->partial-collapse transition with coupling are MEASURED. The nested-shell identification is interpretive (PoC, promotion_allowed=false).",
+    "forced_standard_math": [
+      "single-qubit Lindblad fixed points: sigma_- -> (0,0,-1), sigma_+ -> (0,0,+1), sigma_x-dephasing -> (+1,0,0)",
+      "exact 3-qubit Lindblad master-equation evolution via QuantumOptics.timeevolution.master"
+    ],
+    "novel_interpretive_NOT_proven": [
+      "reading the coupled 3-qubit joint steady state as a 'multi-shell coexistence' of nested S^3 leaves — the Bloch vectors and the coexist/collapse transition are measured; the nested-shell / retrocausal-foliation reading is an interpretation laid over them, not a theorem"
+    ]
+  },
+  "kill_control_identical_terrains": {
+    "never_detected_as_3distinct": true,
+    "note": "identical terrains have nothing to coexist; detector must NOT report 3 distinct",
+    "rows": [
+      {
+        "Jhop": 0.0,
+        "detector_says_3distinct": false,
+        "detector_says_coexist": false,
+        "leaf1_bloch": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "leaf2_bloch": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "leaf3_bloch": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "min_pairwise_sep": 0.0
+      },
+      {
+        "Jhop": 0.3,
+        "detector_says_3distinct": false,
+        "detector_says_coexist": false,
+        "leaf1_bloch": [
+          -0.0,
+          0.0,
+          -0.8143
+        ],
+        "leaf2_bloch": [
+          0.0,
+          -0.0,
+          -0.7191
+        ],
+        "leaf3_bloch": [
+          -0.0,
+          0.0,
+          -0.8143
+        ],
+        "min_pairwise_sep": 0.0
+      },
+      {
+        "Jhop": 1.0,
+        "detector_says_3distinct": false,
+        "detector_says_coexist": false,
+        "leaf1_bloch": [
+          -0.0,
+          -0.0,
+          -0.2473
+        ],
+        "leaf2_bloch": [
+          0.0,
+          -0.0,
+          -0.3571
+        ],
+        "leaf3_bloch": [
+          -0.0,
+          -0.0,
+          -0.2473
+        ],
+        "min_pairwise_sep": 0.0
+      }
+    ]
+  },
+  "object": "multishell_coexistence",
+  "promotion_allowed": false,
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "terrains": {
+    "leaf1": "Pit (sigma_- -> (0,0,-1))",
+    "leaf2": "Hill (H=sx + sx-dephasing -> (+1,0,0))",
+    "leaf3": "Source (sigma_+ -> (0,0,+1))"
+  },
+  "thetas": [
+    0.5235987755982988,
+    0.7853981633974483,
+    1.0471975511965976
+  ],
+  "tools": [
+    "QuantumOptics(timeevolution.master IS the dynamics — load_bearing)",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "z3_omitted": "deliberate: no decorative SMT; evidence is measured Bloch vectors + kill-control"
+}

@@ -1,0 +1,83 @@
+{
+  "all_pass": true,
+  "anchor_to_known_math": {
+    "H_measured": 1,
+    "known_Hopf_invariant": 1,
+    "match": true,
+    "two_methods_agree": true
+  },
+  "classification": "tool_lego_fit_probe",
+  "controls_summary": {
+    "anchor_to_known_ok": true,
+    "boundary_link1_ok": true,
+    "geometry_ok": true,
+    "killcontrol_link0_ok": true,
+    "positive_link1_ok": true,
+    "random_not_1_ok": true,
+    "z3_load_bearing_ok": true
+  },
+  "geometry_checks": {
+    "base_point_U1_invariance": 1.9229626863835638e-16,
+    "base_points_distinct_sep": 0.9999999999999999,
+    "distinct_fibers_disjoint_minsep": 0.517661023214069,
+    "fiber_num_nonzero_singvals": 2,
+    "fiber_on_S3_max_dev": 1.1102230246251565e-16,
+    "fiber_radius_max_dev": 1.1102230246251565e-16,
+    "fiber_singular_values": [
+      14.14213562,
+      14.14213562,
+      0.0,
+      0.0
+    ],
+    "is_great_circle": true,
+    "same_fiber_overlap_minsep": 0.0
+  },
+  "honest_status": "passes : genuine Hopf invariant MEASURED = 1 (two independent methods), kill-control (trivial bundle) = 0, anchored to known invariant 1, z3 load-bearing",
+  "item": "G_hopf_fibration",
+  "known_invariant": {
+    "name": "first Hopf invariant of S^3 -> S^2",
+    "source": "pi_3(S^2) = Z, Hopf class = generator; = linking number of two generic fibers",
+    "value": 1
+  },
+  "linking_measurements": {
+    "boundary_other_pair": {
+      "crossing": 1.0,
+      "gauss": 1.0000028143198594,
+      "gauss_rounded": 1
+    },
+    "genuine_two_fibers": {
+      "crossing": 1.0,
+      "gauss": 1.0000039980182223,
+      "gauss_rounded": 1
+    },
+    "random_ratematched": {
+      "crossing": 0.0,
+      "gauss": -0.0004636118670673401,
+      "gauss_rounded": 0
+    },
+    "trivial_killcontrol": {
+      "crossing": 0.0,
+      "gauss": 1.3695895449212162e-17,
+      "gauss_rounded": 0
+    }
+  },
+  "promotion_allowed": false,
+  "status_ladder": "exists < runs < passes",
+  "z3_load_bearing": {
+    "broken_genuine_to_trivial_sat": "sat",
+    "broken_trivial_to_genuine_sat": "sat",
+    "claim": "free ints Lg,Lt DERIVED from measured brackets satisfy Lg > Lt (Hopf nontriviality gap)",
+    "encoding": "Lg,Lt FREE Z3 integers; each open-bracketed by min/max of its two independent measurements (gauss,crossing); assert Not(Lg>Lt)",
+    "genuine_bracket": [
+      0,
+      2
+    ],
+    "genuine_unsat": "unsat",
+    "is_load_bearing": true,
+    "tool_role": "load_bearing",
+    "trivial_bracket": [
+      -1,
+      1
+    ]
+  }
+}

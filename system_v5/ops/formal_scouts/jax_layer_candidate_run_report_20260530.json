@@ -1,0 +1,102 @@
+{
+  "created_at": "2026-05-30T11:06:16-0700",
+  "failed_processes": 0,
+  "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "kind": "jax_layer_candidate_execution_report",
+  "passed_processes": 13,
+  "runs": [
+    {
+      "elapsed_s": 5.19,
+      "returncode": 0,
+      "script": "sim_layer_chirality_orientation_cover_8_16_32_64_probe.py",
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"blockers\": [],\n  \"elapsed_seconds\": 0.682039,\n  \"promotion_allowed\": false,\n  \"result_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/layer_chirality_orientation_cover_8_16_32_64_probe_results.json\"\n}\n"
+    },
+    {
+      "elapsed_s": 5.963,
+      "returncode": 0,
+      "script": "sim_layer_clifford_module_8_16_32_64_probe.py",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"result_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/clifford_module_geometry_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"dense_state_closure_used\": false,\n    \"elapsed_seconds\": 2.9897968769073486,\n    \"jax_anticommutator_max_defect\": 0.0,\n    \"jax_vs_pytorch_max_value_delta\": 4.440892098500626e-16,\n    \"max_scale\": 64,\n    \"negatives_killed\": [\n      \"commute_gammas\",\n      \"drop_orientation_fiber\",\n      \"flatten_metric\",\n      \"real_only_restriction\"\n    ],\n    \"site_counts\": [\n      8,\n      16,\n      32,\n      64\n    ],\n    \"torch_anticommutator_max_defect\": 0.0\n  }\n}\n"
+    },
+    {
+      "elapsed_s": 4.909,
+      "returncode": 0,
+      "script": "sim_layer_complex_hilbert_carrier_8_16_32_64_probe.py",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"blockers\": [],\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/layer_complex_hilbert_carrier_8_16_32_64_probe_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"elapsed_seconds\": 1.0848071575164795,\n    \"jax_vs_pytorch_max_value_delta\": 4.440892098500626e-16,\n    \"known_value_checks_pass\": true,\n    \"many_body_depth_pass\": true,\n    \"min_complex_phase_imag_coherence\": 3.637223771803931,\n    \"min_half_chain_entropy\": 1.9367978710680962,\n    \"negatives_all_kill\": true,\n    \"scale_pass\": true,\n    \"tools_have_nonzero_ablation_deltas\": true,\n    \"trace_psd_hermitian_pass\": true\n  }\n}\n"
+    },
+    {
+      "elapsed_s": 4.946,
+      "returncode": 0,
+      "script": "sim_layer_connection_holonomy_8_16_32_64_probe.py",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"alias_out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/connection_holonomy_geometry_results.json\",\n  \"all_pass\": true,\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/layer_connection_holonomy_8_16_32_64_probe_results.json\",\n  \"summary\": {\n    \"alias_result_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/connection_holonomy_geometry_results.json\",\n    \"all_pass\": true,\n    \"elapsed_seconds\": 1.394110918045044,\n    \"known_forward_berry_phase\": -1.5707963267948963,\n    \"max_value_delta_jax_vs_torch\": 1.1029592517086684e-10,\n    \"min_abs_holonomy_phase\": 1.5707963267948961,\n    \"min_path_order_gap\": 0.008043517440546702,\n    \"primary_result_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/layer_connection_holonomy_8_16_32_64_probe_results.json\",\n    \"site_counts\": [\n      8,\n      16,\n      32,\n      64\n    ]\n  }\n}\n"
+    },
+    {
+      "elapsed_s": 16.886,
+      "returncode": 0,
+      "script": "sim_layer_dynamic_transition_ratchet_8_16_32_64_probe.py",
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"wrote\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/dynamic_transition_ratchet_geometry_results.json\",\n  \"witness\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/dynamic_transition_ratchet_geometry_witness.json\",\n  \"min_mps_max_bond\": 16,\n  \"min_half_chain_entropy\": 0.8037834553742408,\n  \"min_entropy_growth\": 0.5893803142120351,\n  \"max_jax_vs_pytorch_delta\": 2.56149747314576e-13\n}\n"
+    },
+    {
+      "elapsed_s": 6.945,
+      "returncode": 0,
+      "script": "sim_layer_finite_constraint_complex_8_16_32_64_probe.py",
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/layer_finite_constraint_complex_8_16_32_64_probe_results.json\",\n  \"summary\": {\n    \"elapsed_seconds\": 2.524458885192871,\n    \"known_betti\": [\n      1,\n      1\n    ],\n    \"known_chi\": 0,\n    \"max_jax_torch_delta\": 0.0,\n    \"min_geomstats_ablation_delta\": 6.283185307179562,\n    \"min_isolated_cell_ablation_delta\": 2,\n    \"min_open_cell_ablation_delta\": 2,\n    \"site_counts\": [\n      8,\n      16,\n      32,\n      64\n    ]\n  }\n}\n"
+    },
+    {
+      "elapsed_s": 6.592,
+      "returncode": 0,
+      "script": "sim_layer_frame_bundle_gstructure_8_16_32_64_probe.py",
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"wrote\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/layer_frame_bundle_gstructure_8_16_32_64_probe_results.json\",\n  \"all_pass\": true,\n  \"max_jax_torch_delta\": 6.199390603956634e-16\n}\n"
+    },
+    {
+      "elapsed_s": 6.722,
+      "returncode": 0,
+      "script": "sim_layer_hopf_fiber_bundle_8_16_32_64_probe.py",
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"elapsed_seconds\": 3.647005,\n  \"promotion_allowed\": false,\n  \"result_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/layer_hopf_fiber_bundle_8_16_32_64_probe_results.json\"\n}\n"
+    },
+    {
+      "elapsed_s": 9.398,
+      "returncode": 0,
+      "script": "sim_layer_hopf_torus_leaf_8_16_32_64_probe.py",
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/hopf_torus_leaf_family_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"elapsed_seconds\": 5.200742959976196,\n    \"max_commuting_control_gap\": 2.7308338298813246e-16,\n    \"min_metric_det\": 0.125,\n    \"min_noncommuting_order_gap\": 0.22007192070673878,\n    \"scale_site_counts\": [\n      8,\n      16,\n      32,\n      64\n    ]\n  }\n}\n"
+    },
+    {
+      "elapsed_s": 5.286,
+      "returncode": 0,
+      "script": "sim_layer_projective_base_sphere_8_16_32_64_probe.py",
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"blockers\": [],\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/layer_projective_base_sphere_8_16_32_64_probe_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"all_scale_pass\": true,\n    \"elapsed_seconds\": 1.3999288082122803,\n    \"known_values_pass\": true,\n    \"max_commuting_order_gap\": 0.0,\n    \"max_jax_vs_pytorch_delta\": 2.0664026045835726e-14,\n    \"max_phase_quotient_drift\": 5.661048867003676e-16,\n    \"min_kahler_orientation\": 0.011064375336073259,\n    \"min_order_gap\": 0.010746075105082202,\n    \"negatives_pass\": true,\n    \"tools_pass\": true\n  }\n}\n"
+    },
+    {
+      "elapsed_s": 13.37,
+      "returncode": 0,
+      "script": "sim_layer_tensor_product_coupling_8_16_32_64_probe.py",
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/layer_tensor_product_coupling_8_16_32_64_probe_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"max_jax_vs_pytorch_delta\": 5.5422333389287814e-12,\n    \"max_sites\": 64,\n    \"min_half_chain_entropy\": 2.079441541648123,\n    \"min_mps_max_bond\": 8,\n    \"promotion_allowed\": false,\n    \"scale_rungs\": [\n      8,\n      16,\n      32,\n      64\n    ]\n  }\n}\n"
+    },
+    {
+      "elapsed_s": 5.793,
+      "returncode": 0,
+      "script": "sim_layer_unit_spinor_sphere_8_16_32_64_probe.py",
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/unit_spinor_sphere_8_16_32_64_probe_results.json\",\n  \"scale_pass\": true,\n  \"summary\": {\n    \"bond_dim\": 2,\n    \"elapsed_seconds\": 0.8128337860107422,\n    \"max_engine_delta\": 4.440892098500626e-16,\n    \"max_known_delta\": 5.551115123125783e-17,\n    \"max_phase_fs\": 0.0,\n    \"max_site_count\": 64,\n    \"min_orientation_fs\": 0.9803254908209084,\n    \"min_real_only_gap\": 0.6758682650573566,\n    \"site_counts\": [\n      8,\n      16,\n      32,\n      64\n    ]\n  }\n}\n"
+    },
+    {
+      "elapsed_s": 4.642,
+      "returncode": 0,
+      "script": "sim_layer_weyl_spinor_bundle_network_8_16_32_64_probe.py",
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"blockers\": [],\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/weyl_spinor_bundle_network_8_16_32_64_probe_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"all_scale_pass\": true,\n    \"depth_pass\": true,\n    \"elapsed_seconds\": 1.2452328205108643,\n    \"known_values_pass\": true,\n    \"max_jax_vs_pytorch_delta\": 2.220446049250313e-16,\n    \"min_chirality_gap\": 1.9999999999999993,\n    \"min_half_chain_entanglement_entropy\": 2.078885555267334,\n    \"min_quimb_bond_delta\": 7.0,\n    \"negatives_pass\": true,\n    \"tools_pass\": true\n  }\n}\n"
+    }
+  ],
+  "scope": "Existing JAX-using 8/16/32/64 layer-candidate scripts; not formal proof and not PyTorch-primary.",
+  "scripts_requested": 13
+}

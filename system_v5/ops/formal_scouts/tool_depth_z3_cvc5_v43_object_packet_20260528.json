@@ -1,0 +1,216 @@
+{
+  "schema_version": "wizard_v4_3_primary_object_card_v1",
+  "primary_object_card": {
+    "object_name": "ToolDepthZ3Cvc5NonVacuousSolverControls",
+    "object_type": "tool_depth_solver_control_repair",
+    "object_statement": "The z3/cvc5 tool-depth repair proves row-derived finite coverage, downstream-lock, and order-sensitivity claims with non-vacuous SAT, UNSAT, and boundary controls before solver rows can support the layer-lego factory.",
+    "object_statement_sha256": "38a3a12411d21f65e91c241437b9358dbcb070bf3d5b5bf5d09ab9987f74ec36",
+    "source_anchors": [
+      {
+        "surface": "repo_audit",
+        "reference": "system_v5/ops/formal_scouts/external_model_audits/20260528_tool_layer_g_structure_depth/multimodel_audit_synthesis_20260528.json",
+        "quote_or_summary": "The multimodel audit names z3/cvc5 map_unprovable rows and metadata-only ablations as the next bounded repair before deeper tool claims."
+      },
+      {
+        "surface": "parent_result",
+        "reference": "system_v5/ops/formal_scouts/results/tool_by_tool_layer_g_structure_geometry_depth_probe_results.json",
+        "quote_or_summary": "The parent breadth receipt has 44 layer rows, 48 G-structure rows, 15 tool rows, 8/16/32/64 site coverage, and blocked downstream consumers."
+      },
+      {
+        "surface": "repo_contract",
+        "reference": "system_v5/docs/LLM_CONTROLLER_CONTRACT.md",
+        "quote_or_summary": "Tool-stage work must be micro-first with one tool/function claim, positive, negative, boundary behavior, demotion condition, and no downstream promotion."
+      }
+    ],
+    "plain_language_definition": "The object to preserve is the proof-tool repair itself: z3 and cvc5 must each act on row-derived finite facts from the existing layer/G/tool breadth receipt, and they must both show positive SAT, negative UNSAT, boundary SAT, and order-cycle UNSAT behavior. This packet prevents a solver label, an import, or a metadata ablation row from becoming proof depth.",
+    "native_terms": {
+      "row-derived finite facts": "The exact layer rows, G-structure rows, tool rows, site counts, bond bounds, metric floors, and locked-consumer facts read from the parent result rather than invented constants.",
+      "map_unprovable": "A demotion outcome meaning that without a proof solver's actual formula result, the map cannot be certified; it is not a passing proof by itself.",
+      "non-vacuous solver control": "A solver check that has at least one expected SAT case, one expected UNSAT case, one boundary mutation that changes status, and one demotion path if the solver is removed.",
+      "order-cycle control": "The N01 guard where Omega_r, compatibility weights, adapters, compression, rho_present, and outward_record must keep order; forcing a cycle must be UNSAT."
+    },
+    "weirdness_signature": [
+      "solver import or solver label is not proof depth",
+      "metadata ablation text cannot become non-vacuous ablation evidence",
+      "the repair is tool-depth only and cannot select G-structure or open stacking",
+      "positive and negative solver controls must be over the same row-derived formula family"
+    ],
+    "first_class_fields": [
+      "parent_result_path",
+      "row_ids",
+      "row_pass_facts",
+      "layer_row_count",
+      "g_structure_row_count",
+      "tool_count",
+      "site_counts",
+      "peps2d_bond_dim",
+      "peps3d_bond_dim",
+      "downstream_locked",
+      "F01_finite_row_family",
+      "N01_order_sensitive_family",
+      "z3_formula_statuses",
+      "cvc5_formula_statuses",
+      "formula_sha256",
+      "sat_positive_controls",
+      "unsat_negative_controls",
+      "boundary_mutation_controls",
+      "solver_agreement_matrix",
+      "ablation_outcome_delta",
+      "blocked_downstream_consumers"
+    ],
+    "domain": "the existing tool-by-tool layer/G-structure breadth receipt plus the v4.3 layer-factory and RPF object packets",
+    "codomain_or_output": "a bounded solver-depth repair receipt with z3/cvc5 status matrix, formula hashes, models or unsat cores, ablation deltas, and locked downstream consumers",
+    "allowed_operations": [
+      "read parent row facts",
+      "encode the same finite formula family in z3 and cvc5",
+      "run positive SAT, negative UNSAT, boundary SAT, and order-cycle UNSAT controls",
+      "record formula hashes, SAT models, UNSAT cores, and solver agreement",
+      "demote the claim if a solver is removed or if statuses disagree"
+    ],
+    "required_invariants": [
+      "row facts come from the parent result, not from detached constants",
+      "z3 and cvc5 check the same formula names and expectations",
+      "boundary mutation changes the satisfiability status",
+      "N01 order-chain pressure remains explicit",
+      "downstream consumers remain blocked after the repair"
+    ],
+    "forbidden_substitutions": [
+      "solver import as proof",
+      "metadata-only ablation as proof",
+      "aggregate boolean as row-level proof",
+      "proxy SAT label without formula hash",
+      "G-structure selection from solver repair",
+      "stacking or Axis0 continuation from solver repair"
+    ],
+    "negative_controls": [
+      "actual rows plus violation target is UNSAT",
+      "one synthetic failed row plus violation target is SAT",
+      "valid object order chain is SAT",
+      "order cycle is UNSAT",
+      "solver status disagreement blocks promotion",
+      "downstream consumer opening blocks the packet"
+    ],
+    "adapter_policy": "The solver-control packet is a proof-tool adapter for the layer-lego factory. It may repair z3/cvc5 depth, but it cannot become layer evidence, G-structure selection, stacking, Axis0, FEP, physics, or final manifold proof.",
+    "promotion_locks": [
+      "official G-structure selection cannot be opened",
+      "layer embedding cannot be opened",
+      "stacking cannot be opened",
+      "flux cannot be opened",
+      "Xi/Phi0 cannot be opened",
+      "Axis0 cannot be opened",
+      "Holodeck/FEP cannot be opened",
+      "physics/gravity cannot be opened",
+      "final manifold cannot be opened"
+    ],
+    "blocked_downstream_consumers": [
+      "official_layered_ratchet_G_structure_selection",
+      "layer_embedding_in_G_structure",
+      "stacking",
+      "cross_layer_order_closure",
+      "flux",
+      "Xi/Phi0",
+      "Axis0",
+      "Holodeck/FEP",
+      "physics/gravity",
+      "final_manifold_admission"
+    ],
+    "artifact_surface": "system_v5/ops/formal_scouts/sim_tool_depth_z3_cvc5_non_vacuous_solver_controls_probe.py and its result/status artifacts"
+  },
+  "lateral_mappings": [
+    {
+      "label": "SMT proof-tool adapter",
+      "use_type": "adapter",
+      "target": "row-derived finite coverage and order-control formula family",
+      "preserves": [
+        "finite row IDs and pass facts",
+        "F01 finite row family",
+        "N01 order-sensitive chain"
+      ],
+      "loses": [
+        "numeric spinor dynamics",
+        "right to select G-structure or stacking order"
+      ],
+      "preconditions": [
+        "parent result exists and all row facts are read",
+        "both solvers run the same named formula family"
+      ],
+      "kill_control": "If z3 or cvc5 is removed, or if either solver returns a different expected status, the solver-depth repair is blocked.",
+      "promotion_allowed": true
+    },
+    {
+      "label": "Torch finite carrier witness",
+      "use_type": "probe",
+      "target": "nonclassical carrier witness for the repair packet",
+      "preserves": [
+        "torch-native finite carrier",
+        "autograd sensitivity",
+        "parent count and metric provenance"
+      ],
+      "loses": [
+        "full spinor-network dynamics",
+        "full PEPS contraction evidence"
+      ],
+      "preconditions": [
+        "parent result exposes count and metric floors",
+        "gradient is nonzero under the finite carrier witness"
+      ],
+      "kill_control": "If the torch witness or gradient is removed, the packet cannot claim nonclassical carrier support.",
+      "promotion_allowed": true
+    },
+    {
+      "label": "Solver-status summary",
+      "use_type": "proxy",
+      "target": "compact status table for the five formula expectations",
+      "preserves": [
+        "which formula names passed",
+        "which solver returned SAT or UNSAT"
+      ],
+      "loses": [
+        "row-level provenance",
+        "models and unsat cores"
+      ],
+      "preconditions": [
+        "full formula matrix remains stored in the result receipt"
+      ],
+      "kill_control": "If only the compact status table remains and the formula matrix is absent, the packet is downgraded to summary-only.",
+      "promotion_allowed": false
+    }
+  ],
+  "constraint_bands": {
+    "root_constraints": [
+      "F01 finite carrier/probe/operator/path set",
+      "N01 noncommuting or order-sensitive operation/control"
+    ],
+    "extended_constraints": [
+      "z3 and cvc5 same-formula cross-check",
+      "torch-native finite carrier witness",
+      "formula hashes, SAT models, and UNSAT cores",
+      "downstream consumer locks"
+    ]
+  },
+  "exploration_contract": {
+    "wildcard_lanes_min": 1,
+    "lateral_lane_types": [
+      "adapter",
+      "probe",
+      "analogy",
+      "proxy"
+    ],
+    "fixation_breakers": [
+      "if the packet starts optimizing a solver label, require formula hash and boundary mutation",
+      "if a summary table is treated as proof, reopen the row-level formula matrix",
+      "if downstream work is suggested, block it unless the layer factory matrix is exhausted"
+    ]
+  },
+  "loop_contract": {
+    "max_loops": 4,
+    "phases": [
+      "build",
+      "premortem",
+      "repair",
+      "selftest"
+    ],
+    "repair_rule": "repair the first solver non-vacuity failure before adding new layer, G-structure, stacking, Axis0, flux, FEP, or physics work",
+    "stop_condition": "z3 and cvc5 both pass the expected SAT/UNSAT matrix and status artifacts name the next independent tool-depth packet, or a blocker names the first formula that failed"
+  }
+}

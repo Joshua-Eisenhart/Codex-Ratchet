@@ -1,0 +1,149 @@
+{
+  "F01_witness": {
+    "finite_carrier": "finite ensemble of pure spinors psi in S^3 subset C^2 (Ntraj=2000); finite genuine channel set (6 het + 3 commuting control)",
+    "finite_operator": "Ti/Te/Fi/Fe + Weyl-L/R GKSL as MCWF spinor maps, reused VERBATIM",
+    "finite_path": "ordered spinor words (permutations) -> ensemble -> Hopf S^2 push-forward -> Y_lm moments; phase-fixed R^4 embedding -> S^3 moment tensors",
+    "finite_probe": "the SAME 6-permutation set as the source probe; iso-rho-but-order-distinct pair selected by the source-probe thresholds; Y_lm moments l=1..4 and S^3 2nd/3rd moment tensors"
+  },
+  "LMAX_spherical_harmonic": 4,
+  "N01_witness": {
+    "coarse_hist_L1_on_pair": 1.147,
+    "finer_s3_sep_on_pair": 0.18883399090945013,
+    "finer_ylm_sep_on_pair": 2.0496707869432473,
+    "iso_rho_pair_rho_dist": 0.07563282761356313,
+    "order_sensitivity": "the iso-rho pair is two DISTINCT orderings of the SAME noncommuting channel set whose scalar rho is ~equal; the finer invariants probe whether the order-dependence survives in the angular/S^3 moments"
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "carrier-fork decision (candidate evidence only)",
+    "any ratchet edge admission",
+    "pairwise nesting",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics"
+  ],
+  "carrier": "pure spinors psi in S^3 subset C^2 (ensemble), advanced by the SAME MCWF unitary drift + dissipative jumps as the source probe; rho recovered as <|psi><psi|>. NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "SHARPENS the source probe's revelation finding with two FINER invariants (Y_lm angular moments l=1..4; S^3 2nd/3rd moment tensors) and reports whether either separates the iso-rho-but-order-distinct pair MORE sharply than the coarse 12-bin histogram. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics, and does NOT decide the spinor-vs-tensor carrier fork. promotion_allowed=false.",
+  "classification": "spinor_finer_invariant_poc",
+  "commuting_control": {
+    "coarse_hist_L1": 0.056999999999999974,
+    "finer_s3_sep": 0.03964693707535875,
+    "finer_ylm_sep": 0.11880455630649543,
+    "note": "commuting pair: all invariants MUST sit near their noise floor (same distribution across orders). A finer invariant firing here would be a metric artifact.",
+    "scalar_rho_trace_distance": 0.041594317458560896,
+    "word": "Tz.30 Tz.55 Tz.65 (forward) vs reversed (commuting z-pinches)"
+  },
+  "descriptor_dims": {
+    "coarse_hist12_bins": 12,
+    "finer_s3_moment_components": 30,
+    "finer_ylm_components": 24,
+    "s3_note": "10 unique <u_i u_j> + 20 unique <u_i u_j u_k> of the phase-fixed R^4 embedding on S^3",
+    "ylm_note": "sum_{l=1}^{4}(2l+1) real spherical-harmonic monomial averages of the S^2 push-forward"
+  },
+  "finer_beats_coarse_verdict": {
+    "any_finer_beats_coarse_seed_stable": false,
+    "coarse_signal_over_floor_seed1": 25.488888888888884,
+    "commuting_control_coarse_flat": true,
+    "commuting_control_s3_flat": true,
+    "commuting_control_ylm_flat": true,
+    "comparison_metric": "signal_over_its_own_noise_floor (unit-free); the requested separation/rho_dist ratios are also reported in separation_primary_seed / separation_second_seed.",
+    "finer_s3_signal_over_floor_seed1": 8.669780119176242,
+    "finer_ylm_signal_over_floor_seed1": 23.65355678910349,
+    "s3_beats_coarse_seed1": false,
+    "s3_beats_coarse_seed2": false,
+    "s3_beats_coarse_seed_stable": false,
+    "ylm_beats_coarse_seed1": false,
+    "ylm_beats_coarse_seed2": true,
+    "ylm_beats_coarse_seed_stable": false
+  },
+  "iso_rho_pair": {
+    "dist_distinct_l1_threshold": 0.17099999999999993,
+    "found": true,
+    "iso_rho_threshold": 0.2683281572999747,
+    "note": "the SAME decisive pair the source probe flagged: near-equal scalar rho (rho_dist small) but order-distinct spinor distribution.",
+    "pair_indices_1based": [
+      4,
+      6
+    ],
+    "perm_A": "Fi_xrot WeylR_GKSL Ti_zpinch Fe_zrot WeylL_GKSL Te_xpinch",
+    "perm_B": "Fe_zrot Ti_zpinch WeylR_GKSL Fi_xrot Te_xpinch WeylL_GKSL",
+    "rho_trace_distance": 0.07563282761356313
+  },
+  "noise_floor": {
+    "Ntraj": 2000,
+    "coarse_hist_L1_floor": 0.04500000000000001,
+    "finer_s3_floor": 0.02178071281090254,
+    "finer_ylm_floor": 0.08665380877887555,
+    "method": "ONE fixed het order (Ti Fi WeylL Te Fe WeylR) applied to two independent MCWF draws (different trajectory RNG seeds) of the SAME seeded ensemble; the residual separation is pure finite-Ntraj stochastic sampling noise (the stochastic pinch/Weyl jumps make this nonzero, unlike a deterministic unitary word)."
+  },
+  "non_numpy": true,
+  "object_id": "spinor_s3_finer_invariant",
+  "promotion_allowed": false,
+  "reused_from": "spinor_native_trajectory_probe.jl (channels Ti/Te/Fi/Fe + Weyl-L/R GKSL, hopf_h0, rand_rho, gksl_step_evolve, MCWF maps, seed_spinor_ensemble, ensemble_rho, apply_word_ensemble, hopf_s2, perm_set, seed_rho, q/ang/H0, coarse 12-bin histogram s2_hist12). The Y_lm moments (LMAX=4) and S^3 2nd/3rd moment tensors are the only NEW constructions.",
+  "script": "spinor_s3_finer_invariant.jl",
+  "seed": 20260602,
+  "separation_primary_seed": {
+    "coarse_hist_L1": 1.147,
+    "coarse_ratio_over_rho_dist": 15.165372447271958,
+    "coarse_signal_over_its_floor": 25.488888888888884,
+    "finer_s3_ratio_over_rho_dist": 2.4967199676081764,
+    "finer_s3_sep": 0.18883399090945013,
+    "finer_s3_signal_over_its_floor": 8.669780119176242,
+    "finer_ylm_ratio_over_rho_dist": 27.100279754391764,
+    "finer_ylm_sep": 2.0496707869432473,
+    "finer_ylm_signal_over_its_floor": 23.65355678910349,
+    "note": "ratio_over_rho_dist is the requested separation/rho_dist figure (raw, unit-bearing: coarse is an L1 of a 12-bin histogram, finer are L2 of moment vectors). signal_over_its_floor is the unit-FREE comparison (each invariant vs its own MC noise floor) — the honest way to ask 'which invariant lifts the pair further above its own noise'.",
+    "rho_trace_distance": 0.07563282761356313
+  },
+  "separation_second_seed": {
+    "coarse_hist_L1": 1.1480000000000001,
+    "coarse_over_floor": 11.366336633663368,
+    "coarse_over_rho": 15.356952903800922,
+    "finer_s3_sep": 0.18690362295831855,
+    "finer_ylm_sep": 2.0482447418475584,
+    "pair_indices": [
+      4,
+      6
+    ],
+    "rho_dist": 0.07475441301352591,
+    "s3_over_floor": 3.366963075344587,
+    "s3_over_rho": 2.5002353095127723,
+    "ylm_over_floor": 12.189157511300769,
+    "ylm_over_rho": 27.39964985715229
+  },
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: eigen (ensemble seeding), svdvals (rho trace distance), norms; every measured separation flows through it.",
+    "Random": "load_bearing: MCWF jumps and ensemble sampling are random; the noise floor and the separations are measured over fresh draws, not planted.",
+    "Statistics": "supportive: means over the ensemble.",
+    "Z3": "load_bearing: binds the measured finer-vs-coarse signal/floor ratio to the finer-beats-coarse law; verdict flips SAT->UNSAT when the finer descriptor is replaced by the coarse histogram (wrong-structure control)."
+  },
+  "verdict": {
+    "any_finer_beats_coarse_seed_stable": false,
+    "classification": "coarse_histogram_already_captured_structure",
+    "commuting_control_all_flat": true,
+    "honest_reading": "BRUTALLY HONEST NEGATIVE: the finer invariants do NOT lift the iso-rho pair further above their noise floors than the coarse histogram does. This means the coarse 12-bin histogram ALREADY captured the beyond-rho structure for this pair — the finer descriptors add no separation. Informative: the source probe's revelation finding does not depend on a finer invariant; the coarse histogram was sufficient on this axis.",
+    "interpretation": "separation is compared as signal/own-noise-floor (unit-free) AND reported as signal/rho_dist (the requested raw ratio). 'beats' = finer signal/floor strictly exceeds coarse signal/floor at BOTH seeds with the commuting control flat. promotion_allowed=false; CANDIDATE evidence only.",
+    "s3_moment_beats": false,
+    "ylm_beats": false,
+    "z3_load_bearing_flip": false
+  },
+  "z3_load_bearing": {
+    "coarse_signal_over_floor": 25.488888888888884,
+    "encoding": "FREE int is_sharper, FREE bool beats; law Or([Not(beats), is_sharper==1]); assert beats=true + is_sharper==IntVal(measured). genuine: best-finer signal/floor vs coarse signal/floor; wrong-structure: best-finer signal/floor measured on the COMMUTING control (same-distribution input, structure erased).",
+    "genuine_best_finer_signal_over_floor": 23.65355678910349,
+    "genuine_verdict": "unsat",
+    "load_bearing_flip": false,
+    "note": "NO FLIP this run: the genuine measured finer does NOT strictly beat coarse on the signal/floor metric (genuine_verdict=unsat), so the z3 binding cannot demonstrate a load-bearing SAT->UNSAT flip. Reported honestly; the z3 leg is NOT load-bearing for a finer-beats-coarse claim this run.",
+    "wrong_structure_commuting_finer_signal_over_floor": 1.8202772985240916,
+    "wrong_structure_verdict": "unsat"
+  }
+}

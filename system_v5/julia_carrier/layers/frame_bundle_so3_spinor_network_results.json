@@ -1,0 +1,197 @@
+{
+  "all_pass": true,
+  "bloch_free": true,
+  "bloch_free_basis": "states are MPS spinor amplitudes; readouts are det / orthonormality / Schmidt-SVD entropy. Pauli matrices appear only as the su(2) Lie-algebra basis of the SU(2) rep, never as a Bloch r-vector of a state.",
+  "carrier": "Julia: LinearAlgebra + ITensors/ITensorMPS spinor-network MPS; Z3 structural; JSON",
+  "classification": "frame_bundle_so3_spinor_network_poc",
+  "entanglement_spinor_network": {
+    "interpretation": "the SO(3) frame acts on a genuinely entangled (GHZ-class) spinor network: interior cut entropies are ~1 bit; the SU(2) frame is a local unitary so it preserves the Schmidt spectrum. The PRODUCT control (same frame, unentangled |0..0> network) gives ~0 cut entropy -> entanglement is load-bearing.",
+    "n_sites_tested": [
+      4,
+      6,
+      8
+    ],
+    "pass": true,
+    "rows": [
+      {
+        "bond_entangled": 2,
+        "bond_product": 1,
+        "entangled_cut_entropies": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "entanglement_load_bearing": true,
+        "max_entangled_cut_bits": 1.0,
+        "max_product_cut_bits": 0.0,
+        "min_entangled_cut_bits": 1.0,
+        "n_cuts": 3,
+        "n_sites": 4,
+        "product_cut_entropies": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "schmidt_spectrum_mid_cut": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "bond_entangled": 2,
+        "bond_product": 1,
+        "entangled_cut_entropies": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "entanglement_load_bearing": true,
+        "max_entangled_cut_bits": 1.0,
+        "max_product_cut_bits": 0.0,
+        "min_entangled_cut_bits": 1.0,
+        "n_cuts": 5,
+        "n_sites": 6,
+        "product_cut_entropies": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "schmidt_spectrum_mid_cut": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "bond_entangled": 2,
+        "bond_product": 1,
+        "entangled_cut_entropies": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "entanglement_load_bearing": true,
+        "max_entangled_cut_bits": 1.0,
+        "max_product_cut_bits": 0.0,
+        "min_entangled_cut_bits": 1.0,
+        "n_cuts": 7,
+        "n_sites": 8,
+        "product_cut_entropies": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "schmidt_spectrum_mid_cut": [
+          0.5,
+          0.5
+        ]
+      }
+    ]
+  },
+  "frame_element": {
+    "angle": 0.9,
+    "axis": [
+      0.3,
+      1.0,
+      -0.4
+    ],
+    "pass": true,
+    "so3_det": 0.9999999999999998,
+    "so3_orthonormality_err": 2.4902799884605145e-16,
+    "su2_det": 1.0,
+    "su2_unitarity_err": 0.0
+  },
+  "geometry_invariant_anchor": {
+    "matches_known_invariant": true,
+    "max_det_deviation_on_SO3_paths": 6.661338147750939e-16,
+    "o3_component_count": 2,
+    "o3_det_components_observed": [
+      -1,
+      1
+    ],
+    "pass": true,
+    "pi0_O3": "Z/2 (2 components, det = +-1)",
+    "pi0_SO3": "0 (connected; det = +1 throughout)",
+    "so3_all_det_plus1": true
+  },
+  "honest_status": "runs ; passes local rerun (this run)",
+  "item": "frame_bundle_so3_spinor_network",
+  "object": "oriented orthonormal frame bundle, O(3) -> SO(3) reduction, acting via the spin double cover SU(2) on an ITensors entangled spinor network",
+  "promotion_allowed": false,
+  "title": "SO(3) frame-bundle reduction acting on a finite spinor network",
+  "tool_manifest": {
+    "ITensors_ITensorMPS": "load_bearing (spinor-network MPS + Schmidt/SVD cut entropy)",
+    "JSON": "supportive (results emission)",
+    "LinearAlgebra": "load_bearing (SU(2)/SO(3) frame algebra, det, orthonormality, SVD)",
+    "Random": "load_bearing (random SO(3)/O(3) sampling for the pi_0 anchor and reflection control)",
+    "Z3": "load_bearing (structural exclusion of det=-1 reflection frames; det DERIVED, verdict flips on input)"
+  },
+  "wrong_structure_control_numeric": {
+    "admitted_by_SO3_reduction": false,
+    "control_fires": "reflection det = -1.0 (genuinely orthonormal, in O(3)) is EXCLUDED by the SO(3) det=+1 reduction (admitted=false).",
+    "excluded": true,
+    "pass": true,
+    "reflected_frame_det": -0.9999999999999993,
+    "reflected_frame_orthonormality_err": 7.889616961715915e-16
+  },
+  "wrong_structure_control_z3_structural": {
+    "broken_input_reflected_as_genuine_excludes_UNSAT": true,
+    "junk_UNSAT_fails_orthonormality": true,
+    "measured_genuine_frame_wired": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "measured_reflected_frame_wired": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        -1
+      ]
+    ],
+    "pass": true,
+    "raw_genuine": "sat",
+    "raw_junk": "unsat",
+    "raw_reflect": "unsat",
+    "raw_reflect_no_reduction": "sat",
+    "reduction_admits_genuine_SAT": true,
+    "reduction_excludes_reflection_UNSAT": true,
+    "reflection_SAT_without_reduction": true,
+    "tool_role": "load_bearing",
+    "tool_role_basis": "Z3 DERIVES det from the wired orthonormal frame (cofactor expansion) and applies det=+1: genuine -> SAT, reflection -> UNSAT. The UNSAT consults orthonormality (same reflection is SAT without the reduction; junk frame is UNSAT on orthonormality alone), so it is not a 1!=-1 literal; the verdict flips when the wired frame is swapped.",
+    "verdict_flips_on_input": true
+  }
+}

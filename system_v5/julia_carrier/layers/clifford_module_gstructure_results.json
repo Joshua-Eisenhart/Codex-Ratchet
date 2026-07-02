@@ -1,0 +1,127 @@
+{
+  "all_pass": true,
+  "anchored_invariant": {
+    "burnside_image_rank": 16,
+    "confirmed": true,
+    "is_full_matrix_algebra_M(dim)^2": true,
+    "module_dim_measured": 4,
+    "schur_commutant_dim": 1,
+    "statement": "dim of the irreducible complex Cl(1,3)-module = 4 (Cl(1,3)⊗C ≅ M4(C); M2(H) on H^2 ~ C^4)"
+  },
+  "carrier": "LinearAlgebra (explicit 4x4 rep) + CliffordAlgebras.jl Cl(1,3) (independent anchor), non-numpy",
+  "classification": "PoC",
+  "construction": {
+    "clifford_relation_max_residual": 0.0,
+    "clifford_relation_ok": true,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_sq_residual": 0.0,
+    "generator_squares_ours": [
+      1.0,
+      -1.0,
+      -1.0,
+      -1.0
+    ],
+    "generator_squares_package": [
+      1.0,
+      -1.0,
+      -1.0,
+      -1.0
+    ],
+    "signature_pqr_package": [
+      1,
+      3,
+      0
+    ]
+  },
+  "faithful_irreducible": {
+    "burnside_rank": 16,
+    "burnside_target_M4": 16,
+    "faithful": true,
+    "irreducible": true,
+    "module_dim": 4,
+    "schur_commutant_dim": 1
+  },
+  "genuineness_booleans": {
+    "clifford_relation_measured": true,
+    "dim4_invariant_confirmed": true,
+    "faithful_measured": true,
+    "irreducible_measured": true,
+    "killcontrol_K1_reducible_fires": true,
+    "killcontrol_K2_nonfaithful_fires": true,
+    "module_action_controls": true,
+    "noncircular_gamma5_crosscheck": true,
+    "noncircular_pseudoscalar_minus1": true,
+    "noncircular_signature_matches_pkg": true,
+    "weyl_split_under_even_subalgebra": true
+  },
+  "geometry_scout": "Clifford-module G-structure: Dirac spinor as irreducible Cl(1,3)-module",
+  "honest_status_ladder": "passes local rerun (this run)",
+  "killcontrol_K1_reducible": {
+    "K1_fires": true,
+    "action": "rho ⊕ rho on C^8 (genuine but reducible Cl(1,3) rep)",
+    "burnside_rank": 16,
+    "burnside_target_M8": 64,
+    "commutant_dim": 4,
+    "irreducibility_test_rejects": true,
+    "valid_clifford_rep": true
+  },
+  "killcontrol_K2_nonfaithful": {
+    "K2_fires": true,
+    "action": "g3 := g2 (linear dependency among generators)",
+    "also_breaks_clifford_relation": true,
+    "burnside_rank": 8,
+    "burnside_target_M4": 16,
+    "commutant_dim": 2,
+    "faithfulness_test_rejects": true,
+    "irreducibility_test_rejects": true
+  },
+  "module_action_controls": {
+    "boundary_superposition_zero_charge": 2.2371143170757382e-17,
+    "controls_ok": true,
+    "negative_odd_moves_left_to_right": true,
+    "positive_left_stays_left_under_even": true,
+    "positive_nonzero_action": true
+  },
+  "noncircular_anchor": {
+    "crosscheck_ok": true,
+    "our_gamma5_sq_is_I": true,
+    "package": "CliffordAlgebras.CliffordAlgebra(1,3)",
+    "package_predicted_gamma5_sq": 1.0,
+    "pseudoscalar_sq_is_minus1": true,
+    "pseudoscalar_sq_scalar": -1.0,
+    "signature_matches": true
+  },
+  "object_id": "clifford_module_gstructure",
+  "promotion_allowed": false,
+  "weyl_split": {
+    "chiral_form": true,
+    "dim_left": 2,
+    "dim_right": 2,
+    "each_dim2": true,
+    "even_commutes": true,
+    "even_subalgebra_invariant": true,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "left_weyl_burnside_rank_M2": 4,
+    "max_even_commutator_with_g5": 0.0,
+    "max_even_cross_block_leak": 0.0,
+    "max_odd_anticommutator_with_g5": 0.0,
+    "odd_anticommutes": true,
+    "odd_connects_L_R": true,
+    "odd_cross_block_leak": 1.0,
+    "right_weyl_burnside_rank_M2": 4,
+    "weyl_blocks_irreducible": true,
+    "weyl_split_ok": true
+  },
+  "z3_omission_reason": "Every claim is a rank/nullspace dimension of a measured complex matrix decided by linear algebra over a continuous span, not an integer identity over literals. A Z3 block would be a decorative tautology (this codebase's recurring weakness). Load is carried by the Clifford carrier + Burnside/Schur measurements + kill-controls.",
+  "z3_used": false
+}

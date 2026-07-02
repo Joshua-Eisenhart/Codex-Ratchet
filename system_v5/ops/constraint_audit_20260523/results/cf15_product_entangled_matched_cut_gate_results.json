@@ -1,0 +1,50 @@
+{
+  "schema": "cf15_product_entangled_matched_cut_gate_result_v1",
+  "name": "cf15_product_entangled_matched_cut_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-15",
+  "gate": "EG-CF15-product-entangled-matched-cut",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-15 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite density matrices, partial traces, mutual information, and negativity controls"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:09:25Z",
+  "runtime_seconds": 0.0016083717346191406,
+  "positive": {
+    "pass": true,
+    "primitive_factorization_error": 0.7499999999999998,
+    "entangled_mutual_info": 1.3862943611198906,
+    "entangled_negativity": 0.4999999999999999
+  },
+  "negative": {
+    "pass": true,
+    "product_mutual_info": 0.0,
+    "product_negativity": 0.0
+  },
+  "matched_control": {
+    "pass": true,
+    "matched_marginal_gap": 1.1102230246251565e-16,
+    "same_marginals_product_vs_entangled_state_gap": 0.7499999999999998
+  },
+  "boundary": {
+    "pass": true,
+    "classical_correlated_mutual_info": 0.6931471805599453,
+    "classical_correlated_negativity": 0.0,
+    "verdict": "correlation need not be entanglement; independence/factorization must be separately witnessed"
+  },
+  "all_pass": true
+}

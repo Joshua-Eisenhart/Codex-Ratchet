@@ -1,0 +1,58 @@
+{
+  "schema": "cf18_path_resolved_vs_order_erasing_average_gate_result_v1",
+  "name": "cf18_path_resolved_vs_order_erasing_average_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-18",
+  "gate": "EG-CF18-path-resolved-vs-order-erasing-average",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-18 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite density state evolution, noncommuting path readouts, and commuting boundary control"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:09:27Z",
+  "runtime_seconds": 0.0006380081176757812,
+  "positive": {
+    "pass": true,
+    "path_resolved_vector": [
+      0.028251064034871196,
+      0.15625285679450962
+    ],
+    "antisymmetric_order_component": 0.1280017927596384,
+    "order_erasing_average_scalar": 0.09225196041469041,
+    "reconstructed_order_gap_from_average": 0.0
+  },
+  "negative": {
+    "pass": false,
+    "attempted_claim": {
+      "aggregation": "unordered mean of path endpoints",
+      "missing_fields": [
+        "path_label",
+        "composition_order",
+        "commuting_control"
+      ]
+    },
+    "expected": "fail"
+  },
+  "boundary": {
+    "pass": true,
+    "path_resolved_vector": [
+      0.2656050386106363,
+      0.2656050386106363
+    ],
+    "commuting_antisymmetric_component": 0.0
+  },
+  "all_pass": true
+}

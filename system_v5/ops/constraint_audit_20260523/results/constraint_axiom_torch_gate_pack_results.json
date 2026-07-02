@@ -1,0 +1,121 @@
+{
+  "kind": "constraint_axiom_torch_gate_pack",
+  "claim_ceiling": "audit_control_packet_only_not_formal_admission",
+  "generated_at": "2026-05-23T20:09:23Z",
+  "uses_numpy": false,
+  "all_pass": true,
+  "runtime_seconds": 0.023211956024169922,
+  "gates": {
+    "F01_finitude": {
+      "pass": true,
+      "finite_counts": {
+        "carrier_dim": 2,
+        "probe_count": 3,
+        "operator_count": 4,
+        "path_count": 4,
+        "registry_count": 16
+      },
+      "graveyard": "implicit continuum carrier or unbounded path family would fail"
+    },
+    "N01_noncommutation": {
+      "pass": true,
+      "noncommuting_order_gap": 0.08660103533099997,
+      "commuting_order_gap": 6.359601310784502e-17
+    },
+    "EA01_no_primitive_identity": {
+      "pass": true,
+      "alias_probe_vector_gap": 0.0,
+      "same_z_but_different_record_gap": 0.56,
+      "finite_identity_witnesses": [
+        "handle",
+        "receipt_path",
+        "probe_vector"
+      ]
+    },
+    "EA02_probe_relative_equality": {
+      "pass": true,
+      "weak_z_gap": 0.0,
+      "rich_probe_gaps": [
+        0.53,
+        0.56,
+        0.0
+      ],
+      "verdict": "single-probe equality fails when the active finite probe family is widened"
+    },
+    "EA03_boundary_contrast_identity": {
+      "pass": true,
+      "center_distance_up": 0.4,
+      "center_distance_down": 0.4,
+      "contrast_gap_sigma_z": 1.6,
+      "verdict": "center distance alone cannot identify state; contrast probe is load-bearing"
+    },
+    "EA04_EC11_no_primitive_time": {
+      "pass": true,
+      "noncommuting_order_gap": 0.08660103533099997,
+      "commuting_order_gap": 6.359601310784502e-17
+    },
+    "EA05_EC15_no_primitive_metric": {
+      "pass": true,
+      "trace_distance_before": 0.3535533905932738,
+      "trace_distance_after_unitary": 0.35355339059327384,
+      "raw_x_coordinate_gap_before": 0.5,
+      "raw_x_coordinate_gap_after": 0.2253872169680287
+    },
+    "EA06_EC12_no_closure_by_default": {
+      "pass": true,
+      "trace_distance_before": 0.7,
+      "after_one_channel": 0.4141255848169731,
+      "after_40_channels": 5.326708451111637e-10,
+      "verdict": "distinguishability loss proves no inverse on this family"
+    },
+    "EA07_finite_witness_discipline": {
+      "pass": true,
+      "witnesses": [
+        "finite_counts",
+        "order_gap",
+        "probe_vector",
+        "trace_distance",
+        "entropy",
+        "negative_controls"
+      ]
+    },
+    "EC08_no_cloning": {
+      "pass": true,
+      "orthogonal_overlap": 0.0,
+      "nonorthogonal_overlap": 0.7071067811865475,
+      "linearity_contradiction": 0.20710678118654757,
+      "max_clone_fidelity_bound": 0.8535533905932737
+    },
+    "EC09_no_primitive_probability": {
+      "pass": true,
+      "p_from_z_probe": 0.655,
+      "p_from_x_probe": 0.76,
+      "probe_dependence_gap": 0.10499999999999998
+    },
+    "EC10_no_primitive_optimization": {
+      "pass": true,
+      "optimum_per_functional": {
+        "F_z": "zero",
+        "F_x": "plus"
+      }
+    },
+    "EC13_no_outside_observer": {
+      "pass": true,
+      "S_A_bell": 0.6931471805599453,
+      "S_A_product": -0.0
+    },
+    "EC14_no_global_total_order": {
+      "pass": true,
+      "entropy_gap": 0.0,
+      "operator_trace_distance": 0.4949747468305833
+    },
+    "EC16_no_semantic_smuggling": {
+      "pass": true,
+      "mixed_product_coherent_info": -0.6931471805599453,
+      "mixed_product_mutual_info": 0.0,
+      "bell_coherent_info": 0.6931471805599453,
+      "bell_mutual_info": 1.3862943611198906,
+      "verdict": "coherent information and mutual information have different sign/scale behavior"
+    }
+  }
+}

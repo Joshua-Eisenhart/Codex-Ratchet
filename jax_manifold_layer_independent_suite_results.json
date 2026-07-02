@@ -1,0 +1,579 @@
+{
+  "name": "jax_manifold_layer_independent_suite",
+  "object": "independent JAX diagnostic matrix for current manifold-layer primitives",
+  "executed_track": "jax",
+  "ran_julia": false,
+  "julia_reference_mode": "read_only",
+  "classification": "diagnostic_jax_layer_suite",
+  "promotion_allowed": false,
+  "claim_boundary": "All rows are finite JAX diagnostics. This does not admit all manifold layers, PEPS3D, stacking, Axis0/FEP, flux, physics, or final manifold completion.",
+  "julia_truth_lane": "Julia remains the native Clifford/full-spinor truth lane for geometric admission.",
+  "jax_lane": "JAX stress-tests finite approximations, controls, and latch/readout invariants.",
+  "julia_reference_receipts_read": {
+    "gamma5_branch_prune": {
+      "path": "system_v5/julia_carrier/branch_prune_dirac_gamma5_chirality_object_results.json",
+      "exists": true,
+      "all_pass": true,
+      "audit_pass": null,
+      "promotion_allowed": false,
+      "classification": "julia_branch_prune_dirac_poc",
+      "claim_status": null,
+      "verdict": null
+    },
+    "geometry_information_admissibility": {
+      "path": "system_v5/julia_carrier/branch_prune_geometry_is_information_admissibility_results.json",
+      "exists": true,
+      "all_pass": true,
+      "audit_pass": null,
+      "promotion_allowed": false,
+      "classification": "julia_geometry_is_information_admissibility_poc",
+      "claim_status": null,
+      "verdict": null
+    },
+    "noncircular_geometry_information_test": {
+      "path": "system_v5/julia_carrier/noncircular_geometry_information_test_results.json",
+      "exists": true,
+      "all_pass": null,
+      "audit_pass": null,
+      "promotion_allowed": null,
+      "classification": "NO-TRACK",
+      "claim_status": null,
+      "verdict": null
+    },
+    "reidemeister_kill_control": {
+      "path": "system_v5/julia_carrier/popper_reidemeister_kill_control_results.json",
+      "exists": true,
+      "all_pass": null,
+      "audit_pass": null,
+      "promotion_allowed": null,
+      "classification": "crossing-count-only (planted coincidence on the minimal diagram)",
+      "claim_status": "KILLED",
+      "verdict": null
+    }
+  },
+  "julia_lessons_applied": [
+    "branch/prune is treated as a possibility-field computation with monotone survivor masks",
+    "log-negativity and coherent information stay separate from CMI/classical-shadow readouts",
+    "capacity/path entropy is finite-record-derived and capacity-bounded",
+    "geometry-information coincidence claims remain fenced by the noncircular/Reidemeister kill controls",
+    "JAX enforces constraints by retraction/correction and is not the native spinor truth lane"
+  ],
+  "blocked_consumers": [
+    "layer_stacking",
+    "flux",
+    "xi_phi0",
+    "axis0",
+    "fep_holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "source_alignment": {
+    "finite_geometric_constraint_manifold": true,
+    "left_right_weyl_density_operating_spaces_included": true,
+    "downstream_entropy_readouts_kept_as_readouts": true
+  },
+  "layer_results": [
+    {
+      "layer_id": "F01_finite_carrier",
+      "name": "finite S3/C2 carrier and density objects",
+      "pass": true,
+      "checks": {
+        "finite_s3_carrier_norm": true,
+        "finite_density_trace_one": true,
+        "finite_density_hermitian": true,
+        "finite_density_positive": true
+      },
+      "metrics": {
+        "max_s3_norm_drift": 2.220446049250313e-16,
+        "density_trace_err": 2.2455775635872994e-16,
+        "density_min_eval": -2.510010572537977e-16
+      },
+      "finite_map": "finite normalized S3 quaternions and C2 spinors -> density matrices",
+      "controls": [
+        "non-normalized random draws",
+        "density trace/hermiticity/positivity checks"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "N01_noncommuting_order",
+      "name": "noncommuting operator-order layer",
+      "pass": true,
+      "checks": {
+        "noncommuting_order_gap_nonzero": true,
+        "commuting_same_axis_control_zero": true
+      },
+      "metrics": {
+        "order_gap_xy_yx": 0.2924727640968475,
+        "same_axis_control_gap": 0.0
+      },
+      "finite_map": "two finite Pauli unitary words -> order-sensitive matrix gap",
+      "controls": [
+        "same-axis commuting control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "response_effect_path_quotient",
+      "name": "response/effect/path quotient layer",
+      "pass": true,
+      "checks": {
+        "finite_path_weights_normalized": true,
+        "response_quotient_nonuniform": true,
+        "effect_kraus_order_sensitive": true,
+        "path_entropy_finite": true
+      },
+      "metrics": {
+        "weights": [
+          0.7038559780239945,
+          0.29614402197600553
+        ],
+        "path_entropy": 0.8765261814577776,
+        "effect_kraus_order_gap": 0.033737447665207455
+      },
+      "finite_map": "finite density plus finite Kraus histories/effects -> normalized response quotient",
+      "controls": [
+        "uniform quotient control",
+        "effect/Kraus order control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "boundary_environment_cut",
+      "name": "finite boundary/environment cut layer",
+      "pass": true,
+      "checks": {
+        "boundary_entropy_capacity_bounded": true,
+        "bell_boundary_environment_mi_nonzero": true,
+        "product_boundary_environment_mi_zero": true,
+        "classical_correlation_separated_from_entanglement": true,
+        "bell_entanglement_witness_nonzero": true
+      },
+      "metrics": {
+        "MI_bell": 1.9999999999999998,
+        "MI_product": 0.0,
+        "MI_classical": 1.0,
+        "LN_classical": 0.0,
+        "S_boundary": 1.0
+      },
+      "finite_map": "finite rho_AB cut -> boundary entropy, mutual information, and entanglement witness columns",
+      "controls": [
+        "product cut control",
+        "classically correlated separable control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "hopf_fiber_base",
+      "name": "Hopf S3 -> S2 fiber/base layer",
+      "pass": true,
+      "checks": {
+        "hopf_base_lands_on_s2": true,
+        "u1_fiber_action_preserves_base": true,
+        "nonfiber_perturbation_changes_base": true
+      },
+      "metrics": {
+        "base_norm_drift": 4.440892098500626e-16,
+        "fiber_delta": 4.1540741810552243e-16,
+        "nonfiber_delta_mean": 0.22441607696619517
+      },
+      "finite_map": "unit quaternions on S3 -> Hopf base points on S2",
+      "controls": [
+        "U1 fiber invariance",
+        "nonfiber perturbation control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "dirac_monopole_u1_holonomy",
+      "name": "finite U(1)/Dirac monopole holonomy layer",
+      "pass": true,
+      "checks": {
+        "finite_loop_matches_dirac_monopole_phase": true,
+        "closed_gauge_transform_preserves_phase": true,
+        "flattened_control_kills_phase": true
+      },
+      "metrics": {
+        "berry_phase": 1.5707700420086559,
+        "expected_phase": 1.5707963267948961,
+        "phase_error": 2.6284786240005076e-05,
+        "gauge_error": 0.0,
+        "flat_phase": 0.0
+      },
+      "finite_map": "finite spinor loop on S2 -> Berry/U1 holonomy phase",
+      "controls": [
+        "closed gauge transform",
+        "flattened no-holonomy control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "operator_substage_cell",
+      "name": "finite operator/substage cell layer",
+      "pass": true,
+      "checks": {
+        "operator_order_changes_cell_state": true,
+        "operator_axis_choice_changes_cell_state": true,
+        "same_word_control_zero": true,
+        "cell_channel_trace_preserving": true
+      },
+      "metrics": {
+        "rho_XY_vs_YX_gap": 0.22322912764481925,
+        "rho_XY_vs_XZ_gap": 0.5231384088120775,
+        "trace_err": 2.2591401799415137e-16
+      },
+      "finite_map": "finite spinor-derived density cell -> ordered local channel action",
+      "controls": [
+        "same-word control",
+        "alternate-axis control",
+        "trace preservation"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "gluing_groupoid_cocycle",
+      "name": "finite gluing/groupoid cocycle layer",
+      "pass": true,
+      "checks": {
+        "cocycle_condition_holds": true,
+        "bad_gluing_control_fails": true,
+        "closed_consistent_loop_trivial_holonomy": true,
+        "scrambled_inconsistent_loop_nontrivial": true
+      },
+      "metrics": {
+        "cocycle_residual": 8.685679597048903e-17,
+        "bad_residual": 0.18971433726911452,
+        "scrambled_loop_gap": 0.18971433726911457
+      },
+      "finite_map": "finite patch transition phases -> cocycle and loop-holonomy readout",
+      "controls": [
+        "bad transition control",
+        "inconsistent loop control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "nested_hopf_shells",
+      "name": "nested Hopf shell coupling layer",
+      "pass": true,
+      "checks": {
+        "baseline_reaches_all_outer_basins": true,
+        "chirality_prune_kills_forbidden": true,
+        "trivial_control_equals_baseline": true,
+        "positive_coupling_beats_zero_control": true,
+        "real_prune_fired": true
+      },
+      "metrics": {
+        "A_basins": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "B_basins": [
+          1,
+          2
+        ],
+        "B_pruned": 61,
+        "initial_alignment": 1.324836953792706,
+        "coupled_alignment_delta": 1.1443794658202862,
+        "zero_control_alignment_delta": 0.13423988215074623
+      },
+      "finite_map": "three S3 shells -> coupled Hopf-base alignment and survivor basin sets",
+      "controls": [
+        "zero-coupling control",
+        "trivial no-prune control",
+        "forbidden-basin prune"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "weyl_gamma5_chirality",
+      "name": "Weyl/Dirac gamma5 chirality selector layer",
+      "pass": true,
+      "checks": {
+        "gamma5_derived_and_clifford_valid": true,
+        "A_reaches_forbidden": true,
+        "B_kills_forbidden": true,
+        "C_equals_A": true,
+        "rate_matched_random_keeps_forbidden": true,
+        "inverted_sign_flips_to_forbidden": true,
+        "real_prune_fired": true
+      },
+      "metrics": {
+        "A": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "B": [
+          1,
+          2
+        ],
+        "C": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "B_pruned": 75,
+        "random": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "inverted": [
+          3,
+          4
+        ]
+      },
+      "finite_map": "C4 Dirac spinor futures -> gamma5 chiral charge prune -> survivor basin sets",
+      "controls": [
+        "rate-matched random prune",
+        "inverted-sign prune",
+        "trivial no-prune control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "qit_entropy_information",
+      "name": "finite QIT entropy/information readout layer",
+      "pass": true,
+      "checks": {
+        "bell_logneg_nonzero": true,
+        "classical_logneg_zero": true,
+        "product_logneg_zero": true,
+        "bell_negative_conditional_entropy": true,
+        "bell_coherent_information_positive": true,
+        "classical_mi_can_be_nonzero_without_entanglement": true
+      },
+      "metrics": {
+        "LN_bell": 0.9999999999999997,
+        "LN_classical": 0.0,
+        "LN_product": 0.0,
+        "S_A_given_B_bell": -0.9999999999999997,
+        "I_c_A_to_B_bell": 0.9999999999999997,
+        "I_AB_classical": 1.0
+      },
+      "finite_map": "finite two-qubit density matrices -> entropy, coherent information, log-negativity",
+      "controls": [
+        "product separable control",
+        "classically correlated separable control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "capacity_path_entropy_budget",
+      "name": "finite capacity/path entropy budget layer",
+      "pass": true,
+      "checks": {
+        "density_entropy_finite": true,
+        "path_entropy_finite_record_only": true,
+        "capacity_budget_admits": true,
+        "too_small_capacity_control_blocks": true,
+        "path_registry_bound_respected": true
+      },
+      "metrics": {
+        "S_boundary": 1.75,
+        "H_path": 1.5,
+        "S_max": 2.9999999999999996,
+        "H_path_max": 2.0,
+        "capacity_budget": 5.0,
+        "violated_budget_control": 2.0
+      },
+      "finite_map": "finite density entropy plus finite instrument path entropy -> capacity-budget gate",
+      "controls": [
+        "too-small capacity control",
+        "finite path-registry max entropy bound"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "conditional_mutual_information_readout",
+      "name": "conditional mutual information readout layer",
+      "pass": true,
+      "checks": {
+        "ghz_has_nonzero_cmi": true,
+        "quantum_markov_control_zero_cmi": true,
+        "classical_shadow_can_have_cmi": true,
+        "classical_shadow_has_zero_logneg": true
+      },
+      "metrics": {
+        "CMI_GHZ": 0.9999999999999997,
+        "CMI_markov_control": -9.829804545646046e-17,
+        "CMI_classical_shadow": 1.0,
+        "LN_classical_AC": 0.0
+      },
+      "finite_map": "finite three-qubit density objects -> I(A:C|B) readout kept separate from entanglement witnesses",
+      "controls": [
+        "quantum Markov control",
+        "classical-shadow separable control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "qit_relative_free_energy",
+      "name": "finite QIT relative/free-energy readout layer",
+      "pass": true,
+      "checks": {
+        "relative_entropy_nonnegative": true,
+        "relative_entropy_self_zero": true,
+        "partition_log_kept_separate": true,
+        "qit_free_energy_finite": true
+      },
+      "metrics": {
+        "D_rho_sigma": 0.16016516083395357,
+        "D_rho_rho": 0.0,
+        "logZ": 0.47000362924573563,
+        "F_Q": -0.26441648078845836
+      },
+      "finite_map": "finite density matrices and finite positive tau -> D(rho||sigma), logZ, F_Q as separate columns",
+      "controls": [
+        "self-relative-entropy zero control",
+        "positive finite partition object"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "spectral_triple_dirac",
+      "name": "finite spectral-triple Dirac layer",
+      "pass": true,
+      "checks": {
+        "dirac_self_adjoint": true,
+        "chirality_anticommutes_with_dirac": true,
+        "algebra_commutator_finite_nonzero": true,
+        "zero_dirac_control_kills_commutator": true,
+        "dirac_spectrum_symmetric": true
+      },
+      "metrics": {
+        "commutator_norm": 5.0990195135927845,
+        "spectrum": [
+          -1.0,
+          -1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "finite_map": "finite algebra representation plus self-adjoint Dirac/chirality -> commutator geometry readout",
+      "controls": [
+        "zero-Dirac control",
+        "spectrum symmetry check"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "twistor_null_incidence",
+      "name": "finite twistor/null-incidence spinor layer",
+      "pass": true,
+      "checks": {
+        "spinor_incidence_vector_is_null": true,
+        "phase_gauge_preserves_null_vector": true,
+        "mixed_density_control_not_null": true
+      },
+      "metrics": {
+        "minkowski_norm": 0.0,
+        "phase_delta": 1.1102230246251565e-16,
+        "mixed_density_minkowski_norm": 0.8064
+      },
+      "finite_map": "finite Weyl spinor -> Hermitian null vector incidence readout",
+      "controls": [
+        "phase gauge control",
+        "mixed-density non-null control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "g_structure_form_identities",
+      "name": "finite SU(3)-style form identity layer",
+      "pass": true,
+      "checks": {
+        "almost_complex_square_minus_identity": true,
+        "metric_compatibility": true,
+        "symplectic_form_nondegenerate": true,
+        "degenerate_control_fails": true
+      },
+      "metrics": {
+        "J_square_error": 0.0,
+        "metric_compat_error": 0.0,
+        "omega_det_abs": 1.0,
+        "bad_det_abs": 0.0
+      },
+      "finite_map": "finite R6 almost-complex/symplectic matrices -> algebraic G-structure identity checks",
+      "controls": [
+        "degenerate-form control"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "left_right_weyl_terrain_loop",
+      "name": "left/right Weyl density terrain-loop generator layer",
+      "pass": true,
+      "checks": {
+        "left_right_full_gap_nonzero": true,
+        "sigma_swap_is_load_bearing": true,
+        "hamiltonian_sign_is_load_bearing": true,
+        "density_trace_preserved": true
+      },
+      "metrics": {
+        "left_right_gap": 0.8953649018983819,
+        "swap_matters_gap": 0.799363559627463,
+        "sign_matters_gap": 0.3554047602104183
+      },
+      "finite_map": "rho_L/rho_R finite C2 densities -> signed Hamiltonian plus sigma-/sigma+ terrain evolution",
+      "controls": [
+        "sign-only control",
+        "swap-only control",
+        "trace preservation"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    },
+    {
+      "layer_id": "survivor_quotient_branch_prune",
+      "name": "branch/prune survivor quotient layer",
+      "pass": true,
+      "checks": {
+        "baseline_reaches_all_basins": true,
+        "prune_kills_forbidden_basins": true,
+        "allowed_basins_preserved": true,
+        "trivial_control_equals_baseline": true,
+        "real_prune_fired": true
+      },
+      "metrics": {
+        "A": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "B": [
+          1,
+          2
+        ],
+        "C": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "B_pruned": 77
+      },
+      "finite_map": "finite S3 future ensemble -> monotone prune latch -> survivor quotient basin set",
+      "controls": [
+        "no-prune baseline",
+        "never-firing control",
+        "forbidden-sector prune"
+      ],
+      "claim_boundary": "diagnostic JAX layer row only; promotion_allowed=false"
+    }
+  ],
+  "checks": {
+    "all_layer_rows_pass": true,
+    "nineteen_independent_rows_present": true,
+    "promotion_blocked": true,
+    "legacy_tensor_lane_not_used": true,
+    "julia_reference_mode_read_only": true
+  },
+  "AUDIT_PASS": true
+}

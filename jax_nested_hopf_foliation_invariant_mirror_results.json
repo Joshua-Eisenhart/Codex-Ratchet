@@ -1,0 +1,194 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "official_g_structure_selection",
+    "layer_stacking_readiness",
+    "Axis0",
+    "FEP",
+    "flux",
+    "Xi",
+    "Phi0",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "carrier_layer": "S3 total space with finite Clifford-torus leaves T2_theta",
+  "carrier_realization": "jax arrays over R4 S3 embedding; Z3 finite integer invariant proof",
+  "checks": {
+    "foliation_coverage": true,
+    "hopf_linking": true,
+    "leaf_area": true,
+    "nesting_disjointness": true,
+    "tangent_rank": true,
+    "z3_disjointness": true
+  },
+  "claim_ceiling": "JAX/Z3 mirror of finite S3 Hopf-torus carrier geometry only; not official G-structure selection, not layer completion, not flux/Axis0/physics admission.",
+  "classification": "tool_lego_fit_probe",
+  "codomain_or_output": "JSON receipt with tangent rank, measured area, leaf distance, linking, Z3 statuses, foliation coverage",
+  "dependency_receipts": [
+    "system_v5/julia_carrier/layers/G_nested_hopf_tori_results.json (read-only reference)"
+  ],
+  "domain": "theta leaves in [0,pi/2], finite a/b cycles, finite S3 point samples",
+  "finite_map": "finite (theta,a,b) grid -> S3 R4 embedding -> tangent rank/area/disjointness/linking/Z3/coverage readouts",
+  "foliation_coverage": {
+    "metrics": {
+      "max_reconstruction_error": 4.1910000110727263e-16,
+      "theta_max": 1.5707963267948966,
+      "theta_min": 0.0
+    },
+    "pass": true
+  },
+  "geometry_layer": "Hopf fibration U(1)->S3->S2 and nested Clifford tori",
+  "hopf_linking": {
+    "metrics": {
+      "hopf_core_abs_gap_from_one": 2.7951905568923685e-05,
+      "hopf_core_generic_leaf_linking_number": 0.9987282327403114,
+      "hopf_core_linking_number": 0.9999720480944311,
+      "hopf_generic_abs_gap_from_one": 0.0012717672596885832,
+      "unlinked_control_linking_number": -4.1973897380645754e-17
+    },
+    "pass": true
+  },
+  "leaf_area": {
+    "clifford_is_maximum": true,
+    "max_abs_err": 1.9184653865522705e-13,
+    "pass": true,
+    "rows": {
+      "0.26179939": {
+        "abs_err": 6.039613253960852e-14,
+        "analytic": 9.869604401089356,
+        "measured": 9.869604401089417
+      },
+      "0.52359878": {
+        "abs_err": 1.9184653865522705e-13,
+        "analytic": 17.094656273292166,
+        "measured": 17.094656273292358
+      },
+      "0.78539816": {
+        "abs_err": 1.1723955140041653e-13,
+        "analytic": 19.739208802178716,
+        "measured": 19.739208802178833
+      },
+      "1.04719755": {
+        "abs_err": 1.8829382497642655e-13,
+        "analytic": 17.09465627329217,
+        "measured": 17.094656273292358
+      },
+      "1.30899694": {
+        "abs_err": 6.039613253960852e-14,
+        "analytic": 9.869604401089356,
+        "measured": 9.869604401089417
+      }
+    }
+  },
+  "name": "JAX nested Hopf foliation invariant mirror",
+  "nesting": {
+    "adjacent_leaf_sweep": {
+      "0.040000_0.055000": {
+        "abs_err": 5.204170427930421e-18,
+        "analytic_aligned_dist": 0.0149998593753955,
+        "invariant_gap": 0.0014228041729611451,
+        "measured_min_dist": 0.014999859375395495
+      },
+      "0.040000_0.090000": {
+        "abs_err": 1.3877787807814457e-17,
+        "analytic_aligned_dist": 0.04999479182942465,
+        "invariant_gap": 0.006479006757248884,
+        "measured_min_dist": 0.04999479182942464
+      },
+      "0.120000_0.135000": {
+        "abs_err": 2.0816681711721685e-17,
+        "analytic_aligned_dist": 0.014999859375395507,
+        "invariant_gap": 0.0037835392430696224,
+        "measured_min_dist": 0.014999859375395486
+      },
+      "0.120000_0.170000": {
+        "abs_err": 2.7755575615628914e-17,
+        "analytic_aligned_dist": 0.049994791829424644,
+        "invariant_gap": 0.014291654661841569,
+        "measured_min_dist": 0.049994791829424616
+      },
+      "0.785398_0.800398": {
+        "abs_err": 1.1796119636642288e-16,
+        "analytic_aligned_dist": 0.014999859375395629,
+        "invariant_gap": 0.014997750101247986,
+        "measured_min_dist": 0.01499985937539551
+      },
+      "0.785398_0.835398": {
+        "abs_err": 9.71445146547012e-17,
+        "analytic_aligned_dist": 0.04999479182942474,
+        "invariant_gap": 0.049916708323414216,
+        "measured_min_dist": 0.049994791829424644
+      },
+      "1.430796_1.445796": {
+        "abs_err": 2.2551405187698492e-17,
+        "analytic_aligned_dist": 0.014999859375395407,
+        "invariant_gap": 0.003928491699936896,
+        "measured_min_dist": 0.014999859375395384
+      },
+      "1.430796_1.480796": {
+        "abs_err": 2.0816681711721685e-17,
+        "analytic_aligned_dist": 0.049994791829424706,
+        "invariant_gap": 0.011394127238675255,
+        "measured_min_dist": 0.049994791829424685
+      }
+    },
+    "adjacent_leaf_sweep_pass": true,
+    "cos_theta_monotone_for_pairs": true,
+    "distinct_leaf_min_distances": {
+      "0.300000_1.200000": 0.8699310682224601,
+      "0.400000_0.800000": 0.3973386615901223,
+      "0.523599_1.047198": 0.5176380902050415
+    },
+    "pass": true,
+    "same_theta_kill_distance": 0.0
+  },
+  "peps3d_embedding": "diagnostic finite cell anchor only: theta leaf x a-cycle x b-cycle grid; not admitted PEPS3D evidence",
+  "promotion_allowed": false,
+  "promotion_status": "blocked_diagnostic_only",
+  "quaternion_action": "not_applicable_to_this_geometry_mirror",
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "root_constraints_in_force": {
+    "F01": "finite theta grid, finite path grids, finite point clouds, finite Z3 invariant integers",
+    "N01": "Hopf-linked core/fiber topology and Z3 disjointness are non-product controls for the finite carrier"
+  },
+  "sim_execution_kind": "nonclassical_diagnostic_jax_audit",
+  "sim_id": "jax_nested_hopf_foliation_invariant_mirror",
+  "spinor_state": "S3 point (z1,z2) equivalent to unit Weyl spinor coordinates; density not used in this geometry-only mirror",
+  "tangent_rank": {
+    "endpoint": {
+      "0.00000000": 1,
+      "1.57079633": 1
+    },
+    "interior": {
+      "0.26179939": 2,
+      "0.52359878": 2,
+      "0.78539816": 2,
+      "1.04719755": 2,
+      "1.30899694": 2
+    },
+    "pass": true
+  },
+  "tier": "finite_carrier_geometry_probe",
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "jax": "load-bearing finite geometry, area, distance, linking, coverage computation",
+    "z3": "load-bearing finite measured-invariant disjointness proof with collapsed-invariant kill"
+  },
+  "version": "1.0",
+  "z3_disjointness": {
+    "metrics": {
+      "real_s3_collapsed_half_scaled_invariant": 500000,
+      "real_s3_collapsed_leaf_witness_status": "sat",
+      "real_s3_distinct_leaf_status": "unsat",
+      "scalar_collapsed_invariant_kill_status": "sat",
+      "scalar_distinct_leaf_status": "unsat",
+      "theta1_scaled_invariant": 750000,
+      "theta2_scaled_invariant": 250000
+    },
+    "pass": true
+  }
+}

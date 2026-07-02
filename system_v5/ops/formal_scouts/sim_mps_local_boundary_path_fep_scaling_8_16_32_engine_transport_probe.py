@@ -6,8 +6,10 @@ Boundary densities are reconstructed from quimb MPS local expectation values
 <X>, <Y>, <Z> at the active boundary site. This lets the same paired
 source-native EngineCore slot transport run at 8, 16, and 32 qubits.
 
-Formal scout only. It does not admit final Axis0, final manifold ontology,
-physics, retrocausality, intelligence, or a canonical holographic dictionary.
+Formal scout only. Because this row imports NumPy-backed EngineCore, it is an
+adapter/control boundary row, not nonclassical root-manifold evidence. It does
+not admit final Axis0, final manifold ontology, physics, retrocausality,
+intelligence, or a canonical holographic dictionary.
 """
 
 from __future__ import annotations
@@ -28,6 +30,7 @@ import torch
 import z3
 
 import axis0_guard_utils as axis0_guard
+import engine_core as engine_runtime
 import sim_holographic_boundary_path_ensemble_axis0_fep_selection_probe as hb
 import sim_operator_slot_cut_entropy_gradient_dynamic_manifold_mps_transport_probe as transport
 
@@ -40,12 +43,15 @@ OUT_PATH = RESULT_DIR / "mps_local_boundary_path_fep_scaling_8_16_32_engine_tran
 NAME = "mps_local_boundary_path_fep_scaling_8_16_32_engine_transport_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
-SIM_EXECUTION_KIND = "nonclassical"
+SIM_EXECUTION_KIND = "adapter_control"
 SOURCE_ALIGNMENT_CATEGORY = "downstream_on_source_native_operator_slot_engine_mps_local_boundary_scaling"
 CLAIM_CEILING = (
-    "Formal scout only: runs paired source-native EngineCore slot transport on "
+    "Formal scout only: adapter/control boundary row that runs paired "
+    "source-native NumPy-backed EngineCore slot transport on "
     "8/16/32-qubit quimb MPS carriers and computes boundary/path/FEP readouts "
-    "from local MPS expectation values without dense state handoff. It does not "
+    "from local MPS expectation values without dense state handoff. It is not "
+    "nonclassical root-manifold evidence until EngineCore is replaced or ported "
+    "to a torch-native spinor/quaternion carrier. It does not "
     "admit final Axis0, final manifold ontology, physics, retrocausality, "
     "intelligence, global variational free energy on the full entangled MPS state, "
     "or a canonical holographic dictionary."
@@ -380,10 +386,10 @@ def run_scaling_transport(
     max_bond: int = MAX_BOND,
     axis0_bundle: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    engine_l = transport.EngineCore(0, manifold_enabled=True)
-    engine_r = transport.EngineCore(1, manifold_enabled=True)
-    rho_l = transport.generate_initial_density(3101)
-    rho_r = transport.generate_initial_density(4101)
+    engine_l = engine_runtime.EngineCore(0, manifold_enabled=True)
+    engine_r = engine_runtime.EngineCore(1, manifold_enabled=True)
+    rho_l = engine_runtime.generate_initial_density(3101)
+    rho_r = engine_runtime.generate_initial_density(4101)
     mps = qtn.MPS_rand_state(n_qubits, bond_dim=3, seed=9100 + n_qubits)
     params = as_real_tensor([0.05, 0.03, -0.02, 0.35])
     source_history: list[dict[str, float]] = []

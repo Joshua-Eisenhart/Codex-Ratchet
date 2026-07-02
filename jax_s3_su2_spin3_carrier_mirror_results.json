@@ -1,0 +1,160 @@
+{
+  "AUDIT_PASS": true,
+  "axis_angle": {
+    "checks": {
+      "four_pi_spinor_plus_identity": true,
+      "su2_adjoint_matches_rodrigues": true,
+      "two_pi_so3_identity": true,
+      "two_pi_spinor_minus_identity": true
+    },
+    "metrics": {
+      "four_pi_spinor_identity_gap": 3.463824224941973e-16,
+      "max_rodrigues_gap": 5.721958498152797e-16,
+      "two_pi_spinor_plus_identity_gap": 1.7319121124709866e-16
+    },
+    "pass": true,
+    "rows": [
+      {
+        "axis": [
+          0.4082482904638631,
+          0.8164965809277261,
+          -0.4082482904638631
+        ],
+        "rodrigues_gap": 1.1775693440128312e-16,
+        "theta": 0.37
+      },
+      {
+        "axis": [
+          -0.3810003810005715,
+          0.8890008890013334,
+          0.254000254000381
+        ],
+        "rodrigues_gap": 1.8619006149354548e-16,
+        "theta": 1.1
+      },
+      {
+        "axis": [
+          0.40406101782088427,
+          -0.10101525445522107,
+          0.9091372900969895
+        ],
+        "rodrigues_gap": 5.721958498152797e-16,
+        "theta": 2.4
+      },
+      {
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "rodrigues_gap": 0.0,
+        "theta": 6.283185307179586
+      }
+    ]
+  },
+  "blocked_consumers": [
+    "official_g_structure_selection",
+    "layer_stacking_readiness",
+    "Axis0",
+    "FEP",
+    "flux",
+    "Xi",
+    "Phi0",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "carrier": {
+    "checks": {
+      "q_inverse": true,
+      "q_negq_same_rotation_distinct_spinors": true,
+      "qmul_closure": true,
+      "s3_norm": true,
+      "so3_orthogonal_det": true,
+      "spin3_to_so3_homomorphism": true,
+      "su2_unitary_det": true
+    },
+    "metrics": {
+      "max_homomorphism_gap": 2.2143661933857966e-15,
+      "max_inverse_gap": 4.47545209131181e-16,
+      "max_q_negq_rotation_gap": 0.0,
+      "max_qmul_closure_gap": 4.440892098500626e-16,
+      "max_s3_norm_gap": 2.220446049250313e-16,
+      "max_so3_det_gap": 1.9984014443252818e-15,
+      "max_so3_orthogonality_gap": 2.9507588365047684e-15,
+      "max_su2_det_gap": 4.456440562973945e-16,
+      "max_su2_unitary_gap": 6.337915768637476e-16,
+      "min_q_negq_distance": 1.9999999999999996
+    },
+    "pass": true
+  },
+  "carrier_layer": "S3 as SU2/Spin3 carrier",
+  "carrier_realization": "jax arrays over finite quaternion, SU2, SO3, and C2 spinor objects",
+  "checks": {
+    "axis_angle_double_cover": true,
+    "s3_su2_so3_carrier": true,
+    "so3_frame_reduction_pin_control": true,
+    "weyl_chirality_sign_control": true
+  },
+  "chirality": {
+    "checks": {
+      "opposite_weyl_hamiltonian_signs": true,
+      "pin_reflection_flips_sheet_basis": true,
+      "wrong_same_sign_control_differs": true
+    },
+    "metrics": {
+      "left_energy_H0": 0.53,
+      "parity_flip_overlap_with_R": 1.0,
+      "right_energy_minus_H0": 0.53,
+      "right_energy_wrong_plus_H0": -0.53
+    },
+    "pass": true
+  },
+  "claim_ceiling": "Dedicated finite JAX carrier/G-structure diagnostic only; not official G-structure selection or layer admission.",
+  "classification": "tool_lego_fit_probe",
+  "codomain_or_output": "JSON receipt with carrier closure, double-cover, frame-reduction, Pin reflection, and chirality controls",
+  "dependency_receipts": [
+    "system_v5/julia_carrier/layers/G_S3_spinor_carrier_results.json (read-only reference)",
+    "system_v5/julia_carrier/layers/g_su2_spin3_double_cover_results.json (read-only reference)",
+    "system_v5/julia_carrier/layers/G_SO3_frame_reduction_results.json (read-only reference)",
+    "system_v5/julia_carrier/layers/pin3_spin3_chirality_clifford_object_results.json (read-only reference)"
+  ],
+  "domain": "finite S3 quaternion samples, axis-angle SU2 elements, oriented/reflected frame pairs, two Weyl sheet basis states",
+  "finite_map": "finite S3 unit quaternions -> SU2 matrices -> SO3 rotations/frame reductions and Weyl chirality signs",
+  "frame_reduction": {
+    "checks": {
+      "oriented_frames_recovered_by_so3": true,
+      "pin_reflection_would_flip_orientation": true,
+      "reflection_excluded_from_so3": true
+    },
+    "metrics": {
+      "max_oriented_reconstruction_gap": 2.7738917271256073e-15,
+      "max_recovered_so3_det_gap": 3.552713678800501e-15,
+      "reflected_det_max": -0.9999999999999996,
+      "reflected_det_min": -1.0000000000000036
+    },
+    "pass": true
+  },
+  "geometry_layer": "O3 -> SO3 -> Spin3/SU2 reduction with Pin reflection control",
+  "name": "JAX S3/SU2/Spin3 carrier and frame-reduction mirror",
+  "peps3d_embedding": "diagnostic finite carrier cell only; not admitted PEPS3D evidence",
+  "promotion_allowed": false,
+  "promotion_status": "blocked_diagnostic_only",
+  "quaternion_action": "Hamilton quaternion multiplication, q -> SU2, q -> SO3, q and -q double-cover invariant",
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "root_constraints_in_force": {
+    "F01": "finite quaternion/SU2/SO3 samples, finite frame pairs, finite Weyl spinor checks",
+    "N01": "Spin/Pin orientation and chirality signs are order/sign sensitive controls"
+  },
+  "sim_execution_kind": "nonclassical_diagnostic_jax_audit",
+  "sim_id": "jax_s3_su2_spin3_carrier_mirror",
+  "spinor_state": "finite two-component Weyl sheet basis states with H_L=+H0, H_R=-H0 sign check",
+  "tier": "finite_carrier_gstructure_probe",
+  "tool_integration_depth": {
+    "jax": "load_bearing"
+  },
+  "tool_manifest": {
+    "jax": "load-bearing finite carrier/group/action/chirality computation"
+  },
+  "version": "1.0"
+}

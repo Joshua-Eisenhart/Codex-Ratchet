@@ -1,0 +1,81 @@
+{
+  "all_pass": true,
+  "bloch_free": true,
+  "bloch_free_note": "geometry receipt reads occupied eigenVECTOR / Berry-phase loop product (projector level); entanglement receipt reads a Schmidt spectrum of a reduced density matrix; no <sigma> r-vector readout.",
+  "carrier": "Julia + LinearAlgebra + ITensors/ITensorMPS (non-numpy)",
+  "checks": {
+    "entangled_cut_above_thresh": true,
+    "entanglement_load_bearing": true,
+    "geom_both_sheets_C1": true,
+    "geom_control_FAILS_invariant": true,
+    "geom_control_verdict_differs": true,
+    "geom_integer_quantized": true,
+    "geom_opposite_chirality_sum0": true,
+    "product_cut_near_zero": true,
+    "within_sheet_entropy_nonzero": true
+  },
+  "claim_ceiling": "PoC: Weyl L/R sheet cover as a finite spinor network. Geometry anchored to the FHS lattice Chern number (|C|=1 per sheet, opposite per sheet, c_L+c_R=0); trivial-mass control gives C=0 and FAILS the invariant. Entanglement: L|R cut von-Neumann entropy of the entangled spinor-network MPS is load-bearing -- a product control across the cut gives ~0. promotion_allowed=false; not canonical/bridge.",
+  "classification": "weyl_lr_spinor_network_entanglement_poc",
+  "entanglement": {
+    "lr_cut_entropy_same_net": 3.093269,
+    "max_cut_entropy_product": 0.0,
+    "min_cut_entropy_entangled": 1.55882,
+    "rows": [
+      {
+        "N_per_sheet": 3,
+        "cut_at_bond": 3,
+        "cut_entropy_entangled": 1.55882,
+        "cut_entropy_product": 0.0,
+        "max_bond": 8,
+        "n_sites": 6,
+        "pass": true,
+        "schmidt_rank_entangled": 8,
+        "schmidt_rank_product": 1
+      },
+      {
+        "N_per_sheet": 4,
+        "cut_at_bond": 4,
+        "cut_entropy_entangled": 2.046614,
+        "cut_entropy_product": 0.0,
+        "max_bond": 16,
+        "n_sites": 8,
+        "pass": true,
+        "schmidt_rank_entangled": 16,
+        "schmidt_rank_product": 1
+      },
+      {
+        "N_per_sheet": 6,
+        "cut_at_bond": 6,
+        "cut_entropy_entangled": 3.093269,
+        "cut_entropy_product": 0.0,
+        "max_bond": 64,
+        "n_sites": 12,
+        "pass": true,
+        "schmidt_rank_entangled": 64,
+        "schmidt_rank_product": 1
+      }
+    ],
+    "within_left_sheet_cut_entropy": 1.385181
+  },
+  "geometry": {
+    "chern_left_control": -0.0,
+    "chern_left_control_int": 0,
+    "chern_left_int": 1,
+    "chern_left_sheet_plusH0": 1.0,
+    "chern_right_control": 0.0,
+    "chern_right_control_int": 0,
+    "chern_right_int": -1,
+    "chern_right_sheet_minusH0": -1.0,
+    "chirality_sum_cL_plus_cR": 0,
+    "control_trivial_mass": 3.0,
+    "invariant": "FHS lattice Chern number (Qi-Wu-Zhang Weyl sheet)"
+  },
+  "name": "weyl_lr_spinor_network_entanglement",
+  "promotion_allowed": false,
+  "tool_integration": {
+    "ITensors/ITensorMPS": "load_bearing (the finite spinor network MPS + L|R cut Schmidt entropy)",
+    "JSON": "supportive (emission only)",
+    "LinearAlgebra": "load_bearing (eigen, svd, Berry flux loop integral for the Chern number)",
+    "Z3": "not_used (no SMT step is load-bearing here; the invariant integrality is the proof form)"
+  }
+}

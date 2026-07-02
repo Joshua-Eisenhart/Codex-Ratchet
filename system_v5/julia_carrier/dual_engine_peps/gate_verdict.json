@@ -1,0 +1,42 @@
+{
+  "gate": "dual_engine_peps_ctmrg_vs_exact_torus",
+  "tensor": "ipeps_heisenberg_D2.npy (D=2, single-site iPEPS, light-optimized/structured)",
+  "convention": "all energies PER-SITE (= 2 * per-bond on the square lattice); Jx=Jy=Jz=1.0, spin 1/2, sublattice-rotated AFM Heisenberg",
+  "reference_is": "EXACT finite-torus energy (NOT CTMRG); CTMRG is unreliable for structured tensors",
+  "energies_per_site": {
+    "exact_torus_reference": {
+      "L4": -0.03797915373903497,
+      "L5": -0.05409465743648897,
+      "L6": -0.06169355493353859,
+      "used_as_reference": -0.06169355493353859
+    },
+    "jax_ctmrg_handrolled": {
+      "chi16": -0.6297439490028554
+    },
+    "pepskit_ctmrg_julia": {
+      "chi16": 0.49968946518519775,
+      "chi24": 0.4996938801646531,
+      "chi32": 0.4996938403172908,
+      "per_bond_chi32": 0.2498469201586454,
+      "correlation_length_chi32": 35.473928150477676
+    }
+  },
+  "errors_vs_exact_torus_reference": {
+    "pepskit_chi16": 0.5613830201187363,
+    "pepskit_chi24": 0.5613874350981917,
+    "pepskit_chi32": 0.5613873952508294,
+    "pepskit_top_chi": 0.5613873952508294,
+    "jax_ctmrg_chi16": 0.5680503940693168
+  },
+  "tolerance": 0.01,
+  "pepskit_matches_torus_at_any_chi": false,
+  "gate_pass": false,
+  "verdict": "gate_ctmrg_unreliable",
+  "rationale": "PEPSKit CTMRG ALSO diverges from the exact torus reference for the structured tensor (as the hand-rolled JAX CTMRG did). CTMRG-based PEPS is NOT trustworthy for structured tensors; this blocks the PEPS carrier path and argues for the exact-contraction / spinor route instead.",
+  "honest_note": "Both CTMRG engines disagree with the exact torus AND with each other for this structured tensor: exact torus L6 = -0.061694 per-site; JAX-CTMRG = -0.6297439490028554 ; PEPSKit-CTMRG (chi32) = 0.499694. The two CTMRGs diverge in OPPOSITE directions. This is the load-bearing finding.",
+  "caps": {
+    "jax_step_wall_sec": 21.24,
+    "julia_step_wall_sec": 135.79,
+    "both_caps_respected": true
+  }
+}

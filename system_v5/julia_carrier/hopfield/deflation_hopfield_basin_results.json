@@ -1,0 +1,575 @@
+{
+  "actual_tools_used": [
+    "LinearAlgebra",
+    "Random",
+    "Statistics",
+    "JSON"
+  ],
+  "allowed_claims": [
+    "bounded deflation verdict for this Hopfield order-basin POC",
+    "whether same-scale basin separation appears without A*B vs B*A assembly order under the tested lift/connection family"
+  ],
+  "artifacts_emitted": [
+    "deflation_hopfield_basin_results.json -- this file's result JSON"
+  ],
+  "bloch_free": true,
+  "blocked_consumers": [
+    "layer-completion / manifold admission",
+    "coupling / coexistence / nesting promotion",
+    "bridge / rho_AB / Xi / Phi0 / Axis0",
+    "flux / FEP / physics",
+    "ratchet-edge admission or ratchet-thesis closure"
+  ],
+  "carrier_layer": "Cl(3,0)+ even-subalgebra unit quaternions S^3 ~ H ~ SU(2)",
+  "carrier_realization": "NTuple{4,Float64} unit quaternions with SU(2)/Pauli matrix verification; dynamics use Hamilton qmul only.",
+  "carrier_verification": {
+    "carrier_verified": true,
+    "hamilton_product_eq_matrix_product_maxerr": 2.237726045655905e-16,
+    "i_squared_eq_minus_one_err": 0.0,
+    "i_times_j_eq_k_err": 0.0,
+    "j_times_i_eq_minus_k_err": 0.0,
+    "noncommutative_ij_ne_ji": true,
+    "pauli_anticommutator_sx_sy": 0.0,
+    "pauli_square_sx": 0.0
+  },
+  "claim_ceiling": "Computes a finite deflation control for the Clifford-Hopfield order-dependent basin POC. It does NOT assert layer-completion, manifold admission, coupling, bridge (rho_AB/Xi/Phi0/Axis0), flux, FEP, or physics. promotion_allowed=false.",
+  "classification": "deflation_hopfield_poc",
+  "codomain_or_output": "genuine order-basin metrics, single-base lift pairwise basin metrics, pure-gauge pullback controls, geometric-vs-classical control, and verdict in {hopfield_basin_deflated, hopfield_basin_survives, mixed}.",
+  "control_1_geometric_vs_classical": {
+    "basin_label_mismatch_fraction": 0.4583333333333333,
+    "classical_basin_correct_fraction": 0.6666666666666666,
+    "geometric_is_decorative": false,
+    "interpretation": "LOAD-BEARING on this store: quaternion-product basins differ from the Euclidean-dot classical control.",
+    "max_recovered_config_distance": 1.2009418769500206,
+    "mean_recovered_config_distance_quat_vs_classical": 0.8140533694293378,
+    "quaternion_basin_correct_fraction": 0.875,
+    "trials": 24
+  },
+  "control_2_genuine_order_dependent_basin_reproduction": {
+    "commuting_complex_subalgebra_arm": {
+      "assembly_noncommutativity_AB_minus_BA": 0.0,
+      "entry_algebra": "complex_subalgebra_(w,x,0,0)_qmul_commutes",
+      "erased_control_assembly_noncomm": 0.0,
+      "erased_control_max_basin_distance": 1.2386207151770795e-8,
+      "fraction_probes_order_dependent": 0.0,
+      "max_order_basin_distance": 1.0931390796396078e-8,
+      "mean_order_basin_distance": 5.1387643501890065e-9,
+      "n_probes": 16
+    },
+    "commuting_control_collapses_to_floor": true,
+    "erased_metric_control_is_zero": true,
+    "full_quaternion_arm": {
+      "assembly_noncommutativity_AB_minus_BA": 1.867838544025409,
+      "entry_algebra": "full_quaternion_qmul_noncommutes",
+      "erased_control_assembly_noncomm": 0.0,
+      "erased_control_max_basin_distance": 1.1871851896637512e-8,
+      "fraction_probes_order_dependent": 1.0,
+      "max_order_basin_distance": 1.27217045409484,
+      "mean_order_basin_distance": 1.1008375441231748,
+      "n_probes": 16
+    },
+    "load_bearing_flip": true,
+    "note": "Fresh reproduction of the parent order control before deflation. The deflation arm below does not use B or A*B/B*A assembly.",
+    "order_dependent_basin_real": true,
+    "order_floor": 1.0e-6
+  },
+  "deflation_single_fixed_weight_base": {
+    "base_source": "W0=A from the full-quaternion genuine order probe seeded with SEED+21",
+    "deflation_logic": "same-scale iff max and mean basin-distance ratios against the genuine order arm are both >= 0.75 and at least 75% of probes have a lift-pair divergence >0.05. Pure-lift controls are split: short-horizon pullback must collapse to validate the frame action; long-horizon/converged pullback divergence is reported as numerical-attractor deflation, not counted as a clean geometric order witness.",
+    "full_quaternion_axis_lift_connection_arm": {
+      "fixed_weight_base": "W0=A from the genuine full-quaternion order probe; no B and no A*B/B*A assembly are used in this arm",
+      "fraction_pairs_divergent_gt_0p05": 1.0,
+      "fraction_probes_with_any_divergence_gt_0p05": 1.0,
+      "global_max_probe_and_lift_pair": [
+        4,
+        4,
+        5
+      ],
+      "kind": "full_quaternion_axis",
+      "lift_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "max_pairwise_basin_distance": 1.3931536487134266,
+      "max_vs_genuine_max_ratio": 1.0950998305527124,
+      "mean_pairwise_basin_distance": 1.1124572772368067,
+      "mean_vs_genuine_mean_ratio": 1.0105553568513936,
+      "median_pairwise_basin_distance": 1.1150487063036714,
+      "n_lifts": 8,
+      "n_pairs_per_probe": 28,
+      "n_probes": 16,
+      "per_probe": [
+        {
+          "max_pair_lift_ids": [
+            0,
+            4
+          ],
+          "max_pairwise_basin_distance": 1.3023238200040692,
+          "mean_pairwise_basin_distance": 1.1293235622204991,
+          "probe_index": 1
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            6
+          ],
+          "max_pairwise_basin_distance": 1.261746568657052,
+          "mean_pairwise_basin_distance": 1.0958063770153605,
+          "probe_index": 2
+        },
+        {
+          "max_pair_lift_ids": [
+            3,
+            4
+          ],
+          "max_pairwise_basin_distance": 1.369691508052016,
+          "mean_pairwise_basin_distance": 1.0859727782766169,
+          "probe_index": 3
+        },
+        {
+          "max_pair_lift_ids": [
+            4,
+            5
+          ],
+          "max_pairwise_basin_distance": 1.3931536487134266,
+          "mean_pairwise_basin_distance": 1.119464336694193,
+          "probe_index": 4
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            2
+          ],
+          "max_pairwise_basin_distance": 1.2708384849550989,
+          "mean_pairwise_basin_distance": 1.134102853781783,
+          "probe_index": 5
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            7
+          ],
+          "max_pairwise_basin_distance": 1.3057761681012843,
+          "mean_pairwise_basin_distance": 1.151085325037221,
+          "probe_index": 6
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            2
+          ],
+          "max_pairwise_basin_distance": 1.216102260851001,
+          "mean_pairwise_basin_distance": 1.094455975182162,
+          "probe_index": 7
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            7
+          ],
+          "max_pairwise_basin_distance": 1.333212892820786,
+          "mean_pairwise_basin_distance": 1.1253021970359736,
+          "probe_index": 8
+        },
+        {
+          "max_pair_lift_ids": [
+            1,
+            6
+          ],
+          "max_pairwise_basin_distance": 1.3034786126626776,
+          "mean_pairwise_basin_distance": 1.1014429631995488,
+          "probe_index": 9
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            4
+          ],
+          "max_pairwise_basin_distance": 1.2464670567053948,
+          "mean_pairwise_basin_distance": 1.1109506568745373,
+          "probe_index": 10
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            5
+          ],
+          "max_pairwise_basin_distance": 1.3070131659997661,
+          "mean_pairwise_basin_distance": 1.092118742471493,
+          "probe_index": 11
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            2
+          ],
+          "max_pairwise_basin_distance": 1.3106651806850982,
+          "mean_pairwise_basin_distance": 1.100334248306553,
+          "probe_index": 12
+        },
+        {
+          "max_pair_lift_ids": [
+            3,
+            6
+          ],
+          "max_pairwise_basin_distance": 1.2849708253368568,
+          "mean_pairwise_basin_distance": 1.1227452877863549,
+          "probe_index": 13
+        },
+        {
+          "max_pair_lift_ids": [
+            1,
+            6
+          ],
+          "max_pairwise_basin_distance": 1.3427822170141341,
+          "mean_pairwise_basin_distance": 1.10880034544334,
+          "probe_index": 14
+        },
+        {
+          "max_pair_lift_ids": [
+            1,
+            7
+          ],
+          "max_pairwise_basin_distance": 1.2969155036547775,
+          "mean_pairwise_basin_distance": 1.1200174192025103,
+          "probe_index": 15
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            1
+          ],
+          "max_pairwise_basin_distance": 1.348226446896775,
+          "mean_pairwise_basin_distance": 1.1073933672607588,
+          "probe_index": 16
+        }
+      ],
+      "same_scale_as_genuine": true
+    },
+    "low_scale_ratio_bar": 0.1,
+    "not_used_in_deflation": [
+      "B",
+      "qmul(A,B)",
+      "qmul(B,A)",
+      "assembly order swap"
+    ],
+    "pure_gauge_equivariance_controls": {
+      "full_quaternion_axis": {
+        "converged_attractor_pullback_collapses_to_floor": false,
+        "fixed_sweep_pullback_max_distance_to_base": {
+          "1": 1.0962817972831663e-8,
+          "10": 1.0962817972831663e-8,
+          "100": 0.00026390724064608847,
+          "200": 1.3707474414917167,
+          "50": 9.902680286129518e-9
+        },
+        "frame_algebra_ok_short_horizon": true,
+        "interpretation": "The lift map is algebraically equivariant at short horizons, but the converged finite basin is not stable under mathematically equivalent lifts. This is a deflation warning: same-scale basin differences can be coordinate/numeric-attractor artifacts, not assembly-order evidence.",
+        "kind": "full_quaternion_axis",
+        "long_horizon_or_converged_diverges_gt_0p05": true,
+        "max_distance_to_transformed_base_recall": 1.3707474414917165,
+        "max_pulled_back_distance_to_base_after_converged_recall": 1.3707474414917167,
+        "max_raw_distance_without_pullback": 1.3223832090118977,
+        "n_lifts": 8,
+        "n_probes": 16,
+        "role": "pure gauge/readout-artifact control: W, probe, and readout are transformed consistently. Short-horizon pullback checks the frame algebra; converged pullback tests whether the finite attractor basin is stable under mathematically equivalent lifts.",
+        "short_horizon_1_10_50_collapses_to_floor": true
+      },
+      "spin_c_u1": {
+        "converged_attractor_pullback_collapses_to_floor": false,
+        "fixed_sweep_pullback_max_distance_to_base": {
+          "1": 1.1477173227964945e-8,
+          "10": 1.0749765050277588e-8,
+          "100": 0.0003305001470753533,
+          "200": 1.3794552334043955,
+          "50": 1.0630088463816875e-8
+        },
+        "frame_algebra_ok_short_horizon": true,
+        "interpretation": "The lift map is algebraically equivariant at short horizons, but the converged finite basin is not stable under mathematically equivalent lifts. This is a deflation warning: same-scale basin differences can be coordinate/numeric-attractor artifacts, not assembly-order evidence.",
+        "kind": "spin_c_u1",
+        "long_horizon_or_converged_diverges_gt_0p05": true,
+        "max_distance_to_transformed_base_recall": 1.3794552334043955,
+        "max_pulled_back_distance_to_base_after_converged_recall": 1.3794552334043955,
+        "max_raw_distance_without_pullback": 1.304543335783393,
+        "n_lifts": 8,
+        "n_probes": 16,
+        "role": "pure gauge/readout-artifact control: W, probe, and readout are transformed consistently. Short-horizon pullback checks the frame algebra; converged pullback tests whether the finite attractor basin is stable under mathematically equivalent lifts.",
+        "short_horizon_1_10_50_collapses_to_floor": true
+      }
+    },
+    "same_scale_ratio_bar": 0.75,
+    "same_weight_determinism_control": {
+      "max_same_weight_repeat_distance": 8.993646362323668e-9,
+      "mean_same_weight_repeat_distance": 5.613869622677764e-9,
+      "n_probes": 16,
+      "same_weight_is_deterministic_floor": true
+    },
+    "spin_c_u1_lift_connection_arm": {
+      "fixed_weight_base": "W0=A from the genuine full-quaternion order probe; no B and no A*B/B*A assembly are used in this arm",
+      "fraction_pairs_divergent_gt_0p05": 1.0,
+      "fraction_probes_with_any_divergence_gt_0p05": 1.0,
+      "global_max_probe_and_lift_pair": [
+        8,
+        1,
+        3
+      ],
+      "kind": "spin_c_u1",
+      "lift_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "max_pairwise_basin_distance": 1.370785513165907,
+      "max_vs_genuine_max_ratio": 1.0775171744899803,
+      "mean_pairwise_basin_distance": 1.1012966198077097,
+      "mean_vs_genuine_mean_ratio": 1.0004170240077526,
+      "median_pairwise_basin_distance": 1.1045080654499633,
+      "n_lifts": 8,
+      "n_pairs_per_probe": 28,
+      "n_probes": 16,
+      "per_probe": [
+        {
+          "max_pair_lift_ids": [
+            0,
+            3
+          ],
+          "max_pairwise_basin_distance": 1.196974360479828,
+          "mean_pairwise_basin_distance": 1.0790457066148094,
+          "probe_index": 1
+        },
+        {
+          "max_pair_lift_ids": [
+            1,
+            7
+          ],
+          "max_pairwise_basin_distance": 1.2991942220837773,
+          "mean_pairwise_basin_distance": 1.1075776464642921,
+          "probe_index": 2
+        },
+        {
+          "max_pair_lift_ids": [
+            2,
+            3
+          ],
+          "max_pairwise_basin_distance": 1.2769474903480889,
+          "mean_pairwise_basin_distance": 1.116693692479466,
+          "probe_index": 3
+        },
+        {
+          "max_pair_lift_ids": [
+            2,
+            3
+          ],
+          "max_pairwise_basin_distance": 1.3350313386857955,
+          "mean_pairwise_basin_distance": 1.1065460558386093,
+          "probe_index": 4
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            2
+          ],
+          "max_pairwise_basin_distance": 1.2757329477030375,
+          "mean_pairwise_basin_distance": 1.0887678924077964,
+          "probe_index": 5
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            7
+          ],
+          "max_pairwise_basin_distance": 1.3090965503970842,
+          "mean_pairwise_basin_distance": 1.0960375417286845,
+          "probe_index": 6
+        },
+        {
+          "max_pair_lift_ids": [
+            1,
+            6
+          ],
+          "max_pairwise_basin_distance": 1.3116693016585592,
+          "mean_pairwise_basin_distance": 1.1133298068341186,
+          "probe_index": 7
+        },
+        {
+          "max_pair_lift_ids": [
+            1,
+            3
+          ],
+          "max_pairwise_basin_distance": 1.370785513165907,
+          "mean_pairwise_basin_distance": 1.1076238106664558,
+          "probe_index": 8
+        },
+        {
+          "max_pair_lift_ids": [
+            1,
+            7
+          ],
+          "max_pairwise_basin_distance": 1.3275228098142022,
+          "mean_pairwise_basin_distance": 1.0769647342340944,
+          "probe_index": 9
+        },
+        {
+          "max_pair_lift_ids": [
+            1,
+            7
+          ],
+          "max_pairwise_basin_distance": 1.2902292028887845,
+          "mean_pairwise_basin_distance": 1.0844331354126286,
+          "probe_index": 10
+        },
+        {
+          "max_pair_lift_ids": [
+            0,
+            4
+          ],
+          "max_pairwise_basin_distance": 1.3127219980743654,
+          "mean_pairwise_basin_distance": 1.1138062197385215,
+          "probe_index": 11
+        },
+        {
+          "max_pair_lift_ids": [
+            3,
+            5
+          ],
+          "max_pairwise_basin_distance": 1.2680146529000202,
+          "mean_pairwise_basin_distance": 1.127476022945509,
+          "probe_index": 12
+        },
+        {
+          "max_pair_lift_ids": [
+            2,
+            3
+          ],
+          "max_pairwise_basin_distance": 1.265827475646083,
+          "mean_pairwise_basin_distance": 1.0898147542678778,
+          "probe_index": 13
+        },
+        {
+          "max_pair_lift_ids": [
+            5,
+            7
+          ],
+          "max_pairwise_basin_distance": 1.2966854254742548,
+          "mean_pairwise_basin_distance": 1.084763283461074,
+          "probe_index": 14
+        },
+        {
+          "max_pair_lift_ids": [
+            2,
+            6
+          ],
+          "max_pairwise_basin_distance": 1.3286732810949793,
+          "mean_pairwise_basin_distance": 1.1284353304881873,
+          "probe_index": 15
+        },
+        {
+          "max_pair_lift_ids": [
+            6,
+            7
+          ],
+          "max_pairwise_basin_distance": 1.2766406369443335,
+          "mean_pairwise_basin_distance": 1.0994302833412315,
+          "probe_index": 16
+        }
+      ],
+      "same_scale_as_genuine": true
+    }
+  },
+  "dependency_receipts": [
+    "system_v5/julia_carrier/hopfield/clifford_hopfield.jl",
+    "system_v5/julia_carrier/hopfield/clifford_hopfield_results.json"
+  ],
+  "divergence_log": [
+    "This is not a classical baseline; geometric-vs-classical control is included separately.",
+    "Raw lift-coordinate movement is not counted as a clean order witness. The pure-lift control is algebraically equivariant at short horizons but diverges after long/converged recall, so basin separation itself is lift/roundoff-sensitive in this Float64 POC."
+  ],
+  "domain": "single fixed W0=A from the genuine full-quaternion order probe; lift ids m=0..7 for spin_c_u1 and full_quaternion_axis arms; 16 finite random probe states reused from the genuine order arm.",
+  "downstream_blocks": [
+    "layer-completion / manifold admission",
+    "coupling / coexistence / nesting promotion",
+    "bridge / rho_AB / Xi / Phi0 / Axis0",
+    "flux / FEP / physics",
+    "ratchet-edge admission or ratchet-thesis closure"
+  ],
+  "eligible_consumers": [
+    "future Hopfield deflation/audit probes with explicit no-promotion boundary"
+  ],
+  "fail_rule": "Fail if carrier verification fails, same-weight determinism is not at floor, short-horizon pure-lift frame algebra does not pull back to floor, or result JSON is not emitted. Converged pure-lift divergence is a measured deflation warning, not a run failure.",
+  "finite_map": "Phi_deflate: (fixed quaternion weight base W0, lift/connection choice m, probe xi0) -> recalled attractor config; compare pairwise basin distances across m against the genuine A*B vs B*A order arm.",
+  "geometry_layer": "quaternionic Clifford-Hopfield basin dynamics on finite N=12 carrier",
+  "graph_surfaces_used": [],
+  "honest_status": "hopfield_basin_deflated: genuine order arm max=1.27217045409484, spin_c max ratio=1.0775171744899803, full_quaternion max ratio=1.0950998305527124. promotion_allowed=false.",
+  "n_neurons": 12,
+  "name": "Grok-style single-base deflation control for quaternionic Clifford-Hopfield order-dependent basins",
+  "non_numpy": true,
+  "object_id": "deflation_hopfield_basin",
+  "parent_reference": {
+    "classification": "clifford_hopfield_poc",
+    "commuting_control_max_order_basin_distance": 1.0931390796396078e-8,
+    "full_quaternion_max_order_basin_distance": 1.27217045409484,
+    "full_quaternion_mean_order_basin_distance": 1.1008375441231748,
+    "load_bearing_flip": true,
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/hopfield/clifford_hopfield_results.json",
+    "promotion_allowed": false
+  },
+  "pass_rule": "Script runs and emits JSON; verdict is whatever measured single-base lift/connection distances imply under the predeclared scale bars.",
+  "peps3d_embedding": "not_present; this is a Julia Clifford-Hopfield diagnostic control and is blocked from nonclassical manifold admission.",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "no PEPS3D carrier",
+    "no torch-native implementation",
+    "no manifold admission packet",
+    "single diagnostic family only"
+  ],
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [
+    "carrier algebra verification only; no SMT/proof admission claim"
+  ],
+  "quaternion_action": "Hamilton product qmul plus lift action W_m[i,j]=g_m[i]*W0[i,j]*conj(g_m[j]); genuine arm uses qmul(A[i,j],B[i,j]) vs qmul(B[i,j],A[i,j]).",
+  "required_tools": [
+    "LinearAlgebra",
+    "Random",
+    "Statistics",
+    "JSON"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite carrier/probes/operators/paths: N=12 quaternion neurons, finite W0, finite lift set m=0..7, finite probe set n=16, deterministic async recall.",
+    "N01 order-sensitive/noncommuting witness: genuine parent arm uses qmul(A,B) vs qmul(B,A); deflation arm forbids assembly order and varies only lift/connection choice on a single W0."
+  ],
+  "runtime_seconds": 1.0172061920166016,
+  "seed": 20260602,
+  "sim_class": "deflation_control",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "deflation_hopfield_basin",
+  "spinor_state": "unit quaternion S^3 state as Cl(3,0)+ spinor-compatible SU(2) rotor surrogate; no PEPS3D spinor-network claim.",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tier": "diagnostic control over existing Clifford-Hopfield basin POC",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: SU(2)/Pauli matrix realization verifies the reused quaternion carrier and classical-control norm operations.",
+    "Random": "load_bearing: fixed seeded probes, quaternion blocks, and corruption controls; signatures are measured, not planted.",
+    "Statistics": "supportive: mean/median basin distances and control aggregates."
+  },
+  "topology_surfaces_used": [],
+  "verdict": "hopfield_basin_deflated",
+  "verdict_reading": "Single fixed W0 plus lift/connection variation reproduced basin separation at the parent scale; additionally, pure-lift controls show the converged Float64 attractor can diverge after an algebraically valid short-horizon pullback. The order-basin claim is deflated as ordinary lift/connection or numerical-attractor sensitivity unless a later control fences this out.",
+  "version": "1.0"
+}

@@ -342,7 +342,7 @@ def test_receipt_executable_admission_rejects_supporting_and_audit_classes() -> 
 def test_receipt_blocks_numpy_load_bearing_for_bridge_or_nonclassical() -> None:
     receipt_schema = _load_module("receipt_schema_bridge_tools_under_test", SCRIPTS / "receipt_schema.py")
 
-    for execution_kind in ("bridge", "qit_bridge", "nonclassical_bridge"):
+    for execution_kind in ("bridge", "qit_bridge", "nonclassical_bridge", "axis0_runtime_bridge_classifier"):
         for tool_name in ("numpy", "np.linalg", "numpy.linalg"):
             result = receipt_schema.validate_result_payload(
                 _canonical_payload(
@@ -368,39 +368,41 @@ def test_receipt_blocks_numpy_load_bearing_for_bridge_or_nonclassical() -> None:
 def test_receipt_blocks_numpy_load_bearing_for_nonclassical() -> None:
     receipt_schema = _load_module("receipt_schema_nonclassical_numpy_under_test", SCRIPTS / "receipt_schema.py")
 
-    for tool_name in ("numpy", "np.linalg", "numpy.linalg"):
-        result = receipt_schema.validate_result_payload(
-            _canonical_payload(
-                sim_execution_kind="nonclassical",
-                tool_manifest={
-                    tool_name: {
-                        "tried": True,
-                        "used": True,
-                        "reason": "fixture should be blocked for nonclassical evidence.",
-                    }
-                },
-                tool_integration_depth={tool_name: "load_bearing"},
+    for execution_kind in ("nonclassical", "nonclassical_peps3d_flux_axis0_runtime_bound_loop4"):
+        for tool_name in ("numpy", "np.linalg", "numpy.linalg"):
+            result = receipt_schema.validate_result_payload(
+                _canonical_payload(
+                    sim_execution_kind=execution_kind,
+                    tool_manifest={
+                        tool_name: {
+                            "tried": True,
+                            "used": True,
+                            "reason": "fixture should be blocked for nonclassical evidence.",
+                        }
+                    },
+                    tool_integration_depth={tool_name: "load_bearing"},
+                )
             )
-        )
 
-        assert result["ok"] is False
-        assert any(
-            finding["kind"] == "numpy_load_bearing_blocked_for_bridge_or_nonclassical"
-            for finding in result["hard_findings"]
-        )
+            assert result["ok"] is False
+            assert any(
+                finding["kind"] == "numpy_load_bearing_blocked_for_bridge_or_nonclassical"
+                for finding in result["hard_findings"]
+            )
 
 
 def test_receipt_requires_load_bearing_pytorch_for_nonclassical() -> None:
     receipt_schema = _load_module("receipt_schema_nonclassical_tools_under_test", SCRIPTS / "receipt_schema.py")
 
-    missing_pytorch = receipt_schema.validate_result_payload(
-        _canonical_payload(sim_execution_kind="nonclassical")
-    )
-    assert missing_pytorch["ok"] is False
-    assert any(
-        finding["kind"] == "nonclassical_requires_local_load_bearing_pytorch"
-        for finding in missing_pytorch["hard_findings"]
-    )
+    for execution_kind in ("nonclassical", "nonclassical_peps3d_flux_axis0_runtime_bound_loop4"):
+        missing_pytorch = receipt_schema.validate_result_payload(
+            _canonical_payload(sim_execution_kind=execution_kind)
+        )
+        assert missing_pytorch["ok"] is False
+        assert any(
+            finding["kind"] == "nonclassical_requires_local_load_bearing_pytorch"
+            for finding in missing_pytorch["hard_findings"]
+        )
 
     transitive_torch = receipt_schema.validate_result_payload(
         _canonical_payload(
@@ -429,10 +431,11 @@ def test_receipt_requires_load_bearing_pytorch_for_nonclassical() -> None:
                 "torch": {
                     "tried": True,
                     "used": True,
-                    "reason": "torch is load-bearing for the nonclassical fixture.",
+                    "reason": "torch is load-bearing for the finite order-sensitive nonclassical fixture.",
                 }
             },
             tool_integration_depth={"torch": "load_bearing"},
+            root_constraints={"F01": True, "N01": True},
         )
     )
     assert with_torch["ok"] is True

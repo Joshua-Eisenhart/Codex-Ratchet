@@ -1,0 +1,171 @@
+{
+  "Z3_flip": {
+    "erased_chirality_control_sat": false,
+    "erased_status": "ok",
+    "flip_pass": true,
+    "gate": "measured integer charges must be nonzero, opposite, and full magnitude; genuine SAT, zero/same-sign controls UNSAT.",
+    "genuine_sat": true,
+    "glued_control_sat": false,
+    "glued_status": "ok",
+    "status": "ok"
+  },
+  "all_checks": {
+    "Z3_flip": true,
+    "controls_collapse": true,
+    "erased_chirality_same_sign": true,
+    "full_integer_opposite": true,
+    "gamma5_genuine": true
+  },
+  "anti_tautology_controls": {
+    "erased_chirality": {
+      "abs_min_LR": 0.999999999999968,
+      "antisymmetry_abs_wL_plus_wR": 1.999999999999936,
+      "charge_int_L_if_full": 1,
+      "charge_int_R_if_full": 1,
+      "eta_max": 3.141592653589793,
+      "eta_min": 0.0,
+      "neta": 120,
+      "nt": 240,
+      "role": "R uses a plain copy of L rather than charge conjugation; this preserves integer magnitude but kills opposite L/R sign.",
+      "same_sign_not_opposite": true,
+      "signs_opposite_nonzero": false,
+      "w_L": 0.999999999999968,
+      "w_R": 0.999999999999968
+    },
+    "eta_decoupled": {
+      "abs_min_LR": 2.2908080217293872e-15,
+      "antisymmetry_abs_wL_plus_wR": 0.0,
+      "charge_int_L_if_full": 0,
+      "charge_int_R_if_full": 0,
+      "collapses_to_zero": true,
+      "eta_max": 3.141592653589793,
+      "eta_min": 0.0,
+      "neta": 120,
+      "nt": 240,
+      "role": "freeze eta inside the nested section; eta-leg cannot carry mixed curvature.",
+      "signs_opposite_nonzero": false,
+      "w_L": -2.2908080217293872e-15,
+      "w_R": 2.2908080217293872e-15
+    },
+    "glued_product": {
+      "abs_min_LR": 6.872657236382707e-17,
+      "antisymmetry_abs_wL_plus_wR": 8.7393381554642e-16,
+      "charge_int_L_if_full": 0,
+      "charge_int_R_if_full": 0,
+      "collapses_to_zero": true,
+      "eta_max": 3.141592653589793,
+      "eta_min": 0.0,
+      "neta": 120,
+      "nt": 240,
+      "role": "eta-only factor times t-only factor; mixed eta<->t curvature should vanish.",
+      "signs_opposite_nonzero": false,
+      "w_L": -8.052072431825929e-16,
+      "w_R": -6.872657236382707e-17
+    },
+    "grid_convergence": {
+      "role": "full charge remains integer across coarse-to-fine grids.",
+      "rows": {
+        "neta_120_nt_240": {
+          "abs_min_LR": 0.9999999999999678,
+          "antisymmetry_abs_wL_plus_wR": 2.220446049250313e-16,
+          "w_L": 0.999999999999968,
+          "w_R": -0.9999999999999678
+        },
+        "neta_240_nt_360": {
+          "abs_min_LR": 0.9999999999999359,
+          "antisymmetry_abs_wL_plus_wR": 1.887379141862766e-15,
+          "w_L": 0.9999999999999378,
+          "w_R": -0.9999999999999359
+        },
+        "neta_80_nt_120": {
+          "abs_min_LR": 1.0000000000000302,
+          "antisymmetry_abs_wL_plus_wR": 4.440892098500626e-16,
+          "w_L": 1.0000000000000306,
+          "w_R": -1.0000000000000302
+        }
+      }
+    }
+  },
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "pairwise nesting promotion",
+    "bridge/rho_AB/Xi/Phi0/Axis0",
+    "flux/FEP",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "carrier_realization": "Julia ComplexF64 finite spinor sections; no NumPy; Hopf-base eigenspinor projected from nested S3 carrier; gamma5 L/R C4 lift.",
+  "claim_ceiling": "Bounded full-eta mixed-cocycle magnitude POC only. Does not assert layer completion, manifold admission, bridge/Xi/Phi0/Axis0, flux/FEP, physics, or promotion.",
+  "classification": "cocycle_full_monopole_poc",
+  "codomain_or_output": "signed mixed Wilson curvature charges w_L, w_R; integer-charge gate; control charges; verdict in {full_monopole_present, sub_integer_only, mixed}.",
+  "domain": "finite lattice [0,pi] eta cells x [0,2pi] torus-cycle cells; chiral C^4 spinor section per lattice point.",
+  "eta_range_semantics": "eta is the Hopf-base polar latitude in [0, pi]. The nested Hopf-tori S3 carrier anchor uses lambda=eta/2 so the S3 torus latitude remains in [0, pi/2].",
+  "finite_map": "(finite eta grid over [0,pi], finite torus grid over [0,2pi], gamma5-chiral Hopf-base eigenspinor lift) |-> FHS mixed Wilson curvature integral g^L, g^R and controls.",
+  "full_eta_integral": {
+    "abs_min_LR": 0.9999999999999359,
+    "antisymmetry_abs_wL_plus_wR": 1.887379141862766e-15,
+    "charge_int_L_if_full": 1,
+    "charge_int_R_if_full": -1,
+    "eta_max": 3.141592653589793,
+    "eta_min": 0.0,
+    "neta": 240,
+    "nt": 360,
+    "signs_opposite_nonzero": true,
+    "w_L": 0.9999999999999378,
+    "w_R": -0.9999999999999359
+  },
+  "gamma5_genuine_measured": {
+    "gamma5_anticomm_residual": 0.0,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_sq_residual": 0.0,
+    "is_genuine": true
+  },
+  "honest_answer": "The full eta integral over [0, pi] x [0, 2pi] reaches an integer mixed charge with opposite L/R sign; the previous partial-band values were sub-integer samples of the full base curvature. Controls collapse to zero and erased chirality removes the opposite-sign structure. This is still promotion_allowed=false and does not admit a layer/manifold claim.",
+  "name": "Full-eta mixed nesting-chirality cocycle monopole test",
+  "object_id": "cocycle_full_monopole",
+  "partial_band_reference": {
+    "legacy_v2_like_eta_band_pi10_to_1p35": {
+      "abs_min_LR": 0.3660215533401016,
+      "antisymmetry_abs_wL_plus_wR": 0.0,
+      "charge_int_L_if_full": 0,
+      "charge_int_R_if_full": 0,
+      "eta_max": 1.35,
+      "eta_min": 0.3141592653589793,
+      "neta": 120,
+      "nt": 240,
+      "signs_opposite_nonzero": true,
+      "w_L": 0.3660215533401016,
+      "w_R": -0.3660215533401016
+    },
+    "reading": "Same full-base lift over the old finite band remains sub-integer, matching the partial-solid-angle explanation; the integer appears only over the full base range."
+  },
+  "peps3d_embedding": "not_claimed: finite nested Hopf-tori carrier anchor only; this POC is blocked from PEPS3D/manifold admission.",
+  "promotion_allowed": false,
+  "quaternion_action": "not_applicable: no quaternion-language claim in this probe.",
+  "root_constraints_in_force": [
+    "F01 finite carrier/probes/operators/paths: finite eta x torus grid; S3pt(eta/2,0,t) nested Hopf-tori anchor; Hopf projection; C4 gamma5 chiral lift; FHS plaquette paths.",
+    "N01 noncommuting/order-sensitive operation/control: eta transport and torus-cycle transport have nonzero mixed Wilson curvature on the nested chiral lift; glued and eta-decoupled controls commute/collapse."
+  ],
+  "seed": 20260602,
+  "sim_id": "cocycle_full_monopole",
+  "spinor_state": "4-component gamma5-chiral spinor section; L uses Hopf-base eigenspinor, R uses i sigma_y conj(u).",
+  "status": "passes local rerun",
+  "status_ladder": "exists < runs < passes local rerun < canonical by process",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: result emission.",
+    "LinearAlgebra": "load_bearing: eigenspinor lift, overlaps, FHS Wilson plaquette phases.",
+    "Z3": "load_bearing: integer opposite-sign gate flips genuine SAT vs glued/erased controls UNSAT."
+  },
+  "verdict": "full_monopole_present"
+}

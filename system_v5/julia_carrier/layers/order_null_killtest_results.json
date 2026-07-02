@@ -1,0 +1,436 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^2); finite genuine channel set of 8 channels",
+    "finite_operator": "Ti/Te/Fi/Fe + Weyl-L/R GKSL + Ni-terrain GKSL channels (genuine layer maps)",
+    "finite_path": "ordered compositions Phi_i Phi_j and full words (forward vs reversed)",
+    "finite_probe": "20 random density operators (spinor-derived + maximally-mixed convex)"
+  },
+  "N01_witness": {
+    "gap_formula": "Delta = mean_rho ||Phi_i(Phi_j(rho)) - Phi_j(Phi_i(rho))||_HS",
+    "max_dynamic_gap": 0.6117154481413589,
+    "noise_floor": 7.105427357601002e-15,
+    "present_above_floor": true
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "any ratchet edge admission",
+    "pairwise nesting",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics"
+  ],
+  "carrier": "density operators rho in D(C^2); genuine layer channels read from L7/L10/L11 _bf files; HS norm, trace norm, PTM superoperator. NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "MEASURES static commutator, dynamic run-order gap, reversed-vs-forward identity vs an explicit noise floor over genuine channels. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics. A real dynamic gap here is a CANDIDATE order-sensitive interface, not a proven ratchet edge.",
+  "classification": "order_null_killtest_poc",
+  "flat_control": {
+    "collapses_to_floor": true,
+    "dynamic_order_gap_max_HS": 0.0,
+    "dynamic_order_gap_mean_HS": 0.0,
+    "note": "Phi(Phi(rho)) - Phi(Phi(rho)) = 0 exactly; verifies the run-order metric is not manufacturing a gap.",
+    "pair": "Fi_xrot , Fi_xrot (identical channel both slots)"
+  },
+  "n_rho": 20,
+  "noise_floor": {
+    "definition": "eps(Float64) * max PTM HS scale (=2.0) * comp_depth(2) * 8 safety",
+    "machine_eps": 2.220446049250313e-16,
+    "max_ptm_hs_scale": 2.0,
+    "value": 7.105427357601002e-15
+  },
+  "non_numpy": true,
+  "object_id": "order_null_killtest",
+  "pairwise": [
+    {
+      "dynamic_above_noise_floor": false,
+      "dynamic_order_gap_max_HS": 1.5823112613210482e-16,
+      "dynamic_order_gap_mean_HS": 5.425376237627822e-17,
+      "kind": "dephasing / dephasing",
+      "pair": "Ti_zpinch , Te_xpinch",
+      "ratio_dynamic_over_floor": 0.007635538250664188,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.0,
+      "verdict": "trivially_commuting"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.2437163240579294,
+      "dynamic_order_gap_mean_HS": 0.11963070445469062,
+      "kind": "dephasing / unitary",
+      "pair": "Ti_zpinch , Fi_xrot",
+      "ratio_dynamic_over_floor": 1.6836524875131707e13,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.7200645005885441,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": false,
+      "dynamic_order_gap_max_HS": 1.1527756336890508e-16,
+      "dynamic_order_gap_mean_HS": 2.9846947495203086e-17,
+      "kind": "dephasing / unitary",
+      "pair": "Ti_zpinch , Fe_zrot",
+      "ratio_dynamic_over_floor": 0.004200584425548231,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.0,
+      "verdict": "trivially_commuting"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.21406940402470226,
+      "dynamic_order_gap_mean_HS": 0.20350747690766507,
+      "kind": "dephasing / gksl",
+      "pair": "Ti_zpinch , WeylL_GKSL",
+      "ratio_dynamic_over_floor": 2.8641131161514695e13,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.15080446921188423,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.21575442423825375,
+      "dynamic_order_gap_mean_HS": 0.20031919868883877,
+      "kind": "dephasing / gksl",
+      "pair": "Ti_zpinch , WeylR_GKSL",
+      "ratio_dynamic_over_floor": 2.8192420892819082e13,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.15080446921188423,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.21575442423825375,
+      "dynamic_order_gap_mean_HS": 0.20031919868883877,
+      "kind": "dephasing / gksl",
+      "pair": "Ti_zpinch , Terr_Ni",
+      "ratio_dynamic_over_floor": 2.8192420892819082e13,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.15080446921188423,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.3549875475296553,
+      "dynamic_order_gap_mean_HS": 0.3544018218100079,
+      "kind": "dephasing / gksl",
+      "pair": "Ti_zpinch , TerrRot_Ni",
+      "ratio_dynamic_over_floor": 4.9877622270093016e13,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.2595081884039711,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": false,
+      "dynamic_order_gap_max_HS": 1.80477282346577e-16,
+      "dynamic_order_gap_mean_HS": 8.699910750110499e-17,
+      "kind": "dephasing / unitary",
+      "pair": "Te_xpinch , Fi_xrot",
+      "ratio_dynamic_over_floor": 0.012244035878860693,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.0,
+      "verdict": "trivially_commuting"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.2742949682629893,
+      "dynamic_order_gap_mean_HS": 0.14886858492275523,
+      "kind": "dephasing / unitary",
+      "pair": "Te_xpinch , Fe_zrot",
+      "ratio_dynamic_over_floor": 2.095139073704042e13,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.7200645005885441,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.08223148943566544,
+      "dynamic_order_gap_mean_HS": 0.06233143483174806,
+      "kind": "dephasing / gksl",
+      "pair": "Te_xpinch , WeylL_GKSL",
+      "ratio_dynamic_over_floor": 8.772369583804028e12,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.06698407618759622,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.08215633156427582,
+      "dynamic_order_gap_mean_HS": 0.06239585433259277,
+      "kind": "dephasing / gksl",
+      "pair": "Te_xpinch , WeylR_GKSL",
+      "ratio_dynamic_over_floor": 8.781435822554018e12,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.06698407618759622,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.08215633156427582,
+      "dynamic_order_gap_mean_HS": 0.06239585433259277,
+      "kind": "dephasing / gksl",
+      "pair": "Te_xpinch , Terr_Ni",
+      "ratio_dynamic_over_floor": 8.781435822554018e12,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.06698407618759622,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.3812520246976403,
+      "dynamic_order_gap_mean_HS": 0.3741084361661286,
+      "kind": "dephasing / gksl",
+      "pair": "Te_xpinch , TerrRot_Ni",
+      "ratio_dynamic_over_floor": 5.265108167856049e13,
+      "static_hamiltonian_commutator_HS": "undefined_no_hamiltonian",
+      "static_superop_commutator_HS": 0.27213250048659887,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.37255103384978416,
+      "dynamic_order_gap_mean_HS": 0.1965041085496731,
+      "kind": "unitary / unitary",
+      "pair": "Fi_xrot , Fe_zrot",
+      "ratio_dynamic_over_floor": 2.7655494688783727e13,
+      "static_hamiltonian_commutator_HS": 0.5727564927611035,
+      "static_superop_commutator_HS": 1.0509194391519014,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.12041584636451347,
+      "dynamic_order_gap_mean_HS": 0.07833689010967168,
+      "kind": "unitary / gksl",
+      "pair": "Fi_xrot , WeylL_GKSL",
+      "ratio_dynamic_over_floor": 1.1024937159602527e13,
+      "static_hamiltonian_commutator_HS": 1.2702806414587005,
+      "static_superop_commutator_HS": 0.18718329432902064,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.14184145153136096,
+      "dynamic_order_gap_mean_HS": 0.09776136203985522,
+      "kind": "unitary / gksl",
+      "pair": "Fi_xrot , WeylR_GKSL",
+      "ratio_dynamic_over_floor": 1.3758688551685129e13,
+      "static_hamiltonian_commutator_HS": 1.2702806414587005,
+      "static_superop_commutator_HS": 0.18718329432902064,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.14184145153136096,
+      "dynamic_order_gap_mean_HS": 0.09776136203985522,
+      "kind": "unitary / gksl",
+      "pair": "Fi_xrot , Terr_Ni",
+      "ratio_dynamic_over_floor": 1.3758688551685129e13,
+      "static_hamiltonian_commutator_HS": 1.2702806414587005,
+      "static_superop_commutator_HS": 0.18718329432902064,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.5156536322709168,
+      "dynamic_order_gap_mean_HS": 0.4942118263269113,
+      "kind": "unitary / gksl",
+      "pair": "Fi_xrot , TerrRot_Ni",
+      "ratio_dynamic_over_floor": 6.955413115274906e13,
+      "static_hamiltonian_commutator_HS": 1.2702806414587005,
+      "static_superop_commutator_HS": 0.37386596848672116,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.3085780961034911,
+      "dynamic_order_gap_mean_HS": 0.2625099253816692,
+      "kind": "unitary / gksl",
+      "pair": "Fe_zrot , WeylL_GKSL",
+      "ratio_dynamic_over_floor": 3.694498756656069e13,
+      "static_hamiltonian_commutator_HS": 1.2727922061357857,
+      "static_superop_commutator_HS": 0.2515718389172606,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.3191358821104135,
+      "dynamic_order_gap_mean_HS": 0.25826496892262085,
+      "kind": "unitary / gksl",
+      "pair": "Fe_zrot , WeylR_GKSL",
+      "ratio_dynamic_over_floor": 3.63475630563365e13,
+      "static_hamiltonian_commutator_HS": 1.2727922061357857,
+      "static_superop_commutator_HS": 0.2515718389172606,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.3191358821104135,
+      "dynamic_order_gap_mean_HS": 0.25826496892262085,
+      "kind": "unitary / gksl",
+      "pair": "Fe_zrot , Terr_Ni",
+      "ratio_dynamic_over_floor": 3.63475630563365e13,
+      "static_hamiltonian_commutator_HS": 1.2727922061357857,
+      "static_superop_commutator_HS": 0.2515718389172606,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.4905511068945983,
+      "dynamic_order_gap_mean_HS": 0.4676963925848092,
+      "kind": "unitary / gksl",
+      "pair": "Fe_zrot , TerrRot_Ni",
+      "ratio_dynamic_over_floor": 6.58224156052335e13,
+      "static_hamiltonian_commutator_HS": 1.2727922061357857,
+      "static_superop_commutator_HS": 0.36088696989796776,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.16324292109732183,
+      "dynamic_order_gap_mean_HS": 0.16243484610279388,
+      "kind": "gksl / gksl",
+      "pair": "WeylL_GKSL , WeylR_GKSL",
+      "ratio_dynamic_over_floor": 2.286067226189145e13,
+      "static_hamiltonian_commutator_HS": 0.0,
+      "static_superop_commutator_HS": 0.04679477141442753,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.16324292109732183,
+      "dynamic_order_gap_mean_HS": 0.16243484610279388,
+      "kind": "gksl / gksl",
+      "pair": "WeylL_GKSL , Terr_Ni",
+      "ratio_dynamic_over_floor": 2.286067226189145e13,
+      "static_hamiltonian_commutator_HS": 0.0,
+      "static_superop_commutator_HS": 0.04679477141442753,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.5548234754252059,
+      "dynamic_order_gap_mean_HS": 0.5539754233363338,
+      "kind": "gksl / gksl",
+      "pair": "WeylL_GKSL , TerrRot_Ni",
+      "ratio_dynamic_over_floor": 7.796510969093517e13,
+      "static_hamiltonian_commutator_HS": 0.0,
+      "static_superop_commutator_HS": 0.1818843648668961,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": false,
+      "dynamic_order_gap_max_HS": 0.0,
+      "dynamic_order_gap_mean_HS": 0.0,
+      "kind": "gksl / gksl",
+      "pair": "WeylR_GKSL , Terr_Ni",
+      "ratio_dynamic_over_floor": 0.0,
+      "static_hamiltonian_commutator_HS": 0.0,
+      "static_superop_commutator_HS": 0.0,
+      "verdict": "trivially_commuting"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.6127734107534724,
+      "dynamic_order_gap_mean_HS": 0.6117154481413589,
+      "kind": "gksl / gksl",
+      "pair": "WeylR_GKSL , TerrRot_Ni",
+      "ratio_dynamic_over_floor": 8.609129575956875e13,
+      "static_hamiltonian_commutator_HS": 0.0,
+      "static_superop_commutator_HS": 0.1994906241647014,
+      "verdict": "order_sensitivity_real"
+    },
+    {
+      "dynamic_above_noise_floor": true,
+      "dynamic_order_gap_max_HS": 0.6127734107534724,
+      "dynamic_order_gap_mean_HS": 0.6117154481413589,
+      "kind": "gksl / gksl",
+      "pair": "Terr_Ni , TerrRot_Ni",
+      "ratio_dynamic_over_floor": 8.609129575956875e13,
+      "static_hamiltonian_commutator_HS": 0.0,
+      "static_superop_commutator_HS": 0.1994906241647014,
+      "verdict": "order_sensitivity_real"
+    }
+  ],
+  "promotion_allowed": false,
+  "reversed_vs_forward": {
+    "dephasing_only_word": {
+      "note": "the council's null came from a word like this; dephasings about close axes leave a tiny reversed-vs-forward residue.",
+      "reversed_eq_forward": true,
+      "trace_norm_diff_max": 1.6653345369377348e-16,
+      "trace_norm_diff_mean": 6.05025943366502e-17,
+      "word": "Ti Te Ti Te (forward) vs Te Ti Te Ti (reversed)"
+    },
+    "heterogeneous_word": {
+      "note": "genuine heterogeneous schedule (pinch + rotation + GKSL); if this is above floor the run order DOES matter on genuine channels.",
+      "reversed_eq_forward": false,
+      "trace_norm_diff_max": 0.35367127166592105,
+      "trace_norm_diff_mean": 0.3525866472135488,
+      "word": "Ti Fi WeylL Te Fe WeylR (forward) vs reversed"
+    },
+    "noise_floor_for_word": 4.263256414560601e-14
+  },
+  "script": "order_null_killtest.jl",
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm), HS norms, eigen, channel/PTM algebra; every measured number flows through it.",
+    "Random": "load_bearing: random density operators (the gap is measured over fresh samples, not planted).",
+    "Statistics": "supportive: means/std over the rho ensemble.",
+    "Z3": "load_bearing: binds the measured dynamic gap to the commuting law; verdict flips UNSAT->SAT on the erased (same-channel) pair."
+  },
+  "verdict": {
+    "dephasing_word_run_order_matters": false,
+    "heterogeneous_word_run_order_matters": true,
+    "interpretation": "order_null means: a pair whose superoperator/Hamiltonian static commutator is large (>1e-3) but whose DYNAMIC run-order gap sits at the noise floor. order_sensitivity_real means: the run order GENUINELY changes the output above the floor. The full reversed-vs-forward word test decides whether the spine survives.",
+    "n_order_null_pairs": 0,
+    "n_order_sensitivity_real_pairs": 24,
+    "n_trivially_commuting_pairs": 4,
+    "order_null_pairs": [],
+    "order_sensitivity_real_pairs": [
+      "Ti_zpinch , Fi_xrot",
+      "Ti_zpinch , WeylL_GKSL",
+      "Ti_zpinch , WeylR_GKSL",
+      "Ti_zpinch , Terr_Ni",
+      "Ti_zpinch , TerrRot_Ni",
+      "Te_xpinch , Fe_zrot",
+      "Te_xpinch , WeylL_GKSL",
+      "Te_xpinch , WeylR_GKSL",
+      "Te_xpinch , Terr_Ni",
+      "Te_xpinch , TerrRot_Ni",
+      "Fi_xrot , Fe_zrot",
+      "Fi_xrot , WeylL_GKSL",
+      "Fi_xrot , WeylR_GKSL",
+      "Fi_xrot , Terr_Ni",
+      "Fi_xrot , TerrRot_Ni",
+      "Fe_zrot , WeylL_GKSL",
+      "Fe_zrot , WeylR_GKSL",
+      "Fe_zrot , Terr_Ni",
+      "Fe_zrot , TerrRot_Ni",
+      "WeylL_GKSL , WeylR_GKSL",
+      "WeylL_GKSL , Terr_Ni",
+      "WeylL_GKSL , TerrRot_Ni",
+      "WeylR_GKSL , TerrRot_Ni",
+      "Terr_Ni , TerrRot_Ni"
+    ],
+    "overall": "order_sensitivity_real",
+    "trivially_commuting_pairs": [
+      "Ti_zpinch , Te_xpinch",
+      "Ti_zpinch , Fe_zrot",
+      "Te_xpinch , Fi_xrot",
+      "WeylR_GKSL , Terr_Ni"
+    ]
+  },
+  "z3_load_bearing": {
+    "encoding": "FREE int gap, FREE bool same_channel; law Or([Not(same_channel), gap==0]); assert same_channel=true + gap==IntVal(measured). genuine cross-channel: unsat; erased same-channel: sat.",
+    "erased_flat_gap": 0.0,
+    "erased_verdict": "sat",
+    "genuine_max_dynamic_gap": 0.6117154481413589,
+    "genuine_verdict": "unsat",
+    "load_bearing_flip": true
+  }
+}

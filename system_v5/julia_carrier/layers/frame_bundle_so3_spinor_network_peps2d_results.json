@@ -1,0 +1,316 @@
+{
+  "all_pass": true,
+  "anti_tautology_control_on_contracted_network": {
+    "design": "Genuine vs wrong-structure invariant MEASURED ON the contracted PEPS2D network, not hardcoded. Genuine: SO(3) frame lifted to U in SU(2); frame-conjugated spin triple A_k = U S_k U' fed to expectation_value; orientation det(Q) recovered from the operators actually measured -> +1. Wrong-structure (bundle trivialized): reflected O(3) frame R*diag(1,1,-1) (det = -1, outside the SU(2) image); the same network measurement recovers det(Q) -> -1. The invariant FLIPS +1 -> -1.",
+    "erasure_ablation": {
+      "design": "U = I removes the frame rotation; A_k = S_k. The network-measured frame magnetization collapses toward the bare magnetization on the contracted env.",
+      "erasure_delta_nonzero_on_every_rung": true,
+      "min_erasure_response_delta_across_rungs": 0.3891995925
+    },
+    "frame_so3_det": 0.9999999999999998,
+    "genuine_orientation_det_per_rung": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "invariant_flips_plus1_to_minus1_on_every_rung": true,
+    "known_invariant": "SU(2) double-cover frame orientation sign det(Q) = +1 for a genuine SO(3)-reduced frame bundle",
+    "load_bearing_earned_by_measured_flip": true,
+    "pass": true,
+    "reflected_frame_o3_det": -0.9999999999999998,
+    "su2_lift_det_real": 1.0,
+    "su2_lift_unitarity_err": 0.0,
+    "tool_role": "load_bearing",
+    "wrong_structure": "reflected O(3) frame breaks the SO(3) reduction; recovered orientation det(Q) = -1",
+    "wrong_structure_orientation_det_per_rung": [
+      -1.0,
+      -1.0,
+      -1.0,
+      -1.0
+    ]
+  },
+  "carrier": "InfinitePEPS physical ComplexSpace(2) spinor carrier, virtual ComplexSpace(2), CTMRG environment chi ladder 8/16/32/64",
+  "claim_ceiling": "POC evidence only: SO(3) frame orientation invariant measured ON a contracted PEPS2D network plus a wrong-structure control that flips it. Not canonical, not full layer completion, not bridge/axis/physics evidence.",
+  "classification": "frame_bundle_so3_spinor_network_peps2d_poc",
+  "downstream_blocks": [
+    "full_layer_completion",
+    "G_structure_selection",
+    "Axis0",
+    "FEP",
+    "flux",
+    "bridge",
+    "physics"
+  ],
+  "engine": "PEPSKit v0.7-style InfinitePEPS / CTMRGEnv / leading_boundary / expectation_value; contraction-only",
+  "frame_element": {
+    "angle": 0.9,
+    "axis": [
+      0.3,
+      1.0,
+      -0.4
+    ],
+    "pass": true,
+    "reflected_frame_o3_det": -0.9999999999999998,
+    "so3_det": 0.9999999999999998,
+    "so3_orthonormality_err": 2.4902799884605145e-16,
+    "su2_det_imag": 2.7755575615628914e-17,
+    "su2_det_real": 1.0,
+    "su2_unitarity_err": 0.0
+  },
+  "honest_status": "runs if this file exits 0; promotion_allowed=false; no completion claim; control verdict-flip and erasure delta are MEASURED on the contracted network",
+  "item": "frame_bundle_so3_spinor_network_peps2d",
+  "peps2d_ctmrg_ladder": {
+    "all_rungs_converged_by_threshold_1e_minus_2": true,
+    "contraction_api": "leading_boundary(CTMRGEnv(randn, ComplexF64, peps, ComplexSpace(chi)), peps; tol,miniter,maxiter,trunc,verbosity)",
+    "entropies_vary_across_8_16_32_64": true,
+    "environment_schmidt_entropies": [
+      0.6269699124527373,
+      0.6622517881629124,
+      0.7798463240466365,
+      1.1460956974435301
+    ],
+    "evidence": "InfinitePEPS object was contracted by CTMRG leading_boundary for chi 8/16/32/64; observables were measured by expectation_value against the CTMRG env; entropy came from tsvd(env.corners[1,1,1]).",
+    "fixedpoint_used": false,
+    "ladder_chi": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "mps_used": false,
+    "peps2d_genuinely_engaged": true,
+    "peps_type": "InfinitePEPS{TensorMap{ComplexF64, ComplexSpace, 1, 4, Vector{ComplexF64}}}",
+    "rungs": [
+      {
+        "bare_magnetization_on_network": [
+          0.1188688153,
+          -0.4665638669,
+          -0.2434260636
+        ],
+        "bond_dim_D": 2,
+        "chi": 8,
+        "ctmrg_converged": true,
+        "ctmrg_info": {
+          "summary": "PEPSKit CTMRG info trimmed intentionally; full environment tensors stay out of the JSON artifact.",
+          "truncation_error": 0.0018604994308055382
+        },
+        "ctmrg_truncation_error": 0.0018604994308055382,
+        "environment_schmidt_entropy": 0.6269699124527373,
+        "environment_schmidt_spectrum_head": [
+          0.8420212718,
+          0.0791153256,
+          0.0451504469,
+          0.0253157113,
+          0.0051852597,
+          0.0018693652,
+          0.0010964039,
+          0.0002462154
+        ],
+        "erased_frame_magnetization_on_network": [
+          0.1188688153,
+          -0.4665638669,
+          -0.2434260636
+        ],
+        "erasure_delta_nonzero": true,
+        "erasure_response_delta": 0.3910556267,
+        "frame_operator_expectation": 0.0704190504,
+        "genuine_frame_magnetization_on_network": [
+          0.3449073052,
+          -0.4088373683,
+          0.0704190504
+        ],
+        "invariant_flips_plus1_to_minus1_on_network": true,
+        "recovered_orientation_det_erased": 1.0,
+        "recovered_orientation_det_genuine": 1.0,
+        "recovered_orientation_det_wrong_structure": -1.0,
+        "spectrum_length": 8,
+        "unit_cell": "1x1 InfiniteSquare iPEPS",
+        "wrong_structure_frame_magnetization_on_network": [
+          0.3449073052,
+          -0.4088373683,
+          -0.0704190504
+        ],
+        "wrong_structure_response_delta": 0.1408381008
+      },
+      {
+        "bare_magnetization_on_network": [
+          0.1217644693,
+          -0.4705967771,
+          -0.240485922
+        ],
+        "bond_dim_D": 2,
+        "chi": 16,
+        "ctmrg_converged": true,
+        "ctmrg_info": {
+          "summary": "PEPSKit CTMRG info trimmed intentionally; full environment tensors stay out of the JSON artifact.",
+          "truncation_error": 0.00039094084592764824
+        },
+        "ctmrg_truncation_error": 0.00039094084592764824,
+        "environment_schmidt_entropy": 0.6622517881629124,
+        "environment_schmidt_spectrum_head": [
+          0.8380942725,
+          0.0781019311,
+          0.0452084366,
+          0.0250828328,
+          0.0054586727,
+          0.0021746888,
+          0.0019857242,
+          0.0011233366,
+          0.0009545582,
+          0.0006967009
+        ],
+        "erased_frame_magnetization_on_network": [
+          0.1217644693,
+          -0.4705967771,
+          -0.240485922
+        ],
+        "erasure_delta_nonzero": true,
+        "erasure_response_delta": 0.3917538505,
+        "frame_operator_expectation": 0.0756486634,
+        "genuine_frame_magnetization_on_network": [
+          0.3453833982,
+          -0.4112286216,
+          0.0756486634
+        ],
+        "invariant_flips_plus1_to_minus1_on_network": true,
+        "recovered_orientation_det_erased": 1.0,
+        "recovered_orientation_det_genuine": 1.0,
+        "recovered_orientation_det_wrong_structure": -1.0,
+        "spectrum_length": 16,
+        "unit_cell": "1x1 InfiniteSquare iPEPS",
+        "wrong_structure_frame_magnetization_on_network": [
+          0.3453833982,
+          -0.4112286216,
+          -0.0756486634
+        ],
+        "wrong_structure_response_delta": 0.1512973268
+      },
+      {
+        "bare_magnetization_on_network": [
+          0.1129282947,
+          -0.473866479,
+          -0.2398841895
+        ],
+        "bond_dim_D": 2,
+        "chi": 32,
+        "ctmrg_converged": true,
+        "ctmrg_info": {
+          "summary": "PEPSKit CTMRG info trimmed intentionally; full environment tensors stay out of the JSON artifact.",
+          "truncation_error": 6.699642128023911e-5
+        },
+        "ctmrg_truncation_error": 6.699642128023911e-5,
+        "environment_schmidt_entropy": 0.7798463240466365,
+        "environment_schmidt_spectrum_head": [
+          0.8161501752,
+          0.0777068213,
+          0.0466543662,
+          0.0248799603,
+          0.0168564057,
+          0.0060130346,
+          0.0021686482,
+          0.0019507851,
+          0.001597725,
+          0.0010812425
+        ],
+        "erased_frame_magnetization_on_network": [
+          0.1129282947,
+          -0.473866479,
+          -0.2398841895
+        ],
+        "erasure_delta_nonzero": true,
+        "erasure_response_delta": 0.3891995925,
+        "frame_operator_expectation": 0.0712651149,
+        "genuine_frame_magnetization_on_network": [
+          0.3398259668,
+          -0.4174760589,
+          0.0712651149
+        ],
+        "invariant_flips_plus1_to_minus1_on_network": true,
+        "recovered_orientation_det_erased": 1.0,
+        "recovered_orientation_det_genuine": 1.0,
+        "recovered_orientation_det_wrong_structure": -1.0,
+        "spectrum_length": 32,
+        "unit_cell": "1x1 InfiniteSquare iPEPS",
+        "wrong_structure_frame_magnetization_on_network": [
+          0.3398259668,
+          -0.4174760589,
+          -0.0712651149
+        ],
+        "wrong_structure_response_delta": 0.1425302298
+      },
+      {
+        "bare_magnetization_on_network": [
+          0.119724545,
+          -0.4684511619,
+          -0.2446604118
+        ],
+        "bond_dim_D": 2,
+        "chi": 64,
+        "ctmrg_converged": true,
+        "ctmrg_info": {
+          "summary": "PEPSKit CTMRG info trimmed intentionally; full environment tensors stay out of the JSON artifact.",
+          "truncation_error": 1.5271480332431947e-5
+        },
+        "ctmrg_truncation_error": 1.5271480332431947e-5,
+        "environment_schmidt_entropy": 1.1460956974435301,
+        "environment_schmidt_spectrum_head": [
+          0.7311690402,
+          0.0733448314,
+          0.0690110121,
+          0.0402616367,
+          0.0236709383,
+          0.0221923311,
+          0.0072956569,
+          0.0068986405,
+          0.0050740953,
+          0.0038334572
+        ],
+        "erased_frame_magnetization_on_network": [
+          0.119724545,
+          -0.4684511619,
+          -0.2446604118
+        ],
+        "erasure_delta_nonzero": true,
+        "erasure_response_delta": 0.3929510161,
+        "frame_operator_expectation": 0.0707856579,
+        "genuine_frame_magnetization_on_network": [
+          0.3467297324,
+          -0.4103742902,
+          0.0707856579
+        ],
+        "invariant_flips_plus1_to_minus1_on_network": true,
+        "recovered_orientation_det_erased": 1.0,
+        "recovered_orientation_det_genuine": 1.0,
+        "recovered_orientation_det_wrong_structure": -1.0,
+        "spectrum_length": 64,
+        "unit_cell": "1x1 InfiniteSquare iPEPS",
+        "wrong_structure_frame_magnetization_on_network": [
+          0.3467297324,
+          -0.4103742902,
+          -0.0707856579
+        ],
+        "wrong_structure_response_delta": 0.1415713158
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "seed": 20260602,
+  "sim_execution_kind": "nonclassical_poc_julia_peps2d",
+  "timestamp_utc": "2026-06-03T00:45:03.854",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "PEPSKit": "load_bearing",
+    "Random": "supportive",
+    "TensorKit": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: result artifact emission",
+    "LinearAlgebra": "load_bearing: SO(3)/SU(2) maps, orientation determinant recovered from network-measured operators, frame-response norms",
+    "PEPSKit": "load_bearing: InfinitePEPS, CTMRGEnv, leading_boundary, expectation_value for the frame-conjugated spin triple on the contracted network",
+    "Random": "supportive: deterministic frame and PEPS/environment seeds",
+    "TensorKit": "load_bearing: ComplexSpace, TensorMap, CTMRG corner SVD via tsvd"
+  },
+  "wallclock_seconds": 532.14
+}

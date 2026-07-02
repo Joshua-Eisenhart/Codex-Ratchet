@@ -1,0 +1,291 @@
+{
+  "F01": "compact S3 carrier; finite probe registry; bounded spectral invariant",
+  "FOUR_LINE_SUMMARY": [
+    "1. object_id: R0_newstd",
+    "2. overall_fraction: 6/6",
+    "3. weakest_criterion: scale_ladder (score=1.0)",
+    "4. verdict: GENUINELY-UPGRADED"
+  ],
+  "N01": "SU(2) generators JX,JY,JZ; ||[JX,JY]||>0; flat Cartesian control gives ~0",
+  "all_pass": true,
+  "bloch_free": true,
+  "blocked_consumers": [
+    "geometry_layers_L0_to_L13",
+    "stacking",
+    "pairwise_order_tests",
+    "G_structure_selection",
+    "Axis0",
+    "flux",
+    "FEP",
+    "physics",
+    "final_manifold_admission"
+  ],
+  "classification": "R0_newstd_poc",
+  "exact_carrier": {
+    "clifford_sublevel": {
+      "label": "QuantumClifford Pauli symplectic comm check: X,Z anticommute; X,X commute",
+      "qc_XX_commute": true,
+      "qc_XZ_anticommute": true,
+      "qc_available": true
+    },
+    "contraction_eps_bound": 1.1102230246251568e-16,
+    "contraction_err_bounded_below_effect": true,
+    "dense_exact_comm_norm": 0.7071067811865476,
+    "equal_truncation_budget": true,
+    "note": "Carrier: exact dense 2x2 ComplexF64. Contraction error = 0 (dense exact). Genuine and control use identical truncation budget (none)."
+  },
+  "finite_map": {
+    "F01_witness": "S^3 probes normalized ||psi||=1; spectral bound < 2.0; finite enumerable probe registry",
+    "N01_witness": "||[JX,JY]||_HS > 0 (SU(2) Lie bracket); flat [DX,DY]=0 (Cartesian collapse)",
+    "codomain": "(commutator norm ||[JX,JY]||_HS, state gap ||[JX,rho]||_HS, Berry phase Chern number c_1, Hopfield settling energy, flat control norm max||v_k||)",
+    "domain": "S^3 probe set {rho_k = |psi_k><psi_k| : psi_k in Hopf parametrization, k=1..N} x SU(2) generator pair {JX,JY,JZ}"
+  },
+  "finitude_vs_flat": {
+    "criterion_1_MET": true,
+    "deciding_numbers": {
+      "flat_comm_vs_floor": 0.0,
+      "flat_max_norm_vs_bar_10p0": 141.42153301389433,
+      "s3_geom_noncomm_vs_floor": 0.7071067811865476,
+      "s3_spectral_bound_vs_bar_2p0": 1.0000000000000009
+    },
+    "flat_comm_collapsed": true,
+    "flat_geom_invariant": 0.0,
+    "flat_infinite": true,
+    "flat_max_norm": 141.42153301389433,
+    "geom_noncomm": true,
+    "label": "COMPACT S3: spectral bound 1.0 < 2.0; FLAT norms reach 141.4 >> 10 (F01 violation). S3 geometric noncomm 0.7071 > 0; flat Cartesian comm 0.0 ~ 0.",
+    "s3_bounded": true,
+    "s3_geom_invariant": 0.7071067811865476,
+    "s3_spectral_bound": 1.0000000000000009
+  },
+  "language": "julia",
+  "neural_dynamics": {
+    "chosen_pattern_counts": {
+      "1": 50,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0
+    },
+    "energy_decreased": true,
+    "final_energy": -0.9909286605946717,
+    "initial_energy": -0.931225,
+    "label": "Hopfield-style attractor on S^3 geometry: energy descends, settles near stored pattern",
+    "n_patterns": 8,
+    "n_steps": 50,
+    "retrieval_rule": "nearest stored density cue, convex PSD projection on D(C^2)",
+    "settled_similarity": 0.9954539972267286,
+    "settled_to_pattern": true,
+    "trajectory_length": 50
+  },
+  "new_standard_scorecard": {
+    "commutation": {
+      "deciding_number": {
+        "s1_erased_vs_floor": 0.0,
+        "s1_flat_vs_floor": 0.0,
+        "s1_genuine_vs_floor": 0.7071067811865476,
+        "spread_vs_floor": 0.46680448934844676
+      },
+      "key": "||[JX,JY]||=0.7071; ||[DX,DY]||=0.0; erased=0.0",
+      "status": "MET"
+    },
+    "exact_carrier": {
+      "deciding_number": {
+        "contraction_err": 0.0,
+        "equal_budget": true,
+        "qc_ok": true
+      },
+      "key": "dense exact 2x2; contraction_err=0; equal truncation; qc_available=true",
+      "status": "MET"
+    },
+    "finitude": {
+      "deciding_number": {
+        "flat_comm_vs_floor": 0.0,
+        "flat_max_norm_vs_bar_10p0": 141.42153301389433,
+        "s3_geom_noncomm_vs_floor": 0.7071067811865476,
+        "s3_spectral_bound_vs_bar_2p0": 1.0000000000000009
+      },
+      "key": "s3_spectral_bound=1.0 < 2.0; flat_max_norm=141.4 >> 10",
+      "status": "MET"
+    },
+    "invariant_anchored": {
+      "deciding_number": {
+        "c1_genuine_vs_bar_0p05": 2.220446049250313e-16,
+        "c1_trivial_vs_bar_0p05": 0.0
+      },
+      "key": "c1_genuine=1.0; c1_trivial=0.0",
+      "status": "MET"
+    },
+    "neural_dynamics": {
+      "deciding_number": {
+        "bar": 0.8,
+        "energy_decreased": true,
+        "settled_similarity": 0.9954539972267286
+      },
+      "key": "energy_decreased=true; settled_similarity=0.9955 > 0.8",
+      "status": "MET"
+    },
+    "scale_ladder": {
+      "deciding_number": {
+        "failed": [],
+        "passed": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "rungs_passed": 4
+      },
+      "key": "4/4 rungs passed",
+      "status": "MET"
+    }
+  },
+  "noncommutation": {
+    "JYpar_not_scalar_mult_JX": false,
+    "anti_taut_holds": true,
+    "clifford_sublevel": {
+      "anticomm_satisfied": true,
+      "gamma1_gamma1_anticomm_err": 0.0,
+      "gamma1_gamma2_anticomm_err": 0.0,
+      "gamma2_gamma1_anticomm_err": 0.0,
+      "gamma2_gamma2_anticomm_err": 0.0,
+      "label": "{Gamma_a, Gamma_b} = 2*delta_ab*I  (Cl(2) generators SX,SY)",
+      "max_anticomm_err": 0.0
+    },
+    "criterion_2_MET": true,
+    "ctrl_intact": true,
+    "deciding_numbers": {
+      "s1_erased_vs_floor": 0.0,
+      "s1_flat_vs_floor": 0.0,
+      "s1_genuine_vs_floor": 0.7071067811865476,
+      "spread_vs_floor": 0.46680448934844676
+    },
+    "erase_collapses": true,
+    "flat_comm_violated_N01": true,
+    "input_dep_spread": 0.46680448934844676,
+    "input_dependent": true,
+    "label": "SU(2) [JX,JY]=0.7071 > 0 (genuine); flat [DX,DY]=0.0 ~ 0; erased=0.0 collapses; control=0.3385 intact.",
+    "magnitude_matched": true,
+    "s1_JX_JZ": 0.7071067811865476,
+    "s1_JY_JZ": 0.7071067811865476,
+    "s1_ctrl_JX_Dctrl": 0.33851078570863197,
+    "s1_erased_JX_JYpar": 0.0,
+    "s1_flat_DX_DY": 0.0,
+    "s1_genuine_JX_JY": 0.7071067811865476
+  },
+  "object_id": "R0_newstd",
+  "overall_fraction": "6/6",
+  "promotion_allowed": false,
+  "scale_ladder": {
+    "failed_rungs": [],
+    "n_passed": 4,
+    "passed_rungs": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "rows": [
+      {
+        "flat_max_norm": 141.42153301389433,
+        "flat_violates_F01": true,
+        "input_dependent": true,
+        "max_state_gap": 0.7071067811865476,
+        "min_state_gap": 0.1948592820316049,
+        "n": 8,
+        "pass": true,
+        "s1_geom_comm": 0.7071067811865476,
+        "s3_max_norm_deviation": 2.220446049250313e-16
+      },
+      {
+        "flat_max_norm": 141.42153301389433,
+        "flat_violates_F01": true,
+        "input_dependent": true,
+        "max_state_gap": 0.7071067811865476,
+        "min_state_gap": 0.24030229183810084,
+        "n": 16,
+        "pass": true,
+        "s1_geom_comm": 0.7071067811865476,
+        "s3_max_norm_deviation": 0.0
+      },
+      {
+        "flat_max_norm": 141.42153301389433,
+        "flat_violates_F01": true,
+        "input_dependent": true,
+        "max_state_gap": 0.7071067811865476,
+        "min_state_gap": 0.1603862689820365,
+        "n": 32,
+        "pass": true,
+        "s1_geom_comm": 0.7071067811865476,
+        "s3_max_norm_deviation": 0.0
+      },
+      {
+        "flat_max_norm": 141.42153301389433,
+        "flat_violates_F01": true,
+        "input_dependent": true,
+        "max_state_gap": 0.7071067811865476,
+        "min_state_gap": 0.09854848645302274,
+        "n": 64,
+        "pass": true,
+        "s1_geom_comm": 0.7071067811865476,
+        "s3_max_norm_deviation": 0.0
+      }
+    ]
+  },
+  "status_ladder": "exists < runs < passes",
+  "tool_integration_depth": {
+    "ITensors": null,
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "QuantumClifford": "supportive",
+    "Z3": null
+  },
+  "tool_manifest": {
+    "ITensors": {
+      "reason": "2x2 exact dense carrier. MPS bond-dim for dim=2 Hilbert space is trivially 1 (no entanglement compression benefit). Scale ladder uses probe-count geometry, not MPS contraction. Honest absence.",
+      "role": "omitted",
+      "used": false
+    },
+    "JSON": {
+      "reason": "emit result receipt",
+      "role": "supportive",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "Hermitian operators, HS norms, commutators, eigendecomposition, Berry phase loop, Hopfield settling, exact dense carrier",
+      "role": "load_bearing",
+      "used": true
+    },
+    "QuantumClifford": {
+      "reason": "Clifford sublevel anti-commutation check (Pauli symplectic comm); graceful absent path if not loaded",
+      "role": "supportive",
+      "used": true
+    },
+    "Z3": {
+      "reason": "N01 structural claim is directly measured + ablated with anti-tautology control; decorative z3 tautologies are explicitly excluded per ENFORCEMENT_AND_PROCESS_RULES Rule 7 and the prior R0_layer_bf audit.",
+      "role": "omitted",
+      "used": false
+    }
+  },
+  "topological_invariant": {
+    "c1_genuine_hopf": 1.0000000000000002,
+    "c1_trivial_control": 0.0,
+    "criterion_3_MET": true,
+    "deciding_numbers": {
+      "c1_genuine_vs_bar_0p05": 2.220446049250313e-16,
+      "c1_trivial_vs_bar_0p05": 0.0
+    },
+    "flip_detected": true,
+    "genuine_ok": true,
+    "label": "Hopf bundle c_1=1.0 (genuine, target ~1); trivial bundle c_1=0.0 (wrong-structure, target ~0). Flip: true.",
+    "trivial_ok": true
+  },
+  "verdict": "GENUINELY-UPGRADED",
+  "weakest_criterion": {
+    "name": "scale_ladder",
+    "score": 1.0
+  }
+}

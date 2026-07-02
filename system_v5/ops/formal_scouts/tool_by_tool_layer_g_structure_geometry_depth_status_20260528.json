@@ -1,0 +1,139 @@
+{
+  "schema": "formal_scout_status_v1",
+  "status_id": "tool_by_tool_layer_g_structure_geometry_depth_status_20260528",
+  "created_at": "2026-05-28T00:28:32-07:00",
+  "classification": "formal_scout_status",
+  "source": "system_v5/ops/formal_scouts/sim_tool_by_tool_layer_g_structure_geometry_depth_probe.py",
+  "result": "system_v5/ops/formal_scouts/results/tool_by_tool_layer_g_structure_geometry_depth_probe_results.json",
+  "current_truth": "A cross-cutting tool-by-tool depth scout now works each listed tool through the current independent layer rows, standalone G-structure candidates, and geometry surfaces at 8/16/32/64 sites. This is not official G-structure selection, layer embedding, stacking, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics/gravity, or final manifold admission.",
+  "fresh_validation": {
+    "lint_sim_contract": {
+      "checked": 1,
+      "violation_total": 0
+    },
+    "validate_formal_scout_results_fresh_rerun": {
+      "all_pass": true,
+      "fresh_rerun": true
+    },
+    "dependency_validation": {
+      "g_structure_candidate_space_fresh_rerun": true,
+      "full_spinor_layer_receipts_fresh_rerun": {
+        "all_pass": true,
+        "receipt_count": 9
+      },
+      "bond4_layer_tool_ablation_receipts_fresh_rerun": {
+        "all_pass": true,
+        "receipt_count": 9
+      }
+    }
+  },
+  "latest_solver_repair": {
+    "completed_packet": "tool_depth_z3_cvc5_non_vacuous_solver_controls",
+    "source": "system_v5/ops/formal_scouts/sim_tool_depth_z3_cvc5_non_vacuous_solver_controls_probe.py",
+    "result": "system_v5/ops/formal_scouts/results/tool_depth_z3_cvc5_non_vacuous_solver_controls_probe_results.json",
+    "status": "passes local rerun",
+    "scope": "repairs z3/cvc5 map_unprovable non-vacuity only; does not make all tools full-depth",
+    "controls_passed": {
+      "z3_positive_sat": true,
+      "z3_negative_unsat": true,
+      "z3_boundary_sat": true,
+      "z3_order_cycle_unsat": true,
+      "cvc5_positive_sat": true,
+      "cvc5_negative_unsat": true,
+      "cvc5_boundary_sat": true,
+      "cvc5_order_cycle_unsat": true,
+      "cross_solver_agreement": true,
+      "metadata_only_ablation_rejected": true
+    },
+    "v43_object_packet": "system_v5/ops/formal_scouts/tool_depth_z3_cvc5_v43_object_packet_20260528.json",
+    "next_admissible_packet": "tool_depth_pytorch_autograd_per_row_spinor_phase"
+  },
+  "coverage": {
+    "layers": 9,
+    "layer_rows": 44,
+    "g_structure_candidates": 12,
+    "g_structure_rows": 48,
+    "geometry_surfaces": 15,
+    "site_counts": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "max_sites": 64,
+    "peps2d_bond_dim": 4,
+    "peps3d_bond_dim": 4,
+    "tool_count": 15,
+    "tool_rows_passed": 15
+  },
+  "tool_order": [
+    "pytorch",
+    "quimb",
+    "cotengra",
+    "opt_einsum",
+    "pyg",
+    "rustworkx",
+    "xgi",
+    "toponetx",
+    "gudhi",
+    "clifford",
+    "sympy",
+    "z3",
+    "cvc5",
+    "e3nn",
+    "geomstats"
+  ],
+  "measured_floor": {
+    "min_mutual_information": 0.016930405817572186,
+    "min_log_negativity": 0.07495133483954947,
+    "min_entanglement_gap_vs_product_mps": 2.0794413089752197,
+    "min_pyg_message_gap": 1.8594077825546265
+  },
+  "required_boundary": {
+    "no_bloch_adapter": true,
+    "torch_native_spinors": true,
+    "qit_entropy_is_derived_readout_not_primary_object": true,
+    "official_g_structure_selection": "blocked",
+    "layer_embedding_in_g_structure": "blocked",
+    "stacking": "blocked",
+    "flux": "blocked",
+    "Xi/Phi0": "blocked",
+    "Axis0": "blocked",
+    "Holodeck/FEP": "blocked",
+    "physics/gravity": "blocked",
+    "final_manifold_admission": "blocked"
+  },
+  "next_admissible_packets": [
+    {
+      "packet": "tool_depth_pytorch_autograd_spinor_phase_packet",
+      "purpose": "deepen PyTorch/autograd from one global relative-phase witness into per-layer and per-G-structure gradient maps, left/right Weyl separation, and resource-fenced 8/16/32/64 stress.",
+      "stop_condition": "fresh rerun passes or a concrete resource/blocker artifact is written"
+    },
+    {
+      "packet": "tool_depth_quimb_cotengra_peps2d_peps3d_packet",
+      "purpose": "deepen quimb/cotengra from construction and cost witnesses into independent PEPS2D and PEPS3D contraction/readout variants over every layer and G-structure candidate.",
+      "stop_condition": "fresh rerun passes or the exact contraction/resource ceiling is recorded"
+    },
+    {
+      "packet": "tool_depth_clifford_twistor_hopf_packet",
+      "purpose": "deepen Clifford/SymPy geometry rows for Hopf fibration, nested Hopf tori, Clifford tori, twistor incidence, Spin/SU/Pin alternatives, and hybrid reductions without Bloch-sphere adapters.",
+      "stop_condition": "fresh rerun passes or the first algebraic map that cannot be made finite is recorded"
+    },
+    {
+      "packet": "tool_depth_topology_hypergraph_persistence_packet",
+      "purpose": "deepen PyG, rustworkx, XGI, TopoNetX, and GUDHI from coverage witnesses into graph/hypergraph/cell/persistence controls over every layer and G-structure candidate.",
+      "stop_condition": "fresh rerun passes or the exact topology/control mismatch is recorded"
+    },
+    {
+      "packet": "tool_depth_e3nn_geomstats_orientation_packet",
+      "purpose": "deepen e3nn/geomstats orientation checks into S3/S2/SO3 distance/equivariance families over representative and adversarial spinor rows.",
+      "stop_condition": "fresh rerun passes or a concrete orientation/equivariance blocker is written"
+    }
+  ],
+  "route_truth": {
+    "wizard_v4_2_max_assembly": "partial_controller_local_only",
+    "codex_native_subagents": "not_run_in_this_packet",
+    "external_model_receipts": "not_run_in_this_packet",
+    "reason": "This packet used local formal scout execution and validators. It is an execution receipt, not a full Wizard plurality receipt."
+  }
+}

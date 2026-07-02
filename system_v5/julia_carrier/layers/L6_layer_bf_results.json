@@ -1,0 +1,258 @@
+{
+  "N01_witness": {
+    "interpretation": "open A_Hopf transport P->Q1->R != P->Q2->R: the two orders enclose opposite-signed base curvature dA=-2 sin(2eta) deta^dchi; gap = enclosed curvature.",
+    "order_gap": 0.769826,
+    "order_matters": true,
+    "phase_order_AB": -0.516176,
+    "phase_order_BA": 0.25365
+  },
+  "all_pass": true,
+  "anti_tautology_negative_control": {
+    "H_base_after_regauge": -1.941755,
+    "H_base_genuine": -1.941755,
+    "control_leaves_signature_intact": true,
+    "control_magnitude_comparable_to_erasure": true,
+    "holonomy_drift_under_control": 0.0,
+    "note": "gauge-invariance: prod <psi_i|psi_{i+1}> is unchanged by per-state rephasing because e^{-i theta_i} e^{i theta_{i+1}} telescopes around the closed loop. This is the structural reason the control survives and the erasure does not.",
+    "operation": "rigid global U(1) re-gauging psi(u)->e^{i theta(u)} psi(u), theta closed (NOT the A_Hopf connection)",
+    "per_link_phase_change_by_AHopf_erasure": 4.3414,
+    "per_link_phase_injected_by_control": 11.9999,
+    "verdict": "ANTI-TAUTOLOGY PASSES: a comparable-magnitude NON-connection operation LEAVES the Berry holonomy intact (drift ~0), while erasing A_Hopf COLLAPSES it. The collapse is SPECIFIC to the below-geometry, not guaranteed for any perturbation."
+  },
+  "blocked_consumers": [
+    "L7 Weyl spinor bundle",
+    "L8 chirality cover",
+    "L10 terrain generator",
+    "G-structure selection",
+    "Axis0 / flux / FEP / physics bridge"
+  ],
+  "carrier": {
+    "bloch_vector_used": false,
+    "chart": "psi(phi,chi;eta)=(e^{i(phi+chi)}cos eta, e^{i(phi-chi)}sin eta) [doc-quoted]",
+    "julia_native_spinor": true,
+    "on_S3_norm_dev": 1.1102230246251565e-16,
+    "rho_is_psd": true,
+    "rho_is_pure": true,
+    "rho_trace": 0.9999999999999999,
+    "uses_numpy": false
+  },
+  "classification": "L6_layer_bf_poc",
+  "connection_A_Hopf": {
+    "A_chi_expected_cos2eta": 0.30901699437494745,
+    "A_chi_measured": 0.3090169943211468,
+    "A_phi_expected": 1.0,
+    "A_phi_measured": 0.999999999924387,
+    "doc_formula": "A_Hopf = d phi + cos(2 eta) d chi -> A_phi=1, A_chi=cos2eta",
+    "matches_doc_AHopf": true
+  },
+  "controls": {
+    "negative": {
+      "antitautology_control_holonomy_drift": 0.0,
+      "erase_AHopf_base_holonomy_delta_gap": 1.941755,
+      "erase_AHopf_loop_order_delta_gap": 0.769826
+    },
+    "positive": {
+      "base_loop_holonomy_gap": 1.941755,
+      "base_solid_angle_S2_gap": 8.68286,
+      "fiber_base_density_visibility_gap": 1.344997,
+      "loop_order_N01_gap": 0.769826
+    }
+  },
+  "controls_summary": {
+    "N01_loop_order_ok": true,
+    "anti_tautology_control_ok": true,
+    "carrier_ok": true,
+    "connection_AHopf_ok": true,
+    "dependency_forcing_genuine": true,
+    "derived_entropy_ok": true,
+    "holonomy_fiber_base_ok": true,
+    "input_dependence_ok": true,
+    "negative_controls_ok": true,
+    "scale_8_16_32_64_ok": true
+  },
+  "dependency_forcing_erasures": {
+    "EA_erase_AHopf_flatten_base_lift": {
+      "H_base_after": -0.0,
+      "H_base_before": -1.941755,
+      "delta_holonomy": 1.941755,
+      "measured_not_hardcoded": true,
+      "note": "base loop rebuilt with the chi-base-winding removed (A_Hopf flat); the overlaps are REAL (not set to 1); holonomy MEASURED to vanish because a non-winding loop encloses zero S^2 solid angle.",
+      "signature_collapsed": true,
+      "solid_angle_after": 0.0,
+      "solid_angle_before": -8.68286
+    },
+    "EB_erase_AHopf_in_loop_order": {
+      "antitautology_control_leaves_gap_intact": true,
+      "delta_order_gap": 0.769826,
+      "honest_note": "GENUINE erasure zeros the cos(2 eta) dchi A_Hopf connection coefficient IN the line integral -> gap MEASURED to vanish. A naive phi-horizontal-lift flatten (c->0) does NOT collapse the gap (verified separately: it carries no curvature). Anti-tautology: adding an EXACT form dlambda (pure gauge, zero curvature) of comparable magnitude leaves the gap INTACT -> the collapse is specific to removing the connection's curvature term, not guaranteed for any perturbation. This is the distinction the original file's link=1.0 tautology hid.",
+      "measured_not_hardcoded": true,
+      "order_gap_after_erase_Achi": 0.0,
+      "order_gap_after_exact_form_regauge": 0.769826,
+      "order_gap_before": 0.769826,
+      "signature_collapsed": true
+    }
+  },
+  "dependency_forcing_verdict": {
+    "anti_tautology_control_leaves_signature_intact": true,
+    "dependency_forcing_genuine": true,
+    "honest_finding": "GENUINE: erasing the below-geometry A_Hopf MEASURABLY collapses the Berry holonomy (EA) and the loop-order gap (EB); a comparable-magnitude NON-connection re-gauging LEAVES the holonomy intact; the surviving signature varies with eta and winding; the erasure has no built-in algebraic zero. The collapse is a measured structural collapse, not a tautology.",
+    "positive_erasures_collapse_signature": true,
+    "signature_input_dependent_not_constant": true,
+    "structural_no_builtin_algebraic_zero": true
+  },
+  "derived_qit_readouts": {
+    "S_base_loop_avg": 0.644611,
+    "S_fiber_loop_avg": 1.332e-15,
+    "note": "fiber-averaged density stays pure (S~0); base-averaged density mixes (S>0). DERIVED rho-only readout, not primary."
+  },
+  "finite_map": {
+    "codomain": "U(1) Berry holonomy in (-pi,pi]; loop-order gap; A_Hopf connection (A_phi,A_chi)",
+    "domain": "closed loops u in [0,2pi) on the Hopf carrier S^3={psi in C^2:||psi||=1}",
+    "map": "Hol: loop -> -arg prod <psi_i|psi_{i+1}> (gauge-invariant Bargmann/Berry; = S^2-base solid angle)"
+  },
+  "holonomy_measured": {
+    "H_base_gamma_out": -1.941755,
+    "H_fiber_gamma_in": -0.0,
+    "base_density_visible": true,
+    "base_holonomy_nontrivial": true,
+    "base_solid_angle_S2": -8.68286,
+    "density_spread_base": 1.344997,
+    "density_spread_fiber": 7.364e-16,
+    "fiber_base_holonomy_gap": 1.941755,
+    "fiber_density_stationary": true,
+    "fiber_holonomy_trivial": true,
+    "note": "H_base is the gauge-invariant Wilson product of REAL carrier states; cross-checked by the independent S^2 base solid angle."
+  },
+  "honest_status": "passes : L6 connection/holonomy GENUINE -- positive A_Hopf erasure MEASURABLY collapses Berry holonomy + order gap; anti-tautology re-gauging (comparable magnitude, NOT the connection) LEAVES holonomy intact; signature varies with eta/winding; no built-in algebraic zero",
+  "input_dependence": {
+    "H_base_vs_eta": {
+      "H": [
+        1.84012,
+        3.141399,
+        -1.941755,
+        -0.0,
+        -3.141399
+      ],
+      "eta": [
+        0.3927,
+        0.5236,
+        0.6283,
+        0.7854,
+        1.0472
+      ]
+    },
+    "H_base_vs_winding_m": {
+      "H": [
+        -1.941755,
+        2.398807,
+        0.454449,
+        -1.492516
+      ],
+      "m": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "not_a_fixed_constant": true,
+    "note": "base Berry holonomy = solid angle = function of cone half-angle 2 eta and winding m; it MOVES with input -> not a hand-fixed constant.",
+    "varies_with_eta": true,
+    "varies_with_winding": true
+  },
+  "layer": "L6",
+  "object": "connection_holonomy_geometry_hopf_berry_loop_order",
+  "peps3d_anchor": {
+    "C": 3072,
+    "E": 8192,
+    "F": 4096,
+    "V": 4096,
+    "euler": -3072,
+    "holonomy_lives_on": "F (faces) -- per-plaquette Wilson-product phase is discrete Berry curvature"
+  },
+  "promotion_allowed": false,
+  "promotion_note": "promotion_allowed=false; L6_layer_bf_poc; not canonical.",
+  "scale_stress_8_16_32_64": {
+    "sites_16": {
+      "base_holonomy": -2.03691,
+      "base_holonomy_erased": 0.0,
+      "base_nontrivial": true,
+      "discretization_residual_vs_400": 0.09515,
+      "erased_collapsed": true,
+      "fiber_holonomy": 0.0,
+      "grid": 16,
+      "peps3d_C": 768,
+      "peps3d_E": 2048,
+      "peps3d_F": 1024,
+      "peps3d_V": 1024,
+      "peps3d_euler": -768
+    },
+    "sites_32": {
+      "base_holonomy": -1.96448,
+      "base_holonomy_erased": -0.0,
+      "base_nontrivial": true,
+      "discretization_residual_vs_400": 0.02273,
+      "erased_collapsed": true,
+      "fiber_holonomy": -0.0,
+      "grid": 32,
+      "peps3d_C": 3072,
+      "peps3d_E": 8192,
+      "peps3d_F": 4096,
+      "peps3d_V": 4096,
+      "peps3d_euler": -3072
+    },
+    "sites_64": {
+      "base_holonomy": -1.94727,
+      "base_holonomy_erased": 0.0,
+      "base_nontrivial": true,
+      "discretization_residual_vs_400": 0.005517,
+      "erased_collapsed": true,
+      "fiber_holonomy": 0.0,
+      "grid": 64,
+      "peps3d_C": 12288,
+      "peps3d_E": 32768,
+      "peps3d_F": 16384,
+      "peps3d_V": 16384,
+      "peps3d_euler": -12288
+    },
+    "sites_8": {
+      "base_holonomy": -2.39767,
+      "base_holonomy_erased": -0.0,
+      "base_nontrivial": true,
+      "discretization_residual_vs_400": 0.4559,
+      "erased_collapsed": true,
+      "fiber_holonomy": -0.0,
+      "grid": 8,
+      "peps3d_C": 192,
+      "peps3d_E": 512,
+      "peps3d_F": 256,
+      "peps3d_V": 256,
+      "peps3d_euler": -192
+    }
+  },
+  "status_ladder": "exists < runs < passes",
+  "structural_no_builtin_zero": {
+    "erasure_changes_which_states_enter_product": true,
+    "erasure_is_global_scalar_multiple_of_genuine": false,
+    "genuine_overlaps_have_nonzero_phase": true,
+    "note": "the A-erasure reparametrizes the base winding (different states enter the Wilson product); it is NOT C=2A collinearity nor diag-diag co-diagonality. No algebraic-identity zero."
+  },
+  "tool_manifest": {
+    "JSON": {
+      "role": "io",
+      "use": "receipt emission"
+    },
+    "LinearAlgebra": {
+      "role": "load_bearing",
+      "use": "svd trace norm, Hermitian eigen for base densities + entropy, Wilson overlap products"
+    },
+    "Z3": {
+      "role": "omitted",
+      "use": "an SMT claim over these measured holonomy literals would be a tautology; omitted, not decorative. The dependency-forcing is carried by the measured positive/anti-tautology controls."
+    },
+    "numpy": {
+      "role": "ABSENT",
+      "use": "Julia-native; no numpy"
+    }
+  }
+}

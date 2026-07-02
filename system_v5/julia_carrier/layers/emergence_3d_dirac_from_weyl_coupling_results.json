@@ -1,0 +1,165 @@
+{
+  "all_pass": true,
+  "carrier": {
+    "basis": "chiral/Weyl",
+    "clifford_algebra_ok": true,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma_theta_LL_block_norm": 0.0,
+    "gamma_theta_LR_block_norm": 1.0,
+    "gamma_theta_RR_block_norm": 0.0,
+    "gamma_theta_is_gamma0_offdiagonal": true,
+    "max_clifford_residual": 0.0,
+    "weyl_chirality_split_ok": true
+  },
+  "classification": "PoC",
+  "dirac_mass_bilinear": {
+    "ground_state_LR_weights_coupled": [
+      0.6879062691064941,
+      0.7257995349433505
+    ],
+    "ground_state_LR_weights_decoupled": [
+      0.0,
+      1.0
+    ],
+    "max_abs_mbar_pure_single_leaf": 0.0,
+    "mbar_ground_state_coupled": -0.7448452997421312,
+    "mbar_ground_state_decoupled": 0.0,
+    "pure_chirality_mbar_is_zero": true
+  },
+  "emergent_numbers": {
+    "fixed_k_gap_coupled": 2.416609194718914,
+    "fixed_k_gap_decoupled": 1.6124515496597098,
+    "mbar_ground_coupled": -0.7448452997421312,
+    "mbar_ground_decoupled": 0.0,
+    "node_gap_k0_coupled_dirac": 1.8,
+    "node_gap_k0_decoupled_weyl": 0.0
+  },
+  "full_chain": {
+    "N_leaves": 8,
+    "central_gap_coupled_fixed_k": 1.7293905913087744,
+    "central_gap_decoupled_fixed_k": 1.6124515496597098,
+    "central_node_gap_coupled_k0": 0.6251334396009491,
+    "central_node_gap_decoupled_k0": 0.0,
+    "hermitian_ok": true,
+    "min_abs_eig_coupled": 0.864695295654387,
+    "min_abs_eig_decoupled": 0.8062257748298549
+  },
+  "genuineness_booleans": {
+    "carrier_clifford_measured": true,
+    "coupled_ground_state_has_dirac_mass": true,
+    "fixed_k_coupled_is_dirac_disp": true,
+    "gamma_theta_couples_L_R": true,
+    "kill_control_fires": true,
+    "node_coupled_gap_is_2t_dirac": true,
+    "node_decoupled_is_gapless_weyl": true,
+    "on_leaf_modes_are_chiral_weyl": true,
+    "pure_chirality_mbar_structurally_0": true,
+    "single_weyl_has_no_mass_term": true,
+    "weyl_chirality_split_measured": true,
+    "wrong_coupling_no_dirac_mass": true
+  },
+  "honest_status_ladder": "passes",
+  "honesty_ledger": {
+    "forced": "Radial Dirac decomposition D_S3 = gamma^theta(d_theta + H/2) + D_T2; single 2-component Weyl block is gapless and has no mass term (gamma0 off-diagonal in chiral basis); coupled spectrum = +-sqrt(k^2 + t^2).",
+    "interpretive": "Calling the 1D theta-chain 'the S^3 radial direction' is a model identification, not a measured fact. The emergence of the gap / Dirac mass under L<->R coupling IS measured; the geometric naming is interpretive."
+  },
+  "kill_control_coupling_sweep": {
+    "gap_monotone_in_t": true,
+    "gap_positive_when_coupled": true,
+    "gap_zero_at_t0": true,
+    "kill_control_fires": true,
+    "mbar_nonzero_when_coupled": true,
+    "mbar_zero_at_t0": true,
+    "sweep": [
+      {
+        "abs_mbar_ground": 0.0,
+        "node_gap_k0": 0.0,
+        "t": 0.0
+      },
+      {
+        "abs_mbar_ground": 0.12309149097933281,
+        "node_gap_k0": 0.2,
+        "t": 0.1
+      },
+      {
+        "abs_mbar_ground": 0.3487429162314579,
+        "node_gap_k0": 0.6,
+        "t": 0.3
+      },
+      {
+        "abs_mbar_ground": 0.5970223141259934,
+        "node_gap_k0": 1.2,
+        "t": 0.6
+      },
+      {
+        "abs_mbar_ground": 0.7448452997421312,
+        "node_gap_k0": 1.8,
+        "t": 0.9
+      },
+      {
+        "abs_mbar_ground": 0.866578244826242,
+        "node_gap_k0": 2.8,
+        "t": 1.4
+      }
+    ]
+  },
+  "negative_wrong_coupling": {
+    "description": "intra-block (chirality-preserving) perturbation t*sz, NOT an L<->R hop",
+    "eigs": [
+      -1.5362291495737217,
+      -0.7483314773547883,
+      0.7483314773547883,
+      1.5362291495737217
+    ],
+    "gap": 1.4966629547095767,
+    "mbar_ground": 0.0,
+    "wrong_coupling_gives_no_dirac_mass": true
+  },
+  "object": "emergence_3d_dirac_from_LR_weyl_leaf_coupling",
+  "on_leaf_weyl": {
+    "even_leaf_is_LEFT_chirality_-1": true,
+    "max_chiral_charge_dev_L": 4.440892098500626e-16,
+    "max_chiral_charge_dev_R": 4.440892098500626e-16,
+    "odd_leaf_is_RIGHT_chirality_+1": true,
+    "weyl_eigs_pm_abs_k_gapless": true,
+    "weyl_hamiltonian_traceless_no_mass": true,
+    "weyl_kabs": 0.8602325267042626
+  },
+  "promotion_allowed": false,
+  "tools": [
+    "LinearAlgebra",
+    "Random",
+    "JSON"
+  ],
+  "two_leaf_spectrum": {
+    "coupled_matches_dirac_pm_sqrt_k2_t2": true,
+    "decoupled_matches_gapless_weyl_pm_k": true,
+    "dirac_energy_sqrt_k2_t2": 1.2083045973594573,
+    "eigs_coupled_fixed_k": [
+      -1.2083045973594573,
+      -1.2083045973594573,
+      1.208304597359457,
+      1.2083045973594573
+    ],
+    "eigs_decoupled_fixed_k": [
+      -0.8062257748298549,
+      -0.8062257748298549,
+      0.8062257748298549,
+      0.8062257748298549
+    ],
+    "gap_coupled_fixed_k": 2.416609194718914,
+    "gap_decoupled_fixed_k": 1.6124515496597098,
+    "hermitian_ok": true,
+    "kabs": 0.806225774829855,
+    "node_gap_coupled_equals_2t": true,
+    "node_gap_coupled_k0": 1.8,
+    "node_gap_decoupled_k0": 0.0,
+    "t_coupling": 0.9
+  },
+  "z3_omitted_reason": "Emergence is a measured spectral gap + structurally-zero chiral bilinear under a real coupling toggle; an exact-integer SMT clause would be decorative here. Z3 deliberately omitted (codebase's documented decorative-Z3 weakness)."
+}

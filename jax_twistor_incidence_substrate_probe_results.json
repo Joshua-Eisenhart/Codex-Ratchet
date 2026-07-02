@@ -1,0 +1,630 @@
+{
+  "AUDIT_PASS": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "jax.scipy.linalg.expm": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "jax": {
+      "reason": "fresh finite C^4 twistor/incidence substrate calculation",
+      "role": "load_bearing",
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "density operators, incidence matrices, controls, and trace norms",
+      "role": "load_bearing",
+      "used": true
+    },
+    "jax.scipy.linalg.expm": {
+      "reason": "finite unitary frames for incidence and controls",
+      "role": "load_bearing",
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "JAX reproduced a bounded twistor-incidence negative probe.",
+    "The incidence coupling is distinct from a block-diagonal floor but not better than generic off-diagonal controls."
+  ],
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "twistor canonical admission",
+    "pairwise nesting promotion",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics",
+    "final_manifold_admission"
+  ],
+  "carrier_realization": "JAX complex128 density operators on C^4; no PEPS, no CTMRG, no optimization",
+  "checks": {
+    "blockdiag_control_near_floor": true,
+    "flat_control_near_floor": true,
+    "incidence_relation_present": true,
+    "negative_probe_pass": true,
+    "random_offdiag_control_blocks_promotion": true,
+    "twistor_distinct_from_blockdiag": true,
+    "twistor_incidence_nonzero": true,
+    "twistor_no_better_than_generic_offdiag": true,
+    "x0_incidence_control_near_floor": true
+  },
+  "claim_ceiling": "JAX negative probe only: tests whether twistor incidence omega=i*x*pi does more than generic off-diagonal noncommutation. It does not admit twistors, layer completion, stacking, flux, Axis0, or physics.",
+  "classification": "diagnostic_jax_twistor_incidence_substrate_probe",
+  "codomain_or_output": "negative-probe JSON verdict and order/substrate gaps",
+  "domain": {
+    "carrier": "C^4 twistor carrier (omega, pi)",
+    "density_count_per_seed": 22,
+    "offdiag_controls_per_seed": 24,
+    "seeds": [
+      1700,
+      1701,
+      1702
+    ]
+  },
+  "exploratory": true,
+  "finite_map": "finite density operators in D(C^4) and finite frames {blockdiag, flat, x0 incidence, genuine incidence, generic offdiag controls} -> substrate-effect gaps",
+  "formal_layer_admission_allowed": false,
+  "generated_at": "2026-06-03T04:52:18.006782+00:00",
+  "incidence_relation": "omega^A = i x^{AA'} pi_{A'}; X_inc(x)=[0 i*x; 0 0]",
+  "julia_reference_mode": "read_only",
+  "name": "JAX twistor incidence substrate negative probe",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "random/off-diagonal controls explain the incidence effect",
+    "formal layer-completion claim gate has not admitted completion wording",
+    "twistor route remains exploratory and promotion_allowed=false"
+  ],
+  "ran_jax": true,
+  "ran_julia": false,
+  "root_constraints_in_force": [
+    "F01",
+    "N01"
+  ],
+  "row_count": 3,
+  "rows": [
+    {
+      "E_block_diag_max": 0.02315632277117008,
+      "E_block_diag_mean": 0.017605733002744362,
+      "E_flat_max": 0.0,
+      "E_twistor_max": 0.12694345260047568,
+      "E_twistor_mean": 0.0982182938316523,
+      "E_x0_incidence_max": 0.0,
+      "c_block_diag": 2.019210133315023,
+      "c_twistor": 1.098547064756166,
+      "conditions": {
+        "blockdiag_control_near_floor": true,
+        "flat_control_near_floor": true,
+        "random_offdiag_control_blocks_promotion": true,
+        "twistor_distinct_from_blockdiag": true,
+        "twistor_incidence_nonzero": true,
+        "x0_incidence_control_near_floor": true
+      },
+      "incidence_point_x_is_hermitian": true,
+      "offdiag_control": {
+        "best_E_max": 0.13150220105689864,
+        "best_random_offdiag_gap_over_twistor": 0.004558748456422956,
+        "mean_E_max": 0.09921551132741249,
+        "n": 24,
+        "std_E_max": 0.026060150530089893,
+        "twistor_no_better_than_generic_offdiag": true,
+        "z_twistor_vs_offdiag": 1.0639977401913934
+      },
+      "offdiag_rows": [
+        {
+          "E_max": 0.12906561898425262,
+          "E_mean": 0.11093155982033508,
+          "comm_norm": 0.0,
+          "idx": 0
+        },
+        {
+          "E_max": 0.11785224906866068,
+          "E_mean": 0.107316146069841,
+          "comm_norm": 0.4680935965268047,
+          "idx": 1
+        },
+        {
+          "E_max": 0.03040925535616898,
+          "E_mean": 0.012614096123224693,
+          "comm_norm": 2.0192101333150227,
+          "idx": 2
+        },
+        {
+          "E_max": 0.04294841497290348,
+          "E_mean": 0.033912790791219456,
+          "comm_norm": 1.964204151144344,
+          "idx": 3
+        },
+        {
+          "E_max": 0.1000310410971459,
+          "E_mean": 0.07894490140044705,
+          "comm_norm": 1.4108836091102335,
+          "idx": 4
+        },
+        {
+          "E_max": 0.09048882517584686,
+          "E_mean": 0.07089866576508322,
+          "comm_norm": 1.5453988564531107,
+          "idx": 5
+        },
+        {
+          "E_max": 0.12216485946685596,
+          "E_mean": 0.08295259195150842,
+          "comm_norm": 1.323577855408055,
+          "idx": 6
+        },
+        {
+          "E_max": 0.09888680867249362,
+          "E_mean": 0.07027767078371562,
+          "comm_norm": 1.619377904967834,
+          "idx": 7
+        },
+        {
+          "E_max": 0.12251032584565355,
+          "E_mean": 0.10142446222245284,
+          "comm_norm": 0.9225210378729681,
+          "idx": 8
+        },
+        {
+          "E_max": 0.11427775573516498,
+          "E_mean": 0.09776534208414596,
+          "comm_norm": 1.1128053099301416,
+          "idx": 9
+        },
+        {
+          "E_max": 0.12817524549104256,
+          "E_mean": 0.09368535491951434,
+          "comm_norm": 1.2308186157249925,
+          "idx": 10
+        },
+        {
+          "E_max": 0.107660904804729,
+          "E_mean": 0.08631517325435624,
+          "comm_norm": 1.418645279285987,
+          "idx": 11
+        },
+        {
+          "E_max": 0.13150220105689864,
+          "E_mean": 0.10202923170312424,
+          "comm_norm": 0.7071486894241354,
+          "idx": 12
+        },
+        {
+          "E_max": 0.06422805773742384,
+          "E_mean": 0.04404418276356701,
+          "comm_norm": 1.629378046593461,
+          "idx": 13
+        },
+        {
+          "E_max": 0.11120251523841589,
+          "E_mean": 0.09055137076218431,
+          "comm_norm": 1.2146581158216803,
+          "idx": 14
+        },
+        {
+          "E_max": 0.08952878498636692,
+          "E_mean": 0.07873122091737822,
+          "comm_norm": 1.3760120862794518,
+          "idx": 15
+        },
+        {
+          "E_max": 0.07018409483930091,
+          "E_mean": 0.047987637260416945,
+          "comm_norm": 1.7660906066052011,
+          "idx": 16
+        },
+        {
+          "E_max": 0.11816471321029855,
+          "E_mean": 0.1035010826910487,
+          "comm_norm": 0.7986713897229389,
+          "idx": 17
+        },
+        {
+          "E_max": 0.08676528488032206,
+          "E_mean": 0.07092525783613186,
+          "comm_norm": 1.5995826389016723,
+          "idx": 18
+        },
+        {
+          "E_max": 0.10153870089485949,
+          "E_mean": 0.0803692998285893,
+          "comm_norm": 1.457570181640807,
+          "idx": 19
+        },
+        {
+          "E_max": 0.11242078773660522,
+          "E_mean": 0.0763800102564915,
+          "comm_norm": 1.3706513318349651,
+          "idx": 20
+        },
+        {
+          "E_max": 0.12039683872612789,
+          "E_mean": 0.0911048230152394,
+          "comm_norm": 1.0692350502437258,
+          "idx": 21
+        },
+        {
+          "E_max": 0.08702820882378878,
+          "E_mean": 0.0721699734772109,
+          "comm_norm": 1.5477559329307338,
+          "idx": 22
+        },
+        {
+          "E_max": 0.08374077905657379,
+          "E_mean": 0.0582276726037755,
+          "comm_norm": 1.6806259660189813,
+          "idx": 23
+        }
+      ],
+      "seed": 1700,
+      "tw_vs_block_gap": 0.1037871298293056
+    },
+    {
+      "E_block_diag_max": 0.022941035234527264,
+      "E_block_diag_mean": 0.016832238793181232,
+      "E_flat_max": 0.0,
+      "E_twistor_max": 0.14033563450816688,
+      "E_twistor_mean": 0.11212431973937785,
+      "E_x0_incidence_max": 0.0,
+      "c_block_diag": 2.019210133315023,
+      "c_twistor": 0.5212425451923868,
+      "conditions": {
+        "blockdiag_control_near_floor": true,
+        "flat_control_near_floor": true,
+        "random_offdiag_control_blocks_promotion": true,
+        "twistor_distinct_from_blockdiag": true,
+        "twistor_incidence_nonzero": true,
+        "x0_incidence_control_near_floor": true
+      },
+      "incidence_point_x_is_hermitian": true,
+      "offdiag_control": {
+        "best_E_max": 0.13421525292839706,
+        "best_random_offdiag_gap_over_twistor": 0.0,
+        "mean_E_max": 0.09391271106686763,
+        "n": 24,
+        "std_E_max": 0.026180354669027815,
+        "twistor_no_better_than_generic_offdiag": true,
+        "z_twistor_vs_offdiag": 1.7731968885898644
+      },
+      "offdiag_rows": [
+        {
+          "E_max": 0.13421525292839706,
+          "E_mean": 0.11368248428997946,
+          "comm_norm": 0.0,
+          "idx": 0
+        },
+        {
+          "E_max": 0.11785224906866068,
+          "E_mean": 0.09966517749530093,
+          "comm_norm": 0.4680935965268047,
+          "idx": 1
+        },
+        {
+          "E_max": 0.03040925535616898,
+          "E_mean": 0.011830513587264597,
+          "comm_norm": 2.0192101333150227,
+          "idx": 2
+        },
+        {
+          "E_max": 0.04294841497290348,
+          "E_mean": 0.03289454633641021,
+          "comm_norm": 1.964204151144344,
+          "idx": 3
+        },
+        {
+          "E_max": 0.1000310410971459,
+          "E_mean": 0.07782345275512244,
+          "comm_norm": 1.4108836091102335,
+          "idx": 4
+        },
+        {
+          "E_max": 0.09048882517584686,
+          "E_mean": 0.07637654732413791,
+          "comm_norm": 1.5453988564531107,
+          "idx": 5
+        },
+        {
+          "E_max": 0.07429683505447911,
+          "E_mean": 0.04957093554861626,
+          "comm_norm": 1.5945098044617412,
+          "idx": 6
+        },
+        {
+          "E_max": 0.08947687761602485,
+          "E_mean": 0.0721611694253364,
+          "comm_norm": 1.459084895074966,
+          "idx": 7
+        },
+        {
+          "E_max": 0.10627401883322195,
+          "E_mean": 0.08713160345848153,
+          "comm_norm": 1.2744266445919084,
+          "idx": 8
+        },
+        {
+          "E_max": 0.09326795674152381,
+          "E_mean": 0.07978440252082501,
+          "comm_norm": 1.5062444087047957,
+          "idx": 9
+        },
+        {
+          "E_max": 0.06339146230055498,
+          "E_mean": 0.04859747893222915,
+          "comm_norm": 1.745330086308425,
+          "idx": 10
+        },
+        {
+          "E_max": 0.07220151448336622,
+          "E_mean": 0.0594968364160288,
+          "comm_norm": 1.7414298468831981,
+          "idx": 11
+        },
+        {
+          "E_max": 0.09777287363252062,
+          "E_mean": 0.08356968249036385,
+          "comm_norm": 1.425846813990741,
+          "idx": 12
+        },
+        {
+          "E_max": 0.11254162928658239,
+          "E_mean": 0.0956806322435792,
+          "comm_norm": 1.1904252218466151,
+          "idx": 13
+        },
+        {
+          "E_max": 0.09703572269558272,
+          "E_mean": 0.08084194179320327,
+          "comm_norm": 1.358457336259819,
+          "idx": 14
+        },
+        {
+          "E_max": 0.08090661301655944,
+          "E_mean": 0.06518063294336643,
+          "comm_norm": 1.5809731294816953,
+          "idx": 15
+        },
+        {
+          "E_max": 0.12847020240619061,
+          "E_mean": 0.10360459112636855,
+          "comm_norm": 0.8023228066312216,
+          "idx": 16
+        },
+        {
+          "E_max": 0.12357636022116189,
+          "E_mean": 0.0988094231656821,
+          "comm_norm": 1.061203110611196,
+          "idx": 17
+        },
+        {
+          "E_max": 0.10138822967946734,
+          "E_mean": 0.08350052069073638,
+          "comm_norm": 1.427053433538896,
+          "idx": 18
+        },
+        {
+          "E_max": 0.1157263855774761,
+          "E_mean": 0.09551078540689723,
+          "comm_norm": 1.1431681406513632,
+          "idx": 19
+        },
+        {
+          "E_max": 0.1038139928326466,
+          "E_mean": 0.08867713472566525,
+          "comm_norm": 1.4037771373749475,
+          "idx": 20
+        },
+        {
+          "E_max": 0.07866921477180387,
+          "E_mean": 0.05900750764021885,
+          "comm_norm": 1.7646167865853821,
+          "idx": 21
+        },
+        {
+          "E_max": 0.1317574913747236,
+          "E_mean": 0.10947387401313205,
+          "comm_norm": 0.5299000118118459,
+          "idx": 22
+        },
+        {
+          "E_max": 0.06739264648181409,
+          "E_mean": 0.04828027311465057,
+          "comm_norm": 1.887412819919615,
+          "idx": 23
+        }
+      ],
+      "seed": 1701,
+      "tw_vs_block_gap": 0.11739459927363963
+    },
+    {
+      "E_block_diag_max": 0.022941035234527264,
+      "E_block_diag_mean": 0.015900475393503873,
+      "E_flat_max": 0.0,
+      "E_twistor_max": 0.08654272262850178,
+      "E_twistor_mean": 0.06382998160692664,
+      "E_x0_incidence_max": 0.0,
+      "c_block_diag": 2.019210133315023,
+      "c_twistor": 1.763101857576553,
+      "conditions": {
+        "blockdiag_control_near_floor": true,
+        "flat_control_near_floor": true,
+        "random_offdiag_control_blocks_promotion": true,
+        "twistor_distinct_from_blockdiag": true,
+        "twistor_incidence_nonzero": true,
+        "x0_incidence_control_near_floor": true
+      },
+      "incidence_point_x_is_hermitian": true,
+      "offdiag_control": {
+        "best_E_max": 0.14508385769757548,
+        "best_random_offdiag_gap_over_twistor": 0.0585411350690737,
+        "mean_E_max": 0.10071298074258106,
+        "n": 24,
+        "std_E_max": 0.025240533375510465,
+        "twistor_no_better_than_generic_offdiag": true,
+        "z_twistor_vs_offdiag": -0.5614088222013534
+      },
+      "offdiag_rows": [
+        {
+          "E_max": 0.1306127644582465,
+          "E_mean": 0.10926043928614772,
+          "comm_norm": 0.0,
+          "idx": 0
+        },
+        {
+          "E_max": 0.11785224906866068,
+          "E_mean": 0.10350569630816481,
+          "comm_norm": 0.4680935965268047,
+          "idx": 1
+        },
+        {
+          "E_max": 0.03040925535616898,
+          "E_mean": 0.011617882208001246,
+          "comm_norm": 2.0192101333150227,
+          "idx": 2
+        },
+        {
+          "E_max": 0.04294841497290348,
+          "E_mean": 0.033047053500081185,
+          "comm_norm": 1.964204151144344,
+          "idx": 3
+        },
+        {
+          "E_max": 0.1000310410971459,
+          "E_mean": 0.0770777003322722,
+          "comm_norm": 1.4108836091102335,
+          "idx": 4
+        },
+        {
+          "E_max": 0.09048882517584686,
+          "E_mean": 0.07392217913987571,
+          "comm_norm": 1.5453988564531107,
+          "idx": 5
+        },
+        {
+          "E_max": 0.11961410039362988,
+          "E_mean": 0.09182620833228831,
+          "comm_norm": 1.004025031840127,
+          "idx": 6
+        },
+        {
+          "E_max": 0.06538162694261357,
+          "E_mean": 0.048191518083672294,
+          "comm_norm": 1.8191047087188075,
+          "idx": 7
+        },
+        {
+          "E_max": 0.09693198125189763,
+          "E_mean": 0.06448040881823569,
+          "comm_norm": 1.631453526556638,
+          "idx": 8
+        },
+        {
+          "E_max": 0.10645972290937951,
+          "E_mean": 0.06657356757078707,
+          "comm_norm": 1.3603007760121457,
+          "idx": 9
+        },
+        {
+          "E_max": 0.14508385769757548,
+          "E_mean": 0.10337979273730323,
+          "comm_norm": 0.7067730856465976,
+          "idx": 10
+        },
+        {
+          "E_max": 0.10642529630086134,
+          "E_mean": 0.07814794432576652,
+          "comm_norm": 1.5287801211485261,
+          "idx": 11
+        },
+        {
+          "E_max": 0.10859251615560653,
+          "E_mean": 0.07826538970928205,
+          "comm_norm": 1.4701307889866402,
+          "idx": 12
+        },
+        {
+          "E_max": 0.08839010193250046,
+          "E_mean": 0.06540025704720326,
+          "comm_norm": 1.683354264213892,
+          "idx": 13
+        },
+        {
+          "E_max": 0.11668204330166336,
+          "E_mean": 0.10546769848334331,
+          "comm_norm": 0.7594735019537782,
+          "idx": 14
+        },
+        {
+          "E_max": 0.11748556425628649,
+          "E_mean": 0.08578108959239122,
+          "comm_norm": 1.0357062146656708,
+          "idx": 15
+        },
+        {
+          "E_max": 0.09169623197494622,
+          "E_mean": 0.07191911684224359,
+          "comm_norm": 1.487289410909423,
+          "idx": 16
+        },
+        {
+          "E_max": 0.0968955022330649,
+          "E_mean": 0.07279771804334806,
+          "comm_norm": 1.6168397663766083,
+          "idx": 17
+        },
+        {
+          "E_max": 0.11823024855257952,
+          "E_mean": 0.08872098455118728,
+          "comm_norm": 1.309718369819858,
+          "idx": 18
+        },
+        {
+          "E_max": 0.10675338410835185,
+          "E_mean": 0.07878608046726518,
+          "comm_norm": 1.367632826320383,
+          "idx": 19
+        },
+        {
+          "E_max": 0.10755828199705389,
+          "E_mean": 0.09138030137965969,
+          "comm_norm": 1.2322661231674485,
+          "idx": 20
+        },
+        {
+          "E_max": 0.11865525569280941,
+          "E_mean": 0.09307583153354877,
+          "comm_norm": 1.1115630072961136,
+          "idx": 21
+        },
+        {
+          "E_max": 0.1124148727545254,
+          "E_mean": 0.09341823240059961,
+          "comm_norm": 1.1724892128832283,
+          "idx": 22
+        },
+        {
+          "E_max": 0.08151839923762763,
+          "E_mean": 0.06660973308613,
+          "comm_norm": 1.6908187477756877,
+          "idx": 23
+        }
+      ],
+      "seed": 1702,
+      "tw_vs_block_gap": 0.06360168739397451
+    }
+  ],
+  "sim_execution_kind": "nonclassical_diagnostic_negative_probe",
+  "sim_id": "jax_twistor_incidence_substrate_probe",
+  "summary": {
+    "best_random_offdiag_gap_over_twistor": 0.0,
+    "max_abs_z_twistor_vs_offdiag": 1.7731968885898644,
+    "max_blockdiag_effect": 0.02315632277117008,
+    "min_twistor_effect": 0.08654272262850178,
+    "tw_vs_block_gap": 0.06360168739397451
+  },
+  "verdict": {
+    "overall": "twistor_no_better_than_blockdiag",
+    "promotion_allowed": false,
+    "reason": "Twistor incidence produces a nonzero L/R coupling and separates from the block-diagonal floor, but matched generic off-diagonal controls produce comparable or stronger substrate effects. That blocks canonical twistor promotion in this probe."
+  },
+  "wallclock_seconds": 2.687354
+}

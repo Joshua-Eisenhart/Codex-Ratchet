@@ -1,0 +1,346 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "diffrax": "None",
+    "jax": "load_bearing",
+    "julia": "None",
+    "pytorch": "None"
+  },
+  "TOOL_MANIFEST": {
+    "diffrax": {
+      "reason": "Steady states are solved as finite Liouvillian nullspaces; no ODE integration is needed.",
+      "role": "not_relevant",
+      "used": false
+    },
+    "jax": {
+      "reason": "Builds the finite Lindblad superoperator, solves the trace-constrained steady state, and computes density/correlation readouts.",
+      "role": "load_bearing",
+      "used": true
+    },
+    "julia": {
+      "reason": "User required read-only Julia reference and no Julia run.",
+      "role": "forbidden_this_task",
+      "used": false
+    },
+    "pytorch": {
+      "reason": "User required no PyTorch import or run.",
+      "role": "forbidden_this_task",
+      "used": false
+    }
+  },
+  "actual_tools_used": {
+    "jax": "load_bearing: complex128 matrix construction, Liouvillian nullspace solve, eigvalsh trace distance"
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "JAX executable diagnostic mirrors the Julia reference coupling shape",
+    "g=0 product control remains inert",
+    "g>0 sigma_x exchange shifts the joint steady state and turns on connected correlations",
+    "equal-strength identity-coupler sham is lower than real exchange"
+  ],
+  "blocked_consumers": [
+    "canonical_layer_admission",
+    "layer_stacking_readiness",
+    "coexistence_topology_emergence",
+    "bridge",
+    "xi_phi0",
+    "axis0",
+    "flux",
+    "basin",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "bridge_layer": "none",
+  "carrier_layer": "two adjacent nested Hopf/Clifford-torus leaves as a finite two-qubit density carrier",
+  "carrier_realization": "JAX complex128 density matrices and Liouvillian linear solve",
+  "checks": {
+    "coupled_reductions_pull_together": true,
+    "g0_joint_equals_product": true,
+    "g_eff_uses_g_over_dtheta": true,
+    "g_positive_shifts_state": true,
+    "g_positive_turns_on_correlations": true,
+    "gamma_theta_is_sigma_x_dirac_gamma": true,
+    "identity_coupler_sham_inert": true,
+    "identity_coupler_sham_lower_than_exchange": true,
+    "identity_is_not_dirac_gamma": true,
+    "ran_julia_false": true,
+    "ran_pytorch_false": true,
+    "shift_rises_in_small_g_regime": true,
+    "theta_gap_matches_reference": true
+  },
+  "classification": "diagnostic/tool_lego_fit_probe",
+  "codomain_or_output": {
+    "readouts": [
+      "trace_distance_shift",
+      "connected_XX_YY_ZZ_correlators",
+      "leaf_reduced_bloch_z_gap"
+    ],
+    "rho_joint": "4x4 two-leaf steady-state density matrix",
+    "rho_product": "rho1_iso tensor rho2_iso"
+  },
+  "contract_classification": "tool_lego_fit_probe",
+  "cut_layer": "none",
+  "dependency_receipts": [
+    "read-only reference: system_v5/julia_carrier/layers/pairwise_leaf_coupling.jl"
+  ],
+  "domain": {
+    "couplers": [
+      "sigma_x tensor sigma_x",
+      "identity tensor identity sham"
+    ],
+    "dtheta": 0.10000000000000009,
+    "leaf1": "Pit Lindblad density matrix from H=eps*sigma_z, J=sqrt(gamma)*sigma_minus",
+    "leaf2": "Source Lindblad density matrix from H=-eps*sigma_z, J=sqrt(gamma)*sigma_plus",
+    "theta1": 0.7353981633974482,
+    "theta2": 0.8353981633974483
+  },
+  "downstream_blocks": [
+    "canonical_layer_admission",
+    "layer_stacking_readiness",
+    "coexistence_topology_emergence",
+    "bridge",
+    "xi_phi0",
+    "axis0",
+    "flux",
+    "basin",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "eligible_consumers": [
+    "bounded diagnostic comparison only"
+  ],
+  "finite_map": "((rho1_iso, rho2_iso), g, coupler) -> Liouvillian nullspace steady state rho_joint plus trace-distance and connected-correlation readouts",
+  "gamma_theta_axioms": {
+    "hermitian": true,
+    "involutive_gamma2_eq_I": true,
+    "is_dirac_gamma": true,
+    "traceless": true
+  },
+  "generated_at": "2026-06-02T23:35:26.898126+00:00",
+  "geometry": {
+    "dtheta": 0.10000000000000009,
+    "g_eff_formula": "g/dtheta",
+    "g_eff_test": 3.999999999999997,
+    "g_test": 0.4,
+    "theta1": 0.7353981633974482,
+    "theta2": 0.8353981633974483
+  },
+  "geometry_layer": "theta-adjacent Hopf leaf pair; dtheta sets finite-difference radial hopping strength",
+  "graph_surfaces_used": [],
+  "identity_axioms": {
+    "hermitian": true,
+    "involutive_gamma2_eq_I": true,
+    "is_dirac_gamma": false,
+    "traceless": false
+  },
+  "kill_conditions": [
+    "g=0 has nonzero shift or connected correlations",
+    "g>0 real exchange leaves the joint state product-like",
+    "identity sham matches or exceeds real exchange shift/correlation",
+    "script imports/runs PyTorch or Julia"
+  ],
+  "local_steady_states": {
+    "leaf1_pit": {
+      "bloch": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "rho": [
+        [
+          "0j",
+          "0j"
+        ],
+        [
+          "0j",
+          "(1+0j)"
+        ]
+      ]
+    },
+    "leaf2_source": {
+      "bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "rho": [
+        [
+          "(1+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "0j"
+        ]
+      ]
+    }
+  },
+  "name": "JAX nested Hopf pairwise adjacent leaf coupling audit",
+  "negatives_run": {
+    "g0_product_control": {
+      "locking": 0.0,
+      "shift": 0.0
+    },
+    "identity_coupler_sham": {
+      "g": 0.4,
+      "locking": 0.0,
+      "shift": 0.0
+    }
+  },
+  "peps3d_embedding": "not_admitted; diagnostic finite two-leaf object only",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "JAX-only diagnostic, not Julia-native QuantumOptics execution",
+    "no PyTorch-native spinor/PEPS3D manifold carrier",
+    "no tool-tool coupling receipt or broader parent lego admission",
+    "promotion_allowed=false by design"
+  ],
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [],
+  "purpose": "JAX-only mirror of the pairwise adjacent Hopf-leaf coupling reference: test whether sigma_x tensor sigma_x radial exchange shifts the joint steady state away from the product of isolated Pit/Source Lindblad leaves.",
+  "quaternion_action": "not_applicable",
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "required_negatives": [
+    "g=0 product/direct-sum control",
+    "identity-coupler wrong-structure sham at equal operator norm"
+  ],
+  "required_tools": [
+    "jax"
+  ],
+  "result_summary": "PASS: g=0 shift=0.000e+00, real_exchange_shift_g0.4=0.737468, identity_sham_shift_g0.4=0.000e+00, promotion_allowed=false",
+  "root_constraints_in_force": {
+    "F01": "finite two-leaf carrier, finite 2x2 local densities, finite 4x4 joint density, finite g sweep",
+    "N01": "coherent exchange sigma_x tensor sigma_x does not commute with local Pit/Source dissipative fixed-point structure"
+  },
+  "scientific_question": "Does a finite two-leaf Lindblad object with g_eff=g/dtheta show real exchange-induced shift/correlation while g=0 and identity-coupler controls stay inert?",
+  "sim_class": "pairwise_coupling_diagnostic",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "jax_nested_hopf_pairwise_leaf_coupling_audit",
+  "source_reference_read_only": "system_v5/julia_carrier/layers/pairwise_leaf_coupling.jl",
+  "spinor_state": "spinor-derived local qubit density matrices; not a torch-native manifold admission",
+  "sweep": [
+    {
+      "C_xx": 0.0,
+      "C_yy": 0.0,
+      "C_zz": 0.0,
+      "g": 0.0,
+      "g_eff": 0.0,
+      "leaf1_z": -1.0,
+      "leaf2_z": 1.0,
+      "locking": 0.0,
+      "shift": 0.0
+    },
+    {
+      "C_xx": -0.17777777777777765,
+      "C_yy": -0.17777777777777765,
+      "C_zz": -0.08098765432098765,
+      "g": 0.02,
+      "g_eff": 0.19999999999999982,
+      "leaf1_z": -0.9111111111111114,
+      "leaf2_z": 0.9111111111111113,
+      "locking": 0.880987654320987,
+      "shift": 0.171293420722208
+    },
+    {
+      "C_xx": -0.303030303030303,
+      "C_yy": -0.303030303030303,
+      "C_zz": -0.23530762167125802,
+      "g": 0.05,
+      "g_eff": 0.4999999999999996,
+      "leaf1_z": -0.6212121212121217,
+      "leaf2_z": 0.6212121212121215,
+      "locking": 1.5989439853076213,
+      "shift": 0.4024256971453013
+    },
+    {
+      "C_xx": -0.2836879432624114,
+      "C_yy": -0.2836879432624114,
+      "C_zz": -0.2062270509531715,
+      "g": 0.1,
+      "g_eff": 0.9999999999999992,
+      "leaf1_z": -0.29078014184397194,
+      "leaf2_z": 0.2907801418439719,
+      "locking": 1.4828227956340232,
+      "shift": 0.5983809250722665
+    },
+    {
+      "C_xx": -0.18140589569161006,
+      "C_yy": -0.18140589569161006,
+      "C_zz": -0.084327003666168,
+      "g": 0.2,
+      "g_eff": 1.9999999999999984,
+      "leaf1_z": -0.09297052154195029,
+      "leaf2_z": 0.09297052154195029,
+      "locking": 0.9006535342784133,
+      "shift": 0.7029478458049885
+    },
+    {
+      "C_xx": -0.09750152346130414,
+      "C_yy": -0.09750152346130414,
+      "C_zz": -0.02436052688551773,
+      "g": 0.4,
+      "g_eff": 3.999999999999997,
+      "leaf1_z": -0.024984765386959207,
+      "leaf2_z": 0.024984765386959262,
+      "locking": 0.46311738246138634,
+      "shift": 0.7374681072645726
+    },
+    {
+      "C_xx": -0.049681726439993815,
+      "C_yy": -0.049681726439993815,
+      "C_zz": -0.006324951976524679,
+      "g": 0.8,
+      "g_eff": 7.999999999999994,
+      "leaf1_z": -0.006365471200124151,
+      "leaf2_z": 0.006365471200124206,
+      "locking": 0.22989272095649685,
+      "shift": 0.7468147238561292
+    }
+  ],
+  "tier": "tool-stage bounded pairwise coupling diagnostic",
+  "tool_integration_depth": {
+    "diffrax": "None",
+    "jax": "load_bearing",
+    "julia": "None",
+    "pytorch": "None"
+  },
+  "tool_manifest": {
+    "diffrax": {
+      "reason": "Steady states are solved as finite Liouvillian nullspaces; no ODE integration is needed.",
+      "role": "not_relevant",
+      "used": false
+    },
+    "jax": {
+      "reason": "Builds the finite Lindblad superoperator, solves the trace-constrained steady state, and computes density/correlation readouts.",
+      "role": "load_bearing",
+      "used": true
+    },
+    "julia": {
+      "reason": "User required read-only Julia reference and no Julia run.",
+      "role": "forbidden_this_task",
+      "used": false
+    },
+    "pytorch": {
+      "reason": "User required no PyTorch import or run.",
+      "role": "forbidden_this_task",
+      "used": false
+    }
+  },
+  "topology_surfaces_used": [],
+  "verdict": "PASS",
+  "version": "1.0",
+  "which_survives": {
+    "coupled_reductions_pull_together": true,
+    "coupled_z_gap_at_max_g": 0.012730942400248357,
+    "isolated_z_gap": 2.0
+  },
+  "wrong_structure_kill": {
+    "g_test": 0.4,
+    "identity_sham_locking": 0.0,
+    "identity_sham_shift": 0.0,
+    "opnorm_identity": 1.0,
+    "opnorm_sigma_x": 1.0,
+    "real_exchange_locking": 0.46311738246138634,
+    "real_exchange_shift": 0.7374681072645726
+  }
+}

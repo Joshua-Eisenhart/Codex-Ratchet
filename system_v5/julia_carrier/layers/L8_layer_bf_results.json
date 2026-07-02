@@ -1,0 +1,237 @@
+{
+  "all_pass": true,
+  "anti_tautology_proof": "POSITIVE erasure (replace anticommuting parity P by orientation-blind gamma5-commuting unitary W_blind, opnorm=1.0=opnorm(P)=1): orientation score S(P)=2.0 -> S(W_blind) max 1.9e-16; swap 2|q| mean 0.7747 -> max 2.8e-16 (collapsed). ANTI-TAUTOLOGY CONTROL (DIFFERENT op of SAME opnorm=1.0=1, twisted parity P_tw=U_rot*P, NOT the below-geometry): orientation score stays min 2.0 (~2, INTACT); paired against genuine parity on the SAME inputs the twisted swap tracks the parity swap (parity_swap_mean 0.7308 vs twisted_swap_mean 0.7308; per-input ratio min 1.0, mean 1.0). Because a comparable-magnitude operation that is NOT the below-geometry LEAVES the signature intact while the below-geometry erasure collapses it (2 -> ~0), the leg-1 collapse is a MEASURED structural collapse specific to destroying the anticommutation {P,gamma5}=0, NOT an algebraic tautology. gamma5 (the readout) is held FIXED throughout; the only thing varied is the GROUP ELEMENT W.",
+  "bloch_free": true,
+  "carrier_language": "native Julia (LinearAlgebra), NOT numpy/torch; density-operator only, no Bloch r-vector",
+  "classification": "L8_layer_bf_poc",
+  "construction": {
+    "construction_ok": true,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_sq_residual": 0.0,
+    "note": "gamma5 fixed = diag(-1,-1,1,1); P=gamma0 anti-diagonal anticommutes with gamma5; rotors commute.",
+    "parity_anticommutes_gamma5_residual": 0.0,
+    "parity_unitary_residual": 0.0,
+    "rotor_commutes_gamma5_max": 0.0
+  },
+  "dependency_forcing": {
+    "dependency_forcing_genuine": true,
+    "interpretation": "GENUINE: erasing the below-geometry (the anticommuting parity that reverses orientation) collapses S and 2|q| to ~0, WHILE a comparable-magnitude operation that is NOT the below-geometry (twisted parity) LEAVES them intact, AND the readout gamma5 is fixed (no built-in algebraic zero), AND the surviving signature varies with input. The collapse is MEASURED-specific, not a tautology.",
+    "leg1_positive_erasure_of_below_geometry": {
+      "W_blind_opnorm_mean": 1.0,
+      "collapses_signature": true,
+      "operation": "replace parity P by orientation-BLIND gamma5-commuting unitary W_blind (block-diagonal SU(2) on each sheet); gamma5 UNTOUCHED; opnorm(W_blind)=1 = opnorm(P)",
+      "orientation_score_after_erasure_max": 1.928317736517876e-16,
+      "swap_2absq_after_erasure_max": 2.7755575615628914e-16,
+      "why_not_tautology": "gamma5 (the readout) is FIXED; we erase the GROUP ELEMENT not the readout. Contrast L8_layer.jl T1 (gamma5:=0) and L8_layer_codex.jl T3 (g5:=I4), which zero/identity the readout operator itself, forcing ||signature||=0 algebraically for any state."
+    },
+    "leg2_anti_tautology_negative_control": {
+      "P_tw_opnorm_mean": 1.0,
+      "leaves_signature_intact": true,
+      "meaning": "a comparable-magnitude operation that is NOT the below-geometry KEEPS the signature nonzero. Paired against genuine parity on the SAME inputs, the twisted-parity swap tracks the parity swap (ratio_min=1.0, mean 1.0) and the score stays ~2. This proves the leg-1 collapse is SPECIFIC to destroying the anticommutation, not a generic consequence of perturbing the operator. If this control had ALSO collapsed the score, the dependency-forcing would be a tautology.",
+      "operation": "DIFFERENT unitary of SAME operator norm (=1) that is NOT the below-geometry erasure: twisted parity P_tw = U_rot * P (still orientation-reversing)",
+      "orientation_score_min": 2.0,
+      "paired_parity_swap_mean": 0.7308285801089396,
+      "paired_twisted_swap_mean": 0.7308285801089396,
+      "twisted_over_parity_swap_ratio_mean": 0.9999999999999951,
+      "twisted_over_parity_swap_ratio_min": 0.9999999999990451
+    },
+    "leg3_structural_no_builtin_algebraic_zero": {
+      "parity_is_antidiagonal_zero_diagonal": true,
+      "parity_not_co_diagonal_with_gamma5": true,
+      "parity_not_scalar_multiple_of_gamma5_residual": 2.0,
+      "readout_operator_fixed": "gamma5 (never erased)",
+      "score_continuum_note": "S(exp(i a g0)) increases strictly from 0 (a=0 preserver) toward ~2 (reflection): the collapse-to-0 and stay-at-2 are MEASURED endpoints of a continuum, not a definitional {0,2} binary.",
+      "score_family_a_to_S": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.2,
+          0.3973
+        ],
+        [
+          0.4,
+          0.7788
+        ],
+        [
+          0.6,
+          1.1293
+        ],
+        [
+          0.8,
+          1.4347
+        ],
+        [
+          1.0,
+          1.6829
+        ],
+        [
+          1.2,
+          1.8641
+        ],
+        [
+          1.4,
+          1.9709
+        ]
+      ],
+      "score_is_measured_continuum_not_binary": true,
+      "structural_ok": true
+    },
+    "leg4_input_dependence": {
+      "input_dependent": true,
+      "range": 1.9399605955349422,
+      "swap_max": 1.9503000942910202,
+      "swap_min": 0.010339498756078175
+    }
+  },
+  "double_cover": {
+    "deck_sign_measured": -1.0,
+    "double_cover_present": true,
+    "label_density_unchanged_trace_distance": 1.2794688166302258e-16,
+    "note": "R_2pi = (R_pi)^2 = -I4 (deck transformation) yet identity on density channels / L/R label.",
+    "two_pi_commutes_gamma5": 0.0,
+    "two_pi_rotor_eq_minus_I_residual": 1.2246467991473532e-16
+  },
+  "honest_status_ladder": "passes",
+  "input_dependent_swap": {
+    "input_dependent_not_constant": true,
+    "max_reflection_flip_residual": 1.1102230246251565e-16,
+    "max_rotation_invariance_residual": 3.3306690738754696e-16,
+    "max_swap": 1.9503000942910202,
+    "mean_swap_2absq": 0.7747383553077342,
+    "min_swap": 0.010339498756078175,
+    "note": "density-channel rho -> P rho P^-1; swap 2|q| varies continuously with input spinor",
+    "swap_range": 1.9399605955349422
+  },
+  "layer": "L8",
+  "layer_name": "chirality orientation cover (L/R sheet; gamma5/Pin/Spin/reflection) — BF genuine rebuild",
+  "negative_controls": {
+    "chiral_eigenstate_charge_exact_pm1": {
+      "exact": true,
+      "qL": -1.0,
+      "qR": 1.0
+    },
+    "negative_controls_ok": true,
+    "parity_even_q0_state_zero_swap": {
+      "meaning": "q=0 (equal L/R) density has genuinely zero swap: signal is chiral imbalance, not planted",
+      "no_swap": true,
+      "q_even": 0.0
+    },
+    "parity_squared_identity_Z2": true
+  },
+  "non_numpy": true,
+  "pin_vs_spin": {
+    "anti_tautology_note": "twisted parity (a DIFFERENT reflection) is ALSO improper (det~-1): the improper det tracks orientation-reversal, not the specific operator P. A proper rotor stays +1.",
+    "det_parity_improper": -1.0,
+    "det_rotation_proper_mean": 1.0,
+    "det_twisted_parity_also_improper_mean": -1.0,
+    "pin_spin_det_gap": 2.0,
+    "pin_vs_spin_distinct": true
+  },
+  "positive_signature": {
+    "math": "S(W)=||W g5 W^-1 + g5||_F/||g5||_F; S=2 reversal (anticommuting), S=0 preserver (commuting)",
+    "orientation_reversal_score_parity": 2.0,
+    "orientation_reversal_score_rotor_max": 1.8007830278481297e-16,
+    "present": true,
+    "readout_operator": "gamma5 (FIXED, never erased); score reads conjugation of operator W only"
+  },
+  "promotion_allowed": false,
+  "qit_readouts_derived": {
+    "note": "DERIVED density readouts (trace distance / vN entropy); never the primary L8 object.",
+    "trace_distance_rho_vs_parity_reflected_mean": 0.8875967086502095,
+    "von_neumann_entropy_reflected_mean": -1.443289932012706e-17
+  },
+  "rebuilds": "L8_layer.jl + L8_layer_codex.jl (replaced algebraic-tautology erasures with a fixed-readout signature + anti-tautology negative control)",
+  "scale_stress_8_16_32_64": {
+    "N_16": {
+      "anti_tautology_control_intact": true,
+      "blind_erasure_collapses": true,
+      "blind_erasure_score_max": 1.5813693684374373e-16,
+      "blind_erasure_swap_max": 1.1102230246251565e-16,
+      "hold_at_scale": true,
+      "parity_swap_mean": 0.7493209861169977,
+      "positive_present": true,
+      "positive_score_min": 2.0,
+      "sites": 16,
+      "twisted_control_score_min": 2.0,
+      "twisted_control_swap_mean": 0.7493209861169975,
+      "twisted_over_parity_ratio_min": 0.9999999999999944
+    },
+    "N_32": {
+      "anti_tautology_control_intact": true,
+      "blind_erasure_collapses": true,
+      "blind_erasure_score_max": 2.155406953885258e-16,
+      "blind_erasure_swap_max": 1.6653345369377348e-16,
+      "hold_at_scale": true,
+      "parity_swap_mean": 0.768750985249051,
+      "positive_present": true,
+      "positive_score_min": 2.0,
+      "sites": 32,
+      "twisted_control_score_min": 2.0,
+      "twisted_control_swap_mean": 0.768750985249051,
+      "twisted_over_parity_ratio_min": 0.999999999999999
+    },
+    "N_64": {
+      "anti_tautology_control_intact": true,
+      "blind_erasure_collapses": true,
+      "blind_erasure_score_max": 2.0740979616889057e-16,
+      "blind_erasure_swap_max": 2.220446049250313e-16,
+      "hold_at_scale": true,
+      "parity_swap_mean": 0.7387718469747216,
+      "positive_present": true,
+      "positive_score_min": 2.0,
+      "sites": 64,
+      "twisted_control_score_min": 2.0,
+      "twisted_control_swap_mean": 0.7387718469747216,
+      "twisted_over_parity_ratio_min": 0.9999999999999993
+    },
+    "N_8": {
+      "anti_tautology_control_intact": true,
+      "blind_erasure_collapses": true,
+      "blind_erasure_score_max": 1.47702942395942e-16,
+      "blind_erasure_swap_max": 1.942890293094024e-16,
+      "hold_at_scale": true,
+      "parity_swap_mean": 0.6519286797672277,
+      "positive_present": true,
+      "positive_score_min": 2.0,
+      "sites": 8,
+      "twisted_control_score_min": 2.0,
+      "twisted_control_swap_mean": 0.6519286797672277,
+      "twisted_over_parity_ratio_min": 0.9999999999999997
+    },
+    "note": "blind_erasure_score_max and twisted_control_score_min are the non-frozen numeric witnesses; the anti-tautology control's score STAYS large at every scale while the erasure collapses."
+  },
+  "scale_stress_all_hold": true,
+  "script": "L8_layer_bf.jl",
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes",
+  "tools_used": {
+    "JSON": "supportive — emits the receipt.",
+    "LinearAlgebra": "load_bearing — conjugation channels W rho W^-1, HS/Frobenius & trace norms, det/opnorm for induced O(3), eigvals/svdvals for entropy/trace-distance; every number flows through it.",
+    "Random": "load_bearing — Haar Dirac spinors and random rotor axes/angles; numbers off fresh samples.",
+    "Z3": "omitted — not decorative; the dependency-forcing here is a MEASURED collapse-vs-intact comparison (positive erasure vs anti-tautology control), not an SMT structural claim."
+  },
+  "verdict": {
+    "all_pass": true,
+    "anti_tautology_control_leaves_signature_intact": true,
+    "construction_ok": true,
+    "dependency_forcing_genuine": true,
+    "double_cover_present": true,
+    "input_dependent_swap": true,
+    "negative_controls_ok": true,
+    "orientation_signature_present": true,
+    "pin_vs_spin_distinct": true,
+    "positive_erasure_collapses": true,
+    "qit_readouts_derived_ok": true,
+    "scale_stress_all_hold": true,
+    "structural_no_builtin_zero": true
+  },
+  "what_changed": "(1) Signature redefined as a FIXED-READOUT conjugation score S(W)=||W g5 W^-1 - g5||/||g5|| with gamma5 HELD FIXED (never zeroed/identitied); the difference form is empirically S=2 for reversal, 0 for preserver. (2) Positive erasure now replaces the GROUP ELEMENT (parity P) by an orientation-blind gamma5-COMMUTING unitary of the SAME operator norm (=1), not the readout operator. (3) Added the ANTI-TAUTOLOGY NEGATIVE CONTROL (twisted parity P_tw=U_rot*P) of comparable magnitude that LEAVES the signature intact, PAIRED against genuine parity on identical inputs (ratio test, not a per-input floor), with measured numbers at every scale 8/16/32/64. (4) Bloch removed entirely: density-only (rho, conjugation channels rho->W rho W^-1, HS/Frobenius & trace distance, vN entropy) — NO r-vector, NO rho_from_r, NO sigma-triple state, NO dot-r ODE.",
+  "what_was_cosmetic": "L8_layer.jl:376-380 (E_swap_LR) set GAMMA5_erased = zeros(4,4); the signature q = psi'*g5_op*psi is then identically 0 for ANY psi -> swap |q-q_refl|=0 is a structural zero of the readout operator (the C=2A collinear / co-diagonal mode the audit named). L8_layer.jl:386-390 (E_no_reflection) set PARITY -> U_rot(pi,1), a proper rotor whose SO(3) det is +1 BY CONSTRUCTION, so the Pin/Spin gap->0 for ANY rotor. L8_layer_codex.jl:160 set erased_g5 = I4; charge=tr(I4*rho)=tr(rho)=1 -> qR-qL = 1-1 = 0 is the unit-trace identity (and the reflection-quotient average of exact eigenvalues -1,+1 is identically 0). NONE measured a collapse; ALL were algebraic identities, and NEITHER file carried an anti-tautology negative control (an operation of comparable size that is NOT the below-geometry and that should LEAVE the signature intact). Bloch leaks in L8_layer.jl:137-143,400,594 (bloch(rho), rho_from_r(r)=0.5(I+r.sigma), rand_bloch)."
+}

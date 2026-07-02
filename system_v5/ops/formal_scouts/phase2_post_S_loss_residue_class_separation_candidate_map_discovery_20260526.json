@@ -1,0 +1,142 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T03:58:00-07:00",
+  "scope": "phase2_post_S_loss_residue_class_separation_K_candidate_map_discovery",
+  "classification": "formal_scout_controller_candidate",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "current_state_assertion": {
+    "active_transition_decision": "blocked",
+    "contract_complete_rows": 29,
+    "frontier_row_count": 31,
+    "killed_rows": 2,
+    "latest_admitted_map": "S_loss_residue_class_separation_K",
+    "latest_admitted_packet": "phase2_loss_residue_class_separation_packet",
+    "phase2_carrier_geometry": "real_bounded",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After S_loss_residue_class_separation_K, the earned object is a finite three-class loss-residue quotient with three class-pair separations over PEPS3D V/E/F/C loss vectors. All three scalar L1 gaps are equal, so the next bounded question is whether the coordinate support masks of those separations remain finite, PEPS3D-anchored, and noncollapsed. This is not topology, closure, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, or game theory.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "U_loss_pair_support_mask_K",
+      "candidate_name": "finite loss-pair coordinate support mask",
+      "finite_map": "U_loss_pair_support_mask_K : (S_loss_residue_class_separation_K, C_Q, ell_Q:C_Q -> N^{V,E,F,C}, legal_anchor_preserving_relabeling) -> finite unordered-class-pair x {V,E,F,C} support-mask table + pair-support quotient + coordinate-coverage/null-coordinate report + controls",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": "It ratchets directly from S by refining the equal scalar class-pair gaps into finite PEPS3D V/E/F/C coordinate support masks. It preserves the real limitation that F is null in the current pair deltas and cannot claim full V/E/F/C closure.",
+      "chosen": true
+    },
+    {
+      "candidate_id": "section_retraction_after_S",
+      "decision": "rejected",
+      "why_rejected": "Section/retraction language risks topology, sheaf, restoration, or inverse claims. S only earns finite class-pair separation."
+    },
+    {
+      "candidate_id": "all_subset_minimality_from_S",
+      "decision": "rejected",
+      "why_rejected": "All-subset minimality is stronger closure work and is not earned by class-pair separation."
+    },
+    {
+      "candidate_id": "restore_inverse_from_loss_classes",
+      "decision": "rejected",
+      "why_rejected": "The quotient and separation rows do not support restoration, invertibility, or same-object recovery."
+    },
+    {
+      "candidate_id": "topology_homology_persistence_gluing_from_S",
+      "decision": "rejected",
+      "why_rejected": "Finite coordinate-support masks are not topology, persistence, sheaf, gluing, or closure evidence."
+    },
+    {
+      "candidate_id": "pair_delete_interaction_revival",
+      "decision": "rejected",
+      "why_rejected": "The DD pair-delete interaction candidate is already killed because pair-order gaps collapsed to zero."
+    },
+    {
+      "candidate_id": "norm_only_next_map",
+      "decision": "rejected",
+      "why_rejected": "Norm-only is saturated and non-informative because all three class-pair L1 gaps equal 2."
+    },
+    {
+      "candidate_id": "full_coordinate_coverage_from_S",
+      "decision": "rejected",
+      "why_rejected": "Full V/E/F/C coordinate coverage is not earned because the F coordinate is zero in all current pair deltas."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_S",
+      "decision": "rejected",
+      "why_rejected": "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT/game theory, and axes 7-12 are downstream and remain blocked."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "U_loss_pair_support_mask_K",
+    "finite_map": "U_loss_pair_support_mask_K : (S_loss_residue_class_separation_K, C_Q, ell_Q:C_Q -> N^{V,E,F,C}, legal_anchor_preserving_relabeling) -> finite unordered-class-pair x {V,E,F,C} support-mask table + pair-support quotient + coordinate-coverage/null-coordinate report + controls",
+    "domain": {
+      "S_loss_residue_class_separation_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_loss_residue_class_separation_probe_results.json",
+      "Q_loss_residue_class_quotient_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_loss_residue_class_quotient_probe_results.json",
+      "H_delete_anchor_loss_idempotence_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_loss_idempotence_probe_results.json",
+      "C_Q": "{sigma012_class, edge_class, vertex_class}",
+      "ell_Q": "finite PEPS3D class loss vector map into N^{V,E,F,C}",
+      "legal_anchor_preserving_relabeling": "finite relabeling family inherited from Q/H/S"
+    },
+    "codomain_or_output": "finite unordered-class-pair x {V,E,F,C} support-mask table, exact coordinatewise delta table, pair-support quotient, coordinate coverage report, null-coordinate report, and control gap vector",
+    "expected_pair_masks": {
+      "sigma012/edge": [0, 1, 0, 1],
+      "sigma012/vertex": [1, 0, 0, 1],
+      "edge/vertex": [1, 1, 0, 0]
+    },
+    "expected_coordinate_coverage": {
+      "active_coordinates": ["V", "E", "C"],
+      "null_coordinates": ["F"]
+    },
+    "F01_finite_witness": "The class set, unordered class pairs, PEPS3D V/E/F/C coordinates, masks, probes, paths, controls, and outputs are finite and receipt-backed.",
+    "N01_order_witness": "U is a finite carrier readout over S and inherits the source order-sensitive Phase 2 carrier witness; order-erased controls must collapse or remain non-claim-bearing.",
+    "PEPS3D_carrier_anchor": "Every mask row is computed from inherited PEPS3D V/E/F/C loss-vector coordinates. Scalar support labels are controls only.",
+    "positive_case": "The three unordered class pairs produce three distinct finite support masks while the norm-only scalar gap collapses all pairs to one class.",
+    "negative_controls": [
+      "norm_only",
+      "scalar_label",
+      "no_anchor",
+      "order_erased",
+      "illegal_coordinate_scramble",
+      "fake_face_positive",
+      "dense_state_closure",
+      "dense_environment_closure"
+    ],
+    "boundary_controls": [
+      "F coordinate remains null and cannot be promoted as full coordinate coverage",
+      "bond convergence and shape laws remain blocked",
+      "topology, sheaf, homology, all-subset, restore/inverse, and downstream consumers remain blocked"
+    ],
+    "failure_conditions": [
+      "pair-support masks differ from expected masks",
+      "norm-only or label-only controls reproduce the claim-bearing table",
+      "F nullness is hidden or promoted as full coordinate coverage",
+      "any row lacks inherited PEPS3D V/E/F/C anchoring",
+      "dense closure is used",
+      "the map opens topology, sheaf, Hopf, Weyl, terrain, substage, flux, Xi/Phi0, Axis0, physics, IGT/game theory, axes 7-12, or Phase 7 consumers"
+    ],
+    "promotion_allowed": false,
+    "not_a_scout_run": true
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_loss_residue_class_separation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_residue_class_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_loss_idempotence_probe_results.json",
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json"
+  ],
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ]
+}

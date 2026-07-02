@@ -1,0 +1,100 @@
+{
+  "checks": {
+    "chirality_rotation_vs_boost": true,
+    "double_cover_SO31_eta_2to1": true,
+    "gamma5_basis_sanity": true,
+    "gamma5_weyl_connection": true,
+    "killcontrol_a_fired": true,
+    "killcontrol_b_fired": true,
+    "reps_inequivalent": true,
+    "sl2c_det_eq_1": true
+  },
+  "chirality_rotation_vs_boost": {
+    "boost_rep_diff_max": 3.121249591993402,
+    "boost_rep_diff_min": 0.17581745979745592,
+    "boost_sample_hermitian": true,
+    "chirality_split_measured": true,
+    "interpretation": "L=(M) and R=(M^dag)^{-1} COINCIDE under rotations (M unitary) and DIFFER under boosts (M Hermitian, (M^dag)^{-1}=M^{-1}!=M). The boost is the chirality-distinguisher.",
+    "rotation_rep_diff_max": 8.714472177014345e-16,
+    "rotation_rep_diff_min": 6.700788708272329e-17,
+    "rotation_sample_unitary": true,
+    "samples_each": 500
+  },
+  "classification": "PoC",
+  "double_cover_SO31": {
+    "double_cover_measured": true,
+    "interpretation": "x -> M X M^dag induces Lambda(M) in SO(3,1) (eta preserved, det +1). Lambda(M)=Lambda(-M) -> 2-to-1; the 2pi-rotation sign flip M=-I lives ONLY upstairs (Lambda=I downstairs).",
+    "lorentz_2pi_rotation_is_I": true,
+    "max_2to1_err_M_vs_negM": 0.0,
+    "max_covariance_recover_err": 2.874277142073027e-15,
+    "max_det_Lambda_minus_1": 6.328271240363392e-15,
+    "max_eta_preservation_err": 6.763285352312023e-15,
+    "samples": 400,
+    "spinor_2pi_rotation_is_minus_I": true
+  },
+  "gamma5_weyl_connection": {
+    "boost_L_block_neq_R_block_min_diff": 0.23772830312277193,
+    "gamma5_connection_measured": true,
+    "gamma5_sq_is_I": true,
+    "interpretation": "S(M)=diag(M,(M^dag)^{-1}); gamma5=diag(-I,+I) commutes with S(M), splitting Dirac into the two Weyl reps. Restricted to rotations both blocks are the SAME SU(2) (Euclidean Spin(3)); boosts split them.",
+    "max_L_block_minus_M_err": 0.0,
+    "max_R_block_minus_Mdaginv_err": 0.0,
+    "max_gamma5_commutes_with_S_err": 0.0,
+    "projectors_complete_PL_plus_PR_eq_I": true,
+    "projectors_orthogonal_PL_PR_eq_0": true,
+    "rotation_L_block_eq_R_block_diff": 7.695285487008449e-16,
+    "rotation_blocks_unitary": true,
+    "samples": 400
+  },
+  "killcontrol_a_rotation_vs_boost": {
+    "boost_rep_diff_min": 0.17581745979745592,
+    "boost_reps_differ": true,
+    "killcontrol_a_fired": true,
+    "rotation_rep_diff_max": 8.714472177014345e-16,
+    "rotation_reps_coincide": true,
+    "verdict": "KILL A FIRED (chirality invisible to rotations, visible to boosts)"
+  },
+  "killcontrol_b_wrong_rep": {
+    "genuine_R_minus_epsilon_link_err": 1.7963974098841158e-15,
+    "interpretation": "(M^dag)^{-1} is the epsilon-conjugate rep eps conj(M) eps^{-1}, consistent with the invariant symplectic form M^T eps M = eps. M^dag and M^T do NOT match the link (fail over boosts).",
+    "killcontrol_b_fired": true,
+    "max_symplectic_MT_eps_M_err": 6.661338147750939e-16,
+    "samples": 400,
+    "verdict": "KILL B FIRED (genuine (M^dag)^{-1} matches epsilon link; M^dag and M^T fail)",
+    "wrong_dagger_R_minus_link_err": 4.363098102858559,
+    "wrong_transpose_R_minus_link_err": 4.552285169944876
+  },
+  "object": "Spin(1,3) ~ SL(2,C): left/right Weyl reps + SO(3,1) double cover",
+  "object_id": "sl2c_spin13_chiral_gstructure",
+  "promotion_allowed": false,
+  "seed": 20260601,
+  "sl2c_det": {
+    "anchor": "det exp(X) = exp(tr X); all sl(2,C) generators are traceless -> det M = 1",
+    "max_det_minus_1": 5.578801654593729e-16,
+    "max_generator_trace": 0.0,
+    "pass": true,
+    "samples": 500
+  },
+  "structural_inequivalence": {
+    "LL_intertwiner_nullspace_dim": 1,
+    "LR_intertwiner_nullspace_dim": 0,
+    "LR_singular_value_max": 5.640834712973155,
+    "LR_singular_value_min": 2.560582726346239,
+    "interpretation": "Joint nullspace of S M = (M^dag)^{-1} S over a generating set is {0} (no invertible intertwiner) -> (1/2,0) and (0,1/2) are inequivalent irreps. Control L-vs-L has nullity>=1 (S=I works), so the test is not vacuous.",
+    "reps_inequivalent": true
+  },
+  "summary": {
+    "all_pass": true,
+    "forced_standard_rep_theory": "SL(2,C)=Spin(1,3) double cover; (1/2,0)/(0,1/2) reps; eta preservation; epsilon-invariance",
+    "headline": "Spin(1,3) ~ SL(2,C): the two fundamental reps L=(M), R=(M^dag)^{-1} are MEASURABLY inequivalent (only S=0 intertwines them); they COINCIDE under rotations (M unitary) and DIFFER under boosts (the boost is the chirality- distinguisher); x->M X M^dag is a 2-to-1 cover onto SO(3,1) preserving eta; and gamma5=diag(-I,+I) splits the Dirac rep into exactly these two Weyl blocks.",
+    "ladder_status": "passes",
+    "n_checks": 8,
+    "n_pass": 8,
+    "novel": "none (standard relativistic representation theory)"
+  },
+  "tools": {
+    "carrier": "LinearAlgebra",
+    "io": "JSON",
+    "z3": "absent (decorative here)"
+  }
+}

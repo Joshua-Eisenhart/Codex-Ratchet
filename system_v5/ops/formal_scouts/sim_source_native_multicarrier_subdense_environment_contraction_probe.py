@@ -1126,7 +1126,7 @@ def local_contraction_tree_witness() -> dict[str, Any]:
     inputs = [("p", "a", "x"), ("x", "q", "b")]
     output = ("p", "q", "a", "b")
     sizes = {"p": 2, "q": 2, "a": 4, "b": 4, "x": 2}
-    tree = ctg.HyperOptimizer(max_repeats=4, progbar=False, on_trial_error="raise").search(inputs, output, sizes)
+    tree = ctg.HyperOptimizer(max_repeats=4, progbar=False, on_trial_error="raise", parallel=False).search(inputs, output, sizes)
     rng = torch.Generator().manual_seed(4141)
     left = torch.randn((2, 4, 2), generator=rng, dtype=TORCH_REAL)
     right = torch.randn((2, 2, 4), generator=rng, dtype=TORCH_REAL)

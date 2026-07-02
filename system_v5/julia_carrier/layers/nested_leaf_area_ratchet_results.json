@@ -1,0 +1,157 @@
+{
+  "all_pass": true,
+  "checks": {
+    "area_matches_invariant": true,
+    "clifford_torus_is_area_max": true,
+    "coupled_delocalises_decoupled_localises": true,
+    "coupling_links_adjacent_leaves": true,
+    "coupling_nearest_neighbour": true,
+    "entropy_tracks_area_positive": true,
+    "kill_flat_area_constant": true,
+    "kill_flat_no_area_ride": true,
+    "ratchet_descent_strict_decrease": true,
+    "removing_coupling_decouples": true
+  },
+  "classification": "PoC",
+  "entropy_area": {
+    "A_of_theta": [
+      7.553868176588944,
+      12.016468957915832,
+      15.660167237914635,
+      18.23665100029955,
+      19.570337134504776,
+      19.570337134504776,
+      18.23665100029955,
+      15.660167237914635,
+      12.016468957915837,
+      7.553868176588946
+    ],
+    "N": 200,
+    "S_of_theta": [
+      1.7903581119323486,
+      1.9473770857481245,
+      2.0320534075834633,
+      2.084172694143387,
+      2.1079256817718117,
+      2.107925681778749,
+      2.0841726941666687,
+      2.0320534076227665,
+      1.9473770858016397,
+      1.7903581120022223
+    ],
+    "S_tracks_A_positive": true,
+    "kill_flat_corr": 0.0,
+    "kill_flat_no_ride": true,
+    "note": "free-fermion (Gaussian) Peschel entropy across the leaf cut; PROXY for an area law, not a proof of one",
+    "pearson_S_A": 0.9910007028319139,
+    "thetas": [
+      0.19634954084936207,
+      0.3272492347489368,
+      0.4581489286485115,
+      0.5890486225480862,
+      0.7199483164476609,
+      0.8508480103472357,
+      0.9817477042468103,
+      1.1126473981463851,
+      1.2435470920459597,
+      1.3744467859455345
+    ]
+  },
+  "honest_scope": {
+    "claim_ceiling": "A is a measured geometric monotone (area). The RG/c-theorem reading and entropy=area identification remain interpretive and unproven.",
+    "forced_standard_math": [
+      "A(theta) = 2 pi^2 sin(2 theta); area maximal at the Clifford torus theta=pi/4",
+      "radial Dirac decomposition D_S3 = gamma^theta(d/dtheta + H/2) + D_T2(theta); gamma^theta d/dtheta is a genuine inter-leaf kinetic term"
+    ],
+    "novel_interpretive_NOT_proven": [
+      "reading the monotone descent of A as an RG-style ratchet / c-theorem: we claim ONLY that A is a geometric monotone along theta: pi/4 -> 0; NO c-theorem is proven",
+      "S ~ A is a free-fermion PROXY consistent with an area law, not a proof that A is an entropy"
+    ]
+  },
+  "inter_leaf_coupling": {
+    "Nleaf": 16,
+    "coupled_links_adjacent_leaves": true,
+    "decoupled_block_diagonal": true,
+    "delocalises_when_coupled": true,
+    "dtheta": 0.09239978392911156,
+    "gamma_theta": "sigma_x (Hermitian, involutive, traceless)",
+    "localises_when_decoupled": true,
+    "mean_leaf_participation_coupled": 11.33333333333334,
+    "mean_leaf_participation_decoupled": 1.0,
+    "nearest_neighbour_only": true,
+    "nonadjacent_weight_coupled": 0.0,
+    "offdiag_weight_coupled": 459.161321240124,
+    "offdiag_weight_decoupled": 0.0
+  },
+  "leaf_area": {
+    "area_matches_invariant": true,
+    "clifford_area_measured": 19.739208802178613,
+    "clifford_is_area_max": true,
+    "clifford_theta": 0.7853981633974483,
+    "descent_areas": [
+      19.739208802178613,
+      19.269090652459933,
+      17.881129306958474,
+      15.641437427635406,
+      12.656698095199538,
+      9.069083181494655,
+      5.04948128716652,
+      0.7893578173692922
+    ],
+    "descent_strictly_decreasing": true,
+    "descent_thetas": [
+      0.7853981633974483,
+      0.6760555686263843,
+      0.5667129738553202,
+      0.45737037908425615,
+      0.34802778431319215,
+      0.23868518954212808,
+      0.12934259477106405,
+      0.02
+    ],
+    "kill_flat_area_constant": true,
+    "kill_flat_area_spread": 0.0,
+    "max_abs_err": 4.792610752701876e-12,
+    "rows": [
+      {
+        "A_analytic": 9.869604401089356,
+        "A_measured": 9.869604401089306,
+        "abs_err": 4.973799150320701e-14,
+        "theta": 0.2617993877991494
+      },
+      {
+        "A_analytic": 17.094656273292166,
+        "A_measured": 17.094656273287377,
+        "abs_err": 4.789058039023075e-12,
+        "theta": 0.5235987755982988
+      },
+      {
+        "A_analytic": 19.739208802178716,
+        "A_measured": 19.739208802178613,
+        "abs_err": 1.0302869668521453e-13,
+        "theta": 0.7853981633974483
+      },
+      {
+        "A_analytic": 17.09465627329217,
+        "A_measured": 17.094656273287377,
+        "abs_err": 4.792610752701876e-12,
+        "theta": 1.0471975511965976
+      },
+      {
+        "A_analytic": 9.869604401089356,
+        "A_measured": 9.869604401089306,
+        "abs_err": 4.973799150320701e-14,
+        "theta": 1.3089969389957472
+      }
+    ]
+  },
+  "object": "nested_leaf_area_ratchet",
+  "promotion_allowed": false,
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "tools": [
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "z3_omitted": "deliberate: no decorative SMT block; evidence is measured numbers + kill-controls"
+}

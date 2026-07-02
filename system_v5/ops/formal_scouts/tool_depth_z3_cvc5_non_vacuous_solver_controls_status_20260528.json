@@ -1,0 +1,97 @@
+{
+  "schema": "formal_scout_status_v1",
+  "status_id": "tool_depth_z3_cvc5_non_vacuous_solver_controls_status_20260528",
+  "created_at_utc": "2026-05-28T07:57:31Z",
+  "classification": "formal_scout_status",
+  "source": "system_v5/ops/formal_scouts/sim_tool_depth_z3_cvc5_non_vacuous_solver_controls_probe.py",
+  "result": "system_v5/ops/formal_scouts/results/tool_depth_z3_cvc5_non_vacuous_solver_controls_probe_results.json",
+  "v43_object_packet": "system_v5/ops/formal_scouts/tool_depth_z3_cvc5_v43_object_packet_20260528.json",
+  "parent_result": "system_v5/ops/formal_scouts/results/tool_by_tool_layer_g_structure_geometry_depth_probe_results.json",
+  "current_truth": "The z3/cvc5 map_unprovable rows now have a bounded non-vacuous solver-control receipt. This repairs proof-tool depth only; it does not make the prior tool breadth scout full-depth for every tool and does not open G-structure selection, layer embedding, stacking, flux, Xi/Phi0, Axis0, FEP/Holodeck, physics/gravity, or final manifold admission.",
+  "formal_map": "SolverDepth : (parent layer/G/tool rows, coverage facts, locked consumers, object order chain) -> z3/cvc5 SAT/UNSAT/boundary/order proof matrix",
+  "formula_expectations": {
+    "all_rows_and_locks_positive_sat": "sat",
+    "actual_rows_violation_negative_unsat": "unsat",
+    "one_row_failure_boundary_sat": "sat",
+    "object_order_chain_positive_sat": "sat",
+    "object_order_cycle_negative_unsat": "unsat"
+  },
+  "observed_solver_statuses": {
+    "z3": {
+      "all_rows_and_locks_positive_sat": "sat",
+      "actual_rows_violation_negative_unsat": "unsat",
+      "one_row_failure_boundary_sat": "sat",
+      "object_order_chain_positive_sat": "sat",
+      "object_order_cycle_negative_unsat": "unsat"
+    },
+    "cvc5": {
+      "all_rows_and_locks_positive_sat": "sat",
+      "actual_rows_violation_negative_unsat": "unsat",
+      "one_row_failure_boundary_sat": "sat",
+      "object_order_chain_positive_sat": "sat",
+      "object_order_cycle_negative_unsat": "unsat"
+    }
+  },
+  "non_vacuity_repairs": {
+    "row_derived_formula_hashes": true,
+    "sat_positive_controls": true,
+    "unsat_negative_controls": true,
+    "boundary_mutation_changes_status": true,
+    "order_chain_and_order_cycle_controls": true,
+    "z3_unsat_cores_recorded": true,
+    "cvc5_unsat_cores_recorded": true,
+    "metadata_only_ablation_rejected": true
+  },
+  "coverage": {
+    "layer_rows": 44,
+    "g_structure_rows": 48,
+    "tool_rows": 15,
+    "site_counts": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "max_sites": 64,
+    "peps2d_bond_dim": 4,
+    "peps3d_bond_dim": 4
+  },
+  "validation": {
+    "py_compile": "passed",
+    "lint_sim_contract": {
+      "checked": 1,
+      "violation_total": 0
+    },
+    "validate_formal_scout_results_fresh_rerun": {
+      "all_pass": true,
+      "fresh_rerun": true,
+      "timeout_seconds": 300
+    },
+    "wizard_v4_3_object_preservation": {
+      "layer_factory_packet_ok": true,
+      "rpf_packet_ok": true,
+      "z3_cvc5_packet_ok": true
+    }
+  },
+  "blocked_consumers": [
+    "official_layered_ratchet_G_structure_selection",
+    "layer_embedding_in_G_structure",
+    "stacking",
+    "cross_layer_order_closure",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "completed_packet": "tool_depth_z3_cvc5_non_vacuous_solver_controls",
+  "next_admissible_packet": "tool_depth_pytorch_autograd_per_row_spinor_phase",
+  "stop_condition_for_next": "fresh rerun passes per-row finite nonzero gradients and resource ceiling, or writes a blocker without opening downstream consumers",
+  "route_truth": {
+    "wizard_v4_3": "object packets validated",
+    "codex_council": "three Codex explorer lanes launched; Decision and Failure receipts converged on this repair; Follow-Up receipt named required status artifacts",
+    "external_models": "prior Gemini/Grok/Opus audit artifact used as input, not rerun in this repair packet",
+    "wizard_full_claim": "PARTIAL, not FULL"
+  }
+}

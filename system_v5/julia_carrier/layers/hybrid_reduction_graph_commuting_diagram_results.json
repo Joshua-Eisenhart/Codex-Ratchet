@@ -1,0 +1,133 @@
+{
+  "anchors": {
+    "A1_double_cover_degree2": true,
+    "A2_SO3_orthogonality": true,
+    "A2_worst_det_residual": 1.3322676295501878e-15,
+    "A2_worst_orth_residual": 1.5470232446595957e-15,
+    "A3_hopf_invariant_one": true,
+    "A3_measured_linking_number": -0.9964586789364207,
+    "XC_clifford_bivector_square_neg1": true,
+    "XC_gp_e12_sq": -1.0,
+    "XC_gp_e13_sq": -1.0,
+    "XC_gp_e23_sq": -1.0,
+    "XC_pkg_e12_sq": -1,
+    "XC_pkg_e13_sq": -1,
+    "XC_pkg_e1_sq": 1,
+    "XC_pkg_e23_sq": -1,
+    "XC_pkg_e2_sq": 1,
+    "XC_pkg_e3_sq": 1,
+    "XC_pkg_quaternion_closure_ok": true
+  },
+  "classification": "geometry_poc",
+  "commuting_paths": {
+    "P1_hopf_vs_dcover_projN": {
+      "commutes": true,
+      "worst_diff": 0.0
+    },
+    "P2_hopf_vs_twistor": {
+      "commutes": true,
+      "worst_diff": 4.440892098500626e-16
+    },
+    "P3_dcover_vs_clifford_adjoint": {
+      "commutes": true,
+      "gp_path_commutes": true,
+      "gp_worst_diff": 1.1102230246251565e-16,
+      "package_load_bearing": true,
+      "package_vs_gp_consistent": true,
+      "package_vs_gp_worst": 0.0,
+      "worst_diff": 1.1102230246251565e-16
+    }
+  },
+  "graph": {
+    "edges": [
+      {
+        "from": "S3",
+        "map": "iso_S3_SU2",
+        "to": "SU2"
+      },
+      {
+        "from": "SU2",
+        "map": "dcover",
+        "to": "SO3"
+      },
+      {
+        "from": "S3",
+        "map": "hopf",
+        "to": "S2"
+      },
+      {
+        "from": "SO3",
+        "map": "projN",
+        "to": "S2"
+      },
+      {
+        "from": "SU2",
+        "map": "iso_Cl3",
+        "to": "Cl3even"
+      },
+      {
+        "from": "Cl3even",
+        "map": "adj_Cl3",
+        "to": "SO3"
+      },
+      {
+        "from": "S3",
+        "map": "embed",
+        "to": "Twistor"
+      },
+      {
+        "from": "Twistor",
+        "map": "projectivize",
+        "to": "S2"
+      }
+    ],
+    "n_edges": 8,
+    "n_nodes": 6,
+    "nodes": [
+      "S3",
+      "SU2",
+      "SO3",
+      "S2",
+      "Cl3even",
+      "Twistor"
+    ],
+    "weakly_connected": true
+  },
+  "item": "G_hybrid_reduction_graph",
+  "kill_controls": {
+    "K1_fake_hopf_breaks_P1": {
+      "broke_as_required": true,
+      "worst_diff": 0.25992077690256987
+    },
+    "K1b_null_hopf_breaks_P1": {
+      "broke_as_required": true,
+      "worst_diff": 1.9973042355341617
+    },
+    "K1b_surjectivity_distinguishes_genuine_from_trivial": {
+      "distinguished": true,
+      "genuine_fiber_collapse_diameter": 2.220446049250313e-16,
+      "genuine_y_span_covers_S2": 1.9986857717156505,
+      "trivial_map_y_span_arc": 0.0
+    },
+    "K2_bad_dcover_breaks_P1": {
+      "broke_as_required": true,
+      "worst_diff": 1.9965595272465724
+    },
+    "K2_bad_dcover_loses_orthogonality": {
+      "broke_as_required": true,
+      "worst_orth": 2.1638349475952183
+    },
+    "K3_no_sandwich_breaks_P3": {
+      "broke_as_required": true,
+      "worst_diff": 1.942743430411935
+    }
+  },
+  "n_samples": 400,
+  "promotion_allowed": false,
+  "verdict": {
+    "anchors_ok": true,
+    "genuine_pass": true,
+    "kill_controls_break": true,
+    "paths_commute": true
+  }
+}

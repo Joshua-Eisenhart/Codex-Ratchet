@@ -1,0 +1,110 @@
+{
+  "schema": "cf24_finite_epsilon_step_vs_limit_smuggling_gate_result_v1",
+  "name": "cf24_finite_epsilon_step_vs_limit_smuggling_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-24",
+  "gate": "EG-CF24-finite-epsilon-step-vs-limit-smuggling",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-24 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "python_float": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite recurrence, epsilon threshold, step budget, and finite failure case"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_float": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:09:32Z",
+  "runtime_seconds": 0.00017499923706054688,
+  "positive": {
+    "pass": true,
+    "epsilon_declared": 0.05,
+    "step_budget_declared": 12,
+    "stopping_rule": "abs(x) <= epsilon",
+    "finite_run": {
+      "x0": 1.0,
+      "ratio": 0.72,
+      "epsilon": 0.05,
+      "max_steps": 12,
+      "reached": true,
+      "reached_step": 10,
+      "last_value": 0.03743906242624486,
+      "history": [
+        1.0,
+        0.72,
+        0.5184,
+        0.37324799999999997,
+        0.26873855999999996,
+        0.19349176319999997,
+        0.13931406950399997,
+        0.10030613004287997,
+        0.07222041363087357,
+        0.05199869781422897,
+        0.03743906242624486
+      ]
+    }
+  },
+  "negative": {
+    "pass": false,
+    "expected": "fail",
+    "negative_case_type": "executable_rejection",
+    "negative_rejected": true,
+    "attempted_claim": {
+      "claim": "this converges eventually, so the finite claim is admitted",
+      "epsilon_declared": false,
+      "step_budget_declared": false,
+      "finite_failure_case_available": true
+    },
+    "finite_failure_case": {
+      "x0": 1.0,
+      "ratio": 0.72,
+      "epsilon": 0.05,
+      "max_steps": 4,
+      "reached": false,
+      "reached_step": null,
+      "last_value": 0.26873855999999996,
+      "history": [
+        1.0,
+        0.72,
+        0.5184,
+        0.37324799999999997,
+        0.26873855999999996
+      ]
+    }
+  },
+  "boundary": {
+    "pass": true,
+    "asymptotic_intuition_allowed": true,
+    "load_bearing_claim": "open_until_finite_threshold_reached",
+    "finite_open_case": {
+      "x0": 1.0,
+      "ratio": 0.92,
+      "epsilon": 0.05,
+      "max_steps": 8,
+      "reached": false,
+      "reached_step": null,
+      "last_value": 0.5132188731375618,
+      "history": [
+        1.0,
+        0.92,
+        0.8464,
+        0.778688,
+        0.7163929600000001,
+        0.6590815232000001,
+        0.6063550013440001,
+        0.5578466012364801,
+        0.5132188731375618
+      ]
+    },
+    "interpretation": "asymptotic convergence can guide a hypothesis, but cannot replace the finite threshold and step budget"
+  },
+  "all_pass": true
+}

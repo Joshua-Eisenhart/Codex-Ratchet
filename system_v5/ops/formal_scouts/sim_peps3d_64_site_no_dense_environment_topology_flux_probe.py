@@ -314,7 +314,7 @@ def local_cotengra_tree_witness() -> dict[str, Any]:
     ]
     output = ("phys",)
     sizes = {label: 2 for term in inputs for label in term}
-    optimizer = ctg.HyperOptimizer(max_repeats=4, progbar=False, on_trial_error="raise")
+    optimizer = ctg.HyperOptimizer(max_repeats=4, progbar=False, on_trial_error="raise", parallel=False)
     tree = optimizer.search(inputs, output, sizes)
     return {
         "local_star_tensor_count": len(inputs),

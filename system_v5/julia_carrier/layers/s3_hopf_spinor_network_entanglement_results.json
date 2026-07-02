@@ -1,0 +1,45 @@
+{
+  "name": "s3_hopf_spinor_network_entanglement",
+  "classification": "s3_hopf_spinor_network_entanglement_poc",
+  "promotion_allowed": false,
+  "carrier": "Julia + LinearAlgebra (lattice gauge, non-numpy) + ITensors/ITensorMPS (spinor-network MPS, SVD entropy) + Z3 (structural gate)",
+  "math_object": "Hopf fibration S^3 -> S^2 as a finite spinor network carrying entanglement",
+  "geometry": {
+    "method": "discrete-plaquette (Fukui-Hatsugai-Suzuki) first Chern number; c1 = (1/2pi) sum_plaquettes arg(U12 U23 U34 U41), U=<psi_a|psi_b>/|<psi_a|psi_b>|",
+    "known_invariant_anchor": "Hopf line bundle O(m) over S^2=CP^1; convention gives c1 = -m. Hopf m=1 => c1=-1, |c1|=1. NOT planted: integer emerges from lattice gauge field, compared to algebraic-geometry invariant.",
+    "measured_chern": {
+      "hopf_m+1":    {"numeric": -1.00000000, "rounded": -1, "known": -1, "abs_known": 1, "qerr": 1.332e-14},
+      "anti_m-1":    {"numeric": 1.00000000, "rounded": 1, "known":  1, "qerr": 1.332e-14},
+      "winding2_m2": {"numeric": -2.00000000, "rounded": -2, "known": -2, "qerr": 1.776e-14},
+      "trivial_m0":  {"numeric": 0.00000000, "rounded": 0, "known":  0, "qerr": 0.000e+00},
+      "WRONG_STRUCTURE_w0": {"numeric": 0.00000000, "rounded": 0, "expected": 0, "role": "fails invariant by design"}
+    },
+    "wrong_structure_control_fires": true
+  },
+  "entanglement": {
+    "method": "Hopf spinors at MPS nodes; entangling H+CNOT chain (bond>1) vs product (bond=1); cut Schmidt entropy from SVD spectrum",
+    "rows": [
+      {"n_nodes": 4, "cut_bond": 2, "entangled_cut_entropy": 0.261544, "product_cut_entropy": 0.000e+00, "entangled_max_bond": 2, "product_max_bond": 1, "entropy_gap": 0.261544, "entangled_schmidt_spectrum": [0.955729, 0.044271], "load_bearing": true},
+      {"n_nodes": 6, "cut_bond": 3, "entangled_cut_entropy": 0.230734, "product_cut_entropy": -0.000e+00, "entangled_max_bond": 2, "product_max_bond": 1, "entropy_gap": 0.230734, "entangled_schmidt_spectrum": [0.962495, 0.037505], "load_bearing": true},
+      {"n_nodes": 8, "cut_bond": 4, "entangled_cut_entropy": 0.220118, "product_cut_entropy": 0.000e+00, "entangled_max_bond": 2, "product_max_bond": 1, "entropy_gap": 0.220118, "entangled_schmidt_spectrum": [0.964741, 0.035259], "load_bearing": true}
+    ],
+    "load_bearing": true,
+    "min_entropy_gap_entangled_minus_product": 0.220118
+  },
+  "z3_structural": {"status": "load_bearing_pass", "tool_role": "load_bearing", "genuine_sat": true, "all_corruptions_unsat": true},
+  "checks": {
+    "anti_is_+1": true
+    , "bloch_free": true
+    , "entangled_entropy_gap_positive": true
+    , "entanglement_load_bearing": true
+    , "hopf_absC1_is_1": true
+    , "hopf_is_-1": true
+    , "trivial_m0_is_0": true
+    , "winding2_is_-2": true
+    , "wrong_structure_is_0": true
+    , "z3_load_bearing": true
+  },
+  "bloch_free": true,
+  "all_pass": true,
+  "honest_status": "passes"
+}

@@ -1,0 +1,639 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Statistics": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "result artifact emission",
+      "role": "supportive",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "eigenspectrum, Frobenius norm, trace — removal changes every verdict",
+      "role": "load_bearing",
+      "used": true
+    },
+    "Statistics": {
+      "reason": "mean/max aggregation for size-ladder checks",
+      "role": "supportive",
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "any_pair_collapses": false,
+  "axis0_marginal_independent": true,
+  "axis4_marginal_independent": true,
+  "axis5_marginal_independent": true,
+  "blocked_consumers": [
+    "layer_completion",
+    "manifold_admission",
+    "coupling",
+    "bridge",
+    "Axis0_bridge",
+    "flux",
+    "physics"
+  ],
+  "claim_ceiling": "Finite-map axis-independence probe over F01+N01. NOT layer-complete. NOT bridge. promotion_allowed=false.",
+  "classification": "tool_lego_fit_probe",
+  "classification_note": "candidate axis-independence probe; not canonical by process; promotion_allowed=false",
+  "factorial_cells": [
+    {
+      "Tr_rho_sz": 0.6123724356957944,
+      "axis0": "low_q",
+      "axis4": "deductive",
+      "axis5": "spectral",
+      "commuting_control_gap": 3.444376352465766e-16,
+      "fingerprint": [
+        0.218579,
+        0.892531,
+        0.612372
+      ],
+      "fingerprint_ext": [
+        0.2186,
+        0.8925,
+        0.6124,
+        0.0,
+        0.0594,
+        0.0594,
+        0.1075
+      ],
+      "order_gap_axis4": 0.053735463150511496,
+      "purity": 0.8925312499999998,
+      "q": 0.1,
+      "rho_valid": true,
+      "trajectory_purity_complement": [
+        0.0,
+        0.059374999999999956,
+        0.05937500000000018,
+        0.10746875000000022
+      ],
+      "von_Neumann_entropy": 0.21857919766208006
+    },
+    {
+      "Tr_rho_sz": 0.5511351921262152,
+      "axis0": "low_q",
+      "axis4": "deductive",
+      "axis5": "gradient",
+      "commuting_control_gap": 3.444376352465766e-16,
+      "fingerprint": [
+        0.263863,
+        0.862953,
+        0.551135
+      ],
+      "fingerprint_ext": [
+        0.2639,
+        0.863,
+        0.5511,
+        0.0,
+        0.0875,
+        0.0875,
+        0.137
+      ],
+      "order_gap_axis4": 0.05089818267875596,
+      "purity": 0.8629533624453862,
+      "q": 0.1,
+      "rho_valid": true,
+      "trajectory_purity_complement": [
+        0.0,
+        0.0875344290797706,
+        0.08753442907977038,
+        0.13704663755461377
+      ],
+      "von_Neumann_entropy": 0.2638629004715788
+    },
+    {
+      "Tr_rho_sz": 0.5511351921262153,
+      "axis0": "low_q",
+      "axis4": "inductive",
+      "axis5": "spectral",
+      "commuting_control_gap": 3.444376352465766e-16,
+      "fingerprint": [
+        0.244034,
+        0.876144,
+        0.551135
+      ],
+      "fingerprint_ext": [
+        0.244,
+        0.8761,
+        0.5511,
+        0.0712,
+        0.0712,
+        0.1239,
+        0.1239
+      ],
+      "order_gap_axis4": 0.053735463150511496,
+      "purity": 0.8761437500000003,
+      "q": 0.1,
+      "rho_valid": true,
+      "trajectory_purity_complement": [
+        0.0712499999999997,
+        0.07124999999999959,
+        0.12385624999999956,
+        0.12385624999999967
+      ],
+      "von_Neumann_entropy": 0.24403390559696375
+    },
+    {
+      "Tr_rho_sz": 0.4960216729135936,
+      "axis0": "low_q",
+      "axis4": "inductive",
+      "axis5": "gradient",
+      "commuting_control_gap": 3.444376352465766e-16,
+      "fingerprint": [
+        0.279648,
+        0.852196,
+        0.496022
+      ],
+      "fingerprint_ext": [
+        0.2796,
+        0.8522,
+        0.496,
+        0.0712,
+        0.0712,
+        0.1478,
+        0.1478
+      ],
+      "order_gap_axis4": 0.05089818267875596,
+      "purity": 0.8521955763282067,
+      "q": 0.1,
+      "rho_valid": true,
+      "trajectory_purity_complement": [
+        0.0712499999999997,
+        0.07124999999999948,
+        0.14780442367179325,
+        0.14780442367179325
+      ],
+      "von_Neumann_entropy": 0.27964756738572705
+    },
+    {
+      "Tr_rho_sz": 0.6123724356957944,
+      "axis0": "high_q",
+      "axis4": "deductive",
+      "axis5": "spectral",
+      "commuting_control_gap": 6.133173666733497e-19,
+      "fingerprint": [
+        0.49167,
+        0.687531,
+        0.612372
+      ],
+      "fingerprint_ext": [
+        0.4917,
+        0.6875,
+        0.6124,
+        0.0,
+        0.3094,
+        0.3094,
+        0.3125
+      ],
+      "order_gap_axis4": 0.3910083119321122,
+      "purity": 0.6875312499999997,
+      "q": 0.9,
+      "rho_valid": true,
+      "trajectory_purity_complement": [
+        0.0,
+        0.30937499999999996,
+        0.3093750000000002,
+        0.3124687500000003
+      ],
+      "von_Neumann_entropy": 0.49166960170789464
+    },
+    {
+      "Tr_rho_sz": 0.06123724356957938,
+      "axis0": "high_q",
+      "axis4": "deductive",
+      "axis5": "gradient",
+      "commuting_control_gap": 6.133173666733497e-19,
+      "fingerprint": [
+        0.69085,
+        0.502295,
+        0.061237
+      ],
+      "fingerprint_ext": [
+        0.6909,
+        0.5023,
+        0.0612,
+        0.0,
+        0.4561,
+        0.4561,
+        0.4977
+      ],
+      "order_gap_axis4": 0.16610425942762577,
+      "purity": 0.5022952455374224,
+      "q": 0.9,
+      "rho_valid": true,
+      "trajectory_purity_complement": [
+        0.0,
+        0.4561004462577529,
+        0.45610044625775303,
+        0.49770475446257756
+      ],
+      "von_Neumann_entropy": 0.6908501757394242
+    },
+    {
+      "Tr_rho_sz": 0.06123724356957938,
+      "axis0": "high_q",
+      "axis4": "inductive",
+      "axis5": "spectral",
+      "commuting_control_gap": 6.133173666733497e-19,
+      "fingerprint": [
+        0.69,
+        0.503144,
+        0.061237
+      ],
+      "fingerprint_ext": [
+        0.69,
+        0.5031,
+        0.0612,
+        0.3712,
+        0.3713,
+        0.4969,
+        0.4969
+      ],
+      "order_gap_axis4": 0.3910083119321122,
+      "purity": 0.50314375,
+      "q": 0.9,
+      "rho_valid": true,
+      "trajectory_purity_complement": [
+        0.37124999999999986,
+        0.3712500000000001,
+        0.49685625,
+        0.49685625
+      ],
+      "von_Neumann_entropy": 0.6900001278585213
+    },
+    {
+      "Tr_rho_sz": 0.006123724356958071,
+      "axis0": "high_q",
+      "axis4": "inductive",
+      "axis5": "gradient",
+      "commuting_control_gap": 6.133173666733497e-19,
+      "fingerprint": [
+        0.672513,
+        0.520492,
+        0.006124
+      ],
+      "fingerprint_ext": [
+        0.6725,
+        0.5205,
+        0.0061,
+        0.3712,
+        0.3712,
+        0.4795,
+        0.4795
+      ],
+      "order_gap_axis4": 0.16610425942762577,
+      "purity": 0.5204915178742247,
+      "q": 0.9,
+      "rho_valid": true,
+      "trajectory_purity_complement": [
+        0.37124999999999986,
+        0.37124999999999997,
+        0.47950848212577535,
+        0.47950848212577535
+      ],
+      "von_Neumann_entropy": 0.6725133490364512
+    }
+  ],
+  "factorial_n_distinct": 8,
+  "factorial_n_distinct_base_fingerprint": 8,
+  "fingerprint_note": "primary fingerprint uses extended sig (S+purity+Tz+4-step trajectory); base uses final-state (S+purity+Tz) only",
+  "finite_map": {
+    "codomain": "(final_rho, von_Neumann_entropy, purity, Tr_rho_sz, fingerprint, order_gap, commuting_control_gap)",
+    "domain": "(axis0 in {low_q=0.1, high_q=0.9}) x (axis4 in {deductive, inductive}) x (axis5 in {spectral, gradient})",
+    "note": "axis0=magnitude(scalar); axis4=direction(ordering); axis5=regime/algebra — three DIFFERENT KINDS"
+  },
+  "generated_at": "2026-06-04T02:07:46.694",
+  "honest_caveat": "factorial_n_distinct=8 and !any_pair_collapses and all marginals independent are required. If any fails, say so plainly: the axes collapse at that point.",
+  "marginal_effects": {
+    "axis0_effect_vector": [
+      0.2730904040458146,
+      -0.20500000000000007,
+      0.0,
+      0.0,
+      0.25,
+      0.25,
+      0.20500000000000007,
+      0.4269872752678454,
+      -0.3606581169079638,
+      -0.4898979485566358,
+      0.0,
+      0.3685660171779823,
+      0.36856601717798265,
+      0.3606581169079638,
+      0.4459662222615575,
+      -0.37300000000000033,
+      -0.48989794855663593,
+      0.30000000000000016,
+      0.3000000000000005,
+      0.37300000000000044,
+      0.37300000000000033,
+      0.39286578165072417,
+      -0.3317040584539821,
+      -0.48989794855663554,
+      0.30000000000000016,
+      0.3000000000000005,
+      0.3317040584539821,
+      0.3317040584539821
+    ],
+    "axis4_effect_vector": [
+      -0.02545470793488369,
+      0.016387499999999444,
+      0.06123724356957905,
+      -0.0712499999999997,
+      -0.011874999999999636,
+      -0.06448124999999938,
+      -0.016387499999999444,
+      -0.01578466691414826,
+      0.01075778611717948,
+      0.05511351921262159,
+      -0.0712499999999997,
+      0.016284429079771123,
+      -0.06026999459202287,
+      -0.01075778611717948,
+      -0.19833052615062663,
+      0.1843874999999997,
+      0.551135192126215,
+      -0.37124999999999986,
+      -0.061875000000000124,
+      -0.18748124999999982,
+      -0.1843874999999997,
+      0.018336826702972986,
+      -0.01819627233680221,
+      0.05511351921262131,
+      -0.37124999999999986,
+      0.08485044625775295,
+      -0.023408035868022314,
+      0.01819627233680221
+    ],
+    "axis5_effect_vector": [
+      -0.04528370280949873,
+      0.029577887554613547,
+      0.06123724356957916,
+      0.0,
+      -0.028159429079770648,
+      -0.028159429079770204,
+      -0.029577887554613547,
+      -0.035613661788763296,
+      0.023948173671793582,
+      0.0551135192126217,
+      0.0,
+      1.1102230246251565e-16,
+      -0.023948173671793693,
+      -0.023948173671793582,
+      -0.19918057403152956,
+      0.18523600446257726,
+      0.551135192126215,
+      0.0,
+      -0.14672544625775297,
+      -0.14672544625775286,
+      -0.18523600446257726,
+      0.01748677882207006,
+      -0.01734776787422465,
+      0.05511351921262131,
+      0.0,
+      1.1102230246251565e-16,
+      0.01734776787422465,
+      0.01734776787422465
+    ]
+  },
+  "object_id": "axorth_axis045_independence_v1",
+  "pairwise_cos_similarities": {
+    "axis0_vs_axis4": -0.569572552177625,
+    "axis0_vs_axis5": -0.5744710421079803,
+    "axis4_vs_axis5": 0.7726645021034378
+  },
+  "parity_eps": 1.0e-8,
+  "parity_targets": [
+    {
+      "Tr_rho_sz": 0.06123724356957938,
+      "cell_key": "high_q_deductive_gradient",
+      "purity": 0.5022952455374224,
+      "von_Neumann_entropy": 0.6908501757394242
+    },
+    {
+      "Tr_rho_sz": 0.6123724356957944,
+      "cell_key": "high_q_deductive_spectral",
+      "purity": 0.6875312499999997,
+      "von_Neumann_entropy": 0.49166960170789464
+    },
+    {
+      "Tr_rho_sz": 0.006123724356958071,
+      "cell_key": "high_q_inductive_gradient",
+      "purity": 0.5204915178742247,
+      "von_Neumann_entropy": 0.6725133490364512
+    },
+    {
+      "Tr_rho_sz": 0.06123724356957938,
+      "cell_key": "high_q_inductive_spectral",
+      "purity": 0.50314375,
+      "von_Neumann_entropy": 0.6900001278585213
+    },
+    {
+      "Tr_rho_sz": 0.5511351921262152,
+      "cell_key": "low_q_deductive_gradient",
+      "purity": 0.8629533624453862,
+      "von_Neumann_entropy": 0.2638629004715788
+    },
+    {
+      "Tr_rho_sz": 0.6123724356957944,
+      "cell_key": "low_q_deductive_spectral",
+      "purity": 0.8925312499999998,
+      "von_Neumann_entropy": 0.21857919766208006
+    },
+    {
+      "Tr_rho_sz": 0.4960216729135936,
+      "cell_key": "low_q_inductive_gradient",
+      "purity": 0.8521955763282067,
+      "von_Neumann_entropy": 0.27964756738572705
+    },
+    {
+      "Tr_rho_sz": 0.5511351921262153,
+      "cell_key": "low_q_inductive_spectral",
+      "purity": 0.8761437500000003,
+      "von_Neumann_entropy": 0.24403390559696375
+    }
+  ],
+  "promotion_allowed": false,
+  "rng_seed": 20260604,
+  "root_constraints_in_force": {
+    "F01": "finite carrier: 2x2x2 factorial = 8 cells; 8/16/32/64 random-state ensembles; 2x2 qubit density matrices",
+    "N01": "Ti (z-dephase) and Fi (x-rotation) are noncommuting; Fe and Ti share z-eigenbasis and commute (wrong-structure control)"
+  },
+  "six_axis_collapse_matrix": [
+    {
+      "axis_pair": "axis0 vs axis4",
+      "collapsed": false,
+      "cos_sim": -0.569572552177625
+    },
+    {
+      "axis_pair": "axis0 vs axis5",
+      "collapsed": false,
+      "cos_sim": -0.5744710421079803
+    },
+    {
+      "axis_pair": "axis4 vs axis5",
+      "collapsed": false,
+      "cos_sim": 0.7726645021034378
+    },
+    {
+      "axis_pair": "axis0 vs ctrl",
+      "collapsed": false,
+      "cos_sim": 0.0
+    },
+    {
+      "axis_pair": "axis4 vs ctrl",
+      "collapsed": false,
+      "cos_sim": 0.0
+    },
+    {
+      "axis_pair": "axis5 vs ctrl",
+      "collapsed": false,
+      "cos_sim": 0.0
+    }
+  ],
+  "size_ladder_results": [
+    {
+      "N": 8,
+      "all_rho_valid": true,
+      "axis0_spec_entropy_increases": true,
+      "axis4_split_gradient": true,
+      "axis4_split_spectral": true,
+      "commuting_control_near_zero": true,
+      "max_cc_gap": 2.893012232579511e-18,
+      "mean_S_gradient_high_q": 0.6896445089156279,
+      "mean_S_gradient_low_q": 0.23483896657006934,
+      "mean_S_spectral_high_q": 0.39150021976687366,
+      "mean_S_spectral_low_q": 0.1737282095373255,
+      "mean_cc_gap": 1.0506022660677181e-18,
+      "mean_og_gradient": 0.19921557927989497,
+      "mean_og_spectral": 0.40467688975024635,
+      "min_og_gradient": 0.08244579218370279,
+      "min_og_spectral": 0.0661522711218024
+    },
+    {
+      "N": 16,
+      "all_rho_valid": true,
+      "axis0_spec_entropy_increases": true,
+      "axis4_split_gradient": true,
+      "axis4_split_spectral": true,
+      "commuting_control_near_zero": true,
+      "max_cc_gap": 2.4580563384972604e-18,
+      "mean_S_gradient_high_q": 0.6899290973229208,
+      "mean_S_gradient_low_q": 0.24147221629670979,
+      "mean_S_spectral_high_q": 0.6283043404955722,
+      "mean_S_spectral_low_q": 0.2832758229111764,
+      "mean_cc_gap": 9.223485662773628e-19,
+      "mean_og_gradient": 0.20626203216067748,
+      "mean_og_spectral": 0.18706761894603824,
+      "min_og_gradient": 0.014178055720468869,
+      "min_og_spectral": 0.06338810744837296
+    },
+    {
+      "N": 32,
+      "all_rho_valid": true,
+      "axis0_spec_entropy_increases": true,
+      "axis4_split_gradient": true,
+      "axis4_split_spectral": true,
+      "commuting_control_near_zero": true,
+      "max_cc_gap": 2.22045663713691e-16,
+      "mean_S_gradient_high_q": 0.6906243179663859,
+      "mean_S_gradient_low_q": 0.2578816612075534,
+      "mean_S_spectral_high_q": 0.5553965601208481,
+      "mean_S_spectral_low_q": 0.2496921155647721,
+      "mean_cc_gap": 7.649858176856264e-18,
+      "mean_og_gradient": 0.21592027598407293,
+      "mean_og_spectral": 0.251736839458976,
+      "min_og_gradient": 0.004127917107364921,
+      "min_og_spectral": 0.006408455590614915
+    },
+    {
+      "N": 64,
+      "all_rho_valid": true,
+      "axis0_spec_entropy_increases": true,
+      "axis4_split_gradient": true,
+      "axis4_split_spectral": true,
+      "commuting_control_near_zero": true,
+      "max_cc_gap": 2.5287722848198975e-18,
+      "mean_S_gradient_high_q": 0.6903974471586134,
+      "mean_S_gradient_low_q": 0.2523762020107645,
+      "mean_S_spectral_high_q": 0.5289698616669136,
+      "mean_S_spectral_low_q": 0.2369091215355615,
+      "mean_cc_gap": 9.020148679257138e-19,
+      "mean_og_gradient": 0.20799380594743505,
+      "mean_og_spectral": 0.3049724188502274,
+      "min_og_gradient": 0.028343870438218406,
+      "min_og_spectral": 0.04452984870680118
+    }
+  ],
+  "source_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/axorth_julia.jl",
+  "wrong_structure_controls": [
+    {
+      "expect_near_zero": true,
+      "label": "commuting_Fe_Ti_q=0.1",
+      "order_gap": 3.444376352465766e-16,
+      "passed": true,
+      "q": 0.1
+    },
+    {
+      "expect_near_zero": true,
+      "label": "commuting_Fe_Ti_q=0.9",
+      "order_gap": 6.133173666733497e-19,
+      "passed": true,
+      "q": 0.9
+    },
+    {
+      "axis5": "spectral",
+      "label": "erased_axis0_q0_spectral",
+      "note": "q=0 collapses Ti to identity; axis4 gap survives if U is still non-trivial",
+      "order_gap_ded_vs_ind": 0.0,
+      "passed": true,
+      "q": 0.0
+    },
+    {
+      "axis5": "gradient",
+      "label": "erased_axis0_q0_gradient",
+      "note": "q=0 collapses Ti to identity; axis4 gap survives if U is still non-trivial",
+      "order_gap_ded_vs_ind": 0.0,
+      "passed": true,
+      "q": 0.0
+    },
+    {
+      "S_gradient_high_q": 0.6908501757394242,
+      "S_spectral_low_q": 0.21857919766208006,
+      "description": "spectral-at-low-entropy (hot) must be distinct from gradient-at-high-entropy (hotter)",
+      "fingerprint_gradient_high_q": [
+        0.69085,
+        0.502295,
+        0.061237
+      ],
+      "fingerprint_spectral_low_q": [
+        0.218579,
+        0.892531,
+        0.612372
+      ],
+      "fingerprints_distinct": true,
+      "label": "owner_example_spec_low_vs_grad_high",
+      "passed": true
+    },
+    {
+      "S_deductive_high_q": 0.49166960170789464,
+      "S_inductive_high_q": 0.6900001278585213,
+      "description": "inductive (positive-feedback) must be distinct from deductive (negative-feedback)",
+      "fingerprint_deductive": [
+        0.49167,
+        0.687531,
+        0.612372
+      ],
+      "fingerprint_inductive": [
+        0.69,
+        0.503144,
+        0.061237
+      ],
+      "fingerprints_distinct": true,
+      "label": "owner_example_inductive_positive_feedback",
+      "passed": true
+    }
+  ]
+}

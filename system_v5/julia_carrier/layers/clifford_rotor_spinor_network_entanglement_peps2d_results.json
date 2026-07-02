@@ -1,0 +1,233 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "PEPSKit": "load_bearing",
+    "TensorKit": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": "load_bearing: builds the Cl(3) even-subalgebra SU(2) rotor that structures the carrier",
+    "JSON": "supportive: emits result receipt",
+    "LinearAlgebra": "supportive: Burnside/Schur supportive anchor, SU(2) residuals, tensor norms",
+    "PEPSKit": "load_bearing: InfinitePEPS carrier, CTMRGEnv, leading_boundary contraction, expectation_value of the chiral current on the contracted env",
+    "TensorKit": "load_bearing: PEPS tensor maps, chiral-current LocalOperator, CTMRG corner tsvd"
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "layer_stacking",
+    "g_structure_selection",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "FEP",
+    "physics",
+    "final_manifold_admission"
+  ],
+  "carrier": "PEPSKit InfinitePEPS, physical ComplexSpace(2) spinor leg, four ComplexSpace(2) virtual legs; rotor-structured complex tensor = Cl(3) even-subalgebra SU(2) rotor applied to a seeded random PEPS physical leg.",
+  "claim_ceiling": "PoC only: a Clifford/quaternion rotor PEPS2D cell is contracted via PEPSKit CTMRG; its parity-odd Z2 chirality invariant (sign of the chiral current) is measured ON the contracted network and shown to FLIP sign (+ -> -) under a wrong-structure (imaginary-erased real bundle) control, surviving two anti-tautology negative controls. Not a layer-completion, G-structure, flux, Axis0, FEP, bridge, physics, or final-manifold admission claim.",
+  "classification": "clifford_rotor_spinor_network_entanglement_peps2d_poc",
+  "codomain_or_output": "chiral-current invariant J on the contracted network, wrong-structure flip + anti-tautology controls, erasure ablation delta, CTMRG entanglement ladder.",
+  "domain": {
+    "F01": "finite Clifford rotor word set + finite PEPS2D local cell + finite structural-variant set",
+    "N01": "noncommuting Clifford generators; parity-odd (order-sensitive) chiral-current bond operator",
+    "ladder": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "physical_space": "ComplexSpace(2) spinor output",
+    "virtual_space": "four ComplexSpace(2) PEPS legs per site"
+  },
+  "engine": "PEPSKit InfinitePEPS / CTMRGEnv / leading_boundary; contraction + expectation_value only; no MPS, no fixedpoint, no LBFGS.",
+  "entanglement_ladder_8_16_32_64_bits": [
+    2.666476479366605,
+    3.4974871069096123,
+    4.548098235220214,
+    5.55151918949702
+  ],
+  "finite_map": "(rotor-structured PEPS2D cell, structural variant in {genuine, imag-erased, scaled, real-perturbed}, CTMRG chi in {8,16,32,64}) -> {chiral-current invariant J on contracted env, erasure delta, CTMRG corner Schmidt entropy}",
+  "honest_status_ladder": "passes local rerun (this run)",
+  "ladder_numbers_vary": true,
+  "non_numpy_julia": true,
+  "on_network_invariant_flip": {
+    "J_genuine": 1.0242103319874305,
+    "anti_tautology_negative_controls": {
+      "note": "a same-magnitude change that does NOT erase the imaginary chirality must KEEP J's sign and >= half its magnitude; otherwise the erasure is vacuous (cosmetic dependency-forcing).",
+      "real_part_perturbed_comparable_to_imag_norm": {
+        "J_realpert": 1.1965483847846916,
+        "imag_norm_of_carrier": 3.845067308887154,
+        "keeps_chirality_and_magnitude": true
+      },
+      "scaled_real_factor_1p3": {
+        "J_scaled": 1.0242103319874136,
+        "keeps_chirality_and_magnitude": true
+      }
+    },
+    "chirality_genuine_sign": 1.0,
+    "erasure_ablation": {
+      "delta_nonzero": true,
+      "erasure_delta_abs_Jgenuine_minus_Jwrong": 1.279563058207474
+    },
+    "invariant": "Z2 chirality = sign of the parity-odd chiral current J = < SX(x)SY - SY(x)SX >, read by expectation_value(peps, J_op, env) on the leading_boundary CTMRG environment",
+    "load_bearing_earned_by_measured_flip": true,
+    "load_bearing_is_hardcoded": false,
+    "measured_on": "the CTMRG-contracted InfinitePEPS (NOT on bare matrices, NOT hardcoded)",
+    "thresholds": {
+      "J_nonzero_tol": 0.0001,
+      "antitaut_keep_fraction": 0.5,
+      "delta_tol": 0.0001
+    },
+    "verdict_clauses_all_measured": {
+      "antitaut_realpert_keeps": true,
+      "antitaut_scaled_keeps": true,
+      "erasure_delta_nonzero": true,
+      "genuine_has_signature_abs_J_gt_tol": true,
+      "wrong_flips_chirality_sign": true
+    },
+    "wrong_structure_control": {
+      "J_wrong": -0.25535272622004357,
+      "chirality_flips": true,
+      "chirality_wrong_sign": -1.0,
+      "ctmrg_truncation_error": 0.28081258462143,
+      "what": "trivialize the bundle: erase the imaginary part of the carrier tensor -> a REAL co-planar bundle; the parity-odd chiral current REVERSES sign on the contracted network"
+    }
+  },
+  "peps2d_ctmrg_ladder": [
+    {
+      "ctmrg_env_chi": 8,
+      "ctmrg_truncation_error": 0.3534088183273457,
+      "entanglement_source": "tsvd(env.corners[1,1,1]) after leading_boundary CTMRG",
+      "env_corner_schmidt_entropy_bits": 2.666476479366605,
+      "env_corner_schmidt_spectrum_head": [
+        0.23637189752226134,
+        0.20501167084980074,
+        0.1842303199824984,
+        0.13077958080736282,
+        0.11231596299344342,
+        0.0869942700454944,
+        0.04211139660920861,
+        0.002184901189930185
+      ],
+      "peps2d_contraction_engaged": true,
+      "rung": 8
+    },
+    {
+      "ctmrg_env_chi": 16,
+      "ctmrg_truncation_error": 0.33178329554737923,
+      "entanglement_source": "tsvd(env.corners[1,1,1]) after leading_boundary CTMRG",
+      "env_corner_schmidt_entropy_bits": 3.4974871069096123,
+      "env_corner_schmidt_spectrum_head": [
+        0.20025732943323568,
+        0.13671196216060477,
+        0.11796503052377338,
+        0.09033055100700683,
+        0.08317759373832824,
+        0.0710684625393646,
+        0.0645921995399893,
+        0.05638955000627819
+      ],
+      "peps2d_contraction_engaged": true,
+      "rung": 16
+    },
+    {
+      "ctmrg_env_chi": 32,
+      "ctmrg_truncation_error": 0.29861743182844047,
+      "entanglement_source": "tsvd(env.corners[1,1,1]) after leading_boundary CTMRG",
+      "env_corner_schmidt_entropy_bits": 4.548098235220214,
+      "env_corner_schmidt_spectrum_head": [
+        0.0955009012859743,
+        0.08164043840498178,
+        0.07227653659512587,
+        0.0628604519895311,
+        0.05742264860729676,
+        0.055204600764077565,
+        0.05062754763932772,
+        0.049405973750787174
+      ],
+      "peps2d_contraction_engaged": true,
+      "rung": 32
+    },
+    {
+      "ctmrg_env_chi": 64,
+      "ctmrg_truncation_error": 0.3123718071870594,
+      "entanglement_source": "tsvd(env.corners[1,1,1]) after leading_boundary CTMRG",
+      "env_corner_schmidt_entropy_bits": 5.55151918949702,
+      "env_corner_schmidt_spectrum_head": [
+        0.04501397050547979,
+        0.04261493557296541,
+        0.04095475174765494,
+        0.03775044361117378,
+        0.036554453996857784,
+        0.03548284031423683,
+        0.034228773541692875,
+        0.03202487644599483
+      ],
+      "peps2d_contraction_engaged": true,
+      "rung": 64
+    }
+  ],
+  "peps2d_genuinely_engaged": {
+    "env_entropy_from_returned_ctmrg_corner_tsvd": true,
+    "fixedpoint_or_lbfgs_used": false,
+    "mps_used": false,
+    "uses_CTMRGEnv": true,
+    "uses_InfinitePEPS": true,
+    "uses_expectation_value_on_contracted_peps": true,
+    "uses_leading_boundary": true
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "PoC classification only",
+    "PEPS2D contraction is not PEPS3D carrier admission",
+    "no layer-completion / G-structure / flux / Axis0 / FEP / physics admission"
+  ],
+  "rotor_module": {
+    "quaternion_language_anchor": "Cl(3) even-subalgebra rotor R=exp(-theta/2 e_i e_j) as an SU(2) spinor matrix",
+    "rotor_det_residual": 3.3306690738754696e-16,
+    "rotor_is_su2": true,
+    "rotor_unitary_residual": 2.220446049250313e-16,
+    "theta": 0.73
+  },
+  "seed": 20260602,
+  "sim": "clifford_rotor_spinor_network_entanglement_peps2d",
+  "supportive_geometry_anchor": {
+    "Cl3": {
+      "anticommutation_residual": 0.0,
+      "burnside_image_rank_measured": 4,
+      "faithful_onto_full_algebra": true,
+      "invariant_confirmed": true,
+      "irreducible_commutant_is_1": true,
+      "known_full_matrix_algebra_dim_d2": 4,
+      "module_dim_d_measured": 2,
+      "n": 3,
+      "schur_commutant_dim_measured": 1
+    },
+    "Cl6": {
+      "anticommutation_residual": 0.0,
+      "burnside_image_rank_measured": 64,
+      "faithful_onto_full_algebra": true,
+      "invariant_confirmed": true,
+      "irreducible_commutant_is_1": true,
+      "known_full_matrix_algebra_dim_d2": 64,
+      "module_dim_d_measured": 8,
+      "n": 6,
+      "schur_commutant_dim_measured": 1
+    },
+    "invariant_anchored": true,
+    "note": "Clifford module faithfulness is genuine algebra, kept ONLY as a supportive anchor that the rotor lives in a real Cl(3)/Cl(6) module. It is NOT the load-bearing PEPS2D control. The load-bearing control is on_network_invariant_flip below."
+  },
+  "timestamp_utc": "2026-06-03T07:12:31.516",
+  "verdict": {
+    "all_pass": true,
+    "ctmrg_ladder_8_16_32_64_present": true,
+    "ctmrg_values_finite": true,
+    "entanglement_numbers_vary": true,
+    "on_network_load_bearing_flip_earned": true,
+    "peps2d_genuinely_engaged": true,
+    "rotor_is_su2": true,
+    "supportive_invariant_anchored": true
+  },
+  "wallclock_seconds": 123.74
+}

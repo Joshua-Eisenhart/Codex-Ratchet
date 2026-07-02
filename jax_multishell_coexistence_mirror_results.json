@@ -1,0 +1,503 @@
+{
+  "AUDIT_PASS": true,
+  "all_pass": true,
+  "allowed_claims": [
+    "JAX diagnostic mirror of finite 3-shell coexistence/coherence readout",
+    "coupled-shell local Bloch/coherence deformation with product/nonproduct boundary kept explicit",
+    "read-only comparison target for Julia receipt invariants"
+  ],
+  "blocked_consumers": [
+    "layer_completion",
+    "official_g_structure_selection",
+    "Axis0",
+    "FEP",
+    "flux",
+    "bridge",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "carrier_realization": "JAX complex128 density matrix on (C^2)^3",
+  "checks": {
+    "commuting_negative_no_offdiagonal_coherence": true,
+    "commuting_negative_not_coexistence_positive": true,
+    "coupled_shells_reshape_local_coherence": true,
+    "coupled_steady_state_not_misread_as_nonproduct": true,
+    "coupled_weak_moderate_coexistence": true,
+    "decoupled_anchor_matches_known_sinks": true,
+    "decoupled_three_terrains_distinct": true,
+    "density_psd_within_tolerance": true,
+    "density_trace_preserved": true,
+    "identical_terrain_kill_not_3distinct": true,
+    "product_negative_factorizes_when_uncoupled": true,
+    "steady_state_converged_all": true,
+    "strong_coupling_reports_collapse_not_coexist": true
+  },
+  "classification": "diagnostic_only",
+  "codomain_or_output": "per-shell reduced Bloch vectors, coexistence flags, coherence/product defects, kill/control verdicts",
+  "controls": {
+    "commuting_negative_diagonal_ZZ": {
+      "Jhop": 0.3,
+      "all_distinct": true,
+      "blochs": [
+        [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "coexist": false,
+      "connected_xx": {
+        "c12": 0.0,
+        "c13": 0.0,
+        "c23": 0.0
+      },
+      "each_at_own_sink": false,
+      "l1_offdiag_coherence_norm": 0.0,
+      "min_eigenvalue": 1.5703345809754932e-53,
+      "min_pairwise_sep": 1.0,
+      "pit_source_z_gap": 2.0,
+      "product_defect_norm": 5.6041669163813655e-27,
+      "steady_drift": 3.289807012085005e-40,
+      "trace_error": 0.0
+    },
+    "identical_terrain_kill": [
+      {
+        "Jhop": 0.0,
+        "all_distinct": false,
+        "blochs": [
+          [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          [
+            0.0,
+            -0.0,
+            -1.0
+          ]
+        ],
+        "coexist": false,
+        "connected_xx": {
+          "c12": 8.062917557205553e-35,
+          "c13": 7.740401482699043e-35,
+          "c23": 8.062921485325408e-35
+        },
+        "each_at_own_sink": false,
+        "l1_offdiag_coherence_norm": 1.1157175129559579e-13,
+        "min_eigenvalue": -1.5265566588595902e-16,
+        "min_pairwise_sep": 2.276297748748678e-28,
+        "pit_source_z_gap": 0.0,
+        "product_defect_norm": 7.779015310951049e-27,
+        "steady_drift": 4.024571374244404e-20,
+        "trace_error": 0.0
+      },
+      {
+        "Jhop": 0.3,
+        "all_distinct": false,
+        "blochs": [
+          [
+            -0.0,
+            0.0,
+            -0.814256
+          ],
+          [
+            0.0,
+            -0.0,
+            -0.71908
+          ],
+          [
+            -0.0,
+            0.0,
+            -0.814256
+          ]
+        ],
+        "coexist": false,
+        "connected_xx": {
+          "c12": -0.22514062538973786,
+          "c13": 0.10258986782232953,
+          "c23": -0.2251406253897379
+        },
+        "each_at_own_sink": false,
+        "l1_offdiag_coherence_norm": 0.34256977498659325,
+        "min_eigenvalue": 0.0008824600895712694,
+        "min_pairwise_sep": 1.4738593971209652e-17,
+        "pit_source_z_gap": 0.0,
+        "product_defect_norm": 0.3547794573965921,
+        "steady_drift": 5.227303720105633e-16,
+        "trace_error": 0.0
+      },
+      {
+        "Jhop": 1.0,
+        "all_distinct": false,
+        "blochs": [
+          [
+            0.0,
+            -0.0,
+            -0.247341
+          ],
+          [
+            -0.0,
+            0.0,
+            -0.357117
+          ],
+          [
+            0.0,
+            -0.0,
+            -0.247341
+          ]
+        ],
+        "coexist": false,
+        "connected_xx": {
+          "c12": -0.22239814634682387,
+          "c13": 0.09938071871061113,
+          "c23": -0.2223981463468238
+        },
+        "each_at_own_sink": false,
+        "l1_offdiag_coherence_norm": 0.2974931617057107,
+        "min_eigenvalue": 0.015250131366808375,
+        "min_pairwise_sep": 1.2972634931732772e-16,
+        "pit_source_z_gap": 0.0,
+        "product_defect_norm": 0.30014641867389125,
+        "steady_drift": 2.829426912886477e-17,
+        "trace_error": 0.0
+      }
+    ],
+    "product_negative_uncoupled": {
+      "Jhop": 0.0,
+      "all_distinct": true,
+      "blochs": [
+        [
+          0.0,
+          -0.0,
+          -1.0
+        ],
+        [
+          1.0,
+          -0.0,
+          -0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "coexist": true,
+      "connected_xx": {
+        "c12": 0.0,
+        "c13": 7.740397464896086e-35,
+        "c23": 0.0
+      },
+      "each_at_own_sink": true,
+      "l1_offdiag_coherence_norm": 0.7071067811865476,
+      "min_eigenvalue": -3.766603550571833e-27,
+      "min_pairwise_sep": 1.414213562373068,
+      "pit_source_z_gap": 2.0,
+      "product_defect_norm": 7.925488858949134e-27,
+      "steady_drift": 2.6090637158861844e-20,
+      "trace_error": 0.0
+    }
+  },
+  "coupled_sweep": {
+    "coexist_by_coupling": {
+      "0.0": true,
+      "0.1": true,
+      "0.3": true,
+      "1.0": false,
+      "3.0": false
+    },
+    "rows": [
+      {
+        "Jhop": 0.0,
+        "all_distinct": true,
+        "blochs": [
+          [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          [
+            1.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        ],
+        "coexist": true,
+        "connected_xx": {
+          "c12": 0.0,
+          "c13": 7.740397464896086e-35,
+          "c23": 0.0
+        },
+        "each_at_own_sink": true,
+        "l1_offdiag_coherence_norm": 0.7071067811865476,
+        "min_eigenvalue": -3.766603550571833e-27,
+        "min_pairwise_sep": 1.414213562373068,
+        "pit_source_z_gap": 2.0,
+        "product_defect_norm": 7.925488858949134e-27,
+        "steady_drift": 2.6090637158861844e-20,
+        "trace_error": 0.0
+      },
+      {
+        "Jhop": 0.1,
+        "all_distinct": true,
+        "blochs": [
+          [
+            -0.180269,
+            0.225336,
+            -0.956468
+          ],
+          [
+            1.0,
+            -0.0,
+            0.0
+          ],
+          [
+            0.180269,
+            -0.225336,
+            0.956468
+          ]
+        ],
+        "coexist": true,
+        "connected_xx": {
+          "c12": 0.0,
+          "c13": 3.469446951953614e-17,
+          "c23": -2.7755575615628914e-17
+        },
+        "each_at_own_sink": true,
+        "l1_offdiag_coherence_norm": 0.7346994420628482,
+        "min_eigenvalue": -4.0441369322870454e-17,
+        "min_pairwise_sep": 1.2796747316040664,
+        "pit_source_z_gap": 1.912936859146284,
+        "product_defect_norm": 8.810463152764398e-17,
+        "steady_drift": 4.254228030075666e-21,
+        "trace_error": 0.0
+      },
+      {
+        "Jhop": 0.3,
+        "all_distinct": true,
+        "blochs": [
+          [
+            -0.401117,
+            0.501396,
+            -0.709413
+          ],
+          [
+            1.0,
+            -0.0,
+            0.0
+          ],
+          [
+            0.401117,
+            -0.501396,
+            0.709413
+          ]
+        ],
+        "coexist": true,
+        "connected_xx": {
+          "c12": 1.1102230246251565e-16,
+          "c13": 1.8318679906315083e-15,
+          "c23": -1.6653345369377348e-16
+        },
+        "each_at_own_sink": true,
+        "l1_offdiag_coherence_norm": 0.7967844007990414,
+        "min_eigenvalue": -1.6905661307997443e-16,
+        "min_pairwise_sep": 1.0551428276476549,
+        "pit_source_z_gap": 1.4188267918446629,
+        "product_defect_norm": 1.28510174520698e-15,
+        "steady_drift": 5.150279740592526e-26,
+        "trace_error": 0.0
+      },
+      {
+        "Jhop": 1.0,
+        "all_distinct": true,
+        "blochs": [
+          [
+            -0.339513,
+            0.424391,
+            -0.180139
+          ],
+          [
+            1.0,
+            -0.0,
+            0.0
+          ],
+          [
+            0.339513,
+            -0.424391,
+            0.180139
+          ]
+        ],
+        "coexist": false,
+        "connected_xx": {
+          "c12": -5.551115123125783e-17,
+          "c13": 1.942890293094024e-16,
+          "c23": 1.1102230246251565e-16
+        },
+        "each_at_own_sink": false,
+        "l1_offdiag_coherence_norm": 0.5545603737143457,
+        "min_eigenvalue": -9.374489641319082e-17,
+        "min_pairwise_sep": 0.8054817623936352,
+        "pit_source_z_gap": 0.3602771738120932,
+        "product_defect_norm": 5.787051727669597e-16,
+        "steady_drift": 3.027836094955741e-21,
+        "trace_error": 0.0
+      },
+      {
+        "Jhop": 3.0,
+        "all_distinct": true,
+        "blochs": [
+          [
+            -0.134747,
+            0.168434,
+            -0.023831
+          ],
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.134747,
+            -0.168434,
+            0.023831
+          ]
+        ],
+        "coexist": false,
+        "connected_xx": {
+          "c12": 1.1102230246251565e-16,
+          "c13": 6.938893903907228e-18,
+          "c23": -8.326672684688674e-17
+        },
+        "each_at_own_sink": false,
+        "l1_offdiag_coherence_norm": 0.38595315695331517,
+        "min_eigenvalue": -6.147901280934481e-17,
+        "min_pairwise_sep": 0.4340265772112954,
+        "pit_source_z_gap": 0.04766270069072304,
+        "product_defect_norm": 1.1095122771447751e-16,
+        "steady_drift": 1.1089942089199995e-20,
+        "trace_error": 0.0
+      }
+    ]
+  },
+  "decoupled_reference": {
+    "row": {
+      "Jhop": 0.0,
+      "all_distinct": true,
+      "blochs": [
+        [
+          0.0,
+          -0.0,
+          -1.0
+        ],
+        [
+          1.0,
+          -0.0,
+          -0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "coexist": true,
+      "connected_xx": {
+        "c12": 0.0,
+        "c13": 7.740397464896086e-35,
+        "c23": 0.0
+      },
+      "each_at_own_sink": true,
+      "l1_offdiag_coherence_norm": 0.7071067811865476,
+      "min_eigenvalue": -3.766603550571833e-27,
+      "min_pairwise_sep": 1.414213562373068,
+      "pit_source_z_gap": 2.0,
+      "product_defect_norm": 7.925488858949134e-27,
+      "steady_drift": 2.6090637158861844e-20,
+      "trace_error": 0.0
+    },
+    "sink_errors": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "diagnostics": {
+    "coupled_0p3_local_coherence_shift_vs_decoupled": 0.08967761961249388,
+    "coupled_0p3_product_defect": 1.28510174520698e-15,
+    "max_steady_drift": 5.227303720105633e-16,
+    "max_trace_error": 0.0,
+    "min_eigenvalue": -1.6905661307997443e-16,
+    "strong_3p0_pit_source_z_gap": 0.04766270069072304
+  },
+  "domain": {
+    "Jhop_sweep": [
+      0.0,
+      0.1,
+      0.3,
+      1.0,
+      3.0
+    ],
+    "hilbert_dim": 8,
+    "shells": 3,
+    "terrains": [
+      "Pit",
+      "Hill",
+      "Source"
+    ],
+    "thetas": [
+      0.523599,
+      0.785398,
+      1.047198
+    ]
+  },
+  "finite_map": "3 finite shell density rho(t) under local Lindblad terrains plus finite nearest-neighbour hopping, read out as reduced Bloch vectors and product/coherence defects",
+  "julia_reference_read_only": [
+    "system_v5/julia_carrier/layers/multishell_coexistence.jl",
+    "system_v5/julia_carrier/layers/multishell_coexistence_results.json"
+  ],
+  "object": "jax_multishell_coexistence_mirror",
+  "peps3d_embedding": "not_admitted; finite 3-shell diagnostic only, downstream PEPS3D/G-structure consumers blocked",
+  "promotion_allowed": false,
+  "quaternion_action": "not_applicable_in_this_density_mirror",
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "root_constraints_in_force": {
+    "F01": "finite 3-shell Hilbert space, finite operator set, finite Jhop sweep, finite RK4 trajectory",
+    "N01": "noncommuting X_k X_{k+1} hopping pressures z-sink terrains; commuting/product negatives included"
+  },
+  "sim_execution_kind": "nonclassical_diagnostic_jax_density_matrix",
+  "spinor_state": "spinor-derived three-qubit density matrix diagnostic",
+  "status": "passes local rerun",
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "json": "supportive",
+    "julia": "read_only_reference",
+    "pytorch": "None"
+  },
+  "tool_manifest": {
+    "jax": "load_bearing finite density-matrix ODE, matrix operators, vmap/scan/JIT",
+    "json": "receipt emission only",
+    "julia": "read-only reference paths only; not executed",
+    "pytorch": "not imported, not executed, not touched"
+  }
+}

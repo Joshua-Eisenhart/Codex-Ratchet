@@ -1,0 +1,355 @@
+{
+  "schema": "clean_rebuild_result_v1",
+  "name": "rebuild_005_qit_fep_axis0_batch_from_clean_xi",
+  "classification": "clean_rebuild_scout",
+  "sim_execution_kind": "nonclassical_clean_rebuild",
+  "source_alignment_category": "qit_fep_axis0_batch_from_clean_xi",
+  "promotion_allowed": false,
+  "claim_ceiling": "Clean rebuild scout only: runs finite Kraus-history QIT-FEP readouts over clean Xi bridge states. It does not admit final Axis0, Xi, Phi0, Markov blanket ontology, or physics claims.",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite Kraus histories, two-qubit postselected cut states, entropy, and candidate readouts"
+    },
+    "clean_rebuild_004_source": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive reuse of clean-room Xi bridge constructors without reading result receipts"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive clean rebuild receipt serialization"
+    },
+    "pathlib": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result paths"
+    },
+    "time": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive runtime metadata"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "clean_rebuild_004_source": "supportive",
+    "python_json": "supportive",
+    "pathlib": "supportive",
+    "time": "supportive"
+  },
+  "generated_at": "2026-05-24T02:30:36Z",
+  "runtime_seconds": 0.09346413612365723,
+  "all_pass": true,
+  "sections": {
+    "implementation_gate": {
+      "pass": true,
+      "path_count": 4,
+      "z_path": 0.5479099660430953,
+      "posterior_trace_gap": 0.0,
+      "posterior_min_eig": 0.004756540459691722
+    },
+    "candidate_batch_gate": {
+      "pass": true,
+      "source": "Axis0/QIT readouts are tested only after Xi constructs rho_AB; product, point, shell, and history forms stay role-distinct",
+      "summaries": {
+        "product_fiber": {
+          "mode": "product",
+          "path": "fiber",
+          "path_count": 4,
+          "posterior_trace_gap_max": 2.220446049250313e-16,
+          "posterior_min_eig_min": -2.7014965261332246e-16,
+          "means": {
+            "log_z": -0.3909720650238989,
+            "I_c": -9.71445146547012e-17,
+            "MI": -9.71445146547012e-17,
+            "S_A_given_B": 9.71445146547012e-17,
+            "Phi_logZ_plus_Ic": -0.39097206502389903,
+            "Phi_logZ_plus_MI": -0.39097206502389903
+          },
+          "spans": {
+            "log_z": 8.326672684688674e-16,
+            "I_c": 3.885780586188048e-16,
+            "MI": 3.885780586188048e-16,
+            "S_A_given_B": 3.885780586188048e-16,
+            "Phi_logZ_plus_Ic": 8.881784197001252e-16,
+            "Phi_logZ_plus_MI": 8.881784197001252e-16
+          }
+        },
+        "product_lifted_base": {
+          "mode": "product",
+          "path": "lifted_base",
+          "path_count": 4,
+          "posterior_trace_gap_max": 2.220446049250313e-16,
+          "posterior_min_eig_min": -2.8222728928533077e-16,
+          "means": {
+            "log_z": -0.5036307509970837,
+            "I_c": -5.705312765434832e-17,
+            "MI": -2.6213599192538418e-17,
+            "S_A_given_B": 5.705312765434832e-17,
+            "Phi_logZ_plus_Ic": -0.5036307509970838,
+            "Phi_logZ_plus_MI": -0.5036307509970838
+          },
+          "spans": {
+            "log_z": 0.23686141433098645,
+            "I_c": 6.38378239159465e-16,
+            "MI": 7.494005416219807e-16,
+            "S_A_given_B": 6.38378239159465e-16,
+            "Phi_logZ_plus_Ic": 0.2368614143309863,
+            "Phi_logZ_plus_MI": 0.2368614143309863
+          }
+        },
+        "point_reference_fiber": {
+          "mode": "point_reference",
+          "path": "fiber",
+          "path_count": 4,
+          "posterior_trace_gap_max": 2.220446049250313e-16,
+          "posterior_min_eig_min": 0.0013135626306817233,
+          "means": {
+            "log_z": -0.42015456741595236,
+            "I_c": -0.006847694183117566,
+            "MI": 0.10296673189215155,
+            "S_A_given_B": 0.006847694183117566,
+            "Phi_logZ_plus_Ic": -0.4270022615990699,
+            "Phi_logZ_plus_MI": -0.31718783552380075
+          },
+          "spans": {
+            "log_z": 6.661338147750939e-16,
+            "I_c": 1.942890293094024e-15,
+            "MI": 1.915134717478395e-15,
+            "S_A_given_B": 1.942890293094024e-15,
+            "Phi_logZ_plus_Ic": 2.4424906541753444e-15,
+            "Phi_logZ_plus_MI": 2.3869795029440866e-15
+          }
+        },
+        "point_reference_lifted_base": {
+          "mode": "point_reference",
+          "path": "lifted_base",
+          "path_count": 4,
+          "posterior_trace_gap_max": 2.220446049250313e-16,
+          "posterior_min_eig_min": 0.0010037672040107493,
+          "means": {
+            "log_z": -0.5519715533790124,
+            "I_c": -0.00882462984750497,
+            "MI": 0.2040032941969234,
+            "S_A_given_B": 0.00882462984750497,
+            "Phi_logZ_plus_Ic": -0.5607961832265174,
+            "Phi_logZ_plus_MI": -0.34796825918208907
+          },
+          "spans": {
+            "log_z": 0.2746729671212714,
+            "I_c": 0.013539114152430365,
+            "MI": 0.3380431650838137,
+            "S_A_given_B": 0.013539114152430365,
+            "Phi_logZ_plus_Ic": 0.2852191282161447,
+            "Phi_logZ_plus_MI": 0.3169568534697093
+          }
+        },
+        "history_window_fiber": {
+          "mode": "history_window",
+          "path": "fiber",
+          "path_count": 4,
+          "posterior_trace_gap_max": 2.220446049250313e-16,
+          "posterior_min_eig_min": -9.894018990088983e-17,
+          "means": {
+            "log_z": -0.3909720650238993,
+            "I_c": -1.58823571578321e-16,
+            "MI": -1.4648776019359704e-16,
+            "S_A_given_B": 1.58823571578321e-16,
+            "Phi_logZ_plus_Ic": -0.3909720650238995,
+            "Phi_logZ_plus_MI": -0.3909720650238995
+          },
+          "spans": {
+            "log_z": 7.771561172376096e-16,
+            "I_c": 8.604228440844963e-16,
+            "MI": 6.38378239159465e-16,
+            "S_A_given_B": 8.604228440844963e-16,
+            "Phi_logZ_plus_Ic": 1.4988010832439613e-15,
+            "Phi_logZ_plus_MI": 1.27675647831893e-15
+          }
+        },
+        "history_window_lifted_base": {
+          "mode": "history_window",
+          "path": "lifted_base",
+          "path_count": 4,
+          "posterior_trace_gap_max": 3.3306690738754696e-16,
+          "posterior_min_eig_min": 0.00010462344385634686,
+          "means": {
+            "log_z": -0.5269776501328204,
+            "I_c": -0.004298605023766108,
+            "MI": 0.033595380197606654,
+            "S_A_given_B": 0.004298605023766108,
+            "Phi_logZ_plus_Ic": -0.5312762551565864,
+            "Phi_logZ_plus_MI": -0.49338226993521367
+          },
+          "spans": {
+            "log_z": 0.2635013174131694,
+            "I_c": 0.0031041492819010863,
+            "MI": 0.04002773522193562,
+            "S_A_given_B": 0.0031041492819010863,
+            "Phi_logZ_plus_Ic": 0.2662946321757297,
+            "Phi_logZ_plus_MI": 0.25810765141635
+          }
+        },
+        "shell_cut_fiber": {
+          "mode": "shell_cut",
+          "path": "fiber",
+          "path_count": 4,
+          "posterior_trace_gap_max": 1.1102230246251565e-16,
+          "posterior_min_eig_min": 0.01135157418566719,
+          "means": {
+            "log_z": -0.41442849175622376,
+            "I_c": -0.4298916785219742,
+            "MI": 0.041576182736573326,
+            "S_A_given_B": 0.4298916785219742,
+            "Phi_logZ_plus_Ic": -0.844320170278198,
+            "Phi_logZ_plus_MI": -0.37285230901965044
+          },
+          "spans": {
+            "log_z": 4.996003610813204e-16,
+            "I_c": 7.771561172376096e-16,
+            "MI": 6.661338147750939e-16,
+            "S_A_given_B": 7.771561172376096e-16,
+            "Phi_logZ_plus_Ic": 8.881784197001252e-16,
+            "Phi_logZ_plus_MI": 8.326672684688674e-16
+          }
+        },
+        "shell_cut_lifted_base": {
+          "mode": "shell_cut",
+          "path": "lifted_base",
+          "path_count": 4,
+          "posterior_trace_gap_max": 2.220446049250313e-16,
+          "posterior_min_eig_min": 0.011351574185667216,
+          "means": {
+            "log_z": -0.5341840731901184,
+            "I_c": -0.4492037210172112,
+            "MI": 0.05785980559653982,
+            "S_A_given_B": 0.4492037210172112,
+            "Phi_logZ_plus_Ic": -0.9833877942073295,
+            "Phi_logZ_plus_MI": -0.4763242675935786
+          },
+          "spans": {
+            "log_z": 0.23356402242356994,
+            "I_c": 0.0684502711660972,
+            "MI": 0.05750359748709688,
+            "S_A_given_B": 0.0684502711660972,
+            "Phi_logZ_plus_Ic": 0.26099368689396885,
+            "Phi_logZ_plus_MI": 0.23358267953626505
+          }
+        }
+      },
+      "product_mi_floor": 9.71445146547012e-17,
+      "history_window_base_mean_MI": 0.033595380197606654,
+      "point_reference_base_span_Ic": 0.013539114152430365,
+      "shell_min_mean_MI": 0.041576182736573326
+    },
+    "nonadmission_gate": {
+      "pass": true,
+      "admission": "blocked",
+      "top_modes_by_candidate": {
+        "log_z": "product_fiber",
+        "I_c": "product_lifted_base",
+        "MI": "point_reference_lifted_base",
+        "Phi_logZ_plus_Ic": "product_fiber",
+        "Phi_logZ_plus_MI": "point_reference_fiber"
+      },
+      "unique_top_modes": [
+        "point_reference_fiber",
+        "point_reference_lifted_base",
+        "product_fiber",
+        "product_lifted_base"
+      ],
+      "rankings_top3": {
+        "log_z": [
+          [
+            "product_fiber",
+            -0.3909720650238989
+          ],
+          [
+            "history_window_fiber",
+            -0.3909720650238993
+          ],
+          [
+            "shell_cut_fiber",
+            -0.41442849175622376
+          ]
+        ],
+        "I_c": [
+          [
+            "product_lifted_base",
+            -5.705312765434832e-17
+          ],
+          [
+            "product_fiber",
+            -9.71445146547012e-17
+          ],
+          [
+            "history_window_fiber",
+            -1.58823571578321e-16
+          ]
+        ],
+        "MI": [
+          [
+            "point_reference_lifted_base",
+            0.2040032941969234
+          ],
+          [
+            "point_reference_fiber",
+            0.10296673189215155
+          ],
+          [
+            "shell_cut_lifted_base",
+            0.05785980559653982
+          ]
+        ],
+        "Phi_logZ_plus_Ic": [
+          [
+            "product_fiber",
+            -0.39097206502389903
+          ],
+          [
+            "history_window_fiber",
+            -0.3909720650238995
+          ],
+          [
+            "point_reference_fiber",
+            -0.4270022615990699
+          ]
+        ],
+        "Phi_logZ_plus_MI": [
+          [
+            "point_reference_fiber",
+            -0.31718783552380075
+          ],
+          [
+            "point_reference_lifted_base",
+            -0.34796825918208907
+          ],
+          [
+            "shell_cut_fiber",
+            -0.37285230901965044
+          ]
+        ]
+      },
+      "reason": "Different allowed readouts select different top bridge/path modes, so this batch does not justify one final Axis0/Phi0 scalar."
+    }
+  },
+  "axis0_status": {
+    "candidate_batch_rebuilt": true,
+    "final_axis0_admitted": false,
+    "final_phi0_admitted": false,
+    "next_required_test": "run matched-control ensemble over the clean batch before any formal_scout regeneration"
+  },
+  "source_boundary": {
+    "reads_formal_scout_results": false,
+    "reads_grok_sim": false,
+    "reads_external_audits": false,
+    "reads_cross_lane_synthesis_docs": false,
+    "reads_clean_rebuild_source": [
+      "sim_rebuild_004_xi_rho_ab_bridge_family_from_readonly.py"
+    ],
+    "reads_clean_rebuild_results": false
+  }
+}

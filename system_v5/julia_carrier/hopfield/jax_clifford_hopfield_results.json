@@ -1,0 +1,95 @@
+{
+  "engine": "raw_jax",
+  "hamux_installed": false,
+  "N": 12,
+  "cross_validation": {
+    "julia_files_note": "loaded: patterns.npy (3, 12, 4); weights.npy (12, 12, 4); probe.npy (12, 4); clifford_hopfield_results.json",
+    "used_julia_patterns": true,
+    "used_julia_probe": true,
+    "weight_max_abs_delta_vs_julia_same_convention": 0.0,
+    "weights_match": true,
+    "same_input_dual_engine": {
+      "jax_recovered_overlap": 0.7479580965318227,
+      "julia_recovered_overlap": 0.6337643517947553,
+      "recovered_overlap_delta": 0.11419374473706734,
+      "jax_basin_label_1indexed": 1,
+      "julia_basin_label": 1,
+      "jax_basin_is_target": true,
+      "julia_basin_is_target": true,
+      "basins_agree": true,
+      "note": "Same stored patterns AND same corrupted probe used by both engines. Update schedule DIFFERS (JAX synchronous lax.scan vs Julia async random-order sweeps), so exact fixed points may differ slightly; basin label and overlap-band are the real dual-engine agreement test."
+    },
+    "capacity_verdict_agreement": {
+      "jax_capacity_0p9": 1,
+      "julia_max_reliable_M": 1,
+      "agree": true
+    }
+  },
+  "acceptance": {
+    "M_stored": 3,
+    "corruption_frac": 0.3,
+    "n_corrupted_neurons": 4,
+    "pre_recall_overlap": 0.8990020679436361,
+    "recall_overlap_fixedpoint": 0.7479580965318227,
+    "recall_overlap_energy_descent": 0.6132687066912355,
+    "uncorrupted_target_self_recall_overlap": 0.7954484904246192,
+    "target_is_stable_fixed_point": false,
+    "E_target": -11.441073778031283,
+    "E_corrupted": -4.511154490089426,
+    "E_recovered": -14.114182934438317,
+    "energy_decreased": true,
+    "honest_note": "At M=3, N=12 the stored pattern is NOT a stable fixed point (self-recall overlap < 0.99): the weak corruption-recovery overlap is a CAPACITY limit from quaternion pattern cross-talk, not a machinery bug. Validated separately: M=1 with 30% corruption recovers to ~0.975 mean overlap over 20 trials. Real capacity at the 0.9 bar is ~1 pattern for both the quaternion and classical models at this N."
+  },
+  "capacity": {
+    "capacity_at_overlap_0p9": 1,
+    "sweep_overlap_by_M": {
+      "1": 0.9730147996731582,
+      "2": 0.7718552798072132,
+      "3": 0.6727857917951836,
+      "4": 0.664684465323564,
+      "5": 0.5846544034297239,
+      "6": 0.5647989648281044,
+      "8": 0.5025498082173256,
+      "10": 0.5887340462761866
+    },
+    "note": "capacity = max M with mean recall overlap >= 0.9 over 8 trials"
+  },
+  "control_geometric_vs_classical": {
+    "quaternion_recall_overlap": 0.7479580965318227,
+    "classical_recall_overlap": 0.7894011259968534,
+    "quaternion_capacity": 1,
+    "classical_capacity": 2,
+    "classical_sweep_by_M": {
+      "1": 0.9998748271342972,
+      "2": 0.9046481086108558,
+      "3": 0.6571255830191759,
+      "4": 0.7263354617346349,
+      "5": 0.538209106788525,
+      "6": 0.618939723171272,
+      "8": 0.5798468245671595,
+      "10": 0.5679984804937043
+    },
+    "basin_state_mean_diff": 0.5002508802836647,
+    "basins_differ": true,
+    "verdict_clifford_decorative": false,
+    "interpretation": "LOAD-BEARING \u2014 quaternion and classical differ in capacity and/or basin; the geometric product changes the attractor structure",
+    "julia_geometric_is_decorative": false,
+    "dual_engine_verdict_agree": true
+  },
+  "control_noncommutative_order": {
+    "forward_overlap": 0.7479580965318227,
+    "reversed_overlap": 0.40760815364430353,
+    "order_basin_mean_diff": 1.2793347903965597,
+    "order_dependent_basin": true,
+    "noncommuting_weight_max_diff": 0.28938610116314095,
+    "commuting_control_basin_diff": 0.0,
+    "commuting_control_weight_max_diff": 0.0,
+    "commuting_control_same_basin": true,
+    "verdict": "ORDER-DEPENDENT SURVIVOR confirmed: noncommuting assembly gives different basins, commuting control gives same basin",
+    "julia_order_dependent_basin_real": true,
+    "julia_commuting_control_collapsed": true,
+    "dual_engine_order_dependence_agree": true,
+    "divergence_note": "Both engines confirm order-dependent basins (agree). DIVERGENCE on the commuting control: JAX commuting control collapses to EXACTLY 0.0 (complex-subalgebra w+xi patterns, A*B==B*A by construction), while Julia reports commuting_control_collapses_to_floor=False (its scalar-block control did not fully reach floor). The order-dependence verdict itself is robust across both engines; the control-floor sharpness differs by construction."
+  },
+  "runtime_seconds": 27.962
+}

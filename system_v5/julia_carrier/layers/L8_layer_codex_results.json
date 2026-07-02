@@ -1,0 +1,345 @@
+{
+  "actual_tools_used": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "local finite L8 POC exhibits an orientation double-cover signature on a finite chiral spinor carrier",
+    "gamma5/reflection dependency erasures collapse the measured signature in this finite model"
+  ],
+  "blocked_consumers": [
+    "L9_plus_stack",
+    "terrain",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics"
+  ],
+  "carrier_realization": "Julia ComplexF64 chiral-basis Dirac spinors; rho=psi*psi'",
+  "classification": "L8_layer_codex_poc",
+  "codomain_or_output": "finite orientation-cover signature, Pin/Spin sensitivity metrics, ablation collapse certificates, derived QIT entropy/readouts",
+  "dependency_erasures": {
+    "gamma5_orientation_control_removed": {
+      "collapsed": true,
+      "erased_signature_mean_by_sites": {
+        "16": 0.0,
+        "32": 0.0,
+        "64": 0.0,
+        "8": 0.0
+      },
+      "interpretation": "Replacing gamma5 by identity reruns the L/R readout and makes both sheets have trace 1, so the oriented cover separation is zero.",
+      "present_signature_mean_by_sites": {
+        "16": 2.0,
+        "32": 2.0,
+        "64": 2.0,
+        "8": 2.0
+      }
+    },
+    "pin_vs_spin_distinction": {
+      "collapsed_when_gamma5_erased": true,
+      "erased_gamma5_reflection_commutator_by_sites": {
+        "16": 0.0,
+        "32": 0.0,
+        "64": 0.0,
+        "8": 0.0
+      },
+      "interpretation": "Spin(3) rotations commute with gamma5, while the Pin-style reflection is gamma5-order-sensitive. Erasing gamma5 collapses that distinction.",
+      "reflection_commutator_by_sites": {
+        "16": 4.0,
+        "32": 4.0,
+        "64": 4.0,
+        "8": 4.0
+      },
+      "spin_commutator_max_by_sites": {
+        "16": 0.0,
+        "32": 0.0,
+        "64": 0.0,
+        "8": 0.0
+      }
+    },
+    "reflection_control_removed": {
+      "collapsed": true,
+      "interpretation": "Replacing the L/R reflection by identity removes the Pin-style sheet swap; the reflection signature becomes absent.",
+      "present_reflection_flip_gap_by_sites": {
+        "16": 2.0,
+        "32": 2.0,
+        "64": 2.0,
+        "8": 2.0
+      },
+      "removed_reflection_flip_gap_by_sites": {
+        "16": 0.0,
+        "32": 0.0,
+        "64": 0.0,
+        "8": 0.0
+      }
+    },
+    "reflection_quotient_LR_identification": {
+      "collapsed": true,
+      "gamma5_descends_to_reflection_quotient": false,
+      "gauge_invariance_violation": "P' * gamma5 * P = -gamma5, so gamma5 is not invariant under the reflection quotient.",
+      "interpretation": "Identifying L with its reflected R partner makes the signed gamma5 orientation charge average to zero; the oriented double cover trivializes in the quotient.",
+      "quotient_signed_charge_max_by_sites": {
+        "16": 5.551115123125783e-17,
+        "32": 5.551115123125783e-17,
+        "64": 5.551115123125783e-17,
+        "8": 5.551115123125783e-17
+      }
+    }
+  },
+  "divergence_log": [
+    "No classical baseline promoted; gamma5-erased identity control collapses orientation readout.",
+    "No dense-state closure or numpy bridge used."
+  ],
+  "domain": "Union over n={8,16,32,64} of finite PEPS3D K_n vertices times orientation sheet s in {L,R}; local Dirac spinor psi_vs in C^4",
+  "eligible_consumers": [],
+  "finite_map": "f_n:(v,s,psi_vs; gamma5, Spin3(theta), Pin_reflection)->(orientation_charge, spin_charge, reflection_charge, entropy)",
+  "generated_at": "2026-06-02T07:50:40.290",
+  "layer": "L8 chirality orientation cover",
+  "minimum_standard": {
+    "F01_witness": "present: finite PEPS3D K_n with n in {8,16,32,64}, finite operators {gamma5, Spin3(theta), Pin_reflection}",
+    "N01_witness": "present: measured gamma5/reflection order gap and nonzero commutator",
+    "PEPS3D_anchor": "present as finite combinatorial K=(V,E,F,C) with local spinor/density payload; no tensor-network contraction claimed",
+    "QIT_entropy_readouts_derived": "present: von Neumann entropy and trace distance are derived from rho after finite map",
+    "blocked_consumers": [
+      "L9_plus_stack",
+      "terrain",
+      "flux",
+      "Xi",
+      "Phi0",
+      "Axis0",
+      "bridge",
+      "basin",
+      "physics"
+    ],
+    "finite_map_domain_to_codomain": "present",
+    "fresh_rerun": "present: this script writes a fresh result on execution",
+    "julia_native_spinor_density": "present: ComplexF64 spinors and psi*psi' densities",
+    "load_bearing_tool_manifest": "present",
+    "negative_controls": "present: gamma5 identity erasure, reflection identity erasure, Spin(3) rotation control",
+    "non_vacuous_ablation": "present: gamma5 erasure, reflection removal, reflection quotient all rerun numerically",
+    "stress_8_16_32_64": "present",
+    "z3": "z3 omitted, not decorative"
+  },
+  "name": "chirality orientation cover finite-QIT POC",
+  "negative_controls": [
+    "gamma5 replaced by identity",
+    "Pin reflection replaced by identity",
+    "Spin(3) block rotation control commutes with gamma5",
+    "reflection quotient identifies L/R and blocks descended signed gamma5 observable"
+  ],
+  "pass_checks": {
+    "gamma5_erasure_collapses_cover": true,
+    "n01_order_gap_nonzero": true,
+    "orientation_cover_nontrivial_before_erasure": true,
+    "qit_entropy_is_derived_and_nontrivial_in_reflection_quotient": true,
+    "reflection_quotient_trivializes_signed_cover": true,
+    "reflection_removal_collapses_reflection_signature": true,
+    "spin3_preserves_chirality": true,
+    "spin_vs_pin_distinction_collapses_when_gamma5_erased": true
+  },
+  "peps3d_embedding": "finite K=(V,E,F,C) anchors for 8,16,32,64 vertices; spinor/density payload attached to each vertex and sheet",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "No full tensor-network PEPS contraction or bond optimization, only K=(V,E,F,C) anchoring",
+    "No lower-layer dependency receipt chain admitted in this file",
+    "No Z3/cvc5 proof layer; omitted rather than decorative",
+    "classification intentionally POC and promotion_allowed=false"
+  ],
+  "promotion_status": "keep_but_open",
+  "quaternion_action": "not_applicable: no quaternion language used in this L8 POC",
+  "quoted_math_anchors": [
+    "registry L8: chirality orientation cover; L/R sheet, gamma5 / Pin / Spin / reflection controls",
+    "registry L8 state: partial; sheet_collapsed load-bearing; needs Pin/Spin/reflection controls",
+    "agent gate: explicit finite map, F01/N01, spinor/density, PEPS3D K=(V,E,F,C), controls, blocked consumers"
+  ],
+  "root_constraints_in_force": {
+    "F01": "finite carrier/probe/operator/path registry: finite K_n and finite operators gamma5, Spin3(theta), Pin reflection",
+    "N01": "order-sensitive gamma5/reflection control: gamma5*P != P*gamma5 measured on operators and states"
+  },
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "L8_layer_codex",
+  "spinor_state": "L sheet: gamma5 eigenvalue -1 subspace; R sheet: gamma5 eigenvalue +1 subspace",
+  "stress": {
+    "16": {
+      "K_counts": {
+        "C": 3,
+        "E": 28,
+        "F": 16,
+        "V": 16,
+        "dims": [
+          2,
+          2,
+          4
+        ]
+      },
+      "codomain": "finite real readout tuple per oriented sheet plus aggregate collapse certificates",
+      "domain_size": 32,
+      "finite_map": "f_n:(v,s,psi_vs; gamma5, Spin3(theta), Pin_reflection)->(orientation_charge, spin_charge, reflection_charge, entropy), with v in PEPS3D K_n and s in {L,R}",
+      "gamma5_erased_separation_max": 0.0,
+      "gamma5_erased_separation_mean": 0.0,
+      "n01_state_order_gap_mean": 2.0,
+      "n01_state_order_gap_min": 2.0,
+      "operator_commutators": {
+        "norm_anticommutator_gamma5_reflection": 0.0,
+        "norm_commutator_gamma5_reflection": 4.0,
+        "norm_commutator_gamma5_spin3": 0.0,
+        "norm_commutator_identity_erased_gamma5_reflection": 0.0,
+        "norm_reflection_conjugates_gamma5_to_minus_gamma5": 0.0
+      },
+      "orientation_charge_separation_mean": 2.0,
+      "orientation_charge_separation_min": 2.0,
+      "qit_entropy_pure_max": 2.2204460492503126e-16,
+      "qit_entropy_reflection_quotient_mean": 0.6931471805599453,
+      "qit_trace_distance_L_R_mean": 1.0,
+      "reflection_flip_gap_mean": 2.0,
+      "reflection_flip_gap_min": 2.0,
+      "reflection_quotient_signed_charge_max": 5.551115123125783e-17,
+      "reflection_removed_flip_gap_mean": 0.0,
+      "site_count": 16,
+      "spin_preserve_err_max": 2.220446049250313e-16
+    },
+    "32": {
+      "K_counts": {
+        "C": 9,
+        "E": 64,
+        "F": 42,
+        "V": 32,
+        "dims": [
+          2,
+          4,
+          4
+        ]
+      },
+      "codomain": "finite real readout tuple per oriented sheet plus aggregate collapse certificates",
+      "domain_size": 64,
+      "finite_map": "f_n:(v,s,psi_vs; gamma5, Spin3(theta), Pin_reflection)->(orientation_charge, spin_charge, reflection_charge, entropy), with v in PEPS3D K_n and s in {L,R}",
+      "gamma5_erased_separation_max": 0.0,
+      "gamma5_erased_separation_mean": 0.0,
+      "n01_state_order_gap_mean": 2.0,
+      "n01_state_order_gap_min": 1.9999999999999998,
+      "operator_commutators": {
+        "norm_anticommutator_gamma5_reflection": 0.0,
+        "norm_commutator_gamma5_reflection": 4.0,
+        "norm_commutator_gamma5_spin3": 0.0,
+        "norm_commutator_identity_erased_gamma5_reflection": 0.0,
+        "norm_reflection_conjugates_gamma5_to_minus_gamma5": 0.0
+      },
+      "orientation_charge_separation_mean": 2.0,
+      "orientation_charge_separation_min": 1.9999999999999996,
+      "qit_entropy_pure_max": 2.2204460492503126e-16,
+      "qit_entropy_reflection_quotient_mean": 0.6931471805599451,
+      "qit_trace_distance_L_R_mean": 1.0,
+      "reflection_flip_gap_mean": 2.0,
+      "reflection_flip_gap_min": 1.9999999999999996,
+      "reflection_quotient_signed_charge_max": 5.551115123125783e-17,
+      "reflection_removed_flip_gap_mean": 0.0,
+      "site_count": 32,
+      "spin_preserve_err_max": 2.220446049250313e-16
+    },
+    "64": {
+      "K_counts": {
+        "C": 27,
+        "E": 144,
+        "F": 108,
+        "V": 64,
+        "dims": [
+          4,
+          4,
+          4
+        ]
+      },
+      "codomain": "finite real readout tuple per oriented sheet plus aggregate collapse certificates",
+      "domain_size": 128,
+      "finite_map": "f_n:(v,s,psi_vs; gamma5, Spin3(theta), Pin_reflection)->(orientation_charge, spin_charge, reflection_charge, entropy), with v in PEPS3D K_n and s in {L,R}",
+      "gamma5_erased_separation_max": 0.0,
+      "gamma5_erased_separation_mean": 0.0,
+      "n01_state_order_gap_mean": 2.0,
+      "n01_state_order_gap_min": 1.9999999999999998,
+      "operator_commutators": {
+        "norm_anticommutator_gamma5_reflection": 0.0,
+        "norm_commutator_gamma5_reflection": 4.0,
+        "norm_commutator_gamma5_spin3": 0.0,
+        "norm_commutator_identity_erased_gamma5_reflection": 0.0,
+        "norm_reflection_conjugates_gamma5_to_minus_gamma5": 0.0
+      },
+      "orientation_charge_separation_mean": 2.0,
+      "orientation_charge_separation_min": 1.9999999999999998,
+      "qit_entropy_pure_max": 2.2204460492503126e-16,
+      "qit_entropy_reflection_quotient_mean": 0.6931471805599454,
+      "qit_trace_distance_L_R_mean": 1.0,
+      "reflection_flip_gap_mean": 2.0,
+      "reflection_flip_gap_min": 1.9999999999999998,
+      "reflection_quotient_signed_charge_max": 5.551115123125783e-17,
+      "reflection_removed_flip_gap_mean": 0.0,
+      "site_count": 64,
+      "spin_preserve_err_max": 4.440892098500626e-16
+    },
+    "8": {
+      "K_counts": {
+        "C": 1,
+        "E": 12,
+        "F": 6,
+        "V": 8,
+        "dims": [
+          2,
+          2,
+          2
+        ]
+      },
+      "codomain": "finite real readout tuple per oriented sheet plus aggregate collapse certificates",
+      "domain_size": 16,
+      "finite_map": "f_n:(v,s,psi_vs; gamma5, Spin3(theta), Pin_reflection)->(orientation_charge, spin_charge, reflection_charge, entropy), with v in PEPS3D K_n and s in {L,R}",
+      "gamma5_erased_separation_max": 0.0,
+      "gamma5_erased_separation_mean": 0.0,
+      "n01_state_order_gap_mean": 2.0,
+      "n01_state_order_gap_min": 2.0,
+      "operator_commutators": {
+        "norm_anticommutator_gamma5_reflection": 0.0,
+        "norm_commutator_gamma5_reflection": 4.0,
+        "norm_commutator_gamma5_spin3": 0.0,
+        "norm_commutator_identity_erased_gamma5_reflection": 0.0,
+        "norm_reflection_conjugates_gamma5_to_minus_gamma5": 0.0
+      },
+      "orientation_charge_separation_mean": 2.0,
+      "orientation_charge_separation_min": 2.0,
+      "qit_entropy_pure_max": 0.0,
+      "qit_entropy_reflection_quotient_mean": 0.6931471805599453,
+      "qit_trace_distance_L_R_mean": 1.0,
+      "reflection_flip_gap_mean": 2.0,
+      "reflection_flip_gap_min": 2.0,
+      "reflection_quotient_signed_charge_max": 5.551115123125783e-17,
+      "reflection_removed_flip_gap_mean": 0.0,
+      "site_count": 8,
+      "spin_preserve_err_max": 2.220446049250313e-16
+    }
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "emits the result receipt",
+      "role": "supportive",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "constructs finite spinor/density operators, applies Spin/Pin controls, measures norms, eigenspectrum entropy, and trace distance",
+      "role": "load_bearing",
+      "used": true
+    },
+    "Z3": {
+      "reason": "z3 omitted, not decorative: no structural SMT claim is needed beyond measured finite LinearAlgebra operator identities",
+      "role": "omitted",
+      "used": false
+    }
+  },
+  "version": "1.0"
+}

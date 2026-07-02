@@ -1,0 +1,573 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "official_g_structure_selection",
+    "layer_stacking",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "bridge",
+    "basin_admission",
+    "physics/gravity",
+    "final_manifold_admission"
+  ],
+  "checks": {
+    "A_populates_all_16_placements": true,
+    "B_kills_forbidden_R_sheet_for_every_path_topology": true,
+    "B_preserves_all_allowed_L_sheet_placements": true,
+    "C_noop_matches_A": true,
+    "base_paths_horizontal_and_fiber_paths_invariant": true,
+    "bookkeeping_consistent": true,
+    "inverted_sign_flips_to_forbidden_side": true,
+    "no_julia_execution": true,
+    "no_pytorch_execution": true,
+    "promotion_blocked": true,
+    "random_rate_matched_prune_keeps_forbidden": true,
+    "real_chirality_prune_fired": true,
+    "sixteen_targets_exist": true,
+    "spin3_s3_norm_and_double_cover_survive": true,
+    "survivor_chern_sign_stable": true,
+    "u1_chern_signs_measured": true
+  },
+  "chern": {
+    "c1_minus": -1.000000024511428,
+    "c1_plus": 1.000000024511428,
+    "trivial_c1": 0.0
+  },
+  "claim_boundary": "JAX diagnostic selector over 16 placements; no official G-structure selection, layer completion, stacking, Axis0, flux, bridge, or physics admission.",
+  "classification": "diagnostic_jax_gstructure_16_branch_prune_selector_audit",
+  "codomain_or_output": "survivor placement basins under no-prune, chirality-prune, no-op, random, and inverted-sign controls",
+  "domain": "finite S3 unit-quaternion branch ensemble with 16 placement attractors",
+  "executed_track": "jax",
+  "finite_map": "16 placement targets x Spin(3)/SU(2) quaternion path -> monotone selector prune -> survivor placement basins plus path/Chern controls",
+  "formal_admission_allowed": false,
+  "honesty_notes": [
+    "This couples branch/prune to the 16-placement selector, but remains a JAX diagnostic rather than Julia-native G-structure truth.",
+    "The random rate-matched control keeps forbidden placements, so the chirality selector is not just deleting many futures generically.",
+    "The inverted-sign control flips survivors to the R/forbidden side."
+  ],
+  "julia_reference_mode": "read_only_external_reference_only",
+  "legacy_tensor_lane_used": false,
+  "name": "jax_gstructure_16_branch_prune_selector_audit",
+  "path_table": {
+    "all_base_horizontal": true,
+    "all_fiber_density_invariant": true,
+    "all_fiber_vertical": true,
+    "all_pass": true,
+    "rows": [
+      {
+        "connection_value": 1.0,
+        "density_delta": 2.227171939408469e-16,
+        "fiber_vertical_connection_abs": 1.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 1,
+        "pass": true,
+        "path": "fiber"
+      },
+      {
+        "connection_value": 1.0,
+        "density_delta": 2.227171939408469e-16,
+        "fiber_vertical_connection_abs": 1.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 2,
+        "pass": true,
+        "path": "fiber"
+      },
+      {
+        "connection_value": 1.0,
+        "density_delta": 2.227171939408469e-16,
+        "fiber_vertical_connection_abs": 1.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 3,
+        "pass": true,
+        "path": "fiber"
+      },
+      {
+        "connection_value": 1.0,
+        "density_delta": 2.227171939408469e-16,
+        "fiber_vertical_connection_abs": 1.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 4,
+        "pass": true,
+        "path": "fiber"
+      },
+      {
+        "connection_value": 0.0,
+        "density_delta": 0.9610100314654056,
+        "fiber_vertical_connection_abs": 0.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 5,
+        "pass": true,
+        "path": "base"
+      },
+      {
+        "connection_value": 0.0,
+        "density_delta": 0.9610100314654056,
+        "fiber_vertical_connection_abs": 0.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 6,
+        "pass": true,
+        "path": "base"
+      },
+      {
+        "connection_value": 0.0,
+        "density_delta": 0.9610100314654056,
+        "fiber_vertical_connection_abs": 0.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 7,
+        "pass": true,
+        "path": "base"
+      },
+      {
+        "connection_value": 0.0,
+        "density_delta": 0.9610100314654056,
+        "fiber_vertical_connection_abs": 0.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 8,
+        "pass": true,
+        "path": "base"
+      },
+      {
+        "connection_value": 1.0,
+        "density_delta": 2.8370155439448913e-16,
+        "fiber_vertical_connection_abs": 1.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 9,
+        "pass": true,
+        "path": "fiber"
+      },
+      {
+        "connection_value": 1.0,
+        "density_delta": 2.8370155439448913e-16,
+        "fiber_vertical_connection_abs": 1.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 10,
+        "pass": true,
+        "path": "fiber"
+      },
+      {
+        "connection_value": 1.0,
+        "density_delta": 2.8370155439448913e-16,
+        "fiber_vertical_connection_abs": 1.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 11,
+        "pass": true,
+        "path": "fiber"
+      },
+      {
+        "connection_value": 1.0,
+        "density_delta": 2.8370155439448913e-16,
+        "fiber_vertical_connection_abs": 1.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 12,
+        "pass": true,
+        "path": "fiber"
+      },
+      {
+        "connection_value": 0.0,
+        "density_delta": 1.1765150535296927,
+        "fiber_vertical_connection_abs": 0.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 13,
+        "pass": true,
+        "path": "base"
+      },
+      {
+        "connection_value": 0.0,
+        "density_delta": 1.1765150535296927,
+        "fiber_vertical_connection_abs": 0.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 14,
+        "pass": true,
+        "path": "base"
+      },
+      {
+        "connection_value": 0.0,
+        "density_delta": 1.1765150535296927,
+        "fiber_vertical_connection_abs": 0.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 15,
+        "pass": true,
+        "path": "base"
+      },
+      {
+        "connection_value": 0.0,
+        "density_delta": 1.1765150535296927,
+        "fiber_vertical_connection_abs": 0.0,
+        "horizontal_connection_residual": 0.0,
+        "label": 16,
+        "pass": true,
+        "path": "base"
+      }
+    ]
+  },
+  "placement_targets": [
+    {
+      "chern_sign": 1,
+      "label": 1,
+      "path": "fiber",
+      "sheet": "L",
+      "target": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "terrain": "Funnel",
+      "topology": "Se"
+    },
+    {
+      "chern_sign": 1,
+      "label": 2,
+      "path": "fiber",
+      "sheet": "L",
+      "target": [
+        0.5,
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "terrain": "Vortex",
+      "topology": "Ne"
+    },
+    {
+      "chern_sign": 1,
+      "label": 3,
+      "path": "fiber",
+      "sheet": "L",
+      "target": [
+        0.5,
+        0.5,
+        0.5,
+        -0.5
+      ],
+      "terrain": "Pit",
+      "topology": "Ni"
+    },
+    {
+      "chern_sign": 1,
+      "label": 4,
+      "path": "fiber",
+      "sheet": "L",
+      "target": [
+        0.5,
+        0.5,
+        -0.5,
+        -0.5
+      ],
+      "terrain": "Hill",
+      "topology": "Si"
+    },
+    {
+      "chern_sign": 1,
+      "label": 5,
+      "path": "base",
+      "sheet": "L",
+      "target": [
+        0.5,
+        -0.5,
+        0.5,
+        0.5
+      ],
+      "terrain": "Funnel",
+      "topology": "Se"
+    },
+    {
+      "chern_sign": 1,
+      "label": 6,
+      "path": "base",
+      "sheet": "L",
+      "target": [
+        0.5,
+        -0.5,
+        -0.5,
+        0.5
+      ],
+      "terrain": "Vortex",
+      "topology": "Ne"
+    },
+    {
+      "chern_sign": 1,
+      "label": 7,
+      "path": "base",
+      "sheet": "L",
+      "target": [
+        0.5,
+        -0.5,
+        0.5,
+        -0.5
+      ],
+      "terrain": "Pit",
+      "topology": "Ni"
+    },
+    {
+      "chern_sign": 1,
+      "label": 8,
+      "path": "base",
+      "sheet": "L",
+      "target": [
+        0.5,
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "terrain": "Hill",
+      "topology": "Si"
+    },
+    {
+      "chern_sign": -1,
+      "label": 9,
+      "path": "fiber",
+      "sheet": "R",
+      "target": [
+        -0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "terrain": "Cannon",
+      "topology": "Se"
+    },
+    {
+      "chern_sign": -1,
+      "label": 10,
+      "path": "fiber",
+      "sheet": "R",
+      "target": [
+        -0.5,
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "terrain": "Spiral",
+      "topology": "Ne"
+    },
+    {
+      "chern_sign": -1,
+      "label": 11,
+      "path": "fiber",
+      "sheet": "R",
+      "target": [
+        -0.5,
+        0.5,
+        0.5,
+        -0.5
+      ],
+      "terrain": "Source",
+      "topology": "Ni"
+    },
+    {
+      "chern_sign": -1,
+      "label": 12,
+      "path": "fiber",
+      "sheet": "R",
+      "target": [
+        -0.5,
+        0.5,
+        -0.5,
+        -0.5
+      ],
+      "terrain": "Citadel",
+      "topology": "Si"
+    },
+    {
+      "chern_sign": -1,
+      "label": 13,
+      "path": "base",
+      "sheet": "R",
+      "target": [
+        -0.5,
+        -0.5,
+        0.5,
+        0.5
+      ],
+      "terrain": "Cannon",
+      "topology": "Se"
+    },
+    {
+      "chern_sign": -1,
+      "label": 14,
+      "path": "base",
+      "sheet": "R",
+      "target": [
+        -0.5,
+        -0.5,
+        -0.5,
+        0.5
+      ],
+      "terrain": "Spiral",
+      "topology": "Ne"
+    },
+    {
+      "chern_sign": -1,
+      "label": 15,
+      "path": "base",
+      "sheet": "R",
+      "target": [
+        -0.5,
+        -0.5,
+        0.5,
+        -0.5
+      ],
+      "terrain": "Source",
+      "topology": "Ni"
+    },
+    {
+      "chern_sign": -1,
+      "label": 16,
+      "path": "base",
+      "sheet": "R",
+      "target": [
+        -0.5,
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "terrain": "Citadel",
+      "topology": "Si"
+    }
+  ],
+  "promotion_allowed": false,
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "root_constraints_in_force": {
+    "F01": "finite 16-placement target set, finite branch ensemble, finite S3 retraction steps, finite Chern quadrature",
+    "N01": "monotone chirality/event latch, noncommuting target flow geometry, sheet-sign selector controls"
+  },
+  "runs": {
+    "A": {
+      "max_double_cover_gap": 0.0,
+      "max_norm_drift": 3.3306690738754696e-16,
+      "mean_survivor_q0": -0.0009765625011385695,
+      "name": "A_no_prune",
+      "populated": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "pruned": 0,
+      "survivor_chern_signs": [
+        -1,
+        1
+      ],
+      "survivors": 4096
+    },
+    "B": {
+      "max_double_cover_gap": 0.0,
+      "max_norm_drift": 3.3306690738754696e-16,
+      "mean_survivor_q0": 0.49999999998128414,
+      "name": "B_chirality_prune",
+      "populated": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "pruned": 2052,
+      "survivor_chern_signs": [
+        1
+      ],
+      "survivors": 2044
+    },
+    "C": {
+      "max_double_cover_gap": 0.0,
+      "max_norm_drift": 3.3306690738754696e-16,
+      "mean_survivor_q0": -0.0009765625011385695,
+      "name": "C_trivial_control",
+      "populated": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "pruned": 0,
+      "survivor_chern_signs": [
+        -1,
+        1
+      ],
+      "survivors": 4096
+    },
+    "inverted": {
+      "max_double_cover_gap": 0.0,
+      "max_norm_drift": 3.3306690738754696e-16,
+      "mean_survivor_q0": -0.4999999999836297,
+      "name": "D_inverted_sign_prune",
+      "populated": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "pruned": 2044,
+      "survivor_chern_signs": [
+        -1
+      ],
+      "survivors": 2052
+    },
+    "random_rate_matched": {
+      "populated": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "pruned": 2052,
+      "survivors": 2044
+    }
+  },
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "json": "supportive"
+  },
+  "tool_manifest": {
+    "jax": "load-bearing finite branch ensemble, random controls, JIT/lax.scan retraction dynamics",
+    "jax.numpy": "load-bearing finite quaternion, basin, Chern, and path-control readouts",
+    "json": "supportive receipt serialization"
+  }
+}

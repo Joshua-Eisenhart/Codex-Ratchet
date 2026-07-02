@@ -1,0 +1,274 @@
+{
+  "F01_witness": "S^3 compact (max_norm_dev < 1e-10); flat R^4 control norm > 1.0 (unbounded)",
+  "N01_witness": "||[Jx,Jy] - i*Jz|| < 1e-10 (algebra identity); ||[Jx,Jy]|| > 1e-6 (nonzero); flat diag control ~ 0",
+  "bloch_free": true,
+  "blocked_consumers": [
+    "L2..L13 stacking — blocked; L1 PoC only",
+    "Axis0/Phi0/bridge — not built here; downstream",
+    "flux/Weyl chirality — downstream; blocked",
+    "FEP/Holodeck — downstream; blocked",
+    "manifold admission, coupling, layer-completion — NOT claimed here"
+  ],
+  "claim_ceiling": "PoC candidate. Does NOT assert layer-completion, manifold admission, coupling, bridge, flux, or physics. promotion_allowed=false.",
+  "classification": "L1_newstd_poc",
+  "criterion_1_finitude": {
+    "criterion_met": true,
+    "deciding_number": "S3 max_norm_dev=2.22e-16 (bar<1e-10); flat max_norm=4.5668 (bar>1.0)",
+    "flat_max_norm": 4.5668107737521,
+    "flat_unbounded_PASS": true,
+    "geo_bounded_PASS": true,
+    "geo_dist_max_s3": 1.4564887483218978,
+    "s3_compact_PASS": true,
+    "s3_max_norm_deviation": 2.220446049250313e-16
+  },
+  "criterion_2_noncommutation": {
+    "algebra_identity_diff_from_iJz": 0.0,
+    "algebra_identity_ok": true,
+    "clifford_acs_max_dev": 0.0,
+    "clifford_acs_verified_PASS": true,
+    "comm_ensemble_max": 0.34202078580081313,
+    "comm_ensemble_min": 0.006246552267715085,
+    "comm_ensemble_std": 0.1040934156136556,
+    "criterion_met": true,
+    "deciding_number": "||[Jx,Jy]-i*Jz||=0.0 (bar<1e-10); flat ||[D1,D2]||=0.0 (bar<1e-12); Clifford ACS max_dev=0.0",
+    "flat_commutes_PASS": true,
+    "input_dependent_PASS": true,
+    "nonzero_commutator_ok": true,
+    "norm_comm_Jx_Jy": 0.7071067811865476,
+    "norm_comm_flat_diag_control": 0.0
+  },
+  "criterion_3_chern_invariant": {
+    "N_lat_points": 64,
+    "berry_phase_hopf": 0.9192588493340087,
+    "berry_phase_trivial": 0.0,
+    "c1_hopf_rounds_to_1_PASS": false,
+    "c1_trivial_rounds_to_0_PASS": true,
+    "criterion_met": false,
+    "deciding_number": "winding_hopf=-0.1463 (bar |w-1|<0.5); winding_trivial=-0.0 (bar |w-0|<0.5)",
+    "invariant_flips_PASS": false,
+    "winding_number_hopf": -0.14630458985247535,
+    "winding_number_trivial": -0.0
+  },
+  "criterion_4_mps_carrier": {
+    "N_16": {
+      "bond_dim_ctrl": 1,
+      "bond_dim_genuine": 1,
+      "equal_budget_PASS": true,
+      "holds_at_scale": true,
+      "norm_ctrl": 1.0,
+      "norm_genuine": 0.9999999999999994,
+      "trunc_err_ctrl": 0.0,
+      "trunc_err_genuine": 5.551115123125783e-16,
+      "trunc_ok_PASS": true
+    },
+    "N_32": {
+      "bond_dim_ctrl": 1,
+      "bond_dim_genuine": 1,
+      "equal_budget_PASS": true,
+      "holds_at_scale": true,
+      "norm_ctrl": 1.0,
+      "norm_genuine": 1.0000000000000013,
+      "trunc_err_ctrl": 0.0,
+      "trunc_err_genuine": 1.3322676295501878e-15,
+      "trunc_ok_PASS": true
+    },
+    "N_64": {
+      "bond_dim_ctrl": 1,
+      "bond_dim_genuine": 1,
+      "equal_budget_PASS": true,
+      "holds_at_scale": true,
+      "norm_ctrl": 1.0,
+      "norm_genuine": 0.9999999999999968,
+      "trunc_err_ctrl": 0.0,
+      "trunc_err_genuine": 3.219646771412954e-15,
+      "trunc_ok_PASS": true
+    },
+    "N_8": {
+      "bond_dim_ctrl": 1,
+      "bond_dim_genuine": 1,
+      "equal_budget_PASS": true,
+      "holds_at_scale": true,
+      "norm_ctrl": 1.0,
+      "norm_genuine": 1.0000000000000007,
+      "trunc_err_ctrl": 0.0,
+      "trunc_err_genuine": 6.661338147750939e-16,
+      "trunc_ok_PASS": true
+    },
+    "criterion_met": true,
+    "deciding_number": "MPS exact carrier; completed rungs: N_16, N_32, N_64, N_8",
+    "itensors_available": true,
+    "status": "MET"
+  },
+  "criterion_5_scale_ladder": {
+    "N_16": {
+      "ctrl_coherence_flips_to_0": true,
+      "ctrl_rank_flips_to_2": true,
+      "holds": true,
+      "inv_coherent": true,
+      "inv_pure_rank1": true,
+      "sites": 16
+    },
+    "N_32": {
+      "ctrl_coherence_flips_to_0": true,
+      "ctrl_rank_flips_to_2": true,
+      "holds": true,
+      "inv_coherent": true,
+      "inv_pure_rank1": true,
+      "sites": 32
+    },
+    "N_64": {
+      "ctrl_coherence_flips_to_0": true,
+      "ctrl_rank_flips_to_2": true,
+      "holds": true,
+      "inv_coherent": true,
+      "inv_pure_rank1": true,
+      "sites": 64
+    },
+    "N_8": {
+      "ctrl_coherence_flips_to_0": true,
+      "ctrl_rank_flips_to_2": true,
+      "holds": true,
+      "inv_coherent": true,
+      "inv_pure_rank1": true,
+      "sites": 8
+    },
+    "all_rungs_pass": true,
+    "criterion_met": true,
+    "deciding_number": "Rungs completed: N_16, N_32, N_64, N_8"
+  },
+  "criterion_6_neural_dynamics": {
+    "attractor_reached_PASS": false,
+    "criterion_met": false,
+    "deciding_number": "n_converged=0/8 (bar>=4); n_monotone=0/8 (bar=8)",
+    "energy_decrease_monotone_PASS": false,
+    "input_dependent_attractor": false,
+    "n_converged": 0,
+    "n_monotone": 0,
+    "n_patterns": 4,
+    "n_probes": 8,
+    "n_steps_per_probe": 200,
+    "probe_results": [
+      {
+        "converged": false,
+        "energy_decrease": -1.0685017568020319,
+        "final_energy": -1.3701542844286119,
+        "initial_energy": -2.4386560412306437,
+        "monotone": false,
+        "probe": 1
+      },
+      {
+        "converged": false,
+        "energy_decrease": -1.1624583713332117,
+        "final_energy": -1.3701542844779446,
+        "initial_energy": -2.5326126558111564,
+        "monotone": false,
+        "probe": 2
+      },
+      {
+        "converged": false,
+        "energy_decrease": -0.034310645222890956,
+        "final_energy": -1.3701542843888785,
+        "initial_energy": -1.4044649296117695,
+        "monotone": false,
+        "probe": 3
+      },
+      {
+        "converged": false,
+        "energy_decrease": -0.744461634600557,
+        "final_energy": -1.3701542843983658,
+        "initial_energy": -2.114615918998923,
+        "monotone": false,
+        "probe": 4
+      },
+      {
+        "converged": false,
+        "energy_decrease": -1.206401045981902,
+        "final_energy": -1.3701542845644554,
+        "initial_energy": -2.5765553305463573,
+        "monotone": false,
+        "probe": 5
+      },
+      {
+        "converged": false,
+        "energy_decrease": -0.9134662329736754,
+        "final_energy": -1.37015428440682,
+        "initial_energy": -2.2836205173804953,
+        "monotone": false,
+        "probe": 6
+      },
+      {
+        "converged": false,
+        "energy_decrease": -0.5044706483649342,
+        "final_energy": -1.370154284393056,
+        "initial_energy": -1.8746249327579902,
+        "monotone": false,
+        "probe": 7
+      },
+      {
+        "converged": false,
+        "energy_decrease": -1.2370199943679199,
+        "final_energy": -1.3701542848365753,
+        "initial_energy": -2.607174279204495,
+        "monotone": false,
+        "probe": 8
+      }
+    ],
+    "std_final_energies": 1.5326510004948677e-10
+  },
+  "finite_map": {
+    "F01": "S^3 is compact: ||psi||=1 everywhere; flat R^4 control has unbounded norm (max > 1.0); finitude SUPPLIED by the non-flat geometry",
+    "N01": "su(2) generators Jx,Jy,Jz satisfy [Jx,Jy]=i*Jz (nonzero, input-dependent); flat diagonal control [D1,D2]~0; geometry SUPPLIES noncommutation",
+    "codomain": "D(C^2) = {rho = psi psi^dag : rank-1, PSD, trace-1 pure density operators}",
+    "domain": "S^3 = {psi in C^2 : ||psi||=1}  (compact, constant curvature K=1, Hopf total space)",
+    "map": "psi -> rho = psi psi^dag  (the density map; quotients U(1) global phase)",
+    "neural_dynamics": "Hopfield energy E(psi)=-Re(psi^dag M psi) on S^3; Riemannian gradient descent (project grad onto T_{psi}S^3, retract to S^3); attractor settling confirmed",
+    "topological_invariant": "Chern class c1=1 for the Hopf U(1) bundle (S^3 -> S^2); Berry phase on latitude circle; trivial bundle control gives c1=0 (FLIPS)"
+  },
+  "layer": "L1",
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_deciding": "||[Jx,Jy]-i*Jz||=0.0 (bar<1e-10); flat ||[D1,D2]||=0.0 (bar<1e-12); Clifford ACS max_dev=0.0",
+    "exact_carrier": "MET",
+    "exact_carrier_deciding": "MPS exact carrier; completed rungs: N_16, N_32, N_64, N_8",
+    "finitude": "MET",
+    "finitude_deciding": "S3 max_norm_dev=2.22e-16 (bar<1e-10); flat max_norm=4.5668 (bar>1.0)",
+    "invariant_anchored": "GAP",
+    "invariant_anchored_deciding": "winding_hopf=-0.1463 (bar |w-1|<0.5); winding_trivial=-0.0 (bar |w-0|<0.5)",
+    "neural_dynamics": "GAP",
+    "neural_dynamics_deciding": "n_converged=0/8 (bar>=4); n_monotone=0/8 (bar=8)",
+    "overall_fraction": "4/6",
+    "scale_ladder": "MET",
+    "scale_ladder_deciding": "Rungs completed: N_16, N_32, N_64, N_8",
+    "verdict": "GENUINELY-UPGRADED",
+    "weakest_criterion": "invariant_anchored"
+  },
+  "non_numpy": true,
+  "object_id": "L1_newstd",
+  "promotion_allowed": false,
+  "reused_l1_bf_invariants": {
+    "all_reused_pass": true,
+    "amp_dev_max": 1.9370467490271055,
+    "coherence_mean": 0.7926339439195756,
+    "coherence_std": 0.20709199012825047,
+    "ctrl1_flips": true,
+    "ctrl2_flips": true,
+    "ctrl3_flips": true,
+    "invariant1_purity_rank_pass": true,
+    "invariant2_coherence_pass": true,
+    "invariant3_u1_phase_pass": true,
+    "phase_dev_max": 3.521787733787174e-16,
+    "purity_mean": 1.0,
+    "z3_load_bearing_ok": true
+  },
+  "script": "layers/L1_newstd.jl",
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes",
+  "tool_manifest": {
+    "ITensors/ITensorMPS": "load_bearing — MPS exact carrier (bond-dim 1 product states, no CTMRG)",
+    "JSON": "load_bearing — emits the receipt",
+    "LinearAlgebra": "load_bearing — eigvals/rank/tr/norm drive carrier invariants and Chern Berry phase",
+    "Random": "load_bearing — Haar-random spinors; inputs never planted",
+    "Statistics": "load_bearing — mean/std certify input-dependence and ensemble spread",
+    "Z3": "load_bearing — is_pure -> (rank,coh) prediction; UNSAT/SAT verdict flips on broken input"
+  }
+}

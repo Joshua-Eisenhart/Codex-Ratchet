@@ -1,0 +1,95 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "layer_stacking",
+    "flux",
+    "xi_phi0",
+    "axis0",
+    "fep_holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "capacity_budget": {
+    "H_path": 2.0,
+    "H_path_max": 2.0,
+    "S_boundary_max": 2.0,
+    "S_max": 4.0,
+    "capacity_budget": 6.0,
+    "pass": true
+  },
+  "cases": {
+    "dephased_linked_classical_shadow": {
+      "CMI_A_C_given_B": 1.0,
+      "I_c_A_to_C": 0.0,
+      "LN_AC": 0.0,
+      "S_AC": 1.0,
+      "name": "dephased_linked_classical_shadow",
+      "single_site_entropy_sum": 4.0
+    },
+    "linked_ac_er_bridge": {
+      "CMI_A_C_given_B": 2.0,
+      "I_c_A_to_C": 1.0,
+      "LN_AC": 1.0,
+      "S_AC": -0.0,
+      "name": "linked_ac_er_bridge",
+      "single_site_entropy_sum": 4.0
+    },
+    "matched_trivial_chain": {
+      "CMI_A_C_given_B": 0.0,
+      "I_c_A_to_C": -1.0,
+      "LN_AC": 0.0,
+      "S_AC": 2.0,
+      "name": "matched_trivial_chain",
+      "single_site_entropy_sum": 4.0
+    },
+    "product": {
+      "CMI_A_C_given_B": 0.0,
+      "I_c_A_to_C": 0.0,
+      "LN_AC": 0.0,
+      "S_AC": -0.0,
+      "name": "product",
+      "single_site_entropy_sum": 0.0
+    }
+  },
+  "checks": {
+    "capacity_budget_finite_and_respected": true,
+    "dephasing_kills_logneg_but_not_classical_cmi_shadow": true,
+    "linked_has_logneg_and_cmi": true,
+    "matched_trivial_kills_ac_entanglement_and_cmi": true,
+    "matched_trivial_preserves_local_entropy_budget": true,
+    "noncommuting_order_gap_present": true,
+    "product_kills_all_readouts": true
+  },
+  "claim_boundary": "diagnostic JAX stress probe only; no formal layer/admission claim",
+  "classification": "diagnostic_jax_qit_entropy_geometry_separation_stress",
+  "codomain_or_output": "separate readout columns plus pass/fail controls",
+  "domain": "four finite qubits partitioned as A=[0], B=[1,2], C=[3]",
+  "executed_track": "jax",
+  "finite_map": "finite four-qubit density states over A|B|C regions -> LN, coherent information, CMI, dephasing and matched-trivial controls",
+  "julia_reference_mode": "read_only",
+  "name": "jax_qit_entropy_geometry_separation_stress",
+  "noncommuting_order_witness": {
+    "disjoint_control_gap": 0.0,
+    "pass": true,
+    "shared_qubit_order_gap": 0.827237899221017
+  },
+  "promotion_allowed": false,
+  "purpose": "Stress-test separation of pure-QIT entanglement witnesses from CMI/classical-shadow readouts on finite JAX states.",
+  "ran_julia": false,
+  "root_constraints_in_force": {
+    "F01": "finite density matrices and finite path registry",
+    "N01": "noncommuting shared-qubit order witness plus dephasing/order controls"
+  },
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "jax.scipy.linalg.expm": "load_bearing",
+    "json": "supportive"
+  },
+  "tool_manifest": {
+    "jax": "load-bearing finite QIT density/readout computation",
+    "jax.numpy": "load-bearing entropy, reduced-density, partial-transpose, and finite tensor algebra",
+    "jax.scipy.linalg.expm": "load-bearing noncommuting unitary order witness",
+    "json": "supportive receipt serialization"
+  }
+}

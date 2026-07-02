@@ -1,0 +1,76 @@
+{
+  "classification": "jax_all_top_level_run_receipt_wave2",
+  "started_at": "2026-06-02T15:53:19-0700",
+  "updated_at": "2026-06-02T15:54:49-0700",
+  "script_count": 36,
+  "completed_count": 9,
+  "pass_count": 8,
+  "fail_count": 1,
+  "rows": [
+    {
+      "script": "jax_formal_scout_hydrated_geometry_refresh.py",
+      "returncode": 0,
+      "seconds": 1.331,
+      "stdout_tail": "jax_formal_scout_hydrated_geometry_refresh geometry_hydrated=24/24 fresh_green=4 stalled_or_blocked=5 dataless_scripts=21 RECEIPT_PASS=True AUDIT_PASS=True\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_foundation_reference_coverage_refresh.py",
+      "returncode": 1,
+      "seconds": 0.109,
+      "stdout_tail": "jax_foundation_reference_coverage_refresh ref_rows=89/89 coverage=True nesting=True flux_allowed=False axis0_allowed=False AUDIT_PASS=False\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_geometric_evolution_engine_layer_suite.py",
+      "returncode": 0,
+      "seconds": 19.523,
+      "stdout_tail": "layers_pass=7/7 hopf_s3=True jaxga_clifford=True weyl_chirality=True dirac_u1=True qit_logneg_erepr=True branch_prune=True hamiltonian_shell=True\nAUDIT_PASS=True\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_geometric_evolution_toolstack_audit.py",
+      "returncode": 0,
+      "seconds": 9.407,
+      "stdout_tail": "custom_clifford=True jaxga=ok_after_runtime_compat_patch jaxlie=True diffrax_event=True optax_retract=True custom_vjp=True lax_scan=True riemannax=blocked_missing_package\nAUDIT_PASS=True\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_gstructure_16_branch_prune_selector_audit.py",
+      "returncode": 0,
+      "seconds": 28.284,
+      "stdout_tail": "jax_gstructure_16_branch_prune_selector A=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] B=[1, 2, 3, 4, 5, 6, 7, 8] C=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] random=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] inverted=[9, 10, 11, 12, 13, 14, 15, 16] AUDIT_PASS=True\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_gstructure_16_external_negative_oracle.py",
+      "returncode": 0,
+      "seconds": 0.091,
+      "stdout_tail": "gstructure_external_oracle placement=True selector=True reject_corruptions=True AUDIT_PASS=True\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_gstructure_16_placement_spin3_audit.py",
+      "returncode": 0,
+      "seconds": 13.085,
+      "stdout_tail": "jax_gstructure_16_placement_spin3 placements=16/16 candidates=8/8 riemannax=blocked_missing_package AUDIT_PASS=True\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_gstructure_chirality_reduction_bakeoff.py",
+      "returncode": 0,
+      "seconds": 15.241,
+      "stdout_tail": "jax_gstructure_chirality_reduction_bakeoff selected=['Spin3_SU2'] twistor=True triality=True AUDIT_PASS=True\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "jax_independent_layer_geometry_coverage_gate.py",
+      "returncode": 0,
+      "seconds": 3.116,
+      "stdout_tail": "jax_independent_layer_geometry_coverage_gate coverage_closed=True red_refs=2 unresolved_red_refs=0 missing_refs=0 unreadable=0 failed_or_unfenced=0 geometry_rows=24 nesting_order_allowed=False\n",
+      "stderr_tail": ""
+    }
+  ],
+  "promotion_allowed": false,
+  "claim_boundary": "Wave2 top-level JAX execution sweep excluding first wave active/heavy scripts; no promotion."
+}

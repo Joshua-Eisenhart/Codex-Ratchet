@@ -1,0 +1,294 @@
+{
+  "F01_witness": {
+    "finite_carrier": "density operators in D(C^2); finite genuine channel set (6 het + 4 commuting control)",
+    "finite_operator": "Ti/Te/Fi/Fe + Weyl-L/R GKSL + Ni-terrain GKSL (genuine layer maps, reused from order_null_killtest)",
+    "finite_path": "depth-ladder forward vs reversed words; forward-then-reversed recovery; permutation survivors",
+    "finite_probe": "20 random density operators + 1 fixed survivor seed"
+  },
+  "N01_witness": {
+    "accumulation_formula": "Delta(d) = mean_rho ||Phi_fwd^d(rho) - Phi_rev^d(rho)||_1 as a function of depth d",
+    "het_accumulation_growth": 0.00017657127549608465,
+    "het_irreversibility_order_discriminating_residual": 0.35230582685402956,
+    "het_order_dependent_survivor_max": 0.44370390106554813,
+    "noise_floor": 3.410605131648481e-13,
+    "present_above_floor": true
+  },
+  "accumulation": {
+    "commuting_control": {
+      "above_floor": false,
+      "accumulates": false,
+      "base_schedule": "Tz.30 Tz.55 Tz.65 Tz.80",
+      "curve": [
+        {
+          "depth": 4,
+          "fwd_rev_tracedist_max": 1.1102314949223173e-16,
+          "fwd_rev_tracedist_mean": 9.127692517130764e-18,
+          "reps": 1
+        },
+        {
+          "depth": 8,
+          "fwd_rev_tracedist_max": 1.110223026693108e-16,
+          "fwd_rev_tracedist_mean": 5.5885041711197695e-18,
+          "reps": 2
+        },
+        {
+          "depth": 16,
+          "fwd_rev_tracedist_max": 1.1102230246251664e-16,
+          "fwd_rev_tracedist_mean": 5.551133841416103e-18,
+          "reps": 4
+        },
+        {
+          "depth": 32,
+          "fwd_rev_tracedist_max": 1.1102230246251565e-16,
+          "fwd_rev_tracedist_mean": 5.551115123132187e-18,
+          "reps": 8
+        },
+        {
+          "depth": 64,
+          "fwd_rev_tracedist_max": 1.1102230246251565e-16,
+          "fwd_rev_tracedist_mean": 5.551115123125783e-18,
+          "reps": 16
+        }
+      ],
+      "means": [
+        9.127692517130764e-18,
+        5.5885041711197695e-18,
+        5.551133841416103e-18,
+        5.551115123132187e-18,
+        5.551115123125783e-18
+      ],
+      "note": "MUST be flat at the floor (z-pinches commute) — proves accumulation is from genuine noncommutation."
+    },
+    "genuine_heterogeneous": {
+      "above_floor": true,
+      "accumulates": false,
+      "base_schedule": "Ti Fi WeylL Te Fe WeylR",
+      "curve": [
+        {
+          "depth": 6,
+          "fwd_rev_tracedist_max": 0.35367127166592105,
+          "fwd_rev_tracedist_mean": 0.3525866472135488,
+          "reps": 1
+        },
+        {
+          "depth": 12,
+          "fwd_rev_tracedist_max": 0.3527672045409517,
+          "fwd_rev_tracedist_mean": 0.35276337143036834,
+          "reps": 2
+        },
+        {
+          "depth": 24,
+          "fwd_rev_tracedist_max": 0.3527632184957781,
+          "fwd_rev_tracedist_mean": 0.35276321847859954,
+          "reps": 4
+        },
+        {
+          "depth": 48,
+          "fwd_rev_tracedist_max": 0.3527632184890449,
+          "fwd_rev_tracedist_mean": 0.3527632184890449,
+          "reps": 8
+        },
+        {
+          "depth": 96,
+          "fwd_rev_tracedist_max": 0.3527632184890449,
+          "fwd_rev_tracedist_mean": 0.3527632184890449,
+          "reps": 16
+        }
+      ],
+      "growth_ratio_last_over_first": 1.0005007883222223,
+      "means": [
+        0.3525866472135488,
+        0.35276337143036834,
+        0.35276321847859954,
+        0.3527632184890449,
+        0.3527632184890449
+      ],
+      "monotone_nondecreasing": false,
+      "saturates": true,
+      "tail_relative_range": 4.3358177518753847e-7
+    },
+    "requested_depth_ladder_2_4_8_16_32": {
+      "accumulates": false,
+      "commuting_accumulates": false,
+      "commuting_means": [
+        5.074128963838778e-18,
+        2.5096518180215983e-18,
+        6.605176623817121e-19,
+        1.1217160718950519e-20,
+        1.682988647897465e-24
+      ],
+      "commuting_sub_base": "Tz.30 Tz.55 (len2; same depth ladder)",
+      "curve": [
+        {
+          "depth": 2,
+          "fwd_rev_tracedist_max": 0.30512283289973685,
+          "fwd_rev_tracedist_mean": 0.28329412758946654,
+          "reps": 1
+        },
+        {
+          "depth": 4,
+          "fwd_rev_tracedist_max": 0.29018356367645615,
+          "fwd_rev_tracedist_mean": 0.2899652367180167,
+          "reps": 2
+        },
+        {
+          "depth": 8,
+          "fwd_rev_tracedist_max": 0.2895823529054232,
+          "fwd_rev_tracedist_mean": 0.28958179088349684,
+          "reps": 4
+        },
+        {
+          "depth": 16,
+          "fwd_rev_tracedist_max": 0.2895821856080087,
+          "fwd_rev_tracedist_mean": 0.28958218560734234,
+          "reps": 8
+        },
+        {
+          "depth": 32,
+          "fwd_rev_tracedist_max": 0.28958218560752613,
+          "fwd_rev_tracedist_mean": 0.28958218560752613,
+          "reps": 16
+        }
+      ],
+      "depths": [
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "genuine_sub_base": "Ti WeylR (len2; depth d = reps*2 = 2,4,8,16,32)",
+      "growth_ratio": 1.0221962173080124,
+      "means": [
+        0.28329412758946654,
+        0.2899652367180167,
+        0.28958179088349684,
+        0.28958218560734234,
+        0.28958218560752613
+      ],
+      "saturates": true
+    }
+  },
+  "bloch_free": true,
+  "blocked_consumers": [
+    "any ratchet edge admission",
+    "ratchet thesis closure",
+    "pairwise nesting",
+    "coupling",
+    "bridge/Xi/Phi0/Axis0",
+    "flux/FEP/physics"
+  ],
+  "carrier": "density operators rho in D(C^2); genuine layer channels Ti/Te/Fi/Fe + Weyl-L/R GKSL + Ni-terrain GKSL; HS norm, trace norm. NO CTMRG, NO PEPS, NO optimization.",
+  "claim_ceiling": "MEASURES three ratchet signatures (accumulation-vs-depth, irreversibility residual, order-dependent survivor trace-distances) on the genuine channel set vs an explicit noise floor and a commuting control. Does NOT assert layer-completion / manifold admission / coupling / bridge / flux / FEP / physics. A ratchet signature here is a CANDIDATE order-memory interface, not a proven ratchet edge.",
+  "classification": "ratchet_accumulation_killtest_poc",
+  "irreversibility": {
+    "commuting_control": {
+      "note": "commuting z-pinches: reversed order == forward order as a composite, so the order-discriminating residual is EXACTLY 0 — the null. (The raw recover-rho residual is nonzero here too, which is why the raw number cannot be the discriminator.)",
+      "order_discriminating_residual_max": 6.06087439757635e-20,
+      "order_discriminating_residual_mean": 2.6484713738840588e-20,
+      "raw_recover_rho_residual_mean": 0.41328576682498824,
+      "recoverable": true,
+      "word": "Tz.30 Tz.55 Tz.65 Tz.80"
+    },
+    "genuine_heterogeneous": {
+      "irreversible": true,
+      "note": "order_discriminating = ||Phi_rev(Phi_fwd(rho)) - Phi_fwd(Phi_fwd(rho))||_1; nonzero => reversing the order on the second leg lands somewhere a forward leg would not (order written into state). raw_recover = the task's literal ||Phi_rev(Phi_fwd(rho)) - rho||_1 (relaxation-dominated, not used for verdict).",
+      "order_discriminating_residual_max": 0.35230885545126034,
+      "order_discriminating_residual_mean": 0.35230582685402956,
+      "raw_recover_rho_residual_max": 0.9500461671119156,
+      "raw_recover_rho_residual_mean": 0.4711415822867976,
+      "word": "Ti Fi WeylL Te Fe WeylR"
+    }
+  },
+  "n_rho": 20,
+  "noise_floor": {
+    "deepest_word_length": 96,
+    "definition": "eps(Float64) * max PTM HS scale (=2.0) * deepest word length (96) * 8 safety",
+    "machine_eps": 2.220446049250313e-16,
+    "max_ptm_hs_scale": 2.0,
+    "value": 3.410605131648481e-13
+  },
+  "non_numpy": true,
+  "object_id": "ratchet_accumulation_killtest",
+  "order_dependent_survivor": {
+    "commuting_control": {
+      "n_orderings": 4,
+      "note": "commuting z-pinches: every ordering composes to the same map, so every survivor is identical — the null.",
+      "pairwise_survivor_tracedist_all": [
+        1.3177747821765625e-82,
+        6.588874499973985e-83,
+        1.9766621209011813e-82,
+        1.976662114355723e-82,
+        3.2944368926050117e-82,
+        1.3177748312674949e-82
+      ],
+      "pairwise_survivor_tracedist_max": 3.2944368926050117e-82,
+      "same_survivor": true
+    },
+    "genuine_heterogeneous": {
+      "horizon_reps": 40,
+      "n_orderings": 6,
+      "note": "different orderings of the genuine channels to a long-time state from one fixed seed; large pairwise trace-distance => the order selects which survivor is admitted (ratchet basin).",
+      "order_picks_survivor": true,
+      "pairwise_survivor_tracedist_all": [
+        0.3527632184890449,
+        0.3429784869912421,
+        0.030813103216653176,
+        0.2580788597431382,
+        0.42165049584723047,
+        0.1291562212336847,
+        0.3564919776110488,
+        0.2876413485551136,
+        0.3239647342176054,
+        0.35372488795708884,
+        0.36594084000749494,
+        0.3195518866448176,
+        0.2536748120875747,
+        0.44370390106554813,
+        0.36238655629612804
+      ],
+      "pairwise_survivor_tracedist_max": 0.44370390106554813,
+      "pairwise_survivor_tracedist_mean": 0.30683475533089427
+    }
+  },
+  "promotion_allowed": false,
+  "reused_from": "order_null_killtest.jl (genuine channels read from L7/L10/L11 _bf layers); NO new channels invented.",
+  "script": "ratchet_accumulation_killtest.jl",
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive",
+    "Z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive: receipt emission.",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm), HS norms, channel/PTM algebra; every measured number flows through it.",
+    "Random": "load_bearing: random density operators (signatures measured over fresh samples, not planted).",
+    "Statistics": "supportive: means over the rho ensemble and over depth.",
+    "Z3": "load_bearing: binds the measured accumulation growth to the commuting law; verdict flips UNSAT->SAT on the commuting control."
+  },
+  "verdict": {
+    "classification": "mixed",
+    "control_accumulates": false,
+    "control_recoverable": true,
+    "control_same_survivor": true,
+    "controls_clean": true,
+    "interpretation": "necessary condition (per-pair noncommutation) was established by order_null_killtest.jl. This test asks the SUFFICIENT question: does the order effect ACCUMULATE (monotone depth growth), become IRREVERSIBLE (non-recoverable), and/or pick an ORDER-DEPENDENT SURVIVOR, with the commuting control flat. ratchet_accumulates requires all three above floor with controls clean; no_accumulation_just_perpair means the noncommutation does not aggregate into a ratchet; mixed means some signatures hold.",
+    "n_signatures_present": 2,
+    "signature_accumulation": false,
+    "signature_irreversibility": true,
+    "signature_order_dependent_survivor": true,
+    "z3_load_bearing_flip": true
+  },
+  "z3_load_bearing": {
+    "commuting_accumulation_growth": 0.0,
+    "commuting_verdict": "sat",
+    "encoding": "FREE int growth, FREE bool commuting_set; law Or([Not(commuting_set), growth==0]); assert commuting_set=true + growth==IntVal(measured). genuine: unsat; commuting: sat.",
+    "genuine_accumulation_growth": 0.00017657127549608465,
+    "genuine_verdict": "unsat",
+    "load_bearing_flip": true
+  }
+}

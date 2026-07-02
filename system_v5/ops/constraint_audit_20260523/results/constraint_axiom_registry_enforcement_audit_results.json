@@ -1,0 +1,567 @@
+{
+  "kind": "constraint_axiom_registry_enforcement_audit",
+  "generated_at": "2026-05-23T20:09:22Z",
+  "claim_ceiling": "audit_control_packet_only_not_formal_admission",
+  "all_pass": true,
+  "registry": [
+    {
+      "code": "F01",
+      "name": "Finitude",
+      "kind": "root_constraint",
+      "statement": "All carriers, probes, operators, paths, registries, and witnesses are finite.",
+      "aliases": [
+        "RC-1",
+        "C1_finitude",
+        "BC finite witness discipline"
+      ],
+      "source_status": "repo_local_primary",
+      "enforcement": {
+        "static_check": "Require explicit finite dimensions/counts; reject continuum or completed-infinity primitives.",
+        "runtime_gate": "Every sim reports finite carrier_dim, finite path_count/registry_count, and terminates.",
+        "negative_controls": [
+          "infinite/implicit continuum carrier",
+          "constant fake finite witness"
+        ],
+        "current_status": "clean rebuild 001-008 all use finite fixtures; old Tier Status says original Resolution 0 had no executable validator."
+      },
+      "notes": ""
+    },
+    {
+      "code": "N01",
+      "name": "Noncommutation",
+      "kind": "root_constraint",
+      "statement": "Composition is order-sensitive in general; AB and BA cannot be swapped by default.",
+      "aliases": [
+        "RC-2",
+        "C2_noncommutation"
+      ],
+      "source_status": "repo_local_primary",
+      "enforcement": {
+        "static_check": "Require at least one named noncommuting operator pair or channel composition.",
+        "runtime_gate": "Measure order gap against a commuting negative control.",
+        "negative_controls": [
+          "commuting operators",
+          "maximally mixed/joint eigenspace state that hides order"
+        ],
+        "current_status": "clean rebuild 001 order gap is nonzero and commuting control collapses."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EA01",
+      "name": "No Primitive Identity",
+      "kind": "extended_axiom",
+      "statement": "Identity is admitted only relative to a finite probe family; no bare token self-identity is primitive.",
+      "aliases": [
+        "Extended axiom 1",
+        "BC04",
+        "no_primitive_identity"
+      ],
+      "source_status": "repo_local_primary_but_under_gated",
+      "enforcement": {
+        "static_check": "Reject bare a == a / object-id identity claims as evidence.",
+        "runtime_gate": "Build finite probe family and show identity is stable across the active probes.",
+        "negative_controls": [
+          "label-only identity",
+          "same memory/object id treated as ontology"
+        ],
+        "current_status": "iter_223 says no_primitive_identity remains not gated in Codex's older scouts."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EA02",
+      "name": "Probe-Relative Indistinguishability",
+      "kind": "extended_axiom",
+      "statement": "a ~ b iff all admissible finite probes in the active family fail to distinguish them.",
+      "aliases": [
+        "Extended axiom 2",
+        "BC05",
+        "BC08",
+        "EC07",
+        "no_primitive_equality"
+      ],
+      "source_status": "repo_local_primary_plus_sidequest_gate",
+      "enforcement": {
+        "static_check": "Reject single-probe equality unless the probe family is declared complete for the claim.",
+        "runtime_gate": "Compare probe vectors across a finite active family; richer probes must catch z-only equality smuggling.",
+        "negative_controls": [
+          "z-only equality",
+          "substitutability without probe family"
+        ],
+        "current_status": "side-quest iter_223 gates this; clean rebuild still needs a torch-native canonical gate if promoted."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EA03",
+      "name": "Boundary/Contrast Identity Principle",
+      "kind": "extended_axiom",
+      "statement": "Self-identity in the doctrine sense requires boundary or contrast under admissible probes.",
+      "aliases": [
+        "Extended axiom 3",
+        "no_cartesian_center_points"
+      ],
+      "source_status": "repo_local_primary_but_ambiguous",
+      "enforcement": {
+        "static_check": "Reject identity claims that do not name a contrast class or boundary probe.",
+        "runtime_gate": "Show the candidate remains distinguishable from a matched null under finite probes.",
+        "negative_controls": [
+          "center-point primitive",
+          "uncontrasted singleton self-identity"
+        ],
+        "current_status": "partially covered by no-center gates in older formal scouts; not isolated in clean rebuild."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EA04",
+      "name": "No Primitive Time Or Causality",
+      "kind": "extended_axiom",
+      "statement": "Ordered composition exists without wall-clock time; causal order is earned by algebraic order content.",
+      "aliases": [
+        "Extended axiom 4",
+        "EC11",
+        "T2_01"
+      ],
+      "source_status": "repo_local_primary_plus_sidequest_gate",
+      "enforcement": {
+        "static_check": "Ban wall-clock variables as explanatory primitives for order.",
+        "runtime_gate": "Show noncommuting order gap and commuting order collapse on the same finite carrier.",
+        "negative_controls": [
+          "clock-index-only causality",
+          "commuting sequence claimed causal"
+        ],
+        "current_status": "clean rebuild 001/005 use finite path order; side-quest iter_223 gates EC11."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EA05",
+      "name": "No Primitive Coordinates, Metric, Or Geometry",
+      "kind": "extended_axiom",
+      "statement": "Coordinate charts, metrics, and geometry are induced after the finite QIT carrier, not primitive.",
+      "aliases": [
+        "Extended axiom 5",
+        "BC10",
+        "T8_01",
+        "EC15"
+      ],
+      "source_status": "repo_local_primary_plus_sidequest_gate",
+      "enforcement": {
+        "static_check": "Reject raw coordinate distance or chart labels as invariant evidence.",
+        "runtime_gate": "Use invariant readouts such as trace distance plus chart-scramble controls.",
+        "negative_controls": [
+          "coordinate-only distance",
+          "geometry assumed before carrier proof"
+        ],
+        "current_status": "clean rebuild 002 derives Hopf/Weyl readouts from spinors; side-quest EC15 gate is advisory."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EA06",
+      "name": "No Closure By Default",
+      "kind": "extended_axiom",
+      "statement": "Closure, completeness, associativity, identity, and inverse properties must be earned for each operation family.",
+      "aliases": [
+        "Extended axiom 6",
+        "BC07",
+        "T2_03",
+        "EC12"
+      ],
+      "source_status": "repo_local_primary_plus_sidequest_gate",
+      "enforcement": {
+        "static_check": "Reject group/semigroup claims unless closure properties are explicitly checked.",
+        "runtime_gate": "Test operation family with identity/inverse/closure controls; amplitude damping should fail inverse.",
+        "negative_controls": [
+          "amplitude damping treated as invertible",
+          "transitive closure by adjacency"
+        ],
+        "current_status": "side-quest EC12 exists; clean rebuild does not yet isolate an EA06 gate."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EA07",
+      "name": "Finite Witness Discipline",
+      "kind": "extended_axiom",
+      "statement": "Every admissible claim requires a finite, reproducible witness.",
+      "aliases": [
+        "Extended axiom 7",
+        "formal-scout hard gate: finite witness"
+      ],
+      "source_status": "repo_local_primary",
+      "enforcement": {
+        "static_check": "Reject prose-only claims without receipt path, finite fixture, and reproducible command.",
+        "runtime_gate": "Fresh rerun reproduces the finite receipt.",
+        "negative_controls": [
+          "claim without receipt",
+          "unbounded queue/proof obligation"
+        ],
+        "current_status": "clean rebuild 001-008 have receipts; broad formal estate remains dirty/contaminated."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EC08",
+      "name": "No Cloning Or Broadcasting For Noncommuting States",
+      "kind": "derived_constraint",
+      "statement": "Nonorthogonal/noncommuting states cannot be copied or broadcast by one admissible operation.",
+      "aliases": [
+        "no_cloning",
+        "no_broadcasting"
+      ],
+      "source_status": "sidequest_numbered_not_in_readonly_extended_axiom_table",
+      "enforcement": {
+        "static_check": "Reject copy/broadcast primitives unless restricted to compatible/orthogonal families.",
+        "runtime_gate": "No-cloning inequality or fidelity bound for nonorthogonal pair; orthogonal pair as positive control.",
+        "negative_controls": [
+          "CNOT copy attempt on |0> and |+>",
+          "broadcasting noncommuting density family"
+        ],
+        "current_status": "side-quest iter_223 gates this with NumPy; needs torch-native if moved into clean rebuild."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EC09",
+      "name": "No Primitive Probability",
+      "kind": "derived_constraint",
+      "statement": "Probabilities are probe-derived statistics, never free distributions at root.",
+      "aliases": [
+        "BC09",
+        "probability ban"
+      ],
+      "source_status": "repo_local_fence_plus_sidequest_gate",
+      "enforcement": {
+        "static_check": "Require every probability to name a POVM/effect/probe.",
+        "runtime_gate": "Same state under two probes gives different values; primitive-p null fails.",
+        "negative_controls": [
+          "unconditioned p(x)",
+          "probability distribution with no probe"
+        ],
+        "current_status": "side-quest iter_223 gates this; clean rebuild QIT-FEP uses effects/path evidence but no standalone EC09 gate."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EC10",
+      "name": "No Primitive Optimization Or Utility",
+      "kind": "derived_constraint",
+      "statement": "Optimization requires a declared functional; there is no primitive best state.",
+      "aliases": [
+        "BC11",
+        "optimization ban"
+      ],
+      "source_status": "repo_local_fence_plus_sidequest_gate",
+      "enforcement": {
+        "static_check": "Require named objective/functional and domain for any optimum.",
+        "runtime_gate": "Show different admissible functionals pick different optima.",
+        "negative_controls": [
+          "best state with no F",
+          "utility imported as primitive"
+        ],
+        "current_status": "side-quest iter_223 gates this; clean rebuild 005 reports readout disagreement."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EC13",
+      "name": "No Outside Observer",
+      "kind": "derived_constraint",
+      "statement": "Probe and probed are represented in the same finite substrate; observer split is not primitive.",
+      "aliases": [
+        "observer ban"
+      ],
+      "source_status": "sidequest_numbered_plus_process_doc",
+      "enforcement": {
+        "static_check": "Reject external observer variables that do not enter the joint state.",
+        "runtime_gate": "Represent observer/probed as rho_AB and show reduced state/back-action depends on joint construction.",
+        "negative_controls": [
+          "classical measurement device outside H",
+          "trace over unmodeled observer"
+        ],
+        "current_status": "clean rebuild 004-005 use rho_AB cuts; no dedicated observer back-action gate yet."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EC14",
+      "name": "No Global Total Order",
+      "kind": "derived_constraint",
+      "statement": "No scalar invariant may linearly rank all states or candidates by default.",
+      "aliases": [
+        "BC06",
+        "T6_03"
+      ],
+      "source_status": "repo_local_fence_plus_sidequest_gate",
+      "enforcement": {
+        "static_check": "Reject scalar ranking unless it declares scope and incomparability behavior.",
+        "runtime_gate": "Construct same-entropy/different-operator states or incomparable readout vectors.",
+        "negative_controls": [
+          "entropy-only total rank",
+          "single score as ontology"
+        ],
+        "current_status": "clean rebuild 005/008 show no single Axis0 scalar survives; side-quest EC14 is advisory."
+      },
+      "notes": ""
+    },
+    {
+      "code": "EC16",
+      "name": "No Semantic Smuggling",
+      "kind": "derived_constraint",
+      "statement": "Renamed classical concepts must be rederived and retested under QIT constraints.",
+      "aliases": [
+        "BC12",
+        "anti-smuggling"
+      ],
+      "source_status": "repo_local_fence_plus_sidequest_gate",
+      "enforcement": {
+        "static_check": "Reject name reuse unless the classical property is re-proved or explicitly dropped.",
+        "runtime_gate": "Contrast classical MI positivity with coherent-information behavior and controls.",
+        "negative_controls": [
+          "classical Markov blanket renamed quantum blanket",
+          "utility/probability/time renamed without proof"
+        ],
+        "current_status": "clean rebuild QIT-FEP is scoped as candidate only; no final FEP/Axis0 semantics admitted."
+      },
+      "notes": ""
+    }
+  ],
+  "audit": {
+    "registry_count": 15,
+    "missing_enforcement_fields": [],
+    "duplicate_codes": [],
+    "roots_present": [
+      "F01",
+      "N01"
+    ],
+    "extended_axioms_present": [
+      "EA01",
+      "EA02",
+      "EA03",
+      "EA04",
+      "EA05",
+      "EA06",
+      "EA07"
+    ],
+    "derived_constraints_present": [
+      "EC08",
+      "EC09",
+      "EC10",
+      "EC13",
+      "EC14",
+      "EC16"
+    ],
+    "unresolved_numbering": {
+      "EC01_EC06": {
+        "status": "not_found_as_EC_numbers_in_current_repo_search",
+        "explanation": "The repo has Extended axiom 1-7 in the read-only constraint table, BC04-BC12 fences, C1-C8/X1-X8 charter rows, and side-quest EC07-EC16. A source that labels EC01 through EC06 by that exact EC namespace was not found.",
+        "do_not_infer": true
+      }
+    },
+    "numbered_ec_catalog": [
+      {
+        "code": "EC07",
+        "name": "No primitive equality",
+        "canonical_enforcement_row": "EA02",
+        "source_status": "sidequest_numbered_grok_sim_iter_223"
+      },
+      {
+        "code": "EC08",
+        "name": "No cloning / no broadcasting for noncommuting states",
+        "canonical_enforcement_row": "EC08",
+        "source_status": "sidequest_numbered_grok_sim_iter_223"
+      },
+      {
+        "code": "EC09",
+        "name": "No primitive probability",
+        "canonical_enforcement_row": "EC09",
+        "source_status": "sidequest_numbered_grok_sim_iter_223"
+      },
+      {
+        "code": "EC10",
+        "name": "No primitive optimization / utility",
+        "canonical_enforcement_row": "EC10",
+        "source_status": "sidequest_numbered_grok_sim_iter_223"
+      },
+      {
+        "code": "EC11",
+        "name": "No primitive time / causality",
+        "canonical_enforcement_row": "EA04",
+        "source_status": "sidequest_numbered_grok_sim_iter_223"
+      },
+      {
+        "code": "EC12",
+        "name": "No closure by default",
+        "canonical_enforcement_row": "EA06",
+        "source_status": "sidequest_numbered_grok_sim_iter_223"
+      },
+      {
+        "code": "EC13",
+        "name": "No outside observer",
+        "canonical_enforcement_row": "EC13",
+        "source_status": "sidequest_numbered_grok_sim_iter_223"
+      },
+      {
+        "code": "EC14",
+        "name": "No global total order",
+        "canonical_enforcement_row": "EC14",
+        "source_status": "sidequest_numbered_grok_sim_iter_223"
+      },
+      {
+        "code": "EC15",
+        "name": "No primitive coordinates / metric",
+        "canonical_enforcement_row": "EA05",
+        "source_status": "sidequest_numbered_grok_sim_iter_223"
+      },
+      {
+        "code": "EC16",
+        "name": "No semantic smuggling",
+        "canonical_enforcement_row": "EC16",
+        "source_status": "sidequest_numbered_grok_sim_iter_223"
+      }
+    ],
+    "numbered_ec_catalog_count": 10,
+    "numbered_ec01_ec06_found": false,
+    "charter_catalog": [
+      {
+        "code": "C1_finitude",
+        "name": "All state representations have finite dimension",
+        "maps_to": "F01"
+      },
+      {
+        "code": "C2_noncommutation",
+        "name": "There exists state-level order sensitivity for operator pairs",
+        "maps_to": "N01"
+      },
+      {
+        "code": "C3_cptp_admissibility",
+        "name": "Operations preserve trace, positivity, and complete positivity",
+        "maps_to": "CPTP contract"
+      },
+      {
+        "code": "C4_operational_equivalence",
+        "name": "Identity by admissible-probe indistinguishability",
+        "maps_to": "EA01/EA02"
+      },
+      {
+        "code": "C5_entropy_monotonicity",
+        "name": "Unitary entropy preservation and nonunitary entropy change",
+        "maps_to": "entropy flow"
+      },
+      {
+        "code": "C6_dual_loop_requirement",
+        "name": "Sustainable evolution requires deductive and inductive loops",
+        "maps_to": "dual-loop theorem"
+      },
+      {
+        "code": "C7_spinor_periodicity",
+        "name": "Full spinor cycle requires 720 degrees / 8 stages",
+        "maps_to": "spinor periodicity"
+      },
+      {
+        "code": "C8_ratchet_gain",
+        "name": "Net negentropy change is nonnegative over a full cycle",
+        "maps_to": "ratchet gain"
+      },
+      {
+        "code": "X1_gt_isolation",
+        "name": "Game-theory labels do not modify CPTP admissibility",
+        "maps_to": "overlay isolation"
+      },
+      {
+        "code": "X2_chirality_matters",
+        "name": "T-first and F-first orderings differ measurably",
+        "maps_to": "chirality/order"
+      },
+      {
+        "code": "X3_attractor_is_nash",
+        "name": "Engine attractor state is Nash-like under single-op deviations",
+        "maps_to": "attractor candidate"
+      },
+      {
+        "code": "X4_structure_saturation_stalls",
+        "name": "Structure-only seeking stalls through entropic debt",
+        "maps_to": "anti-structure-only"
+      },
+      {
+        "code": "X5_irrational_escape",
+        "name": "Temporary entropy increase enables escape from local minima",
+        "maps_to": "escape dynamics"
+      },
+      {
+        "code": "X6_refinement_noncommutative",
+        "name": "Refinement operators do not commute",
+        "maps_to": "N01 refinement"
+      },
+      {
+        "code": "X7_finite_stability",
+        "name": "Stability is scoped to finite perturbations",
+        "maps_to": "finite basin stability"
+      },
+      {
+        "code": "X8_holodeck_fixed_point",
+        "name": "Self-referential observer converges to a fixed point",
+        "maps_to": "observer fixed point candidate"
+      }
+    ],
+    "charter_catalog_count": 16,
+    "charter_arithmetic_note": "CONSTRAINT_SURFACE_AND_PROCESS.md says 24 constraints as C1-C8 plus X1-X8, but the checked YAML catalog contains 16 rows. Treat '24' as unresolved doc arithmetic until a master 24-row source is found.",
+    "clean_rebuild_receipts": [
+      {
+        "path": "system_v5/ops/clean_rebuild_20260523/results/rebuild_001_source_engine_chart_from_readonly_results.json",
+        "all_pass_or_pass": true
+      },
+      {
+        "path": "system_v5/ops/clean_rebuild_20260523/results/rebuild_002_flux_preaxis_weyl_hopf_from_readonly_results.json",
+        "all_pass_or_pass": true
+      },
+      {
+        "path": "system_v5/ops/clean_rebuild_20260523/results/rebuild_003_spinor_entropy_carrier_from_readonly_results.json",
+        "all_pass_or_pass": true
+      },
+      {
+        "path": "system_v5/ops/clean_rebuild_20260523/results/rebuild_004_xi_rho_ab_bridge_family_from_readonly_results.json",
+        "all_pass_or_pass": true
+      },
+      {
+        "path": "system_v5/ops/clean_rebuild_20260523/results/rebuild_005_qit_fep_axis0_batch_from_clean_xi_results.json",
+        "all_pass_or_pass": true
+      },
+      {
+        "path": "system_v5/ops/clean_rebuild_20260523/results/rebuild_006_matched_control_ensemble_from_clean_axis0_batch_results.json",
+        "all_pass_or_pass": true
+      },
+      {
+        "path": "system_v5/ops/clean_rebuild_20260523/results/rebuild_007_point_reference_survivor_stress_results.json",
+        "all_pass_or_pass": true
+      },
+      {
+        "path": "system_v5/ops/clean_rebuild_20260523/results/rebuild_008_clean_rebuild_status_classifier_results.json",
+        "all_pass_or_pass": true
+      }
+    ],
+    "clean_rebuild_all_receipts_pass": true,
+    "formal_estate": {
+      "formal_scout_source_count": 427,
+      "formal_scout_result_count": 427,
+      "contamination_status_lines": [
+        "?? system_v5/ops/CROSS_LANE_PHI0_KILL_CONVERGENCE_20260523.md",
+        "?? system_v5/ops/CROSS_LANE_SIM_INDEPENDENCE_RESET_20260523.md",
+        "?? system_v5/ops/FORMAL_GROK_BOUNDARY_DAMAGE_AUDIT_20260523.md",
+        "?? system_v5/ops/FORMAL_GROK_BOUNDARY_QUARANTINE_MANIFEST_20260523.json",
+        "?? system_v5/ops/FORMAL_GROK_SIM_REDO_PLAN_20260523.md",
+        "?? system_v5/ops/external_audits/three_artifact_run_20260523/",
+        "?? system_v5/ops/formal_scouts/sim_64_site_environment_contraction_section_connection_close_probe.py",
+        "?? system_v5/ops/formal_scouts/sim_64_site_environment_contraction_section_connection_close_v2_probe.py",
+        "?? system_v5/ops/formal_scouts/sim_section_connection_cluster_consolidated_audit_probe.py"
+      ],
+      "contamination_count": 9,
+      "audit_verdict": "do_not_use_as_clean_evidence_without_quarantine_or_rebuild"
+    },
+    "git_dirty_line_count": 46,
+    "all_pass": true
+  }
+}

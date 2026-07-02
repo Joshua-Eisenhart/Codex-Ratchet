@@ -1,0 +1,292 @@
+{
+  "F01_witness": "S^3 compact (max_norm_dev < 1e-10); order-gap bounded in [0,2]; flat C^2 control norm > 1.0; flat diagonal algebra gap = 0",
+  "N01_witness": "||[Jx,Jy]-i*Jz|| < 1e-10; ||[Jx,Jy]|| > 1e-6; cell cross-axis gap > 0.1; flat diagonal control gap ~ 0; Clifford ACS verified",
+  "bloch_free": true,
+  "blocked_consumers": [
+    "L12 entropy/cut/communication — blocked; needs L11 substage channels as cut-crossing operators",
+    "L13 gluing/groupoid/dynamic — blocked; needs order-gap pattern as transition data",
+    "pairwise/stack order tests — gated behind parent-complete + realness gate",
+    "Axis0/flux/FEP/bridge — downstream; NOT drivers; blocked until stack complete",
+    "layer-completion, manifold admission, coupling — NOT claimed here"
+  ],
+  "claim_ceiling": "PoC candidate. Does NOT assert layer-completion, manifold admission, coupling, bridge, flux, or physics. promotion_allowed=false.",
+  "classification": "L11_newstd_poc",
+  "criterion_1_finitude": {
+    "criterion_met": true,
+    "deciding_number": "S3 max_norm_dev=2.22e-16 (bar<1e-10); flat max_norm=4.5668 (bar>1.0); order_gap=0.31136 in [0,2] (compact carrier bound); flat_cartesian_gap=0.0 (bar<1e-10)",
+    "flat_cartesian_gap": 0.0,
+    "flat_gap_zero_PASS": true,
+    "flat_max_norm": 4.5668107737521,
+    "flat_unbounded_PASS": true,
+    "gap_bounded_PASS": true,
+    "order_gap_bounded_on_compact": true,
+    "order_gap_value_8sites": 0.31136015279682855,
+    "s3_compact_PASS": true,
+    "s3_max_norm_deviation": 2.220446049250313e-16
+  },
+  "criterion_2_noncommutation": {
+    "algebra_identity_diff_from_iJz": 0.0,
+    "algebra_identity_ok": true,
+    "cell_gap_above_floor_PASS": true,
+    "cell_level_cross_axis_gap": 0.31136015279682855,
+    "clifford_acs_max_dev": 0.0,
+    "clifford_acs_verified_PASS": true,
+    "criterion_met": true,
+    "deciding_number": "||[Jx,Jy]-i*Jz||=0.0 (bar<1e-10); flat ||[D1,D2]||=0.0 (bar<1e-12); Clifford ACS max_dev=0.0 (bar<1e-10); cell cross-axis gap=0.3114 (bar>0.1)",
+    "flat_commutes_PASS": true,
+    "nonzero_commutator_ok": true,
+    "norm_comm_Jx_Jy": 0.7071067811865476,
+    "norm_comm_flat_diag_control": 0.0
+  },
+  "criterion_3_chern_invariant": {
+    "N_lat_points": 512,
+    "c1_curvature_integral": 1.0000062749530494,
+    "c1_curvature_integral_ok_PASS": true,
+    "c1_hopf_rounds_to_1_PASS": true,
+    "c1_trivial_rounds_to_0_PASS": true,
+    "criterion_met": true,
+    "deciding_number": "winding_hopf=1.0 (bar |w-1|<0.5); winding_trivial=0.0 (bar |w-0|<0.5); c1_curvature=1.0",
+    "invariant_flips_PASS": true,
+    "method": "transition function g_NS(phi)=exp(i*phi) winding number; cross-checked via Berry curvature integral over S^2",
+    "why_not_latitude_berry_phase": "single-latitude Berry phase gives sin^2(theta/2) not c1; c1 requires transition function or full S^2 integral",
+    "winding_number_hopf": 1.0,
+    "winding_number_trivial": 0.0
+  },
+  "criterion_4_exact_carrier": {
+    "carrier_type": "exact 2x2 ComplexF64 density operator (no CTMRG)",
+    "contraction_err_control": 1.1102230246251565e-16,
+    "contraction_err_genuine": 1.1102230246251565e-16,
+    "criterion_met": true,
+    "deciding_number": "exact_dense err=1.11e-16 (bar<1e-10); MPS rungs: N_16, N_32, N_64, N_8",
+    "equal_budget_PASS": true,
+    "error_below_signal_PASS": true,
+    "exact_dense_ok_PASS": true,
+    "itensors_available": true,
+    "itensors_mps": {
+      "N_16": {
+        "bond_dim_control": 1,
+        "bond_dim_genuine": 1,
+        "equal_budget": true,
+        "holds": true,
+        "trunc_err_control": 0.0,
+        "trunc_err_genuine": 1.1102230246251565e-15
+      },
+      "N_32": {
+        "bond_dim_control": 1,
+        "bond_dim_genuine": 1,
+        "equal_budget": true,
+        "holds": true,
+        "trunc_err_control": 0.0,
+        "trunc_err_genuine": 1.4432899320127035e-15
+      },
+      "N_64": {
+        "bond_dim_control": 1,
+        "bond_dim_genuine": 1,
+        "equal_budget": true,
+        "holds": true,
+        "trunc_err_control": 0.0,
+        "trunc_err_genuine": 1.2212453270876722e-15
+      },
+      "N_8": {
+        "bond_dim_control": 1,
+        "bond_dim_genuine": 1,
+        "equal_budget": true,
+        "holds": true,
+        "trunc_err_control": 0.0,
+        "trunc_err_genuine": 4.440892098500626e-16
+      }
+    },
+    "mps_overall_ok": true,
+    "status": "MET"
+  },
+  "criterion_5_scale_ladder": {
+    "N_16": {
+      "expected_nonzero": 15,
+      "holds": true,
+      "max_order_gap": 0.31136015279682855,
+      "n_nonzero_edges": 15,
+      "nsites": 16
+    },
+    "N_32": {
+      "expected_nonzero": 31,
+      "holds": true,
+      "max_order_gap": 0.31136015279682855,
+      "n_nonzero_edges": 31,
+      "nsites": 32
+    },
+    "N_64": {
+      "expected_nonzero": 63,
+      "holds": true,
+      "max_order_gap": 0.31136015279682855,
+      "n_nonzero_edges": 63,
+      "nsites": 64
+    },
+    "N_8": {
+      "expected_nonzero": 7,
+      "holds": true,
+      "max_order_gap": 0.31136015279682855,
+      "n_nonzero_edges": 7,
+      "nsites": 8
+    },
+    "all_rungs_pass": true,
+    "criterion_met": true,
+    "deciding_number": "Rungs completed: N_16, N_32, N_64, N_8"
+  },
+  "criterion_6_neural_dynamics": {
+    "attractor_reached_PASS": true,
+    "criterion_met": true,
+    "deciding_number": "n_converged=8/8 (bar>=4); n_monotone=8/8 (bar=8)",
+    "energy_decrease_monotone_PASS": true,
+    "geometry_note": "S^3 curvature K=1 confines gradient flow; flat R^4 (K=0) would escape to infinity. Non-flat geometry supplies the stable attractor basin.",
+    "input_dependent_attractor": true,
+    "n_converged": 8,
+    "n_monotone": 8,
+    "n_patterns": 4,
+    "n_probes": 8,
+    "n_steps_per_probe": 200,
+    "probe_results": [
+      {
+        "converged": true,
+        "energy_decrease": 0.2501645464361566,
+        "final_energy": -2.308035997276099,
+        "initial_energy": -2.0578714508399423,
+        "monotone": true,
+        "probe": 1
+      },
+      {
+        "converged": true,
+        "energy_decrease": 0.281728546879942,
+        "final_energy": -2.3080356262467694,
+        "initial_energy": -2.0263070793668274,
+        "monotone": true,
+        "probe": 2
+      },
+      {
+        "converged": true,
+        "energy_decrease": 0.3812873145332558,
+        "final_energy": -2.3080337823322252,
+        "initial_energy": -1.9267464677989694,
+        "monotone": true,
+        "probe": 3
+      },
+      {
+        "converged": true,
+        "energy_decrease": 0.0743669959120532,
+        "final_energy": -2.3080372574898673,
+        "initial_energy": -2.233670261577814,
+        "monotone": true,
+        "probe": 4
+      },
+      {
+        "converged": true,
+        "energy_decrease": 0.30263067454941783,
+        "final_energy": -2.3080353383387284,
+        "initial_energy": -2.0054046637893106,
+        "monotone": true,
+        "probe": 5
+      },
+      {
+        "converged": true,
+        "energy_decrease": 0.11397282545091159,
+        "final_energy": -2.3080370525460108,
+        "initial_energy": -2.194064227095099,
+        "monotone": true,
+        "probe": 6
+      },
+      {
+        "converged": true,
+        "energy_decrease": 0.21953159934562505,
+        "final_energy": -2.308036299580769,
+        "initial_energy": -2.088504700235144,
+        "monotone": true,
+        "probe": 7
+      },
+      {
+        "converged": true,
+        "energy_decrease": 0.17247742903316388,
+        "final_energy": -2.3080366807050936,
+        "initial_energy": -2.1355592516719297,
+        "monotone": true,
+        "probe": 8
+      }
+    ],
+    "std_final_energies": 1.1172439247633928e-6
+  },
+  "finite_map": {
+    "F01": "S^3 compact (||psi||=1 everywhere); order-gap invariant bounded in [0,2]; flat R^4 control unbounded; flat diagonal algebra gives gap=0",
+    "N01": "su(2) [Jx,Jy]=i*Jz nonzero; cell-level cross-axis gap > 0.1; flat diagonal control commutes to ~0; Clifford ACS {Ga,Gb}=2*delta verified",
+    "codomain": "per-cell operator Phi_v (pinch+rotation about a(v)) + substage order-gap pattern {Delta(u,v)}",
+    "domain": "PEPS3D cells v of K=(V,E,F,C), each carrying psi_v in S^3, sheet axis a(v) in {z,x}",
+    "map": "G_L11 : (cell v, axis a(v)) -> Phi_v ;  (edge u~v) -> Delta(u,v) = max_rho ||Phi_u Phi_v rho - Phi_v Phi_u rho||_1",
+    "neural_dynamics": "Hopfield on S^3: E(psi)=-Re(psi^dag M psi); Riemannian gradient descent projected onto T_{psi}S^3; attractor settling confirmed; S^3 curvature K=1 confines flow",
+    "topological_invariant": "Chern class c1=1 for the U(1) Hopf bundle (S^3->S^2); Berry phase on latitude; trivial bundle gives c1=0 (FLIPS)"
+  },
+  "layer": "L11",
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_deciding": "||[Jx,Jy]-i*Jz||=0.0 (bar<1e-10); flat ||[D1,D2]||=0.0 (bar<1e-12); Clifford ACS max_dev=0.0 (bar<1e-10); cell cross-axis gap=0.3114 (bar>0.1)",
+    "exact_carrier": "MET",
+    "exact_carrier_deciding": "exact_dense err=1.11e-16 (bar<1e-10); MPS rungs: N_16, N_32, N_64, N_8",
+    "finitude": "MET",
+    "finitude_deciding": "S3 max_norm_dev=2.22e-16 (bar<1e-10); flat max_norm=4.5668 (bar>1.0); order_gap=0.31136 in [0,2] (compact carrier bound); flat_cartesian_gap=0.0 (bar<1e-10)",
+    "invariant_anchored": "MET",
+    "invariant_anchored_deciding": "winding_hopf=1.0 (bar |w-1|<0.5); winding_trivial=0.0 (bar |w-0|<0.5); c1_curvature=1.0",
+    "neural_dynamics": "MET",
+    "neural_dynamics_deciding": "n_converged=8/8 (bar>=4); n_monotone=8/8 (bar=8)",
+    "overall_fraction": "6/6",
+    "scale_ladder": "MET",
+    "scale_ladder_deciding": "Rungs completed: N_16, N_32, N_64, N_8",
+    "verdict": "GENUINELY-UPGRADED",
+    "weakest_criterion": "finitude"
+  },
+  "non_numpy": true,
+  "object_id": "L11_newstd",
+  "promotion_allowed": false,
+  "reused_l11_bf_core": {
+    "E1_collapsed": true,
+    "E2_collapsed": true,
+    "E3_collapsed": true,
+    "all_reused_pass": true,
+    "commuting_ctrl_gap": 0.0,
+    "commuting_ctrl_null": true,
+    "entropy_after_z": 0.5861240337005253,
+    "entropy_before": 3.223619130191664e-13,
+    "identity_ctrl_null": true,
+    "max_order_gap": 0.31136015279682855,
+    "n_noncommuting_pairs_of_6": 3,
+    "n_nonzero_edges": 7,
+    "nsites": 8,
+    "pairwise_density_order_gap": {
+      "Fi,Fe": 0.86456757,
+      "Te,Fe": 0.55984504,
+      "Te,Fi": 0.0,
+      "Ti,Fe": 0.0,
+      "Ti,Fi": 0.46999615,
+      "Ti,Te": 0.0
+    },
+    "peps3d": {
+      "C": 1,
+      "E": 12,
+      "F": 6,
+      "V": 8,
+      "euler_VEFC": 1,
+      "grid": "2x2x2",
+      "n_substage_cells": 8
+    },
+    "same_axis_op_is_real": true,
+    "z3_erased_verdict": "sat",
+    "z3_genuine_verdict": "unsat",
+    "z3_load_bearing": true
+  },
+  "script": "layers/L11_newstd.jl",
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes",
+  "tool_manifest": {
+    "ITensors/ITensorMPS": "load_bearing — MPS exact carrier (bond-dim 1 product states, no CTMRG)",
+    "JSON": "load_bearing — emits the receipt",
+    "LinearAlgebra": "load_bearing — svdvals (trace norm), eigvals (entropy), norm (Frobenius), tr (PTM)",
+    "Random": "load_bearing — Haar-random spinors; inputs never planted",
+    "Statistics": "load_bearing — std certifies input-dependence in ensemble",
+    "Z3": "load_bearing — order-obstruction SAT/UNSAT verdict flips on erased input"
+  }
+}

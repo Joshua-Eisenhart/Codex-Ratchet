@@ -1,0 +1,87 @@
+{
+  "artifact_id": "formal_layer_L1_peps3d_boundary_mps_environment_20260526",
+  "kind": "formal_layer_ledger",
+  "schema": "formal_layer_ledger_v1",
+  "created_at": "2026-05-26T21:02:24Z",
+  "layer_id": "L1_peps3d_closure_environment_boundary_mps_layer",
+  "variant_id": "L1a_finite_chi_boundary_environment_on_PEPS3D_K",
+  "status": "L1a_complete_for_tested_finite_scope",
+  "classification": "formal_scout",
+  "working_geometry_plain": "The working L1 geometry is a bounded finite-chi boundary-MPS environment readout carried by PEPS3D anchors. Finite spinor-derived site densities seed local PEPS3D tensors on K=(V,E,F,C). Boundary sites are scanned by finite chi MPS transfer matrices to produce environment signatures, cyclic trace-closure residuals, local order-gap readouts, and QIT entropy/cut readouts. This is still a local finite layer lego, not layer stacking and not a full PEPS3D environment theorem.",
+  "finite_map": "L1_EK_chi : (K=(V,E,F,C), finite PEPS3D local tensors T_v, finite boundary surface partial order, finite chi in {2,4}, finite projective paths A->B and B->A) -> finite boundary-MPS environment signatures, cyclic boundary closure residuals, order-gap readouts, and local QIT entropy/cut readouts",
+  "domain": "finite PEPS3D carriers K for shapes (2,2,2), (4,2,2), (4,4,2), (4,4,4); finite anchors V,E,F,C; finite spinors {|0>,|1>,|+>,|->}; finite spinor-derived densities rho_v; finite local tensors with bond_dim=2 and physical effect index; finite boundary-MPS chi in {2,4}; finite paths {Z0->X+, X+->Z0}",
+  "codomain_or_output": "finite boundary-site lists, finite boundary-MPS tensor/matrix rows, environment singular signatures, cyclic trace-closure residuals, sequential boundary order gaps, local von Neumann/Renyi2/MI/conditional/coherent entropy readouts, tool-ablation statuses, and 8/16/32/64 stress summaries",
+  "source_path": "system_v5/ops/formal_scouts/sim_l1_peps3d_boundary_mps_environment_layer_probe.py",
+  "result_path": "system_v5/ops/formal_scouts/results/l1_peps3d_boundary_mps_environment_layer_probe_results.json",
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/l0_response_quotient_peps3d_entropy_layer_probe_results.json",
+    "system_v5/ops/formal_scouts/formal_layer_L0_response_quotient_peps3d_entropy_20260526.json",
+    "system_v5/legos/results/peps3d_closure_2x2x2_pyg_xgi_pytorch_z3_results.json"
+  ],
+  "F01_witness": "finite K=(V,E,F,C), spinors, densities, probes/effects, projective paths, local PEPS3D tensors, finite chi boundary-MPS matrices, entropy readouts, and stress rows",
+  "N01_witness": "Z0->X+ and X+->Z0 projective paths produce different boundary-MPS environment signatures while order-erased same-projector control collapses",
+  "PEPS3D_anchor": {
+    "carrier": "K=(V,E,F,C)",
+    "stress_shapes": [
+      [2, 2, 2],
+      [4, 2, 2],
+      [4, 4, 2],
+      [4, 4, 4]
+    ],
+    "max_sites": 64,
+    "peps3d_bond_dim": 2,
+    "boundary_mps_chi": [2, 4],
+    "anchor_types": ["V", "E", "F", "C"]
+  },
+  "torch_spinor_or_density": "torch-native two-component spinors {|0>,|1>,|+>,|->}; densities rho_v = psi_v psi_v^dagger; local PEPS3D tensors and boundary-MPS matrices are torch complex tensors",
+  "entropy_status": "von Neumann, Renyi2, mutual information, conditional entropy, and coherent information run on local boundary environment/cut readouts",
+  "scale_status": "8/16/32/64 PEPS3D site stress passed at bond_dim=2 and boundary-MPS chi in {2,4}; dense global state/environment closure not used",
+  "tools_load_bearing": [
+    "pytorch",
+    "pyg",
+    "rustworkx",
+    "xgi",
+    "toponetx",
+    "gudhi",
+    "clifford",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "controls_that_hold": [
+    "non-IC single-probe collapse",
+    "scalar PEPS physical-index rejection",
+    "boundary anchor erasure or illegal boundary rejection",
+    "chi=1 boundary-MPS weakening control",
+    "order-erased same-projector collapse",
+    "product cut entropy collapse",
+    "max-mixed site entropy boundary",
+    "dense global state/environment closure blocked"
+  ],
+  "blocked_downstream_consumers": [
+    "L2-L8 as stacked consumers",
+    "matrix/layer stacking",
+    "full PEPS3D environment theorem",
+    "bridge",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes7-12",
+    "final manifold"
+  ],
+  "promotion_allowed": false,
+  "campaign_terminal": false,
+  "next_layer": "L2_spinor_chirality_weyl_cover_layer",
+  "next_variant": "L2a_finite_LR_Weyl_cover_on_PEPS3D_boundary_carrier",
+  "validation": {
+    "run_command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/sim_l1_peps3d_boundary_mps_environment_layer_probe.py",
+    "lint_command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_l1_peps3d_boundary_mps_environment_layer_probe.py",
+    "formal_validator_command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py system_v5/ops/formal_scouts/results/l1_peps3d_boundary_mps_environment_layer_probe_results.json",
+    "run_status": "pass_exit_0_summary_all_pass_true",
+    "lint_status": "pass_exit_0_violation_total_0",
+    "formal_validator_status": "pass_exit_0_all_pass_true"
+  }
+}

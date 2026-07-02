@@ -1,0 +1,151 @@
+{
+  "E_entanglement": {
+    "bond_collapsed": 2,
+    "bond_entangled": 2,
+    "bond_product": 1,
+    "collapsed_single_eta_cut_entropies": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "controls": {
+      "nesting_collapse_single_eta_zero": true,
+      "product_control_zero": true
+    },
+    "entangled_cut_entropies": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "entanglement_load_bearing": true,
+    "half_chain_entropy_collapsed": 1.0,
+    "half_chain_entropy_entangled": 0.0,
+    "inter_shell_cut_bonds": [
+      3,
+      6,
+      9,
+      12
+    ],
+    "max_collapsed_inter_shell_cut": 0.0,
+    "max_product_inter_shell_cut": 0.0,
+    "min_entangled_inter_shell_cut": 1.0,
+    "n_shells": 5,
+    "n_sites": 15,
+    "product_cut_entropies": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell1_rdm_valid_hermitian_trace1": true,
+    "shell1_rdm_vn_entropy_partial_trace": 1.0000000000000002,
+    "sites_per_shell": 3
+  },
+  "G1_leaf_area": {
+    "invariant": "A(eta)=2pi^2 sin(2eta)",
+    "ladder_anchored": true,
+    "max_abs_err": 4.792610752701876e-12,
+    "monotone_increasing_0_to_pi4": true,
+    "rows": {
+      "0.2618": {
+        "abs_err": 4.973799150320701e-14,
+        "analytic": 9.869604401089356,
+        "collapsed_wrong_structure": 0.0,
+        "measured": 9.869604401089306
+      },
+      "0.5236": {
+        "abs_err": 4.789058039023075e-12,
+        "analytic": 17.094656273292166,
+        "collapsed_wrong_structure": 0.0,
+        "measured": 17.094656273287377
+      },
+      "0.7854": {
+        "abs_err": 1.0302869668521453e-13,
+        "analytic": 19.739208802178716,
+        "collapsed_wrong_structure": 0.0,
+        "measured": 19.739208802178613
+      },
+      "1.0472": {
+        "abs_err": 4.792610752701876e-12,
+        "analytic": 17.09465627329217,
+        "collapsed_wrong_structure": 0.0,
+        "measured": 17.094656273287377
+      },
+      "1.309": {
+        "abs_err": 4.973799150320701e-14,
+        "analytic": 9.869604401089356,
+        "collapsed_wrong_structure": 0.0,
+        "measured": 9.869604401089306
+      }
+    },
+    "wrong_structure_fails_ladder": true,
+    "wrong_structure_max_area": 0.0
+  },
+  "G2_hopf_linking": {
+    "cores_link_pm1": true,
+    "generic_link_pm1": true,
+    "invariant": "Gauss linking number in Z; Hopf link = +-1",
+    "lk_cores": 0.9999593710533949,
+    "lk_generic": 1.002435232239819,
+    "measured_link_int": 1,
+    "wrong_structure_fails_lk0": true,
+    "wrong_structure_unlinked_lk": 0.0
+  },
+  "G3_chern": {
+    "c1_hopf": -1.0000102808713354,
+    "c1_trivial": 0.0,
+    "hopf_absC1_is_1": true,
+    "invariant": "first Chern number of U(1) Hopf bundle; |c1|=1",
+    "measured_chern_int": -1,
+    "trivial_is_0": true,
+    "wrong_structure_fails_frozen_is0": true,
+    "wrong_structure_frozen_c1": 0.0
+  },
+  "Z_z3_structural": {
+    "all_corruptions_unsat": true,
+    "corruptions": {
+      "broken_area_sign": false,
+      "broken_chern_0": false,
+      "broken_kill_chern_nz": false,
+      "broken_kill_link_nz": false,
+      "broken_link_0": false
+    },
+    "genuine_tuple_sat": true,
+    "status": "load_bearing_pass",
+    "theory_alone_sat": true,
+    "tool_role": "load_bearing"
+  },
+  "all_pass": true,
+  "bloch_free": true,
+  "bloch_free_note": "All quantum readouts are density-operator / Schmidt-spectrum based (partial-trace RDM eigenvalues, SVD Schmidt coefficients, projector curvature). No Bloch r-vector Tr(rho sigma) anywhere.",
+  "carrier": "ITensors MPS (C^2 Weyl-spinor fibre per node); LinearAlgebra; Z3 load-bearing; JSON",
+  "checks": {
+    "E_entanglement_load_bearing": true,
+    "E_nesting_collapse_zero": true,
+    "E_product_control_zero": true,
+    "E_rdm_valid_partial_trace": true,
+    "G1_area_ladder_anchored": true,
+    "G1_area_monotone_increasing": true,
+    "G1_wrong_structure_fails_area": true,
+    "G2_cores_hopf_linked_pm1": true,
+    "G2_generic_core_linked_pm1": true,
+    "G2_wrong_structure_unlinked_is0": true,
+    "G3_hopf_chern_abs1": true,
+    "G3_trivial_chern_is0": true,
+    "G3_wrong_structure_frozen_is0": true,
+    "Z_z3_load_bearing": true
+  },
+  "classification": "nested_hopf_tori_spinor_network_poc",
+  "invariants_anchored": {
+    "first_chern": "first Chern number of U(1) Hopf bundle; |c1|=1",
+    "hopf_linking": "Gauss linking number in Z; Hopf link = +-1",
+    "leaf_area": "A(eta)=2pi^2 sin(2eta) (closed form, compared post-hoc)"
+  },
+  "non_circularity_note": "No measured quantity is set equal to its target. Leaf area is integrated from the R^4 embedding and only afterward compared to 2pi^2 sin(2eta); linking is the Gauss integral checked against integer +-1; Chern is the Berry-curvature integral checked against |c1|=1. Each invariant has a WRONG-STRUCTURE control (same-phase 1-cycle for area, unlinked circles for linking, frozen base-independent projector for Chern) that FAILS the invariant. Entanglement is load-bearing: the cross-shell cut entropy is > 0 while the product control and the single-eta nesting-collapse control both go to ~0. All quantum readouts are density-operator / Schmidt-spectrum based; NO Bloch r-vector anywhere.",
+  "object": "nested_hopf_tori_spinor_network_poc",
+  "promotion_allowed": false,
+  "status": "passes",
+  "status_ladder": "exists < runs < passes"
+}

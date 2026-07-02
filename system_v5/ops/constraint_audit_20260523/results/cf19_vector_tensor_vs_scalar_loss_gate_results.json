@@ -1,0 +1,74 @@
+{
+  "schema": "cf19_vector_tensor_vs_scalar_loss_gate_result_v1",
+  "name": "cf19_vector_tensor_vs_scalar_loss_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-19",
+  "gate": "EG-CF19-vector-tensor-vs-scalar-loss",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-19 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite density states, vector readouts, scalar-collapse control, and declared projection boundary"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:09:28Z",
+  "runtime_seconds": 0.0023648738861083984,
+  "positive": {
+    "pass": true,
+    "readout_basis": [
+      "X_expectation",
+      "Z_expectation"
+    ],
+    "vector_x": [
+      0.62,
+      0.0
+    ],
+    "vector_z": [
+      0.0,
+      0.6200000000000001
+    ],
+    "vector_gap": 0.876812408671319,
+    "scalar_sum_abs_x": 0.62,
+    "scalar_sum_abs_z": 0.6200000000000001,
+    "scalar_gap": 1.1102230246251565e-16
+  },
+  "negative": {
+    "pass": false,
+    "expected": "fail",
+    "negative_case_type": "executable_rejection",
+    "negative_rejected": true,
+    "attempted_claim": {
+      "scalar": "sum(abs([X_expectation, Z_expectation]))",
+      "projection_declared": false,
+      "loss_reported": false,
+      "vector_readout_available": true
+    },
+    "lost_vector_gap": 0.876812408671319,
+    "scalar_gap_after_loss": 1.1102230246251565e-16
+  },
+  "boundary": {
+    "pass": true,
+    "projection_declared": true,
+    "weights": [
+      1.0,
+      0.0
+    ],
+    "loss_declared": "Z component intentionally discarded by X-only probe",
+    "projected_x": 0.62,
+    "projected_z": 0.0,
+    "projected_gap": 0.62,
+    "interpretation": "a scalar is admissible as a declared projection with stated loss, not as a primitive total order"
+  },
+  "all_pass": true
+}

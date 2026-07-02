@@ -1,0 +1,181 @@
+{
+  "lane": "popper",
+  "target_claim": "geometric linking number k == entanglement log-negativity, as a TOPOLOGICAL identity",
+  "construction_under_attack": "entangle one Bell pair (CNOT) at each geometric crossing of the (1,k) diagram",
+  "exact_fact": "log-negativity of one Bell pair = 0.9999999999999997 (verified); additive -> n pairs give LN=n",
+  "falsifier": "Reidemeister-I kink: adds a diagram crossing, leaves topological linking number k fixed",
+  "predicted_result": "naive LN grows with crossings (LN = k + n_kinks) while k is constant -> LN != k",
+  "minimal_coincidence": "LN == k holds ONLY on the minimal diagram, where #crossings happens to equal k",
+  "classification": "crossing-count-only (planted coincidence on the minimal diagram)",
+  "claim_status": "KILLED",
+  "what_would_save_it": "exhibit a construction whose entangling pattern is R-I-INVARIANT (entangle on a diagram invariant such as the Gauss linking integral / writhe-corrected linking, not raw crossings) AND show LN constant under the R-I kink",
+  "codex2_kill_signal": "if codex2's crossings-construction shows log-negativity INCREASE under an R-I kink while k is held fixed -> identity is KILLED, demoted to crossing-count",
+  "codex2_save_signal": "if codex2 exhibits an R-I-invariant entangling rule and LN stays == k across kinks AND across distinct diagrams of the same (1,k) link -> survives this lane",
+  "rows": [
+    {
+      "k": 1,
+      "minimal_diagram_crossings": 1,
+      "topological_linking_k": 1,
+      "naive_LN_minimal": 1.0,
+      "minimal_LN_equals_k": true,
+      "after_reidemeister_I": [
+        {
+          "n_kinks": 1,
+          "diagram_crossings": 2,
+          "topological_k": 1,
+          "naive_LN": 2.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        },
+        {
+          "n_kinks": 2,
+          "diagram_crossings": 3,
+          "topological_k": 1,
+          "naive_LN": 3.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        },
+        {
+          "n_kinks": 3,
+          "diagram_crossings": 4,
+          "topological_k": 1,
+          "naive_LN": 4.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        }
+      ]
+    },
+    {
+      "k": 2,
+      "minimal_diagram_crossings": 2,
+      "topological_linking_k": 2,
+      "naive_LN_minimal": 2.0,
+      "minimal_LN_equals_k": true,
+      "after_reidemeister_I": [
+        {
+          "n_kinks": 1,
+          "diagram_crossings": 3,
+          "topological_k": 2,
+          "naive_LN": 3.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        },
+        {
+          "n_kinks": 2,
+          "diagram_crossings": 4,
+          "topological_k": 2,
+          "naive_LN": 4.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        },
+        {
+          "n_kinks": 3,
+          "diagram_crossings": 5,
+          "topological_k": 2,
+          "naive_LN": 5.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        }
+      ]
+    },
+    {
+      "k": 3,
+      "minimal_diagram_crossings": 3,
+      "topological_linking_k": 3,
+      "naive_LN_minimal": 3.0,
+      "minimal_LN_equals_k": true,
+      "after_reidemeister_I": [
+        {
+          "n_kinks": 1,
+          "diagram_crossings": 4,
+          "topological_k": 3,
+          "naive_LN": 4.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        },
+        {
+          "n_kinks": 2,
+          "diagram_crossings": 5,
+          "topological_k": 3,
+          "naive_LN": 5.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        },
+        {
+          "n_kinks": 3,
+          "diagram_crossings": 6,
+          "topological_k": 3,
+          "naive_LN": 6.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        }
+      ]
+    },
+    {
+      "k": 4,
+      "minimal_diagram_crossings": 4,
+      "topological_linking_k": 4,
+      "naive_LN_minimal": 4.0,
+      "minimal_LN_equals_k": true,
+      "after_reidemeister_I": [
+        {
+          "n_kinks": 1,
+          "diagram_crossings": 5,
+          "topological_k": 4,
+          "naive_LN": 5.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        },
+        {
+          "n_kinks": 2,
+          "diagram_crossings": 6,
+          "topological_k": 4,
+          "naive_LN": 6.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        },
+        {
+          "n_kinks": 3,
+          "diagram_crossings": 7,
+          "topological_k": 4,
+          "naive_LN": 7.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        }
+      ]
+    },
+    {
+      "k": 5,
+      "minimal_diagram_crossings": 5,
+      "topological_linking_k": 5,
+      "naive_LN_minimal": 5.0,
+      "minimal_LN_equals_k": true,
+      "after_reidemeister_I": [
+        {
+          "n_kinks": 1,
+          "diagram_crossings": 6,
+          "topological_k": 5,
+          "naive_LN": 6.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        },
+        {
+          "n_kinks": 2,
+          "diagram_crossings": 7,
+          "topological_k": 5,
+          "naive_LN": 7.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        },
+        {
+          "n_kinks": 3,
+          "diagram_crossings": 8,
+          "topological_k": 5,
+          "naive_LN": 8.0,
+          "LN_equals_k": false,
+          "LN_equals_crossing_count": true
+        }
+      ]
+    }
+  ]
+}

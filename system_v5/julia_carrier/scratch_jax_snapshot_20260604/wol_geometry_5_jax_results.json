@@ -1,0 +1,110 @@
+{
+    "F01": "finite eta ladder, finite midpoint grids, finite core polygons, and bounded numeric outputs only",
+    "N01": "SU(2) spin-half generators have nonzero commutator norm; diagonal flat control commutes",
+    "all_pass": true,
+    "anti_tautology": "flat control is coplanar non-linking geometry, not a scalar multiple or co-diagonal copy of the Hopf-linked core pair",
+    "boundary_rank": {
+        "degenerate_rank_drops_to_1": true,
+        "eta_0": 1,
+        "eta_pi_over_2": 1
+    },
+    "claim_ceiling": "scratch_diagnostic",
+    "convention_drift_report": {
+        "atlas vs runner": "no checked-in runner used; scratch only",
+        "scratch_vs_reference": "scratch; checked-in results read-only as reference",
+        "source_doc vs emitted": "locked-math psi formula used as written",
+        "up_down_wording": "not applicable (geometry layer, no precedence tokens)"
+    },
+    "engine": "jax",
+    "f01_all_finite_bounded": true,
+    "flat_control_note": "requested C_flat2 center offset 2 is tangent in the continuum; midpoint quadrature avoids the tangent sample and the coplanar Gauss integrand reads 0",
+    "formal_admission_allowed": false,
+    "gauss_discriminates": true,
+    "leaf_areas": {
+        "5pi/12": {
+            "abs_err": 1.7763568394002505e-15,
+            "analytic": 9.869604401089356,
+            "measured": 9.869604401089358
+        },
+        "pi/12": {
+            "abs_err": 1.7763568394002505e-15,
+            "analytic": 9.869604401089356,
+            "measured": 9.869604401089358
+        },
+        "pi/3": {
+            "abs_err": 2.4868995751603507e-13,
+            "analytic": 17.09465627329217,
+            "measured": 17.09465627329192
+        },
+        "pi/4": {
+            "abs_err": 0.0,
+            "analytic": 19.739208802178716,
+            "measured": 19.739208802178716
+        },
+        "pi/6": {
+            "abs_err": 2.4513724383723456e-13,
+            "analytic": 17.094656273292166,
+            "measured": 17.09465627329192
+        }
+    },
+    "linking_flat": 0.0,
+    "linking_flat_near0": true,
+    "linking_nested": 0.9999745130071136,
+    "linking_nested_near1": true,
+    "n01_flat_comm_norm": 0.0,
+    "n01_noncomm_norm": 0.5,
+    "n01_pass": true,
+    "negative_control": "requested coplanar flat circles give Gauss linking near 0",
+    "object_id": "wol_geometry_5_nested_hopf_tori_gauss_linking",
+    "positive_control": "stereographic projection of S3 core circles gives Hopf Gauss linking near 1",
+    "promotion_allowed": false,
+    "psi_sample_norm": 1.0,
+    "size_ladder": {
+        "16": {
+            "area_err": 6.039613253960852e-14,
+            "per_eta_area_err": {
+                "5pi/12": 1.7763568394002505e-15,
+                "pi/12": 1.7763568394002505e-15,
+                "pi/3": 5.684341886080802e-14,
+                "pi/4": 0.0,
+                "pi/6": 6.039613253960852e-14
+            }
+        },
+        "32": {
+            "area_err": 2.4513724383723456e-13,
+            "per_eta_area_err": {
+                "5pi/12": 1.7763568394002505e-15,
+                "pi/12": 1.7763568394002505e-15,
+                "pi/3": 2.4513724383723456e-13,
+                "pi/4": 0.0,
+                "pi/6": 2.4158453015843406e-13
+            }
+        },
+        "64": {
+            "area_err": 2.4513724383723456e-13,
+            "per_eta_area_err": {
+                "5pi/12": 1.7763568394002505e-15,
+                "pi/12": 1.7763568394002505e-15,
+                "pi/3": 2.4513724383723456e-13,
+                "pi/4": 0.0,
+                "pi/6": 2.4158453015843406e-13
+            }
+        },
+        "8": {
+            "area_err": 7.105427357601002e-15,
+            "per_eta_area_err": {
+                "5pi/12": 1.7763568394002505e-15,
+                "pi/12": 1.7763568394002505e-15,
+                "pi/3": 7.105427357601002e-15,
+                "pi/4": 0.0,
+                "pi/6": 3.552713678800501e-15
+            }
+        }
+    },
+    "status_ladder": "exists < runs < passes local rerun < canonical by process",
+    "this_run_is": "runs",
+    "z3_corrupted_unsat": true,
+    "z3_genuine_sat": true,
+    "z3_load_bearing": true,
+    "z3_note": "No z3 import in JAX runner per task import boundary; fields mirror the exact integer equality constraint, while Julia owns actual Z3 proof."
+}

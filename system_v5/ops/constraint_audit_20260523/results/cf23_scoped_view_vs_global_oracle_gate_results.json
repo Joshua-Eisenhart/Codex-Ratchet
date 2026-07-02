@@ -1,0 +1,62 @@
+{
+  "schema": "cf23_scoped_view_vs_global_oracle_gate_result_v1",
+  "name": "cf23_scoped_view_vs_global_oracle_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-23",
+  "gate": "EG-CF23-scoped-view-vs-global-oracle",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-23 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite bipartite density states, scoped partial traces, and global-oracle negative control"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:09:32Z",
+  "runtime_seconds": 0.0010371208190917969,
+  "positive": {
+    "pass": true,
+    "scoped_view_declared": [
+      "A",
+      "B"
+    ],
+    "partial_trace_or_projection": true,
+    "local_gap_a": 0.0,
+    "local_gap_b": 0.0,
+    "global_oracle_gap": 0.9999999999999998
+  },
+  "negative": {
+    "pass": false,
+    "expected": "fail",
+    "negative_case_type": "executable_rejection",
+    "negative_rejected": true,
+    "attempted_claim": {
+      "claim": "global state difference decides the scoped A process",
+      "scope_declared": false,
+      "global_oracle_load_bearing": true
+    },
+    "global_oracle_decision": true,
+    "scoped_a_process_decision": false,
+    "global_gap": 0.9999999999999998,
+    "local_a_gap": 0.0,
+    "local_b_gap": 0.0
+  },
+  "boundary": {
+    "pass": true,
+    "global_summary_declared_diagnostic_only": true,
+    "projection_scope": "full_AB_diagnostic",
+    "global_gap": 0.9999999999999998,
+    "interpretation": "global readout is allowed as a named diagnostic projection, not as omniscient primitive context"
+  },
+  "all_pass": true
+}

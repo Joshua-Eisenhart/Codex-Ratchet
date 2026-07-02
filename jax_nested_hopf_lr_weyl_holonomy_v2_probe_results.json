@@ -1,0 +1,669 @@
+{
+  "AUDIT_PASS": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "jax.scipy.linalg.expm": "load_bearing",
+    "json": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "jax": {
+      "reason": "finite holonomy, gamma, and cocycle diagnostic executed in JAX",
+      "role": "load_bearing",
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "Clifford anti-commutators, transition windings, and finite law fits",
+      "role": "load_bearing",
+      "used": true
+    },
+    "jax.scipy.linalg.expm": {
+      "reason": "substrate-dressed Weyl unitary/Choi holonomy construction",
+      "role": "load_bearing",
+      "used": true
+    },
+    "json": {
+      "reason": "receipt emission and read-only reference scan",
+      "role": "supportive",
+      "used": true
+    }
+  },
+  "all_pass": false,
+  "allowed_claims": [
+    "A bounded JAX v2 diagnostic for the Julia-v2 deflation split ran.",
+    "The holonomy law is reproduced by the fixed-base spin-lift control; it is not by itself stacking-order evidence.",
+    "The mixed cocycle has the signed nested-not-glued signature, but is below the pre-registered magnitude bar."
+  ],
+  "blocked_consumers": [
+    "layer_stacking_readiness",
+    "full_layer_completion",
+    "PEPS3D_closure",
+    "G_structure_selection",
+    "coupling_promotion",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "FEP",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "carrier_layer": "nested_hopf_tori_with_left_right_weyl_spinors",
+  "carrier_realization": "JAX complex128 gamma matrices, unitary channel/Choi readouts, and finite shell transition functions",
+  "checks": {
+    "bounded_v2_candidate_pass": false,
+    "bounded_v2_diagnostic_pass": true,
+    "carrier_perturbation_holonomy_survives": true,
+    "chirality_flip_control": true,
+    "clifford_gamma_anticommutation": true,
+    "equal_error_eta_erased_control_rejected": true,
+    "grok_deflation_control_run": true,
+    "grok_deflation_split_captured": true,
+    "holonomy_cos2eta_law": true,
+    "holonomy_gamma5_odd": true,
+    "mixed_cocycle_magnitude_pass": false,
+    "mixed_cocycle_signature_present": true,
+    "mixed_cocycle_wrong_structure_control": true,
+    "order_dag_score_nonzero": true,
+    "scale_8_16_32_64": true,
+    "singlebase_does_not_reproduce_mixed_cocycle": true,
+    "singlebase_reproduces_holonomy_law": true
+  },
+  "classification": "diagnostic_jax_nested_hopf_lr_weyl_holonomy_v2",
+  "codomain_or_output": "JSON diagnostic receipt with finite holonomy/cocycle/control readouts",
+  "dependency_receipts": {
+    "jax_twistor_negative": {
+      "AUDIT_PASS": true,
+      "classification": "diagnostic_jax_twistor_incidence_substrate_probe",
+      "exists": true,
+      "formal_layer_admission_allowed": false,
+      "fully_right": null,
+      "grok_deflation_reading": null,
+      "one_layer_done_right_candidate": null,
+      "path": "jax_twistor_incidence_substrate_probe_results.json",
+      "promotion_allowed": false,
+      "verdict": {
+        "overall": "twistor_no_better_than_blockdiag",
+        "promotion_allowed": false,
+        "reason": "Twistor incidence produces a nonzero L/R coupling and separates from the block-diagonal floor, but matched generic off-diagonal controls produce comparable or stronger substrate effects. That blocks canonical twistor promotion in this probe."
+      }
+    },
+    "jax_v1_nested_hopf_lr_weyl": {
+      "AUDIT_PASS": true,
+      "classification": "diagnostic_jax_nested_hopf_lr_weyl_first_layer_candidate",
+      "exists": true,
+      "formal_layer_admission_allowed": false,
+      "fully_right": null,
+      "grok_deflation_reading": null,
+      "one_layer_done_right_candidate": null,
+      "path": "jax_nested_hopf_lr_weyl_first_layer_candidate_results.json",
+      "promotion_allowed": false,
+      "verdict": null
+    },
+    "julia_cocycle_reauthor_readonly": {
+      "AUDIT_PASS": null,
+      "classification": "cocycle_reauthor_poc",
+      "exists": true,
+      "formal_layer_admission_allowed": null,
+      "fully_right": null,
+      "grok_deflation_reading": null,
+      "one_layer_done_right_candidate": null,
+      "path": "system_v5/julia_carrier/layers/cocycle_independent_reauthor_results.json",
+      "promotion_allowed": false,
+      "verdict": "cocycle_genuine_signature"
+    },
+    "julia_v1_full_poc_readonly": {
+      "AUDIT_PASS": null,
+      "classification": "weyl_nested_hopf_full_poc",
+      "exists": true,
+      "formal_layer_admission_allowed": null,
+      "fully_right": true,
+      "grok_deflation_reading": null,
+      "one_layer_done_right_candidate": null,
+      "path": "system_v5/julia_carrier/layers/weyl_on_nested_hopf_tori_FULL_results.json",
+      "promotion_allowed": false,
+      "verdict": null
+    },
+    "julia_v2_holonomy_cocycle_readonly": {
+      "AUDIT_PASS": null,
+      "classification": "weyl_nested_hopf_v2_poc",
+      "exists": true,
+      "formal_layer_admission_allowed": null,
+      "fully_right": null,
+      "grok_deflation_reading": "GROK CONTROL MIXED: the single base reproduced only one of (A,B). The deflation is partial; the nesting-vs-spin-structure question stays OPEN.",
+      "one_layer_done_right_candidate": false,
+      "path": "system_v5/julia_carrier/layers/weyl_on_nested_hopf_tori_V2_results.json",
+      "promotion_allowed": false,
+      "verdict": null
+    }
+  },
+  "domain": {
+    "shell_etas": [
+      0.3141592653589793,
+      0.5235987755982988,
+      0.7853981633974483,
+      1.0471975511965976
+    ],
+    "site_counts": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "spin_structure_controls": [
+      "PP",
+      "PA",
+      "AP",
+      "AA"
+    ],
+    "weyl_chiralities": {
+      "L": 1,
+      "R": -1
+    }
+  },
+  "finite_map": "finite shell etas, finite 8/16/32/64 scale labels, Cl(4) gamma operators, finite transition functions g^L_{k,k+1}, g^R_{k,k+1}, and finite Choi/unitary holonomy readouts -> cocycle winding, cos(2eta) law fit, gamma5-odd control, and fixed-base spin-structure deflation verdict",
+  "formal_layer_admission_allowed": false,
+  "gamma_anticommutation": {
+    "max_gamma_anticommutation_residual": 0.0,
+    "pass": true,
+    "rows": [
+      {
+        "i": 1,
+        "j": 1,
+        "residual": 0.0
+      },
+      {
+        "i": 1,
+        "j": 2,
+        "residual": 0.0
+      },
+      {
+        "i": 1,
+        "j": 3,
+        "residual": 0.0
+      },
+      {
+        "i": 1,
+        "j": 4,
+        "residual": 0.0
+      },
+      {
+        "i": 2,
+        "j": 1,
+        "residual": 0.0
+      },
+      {
+        "i": 2,
+        "j": 2,
+        "residual": 0.0
+      },
+      {
+        "i": 2,
+        "j": 3,
+        "residual": 0.0
+      },
+      {
+        "i": 2,
+        "j": 4,
+        "residual": 0.0
+      },
+      {
+        "i": 3,
+        "j": 1,
+        "residual": 0.0
+      },
+      {
+        "i": 3,
+        "j": 2,
+        "residual": 0.0
+      },
+      {
+        "i": 3,
+        "j": 3,
+        "residual": 0.0
+      },
+      {
+        "i": 3,
+        "j": 4,
+        "residual": 0.0
+      },
+      {
+        "i": 4,
+        "j": 1,
+        "residual": 0.0
+      },
+      {
+        "i": 4,
+        "j": 2,
+        "residual": 0.0
+      },
+      {
+        "i": 4,
+        "j": 3,
+        "residual": 0.0
+      },
+      {
+        "i": 4,
+        "j": 4,
+        "residual": 0.0
+      }
+    ]
+  },
+  "generated_at": "2026-06-03T05:47:20.449634+00:00",
+  "geometry_layer": "mixed Hopf connection plus Weyl chirality diagnostic",
+  "grok_deflation_control": {
+    "fixed_base_eta": 0.7853981633974483,
+    "fixed_base_spin_variation_readout": [
+      0.8090169943749473,
+      0.5000000000000002,
+      6.123233995736766e-17,
+      -0.5
+    ],
+    "genuine_holonomy_readout": [
+      0.8090169943749473,
+      0.5000000000000002,
+      6.123233995736766e-17,
+      -0.5
+    ],
+    "grok_deflation_verdict": "mixed_single_base_reproduces_B_only",
+    "pass": true,
+    "singlebase_holonomy_fit": {
+      "max_abs_residual": 1.6653345369377348e-16,
+      "r2": 1.0,
+      "slope": 1.0
+    },
+    "singlebase_r2_gamma5_odd_law": 1.0,
+    "singlebase_reproduces_A_mixed_cocycle": false,
+    "singlebase_reproduces_B_holonomy_law": true,
+    "singlebase_signs_opposite": false,
+    "singlebase_winding_L": -3.0,
+    "singlebase_winding_R": -3.0,
+    "spin_lifts_varied": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "holonomy_rows": [
+    {
+      "carrier_perturbed_fit": {
+        "max_abs_residual": 7.957419446702474e-07,
+        "r2": 0.9999999999985235,
+        "slope": 0.9996848445336437
+      },
+      "carrier_perturbed_left_holonomy": [
+        0.8087612325048503,
+        0.49984306603557843,
+        6.121320584773034e-17,
+        -0.4998430660355783
+      ],
+      "chirality_flip_breaks_oddness": 1.6180339887498947,
+      "choi_traces": [
+        0.9999999999999997,
+        1.0000000000000002,
+        1.0,
+        1.0000000000000002
+      ],
+      "cos2eta": [
+        0.8090169943749475,
+        0.5000000000000001,
+        6.123233995736766e-17,
+        -0.49999999999999983
+      ],
+      "equal_error_eta_erased_control": [
+        6.121320584773033e-17,
+        6.121320584773033e-17,
+        6.121320584773034e-17,
+        6.121320584773034e-17
+      ],
+      "equal_error_eta_erased_fit": {
+        "max_abs_residual": 8.266065466756526e-17,
+        "r2": 0.0,
+        "slope": 4.289489763966985e-17
+      },
+      "gamma5_odd_gap": 0.0,
+      "left_chiral_holonomy": [
+        0.8090169943749473,
+        0.5000000000000002,
+        6.123233995736766e-17,
+        -0.5
+      ],
+      "left_fit": {
+        "max_abs_residual": 1.6653345369377348e-16,
+        "r2": 1.0,
+        "slope": 1.0
+      },
+      "pass": true,
+      "right_chiral_holonomy": [
+        -0.8090169943749473,
+        -0.5000000000000002,
+        -6.123233995736766e-17,
+        0.5
+      ],
+      "right_fit": {
+        "max_abs_residual": 1.6653345369377348e-16,
+        "r2": 1.0,
+        "slope": -1.0
+      },
+      "same_sign_right_control": [
+        0.8090169943749473,
+        0.5000000000000002,
+        6.123233995736766e-17,
+        -0.5
+      ],
+      "shell_etas": [
+        0.3141592653589793,
+        0.5235987755982988,
+        0.7853981633974483,
+        1.0471975511965976
+      ],
+      "site_count": 8
+    },
+    {
+      "carrier_perturbed_fit": {
+        "max_abs_residual": 7.957419446702474e-07,
+        "r2": 0.9999999999985235,
+        "slope": 0.9996848445336437
+      },
+      "carrier_perturbed_left_holonomy": [
+        0.8087612325048503,
+        0.4998430660355783,
+        6.121320584773034e-17,
+        -0.4998430660355782
+      ],
+      "chirality_flip_breaks_oddness": 1.6180339887498947,
+      "choi_traces": [
+        0.9999999999999997,
+        1.0000000000000002,
+        1.0,
+        1.0000000000000002
+      ],
+      "cos2eta": [
+        0.8090169943749475,
+        0.5000000000000001,
+        6.123233995736766e-17,
+        -0.49999999999999983
+      ],
+      "equal_error_eta_erased_control": [
+        6.121320584773032e-17,
+        6.121320584773032e-17,
+        6.121320584773034e-17,
+        6.121320584773032e-17
+      ],
+      "equal_error_eta_erased_fit": {
+        "max_abs_residual": 8.266065466756524e-17,
+        "r2": 0.0,
+        "slope": 4.289489763966985e-17
+      },
+      "gamma5_odd_gap": 0.0,
+      "left_chiral_holonomy": [
+        0.8090169943749473,
+        0.5000000000000002,
+        6.123233995736766e-17,
+        -0.5
+      ],
+      "left_fit": {
+        "max_abs_residual": 1.6653345369377348e-16,
+        "r2": 1.0,
+        "slope": 1.0
+      },
+      "pass": true,
+      "right_chiral_holonomy": [
+        -0.8090169943749473,
+        -0.5000000000000002,
+        -6.123233995736766e-17,
+        0.5
+      ],
+      "right_fit": {
+        "max_abs_residual": 1.6653345369377348e-16,
+        "r2": 1.0,
+        "slope": -1.0
+      },
+      "same_sign_right_control": [
+        0.8090169943749473,
+        0.5000000000000002,
+        6.123233995736766e-17,
+        -0.5
+      ],
+      "shell_etas": [
+        0.3141592653589793,
+        0.5235987755982988,
+        0.7853981633974483,
+        1.0471975511965976
+      ],
+      "site_count": 16
+    },
+    {
+      "carrier_perturbed_fit": {
+        "max_abs_residual": 7.957419447812697e-07,
+        "r2": 0.9999999999985235,
+        "slope": 0.9996848445336437
+      },
+      "carrier_perturbed_left_holonomy": [
+        0.8087612325048502,
+        0.49984306603557843,
+        6.121320584773034e-17,
+        -0.4998430660355783
+      ],
+      "chirality_flip_breaks_oddness": 1.6180339887498947,
+      "choi_traces": [
+        0.9999999999999997,
+        1.0000000000000002,
+        1.0,
+        1.0000000000000002
+      ],
+      "cos2eta": [
+        0.8090169943749475,
+        0.5000000000000001,
+        6.123233995736766e-17,
+        -0.49999999999999983
+      ],
+      "equal_error_eta_erased_control": [
+        6.121320584773033e-17,
+        6.121320584773033e-17,
+        6.121320584773034e-17,
+        6.121320584773034e-17
+      ],
+      "equal_error_eta_erased_fit": {
+        "max_abs_residual": 8.266065466756526e-17,
+        "r2": 0.0,
+        "slope": 4.289489763966985e-17
+      },
+      "gamma5_odd_gap": 0.0,
+      "left_chiral_holonomy": [
+        0.8090169943749473,
+        0.5000000000000002,
+        6.123233995736766e-17,
+        -0.5
+      ],
+      "left_fit": {
+        "max_abs_residual": 1.6653345369377348e-16,
+        "r2": 1.0,
+        "slope": 1.0
+      },
+      "pass": true,
+      "right_chiral_holonomy": [
+        -0.8090169943749473,
+        -0.5000000000000002,
+        -6.123233995736766e-17,
+        0.5
+      ],
+      "right_fit": {
+        "max_abs_residual": 1.6653345369377348e-16,
+        "r2": 1.0,
+        "slope": -1.0
+      },
+      "same_sign_right_control": [
+        0.8090169943749473,
+        0.5000000000000002,
+        6.123233995736766e-17,
+        -0.5
+      ],
+      "shell_etas": [
+        0.3141592653589793,
+        0.5235987755982988,
+        0.7853981633974483,
+        1.0471975511965976
+      ],
+      "site_count": 32
+    },
+    {
+      "carrier_perturbed_fit": {
+        "max_abs_residual": 7.957419446702474e-07,
+        "r2": 0.9999999999985235,
+        "slope": 0.9996848445336437
+      },
+      "carrier_perturbed_left_holonomy": [
+        0.8087612325048503,
+        0.4998430660355783,
+        6.121320584773034e-17,
+        -0.4998430660355782
+      ],
+      "chirality_flip_breaks_oddness": 1.6180339887498947,
+      "choi_traces": [
+        0.9999999999999997,
+        1.0000000000000002,
+        1.0,
+        1.0000000000000002
+      ],
+      "cos2eta": [
+        0.8090169943749475,
+        0.5000000000000001,
+        6.123233995736766e-17,
+        -0.49999999999999983
+      ],
+      "equal_error_eta_erased_control": [
+        6.121320584773033e-17,
+        6.121320584773032e-17,
+        6.121320584773034e-17,
+        6.121320584773034e-17
+      ],
+      "equal_error_eta_erased_fit": {
+        "max_abs_residual": 8.266065466756526e-17,
+        "r2": 0.0,
+        "slope": 4.289489763966985e-17
+      },
+      "gamma5_odd_gap": 0.0,
+      "left_chiral_holonomy": [
+        0.8090169943749473,
+        0.5000000000000002,
+        6.123233995736766e-17,
+        -0.5
+      ],
+      "left_fit": {
+        "max_abs_residual": 1.6653345369377348e-16,
+        "r2": 1.0,
+        "slope": 1.0
+      },
+      "pass": true,
+      "right_chiral_holonomy": [
+        -0.8090169943749473,
+        -0.5000000000000002,
+        -6.123233995736766e-17,
+        0.5
+      ],
+      "right_fit": {
+        "max_abs_residual": 1.6653345369377348e-16,
+        "r2": 1.0,
+        "slope": -1.0
+      },
+      "same_sign_right_control": [
+        0.8090169943749473,
+        0.5000000000000002,
+        6.123233995736766e-17,
+        -0.5
+      ],
+      "shell_etas": [
+        0.3141592653589793,
+        0.5235987755982988,
+        0.7853981633974483,
+        1.0471975511965976
+      ],
+      "site_count": 64
+    }
+  ],
+  "julia_reference_mode": "read_only",
+  "mixed_cocycle": {
+    "PRE_REGISTERED_PASS": "magnitude >= 0.5, opposite L/R sign, glued/decoupled controls collapse",
+    "decoupled_control_collapses": true,
+    "fail_mode": "sub_magnitude_signature_present",
+    "glued_control_collapses": true,
+    "mixed_cocycle_pass": false,
+    "mixed_mag_nested_min_LR": 0.3988728757031315,
+    "pass": false,
+    "same_sign_R_control_winding": 0.3988728757031315,
+    "signs_opposite_LR": true,
+    "structure_present_signed_opposite_controls_collapse": true,
+    "winding_L_decoupled": 0.0,
+    "winding_L_glued": 0.0,
+    "winding_L_nested": 0.3988728757031315,
+    "winding_R_decoupled": 0.0,
+    "winding_R_glued": 0.0,
+    "winding_R_nested": -0.3988728757031315,
+    "wrong_structure_rejected": true
+  },
+  "name": "JAX nested-Hopf/LR-Weyl v2 holonomy law and mixed cocycle diagnostic",
+  "one_layer_done_right_candidate": false,
+  "order_dag": {
+    "flat_control_score": 0.0,
+    "forward_score": 0.3988728757031315,
+    "order_dag_score": 0.797745751406263,
+    "pass": true,
+    "reverse_score": -0.3988728757031315
+  },
+  "peps3d_embedding": "not admitted here; this is a finite holonomy/cocycle diagnostic over the JAX spinor carrier",
+  "pre_registered_thresholds": {
+    "cocycle_integer_tolerance": 1e-09,
+    "control_collapse_max": 1e-06,
+    "equal_error_control_r2_max": 0.9,
+    "gamma_anticommutation_residual_max": 1e-10,
+    "holonomy_r2_min": 0.999,
+    "holonomy_residual_max": 1e-10,
+    "mixed_cocycle_mag_min": 0.5,
+    "mixed_cocycle_signature_min": 0.3,
+    "perturbed_holonomy_r2_min": 0.995
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "bounded JAX diagnostic only; no formal layer-completion claim gate admission",
+    "one_layer_done_right_candidate=false; all_pass=false",
+    "mixed cocycle is sub-magnitude against the pre-registered bar",
+    "fixed-base spin-lift control reproduces the holonomy law, deflating that observable as stacking-order evidence",
+    "no PEPS3D carrier admission from the first carrier step",
+    "carrier perturbation is finite and bounded; it is not a full evolved spinor-cell MPS/PEPS3D carrier proof",
+    "Julia references remain read-only external/reference evidence for this JAX lane"
+  ],
+  "quaternion_action": "not_applicable",
+  "ran_jax": true,
+  "ran_julia": false,
+  "root_constraints_in_force": [
+    "F01",
+    "N01"
+  ],
+  "scientific_question": "Does the nested-Hopf/LR-Weyl candidate show a mixed chiral holonomy/cocycle rather than only separate Hopf, Chern, gamma5, or scalar-gap facts?",
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical_diagnostic",
+  "sim_id": "jax_nested_hopf_lr_weyl_holonomy_v2_probe",
+  "spinor_state": "C4 chirality x spin carrier; gamma anti-commutation and gamma5-odd holonomy are explicit",
+  "summary": {
+    "max_equal_error_control_r2": 0.0,
+    "max_gamma5_odd_gap": 0.0,
+    "max_gamma_anticommutation_residual": 0.0,
+    "max_holonomy_residual": 1.6653345369377348e-16,
+    "min_chirality_flip_breaks_oddness": 1.6180339887498947,
+    "min_holonomy_r2": 1.0,
+    "min_perturbed_holonomy_r2": 0.9999999999985235,
+    "mixed_cocycle_nested_mag_min_LR": 0.3988728757031315,
+    "mixed_cocycle_winding_L": 0.3988728757031315,
+    "mixed_cocycle_winding_R": -0.3988728757031315,
+    "singlebase_holonomy_r2": 1.0,
+    "singlebase_reproduces_A_mixed_cocycle": false,
+    "singlebase_reproduces_B_holonomy_law": true
+  },
+  "tier": "bounded_coupling_diagnostic",
+  "version": "1.0",
+  "wallclock_seconds": 1.222735
+}

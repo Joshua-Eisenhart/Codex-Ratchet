@@ -1,0 +1,239 @@
+{
+  "AUDIT_PASS": true,
+  "all_pass": true,
+  "blocked_consumers": [
+    "layer_completion",
+    "G_structure_selection",
+    "Axis0",
+    "FEP",
+    "flux",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "carrier": {
+    "clifford_algebra_ok": true,
+    "gamma5_diag": [
+      -1.0,
+      -1.0,
+      1.0,
+      1.0
+    ],
+    "gamma5_square_ok": true,
+    "gamma_theta_LL_block_norm": 0.0,
+    "gamma_theta_LR_block_norm": 1.0,
+    "gamma_theta_RR_block_norm": 0.0,
+    "gamma_theta_offdiagonal_LR": true,
+    "max_clifford_residual": 0.0,
+    "weyl_split_ok": true
+  },
+  "checks": {
+    "carrier": true,
+    "chirality": true,
+    "radial_chain": true,
+    "two_leaf_spectral_controls": true,
+    "unitarity_density": true
+  },
+  "chirality": {
+    "left_gamma5_minus_one": true,
+    "max_left_chirality_error": 4.440892098500626e-16,
+    "max_pure_chirality_mbar": 0.0,
+    "max_right_chirality_error": 4.440892098500626e-16,
+    "pure_chirality_mbar_zero": true,
+    "right_gamma5_plus_one": true
+  },
+  "classification": "diagnostic_only",
+  "codomain_or_output": "finite JSON receipt of spectra, gamma5 charges, density readouts, controls, and pass/fail booleans",
+  "domain": {
+    "hamiltonians": "H_L=+H0, H_R=-H0, off-diagonal C_LR=m I2",
+    "radial_chain_leaves": 8,
+    "weyl_blocks": "L,R two-component complex spinors"
+  },
+  "finite_map": "finite L/R Weyl pair plus 8-leaf radial chain -> Dirac spectral, chirality, density, and unitary readouts",
+  "julia_reference_read_only": "system_v5/julia_carrier/layers/emergence_3d_dirac_from_weyl_coupling.jl",
+  "julia_reference_result_read_only": "system_v5/julia_carrier/layers/emergence_3d_dirac_from_weyl_coupling_results.json",
+  "object": "jax_weyl_dirac_coupling_radial_mirror",
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "radial_chain": {
+    "adjacent_weight": 17.819090885900994,
+    "checks": {
+      "adjacent_radial_coupling_nonzero": true,
+      "chain_hermitian": true,
+      "fixed_gap_not_smaller_when_coupled": true,
+      "node_gap_off_zero": true,
+      "node_gap_opens_with_radial_coupling": true,
+      "nonadjacent_radial_coupling_zero": true
+    },
+    "fixed_gap_off": 1.6124515496597098,
+    "fixed_gap_on": 1.7293905913087748,
+    "n_leaf": 8,
+    "node_gap_off": 0.0,
+    "node_gap_on": 0.6251334396009488,
+    "nonadjacent_weight": 0.0,
+    "pass": true
+  },
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "root_constraints_in_force": [
+    "F01 finite carrier/probe/operator/path set",
+    "N01 L/R order-sensitive off-diagonal coupling controls"
+  ],
+  "sim_execution_kind": "nonclassical_diagnostic_jax_audit",
+  "tool_integration_depth": {
+    "jax": "load_bearing",
+    "json": "supportive"
+  },
+  "tool_manifest": {
+    "jax": "load_bearing finite complex linear algebra, eigensystems, unitary evolution, batched norm checks",
+    "jax.numpy": "load_bearing matrix construction and density readouts",
+    "json": "receipt writer only"
+  },
+  "two_leaf": {
+    "anti_correct_residual": 0.0,
+    "anti_wrong_sign_residual": 1.1384199576606167,
+    "checks": {
+      "correct_h2_scalar": true,
+      "correct_hermitian": true,
+      "correct_kinetic_mass_anticommute": true,
+      "correct_spectrum_dirac": true,
+      "coupled_density_has_dirac_mass": true,
+      "coupling_off_density_no_dirac_mass": true,
+      "coupling_off_hermitian": true,
+      "coupling_off_spectrum_weyl": true,
+      "node_gap_off_zero": true,
+      "node_gap_on_equals_2m": true,
+      "wrong_channel_no_dirac_mass": true,
+      "wrong_sign_rejected_by_anticommutator": true,
+      "wrong_sign_rejected_by_h2": true
+    },
+    "correct_spectrum_max_error": 4.440892098500626e-16,
+    "coupling_off_spectrum_max_error": 0.0,
+    "density_coupled": {
+      "gamma5_trace": -1.1102230246251565e-16,
+      "hermitian_error": 0.0,
+      "left_weight": 0.4999999999999999,
+      "lr_coherence_norm": 0.26334258119129367,
+      "mbar_trace_gamma0": -0.7448452997421309,
+      "min_eigenvalue": 2.5306348469839516e-18,
+      "purity": 0.49999999999999967,
+      "rank_normalized_projector_error": 8.326672684688674e-17,
+      "right_weight": 0.4999999999999998,
+      "trace_error": 3.3306690738754696e-16,
+      "trace_imag_abs": 0.0,
+      "trace_real": 0.9999999999999997
+    },
+    "density_coupling_off": {
+      "gamma5_trace": 0.0,
+      "hermitian_error": 0.0,
+      "left_weight": 0.49999999999999994,
+      "lr_coherence_norm": 0.0,
+      "mbar_trace_gamma0": 0.0,
+      "min_eigenvalue": 3.034692883828762e-17,
+      "purity": 0.4999999999999999,
+      "rank_normalized_projector_error": 2.7755575615628914e-17,
+      "right_weight": 0.49999999999999994,
+      "trace_error": 0.0,
+      "trace_imag_abs": 0.0,
+      "trace_real": 1.0
+    },
+    "density_wrong_channel": {
+      "gamma5_trace": 6.938893903907228e-17,
+      "hermitian_error": 0.0,
+      "left_weight": 0.5,
+      "lr_coherence_norm": 0.0,
+      "mbar_trace_gamma0": 0.0,
+      "min_eigenvalue": -6.580807032670942e-17,
+      "purity": 0.5000000000000001,
+      "rank_normalized_projector_error": 5.551115123125783e-17,
+      "right_weight": 0.5000000000000001,
+      "trace_error": 0.0,
+      "trace_imag_abs": 0.0,
+      "trace_real": 1.0
+    },
+    "density_wrong_sign": {
+      "gamma5_trace": -2.7755575615628914e-16,
+      "hermitian_error": 0.0,
+      "left_weight": 0.4999999999999999,
+      "lr_coherence_norm": 0.35355339059327356,
+      "mbar_trace_gamma0": -0.9999999999999996,
+      "min_eigenvalue": -7.375551712643923e-17,
+      "purity": 0.49999999999999956,
+      "rank_normalized_projector_error": 6.938893903907228e-17,
+      "right_weight": 0.49999999999999967,
+      "trace_error": 4.440892098500626e-16,
+      "trace_imag_abs": 0.0,
+      "trace_real": 0.9999999999999996
+    },
+    "dirac_energy_sqrt_k2_m2": 1.2083045973594573,
+    "eigenvalues_correct": [
+      -1.2083045973594573,
+      -1.2083045973594568,
+      1.2083045973594573,
+      1.2083045973594575
+    ],
+    "eigenvalues_coupling_off": [
+      -0.8062257748298549,
+      -0.8062257748298549,
+      0.8062257748298549,
+      0.8062257748298549
+    ],
+    "eigenvalues_wrong_sign": [
+      -1.706225774829855,
+      -0.09377422517014511,
+      0.09377422517014519,
+      1.7062257748298553
+    ],
+    "h2_correct_residual": 4.218847493575595e-17,
+    "h2_wrong_sign_residual": 1.1384199576606167,
+    "kabs": 0.8062257748298549,
+    "kvec": [
+      0.6,
+      0.2,
+      -0.5
+    ],
+    "mass": 0.9,
+    "node_gap_off": -0.0,
+    "node_gap_on": 1.8,
+    "pass": true
+  },
+  "unitarity_density": {
+    "checks": {
+      "density_hermitian_after_evolution": true,
+      "density_trace_preserved": true,
+      "evolution_norm_preserved": true,
+      "unitary_matrix": true
+    },
+    "dt": 0.03,
+    "ensemble_size": 128,
+    "max_norm_drift": 3.441691376337985e-14,
+    "pass": true,
+    "rho0": {
+      "gamma5_trace": -0.39168995358580844,
+      "hermitian_error": 5.551115123125783e-17,
+      "left_weight": 0.6958449767929042,
+      "lr_coherence_norm": 0.46004863336932844,
+      "mbar_trace_gamma0": 0.4644839404925233,
+      "min_eigenvalue": -1.1776967132173576e-16,
+      "purity": 1.0,
+      "right_weight": 0.30415502320709575,
+      "trace_error": 5.563197204306443e-19,
+      "trace_imag_abs": 5.563197204306443e-19,
+      "trace_real": 1.0
+    },
+    "rhof": {
+      "gamma5_trace": 0.256615211071008,
+      "hermitian_error": 5.551115123125783e-17,
+      "left_weight": 0.37169239446449603,
+      "lr_coherence_norm": 0.4832568244337016,
+      "mbar_trace_gamma0": 0.9155169480685863,
+      "min_eigenvalue": -1.17084291548198e-16,
+      "purity": 1.0,
+      "right_weight": 0.628307605535504,
+      "trace_error": 9.98072724876667e-18,
+      "trace_imag_abs": 9.98072724876667e-18,
+      "trace_real": 1.0
+    },
+    "steps": 64,
+    "unitarity_error": 1.5543122344752192e-15
+  }
+}

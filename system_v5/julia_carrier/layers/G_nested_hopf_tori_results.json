@@ -1,0 +1,117 @@
+{
+  "all_pass": true,
+  "anchors": {
+    "area_invariant": "Area(θ)=2π² sin 2θ (closed form, compared post-hoc)",
+    "linking_invariant": "Gauss linking number ∈ ℤ; Hopf link = ±1",
+    "rank_invariant": "2-torus tangent plane is 2-dim; degeneration drops rank to 1",
+    "z3_invariant": "free Int q; q==Q1 ∧ q==Q2 with Q1,Q2 the MEASURED |z1|^2 of two leaves ⇒ UNSAT iff Q1≠Q2 (disjoint); broken collapsed measure ⇒ SAT"
+  },
+  "checks": {
+    "area_matches_invariant": true,
+    "clifford_torus_is_area_max": true,
+    "cores_hopf_linked_lk1": true,
+    "endpoints_degenerate_rank1": true,
+    "foliation_covers_S3": true,
+    "generic_leaf_core_lk1": true,
+    "interior_leaves_are_2tori": true,
+    "kill_same_theta_intersects": true,
+    "kill_unlinked_lk0": true,
+    "latitude_monotone": true,
+    "leaves_pairwise_disjoint": true,
+    "z3_disjointness_load_bearing": true
+  },
+  "classification": "PoC",
+  "coverage": {
+    "all_assigned": true,
+    "theta_max": 1.5585591975864794,
+    "theta_min": 0.012601278616021535
+  },
+  "hopf_linking": {
+    "cores_link_number_1": true,
+    "generic_link_number_1": true,
+    "kill_unlinked_is_zero": true,
+    "lk_core0_coreHalfPi": 0.9999593710533949,
+    "lk_core0_genericLeaf": 1.002435232239819,
+    "lk_unlinked_kill_control": 0.0
+  },
+  "leaf_area": {
+    "clifford_area_analytic": 19.739208802178716,
+    "clifford_area_measured": 19.73920880220616,
+    "clifford_is_area_maximum": true,
+    "clifford_torus_theta": 0.7853981633974483,
+    "max_abs_err": 2.744471316873387e-11,
+    "rows": {
+      "0.2618": {
+        "abs_err": 1.3724132941206335e-11,
+        "analytic": 9.869604401089356,
+        "measured": 9.86960440110308
+      },
+      "0.5236": {
+        "abs_err": 1.3081091765343444e-11,
+        "analytic": 17.094656273292166,
+        "measured": 17.094656273279085
+      },
+      "0.7854": {
+        "abs_err": 2.744471316873387e-11,
+        "analytic": 19.739208802178716,
+        "measured": 19.73920880220616
+      },
+      "1.0472": {
+        "abs_err": 1.3084644479022245e-11,
+        "analytic": 17.09465627329217,
+        "measured": 17.094656273279085
+      },
+      "1.309": {
+        "abs_err": 1.3724132941206335e-11,
+        "analytic": 9.869604401089356,
+        "measured": 9.86960440110308
+      }
+    }
+  },
+  "nesting": {
+    "all_pairs_disjoint": true,
+    "kill_correctly_intersects": true,
+    "kill_same_theta_mindist": 0.0,
+    "latitude_coord_monotone": true,
+    "pairs": {
+      "0.3_1.2": 0.8699310682224602,
+      "0.4_0.8": 0.3973386615901224,
+      "0.5236_1.0472": 0.5176380902050414
+    }
+  },
+  "non_circularity_note": "No measured quantity is set equal to its target. Area is integrated from the embedding and compared to the analytic invariant only afterward; linking is computed by the Gauss integral and checked against the integer ±1; rank is read from SVD and is allowed to (and does) drop to 1 at the degenerate leaves; the Z3 verdict is DERIVED from the measured leaf invariants |z1|^2 (read out from the embedding) over a free integer, and flips UNSAT→SAT when a broken measurement collapses the two leaves to one invariant.",
+  "object": "G_nested_hopf_tori",
+  "promotion_allowed": false,
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "tangent_rank": {
+    "endpoint": {
+      "0.0": 1,
+      "1.5708": 1
+    },
+    "endpoint_all_rank1_degenerate": true,
+    "interior": {
+      "0.2618": 2,
+      "0.5236": 2,
+      "0.7854": 2,
+      "1.0472": 2,
+      "1.309": 2
+    },
+    "interior_all_rank2": true
+  },
+  "tools": [
+    "LinearAlgebra",
+    "Random",
+    "Z3",
+    "JSON"
+  ],
+  "z3_disjointness": {
+    "broken_collapsed_measured": "sat",
+    "genuine_distinct_measured": "unsat",
+    "load_bearing_flip": true,
+    "measured_invariant_leaf1_x1e6": 750000,
+    "measured_invariant_leaf2_x1e6": 250000,
+    "note": "q is a FREE Int; literals Q1,Q2 are read out from the R^4 embedding S3pt, not hardcoded. UNSAT⇔Q1≠Q2.",
+    "tool_role": "load_bearing"
+  }
+}

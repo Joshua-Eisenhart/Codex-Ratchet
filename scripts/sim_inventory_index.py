@@ -609,11 +609,15 @@ def normalized_execution_kind(value: Any) -> str:
     normalized = str(value or "").strip().lower().replace("-", "_")
     if normalized in {"semi_classical", "semiclassical", "semiclassical_szilard"}:
         return "semiclassical_szilard"
-    if normalized in {"bridge", "qit_bridge", "nonclassical_bridge", "semiclassical_bridge"}:
+    if (
+        normalized in {"bridge", "qit_bridge", "nonclassical_bridge", "semiclassical_bridge"}
+        or normalized.endswith("_bridge")
+        or "_bridge_" in normalized
+    ):
         return "semiclassical_bridge"
     if normalized == "classical":
         return "classical"
-    if normalized == "nonclassical":
+    if normalized == "nonclassical" or normalized.startswith("nonclassical_"):
         return "nonclassical"
     return ""
 

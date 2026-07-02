@@ -1,0 +1,94 @@
+{
+  "anchor": "SU(2): unitary,det=+1 ; SO(3): orthogonal,det=+1 ; kernel of SU(2)->SO(3) = {I,-I}, order 2 (counted) ; Z3 LOAD-BEARING proof: det(R(q))==+1 under |q|^2==1 (genuine UNSAT, broken-sign SAT) ; parity R(q)==R(-q) kept as labeled-decorative cross-check.",
+  "boundary_control": {
+    "all_pass": true,
+    "max_SO3_orth_err": 2.220446049250313e-16,
+    "n": 39,
+    "pass": 39
+  },
+  "claim": "Unit quaternions S^3 carry SU(2), form a group under quaternion mult, and 2-to-1 cover SO(3) with kernel {+1,-1}.",
+  "classification": "PoC",
+  "double_cover": {
+    "counted_cover_multiplicity": 2,
+    "cover_is_2_to_1": true,
+    "max_q_negq_rotation_dev": 0.0,
+    "min_q_negq_distance": 1.9999999999999996,
+    "q_and_negq_n": 2000,
+    "q_and_negq_same_rotation_pass": 2000,
+    "scan_size": 200000,
+    "spurious_extra_preimages_in_scan": 0,
+    "target_preimages_found_among_known": 2
+  },
+  "group_structure": {
+    "closure_pass": 1000,
+    "identity_on_S3": true,
+    "inverse_pass": 1000,
+    "is_group": true,
+    "is_homomorphism": true,
+    "max_closure_norm_dev": 3.3306690738754696e-16,
+    "max_homomorphism_err": 1.2476911784119411e-15,
+    "max_inverse_dev": 5.551548787055441e-16,
+    "n_trials": 1000
+  },
+  "item": "G_S3_spinor_carrier",
+  "kill_control": {
+    "kill_control_excludes_nonunit": true,
+    "mean_nonunit_norm": 4.72871629643244,
+    "min_SO3_orth_err_over_nonunit": 0.9302253950719644,
+    "min_SU2_det_err_over_nonunit": 0.2536414917005618,
+    "n": 2000,
+    "nonunit_in_SO3": 0,
+    "nonunit_in_SU2": 0,
+    "nonunit_on_S3": 0
+  },
+  "negative_control": {
+    "zero_excluded_from_carrier": true,
+    "zero_quaternion_norm": 0.0,
+    "zero_quaternion_on_S3": false
+  },
+  "positive_control": {
+    "S3_pass": 2000,
+    "SO3_pass": 2000,
+    "SU2_pass": 2000,
+    "all_in_SO3": true,
+    "all_in_SU2": true,
+    "all_on_S3": true,
+    "max_S3_norm_err": 2.220446049250313e-16,
+    "max_SO3_det_err": 1.7763568394002505e-15,
+    "max_SO3_orth_err": 1.940657938937283e-15,
+    "max_SU2_det_err": 5.551115123125783e-16,
+    "max_SU2_unitary_err": 4.440892098500626e-16,
+    "n": 2000
+  },
+  "promotion_allowed": false,
+  "seed": 20260601,
+  "verdict": {
+    "ALL_PASS": true,
+    "boundary_ok": true,
+    "double_cover_2to1": true,
+    "group": true,
+    "homomorphism": true,
+    "kill_control_valid": true,
+    "ladder_status": "passes",
+    "negative_ok": true,
+    "positive_S3": true,
+    "positive_SO3": true,
+    "positive_SU2": true,
+    "z3_smt_proof_valid": true
+  },
+  "z3_smt_proof": {
+    "broken_det_result": "sat",
+    "broken_kill_fires_sat": true,
+    "crosscheck_is_load_bearing": false,
+    "crosscheck_parity_all_unsat": true,
+    "crosscheck_query": "R(q)==R(-q) parity (DECORATIVE: degree-2 entries are trivially even; holds for any quadratic form)",
+    "det_proof_matches_measured_det_err": true,
+    "det_query_flips_genuine_unsat_broken_sat": true,
+    "genuine_det_proven_unsat": true,
+    "genuine_det_result": "unsat",
+    "load_bearing": true,
+    "loadbearing_query": "assert det(R(q)) != 1 under |q|^2==1 over free reals ; UNSAT => det==+1 (proper rotation) for ALL unit q",
+    "measured_max_SO3_det_err": 1.7763568394002505e-15,
+    "smt_proof_valid": true
+  }
+}

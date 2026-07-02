@@ -1,0 +1,582 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Dates": "supportive",
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "Dates": "supportive: timestamp only.",
+    "JSON": "supportive: result artifact emission.",
+    "LinearAlgebra": "load_bearing: Pauli/SU(2) carrier verification, Euclidean spectral/rank finitude test, flat matrix update.",
+    "Random": "load_bearing: seeded finite patterns, corruptions, and random order probes.",
+    "Statistics": "supportive: means over finite probe sets."
+  },
+  "allowed_claims": [
+    "POC finitude contrast between unconstrained flat R^(4N) and compact S^3-constrained dynamics",
+    "POC basin difference between Euclidean-dot and quaternion-product Hopfield updates",
+    "POC order-dependence witness that collapses under commuting controls"
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/hopfield/neural_on_manifold_results.json"
+  ],
+  "blocked_consumers": [
+    "layer-completion / manifold admission",
+    "coupling / coexistence / nesting promotion",
+    "bridge / rho_AB / Xi / Phi0 / Axis0",
+    "flux / FEP / physics",
+    "owner-thesis closure beyond this operational POC"
+  ],
+  "capacity_scan": {
+    "capacity_changed_between_nonflat_and_projected_flat_control": true,
+    "flat_projected_external_unit_control": {
+      "M_max_scanned": 6,
+      "arm": "flat_projected",
+      "bounded_capacity_observed_in_scan": true,
+      "max_reliable_M_under_poc_bar": 3,
+      "poc_reliable_bar": "mean overlap >= 0.90 AND basin-correct fraction >= 0.75",
+      "rows": [
+        {
+          "M": 1,
+          "basin_correct_fraction": 1.0,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 1.0,
+          "min_recall_overlap": 1.0,
+          "reliable_under_poc_bar": true,
+          "trials_per_pattern": 8
+        },
+        {
+          "M": 2,
+          "basin_correct_fraction": 1.0,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.7512280560192094,
+          "min_recall_overlap": 0.748218746514921,
+          "reliable_under_poc_bar": false,
+          "trials_per_pattern": 8
+        },
+        {
+          "M": 3,
+          "basin_correct_fraction": 1.0,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.9144102057705635,
+          "min_recall_overlap": 0.83466970673707,
+          "reliable_under_poc_bar": true,
+          "trials_per_pattern": 8
+        },
+        {
+          "M": 4,
+          "basin_correct_fraction": 0.25,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.5961348574293495,
+          "min_recall_overlap": 0.4576651619048777,
+          "reliable_under_poc_bar": false,
+          "trials_per_pattern": 8
+        },
+        {
+          "M": 5,
+          "basin_correct_fraction": 0.2,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.5470615698939607,
+          "min_recall_overlap": 0.36054155114858083,
+          "reliable_under_poc_bar": false,
+          "trials_per_pattern": 8
+        },
+        {
+          "M": 6,
+          "basin_correct_fraction": 0.16666666666666666,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.584677314548165,
+          "min_recall_overlap": 0.5133446680973216,
+          "reliable_under_poc_bar": false,
+          "trials_per_pattern": 8
+        }
+      ]
+    },
+    "honest_boundary": "flat unconstrained R^(4N) is not a bounded attractor memory without an added projection/saturation; projected flat is included only to compare basins after imposing finitude externally",
+    "nonflat_s3_clifford": {
+      "M_max_scanned": 6,
+      "arm": "nonflat",
+      "bounded_capacity_observed_in_scan": true,
+      "max_reliable_M_under_poc_bar": 1,
+      "poc_reliable_bar": "mean overlap >= 0.90 AND basin-correct fraction >= 0.75",
+      "rows": [
+        {
+          "M": 1,
+          "basin_correct_fraction": 1.0,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.9796926989684753,
+          "min_recall_overlap": 0.9508401394237187,
+          "reliable_under_poc_bar": true,
+          "trials_per_pattern": 8
+        },
+        {
+          "M": 2,
+          "basin_correct_fraction": 0.9375,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.7662184282013883,
+          "min_recall_overlap": 0.5360488280305368,
+          "reliable_under_poc_bar": false,
+          "trials_per_pattern": 8
+        },
+        {
+          "M": 3,
+          "basin_correct_fraction": 0.9166666666666666,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.6463768566449536,
+          "min_recall_overlap": 0.4437808627463506,
+          "reliable_under_poc_bar": false,
+          "trials_per_pattern": 8
+        },
+        {
+          "M": 4,
+          "basin_correct_fraction": 0.78125,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.6095076376562668,
+          "min_recall_overlap": 0.37756098975892843,
+          "reliable_under_poc_bar": false,
+          "trials_per_pattern": 8
+        },
+        {
+          "M": 5,
+          "basin_correct_fraction": 0.55,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.550014840892806,
+          "min_recall_overlap": 0.3362113892758556,
+          "reliable_under_poc_bar": false,
+          "trials_per_pattern": 8
+        },
+        {
+          "M": 6,
+          "basin_correct_fraction": 0.5833333333333334,
+          "corrupt_frac": 0.3,
+          "mean_recall_overlap": 0.558903356302084,
+          "min_recall_overlap": 0.34849547713175455,
+          "reliable_under_poc_bar": false,
+          "trials_per_pattern": 8
+        }
+      ]
+    }
+  },
+  "carrier_layer": "S^3 unit-quaternion local state with flat R^(4N) control",
+  "carrier_realization": "Julia Float64 4-tuples for quaternions; SU(2) Pauli matrices verify the Clifford product; flat control is Float64 R^(4N)",
+  "carrier_verification": {
+    "carrier_verified": true,
+    "flat_dot_commutation_error_dot_i_j_minus_dot_j_i": 0.0,
+    "hamilton_product_eq_matrix_product_maxerr": 2.237726045655905e-16,
+    "i_squared_eq_minus_one_err": 0.0,
+    "i_times_j_eq_k_err": 0.0,
+    "j_times_i_eq_minus_k_err": 0.0,
+    "noncommutative_ij_ne_ji": true,
+    "pauli_anticommutator_sx_sy": 0.0,
+    "pauli_square_sx": 0.0
+  },
+  "claim_ceiling": "Operational POC only: compares flat Euclidean-dot Hopfield dynamics to Hopf/Clifford unit-quaternion dynamics. Does not admit manifold/layer/bridge/Axis0/flux/physics claims.",
+  "classification": "neural_on_manifold_poc",
+  "codomain_or_output": "result JSON with boundedness norms, basin labels/distances, order-dependence distances, capacity scan, verdict, and blocked consumers",
+  "commutation_and_basin_test": {
+    "commuting_controls_collapse": true,
+    "erased_metric_control_zero": true,
+    "flat_scalar_order_control": {
+      "assembly_max_abs_AB_minus_BA": 0.0,
+      "entry_algebra": "flat_real_scalar_elementwise_multiplication_commutes",
+      "max_order_basin_distance": 2.1507973566264877e-9,
+      "mean_order_basin_distance": 2.1203504934044536e-10,
+      "n_probes": 16
+    },
+    "geometric_vs_flat_projected_basins": {
+      "basin_label_mismatch_fraction": 0.6,
+      "flat_projected_basin_correct_fraction": 0.3333333333333333,
+      "flat_projection_note": "this control externally projects the flat Euclidean-dot update back to unit blocks; it removes the infinity issue but not the commutative-dot substrate",
+      "max_recovered_config_distance_nonflat_vs_flat_projected": 1.2655100062614475,
+      "mean_recovered_config_distance_nonflat_vs_flat_projected": 0.8561420306434017,
+      "mismatch_examples": [
+        {
+          "corrupted_indices": [
+            12,
+            8,
+            9,
+            7
+          ],
+          "flat_projected_basin_distance": 0.6826038900511011,
+          "flat_projected_basin_label": 3,
+          "nonflat_basin_distance": 0.9868317025316652,
+          "nonflat_basin_label": 1,
+          "recovered_config_distance": 1.1714799169740118,
+          "target_pattern": 1,
+          "trial": 2
+        },
+        {
+          "corrupted_indices": [
+            1,
+            6,
+            9,
+            2
+          ],
+          "flat_projected_basin_distance": 0.6826038901189753,
+          "flat_projected_basin_label": 3,
+          "nonflat_basin_distance": 1.0044564384286911,
+          "nonflat_basin_label": 2,
+          "recovered_config_distance": 0.829100438028702,
+          "target_pattern": 1,
+          "trial": 3
+        },
+        {
+          "corrupted_indices": [
+            4,
+            10,
+            8,
+            2
+          ],
+          "flat_projected_basin_distance": 0.6826038977836846,
+          "flat_projected_basin_label": 3,
+          "nonflat_basin_distance": 0.9380457596732293,
+          "nonflat_basin_label": 1,
+          "recovered_config_distance": 1.0503173653268367,
+          "target_pattern": 1,
+          "trial": 4
+        },
+        {
+          "corrupted_indices": [
+            10,
+            1,
+            12,
+            9
+          ],
+          "flat_projected_basin_distance": 0.6826038827302137,
+          "flat_projected_basin_label": 3,
+          "nonflat_basin_distance": 1.0104450201114519,
+          "nonflat_basin_label": 1,
+          "recovered_config_distance": 1.0126551884182833,
+          "target_pattern": 1,
+          "trial": 5
+        }
+      ],
+      "nonflat_basin_correct_fraction": 0.8333333333333334,
+      "trials": 30
+    },
+    "load_bearing_flip": true,
+    "order_dependent_basin_commuting_real_scalar_quaternion_entries": {
+      "assembly_noncommutativity_AB_minus_BA": 0.0,
+      "entry_algebra": "flat_real_scalar_entries_commuting",
+      "erased_control_max_basin_distance": 1.241763432820638e-8,
+      "fraction_probes_order_distance_gt_0p05": 0.0,
+      "max_order_basin_distance": 1.1144443718950155e-8,
+      "mean_order_basin_distance": 6.397394980268619e-9,
+      "n_probes": 16
+    },
+    "order_dependent_basin_full_quaternion": {
+      "assembly_noncommutativity_AB_minus_BA": 1.991933071513502,
+      "entry_algebra": "full_quaternion_entries_noncommuting",
+      "erased_control_max_basin_distance": 9.388325030996238e-9,
+      "fraction_probes_order_distance_gt_0p05": 1.0,
+      "max_order_basin_distance": 1.1895269646869522,
+      "mean_order_basin_distance": 1.1057671580404278,
+      "n_probes": 16
+    },
+    "order_dependent_nonflat_real": true,
+    "order_floor": 1.0e-6
+  },
+  "dependency_receipts": [
+    "system_v5/julia_carrier/hopfield/clifford_hopfield.jl",
+    "system_v5/julia_carrier/hopfield/clifford_hopfield_results.json",
+    "system_v5/julia_carrier/hopfield/HOPFIELD_SPEC.md"
+  ],
+  "domain": {
+    "flat": "same patterns flattened to R^(4N), Euclidean-dot weight W=sum vv^T with 4x4 self-blocks zeroed",
+    "nonflat": "N=12 local cells, each a unit quaternion q in S^3 ~ Cl(3,0)+ ~ SU(2); M=3 headline patterns plus finite corruption/random probes"
+  },
+  "finite_map": "Given finite stored patterns and finite corrupted/random probes, apply flat Euclidean-dot or Hopf/Clifford Hopfield update maps to fixed points or bounded iteration traces; emit finitude, basin, order, and capacity invariants.",
+  "finitude_test": {
+    "flat_projected_control": {
+      "basin_label": 3,
+      "note": "external per-neuron normalization removes the infinity contrast; it is a control, not the flat R^n arm",
+      "overlap_to_target": 0.5249951935963549
+    },
+    "flat_unconstrained_R4N": {
+      "expanding_eigenvalue_count_abs_gt_1": 17,
+      "final_global_norm": 5.8827087799922537e26,
+      "final_max_neuron_block_norm": 2.2461196546668123e26,
+      "initial_global_norm": 3.464101615137755,
+      "initial_max_neuron_block_norm": 1.0000000000000002,
+      "interpretation": "flat R^(4N) continuous Euclidean-dot update has no compact state constraint; expansion along eigen-directions and null/degenerated directions are measured directly",
+      "max_global_norm": 5.8827087799922537e26,
+      "norm_growth_ratio": 1.6981917488463513e26,
+      "nullspace_dimension_estimate": 12,
+      "rank_estimate": 36,
+      "spectral_radius": 12.899947826351825,
+      "steps": 24,
+      "unbounded_or_degenerate_direction_detected": true
+    },
+    "nonflat_s3_clifford": {
+      "bounded_by_compact_s3_constraint": true,
+      "energy_first": -50.330519134515846,
+      "energy_last": -175.17806939444694,
+      "energy_monotone_nonincreasing": true,
+      "final_global_norm": 3.4641016151377544,
+      "initial_global_norm": 3.4641016151377544,
+      "max_global_norm": 3.4641016151377544,
+      "max_neuron_norm_deviation_from_1": 2.220446049250313e-16,
+      "sweeps_to_converge": 26
+    },
+    "same_probe_corrupted_indices": [
+      11,
+      5,
+      4,
+      1
+    ]
+  },
+  "generated_at": "2026-06-04T00:34:17.555",
+  "geometry_layer": "Hopf/Clifford S^3 via Cl(3,0)+ ~= H ~= SU(2); flat Euclidean control uses commuting dot/scalar multiplication",
+  "interpretation": "The non-flat Hopf/Clifford substrate changes this network operationally: compact S^3 blocks finitude, Hamilton product supplies noncommuting order-dependent basins, and flat commuting controls do not reproduce those order basins.",
+  "negatives_run": [
+    "flat unconstrained Euclidean R^(4N) update",
+    "flat externally projected Euclidean-dot control",
+    "commuting real-scalar quaternion entry order control",
+    "flat scalar elementwise AB=BA order control",
+    "erased B:=A metric control"
+  ],
+  "object_id": "neural_on_manifold",
+  "peps3d_embedding": {
+    "admission_boundary": "finite PEPS3D site/bond anchor only; no PEPS contraction or bond-tensor admission is claimed by this POC",
+    "nearest_neighbor_bonds": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        5,
+        9
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        6,
+        10
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        11
+      ],
+      [
+        8,
+        12
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        9,
+        11
+      ],
+      [
+        10,
+        12
+      ],
+      [
+        11,
+        12
+      ]
+    ],
+    "site_lattice": "3x2x2 finite anchor for N=12 local cells",
+    "sites": [
+      {
+        "coord": [
+          1,
+          1,
+          1
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 1
+      },
+      {
+        "coord": [
+          1,
+          1,
+          2
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 2
+      },
+      {
+        "coord": [
+          1,
+          2,
+          1
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 3
+      },
+      {
+        "coord": [
+          1,
+          2,
+          2
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 4
+      },
+      {
+        "coord": [
+          2,
+          1,
+          1
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 5
+      },
+      {
+        "coord": [
+          2,
+          1,
+          2
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 6
+      },
+      {
+        "coord": [
+          2,
+          2,
+          1
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 7
+      },
+      {
+        "coord": [
+          2,
+          2,
+          2
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 8
+      },
+      {
+        "coord": [
+          3,
+          1,
+          1
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 9
+      },
+      {
+        "coord": [
+          3,
+          1,
+          2
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 10
+      },
+      {
+        "coord": [
+          3,
+          2,
+          1
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 11
+      },
+      {
+        "coord": [
+          3,
+          2,
+          2
+        ],
+        "local_state": "unit quaternion on S^3",
+        "site": 12
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "not a full PEPS3D tensor-network admission",
+    "small seeded POC, not broad statistical study",
+    "uses local Julia carrier, not torch-native PEPS3D production path",
+    "no bridge, flux, Axis0, FEP, physics, or layer completion evidence"
+  ],
+  "promotion_status": "diagnostic_only",
+  "quaternion_action": "Hamilton product qmul is used in nonflat weights and updates; qmul(i,j)=k and qmul(j,i)=-k",
+  "root_constraints_in_force": [
+    "F01 finite carrier/probe/operator/path set",
+    "N01 noncommuting or order-sensitive operation/control"
+  ],
+  "runtime_seconds": 0.22738385200500488,
+  "seed": 20260603,
+  "sim_execution_kind": "nonclassical_poc",
+  "spinor_state": "q -> Q(q)=w*I - i(x*sx+y*sy+z*sz), a 2x2 SU(2) spinor/rotor realization verified against Hamilton product",
+  "status_ladder": "exists < runs < passes local rerun",
+  "tool_integration_depth": {
+    "Dates": "supportive",
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive"
+  },
+  "tool_manifest": {
+    "Dates": "supportive: timestamp only.",
+    "Grassmann": "not_used: Julia package loadable in preflight; not needed for this finite Hopfield contrast.",
+    "ITensors": "not_used: Julia package loadable in preflight; no PEPS contraction is claimed.",
+    "JSON": "supportive: result artifact emission.",
+    "LinearAlgebra": "load_bearing: Pauli/SU(2) carrier verification, Euclidean spectral/rank finitude test, flat matrix update.",
+    "QuantumClifford": "not_used: Julia package loadable in preflight, but the existing Hopfield lane already verifies the Cl(3)+ even-subalgebra product directly.",
+    "Random": "load_bearing: seeded finite patterns, corruptions, and random order probes.",
+    "Statistics": "supportive: means over finite probe sets.",
+    "clifford_python": "not_used: installed in Python preflight; Julia reused the repo's existing explicit quaternionic Cl(3)+ carrier.",
+    "e3nn": "not_used: installed in Python preflight but not load-bearing for this direct quaternionic Hopf/Clifford POC.",
+    "e3nn_jax": "not_used: installed in Python preflight but JAX/equivariant tooling would be decorative here."
+  },
+  "verdict": "nonflat_changes_network",
+  "verdict_components": {
+    "basins_changed": true,
+    "capacity_scan_changed": true,
+    "commutation_changed": true,
+    "finitude_changed": true,
+    "nonflat_has_order_dependent_attractor_structure_absent_in_commuting_controls": true
+  }
+}

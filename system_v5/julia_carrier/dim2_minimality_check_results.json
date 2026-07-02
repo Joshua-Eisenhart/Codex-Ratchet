@@ -1,0 +1,62 @@
+{
+  "object_id": "dim2_minimality_check_v1",
+  "question": "Is dim=2 forced by F01+N01+minimality, or only chosen?",
+  "candidate_dims_tested": [1, 2, 3, 4, 6, 8],
+  "candidate_results": [{
+    "candidate_dim": 1,
+    "F01_finite_dim_pass": true,
+    "N01_noncommuting_pair_exists": false,
+    "witness_commutator_norm": 0.0,
+    "admitted_under_F01_N01": false
+  }, {
+    "candidate_dim": 2,
+    "F01_finite_dim_pass": true,
+    "N01_noncommuting_pair_exists": true,
+    "witness_commutator_norm": 2.8284271247461903,
+    "admitted_under_F01_N01": true
+  }, {
+    "candidate_dim": 3,
+    "F01_finite_dim_pass": true,
+    "N01_noncommuting_pair_exists": true,
+    "witness_commutator_norm": 2.8284271247461903,
+    "admitted_under_F01_N01": true
+  }, {
+    "candidate_dim": 4,
+    "F01_finite_dim_pass": true,
+    "N01_noncommuting_pair_exists": true,
+    "witness_commutator_norm": 2.8284271247461903,
+    "admitted_under_F01_N01": true
+  }, {
+    "candidate_dim": 6,
+    "F01_finite_dim_pass": true,
+    "N01_noncommuting_pair_exists": true,
+    "witness_commutator_norm": 2.8284271247461903,
+    "admitted_under_F01_N01": true
+  }, {
+    "candidate_dim": 8,
+    "F01_finite_dim_pass": true,
+    "N01_noncommuting_pair_exists": true,
+    "witness_commutator_norm": 2.8284271247461903,
+    "admitted_under_F01_N01": true
+  }],
+  "admitted_dims": [2, 3, 4, 6, 8],
+  "argmin_admitted": 2,
+  "argmin_is_dim2": true,
+  "forced_or_chosen": "forced_by_F01_N01_plus_minimality",
+  "minimality_is_assumption": true,
+  "negative_control_dim1_excluded": true,
+  "wrong_structure_control_diagonal_dim2_fails_N01": true,
+  "control_details": {
+    "dim1_negative_control_pairs_tested": 16,
+    "dim1_negative_control_max_commutator_norm": 0.0,
+    "dim1_witness_search_commutator_norm": 0.0,
+    "diagonal_dim2_commutator_norm": 0.0
+  },
+  "other_nominalist_principle_assessment": {
+    "probe_relative_distinguishability": "not forced by F01+N01 alone; needs an explicit finite probe set and equivalence relation",
+    "quotient_survivors": "not forced by F01+N01 alone; needs an explicit quotient rule",
+    "different_dim_selected_under_this_test": false
+  },
+  "honest_caveat": "F01+N01 alone do not uniquely force dim=2 in the tested candidate set: all finite dimensions with n>=2 admit an explicit noncommuting pair. Dim=2 is selected only after adding the nominalist minimality axiom 'presume the least'. Minimality is an assumption, not a theorem derived from F01+N01. Probe-relative distinguishability or quotient-survivor selectors are under-specified by F01+N01 alone; they would need extra formal probe/equivalence data before selecting another dimension.",
+  "promotion_allowed": false
+}

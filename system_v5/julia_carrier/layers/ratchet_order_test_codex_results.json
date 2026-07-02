@@ -1,0 +1,4109 @@
+{
+  "artifact": "ratchet_order_test_codex",
+  "blocked_consumers": [
+    "layer_stacking_admission",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "FEP",
+    "physics",
+    "final_manifold_admission"
+  ],
+  "claim_ceiling": "F01/N01 pairwise-order harness scaffold only. Local layer sources are provenance; pairwise nesting remains blocked until parent_completion_status is complete_for_pairwise_nesting_test or stronger for both parents.",
+  "classification": "scaffold_only",
+  "doc_quotes": [
+    {
+      "file": "system_v5/ops/MANIFOLD_GEOMETRY_LAYER_STACK_NONCOMMUTATIVE_ORDER_20260528.md",
+      "lines": "11-16",
+      "quote": "make the geometry layers as independent working legos\nprove each has real finite action and controls\nthen test admissible nesting/order\nthen let the surviving order become the ratchet",
+      "section": "Corrected Program"
+    },
+    {
+      "file": "system_v5/ops/MANIFOLD_GEOMETRY_LAYER_STACK_NONCOMMUTATIVE_ORDER_20260528.md",
+      "lines": "146-152",
+      "quote": "Layer A then Layer B   vs   Layer B then Layer A\nA∘B == B∘A                      -> no ratchet at that pair\nA∘B != B∘A and controls collapse -> real order pressure at that pair",
+      "section": "What Allows Stacking"
+    },
+    {
+      "file": "system_v5/ops/NONCOMMUTATION_AND_NESTED_LAYER_TEST_GATE_20260528.md",
+      "lines": "180-185",
+      "quote": "NestedPairTest_Li_Lj:\n  (completed parent Li, completed parent Lj, common carrier projection P,\n   admissible nesting orders [Li then Lj, Lj then Li], controls)\n  -> paired output signatures, survivor sets, entropy/readout deltas,\n     order gaps, failed controls, blockers",
+      "section": "Stage 2 - Pairwise Nested-Layer Test"
+    },
+    {
+      "file": "system_v5/ops/NONCOMMUTATION_AND_NESTED_LAYER_TEST_GATE_20260528.md",
+      "lines": "295-296",
+      "quote": "If `parent_completion_status` is missing, stale, or only `bounded_scout`, the\norder/nesting test is blocked.",
+      "section": "Enforcement Rule"
+    }
+  ],
+  "f01": {
+    "finite_carrier": "2-component ComplexF64 spinor payload plus finite metadata",
+    "operator_path_set": "finite pair orders [A then B, B then A]",
+    "probe_set": [
+      "payload real/imag",
+      "phase",
+      "chirality",
+      "carrier anchor"
+    ]
+  },
+  "generated_at": "2026-06-02T01:15:02.663",
+  "layer_table": [
+    {
+      "id": "R0",
+      "label": "root finite carrier/probe",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/R0_layer_results.json",
+      "source_file": "layers/R0_layer.jl",
+      "source_status": "real_source_available_bounded_R0_layer_poc"
+    },
+    {
+      "id": "L0",
+      "label": "finite response/effect/path quotient",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/L0_layer_results.json",
+      "source_file": "layers/L0_layer.jl",
+      "source_status": "real_source_available_bounded_L0_layer_poc"
+    },
+    {
+      "id": "L1",
+      "label": "spinor/density carrier",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/L1_layer_results.json",
+      "source_file": "layers/L1_layer.jl",
+      "source_status": "source_available_not_passing_L1_layer_poc_promotion_allowed_false"
+    },
+    {
+      "id": "L2",
+      "label": "S3 spinor carrier",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/G_S3_spinor_carrier_results.json",
+      "source_file": "layers/G_S3_spinor_carrier.jl",
+      "source_status": "source_available_not_passing_PoC_promotion_allowed_false"
+    },
+    {
+      "id": "L3",
+      "label": "S2 projective/Hopf base",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/G_S2_hopf_base_results.json",
+      "source_file": "layers/G_S2_hopf_base.jl",
+      "source_status": "real_source_available_bounded_PoC"
+    },
+    {
+      "id": "L4",
+      "label": "Hopf fibration S3->S2 U(1)",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/G_hopf_fibration_results.json",
+      "source_file": "layers/G_hopf_fibration.jl",
+      "source_status": "real_source_available_bounded_tool_lego_fit_probe"
+    },
+    {
+      "id": "L5",
+      "label": "nested Hopf tori / torus leaf family",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/G_nested_hopf_tori_results.json",
+      "source_file": "layers/G_nested_hopf_tori.jl",
+      "source_status": "real_source_available_bounded_PoC"
+    },
+    {
+      "id": "L6",
+      "label": "connection / holonomy geometry",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/L6_layer_codex_results.json",
+      "source_file": "layers/L6_layer_codex.jl",
+      "source_status": "real_source_available_bounded_L6_layer_codex_poc"
+    },
+    {
+      "id": "L7",
+      "label": "Weyl spinor bundle",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/L7_layer_results.json",
+      "source_file": "layers/L7_layer.jl",
+      "source_status": "real_source_available_bounded_L7_layer_poc"
+    },
+    {
+      "id": "L8",
+      "label": "chirality orientation cover",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/L8_layer_results.json",
+      "source_file": "layers/L8_layer.jl",
+      "source_status": "real_source_available_bounded_L8_layer_poc"
+    },
+    {
+      "id": "L9",
+      "label": "Clifford / quaternion module layer",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/L9_layer_codex_results.json",
+      "source_file": "layers/L9_layer_codex.jl",
+      "source_status": "real_source_available_bounded_L9_layer_codex_poc"
+    },
+    {
+      "id": "L10",
+      "label": "terrain / channel / generator layer",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/L10_layer_codex_results.json",
+      "source_file": "layers/L10_layer_codex.jl",
+      "source_status": "real_source_available_bounded_L10_layer_codex_poc"
+    },
+    {
+      "id": "L11",
+      "label": "operator-substage local cell layer",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/L11_layer_codex_results.json",
+      "source_file": "layers/L11_layer_codex.jl",
+      "source_status": "source_available_not_passing_L11_layer_codex_poc_promotion_allowed_false"
+    },
+    {
+      "id": "L12",
+      "label": "entropy / cut / communication layer",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/L12_layer_codex_results.json",
+      "source_file": "layers/L12_layer_codex.jl",
+      "source_status": "real_source_available_bounded_L12_layer_codex_poc"
+    },
+    {
+      "id": "L13",
+      "label": "gluing / groupoid / dynamic transition",
+      "map_status": "stubbed_map_pending_parent_completion",
+      "parent_completion_status": "missing_parent_completion_status",
+      "result_file": "layers/L13_layer_codex_results.json",
+      "source_file": "layers/L13_layer_codex.jl",
+      "source_status": "real_source_available_bounded_L13_layer_codex_poc"
+    }
+  ],
+  "n01": {
+    "controls": [
+      "erase_order",
+      "erase_phase",
+      "erase_chirality",
+      "erase_carrier"
+    ],
+    "order_test": "norm(signature(A(B(state))) - signature(B(A(state))))",
+    "witness": "noncommuting finite 2x2 operators in stub layer maps"
+  },
+  "pair_results": [
+    {
+      "AB_trace": [
+        "R0",
+        "L0"
+      ],
+      "BA_trace": [
+        "L0",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.06998570920867238,
+      "pair": [
+        "R0",
+        "L0"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/L0_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/L0_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L1"
+      ],
+      "BA_trace": [
+        "L1",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.9951020005065594,
+      "pair": [
+        "R0",
+        "L1"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/L1_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/L1_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L2"
+      ],
+      "BA_trace": [
+        "L2",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.45808176326001,
+      "pair": [
+        "R0",
+        "L2"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/G_S3_spinor_carrier_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/G_S3_spinor_carrier.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L3"
+      ],
+      "BA_trace": [
+        "L3",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.2530416735156635,
+      "pair": [
+        "R0",
+        "L3"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/G_S2_hopf_base_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/G_S2_hopf_base.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L4"
+      ],
+      "BA_trace": [
+        "L4",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.8780705904821164,
+      "pair": [
+        "R0",
+        "L4"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/G_hopf_fibration_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/G_hopf_fibration.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L5"
+      ],
+      "BA_trace": [
+        "L5",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.1686342293067302,
+      "pair": [
+        "R0",
+        "L5"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/G_nested_hopf_tori_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/G_nested_hopf_tori.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L6"
+      ],
+      "BA_trace": [
+        "L6",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.5114454020958843,
+      "pair": [
+        "R0",
+        "L6"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/L6_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/L6_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L7"
+      ],
+      "BA_trace": [
+        "L7",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.6811572327448325,
+      "pair": [
+        "R0",
+        "L7"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/L7_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/L7_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L8"
+      ],
+      "BA_trace": [
+        "L8",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.5349610014302553,
+      "pair": [
+        "R0",
+        "L8"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/L8_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/L8_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L9"
+      ],
+      "BA_trace": [
+        "L9",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.5457664125163515,
+      "pair": [
+        "R0",
+        "L9"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/L9_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/L9_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.9576653706463564,
+      "pair": [
+        "R0",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.1479082120276396,
+      "pair": [
+        "R0",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.8784978159415232,
+      "pair": [
+        "R0",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "R0",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "R0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.5761350856830616,
+      "pair": [
+        "R0",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/R0_layer_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/R0_layer.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L1"
+      ],
+      "BA_trace": [
+        "L1",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.06998570920867239,
+      "pair": [
+        "L0",
+        "L1"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/L1_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/L1_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L2"
+      ],
+      "BA_trace": [
+        "L2",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.9951020005065592,
+      "pair": [
+        "L0",
+        "L2"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/G_S3_spinor_carrier_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/G_S3_spinor_carrier.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L3"
+      ],
+      "BA_trace": [
+        "L3",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.524555986284582,
+      "pair": [
+        "L0",
+        "L3"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/G_S2_hopf_base_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/G_S2_hopf_base.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L4"
+      ],
+      "BA_trace": [
+        "L4",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.279086229288473,
+      "pair": [
+        "L0",
+        "L4"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/G_hopf_fibration_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/G_hopf_fibration.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L5"
+      ],
+      "BA_trace": [
+        "L5",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.2110340253786651,
+      "pair": [
+        "L0",
+        "L5"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/G_nested_hopf_tori_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/G_nested_hopf_tori.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L6"
+      ],
+      "BA_trace": [
+        "L6",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.62305084273188,
+      "pair": [
+        "L0",
+        "L6"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/L6_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/L6_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L7"
+      ],
+      "BA_trace": [
+        "L7",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.217072589332567,
+      "pair": [
+        "L0",
+        "L7"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/L7_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/L7_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L8"
+      ],
+      "BA_trace": [
+        "L8",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.5527112971282276,
+      "pair": [
+        "L0",
+        "L8"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/L8_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/L8_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L9"
+      ],
+      "BA_trace": [
+        "L9",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.6196329424552056,
+      "pair": [
+        "L0",
+        "L9"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/L9_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/L9_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.7326616525939915,
+      "pair": [
+        "L0",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.7511182734950026,
+      "pair": [
+        "L0",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.8155209061191404,
+      "pair": [
+        "L0",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L0",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L0"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.8789246276117066,
+      "pair": [
+        "L0",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L0_layer_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L0_layer.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L2"
+      ],
+      "BA_trace": [
+        "L2",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.3991867046603188,
+      "pair": [
+        "L1",
+        "L2"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/G_S3_spinor_carrier_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/G_S3_spinor_carrier.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L3"
+      ],
+      "BA_trace": [
+        "L3",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.1398856946750656,
+      "pair": [
+        "L1",
+        "L3"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/G_S2_hopf_base_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/G_S2_hopf_base.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L4"
+      ],
+      "BA_trace": [
+        "L4",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.8786836014219637,
+      "pair": [
+        "L1",
+        "L4"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/G_hopf_fibration_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/G_hopf_fibration.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L5"
+      ],
+      "BA_trace": [
+        "L5",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.9804319924252745,
+      "pair": [
+        "L1",
+        "L5"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/G_nested_hopf_tori_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/G_nested_hopf_tori.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L6"
+      ],
+      "BA_trace": [
+        "L6",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.273597431165486,
+      "pair": [
+        "L1",
+        "L6"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/L6_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/L6_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L7"
+      ],
+      "BA_trace": [
+        "L7",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.4988223845793092,
+      "pair": [
+        "L1",
+        "L7"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/L7_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/L7_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L8"
+      ],
+      "BA_trace": [
+        "L8",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.511445402095884,
+      "pair": [
+        "L1",
+        "L8"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/L8_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/L8_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L9"
+      ],
+      "BA_trace": [
+        "L9",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.2957343299076223,
+      "pair": [
+        "L1",
+        "L9"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/L9_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/L9_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.9015927578281067,
+      "pair": [
+        "L1",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.6932395819271022,
+      "pair": [
+        "L1",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.8099182284104793,
+      "pair": [
+        "L1",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L1",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L1"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.1479082120276394,
+      "pair": [
+        "L1",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L1_layer_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L1_layer.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L3"
+      ],
+      "BA_trace": [
+        "L3",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.741993971019232,
+      "pair": [
+        "L2",
+        "L3"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/G_S2_hopf_base_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/G_S2_hopf_base.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L4"
+      ],
+      "BA_trace": [
+        "L4",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.6932818416529607,
+      "pair": [
+        "L2",
+        "L4"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/G_hopf_fibration_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/G_hopf_fibration.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L5"
+      ],
+      "BA_trace": [
+        "L5",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.003104571683294,
+      "pair": [
+        "L2",
+        "L5"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/G_nested_hopf_tori_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/G_nested_hopf_tori.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L6"
+      ],
+      "BA_trace": [
+        "L6",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.9448720176732861,
+      "pair": [
+        "L2",
+        "L6"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/L6_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/L6_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L7"
+      ],
+      "BA_trace": [
+        "L7",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.6607281151530582,
+      "pair": [
+        "L2",
+        "L7"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/L7_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/L7_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L8"
+      ],
+      "BA_trace": [
+        "L8",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.3242097490518612,
+      "pair": [
+        "L2",
+        "L8"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/L8_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/L8_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L9"
+      ],
+      "BA_trace": [
+        "L9",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.48511264957714406,
+      "pair": [
+        "L2",
+        "L9"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/L9_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/L9_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.0548036882279221,
+      "pair": [
+        "L2",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.8045750977414369,
+      "pair": [
+        "L2",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.8417891706146987,
+      "pair": [
+        "L2",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L2",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L2"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.8107694876426799,
+      "pair": [
+        "L2",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S3_spinor_carrier_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S3_spinor_carrier.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L3",
+        "L4"
+      ],
+      "BA_trace": [
+        "L4",
+        "L3"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.9256805910999195,
+      "pair": [
+        "L3",
+        "L4"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S2_hopf_base_results.json",
+        "layers/G_hopf_fibration_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S2_hopf_base.jl",
+        "layers/G_hopf_fibration.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L3",
+        "L5"
+      ],
+      "BA_trace": [
+        "L5",
+        "L3"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.488981889488374,
+      "pair": [
+        "L3",
+        "L5"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S2_hopf_base_results.json",
+        "layers/G_nested_hopf_tori_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S2_hopf_base.jl",
+        "layers/G_nested_hopf_tori.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L3",
+        "L6"
+      ],
+      "BA_trace": [
+        "L6",
+        "L3"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.6241950793744162,
+      "pair": [
+        "L3",
+        "L6"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S2_hopf_base_results.json",
+        "layers/L6_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S2_hopf_base.jl",
+        "layers/L6_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L3",
+        "L7"
+      ],
+      "BA_trace": [
+        "L7",
+        "L3"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.0886257362365046,
+      "pair": [
+        "L3",
+        "L7"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S2_hopf_base_results.json",
+        "layers/L7_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S2_hopf_base.jl",
+        "layers/L7_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L3",
+        "L8"
+      ],
+      "BA_trace": [
+        "L8",
+        "L3"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.6085182510185523,
+      "pair": [
+        "L3",
+        "L8"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S2_hopf_base_results.json",
+        "layers/L8_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S2_hopf_base.jl",
+        "layers/L8_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L3",
+        "L9"
+      ],
+      "BA_trace": [
+        "L9",
+        "L3"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.2270065708173086,
+      "pair": [
+        "L3",
+        "L9"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S2_hopf_base_results.json",
+        "layers/L9_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S2_hopf_base.jl",
+        "layers/L9_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L3",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "L3"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.9402746499452708,
+      "pair": [
+        "L3",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S2_hopf_base_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S2_hopf_base.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L3",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L3"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.6080424649767175,
+      "pair": [
+        "L3",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S2_hopf_base_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S2_hopf_base.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L3",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L3"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.230280052316384,
+      "pair": [
+        "L3",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S2_hopf_base_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S2_hopf_base.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L3",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L3"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.8326307599087586,
+      "pair": [
+        "L3",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_S2_hopf_base_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_S2_hopf_base.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L4",
+        "L5"
+      ],
+      "BA_trace": [
+        "L5",
+        "L4"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.9182646224845823,
+      "pair": [
+        "L4",
+        "L5"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_hopf_fibration_results.json",
+        "layers/G_nested_hopf_tori_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_hopf_fibration.jl",
+        "layers/G_nested_hopf_tori.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L4",
+        "L6"
+      ],
+      "BA_trace": [
+        "L6",
+        "L4"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.6222681066403244,
+      "pair": [
+        "L4",
+        "L6"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_hopf_fibration_results.json",
+        "layers/L6_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_hopf_fibration.jl",
+        "layers/L6_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L4",
+        "L7"
+      ],
+      "BA_trace": [
+        "L7",
+        "L4"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.9331515987665522,
+      "pair": [
+        "L4",
+        "L7"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_hopf_fibration_results.json",
+        "layers/L7_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_hopf_fibration.jl",
+        "layers/L7_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L4",
+        "L8"
+      ],
+      "BA_trace": [
+        "L8",
+        "L4"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.279086229288473,
+      "pair": [
+        "L4",
+        "L8"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_hopf_fibration_results.json",
+        "layers/L8_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_hopf_fibration.jl",
+        "layers/L8_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L4",
+        "L9"
+      ],
+      "BA_trace": [
+        "L9",
+        "L4"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.8021208923463996,
+      "pair": [
+        "L4",
+        "L9"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_hopf_fibration_results.json",
+        "layers/L9_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_hopf_fibration.jl",
+        "layers/L9_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L4",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "L4"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.8545114093821696,
+      "pair": [
+        "L4",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_hopf_fibration_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_hopf_fibration.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L4",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L4"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.7638983395448598,
+      "pair": [
+        "L4",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_hopf_fibration_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_hopf_fibration.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L4",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L4"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.5527112971282278,
+      "pair": [
+        "L4",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_hopf_fibration_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_hopf_fibration.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L4",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L4"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.7185134087751417,
+      "pair": [
+        "L4",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_hopf_fibration_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_hopf_fibration.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L5",
+        "L6"
+      ],
+      "BA_trace": [
+        "L6",
+        "L5"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.732869173059814,
+      "pair": [
+        "L5",
+        "L6"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_nested_hopf_tori_results.json",
+        "layers/L6_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_nested_hopf_tori.jl",
+        "layers/L6_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L5",
+        "L7"
+      ],
+      "BA_trace": [
+        "L7",
+        "L5"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.79383007026527,
+      "pair": [
+        "L5",
+        "L7"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_nested_hopf_tori_results.json",
+        "layers/L7_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_nested_hopf_tori.jl",
+        "layers/L7_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L5",
+        "L8"
+      ],
+      "BA_trace": [
+        "L8",
+        "L5"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.821552133095353,
+      "pair": [
+        "L5",
+        "L8"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_nested_hopf_tori_results.json",
+        "layers/L8_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_nested_hopf_tori.jl",
+        "layers/L8_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L5",
+        "L9"
+      ],
+      "BA_trace": [
+        "L9",
+        "L5"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.8471118556552049,
+      "pair": [
+        "L5",
+        "L9"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_nested_hopf_tori_results.json",
+        "layers/L9_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_nested_hopf_tori.jl",
+        "layers/L9_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L5",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "L5"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.2110340253786651,
+      "pair": [
+        "L5",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_nested_hopf_tori_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_nested_hopf_tori.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L5",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L5"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.7391876935828343,
+      "pair": [
+        "L5",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_nested_hopf_tori_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_nested_hopf_tori.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L5",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L5"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.6113089019348477,
+      "pair": [
+        "L5",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_nested_hopf_tori_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_nested_hopf_tori.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L5",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L5"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.8097890088984394,
+      "pair": [
+        "L5",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/G_nested_hopf_tori_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/G_nested_hopf_tori.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L6",
+        "L7"
+      ],
+      "BA_trace": [
+        "L7",
+        "L6"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.3991867046603188,
+      "pair": [
+        "L6",
+        "L7"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L6_layer_codex_results.json",
+        "layers/L7_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L6_layer_codex.jl",
+        "layers/L7_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L6",
+        "L8"
+      ],
+      "BA_trace": [
+        "L8",
+        "L6"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.8844058338862861,
+      "pair": [
+        "L6",
+        "L8"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L6_layer_codex_results.json",
+        "layers/L8_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L6_layer_codex.jl",
+        "layers/L8_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L6",
+        "L9"
+      ],
+      "BA_trace": [
+        "L9",
+        "L6"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.1117499340159702,
+      "pair": [
+        "L6",
+        "L9"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L6_layer_codex_results.json",
+        "layers/L9_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L6_layer_codex.jl",
+        "layers/L9_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L6",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "L6"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.0886257362365044,
+      "pair": [
+        "L6",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L6_layer_codex_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L6_layer_codex.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L6",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L6"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.1898263735916004,
+      "pair": [
+        "L6",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L6_layer_codex_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L6_layer_codex.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L6",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L6"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.2018613306702033,
+      "pair": [
+        "L6",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L6_layer_codex_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L6_layer_codex.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L6",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L6"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.661875907242918,
+      "pair": [
+        "L6",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L6_layer_codex_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L6_layer_codex.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L7",
+        "L8"
+      ],
+      "BA_trace": [
+        "L8",
+        "L7"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.732869173059814,
+      "pair": [
+        "L7",
+        "L8"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L7_layer_results.json",
+        "layers/L8_layer_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L7_layer.jl",
+        "layers/L8_layer.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L7",
+        "L9"
+      ],
+      "BA_trace": [
+        "L9",
+        "L7"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.66210880252689,
+      "pair": [
+        "L7",
+        "L9"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L7_layer_results.json",
+        "layers/L9_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L7_layer.jl",
+        "layers/L9_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L7",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "L7"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.730254668616177,
+      "pair": [
+        "L7",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L7_layer_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L7_layer.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L7",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L7"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.466225343574034,
+      "pair": [
+        "L7",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L7_layer_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L7_layer.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L7",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L7"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.6383394981782786,
+      "pair": [
+        "L7",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L7_layer_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L7_layer.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L7",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L7"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.1129506778023044,
+      "pair": [
+        "L7",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L7_layer_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L7_layer.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L8",
+        "L9"
+      ],
+      "BA_trace": [
+        "L9",
+        "L8"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.399186704660319,
+      "pair": [
+        "L8",
+        "L9"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L8_layer_results.json",
+        "layers/L9_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L8_layer.jl",
+        "layers/L9_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L8",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "L8"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.1123822762713493,
+      "pair": [
+        "L8",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L8_layer_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L8_layer.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L8",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L8"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.3689403097464037,
+      "pair": [
+        "L8",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L8_layer_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L8_layer.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L8",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L8"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.279086229288473,
+      "pair": [
+        "L8",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L8_layer_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L8_layer.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L8",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L8"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.3389314117128521,
+      "pair": [
+        "L8",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L8_layer_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L8_layer.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L9",
+        "L10"
+      ],
+      "BA_trace": [
+        "L10",
+        "L9"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.6980772788122107,
+      "pair": [
+        "L9",
+        "L10"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L9_layer_codex_results.json",
+        "layers/L10_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L9_layer_codex.jl",
+        "layers/L10_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L9",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L9"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.776100337612724,
+      "pair": [
+        "L9",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L9_layer_codex_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L9_layer_codex.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L9",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L9"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.6859649595629511,
+      "pair": [
+        "L9",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L9_layer_codex_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L9_layer_codex.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L9",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L9"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.8491649805907893,
+      "pair": [
+        "L9",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L9_layer_codex_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L9_layer_codex.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L10",
+        "L11"
+      ],
+      "BA_trace": [
+        "L11",
+        "L10"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.547807548294284,
+      "pair": [
+        "L10",
+        "L11"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L10_layer_codex_results.json",
+        "layers/L11_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L10_layer_codex.jl",
+        "layers/L11_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L10",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L10"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.2777469579011427,
+      "pair": [
+        "L10",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L10_layer_codex_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L10_layer_codex.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L10",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L10"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.9033479156348196,
+      "pair": [
+        "L10",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L10_layer_codex_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L10_layer_codex.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L11",
+        "L12"
+      ],
+      "BA_trace": [
+        "L12",
+        "L11"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.705813944396387,
+      "pair": [
+        "L11",
+        "L12"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L11_layer_codex_results.json",
+        "layers/L12_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L11_layer_codex.jl",
+        "layers/L12_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L11",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L11"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 1.995102000506559,
+      "pair": [
+        "L11",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L11_layer_codex_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L11_layer_codex.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    },
+    {
+      "AB_trace": [
+        "L12",
+        "L13"
+      ],
+      "BA_trace": [
+        "L13",
+        "L12"
+      ],
+      "controls": {
+        "erase_carrier": 0.0,
+        "erase_chirality": 0.0,
+        "erase_order": 0.0,
+        "erase_phase": 0.0
+      },
+      "controls_collapse": true,
+      "order_gap": 0.7451083667698418,
+      "pair": [
+        "L12",
+        "L13"
+      ],
+      "real_run_gate_open": false,
+      "real_run_status": "blocked_missing_pairwise_parent_completion",
+      "result_files": [
+        "layers/L12_layer_codex_results.json",
+        "layers/L13_layer_codex_results.json"
+      ],
+      "scaffold_survives": true,
+      "source_files": [
+        "layers/L12_layer_codex.jl",
+        "layers/L13_layer_codex.jl"
+      ]
+    }
+  ],
+  "pairs_tested": 105,
+  "promotion_allowed": false,
+  "real_graph_status": "blocked_no_pair_has_parent_completion_status",
+  "required_parent_complete_layers_for_full_real_ratchet": [
+    "R0",
+    "L0",
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5",
+    "L6",
+    "L7",
+    "L8",
+    "L9",
+    "L10",
+    "L11",
+    "L12",
+    "L13"
+  ],
+  "surviving_order_graph_real": [],
+  "surviving_order_graph_scaffold": [
+    [
+      "R0",
+      "L0"
+    ],
+    [
+      "R0",
+      "L1"
+    ],
+    [
+      "R0",
+      "L2"
+    ],
+    [
+      "R0",
+      "L3"
+    ],
+    [
+      "R0",
+      "L4"
+    ],
+    [
+      "R0",
+      "L5"
+    ],
+    [
+      "R0",
+      "L6"
+    ],
+    [
+      "R0",
+      "L7"
+    ],
+    [
+      "R0",
+      "L8"
+    ],
+    [
+      "R0",
+      "L9"
+    ],
+    [
+      "R0",
+      "L10"
+    ],
+    [
+      "R0",
+      "L11"
+    ],
+    [
+      "R0",
+      "L12"
+    ],
+    [
+      "R0",
+      "L13"
+    ],
+    [
+      "L0",
+      "L1"
+    ],
+    [
+      "L0",
+      "L2"
+    ],
+    [
+      "L0",
+      "L3"
+    ],
+    [
+      "L0",
+      "L4"
+    ],
+    [
+      "L0",
+      "L5"
+    ],
+    [
+      "L0",
+      "L6"
+    ],
+    [
+      "L0",
+      "L7"
+    ],
+    [
+      "L0",
+      "L8"
+    ],
+    [
+      "L0",
+      "L9"
+    ],
+    [
+      "L0",
+      "L10"
+    ],
+    [
+      "L0",
+      "L11"
+    ],
+    [
+      "L0",
+      "L12"
+    ],
+    [
+      "L0",
+      "L13"
+    ],
+    [
+      "L1",
+      "L2"
+    ],
+    [
+      "L1",
+      "L3"
+    ],
+    [
+      "L1",
+      "L4"
+    ],
+    [
+      "L1",
+      "L5"
+    ],
+    [
+      "L1",
+      "L6"
+    ],
+    [
+      "L1",
+      "L7"
+    ],
+    [
+      "L1",
+      "L8"
+    ],
+    [
+      "L1",
+      "L9"
+    ],
+    [
+      "L1",
+      "L10"
+    ],
+    [
+      "L1",
+      "L11"
+    ],
+    [
+      "L1",
+      "L12"
+    ],
+    [
+      "L1",
+      "L13"
+    ],
+    [
+      "L2",
+      "L3"
+    ],
+    [
+      "L2",
+      "L4"
+    ],
+    [
+      "L2",
+      "L5"
+    ],
+    [
+      "L2",
+      "L6"
+    ],
+    [
+      "L2",
+      "L7"
+    ],
+    [
+      "L2",
+      "L8"
+    ],
+    [
+      "L2",
+      "L9"
+    ],
+    [
+      "L2",
+      "L10"
+    ],
+    [
+      "L2",
+      "L11"
+    ],
+    [
+      "L2",
+      "L12"
+    ],
+    [
+      "L2",
+      "L13"
+    ],
+    [
+      "L3",
+      "L4"
+    ],
+    [
+      "L3",
+      "L5"
+    ],
+    [
+      "L3",
+      "L6"
+    ],
+    [
+      "L3",
+      "L7"
+    ],
+    [
+      "L3",
+      "L8"
+    ],
+    [
+      "L3",
+      "L9"
+    ],
+    [
+      "L3",
+      "L10"
+    ],
+    [
+      "L3",
+      "L11"
+    ],
+    [
+      "L3",
+      "L12"
+    ],
+    [
+      "L3",
+      "L13"
+    ],
+    [
+      "L4",
+      "L5"
+    ],
+    [
+      "L4",
+      "L6"
+    ],
+    [
+      "L4",
+      "L7"
+    ],
+    [
+      "L4",
+      "L8"
+    ],
+    [
+      "L4",
+      "L9"
+    ],
+    [
+      "L4",
+      "L10"
+    ],
+    [
+      "L4",
+      "L11"
+    ],
+    [
+      "L4",
+      "L12"
+    ],
+    [
+      "L4",
+      "L13"
+    ],
+    [
+      "L5",
+      "L6"
+    ],
+    [
+      "L5",
+      "L7"
+    ],
+    [
+      "L5",
+      "L8"
+    ],
+    [
+      "L5",
+      "L9"
+    ],
+    [
+      "L5",
+      "L10"
+    ],
+    [
+      "L5",
+      "L11"
+    ],
+    [
+      "L5",
+      "L12"
+    ],
+    [
+      "L5",
+      "L13"
+    ],
+    [
+      "L6",
+      "L7"
+    ],
+    [
+      "L6",
+      "L8"
+    ],
+    [
+      "L6",
+      "L9"
+    ],
+    [
+      "L6",
+      "L10"
+    ],
+    [
+      "L6",
+      "L11"
+    ],
+    [
+      "L6",
+      "L12"
+    ],
+    [
+      "L6",
+      "L13"
+    ],
+    [
+      "L7",
+      "L8"
+    ],
+    [
+      "L7",
+      "L9"
+    ],
+    [
+      "L7",
+      "L10"
+    ],
+    [
+      "L7",
+      "L11"
+    ],
+    [
+      "L7",
+      "L12"
+    ],
+    [
+      "L7",
+      "L13"
+    ],
+    [
+      "L8",
+      "L9"
+    ],
+    [
+      "L8",
+      "L10"
+    ],
+    [
+      "L8",
+      "L11"
+    ],
+    [
+      "L8",
+      "L12"
+    ],
+    [
+      "L8",
+      "L13"
+    ],
+    [
+      "L9",
+      "L10"
+    ],
+    [
+      "L9",
+      "L11"
+    ],
+    [
+      "L9",
+      "L12"
+    ],
+    [
+      "L9",
+      "L13"
+    ],
+    [
+      "L10",
+      "L11"
+    ],
+    [
+      "L10",
+      "L12"
+    ],
+    [
+      "L10",
+      "L13"
+    ],
+    [
+      "L11",
+      "L12"
+    ],
+    [
+      "L11",
+      "L13"
+    ],
+    [
+      "L12",
+      "L13"
+    ]
+  ]
+}

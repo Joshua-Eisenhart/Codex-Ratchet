@@ -1,0 +1,56 @@
+{
+  "schema": "cf25_irreversible_channel_vs_free_inverse_gate_result_v1",
+  "name": "cf25_irreversible_channel_vs_free_inverse_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-25",
+  "gate": "EG-CF25-irreversible-channel-vs-free-inverse",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-25 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite density states, unitary inverse witness, irreversible amplitude-damping control, and free-inverse rejection"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:09:33Z",
+  "runtime_seconds": 0.0009379386901855469,
+  "positive": {
+    "pass": true,
+    "inverse_witness": "U then U_dagger",
+    "unitary_recovery_gap": 8.326672684688674e-17,
+    "irreversible_channel_control": "amplitude_damping_gamma_1_collapses_|0>_and_|1>",
+    "collapsed_output_gap": 0.0
+  },
+  "negative": {
+    "pass": false,
+    "expected": "fail",
+    "negative_case_type": "executable_rejection",
+    "negative_rejected": true,
+    "attempted_claim": {
+      "claim": "the amplitude damping channel has a free inverse",
+      "inverse_witness_supplied": false,
+      "irreversible_channel_control_available": true
+    },
+    "gamma": 0.6,
+    "proposed_inverse": "invert no-jump Kraus branch only, then renormalize",
+    "recovery_gap_after_proposed_inverse": 0.16317848796612633
+  },
+  "boundary": {
+    "pass": true,
+    "unitary_subgroup_boundary": true,
+    "inverse": "U_dagger",
+    "recovery_gap": 2.7755575615628914e-17,
+    "interpretation": "reversibility is admitted for a witnessed unitary subgroup, not for arbitrary channels"
+  },
+  "all_pass": true
+}

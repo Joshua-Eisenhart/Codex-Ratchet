@@ -1,0 +1,360 @@
+{
+  "F01_witness": {
+    "finite_carrier": "nsites cut cells; each a 3-qubit pure |psi_ABE> in C^8, rho_AB in C^{4x4} (Julia-native ComplexF64)",
+    "finite_operator": "local dephasing on B (real erasure) + local unitary on B (anti-taut control) + cut-crossing channels",
+    "finite_path": "ordered cut-channel compositions dephase-then-rotate vs rotate-then-dephase",
+    "finite_probe": "finite cut-edge list; finite von Neumann eigenspectra"
+  },
+  "N01_witness": {
+    "channel_params": {
+      "dephase_p": 0.3,
+      "rotate_theta": 0.8
+    },
+    "gap_formula": "max_v ||(rot_B o dephase_B) rho - (dephase_B o rot_B) rho||_1 (cut-crossing channels on B)",
+    "identity_order_control_gap": 0.0,
+    "measured_max_order_gap": 0.2152068272698569,
+    "present": true
+  },
+  "ablation_nonvacuous": true,
+  "ablation_outcome_delta": {
+    "I_A_B_collapse_gap_mean": 0.2578990317073244,
+    "I_A_B_collapse_gap_ref": 0.29615121043013626,
+    "control_change_mean": 7.632783294297951e-17
+  },
+  "all_pass": true,
+  "anti_tautology_proof": {
+    "I_A_B_after_comparable_control_unitary": 0.692612660859032,
+    "I_A_B_after_real_erasure_dephasing": 0.3964614504288957,
+    "I_A_B_base": 0.692612660859032,
+    "I_A_B_change_under_control": 0.0,
+    "I_A_B_drop_under_erasure": 0.29615121043013626,
+    "control_stayed_at_base": true,
+    "erasure_dropped_signature": true,
+    "hs_pert_control": 0.29567809770817227,
+    "hs_pert_erasure": 0.2824720757758632,
+    "reference_cut": 8,
+    "signature": "I(A:B) mutual information",
+    "statement": "I(A:B) base 0.692613 -> real erasure (dephasing) 0.396461 (DROP 0.296151, quantum coherence removed) ; comparable control (unitary, HS pert 0.2957 vs erasure 0.2825) -> 0.692613 (INTACT, change 0.0). Drop is MEASURED + SPECIFIC (a comparable op leaves it intact), not an algebraic tautology, and NOT to the product zero (a classical correlation survives)."
+  },
+  "bloch_free": true,
+  "bloch_free_note": "density-operator only: rho, dephasing/unitary channels, HS + trace distance, von Neumann spectra. NO r=(rx,ry,rz), no bloch_vector(), no rho=(I+r.sigma)/2, no sigma-triple state, no dot-r ODE.",
+  "blocked_consumers": [
+    "L13 gluing/groupoid/dynamic (needs L12 cut readouts as transition/compatibility data)",
+    "pairwise/subset/stack order tests (gated behind parent-complete + dep-forcing)",
+    "Axis0 entropy ratchet / Phi_0=I_c(A>B) (downstream; Xi: geometry/history->rho_AB OPEN, not closed)",
+    "flux / FEP / gravity bridges (downstream, NOT drivers; blocked until stack complete)"
+  ],
+  "checks": {
+    "ANTI_TAUTOLOGY_control_leaves_intact": true,
+    "ANTI_TAUTOLOGY_holds": true,
+    "DEPFORCE_erased_state_not_product_zero": true,
+    "DEPFORCE_real_erasure_drops_I_A_B": true,
+    "F01_witness_present": true,
+    "N01_identity_order_control_null": true,
+    "N01_order_gap_measured": true,
+    "STRUCTURAL_no_builtin_zero": true,
+    "ablation_nonvacuous": true,
+    "collapse_gap_input_dependent": true,
+    "finite_map_present": true,
+    "genuine_signature_positive_I_A_B": true,
+    "negative_controls_fire": true,
+    "peps3d_anchor_present": true,
+    "qit_entropy_is_derived": true,
+    "readout_identities_hold": true,
+    "scale_8_16_32_64_controls_hold": true,
+    "scale_n_ladder_nonvacuous": true,
+    "signature_input_dependent": true
+  },
+  "classification": "L12_layer_bf_poc",
+  "controls": {
+    "negative": {
+      "anti_tautology_control_I_A_B_change": 0.0,
+      "identity_order_gap": 0.0,
+      "zero_angle_cut_I_A_B": 0.0
+    },
+    "positive": {
+      "I_A_B_collapse_gap_ref": 0.29615121,
+      "min_I_A_B_signature": 0.395924781,
+      "n01_cut_channel_order_gap": 0.215206827
+    }
+  },
+  "dependency_forcing": {
+    "anti_tautology_control_local_unitary_B": {
+      "I_A_B_after_control_per_cut": [
+        0.3959247809710599,
+        0.46471963108951836,
+        0.5272685411280018,
+        0.5817073619118192,
+        0.6265066927542224,
+        0.6604614514070395,
+        0.6826860815551887,
+        0.692612660859032
+      ],
+      "anti_tautology_holds": true,
+      "control_leaves_signature_intact": true,
+      "control_op": "local unitary R_y(theta=0.6) on B (CPTP, comparable HS magnitude)",
+      "hs_pert_control_per_cut": [
+        0.36585780866952927,
+        0.3522563554307882,
+        0.3386204777568177,
+        0.3256719116618637,
+        0.3141830040767233,
+        0.30492416686838764,
+        0.29858498553261514,
+        0.29567809770817227
+      ],
+      "hs_pert_erasure_per_cut": [
+        0.34951731445353584,
+        0.3365233498694309,
+        0.3234964983662336,
+        0.3111262606938694,
+        0.3001504880575928,
+        0.29130518302559594,
+        0.2852491317843484,
+        0.2824720757758632
+      ],
+      "magnitude_comparable": true,
+      "max_abs_I_A_B_change_under_control": 2.220446049250313e-16,
+      "note": "a DIFFERENT comparable-magnitude operation (local unitary, HS pert matched to the dephasing) LEAVES I(A:B) EXACTLY intact (local-unitary invariance of mutual information). If every channel dropped I(A:B) the drop would be a tautology of 'apply some channel'; it does NOT -> the dephasing drop is SPECIFIC to removing coherence (measured), not guaranteed."
+    },
+    "input_dependence_of_collapse": {
+      "collapse_gap_max": 0.29615121043013626,
+      "collapse_gap_min": 0.19348992712101798,
+      "collapse_gap_per_cut": [
+        0.19348992712101798,
+        0.2190063060150058,
+        0.2411872878309098,
+        0.2598189701942112,
+        0.274738454745974,
+        0.28582164814612954,
+        0.2929784491752113,
+        0.29615121043013626
+      ],
+      "collapse_gap_spread": 0.10266128330911828,
+      "collapse_is_input_dependent": true
+    },
+    "real_erasure_local_dephasing_B": {
+      "I_A_B_after_mean": 0.3210868685021607,
+      "I_A_B_after_per_cut": [
+        0.20243485385004178,
+        0.2457133250745125,
+        0.286081253297092,
+        0.3218883917176081,
+        0.3517682380082485,
+        0.37463980326090995,
+        0.3897076323799772,
+        0.3964614504288957
+      ],
+      "I_A_B_drop_max": 0.29615121043013626,
+      "I_A_B_drop_min": 0.19348992712101798,
+      "I_A_B_drop_per_cut": [
+        0.19348992712101798,
+        0.2190063060150058,
+        0.2411872878309098,
+        0.2598189701942112,
+        0.274738454745974,
+        0.28582164814612954,
+        0.2929784491752113,
+        0.29615121043013626
+      ],
+      "base_I_A_B_min": 0.39592478097105976,
+      "channel": "full Z-basis dephasing on B (Kraus {P0_B,P1_B}); CPTP, B marginal preserved",
+      "erase_drops_signature": true,
+      "erased_state_not_a_product_zero": true,
+      "note": "I(A:B) MEASURED to DROP by an input-dependent amount under local dephasing (the quantum coherence removed), while a CLASSICAL correlation SURVIVES (I(A:B)_after > 0) -> NOT the product zero. This is a MEASURED structural drop, NOT the S(rho_A(x)rho_B)=S+S identity. The drop is real because the comparable unitary control below does NOT drop it."
+    },
+    "structural_no_builtin_zero": {
+      "dephasing_is_not_the_product_map": true,
+      "erasure_axis_not_codiagonal_with_rho_AB": true,
+      "min_codiagonality_gap_||[P0_B,rho_AB]||": 0.2824720757758632,
+      "note": "rho_AB is built in a generic TILTED B-frame so the Z-dephasing removes a REAL coherence (||[P0_B,rho_AB]|| > 0). The erasure is a physical channel, NOT kron(rho_A,rho_B) -> no built-in algebraic zero (unlike the product-erasure tautology).",
+      "structural_ok": true
+    }
+  },
+  "dependency_forcing_genuine": true,
+  "doc_source": "MANIFOLD_GEOMETRY_LAYER_STACK_NONCOMMUTATIVE_ORDER_20260528.md l.70-71; QIT_ENGINE_FULL_EXPLICIT_MATH_PACKET Axis-0 l.1496-1507",
+  "finite_map": {
+    "codomain": "per-cut rho_AB(v) + DERIVED readout vector (S_A,S_B,S_AB,S(A|B),I_c(A>B),I(A:B)) + N01 cut-channel order gap.",
+    "domain": "PEPS3D cut cells v of K=(V,E,F,C); each carries a purified |psi_ABE(v)>, angle alpha(v) from a Hopf-latitude sweep, B-half tilted by a fixed generic unitary; rho_AB=Tr_E|psi><psi|.",
+    "no_bloch": "density operators / channels / HS+trace distance only; no r-vector, no dot-r ODE."
+  },
+  "fresh_rerun_command": "julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L12_layer_bf.jl\"",
+  "genuine_signature": {
+    "I_A_B_per_cut": [
+      0.39592478097105976,
+      0.4647196310895183,
+      0.5272685411280018,
+      0.5817073619118193,
+      0.6265066927542225,
+      0.6604614514070395,
+      0.6826860815551885,
+      0.692612660859032
+    ],
+    "I_c_baseline_is_zero_reported": true,
+    "I_c_per_cut": [
+      5.551115123125783e-17,
+      5.551115123125783e-17,
+      1.1102230246251565e-16,
+      1.1102230246251565e-16,
+      1.1102230246251565e-16,
+      0.0,
+      -2.220446049250313e-16,
+      0.0
+    ],
+    "mean_I_A_B": 0.5789859002094851,
+    "min_I_A_B": 0.39592478097105976,
+    "readout": "I(A:B)=S(rho_A)+S(rho_B)-S(rho_AB)>0 (mutual information); the A:B cut correlation the layer carries. NOTE: for this GHZ-type purified cut S(rho_B)=S(rho_AB) so I_c(A>B) is exactly 0 at baseline and is NOT a usable signature -- I(A:B) is.",
+    "signature_positive": true
+  },
+  "honest_scope": {
+    "claim_ceiling": "L12 is the entropy/cut/communication layer whose SIGNATURE is the coherent information I_c(A>B) (the quantum part of the cut correlation) over a PEPS3D cut complex. A MEASURED, non-tautological local-dephasing erasure collapses I_c to ~0 while a comparable-magnitude local-unitary control leaves it EXACTLY intact -> the collapse is specific, not an algebraic identity. The alpha-IS-forced-by-L7/L8 link and the Xi bridge are modeled/open.",
+    "forced_standard_math": [
+      "von Neumann entropy + cut functionals S(A|B), I_c(A>B), I(A:B) (re-measured, not discovered)",
+      "local unitaries preserve I_c / I(A:B) exactly; local dephasing reduces I_c (standard QIT)"
+    ],
+    "novel_interpretive_NOT_proven": [
+      "alpha(v) read as FORCED by the L7/L8 Hopf latitude is MODELED (a latitude sweep), not derived from a full below-geometry carrier run inside this file.",
+      "Xi: geometry/history -> rho_AB is the OPEN bridge; this file builds rho_AB from a modeled angle.",
+      "Phi_0 = I_c(A>B) is the packet's candidate current; NOT admitted as a root/axis mechanism here."
+    ]
+  },
+  "honest_status": "genuine_now",
+  "input_dependence": {
+    "I_A_B_max": 0.692612660859032,
+    "I_A_B_min": 0.39592478097105976,
+    "I_A_B_spread": 0.2966878798879722,
+    "input_dependent_not_constant": true
+  },
+  "item": "L12_layer_bf",
+  "language": "julia",
+  "layer_id": "L12",
+  "negative_controls": {
+    "identity_order_gap": 0.0,
+    "identity_order_null": true,
+    "zero_angle_cut_I_A_B": 0.0,
+    "zero_angle_no_correlation": true
+  },
+  "non_numpy": true,
+  "object": "L12_layer_entropy_cut_communication_cut_state_over_peps3d",
+  "passes_local_rerun": true,
+  "peps3d": {
+    "C": 1,
+    "E": 12,
+    "F": 6,
+    "V": 8,
+    "euler_VEFC": 1,
+    "grid": "2x2x2",
+    "n_cut_cells": 8
+  },
+  "peps3d_honest_note": "finite K=(V,E,F,C) anchor with a local cut state per cell; an anchor PoC, NOT a full PEPS3D tensor-network contraction.",
+  "primary_object_note": "PRIMARY OBJECT = entangled cut state rho_AB (purified by E, tilted into a generic B-frame). S(A|B), I_c(A>B), I(A:B) are DERIVED readouts; never primary.",
+  "promotion_allowed": false,
+  "qit_derived": {
+    "dI_A_B_after_dephase": -0.2938834666996306,
+    "dS_AB_after_dephase": 0.294052199288642,
+    "entropy_is_derived_not_primary": true
+  },
+  "readout_identities": {
+    "I_A_B": 0.6931471805599452,
+    "I_c_A_to_B": -1.1102230246251565e-16,
+    "S_A": 0.6931471805599453,
+    "S_AB": 0.6931471805599454,
+    "S_B": 0.6931471805599453,
+    "identity_residual": 0.0
+  },
+  "scale_8_16_32_64": {
+    "all_pass": true,
+    "honest_note": "the collapse + anti-tautology controls are RE-MEASURED at every K (not appended from one sweep); the N-dependent structural quantity is the count of distinct cut classes the finite complex RESOLVES under a fixed I_c resolution, which GROWS with K.",
+    "n_ladder_nonvacuous": true,
+    "per_K": {
+      "16": {
+        "control_intact": true,
+        "erase_drops": true,
+        "max_abs_control_change": 3.3306690738754696e-16,
+        "min_I_A_B": 0.39592478097105976,
+        "min_drop_under_erasure": 0.19348992712101798,
+        "nsites": 16,
+        "ok": true,
+        "resolvable_cut_classes": 11
+      },
+      "32": {
+        "control_intact": true,
+        "erase_drops": true,
+        "max_abs_control_change": 4.440892098500626e-16,
+        "min_I_A_B": 0.39592478097105976,
+        "min_drop_under_erasure": 0.19348992712101798,
+        "nsites": 32,
+        "ok": true,
+        "resolvable_cut_classes": 12
+      },
+      "64": {
+        "control_intact": true,
+        "erase_drops": true,
+        "max_abs_control_change": 4.440892098500626e-16,
+        "min_I_A_B": 0.39592478097105976,
+        "min_drop_under_erasure": 0.19348992712101798,
+        "nsites": 64,
+        "ok": true,
+        "resolvable_cut_classes": 14
+      },
+      "8": {
+        "control_intact": true,
+        "erase_drops": true,
+        "max_abs_control_change": 2.220446049250313e-16,
+        "min_I_A_B": 0.39592478097105976,
+        "min_drop_under_erasure": 0.19348992712101798,
+        "nsites": 8,
+        "ok": true,
+        "resolvable_cut_classes": 7
+      }
+    },
+    "resolvable_cut_classes_by_N": [
+      [
+        8,
+        7
+      ],
+      [
+        16,
+        11
+      ],
+      [
+        32,
+        12
+      ],
+      [
+        64,
+        14
+      ]
+    ]
+  },
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": null
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "receipt emission",
+      "role": "supportive",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "eigvals (von Neumann spectra), svdvals (trace norm / trace distance), kron (cut states + channels), partial traces, commutator (structural co-diagonality check)",
+      "role": "load_bearing",
+      "used": true
+    },
+    "Z3": {
+      "reason": "z3 OMITTED not decorative: the L12 collapse is DIRECTLY measured + anti-tautology controlled; the prior z3 bound measured MI as an equality and asserted is_product=>mi==0, a literal m!=0-vs-0 tautology dressed as a solver flip.",
+      "role": "omitted",
+      "used": false
+    }
+  },
+  "what_was_cosmetic": {
+    "decorative_z3": "L12_layer.jl:246 binds measured MI as an EQUALITY mi==m and asserts is_product==1=>mi==0; UNSAT for m!=0 is a literal m!=0-vs-0 contradiction, a tautology dressed as a solver flip. Removed.",
+    "no_anti_tautology_control": "Neither file shows a DIFFERENT comparable-magnitude operation that LEAVES the signature INTACT. Every erasure drives MI to the algebraic product zero, so the collapse is never shown SPECIFIC. Codex 'negative controls' are the product-MI=0 identity and identity-order gap=0 -- both tautologies.",
+    "product_erasure_tautology": "L12_layer.jl:145 product_erase=kron(ptrace_B,ptrace_A); l.419 E1_collapsed via mi_prod<1e-9. For ANY product state S(rho_A(x)rho_B)=S(rho_A)+S(rho_B), so I(A:B)=0 is an ALGEBRAIC IDENTITY, not a measured collapse (the C=2A / [diag,diag]=0 pattern). E2 max-mixed product is the same identity; E3 is a length-of-vector count 8->1 (counting tautology). Codex sibling line 171/322 inherits the same product-MI=0 zero.",
+    "scale_theater": "L12_layer.jl:386-398 sweeps K=8/16/32/64 but the per-cut readout/erasure/separation are the SAME function of the per-cut angle; larger K just appends cells from one deterministic angle sweep and 'passes' because mi_prod==0 (the tautology) at every K. No N-dependent structural quantity."
+  }
+}

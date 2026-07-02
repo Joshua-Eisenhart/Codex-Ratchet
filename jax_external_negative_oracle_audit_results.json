@@ -1,0 +1,341 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "layer_stacking",
+    "flux",
+    "xi_phi0",
+    "axis0",
+    "fep_holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "classification": "external_negative_oracle_for_diagnostic_jax_receipt",
+  "council_blocker_addressed": "self-grading risk: corrupted controls are rejected even when row pass flag remains true",
+  "executed_track": "jax",
+  "julia_reference_mode": "read_only",
+  "name": "jax_external_negative_oracle_audit",
+  "promotion_allowed": false,
+  "purpose": "External row-wise negative oracle that does not trust row-local pass flags.",
+  "ran_julia": false,
+  "results": [
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "max_s3_norm_drift"
+        ],
+        "value": 0.25
+      },
+      "corruption_failures": [
+        "normalized_s3"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "F01_finite_carrier",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "order_gap_xy_yx"
+        ],
+        "value": 0.0
+      },
+      "corruption_failures": [
+        "noncommuting_gap"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "N01_noncommuting_order",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "effect_kraus_order_gap"
+        ],
+        "value": 0.0
+      },
+      "corruption_failures": [
+        "kraus_order_gap"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "response_effect_path_quotient",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "LN_classical"
+        ],
+        "value": 0.5
+      },
+      "corruption_failures": [
+        "classical_ln_zero"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "boundary_environment_cut",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "fiber_delta"
+        ],
+        "value": 0.2
+      },
+      "corruption_failures": [
+        "fiber_invariant"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "hopf_fiber_base",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "flat_phase"
+        ],
+        "value": 0.5
+      },
+      "corruption_failures": [
+        "flat_control_kills"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "dirac_monopole_u1_holonomy",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "rho_XY_vs_YX_gap"
+        ],
+        "value": 0.0
+      },
+      "corruption_failures": [
+        "order_changes_cell"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "operator_substage_cell",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "bad_residual"
+        ],
+        "value": 0.0
+      },
+      "corruption_failures": [
+        "bad_gluing_fails"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "gluing_groupoid_cocycle",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "B_basins"
+        ],
+        "value": [
+          1,
+          2,
+          3
+        ]
+      },
+      "corruption_failures": [
+        "prune_kills_forbidden"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "nested_hopf_shells",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "random"
+        ],
+        "value": [
+          1,
+          2
+        ]
+      },
+      "corruption_failures": [
+        "random_keeps_forbidden"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "weyl_gamma5_chirality",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "LN_classical"
+        ],
+        "value": 0.5
+      },
+      "corruption_failures": [
+        "classical_ln_zero"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "qit_entropy_information",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "violated_budget_control"
+        ],
+        "value": 4.0
+      },
+      "corruption_failures": [
+        "small_budget_blocks"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "capacity_path_entropy_budget",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "LN_classical_AC"
+        ],
+        "value": 0.5
+      },
+      "corruption_failures": [
+        "classical_shadow_ln_zero"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "conditional_mutual_information_readout",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "D_rho_rho"
+        ],
+        "value": 0.25
+      },
+      "corruption_failures": [
+        "self_relative_zero"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "qit_relative_free_energy",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "commutator_norm"
+        ],
+        "value": 0.0
+      },
+      "corruption_failures": [
+        "commutator_nonzero"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "spectral_triple_dirac",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "mixed_density_minkowski_norm"
+        ],
+        "value": 0.0
+      },
+      "corruption_failures": [
+        "mixed_density_not_null"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "twistor_null_incidence",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "bad_det_abs"
+        ],
+        "value": 0.8
+      },
+      "corruption_failures": [
+        "degenerate_control_fails"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "g_structure_form_identities",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "swap_matters_gap"
+        ],
+        "value": 0.0
+      },
+      "corruption_failures": [
+        "swap_matters"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "left_right_weyl_terrain_loop",
+      "original_failures": []
+    },
+    {
+      "corruption": {
+        "path": [
+          "metrics",
+          "B"
+        ],
+        "value": [
+          1,
+          2,
+          3
+        ]
+      },
+      "corruption_failures": [
+        "prune_kills_forbidden"
+      ],
+      "external_accepts_original": true,
+      "external_rejects_corruption": true,
+      "layer_id": "survivor_quotient_branch_prune",
+      "original_failures": []
+    }
+  ],
+  "rows_checked": 19,
+  "rows_external_accept_original": 19,
+  "rows_external_reject_corruption": 19,
+  "source_receipt": "jax_manifold_layer_independent_suite_results.json"
+}

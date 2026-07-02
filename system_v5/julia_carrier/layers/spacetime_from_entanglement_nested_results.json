@@ -1,0 +1,342 @@
+{
+  "all_pass": true,
+  "area_law": {
+    "S_block": [
+      1.1381577127495999,
+      1.2368740849183373,
+      1.3004434420211062,
+      1.345424232572176,
+      1.3786921934464333,
+      1.4037268981670188,
+      1.4224958788565913,
+      1.436185616278215,
+      1.44553103602298,
+      1.4509783593198144,
+      1.4527686867635132
+    ],
+    "area_law_beats_volume": true,
+    "block_lengths_half_ring": [
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24
+    ],
+    "chord_log_fit": {
+      "intercept": 0.8279184334379424,
+      "rmse": 0.0031976406664785627,
+      "slope": 0.23022537610606292
+    },
+    "chord_variable_def": "x = log[(N/pi) sin(pi L / N)] (Calabrese-Cardy)",
+    "fitted_c_from_3logslope": 0.6906761283181888,
+    "linear_volume_fit": {
+      "intercept": 1.1680213908512227,
+      "rmse": 0.03961188024961624,
+      "slope": 0.014045732738651517
+    }
+  },
+  "block_mutual_information": {
+    "all_positive": true,
+    "decays_with_ring_distance": true,
+    "rows_by_ring_distance": [
+      {
+        "I_values": [
+          1.0166371191233246,
+          0.7356425161328215
+        ],
+        "d_minus_log_meanI": 0.1322295916174662,
+        "mean_I": 0.876139817628073,
+        "q_blocks": [
+          2,
+          12
+        ],
+        "ref": 1,
+        "ring_distance": 1
+      },
+      {
+        "I_values": [
+          0.1313480275012764,
+          0.07563421472346565
+        ],
+        "d_minus_log_meanI": 2.268269456310476,
+        "mean_I": 0.10349112111237102,
+        "q_blocks": [
+          3,
+          11
+        ],
+        "ref": 1,
+        "ring_distance": 2
+      },
+      {
+        "I_values": [
+          0.06832060806083184,
+          0.046010633070079354
+        ],
+        "d_minus_log_meanI": 2.861802600358233,
+        "mean_I": 0.0571656205654556,
+        "q_blocks": [
+          4,
+          10
+        ],
+        "ref": 1,
+        "ring_distance": 3
+      },
+      {
+        "I_values": [
+          0.0472955460604072,
+          0.036730635301637005
+        ],
+        "d_minus_log_meanI": 3.169774026380309,
+        "mean_I": 0.0420130906810221,
+        "q_blocks": [
+          5,
+          9
+        ],
+        "ref": 1,
+        "ring_distance": 4
+      },
+      {
+        "I_values": [
+          0.03809809892508609,
+          0.033679678053210704
+        ],
+        "d_minus_log_meanI": 3.32732754423398,
+        "mean_I": 0.035888888489148396,
+        "q_blocks": [
+          6,
+          8
+        ],
+        "ref": 1,
+        "ring_distance": 5
+      },
+      {
+        "I_values": [
+          0.0341729428560158
+        ],
+        "d_minus_log_meanI": 3.376321092594537,
+        "mean_I": 0.0341729428560158,
+        "q_blocks": [
+          7
+        ],
+        "ref": 1,
+        "ring_distance": 6
+      }
+    ]
+  },
+  "checks": {
+    "block_mi_decays_with_ring_distance": true,
+    "block_mutual_information_all_positive": true,
+    "distance_monotone_in_recon_ring": true,
+    "entropy_area_law_beats_volume": true,
+    "geometry_cycle_recovered_from_d": true,
+    "kill_product_state_no_geometry": true,
+    "kill_volume_law_fails_area_law": true,
+    "recovered_path_steps_nearest_block": true
+  },
+  "classification": "PoC",
+  "honest_scope": {
+    "claim_ceiling": "Reconstruction recovers a 1D CYCLIC METRIC (block cycle + relative ring distances) read out from entanglement, non-circularly. This is the radial proxy of the foliation, not full emergent spacetime.",
+    "forced_standard_physics": [
+      "MI-distance d = -log I (Van Raamsdonk) and the c/3 Calabrese-Cardy log (area/boundary) law of a critical 1D free-fermion ring — re-measured, not discovered",
+      "even-separation single-site MI vanishing on the bipartite half-filled chain (sublattice / particle-hole structure)",
+      "ring (geodesic) distance min(|p-q|,M-|p-q|) is the natural emergent distance on the periodic chain"
+    ],
+    "novel_interpretive_NOT_proven": [
+      "calling the reconstructed 1D ring 'the S^3 foliation': it is a 1D PROXY of the RADIAL direction of the nested tori, NOT the full S^3 geometry; promoting the recovered 1D cyclic metric to 'emergent S^3 spacetime' is interpretive and is NOT claimed here"
+    ]
+  },
+  "kill_product_state": {
+    "all_distances_infinite": true,
+    "kill_fires": true,
+    "max_offdiag_block_I": -6.462348535570529e-27
+  },
+  "kill_volume_law": {
+    "S_block": [
+      2.772588722239781,
+      4.1588830833596715,
+      5.545177444479562,
+      6.931471805599453,
+      8.317766166719343,
+      9.704060527839234,
+      11.090354888959125,
+      12.476649250079015,
+      13.862943611198906,
+      15.249237972318797,
+      16.635532333438686
+    ],
+    "chord_log_rmse": 1.671425479964666,
+    "exactly_L_log2_extensive": true,
+    "fails_area_law": true,
+    "lin_rmse": 1.2344779623919983e-15,
+    "lin_slope": 0.6931471805599454
+  },
+  "object": "spacetime_from_entanglement_nested",
+  "promotion_allowed": false,
+  "reconstruction": {
+    "block_I_monotone_in_reconstructed_ring_distance": true,
+    "cycle_recovered": true,
+    "cyclic_recovery_score": 1.0,
+    "note": "cycle recovered from d=-log I ALONE; block indices never used as reconstruction input; theta-cycle compared only afterward, up to rotation and reflection",
+    "path_steps_nearest_block": true,
+    "recovered_cycle": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ]
+  },
+  "setup": {
+    "A_max": 19.739208802178716,
+    "A_min": 1.264695450200815,
+    "M_blocks": 12,
+    "N": 48,
+    "block_sizes": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "boundary": "periodic_ring",
+    "hoppings": [
+      0.09051584325208208,
+      0.1563484021978921,
+      0.2202005050492814,
+      0.28271654343042574,
+      0.34387456607111977,
+      0.4035123929255578,
+      0.46142644735004446,
+      0.517400764644536,
+      0.57121814498886,
+      0.6226654233189851,
+      0.6715364349172183,
+      0.7176339492812445,
+      0.7607710850787232,
+      0.800772433148572,
+      0.8374749954096331,
+      0.8707289937348076,
+      0.9003985769116557,
+      0.9263624406375898,
+      0.9485143685306757,
+      0.966763698344566,
+      0.9810357154804196,
+      0.9912719747348266,
+      0.9974305506083074,
+      0.9994862162006878,
+      0.9974305506083074,
+      0.9912719747348266,
+      0.9810357154804196,
+      0.966763698344566,
+      0.9485143685306757,
+      0.9263624406375898,
+      0.9003985769116559,
+      0.8707289937348076,
+      0.8374749954096332,
+      0.8007724331485723,
+      0.7607710850787232,
+      0.7176339492812445,
+      0.6715364349172183,
+      0.6226654233189852,
+      0.5712181449888601,
+      0.5174007646445361,
+      0.4614264473500446,
+      0.40351239292555785,
+      0.3438745660711199,
+      0.28271654343042585,
+      0.22020050504928151,
+      0.15634840219789223,
+      0.09051584325208231,
+      0.06407021998071306
+    ],
+    "n_occupied": 23,
+    "single_site_even_sep_MI": [
+      0.0002560841410805814,
+      0.0002614577072042046,
+      0.00027161863975266876
+    ],
+    "single_site_odd_sep_MI": [
+      0.4392140163813837,
+      0.04564363181552289,
+      0.01645514567006634
+    ],
+    "sublattice_note": "single-site I vanishes on EVEN separations (bipartite half-filled chain); regions are contiguous blocks",
+    "thetas": [
+      0.0320570678937734,
+      0.0641141357875468,
+      0.09617120368132019,
+      0.1282282715750936,
+      0.160285339468867,
+      0.19234240736264038,
+      0.2243994752564138,
+      0.2564565431501872,
+      0.2885136110439606,
+      0.320570678937734,
+      0.3526277468315074,
+      0.38468481472528077,
+      0.4167418826190542,
+      0.4487989505128276,
+      0.48085601840660097,
+      0.5129130863003744,
+      0.5449701541941477,
+      0.5770272220879212,
+      0.6090842899816946,
+      0.641141357875468,
+      0.6731984257692414,
+      0.7052554936630148,
+      0.7373125615567881,
+      0.7693696294505615,
+      0.801426697344335,
+      0.8334837652381084,
+      0.8655408331318818,
+      0.8975979010256552,
+      0.9296549689194286,
+      0.9617120368132019,
+      0.9937691047069753,
+      1.0258261726007487,
+      1.0578832404945222,
+      1.0899403083882955,
+      1.121997376282069,
+      1.1540544441758425,
+      1.1861115120696157,
+      1.2181685799633892,
+      1.2502256478571625,
+      1.282282715750936,
+      1.3143397836447093,
+      1.3463968515384828,
+      1.3784539194322563,
+      1.4105109873260295,
+      1.442568055219803,
+      1.4746251231135763,
+      1.5066821910073498,
+      1.538739258901123
+    ]
+  },
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "tools": [
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "z3_omitted": "deliberate: no decorative SMT block; evidence is measured numbers + kill-controls"
+}

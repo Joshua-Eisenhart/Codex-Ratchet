@@ -1,0 +1,234 @@
+{
+  "all_pass": true,
+  "checks": {
+    "A_finitude_S3_bounded": true,
+    "A_flat_R2_unbounded": true,
+    "B_clifford_anticommutator_exact": true,
+    "B_flat_commutes": true,
+    "B_genuine_offdiag_noncommuting": true,
+    "B_rotational_noncommutation": true,
+    "C_double_cover_kernel_2": true,
+    "C_hopf_c1_equals_1": true,
+    "C_spinor_sign_U2pi_minus_I": true,
+    "C_wrong_structure_dc_kernel_1": true,
+    "C_wrong_structure_so3_R2pi_I": true,
+    "C_wrong_structure_trivial_c1_0": true,
+    "D_mps_exact_bond_1": true,
+    "D_mps_overlap_dev_lt_tol": true,
+    "E_all_ladder_rungs_complete": true,
+    "F_flat_drifts_off_manifold": true,
+    "F_neural_convergence_s3": true,
+    "F_s3_projection_exact_norm": true
+  },
+  "claim_ceiling": "candidate PoC. Does NOT assert layer-completion, manifold admission, coupling, bridge, flux, or physics.",
+  "classification": "L2_newstd_poc",
+  "criterion_A_finitude": {
+    "F01_satisfied_on_genuine": true,
+    "F01_violated_on_flat": true,
+    "N": 64,
+    "finitude_contrast_present": true,
+    "flat_R2_bounded": false,
+    "flat_R2_max_norm_dev": 1.9765368288174168,
+    "flat_control_is_unbounded": true,
+    "genuine_S3_bounded": true,
+    "genuine_S3_max_norm_dev": 2.220446049250313e-16,
+    "pass": true
+  },
+  "criterion_B_anticommutation": {
+    "clifford_level": {
+      "N01_genuine_anticommutes_flat_commutes": true,
+      "anticommutator_relation": "{Ga,Gb}=2*delta_ab",
+      "flat_commutator_norm": 0.0,
+      "flat_commutes": true,
+      "flat_control_generators": "diagonal projectors e1=diag(1,0),e2=diag(0,1)",
+      "generators": "Pauli SX,SY,SZ (Cl(3) on S^3 spinors)",
+      "genuine_anticommutator_passes": true,
+      "genuine_commutator_norms": [
+        0.0,
+        2.8284271247461903,
+        2.8284271247461903,
+        2.8284271247461903,
+        0.0,
+        2.8284271247461903,
+        2.8284271247461903,
+        2.8284271247461903,
+        0.0
+      ],
+      "genuine_max_anticommutator_error": 0.0,
+      "genuine_offdiag_commutators_nonzero": true
+    },
+    "pass": true,
+    "rotational_level": {
+      "[Lx,Ly]_error_vs_Lz": 0.0,
+      "generators": "SO(3) Lx,Ly,Lz (noncommuting on S^3 tangent)",
+      "rotational_noncommutation_passes": true
+    }
+  },
+  "criterion_C_invariant": {
+    "double_cover_kernel_anchor": 2,
+    "double_cover_kernel_order": 2,
+    "double_cover_passes": true,
+    "hopf_Fmax": 0.002790065423354113,
+    "hopf_c1": 1,
+    "hopf_c1_anchor": 1,
+    "hopf_c1_passes": true,
+    "hopf_c1_raw": 0.9999999950091312,
+    "pass": true,
+    "spinor_sign_2pi_err": 1.3597399555105182e-16,
+    "spinor_sign_U2pi_is_minus_I": true,
+    "spinor_sign_passes": true,
+    "wrong_structure_dc_kernel_flips": true,
+    "wrong_structure_dc_kernel_order": 1,
+    "wrong_structure_so3_R2pi_is_I": true,
+    "wrong_structure_trivial_c1_flips": true,
+    "wrong_structure_trivial_c1_raw": 0.0,
+    "wrong_structure_trivial_curvature_flat": true
+  },
+  "criterion_D_exact_carrier": {
+    "N_sites": 16,
+    "contraction_error_bounded": true,
+    "mps_is_exact_product_state": true,
+    "mps_max_bond_dim": 1,
+    "mps_overlap_dev_from_1": 8.881784197001252e-16,
+    "mps_overlap_imag": 4.995578754365038e-17,
+    "mps_overlap_passes": true,
+    "mps_overlap_real": 0.9999999999999991,
+    "pass": true
+  },
+  "criterion_E_scale_ladder": {
+    "all_rungs_pass": true,
+    "completed_rungs": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "pass": true,
+    "rung_16": {
+      "N": 16,
+      "flat_R2_max_norm_dev": 1.8687719587104525,
+      "genuine_S3_max_norm_dev": 2.220446049250313e-16,
+      "mps_bond_dim": 1,
+      "mps_overlap_dev": 1.1102230246251565e-15,
+      "pass": true
+    },
+    "rung_32": {
+      "N": 32,
+      "flat_R2_max_norm_dev": 2.8422386032508165,
+      "genuine_S3_max_norm_dev": 2.220446049250313e-16,
+      "mps_bond_dim": 1,
+      "mps_overlap_dev": 1.3322676295501878e-15,
+      "pass": true
+    },
+    "rung_64": {
+      "N": 64,
+      "flat_R2_max_norm_dev": 2.275801547156057,
+      "genuine_S3_max_norm_dev": 2.220446049250313e-16,
+      "mps_bond_dim": 1,
+      "mps_overlap_dev": 6.661338147750939e-16,
+      "pass": true
+    },
+    "rung_8": {
+      "N": 8,
+      "flat_R2_max_norm_dev": 1.7655847742094872,
+      "genuine_S3_max_norm_dev": 1.1102230246251565e-16,
+      "mps_bond_dim": 1,
+      "mps_overlap_dev": 3.3306690738754696e-16,
+      "pass": true
+    }
+  },
+  "criterion_F_neural_dynamics": {
+    "chosen_pattern_counts": {
+      "1": 600,
+      "2": 0,
+      "3": 0,
+      "4": 0
+    },
+    "converged_to_pattern_idx": 1,
+    "convergence_best_overlap": 0.9999999999999999,
+    "convergence_to_pattern_1": true,
+    "flat_control_drifts_off_manifold": true,
+    "flat_control_max_norm_dev": 10.463603590875252,
+    "geodesic_convergence_passes": true,
+    "geodesic_distance_to_nearest": 1.4901161193847656e-8,
+    "n_patterns": 4,
+    "n_steps": 600,
+    "nonflat_geometry_load_bearing": true,
+    "pass": true,
+    "retrieval_rule": "nearest stored memory cue at each step; avoids overcomplete C^2 blended attractor",
+    "s3_projection_maintains_norm": true
+  },
+  "finite_map": {
+    "F01": "compact S^3 carrier — every element satisfies ||psi||=1; flat R^2 control violates this",
+    "N01": "Cl(3) Pauli generators: {Ga,Gb}=2*delta_ab but [Ga,Gb]!=0 (noncommuting); flat diagonal generators commute ([e_a,e_b]=0)",
+    "codomain": "norm ||psi|| (finitude); Clifford anticommutator {Ga,Gb}; SO(3) rotation R(q); Hopf pi(psi) in S^2; Chern c1; Hopfield attractor overlap",
+    "domain": "finite set of unit spinors psi in S^3={psi in C^2: ||psi||=1}, unit quaternions q, (theta,phi) grid on S^2"
+  },
+  "layer_id": "L2",
+  "layer_name": "S^3 spinor carrier — neural net on non-flat geometry",
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_deciding_number": 0.0,
+    "commutation_note": "{Ga,Gb}-2*delta err < 1e-10 (genuine); flat [e_a,e_b]=0 (commutes as expected for control)",
+    "exact_carrier": "MET",
+    "exact_carrier_deciding_number": 8.881784197001252e-16,
+    "exact_carrier_note": "ITensors MPS product-state, bond=1, overlap dev < 1e-10",
+    "finitude": "MET",
+    "finitude_deciding_number": 2.220446049250313e-16,
+    "finitude_note": "S3 max dev < 1e-10; flat R2 dev > 0 (no compactness bound)",
+    "invariant_anchored": "MET",
+    "invariant_anchored_deciding_number": 0.9999999950091312,
+    "invariant_anchored_note": "Hopf c1=1; trivial bundle c1->0; double-cover kernel 2; spinor sign U(2pi)=-I",
+    "met_fraction": "6/6",
+    "neural_dynamics": "MET",
+    "neural_dynamics_deciding_number": 1.4901161193847656e-8,
+    "neural_dynamics_note": "geodesic dist to nearest pattern < 0.1 rad; flat control drifts off S3",
+    "overall": "GENUINELY-UPGRADED",
+    "scale_ladder": "MET",
+    "scale_ladder_deciding_number": 4,
+    "scale_ladder_note": "rungs completed: [8, 16, 32, 64] (4/4 within budget)"
+  },
+  "object_id": "L2_newstd",
+  "promotion_allowed": false,
+  "rerun_command": "cd \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" && julia --project=\"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier\" \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/layers/L2_newstd.jl\"",
+  "seed": 20260602,
+  "status_ladder": "exists < runs < passes local rerun < canonical by process",
+  "tool_manifest": {
+    "CliffordAlgebras": {
+      "load_bearing": false,
+      "reason": "tried; API surface targets higher-level multivector objects rather than 2x2 Pauli level; manual Pauli matrices exact and simpler for Cl(3) anticommutation check",
+      "tried": true,
+      "used": false
+    },
+    "ITensors_ITensorMPS": {
+      "load_bearing": true,
+      "reason": "product-state MPS at N=8/16/32/64; exact carrier (bond=1); overlap contraction error bounded < 1e-10",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "load_bearing": true,
+      "reason": "result JSON emission for JAX audit lane",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "load_bearing": true,
+      "reason": "spinor norms (||psi||), matrix exponential (SU(2) rotations), eigenvalues, determinants — all load-bearing for invariant measurement",
+      "tried": true,
+      "used": true
+    },
+    "QuantumClifford": {
+      "load_bearing": false,
+      "reason": "tried; stabilizer/Clifford level operates on discrete Clifford circuits, not continuous S^3 unit spinors; not applicable to this carrier",
+      "tried": true,
+      "used": false
+    },
+    "Random": {
+      "load_bearing": true,
+      "reason": "seeded MersenneTwister for reproducible random spinors, quaternions, probe states",
+      "tried": true,
+      "used": true
+    }
+  }
+}

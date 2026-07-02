@@ -1,0 +1,427 @@
+{
+  "blocked_consumers": [
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics",
+    "layer_completion"
+  ],
+  "carrier_layer": "nested_hopf_tori_peps2d_poc",
+  "carrier_realization": "Julia PEPSKit InfinitePEPS; no NumPy; no ITensors MPS; no fixedpoint optimizer",
+  "checks": {
+    "all_rungs_returned": true,
+    "classification_exact": true,
+    "ctmrg_environment_load_bearing_earned": true,
+    "entropies_vary_across_8_16_32_64": true,
+    "erasure_delta_nonzero": true,
+    "genuine_invariant_anchored_abs1": true,
+    "no_fixedpoint_optimizer": true,
+    "not_mps": true,
+    "peps2d_genuinely_engaged": true,
+    "promotion_blocked": true,
+    "verdict_flips_1_to_0_on_network": true,
+    "wrong_structure_control_trivializes_to_0": true
+  },
+  "claim_ceiling": "Runs a PEPS2D CTMRG contraction ladder for nested Hopf tori shells and reads a known topological invariant (c1) off the contracted network, flipped by a wrong-structure control. Not canonical, not PEPS3D admission, not flux/Axis0/physics progress, not layer completion.",
+  "classification": "nested_hopf_tori_spinor_network_peps2d_poc",
+  "ctmrg_ladder": [
+    {
+      "corner_schmidt_rank_reported": 8,
+      "corner_schmidt_spectrum_head": [
+        0.6790197478373966,
+        0.1315043864093103,
+        0.12673161875091835,
+        0.03126089663829978,
+        0.015803186592171316,
+        0.012518905777053639,
+        0.003015533774747949,
+        0.00014572422010205728
+      ],
+      "ctmrg_converged_to_tol": false,
+      "ctmrg_env_chi": 8,
+      "ctmrg_tol": 0.01,
+      "ctmrg_truncation_error": 0.019922024286001636,
+      "entropy_source": "tsvd(env.corners[1,1,1]) after leading_boundary CTMRG; not MPS half-chain",
+      "environment_schmidt_entropy": 1.0389285205000605,
+      "eta": 0.2617993877991494,
+      "eta_over_pi": 0.08333333333333333,
+      "hopf_connection_cos2eta": 0.8660254037844387,
+      "network_bloch_on_shell": [
+        0.956846,
+        0.192489,
+        0.028862
+      ],
+      "peps_type": "InfinitePEPS{TensorMap{ComplexF64, ComplexSpace, 1, 4, Vector{ComplexF64}}}",
+      "physical_space": "ComplexSpace(2) Weyl spinor",
+      "rung": 1,
+      "shell_area_scale_sin2eta": 0.49999999999999994,
+      "virtual_bond_dim_D": 2
+    },
+    {
+      "corner_schmidt_rank_reported": 16,
+      "corner_schmidt_spectrum_head": [
+        0.6719063223083329,
+        0.11128663545585377,
+        0.09145182424346429,
+        0.062218997254942766,
+        0.016486882887334783,
+        0.010915201883079635,
+        0.008847414057661578,
+        0.007599789521008287
+      ],
+      "ctmrg_converged_to_tol": true,
+      "ctmrg_env_chi": 16,
+      "ctmrg_tol": 0.01,
+      "ctmrg_truncation_error": 0.005236687878927566,
+      "entropy_source": "tsvd(env.corners[1,1,1]) after leading_boundary CTMRG; not MPS half-chain",
+      "environment_schmidt_entropy": 1.2116658734195387,
+      "eta": 0.5235987755982988,
+      "eta_over_pi": 0.16666666666666666,
+      "hopf_connection_cos2eta": 0.5000000000000001,
+      "network_bloch_on_shell": [
+        0.470045,
+        0.356906,
+        0.063208
+      ],
+      "peps_type": "InfinitePEPS{TensorMap{ComplexF64, ComplexSpace, 1, 4, Vector{ComplexF64}}}",
+      "physical_space": "ComplexSpace(2) Weyl spinor",
+      "rung": 2,
+      "shell_area_scale_sin2eta": 0.8660254037844386,
+      "virtual_bond_dim_D": 2
+    },
+    {
+      "corner_schmidt_rank_reported": 32,
+      "corner_schmidt_spectrum_head": [
+        0.7411026780563701,
+        0.0649624832160919,
+        0.054982230145522136,
+        0.05318325490151898,
+        0.034220010143942936,
+        0.01041266747631671,
+        0.008001026261506734,
+        0.005028708431355885
+      ],
+      "ctmrg_converged_to_tol": true,
+      "ctmrg_env_chi": 32,
+      "ctmrg_tol": 0.01,
+      "ctmrg_truncation_error": 0.0014527621358068731,
+      "entropy_source": "tsvd(env.corners[1,1,1]) after leading_boundary CTMRG; not MPS half-chain",
+      "environment_schmidt_entropy": 1.1156836735657076,
+      "eta": 0.7853981633974483,
+      "eta_over_pi": 0.25,
+      "hopf_connection_cos2eta": 6.123233995736766e-17,
+      "network_bloch_on_shell": [
+        -0.149243,
+        0.416879,
+        0.152985
+      ],
+      "peps_type": "InfinitePEPS{TensorMap{ComplexF64, ComplexSpace, 1, 4, Vector{ComplexF64}}}",
+      "physical_space": "ComplexSpace(2) Weyl spinor",
+      "rung": 3,
+      "shell_area_scale_sin2eta": 1.0,
+      "virtual_bond_dim_D": 2
+    },
+    {
+      "corner_schmidt_rank_reported": 64,
+      "corner_schmidt_spectrum_head": [
+        0.6934539204112234,
+        0.07616392098193393,
+        0.05032806842409842,
+        0.038538934514501355,
+        0.033326482760114455,
+        0.019422346172654963,
+        0.012754505739256475,
+        0.01187424116017952
+      ],
+      "ctmrg_converged_to_tol": true,
+      "ctmrg_env_chi": 64,
+      "ctmrg_tol": 0.01,
+      "ctmrg_truncation_error": 0.0015424267850112714,
+      "entropy_source": "tsvd(env.corners[1,1,1]) after leading_boundary CTMRG; not MPS half-chain",
+      "environment_schmidt_entropy": 1.4089280518713543,
+      "eta": 1.0471975511965976,
+      "eta_over_pi": 0.3333333333333333,
+      "hopf_connection_cos2eta": -0.4999999999999998,
+      "network_bloch_on_shell": [
+        -0.752291,
+        0.267329,
+        0.425667
+      ],
+      "peps_type": "InfinitePEPS{TensorMap{ComplexF64, ComplexSpace, 1, 4, Vector{ComplexF64}}}",
+      "physical_space": "ComplexSpace(2) Weyl spinor",
+      "rung": 4,
+      "shell_area_scale_sin2eta": 0.8660254037844387,
+      "virtual_bond_dim_D": 2
+    }
+  ],
+  "domain": {
+    "chern_chi": 8,
+    "chern_grid": [
+      3,
+      3
+    ],
+    "chi_ladder": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "physical_space": "C^2",
+    "shell_etas": [
+      0.2617993877991494,
+      0.5235987755982988,
+      0.7853981633974483,
+      1.0471975511965976
+    ],
+    "virtual_bond_D": 2
+  },
+  "engine": "PEPSKit v0.7-style InfinitePEPS / CTMRGEnv / leading_boundary / expectation_value; contraction only",
+  "finite_map": "eta_k / (theta,phi) -> section-encoded InfinitePEPS(C^2 physical, C^D virtual) -> leading_boundary CTMRG env -> {env Schmidt entropy, network Bloch vector, reconstructed c1}",
+  "fixedpoint_optimization_used": false,
+  "invariant": {
+    "control_c1_integer": 0,
+    "control_c1_measured": -1.4070571395017785e-5,
+    "ctmrg_environment_load_bearing_earned": true,
+    "erasure_delta_nonzero": true,
+    "erasure_max_bloch_delta": 0.42799492856216675,
+    "erasure_mean_bloch_delta": 0.19867080853306446,
+    "genuine_c1_integer": 1,
+    "genuine_c1_measured": 1.000012632821184,
+    "genuine_invariant_anchored_abs1": true,
+    "genuine_structure_m_plus_1": {
+      "c1_integer": 1,
+      "c1_measured_on_network": 1.000012632821184,
+      "grid_nphi": 3,
+      "grid_ntheta": 3,
+      "m_winding": 1,
+      "max_erasure_delta": 0.42799492856216675,
+      "mean_ctmrg_trunc": 0.02032544998000109,
+      "mean_erasure_delta": 0.19867080853306446,
+      "sample_points": [
+        {
+          "ctmrg_trunc": 0.010707940866810293,
+          "erased_bloch": [
+            -0.142218,
+            -0.0,
+            0.470588
+          ],
+          "erasure_delta": 0.161346,
+          "network_bloch": [
+            -0.145207,
+            -0.153249,
+            0.420207
+          ],
+          "phi": 0.0,
+          "theta": 0.0
+        },
+        {
+          "ctmrg_trunc": 0.009274893821023467,
+          "erased_bloch": [
+            -0.142218,
+            -0.0,
+            0.470588
+          ],
+          "erasure_delta": 0.168546,
+          "network_bloch": [
+            -0.146059,
+            -0.161418,
+            0.422242
+          ],
+          "phi": 2.0943951023931953,
+          "theta": 0.0
+        },
+        {
+          "ctmrg_trunc": 0.011227711339588334,
+          "erased_bloch": [
+            -0.142218,
+            -0.0,
+            0.470588
+          ],
+          "erasure_delta": 0.163335,
+          "network_bloch": [
+            -0.147557,
+            -0.155228,
+            0.42005
+          ],
+          "phi": 4.1887902047863905,
+          "theta": 0.0
+        },
+        {
+          "ctmrg_trunc": 0.041750128598132395,
+          "erased_bloch": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "erasure_delta": 0.0,
+          "network_bloch": [
+            1.0,
+            -0.0,
+            0.0
+          ],
+          "phi": 0.0,
+          "theta": 1.5707963267948966
+        }
+      ],
+      "sweep_chi": 8
+    },
+    "known_invariant": "first Chern number c1 of the U(1) Hopf bundle over S^2, |c1|=1 for the m=1 section",
+    "measurement_basis": "c1 reconstructed as the degree of the Bloch map S^2->S^2, where each Bloch vector is read by expectation_value(peps, sx/sy/sz, env) on the CONTRACTED CTMRG network",
+    "verdict_flips_1_to_0_on_network": true,
+    "wrong_structure_control_m_0": {
+      "c1_integer": 0,
+      "c1_measured_on_network": -1.4070571395017785e-5,
+      "grid_nphi": 3,
+      "grid_ntheta": 3,
+      "m_winding": 0,
+      "max_erasure_delta": 0.17388374326088252,
+      "mean_ctmrg_trunc": 0.016455537066998368,
+      "mean_erasure_delta": 0.1114412991647203,
+      "sample_points": [
+        {
+          "ctmrg_trunc": 0.012017460589088584,
+          "erased_bloch": [
+            -0.142218,
+            -0.0,
+            0.470588
+          ],
+          "erasure_delta": 0.169828,
+          "network_bloch": [
+            -0.147673,
+            -0.162093,
+            0.420214
+          ],
+          "phi": 0.0,
+          "theta": 0.0
+        },
+        {
+          "ctmrg_trunc": 0.010380130699679814,
+          "erased_bloch": [
+            -0.142218,
+            -0.0,
+            0.470588
+          ],
+          "erasure_delta": 0.165411,
+          "network_bloch": [
+            -0.146061,
+            -0.158645,
+            0.423922
+          ],
+          "phi": 2.0943951023931953,
+          "theta": 0.0
+        },
+        {
+          "ctmrg_trunc": 0.013825010445166125,
+          "erased_bloch": [
+            -0.142218,
+            -0.0,
+            0.470588
+          ],
+          "erasure_delta": 0.16954,
+          "network_bloch": [
+            -0.165622,
+            -0.150336,
+            0.395787
+          ],
+          "phi": 4.1887902047863905,
+          "theta": 0.0
+        },
+        {
+          "ctmrg_trunc": 0.017499241236979195,
+          "erased_bloch": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "erasure_delta": 0.0,
+          "network_bloch": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "phi": 0.0,
+          "theta": 1.5707963267948966
+        }
+      ],
+      "sweep_chi": 8
+    },
+    "wrong_structure_control_trivializes_to_0": true
+  },
+  "ladder_summary": {
+    "all_rungs_converged_to_tol": false,
+    "all_rungs_returned": true,
+    "entropies_vary_across_rungs": true,
+    "entropy_source": "tsvd(env.corners[1,1,1]) after leading_boundary CTMRG; not MPS half-chain entropy",
+    "observed_corner_schmidt_ranks": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "observed_entropies": [
+      1.0389285205000605,
+      1.2116658734195387,
+      1.1156836735657076,
+      1.4089280518713543
+    ],
+    "observed_truncation_errors": [
+      0.019922024286001636,
+      0.005236687878927566,
+      0.0014527621358068731,
+      0.0015424267850112714
+    ],
+    "peps2d_genuinely_engaged": true,
+    "requested_chi_ladder": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "schmidt_ranks_vary_across_rungs": true
+  },
+  "load_bearing_earned": true,
+  "not_mps": true,
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "Contraction-only unoptimized iPEPS",
+    "PEPS2D POC is not the required PEPS3D manifold carrier",
+    "No downstream flux/Xi/Phi0/Axis0/physics consumers allowed",
+    "No layer-completion or manifold-admission claim"
+  ],
+  "root_constraints_in_force": [
+    "F01 finite shell set T_eta_k, finite chi ladder, finite base-grid sweep",
+    "N01 order-sensitive Hopf winding encoded in the physical section and virtual-parity coupling"
+  ],
+  "seed": 20260602,
+  "sim": "nested_hopf_tori_spinor_network_peps2d",
+  "status": "passes_local_poc_checks",
+  "timestamp_utc": "2026-06-03T00:24:22.182",
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "PEPSKit": "load_bearing",
+    "TensorKit": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "result artifact emission",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "Bloch vectors, spherical solid-angle degree integration, normalization",
+      "role": "supportive"
+    },
+    "PEPSKit": {
+      "reason": "InfinitePEPS+CTMRG contraction is load_bearing: the measured c1 (read by expectation_value on the env) flips 1->0 under the wrong-structure control, and erasing the environment moves the Bloch vector by mean delta 0.1987",
+      "role": "load_bearing"
+    },
+    "TensorKit": {
+      "reason": "ComplexSpace, section-encoded TensorMap, tsvd of CTMRG corner, expectation_value operators",
+      "role": "load_bearing"
+    }
+  },
+  "wallclock_seconds": 1305.08
+}

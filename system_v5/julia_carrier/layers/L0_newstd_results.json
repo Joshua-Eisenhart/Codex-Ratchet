@@ -1,0 +1,262 @@
+{
+  "F01_witness": {
+    "compact_topology": "S^3 spinors on S^2 surface (chi=2)",
+    "finite_PEPS3D_K_V_E_F_C": [
+      8,
+      12,
+      6,
+      1
+    ],
+    "finite_carrier_vertices": 8,
+    "flat_control_norm_grows": true,
+    "flat_vs_compact_contrast_ratio": 256.99999999999994,
+    "max_response_norm_compact": 0.47140452079103173,
+    "response_norm_bounded": true
+  },
+  "N01_witness": {
+    "clifford_anticomm_2delta_ok": true,
+    "commuting_control_gap": 8.326672684688674e-17,
+    "flat_cartesian_control_comm_norm": 0.0,
+    "n01_isolates_noncommutation": true,
+    "order_gap_measured": true,
+    "sequential_order_response_gap": 0.16666666666666666,
+    "su2_generator_comm_norm_JxJy": 0.5
+  },
+  "all_pass": true,
+  "all_pass_legacy": true,
+  "all_pass_newstd": true,
+  "blocked_consumers": [
+    "L1 spinor/density carrier (consumes L0 quotient as distinguishability prior)",
+    "L2..L6 Hopf region (needs L0 finite-probe quotient)",
+    "G-structure selection (support lattice; tested last)",
+    "Axis0 / flux / FEP / physics (downstream; not drivers)"
+  ],
+  "claim_ceiling": "carrier-level invariants and finite maps; NOT layer-completion, manifold admission, coupling, bridge, flux, or physics",
+  "classification": "L0_newstd_poc",
+  "dependency_forcing": {
+    "all_erasures_collapse": true,
+    "baseline_ic_classes": 8,
+    "erase_depolarize_collapses": true,
+    "erase_effect_collapses": true,
+    "erase_spinor_collapses": true
+  },
+  "exact_carrier": {
+    "bar": "max_error < 1e-14 for genuine AND control (equal truncation)",
+    "contraction_method": "dense_ComplexF64_trace",
+    "control_below_bound": true,
+    "deciding_number": 5.551115123125783e-17,
+    "equal_truncation_budget": "zero for both genuine and control",
+    "error_bound": 1.0e-14,
+    "exact_carrier_met": true,
+    "genuine_below_bound": true,
+    "max_contraction_error_control": 5.551115123125783e-17,
+    "max_contraction_error_genuine": 5.551115123125783e-17
+  },
+  "finite_map": {
+    "codomain": "K_V / ~_E (the surviving distinguishable classes)",
+    "domain": "vertices K_V of cube PEPS3D K=(V,E,F,C); spinor-derived densities rho_v",
+    "geometry_role": "compact S^3 topology (chi=2) SUPPLIES F01+N01; flat Euclidean cannot",
+    "operator": "finite POVM effect family {E_a}, sum_a E_a = I",
+    "quotient": "v ~_E w iff max_a|p_a(v)-p_a(w)| <= tol",
+    "response": "R(v) = (p_a(v))_a, p_a = tr(E_a rho_v) in R^{|E|}",
+    "signature": "n_classes(E) = number of surviving classes"
+  },
+  "finitude_vs_flat": {
+    "bar": "flat_response_norm grows with T (flat_norm[end]>2*flat_norm[1]) AND compact bounded by 1",
+    "compact_distinct_classes": 8,
+    "compact_max_response_norm": 0.47140452079103173,
+    "compact_nV": 8,
+    "compact_norm_bounded_by_1": true,
+    "compact_stable": true,
+    "contrast_ratio_flat_over_compact": 256.99999999999994,
+    "deciding_number": 256.99999999999994,
+    "finitude_contrast_met": true,
+    "flat_T_vals": [
+      1.0,
+      2.0,
+      4.0,
+      8.0,
+      16.0
+    ],
+    "flat_norm_grows": true,
+    "flat_response_norms": [
+      0.9428090415820635,
+      2.3570226039551585,
+      8.013876853447538,
+      30.641293851417057,
+      121.15096184329514
+    ],
+    "mechanism": "compact S^3: tr(rho)=1 always (POVM sum=1); flat R^2: tr(rho_flat)=||v||^2 -> infinity"
+  },
+  "honest_status_ladder": "passes_local_rerun",
+  "layer": "L0",
+  "neural_dynamics": {
+    "bar": "converged==true AND energy_monotone==true within 20 steps",
+    "converged": true,
+    "deciding_number": 2.0,
+    "energies_trajectory": [
+      -0.5,
+      -1.5,
+      -1.5
+    ],
+    "energy_monotone_decreasing": true,
+    "final_hamming_distance": 0.0,
+    "geometry": "cube_adjacency_W_from_PEPS3D_edges",
+    "geometry_is_load_bearing_for_convergence": true,
+    "initial_hamming_distance_from_pattern": 0.25,
+    "max_steps_budget": 20,
+    "n_vertices": 8,
+    "neural_dynamics_met": true,
+    "random_weight_control_converged": true,
+    "steps_to_converge": 2
+  },
+  "new_standard_scorecard": {
+    "commutation": "MET",
+    "commutation_deciding_number": 0.5,
+    "exact_carrier": "MET",
+    "exact_deciding_number": 5.551115123125783e-17,
+    "finitude": "MET",
+    "finitude_deciding_number": 256.99999999999994,
+    "fraction": "6/6",
+    "invariant_anchored": "MET",
+    "invariant_deciding_number": 2.0,
+    "n_met": 6,
+    "neural_deciding_number": 2.0,
+    "neural_dynamics": "MET",
+    "scale_deciding_number": 4.0,
+    "scale_ladder": "MET"
+  },
+  "noncommutation": {
+    "bar": "min_input_dep_norm > 1e-6 AND flat_norm < 1e-15",
+    "clifford_anticomm_2delta_ok": true,
+    "clifford_anticomm_diagonal_errors": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "clifford_anticomm_offdiag_errors": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "comm_norm_JxJy": 0.5,
+    "comm_norm_JxJz": 0.5,
+    "comm_norm_JyJz": 0.5,
+    "deciding_number": 0.5,
+    "flat_cartesian_control_comm_norm": 0.0,
+    "flat_control_commutes": true,
+    "floor_bar": 1.0e-6,
+    "input_dep_norms_per_spinor": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "min_input_dep_comm_norm": 0.5,
+    "noncomm_above_floor": true,
+    "noncomm_contrast_met": true,
+    "su2_generators_Jx_Jy_Jz": "iSX/2, iSY/2, iSZ/2"
+  },
+  "object_id": "L0_newstd_poc",
+  "promotion_allowed": false,
+  "scale_stress": {
+    "rows": [
+      {
+        "N": 8,
+        "bloch_norm_variance_compact": 1.76085023486833e-32,
+        "bloch_norm_variance_flat": 5.2825507046049895e-33,
+        "compact_norm_bounded": true,
+        "erase_collapses": true,
+        "erase_depolarize_classes": 1,
+        "ic_classes": 8,
+        "ic_tracks_planted": true,
+        "planted_distinct": 8
+      },
+      {
+        "N": 16,
+        "bloch_norm_variance_compact": 1.0682491424867869e-32,
+        "bloch_norm_variance_flat": 4.930380657631324e-33,
+        "compact_norm_bounded": true,
+        "erase_collapses": true,
+        "erase_depolarize_classes": 1,
+        "ic_classes": 16,
+        "ic_tracks_planted": true,
+        "planted_distinct": 16
+      },
+      {
+        "N": 32,
+        "bloch_norm_variance_compact": 1.5904453734294592e-32,
+        "bloch_norm_variance_flat": 4.373724776931013e-33,
+        "compact_norm_bounded": true,
+        "erase_collapses": true,
+        "erase_depolarize_classes": 1,
+        "ic_classes": 32,
+        "ic_tracks_planted": true,
+        "planted_distinct": 32
+      },
+      {
+        "N": 64,
+        "bloch_norm_variance_compact": 8.608601148245168e-33,
+        "bloch_norm_variance_flat": 7.630351017762763e-33,
+        "compact_norm_bounded": true,
+        "erase_collapses": true,
+        "erase_depolarize_classes": 1,
+        "ic_classes": 64,
+        "ic_tracks_planted": true,
+        "planted_distinct": 64
+      }
+    ],
+    "rungs_completed": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "scale_pass": true
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "receipt emission only",
+      "role": "supportive"
+    },
+    "LinearAlgebra": {
+      "reason": "spinor/density/trace/eigval/opnorm/commutator algebra for all criteria",
+      "role": "load_bearing"
+    },
+    "Z3": {
+      "reason": "exact rational POVM sum=I + PSD proof; verdict flips on broken family; anti-tautology control present",
+      "role": "load_bearing"
+    },
+    "numpy": {
+      "reason": "Julia-native ComplexF64 throughout",
+      "role": "ABSENT"
+    }
+  },
+  "topological_invariant": {
+    "bar": "chi_genuine==2 AND chi_wrong!=chi_genuine",
+    "chi_genuine": 2,
+    "chi_wrong_structure": 1,
+    "deciding_number": 2.0,
+    "invariant_anchored_met": true,
+    "invariant_correct": true,
+    "nE": 12,
+    "nE_wrong": 13,
+    "nF": 6,
+    "nV": 8,
+    "wrong_deciding_number": 1.0,
+    "wrong_structure_flips_invariant": true
+  },
+  "z3_loadbearing_proof": {
+    "base_each_effect_psd_status": [
+      "unsat",
+      "unsat",
+      "unsat",
+      "unsat"
+    ],
+    "base_sum_minus_I_status": "unsat",
+    "broken_nonpsd_effect_status": "sat",
+    "broken_sum_drop_one_status": "sat",
+    "tool_integration_depth": "load_bearing",
+    "z3_verdict_flips": true
+  }
+}

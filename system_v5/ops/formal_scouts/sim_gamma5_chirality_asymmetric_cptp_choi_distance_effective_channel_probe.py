@@ -37,14 +37,17 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded scalar search for effective-gamma minimization"},
+    "python_math": {"tried": True, "used": True, "reason": "supportive local bounded scalar search for effective-gamma minimization"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing Kraus maps, Choi matrices, trace norms, Stinespring isometries, and bounded-search objective evaluation"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing Choi partial-trace CPTP verification"},
     "clifford": {"tried": True, "used": True, "reason": "load-bearing Cl(1,3) chirality orientation boundary"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic projector identity boundary"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing effective-channel reduction contradiction check"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    tool: ("supportive" if tool == "python_math" else "load_bearing")
+    for tool in TOOL_MANIFEST
+}
 
 DTYPE = torch.complex128
 DIM = 4

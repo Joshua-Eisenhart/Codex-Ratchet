@@ -1,0 +1,58 @@
+TASK: Write ONE self-contained Python+JAX script named `jax_branch_prune_audit.py` that AUDITS a Julia result.
+You are the JAX AUDIT lane: a batched numerical stress-tester. You are NOT a native spinor engine and NOT a
+PyTorch port. Do NOT read any repo files — everything needed is below. Implement and report; no meta-discussion,
+no exploring options.
+
+OBJECT TO REPLICATE — a finite branch/prune ensemble of unit-quaternion spinors q=(q0,q1,q2,q3) on S^3 (|q|=1).
+
+Targets (4 fixed attractors):
+  T1 = [ 0.5,  0.5,  0.5,  0.5]   ALLOWED   (q0>0)
+  T2 = [ 0.5,  0.5, -0.5, -0.5]   ALLOWED   (q0>0)
+  T3 = [-0.5, -0.5,  0.5, -0.5]   FORBIDDEN (q0<0)
+  T4 = [-0.5, -0.5, -0.5,  0.5]   FORBIDDEN (q0<0)
+nearest(q) = argmax_k dot(T_k, q)   (basin label in {1,2,3,4})
+Flow:  dq/dt = 2 * (T_nearest - dot(T_nearest, q) * q)   (tangent to S^3)
+
+BRANCH (ensemble) — JIT-clean, NO rejection while-loop, N=400:
+  key = jax.random.PRNGKey(42); draw 4*N standard-normal rows shape (4N,4); normalize each row to unit norm;
+  keep rows with q0 > 0.05; take the FIRST N of those. JAX's RNG is NOT Julia's MersenneTwister, so the SPECIFIC
+  400 spinors differ from Julia — do NOT try to reproduce Julia's survivors=293/pruned=107. Only the basin-SET
+  invariants must match (see ACCEPTANCE).
+
+EVOLVE + RETRACT — project to the manifold EVERY step. Integrate t in [0,12] with EITHER diffrax (Dopri5/Tsit5 +
+  PIDController, adaptive) OR fixed-step Euler with dt <= 1e-3; after EVERY step renormalize q to |q|=1. (If you
+  use Euler, its divergence from the adaptive Julia Tsit5 is itself the audit signal — do not hide it.)
+
+PRUNE = SURVIVOR MASK (never freeze-and-classify). Maintain alive[N] boolean, init all True. The prune predicate
+  is a MONOTONE LATCH: a future is pruned iff its q0 EVER goes below -0.01 at ANY step (once dead, stays dead).
+  Each step: alive = alive AND NOT(q0 < -0.01) when the predicate is active. Pruned futures are EXCLUDED from all
+  basin counts. Survivors = rows still alive at t=12, classified by nearest(final q). pruned = N - count(alive).
+  (Do NOT classify a frozen final state past the boundary — that would leak a dipped future into basin 3/4.)
+
+THREE RUNS sharing the SAME ensemble + flow:
+  A = no prune          (predicate always False)
+  B = chirality prune   (the latch above)
+  C = trivial control   (predicate always False — identical to A; this is the anti-theater control)
+
+RECEIPT — write `jax_branch_prune_audit_results.json` with, per run: populated_basins (sorted unique survivor
+  labels), survivors, pruned; plus overall max_norm_drift (max over all final states of | |q| - 1 |).
+
+ACCEPTANCE — STRUCTURAL integer invariants (these must match the Julia oracle; raw counts may differ by RNG):
+  chk1: A.populated == [1,2,3,4]                          (baseline reaches all basins; non-vacuous)
+  chk2: set(B.populated) & {3,4} == set()                 (chirality prune kills BOTH forbidden basins)
+  chk3: (set(A.populated) & {1,2}) <= set(B.populated)    (allowed basins preserved)
+  chk4: C.populated == A.populated and C.pruned == 0      (CONTROL: never-firing prune is a no-op == A)
+  chk5: B.pruned > 0 and A.pruned == 0                    (real prune fired; baseline pruned nothing)
+  chk6: for each run, survivors == N - pruned             (bookkeeping consistency)
+  chk7: max_norm_drift < 1e-3                             (retraction works)
+  AUDIT_PASS = all(chk1..chk7).
+  Julia reference (INFO ONLY, not a gate): A basins=[1,2,3,4] surv=400 pruned=0; B basins=[1,2] surv=293
+  pruned=107; C==A. Your survivor/pruned numbers WILL differ; only the basin-set invariants must agree.
+
+RUN ONCE. Print EXACTLY two lines, then exit:
+  line 1:  A basins=<list> surv=<int> pruned=<int> | B basins=<list> surv=<int> pruned=<int> | C basins=<list> surv=<int> pruned=<int>
+  line 2:  AUDIT_PASS=<True|False>
+  Do NOT loop or edit dt/N/checks to chase PASS. If AUDIT_PASS is False, print it and STOP — a real divergence
+  (B retains a forbidden basin, or C != A) is the audit SIGNAL that JAX projection/prune is leaking, NOT a bug to mask.
+
+DELIVERABLE: the single file `jax_branch_prune_audit.py`, its JSON receipt, and the two printed lines.

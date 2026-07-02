@@ -1,0 +1,296 @@
+{
+  "F01_witness": {
+    "finite_carrier": "32 phi x 32 chi x 4 shell = 4096 torus points psi_v in S^3",
+    "finite_operator": "horizontal lift / U(1) parallel transport e^{i A}",
+    "finite_path": "closed base rectangles A, B (160-point loops)",
+    "finite_probes": "pi(psi) Hopf projection; Wilson-loop holonomy; Fukui-Hatsugai plaquette",
+    "is_finite": true
+  },
+  "N01_witness": {
+    "honest_note": "closed-loop U(1) holonomy is ABELIAN and COMMUTES (hAB==hBA); the real N01 is in OPEN-path transport order, where curvature makes the order gap nonzero. Reported, not faked.",
+    "interpretation": "OPEN Berry transport P->Q1->R != P->Q2->R: the two orders enclose opposite-signed Hopf curvature; the gap IS the enclosed curvature (loop order matters, F!=0 forced by c1!=0)",
+    "order_gap": 0.430403,
+    "order_matters": true,
+    "phase_order_AB": 0.637266,
+    "phase_order_BA": 0.206864
+  },
+  "abelian_closed_loop_commutes": {
+    "closed_loop_order_gap": 0.0,
+    "hAB": 0.35463,
+    "hBA": 0.35463,
+    "note": "abelian U(1): concatenated CLOSED base loops commute (gap~0). This is WHY N01 must use open-path order, not faked from closed loops."
+  },
+  "ablation_outcome_delta": {
+    "AHopf_winding": {
+      "ablated_pass": true,
+      "ablation_kind": "removed_and_rerun",
+      "baseline_pass": true,
+      "c1_with_term": 1.005012,
+      "c1_without_term": 0.0,
+      "delta_witness": 1.005012,
+      "non_vacuous": true,
+      "recomputed": true,
+      "tool_ablated": "A_Hopf cos(2eta)/chi-winding connection term in the induced section"
+    }
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "L5 nested Hopf tori (awaits L4 fiber/base + torus-shell anchor)",
+    "L6 connection/holonomy geometry (awaits L4 A_Hopf + holonomy)",
+    "G-structure selection (support lattice, tested LAST)",
+    "Axis0 / flux / FEP / physics bridge (downstream, blocked)"
+  ],
+  "carrier": {
+    "julia_native_spinor": true,
+    "on_S3_norm_dev": 1.1102230246251565e-16,
+    "rho_is_psd": true,
+    "rho_is_pure": true,
+    "rho_min_eigval": -7.370444952476291e-17,
+    "rho_trace": 0.9999999999999999,
+    "uses_numpy": false
+  },
+  "carrier_coupling": {
+    "induced_from_chart": "base section = hopf_chart(phi=0, chi=winding*phi_base, eta=theta/2); winding carries c1",
+    "induced_section_on_S2": true,
+    "induced_section_z_eq_cos_theta": true,
+    "note": "c1 below is read from the Hopf chart's OWN induced base section -- erasing the chart winding/cos(2eta)/split collapses it (dependency-forcing)."
+  },
+  "classification": "L4_layer_poc",
+  "connection_A_Hopf": {
+    "A_chi_expected_sin2": 0.3454915028125263,
+    "A_chi_match": true,
+    "A_chi_measured": 0.34549150281246865,
+    "A_phi_expected_cos2": 0.6545084971874737,
+    "A_phi_match": true,
+    "A_phi_measured": 0.6545084971873647,
+    "Aphi_minus_Achi": 0.30901699437489605,
+    "cos2eta_doc": 0.30901699437494745,
+    "doc_formula": "A_Hopf = d phi + cos(2 eta) d chi  ->  A_phi-A_chi = cos 2eta",
+    "eta": 0.6283185307179586,
+    "matches_doc_AHopf": true
+  },
+  "controls": {
+    "negative": {
+      "cos2eta_c1_delta_gap": 1.005012,
+      "fiber_base_split_response_delta_gap": 0.911922,
+      "trivialize_c1_delta_gap": 1.0
+    },
+    "positive": {
+      "base_minus_fiber_entropy_gap": 0.040449,
+      "chern_c1_nontriviality_gap": 1.0,
+      "curvature_Fmax_gap": 0.001562,
+      "fiber_base_responsiveness_gap": 0.911922,
+      "holonomy_order_N01_gap": 0.430403
+    }
+  },
+  "controls_summary": {
+    "N01_order_gap_ok": true,
+    "ablation_nonvacuous_ok": true,
+    "carrier_coupling_ok": true,
+    "carrier_ok": true,
+    "connection_AHopf_ok": true,
+    "dependency_forcing_ok": true,
+    "derived_entropy_ok": true,
+    "fiber_base_split_ok": true,
+    "hopf_c1_curvature_ok": true,
+    "negative_controls_ok": true,
+    "scale_8_16_32_64_ok": true,
+    "z3_load_bearing_ok": true
+  },
+  "dependency_forcing_erasures": {
+    "E1_trivialize_bundle": {
+      "Fmax_after": 0.0,
+      "c1_after": 0.0,
+      "c1_collapsed": true,
+      "curvature_collapsed": true,
+      "delta_Fmax": 0.001562,
+      "delta_c1": 1.0,
+      "delta_holonomy_gap": 0.430403,
+      "holonomy_collapsed": true,
+      "holonomy_gap_after": 0.0,
+      "signature_collapsed": true
+    },
+    "E2_collapse_cos2eta_term": {
+      "Fmax_after": 0.0,
+      "c1_analytic_after": 0.0,
+      "c1_collapsed": true,
+      "c1_fh_after": 0.0,
+      "curvature_collapsed": true,
+      "delta_c1": 1.005012,
+      "holonomy_gap_after": 0.0,
+      "note": "winding=0 removes the chart's d chi phase advance (the cos(2eta) connection content): the induced section no longer winds -> c1 collapses on BOTH estimators.",
+      "signature_collapsed": true
+    },
+    "E3_collapse_nested_torus_index": {
+      "can_define_curvature_2form": false,
+      "delta_z_span": 1.990008,
+      "full_base_z_span_before": 1.990008,
+      "note": "single eta-slice freezes the base latitude (z=cos theta constant): a 1-parameter ring cannot enclose base area, so a 2-form curvature is undefined. Full base z-span ~2 collapses to ~0.",
+      "signature_collapsed": true,
+      "slice_z_span_after": 0.0
+    },
+    "E4_erase_fiber_base_split": {
+      "base_response_collapsed": true,
+      "base_responsiveness_after": 0.0,
+      "base_responsiveness_before": 0.911922,
+      "c1_analytic_after": 0.0,
+      "c1_collapsed": true,
+      "c1_fh_after": 0.0,
+      "delta_base_responsiveness": 0.911922,
+      "note": "chi==phi locks the carrier to a pure fiber direction; the S^2 base degenerates to a point and c1 collapses on both estimators",
+      "signature_collapsed": true
+    }
+  },
+  "dependency_forcing_verdict": {
+    "all_below_geometry_erasures_collapse_signature": true,
+    "honest_finding": "DEPENDENCY-FORCING HOLDS: every below-geometry erasure collapses the L4 signature (c1/F/holonomy/split). The Hopf structure is forced by the lower geometry, not hand-written.",
+    "per_erasure_collapsed": {
+      "E1_trivialize_bundle": true,
+      "E2_collapse_cos2eta_term": true,
+      "E3_collapse_nested_torus_index": true,
+      "E4_erase_fiber_base_split": true
+    }
+  },
+  "expected_N_invariant": [
+    "c1",
+    "Fabs_sum"
+  ],
+  "finite_map": {
+    "codomain": "S^2 base via pi(psi)=psi^dag sigma psi; U(1) bundle (A_Hopf, F, c1, holonomy)",
+    "domain": "S^3 = {psi in C^2 : ||psi||=1}, Hopf torus chart psi(phi,chi;eta)",
+    "map": "Hopf fibration h: S^3 -> S^2 with U(1) fiber; connection A_Hopf=dphi+cos(2eta)dchi"
+  },
+  "honest_status": "passes : Hopf fibration L4 -- c1=1 (two estimators agree) on the chart-induced base section, F!=0 curvature, holonomy order gap (N01), fiber/base split, ALL 4 below-geometry erasures collapse the signature (dependency-forcing HOLDS), z3 load-bearing",
+  "hopf_bundle_measured": {
+    "Fmax_plaquette": 0.001562,
+    "S_base_avg_mixed": 0.040449,
+    "S_fiber_avg_pure": 0.0,
+    "base_responsiveness": 0.911922,
+    "c1_analytic_curvature": 1.00501,
+    "c1_fukui_hatsugai": 1.0,
+    "c1_integer": 1,
+    "curvature_nonzero": true,
+    "fiber_invariance": 0.0,
+    "holonomy_loopA": 0.17732,
+    "holonomy_loopB": 0.17732,
+    "holonomy_order_gap_N01": 0.430403,
+    "two_methods_agree": true
+  },
+  "layer": "L4",
+  "negative_controls": {
+    "flat_c1_is_zero": true,
+    "no_winding_c1": 0.0,
+    "no_winding_not_one": true,
+    "trivial_c1_is_zero": true
+  },
+  "object": "hopf_fibration_S3_to_S2_U1_fiber",
+  "peps3d_anchor": {
+    "C": 3072,
+    "E": 8192,
+    "F": 4096,
+    "V": 4096,
+    "curvature_lives_on": "F (faces) -- the plaquette flux is the discrete Berry curvature",
+    "euler": -3072,
+    "note": "V=torus points psi_v in S^3; E=(phi,chi) bonds; F=Fukui-Hatsugai plaquettes (curvature carriers); C=inter-shell 3-cells"
+  },
+  "promotion_allowed": false,
+  "promotion_note": "promotion_allowed=false; L4_layer_poc; not canonical; order/stacking tests gated behind parent-complete + realness gate + dependency-forcing.",
+  "required_load_bearing_erasures": [
+    "trivialize",
+    "cos2eta",
+    "nested_torus",
+    "fiber_base"
+  ],
+  "scale_stress_8_16_32_64": {
+    "sites_16": {
+      "Fabs_sum": 6.2832,
+      "Fmax": 0.041575,
+      "c1": 1.0,
+      "c1_quantized": true,
+      "grid": 16,
+      "peps3d_C": 768,
+      "peps3d_E": 2048,
+      "peps3d_F": 1024,
+      "peps3d_V": 1024,
+      "peps3d_euler": -768
+    },
+    "sites_32": {
+      "Fabs_sum": 6.2832,
+      "Fmax": 0.009976,
+      "c1": 1.0,
+      "c1_quantized": true,
+      "grid": 32,
+      "peps3d_C": 3072,
+      "peps3d_E": 8192,
+      "peps3d_F": 4096,
+      "peps3d_V": 4096,
+      "peps3d_euler": -3072
+    },
+    "sites_64": {
+      "Fabs_sum": 6.2832,
+      "Fmax": 0.002449,
+      "c1": 1.0,
+      "c1_quantized": true,
+      "grid": 64,
+      "peps3d_C": 12288,
+      "peps3d_E": 32768,
+      "peps3d_F": 16384,
+      "peps3d_V": 16384,
+      "peps3d_euler": -12288
+    },
+    "sites_8": {
+      "Fabs_sum": 6.2832,
+      "Fmax": 0.183812,
+      "c1": 1.0,
+      "c1_quantized": true,
+      "grid": 8,
+      "peps3d_C": 192,
+      "peps3d_E": 512,
+      "peps3d_F": 256,
+      "peps3d_V": 256,
+      "peps3d_euler": -192
+    }
+  },
+  "scale_stress_note": "c1 AND Fabs_sum (total |flux|=2pi for a c1=1 monopole) are DECLARED topological invariants across grids (protection -- both converge by design, NOT a per-grid signal). The discretization Fmax DECREASES with n (finer plaquettes -> smaller peak flux) and peps3d_(V,E,F,C) GROW with n -- those carry the per-grid information, so the ladder is not vacuous.",
+  "status_ladder": "exists < runs < passes",
+  "tool_manifest": {
+    "JSON": {
+      "role": "io",
+      "use": "receipt emission"
+    },
+    "LinearAlgebra": {
+      "role": "load_bearing",
+      "use": "eigvals/svd/norm/det for density spectra, base-dim rank, fiber structure"
+    },
+    "Random": {
+      "role": "control",
+      "use": "seeded negative control"
+    },
+    "Z3": {
+      "role": "load_bearing",
+      "use": "free-integer c1 gap C_hopf>C_triv derived from 2 independent estimators; verdict flips on broken input"
+    },
+    "numpy": {
+      "role": "ABSENT",
+      "use": "Julia-native; no numpy anywhere"
+    }
+  },
+  "z3_load_bearing": {
+    "broken_hopf_to_triv_sat": "sat",
+    "broken_triv_to_hopf_sat": "sat",
+    "claim": "free ints C_hopf,C_triv DERIVED from 2 independent c1 estimators satisfy C_hopf>C_triv (Hopf nontriviality gap)",
+    "encoding": "C_hopf,C_triv FREE Z3 ints; open-bracketed by min/max of {fukui_hatsugai, analytic_curvature}; assert Not(C_hopf>C_triv)",
+    "genuine_unsat": "unsat",
+    "hopf_bracket": [
+      0,
+      2
+    ],
+    "is_load_bearing": true,
+    "tool_role": "load_bearing",
+    "triv_bracket": [
+      -1,
+      1
+    ],
+    "verdict_flips": true
+  }
+}

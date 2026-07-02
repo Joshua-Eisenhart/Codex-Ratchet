@@ -1,0 +1,302 @@
+{
+    "actual_tools_used": [
+        "LinearAlgebra",
+        "JSON"
+    ],
+    "all_pass": true,
+    "allowed_claims": [
+        "L6 PoC runs",
+        "A_Hopf erasure collapses the measured L6 signatures in this finite Julia carrier"
+    ],
+    "blocked_consumers": [
+        "layer_completion",
+        "stacking_readiness",
+        "flux",
+        "Xi",
+        "Phi0",
+        "Axis0",
+        "bridge",
+        "basin",
+        "physics",
+        "gravity",
+        "final_manifold_admission"
+    ],
+    "blocked_downstream_consumers": [
+        "flux",
+        "Xi",
+        "Phi0",
+        "Axis0",
+        "bridge",
+        "basin",
+        "physics",
+        "gravity",
+        "final_manifold_admission"
+    ],
+    "carrier_layer": "Hopf spinor chart on S3 with density reduction",
+    "carrier_realization": "Julia-native ComplexF64 spinors and 2x2 density matrices; no NumPy/Python bridge",
+    "classification": "L6_layer_codex_poc",
+    "codomain_or_output": "finite JSON receipt containing holonomy scalars, density path trace metrics, derived QIT readouts, N01 trace-norm order gap, and A_Hopf-erasure deltas",
+    "dependency_forcing_collapsed": true,
+    "domain": {
+        "F01": "finite PEPS3D-carried Hopf spinor network, finite loop primitives gamma_in/gamma_out, finite loop words",
+        "loop_primitives": [
+            "gamma_in=fiber loop",
+            "gamma_out=lifted-base loop"
+        ],
+        "main_eta": 0.37,
+        "main_nsteps": 256
+    },
+    "eligible_consumers": [
+        "bounded L6 audit/cross-check only"
+    ],
+    "fail_rule": "any signature survives A_Hopf erasure or any main finite-map/control field is absent",
+    "finite_map": "F_L6: (K=(V,E,F,C), psi_v in S3 subset C2, A_Hopf, finite loop_word) -> (endpoint holonomy, transported density path, QIT readouts, order-gap invariant)",
+    "fresh_rerun": true,
+    "geometry_layer": "A_Hopf connection and endpoint holonomy over fiber/base loop geometry",
+    "hand_written_channel_survival": false,
+    "honest_gaps": [
+        "This is a finite Julia PoC, not a parent-complete or final manifold admission.",
+        "No claim is made that L6 unlocks stacking, flux, Axis0, FEP, physics, or gravity.",
+        "The path-ordered N01 channel is tied to A_Hopf-derived angles and collapses under A erasure, but the SU(2) axis assignment remains a bounded carrier rule rather than a proven unique geometry forcing law."
+    ],
+    "main_measurements": {
+        "base_density_visible": true,
+        "base_holonomy_nontrivial": true,
+        "connection_erased": {
+            "base_connection_integral_horizontal_lift": 0.0,
+            "base_density": {
+                "initial_von_neumann_entropy": 0.0,
+                "max_trace_distance_from_initial": 2.950458159105177e-16,
+                "mean_binary_entropy_z_readout": 0.5595344434106426,
+                "path_trace_length": 3.624987976354009e-14,
+                "variance_z_readout": 2.2781428135942402e-32
+            },
+            "base_endpoint_holonomy_mod": 0.0,
+            "connection_present": false,
+            "eta": 0.37,
+            "fiber_base_density_path_distance": 0.0,
+            "fiber_connection_integral": 0.0,
+            "fiber_density": {
+                "initial_von_neumann_entropy": 0.0,
+                "max_trace_distance_from_initial": 2.950458159105177e-16,
+                "mean_binary_entropy_z_readout": 0.5595344434106426,
+                "path_trace_length": 3.624987976354009e-14,
+                "variance_z_readout": 2.2781428135942402e-32
+            },
+            "fiber_endpoint_holonomy_mod": 0.0
+        },
+        "connection_present": {
+            "base_connection_integral_horizontal_lift": 5.169475958410885e-16,
+            "base_density": {
+                "initial_von_neumann_entropy": 0.0,
+                "max_trace_distance_from_initial": 1.3485758232562906,
+                "mean_binary_entropy_z_readout": 0.5595344434106426,
+                "path_trace_length": 8.472501109505838,
+                "variance_z_readout": 2.575500401894962e-32
+            },
+            "base_endpoint_holonomy_mod": 1.643250509155754,
+            "connection_present": true,
+            "eta": 0.37,
+            "fiber_base_density_path_distance": 1.3485758232562906,
+            "fiber_connection_integral": 6.283185307179586,
+            "fiber_density": {
+                "initial_von_neumann_entropy": 0.0,
+                "max_trace_distance_from_initial": 2.950458159105177e-16,
+                "mean_binary_entropy_z_readout": 0.5595344434106426,
+                "path_trace_length": 3.624987976354009e-14,
+                "variance_z_readout": 2.2781428135942402e-32
+            },
+            "fiber_endpoint_holonomy_mod": -4.440892098500626e-16
+        },
+        "fiber_density_stationary": true,
+        "fiber_holonomy_trivial_mod_2pi": true,
+        "n01_order_gap_erased": 0.0,
+        "n01_order_gap_present": 0.8690890587818164
+    },
+    "name": "L6 connection holonomy geometry finite-QIT PoC",
+    "negative_controls": {
+        "A_Hopf_erasure": {
+            "base_holonomy_delta_abs": 1.643250509155754,
+            "base_holonomy_erased_abs": 0.0,
+            "base_holonomy_present_abs": 1.643250509155754,
+            "erasure": "A_Hopf erased: connection_present=false",
+            "fiber_base_density_distance_delta": 1.3485758232562906,
+            "fiber_base_density_distance_erased": 0.0,
+            "fiber_base_density_distance_present": 1.3485758232562906,
+            "n01_order_gap_delta": 0.8690890587818164,
+            "n01_order_gap_erased": 0.0,
+            "n01_order_gap_present": 0.8690890587818164
+        },
+        "base_density_visible_positive": true,
+        "fiber_density_stationary_control": true
+    },
+    "non_vacuous_ablation_outcome_delta": {
+        "base_holonomy_delta_abs": 1.643250509155754,
+        "base_holonomy_erased_abs": 0.0,
+        "base_holonomy_present_abs": 1.643250509155754,
+        "erasure": "A_Hopf erased: connection_present=false",
+        "fiber_base_density_distance_delta": 1.3485758232562906,
+        "fiber_base_density_distance_erased": 0.0,
+        "fiber_base_density_distance_present": 1.3485758232562906,
+        "n01_order_gap_delta": 0.8690890587818164,
+        "n01_order_gap_erased": 0.0,
+        "n01_order_gap_present": 0.8690890587818164
+    },
+    "pass_rule": "fiber holonomy trivial and density-stationary; base endpoint holonomy nontrivial and density-visible; N01 gap positive; A_Hopf erasure rerun collapses base holonomy, fiber/base distinction, and N01 gap across 8/16/32/64 stress",
+    "peps3d_embedding": {
+        "anchor": "finite 3D cell complex K=(V,E,F,C); each vertex carries a Hopf spinor and each stress case reruns loop readouts over site/shell counts",
+        "stress": [
+            {
+                "K": {
+                    "C_count": 1,
+                    "E_count": 12,
+                    "F_count": 6,
+                    "V_count": 8,
+                    "dims": [
+                        2,
+                        2,
+                        2
+                    ]
+                },
+                "erased_max_abs_base_holonomy": 0.0,
+                "erased_max_fiber_base_path_distance": 0.0,
+                "n01_gap_delta": 0.3303133915822773,
+                "n01_order_gap_erased": 0.0,
+                "n01_order_gap_present": 0.3303133915822773,
+                "nsteps_per_loop": 64,
+                "present_mean_abs_base_holonomy": 1.6879965720179944,
+                "present_mean_fiber_base_path_distance": 1.5519832730597143,
+                "present_min_abs_base_holonomy": 0.6531214202656335,
+                "present_min_fiber_base_path_distance": 0.8878962139310397,
+                "site_shell_count": 8
+            },
+            {
+                "K": {
+                    "C_count": 3,
+                    "E_count": 28,
+                    "F_count": 16,
+                    "V_count": 16,
+                    "dims": [
+                        2,
+                        2,
+                        4
+                    ]
+                },
+                "erased_max_abs_base_holonomy": 0.0,
+                "erased_max_fiber_base_path_distance": 0.0,
+                "n01_gap_delta": 0.3303133915822773,
+                "n01_order_gap_erased": 0.0,
+                "n01_order_gap_present": 0.3303133915822773,
+                "nsteps_per_loop": 64,
+                "present_mean_abs_base_holonomy": 1.764953980034754,
+                "present_mean_fiber_base_path_distance": 1.5620981105770189,
+                "present_min_abs_base_holonomy": 0.6531214202656335,
+                "present_min_fiber_base_path_distance": 0.8878962139310397,
+                "site_shell_count": 16
+            },
+            {
+                "K": {
+                    "C_count": 9,
+                    "E_count": 64,
+                    "F_count": 42,
+                    "V_count": 32,
+                    "dims": [
+                        2,
+                        4,
+                        4
+                    ]
+                },
+                "erased_max_abs_base_holonomy": 0.0,
+                "erased_max_fiber_base_path_distance": 0.0,
+                "n01_gap_delta": 0.3303133915822773,
+                "n01_order_gap_erased": 0.0,
+                "n01_order_gap_present": 0.3303133915822773,
+                "nsteps_per_loop": 64,
+                "present_mean_abs_base_holonomy": 1.8035449379311295,
+                "present_mean_fiber_base_path_distance": 1.5666725584221712,
+                "present_min_abs_base_holonomy": 0.6531214202656335,
+                "present_min_fiber_base_path_distance": 0.8878962139310397,
+                "site_shell_count": 32
+            },
+            {
+                "K": {
+                    "C_count": 27,
+                    "E_count": 144,
+                    "F_count": 108,
+                    "V_count": 64,
+                    "dims": [
+                        4,
+                        4,
+                        4
+                    ]
+                },
+                "erased_max_abs_base_holonomy": 0.0,
+                "erased_max_fiber_base_path_distance": 0.0,
+                "n01_gap_delta": 0.3303133915822773,
+                "n01_order_gap_erased": 0.0,
+                "n01_order_gap_present": 0.3303133915822773,
+                "nsteps_per_loop": 64,
+                "present_mean_abs_base_holonomy": 1.8225400935193121,
+                "present_mean_fiber_base_path_distance": 1.5688525139989202,
+                "present_min_abs_base_holonomy": 0.6531214202656335,
+                "present_min_fiber_base_path_distance": 0.8878962139310397,
+                "site_shell_count": 64
+            }
+        ],
+        "stress_counts": [
+            8,
+            16,
+            32,
+            64
+        ]
+    },
+    "promotion_allowed": false,
+    "promotion_blockers": [
+        "promotion_allowed=false by request",
+        "not a full layer-completion claim",
+        "non-Abelian transport axes are a finite PEPS3D face-orientation rule, not an independently selected G-structure",
+        "Z3 omitted because an SMT proof over these numeric holonomies would be decorative unless a separate structural theorem is encoded"
+    ],
+    "promotion_status": "keep_but_open",
+    "proof_surfaces_used": [
+        "none; Z3 omitted, not decorative"
+    ],
+    "qit_readouts_derived": {
+        "base_mean_binary_entropy_z": 0.5595344434106426,
+        "base_z_readout_variance": 2.575500401894962e-32,
+        "fiber_mean_binary_entropy_z": 0.5595344434106426,
+        "fiber_z_readout_variance": 2.2781428135942402e-32,
+        "initial_von_neumann_entropy": 0.0
+    },
+    "quaternion_action": "not_applicable; L6 uses Hopf spinor/connection language, not a quaternion map claim",
+    "required_tools": [
+        "Julia",
+        "LinearAlgebra",
+        "JSON"
+    ],
+    "root_constraints_in_force": {
+        "F01": "finite carrier/probe/operator/path set over K and finite loop samples",
+        "N01": "noncommuting gap from two A_Hopf-derived base-loop holonomy angles applied as path-ordered SU(2) transports on one density"
+    },
+    "sim_class": "geometry_probe",
+    "sim_execution_kind": "nonclassical",
+    "sim_id": "L6_layer_codex",
+    "spinor_state": "psi(phi,chi;eta) in ComplexF64^2; rho=psi*psi'",
+    "tier": "L6 connection/holonomy geometry",
+    "tool_integration_depth": "load_bearing",
+    "tool_manifest": {
+        "JSON": {
+            "reason": "receipt emission",
+            "role": "supportive"
+        },
+        "LinearAlgebra": {
+            "reason": "density matrices, SVD trace norm, Hermitian entropy eigenvalues, SU(2) transport",
+            "role": "load_bearing"
+        },
+        "Z3": {
+            "reason": "z3 omitted, not decorative; no structural SMT claim used",
+            "role": "omitted"
+        }
+    },
+    "version": "1.0"
+}

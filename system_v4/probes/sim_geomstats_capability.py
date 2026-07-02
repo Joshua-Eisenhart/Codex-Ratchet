@@ -342,8 +342,11 @@ if __name__ == "__main__":
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_geomstats_capability_results.json")
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2, default=str)
+    matrix_path = os.path.join(out_dir, "geomstats_capability_results.json")
+    for path in (out_path, matrix_path):
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
+    print(f"Matrix-compatible results written to {matrix_path}")
     print(f"all_pass={results.get('all_pass')} "
           f"pass={results.get('pass_count')}/{results.get('total_count')}")

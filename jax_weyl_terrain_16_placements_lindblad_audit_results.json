@@ -1,0 +1,564 @@
+{
+  "AUDIT_PASS": true,
+  "blocked_consumers": [
+    "full_layer_completion",
+    "official_g_structure_selection",
+    "layer_stacking",
+    "flux",
+    "Xi/Phi0",
+    "xi_phi0",
+    "Axis0",
+    "axis0",
+    "bridge",
+    "FEP",
+    "fep_holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "checks": {
+    "all_rows_pass": true,
+    "eight_sheet_specific_terrains_present": true,
+    "four_topologies_present": true,
+    "jaxga_cl13_signature_available_and_passes": true,
+    "left_right_hamiltonians_opposed": true,
+    "no_julia_execution": true,
+    "no_pytorch_execution": true,
+    "promotion_blocked": true,
+    "sixteen_placements_enumerated": true,
+    "two_path_classes_present": true,
+    "two_weyl_sheets_present": true
+  },
+  "cl13_jaxga_checks": {
+    "available": true,
+    "max_offdiag_anticommutator": 0.0,
+    "pass": true,
+    "signature_squares": [
+      1.0,
+      -1.0,
+      -1.0,
+      -1.0
+    ]
+  },
+  "claim_boundary": "JAX diagnostic for 16 finite Weyl-terrain placements; no full layer, G-structure, stacking, Axis0, flux, bridge, or physics admission.",
+  "classification": "diagnostic_jax_weyl_terrain_16_placements_lindblad_audit",
+  "codomain_or_output": "16 final density matrices, 16 trajectory ensemble readouts, path geometry controls, Cl(1,3) signature check",
+  "domain": "two unit Weyl spinors psi_L, psi_R in S3; finite path classes Gamma_f/Gamma_b; finite 2x2 density matrices",
+  "executed_track": "jax",
+  "finite_map": "P={L,R} x {fiber,base} x {Se,Ne,Ni,Si} -> (X_terrain^sheet, Gamma_path^sheet) -> rho(t)",
+  "formal_admission_allowed": false,
+  "legacy_tensor_lane_used": false,
+  "name": "jax_weyl_terrain_16_placements_lindblad_audit",
+  "promotion_allowed": false,
+  "ran_julia": false,
+  "ran_pytorch": false,
+  "rows": [
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 1,
+      "label": "Se / Funnel on Type 1 inner",
+      "metrics": {
+        "hermitian_gap": 7.850462293418876e-17,
+        "horizontal_connection_residual": 1.0,
+        "min_eigenvalue": 0.12603056585255237,
+        "path_density_delta": 2.755438859381462e-16,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 0.0,
+        "trajectory_master_frobenius_gap": 0.0029099467861435986,
+        "trajectory_max_norm_gap": 1.1102230246251565e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Funnel",
+      "topology": "Se"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 2,
+      "label": "Ne / Vortex on Type 1 inner",
+      "metrics": {
+        "hermitian_gap": 0.0,
+        "horizontal_connection_residual": 1.0,
+        "min_eigenvalue": 0.0030270607429263765,
+        "path_density_delta": 2.755438859381462e-16,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 0.0,
+        "trajectory_master_frobenius_gap": 0.0006645692521764167,
+        "trajectory_max_norm_gap": 1.1102230246251565e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Vortex",
+      "topology": "Ne"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 3,
+      "label": "Ni / Pit on Type 1 inner",
+      "metrics": {
+        "hermitian_gap": 8.777083671441753e-17,
+        "horizontal_connection_residual": 1.0,
+        "min_eigenvalue": 0.1515017098501123,
+        "path_density_delta": 2.755438859381462e-16,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 1.1102230246251565e-16,
+        "trajectory_master_frobenius_gap": 0.02602197111298732,
+        "trajectory_max_norm_gap": 2.220446049250313e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Pit",
+      "topology": "Ni"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 4,
+      "label": "Si / Hill on Type 1 inner",
+      "metrics": {
+        "hermitian_gap": 8.092071311423672e-17,
+        "horizontal_connection_residual": 1.0,
+        "min_eigenvalue": 0.048888122045793216,
+        "path_density_delta": 2.755438859381462e-16,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 0.0,
+        "trajectory_master_frobenius_gap": 0.007157094095435319,
+        "trajectory_max_norm_gap": 1.1102230246251565e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Hill",
+      "topology": "Si"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 5,
+      "label": "Se / Funnel on Type 1 outer",
+      "metrics": {
+        "hermitian_gap": 7.850462293418876e-17,
+        "horizontal_connection_residual": 0.0,
+        "min_eigenvalue": 0.12603056585255237,
+        "path_density_delta": 0.5475325474764019,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 0.0,
+        "trajectory_master_frobenius_gap": 0.013801460353525459,
+        "trajectory_max_norm_gap": 2.220446049250313e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Funnel",
+      "topology": "Se"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 6,
+      "label": "Ne / Vortex on Type 1 outer",
+      "metrics": {
+        "hermitian_gap": 0.0,
+        "horizontal_connection_residual": 0.0,
+        "min_eigenvalue": 0.0030270607429263765,
+        "path_density_delta": 0.5475325474764019,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 0.0,
+        "trajectory_master_frobenius_gap": 0.0006226310459352399,
+        "trajectory_max_norm_gap": 1.1102230246251565e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Vortex",
+      "topology": "Ne"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 7,
+      "label": "Ni / Pit on Type 1 outer",
+      "metrics": {
+        "hermitian_gap": 8.777083671441753e-17,
+        "horizontal_connection_residual": 0.0,
+        "min_eigenvalue": 0.1515017098501123,
+        "path_density_delta": 0.5475325474764019,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 1.1102230246251565e-16,
+        "trajectory_master_frobenius_gap": 0.0118191351912749,
+        "trajectory_max_norm_gap": 1.1102230246251565e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Pit",
+      "topology": "Ni"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 8,
+      "label": "Si / Hill on Type 1 outer",
+      "metrics": {
+        "hermitian_gap": 8.092071311423672e-17,
+        "horizontal_connection_residual": 0.0,
+        "min_eigenvalue": 0.048888122045793216,
+        "path_density_delta": 0.5475325474764019,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 0.0,
+        "trajectory_master_frobenius_gap": 0.009875955659118777,
+        "trajectory_max_norm_gap": 1.1102230246251565e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "L",
+      "terrain": "Hill",
+      "topology": "Si"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 9,
+      "label": "Se / Cannon on Type 2 inner",
+      "metrics": {
+        "hermitian_gap": 3.925231146709438e-17,
+        "horizontal_connection_residual": 1.0,
+        "min_eigenvalue": 0.03297105392829099,
+        "path_density_delta": 1.368160974968553e-16,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 0.0,
+        "trajectory_master_frobenius_gap": 0.008986485537747722,
+        "trajectory_max_norm_gap": 2.220446049250313e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Cannon",
+      "topology": "Se"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 10,
+      "label": "Ne / Spiral on Type 2 inner",
+      "metrics": {
+        "hermitian_gap": 1.5845662748859882e-16,
+        "horizontal_connection_residual": 1.0,
+        "min_eigenvalue": 0.004413730921015981,
+        "path_density_delta": 1.368160974968553e-16,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 1.5407439555097887e-33,
+        "trajectory_master_frobenius_gap": 0.0035214214168847856,
+        "trajectory_max_norm_gap": 0.0,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Spiral",
+      "topology": "Ne"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 11,
+      "label": "Ni / Source on Type 2 inner",
+      "metrics": {
+        "hermitian_gap": 7.850462293418876e-17,
+        "horizontal_connection_residual": 1.0,
+        "min_eigenvalue": 0.038605378637219336,
+        "path_density_delta": 1.368160974968553e-16,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 0.0,
+        "trajectory_master_frobenius_gap": 0.015170562405040404,
+        "trajectory_max_norm_gap": 1.1102230246251565e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Source",
+      "topology": "Ni"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 12,
+      "label": "Si / Citadel on Type 2 inner",
+      "metrics": {
+        "hermitian_gap": 1.6262131406593576e-18,
+        "horizontal_connection_residual": 1.0,
+        "min_eigenvalue": 0.06265433599804682,
+        "path_density_delta": 1.368160974968553e-16,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 9.62964972193618e-35,
+        "trajectory_master_frobenius_gap": 0.014222398750153072,
+        "trajectory_max_norm_gap": 1.1102230246251565e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "fiber",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Citadel",
+      "topology": "Si"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 13,
+      "label": "Se / Cannon on Type 2 outer",
+      "metrics": {
+        "hermitian_gap": 3.925231146709438e-17,
+        "horizontal_connection_residual": 0.0,
+        "min_eigenvalue": 0.03297105392829099,
+        "path_density_delta": 0.670315879451501,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 0.0,
+        "trajectory_master_frobenius_gap": 0.019454875536394033,
+        "trajectory_max_norm_gap": 1.1102230246251565e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Cannon",
+      "topology": "Se"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 14,
+      "label": "Ne / Spiral on Type 2 outer",
+      "metrics": {
+        "hermitian_gap": 1.5845662748859882e-16,
+        "horizontal_connection_residual": 0.0,
+        "min_eigenvalue": 0.004413730921015981,
+        "path_density_delta": 0.670315879451501,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 1.5407439555097887e-33,
+        "trajectory_master_frobenius_gap": 0.00352372789818334,
+        "trajectory_max_norm_gap": 0.0,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Spiral",
+      "topology": "Ne"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 15,
+      "label": "Ni / Source on Type 2 outer",
+      "metrics": {
+        "hermitian_gap": 7.850462293418876e-17,
+        "horizontal_connection_residual": 0.0,
+        "min_eigenvalue": 0.038605378637219336,
+        "path_density_delta": 0.670315879451501,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 0.0,
+        "trajectory_master_frobenius_gap": 0.006018382182776244,
+        "trajectory_max_norm_gap": 2.220446049250313e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Source",
+      "topology": "Ni"
+    },
+    {
+      "checks": {
+        "density_hermitian": true,
+        "density_psd": true,
+        "density_trace_one": true,
+        "path_geometry_matches_inner_outer": true,
+        "trajectory_matches_master_reasonably": true,
+        "trajectory_norm_projected": true
+      },
+      "finite_map": "placement (X_terrain^sheet, Gamma_path^sheet) -> final finite density rho(t=0.8) plus trajectory ensemble readout",
+      "index": 16,
+      "label": "Si / Citadel on Type 2 outer",
+      "metrics": {
+        "hermitian_gap": 1.6262131406593576e-18,
+        "horizontal_connection_residual": 0.0,
+        "min_eigenvalue": 0.06265433599804682,
+        "path_density_delta": 0.670315879451501,
+        "spinor_norm_end_gap": 0.0,
+        "spinor_norm_start_gap": 0.0,
+        "trace_gap": 9.62964972193618e-35,
+        "trajectory_master_frobenius_gap": 0.012525110210362605,
+        "trajectory_max_norm_gap": 1.1102230246251565e-16,
+        "trajectory_pruned": 0
+      },
+      "pass": true,
+      "path": "base",
+      "promotion_allowed": false,
+      "sheet": "R",
+      "terrain": "Citadel",
+      "topology": "Si"
+    }
+  ],
+  "tool_integration_depth": {
+    "diffrax": "load_bearing",
+    "jax": "load_bearing",
+    "jaxga": "load_bearing",
+    "json": "supportive"
+  },
+  "tool_manifest": {
+    "diffrax": "load-bearing adaptive ODE integration of the Lindblad master equation",
+    "jax": "load-bearing vectorized finite density, trajectory, projection, and invariant checks",
+    "jaxga": "load-bearing Cl(1,3) signature square/anticommutator check when available",
+    "json": "supportive receipt serialization"
+  }
+}

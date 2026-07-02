@@ -1,0 +1,132 @@
+{
+  "Cl3": {
+    "center_match": true,
+    "dimension_match": true,
+    "grading_match": true,
+    "known_center_dim": 2,
+    "known_dimension_2pow_n": 8,
+    "known_grading_binomial": [
+      1,
+      3,
+      3,
+      1
+    ],
+    "known_pseudoscalar_sq": -1,
+    "label": "Cl(3,0)",
+    "measured_center_dim": 2,
+    "measured_dimension": 8,
+    "measured_grading": [
+      1,
+      3,
+      3,
+      1
+    ],
+    "measured_pseudoscalar_sq": -1,
+    "morita_signature_pq_mod8": 3,
+    "num_basis_blades": 8,
+    "pseudoscalar_match": true,
+    "signature_p_q": [
+      3,
+      0
+    ]
+  },
+  "Cl6": {
+    "center_match": true,
+    "dimension_match": true,
+    "grading_match": true,
+    "known_center_dim": 1,
+    "known_dimension_2pow_n": 64,
+    "known_grading_binomial": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+    ],
+    "known_pseudoscalar_sq": -1,
+    "label": "Cl(6,0)",
+    "measured_center_dim": 1,
+    "measured_dimension": 64,
+    "measured_grading": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+    ],
+    "measured_pseudoscalar_sq": -1,
+    "morita_signature_pq_mod8": 6,
+    "num_basis_blades": 64,
+    "pseudoscalar_match": true,
+    "signature_p_q": [
+      6,
+      0
+    ]
+  },
+  "boundary_control": {
+    "Cl(0,0)": true,
+    "Cl(1,0)": true,
+    "Cl(2,0)": true
+  },
+  "carrier": "independent pure-Julia anticommuting-generator Clifford engine; CliffordAlgebras.jl as secondary generator cross-check",
+  "cl3_vs_cl6_contrast": {
+    "Cl3_Isq": -1,
+    "Cl3_pseudoscalar_central": true,
+    "Cl6_Isq": -1,
+    "Cl6_pseudoscalar_central": false,
+    "dim_ratio_Cl6_over_Cl3": 8.0,
+    "top_grade_Cl3": 3,
+    "top_grade_Cl6": 6
+  },
+  "classification": "tool_lego_fit_probe",
+  "grading_palindrome_cl3": true,
+  "grading_palindrome_cl6": true,
+  "item": "G_Clifford_Cl3_Cl6",
+  "kill_control": {
+    "Cl12_Isq": -1,
+    "Cl12_morita": 7,
+    "Cl30_Isq": -1,
+    "Cl30_morita": 3,
+    "Cl30_vs_Cl03_differs": true,
+    "Cl30_vs_Cl12_differs": true,
+    "Cl33_morita": 0,
+    "Cl60_morita": 6,
+    "Cl60_vs_Cl33_differs": true
+  },
+  "kill_control_passes": true,
+  "library_crosscheck": {
+    "Cl3_anticommute_pairs": "1/3",
+    "Cl3_gen_squares_ok": true,
+    "Cl3_lib_Isq_readout": -1,
+    "Cl6_anticommute_pairs": "10/15",
+    "Cl6_gen_squares_ok": true,
+    "Cl6_lib_Isq_readout": 1,
+    "library_anticommute_defect_detected": true,
+    "library_even_n_pseudoscalar_defect_detected": true,
+    "note": "This build of CliffordAlgebras.jl gives inconsistent basevector products (some e_i*e_j+e_j*e_i != 0) and a sign-flipped even-n pseudoscalar readout, while printing a CORRECT Cayley table via a different code path. The library is therefore NOT a trustworthy oracle here and does NOT gate the verdict; all headline invariants come from the independent engine, which matches known math for n=1..8."
+  },
+  "positive_control_bott_periodicity": {
+    "Cl11_sig": 3,
+    "Cl14_sig": 6,
+    "Cl3_sig": 3,
+    "Cl3_vs_Cl11_same_morita_class": true,
+    "Cl6_sig": 6,
+    "Cl6_vs_Cl14_same_morita_class": true
+  },
+  "promotion_allowed": false,
+  "status_ladder": "exists < runs < passes ; this run: passes (engine anchored to known invariants)",
+  "verdict": {
+    "all_pass": true,
+    "anchors_match_known_math": true,
+    "bott_periodicity_ok": true,
+    "boundary_ok": true,
+    "kill_control_passes": true,
+    "library_defects_detected": true,
+    "library_gates_verdict": false,
+    "note": "all_pass reflects the independent engine vs known math + controls + kill-control. The CliffordAlgebras.jl build defect is detected and reported but does NOT gate the scientific verdict."
+  }
+}

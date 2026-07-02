@@ -1,0 +1,224 @@
+{
+  "generated_at": "2026-05-26T19:46:20.774525+00:00",
+  "rows": [
+    {
+      "fake_progress_risks": [
+        "Treating 1-qubit density validity as scale evidence.",
+        "Treating tool imports as load-bearing without ablation delta.",
+        "Letting a density carrier row open spinor/PEPS3D/Hopf/flux/Axis0 consumers."
+      ],
+      "plan_patch": [
+        "Add explicit 8-qubit product-density scale floor.",
+        "Add ablation_outcome_delta/tool_ablations for PyTorch, SymPy, and z3.",
+        "Add entropy readout and blocked_consumers for all downstream surfaces."
+      ],
+      "post_run_audit": {
+        "fresh_rerun": "pass_exit_0_summary_all_pass_true",
+        "risk_1_audit": "patched: result has scale_rungs with qubits=8, density_dim=256, status=passed_scale_floor.",
+        "risk_2_audit": "patched: result has ablation_outcome_delta/tool_ablations for pytorch/sympy/z3 with map_unprovable deltas.",
+        "risk_3_audit": "patched: result has blocked_consumers including PEPS3D closure, Hopf, Weyl/chirality, flux, Xi/Phi0, Axis0, physics, final manifold.",
+        "terminal_status": "admit_candidate",
+        "validator": "pass_exit_0_all_14_results"
+      },
+      "result_path": "system_v5/legos/results/finite_density_matrix_carrier_trace_psd_pytorch_sympy_z3_results.json",
+      "row_id": "T1a_complex_hilbert_density_carrier",
+      "source_path": "system_v5/legos/finite_density_matrix_carrier_trace_psd_pytorch_sympy_z3.py"
+    },
+    {
+      "fake_progress_risks": [
+        "Treating Weyl chirality sign as chiral_overlap.",
+        "Treating spinor-only evidence as spinor-to-density bridge.",
+        "Using Clifford labels without density/entropy and no-chirality controls."
+      ],
+      "plan_patch": [
+        "Build explicit finite map from L/R spinors to density readouts and chiral overlap invariant.",
+        "Require chirality-swapped, density-erased, scalar-label, and no-chirality controls.",
+        "Require entropy where density exists and ablation deltas for Clifford plus PyTorch/z3."
+      ],
+      "post_run_audit": {
+        "fresh_rerun": "pass_exit_0_summary_all_pass_true",
+        "risk_1_audit": "patched: new row is chiral_overlap_spinor_density_bridge, not a relabel of Weyl sign row.",
+        "risk_2_audit": "patched: result finite_map maps spinors to spinor-derived densities, probabilities, overlap, and entropy.",
+        "risk_3_audit": "patched: result has Clifford/PyTorch/z3 ablations plus no-chirality/scalar/density-erased controls.",
+        "terminal_status": "admit_candidate",
+        "validator": "pass_exit_0_all_14_results"
+      },
+      "result_path": "system_v5/legos/results/chiral_overlap_spinor_density_bridge_clifford_pytorch_z3_results.json",
+      "row_id": "T1b_chiral_overlap_spinor_density_bridge",
+      "source_path": "system_v5/legos/chiral_overlap_spinor_density_bridge_clifford_pytorch_z3.py"
+    },
+    {
+      "fake_progress_risks": [
+        "Using scalar PEPS3D labels as carrier evidence.",
+        "Using PyG as decorative wrapper over simple loops.",
+        "Claiming full PEPS3D closure from a 2x2x2 debug carrier."
+      ],
+      "plan_patch": [
+        "Require finite K=(V,E,F,C) with site/edge/face/cell anchors.",
+        "Require PyG or graph/topology ablation that makes anchor map unprovable if stubbed.",
+        "Block full closure and downstream consumers while reporting 8-site floor only."
+      ],
+      "post_run_audit": {
+        "fresh_rerun": "pass_exit_0_summary_all_pass_true",
+        "risk_1_audit": "patched: result carries finite K=(V,E,F,C) with 8 sites, 12 edges, 6 faces, 1 cell and local tensors.",
+        "risk_2_audit": "patched: PyG and XGI have explicit map_unprovable ablation deltas for graph and face/cell anchors.",
+        "risk_3_audit": "patched: result reports 8-site seed floor only and blocks Hopf/Weyl/terrain/substages/flux/Xi/Phi0/Axis0/physics/final manifold.",
+        "terminal_status": "admit_candidate",
+        "validator": "pass_exit_0_specific_result_and_pass_exit_0_all_17_results"
+      },
+      "result_path": "system_v5/legos/results/peps3d_closure_2x2x2_pyg_xgi_pytorch_z3_results.json",
+      "row_id": "T1c_peps3d_closure_2x2x2",
+      "source_path": "system_v5/legos/peps3d_closure_2x2x2_pyg_xgi_pytorch_z3.py"
+    },
+    {
+      "fake_progress_risks": [
+        "Treating any two-qubit unitary as entangling without entropy/cut readouts.",
+        "Treating Bell entropy as a downstream Axis0 or manifold claim.",
+        "Letting CNOT open PEPS3D scale or Hopf/Weyl structure."
+      ],
+      "plan_patch": [
+        "Use CNOT on |+0> with product, identity, local-gate, scalar-label, dense-closure, and order-erased controls.",
+        "Require QIT entropy, mutual information, coherent information, and z3 noncollapse readouts.",
+        "Block PEPS3D scale, Hopf/Weyl, terrain, substages, flux, Axis0, physics, and final manifold consumers."
+      ],
+      "post_run_audit": {
+        "fresh_rerun": "pass_exit_0_summary_all_pass_true",
+        "risk_1_audit": "patched: CNOT(|+0>) gives Bell density with S_A=S_B=1 bit and controls remain unentangled.",
+        "risk_2_audit": "patched: entropy appears only as finite QIT readout; no Axis0/manifold promotion is made.",
+        "risk_3_audit": "patched: PEPS3D scale and all downstream geometry consumers remain blocked.",
+        "terminal_status": "admit_candidate",
+        "validator": "pass_exit_0_specific_result_and_pass_exit_0_all_18_results"
+      },
+      "result_path": "system_v5/legos/results/cnot_entangling_gate_density_entropy_pytorch_sympy_z3_results.json",
+      "row_id": "CNOT_or_equivalent_two_qubit_entangling_gate",
+      "source_path": "system_v5/legos/cnot_entangling_gate_density_entropy_pytorch_sympy_z3.py"
+    },
+    {
+      "fake_progress_risks": [
+        "Treating amplitude damping as depolarizing.",
+        "Treating entropy increase as final manifold geometry or Axis0.",
+        "Using p labels without Kraus/affine CPTP evidence and invalid-p controls."
+      ],
+      "plan_patch": [
+        "Build explicit D_p(rho)=(1-p)rho+pI/2 with Kraus and affine checks.",
+        "Require trace/PSD/unital, entropy increase, coherence degradation, p=0/p=1/invalid-p controls.",
+        "Block PEPS3D scale, Hopf/Weyl, terrain, substages, flux, Axis0, physics, and final manifold consumers."
+      ],
+      "post_run_audit": {
+        "fresh_rerun": "pass_exit_0_summary_all_pass_true",
+        "risk_1_audit": "patched: new row is depolarizing CPTP, not amplitude damping.",
+        "risk_2_audit": "patched: entropy is finite QIT information-loss readout only; no Axis0/manifold promotion.",
+        "risk_3_audit": "patched: result includes Kraus/affine checks, invalid-p, p=0/p=1, scalar, dense, and order-erased controls.",
+        "terminal_status": "admit_candidate",
+        "validator": "pass_exit_0_specific_result_and_pass_exit_0_all_19_results"
+      },
+      "result_path": "system_v5/legos/results/depolarizing_channel_cptp_entropy_pytorch_sympy_z3_results.json",
+      "row_id": "depolarizing_CPTP_channel",
+      "source_path": "system_v5/legos/depolarizing_channel_cptp_entropy_pytorch_sympy_z3.py"
+    },
+    {
+      "fake_progress_risks": [
+        "Treating chiral-overlap row as a Cl3/Cl6 representation bridge.",
+        "Using Clifford labels without finite basis counts and matrix action.",
+        "Letting the bridge open Hopf/Weyl, PEPS3D scale, or flux/Axis0."
+      ],
+      "plan_patch": [
+        "Build explicit Cl3/Cl6 finite representation bridge with basis counts and Majorana anticommutation.",
+        "Recover spinor density by partial trace and include representation-erased/scalar/density-erased controls.",
+        "Block Hopf/Weyl closure, PEPS3D scale, terrain, substages, flux, Axis0, physics, and final manifold consumers."
+      ],
+      "post_run_audit": {
+        "fresh_rerun": "pass_exit_0_summary_all_pass_true",
+        "risk_1_audit": "patched: row is Cl3/Cl6 representation bridge, not a relabel of chiral-overlap.",
+        "risk_2_audit": "patched: Clifford basis counts, Cl6 matrices, SymPy anticommutation, PyTorch density, and z3 noncollapse are present.",
+        "risk_3_audit": "patched: all downstream geometry consumers remain blocked.",
+        "terminal_status": "admit_candidate",
+        "validator": "pass_exit_0_specific_result_and_pass_exit_0_all_20_results"
+      },
+      "result_path": "system_v5/legos/results/cl3_cl6_spinor_density_bridge_clifford_pytorch_sympy_z3_results.json",
+      "row_id": "Cl3_Cl6_spinor_to_density_bridge",
+      "source_path": "system_v5/legos/cl3_cl6_spinor_density_bridge_clifford_pytorch_sympy_z3.py"
+    },
+    {
+      "fake_progress_risks": [
+        "Treating a green old spectral-triple receipt as contract-complete without finite map/domain/ablation fields.",
+        "Treating a two-point distance readout as manifold reconstruction.",
+        "Adding entropy where no density readout exists."
+      ],
+      "plan_patch": [
+        "Patch explicit finite map/domain/codomain/F01/N01/control/ablation fields.",
+        "Keep claim ceiling at finite two-point spectral-triple readout.",
+        "Mark entropy not applicable because no density readout is present."
+      ],
+      "post_run_audit": {
+        "fresh_rerun": "pass_exit_0_summary_all_pass_true",
+        "risk_1_audit": "patched: result now has explicit finite_map/domain/codomain/F01/N01/controls/ablation fields.",
+        "risk_2_audit": "patched: downstream manifold reconstruction remains blocked.",
+        "risk_3_audit": "patched: entropy_matrix is empty with entropy_status=not_applicable_no_density_readout_present.",
+        "terminal_status": "admit_candidate",
+        "validator": "pass_exit_0_specific_result_and_pass_exit_0_all_20_results"
+      },
+      "result_path": "system_v5/legos/results/two_point_spectral_triple_dirac_commutator_distance_pytorch_sympy_z3_results.json",
+      "row_id": "spectral_triple_wiring_repair",
+      "source_path": "system_v5/legos/two_point_spectral_triple_dirac_commutator_distance_pytorch_sympy_z3.py"
+    },
+    {
+      "fake_progress_risks": [
+        "Claiming cvc5 was used because it was imported, while z3 or controller prose did the work.",
+        "Using cvc5 to repeat a non-load-bearing check already covered elsewhere.",
+        "Letting a solver micro row promote downstream geometry."
+      ],
+      "plan_patch": [
+        "Make cvc5 the only solver for Bool and BitVec admission/blocking statuses.",
+        "Use PyTorch/SymPy only to define the finite commutation table; cvc5 must discharge the blocker.",
+        "Block all downstream consumers and keep entropy not applicable because no density readout exists."
+      ],
+      "post_run_audit": {
+        "fresh_rerun": "pass_exit_0_summary_all_pass_true",
+        "risk_1_audit": "patched: cvc5 Bool and BitVec statuses are the claim-bearing admission/blocking map.",
+        "risk_2_audit": "patched: row is a cvc5-specific finite commutation-table order gate, not a z3 duplicate.",
+        "risk_3_audit": "patched: downstream geometry remains blocked.",
+        "terminal_status": "admit_candidate",
+        "validator": "pass_exit_0_specific_result_and_pass_exit_0_all_21_results"
+      },
+      "result_path": "system_v5/legos/results/cvc5_finite_commutation_table_order_gate_pytorch_sympy_results.json",
+      "row_id": "cvc5_load_bearing_substrate_micro_row",
+      "source_path": "system_v5/legos/cvc5_finite_commutation_table_order_gate_pytorch_sympy.py"
+    }
+  ],
+  "schema": "SUBSTRATE_BOOTSTRAP_PREMORTEM_LOOP_v1",
+  "wizard_route_truth": {
+    "child_obligation_for_full": 36,
+    "children_completed": 0,
+    "codex_native_parent_receipts": [
+      {
+        "accepted": true,
+        "agent_id": "019e65a6-c79d-7183-a44e-c6e299ad2f9a",
+        "route": "decision.evidence_boundary"
+      },
+      {
+        "accepted": true,
+        "agent_id": "019e65a6-c8fb-72f1-ba74-9435a5cc1a6f",
+        "route": "failure.falsifier"
+      },
+      {
+        "accepted": true,
+        "agent_id": "019e65a6-c985-7c72-9cae-455171fc3455",
+        "route": "follow_up.compile_gate"
+      },
+      {
+        "accepted": true,
+        "agent_id": "019e65a6-e9c1-7d93-a967-2fefbfec25d3",
+        "route": "manager.route_truth"
+      }
+    ],
+    "full_wizard_claimed": false,
+    "loops_completed": 0,
+    "not_full_reason": "Only four parent lanes returned; no child subagents or provider child receipts completed. This is useful preflight, not FULL Wizard v4.2 Max Assembly.",
+    "parents_completed": 4,
+    "parents_required_for_full": 9,
+    "provider_receipts": 0,
+    "status": "PARTIAL",
+    "waves_completed": 1
+  }
+}

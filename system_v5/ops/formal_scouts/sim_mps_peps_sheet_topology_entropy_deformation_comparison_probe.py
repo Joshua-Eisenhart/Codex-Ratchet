@@ -242,7 +242,7 @@ def contraction_cost(pattern: str, params: list[float]) -> dict[str, float]:
             "j": 2,
         }
         expr = "abe,bcf,cdg,efh,fgi,gdj->ahij"
-    optimizer = ctg.HyperOptimizer(max_repeats=8, progbar=False, on_trial_error="raise")
+    optimizer = ctg.HyperOptimizer(max_repeats=8, progbar=False, on_trial_error="raise", parallel=False)
     tree = optimizer.search(inputs, output, sizes)
     gen = torch.Generator().manual_seed(int(1000 * (metric_min + abs(curvature) + abs(torsion))) + (1 if pattern == "peps" else 0))
     arrays = [torch.randn(*(sizes[ix] for ix in term), generator=gen, dtype=torch.float64) for term in inputs]

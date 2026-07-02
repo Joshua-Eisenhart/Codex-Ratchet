@@ -1,0 +1,277 @@
+{
+  "F01_witness": {
+    "finite_carrier": "nsites=8 PEPS3D cells, each a 2-component ComplexF64 spinor psi_v on S^3 subset C^2",
+    "finite_operator": "four intrinsic channels {Ti,Te,Fi,Fe} + per-cell axis-pinch Phi_v (finite operator set)",
+    "finite_path": "ordered substage compositions Phi_u Phi_v vs Phi_v Phi_u along complex edges (finite directed paths)",
+    "finite_probe": "finite Bloch grid of 32 input densities; PTM on Pauli basis {I,X,Y,Z}"
+  },
+  "N01_witness": {
+    "gap_formula": "Delta_{a,b}=max_rho ||Phi_a Phi_b rho - Phi_b Phi_a rho||_1 (Schatten-1)",
+    "measured_max_order_gap": 0.5091624912578643,
+    "n_noncommuting_edges": 7,
+    "present": true
+  },
+  "ablation_nonvacuous": true,
+  "ablation_outcome_delta": {
+    "E1_max_gap_delta": 0.5091624912578643,
+    "E1_nonzero_edge_delta": 7.0,
+    "E2_nonzero_edge_delta": 7.0,
+    "E3_n_edge_delta": 6.0
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "L12 entropy/cut/communication (needs L11 substage channels as the cut-crossing operators)",
+    "L13 gluing/groupoid/dynamic (needs the substage order-gap pattern as transition data)",
+    "pairwise/subset/stack order tests (gated behind parent-complete + realness gate + dep-forcing)",
+    "Axis0 / flux / FEP / gravity bridges (downstream, NOT drivers; blocked until stack complete)"
+  ],
+  "checks": {
+    "DEPFORCE_E1_collapse_single_basis": true,
+    "DEPFORCE_E2_scramble_axis_link": true,
+    "DEPFORCE_E3_collapse_complex": true,
+    "F01_witness_present": true,
+    "N01_order_gap_measured": true,
+    "ablation_nonvacuous": true,
+    "finite_map_present": true,
+    "julia_native_spinor_density": true,
+    "negative_controls_fire": true,
+    "operator_structure_honest_pattern": true,
+    "peps3d_anchor_present": true,
+    "qit_entropy_is_derived": true,
+    "qit_rotations_unitary_pinch_decohere": true,
+    "scale_stress_8_16_32_64": true,
+    "substage_pattern_geometry_forced": true,
+    "z3_load_bearing_flip": true
+  },
+  "classification": "L11_layer_poc",
+  "dependency_forcing": {
+    "E1_collapse_to_single_basis": {
+      "baseline_max_gap": 0.5091624912578643,
+      "baseline_nonzero_edges": 7,
+      "collapsed": true,
+      "max_gap_delta": 0.5091624912578643,
+      "max_order_gap": 5.551115123125783e-17,
+      "meaning": "all cells pinch the same axis => every substage pair commutes => order-gap pattern vanishes (the doc-named erasure: make operators commute, all dephasing same basis)",
+      "nonzero_edge_delta": 7,
+      "nonzero_edges": 0
+    },
+    "E2_scramble_axis_geometry_link": {
+      "baseline_nonzero_edges": 7,
+      "collapsed": true,
+      "meaning": "axis map decorrelated from the L7/L8 sheet geometry => the order-gap PATTERN no longer tracks the complex => signature collapses",
+      "nonzero_edge_delta": 7,
+      "nonzero_edges": 0
+    },
+    "E3_collapse_complex_to_single_cell": {
+      "baseline_n_edges": 7,
+      "collapsed": true,
+      "honest_note": "E3 collapses the COMPLEX structure; the single-pair gap itself still runs (a hand-written channel always runs). It is the PATTERN over the complex, not the existence of one gap, that is the L11 object.",
+      "meaning": "with no V,E,F,C complex (single cell) the across-complex order-gap pattern degenerates to the old single-qubit probe -- the local-cell-OVER-A-COMPLEX object is gone",
+      "n_edge_delta": 6,
+      "n_edges": 1
+    }
+  },
+  "dependency_forcing_all_collapse": true,
+  "doc_source": "MANIFOLD_GEOMETRY_LAYER_STACK_NONCOMMUTATIVE_ORDER_20260528.md line 67-68; operator math explicit.md (Ti/Te/Fi/Fe exact channels, PTMs)",
+  "finite_map": {
+    "codomain": "per-cell allowed operator Phi_v (pinch or rotation about a(v)) + the substage order-gap pattern {Delta(u,v)}",
+    "domain": "PEPS3D cells v of K=(V,E,F,C), each carrying psi_v in S^3, sheet axis a(v) in {z,x}",
+    "map": "G_L11 : (cell v, axis a(v), role r(v)) -> Phi_v in {pinch_{a(v)}, rot_{a(v)}} ;  (edge u~v) -> Delta(u,v)=max_rho ||Phi_u Phi_v rho - Phi_v Phi_u rho||_1"
+  },
+  "honest_scope": {
+    "claim_ceiling": "L11 is the operator-substage local-cell layer whose SIGNATURE is the order-gap pattern over a PEPS3D complex, FORCED by the per-cell pinch-axis: E1 (single basis) and E2 (scrambled axis) collapse it to zero. The axis-IS-forced-by-L7/L8 link is modeled, not derived here.",
+    "forced_standard_math": [
+      "Ti/Te/Fi/Fe exact channels + Kraus + PTMs (re-MEASURED from operator math explicit.md, not discovered)",
+      "Fix-algebras Fix(Ti)={I,Z}, Fix(Te)={I,X}, Fix(Fi)={I,X}, Fix(Fe)={I,Z} (PTM diagonal == 1)",
+      "channel-level commutation pattern: Ti,Te=0; Ti,Fe=0; Te,Fi=0; the three cross-axis pairs > 0"
+    ],
+    "honest_failure_note": "E3 (collapse to single cell) collapses the COMPLEX pattern but a single hand-written channel pair still runs -- exactly the failure the task warns about. L11 is real ONLY as the across-complex PATTERN forced by the axis map; the existence of one gap is not the object. Reported, not hidden.",
+    "novel_interpretive_NOT_proven": [
+      "reading the per-cell axis a(v) as FORCED by the L7/L8 sheet geometry: here it is MODELED as sheet-parity (even->z, odd->x). The forcing map G is asserted, not derived from a full L7/L8 carrier run inside this file.",
+      "the substage order-gap pattern as a manifold invariant: it is the operator-algebra pattern; no order-ratchet survival proven (that is the downstream pairwise/stack test, gated)"
+    ]
+  },
+  "layer_id": "L11",
+  "negative_controls": {
+    "identity_null": true,
+    "identity_ops_nonzero_edges": 0,
+    "same_axis_pair_commutes": true,
+    "single_axis_null": true,
+    "single_fixed_axis_nonzero_edges": 0
+  },
+  "object": "L11_layer_operator_substage_local_cell_over_peps3d",
+  "operator_structure": {
+    "fix_algebra": {
+      "Fe": [
+        "I",
+        "Z"
+      ],
+      "Fi": [
+        "I",
+        "X"
+      ],
+      "Te": [
+        "I",
+        "X"
+      ],
+      "Ti": [
+        "I",
+        "Z"
+      ]
+    },
+    "honest_note": "NOT all four noncommute: Ti,Te=0 (two dephasings commute); Ti,Fe=0 and Te,Fi=0 (pinch commutes with rotation about its OWN axis). The commuting/noncommuting PATTERN is the fingerprint, forced by axis geometry.",
+    "n_noncommuting_pairs_of_6": 3,
+    "pairwise_channel_order_gap": {
+      "Fi,Fe": 0.88558907,
+      "Te,Fe": 0.62384515,
+      "Te,Fi": 0.0,
+      "Ti,Fe": 0.0,
+      "Ti,Fi": 0.46999615,
+      "Ti,Te": 0.0
+    },
+    "ptm_diag": {
+      "Fe": [
+        1.0,
+        0.453596,
+        0.453596,
+        1.0
+      ],
+      "Fi": [
+        1.0,
+        1.0,
+        0.62161,
+        0.62161
+      ],
+      "Te": [
+        1.0,
+        1.0,
+        0.3,
+        0.3
+      ],
+      "Ti": [
+        1.0,
+        0.4,
+        0.4,
+        1.0
+      ]
+    }
+  },
+  "peps3d": {
+    "C": 1,
+    "E": 12,
+    "F": 6,
+    "V": 8,
+    "euler_VEFC": 1,
+    "grid": "2x2x2",
+    "n_substage_cells": 8
+  },
+  "promotion_allowed": false,
+  "qit_derived": {
+    "base_entropy": 0.47115653264894153,
+    "entropy_change_per_operator": {
+      "Fe_rot_z": -2.220446049250313e-16,
+      "Fi_rot_x": 0.0,
+      "Te_pinch_x": 0.08765822934402645,
+      "Ti_pinch_z": 0.13440184706556468
+    },
+    "entropy_is_derived_not_primary": true,
+    "note": "S read AFTER each channel acts; pinch raises S (rank-2 decohere), rotation leaves S fixed (unitary). Derived, never the layer's primary scalar.",
+    "pinches_decohere_positive_dS": true,
+    "rotations_are_unitary_zero_dS": true
+  },
+  "required_load_bearing_erasures": [
+    "collapse_to_single_basis",
+    "scramble_axis",
+    "collapse_complex"
+  ],
+  "scale_stress_8_16_32_64": {
+    "16": {
+      "expected": 15,
+      "max_order_gap": 0.5091624912578643,
+      "n_nonzero_edges": 15,
+      "nsites": 16,
+      "ok": true
+    },
+    "32": {
+      "expected": 31,
+      "max_order_gap": 0.5091624912578643,
+      "n_nonzero_edges": 31,
+      "nsites": 32,
+      "ok": true
+    },
+    "64": {
+      "expected": 63,
+      "max_order_gap": 0.5091624912578643,
+      "n_nonzero_edges": 63,
+      "nsites": 64,
+      "ok": true
+    },
+    "8": {
+      "expected": 7,
+      "max_order_gap": 0.5091624912578643,
+      "n_nonzero_edges": 7,
+      "nsites": 8,
+      "ok": true
+    }
+  },
+  "scale_stress_all_pass": true,
+  "spinor": {
+    "construction": "rho_v = psi_v psi_v^dag, psi=(e^{i phi} cos eta, e^{i chi} sin eta), NOT numpy",
+    "eltype": "ComplexF64",
+    "native_julia": true,
+    "rho_example_trace": 1.0
+  },
+  "status": "passes",
+  "status_ladder": "exists < runs < passes",
+  "substage_signature": {
+    "axes": [
+      "z",
+      "x",
+      "z",
+      "x",
+      "z",
+      "x",
+      "z",
+      "x"
+    ],
+    "edge_order_gaps": [
+      0.5091624912578643,
+      0.5091624912578643,
+      0.5091624912578643,
+      0.5091624912578643,
+      0.5091624912578643,
+      0.5091624912578643,
+      0.5091624912578643
+    ],
+    "max_order_gap": 0.5091624912578643,
+    "n_nonzero_edges": 7,
+    "nsites": 8,
+    "of_edges": 7,
+    "roles": [
+      "pinch",
+      "rotate",
+      "pinch",
+      "rotate",
+      "pinch",
+      "rotate",
+      "pinch",
+      "rotate"
+    ]
+  },
+  "tool_manifest": {
+    "JSON": "load_bearing: receipt emission",
+    "LinearAlgebra": "load_bearing: svdvals (trace norm / order gap), eigvals (entropy spectra), tr (PTM entries), opnorm (channel commutator)",
+    "Z3": "load_bearing: order-obstruction SAT/UNSAT verdict flips on erased input (see z3 block)",
+    "decorative_imports": "none"
+  },
+  "z3": {
+    "claim": "a residual substage order gap cannot coexist with all-cells-one-pinch-axis (commuting law)",
+    "encoding": "FREE ints gap, same_axis; law Implies(same_axis==1, gap==0); assert same_axis==1 + gap>=ceil(scale*|measured|). genuine: unsat; erased: sat. Not a literal-vs-literal tautology.",
+    "erased_gap": 5.551115123125783e-17,
+    "erased_verdict": "sat",
+    "genuine_verdict": "unsat",
+    "load_bearing_flip": true,
+    "measured_genuine_gap": 0.5091624912578643,
+    "role": "load_bearing"
+  }
+}

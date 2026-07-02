@@ -1,0 +1,327 @@
+{
+  "F01_witness": {
+    "continuum_probe_rejection_reason": "probe/path families must be enumerated finite lists in this sim",
+    "finite_effects_full": 6,
+    "finite_paths": 5,
+    "finite_registry_rejects_continuum": true,
+    "finite_sites": 8,
+    "finite_tokens": 40,
+    "hilbert_dim": 2
+  },
+  "N01_witness": {
+    "commutator_frobenius_norm": 1.9999999999999998,
+    "commuting_control_gap_IZ_vs_ZI": 0.0,
+    "commuting_control_pair": "I,Z",
+    "operator_pair": "H,Z",
+    "passes": true,
+    "path_order_response_gap_HZ_vs_ZH": 0.1666666666666667
+  },
+  "PEPS3D_anchor": {
+    "C": 1,
+    "E": 12,
+    "F": 6,
+    "K": "finite cube cell complex K=(V,E,F,C); used as site/cell anchor, not a PEPS contraction proof",
+    "V": 8,
+    "euler_boundary_V_minus_E_plus_F": 2
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "Z3": "None"
+  },
+  "ablation_outcome_delta": {
+    "after_classes": 1,
+    "before_classes": 40,
+    "delta": 39,
+    "kind": "removed_and_rerun_numeric_delta",
+    "non_vacuous": true,
+    "removed": "finite POVM/effect family E_FULL",
+    "replacement": "single trivial effect {I}"
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "local L0 finite response/effect/path quotient PoC ran",
+    "the finite effect-family erasure collapsed the measured quotient signature"
+  ],
+  "blocked_consumers": [
+    "full layer completion",
+    "parent-complete L0",
+    "stacking readiness",
+    "G-structure selection",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "bridge",
+    "basin",
+    "physics"
+  ],
+  "classification": "L0_layer_codex_poc",
+  "dependency_forcing_erasures": {
+    "erase_effect_family_to_single_I": {
+      "after_erasure_classes": 1,
+      "baseline_classes": 40,
+      "collapse_delta": 39,
+      "collapsed_signature": true,
+      "interpretation": "Effect-family erasure collapses every site/path token to one response class."
+    }
+  },
+  "derived_QIT_readouts": {
+    "max_response_shannon_entropy": 1.6123328075943708,
+    "max_von_neumann_entropy_site_rho": 2.2204460492503126e-16,
+    "mean_response_shannon_entropy": 1.5978637242843168,
+    "mean_von_neumann_entropy_site_rho": 4.1633363423443364e-17,
+    "note": "entropy/readouts are derived from rho and response distributions; they do not define the quotient"
+  },
+  "effect_family": {
+    "broken_missing_effect_check": {
+      "all_effects_psd": true,
+      "min_effect_eigenvalue": 0.0,
+      "sum_error_norm": 0.33333333333333337,
+      "sums_to_identity": false
+    },
+    "broken_povm_rejected": true,
+    "povm_check": {
+      "all_effects_psd": true,
+      "min_effect_eigenvalue": 0.0,
+      "sum_error_norm": 0.0,
+      "sums_to_identity": true
+    }
+  },
+  "finite_map": {
+    "codomain_or_output": "finite quotient Token/~_E and signature n_classes(E)",
+    "domain": "finite tokens (v,gamma) with v in K_V and gamma in finite path set Gamma={I,H,Z,H_then_Z,Z_then_H}",
+    "equivalence": "(v,gamma) ~_E (w,delta) iff max_a |R_E(v,gamma)_a - R_E(w,delta)_a| <= tol",
+    "map": "R_E(v,gamma) = (Tr(E_a U_gamma rho_v U_gamma^dagger))_a"
+  },
+  "fresh_rerun": true,
+  "honest_gaps": [
+    "This is not a PEPS tensor-network contraction proof; K is a finite PEPS3D cell anchor.",
+    "Z3 was omitted rather than used as decorative proof.",
+    "No layer-completion or stacking claim is made."
+  ],
+  "julia_native_spinor_density": {
+    "density_definition": "rho_v = psi_v * psi_v'",
+    "density_type": "Matrix{ComplexF64}",
+    "numpy": "absent",
+    "psd_all": true,
+    "spinor_type": "Vector{ComplexF64}",
+    "trace1_all": true
+  },
+  "name": "finite response/effect/path quotient",
+  "negative_controls": {
+    "broken_povm_missing_effect_rejected": true,
+    "commuting_control_order_gap_zero": true,
+    "constant_response_collapses": true,
+    "constant_response_quotient_classes": 1
+  },
+  "promotion_allowed": false,
+  "promotion_status": "keep_but_open",
+  "quotient_signature": {
+    "effect_collapse_delta": 39,
+    "full_effect_classes": 40,
+    "full_representatives": 40,
+    "sample_token_classes": [
+      {
+        "class": 1,
+        "response": [
+          0.12012093682049377,
+          0.21321239651283952,
+          0.19957377482806132,
+          0.13375955850527194,
+          0.323282103464318,
+          0.010051229869015266
+        ],
+        "token": {
+          "path": "I",
+          "site": 1
+        }
+      },
+      {
+        "class": 2,
+        "response": [
+          0.32328210346431796,
+          0.010051229869015278,
+          0.13375955850527194,
+          0.1995737748280613,
+          0.12012093682049375,
+          0.21321239651283946
+        ],
+        "token": {
+          "path": "H",
+          "site": 1
+        }
+      },
+      {
+        "class": 3,
+        "response": [
+          0.21321239651283952,
+          0.12012093682049377,
+          0.13375955850527194,
+          0.19957377482806132,
+          0.323282103464318,
+          0.010051229869015266
+        ],
+        "token": {
+          "path": "Z",
+          "site": 1
+        }
+      },
+      {
+        "class": 4,
+        "response": [
+          0.010051229869015278,
+          0.32328210346431796,
+          0.1995737748280613,
+          0.13375955850527194,
+          0.12012093682049375,
+          0.21321239651283946
+        ],
+        "token": {
+          "path": "H_then_Z",
+          "site": 1
+        }
+      },
+      {
+        "class": 5,
+        "response": [
+          0.32328210346431796,
+          0.010051229869015278,
+          0.1995737748280613,
+          0.13375955850527194,
+          0.21321239651283946,
+          0.12012093682049375
+        ],
+        "token": {
+          "path": "Z_then_H",
+          "site": 1
+        }
+      },
+      {
+        "class": 6,
+        "response": [
+          0.184791386292988,
+          0.14854194704034535,
+          0.06107972058912307,
+          0.2722536127442102,
+          0.29434074051982967,
+          0.03899259281350366
+        ],
+        "token": {
+          "path": "I",
+          "site": 2
+        }
+      },
+      {
+        "class": 7,
+        "response": [
+          0.2943407405198296,
+          0.038992592813503674,
+          0.2722536127442102,
+          0.06107972058912309,
+          0.18479138629298797,
+          0.14854194704034535
+        ],
+        "token": {
+          "path": "H",
+          "site": 2
+        }
+      },
+      {
+        "class": 8,
+        "response": [
+          0.14854194704034535,
+          0.184791386292988,
+          0.2722536127442102,
+          0.06107972058912307,
+          0.29434074051982967,
+          0.03899259281350366
+        ],
+        "token": {
+          "path": "Z",
+          "site": 2
+        }
+      },
+      {
+        "class": 9,
+        "response": [
+          0.038992592813503674,
+          0.2943407405198296,
+          0.06107972058912309,
+          0.2722536127442102,
+          0.18479138629298797,
+          0.14854194704034535
+        ],
+        "token": {
+          "path": "H_then_Z",
+          "site": 2
+        }
+      },
+      {
+        "class": 10,
+        "response": [
+          0.2943407405198296,
+          0.038992592813503674,
+          0.06107972058912309,
+          0.2722536127442102,
+          0.14854194704034535,
+          0.18479138629298797
+        ],
+        "token": {
+          "path": "Z_then_H",
+          "site": 2
+        }
+      }
+    ],
+    "trivial_effect_classes": 1
+  },
+  "scale_stress_8_16_32_64": {
+    "passes": true,
+    "resource_blocker": "absent for this finite 64-site site-only stress",
+    "rows": [
+      {
+        "collapse_delta": 7,
+        "full_effect_classes": 8,
+        "passes": true,
+        "sites": 8,
+        "trivial_effect_classes": 1
+      },
+      {
+        "collapse_delta": 15,
+        "full_effect_classes": 16,
+        "passes": true,
+        "sites": 16,
+        "trivial_effect_classes": 1
+      },
+      {
+        "collapse_delta": 31,
+        "full_effect_classes": 32,
+        "passes": true,
+        "sites": 32,
+        "trivial_effect_classes": 1
+      },
+      {
+        "collapse_delta": 63,
+        "full_effect_classes": 64,
+        "passes": true,
+        "sites": 64,
+        "trivial_effect_classes": 1
+      }
+    ]
+  },
+  "sim_id": "L0_layer_codex",
+  "source_math_quotes": [
+    "L0 finite response/effect/path quotient -- what distinctions survive finite probes?",
+    "a ~ b iff forall p in P, p(a) approx p(b) for finite admissible P",
+    "D(C^2) = {rho in B(C^2): rho >= 0, Tr rho = 1}",
+    "p_O(rho)=Tr(O rho)",
+    "rho(psi)=|psi><psi|"
+  ],
+  "tool_manifest": {
+    "JSON": "supportive: emits the durable result receipt",
+    "LinearAlgebra": "load_bearing: matrix products, traces, eigenspectra, norms, entropy inputs, and measured gaps",
+    "NumPy": "absent",
+    "Z3": "omitted, not decorative"
+  },
+  "version": "1.0"
+}

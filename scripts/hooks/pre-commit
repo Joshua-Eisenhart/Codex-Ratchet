@@ -1,0 +1,148 @@
+#!/usr/bin/env python3
+"""
+Codex Ratchet pre-commit hook.
+Runs the manifest checker on staged sim-result JSON files and blocks staged
+formal/status/result prose that promotes bounded scout evidence into completion.
+"""
+import os
+import subprocess
+import sys
+
+
+REPO_ROOT = subprocess.check_output(
+    ["git", "rev-parse", "--show-toplevel"], text=True
+).strip()
+
+CHECKER = os.path.join(REPO_ROOT, "system_v4", "probes", "check_manifest.py")
+SIM_RESULTS_PREFIX = "system_v4/probes/a2_state/sim_results/"
+CLAIM_GATE = os.path.join(REPO_ROOT, "scripts", "validate_layer_completion_claims.py")
+AUTHORITY_DOCS = {
+    "AGENTS.md",
+    "CODEX.md",
+    "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md",
+    "system_v5/docs/LLM_CONTROLLER_CONTRACT.md",
+    "system_v5/docs/LEGO_SIM_CONTRACT.md",
+}
+
+if not os.path.isfile(CHECKER):
+    print("[pre-commit] WARNING: check_manifest.py not found -- skipping")
+    sys.exit(0)
+
+staged_raw = subprocess.check_output(
+    ["git", "diff", "--cached", "--name-only", "--diff-filter=ACM"], text=True
+)
+
+staged_json = [
+    line.strip()
+    for line in staged_raw.splitlines()
+    if line.strip().startswith(SIM_RESULTS_PREFIX)
+    and line.strip().endswith(".json")
+    and "MANIFEST_CHECK_REPORT.json" not in line
+]
+
+staged_all = [line.strip() for line in staged_raw.splitlines() if line.strip()]
+forbidden = [
+    path
+    for path in staged_all
+    if path.startswith("docs/") or path.startswith("new docs/")
+]
+if forbidden:
+    print("[pre-commit] BLOCKED: docs/ and 'new docs/' must live under system_v5/, not repo root.")
+    for path in forbidden:
+        print(f"  - {path}")
+    print("Move these files into system_v5/ or unstage them. Bypass with --no-verify if truly intentional.")
+    sys.exit(1)
+
+name_gate = subprocess.call(["make", "sim-name-gate"], cwd=REPO_ROOT)
+if name_gate != 0:
+    print()
+    print("[pre-commit] BLOCKED: staged sim filename contains claim-layer label.")
+    print("[pre-commit] Rename to the concrete math object or unstage the file.")
+    sys.exit(name_gate)
+
+
+def layer_claim_gate_relevant(path):
+    if path in AUTHORITY_DOCS:
+        return False
+    docs_name = os.path.basename(path).lower()
+    docs_claim_surface = (
+        path.startswith("system_v5/docs/")
+        and any(
+            token in docs_name
+            for token in (
+                "audit",
+                "closeout",
+                "continuation",
+                "handoff",
+                "index",
+                "matrix",
+                "prompt",
+                "readiness",
+                "report",
+                "status",
+            )
+        )
+    )
+    return (
+        docs_claim_surface
+        or path.startswith("system_v5/ops/")
+        or path.startswith("system_v5/legos/")
+        or path.startswith("system_v4/probes/a2_state/sim_results/")
+    )
+
+
+def layer_claim_gate_extension_allowed(path):
+    if path.endswith((".md", ".txt", ".json")):
+        return True
+    if path.endswith(".py") and (
+        path.startswith("system_v5/ops/formal_scouts/")
+        or path.startswith("system_v5/legos/")
+    ):
+        return True
+    return False
+
+
+claim_gate_candidates = [
+    path
+    for path in staged_all
+    if layer_claim_gate_relevant(path)
+    and layer_claim_gate_extension_allowed(path)
+    and "MANIFEST_CHECK_REPORT.json" not in path
+]
+
+if os.path.isfile(CLAIM_GATE) and claim_gate_candidates:
+    cmd = [
+        sys.executable,
+        CLAIM_GATE,
+        "--use-default-status",
+        "--require-status",
+        "--resolve-status-receipts",
+    ]
+    for path in claim_gate_candidates:
+        abs_path = os.path.join(REPO_ROOT, path)
+        cmd.extend(["--claim-file", abs_path])
+        if path.endswith(".json"):
+            cmd.extend(["--status", abs_path, "--evidence", abs_path])
+    claim_gate = subprocess.call(cmd, cwd=REPO_ROOT)
+    if claim_gate != 0:
+        print()
+        print("[pre-commit] BLOCKED: staged text/result/status appears to promote")
+        print("[pre-commit] scout or bounded evidence into full layer/G-structure/")
+        print("[pre-commit] stack/Axis0/FEP/flux/physics/final-manifold completion.")
+        sys.exit(claim_gate)
+
+if not staged_json:
+    sys.exit(0)
+
+print(f"[pre-commit] Checking {len(staged_json)} staged sim-result file(s)...")
+
+abs_paths = [os.path.join(REPO_ROOT, path) for path in staged_json]
+cmd = [sys.executable, CHECKER, "--hook", "--files"] + abs_paths
+rc = subprocess.call(cmd)
+
+if rc != 0:
+    print()
+    print("[pre-commit] BLOCKED: canonical manifest violations found.")
+    print("[pre-commit] Fix violations before committing, or use --no-verify to bypass.")
+
+sys.exit(rc)

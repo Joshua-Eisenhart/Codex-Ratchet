@@ -2,7 +2,7 @@
     "computation_style": "native_julia_integer_bitmask_survivor_sets",
     "result_path": "system_v7/sims/survivor_set_running_mean_threshold_noncommutation_v0/results/survivor_set_running_mean_threshold_noncommutation_v0_julia_results.json",
     "does_not_self_upgrade": true,
-    "source_sha256": "d793e85773b1ff6ffe4f9d08fbe9dda2fd2b4d771700bf95f518c840aeb2dbbc",
+    "source_sha256": "9ee50a4e6997c5baad86c655ee8cc9674cbbc878a0a3848060118b89b7c24be2",
     "per_N": {
         "5": {
             "running_mean_threshold_fixed_reference_noncommute": 0,
@@ -124,13 +124,60 @@
         "SHA",
         "Dates"
     ],
+    "boundary_tests": {
+        "N_values_checked": [
+            5,
+            6,
+            7
+        ],
+        "pair_counts_by_N": {
+            "5": 105,
+            "6": 105,
+            "7": 105
+        }
+    },
     "classification": "scratch_diagnostic",
+    "written_at": "2026-07-02T21:06:27Z",
+    "facts": {
+        "competitive_exclusion_noncommute_counts": {
+            "5": 0,
+            "6": 0,
+            "7": 0
+        },
+        "floor_mean_noncommute_counts": {
+            "5": 0,
+            "6": 0,
+            "7": 0
+        },
+        "ensemble_consistency_noncommute_counts": {
+            "5": 0,
+            "6": 0,
+            "7": 0
+        },
+        "running_mean_noncommute_counts": {
+            "5": 62,
+            "6": 62,
+            "7": 62
+        },
+        "fixed_reference_noncommute_counts": {
+            "5": 0,
+            "6": 0,
+            "7": 0
+        },
+        "minority_frustration_noncommute_counts": {
+            "5": 0,
+            "6": 0,
+            "7": 0
+        }
+    },
     "sim_id": "survivor_set_running_mean_threshold_noncommutation_v0",
     "reads_peer_result": false,
     "formal_admission_allowed": false,
-    "aligned_packages_load_bearing": [
-    ],
-    "generated_at": "2026-07-02T08:33:09Z",
+    "positive_tests": {
+        "state_dependence_necessary_not_sufficient": true,
+        "running_X_admits_order_dependence_all_N": true
+    },
+    "generated_at": "2026-07-02T21:06:27Z",
     "claims": {
         "state_dependence_necessary_not_sufficient": true,
         "rule": "convention-free: survive iff count1(x,comp) >= real-valued mean over the running survivor set (no rounding)",
@@ -138,6 +185,8 @@
         "isolator_fixed_reference_commutes": true,
         "emergence_label": "REJECTED as overclaim by the full-fleet audit; this is order-dependent survivor-set filtering, not strong emergence"
     },
+    "aligned_packages_load_bearing": [
+    ],
     "TOOL_MANIFEST": {
         "SHA": {
             "used": true,
@@ -161,11 +210,18 @@
     },
     "promotion_allowed": false,
     "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "negative_tests": {
+        "competitive_exclusion_does_not_noncommute": true,
+        "ensemble_consistency_does_not_noncommute": true,
+        "minority_frustration_does_not_noncommute": true,
+        "floor_mean_threshold_does_not_noncommute": true,
+        "fixed_reference_erases_order_dependence": true
+    },
+    "schema": "codex_ratchet.engine_leg_result.v1",
     "TOOL_INTEGRATION_DEPTH": {
         "SHA": "supportive",
         "julia_integer_bit_operations": "load_bearing",
         "JSON3": "supportive"
     },
-    "schema": "codex_ratchet.engine_leg_result.v1",
     "engine": "julia"
 }

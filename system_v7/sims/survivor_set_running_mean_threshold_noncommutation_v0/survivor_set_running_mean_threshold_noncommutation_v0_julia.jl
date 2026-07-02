@@ -208,6 +208,7 @@ end
 
 function main()
     per_n = Dict(string(n) => run_for_n(n) for n in (5, 6, 7))
+    timestamp = Dates.format(now(UTC), "yyyy-mm-ddTHH:MM:SSZ")
     order_dependence = all(per_n[string(n)]["running_mean_threshold_running_X_noncommute"] > 0 for n in (5, 6, 7))
     isolator_holds = all(per_n[string(n)]["running_mean_threshold_fixed_reference_noncommute"] == 0 for n in (5, 6, 7))
     necessary_not_sufficient = all(
@@ -228,11 +229,35 @@ function main()
         "formal_admission_allowed" => false,
         "does_not_self_upgrade" => true,
         "reads_peer_result" => false,
-        "generated_at" => Dates.format(now(UTC), "yyyy-mm-ddTHH:MM:SSZ"),
+        "generated_at" => timestamp,
+        "written_at" => timestamp,
         "source_sha256" => sha256_self(),
         "result_path" => "system_v7/sims/$SIM_ID/results/$(SIM_ID)_julia_results.json",
         "julia_project" => something(Base.active_project(), "none"),
         "per_N" => per_n,
+        "positive_tests" => Dict(
+            "running_X_admits_order_dependence_all_N" => order_dependence,
+            "state_dependence_necessary_not_sufficient" => necessary_not_sufficient,
+        ),
+        "negative_tests" => Dict(
+            "fixed_reference_erases_order_dependence" => isolator_holds,
+            "floor_mean_threshold_does_not_noncommute" => all(per_n[string(n)]["floor_mean_threshold_running_X_noncommute"] == 0 for n in (5, 6, 7)),
+            "ensemble_consistency_does_not_noncommute" => all(per_n[string(n)]["ensemble_consistency_noncommute"] == 0 for n in (5, 6, 7)),
+            "competitive_exclusion_does_not_noncommute" => all(per_n[string(n)]["competitive_exclusion_noncommute"] == 0 for n in (5, 6, 7)),
+            "minority_frustration_does_not_noncommute" => all(per_n[string(n)]["minority_frustration_noncommute"] == 0 for n in (5, 6, 7)),
+        ),
+        "boundary_tests" => Dict(
+            "N_values_checked" => [5, 6, 7],
+            "pair_counts_by_N" => Dict(string(n) => per_n[string(n)]["pair_count"] for n in (5, 6, 7)),
+        ),
+        "facts" => Dict(
+            "running_mean_noncommute_counts" => Dict(string(n) => per_n[string(n)]["running_mean_threshold_running_X_noncommute"] for n in (5, 6, 7)),
+            "fixed_reference_noncommute_counts" => Dict(string(n) => per_n[string(n)]["running_mean_threshold_fixed_reference_noncommute"] for n in (5, 6, 7)),
+            "floor_mean_noncommute_counts" => Dict(string(n) => per_n[string(n)]["floor_mean_threshold_running_X_noncommute"] for n in (5, 6, 7)),
+            "ensemble_consistency_noncommute_counts" => Dict(string(n) => per_n[string(n)]["ensemble_consistency_noncommute"] for n in (5, 6, 7)),
+            "competitive_exclusion_noncommute_counts" => Dict(string(n) => per_n[string(n)]["competitive_exclusion_noncommute"] for n in (5, 6, 7)),
+            "minority_frustration_noncommute_counts" => Dict(string(n) => per_n[string(n)]["minority_frustration_noncommute"] for n in (5, 6, 7)),
+        ),
         "claims" => Dict(
             "running_X_admits_order_dependence" => order_dependence,
             "isolator_fixed_reference_commutes" => isolator_holds,

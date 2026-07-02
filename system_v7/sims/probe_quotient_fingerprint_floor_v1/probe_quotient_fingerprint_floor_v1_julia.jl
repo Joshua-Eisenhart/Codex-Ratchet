@@ -164,6 +164,18 @@ function main()
             "added_probe_class_count" => length(full_classes),
             "tautology_guard_tripped" => z3_erased != "sat",
         ),
+        "positive_tests" => Dict(
+            "full_table_partition_well_defined" => z3_full == "unsat",
+            "specific_full_class_count" => length(full_classes) == Int(expected["full_class_count"]),
+        ),
+        "negative_tests" => Dict(
+            "erased_table_exposes_over_refinement" => z3_erased == "sat",
+            "erased_merge_pair" => merge_pair,
+        ),
+        "boundary_tests" => Dict(
+            "persistent_indistinguishable_pair_under_full_P" => persistent_pair,
+            "full_quotient_is_not_identity" => any(group -> length(group) > 1, full_classes),
+        ),
         "smt_flip" => Dict(
             "julia_z3_full_P" => z3_full,
             "julia_z3_erased_P" => z3_erased,

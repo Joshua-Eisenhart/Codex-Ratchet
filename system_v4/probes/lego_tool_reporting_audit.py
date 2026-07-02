@@ -41,7 +41,9 @@ def summarize_result_rows(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any
     by_result: dict[str, dict[str, Any]] = {}
     for row in rows:
         result_name = row.get("machine_best_result")
-        if not result_name:
+        if not result_name or str(result_name).strip().lower() == "none":
+            # registry rows marked "none" declare "no clean standalone probe yet"
+            # (late-stage bridge/support rows) — they link no result artifact.
             continue
         entry = by_result.setdefault(
             result_name,

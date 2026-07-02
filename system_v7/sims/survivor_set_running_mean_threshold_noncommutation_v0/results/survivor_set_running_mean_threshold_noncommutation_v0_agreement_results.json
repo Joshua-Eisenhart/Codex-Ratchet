@@ -1,8 +1,15 @@
 {
+  "schema": "codex_ratchet.agreement_result.v1",
   "sim_id": "survivor_set_running_mean_threshold_noncommutation_v0",
+  "engines_present": [
+    "exact",
+    "jax",
+    "julia"
+  ],
   "computation_styles": {
     "exact": "explicit_enumeration_exact_set_operations",
-    "jax": "boolean_mask_over_full_enumeration_jnp_batched_predicate"
+    "jax": "boolean_mask_over_full_enumeration_jnp_batched_predicate",
+    "julia": "native_julia_integer_bitmask_survivor_sets"
   },
   "per_N_running_X_noncommute": {
     "5": 62,
@@ -15,7 +22,14 @@
     "7": 0
   },
   "two_legs_agree": true,
+  "three_legs_agree": true,
+  "agreement_ok": true,
+  "observables_match": {
+    "integer": "exact",
+    "float_max": 0.0
+  },
   "failures": [],
   "classification": "scratch_diagnostic",
-  "promotion_allowed": false
+  "promotion_allowed": false,
+  "formal_admission_allowed": false
 }

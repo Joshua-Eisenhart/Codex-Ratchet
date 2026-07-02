@@ -1,0 +1,225 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_Y_contrast_mask_delta_quotient_active_frontier_blocker_20260526.json",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "Y_delta_class_source_fiber_K",
+      "candidate_name": "finite source-binding fiber incidence over mask-delta quotient classes",
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "Y_delta_class_source_fiber_K : (Y_contrast_mask_delta_quotient_K, mask_delta_quotient_classes, quotient_members, active_source_class_ids, boundary_source_class_ids, pair_bindings, PEPS3D V/E/F/C masks) -> finite source-binding fiber incidence table + per-class binding diversity vector + control gap vector",
+      "geometry_it_would_earn_if_later_passed": "A finite incidence/fiber readout showing how each admitted mask-delta quotient class is supported by active source classes, F-boundary source classes, pair bindings, and PEPS3D V/E/F/C masks. This remains Phase 2 carrier-frontier geometry only.",
+      "not_run_in_this_artifact": true,
+      "why_admissible": "It ratchets directly from the Y_contrast_mask_delta_quotient_K member table by projecting each quotient class to a finite source-binding fiber relation. It is not a class-count or class-size-vector restatement because the output must preserve active source ids, boundary source ids, pair-binding ids, and per-rank V/E/F/C mask incidence for each class. It adds no new downstream operator and inherits the Phase 2 order-sensitive carrier witness only."
+    },
+    {
+      "candidate_id": "class_count_or_class_size_vector_only",
+      "candidate_name": "mask-delta class-count or class-size-vector restatement",
+      "decision": "rejected",
+      "why_rejected": "The latest receipt already reports 8 quotient classes and class_size_vector=[12,4,4,8,4,8,8,6]. A fresh map must emit a new finite relation beyond these summaries."
+    },
+    {
+      "candidate_id": "mask_delta_l1_sum_or_delta_only_histogram",
+      "candidate_name": "mask-delta L1 sum or source-erased delta histogram",
+      "decision": "rejected",
+      "why_rejected": "The latest receipt already reports weighted mask_delta_l1_sum=78.0. A delta-only histogram erases source and PEPS3D mask bindings, so it cannot carry the next carrier-frontier object."
+    },
+    {
+      "candidate_id": "restore_inverse_or_minimal_reconstruction",
+      "candidate_name": "restore, inverse, or minimal reconstruction from quotient fibers",
+      "decision": "rejected",
+      "why_rejected": "Restore/inverse/minimal reconstruction would claim a reversible or minimal generating law. The active blocker explicitly excludes restore/inverse variants and Phase 2 has not earned that dependency."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_or_persistence_from_fibers",
+      "candidate_name": "topology, sheaf, homology, persistence, or closure from source fibers",
+      "decision": "rejected",
+      "why_rejected": "Finite source-binding incidence is not topology, sheaf gluing, homology, persistence, or full PEPS3D closure. Those consumers remain blocked."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_fibers",
+      "candidate_name": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are downstream consumers and cannot be opened from Phase 2 mask-delta quotient fibers."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "F01_finite_witness": "The quotient classes, members, source ids, pair bindings, PEPS3D rank masks, fiber rows, diversity vectors, controls, and outputs are finite and receipt-backed.",
+    "N01_order_witness": "The map inherits the Phase 2 noncommuting/order-sensitive carrier path preserved by Y_contrast_mask_delta_quotient_K; order-erased and commuting-only controls must collapse. No fresh downstream operator is introduced.",
+    "PEPS3D_carrier_anchor": "Every fiber row must bind to active and F-boundary V/E/F/C support masks. Scalar labels, class sizes, and source-erased rows are controls only.",
+    "candidate_id": "Y_delta_class_source_fiber_K",
+    "codomain_or_output": {
+      "control_gap_vector": "finite rejection/collapse gaps for class-size-only, delta-only, source-erased, pair-erased, no-anchor, scalar-label, order-erased, restore/inverse, topology, and downstream controls",
+      "per_class_binding_diversity_vector": "finite vector of source-pair binding counts per mask-delta quotient class",
+      "rank_incidence_table": "finite per-class and per-rank V/E/F/C active-vs-boundary mask incidence rows",
+      "source_binding_fiber_table": "finite relation (delta_class_id, active_source_class_id, boundary_source_class_id, pair_binding_id, rank, active_support_count, boundary_support_count, mask_delta_rank)"
+    },
+    "domain": {
+      "PEPS3D_support_masks": "active and F-boundary V/E/F/C support masks bound to quotient members",
+      "Y_contrast_mask_delta_quotient_K": "validated finite mask-delta quotient receipt",
+      "active_source_class_ids": "finite active source class ids retained by quotient members",
+      "boundary_source_class_ids": "finite F-boundary source class ids retained by quotient members",
+      "local_order_ops": "finite order-sensitive carrier path inherited from Phase 2 receipts; no fresh downstream operator is introduced",
+      "mask_delta_quotient_classes": "8 finite quotient classes with 54 member rows",
+      "pair_bindings": "finite active_pair_id -> boundary_pair_id bindings retained by quotient members",
+      "quotient_members": "finite row ids and member payloads from the Y_contrast_mask_delta_quotient_K receipt"
+    },
+    "finite_map": "Y_delta_class_source_fiber_K : (Y_contrast_mask_delta_quotient_K, mask_delta_quotient_classes, quotient_members, active_source_class_ids, boundary_source_class_ids, pair_bindings, PEPS3D V/E/F/C masks) -> finite source-binding fiber incidence table + per-class binding diversity vector + control gap vector",
+    "geometry_if_later_earned": "finite anchored source-binding fiber incidence geometry for the Phase 2 PEPS3D response-quotient carrier",
+    "not_a_scout_run": true,
+    "promotion_allowed": false
+  },
+  "classification": "formal_scout_controller_candidate",
+  "controller_dependency_artifacts": [
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_post_Y_contrast_mask_delta_quotient_active_frontier_blocker_20260526.json"
+  ],
+  "controls_required_if_later_run": {
+    "boundary": [
+      "empty quotient class remains a control-only row",
+      "max parent sites remains bounded by the latest dependency receipts",
+      "max PEPS3D bond remains bounded by the latest dependency receipts",
+      "single-source-class fiber remains boundary-only if it cannot distinguish active and boundary bindings"
+    ],
+    "downstream_leak": [
+      "source fibers must not be promoted to topology, homology, sheaf, persistence, closure, restore, inverse, or minimality claims",
+      "Phase 7 or downstream receipts must not be consumed as dependencies",
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, and axes 7-12 must remain blocked"
+    ],
+    "negative": [
+      "class-count-only output must fail",
+      "class-size-vector-only output must fail",
+      "mask-delta-L1-only output must fail",
+      "source-class-erased output must fail",
+      "pair-binding-erased output must fail",
+      "rank-mask-erased output must fail",
+      "no-anchor and scalar-label variants must fail",
+      "single-probe non-IC variants must not pass as full finite-effect evidence"
+    ],
+    "order_erased": [
+      "order-erased carrier path must collapse the inherited N01 witness",
+      "commuting-only paths must not be admitted as nonclassical fiber evidence"
+    ],
+    "positive": [
+      "each quotient class emits at least one finite source-binding fiber row",
+      "each fiber row retains active and F-boundary source class ids",
+      "each fiber row retains pair-binding id and PEPS3D V/E/F/C rank mask incidence",
+      "the diversity vector is finite and not reducible to class sizes alone"
+    ]
+  },
+  "created_at": "2026-05-26T05:21:44-07:00",
+  "current_state_assertion": {
+    "active_transition_decision": "blocked",
+    "contract_complete_rows": 38,
+    "frontier_row_count": 41,
+    "killed_rows": 3,
+    "latest_admitted_map": "Y_contrast_mask_delta_quotient_K",
+    "latest_admitted_packet": "phase2_contrast_mask_delta_quotient_packet",
+    "phase2_carrier_geometry": "real_bounded",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_contrast_mask_delta_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_certificate_boundary_contrast_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_collision_certificate_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_induced_quotient_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_row_deletion_collision_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_active_pair_collision_residue_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json"
+  ],
+  "failure_conditions": [
+    "the output is recoverable from mask_delta_quotient_class_count, class_size_vector, or mask_delta_l1_sum alone",
+    "active source ids, F-boundary source ids, pair bindings, or PEPS3D V/E/F/C rank masks are erased",
+    "all fiber rows collapse to a source-erased scalar histogram",
+    "order-erased or commuting controls do not collapse",
+    "single-probe non-IC controls pass as if complete",
+    "the map requires dense 2^n state closure or dense environment closure",
+    "the map consumes Phase 7/downstream receipts or opens topology, sheaf, homology, full PEPS3D closure, restore/inverse, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12"
+  ],
+  "kind": "candidate_map_discovery",
+  "multi_model_parallelism": {
+    "blockers": [
+      "Full Wizard v4.2 remains BLOCKED, not FULL or PARTIAL.",
+      "Direct Gemini/Grok provider lanes were not used for this artifact and are not counted as Wizard children."
+    ],
+    "independent_packets": [
+      "Y_delta_class_source_fiber_K_candidate_discovery",
+      "post_quotient_dependency_control_audit",
+      "post_quotient_validator_artifact_audit"
+    ],
+    "model_pools": [
+      {
+        "accepted_use": "candidate discovery sidecar agreed Y_delta_class_source_fiber_K is the single surviving fresh post-quotient candidate",
+        "pool": "codex_native_explorer",
+        "receipt": "019e643b-2a07-7c83-8934-b8a7556ae07a",
+        "status": "completed"
+      },
+      {
+        "accepted_use": "dependency/control sidecar accepted source-binding fiber map as fresh only if it emits fiber/incidence data rather than quotient summaries",
+        "pool": "codex_native_explorer",
+        "receipt": "019e643b-78ea-7513-a0f4-588344dbeeff",
+        "status": "completed"
+      },
+      {
+        "blocked_reason": "No completed full Wizard v4.2 parent/child receipt exists for this artifact.",
+        "pool": "wizard_v4_2",
+        "status": "BLOCKED"
+      },
+      {
+        "completed_tools": [
+          "json.tool",
+          "git diff --check"
+        ],
+        "pool": "local_tools",
+        "status": "completed"
+      }
+    ],
+    "serial_boundaries": [
+      "artifact writes",
+      "future scout execution",
+      "matrix and transition mutation"
+    ],
+    "status": "partial"
+  },
+  "next_admissible_step": "Author one bounded formal scout for Y_delta_class_source_fiber_K, then run/lint/validate it. This candidate artifact does not itself admit the map and does not open Phase 3 or downstream geometry.",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "scope": "phase2_post_Y_contrast_mask_delta_quotient_K_candidate_map_discovery",
+  "selected_candidate_map": {
+    "candidate_id": "Y_delta_class_source_fiber_K",
+    "codomain_or_output": "finite source-binding fiber incidence table, per-class binding diversity vector, rank-incidence table, and control gap vector",
+    "domain": "8 finite mask-delta quotient classes, 54 quotient member rows, source class ids, pair bindings, and PEPS3D V/E/F/C masks from the latest Phase 2 receipt",
+    "finite_map": "Y_delta_class_source_fiber_K : (Y_contrast_mask_delta_quotient_K, mask_delta_quotient_classes, quotient_members, active_source_class_ids, boundary_source_class_ids, pair_bindings, PEPS3D V/E/F/C masks) -> finite source-binding fiber incidence table + per-class binding diversity vector + control gap vector",
+    "status": "admissible_candidate_not_run"
+  },
+  "selected_candidate_map_id": "Y_delta_class_source_fiber_K",
+  "sidecar_receipts": [
+    {
+      "accepted_use": "candidate discovery audit accepted Y_delta_class_source_fiber_K as the single surviving fresh candidate",
+      "agent_id": "019e643b-2a07-7c83-8934-b8a7556ae07a",
+      "pool": "codex_native_explorer",
+      "status": "completed"
+    },
+    {
+      "accepted_use": "dependency/control audit accepted the map as fresh if it emits source-binding fiber and rank-incidence data, not quotient summaries",
+      "agent_id": "019e643b-78ea-7513-a0f4-588344dbeeff",
+      "pool": "codex_native_explorer",
+      "status": "completed"
+    }
+  ],
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After Y_contrast_mask_delta_quotient_K, the earned object is a finite table of 8 mask-delta quotient classes and 54 member rows with source class ids, pair bindings, V/E/F/C masks, and finite control gaps. The next candidate asks whether those quotient classes carry a finite source-binding fiber incidence relation. This is still carrier-frontier evidence only and is not topology, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, or physics."
+}

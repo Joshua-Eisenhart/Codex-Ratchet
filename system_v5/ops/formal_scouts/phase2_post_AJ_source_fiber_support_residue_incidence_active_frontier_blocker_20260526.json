@@ -1,0 +1,42 @@
+{
+  "kind": "blocked_reason",
+  "created_at": "2026-05-26T00:00:00-07:00",
+  "scope": "active_peps3d_carrier_frontier_after_AJ_source_fiber_support_residue_incidence_K",
+  "classification": "formal_scout_controller_blocker",
+  "latest_admitted_packet": {
+    "packet_id": "phase2_source_fiber_support_residue_incidence_packet",
+    "finite_map": "AJ_source_fiber_support_residue_incidence_K : (AI_source_row_fiber_pullback_K, source_balance_row_id, fiber_id, shared_member_class_pair_id, frontier_pair_ids, support_cell_pair_keys, residue_delta_values, balance_class_pair_keys) -> finite source-fiber support/residue incidence table + incidence-support vector + control gap vector",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_source_fiber_support_residue_incidence_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_source_fiber_support_residue_incidence_probe_results.json",
+    "status": "contract_complete"
+  },
+  "blocker_map": {
+    "finite_map": "B_post_AJ_source_fiber_support_residue_incidence_K : (AJ_source_fiber_support_residue_incidence_K_receipt, active_frontier_rows, candidate_map_list, blocked_downstream_set) -> active_frontier_blocked_reason",
+    "domain": [
+      "AJ_source_fiber_support_residue_incidence_K result receipt",
+      "active Phase 2 PEPS3D carrier-frontier matrix rows",
+      "current candidate-map list ending at AJ_source_fiber_support_residue_incidence_K",
+      "blocked downstream consumer set",
+      "finite source-fiber incidence carrier with 459 incidence rows, 135 source rows, 153 fibers, 387 frontier pairs covered, 351 support-cell pair support, 27 residue-delta support, max parent 125 sites, max triple-overlap 27 sites, and max bond 3"
+    ],
+    "codomain_or_output": "active-frontier blocked-reason artifact requiring one fresh post-AJ candidate map before any next scout"
+  },
+  "blocked_reason": "AJ_source_fiber_support_residue_incidence_K is contract-complete carrier evidence, but no further post-AJ bounded carrier-frontier finite map has yet been named and audited. The correct controller action is candidate-map discovery using only active carrier-frontier receipts, then either write a fresh candidate artifact or preserve this blocker.",
+  "next_admissible_step": "Run candidate-map discovery for the next post-AJ finite carrier-frontier map. Reject row-count-only summaries, cardinality-only summaries, component/topology closure, restore/inverse variants, fresh-N01 variants, full PEPS3D closure, and all downstream variants. If no candidate survives, preserve this blocker and state Phase 2 locally saturated at this frontier.",
+  "recommended_next_move": "Do not run another formal scout after AJ_source_fiber_support_residue_incidence_K until a new Phase 2 candidate map is written first as a controller artifact and audited against the active frontier matrix.",
+  "downstream_consumers_still_blocked": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "not_a_stop": true
+}

@@ -1,0 +1,226 @@
+{
+  "artifact_id": "m_rpf_object_preservation_alignment_audit_20260527",
+  "kind": "m_rpf_object_preservation_alignment_audit",
+  "schema": "m_rpf_alignment_audit_v1",
+  "created_at": "2026-05-27T08:20:00Z",
+  "campaign_goal_path": "system_v5/ops/tmp/FORMAL_SIM_M_RPF_LONG_RUNNING_GOAL_20260527.md",
+  "matrix_path": "system_v5/ops/formal_scouts/retrocausal_shell_constraint_manifold_matrix_20260527.json",
+  "continuation_path": "system_v5/ops/formal_scouts/retrocausal_shell_constraint_manifold_continuation_20260527.json",
+  "primary_object": "M_RPF(C)",
+  "primary_object_definition": "finite PEPS3D-anchored geometric constraint manifold whose local cells/shells carry retrocausal shell-field structure under active constraint family C",
+  "object_native_order": [
+    "Omega_r future/refinement branches",
+    "compatibility weights",
+    "compression map C",
+    "rho_present / present survivor",
+    "outward_record",
+    "derived readouts"
+  ],
+  "alignment_question": "Do the L0-L8 repair rows preserve the same M_RPF(C) object order, or did any row replace the object with a downstream proxy such as entropy, flux, Axis0, FEP, a scalar PEPS3D label, or forward evolution?",
+  "plain_answer": "The L0-L8 repair rows now preserve the same local M_RPF(C) object order. Each row starts from finite PEPS3D anchors, shell indices, Omega_r future/refinement branches, compatibility weights, and a row-local adapter before compressing to rho_present and outward_record. Entropy, PEPS3D summaries, Axis0, FEP, flux, and physics remain derived or blocked consumers, not the object. This audit admits local object-preservation alignment only; it does not admit stacking/order closure or final manifold closure.",
+  "alignment_decision": "local_object_preservation_aligned",
+  "promotion_allowed": false,
+  "stacking_unlocked": false,
+  "reason_stacking_not_unlocked": "The rows preserve a common object order locally, but no receipt has yet proven a cross-row composition map that carries M_RPF(C) through all adapters in order without erasing shell orientation, Omega_r compatibility weights, or N01 order witnesses.",
+  "dependency_receipts": [
+    {
+      "row": "L0",
+      "finite_map": "M_RPF_L0_QK",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_l0_response_shell_object_preservation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_l0_response_shell_object_preservation_probe_results.json",
+      "status": "fresh_rerun_pass"
+    },
+    {
+      "row": "L1",
+      "finite_map": "M_RPF_L1_EK_chi",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_l1_boundary_environment_shell_object_preservation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_l1_boundary_environment_shell_object_preservation_probe_results.json",
+      "status": "fresh_rerun_pass"
+    },
+    {
+      "row": "L2",
+      "finite_map": "M_RPF_L2_WK_s",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe_results.json",
+      "status": "fresh_rerun_pass"
+    },
+    {
+      "row": "L3",
+      "finite_map": "M_RPF_L3_QCl",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_l3_clifford_quaternion_shell_object_preservation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_l3_clifford_quaternion_shell_object_preservation_probe_results.json",
+      "status": "fresh_rerun_pass"
+    },
+    {
+      "row": "L4",
+      "finite_map": "M_RPF_L4_TK",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_l4_terrain_channel_shell_object_preservation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_l4_terrain_channel_shell_object_preservation_probe_results.json",
+      "status": "fresh_rerun_pass"
+    },
+    {
+      "row": "L5",
+      "finite_map": "M_RPF_L5_CK",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_l5_operator_substage_shell_object_preservation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_l5_operator_substage_shell_object_preservation_probe_results.json",
+      "status": "fresh_rerun_pass"
+    },
+    {
+      "row": "L6",
+      "finite_map": "M_RPF_L6_EK",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_l6_entropy_cut_shell_object_preservation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_l6_entropy_cut_shell_object_preservation_probe_results.json",
+      "status": "fresh_rerun_pass"
+    },
+    {
+      "row": "L7",
+      "finite_map": "M_RPF_L7_HK",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_l7_hopf_shell_projection_object_preservation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_l7_hopf_shell_projection_object_preservation_probe_results.json",
+      "status": "fresh_rerun_pass"
+    },
+    {
+      "row": "L8",
+      "finite_map": "M_RPF_L8_GK",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_l8_gluing_groupoid_shell_object_preservation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_l8_gluing_groupoid_shell_object_preservation_probe_results.json",
+      "status": "fresh_rerun_pass"
+    },
+    {
+      "row": "L4_L5_L7_depth_packet",
+      "finite_map": "existing depth/variant/bond stress packet for L4, L5, and L7",
+      "source_path": "system_v5/ops/formal_scouts/sim_l4_l5_l7_depth_variant_bond_sweep_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/l4_l5_l7_depth_variant_bond_sweep_probe_results.json",
+      "status": "fresh_rerun_pass_for_original_depth_scope"
+    }
+  ],
+  "row_alignment": [
+    {
+      "row": "L0",
+      "earned_local_adapter": "finite response/effect/path quotient adapter",
+      "object_preserved": true,
+      "not_object": "entropy, FEP, Axis0, flux"
+    },
+    {
+      "row": "L1",
+      "earned_local_adapter": "finite boundary environment adapter with chi in {2,4}",
+      "object_preserved": true,
+      "not_object": "boundary scalar summary or PEPS3D label"
+    },
+    {
+      "row": "L2",
+      "earned_local_adapter": "torch complex spinor L/R sheet adapter with Weyl-sign checks",
+      "object_preserved": true,
+      "not_object": "sheet label or sign-only proxy"
+    },
+    {
+      "row": "L3",
+      "earned_local_adapter": "Clifford/quaternion unit adapter with exact IJK order checks",
+      "object_preserved": true,
+      "not_object": "quaternion label-only proxy"
+    },
+    {
+      "row": "L4",
+      "earned_local_adapter": "8 terrain channel adapters and 16 placement signatures",
+      "object_preserved": true,
+      "not_object": "terrain label-only proxy"
+    },
+    {
+      "row": "L5",
+      "earned_local_adapter": "64 local operator-substage cell adapters with projection to 16 placements",
+      "object_preserved": true,
+      "not_object": "native 16-row collapse"
+    },
+    {
+      "row": "L6",
+      "earned_local_adapter": "finite cut communication entropy adapter",
+      "object_preserved": true,
+      "not_object": "entropy as primary object"
+    },
+    {
+      "row": "L7",
+      "earned_local_adapter": "nested Hopf shell and fiber/base projection adapter",
+      "object_preserved": true,
+      "not_object": "flattened shell or Hopf label-only proxy"
+    },
+    {
+      "row": "L8",
+      "earned_local_adapter": "finite gluing groupoid object/arrow adapter with inverse, composition, and plaquette order checks",
+      "object_preserved": true,
+      "not_object": "object/arrow label-only proxy"
+    }
+  ],
+  "scale_summary": {
+    "site_counts_tested": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "max_sites": 64,
+    "max_peps3d_bond_local_rows": 4,
+    "bond_4_rows": [
+      "L4",
+      "L5",
+      "L7",
+      "L4_L5_L7_depth_packet"
+    ],
+    "bond_2_rows": [
+      "L0",
+      "L1",
+      "L2",
+      "L3",
+      "L6",
+      "L8"
+    ],
+    "operator_substage_cells": 64,
+    "hopf_shell_count": 5,
+    "hopf_phase_grid_count": 64,
+    "gluing_groupoid_objects_64": 64,
+    "gluing_groupoid_oriented_arrows_64": 288
+  },
+  "controls_that_hold": [
+    "no_shell_orientation collapses object provenance",
+    "scrambled_Omega breaks branch compatibility",
+    "single_future_argmax rejects one-branch forward proxy",
+    "forward_shadow_control rejects forward-evolution replacement",
+    "scalar_entropy_only rejects entropy as the object",
+    "no_PEPS3D_anchor rejects scalar carrier labels",
+    "dense_state_closure rejects dense 2^n closure",
+    "FEP_without_kill_control rejects FEP/Holodeck promotion",
+    "Axis0_proxy_promotion rejects Axis0 as a repair path",
+    "row-local label-only controls reject terrain, sheet, quaternion, Hopf, and groupoid labels as evidence"
+  ],
+  "not_yet_earned": [
+    "cross-row stacking/order closure",
+    "global PEPS3D closure beyond bounded local row receipts",
+    "flux admission",
+    "Xi/Phi0 admission",
+    "Axis0 admission",
+    "Holodeck/FEP admission",
+    "physics/gravity proof",
+    "final manifold admission"
+  ],
+  "next_admissible_packet": {
+    "kind": "candidate_map_discovery",
+    "name": "M_RPF_cross_row_order_closure_candidate_discovery",
+    "allowed_scope": "write a candidate finite map or blocker for composing L0-L8 adapters while preserving Omega_r -> compatibility weights -> compression -> rho_present -> outward_record",
+    "forbidden_scope": "do not run flux, Xi/Phi0, Axis0, FEP/Holodeck, physics, or final manifold admission"
+  },
+  "blocked_consumers": [
+    "stacking_order_closure",
+    "flux",
+    "Xi_Phi0",
+    "Axis0",
+    "Holodeck_FEP",
+    "physics_gravity",
+    "final_manifold"
+  ],
+  "wizard_truth": {
+    "status": "PARTIAL_OR_BLOCKED",
+    "full_wizard_claimed": false,
+    "codex_native_spawn_attempted": true,
+    "codex_native_spawn_result": "blocked_agent_thread_limit_reached",
+    "completed_current_turn_subagent_receipts": 0
+  }
+}

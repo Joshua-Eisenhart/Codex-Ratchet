@@ -1,0 +1,110 @@
+{
+  "artifact_id": "m_rpf_cross_row_order_closure_candidate_or_blocker_20260527",
+  "kind": "candidate_map_artifact",
+  "schema": "m_rpf_cross_row_order_closure_candidate_v1",
+  "created_at": "2026-05-27T08:25:00Z",
+  "campaign_goal_path": "system_v5/ops/tmp/FORMAL_SIM_M_RPF_LONG_RUNNING_GOAL_20260527.md",
+  "matrix_path": "system_v5/ops/formal_scouts/retrocausal_shell_constraint_manifold_matrix_20260527.json",
+  "alignment_audit_path": "system_v5/ops/formal_scouts/m_rpf_object_preservation_alignment_audit_20260527.json",
+  "primary_object": "M_RPF(C)",
+  "decision": "candidate_map_ran_passed",
+  "candidate_name": "M_RPF_cross_row_order_closure_candidate",
+  "finite_map": "M_RPF_stack_0_8 : (K, event_x, shell stack Sigma_r(x), Omega_r, rho_omega, compatibility weights w_omega, ordered adapter tuple A_0..A_8, compression C) -> (rho_present_stack, outward_record_stack, per-row survivor tuple, cross-row consistency residuals, N01 order gaps, failed controls, blocked consumers)",
+  "domain": {
+    "K": "finite PEPS3D carrier K=(V,E,F,C_cells) with V,E,F,C_cells finite and anchor(event_x) in V union E union F union C_cells",
+    "shells": "finite shell indices r in {1,2,3} with future_inward/past_outward orientation",
+    "Omega_r": "finite future/refinement branch set at each shell",
+    "rho_omega": "torch-native spinor-derived local or cut density readouts for each admitted branch",
+    "compatibility_weights": "finite normalized weights over Omega_r",
+    "adapter_tuple": [
+      "A0 finite response quotient adapter",
+      "A1 boundary environment adapter",
+      "A2 spinor L/R sheet adapter",
+      "A3 Clifford/quaternion adapter",
+      "A4 terrain channel adapter",
+      "A5 operator-substage cell adapter",
+      "A6 entropy cut communication adapter",
+      "A7 nested Hopf shell projection adapter",
+      "A8 gluing groupoid adapter"
+    ],
+    "compression": "finite compression map C applied only after Omega_r compatibility weights are present"
+  },
+  "codomain_or_output": {
+    "rho_present_stack": "finite stack survivor readout preserving M_RPF(C) provenance",
+    "outward_record_stack": "finite outward record carrying row-local adapter provenance",
+    "per_row_survivor_tuple": "ordered tuple of row survivor readouts from A0 through A8",
+    "cross_row_consistency_residuals": "finite residuals that compare shared event_x, shell indices, Omega_r weights, and PEPS3D anchors across adjacent adapters",
+    "N01_order_gaps": "finite order-sensitive gaps for at least adapter swaps A_i A_j versus A_j A_i where local receipts require noncommutation",
+    "controls": "positive, negative, boundary, order-erased, adapter-erased, and provenance-erased controls",
+    "blocked_consumers": "downstream consumers that remain locked regardless of candidate-map existence"
+  },
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/m_rpf_l0_response_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l1_boundary_environment_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l3_clifford_quaternion_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l4_terrain_channel_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l5_operator_substage_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l6_entropy_cut_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l7_hopf_shell_projection_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/m_rpf_l8_gluing_groupoid_shell_object_preservation_probe_results.json",
+    "system_v5/ops/formal_scouts/m_rpf_object_preservation_alignment_audit_20260527.json"
+  ],
+  "positive_requirements_for_future_scout": [
+    "all carriers, probes, paths, shells, adapters, and outputs remain finite",
+    "PEPS3D anchor is load-bearing from the first input and is not a scalar label",
+    "torch complex spinor phase is preserved where spinor/sheet/Hopf adapters are used",
+    "Omega_r branches and compatibility weights exist before compression",
+    "rho_present_stack and outward_record_stack retain row provenance",
+    "at least one N01 order gap survives an adapter-order test",
+    "entropy remains a derived QIT cut/readout, not the primary object"
+  ],
+  "controls_required_for_future_scout": [
+    "adapter_order_swap_control",
+    "adapter_drop_control",
+    "shell_orientation_erased_control",
+    "Omega_scramble_control",
+    "compatibility_weight_uniformized_control",
+    "compression_before_weights_control",
+    "scalar_entropy_primary_control",
+    "PEPS3D_anchor_erased_control",
+    "dense_state_closure_control",
+    "forward_shadow_control",
+    "Axis0_proxy_promotion_control",
+    "FEP_Holodeck_proxy_promotion_control"
+  ],
+  "failure_condition": "If no finite bounded scout can preserve event_x, shell orientation, Omega_r compatibility weights, row-local adapter provenance, rho_present, outward_record, PEPS3D anchor, and at least one N01 order gap across the ordered adapter tuple A0..A8, write a blocker instead of promoting stacking.",
+  "not_run_in_this_artifact": false,
+  "run_result_path": "system_v5/ops/formal_scouts/results/m_rpf_cross_row_order_closure_probe_results.json",
+  "run_source_path": "system_v5/ops/formal_scouts/sim_m_rpf_cross_row_order_closure_probe.py",
+  "run_status": {
+    "M_RPF_stack_0_8_ran": true,
+    "all_pass": true,
+    "fresh_rerun_validator": "pass_all_pass_true",
+    "lint_status": "pass_exit_0_violation_total_0",
+    "v4_3_object_validator": "pass_ok_true",
+    "max_sites": 64,
+    "max_peps3d_bond": 4,
+    "min_adapter_order_gap": 0.009743519349874165,
+    "min_adapter_drop_gap": 0.06656141050226655
+  },
+  "stacking_unlocked": false,
+  "bounded_cross_row_order_closure_passed": true,
+  "promotion_allowed": false,
+  "next_admissible_step": "Write a post-stack stress candidate or blocker before any downstream consumer. Do not unlock flux, Xi/Phi0, Axis0, FEP/Holodeck, physics, or final manifold from this single bounded M_RPF_stack_0_8 pass.",
+  "blocked_consumers": [
+    "flux",
+    "Xi_Phi0",
+    "Axis0",
+    "Holodeck_FEP",
+    "physics_gravity",
+    "final_manifold"
+  ],
+  "wizard_truth": {
+    "status": "PARTIAL_OR_BLOCKED",
+    "full_wizard_claimed": false,
+    "codex_native_spawn_attempted": true,
+    "codex_native_spawn_result": "blocked_agent_thread_limit_reached",
+    "completed_current_turn_subagent_receipts": 0
+  }
+}

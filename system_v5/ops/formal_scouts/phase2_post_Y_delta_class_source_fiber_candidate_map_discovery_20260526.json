@@ -1,0 +1,230 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_Y_delta_class_source_fiber_active_frontier_blocker_20260526.json",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "Y_fiber_pair_rank_delta_projection_K",
+      "candidate_name": "finite pair-binding/rank/mask-delta projection over source-binding fibers",
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "Y_fiber_pair_rank_delta_projection_K : (Y_delta_class_source_fiber_K, source_binding_fiber_rows, pair_binding_id, rank, mask_delta_rank, active_source_class_id, boundary_source_class_id, PEPS3D V/E/F/C masks) -> finite pair-rank-delta projection table + pair/rank control gap vector",
+      "geometry_it_would_earn_if_later_passed": "A finite projection readout showing how source-binding fiber rows distribute across pair bindings, PEPS3D rank axes, and binary mask-delta ranks. This remains Phase 2 carrier-frontier geometry only.",
+      "not_run_in_this_artifact": true,
+      "why_admissible": "It ratchets directly from the 216 source-binding fiber rows by projecting each row to the finite triple (pair_binding_id, rank, mask_delta_rank) while retaining active and boundary source ids and PEPS3D rank-mask incidence. It is not a fiber-row-count or binding-diversity restatement because the output must emit the full pair/rank/delta projection table and controls."
+    },
+    {
+      "candidate_id": "fiber_row_count_or_binding_diversity_sum_only",
+      "candidate_name": "fiber-row-count-only or binding-diversity-sum-only restatement",
+      "decision": "rejected",
+      "why_rejected": "The latest receipt already reports 216 source-binding fiber rows and binding_diversity_sum=27. A fresh map must emit a new finite projection relation beyond those summaries."
+    },
+    {
+      "candidate_id": "source_erased_pair_rank_histogram",
+      "candidate_name": "source-erased pair/rank histogram",
+      "decision": "rejected",
+      "why_rejected": "A pair/rank histogram that erases active and boundary source ids or PEPS3D V/E/F/C rank-mask incidence cannot carry the source-binding carrier claim."
+    },
+    {
+      "candidate_id": "rank_only_or_delta_only_projection",
+      "candidate_name": "rank-only or mask-delta-rank-only projection",
+      "decision": "rejected",
+      "why_rejected": "Rank-only or delta-only summaries erase pair bindings and source ids, so they collapse back to label-level summaries."
+    },
+    {
+      "candidate_id": "restore_inverse_or_minimal_reconstruction",
+      "candidate_name": "restore, inverse, or minimal reconstruction from pair-rank projections",
+      "decision": "rejected",
+      "why_rejected": "Restore/inverse/minimal reconstruction would claim reversibility or minimal generators not earned by the source-binding fiber receipt."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_or_persistence_from_pair_rank_projection",
+      "candidate_name": "topology, sheaf, homology, persistence, or closure from pair-rank projections",
+      "decision": "rejected",
+      "why_rejected": "A finite pair/rank/delta projection is not topology, sheaf gluing, homology, persistence, or full PEPS3D closure."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_pair_rank_projection",
+      "candidate_name": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are downstream consumers and cannot be opened from Phase 2 source-binding fibers."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "F01_finite_witness": "The source-binding fiber rows, pair bindings, rank labels, mask-delta-rank bits, source ids, PEPS3D rank masks, projection rows, controls, and outputs are finite and receipt-backed.",
+    "N01_order_witness": "The map inherits the Phase 2 noncommuting/order-sensitive carrier path preserved by Y_delta_class_source_fiber_K; order-erased and commuting-only controls must collapse. No fresh downstream operator is introduced.",
+    "PEPS3D_carrier_anchor": "Every projection row must retain a PEPS3D rank label in {V,E,F,C} and the source/pair binding from its source-binding fiber member. Scalar labels, row counts, rank-only rows, and source-erased rows are controls only.",
+    "candidate_id": "Y_fiber_pair_rank_delta_projection_K",
+    "codomain_or_output": {
+      "control_gap_vector": "finite rejection/collapse gaps for row-count-only, diversity-sum-only, source-erased, pair-erased, rank-only, delta-only, no-anchor, scalar-label, order-erased, restore/inverse, topology, and downstream controls",
+      "pair_rank_delta_projection_table": "finite relation (pair_binding_id, rank, mask_delta_rank, active_source_class_ids, boundary_source_class_ids, row_count)",
+      "pair_rank_delta_signature_vector": "finite sorted vector of nonzero pair/rank/delta cell counts",
+      "source_retention_table": "finite source-id retention table for each pair/rank/delta projection cell"
+    },
+    "domain": {
+      "PEPS3D_rank_masks": "V/E/F/C rank labels and support bits carried by each source-binding fiber row",
+      "Y_delta_class_source_fiber_K": "validated finite source-binding fiber receipt",
+      "active_source_class_ids": "finite active source class ids retained by fiber rows",
+      "boundary_source_class_ids": "finite F-boundary source class ids retained by fiber rows",
+      "local_order_ops": "finite order-sensitive carrier path inherited from Phase 2 receipts; no fresh downstream operator is introduced",
+      "mask_delta_rank": "finite rank-local mask-delta bit in {0,1}",
+      "pair_binding_id": "finite active_pair_id -> boundary_pair_id bindings retained by fiber rows",
+      "source_binding_fiber_rows": "216 finite rows emitted by Y_delta_class_source_fiber_K"
+    },
+    "finite_map": "Y_fiber_pair_rank_delta_projection_K : (Y_delta_class_source_fiber_K, source_binding_fiber_rows, pair_binding_id, rank, mask_delta_rank, active_source_class_id, boundary_source_class_id, PEPS3D V/E/F/C masks) -> finite pair-rank-delta projection table + pair/rank control gap vector",
+    "geometry_if_later_earned": "finite anchored pair/rank/delta projection geometry for the Phase 2 PEPS3D response-quotient carrier",
+    "not_a_scout_run": true,
+    "promotion_allowed": false
+  },
+  "classification": "formal_scout_controller_candidate",
+  "controller_dependency_artifacts": [
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_post_Y_delta_class_source_fiber_active_frontier_blocker_20260526.json"
+  ],
+  "controls_required_if_later_run": {
+    "boundary": [
+      "empty projection cell remains control-only",
+      "max parent sites remains bounded by the latest dependency receipts",
+      "max PEPS3D bond remains bounded by the latest dependency receipts",
+      "rank-only or delta-only projections remain control-only if source/pair bindings are erased"
+    ],
+    "downstream_leak": [
+      "pair-rank projection rows must not be promoted to topology, homology, sheaf, persistence, closure, restore, inverse, or minimality claims",
+      "Phase 7 or downstream receipts must not be consumed as dependencies",
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, and axes 7-12 must remain blocked"
+    ],
+    "negative": [
+      "fiber-row-count-only output must fail",
+      "binding-diversity-sum-only output must fail",
+      "source-erased output must fail",
+      "pair-binding-erased output must fail",
+      "rank-only and delta-only outputs must fail",
+      "no-anchor and scalar-label variants must fail",
+      "single-probe non-IC variants must not pass as full finite-effect evidence"
+    ],
+    "order_erased": [
+      "order-erased carrier path must collapse the inherited N01 witness",
+      "commuting-only paths must not be admitted as nonclassical pair-rank projection evidence"
+    ],
+    "positive": [
+      "source-binding fiber rows project to finite pair/rank/delta cells",
+      "each projection cell retains source ids and pair-binding ids",
+      "each projection cell retains a PEPS3D rank label in {V,E,F,C} and a mask-delta-rank bit",
+      "the projection table is finite and not reducible to row count or binding diversity alone"
+    ]
+  },
+  "created_at": "2026-05-26T05:31:20-07:00",
+  "current_state_assertion": {
+    "active_transition_decision": "blocked",
+    "contract_complete_rows": 39,
+    "frontier_row_count": 42,
+    "killed_rows": 3,
+    "latest_admitted_map": "Y_delta_class_source_fiber_K",
+    "latest_admitted_packet": "phase2_delta_class_source_fiber_packet",
+    "phase2_carrier_geometry": "real_bounded",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_delta_class_source_fiber_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_contrast_mask_delta_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_certificate_boundary_contrast_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_collision_certificate_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_induced_quotient_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_row_deletion_collision_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_active_pair_collision_residue_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json"
+  ],
+  "failure_conditions": [
+    "the output is recoverable from source_binding_fiber_row_count, binding_diversity_sum, or per_class_binding_diversity_vector alone",
+    "active source ids, F-boundary source ids, pair bindings, rank labels, mask-delta-rank bits, or PEPS3D V/E/F/C masks are erased",
+    "all projection rows collapse to a source-erased scalar histogram",
+    "order-erased or commuting controls do not collapse",
+    "single-probe non-IC controls pass as if complete",
+    "the map requires dense 2^n state closure or dense environment closure",
+    "the map consumes Phase 7/downstream receipts or opens topology, sheaf, homology, full PEPS3D closure, restore/inverse, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12"
+  ],
+  "kind": "candidate_map_discovery",
+  "multi_model_parallelism": {
+    "blockers": [
+      "Full Wizard v4.2 remains BLOCKED, not FULL or PARTIAL.",
+      "Direct Gemini/Grok provider lanes were not used for this artifact and are not counted as Wizard children."
+    ],
+    "independent_packets": [
+      "Y_fiber_pair_rank_delta_projection_K_candidate_discovery",
+      "post_fiber_dependency_control_audit"
+    ],
+    "model_pools": [
+      {
+        "accepted_use": "candidate sidecar proposed pair/rank/delta projection as one surviving post-fiber finite map",
+        "pool": "codex_native_explorer",
+        "receipt": "019e6444-1b9f-7993-83ec-d27d9f0705b4",
+        "status": "completed"
+      },
+      {
+        "accepted_use": "falsifier/dependency sidecar accepted Y_fiber_pair_rank_delta_projection_K as fresh if scoped exactly as finite projection with retained source ids and PEPS3D rank-mask incidence",
+        "pool": "codex_native_explorer",
+        "receipt": "019e6444-1c11-77f0-b2bb-63544629af2a",
+        "status": "completed"
+      },
+      {
+        "blocked_reason": "No completed full Wizard v4.2 parent/child receipt exists for this artifact.",
+        "pool": "wizard_v4_2",
+        "status": "BLOCKED"
+      },
+      {
+        "completed_tools": [
+          "json.tool",
+          "git diff --check"
+        ],
+        "pool": "local_tools",
+        "status": "completed"
+      }
+    ],
+    "serial_boundaries": [
+      "artifact writes",
+      "future scout execution",
+      "matrix and transition mutation"
+    ],
+    "status": "partial"
+  },
+  "next_admissible_step": "Author one bounded formal scout for Y_fiber_pair_rank_delta_projection_K, then run/lint/validate it. This candidate artifact does not itself admit the map and does not open Phase 3 or downstream geometry.",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "scope": "phase2_post_Y_delta_class_source_fiber_K_candidate_map_discovery",
+  "selected_candidate_map": {
+    "candidate_id": "Y_fiber_pair_rank_delta_projection_K",
+    "codomain_or_output": "finite pair-rank-delta projection table, pair-rank-delta signature vector, source retention table, and control gap vector",
+    "domain": "216 finite source-binding fiber rows, pair-binding ids, source class ids, rank labels, mask-delta-rank bits, and PEPS3D V/E/F/C masks from the latest Phase 2 receipt",
+    "finite_map": "Y_fiber_pair_rank_delta_projection_K : (Y_delta_class_source_fiber_K, source_binding_fiber_rows, pair_binding_id, rank, mask_delta_rank, active_source_class_id, boundary_source_class_id, PEPS3D V/E/F/C masks) -> finite pair-rank-delta projection table + pair/rank control gap vector",
+    "status": "admissible_candidate_not_run"
+  },
+  "selected_candidate_map_id": "Y_fiber_pair_rank_delta_projection_K",
+  "sidecar_receipts": [
+    {
+      "accepted_use": "candidate sidecar identified Y_fiber_pair_rank_delta_projection_K as a surviving post-fiber map among broader variants",
+      "agent_id": "019e6444-1b9f-7993-83ec-d27d9f0705b4",
+      "pool": "codex_native_explorer",
+      "status": "completed"
+    },
+    {
+      "accepted_use": "dependency sidecar accepted Y_fiber_pair_rank_delta_projection_K as fresh and listed required controls",
+      "agent_id": "019e6444-1c11-77f0-b2bb-63544629af2a",
+      "pool": "codex_native_explorer",
+      "status": "completed"
+    }
+  ],
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After Y_delta_class_source_fiber_K, the earned object is a finite table of 216 source-binding fiber rows over 8 mask-delta quotient classes, active/F-boundary source ids, pair bindings, and V/E/F/C rank masks. The next candidate asks whether those fiber rows carry a finite pair-binding/rank/mask-delta projection relation. This is still carrier-frontier evidence only and is not topology, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, or physics."
+}

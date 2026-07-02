@@ -1,0 +1,83 @@
+{
+  "artifact_id": "m_rpf_bond5_wolfram_tranche_progress_20260528",
+  "kind": "m_rpf_bond5_wolfram_tranche_progress",
+  "schema": "m_rpf_bond5_wolfram_tranche_progress_v1",
+  "updated_at": "2026-05-28T00:56:00Z",
+  "goal_path": "system_v5/ops/tmp/FORMAL_SIM_M_RPF_BOND5_WOLFRAM_LONG_RUNNING_GOAL_20260528.md",
+  "primary_object": "M_RPF(C)",
+  "object_order": [
+    "Omega_r future/refinement branches",
+    "compatibility weights",
+    "ordered adapters A0..A8",
+    "compression map C",
+    "rho_present",
+    "outward_record",
+    "derived readouts"
+  ],
+  "packet_status": {
+    "packet_0_current_state_reconciliation": {
+      "status": "passed",
+      "artifact_path": "system_v5/ops/formal_scouts/m_rpf_bond5_wolfram_current_state_reconciliation_20260528.json",
+      "object_packet_validate": "pass_ok_true",
+      "post_stack_receipts_validate": "pass_all_pass_true_fresh_rerun_false",
+      "monitor": "pass_active_preserved",
+      "wolfram_adapter_receipts": "present_promotion_allowed_false",
+      "next_packet_confirmed": "M_RPF_post_stack_bond5_admission_micro_probe"
+    },
+    "packet_1_bond5_admission": {
+      "status": "passes_fresh_rerun",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_post_stack_bond5_admission_micro_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_post_stack_bond5_admission_micro_probe_results.json",
+      "max_sites": 64,
+      "max_peps3d_bond": 5,
+      "bond5_tensor_shape": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        2
+      ],
+      "object_order_preserved": true,
+      "source_native_status": {
+        "true_spinor_network": true,
+        "density_only_adapter": "rejected",
+        "Hopf_fiber_base_preserved": true,
+        "L_R_Weyl_sign_preserved": true,
+        "terrain_operator_action_load_bearing": true,
+        "PEPS3D_site_bond_face_cell_locality_preserved": true
+      },
+      "validation": {
+        "lint_sim_contract": "pass_exit_0_violation_total_0",
+        "validate_formal_scout_results_fresh_rerun": "pass_all_pass_true",
+        "object_packet_validate": "pass_ok_true",
+        "monitor": "pass_active_preserved"
+      },
+      "blocked_consumers_remain_locked": true
+    }
+  },
+  "latest_validation": {
+    "object_packet_validate": "pass_ok_true",
+    "monitor": "pass_active_preserved",
+    "packet_1_lint": "pass_exit_0_violation_total_0",
+    "packet_1_validate_formal_result": "pass_all_pass_true_fresh_rerun_true"
+  },
+  "next_packet": "Packet 2: Wolfram-upgrade function micro-probes",
+  "downstream_consumers_locked": [
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics/gravity proof",
+    "IGT/game theory",
+    "axes7-12",
+    "PEPS3D closure theorem",
+    "final manifold admission"
+  ],
+  "wizard_truth": {
+    "status": "PARTIAL_BLOCKED",
+    "reason": "Codex-native subagent spawn was attempted and blocked by thread limit; controller-local tools and scouts continue without claiming Wizard v4.2 FULL."
+  },
+  "not_terminal": true
+}

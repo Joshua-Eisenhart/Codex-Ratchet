@@ -1,0 +1,433 @@
+{
+  "kind": "phase2_salience_saturation_audit",
+  "created_at": "2026-05-25T20:15:49-07:00",
+  "classification": "formal_scout_controller_audit",
+  "controller_owned": true,
+  "authority_read_gate": [
+    "AGENTS.md",
+    "CODEX.md",
+    "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md",
+    "system_v5/docs/LLM_CONTROLLER_CONTRACT.md",
+    "system_v5/docs/LEGO_SIM_CONTRACT.md",
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_post_R_replay_active_frontier_blocker_20260525.json"
+  ],
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_R_replay_K",
+  "stop_rule_observed": "No new formal scout was run. This audit only reads authority/frontier/source evidence and preserves the active blocker unless a fresh bounded Phase 2 carrier-frontier finite map is named first.",
+  "working_geometry_plain": "The earned Phase 2 object is PEPS3D-anchored finite response-quotient carrier geometry. In plain terms: finite probe/effect response classes from Phase 1 can be placed on a finite PEPS3D cell carrier K=(V,E,F,C), read through site/edge/face/cell anchors, locally stressed, projected to boundary/interior supports, and replayed over a bounded allowlist of shapes and bond dimensions without using dense closure or scalar PEPS3D labels. This is carrier geometry, not the physical manifold.",
+  "frontier_state": {
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "transition_artifact_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_R_replay_active_frontier_blocker_20260525.json",
+    "frontier_rows": 18,
+    "contract_complete_rows": 17,
+    "killed_rows": 1,
+    "transition_decision": "blocked",
+    "latest_earned_map": "R_replay_K",
+    "latest_max_peps3d_sites": 64,
+    "latest_max_peps3d_bond": 3,
+    "phase2_max_peps3d_sites": 64,
+    "phase2_max_peps3d_bond": 4
+  },
+  "immediate_objective_resolution": {
+    "checked_at": "2026-05-25T20:20:42-07:00",
+    "objective": "Classify peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json into the Phase 2 frontier matrix or write an active-frontier blocker.",
+    "status": "satisfied_by_frontier_matrix",
+    "frontier_row_id": "phase2_anchor_ablation_boundary_stress_continuation_family",
+    "frontier_row_status": "contract_complete",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_anchor_ablation_boundary_stress_continuation_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json",
+    "finite_maps": [
+      "A_K : anchored local carrier object -> site/edge/face/cell ablation response vector",
+      "B_K : finite local boundary neighborhood -> bounded boundary contraction signature"
+    ],
+    "downstream_status": "blocked",
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_R_replay_active_frontier_blocker_20260525.json",
+    "new_formal_scout_run": false
+  },
+  "earned_phase2_finite_maps": [
+    {
+      "map_id": "seed_K",
+      "finite_map": "seed_K : (r_P(s), anchor) -> anchored local PEPS3D carrier signatures",
+      "domain": "Phase 1 finite response vectors r_P(s) and explicit finite carrier anchors in K=(V,E,F,C).",
+      "codomain_or_output": "Anchored local PEPS3D carrier signatures over site, edge, face, and cell supports.",
+      "controls": [
+        "scalar PEPS3D label rejected",
+        "no-anchor control rejected",
+        "dense closure not used",
+        "order-erased path collapses"
+      ],
+      "earned_geometry": "Admits the first finite PEPS3D carrier anchor for response-quotient data. It earns carrier anchoring only, not later geometry.",
+      "source_path": "system_v5/ops/formal_scouts/sim_finite_peps3d_probe_effect_seed_carrier_gate_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json"
+    },
+    {
+      "map_id": "anchor",
+      "finite_map": "anchor : local carrier object -> V union E union F union C",
+      "domain": "Local carrier objects in the finite PEPS3D seed carrier.",
+      "codomain_or_output": "A finite site, edge, face, or cell anchor.",
+      "controls": [
+        "no-anchor control rejected",
+        "edge-erased control rejected",
+        "scalar-label control rejected"
+      ],
+      "earned_geometry": "Separates actual finite carrier support from labels. It earns incidence support, not manifold closure.",
+      "source_path": "system_v5/ops/formal_scouts/sim_finite_peps3d_probe_effect_seed_carrier_gate_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json"
+    },
+    {
+      "map_id": "I_K",
+      "finite_map": "I_K(T) = finite site/edge/face/cell signatures without dense closure",
+      "domain": "Finite local PEPS3D tensors T on the seed carrier with physical effect index.",
+      "codomain_or_output": "Finite site, edge, face, and cell support signatures.",
+      "controls": [
+        "dense full-state closure blocked",
+        "dense full-environment closure blocked",
+        "site-only and erased-anchor controls do not replace full support"
+      ],
+      "earned_geometry": "Provides local finite signature readouts on the carrier. It does not prove global PEPS/PEPS3D closure.",
+      "source_path": "system_v5/ops/formal_scouts/sim_finite_peps3d_probe_effect_seed_carrier_gate_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json"
+    },
+    {
+      "map_id": "A_K",
+      "finite_map": "A_K : anchored local carrier object -> site/edge/face/cell ablation response vector",
+      "domain": "Finite PEPS3D carrier objects with site, edge, face, and cell anchors.",
+      "codomain_or_output": "Anchor-ablation response vector that changes under erased or missing support.",
+      "controls": [
+        "site-only rejected",
+        "edge-erased rejected",
+        "face-erased rejected",
+        "cell-erased rejected",
+        "no-anchor rejected",
+        "scalar-label rejected",
+        "order-erased collapses"
+      ],
+      "earned_geometry": "Shows that the carrier structure is not a scalar label: each anchor family is load-bearing for the finite readout.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_anchor_ablation_boundary_stress_continuation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json"
+    },
+    {
+      "map_id": "psi_K_rho_K",
+      "finite_map": "psi_K : (v, phi, chi, eta) -> psi_v in C^2; rho_K(psi_v)=psi_v psi_v^dagger as local carrier data only",
+      "domain": "Finite PEPS3D site anchors with bounded spinor chart inputs and finite effects.",
+      "codomain_or_output": "Torch-native normalized spinors, spinor-derived density readouts, finite SIC probe responses, and global-phase quotient readouts.",
+      "controls": [
+        "Bloch-only readout rejected",
+        "arbitrary standalone density rejected",
+        "no-anchor rejected",
+        "order-erased collapses",
+        "dense multi-site closure not used"
+      ],
+      "earned_geometry": "Makes spinor-derived density compatible with the Phase 2 carrier. It is carrier data only and does not admit Hopf or Weyl geometry.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_spinor_density_carrier_gate_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_spinor_density_carrier_gate_probe_results.json"
+    },
+    {
+      "map_id": "E_K",
+      "finite_map": "E_K : finite local PEPS3D tensors and neighboring transfer matrices -> normalized local site/edge density signatures",
+      "domain": "Finite PEPS/PEPS3D local boundary neighborhoods over the active seed carrier.",
+      "codomain_or_output": "Normalized local site and edge density signatures from bounded local contractions.",
+      "controls": [
+        "identity-environment control distinguished",
+        "topology-shuffled control distinguished",
+        "dense full-state control rejected",
+        "dense full-environment control rejected",
+        "promotion control rejected"
+      ],
+      "earned_geometry": "Earns bounded local environment readouts on the carrier. It does not earn full PEPS/PEPS3D environment closure.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps_peps3d_local_environment_contraction_gate_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps_peps3d_local_environment_contraction_gate_probe_results.json"
+    },
+    {
+      "map_id": "B_K",
+      "finite_map": "B_K : finite local boundary neighborhood -> bounded boundary contraction signature",
+      "domain": "Finite local boundary neighborhoods with explicit site, edge, face, and cell anchors over bounded site/bond stress rows.",
+      "codomain_or_output": "Bounded boundary stress signatures and local order-gap vectors.",
+      "controls": [
+        "site-only rejected",
+        "edge-erased rejected",
+        "face-erased rejected",
+        "cell-erased rejected",
+        "no-anchor rejected",
+        "scalar-label rejected",
+        "dense-state rejected",
+        "dense-environment rejected"
+      ],
+      "earned_geometry": "Shows bounded boundary stress preserves finite anchor signatures up to 64 sites and bond 3 in that packet.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_anchor_ablation_boundary_stress_continuation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json"
+    },
+    {
+      "map_id": "H_K",
+      "finite_map": "H_K : (r_P(s), K_holdout, anchor, local_order_ops) -> heldout anchor response + boundary signature + order-gap vector",
+      "domain": "Phase 1 response data, heldout finite PEPS3D carrier K_holdout at shape (3,3,2), explicit anchors, and local order operations.",
+      "codomain_or_output": "Heldout anchor response, boundary signature, and order-gap vector.",
+      "controls": [
+        "site-only rejected",
+        "edge-erased rejected",
+        "face-erased rejected",
+        "cell-erased rejected",
+        "no-anchor rejected",
+        "scalar-label rejected",
+        "order-erased collapses",
+        "dense closure blocked"
+      ],
+      "earned_geometry": "Tests carrier portability to a heldout shape without turning it into a general shape law.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_heldout_shape_anchor_replay_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_heldout_shape_anchor_replay_probe_results.json"
+    },
+    {
+      "map_id": "S_K",
+      "finite_map": "S_K : (r_P(s), K, bond_dim, anchor, local_order_ops) -> bond-swept anchor stability signature + order-gap vector",
+      "domain": "Finite PEPS3D carriers over bounded site shapes, bond dimensions 2/3/4, anchors, and local order operations.",
+      "codomain_or_output": "Bond-swept finite anchor stability signatures and order-gap vectors.",
+      "controls": [
+        "bond_dim_one kept as boundary/control only",
+        "no-anchor rejected",
+        "scalar-label rejected",
+        "site-only rejected",
+        "edge-erased rejected",
+        "face-erased rejected",
+        "cell-erased rejected",
+        "order-erased collapses",
+        "dense closure blocked"
+      ],
+      "earned_geometry": "Shows the finite carrier signatures survive bounded bond variation up to 64 sites and bond 4. It does not prove convergence or closure.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_bond_sweep_anchor_stability_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_bond_sweep_anchor_stability_probe_results.json"
+    },
+    {
+      "map_id": "Q_K",
+      "finite_map": "Q_K : (r_P(v), anchor(v), K) -> finite anchored response classes and incidence/readout signatures",
+      "domain": "Finite SIC response vectors on PEPS3D site anchors at shape (4,4,4), with edge incidence used only for quotient adjacency.",
+      "codomain_or_output": "Finite anchored response classes and quotient-incidence/readout signatures.",
+      "controls": [
+        "single-probe non-IC control collapses to fewer classes",
+        "no-anchor rejected",
+        "scalar-label rejected",
+        "order-erased collapses",
+        "dense closure blocked"
+      ],
+      "earned_geometry": "Lifts the Phase 1 response quotient into anchored PEPS3D response classes. It remains finite carrier geometry only.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_response_quotient_anchor_partition_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_response_quotient_anchor_partition_probe_results.json"
+    },
+    {
+      "map_id": "G_K",
+      "finite_map": "G_K : (K=(V,E,F,C), r_P, cell patches, overlaps) -> finite cell-overlap consistency signatures + order-gap vector",
+      "domain": "Finite PEPS3D cell patches, shared face-overlap anchors, and finite response restrictions.",
+      "codomain_or_output": "Cell-overlap consistency signatures and order-gap vectors.",
+      "controls": [
+        "overlap-erased rejected",
+        "anchor-scrambled produces a finite gap",
+        "single-probe non-IC collapses",
+        "scalar-label rejected",
+        "order-erased collapses",
+        "dense closure blocked"
+      ],
+      "earned_geometry": "Shows neighboring cell patches agree on shared finite face-overlap response signatures. It is local patch consistency, not global closure.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_cell_patch_overlap_consistency_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_cell_patch_overlap_consistency_probe_results.json"
+    },
+    {
+      "map_id": "D_K",
+      "finite_map": "D_K : (Q_K|K_8, anchor, edge_incidence, local_order_ops) -> substrate distinguishability signatures and controls",
+      "domain": "Finite K_8 response quotient, site/edge anchors, edge incidence, and local order operations.",
+      "codomain_or_output": "Substrate distinguishability signatures and control gaps.",
+      "controls": [
+        "flattened-quotient rejected or collapses",
+        "wrong-adjacency rejected or produces gap",
+        "single-probe non-IC collapses",
+        "no-anchor rejected",
+        "scalar-label rejected",
+        "order-erased collapses",
+        "dense closure blocked"
+      ],
+      "earned_geometry": "Shows the finite response quotient distinguishes K_8 edge-incidence support from flattened or wrong-adjacency substitutes.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_response_quotient_substrate_distinguishability_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json"
+    },
+    {
+      "map_id": "P_K",
+      "finite_map": "P_K : (D_K(Q_K|K_8), pi_f, anchor_f, local_order_ops) -> finite boundary-projected response-quotient carrier signatures + projection/control gap vector",
+      "domain": "D_K-supported K_8 response quotient, finite face projection pi_f, face anchors, incident face-edge anchors, and local order operations.",
+      "codomain_or_output": "Boundary-projected response-quotient carrier signatures and projection/control gaps.",
+      "controls": [
+        "projection-erased rejected",
+        "face-anchor-scrambled rejected or produces gap",
+        "edge-erased rejected",
+        "wrong-adjacency rejected",
+        "single-probe non-IC collapses",
+        "no-anchor rejected",
+        "scalar-label rejected",
+        "order-erased collapses",
+        "dense closure blocked"
+      ],
+      "earned_geometry": "Adds finite face-projection response structure over K_8. It repairs the post-D_K blocker locally but does not open later layers.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_k8_face_projection_response_quotient_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json"
+    },
+    {
+      "map_id": "R_K",
+      "finite_map": "R_K : (P_K, boundary_anchor, edge_incidence, local_order_ops) -> finite boundary/interior response projection signatures",
+      "domain": "P_K-supported finite PEPS3D boundary/interior carrier at shape (4,4,4), boundary anchors, interior anchors, edge/cut-edge support, and local order operations.",
+      "codomain_or_output": "Finite boundary/interior response projection signatures.",
+      "controls": [
+        "boundary-erased rejected",
+        "flattened-boundary rejected",
+        "single-probe non-IC collapses",
+        "no-anchor rejected",
+        "scalar-label rejected",
+        "order-erased collapses",
+        "dense closure blocked"
+      ],
+      "earned_geometry": "Distinguishes boundary from interior response projections with finite cut-edge support. It is not flux or a boundary current.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_boundary_response_projection_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json"
+    },
+    {
+      "map_id": "R_replay_K",
+      "finite_map": "R_replay_K : (R_K, K_shape, boundary_anchor, bond_dim, local_order_ops) -> bounded shape/bond boundary projection replay signatures",
+      "domain": "R_K receipt, finite allowlisted PEPS3D shapes (3,3,3) and (4,4,4), boundary/interior anchors, bond dimensions 2 and 3, and local order operations; shape (3,3,2) is zero-interior control-only.",
+      "codomain_or_output": "Bounded shape/bond boundary projection replay signatures with projection and order gaps.",
+      "controls": [
+        "boundary-erased rejected",
+        "flattened-boundary rejected",
+        "single-probe non-IC collapses",
+        "no-anchor rejected",
+        "scalar-label rejected",
+        "bond-dim-one control blocked as support",
+        "zero-interior-shape blocked as control-only",
+        "order-erased collapses",
+        "dense-state blocked",
+        "dense-environment blocked",
+        "promotion control blocked"
+      ],
+      "earned_geometry": "Replays R_K over a bounded finite allowlist of shapes and bonds. It does not earn a general shape law, bond convergence, full PEPS3D closure, Phase 3 transition, flux, or Axis0.",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_boundary_projection_shape_bond_replay_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_boundary_projection_shape_bond_replay_probe_results.json"
+    }
+  ],
+  "killed_phase2_candidate_maps": [
+    {
+      "map_id": "O_K",
+      "finite_map": "O_K : (anchor_path, physical_operator_path) -> finite boundary order-gap readout",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_anchor_permutation_order_continuation_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/peps3d_anchor_permutation_order_continuation_probe_results.json",
+      "status": "killed",
+      "reason": "The order gap vanished on every tested boundary-anchor permutation row, so the candidate did not earn an admitted Phase 2 map.",
+      "downstream_consumers_blocked": true
+    }
+  ],
+  "not_earned": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "post_R_replay_candidate_decision": {
+    "fresh_bounded_phase2_map_exists_after_R_replay_K": false,
+    "decision": "locally_saturated_pending_new_map_idea",
+    "decision_reason": "The active frontier, transition artifact, blocker, and source sweep show the current Phase 2 candidate-map list ending at R_replay_K. The only explicit tempting post-replay finite map found in the current estate is I_boundary(K,bond_dim), but it is declared as Phase 7 PEPS3D boundary contraction scale/closure stress and depends on Phase 3-6 receipts, so it cannot be reclassified as the missing Phase 2 map. Other nearby PEPS3D/flux/Axis0/source-native files are downstream, older, or outside the active Phase 2 carrier-frontier scope.",
+    "latest_parallel_audit": {
+      "checked_at": "2026-05-25T20:24:12-07:00",
+      "codex_native_explorers": [
+        {
+          "agent_id": "019e624e-8912-7971-a31b-db136b164443",
+          "status": "completed",
+          "conclusion": "Candidate exists: no. Active blocker should remain because the current candidate-map list ends at R_replay_K and I_boundary is Phase 7/downstream."
+        },
+        {
+          "agent_id": "019e624e-b5ae-77c3-9635-ad08929baced",
+          "status": "completed",
+          "conclusion": "No patch needed. The matrix/audit/blocker classify the anchor-ablation receipt, keep downstream consumers blocked, and leave the next action at name/audit next bounded Phase 2 map first."
+        }
+      ],
+      "controller_source_sweep": [
+        "Only phase2-aligned formal_scout sources/results found were already in the Phase 2 frontier set.",
+        "I_boundary(K,bond_dim) remains explicitly rejected because it is phase7_peps3d_boundary_contraction_scale_closure_stress."
+      ]
+    },
+    "candidate_map_artifact_written": false,
+    "preserve_active_blocker": true,
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_R_replay_active_frontier_blocker_20260525.json"
+  },
+  "candidate_map_discovery_update": {
+    "updated_at": "2026-05-25T21:33:03-07:00",
+    "discovery_artifact_path": "system_v5/ops/formal_scouts/phase2_post_R_replay_candidate_map_discovery_20260525.json",
+    "candidate_id": "C_restrict_K",
+    "status": "candidate_named_not_run",
+    "finite_map": "C_restrict_K : (R_replay_K, pi_restrict, boundary_anchor, bond_dim, local_order_ops) -> finite replay-restriction consistency signatures + control gap vector",
+    "formal_scout_run": false,
+    "downstream_opened": false,
+    "note": "This update names a candidate map after the prior source sweep found no existing source-backed post-R_replay_K Phase 2 map. It does not run or admit the candidate."
+  },
+  "explicitly_rejected_as_missing_phase2_map": [
+    {
+      "candidate": "I_boundary(K,bond_dim)=finite boundary-site and boundary-edge contraction signatures",
+      "source_path": "system_v5/ops/formal_scouts/sim_peps3d_boundary_contraction_scale_closure_stress_gate_probe.py",
+      "rejected_reason": "The source declares SOURCE_ALIGNMENT_CATEGORY=phase7_peps3d_boundary_contraction_scale_closure_stress and depends on Phase 3-6 receipts. It is not an admissible Phase 2 post-R_replay_K carrier-only continuation."
+    },
+    {
+      "candidate": "Any Hopf/Weyl/terrain/operator/flux/Xi/Phi0/Axis0/physics/IGT/axes 7-12 receipt",
+      "rejected_reason": "These are blocked downstream consumers, not Phase 2 carrier-frontier maps."
+    }
+  ],
+  "wizard_v4_2_status": {
+    "status": "BLOCKED",
+    "accepted_parent_count": 0,
+    "accepted_child_count": 0,
+    "latest_attempt": {
+      "attempted_at": "2026-05-25T20:24:12-07:00",
+      "run_root": "/private/tmp/codex_ratchet_phase2_post_r_replay_candidate_wizard_20260525/20260526T032328Z",
+      "status": "BLOCKED",
+      "blocked_reason": "Full Wizard v4.2 matrix attempt blocked at external model capacity preflight for Sonnet, Opus, and Haiku.",
+      "accepted_parent_count": 0,
+      "accepted_child_count": 0,
+      "count_direct_provider_lanes_as_children": false
+    },
+    "tools_and_provider_lanes_counted_separately": true,
+    "note": "Direct Gemini and Grok/xAI API receipts are provider API lanes. They are not Wizard children and were not counted as subsubagents."
+  },
+  "blocked_downstream_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "next_admissible_step": "Name one fresh bounded Phase 2 carrier-frontier finite map after C_restrict_K with explicit domain, codomain, controls, dependency receipts, and blocked consumers, then audit it before any scout. Do not reclassify Phase 7 I_boundary or any downstream receipt as this missing map.",
+  "not_a_stop": true,
+  "C_restrict_K_execution_update": {
+    "updated_at": "2026-05-25T21:24:00-07:00",
+    "status": "contract_complete",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_replay_restriction_consistency_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_replay_restriction_consistency_probe_results.json",
+    "finite_map": "C_restrict_K : (R_replay_K, pi_restrict, boundary_anchor, bond_dim, local_order_ops) -> finite replay-restriction consistency signatures + control gap vector",
+    "max_parent_peps3d_sites": 64,
+    "max_subcarrier_peps3d_sites": 27,
+    "max_peps3d_bond": 3,
+    "formal_scout_run": true,
+    "downstream_opened": false,
+    "post_C_restrict_blocker_path": "system_v5/ops/formal_scouts/phase2_post_C_restrict_active_frontier_blocker_20260525.json"
+  },
+  "fresh_bounded_phase2_map_exists_after_R_replay_K": true,
+  "decision": "C_restrict_K executed and admitted as bounded Phase 2 carrier evidence; active frontier is now blocked after C_restrict_K pending a fresh candidate map."
+}

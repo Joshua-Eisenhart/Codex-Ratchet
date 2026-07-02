@@ -1,0 +1,157 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "AC_transition_class_binding_overlap_K",
+      "candidate_name": "finite transition-class binding overlap incidence",
+      "chosen": true,
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "AC_transition_class_binding_overlap_K : (AB_cell_rank_transition_class_K, transition_class_table, class_id, support_cell_ids, delta_class_ids, pair_binding_ids, active_source_class_ids, boundary_source_class_ids, PEPS3D rank normal forms) -> finite transition-class binding-overlap table + overlap-type support vector + control gap vector",
+      "why_admissible": [
+        "It consumes AB transition-class rows instead of restating class counts or support vector only.",
+        "It emits a new finite carrier-frontier object: unordered transition-class pairs labeled by shared delta, active-source, boundary-source, pair-binding, and rank-signature overlap predicates.",
+        "It preserves class ids, support cell ids, source ids, pair ids, delta ids, and PEPS3D V/E/F/C rank normal forms.",
+        "F01 is preserved because classes, class pairs, overlap predicates, controls, and outputs are finite.",
+        "N01 is inherited only; fresh-N01 promotion is explicitly blocked.",
+        "It uses only Phase 2 carrier receipts and does not consume Phase 7/downstream receipts."
+      ]
+    },
+    {
+      "candidate_id": "transition_class_count_or_support_vector_restatement",
+      "candidate_name": "transition-class-count-only or support-vector-only summary",
+      "decision": "rejected",
+      "why_rejected": "It duplicates AB summary fields and emits no fresh finite map."
+    },
+    {
+      "candidate_id": "class_member_erased_overlap_histogram",
+      "candidate_name": "class-member-erased overlap histogram",
+      "decision": "rejected",
+      "why_rejected": "It erases support-cell and class-id bindings needed to keep the PEPS3D carrier-frontier object anchored."
+    },
+    {
+      "candidate_id": "source_pair_delta_rank_erased_overlap",
+      "candidate_name": "source-erased, pair-erased, delta-erased, or rank-erased overlap table",
+      "decision": "rejected",
+      "why_rejected": "It removes the bindings that define the transition-class overlap relation and collapses toward scalar adjacency counts."
+    },
+    {
+      "candidate_id": "fresh_order_operator_from_overlap_graph",
+      "candidate_name": "fresh noncommuting operator from overlap graph",
+      "decision": "rejected",
+      "why_rejected": "AB/AC can inherit Phase 2 N01 only. A fresh order-sensitive operator is not earned by binding-overlap incidence."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_persistence_from_overlap_graph",
+      "candidate_name": "topology, sheaf, homology, persistence, or closure from overlap graph",
+      "decision": "rejected",
+      "why_rejected": "The overlap table is finite incidence evidence only and does not admit topology, sheaf, homology, persistence, or full PEPS3D closure."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_overlap_graph",
+      "candidate_name": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are blocked downstream consumers, not Phase 2 carrier-frontier maps."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "F01_witness": "All transition classes, class pairs, support cells, delta ids, pair ids, source ids, rank normal forms, overlap predicates, controls, and outputs are finite and receipt-backed.",
+    "N01_witness": "No fresh noncommuting operator is claimed; the map inherits Phase 2 carrier N01 and requires order-erased/fresh-N01 promotion to remain rejected.",
+    "PEPS3D_carrier_anchor": "Every admitted overlap row must retain both transition-class ids, support cell ids, source/pair/delta bindings, and PEPS3D V/E/F/C rank normal forms. Scalar adjacency labels and histograms are controls only.",
+    "candidate_id": "AC_transition_class_binding_overlap_K",
+    "codomain_or_output": {
+      "control_gap_vector": "finite rejection/collapse readouts for count-only, support-vector-only, class-erased, source-erased, pair-erased, delta-erased, rank-erased, dense-closure, fresh-N01, and downstream controls",
+      "overlap_type_support_vector": "finite counts for each overlap predicate and any-overlap class-pair support",
+      "transition_class_binding_overlap_table": "finite unordered class-pair rows labeled by shared delta, active-source, boundary-source, pair-binding, and rank-signature predicates"
+    },
+    "domain": {
+      "AB_cell_rank_transition_class_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_cell_rank_transition_class_probe_results.json",
+      "PEPS3D_rank_normal_forms": "finite V/E/F/C rank normal forms per transition class",
+      "cell_rank_transition_class_table": "27 finite cell-to-class rows",
+      "delta_class_ids": "finite mask-delta quotient class ids per transition class",
+      "pair_binding_ids": "finite active_pair_id -> boundary_pair_id bindings per transition class",
+      "source_class_ids": "finite active and F-boundary source class ids per transition class",
+      "support_cell_ids": "finite cell ids per transition class",
+      "transition_class_table": "18 finite transition-class rows"
+    },
+    "finite_map": "AC_transition_class_binding_overlap_K : (AB_cell_rank_transition_class_K, transition_class_table, class_id, support_cell_ids, delta_class_ids, pair_binding_ids, active_source_class_ids, boundary_source_class_ids, PEPS3D rank normal forms) -> finite transition-class binding-overlap table + overlap-type support vector + control gap vector",
+    "geometry_it_could_earn_if_later_run_and_passed": "finite transition-class binding-overlap incidence within the PEPS3D response-quotient carrier frontier",
+    "status": "admissible_candidate_not_run"
+  },
+  "claim_ceiling": "Candidate-map artifact only. This does not admit the chosen map, run a scout, open Phase 3, or open downstream consumers.",
+  "classification": "formal_scout_controller_candidate",
+  "controls_required_if_later_run": {
+    "boundary": [
+      "rank-signature equality may be empty and remains a finite boundary readout, not topology",
+      "heldout topology, sheaf, homology, persistence, restore, inverse, all-subset, shape-law, and bond-convergence claims remain blocked",
+      "dense state and dense environment closure remain blocked"
+    ],
+    "negative": [
+      "transition-class-count-only output must fail",
+      "support-vector-only output must fail",
+      "class-erased output must fail",
+      "support-cell-erased output must fail",
+      "source-erased output must fail",
+      "pair-erased output must fail",
+      "delta-erased output must fail",
+      "rank-erased output must fail",
+      "scalar adjacency-label output must fail",
+      "Phase 7/downstream receipt reclassification must fail"
+    ],
+    "order_erased": [
+      "order-erased promotion remains rejected",
+      "overlap incidence alone must not claim a fresh N01 operator"
+    ],
+    "positive": [
+      "class-pair overlap rows retain both class ids and both support-cell sets",
+      "overlap predicates are computed from retained delta/source/pair/rank bindings, not class labels alone",
+      "overlap table is finite and not equal to transition-class-count-only or support-vector-only restatement"
+    ]
+  },
+  "created_at": "2026-05-26T06:17:17-07:00",
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_cell_rank_transition_class_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_rank_transition_residue_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_pair_source_cell_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_fiber_pair_rank_delta_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_class_source_fiber_probe_results.json"
+  ],
+  "failure_conditions": [
+    "the map emits only transition-class counts, support vectors, edge counts, or scalar histograms",
+    "class ids, support cell ids, source ids, pair bindings, delta ids, or rank normal forms are erased",
+    "all overlap predicates collapse to one scalar adjacency label",
+    "dense full-state or dense-environment closure is required",
+    "a fresh noncommuting operator is claimed from overlap incidence alone",
+    "topology, sheaf, homology, persistence, restore/inverse, all-subset minimality, bond convergence, shape law, full PEPS3D closure, Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, physics, IGT/game theory, or axes 7-12 are opened",
+    "any Phase 7/downstream receipt is consumed as a Phase 2 dependency"
+  ],
+  "input_state": {
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_AB_cell_rank_transition_class_active_frontier_blocker_20260526.json",
+    "contract_complete_rows": 43,
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "frontier_rows": 46,
+    "killed_rows": 3,
+    "latest_admitted_map": "AB_cell_rank_transition_class_K : (AA_rank_transition_residue_incidence_K, rank_transition_residue_incidence_table, cell_id, residue_id, delta_class_id, pair_binding_id, source_class_ids, PEPS3D rank labels) -> finite cell-to-rank-transition-class table + transition-class support vector + control gap vector",
+    "transition_decision_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "kind": "candidate_map_discovery",
+  "next_admissible_step": "Author and run one bounded formal scout for AC_transition_class_binding_overlap_K, then lint, validate the result, run the bounded frontier validator, update the matrix/transition/blocker, and continue.",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_AB_cell_rank_transition_class_K",
+  "working_geometry": "The earned Phase 2 object is PEPS3D-anchored finite response-quotient carrier geometry. After AB_cell_rank_transition_class_K, the frontier consists of 18 finite transition classes over 27 cells, with cell/source/pair/delta/rank bindings retained. This is carrier-frontier geometry only, not topology, closure, physical manifold geometry, or downstream physics."
+}

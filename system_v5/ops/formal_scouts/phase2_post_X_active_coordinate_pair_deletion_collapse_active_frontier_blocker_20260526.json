@@ -1,0 +1,123 @@
+{
+  "kind": "blocked_reason",
+  "created_at": "2026-05-26T04:01:36-07:00",
+  "scope": "active_peps3d_carrier_frontier_after_X_loss_active_coordinate_pair_deletion_collapse_K",
+  "classification": "formal_scout_controller_blocker",
+  "latest_admitted_packet": {
+    "packet_id": "phase2_active_coordinate_pair_deletion_collapse_packet",
+    "finite_map": "X_loss_active_coordinate_pair_deletion_collapse_K : (W_loss_coordinate_deletion_response_K, U_loss_pair_support_mask_K, A={V,E,C}, Delta_A2={{V,E},{V,C},{E,C}}, Delta_F={{V,F},{E,F},{C,F}}, delta_{c,d}:{0,1}^4 -> {0,1}^4, support_mask:Pairs(C_Q)->{0,1}^4) -> finite active-coordinate-pair deletion-collapse table + F-boundary pair controls + nonpromotion controls",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_active_coordinate_pair_deletion_collapse_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_active_coordinate_pair_deletion_collapse_probe_results.json",
+    "status": "contract_complete"
+  },
+  "blocker_map": {
+    "finite_map": "B_post_X_loss_active_coordinate_pair_deletion_collapse_K : (X_loss_active_coordinate_pair_deletion_collapse_K_receipt, active_frontier_rows, candidate_map_list, blocked_downstream_set) -> active_frontier_blocked_reason",
+    "domain": [
+      "X_loss_active_coordinate_pair_deletion_collapse_K result receipt",
+      "active PEPS3D carrier frontier matrix rows",
+      "current candidate-map list ending at X_loss_active_coordinate_pair_deletion_collapse_K",
+      "blocked downstream consumer set",
+      "finite carrier scope K=(V,E,F,C) with active-coordinate pair deletions over A={V,E,C} and F-boundary pair controls"
+    ],
+    "codomain_or_output": "active-frontier blocked-reason artifact"
+  },
+  "blocked_reason": "X_loss_active_coordinate_pair_deletion_collapse_K is contract-complete carrier evidence, but the post-X frontier has no named and audited fresh bounded Phase 2 carrier-frontier finite map yet. The correct controller action is candidate-map discovery and falsifier audit before any further formal scout. This is a local continuation blocker only, not global formal-goal completion or global failure.",
+  "explicitly_rejected_candidate_maps": [
+    {
+      "candidate": "all_subset_minimality_from_X",
+      "rejected_reason": "X tests only active coordinate-pair deletions plus F-boundary controls; it does not cover all coordinate subsets or prove minimality."
+    },
+    {
+      "candidate": "full_coordinate_coverage_from_X",
+      "rejected_reason": "F-containing pairs remain boundary controls and do not activate F as full coordinate coverage."
+    },
+    {
+      "candidate": "topology_sheaf_homology_from_X",
+      "rejected_reason": "X is a finite pair-deletion collapse table only and does not admit topology, sheaf, homology, persistence, or closure."
+    },
+    {
+      "candidate": "restore_inverse_from_X",
+      "rejected_reason": "X does not provide restoration or inverse evidence."
+    },
+    {
+      "candidate": "downstream_geometry_from_X",
+      "rejected_reason": "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, and axes 7-12 remain blocked consumers."
+    }
+  ],
+  "controls_preserved_from_latest_receipt": [
+    "norm_only",
+    "scalar_label",
+    "no_anchor",
+    "order_erased",
+    "illegal_coordinate_scramble",
+    "fake_face_positive",
+    "dense_state_closure",
+    "dense_environment_closure",
+    "topology",
+    "all_subset_minimality",
+    "restore_inverse",
+    "convergence",
+    "promotion"
+  ],
+  "not_admitted": [
+    "all-subset minimality",
+    "full V/E/F/C coordinate coverage",
+    "general shape law",
+    "bond convergence claim",
+    "full PEPS3D closure",
+    "next geometry layer transition",
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "downstream_consumers_still_blocked": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "validator_state_before_blocker": {
+    "bounded_validator_all_pass": true,
+    "frontier_row_count": 34,
+    "contract_complete_rows": 32,
+    "killed_rows": 2,
+    "latest_X_active_pair_changed_counts": [
+      3,
+      3,
+      3
+    ],
+    "latest_X_active_pair_post_delete_class_counts": [
+      2,
+      2,
+      2
+    ],
+    "latest_X_f_boundary_matches_single_deletion": true,
+    "latest_X_max_parent_peps3d_sites": 125,
+    "latest_X_max_peps3d_bond": 3
+  },
+  "wizard_v4_2": {
+    "status": "BLOCKED",
+    "accepted_parent_count": 0,
+    "accepted_child_count": 0,
+    "blocked_reason": "Full Wizard v4.2 remains blocked. Current controller used max honest subset: local validation tools plus Codex-native sidecar attempts; direct Gemini/Grok API lanes, if used, remain external provider lanes and are not Wizard children."
+  },
+  "next_admissible_step": "Name one fresh bounded Phase 2 carrier-frontier finite map after X_loss_active_coordinate_pair_deletion_collapse_K with explicit domain, codomain, controls, dependency receipts, and blocked consumers, then audit it before any scout.",
+  "recommended_next_move": "Run candidate-map discovery and falsifier/control audit for the post-X frontier. Do not reclassify downstream receipts as Phase 2.",
+  "not_a_stop": true
+}

@@ -1,0 +1,191 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T00:20:00-07:00",
+  "classification": "formal_scout_controller_candidate",
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_O_overlap_K",
+  "not_a_scout_run": true,
+  "claim_ceiling": "Candidate-map artifact only. No nested Hopf tori, Weyl sheet cover, terrain generator placement, operator substage cells, PEPS/PEPS3D closure, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, axes 7-12, general gluing law, shape law, or bond convergence claim is opened.",
+  "current_state_inputs": {
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "transition_decision_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_O_overlap_active_frontier_blocker_20260525.json",
+    "latest_earned_map": "O_overlap_K : (C_restrict_K, pi_0, pi_1, omega_01, boundary_anchor, bond_dim, local_order_ops) -> finite overlap-gluing consistency signatures + control gap vector",
+    "frontier_rows": 20,
+    "contract_complete_rows": 19,
+    "killed_rows": 1,
+    "bounded_validator_all_pass": true
+  },
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "T_triple_overlap_K",
+      "finite_map": "T_triple_overlap_K : (O_overlap_K, pi_0, pi_1, pi_2, omega_01, omega_12, omega_02, omega_012, boundary_anchor, bond_dim, local_order_ops) -> finite triple-overlap consistency table + pairwise/triple route gap vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": [
+        "Uses only Phase 2 carrier-frontier objects: finite PEPS3D parent carrier, explicit restriction selectors, pairwise overlaps, triple overlap, finite response vectors, local order paths, and inherited V/E/F/C anchors.",
+        "Extends O_overlap_K from two restriction routes to three restriction routes on a single nonempty omega_012 overlap without claiming a general gluing law.",
+        "Keeps torch-native spinor-derived density only as finite response carrier data.",
+        "Keeps F01 through finite carriers, probes, restriction maps, overlap selectors, path set, controls, and result table.",
+        "Keeps N01 through physical_filter/physical_shift order paths on triple-overlap tensors and an order-erased control.",
+        "Does not import later scale/closure stress, Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12."
+      ],
+      "chosen": true
+    },
+    {
+      "candidate_id": "P_pullback_overlap_K",
+      "finite_map": "P_pullback_overlap_K : (O_overlap_K, tau_restrict, omega_01, boundary_anchor, bond_dim, local_order_ops) -> finite pullback-square consistency signatures + control gap vector",
+      "decision": "admissible_but_second_choice",
+      "why_not_chosen": "This is carrier-frontier admissible, but it deepens one overlap route rather than testing a new independent three-route compatibility condition. Keep as the next fallback if T_triple_overlap_K is killed."
+    },
+    {
+      "candidate_id": "I_overlap_interface_K",
+      "finite_map": "I_overlap_interface_K : (O_overlap_K, inherited_edge_face_cell_anchors, cut_edge_support, boundary_anchor, bond_dim, local_order_ops) -> finite overlap-interface incidence/readout table + rejection gaps",
+      "decision": "admissible_but_risky",
+      "why_not_chosen": "It can be finite and carrier-only, but the interface wording is close to the rejected later I_boundary scale/closure stress. It should only be attempted after stricter wording prevents boundary-closure leakage."
+    },
+    {
+      "candidate_id": "I_boundary_scale_closure_reuse",
+      "finite_map": "I_boundary(K,bond_dim)=finite boundary-site and boundary-edge contraction signatures",
+      "decision": "rejected",
+      "why_rejected": "The known I_boundary source is later boundary contraction scale/closure stress with downstream dependencies. Reusing it after O_overlap_K would violate the active blocker."
+    },
+    {
+      "candidate_id": "general_gluing_law",
+      "finite_map": "G_glue : all finite restriction covers -> global PEPS3D gluing law",
+      "decision": "rejected",
+      "why_rejected": "A general gluing theorem is a closure/promotion claim, not a bounded finite carrier-frontier map."
+    },
+    {
+      "candidate_id": "restriction_shape_or_bond_convergence_law",
+      "finite_map": "L_shape_bond : O_overlap_K rows -> general shape/bond convergence claim",
+      "decision": "rejected",
+      "why_rejected": "A shape law or bond convergence law would exceed finite allowlist evidence and claim closure."
+    },
+    {
+      "candidate_id": "hopf_weyl_or_flux_from_overlap",
+      "finite_map": "overlap carrier -> Hopf/Weyl/flux/Axis0 readout",
+      "decision": "rejected",
+      "why_rejected": "Nested Hopf tori, Weyl sheets, flux, Xi/Phi0, Axis0, physics, FEP, IGT, and axes 7-12 remain blocked downstream consumers."
+    },
+    {
+      "candidate_id": "label_only_triple_overlap_manifold",
+      "finite_map": "triple-overlap manifold atlas",
+      "decision": "rejected",
+      "why_rejected": "Label-only manifold wording is not admissible unless reduced to explicit finite selectors, inherited anchors, finite response maps, controls, and blocked consumers."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "T_triple_overlap_K",
+    "finite_map": "T_triple_overlap_K : (O_overlap_K, pi_0, pi_1, pi_2, omega_01, omega_12, omega_02, omega_012, boundary_anchor, bond_dim, local_order_ops) -> finite triple-overlap consistency table + pairwise/triple route gap vector",
+    "plain_question": "Do three finite C_restrict_K-style PEPS3D restrictions that pairwise overlap inside the same parent also agree on their shared triple overlap omega_012, while empty, duplicate, scrambled, label-only, single-probe, order-erased, dense-closure, and promotion controls fail?",
+    "domain": {
+      "O_overlap_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_restriction_overlap_consistency_probe_results.json",
+      "parent_carrier": "finite PEPS3D K_parent=(V,E,F,C) at shape (5,5,5), bond dimensions 2 and 3",
+      "restriction_maps": "three finite anchor-preserving pi_restrict maps at offsets (0,0,0), (1,1,0), and (1,0,1) to shape (4,4,4) subcarriers",
+      "pairwise_overlap_maps": "omega_01, omega_12, and omega_02 are finite common overlap carriers induced by each pair of restrictions",
+      "triple_overlap_map": "omega_012 is the common finite triple-overlap carrier induced by all three restrictions; its shape is (3,3,3) with inherited V/E/F/C anchors, nonempty boundary, and nonempty interior",
+      "finite_probe_effect_family": "finite SIC-effect local responses seeded by torch-native spinor-derived carrier data",
+      "finite_operator_paths": [
+        "physical_filter after physical_shift",
+        "physical_shift after physical_filter",
+        "order_erased"
+      ]
+    },
+    "codomain_or_output": {
+      "triple_overlap_consistency_table": "finite response signatures on omega_012 computed through pi_0, pi_1, and pi_2",
+      "pairwise_route_gap_vector": "finite pairwise route consistency gaps for the three selector routes",
+      "triple_route_gap": "finite max route gap across all three routes on omega_012",
+      "anchor_preservation_signature": "finite V/E/F/C support-count and incidence-readout deltas for omega_012",
+      "projection_gap_vector": "finite boundary/interior projection gaps for admitted rows",
+      "order_gap_vector": "finite noncommuting path gap for each admitted triple-overlap row",
+      "control_gap_vector": "finite gaps for rejected controls"
+    },
+    "F01_witness": {
+      "finite_carriers": "bounded PEPS3D parent carrier, three finite restrictions, three finite pairwise overlaps, one finite triple overlap, and finitely many bond rows",
+      "finite_probes": "finite SIC-effect local response family from active Phase 2 receipts",
+      "finite_operators": "physical_filter, physical_shift, order_erased, restriction selectors, pairwise overlap selectors, and triple-overlap selector",
+      "finite_paths": "bounded path set {filter_after_shift, shift_after_filter, order_erased} on each finite triple-overlap row"
+    },
+    "N01_witness": "T_triple_overlap_K(filter_after_shift(T_omega012)) != T_triple_overlap_K(shift_after_filter(T_omega012)) for admitted triple-overlap rows, while order_erased collapses.",
+    "PEPS3D_anchor_requirement": "Each admitted row must preserve explicit site, edge, face, and cell anchors for omega_012 plus boundary/interior and cut-edge incidence. No scalar carrier labels are admitted.",
+    "torch_spinor_or_density_status": "Torch-native two-component spinors and spinor-derived local densities seed finite response tensors as carrier data only. No Hopf/Weyl geometry is admitted.",
+    "positive_case": "The three restriction routes agree on the shared triple-overlap response signatures with zero route gap, nonzero boundary/interior projection gap, nonzero order gap, and noncollapsed inherited V/E/F/C support.",
+    "negative_controls": [
+      "no_anchor",
+      "scalar_label",
+      "triple_overlap_erased",
+      "empty_triple_overlap",
+      "duplicate_restriction_route",
+      "anchor_scrambled_triple_overlap",
+      "single_probe_non_ic",
+      "order_erased",
+      "dense_state_closure",
+      "dense_environment_closure",
+      "later_boundary_reclassification"
+    ],
+    "boundary_controls": [
+      "bond_dim_one remains control-only",
+      "shape/bond rows remain finite allowlist only",
+      "no general gluing law",
+      "no general shape law",
+      "no bond convergence",
+      "no PEPS3D closure claim"
+    ],
+    "failure_conditions": [
+      "omega_012 is empty or lacks inherited V/E/F/C anchors.",
+      "Any pairwise or triple route consistency gap is nonzero.",
+      "Boundary/interior projection gap vanishes for all admitted rows.",
+      "Order gap is zero for every admitted row.",
+      "Erased, empty, duplicate, scrambled, single-probe, order-erased, dense-closure, or promotion controls are admitted as support.",
+      "The map depends on Phase 7/downstream receipts or opens Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, axes 7-12, or full PEPS3D closure."
+    ],
+    "promotion_allowed": false,
+    "next_admissible_packet": {
+      "packet_id": "phase2_triple_overlap_consistency_candidate_packet",
+      "allowed_next_action": "Author a formal_scout source for T_triple_overlap_K, then run/lint/validate it. This artifact itself does not authorize downstream geometry.",
+      "must_not_run_from_this_artifact": [
+        "nested Hopf tori",
+        "Weyl sheet cover",
+        "terrain generator placement",
+        "operator substages",
+        "flux",
+        "Xi/Phi0",
+        "Axis0",
+        "Holodeck/FEP",
+        "physics",
+        "IGT/game theory",
+        "axes 7-12"
+      ],
+      "fallback_if_killed": "P_pullback_overlap_K"
+    }
+  },
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_spinor_density_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps_peps3d_local_environment_contraction_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_heldout_shape_anchor_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_bond_sweep_anchor_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_anchor_partition_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_patch_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_projection_shape_bond_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_replay_restriction_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_restriction_overlap_consistency_probe_results.json"
+  ],
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ]
+}

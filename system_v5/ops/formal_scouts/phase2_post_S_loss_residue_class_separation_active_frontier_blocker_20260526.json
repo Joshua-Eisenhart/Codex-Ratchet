@@ -1,0 +1,120 @@
+{
+  "kind": "blocked_reason",
+  "created_at": "2026-05-26T03:42:00-07:00",
+  "scope": "active_peps3d_carrier_frontier_after_S_loss_residue_class_separation_K",
+  "classification": "formal_scout_controller_blocker",
+  "latest_admitted_packet": {
+    "packet_id": "phase2_loss_residue_class_separation_packet",
+    "finite_map": "S_loss_residue_class_separation_K : (Q_loss_residue_class_quotient_K, support_atom, q_Q support-to-class map, PEPS3D loss_vector in N^4, legal_anchor_preserving_relabeling) -> finite class-pair separation matrix + intra-class invariance table + control gap vector",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_loss_residue_class_separation_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_loss_residue_class_separation_probe_results.json",
+    "status": "contract_complete"
+  },
+  "blocker_map": {
+    "finite_map": "B_post_S_loss_residue_class_separation_K : (S_loss_residue_class_separation_K_receipt, active_frontier_rows, candidate_map_list, blocked_downstream_set) -> active_frontier_blocked_reason",
+    "domain": [
+      "S_loss_residue_class_separation_K result receipt",
+      "active PEPS3D carrier frontier matrix rows",
+      "current candidate-map list ending at S_loss_residue_class_separation_K",
+      "blocked downstream consumer set",
+      "finite PEPS3D loss-residue quotient carrier with 7 support atoms, 3 loss classes, 3 class pairs, max parent 125 sites, max triple-overlap 27 sites, and max bond 3"
+    ],
+    "codomain_or_output": "active-frontier blocked-reason artifact"
+  },
+  "blocked_reason": "S_loss_residue_class_separation_K is contract-complete Phase 2 carrier evidence, but no further post-S bounded carrier-frontier finite map has been named and audited yet. The correct controller action is candidate discovery or a repair packet before any new scout; no downstream geometry is opened.",
+  "explicitly_rejected_candidate_maps": [
+    {
+      "candidate": "support_label_partition_from_S",
+      "rejected_reason": "Label-only partitioning would replace PEPS3D V/E/F/C loss vectors with scalar labels and is not claim-bearing evidence."
+    },
+    {
+      "candidate": "topology_sheaf_homology_from_S",
+      "rejected_reason": "Finite class-pair separation is not topology, persistence, sheaf, gluing, or closure evidence."
+    },
+    {
+      "candidate": "all_subset_or_restore_inverse_from_S",
+      "rejected_reason": "S operates over admitted Q loss classes and class pairs, not all deletion subsets, restoration, invertibility, or same-object recovery."
+    },
+    {
+      "candidate": "hopf_weyl_terrain_substage_flux_axis0_from_S",
+      "rejected_reason": "All named downstream consumers remain blocked and cannot be opened from a Phase 2 carrier readout."
+    }
+  ],
+  "controls_preserved_from_latest_receipt": [
+    "norm_only",
+    "scalar_label",
+    "no_anchor",
+    "order_erased",
+    "dense_state_closure",
+    "dense_environment_closure",
+    "topology",
+    "all_subset",
+    "restore_inverse",
+    "convergence",
+    "promotion"
+  ],
+  "not_admitted": [
+    "section/retraction topology",
+    "support-label-only class geometry",
+    "all-subset minimality",
+    "restore/inverse",
+    "general shape law",
+    "bond convergence claim",
+    "full PEPS3D closure",
+    "next geometry layer transition",
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "downstream_consumers_still_blocked": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "validator_state_before_blocker": {
+    "bounded_validator_all_pass": true,
+    "contract_complete_rows": 29,
+    "frontier_row_count": 31,
+    "killed_rows": 2,
+    "latest_S_class_pair_count": 3,
+    "latest_S_loss_class_count": 3,
+    "latest_S_norm_only_class_count": 1,
+    "latest_S_min_pair_l1_separation": 2.0,
+    "max_peps3d_bond": 4,
+    "max_peps3d_sites": 125
+  },
+  "wizard_v4_2": {
+    "status": "BLOCKED",
+    "blocked_reason": "Full Wizard v4.2 remains BLOCKED. Codex-native sidecar attempts and local tools are recorded separately and are not a FULL or PARTIAL Max Assembly receipt."
+  },
+  "multi_model_parallelism_boundary": {
+    "gemini_grok_access_surface": "API-key provider lanes only when used",
+    "not_counted": [
+      "Gemini CLI or browser-auth route",
+      "Grok CLI route",
+      "OMX-managed route",
+      "direct provider API lanes as Wizard children"
+    ]
+  },
+  "next_admissible_step": "Name one fresh bounded Phase 2 carrier-frontier finite map after S_loss_residue_class_separation_K with explicit domain, codomain, controls, dependency receipts, and blocked consumers, then audit it before any next scout. Do not open downstream geometry.",
+  "recommended_next_move": "Run post-S candidate-map discovery; if a candidate survives, write its candidate artifact before running any new scout. If none survives, preserve this blocker and backfill the smallest missing dependency.",
+  "not_a_stop": true
+}

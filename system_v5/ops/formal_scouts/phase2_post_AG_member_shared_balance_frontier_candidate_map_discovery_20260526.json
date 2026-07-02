@@ -1,0 +1,158 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T07:36:00-07:00",
+  "classification": "formal_scout_controller_candidate",
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_AG_member_shared_balance_frontier_K",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "selected_candidate_map_id": "AH_shared_member_frontier_fiber_K",
+  "claim_ceiling": "Candidate-map artifact only. This does not admit the chosen map, run a scout, open Phase 3, or open downstream consumers.",
+  "input_state": {
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "transition_decision_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_AG_member_shared_balance_frontier_active_frontier_blocker_20260526.json",
+    "latest_admitted_map": "AG_member_shared_balance_frontier_K : (AF_signature_cell_role_balance_residue_K, balance_row_i, balance_row_j, shared_member_class_pair_ids, support_cell_i, support_cell_j, overlap_signature_i, overlap_signature_j, balance_class_i, balance_class_j, residue_delta) -> finite member-shared row-pair frontier table + witness-support vector + control gap vector",
+    "frontier_rows_at_post_AG_gate": 51,
+    "contract_complete_rows_at_post_AG_gate": 48,
+    "killed_rows_at_post_AG_gate": 3,
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "working_geometry": "The earned Phase 2 object after AG_member_shared_balance_frontier_K is PEPS3D-anchored finite response-quotient carrier geometry: finite member-shared row-pair frontier rows over explicit support-cell anchors, row ids, signatures, balance classes, endpoint counts, residue deltas, and shared member class-pair witnesses. It is carrier-frontier geometry only, not downstream physical geometry.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "AH_shared_member_frontier_fiber_K",
+      "candidate_name": "shared-member frontier fibers",
+      "finite_map": "AH_shared_member_frontier_fiber_K : (AG_member_shared_balance_frontier_K, shared_member_class_pair_id, frontier_pair_ids, support_cell_pair_keys, signature_pair_keys, balance_class_pair_keys, residue_delta_values) -> finite shared-member frontier-fiber table + member-support vector + control gap vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": [
+        "It ratchets directly from AG by adding only a finite fiber projection over shared_member_class_pair_id.",
+        "It retains the frontier-pair ids, source row ids, support-cell pairs, signature-pair keys, balance-class-pair keys, and residue-delta values that bind each shared member to AG rows.",
+        "Its codomain remains a finite carrier-frontier readout: member-fiber rows, membership cardinalities, support/signature/class/residue witness sets, and control gaps.",
+        "F01 is preserved because shared member ids, frontier-pair ids, support-cell pairs, signatures, balance classes, residue deltas, controls, and outputs are finite.",
+        "N01 is inherited only from the existing Phase 2 carrier path evidence; the candidate explicitly rejects a fresh noncommuting-operator claim.",
+        "It does not use connected components, topology closure, homology, persistence, sheaf closure, restore/inverse, all-subset minimality, Phase 7 receipts, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT/game theory, or axes 7-12."
+      ],
+      "chosen": true
+    },
+    {
+      "candidate_id": "AH_component_topology_over_member_graph_K",
+      "candidate_name": "connected components/topology over the member-row graph",
+      "decision": "rejected",
+      "why_rejected": "AG permits finite row-pair/member incidence only. Connected components, topology closure, homology, persistence, and sheaf claims remain blocked consumers."
+    },
+    {
+      "candidate_id": "AH_member_cardinality_histogram_K",
+      "candidate_name": "member cardinality histogram only",
+      "decision": "rejected",
+      "why_rejected": "The histogram {1:36, 3:81, 6:36} is a control summary unless it retains frontier-pair ids, support-cell pairs, signatures, balance classes, residue deltas, and shared member ids."
+    },
+    {
+      "candidate_id": "AH_residue_delta_distribution_only_K",
+      "candidate_name": "residue-delta distribution only",
+      "decision": "rejected",
+      "why_rejected": "Residue-delta counts erase the member witness fibers and cannot stand as a complete carrier-frontier map."
+    },
+    {
+      "candidate_id": "AH_fresh_N01_from_member_fibers_K",
+      "candidate_name": "fresh noncommuting operator from member fibers",
+      "decision": "rejected",
+      "why_rejected": "Shared-member fibers are finite readouts over inherited carrier evidence. They do not create a new noncommuting operator."
+    },
+    {
+      "candidate_id": "AH_downstream_geometry_from_member_fibers_K",
+      "candidate_name": "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are blocked downstream consumers. Opening them from AG would skip the Phase 2 carrier-frontier ratchet."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "AH_shared_member_frontier_fiber_K",
+    "finite_map": "AH_shared_member_frontier_fiber_K : (AG_member_shared_balance_frontier_K, shared_member_class_pair_id, frontier_pair_ids, support_cell_pair_keys, signature_pair_keys, balance_class_pair_keys, residue_delta_values) -> finite shared-member frontier-fiber table + member-support vector + control gap vector",
+    "domain": {
+      "AG_member_shared_balance_frontier_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_member_shared_balance_frontier_probe_results.json",
+      "frontier_rows": "387 finite member-shared row-pair frontier rows",
+      "shared_member_class_pair_id": "153 finite member class-pair witness ids",
+      "frontier_pair_ids": "finite AG frontier pair ids containing each shared member id",
+      "support_cell_pair_keys": "finite PEPS3D support-cell pair anchors inherited from AG",
+      "signature_pair_keys": "finite overlap-signature pair keys inherited from AG",
+      "balance_class_pair_keys": "finite balance-class pair keys inherited from AG",
+      "residue_delta_values": "finite residue-delta values inherited from AG"
+    },
+    "codomain_or_output": {
+      "shared_member_frontier_fiber_table": "finite member-fiber table with frontier-pair ids, source row ids, support-cell pair keys, signature-pair keys, balance-class-pair keys, residue-delta values, and membership cardinality retained per shared member",
+      "member_support_vector": "finite membership-cardinality distribution, signature-pair diversity, balance-class-pair diversity, support-cell-pair support, and residue-delta support",
+      "control_gap_vector": "finite pass/fail gaps for member-id-erased, pair-erased, support-erased, signature-erased, balance-class-erased, residue-erased, cardinality-only, scalar-label, topology, fresh-N01, closure, and downstream controls"
+    },
+    "F01_witness": "All AG frontier rows, shared member ids, frontier-pair ids, support-cell pair keys, signature-pair keys, balance-class-pair keys, residue-delta values, controls, and outputs are finite and tied to listed dependency receipts.",
+    "N01_witness": "Inherited only: the map may cite the existing Phase 2 order-sensitive carrier witness while requiring order-erased and fresh-N01 controls to collapse or remain blocked.",
+    "PEPS3D_carrier_anchor": "Every admitted shared-member fiber row must retain support-cell pair keys and frontier-pair ids. Member-id-erased, pair-erased, support-erased, or scalar-label fibers are rejected.",
+    "geometry_it_could_earn_if_later_run_and_passed": "finite shared-member frontier-fiber geometry over the Phase 2 PEPS3D response-quotient carrier frontier",
+    "status": "admissible_candidate_not_run"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_member_shared_balance_frontier_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_signature_cell_role_balance_residue_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_signature_anchor_role_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_overlap_signature_fiber_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_transition_class_binding_overlap_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_rank_transition_class_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_rank_transition_residue_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_pair_source_cell_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_fiber_pair_rank_delta_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_class_source_fiber_probe_results.json"
+  ],
+  "controls_required_if_later_run": {
+    "positive": [
+      "shared-member fiber table is finite and keyed by shared_member_class_pair_id",
+      "each admitted fiber retains frontier-pair ids, source row ids, support-cell pair keys, signature-pair keys, balance-class-pair keys, residue-delta values, and membership cardinality",
+      "fiber memberships sum back to 495 AG shared-member edges",
+      "all 153 shared member ids are represented"
+    ],
+    "negative": [
+      "member-id-erased control must fail",
+      "frontier-pair-erased control must fail",
+      "support-cell-pair-erased control must fail",
+      "signature-pair-erased control must fail",
+      "balance-class-pair-erased control must fail",
+      "residue-delta-erased control must fail",
+      "cardinality-only control must fail",
+      "scalar-label control must fail",
+      "topology/connected-component promotion must fail"
+    ],
+    "boundary": [
+      "membership-cardinality values {1,3,6} remain finite support readouts, not topology",
+      "signature-pair diversity is a finite readout only and does not admit sheaf/topology closure",
+      "row-pair ordering remains canonicalized from AG and is not a fresh order witness"
+    ],
+    "order_erased": [
+      "fresh-N01 claim must be rejected",
+      "order-erased local paths must remain collapsed or inherited-only controls"
+    ]
+  },
+  "failure_conditions": [
+    "shared-member fibers lose support-cell pair anchors or frontier-pair ids",
+    "fiber memberships do not sum to 495 AG shared-member edges",
+    "member-id-erased, pair-erased, support-erased, signature-erased, balance-class-erased, residue-erased, cardinality-only, or scalar-label controls pass as complete maps",
+    "component topology, homology, sheaf, persistence, restore/inverse, all-subset minimality, fresh N01, orientation/chirality, or Weyl structure is claimed",
+    "the candidate requires dense full-state closure or dense environment closure",
+    "the candidate consumes a Phase 7/downstream receipt as a Phase 2 dependency",
+    "the candidate opens Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, physics, IGT/game theory, axes 7-12, or PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_AG_member_shared_balance_frontier_active_frontier_blocker_20260526.json",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "next_admissible_step": "Author one bounded formal scout for AH_shared_member_frontier_fiber_K, then run/lint/validate it. This candidate artifact does not itself admit the map and does not open Phase 3 or downstream geometry."
+}

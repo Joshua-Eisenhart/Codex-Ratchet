@@ -1,0 +1,78 @@
+{
+  "kind": "blocked_reason",
+  "created_at": "2026-05-25T19:10:00-07:00",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_scope": "post_D_K_active_frontier_continuation",
+  "classification": "formal_scout_frontier_blocker",
+  "decision": "blocked_with_repair",
+  "blocked_reason": "The active transition artifact admitted D_K as the latest concrete Phase 2 carrier-only map but did not name a grounded post-D_K packet. A broader boundary/interior projection receipt was run provisionally, but it must not be promoted into the active frontier before the smaller K_8 face-projection packet is authored and validated.",
+  "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+  "transition_artifact_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+  "last_admitted_packet": {
+    "packet_id": "phase2_response_quotient_substrate_distinguishability_packet",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_response_quotient_substrate_distinguishability_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json",
+    "finite_map": "D_K : (Q_K|K_8, anchor, edge_incidence, local_order_ops) -> substrate distinguishability signatures and controls"
+  },
+  "provisional_unpromoted_packet": {
+    "packet_id": "phase2_boundary_response_projection_packet",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_boundary_response_projection_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json",
+    "status": "needs_reissue_after_P_K",
+    "reason": "The receipt passed local controls, but it was broader than the next grounded K_8 face-projection move and was not named by the transition artifact's next candidate map list."
+  },
+  "next_admissible_step": "Author and run exactly one bounded P_K face-projection Phase 2 carrier-only scout, then lint, validate, classify, and rerun the strict bounded validator.",
+  "next_admissible_packet": {
+    "packet_id": "phase2_k8_face_projection_response_quotient_packet",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_k8_face_projection_response_quotient_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json",
+    "finite_map": "P_K : (D_K(Q_K|K_8), pi_f, anchor_f, local_order_ops) -> finite boundary-projected response-quotient carrier signatures + projection/control gap vector",
+    "domain": {
+      "carrier": "finite PEPS3D K_8=(V,E,F,C) at shape (2,2,2)",
+      "site_anchors": 8,
+      "edge_incidence_anchors": 12,
+      "face_projection_count": 6,
+      "bond_dim": 2,
+      "response_source": "finite response classes from Q_K and torch-native spinor-derived response rows as carrier data only"
+    },
+    "codomain_or_output": "finite per-face projection table with projected class ids, incident edge response gaps, parent-vs-projection gap, local order gap, control rows, and Boolean nonpromotion gate",
+    "F01_witness": "finite K_8 carrier, finite face projections pi_f, finite anchors, finite effect responses, finite local operator paths, finite controls, and finite output table",
+    "N01_witness": "physical_filter after physical_shift differs from physical_shift after physical_filter on face-projected anchored tensors, while order-erased control collapses",
+    "PEPS3D_anchor_requirement": "each projected face row must name the incident PEPS3D face anchor, its four incident site anchors, and its incident edge anchors; scalar face labels are not evidence",
+    "spinor_density_status": "torch-native two-component spinors or spinor-derived density readouts may seed finite response rows as carrier data only; no Hopf/Weyl geometry is admitted",
+    "positive_case": "finite face projections preserve nonzero parent-vs-projection response gaps and incident edge response gaps on K_8",
+    "negative_controls": [
+      "projection_erased",
+      "face_anchor_scrambled",
+      "edge_erased",
+      "wrong_adjacency",
+      "single_probe_non_ic",
+      "no_anchor",
+      "scalar_label",
+      "order_erased",
+      "dense_state_closure",
+      "dense_environment_closure",
+      "promotion"
+    ],
+    "boundary_case": "P_K remains active-carrier-frontier evidence only and cannot open Phase 3 or any downstream consumer"
+  },
+  "blocked_downstream_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded local seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "eligible_consumers": [
+    "active_carrier_frontier_matrix_only"
+  ],
+  "promotion_allowed": false,
+  "not_a_goal_blocker": true
+}

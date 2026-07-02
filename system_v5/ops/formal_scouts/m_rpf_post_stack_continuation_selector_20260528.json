@@ -1,0 +1,80 @@
+{
+  "artifact_id": "m_rpf_post_stack_continuation_selector_20260528",
+  "kind": "m_rpf_post_stack_continuation_selector",
+  "schema": "m_rpf_post_stack_continuation_selector_v1",
+  "created_at": "2026-05-28T00:20:00Z",
+  "goal_path": "system_v5/ops/tmp/FORMAL_SIM_M_RPF_POST_STACK_LONG_RUNNING_GOAL_20260527.md",
+  "primary_object": "M_RPF(C)",
+  "tranche_status": "packets_1_to_4_passed_with_receipts",
+  "not_final_manifold_admission": true,
+  "object_order_preserved": [
+    "Omega_r future/refinement branches",
+    "compatibility weights",
+    "ordered adapters",
+    "compression map C",
+    "rho_present",
+    "outward_record",
+    "derived readouts"
+  ],
+  "completed_packets": [
+    {
+      "packet": "Packet 1: M_RPF_post_stack_stress",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_post_stack_stress_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_post_stack_stress_probe_results.json",
+      "status": "passes_local_rerun",
+      "max_sites": 64,
+      "max_peps3d_bond": 4
+    },
+    {
+      "packet": "Packet 2: variant stress",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_post_stack_variant_stress_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_post_stack_variant_stress_probe_results.json",
+      "status": "passes_local_rerun",
+      "variant_rows": 12,
+      "max_sites": 64,
+      "max_peps3d_bond": 4,
+      "bond5_status": "blocked_not_admitted_by_row_local_receipts"
+    },
+    {
+      "packet": "Packet 3: adversarial object-preservation audit",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_post_stack_adversarial_object_audit_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_post_stack_adversarial_object_audit_probe_results.json",
+      "status": "passes_local_rerun",
+      "proxy_substitutions_rejected": 9,
+      "repair_performed": "Packet 1 receipt was repaired to expose future_continuations, branch_states, and present_survivor"
+    },
+    {
+      "packet": "Packet 4: minimality/order necessity",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_post_stack_minimality_order_necessity_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_post_stack_minimality_order_necessity_probe_results.json",
+      "status": "passes_local_rerun",
+      "required_parts": 14,
+      "repair_issues": []
+    }
+  ],
+  "decision": "continue_with_next_bounded_map",
+  "decision_reason": "The post-stack tranche preserved M_RPF(C) under finite stress, variant stress, adversarial proxy audit, and minimality checks, but Packet 2 explicitly left bond_dim=5 unadmitted by row-local receipts. The next admissible map is a bounded post-stack stress repair/micro-admission probe for that specific unearned bond variant, not flux, Axis0, FEP, physics, or final manifold.",
+  "next_bounded_map": {
+    "name": "M_RPF_post_stack_bond5_admission_micro_probe",
+    "category": "post-stack stress repair / tool-function micro-probe needed by failed or blocked M_RPF packet",
+    "finite_map": "M_RPF_post_stack_bond5_admission : (K, event_x, Sigma_r(x), Omega_r, compatibility weights, ordered adapters A0..A8, compression C, bond_dim candidate 5) -> (bond5 admission table, resource residuals, object-order residuals, failed controls, blocked consumers)",
+    "domain": "finite 8/16/32/64 PEPS3D carriers with existing Packet 1/2 object-order receipts and one bounded bond_dim=5 candidate",
+    "codomain_or_output": "finite bond5 admission or blocker receipt preserving Omega_r -> weights -> adapters -> compression -> rho_present -> outward_record",
+    "failure_condition": "If bond_dim=5 requires dense closure, drops PEPS3D anchor provenance, or erases row-local adapter provenance, write a blocker and do not widen the stack."
+  },
+  "exact_next_prompt": "Run exactly one bounded formal scout or blocker for M_RPF_post_stack_bond5_admission_micro_probe. Preserve Omega_r -> compatibility weights -> ordered adapters A0..A8 -> compression C -> rho_present -> outward_record. Do not open flux, Xi/Phi0, Axis0, FEP/Holodeck, physics/gravity, IGT/game theory, axes7-12, or final manifold.",
+  "blocked_consumers": [
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics/gravity proof",
+    "IGT/game theory",
+    "axes7-12",
+    "final manifold admission"
+  ],
+  "wizard_truth": {
+    "status": "PARTIAL",
+    "reason": "Codex native subagent spawn was attempted but blocked by the current agent thread limit. Controller-local tools and formal scouts completed the tranche; no Wizard v4.2 FULL topology is claimed."
+  }
+}

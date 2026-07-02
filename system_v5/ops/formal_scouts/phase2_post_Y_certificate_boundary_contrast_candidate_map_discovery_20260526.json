@@ -1,0 +1,163 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_Y_certificate_boundary_contrast_active_frontier_blocker_20260526.json",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "Y_contrast_mask_delta_quotient_K",
+      "candidate_name": "finite mask-delta quotient over active-vs-F-boundary contrast rows",
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "Y_contrast_mask_delta_quotient_K : (Y_certificate_boundary_contrast_K, contrast_rows, mask_delta, source_class_ids, PEPS3D V/E/F/C masks) -> finite mask-delta quotient classes + source-binding table + control gap vector",
+      "geometry_it_would_earn_if_later_passed": "A finite quotient readout over certificate-contrast mask-delta classes, preserving source and PEPS3D mask bindings.",
+      "not_run_in_this_artifact": true,
+      "why_admissible": "It ratchets directly from the 54 contrast rows by quotienting rows with the same finite mask-delta vector while retaining active and F-boundary source-class bindings. It is not a row-count or scalar-sum restatement because it must emit quotient classes, member row ids, source ids, and PEPS3D mask bindings. It stays inside Phase 2 carrier-frontier evidence and does not claim topology, closure, restore/inverse, full PEPS3D, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12."
+    },
+    {
+      "candidate_id": "contrast_row_count_or_mask_sum_only",
+      "candidate_name": "contrast-row-count-only or mask-delta-sum-only restatement",
+      "decision": "rejected",
+      "why_rejected": "The latest receipt already reports 54 contrast rows and mask_delta_l1_sum=78. A fresh map must emit quotient classes and source/mask bindings, not a scalar summary."
+    },
+    {
+      "candidate_id": "source_class_erased_delta_histogram",
+      "candidate_name": "source-erased delta histogram",
+      "decision": "rejected",
+      "why_rejected": "A delta histogram without active and F-boundary source-class bindings is a label-erased summary and cannot carry the PEPS3D anchored quotient claim."
+    },
+    {
+      "candidate_id": "topology_or_homology_from_delta_classes",
+      "candidate_name": "topology, sheaf, homology, persistence, or closure from delta classes",
+      "decision": "rejected",
+      "why_rejected": "Finite quotient classes over mask deltas are not topology, sheaf, homology, persistence, or full PEPS3D closure."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_delta_classes",
+      "candidate_name": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are downstream consumers and remain blocked."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "F01_finite_witness": "The contrast rows, mask-delta vectors, source ids, quotient classes, member bindings, probes, paths, and outputs are finite and receipt-backed.",
+    "N01_order_witness": "The quotient map inherits the noncommuting/order-sensitive Phase 2 carrier path from the active contrast rows while order-erased controls collapse. No new downstream operator is introduced.",
+    "PEPS3D_carrier_anchor": "Every admitted quotient member must retain active and F-boundary PEPS3D V/E/F/C mask bindings. Scalar PEPS3D labels are not evidence.",
+    "candidate_id": "Y_contrast_mask_delta_quotient_K",
+    "codomain_or_output": {
+      "class_occupancy_vector": "finite class sizes and occupancy counts",
+      "control_gap_vector": "finite rejection/collapse gaps for count-only, scalar-sum-only, source-erased, no-anchor, order-erased, dense-closure, topology, and downstream controls",
+      "mask_delta_quotient_classes": "finite quotient classes keyed by exact V/E/F/C mask-delta vector",
+      "source_binding_table": "finite binding of quotient-class members to active and F-boundary source class ids"
+    },
+    "domain": {
+      "PEPS3D_support_masks": "finite V/E/F/C support masks inherited from the certificate and boundary singleton rows",
+      "Y_certificate_boundary_contrast_K": "validated finite active-vs-F-boundary certificate-contrast table",
+      "contrast_rows": "54 rows with active source class id, F-boundary source class id, active and boundary masks, and mask_delta",
+      "local_order_ops": "finite order-sensitive carrier path inherited from Phase 2 receipts; no fresh downstream operator is introduced",
+      "mask_delta": "finite V/E/F/C mask-delta vectors over the contrast rows",
+      "source_class_ids": "finite active and F-boundary source class identifiers carried by the contrast rows"
+    },
+    "finite_map": "Y_contrast_mask_delta_quotient_K : (Y_certificate_boundary_contrast_K, contrast_rows, mask_delta, source_class_ids, PEPS3D V/E/F/C masks) -> finite mask-delta quotient classes + source-binding table + control gap vector",
+    "geometry_if_later_earned": "finite anchored mask-delta quotient geometry for the Phase 2 PEPS3D response-quotient carrier",
+    "not_a_scout_run": true,
+    "promotion_allowed": false
+  },
+  "classification": "formal_scout_controller_candidate",
+  "controller_dependency_artifacts": [
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_post_Y_certificate_boundary_contrast_active_frontier_blocker_20260526.json"
+  ],
+  "controls_required_if_later_run": {
+    "boundary": [
+      "empty contrast table remains a control-only row",
+      "max parent sites remains bounded by the latest dependency receipts",
+      "max PEPS3D bond remains bounded by the latest dependency receipts"
+    ],
+    "downstream_leak": [
+      "delta quotient classes must not be promoted to topology, homology, sheaf, or closure claims",
+      "Phase 7 or downstream receipts must not be consumed as dependencies",
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, and axes 7-12 must remain blocked"
+    ],
+    "negative": [
+      "contrast-row-count-only output must fail",
+      "mask-delta-sum-only output must fail",
+      "source-class-erased output must fail",
+      "no-anchor and scalar-label variants must fail",
+      "single-probe non-IC variants must not pass as full finite-effect evidence"
+    ],
+    "order_erased": [
+      "order-erased carrier path must collapse the inherited N01 witness",
+      "commuting-only paths must not be admitted as nonclassical delta-quotient evidence"
+    ],
+    "positive": [
+      "contrast rows quotient into finite mask-delta classes",
+      "each quotient member retains active and F-boundary source class ids",
+      "each quotient member retains PEPS3D V/E/F/C mask binding",
+      "class occupancy vector is finite and not reduced to one scalar"
+    ]
+  },
+  "created_at": "2026-05-26T00:00:00-07:00",
+  "current_state_assertion": {
+    "active_transition_decision": "blocked",
+    "contract_complete_rows": 37,
+    "frontier_row_count": 40,
+    "killed_rows": 3,
+    "latest_admitted_map": "Y_certificate_boundary_contrast_K",
+    "latest_admitted_packet": "phase2_certificate_boundary_contrast_packet",
+    "phase2_carrier_geometry": "real_bounded",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_certificate_boundary_contrast_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_collision_certificate_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_induced_quotient_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_row_deletion_collision_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_active_pair_collision_residue_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json"
+  ],
+  "failure_conditions": [
+    "the output is recoverable from contrast row count or mask_delta_l1_sum alone",
+    "source class ids or PEPS3D V/E/F/C support masks are not bound in quotient members",
+    "all quotient rows collapse to a source-erased scalar histogram",
+    "order-erased or commuting controls do not collapse",
+    "single-probe non-IC controls pass as if complete",
+    "the map requires dense 2^n state closure or dense environment closure",
+    "the map consumes Phase 7/downstream receipts or opens topology, sheaf, homology, full PEPS3D closure, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12"
+  ],
+  "kind": "candidate_map_discovery",
+  "next_admissible_step": "Author one bounded formal scout for Y_contrast_mask_delta_quotient_K, then run/lint/validate it. This candidate artifact does not itself admit the map and does not open Phase 3 or downstream geometry.",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "scope": "phase2_post_Y_certificate_boundary_contrast_K_candidate_map_discovery",
+  "selected_candidate_map": {
+    "candidate_id": "Y_contrast_mask_delta_quotient_K",
+    "codomain_or_output": "finite mask-delta quotient classes, source-binding table, class occupancy vector, and control gap vector",
+    "domain": "54 finite contrast rows, mask-delta vectors, source class ids, pair members, and PEPS3D V/E/F/C support masks from the latest Phase 2 receipt",
+    "finite_map": "Y_contrast_mask_delta_quotient_K : (Y_certificate_boundary_contrast_K, contrast_rows, mask_delta, source_class_ids, PEPS3D V/E/F/C masks) -> finite mask-delta quotient classes + source-binding table + control gap vector",
+    "status": "admissible_candidate_not_run"
+  },
+  "selected_candidate_map_id": "Y_contrast_mask_delta_quotient_K",
+  "sidecar_receipts": [
+    {
+      "accepted_use": "candidate discovery audit accepted Y_contrast_mask_delta_quotient_K as bounded Phase 2 candidate",
+      "agent_id": "019e6431-cf60-7a92-ad14-8e0b482d849b",
+      "pool": "codex_native_explorer",
+      "selected_candidate": "Y_contrast_mask_delta_quotient_K",
+      "status": "completed"
+    }
+  ],
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After Y_certificate_boundary_contrast_K, the earned object is a finite table of 54 active-vs-F-boundary certificate contrast rows with source class ids, pair members, V/E/F/C masks, and mask-delta vectors. This is still finite carrier-frontier evidence only and is not topology, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, or physics."
+}

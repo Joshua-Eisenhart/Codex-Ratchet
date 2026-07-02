@@ -1,0 +1,200 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T02:38:00-07:00",
+  "scope": "phase2_post_AK_signature_balance_residue_fiber_stratification_K_candidate_map_discovery",
+  "classification": "formal_scout_controller_candidate",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "selected_candidate_map_id": "AL_stratum_support_cell_pair_source_incidence_K",
+  "current_state_assertion": {
+    "phase2_carrier_geometry": "real_bounded",
+    "frontier_row_count": 55,
+    "contract_complete_rows": 52,
+    "killed_rows": 3,
+    "active_transition_decision": "blocked",
+    "wizard_v4_2_status": "BLOCKED",
+    "latest_admitted_packet": "phase2_signature_balance_residue_fiber_stratification_packet",
+    "latest_admitted_map": "AK_signature_balance_residue_fiber_stratification_K"
+  },
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After AK_signature_balance_residue_fiber_stratification_K, the earned object includes 104 finite signature/balance/residue strata retaining 153 fibers, 135 source rows, 387 frontier pairs, 351 PEPS3D support-cell pair keys, 5 signature-pair keys, 6 balance-class pair keys, and 41 residue support patterns. This remains carrier-frontier incidence/projection geometry only.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "AL_stratum_support_cell_pair_source_incidence_K",
+      "candidate_name": "finite stratum/support-cell/source incidence localization",
+      "finite_map": "AL_stratum_support_cell_pair_source_incidence_K : (AK_signature_balance_residue_fiber_stratification_K, AJ_source_fiber_support_residue_incidence_K, q_AK) -> finite stratum x support-cell-pair x source/fiber/frontier incidence table + exact-retention control vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": "It ratchets directly from AK by localizing exact finite strata back onto explicit PEPS3D support-cell pair anchors while retaining source, fiber, frontier, signature, balance, and residue witnesses. The map is a finite incidence refinement with q_AK(row)=exact AK stratum; it is not a restore/inverse reconstruction because it does not claim to reconstruct the full previous carrier or close a topology.",
+      "geometry_it_would_earn_if_later_passed": "A bounded finite local incidence table showing how each admitted AK stratum is carried by exact PEPS3D support-cell pairs and source/fiber/frontier witnesses.",
+      "sidecar_support": "Codex-native read-only sidecar 019e64d2-fadf-7551-a537-3ce0a9197647 independently selected this candidate as the fresh post-AK map.",
+      "not_run_in_this_artifact": true
+    },
+    {
+      "candidate_id": "AL_signature_stratum_support_projection_K",
+      "candidate_name": "finite signature-stratum support projection",
+      "finite_map": "AL_signature_stratum_support_projection_K : (AK_signature_balance_residue_fiber_stratification_K, signature_pair_key, stratum_ids, fiber_ids, source_balance_row_ids, support_cell_pair_keys, frontier_pair_ids, balance_class_pair_keys, residue_delta_support_patterns) -> finite signature-stratum support projection table + exact-retention control vector",
+      "decision": "deferred_not_selected",
+      "why_deferred": "It is admissible as a finite projection, but it is less local than the support-cell/source incidence map and risks reading as signature-label grouping unless every row is anchored by support-cell pair witnesses."
+    },
+    {
+      "candidate_id": "AL_stratum_source_support_pullback_K",
+      "candidate_name": "stratum to source/support pullback without support-cell incidence rows",
+      "decision": "rejected_for_this_frontier",
+      "why_rejected": "A broad pullback over sources/supports is too close to a restore/inverse variant unless it is narrowed to explicit stratum x support-cell-pair x source/fiber/frontier incidence rows."
+    },
+    {
+      "candidate_id": "AL_none_vs_non_none_complement_K",
+      "candidate_name": "none-signature complement split",
+      "decision": "deferred_not_selected",
+      "why_deferred": "A none/non-none split is a finite set split, but it is more vulnerable to complement/topology wording. The narrower admissible move is support-cell-local incidence over exact AK strata."
+    },
+    {
+      "candidate_id": "AL_stratum_pair_intersection_K",
+      "candidate_name": "pairwise stratum intersection",
+      "decision": "rejected",
+      "why_rejected": "Pairwise stratum intersections are topology-adjacent and would pressure component/sheaf/overlap closure before finite support-cell incidence localization has been tested."
+    },
+    {
+      "candidate_id": "AL_signature_count_summary_K",
+      "candidate_name": "signature or support counts only",
+      "decision": "rejected",
+      "why_rejected": "Count-only summaries are controls, not fresh Phase 2 carrier-frontier maps. Any later map must retain exact stratum, support-cell, source, fiber, frontier, signature, balance, and residue witnesses."
+    },
+    {
+      "candidate_id": "AL_signature_orientation_or_chirality_K",
+      "candidate_name": "signature projection promoted to orientation or chirality",
+      "decision": "rejected",
+      "why_rejected": "Signature keys and side-swap controls are finite carrier evidence only. They do not admit orientation, chirality, Weyl sheets, or Hopf geometry."
+    },
+    {
+      "candidate_id": "AL_topology_or_closure_K",
+      "candidate_name": "component, topology, sheaf, homology, persistence, or PEPS3D closure over strata",
+      "decision": "rejected",
+      "why_rejected": "The active level allows finite carrier-frontier maps only. Topology, sheaf/homology/persistence, closure, bond convergence, full PEPS3D closure, and Phase 3/downstream consumers remain blocked."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "AL_stratum_support_cell_pair_source_incidence_K",
+    "finite_map": "AL_stratum_support_cell_pair_source_incidence_K : (AK_signature_balance_residue_fiber_stratification_K, AJ_source_fiber_support_residue_incidence_K, q_AK) -> finite stratum x support-cell-pair x source/fiber/frontier incidence table + exact-retention control vector",
+    "plain_question": "Do AK strata localize onto exact PEPS3D support-cell pair anchors with source/fiber/frontier witnesses retained, while erased-witness, count-only, scalar-label, restore/inverse, topology, fresh-N01, and downstream controls fail or remain blocked?",
+    "domain": {
+      "AK_signature_balance_residue_fiber_stratification_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_signature_balance_residue_fiber_stratification_probe_results.json",
+      "AJ_source_fiber_support_residue_incidence_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_source_fiber_support_residue_incidence_probe_results.json",
+      "q_AK": "finite assignment from each retained AJ source/fiber/support/frontier witness row to its exact AK signature/balance/residue stratum",
+      "strata": "104 finite exact signature/balance/residue strata",
+      "fiber_ids": "153 finite fibers retained by AK",
+      "source_balance_row_ids": "135 finite source rows retained by AK",
+      "support_cell_pair_keys": "351 finite PEPS3D support-cell pair keys retained by AK",
+      "frontier_pair_ids": "387 finite frontier pairs retained by AK",
+      "signature_pair_keys": "5 finite signature-pair keys retained by AK",
+      "balance_class_pair_keys": "6 finite balance-class pair keys retained by AK",
+      "residue_delta_support_patterns": "41 finite residue support patterns retained by AK",
+      "local_order_witness": "inherited Phase 2 order-sensitive carrier witness only; no fresh N01 operator is admitted"
+    },
+    "codomain_or_output": {
+      "stratum_support_cell_pair_source_incidence_table": "finite table of tuples (stratum_id, support_cell_pair_key, source_balance_row_id, fiber_id, frontier_pair_id, signature_pair_key, balance_class_pair_key, residue_delta_value)",
+      "support_localization_vector": "finite support counts over strata, support-cell pair keys, source rows, fibers, frontier pairs, signatures, balance classes, and residue values",
+      "control_gap_vector": "finite failure/collapse statuses for signature-erased, balance-erased, residue-erased, fiber-erased, source-erased, frontier-erased, support-cell-pair-erased, stratum-count-only, support-count-only, scalar-label, side-swap orientation/chirality, restore/inverse, fresh-N01/order-erased, dense-closure, topology/closure, and downstream controls"
+    },
+    "expected_live_counts_from_local_audit": {
+      "strata_count": 104,
+      "fiber_coverage": 153,
+      "source_row_coverage": 135,
+      "support_cell_pair_support": 351,
+      "frontier_pair_coverage": 387,
+      "signature_key_support": 5,
+      "balance_key_support": 6,
+      "residue_pattern_support": 41,
+      "source_aj_incidence_row_count": 459,
+      "source_aj_support_cell_pair_support": 351,
+      "source_aj_fiber_count": 153,
+      "source_aj_source_row_count": 135
+    },
+    "PEPS3D_carrier_anchor": "Every incidence row must retain an inherited PEPS3D support-cell pair key. A stratum id, signature key, source id, or count without support-cell anchors is a scalar-label control.",
+    "F01_witness": "The strata, support-cell pair keys, source rows, fibers, frontier pairs, signature keys, balance classes, residue values, controls, q_AK assignments, and outputs are finite and receipt-backed.",
+    "N01_order_witness": "No fresh N01 is claimed. The candidate must preserve the inherited Phase 2 order-sensitive carrier witness while order-erased and commuting-only controls remain collapsed.",
+    "geometry_if_later_earned": "finite stratum/support-cell/source incidence geometry over AK strata on PEPS3D carrier anchors",
+    "promotion_allowed": false,
+    "not_a_scout_run": true
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_signature_balance_residue_fiber_stratification_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_source_fiber_support_residue_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_source_row_fiber_pullback_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_shared_member_frontier_fiber_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_member_shared_balance_frontier_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_signature_cell_role_balance_residue_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_signature_anchor_role_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_overlap_signature_fiber_probe_results.json"
+  ],
+  "controls_required_if_later_run": {
+    "positive": [
+      "finite stratum x support-cell-pair x source/fiber/frontier incidence rows are produced",
+      "all 104 strata, 153 fibers, 135 source rows, 387 frontier pairs, and 351 PEPS3D support-cell pair keys remain covered",
+      "each incidence row retains exact stratum id, support-cell pair key, source-row id, fiber id, frontier-pair id, signature-pair key, balance-class pair key, and residue delta value"
+    ],
+    "negative": [
+      "signature-erased control must fail",
+      "balance-erased control must fail",
+      "residue-erased control must fail",
+      "fiber-erased control must fail",
+      "source-erased control must fail",
+      "frontier-pair-erased control must fail",
+      "support-cell-pair-erased control must fail",
+      "stratum-count-only, support-count-only, and scalar-label controls must fail"
+    ],
+    "boundary": [
+      "q_AK is a finite assignment only and not a restore/inverse reconstruction claim",
+      "boundary_source::boundary_source remains a finite signature key, not a physical boundary law",
+      "side-swap remains a blocked orientation/chirality control",
+      "no topology, sheaf, homology, persistence, all-subset minimality, or full PEPS3D closure is admitted"
+    ],
+    "order_erased": [
+      "order-erased local paths must not recover a fresh N01 witness",
+      "commuting-only variants remain controls"
+    ],
+    "downstream_leak": [
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, and axes 7-12 remain blocked"
+    ]
+  },
+  "failure_conditions": [
+    "Any incidence row lacks an explicit PEPS3D support-cell pair anchor.",
+    "The incidence localization cannot cover 104 strata, 153 fibers, 135 source rows, 387 frontier pairs, and 351 support-cell pairs.",
+    "The candidate can be replaced by stratum counts, support counts, cardinalities, or scalar labels.",
+    "The map promotes q_AK to restore/inverse reconstruction or requires connected components, homology, persistence, sheaf gluing, all-subset minimality, full PEPS3D closure, dense full-state closure, or dense environment closure.",
+    "Signature or side-swap labels are promoted to orientation/chirality.",
+    "Order-erased or commuting-only controls are treated as fresh N01 evidence.",
+    "The candidate opens Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12."
+  ],
+  "wizard_v4_2": {
+    "status": "BLOCKED",
+    "accepted_parent_count": 0,
+    "accepted_child_count": 0,
+    "attempted_codex_native_sidecars": 3,
+    "accepted_codex_native_sidecars": 1,
+    "accepted_sidecar_receipts": [
+      {
+        "agent_id": "019e64d2-fadf-7551-a537-3ce0a9197647",
+        "pool": "codex_native_read_only_sidecar",
+        "conclusion": "Selected AL_stratum_support_cell_pair_source_incidence_K as the fresh post-AK finite carrier-frontier candidate."
+      }
+    ],
+    "blocked_reason": "Full Wizard v4.2 remains blocked. One Codex-native post-AK sidecar completed and two additional sidecar launches hit the agent thread limit; direct Gemini/Grok provider lanes, if later used, remain API lanes and are not Wizard children."
+  },
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_AK_signature_balance_residue_fiber_stratification_active_frontier_blocker_20260526.json",
+  "next_admissible_step": "Only after this candidate artifact is audited: author one bounded formal_scout source for AL_stratum_support_cell_pair_source_incidence_K, then run/lint/validate it. Do not open Phase 3 or downstream geometry from this artifact."
+}

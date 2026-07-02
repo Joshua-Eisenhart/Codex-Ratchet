@@ -1,0 +1,231 @@
+{
+  "constraint_bands": {
+    "extended_constraints": [
+      "finite PEPS3D K=(V,E,F,C) carrier anchor from the first object step",
+      "torch-native spinor or spinor-derived density branch states",
+      "chirality/shell metadata preserved when used",
+      "QIT entropy/readouts derived from compressed field provenance"
+    ],
+    "root_constraints": [
+      "F01 finite carrier/probe/operator/path set",
+      "N01 noncommuting or order-sensitive operation/control"
+    ]
+  },
+  "exploration_contract": {
+    "fixation_breakers": [
+      "demote repeated Axis0/FEP/entropy/PEPS target to proxy unless all primary shell-field fields are preserved",
+      "if a worker suggests a scalar readout as the object, rerun with no_shell_orientation and scalar_entropy_only controls",
+      "each lateral lane must return to the shell field through preserved/lost/precondition/kill_control entries"
+    ],
+    "lateral_lane_types": [
+      "adapter",
+      "probe",
+      "analogy",
+      "proxy"
+    ],
+    "wildcard_lanes_min": 1
+  },
+  "lateral_mappings": [
+    {
+      "kill_control": "drop shell metadata and future_inward/past_outward orientation; any Axis0, gravity-model, or shell-field claim must fail or weaken",
+      "label": "PEPS3D spinor carrier",
+      "loses": [
+        "literal spherical shell meaning unless Sigma_r/event_x/r metadata remains attached",
+        "global possibility ontology unless Omega_r branches remain first-class"
+      ],
+      "preconditions": [
+        "K=(V,E,F,C) site/edge/face/cell anchors are explicit",
+        "shell_id and radius r are attached to carrier supports",
+        "adapter output cannot become the primary object"
+      ],
+      "primary_object_promotion_allowed": false,
+      "preserves": [
+        "finite nonclassical carrier",
+        "local boundary/cut supports",
+        "torch-native spinor or density branch states"
+      ],
+      "promotion_allowed": true,
+      "target": "finite PEPS3D/spinor carrier for shell branch states",
+      "use_type": "adapter"
+    },
+    {
+      "kill_control": "if entropy readout survives when Omega_r, shell orientation, and compression provenance are removed, it is only a scalar diagnostic",
+      "label": "QIT entropy family",
+      "loses": [
+        "future-continuation field if reported without Omega_r provenance",
+        "opening-vs-binding polarity if reduced to one scalar"
+      ],
+      "preconditions": [
+        "entropy is computed from rho_branch, rho_present, shell boundary state, path weights, or cut state with provenance",
+        "A0_raw remains vector-valued before any projection"
+      ],
+      "primary_object_promotion_allowed": false,
+      "preserves": [
+        "H_Omega",
+        "path entropy",
+        "shell/cut entropy",
+        "mutual/coherent/conditional information readouts"
+      ],
+      "promotion_allowed": true,
+      "target": "derived entropy and communication readouts",
+      "use_type": "probe"
+    },
+    {
+      "kill_control": "if FEP update exists without Omega_r future possibilities and compatibility compression, it cannot claim shell-field preservation",
+      "label": "QIT-FEP/Holodeck local mirror",
+      "loses": [
+        "literal shell possibility ontology",
+        "global possibility-syncing gravity-model role"
+      ],
+      "preconditions": [
+        "must be derived after the shell-field object exists",
+        "must name prediction/projection, evidence/boundary, posterior/survivor, and a kill condition"
+      ],
+      "primary_object_promotion_allowed": false,
+      "preserves": [
+        "projection then boundary-correction then survivor pattern"
+      ],
+      "promotion_allowed": false,
+      "target": "local mirror of the shell compression process",
+      "use_type": "analogy"
+    },
+    {
+      "kill_control": "if Axis0 scalar passes after shell direction is removed, it is not Axis0 alignment and cannot be promoted",
+      "label": "Axis0/Phi0 candidate",
+      "loses": [
+        "full shell field",
+        "Omega_r branch ensemble",
+        "compression map",
+        "outward past record"
+      ],
+      "preconditions": [
+        "Xi_shell or Xi_hist bridge preserves shell metadata into rho_AB",
+        "Phi0 is treated as a candidate projection of A0_raw, not assumed"
+      ],
+      "primary_object_promotion_allowed": false,
+      "preserves": [
+        "one opening-vs-binding polarity projection"
+      ],
+      "promotion_allowed": false,
+      "target": "downstream candidate polarity readout",
+      "use_type": "proxy"
+    }
+  ],
+  "loop_contract": {
+    "max_loops": 12,
+    "phases": [
+      "build",
+      "premortem",
+      "repair",
+      "selftest"
+    ],
+    "repair_rule": "repair the first object-preservation failure before adding new layer, Axis0, flux, FEP, or physics work",
+    "stop_condition": "all shell-field object errors pass and a continuation artifact names the next unrun variant, or a named primary object field is impossible/resource_blocked with receipt"
+  },
+  "primary_object_card": {
+    "adapter_policy": "PEPS3D, QIT entropy, FEP/Holodeck, Wolfram/ruliad, and Axis0 can be adapters/probes/analogies/proxies only if their preservation, loss, preconditions, and kill controls are explicit.",
+    "allowed_operations": [
+      "construct finite shell stack Sigma_r(x)",
+      "construct Omega_r future/refinement branches on each shell",
+      "compute compatibility weights over branches",
+      "compress weighted branches inward into rho_present",
+      "emit outward past record/provenance",
+      "derive QIT entropy/cut/path readouts from field provenance",
+      "run negative controls that remove shell direction, Omega_r, compatibility, PEPS3D anchor, or noncommuting order"
+    ],
+    "artifact_surface": "system_v5/ops/formal_scouts/ results and continuation artifacts for v4.3 shell-field formal scouts",
+    "blocked_downstream_consumers": [
+      "stacking closure",
+      "flux closure",
+      "Xi closure",
+      "Phi0 closure",
+      "Axis0 closure",
+      "Holodeck/FEP admission",
+      "physics/gravity proof",
+      "final manifold admission"
+    ],
+    "codomain_or_output": "rho_present, outward_record, field readout vector including H_Omega/path entropy/QIT cuts/order gap/A0_raw candidates, plus controls and blocked consumers",
+    "domain": "finite PEPS3D shell stack K=(V,E,F,C), event_x, shell radii r, Omega_r branch sets, noncommuting path/Kraus/operator families, branch spinor-density states, compatibility witnesses",
+    "first_class_fields": [
+      "event_x",
+      "shells",
+      "shell_radius_r",
+      "shell_orientation",
+      "future_continuations",
+      "branch_states",
+      "compatibility_weights",
+      "compression_map",
+      "present_survivor",
+      "outward_record"
+    ],
+    "forbidden_substitutions": [
+      "Axis0 scalar proxy",
+      "scalar entropy label",
+      "FEP analogy",
+      "PEPS3D carrier label",
+      "Wolfram/ruliad analogy",
+      "forward state evolution"
+    ],
+    "native_terms": {
+      "i scalar": "The shell radius/order parameter r, and only later a possible shell/cut functional G(rho_Br) that Axis0 must not forget.",
+      "jk fuzz": "The finite set Omega_r(x) of admissible future possibilities, refinements, histories, or continuations carried on shell Sigma_r(x).",
+      "outward past record": "The record trace/provenance/correlation residue emitted from the compressed survivor, moving outward from the present.",
+      "present survivor": "The present state produced by compatibility-weighting and compressing possible futures; it is not a single argmax branch.",
+      "shell": "Sigma_r(x), the finite spherical shell or shell-stratum at radius/order r around event or patch x."
+    },
+    "negative_controls": [
+      "no_shell_orientation",
+      "scrambled_Omega",
+      "single_future_argmax",
+      "forward_shadow_control",
+      "commuting_history_control",
+      "scalar_entropy_only",
+      "no_PEPS3D_anchor",
+      "dense_state_closure",
+      "FEP_without_kill_control",
+      "Axis0_proxy_promotion",
+      "result_missing_primary_object_fields"
+    ],
+    "object_name": "RetrocausalPossibilityField",
+    "object_statement": "A finite shell-indexed field of possible futures compresses inward through compatibility into a present survivor, while the past-facing outward record preserves what survived.",
+    "object_statement_sha256": "02f813d355b5812e1021eb023e5aca7c6006c00dcfc060cf94ff727b7cb8dd78",
+    "object_type": "retrocausal_possibility_field",
+    "plain_language_definition": "A finite field of literal shell-indexed possible futures around event_x. Future continuations on Sigma_r compress inward through compatibility weights into a present survivor, while the past-facing outward_record preserves what survived. Entropy, Axis0, FEP, PEPS3D, Wolfram-style multiway language, and QIT cuts are readouts, carriers, analogies, or proxies derived from this object, not replacements for it.",
+    "promotion_locks": [
+      "Axis0 cannot be primary",
+      "FEP cannot be primary",
+      "entropy scalar cannot be primary",
+      "PEPS3D label cannot be primary",
+      "Wolfram analogy cannot be primary",
+      "forward evolution cannot be primary"
+    ],
+    "required_invariants": [
+      "future continuations remain future-indexed",
+      "future flow has inward orientation",
+      "past record has outward orientation",
+      "compatibility witnesses precede survivor compression",
+      "survivor is derived from weighted futures",
+      "branch states rho_omega remain attached to Omega_r futures",
+      "readouts preserve provenance from Omega_r through compression"
+    ],
+    "source_anchors": [
+      {
+        "quote_or_summary": "Literal shells carry possible futures inward; past records move outward.",
+        "reference": "system_v5/docs/JOSHUA_EISENHART_AXIS0_PHYSICS_MODEL_CORE_20260526.md",
+        "surface": "repo_doc"
+      },
+      {
+        "quote_or_summary": "The sim order is future_continuation_field -> compatibility weights -> compression -> rho_present -> outward record -> derived readouts.",
+        "reference": "system_v5/docs/RETROCAUSAL_POSSIBILITY_FIELD_SIM_AND_WIZARD_METHOD_20260526.md",
+        "surface": "repo_doc"
+      }
+    ],
+    "weirdness_signature": [
+      "future possibilities are represented as first-class shell contents",
+      "future compression is inward while past record is outward",
+      "present survivor is derived from compatibility-weighted possible futures",
+      "entropy is a shell possibility/readout provenance pattern, not a lone scalar"
+    ]
+  },
+  "schema_version": "wizard_v4_3_primary_object_card_v1"
+}

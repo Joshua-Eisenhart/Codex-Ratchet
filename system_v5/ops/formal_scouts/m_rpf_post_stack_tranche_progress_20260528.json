@@ -1,0 +1,105 @@
+{
+  "artifact_id": "m_rpf_post_stack_tranche_progress_20260528",
+  "kind": "m_rpf_post_stack_tranche_progress",
+  "schema": "m_rpf_post_stack_tranche_progress_v1",
+  "updated_at": "2026-05-28T00:21:00Z",
+  "goal_path": "system_v5/ops/tmp/FORMAL_SIM_M_RPF_POST_STACK_LONG_RUNNING_GOAL_20260527.md",
+  "primary_object": "M_RPF(C)",
+  "object_order": [
+    "Omega_r future/refinement branches",
+    "compatibility weights",
+    "ordered adapters",
+    "compression map C",
+    "rho_present",
+    "outward_record",
+    "derived readouts"
+  ],
+  "packet_status": {
+    "packet_1_post_stack_stress": {
+      "status": "passes_local_rerun",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_post_stack_stress_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_post_stack_stress_probe_results.json",
+      "max_sites": 64,
+      "max_peps3d_bond": 4,
+      "object_order_preserved": true,
+      "monitor_status_after_repair": "active_preserved",
+      "blocked_consumers_remain_locked": true
+    },
+    "packet_2_variant_stress": {
+      "status": "passes_local_rerun",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_post_stack_variant_stress_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_post_stack_variant_stress_probe_results.json",
+      "variant_rows": 12,
+      "site_counts": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "shell_counts": [
+        2,
+        3,
+        4
+      ],
+      "max_peps3d_bond": 4,
+      "bond5_status": "blocked_not_admitted_by_row_local_receipts",
+      "object_order_preserved": true,
+      "blocked_consumers_remain_locked": true
+    },
+    "packet_3_adversarial_object_preservation_audit": {
+      "status": "passes_local_rerun",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_post_stack_adversarial_object_audit_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_post_stack_adversarial_object_audit_probe_results.json",
+      "proxy_count": 9,
+      "proxy_substitution_status": "all_rejected",
+      "repaired_packet_1_schema_gap": [
+        "future_continuations",
+        "branch_states",
+        "present_survivor"
+      ],
+      "object_order_preserved": true,
+      "blocked_consumers_remain_locked": true
+    },
+    "packet_4_minimality_order_necessity": {
+      "status": "passes_local_rerun",
+      "source_path": "system_v5/ops/formal_scouts/sim_m_rpf_post_stack_minimality_order_necessity_probe.py",
+      "result_path": "system_v5/ops/formal_scouts/results/m_rpf_post_stack_minimality_order_necessity_probe_results.json",
+      "required_parts": 14,
+      "all_parts_load_bearing": true,
+      "repair_issues": [],
+      "blocked_consumers_remain_locked": true
+    },
+    "packet_5_continuation_selector": {
+      "status": "written",
+      "artifact_path": "system_v5/ops/formal_scouts/m_rpf_post_stack_continuation_selector_20260528.json",
+      "decision": "continue_with_next_bounded_map",
+      "next_bounded_map": "M_RPF_post_stack_bond5_admission_micro_probe",
+      "blocked_consumers_remain_locked": true
+    }
+  },
+  "latest_validation": {
+    "packet_1_lint": "pass_exit_0_violation_total_0",
+    "packet_1_validate_formal_result": "pass_all_pass_true",
+    "packet_2_lint": "pass_exit_0_violation_total_0",
+    "packet_2_validate_formal_result": "pass_all_pass_true",
+    "packet_3_lint": "pass_exit_0_violation_total_0",
+    "packet_3_validate_formal_result": "pass_all_pass_true",
+    "packet_4_lint": "pass_exit_0_violation_total_0",
+    "packet_4_validate_formal_result": "pass_all_pass_true",
+    "object_packet_validate": "pass_ok_true",
+    "monitor": "pass_active_preserved"
+  },
+  "next_packet": "M_RPF_post_stack_bond5_admission_micro_probe",
+  "tranche_completion_status": "packets_1_to_5_complete_with_receipts_or_selector",
+  "downstream_consumers_locked": [
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics/gravity proof",
+    "IGT/game theory",
+    "axes7-12",
+    "final manifold admission"
+  ],
+  "not_terminal": true
+}

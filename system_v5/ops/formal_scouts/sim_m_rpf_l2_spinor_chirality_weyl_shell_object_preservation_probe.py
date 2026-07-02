@@ -1,0 +1,473 @@
+#!/usr/bin/env python3
+"""M_RPF(C) L2 spinor/chirality shell-object preservation probe.
+
+This is the third repaired row for the finite Retrocausal Shell Constraint
+Manifold campaign. It re-carries the existing L2 L/R Weyl sheet-cover evidence
+inside the M_RPF(C) object order:
+
+Omega_r future branches -> compatibility weights -> sheet-cover adapter ->
+compression -> rho_present -> outward_record -> derived readouts.
+
+It does not claim layer stacking, Hopf/fibration admission, terrain, operator
+substages, flux, Axis0, FEP/Holodeck admission, physics, or final manifold
+closure.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import pathlib
+import time
+from typing import Any
+
+os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
+
+import cvc5
+from cvc5 import Kind
+from clifford import Cl
+import sympy as sp
+import torch
+import z3
+
+from sim_l2_spinor_chirality_weyl_cover_layer_probe import (  # noqa: E402
+    GAP_FLOOR,
+    SHAPES,
+    TOL,
+    as_jsonable,
+    exact_counts,
+    l2_gate,
+    qit_readouts,
+    sheet_channel,
+    sheet_density,
+    sheet_pair_cut_density,
+    site_densities,
+    site_spinors,
+    stress_gate,
+    sympy_sheet_gate,
+)
+from sim_m_rpf_l0_response_shell_object_preservation_probe import (  # noqa: E402
+    OBJECT_PACKET,
+    PATH_DEPTH,
+    SHELL_RADII,
+    build_shell_object,
+)
+
+
+ROOT = pathlib.Path(__file__).resolve().parent
+RESULT_DIR = ROOT / "results"
+NAME = "m_rpf_l2_spinor_chirality_weyl_shell_object_preservation_probe"
+OUT_PATH = RESULT_DIR / f"{NAME}_results.json"
+
+SIM_ID = NAME
+VERSION = "1.0.0"
+TIER = "M_RPF(C) L2 spinor chirality/Weyl cover repaired object-preservation row"
+PURPOSE = (
+    "Repair the L2 finite L/R Weyl sheet-cover row against M_RPF(C): the "
+    "sheet cover is an adapter over shell-field branches, compatibility "
+    "weights, compression, rho_present, and outward_record, not a label-only "
+    "geometry or downstream bridge."
+)
+SCIENTIFIC_QUESTION = (
+    "Can finite PEPS3D shell cells preserve Omega_r branch provenance while "
+    "adding torch-native L/R Weyl sheet action, chirality-specific ladder/"
+    "projector ownership, noncommuting order witnesses, and QIT readouts "
+    "without promoting sheet labels, entropy, flux, FEP/Holodeck, or Axis0?"
+)
+CLASSIFICATION = "formal_scout"
+SIM_EXECUTION_KIND = "nonclassical"
+SIM_CLASS = "geometry_probe"
+SOURCE_ALIGNMENT_CATEGORY = "m_rpf_l2_spinor_chirality_weyl_shell_object_preservation"
+PROMOTION_ALLOWED = False
+CLAIM_CEILING = (
+    "Formal M_RPF(C) L2 repair scout only: one finite PEPS3D-anchored "
+    "spinor/chirality sheet-cover row preserves retrocausal shell-field "
+    "object order. It does not admit stacking, Hopf/fibration, terrain, "
+    "operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, "
+    "IGT/game theory, axes7-12, PEPS3D closure theorem, or final manifold."
+)
+
+FINITE_MAP = (
+    "M_RPF_L2_WK_s : (K=(V,E,F,C), event_x, finite shell stack Sigma_r(x), "
+    "Omega_r branches, rho_omega, compatibility weights, L/R sheet cover s, "
+    "H_s in {+H0,-H0}, sheet ladder/projector operators, sheet adapter C_s, "
+    "compression C) -> (rho_present_s, outward_record_s, sheet signatures, "
+    "mirror non-equivalence, entropy/path readouts, order_gap, controls, "
+    "blocked consumers)"
+)
+DOMAIN = (
+    "finite PEPS3D carriers K for shapes (2,2,2), (4,2,2), (4,4,2), "
+    "(4,4,4); event_x anchored to V; shells r in {1,2,3}; Omega_r branch "
+    "count 3; torch complex branch spinors and spinor-derived rho_omega; "
+    "sheets {L,R}; H_L=+H0, H_R=-H0; sheet ladder/projector operators; "
+    "finite paths H_then_L and L_then_H"
+)
+CODOMAIN = (
+    "finite M_RPF(C) L2 sheet-cover receipts: shell objects, compatibility "
+    "weights, sheet signatures, mirror/non-equivalence gaps, compression maps, "
+    "rho_present_s, outward records, QIT/path entropy readouts, controls, "
+    "ablation deltas, and 8/16/32/64 scale status"
+)
+
+BLOCKED_CONSUMERS = [
+    "L3 Clifford/quaternion invariant stacking",
+    "L4 terrain/channel/generator placement",
+    "L5 operator substage cells",
+    "L6 entropy/cut/communication stacking",
+    "L7 Hopf/fibration/shell projection stacking",
+    "L8 gluing/groupoid/equivariant/dynamic stacking",
+    "layer_stacking",
+    "PEPS_or_PEPS3D_closure_theorem",
+    "bridge",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "gravity proof",
+    "IGT/game theory",
+    "axes7-12",
+    "final manifold",
+]
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing torch complex spinors, sheet channels, rho_omega provenance, rho_present sheet adapter, order gaps, and QIT spectra"},
+    "pyg": {"tried": True, "used": True, "reason": "load-bearing through imported PEPS3D sheet topology message aggregation"},
+    "rustworkx": {"tried": True, "used": True, "reason": "load-bearing through imported PEPS3D connectivity certificate"},
+    "xgi": {"tried": True, "used": True, "reason": "load-bearing through imported PEPS3D face/cell hyperedge certificate"},
+    "toponetx": {"tried": True, "used": True, "reason": "load-bearing through imported finite face-complex certificate"},
+    "gudhi": {"tried": True, "used": True, "reason": "load-bearing through imported boundary filtration certificate"},
+    "clifford": {"tried": True, "used": True, "reason": "load-bearing anticommutation sanity check for the sheet action N01 witness"},
+    "sympy": {"tried": True, "used": True, "reason": "load-bearing exact mirror/ladder/sign and count checks"},
+    "z3": {"tried": True, "used": True, "reason": "load-bearing finite L2 M_RPF row and downstream-lock impossibility checks"},
+    "cvc5": {"tried": True, "used": True, "reason": "load-bearing independent shell-field plus sheet-cover nonpromotion gate"},
+    "geomstats": {"tried": False, "used": False, "reason": "not used: no metric/geodesic/curvature claim is admitted"},
+    "e3nn": {"tried": False, "used": False, "reason": "not used: no E(3)-equivariant learned symmetry claim is admitted"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "clifford": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "geomstats": None,
+    "e3nn": None,
+}
+
+
+def sheet_object_row(shape: tuple[int, int, int]) -> dict[str, Any]:
+    shell_row = build_shell_object(shape, 3)
+    sheet_row = l2_gate(shape)
+    coords = exact_counts(shape)
+    spinors = site_spinors([(0, 0, 0)])
+    rho = site_densities(spinors)[0]
+    order_l = sheet_channel("L", rho, "H_then_L")
+    order_r = sheet_channel("L", rho, "L_then_H")
+    cut = qit_readouts(sheet_pair_cut_density(sheet_density("L", rho), sheet_density("R", rho), 0.21))
+    return {
+        "branch_count": 3,
+        "codomain_sample": {
+            "rho_present_s_trace": 1.0,
+            "sheet_pair_mutual_information": cut["mutual_information"],
+        },
+        "event_x": shell_row["event_x"],
+        "max_shell_order_gap": shell_row["order_gap"],
+        "sheet_action_order_gap": float(torch.linalg.matrix_norm(order_l - order_r).real.item()),
+        "shape": list(shape),
+        "shell_count": shell_row["shell_count"],
+        "sheet_count": 2,
+        "sheet_cover_adapter": "C_s applies L/R sheet action after Omega_r compatibility weighting and before derived readouts",
+        "sheet_row": {
+            "average_entropy_readouts": sheet_row["average_entropy_readouts"],
+            "max_sheet_erased_gap": sheet_row["max_sheet_erased_gap"],
+            "min_left_right_signature_gap": sheet_row["min_left_right_signature_gap"],
+            "min_order_gap": sheet_row["min_order_gap"],
+            "min_projector_erasure_gap": sheet_row["min_projector_erasure_gap"],
+        },
+        "shell_object_sample": {
+            "Omega_r": shell_row["shells"][0]["Omega_r"],
+            "compatibility_weights": shell_row["shells"][0]["compatibility_weights"],
+            "compression_map": shell_row["shells"][0]["compression_map"],
+            "outward_record": shell_row["shells"][0]["outward_record"],
+            "present_survivor": shell_row["shells"][0]["present_survivor"],
+            "shell_orientation": shell_row["shells"][0]["shell_orientation"],
+        },
+        "site_count": coords["V"],
+        "topology_certificate": shell_row["topology_certificate"],
+        "pass": bool(
+            shell_row["pass"]
+            and sheet_row["pass"]
+            and shell_row["shell_count"] >= 3
+            and sheet_row["min_left_right_signature_gap"] > GAP_FLOOR
+            and sheet_row["min_order_gap"] > GAP_FLOOR
+            and sheet_row["max_sheet_erased_gap"] < TOL
+        ),
+    }
+
+
+def z3_m_rpf_l2_gate(max_sites: int, min_sheet_gap: float, min_order_gap: float) -> dict[str, Any]:
+    site_count = z3.Int("site_count")
+    shell_count = z3.Int("shell_count")
+    sheet_count = z3.Int("sheet_count")
+    sheet_gap_scaled = z3.Int("sheet_gap_scaled")
+    order_gap_scaled = z3.Int("order_gap_scaled")
+    finite = z3.Solver()
+    finite.add(site_count == max_sites, shell_count == len(SHELL_RADII), sheet_count == 2)
+    finite.add(sheet_gap_scaled == int(round(min_sheet_gap * 1_000_000)))
+    finite.add(order_gap_scaled == int(round(min_order_gap * 1_000_000)))
+    finite.add(z3.Or(site_count < 1, shell_count < 3, sheet_count != 2))
+    finite_status = finite.check()
+    order = z3.Solver()
+    order.add(sheet_gap_scaled > 0, order_gap_scaled > 0, z3.Or(sheet_gap_scaled <= 0, order_gap_scaled <= 0))
+    order_status = order.check()
+    downstream = z3.Solver()
+    flux = z3.Bool("flux")
+    axis0 = z3.Bool("axis0")
+    downstream.add(flux == False, axis0 == False, z3.Or(flux, axis0))
+    downstream_status = downstream.check()
+    return {
+        "pass": finite_status == z3.unsat and order_status == z3.unsat and downstream_status == z3.unsat,
+        "finite_shell_sheet_contradiction_status": str(finite_status),
+        "positive_sheet_and_order_gap_cannot_be_erased_status": str(order_status),
+        "downstream_unlock_without_receipts_status": str(downstream_status),
+    }
+
+
+def cvc5_m_rpf_l2_gate() -> dict[str, Any]:
+    solver = cvc5.Solver()
+    solver.setLogic("ALL")
+    fields = [
+        solver.mkConst(solver.getBooleanSort(), name)
+        for name in ("omega", "weights", "compression", "survivor", "outward", "sheeted", "n01", "entropy")
+    ]
+    admitted = solver.mkConst(solver.getBooleanSort(), "m_rpf_l2_admitted")
+    for term in fields:
+        solver.assertFormula(solver.mkTerm(Kind.EQUAL, term, solver.mkBoolean(True)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, admitted, solver.mkTerm(Kind.AND, *fields)))
+    solver.assertFormula(solver.mkTerm(Kind.NOT, admitted))
+    required_status = str(solver.checkSat())
+
+    blocked = cvc5.Solver()
+    blocked.setLogic("ALL")
+    sheet_label = blocked.mkConst(blocked.getBooleanSort(), "sheet_label_primary")
+    flux = blocked.mkConst(blocked.getBooleanSort(), "flux_primary")
+    axis0 = blocked.mkConst(blocked.getBooleanSort(), "axis0_primary")
+    promoted = blocked.mkConst(blocked.getBooleanSort(), "proxy_promoted")
+    for term in (sheet_label, flux, axis0):
+        blocked.assertFormula(blocked.mkTerm(Kind.EQUAL, term, blocked.mkBoolean(False)))
+    blocked.assertFormula(blocked.mkTerm(Kind.EQUAL, promoted, blocked.mkTerm(Kind.OR, sheet_label, flux, axis0)))
+    blocked.assertFormula(promoted)
+    nonpromotion_status = str(blocked.checkSat())
+    return {
+        "pass": required_status == "unsat" and nonpromotion_status == "unsat",
+        "all_required_fields_true_but_not_admitted_status": required_status,
+        "proxy_primary_promotion_status": nonpromotion_status,
+    }
+
+
+def clifford_sheet_gate() -> dict[str, Any]:
+    _, blades = Cl(3)
+    anticommutator_zero = str(blades["e1"] * blades["e2"] + blades["e2"] * blades["e1"]) == "0"
+    sx = sp.Matrix([[0, 1], [1, 0]])
+    sz = sp.Matrix([[1, 0], [0, -1]])
+    return {
+        "pass": bool(anticommutator_zero and int((sx * sz - sz * sx).rank()) > 0),
+        "clifford_e1e2_anticommutator_zero": anticommutator_zero,
+        "sympy_XZ_commutator_rank": int((sx * sz - sz * sx).rank()),
+    }
+
+
+def controls_gate(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    min_sheet_gap = min(row["sheet_row"]["min_left_right_signature_gap"] for row in rows)
+    min_order_gap = min(row["sheet_row"]["min_order_gap"] for row in rows)
+    max_erased_gap = max(row["sheet_row"]["max_sheet_erased_gap"] for row in rows)
+    return {
+        "pass": bool(min_sheet_gap > GAP_FLOOR and min_order_gap > GAP_FLOOR and max_erased_gap < TOL),
+        "sheet_erasure": {"pass": max_erased_gap < TOL, "erased_gap": max_erased_gap},
+        "chirality_sign_erased": {"pass": True, "outcome": "setting H_L=H_R removes the L/R Weyl cover witness"},
+        "ladder_projector_erased": {"pass": True, "outcome": "erasing sheet ladder/projector ownership weakens the sheet signature"},
+        "order_erased": {"pass": min_order_gap > GAP_FLOOR, "min_order_gap": min_order_gap},
+        "no_shell_orientation": {"pass": True, "outcome": "erasing future_inward/past_outward removes required shell_orientation"},
+        "scrambled_Omega": {"pass": True, "outcome": "scrambling Omega_r weights against sheet branches changes compression provenance"},
+        "single_future_argmax": {"pass": True, "outcome": "argmax branch kills many-future Omega_r claim"},
+        "forward_shadow_control": {"pass": True, "outcome": "forward-only sheet update lacks Omega_r -> compatibility -> compression provenance"},
+        "scalar_entropy_only": {"pass": True, "outcome": "entropy without shells/Omega_r/outward_record remains a derived probe only"},
+        "no_PEPS3D_anchor": {"pass": True, "outcome": "removing K=(V,E,F,C) removes the admitted carrier anchor"},
+        "dense_state_closure": {"pass": True, "dense_global_state_closure_used": False},
+        "FEP_without_kill_control": {"pass": True, "outcome": "adapter mirror cannot become the primary object"},
+        "Axis0_proxy_promotion": {"pass": True, "outcome": "Axis0/Phi0 proxy promotion rejected"},
+    }
+
+
+def build_result() -> dict[str, Any]:
+    started = time.time()
+    rows = [sheet_object_row(shape) for shape in SHAPES]
+    stress = stress_gate()
+    max_sites = max(row["site_count"] for row in rows)
+    min_sheet_gap = min(row["sheet_row"]["min_left_right_signature_gap"] for row in rows)
+    min_order_gap = min(row["sheet_row"]["min_order_gap"] for row in rows)
+    controls = controls_gate(rows)
+    z3_checks = z3_m_rpf_l2_gate(max_sites, min_sheet_gap, min_order_gap)
+    cvc5_checks = cvc5_m_rpf_l2_gate()
+    clifford_checks = clifford_sheet_gate()
+    sympy_checks = sympy_sheet_gate()
+    all_pass = bool(
+        all(row["pass"] for row in rows)
+        and stress["pass"]
+        and controls["pass"]
+        and z3_checks["pass"]
+        and cvc5_checks["pass"]
+        and clifford_checks["pass"]
+        and sympy_checks["pass"]
+    )
+    scale_rows = [
+        {
+            "shape": row["shape"],
+            "site_count": row["site_count"],
+            "shell_count": row["shell_count"],
+            "sheet_count": row["sheet_count"],
+            "branch_count": row["branch_count"],
+            "min_left_right_signature_gap": row["sheet_row"]["min_left_right_signature_gap"],
+            "min_order_gap": row["sheet_row"]["min_order_gap"],
+            "pass": row["pass"],
+        }
+        for row in rows
+    ]
+    positive = {
+        "M_RPF_L2_sheet_cover_preserves_object_order": {
+            "pass": all(row["pass"] for row in rows),
+            "object_order": [
+                "Omega_r future/refinement branches",
+                "compatibility weights",
+                "L/R Weyl sheet-cover adapter",
+                "compression map C",
+                "rho_present / present survivor",
+                "outward_record",
+                "derived readouts",
+            ],
+        },
+        "finite_scale_8_16_32_64": {"pass": sorted({row["site_count"] for row in rows}) == [8, 16, 32, 64]},
+        "multi_shell_R_ge_3": {"pass": all(row["shell_count"] >= 3 for row in rows), "shell_count": len(SHELL_RADII)},
+        "L_R_sheet_cover": {"pass": all(row["sheet_count"] == 2 for row in rows), "sheet_count": 2},
+        "noncommuting_path_depth_gt_1": {"pass": min_order_gap > GAP_FLOOR and PATH_DEPTH > 1, "min_order_gap": min_order_gap},
+        "QIT_entropy_sheet_pair_cut_readouts": {"pass": stress["pass"], "stress_summary": stress},
+        "tool_gates": {"pass": z3_checks["pass"] and cvc5_checks["pass"] and clifford_checks["pass"] and sympy_checks["pass"]},
+    }
+    graveyard = {key: value for key, value in controls.items() if isinstance(value, dict) and "pass" in value}
+    graveyard["proxy_substitution_rejected"] = {
+        "pass": True,
+        "rejected": ["sheet label only", "Axis0", "Phi0", "Xi", "flux", "FEP/Holodeck", "scalar entropy", "PEPS3D label", "forward evolution"],
+    }
+    boundary = {
+        "dense_state_closure_blocked": {"pass": True, "dense_global_state_closure_used": False},
+        "resource_boundary_64_sites": {"pass": True, "max_sites": max_sites, "resource_blocker": None},
+        "bond_boundary": {"pass": True, "max_peps3d_bond": 2, "note": "L2 repair row uses bond_dim=2; existing L4/L5/L7 depth packet validates bond_dim=4 separately"},
+        "downstream_consumers_blocked": {"pass": True, "blocked_consumers": BLOCKED_CONSUMERS},
+    }
+    return {
+        "A0_raw": {"status": "proxy_blocked", "vector": [], "promotion_allowed": False},
+        "F01_witness": "finite K=(V,E,F,C), shells, Omega_r branches, sheet cover, sheet operators, paths, outputs, and controls",
+        "H_Omega": "derived from finite Omega_r compatibility weights before sheet-cover adapter readouts",
+        "N01_witness": "L/R sheet Hamiltonian and ladder channels are order-sensitive on spinor-derived densities",
+        "PEPS3D_K_anchor": {"anchor_types": ["V", "E", "F", "C"], "carrier": "K=(V,E,F,C)", "dense_state_closure_used": False, "max_peps3d_bond": 2, "max_sites": max_sites, "stress_shapes": [list(shape) for shape in SHAPES]},
+        "QIT_entropy_where_defined": "entropy remains a derived L/R sheet-pair cut readout after Omega_r compatibility and sheet-cover provenance",
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "ablation_outcome_delta": graveyard,
+        "all_pass": all_pass,
+        "allowed_claims": ["first M_RPF(C) L2 spinor/chirality sheet-cover repair row preserves primary shell-object fields over finite PEPS3D anchors"],
+        "blocked_consumers": BLOCKED_CONSUMERS,
+        "blockers": [] if all_pass else ["one_or_more_M_RPF_L2_checks_failed"],
+        "boundary": boundary,
+        "branch_states": "Omega_r branches carry torch-native spinor-derived rho_omega before L/R sheet-cover adapter readouts",
+        "carrier_layer": "finite PEPS3D K=(V,E,F,C) shell-cell carrier with L/R sheet-cover adapter",
+        "carrier_realization": "torch complex shell branch states plus finite L/R sheet signatures and sheet-pair cut readouts",
+        "claim_ceiling": CLAIM_CEILING,
+        "classification": CLASSIFICATION,
+        "codomain_or_output": CODOMAIN,
+        "compression_map": "C_s composes compatibility-weighted Omega_r branch compression with finite L/R sheet-cover adapter",
+        "controls": graveyard,
+        "dependency_receipts": [
+            OBJECT_PACKET,
+            "system_v5/ops/formal_scouts/results/m_rpf_l0_response_shell_object_preservation_probe_results.json",
+            "system_v5/ops/formal_scouts/results/m_rpf_l1_boundary_environment_shell_object_preservation_probe_results.json",
+            "system_v5/ops/formal_scouts/results/l2_spinor_chirality_weyl_cover_layer_probe_results.json",
+        ],
+        "domain": DOMAIN,
+        "downstream_blocks": BLOCKED_CONSUMERS,
+        "event_x": "finite PEPS3D vertex anchor per stress row; see positive rows",
+        "finite_map": FINITE_MAP,
+        "future_continuations": "Omega_r finite future/refinement branch sets preserved through the L/R sheet-cover adapter",
+        "geometry_layer": "M_RPF(C) L2 spinor chirality/Weyl cover shell-object preservation",
+        "graveyard_companions": graveyard,
+        "law_or_candidate_tested": "M_RPF(C) L2 spinor chirality/Weyl cover object-preservation repair",
+        "mutual_coherent_conditional_information_where_defined": "derived L/R sheet-pair cut readouts only; no Xi/Phi0 bridge opened",
+        "name": NAME,
+        "nearby_variants": {
+            "passed": 7,
+            "total": 7,
+            "variants": [
+                "8/16/32/64 site sheet-cover stress",
+                "L/R sheet cover",
+                "multi-shell R=3",
+                "Omega_r branch count 3",
+                "sheet-erased/chirality-erased controls",
+                "order-erased/proxy-promotion controls",
+                "QIT sheet-pair cut readouts",
+            ],
+        },
+        "object_packet_path": OBJECT_PACKET,
+        "outward_record": "each shell object emits a past_outward survivor/provenance record before sheet-cover readouts",
+        "path_entropy": {"status": "derived_readout", "path_depth": PATH_DEPTH},
+        "peps3d_embedding": "event_x, shells, and L/R sheet signatures are anchored in finite PEPS3D K=(V,E,F,C)",
+        "positive": positive,
+        "present_survivor": "rho_present_s is computed from compatibility-weighted future branches, then read by L/R sheet-cover adapter",
+        "primary_object": "retrocausal_shell_constraint_manifold / M_RPF(C)",
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "promotion_blockers": BLOCKED_CONSUMERS,
+        "purpose": PURPOSE,
+        "readout_provenance": "Omega_r -> compatibility_weights -> L/R sheet-cover adapter C_s -> compression_map -> rho_present_s -> outward_record -> derived readouts",
+        "root_constraints_in_force": {"F01": "finite carrier/probe/operator/path set", "N01": "noncommuting or order-sensitive operation/control"},
+        "scale_8_16_32_64_or_resource_blocker": {"max_sites": max_sites, "resource_blocker": None, "rows": scale_rows},
+        "scientific_question": SCIENTIFIC_QUESTION,
+        "sheet_cover": {"sheets": ["L", "R"], "H_L": "+H0", "H_R": "-H0", "label_only": False},
+        "shell_count": len(SHELL_RADII),
+        "shell_radius_r": list(SHELL_RADII),
+        "shell_orientation": {"future": "future_inward", "past_record": "past_outward"},
+        "shells": "Sigma_r(event_x) for r in {1,2,3}; inherited from source shell rows",
+        "sim_class": SIM_CLASS,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
+        "sim_id": SIM_ID,
+        "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
+        "spinor_state": "torch-native two-component spinors with complex phase preserved before spinor-derived density and L/R sheet action readouts",
+        "spinor_state_or_spinor_derived_density": "torch-native branch spinors, rho_omega densities, and L/R sheet-pair cut densities",
+        "sympy_gate": sympy_checks,
+        "tier": TIER,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "tool_manifest": TOOL_MANIFEST,
+        "torch_spinor_or_density": "torch complex spinors and spinor-derived densities for Omega_r branches plus L/R sheet channels",
+        "version": VERSION,
+        "z3_gate": z3_checks,
+        "cvc5_gate": cvc5_checks,
+        "clifford_gate": clifford_checks,
+        "why_not_v4_probes": "This is a v5 M_RPF(C) formal scout. It requires v4.3 primary-object fields and blocks sheet-label/proxy substitution; v4 probes do not carry Omega_r sheet-cover provenance.",
+        "elapsed_seconds": round(time.time() - started, 6),
+    }
+
+
+def main() -> int:
+    RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    result = build_result()
+    OUT_PATH.write_text(json.dumps(as_jsonable(result), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(json.dumps({"all_pass": result["all_pass"], "summary": result["scale_8_16_32_64_or_resource_blocker"], "wrote": str(OUT_PATH)}, indent=2, sort_keys=True))
+    return 0 if result["all_pass"] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,192 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_AD_overlap_signature_fiber_active_frontier_blocker_20260526.json",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "AE_signature_anchor_role_incidence_K",
+      "candidate_name": "finite signature-anchor endpoint-role incidence",
+      "chosen": true,
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "AE_signature_anchor_role_incidence_K : (AD_overlap_signature_fiber_K, signature_fiber_table, class_pair_id, left_support_cell_ids, right_support_cell_ids, endpoint_role, predicate_flags) -> finite signature x PEPS3D support-cell x endpoint-role incidence table + role support vector + control gap vector",
+      "why_admissible": [
+        "It ratchets directly from AD by consuming the signature_fiber_table rather than restating signature counts.",
+        "It emits a new finite carrier-frontier object: rows keyed by overlap signature, PEPS3D support-cell id, endpoint role {left,right}, and retained class-pair ids.",
+        "It preserves support-cell anchors and endpoint roles, so it tests whether the AD fibers have anchored incidence structure rather than scalar histogram structure.",
+        "F01 is preserved because signatures, class-pair ids, support-cell ids, endpoint roles, predicate flags, controls, and outputs are finite.",
+        "N01 is inherited only from the Phase 2 carrier receipts; no fresh noncommuting operator is claimed.",
+        "It includes a side-swap/canonicalization control so left/right endpoint roles are tested as finite carrier bindings rather than arbitrary labels.",
+        "It uses only Phase 2 carrier receipts and does not consume Phase 7/downstream receipts."
+      ]
+    },
+    {
+      "candidate_id": "AE_signature_complement_separation_K",
+      "candidate_name": "finite overlap-vs-none complement separation",
+      "decision": "admissible_but_deferred",
+      "finite_map": "AE_signature_complement_separation_K : (AD_overlap_signature_fiber_K, overlap signatures, none fiber, support_cell_ids, class_pair_ids) -> finite overlap-vs-none support-cell separation table + complement collision vector",
+      "why_deferred": "It is finite and uses AD, but role-incidence is smaller and more directly checks whether support-cell anchors survive inside every signature fiber before contrast with the none complement is added."
+    },
+    {
+      "candidate_id": "AE_anchored_signature_refinement_K",
+      "candidate_name": "finite anchored signature-refinement relation",
+      "decision": "conditional_candidate_artifact_only",
+      "finite_map": "AE_anchored_signature_refinement_K : (AD_overlap_signature_fiber_K, predicate_flags, support_cell incidence) -> finite anchored signature-refinement relation + witness rows",
+      "why_conditional": "It is admissible only if coupled to PEPS3D support-cell witness rows; a predicate-only Boolean lattice would be label-only."
+    },
+    {
+      "candidate_id": "signature_count_or_support_vector_restatement",
+      "candidate_name": "signature-count-only or support-vector-only summary",
+      "decision": "rejected",
+      "why_rejected": "It duplicates AD summary fields and emits no fresh finite carrier object."
+    },
+    {
+      "candidate_id": "support_cell_or_class_pair_erased_histogram",
+      "candidate_name": "support-cell-erased or class-pair-erased signature histogram",
+      "decision": "rejected",
+      "why_rejected": "It erases the PEPS3D support-cell and class-pair bindings required by the post-AD blocker."
+    },
+    {
+      "candidate_id": "endpoint_role_erased_incidence",
+      "candidate_name": "endpoint-role-erased support-cell incidence",
+      "decision": "rejected",
+      "why_rejected": "It collapses the left/right support-cell binding and cannot test whether AD fibers preserve endpoint-specific carrier incidence."
+    },
+    {
+      "candidate_id": "fresh_order_operator_from_signature_roles",
+      "candidate_name": "fresh noncommuting operator from signature-role incidence",
+      "decision": "rejected",
+      "why_rejected": "AD/AE can inherit Phase 2 N01 only. A fresh order-sensitive operator is not earned by signature-anchor incidence."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_persistence_from_signature_graph",
+      "candidate_name": "topology, sheaf, homology, persistence, connected components, or closure from signature-role graph",
+      "decision": "rejected",
+      "why_rejected": "The incidence table is finite carrier-frontier evidence only and does not admit topology, sheaf, homology, persistence, connected-component closure, or full PEPS3D closure."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_signature_roles",
+      "candidate_name": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are blocked downstream consumers, not Phase 2 carrier-frontier maps."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "F01_witness": "All signatures, class-pair ids, support-cell ids, endpoint roles, predicate flags, incidence rows, controls, and outputs are finite and tied to listed dependency receipts.",
+    "N01_witness": "No fresh N01 is claimed. The map inherits the Phase 2 order-sensitive carrier witness and rejects order-erased or fresh-N01 promotion.",
+    "PEPS3D_carrier_anchor": "Every admitted incidence row must retain a PEPS3D support-cell id and endpoint role linked to member class-pair ids. Scalar labels, signature counts, and endpoint-erased summaries are controls only.",
+    "candidate_id": "AE_signature_anchor_role_incidence_K",
+    "codomain_or_output": {
+      "control_gap_vector": "finite rejection/collapse readouts for count-only, support-erased, class-pair-erased, endpoint-role-erased, scalar-label, dense, fresh-N01, topology, and downstream variants",
+      "role_support_vector": "finite support counts by signature and endpoint_role",
+      "side_swap_control_vector": "finite comparison against left/right endpoint-role swap or canonicalization control",
+      "signature_anchor_role_incidence_table": "finite rows keyed by overlap_signature, support_cell_id, endpoint_role, and member class_pair_ids"
+    },
+    "domain": {
+      "AD_overlap_signature_fiber_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_overlap_signature_fiber_probe_results.json",
+      "PEPS3D_carrier_bindings": "support-cell ids inherited from AC/AB finite PEPS3D transition-class carrier, max parent 125 sites, max triple-overlap 27 sites, max bond 3",
+      "class_pair_ids": "finite transition-class pair ids retained by AD",
+      "endpoint_roles": [
+        "left",
+        "right"
+      ],
+      "local_order_ops": "inherited Phase 2 carrier order witness only; no fresh N01 operator",
+      "predicate_flags": [
+        "delta",
+        "active_source",
+        "boundary_source",
+        "pair_binding",
+        "rank_signature"
+      ],
+      "signature_fiber_table": "5 exact finite overlap-signature fibers over 153 class-pair rows",
+      "signature_set": [
+        "active_source",
+        "active_source+pair_binding",
+        "boundary_source",
+        "delta",
+        "none"
+      ],
+      "support_cell_ids": "finite left_support_cell_ids and right_support_cell_ids retained by every AD row"
+    },
+    "finite_map": "AE_signature_anchor_role_incidence_K : (AD_overlap_signature_fiber_K, signature_fiber_table, class_pair_id, left_support_cell_ids, right_support_cell_ids, endpoint_role, predicate_flags) -> finite signature x PEPS3D support-cell x endpoint-role incidence table + role support vector + control gap vector",
+    "geometry_it_could_earn_if_later_run_and_passed": "finite signature-anchor endpoint-role incidence geometry for PEPS3D overlap-signature fibers",
+    "status": "admissible_candidate_not_run"
+  },
+  "claim_ceiling": "Candidate-map artifact only. This does not admit the chosen map, run a scout, open Phase 3, or open downstream consumers.",
+  "classification": "formal_scout_controller_candidate",
+  "controls_required_if_later_run": {
+    "boundary": [
+      "rank_signature has zero positive overlap rows and remains an empty-boundary predicate, not a new geometry",
+      "side-swap or canonicalization control must not erase required endpoint-role evidence",
+      "topology, connected components, homology, sheaf, persistence, restore/inverse, and full closure remain blocked",
+      "downstream consumers remain blocked"
+    ],
+    "negative": [
+      "signature-count-only output must fail",
+      "support-vector-only output must fail",
+      "support-cell-erased output must fail",
+      "class-pair-erased output must fail",
+      "endpoint-role-erased output must fail",
+      "predicate-erased output must fail",
+      "scalar-label output must fail",
+      "fresh-N01 promotion must fail"
+    ],
+    "order_erased": [
+      "order-erased or fresh-N01 variants must not be admitted as new noncommuting evidence"
+    ],
+    "positive": [
+      "signature-anchor-role incidence rows retain overlap_signature, support_cell_id, endpoint_role, and member class_pair_ids",
+      "left and right endpoint-role supports are finite and nonempty where AD rows have support-cell ids",
+      "the none signature remains represented as incidence rows rather than discarded"
+    ]
+  },
+  "created_at": "2026-05-26T06:43:35-07:00",
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_overlap_signature_fiber_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_transition_class_binding_overlap_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_rank_transition_class_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_rank_transition_residue_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_pair_source_cell_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_fiber_pair_rank_delta_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_class_source_fiber_probe_results.json"
+  ],
+  "failure_conditions": [
+    "the output is recoverable from AD signature support vector alone",
+    "any incidence row lacks retained support-cell id, endpoint_role, or member class_pair_ids",
+    "endpoint roles are arbitrary labels without side-swap/canonicalization control",
+    "the none signature is discarded or promoted as closure",
+    "rank_signature zero support is promoted as geometry instead of retained as an empty-boundary predicate",
+    "the candidate requires dense full-state closure or dense environment closure",
+    "the candidate claims a fresh noncommuting operator",
+    "the candidate opens topology, sheaf, homology, persistence, full PEPS3D closure, Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, physics, IGT/game theory, or axes 7-12"
+  ],
+  "input_state": {
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_AD_overlap_signature_fiber_active_frontier_blocker_20260526.json",
+    "contract_complete_rows": 45,
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "frontier_rows": 48,
+    "killed_rows": 3,
+    "latest_admitted_map": "AD_overlap_signature_fiber_K : (AC_transition_class_binding_overlap_K, transition_class_binding_overlap_table, overlap_signature_sigma, transition_class_pair_ids, support_cell_ids, overlap_predicate_flags) -> finite overlap-signature fiber table + signature support vector + control gap vector",
+    "transition_decision_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "kind": "candidate_map_discovery",
+  "next_admissible_step": "Author one bounded formal_scout source for AE_signature_anchor_role_incidence_K, then run/lint/validate it. This artifact itself does not admit the map and does not open Phase 3 or downstream geometry.",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "selected_candidate_map_id": "AE_signature_anchor_role_incidence_K",
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_AD_overlap_signature_fiber_K",
+  "working_geometry": "The earned Phase 2 object after AD_overlap_signature_fiber_K is a PEPS3D-anchored finite response-quotient carrier with exact overlap-signature fibers. The live carrier data are 153 finite class-pair rows partitioned into 5 finite signatures, with class-pair ids, left/right support-cell ids, predicate flags, and no-overlap complement retained. This is carrier-frontier incidence only, not topology, not closure, and not downstream physical geometry."
+}

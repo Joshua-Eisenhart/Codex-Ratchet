@@ -1,0 +1,138 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T03:05:00-07:00",
+  "scope": "phase2_post_DD_pair_delete_interaction_K_killed_candidate_map_discovery",
+  "classification": "formal_scout_controller_candidate",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "current_state_assertion": {
+    "latest_admitted_map": "B_delete_bond_replay_K",
+    "latest_killed_candidate": "DD_pair_delete_interaction_K",
+    "frontier_row_count": 28,
+    "contract_complete_rows": 26,
+    "killed_rows": 2,
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "working_geometry_plain": "Phase 2 is still PEPS3D-anchored finite response-quotient carrier geometry. B_delete_bond_replay_K remains the latest admitted map. DD_pair_delete_interaction_K was killed because finite ordered pair-deletion gaps collapse to zero. The next candidate must stay carrier-frontier finite and cannot use the DD kill to open downstream geometry.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "H_delete_anchor_loss_idempotence_K",
+      "finite_map": "H_delete_anchor_loss_idempotence_K : (B_delete_bond_replay_K, I_delete_idempotence_K, support_atom, repeated delete-loss projection, legal_anchor_preserving_relabeling, bond_dim in {2,3}) -> finite delete-anchor loss/idempotence residue table + control gap vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": "It uses only the B two-bond replay rows and the I same-deletion idempotence rows to ask whether the finite PEPS3D anchor-loss residue is stable under repeated deletion and legal relabeling. It does not ask for ordered pair interaction, all-subset minimality, restore/inverse, topology, sheaf, homology, bond convergence, shape law, PEPS3D closure, or downstream geometry.",
+      "not_run_in_this_artifact": true
+    },
+    {
+      "candidate_id": "DD_pair_delete_interaction_K",
+      "decision": "rejected_killed",
+      "why_rejected": "Fresh scout killed it: ordered pair gaps collapse to zero across 252 finite rows."
+    },
+    {
+      "candidate_id": "Q_delete_class_partition_K",
+      "decision": "rejected_for_now",
+      "why_rejected": "Still risks duplicating response quotient evidence. H is narrower because it tests repeated delete-loss residue against B two-bond replay rows."
+    },
+    {
+      "candidate_id": "all_subset_restore_topology_or_downstream_from_DD",
+      "decision": "rejected",
+      "why_rejected": "DD being killed does not authorize all-subset minimality, restore/inverse, topology, sheaf, homology, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "H_delete_anchor_loss_idempotence_K",
+    "finite_map": "H_delete_anchor_loss_idempotence_K : (B_delete_bond_replay_K, I_delete_idempotence_K, support_atom, repeated delete-loss projection, legal_anchor_preserving_relabeling, bond_dim in {2,3}) -> finite delete-anchor loss/idempotence residue table + control gap vector",
+    "domain": {
+      "B_delete_bond_replay_K": "validated finite two-bond deletion replay delta receipt",
+      "I_delete_idempotence_K": "validated finite same-deletion idempotence receipt",
+      "support_atoms": [
+        "v0",
+        "v1",
+        "v2",
+        "e01",
+        "e12",
+        "e02",
+        "sigma012"
+      ],
+      "legal_anchor_preserving_relabelings": "six relabelings inherited from A_delete_anchor_orbit_K/B_delete_bond_replay_K",
+      "bond_dim": [
+        2,
+        3
+      ],
+      "loss_projection": "full_anchor_counts - repeated_deleted_anchor_counts"
+    },
+    "codomain_or_output": "finite delete-anchor loss/idempotence residue rows, loss vectors, two-bond loss-residue gaps, separation deltas, and control gap vector",
+    "PEPS3D_carrier_anchor": "Every row must carry explicit inherited V/E/F/C anchor accounting from I_delete_idempotence_K and B_delete_bond_replay_K.",
+    "N01_order_witness": "The inherited full support keeps the nonzero order-sensitive carrier gap while repeated delete-loss residue itself is an idempotence/readout map, not a new noncommuting operator.",
+    "F01_finite_witness": "support atoms, relabelings, bond dimensions, probes, paths, rows, loss vectors, and outputs are finite and receipt-backed.",
+    "promotion_allowed": false,
+    "not_a_scout_run": true
+  },
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_spinor_density_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps_peps3d_local_environment_contraction_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_heldout_shape_anchor_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_bond_sweep_anchor_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_anchor_partition_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_patch_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_projection_shape_bond_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_replay_restriction_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_restriction_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_triple_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cover_nerve_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_nerve_deletion_sensitivity_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_one_delete_necessity_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_deletion_idempotence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_orbit_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delete_bond_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_pair_delete_interaction_probe_results.json"
+  ],
+  "controls_required_if_later_run": {
+    "positive": [
+      "loss vectors are finite and PEPS3D anchored",
+      "two-bond loss residue remains idempotent across bond 2 and 3",
+      "bond separation deltas are recorded only as finite readouts, not convergence"
+    ],
+    "negative": [
+      "no-anchor loss table must fail",
+      "scalar-label loss table must fail",
+      "wrong-deletion loss table must fail",
+      "single-probe non-IC control must collapse"
+    ],
+    "boundary": [
+      "bond_dim=1 remains control-only",
+      "bond_dim=4 remains heldout non-support",
+      "all-subset, restore/inverse, topology/sheaf/homology, shape law, bond convergence, and PEPS3D closure remain blocked"
+    ],
+    "order_erased": [
+      "order-erased local paths must collapse the inherited N01 witness"
+    ]
+  },
+  "failure_conditions": [
+    "any loss row lacks explicit PEPS3D V/E/F/C anchor accounting",
+    "loss residue requires dense state or dense environment closure",
+    "loss residue is used as all-subset minimality or restore/inverse",
+    "bond 2/3 finite readout is promoted to convergence or shape law",
+    "downstream geometry is opened"
+  ],
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "next_admissible_step": "Author one bounded formal_scout source for H_delete_anchor_loss_idempotence_K, then run/lint/validate it. This candidate artifact does not itself admit the map and does not open Phase 3 or downstream geometry."
+}

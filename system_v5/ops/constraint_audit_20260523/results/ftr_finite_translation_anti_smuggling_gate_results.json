@@ -1,0 +1,57 @@
+{
+  "schema": "ftr_finite_translation_anti_smuggling_gate_v1",
+  "classification": "audit_control_packet",
+  "name": "ftr_finite_translation_anti_smuggling_gate",
+  "enforces": [
+    "EG-FTR-no-classical-smuggling-finite-translation"
+  ],
+  "all_pass": true,
+  "rows": [
+    {
+      "thesis": "TH-01",
+      "fixture_kind": "finite_high_entropy_density_fixture",
+      "pass": true,
+      "finite_carrier": true,
+      "finite_probe_family": true,
+      "no_forbidden_primitives": true,
+      "claim_ceiling_present": true,
+      "fixture": {
+        "thesis": "TH-01",
+        "fixture_kind": "finite_high_entropy_density_fixture",
+        "carrier_dim": 4,
+        "rho_trace": 1.0,
+        "entropy_ceiling": "log(carrier_dim)",
+        "probe_family": [
+          "sigma_z_effect",
+          "sigma_x_effect"
+        ],
+        "path_family_size": 2,
+        "forbidden_primitives_used": [],
+        "claim_ceiling": "finite translation of pure-randomness thesis only"
+      }
+    },
+    {
+      "thesis": "TH-05",
+      "fixture_kind": "probe_relative_identity_fixture",
+      "pass": true,
+      "finite_carrier": true,
+      "finite_probe_family": true,
+      "no_forbidden_primitives": true,
+      "claim_ceiling_present": true,
+      "fixture": {
+        "thesis": "TH-05",
+        "fixture_kind": "probe_relative_identity_fixture",
+        "carrier_dim": 2,
+        "probe_family": [
+          "sigma_z_effect",
+          "sigma_x_effect"
+        ],
+        "equality_rule": "probe_vector_indistinguishability",
+        "uses_bare_identity_predicate": false,
+        "forbidden_primitives_used": [],
+        "claim_ceiling": "finite translation of nominalist-identity thesis only"
+      }
+    }
+  ],
+  "claim_ceiling": "Checks finite translation hygiene before manifold admission; does not admit the translated theses."
+}

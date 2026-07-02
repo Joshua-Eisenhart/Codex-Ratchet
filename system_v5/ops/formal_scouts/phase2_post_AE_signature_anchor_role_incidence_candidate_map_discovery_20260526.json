@@ -1,0 +1,185 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_AE_signature_anchor_role_incidence_active_frontier_blocker_20260526.json",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "AF_signature_cell_role_balance_residue_K",
+      "candidate_name": "finite signature/support-cell endpoint-role balance residue",
+      "chosen": true,
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "AF_signature_cell_role_balance_residue_K : (AE_signature_anchor_role_incidence_K, grouped_incidence_table, overlap_signature, support_cell_id, endpoint_role_counts, member_class_pair_ids) -> finite signature x support-cell role-balance residue table + balance-class support vector + control gap vector",
+      "why_admissible": [
+        "It ratchets directly from AE by consuming grouped signature/support-cell/endpoint-role incidence rows rather than restating role totals.",
+        "It emits a new finite carrier-frontier object: rows keyed by overlap_signature and PEPS3D support_cell_id with left_count, right_count, finite balance residue, and retained member class_pair_ids.",
+        "It keeps endpoint roles as finite carrier bindings and treats side-swap as a boundary control, not chirality or Weyl orientation.",
+        "F01 is preserved because signatures, support-cell ids, endpoint-role counts, class-pair memberships, controls, and outputs are finite.",
+        "N01 is inherited only from Phase 2 carrier receipts; no fresh noncommuting operator is claimed.",
+        "It uses only Phase 2 carrier receipts and does not consume Phase 7/downstream receipts."
+      ]
+    },
+    {
+      "candidate_id": "AF_overlap_vs_none_complement_separation_K",
+      "candidate_name": "finite overlap-vs-none support-cell complement separation",
+      "decision": "admissible_but_deferred",
+      "finite_map": "AF_overlap_vs_none_complement_separation_K : (AE_signature_anchor_role_incidence_K, none signature rows, non-none signature rows, support_cell_ids, class_pair_ids) -> finite overlap-vs-none support-cell separation table + complement collision vector",
+      "why_deferred": "It remains finite and useful, but role-balance residue is smaller and directly consumes the endpoint-role structure that AE just earned."
+    },
+    {
+      "candidate_id": "AF_anchored_signature_refinement_K",
+      "candidate_name": "finite anchored signature-refinement relation",
+      "decision": "conditional_candidate_artifact_only",
+      "finite_map": "AF_anchored_signature_refinement_K : (AE_signature_anchor_role_incidence_K, predicate_flags, support_cell incidence, endpoint_role evidence) -> finite anchored signature-refinement relation + witness rows",
+      "why_conditional": "It is admissible only if it keeps PEPS3D support-cell and endpoint-role witness rows. A predicate-only Boolean lattice is label-only."
+    },
+    {
+      "candidate_id": "role_total_or_balance_vector_restatement",
+      "candidate_name": "role-total-only or balance-vector-only summary",
+      "decision": "rejected",
+      "why_rejected": "It duplicates AE summary fields and emits no fresh finite carrier object."
+    },
+    {
+      "candidate_id": "support_cell_erased_role_balance",
+      "candidate_name": "support-cell-erased role balance",
+      "decision": "rejected",
+      "why_rejected": "It erases the PEPS3D support-cell anchor required by the post-AE blocker."
+    },
+    {
+      "candidate_id": "endpoint_role_orientation_or_chirality",
+      "candidate_name": "endpoint role promoted to chirality, orientation, Weyl sheet, or terrain direction",
+      "decision": "rejected",
+      "why_rejected": "Endpoint roles are finite carrier bindings only. Promoting left/right role balance to chirality, Weyl orientation, terrain, or flux would skip lower geometry."
+    },
+    {
+      "candidate_id": "fresh_order_operator_from_role_balance",
+      "candidate_name": "fresh noncommuting operator from role-balance residues",
+      "decision": "rejected",
+      "why_rejected": "AE/AF can inherit Phase 2 N01 only. A fresh order-sensitive operator is not earned by role-balance residue classes."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_persistence_from_balance_graph",
+      "candidate_name": "topology, sheaf, homology, persistence, connected components, or closure from role-balance graph",
+      "decision": "rejected",
+      "why_rejected": "The balance table is finite carrier-frontier evidence only and does not admit topology, sheaf, homology, persistence, connected-component closure, or full PEPS3D closure."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_role_balance",
+      "candidate_name": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are blocked downstream consumers, not Phase 2 carrier-frontier maps."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "F01_witness": "All signatures, support-cell ids, endpoint-role counts, balance residues, member class-pair ids, controls, and outputs are finite and tied to listed dependency receipts.",
+    "N01_witness": "No fresh N01 is claimed. The map inherits the Phase 2 order-sensitive carrier witness and rejects order-erased or fresh-N01 promotion.",
+    "PEPS3D_carrier_anchor": "Every admitted residue row must retain a PEPS3D support-cell id linked to signature and member class-pair ids. Scalar labels, role totals, and support-cell-erased summaries are controls only.",
+    "candidate_id": "AF_signature_cell_role_balance_residue_K",
+    "codomain_or_output": {
+      "balance_class_support_vector": "finite counts for balance_class in {left_heavy, balanced, right_heavy}",
+      "control_gap_vector": "finite rejection/collapse readouts for role-total-only, balance-vector-only, support-cell-erased, signature-erased, class-pair-erased, endpoint-role-erased, scalar-label, dense, fresh-N01, topology, orientation/chirality, and downstream variants",
+      "side_swap_boundary_vector": "finite comparison showing side-swap exchanges left_heavy/right_heavy residues without admitting orientation or chirality",
+      "signature_cell_role_balance_residue_table": "finite rows keyed by overlap_signature and support_cell_id with left_count, right_count, balance_residue, balance_class, and member class_pair_ids"
+    },
+    "domain": {
+      "AE_signature_anchor_role_incidence_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_signature_anchor_role_incidence_probe_results.json",
+      "PEPS3D_carrier_bindings": "support-cell ids inherited from AD/AC/AB finite PEPS3D transition-class carrier, max parent 125 sites, max triple-overlap 27 sites, max bond 3",
+      "class_pair_ids": "finite transition-class pair ids retained by AE",
+      "endpoint_role_counts": "finite left_count and right_count per overlap_signature x support_cell_id",
+      "grouped_incidence_table": "182 finite grouped signature/support-cell/endpoint-role rows over 459 incidence rows",
+      "local_order_ops": "inherited Phase 2 carrier order witness only; no fresh N01 operator",
+      "signature_cell_pairs": "135 finite overlap_signature x support_cell_id pairs",
+      "signature_set": [
+        "active_source",
+        "active_source+pair_binding",
+        "boundary_source",
+        "delta",
+        "none"
+      ]
+    },
+    "finite_map": "AF_signature_cell_role_balance_residue_K : (AE_signature_anchor_role_incidence_K, grouped_incidence_table, overlap_signature, support_cell_id, endpoint_role_counts, member_class_pair_ids) -> finite signature x support-cell role-balance residue table + balance-class support vector + control gap vector",
+    "geometry_it_could_earn_if_later_run_and_passed": "finite endpoint-role balance-residue geometry for PEPS3D signature/support-cell incidence",
+    "status": "admissible_candidate_not_run"
+  },
+  "claim_ceiling": "Candidate-map artifact only. This does not admit the chosen map, run a scout, open Phase 3, or open downstream consumers.",
+  "classification": "formal_scout_controller_candidate",
+  "controls_required_if_later_run": {
+    "boundary": [
+      "side-swap must exchange left_heavy and right_heavy without admitting orientation, chirality, or Weyl sheet structure",
+      "balanced residues remain finite carrier readouts, not equilibrium, closure, or physics",
+      "rank_signature remains an empty-boundary predicate inherited from AD/AE, not new geometry",
+      "topology, connected components, homology, sheaf, persistence, restore/inverse, and full closure remain blocked",
+      "downstream consumers remain blocked"
+    ],
+    "negative": [
+      "role-total-only output must fail",
+      "balance-vector-only output must fail",
+      "support-cell-erased output must fail",
+      "signature-erased output must fail",
+      "class-pair-erased output must fail",
+      "endpoint-role-erased output must fail",
+      "scalar-label output must fail",
+      "fresh-N01 promotion must fail",
+      "orientation/chirality promotion must fail"
+    ],
+    "order_erased": [
+      "order-erased or fresh-N01 variants must not be admitted as new noncommuting evidence"
+    ],
+    "positive": [
+      "balance-residue rows retain overlap_signature, support_cell_id, left_count, right_count, balance_residue, balance_class, and member class_pair_ids",
+      "left_heavy, balanced, and right_heavy residue classes are finite and nonempty",
+      "the none signature remains represented as residue rows rather than discarded"
+    ]
+  },
+  "created_at": "2026-05-26T07:05:00-07:00",
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_signature_anchor_role_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_overlap_signature_fiber_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_transition_class_binding_overlap_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_rank_transition_class_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_rank_transition_residue_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_pair_source_cell_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_fiber_pair_rank_delta_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_class_source_fiber_probe_results.json"
+  ],
+  "failure_conditions": [
+    "the output is recoverable from AE role support vector alone",
+    "any residue row lacks retained support-cell id, overlap_signature, endpoint-role counts, or member class_pair_ids",
+    "side-swap is promoted to orientation/chirality/Weyl structure instead of retained as boundary control",
+    "balanced residue is promoted as closure, equilibrium, or physics",
+    "the none signature is discarded or promoted as closure",
+    "rank_signature zero support is promoted as geometry instead of retained as an empty-boundary predicate",
+    "the candidate requires dense full-state closure or dense environment closure",
+    "the candidate claims a fresh noncommuting operator",
+    "the candidate opens topology, sheaf, homology, persistence, full PEPS3D closure, Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, physics, IGT/game theory, or axes 7-12"
+  ],
+  "input_state": {
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_AE_signature_anchor_role_incidence_active_frontier_blocker_20260526.json",
+    "contract_complete_rows": 46,
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "frontier_rows": 49,
+    "killed_rows": 3,
+    "latest_admitted_map": "AE_signature_anchor_role_incidence_K : (AD_overlap_signature_fiber_K, signature_fiber_table, class_pair_id, left_support_cell_ids, right_support_cell_ids, endpoint_role, predicate_flags) -> finite signature x PEPS3D support-cell x endpoint-role incidence table + role support vector + control gap vector",
+    "transition_decision_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "kind": "candidate_map_discovery",
+  "next_admissible_step": "Author one bounded formal_scout source for AF_signature_cell_role_balance_residue_K, then run/lint/validate it. This artifact itself does not admit the map and does not open Phase 3 or downstream geometry.",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_AE_signature_anchor_role_incidence_K",
+  "selected_candidate_map_id": "AF_signature_cell_role_balance_residue_K",
+  "working_geometry": "The earned Phase 2 object after AE_signature_anchor_role_incidence_K is a PEPS3D-anchored finite response-quotient carrier with signature/support-cell/endpoint-role incidence. The live carrier data are 459 finite incidence rows and 182 grouped incidence keys over 135 signature x support-cell pairs. This is carrier-frontier incidence only, not topology, not orientation or chirality, not closure, and not downstream physical geometry."
+}

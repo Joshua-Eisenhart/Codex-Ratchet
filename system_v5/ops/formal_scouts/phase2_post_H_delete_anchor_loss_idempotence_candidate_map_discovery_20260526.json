@@ -1,0 +1,110 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T03:18:00-07:00",
+  "scope": "phase2_post_H_delete_anchor_loss_idempotence_K_candidate_map_discovery",
+  "classification": "formal_scout_controller_candidate",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "current_state_assertion": {
+    "latest_admitted_map": "H_delete_anchor_loss_idempotence_K",
+    "frontier_row_count": 29,
+    "contract_complete_rows": 27,
+    "killed_rows": 2,
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "working_geometry_plain": "Phase 2 is PEPS3D-anchored finite response-quotient carrier geometry through H_delete_anchor_loss_idempotence_K. The fresh next map is not a duplicate support label: it asks whether the full finite V/E/F/C delete-loss vector separates support atoms into receipt-backed loss-residue classes while norm-only or scalar controls collapse.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "Q_loss_residue_class_quotient_K",
+      "finite_map": "Q_loss_residue_class_quotient_K : (H_delete_anchor_loss_idempotence_K, support_atom, legal_anchor_preserving_relabeling, loss_vector in N^4, finite_effect_family) -> finite loss-residue quotient classes + control gap vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": "It consumes the newly admitted H loss vectors and tests a finite quotient by explicit PEPS3D anchor-loss vectors. It is distinct from a label-only support-kind partition because the norm-only/single-probe control collapses all loss vectors to one class while the full V/E/F/C loss vector gives a finite class readout."
+    },
+    {
+      "candidate_id": "support_kind_label_partition",
+      "decision": "rejected",
+      "why_rejected": "A bare vertex/edge/simplex label partition has no PEPS3D anchor-loss vector and is label-only."
+    },
+    {
+      "candidate_id": "topology_or_homology_from_loss_classes",
+      "decision": "rejected",
+      "why_rejected": "A finite class quotient is not topology, homology, persistence, sheaf, or gluing closure."
+    },
+    {
+      "candidate_id": "downstream_from_loss_classes",
+      "decision": "rejected",
+      "why_rejected": "Loss classes do not open Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "Q_loss_residue_class_quotient_K",
+    "finite_map": "Q_loss_residue_class_quotient_K : (H_delete_anchor_loss_idempotence_K, support_atom, legal_anchor_preserving_relabeling, loss_vector in N^4, finite_effect_family) -> finite loss-residue quotient classes + control gap vector",
+    "domain": {
+      "H_delete_anchor_loss_idempotence_K": "validated finite delete-anchor loss/idempotence residue receipt",
+      "loss_vector": "full_anchor_counts - repeated_deleted_anchor_counts in V/E/F/C coordinates, carried as a finite PEPS3D anchor-loss readout",
+      "support_atoms": [
+        "v0",
+        "v1",
+        "v2",
+        "e01",
+        "e12",
+        "e02",
+        "sigma012"
+      ],
+      "legal_anchor_preserving_relabelings": "six relabelings inherited from B/H",
+      "finite_effect_family": "full finite effect family inherited from Phase 2 carrier receipts"
+    },
+    "codomain_or_output": "finite quotient classes keyed by PEPS3D V/E/F/C loss vectors plus class-count and control gap readouts",
+    "PEPS3D_carrier_anchor": "Every class row must be computed from inherited V/E/F/C loss vectors, not support labels alone.",
+    "N01_order_witness": "The inherited order-sensitive carrier gap remains nonzero in the source H receipt; Q is a finite quotient readout and not a new noncommuting operator.",
+    "F01_finite_witness": "support atoms, relabelings, loss vectors, quotient classes, probes, paths, rows, and outputs are finite and receipt-backed.",
+    "promotion_allowed": false,
+    "not_a_scout_run": true
+  },
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_loss_idempotence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_pair_delete_interaction_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delete_bond_replay_probe_results.json"
+  ],
+  "controls_required_if_later_run": {
+    "positive": [
+      "full V/E/F/C loss-vector quotient has more than one class",
+      "each class carries explicit PEPS3D anchor-loss vectors",
+      "legal relabelings preserve loss-vector class"
+    ],
+    "negative": [
+      "norm-only loss control collapses all rows to one class",
+      "scalar support-kind labels fail as claim-bearing evidence",
+      "no-anchor rows fail"
+    ],
+    "boundary": [
+      "class quotient is not topology/homology/sheaf/gluing closure",
+      "class quotient is not all-subset minimality, restore/inverse, bond convergence, shape law, or PEPS3D closure"
+    ],
+    "order_erased": [
+      "order-erased source control remains collapsed and cannot replace the inherited N01 witness"
+    ]
+  },
+  "failure_conditions": [
+    "full V/E/F/C loss-vector quotient has the same class count as norm-only control",
+    "any class row is computed from support labels instead of PEPS3D anchor-loss vectors",
+    "dense closure is used",
+    "topology, all-subset, restore/inverse, convergence, shape law, PEPS3D closure, or downstream geometry is opened"
+  ],
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "next_admissible_step": "Author one bounded formal_scout source for Q_loss_residue_class_quotient_K, then run/lint/validate it. This candidate artifact does not itself admit the map and does not open Phase 3 or downstream geometry."
+}

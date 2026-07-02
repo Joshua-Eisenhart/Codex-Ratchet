@@ -1,0 +1,52 @@
+{
+  "automation_id": "monitor-v4-3-formal-shell-sim",
+  "blocked_downstream_consumers": [
+    "stacking closure",
+    "flux closure",
+    "Xi closure",
+    "Phi0 closure",
+    "Axis0 closure",
+    "Holodeck/FEP admission",
+    "physics/gravity proof",
+    "final manifold admission"
+  ],
+  "cadence_claim": "every 30 minutes",
+  "cadence_sec": 1800,
+  "created_at": "2026-05-27T05:20:00Z",
+  "evidence_checked": [
+    {
+      "check": "spawn_daemon",
+      "finding": "active detached daemon verified"
+    },
+    {
+      "check": "launch_receipt",
+      "finding": "active launch receipt process_pid matches spawned pid"
+    },
+    {
+      "check": "heartbeat",
+      "finding": "heartbeat process_pid and cadence match spawned daemon"
+    },
+    {
+      "check": "formal_scout_competition",
+      "finding": "monitor spawn command starts only the read-only daemon, not a formal scout"
+    }
+  ],
+  "heartbeat_path": "system_v5/ops/formal_scouts/retrocausal_shell_field_v43_monitor_heartbeat_20260527.json",
+  "kind": "monitor_status",
+  "log_path": "/private/tmp/retrocausal_shell_field_v43_monitor.log",
+  "monitor_process_pid": 59366,
+  "next_admissible_step": "Leave the side monitor active while the formal TUI uses the v4.3 goal prompt; inspect the heartbeat/launch receipts for object drift.",
+  "primary_object_watch_fields": [
+    "Omega_r future continuations remain first-class",
+    "future-inward and past-outward orientation preserved",
+    "compatibility weights precede compression",
+    "rho_present derived from weighted futures",
+    "outward_record emitted from survivor provenance",
+    "readouts preserve Omega_r-to-compression provenance",
+    "Axis0, flux, FEP/Holodeck, physics, PEPS3D labels, and scalar entropy stay typed as downstream/proxy/adapter surfaces"
+  ],
+  "spawn_receipt_path": "system_v5/ops/formal_scouts/retrocausal_shell_field_v43_monitor_spawn_receipt_20260527.json",
+  "status": "active_verified_by_spawn_receipt",
+  "updated_at": "2026-05-27T05:34:35Z",
+  "wizard_truth": "No Wizard v4.2 FULL topology receipt was run or claimed for this monitor-status audit."
+}

@@ -1,0 +1,145 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_Y_row_deletion_collision_stability_active_frontier_blocker_20260526.json",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "Y_order_gap_K",
+      "candidate_name": "row deletion versus coordinate-pair deletion order gap",
+      "chosen": true,
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "Y_order_gap_K : (Y_row_deletion_collision_stability_K, X_loss_active_coordinate_pair_deletion_collapse_K, U_loss_pair_support_mask_K, epsilon_p, delta_ab) -> finite ordered-composition gap table + order-erased controls",
+      "geometry_it_would_earn_if_later_passed": "A bounded finite order-sensitive composition readout on PEPS3D anchored support-mask carrier rows: row deletion before coordinate-pair deletion can differ from coordinate-pair deletion before row deletion under explicit controls.",
+      "not_run_in_this_artifact": true,
+      "why_admissible": "It uses only Phase 2 carrier-frontier objects already admitted by U, X, Z, and Y. It adds one finite comparison between two existing finite operations on V/E/F/C support masks: row deletion epsilon_p and active coordinate-pair deletion delta_ab. It keeps the output finite and anchor-bound, and asks for order sensitivity rather than topology or downstream geometry."
+    },
+    {
+      "candidate_id": "Y_induced_quotient_projection_K",
+      "candidate_name": "single-row induced quotient projection",
+      "decision": "deferred",
+      "finite_map": "Y_induced_quotient_projection_K : (Y_row_deletion_collision_stability_K, Z_active_pair_collision_residue_K, epsilon_p, kappa_Z) -> finite induced quotient partitions Q_p + quotient-size vector",
+      "why_deferred": "It may be admissible only if it emits actual quotient partitions after row deletion. It is lower priority because it risks restating Y survival counts unless it adds a new partition object."
+    },
+    {
+      "candidate_id": "Y_survival_matching_equivariance_K",
+      "candidate_name": "survival matching relabeling orbit",
+      "decision": "deferred_low_priority",
+      "finite_map": "Y_survival_matching_equivariance_K : (Y_survival_matrix, legal_anchor_preserving_relabelings) -> finite matching orbit table + illegal-relabel rejection table",
+      "why_deferred": "It risks becoming label-permutation evidence unless PEPS3D anchor binding and illegal-relabel rejection are primary. Keep behind the more direct finite operation-order test."
+    },
+    {
+      "candidate_id": "all_subset_minimality_from_Y",
+      "decision": "rejected",
+      "why_rejected": "Y tests exact single-row deletion only. All-subset minimality widens the packet into closure/minimality and is not earned."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_from_Y",
+      "decision": "rejected",
+      "why_rejected": "Finite graph/hypergraph/cell/simplex counts in Y are support checks only. They do not admit topology, sheaf, homology, persistence, or gluing closure."
+    },
+    {
+      "candidate_id": "restore_inverse_from_Y",
+      "decision": "rejected",
+      "why_rejected": "Y is a deletion-survival readout and defines no restoration or inverse operation."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_Y",
+      "decision": "rejected",
+      "why_rejected": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, and axes 7-12 remain blocked downstream consumers."
+    }
+  ],
+  "classification": "formal_scout_controller_candidate",
+  "controller_dependency_artifacts": [
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_post_Y_row_deletion_collision_stability_active_frontier_blocker_20260526.json"
+  ],
+  "controls_required_if_later_run": {
+    "boundary": [
+      "delete-zero/delete-two/delete-all are controls only",
+      "single-row deletion and active coordinate-pair deletion stay finite allowlist only",
+      "no all-subset minimality or restore/inverse claim"
+    ],
+    "downstream_leak": [
+      "topology/sheaf/homology/full PEPS3D closure and all downstream geometry remain blocked"
+    ],
+    "negative": [
+      "no-anchor control fails",
+      "scalar-label control fails",
+      "norm-only control collapses",
+      "coordinate scramble control fails",
+      "F-boundary false positive fails"
+    ],
+    "order_erased": [
+      "order-erased composition must collapse the claimed order gap",
+      "commuting-only rows cannot be admitted as N01 evidence"
+    ],
+    "positive": [
+      "at least one finite ordered-composition row has nonzero gap",
+      "ordered rows preserve explicit V/E/F/C support-mask anchors",
+      "active and F-boundary rows remain distinguishable"
+    ]
+  },
+  "created_at": "2026-05-26T04:27:09-07:00",
+  "current_state_assertion": {
+    "active_transition_decision": "blocked",
+    "contract_complete_rows": 34,
+    "frontier_row_count": 36,
+    "killed_rows": 2,
+    "latest_admitted_map": "Y_row_deletion_collision_stability_K",
+    "latest_admitted_packet": "phase2_row_deletion_collision_stability_packet",
+    "phase2_carrier_geometry": "real_bounded",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_row_deletion_collision_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_active_pair_collision_residue_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_active_coordinate_pair_deletion_collapse_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_coordinate_deletion_response_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json"
+  ],
+  "failure_conditions": [
+    "all ordered gaps collapse to zero",
+    "controls reproduce claim-bearing ordered gap rows",
+    "PEPS3D V/E/F/C anchors disappear or become scalar labels",
+    "dense 2^n state closure or dense environment closure is required",
+    "the candidate claims topology, all-subset minimality, restore/inverse, full PEPS3D closure, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12"
+  ],
+  "kind": "candidate_map_discovery",
+  "next_admissible_step": "Only if later authorized by the continuous controller loop: author one bounded formal scout for Y_order_gap_K, then run/lint/validate it. This candidate artifact does not itself admit the map and does not open downstream geometry.",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "scope": "phase2_post_Y_row_deletion_collision_stability_K_candidate_map_discovery",
+  "selected_candidate_map": {
+    "F01_witness": "finite support-mask carriers, finite row deletions, finite coordinate-pair deletions, finite ordered path set, finite probes/readouts, and finite output tables",
+    "N01_order_witness": "At least one ordered composition epsilon_p after delta_ab differs from delta_ab after epsilon_p on the finite anchored support-mask carrier, while order-erased control collapses.",
+    "PEPS3D_carrier_anchor": "Each ordered-composition row must remain bound to explicit V/E/F/C support masks and active/F-boundary row identities inherited from Phase 2 receipts; scalar labels are controls only.",
+    "candidate_id": "Y_order_gap_K",
+    "codomain_or_output": "finite ordered-composition gap table comparing epsilon_p after delta_ab with delta_ab after epsilon_p, plus order-erased collapse table and control gap vector",
+    "domain": {
+      "U_loss_pair_support_mask_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json",
+      "X_loss_active_coordinate_pair_deletion_collapse_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_active_coordinate_pair_deletion_collapse_probe_results.json",
+      "Y_row_deletion_collision_stability_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_row_deletion_collision_stability_probe_results.json",
+      "carrier": "finite PEPS3D anchored V/E/F/C support-mask table with active rows and F-boundary controls",
+      "delta_ab": "finite active coordinate-pair deletion over {VE, VC, EC}",
+      "epsilon_p": "finite single class-pair row deletion over Pairs(C_Q)"
+    },
+    "finite_map": "Y_order_gap_K : (Y_row_deletion_collision_stability_K, X_loss_active_coordinate_pair_deletion_collapse_K, U_loss_pair_support_mask_K, epsilon_p, delta_ab) -> finite ordered-composition gap table + order-erased controls",
+    "status": "admissible_candidate_not_run"
+  },
+  "selected_candidate_map_id": "Y_order_gap_K",
+  "working_geometry_plain": "The working geometry remains PEPS3D-anchored finite response-quotient carrier geometry. Through Y, row deletion over finite class-pair masks yields a finite collision-survival table. The next admissible question is whether row deletion and active coordinate-pair deletion are order-sensitive as finite operations on the same anchored support-mask carrier. This is not topology, all-subset minimality, restore/inverse, Hopf/Weyl, terrain, substages, flux, Axis0, or physics."
+}

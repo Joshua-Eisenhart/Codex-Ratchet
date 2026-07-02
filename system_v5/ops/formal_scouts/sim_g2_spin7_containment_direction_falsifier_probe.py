@@ -81,6 +81,7 @@ OUT_PATH = RESULT_DIR / "g2_spin7_containment_direction_falsifier_probe_results.
 NAME = "g2_spin7_containment_direction_falsifier_probe"
 CLASSIFICATION = "formal_scout"
 SIM_EXECUTION_KIND = "nonclassical"
+SIM_CLASS = "geometry_alternative_falsifier_probe"
 PROMOTION_ALLOWED = False
 SOURCE_ALIGNMENT_CATEGORY = "g2_spin7_containment_direction_with_reverse_falsifier"
 CLAIM_CEILING = (
@@ -585,12 +586,150 @@ def main() -> int:
 
     result = {
         "schema": "FORMAL_SCOUT_RESULT_v1",
+        "sim_id": NAME,
         "name": NAME,
+        "version": "1.1.0",
+        "tier": "geometry_alternative_falsifier",
+        "purpose": (
+            "Test a bounded exceptional-holonomy-like geometry alternative: "
+            "G2-like fixed-slice three-form data plus an oriented normal induces "
+            "a Spin(7)-like Cayley four-form, while reverse recovery of the "
+            "fixed G2 slice from the Cayley form alone is falsified."
+        ),
+        "scientific_question": (
+            "Does this finite exterior-form scout support a directional "
+            "G2-like -> Spin(7)-like containment witness, and does it block "
+            "the reverse direction strongly enough to prevent accidental "
+            "official G-structure promotion?"
+        ),
         "classification": CLASSIFICATION,
         "sim_execution_kind": SIM_EXECUTION_KIND,
+        "sim_class": SIM_CLASS,
         "promotion_allowed": PROMOTION_ALLOWED,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "claim_ceiling": CLAIM_CEILING,
+        "root_constraints_in_force": {
+            "F01": {
+                "finite_carrier": "finite exterior-form term dictionaries for one 7D G2-like three-form and one induced 8D Spin(7)-like Cayley four-form",
+                "finite_probe_set": [
+                    "G2 sign-survivor enumeration",
+                    "reverse signed-frame witness",
+                    "orientation-reversal control",
+                    "degenerate generic three-form control"
+                ],
+                "finite_operator_or_path_set": [
+                    "signed-frame action on form terms",
+                    "wedge_with_normal",
+                    "hodge_star_7",
+                    "Cayley construction"
+                ]
+            },
+            "N01": {
+                "direction_sensitive_witness": "G2-like fixed-slice data plus oriented normal induces Omega, but Omega preservation alone does not recover the fixed normal or G2 slice",
+                "reverse_control": {
+                    "reverse_omega_gap": reverse_omega_gap,
+                    "reverse_phi_gap": reverse_phi_gap,
+                    "normal_moved": reverse_moves_normal
+                },
+                "orientation_control": {
+                    "orientation_gap": orientation_gap
+                }
+            }
+        },
+        "finite_map": (
+            "G2Spin7_alt : (finite G2-like three-form phi on fixed R7, "
+            "oriented normal e7, signed-frame action family, controls) -> "
+            "Spin(7)-like Cayley form Omega, survivor/falsifier gaps, solver "
+            "certificates, and blocked-consumer status"
+        ),
+        "domain": (
+            "finite exterior-form term dictionaries, finite signed-frame action "
+            "family, finite normal orientation, finite degenerate/orientation/"
+            "label/storage controls"
+        ),
+        "codomain_or_output": (
+            "finite Cayley-form term dictionary, containment-direction witness, "
+            "reverse-direction falsifier, support-tool certificates, controls, "
+            "and blocked consumers"
+        ),
+        "carrier_layer": "finite exterior-form algebra over torch tensors; geometry-alternative scout only",
+        "geometry_layer": "G2-like fixed-slice three-form and Spin(7)-like Cayley four-form directionality",
+        "carrier_realization": (
+            "torch.float64 antisymmetric form tensors generated from finite term "
+            "dictionaries; not a source-native spinor-network carrier"
+        ),
+        "peps3d_embedding": "blocked: no PEPS3D site/bond/face/cell carrier is constructed in this exterior-form scout",
+        "spinor_state": "blocked: no torch-native spinor payload is constructed in this exterior-form scout",
+        "torch_spinor_or_density": "blocked_for_full_geometry_candidate: tensor-form witness only, no spinor-derived density",
+        "quaternion_action": "not_applicable",
+        "dependency_receipts": [],
+        "downstream_blocks": [
+            "individual_full_g_structure_candidate_admission",
+            "source_native_spinor_network_candidate",
+            "MPS/PEPS2D/PEPS3D_depth_candidate",
+            "official_layered_ratchet_G_structure_selection",
+            "layer_embedding",
+            "stacking",
+            "flux",
+            "Xi/Phi0",
+            "Axis0",
+            "Holodeck/FEP",
+            "physics/gravity",
+            "final_manifold_admission"
+        ],
+        "blocked_consumers": [
+            "individual_full_g_structure_candidate_admission",
+            "source_native_spinor_network_candidate",
+            "MPS/PEPS2D/PEPS3D_depth_candidate",
+            "official_layered_ratchet_G_structure_selection",
+            "layer_embedding",
+            "stacking",
+            "flux",
+            "Xi/Phi0",
+            "Axis0",
+            "Holodeck/FEP",
+            "physics/gravity",
+            "final_manifold_admission"
+        ],
+        "bridge_layer": "none",
+        "cut_layer": "none",
+        "law_or_candidate_tested": "directional G2-like fixed-slice containment into Spin(7)-like Cayley form with reverse-direction falsifier",
+        "branch_status_before_run": "geometry alternative candidate not yet admitted to source-native spinor/PEPS carrier matrix",
+        "allowed_claims": [
+            "bounded exterior-form containment-direction witness",
+            "reverse recovery of fixed G2 slice from Omega alone is falsified",
+            "exceptional geometry remains candidate/control fuel only until source-native spinor/PEPS carrier is built"
+        ],
+        "promotion_blockers": [
+            "no torch-native spinor payload",
+            "no spinor-derived density",
+            "no MPS carrier view",
+            "no PEPS2D carrier view",
+            "no PEPS3D site/bond/face/cell carrier",
+            "no QIT entropy family readout",
+            "no shell-gradient metadata"
+        ],
+        "extended_constraint_alignment": {
+            "finite_map_domain_codomain": "pass",
+            "F01_finite_carrier_probe_operator_path": "pass",
+            "N01_direction_or_order_sensitive_control": "pass",
+            "torch_native_computation": "pass_tensor_form_only",
+            "torch_spinor_or_spinor_derived_density": "blocked",
+            "MPS_view": "blocked",
+            "PEPS2D_view": "blocked",
+            "PEPS3D_site_bond_face_cell_anchor": "blocked",
+            "QIT_entropy_as_derived_readout": "not_applicable_in_this_exterior_form_scout",
+            "tool_ablation_or_support_delta": "partial_supportive_tools_and_solver_gates_present",
+            "scale_8_16_32_64": "not_applicable_to_single_exterior_form_falsifier",
+            "shell_gradient_fields": "not_applicable_unless_lifted_into_shell_candidate",
+            "blocked_consumers": "pass"
+        },
+        "next_admissible_step": (
+            "If exceptional geometry remains useful, build a separate "
+            "G2/Spin7 source-native spinor-network candidate with MPS, PEPS2D, "
+            "PEPS3D, 8/16/32/64 scale, QIT readouts, and controls. Do not "
+            "promote this exterior-form scout as that candidate."
+        ),
         "all_pass": bool(all_pass),
         "summary": {
             "all_pass": bool(all_pass),

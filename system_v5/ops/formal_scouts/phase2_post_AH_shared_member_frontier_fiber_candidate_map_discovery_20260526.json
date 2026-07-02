@@ -1,0 +1,187 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T00:00:00-07:00",
+  "scope": "phase2_post_AH_shared_member_frontier_fiber_K_candidate_map_discovery",
+  "classification": "formal_scout_controller_candidate",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "selected_candidate_map_id": "AI_source_row_fiber_pullback_K",
+  "current_state_assertion": {
+    "phase2_carrier_geometry": "real_bounded",
+    "frontier_row_count": 52,
+    "contract_complete_rows": 49,
+    "killed_rows": 3,
+    "active_transition_decision": "blocked",
+    "wizard_v4_2_status": "BLOCKED",
+    "latest_admitted_packet": "phase2_shared_member_frontier_fiber_packet",
+    "latest_admitted_map": "AH_shared_member_frontier_fiber_K"
+  },
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After AH_shared_member_frontier_fiber_K, the earned object is a finite table of 153 shared-member fibers over 495 memberships, 387 frontier pairs, 351 support-cell pair keys, 27 residue-delta values, and 135 covered source rows. This is geometric only as bounded finite incidence/readout structure on explicit carrier anchors. It is not Hopf/Weyl geometry, terrain, substages, flux, Axis0, physics, topology closure, or full PEPS3D closure.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "AI_source_row_fiber_pullback_K",
+      "candidate_name": "finite source-row fiber pullback",
+      "finite_map": "AI_source_row_fiber_pullback_K : (AH_shared_member_frontier_fiber_K, source_balance_row_id, shared_member_class_pair_ids, frontier_pair_ids, support_cell_pair_keys, residue_delta_values, balance_class_pair_keys) -> finite source-row-to-fiber pullback table + source coverage vector + control gap vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": "It ratchets directly from AH by checking whether the 135 source rows claimed as covered by AH still retain explicit shared-member fibers, frontier-pair ids, PEPS3D support-cell pair keys, residue-delta values, and balance-class pair keys. It is a finite pullback/readout over already-present AH source row ids, not a restore/inverse reconstruction of upstream rows, and it does not require topology, sheaf, homology, persistence, full PEPS3D closure, fresh N01, or downstream geometry.",
+      "geometry_it_would_earn_if_later_passed": "A bounded finite source-row incidence readout for AH shared-member fibers, anchored by retained PEPS3D support-cell pair keys and source coverage.",
+      "not_run_in_this_artifact": true
+    },
+    {
+      "candidate_id": "AJ_support_residue_membership_incidence_K",
+      "candidate_name": "membership-level support-residue incidence",
+      "decision": "deferred",
+      "why_deferred": "It may be admissible later, but it widens from source-row coverage into membership-level support/residue profiles. The source-row pullback is the smaller post-AH map."
+    },
+    {
+      "candidate_id": "AK_signature_balance_residue_fiber_stratification_K",
+      "candidate_name": "signature/balance/residue fiber stratification",
+      "decision": "deferred",
+      "why_deferred": "It may be admissible later as a finite partition/readout, but it is less direct than testing AH source-row witness retention first."
+    },
+    {
+      "candidate_id": "AI_fiber_pair_support_intersection_K",
+      "candidate_name": "finite shared-member fiber-pair support intersection",
+      "decision": "deferred_not_selected",
+      "why_deferred": "It is a possible finite incidence readout, but it is more topology-adjacent than the source-row pullback and should not be the first post-AH scout."
+    },
+    {
+      "candidate_id": "AI_cardinality_profile_K",
+      "candidate_name": "fiber membership cardinality profile",
+      "decision": "rejected",
+      "why_rejected": "AH already records membership cardinalities {1,3,6}. A cardinality-only profile is a summary/control, not a fresh carrier-frontier finite map."
+    },
+    {
+      "candidate_id": "AI_component_or_topology_closure_K",
+      "candidate_name": "connected components, homology, persistence, sheaf, or topology closure over AH fibers",
+      "decision": "rejected",
+      "why_rejected": "The post-AH blocker explicitly bars component/topology closure. Finite incidence rows may be tested; components, homology, persistence, sheaf gluing, and topology claims remain blocked."
+    },
+    {
+      "candidate_id": "AI_restore_or_inverse_frontier_K",
+      "candidate_name": "restore/inverse projection from fibers back to AG frontier rows",
+      "decision": "rejected",
+      "why_rejected": "The post-AH blocker rejects restore/inverse variants. Reconstructing upstream AG rows from AH would be closure pressure, not the next bounded carrier-frontier map."
+    },
+    {
+      "candidate_id": "AI_fresh_N01_operator_K",
+      "candidate_name": "new noncommuting operator over AH fibers",
+      "decision": "rejected",
+      "why_rejected": "A fresh N01 variant is explicitly blocked. The next Phase 2 carrier map may inherit N01 from the active carrier receipts but cannot invent a new operator witness without a separate lower tool/function receipt."
+    },
+    {
+      "candidate_id": "AI_downstream_geometry_K",
+      "candidate_name": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are downstream consumers. Opening them from AH would skip the bounded Phase 2 carrier-frontier ratchet."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "AI_source_row_fiber_pullback_K",
+    "finite_map": "AI_source_row_fiber_pullback_K : (AH_shared_member_frontier_fiber_K, source_balance_row_id, shared_member_class_pair_ids, frontier_pair_ids, support_cell_pair_keys, residue_delta_values, balance_class_pair_keys) -> finite source-row-to-fiber pullback table + source coverage vector + control gap vector",
+    "plain_question": "Do the AH shared-member fibers retain source-row coverage as explicit finite witness rows with PEPS3D support-cell anchors, while source-erased, member-erased, support-erased, cardinality-only, restore/inverse, topology, fresh-N01, and downstream controls fail?",
+    "domain": {
+      "AH_shared_member_frontier_fiber_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_shared_member_frontier_fiber_probe_results.json",
+      "source_balance_row_ids": "135 finite source rows covered by AH",
+      "shared_member_fibers": "153 finite shared-member fibers from AH",
+      "fiber_memberships": "495 finite memberships over 387 AG frontier pairs",
+      "support_cell_pair_keys": "351 finite PEPS3D support-cell pair keys inherited through AG/AH",
+      "residue_delta_values": "27 finite residue-delta values inherited from AH",
+      "balance_class_pair_keys": "finite balance-class pair keys retained by AH",
+      "local_order_witness": "inherited Phase 2 order-sensitive carrier witness only; no fresh N01 operator is admitted"
+    },
+    "codomain_or_output": {
+      "source_row_fiber_pullback_table": "finite table keyed by source_balance_row_id retaining incident fiber ids, shared-member ids, frontier-pair ids, support-cell pair keys, residue-delta values, and balance-class pair keys",
+      "source_coverage_vector": "finite coverage counts over 135 source rows, 153 fibers, 387 frontier pairs, 351 support-cell pair keys, and 27 residue-delta values",
+      "control_gap_vector": "finite failure/collapse statuses for source-erased, member-erased, support-erased, residue-erased, cardinality-only, scalar-label, restore/inverse, topology-closure, fresh-N01, dense-closure, and downstream controls"
+    },
+    "PEPS3D_carrier_anchor": "Every admitted source row must retain explicit inherited PEPS3D support-cell pair keys. A source id or row count alone is a scalar label control, not evidence.",
+    "F01_witness": "The source rows, shared-member fibers, memberships, frontier-pair ids, support-cell pair keys, residue-delta values, balance-class pair keys, paths, and outputs are finite and receipt-backed.",
+    "N01_order_witness": "No fresh N01 is claimed. The candidate must preserve the inherited Phase 2 order-sensitive carrier witness while order-erased and commuting-only controls remain collapsed.",
+    "geometry_if_later_earned": "finite source-row pullback incidence geometry over AH shared-member fibers on PEPS3D carrier anchors",
+    "promotion_allowed": false,
+    "not_a_scout_run": true
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_shared_member_frontier_fiber_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_member_shared_balance_frontier_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_signature_cell_role_balance_residue_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_signature_anchor_role_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_overlap_signature_fiber_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_transition_class_binding_overlap_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_rank_transition_class_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_rank_transition_residue_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_pair_source_cell_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_fiber_pair_rank_delta_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_class_source_fiber_probe_results.json"
+  ],
+  "controls_required_if_later_run": {
+    "positive": [
+      "all 135 source rows are covered by at least one retained AH fiber",
+      "source-row pullback rows retain explicit shared-member ids, frontier-pair ids, support-cell pair keys, residue-delta values, and balance-class pair keys",
+      "the pullback preserves 153 shared-member fibers, 387 frontier pairs, 351 support-cell pair keys, and 27 residue-delta values"
+    ],
+    "negative": [
+      "source-row-erased control must fail",
+      "member-id-erased control must fail",
+      "frontier-pair-erased control must fail",
+      "support-cell-pair-erased control must fail",
+      "residue-delta-erased control must fail as a complete map",
+      "balance-class-pair-erased control must fail as a complete map",
+      "row-count-only control must fail",
+      "cardinality-only control must fail",
+      "scalar-label control must fail"
+    ],
+    "boundary": [
+      "source rows with one incident fiber remain finite boundary rows",
+      "source-row fiber cardinality is a support readout only",
+      "no restore/inverse reconstruction of AG rows is admitted",
+      "no component, homology, persistence, sheaf, all-subset minimality, or full PEPS3D closure is admitted"
+    ],
+    "order_erased": [
+      "order-erased local paths must not recover a fresh N01 witness",
+      "commuting-only variants remain controls"
+    ],
+    "downstream_leak": [
+      "Phase 7/downstream receipts must not be reclassified as this map",
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, and axes 7-12 remain blocked"
+    ]
+  },
+  "failure_conditions": [
+    "Any source-row pullback row lacks an explicit PEPS3D support-cell pair anchor.",
+    "The 135 source rows cannot be covered with retained AH fiber witnesses.",
+    "The candidate degenerates to row counts, cardinalities, or scalar labels.",
+    "The map requires restore/inverse reconstruction of upstream AG rows, connected components, homology, persistence, sheaf gluing, all-subset minimality, full PEPS3D closure, dense full-state closure, or dense environment closure.",
+    "Order-erased or commuting-only controls are treated as fresh N01 evidence.",
+    "The candidate depends on Phase 7/downstream receipts or opens Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12."
+  ],
+  "wizard_v4_2": {
+    "status": "BLOCKED",
+    "accepted_parent_count": 0,
+    "accepted_child_count": 0,
+    "attempted_codex_native_sidecars": 1,
+    "blocked_codex_native_sidecars": 2,
+    "accepted_sidecar_receipts": [
+      "019e64b7-88fe-7422-aa7e-ffb6c36ca558"
+    ],
+    "sidecar_influence": "Accepted read-only sidecar recommendation to select AI_source_row_fiber_pullback_K as the smallest post-AH map and defer the topology-adjacent fiber-pair intersection map.",
+    "blocked_reason": "Full Wizard v4.2 remains blocked; one Codex-native read-only sidecar returned, while two additional sidecar launches failed because the agent thread limit was reached. Direct Gemini/Grok provider lanes, if later used, remain API lanes and are not Wizard children."
+  },
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_AH_shared_member_frontier_fiber_active_frontier_blocker_20260526.json",
+  "next_admissible_step": "Only after this candidate artifact is audited: author one bounded formal_scout source for AI_source_row_fiber_pullback_K, then run/lint/validate it. Do not open Phase 3 or downstream geometry from this artifact."
+}

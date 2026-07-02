@@ -1,0 +1,110 @@
+{
+  "kind": "blocked_reason",
+  "created_at": "2026-05-26T07:46:00-07:00",
+  "scope": "active_peps3d_carrier_frontier_after_AH_shared_member_frontier_fiber_K",
+  "classification": "formal_scout_controller_blocker",
+  "latest_admitted_packet": {
+    "packet_id": "phase2_shared_member_frontier_fiber_packet",
+    "finite_map": "AH_shared_member_frontier_fiber_K : (AG_member_shared_balance_frontier_K, shared_member_class_pair_id, frontier_pair_ids, support_cell_pair_keys, signature_pair_keys, balance_class_pair_keys, residue_delta_values) -> finite shared-member frontier-fiber table + member-support vector + control gap vector",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_shared_member_frontier_fiber_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_shared_member_frontier_fiber_probe_results.json",
+    "status": "contract_complete"
+  },
+  "blocker_map": {
+    "finite_map": "B_post_AH_shared_member_frontier_fiber_K : (AH_shared_member_frontier_fiber_K_receipt, active_frontier_rows, candidate_map_list, blocked_downstream_set) -> active_frontier_blocked_reason",
+    "domain": [
+      "AH_shared_member_frontier_fiber_K result receipt",
+      "active Phase 2 PEPS3D carrier-frontier matrix rows",
+      "current candidate-map list ending at AH_shared_member_frontier_fiber_K",
+      "blocked downstream consumer set",
+      "finite shared-member fiber carrier with 153 fibers, 495 memberships, 387 frontier pairs covered, 135 source rows covered, 351 support-cell pair support, 27 residue-delta support, max parent 125 sites, max triple-overlap 27 sites, and max bond 3"
+    ],
+    "codomain_or_output": "active-frontier blocked-reason artifact requiring one fresh post-AH candidate map before any next scout"
+  },
+  "blocked_reason": "AH_shared_member_frontier_fiber_K is contract-complete carrier evidence, but no further post-AH bounded carrier-frontier finite map has yet been named and audited. The correct controller action is candidate-map discovery using only active carrier-frontier receipts, then either write a fresh candidate artifact or preserve this blocker.",
+  "controls_preserved_from_latest_receipt": [
+    "member-id-erased",
+    "frontier-pair-erased",
+    "support-cell-pair-erased",
+    "signature-pair-erased",
+    "balance-class-pair-erased",
+    "residue-delta-erased",
+    "cardinality-only",
+    "scalar-label",
+    "membership-cardinality boundary",
+    "signature-pair-diversity boundary",
+    "fresh-N01 rejected",
+    "dense-state and dense-environment closure banned",
+    "topology/closure/downstream consumers blocked"
+  ],
+  "not_admitted": [
+    "fresh noncommuting operator",
+    "connected-component topology",
+    "homology/persistence/sheaf closure",
+    "restore/inverse",
+    "all-subset minimality",
+    "general shape law or bond convergence",
+    "full PEPS/PEPS3D closure",
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "downstream_consumers_still_blocked": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "validator_state_before_blocker": {
+    "formal_scout_result_validator_all_pass": true,
+    "lint_sim_contract_violations": 0,
+    "frontier_row_count": 52,
+    "contract_complete_rows": 49,
+    "killed_rows": 3,
+    "fiber_count": 153,
+    "total_memberships": 495,
+    "frontier_pair_coverage": 387,
+    "source_row_coverage": 135,
+    "support_cell_pair_support": 351,
+    "residue_delta_support": 27,
+    "max_parent_peps3d_sites": 125,
+    "max_triple_overlap_peps3d_sites": 27,
+    "max_peps3d_bond": 3
+  },
+  "wizard_v4_2": {
+    "status": "BLOCKED",
+    "blocked_reason": "Full Wizard v4.2 remains BLOCKED; this packet used Codex-native read-only sidecar audits plus local tools. No FULL or PARTIAL Wizard receipt is claimed for AH_shared_member_frontier_fiber_K."
+  },
+  "multi_model_parallelism_boundary": {
+    "codex_native_sidecars": [
+      "019e64ac-85c5-7522-8b85-927a35c37d04",
+      "019e64ac-a929-7311-8ca0-e9f9ef1d6106"
+    ],
+    "local_tools": [
+      "python_runner",
+      "lint_sim_contract",
+      "validate_formal_scout_results",
+      "no_numpy_scan"
+    ],
+    "direct_provider_lanes": "not used in this packet; Gemini/Grok remain API-key lanes only, not Wizard children"
+  },
+  "next_admissible_step": "Run candidate-map discovery for the next post-AH finite carrier-frontier map. Reject cardinality-only summaries, component/topology closure, fresh-N01 variants, restore/inverse variants, full PEPS3D closure, and all downstream variants. If no candidate survives, preserve this blocker and state Phase 2 locally saturated at this frontier.",
+  "recommended_next_move": "Do not run another formal scout after AH_shared_member_frontier_fiber_K until a new Phase 2 candidate map is written first as a controller artifact and audited against the active frontier matrix.",
+  "not_a_stop": true
+}

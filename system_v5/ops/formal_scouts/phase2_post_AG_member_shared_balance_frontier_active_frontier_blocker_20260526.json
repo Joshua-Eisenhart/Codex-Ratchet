@@ -1,0 +1,126 @@
+{
+  "kind": "blocked_reason",
+  "created_at": "2026-05-26T07:28:00-07:00",
+  "scope": "active_peps3d_carrier_frontier_after_AG_member_shared_balance_frontier_K",
+  "classification": "formal_scout_controller_blocker",
+  "latest_admitted_packet": {
+    "packet_id": "phase2_member_shared_balance_frontier_packet",
+    "finite_map": "AG_member_shared_balance_frontier_K : (AF_signature_cell_role_balance_residue_K, balance_row_i, balance_row_j, shared_member_class_pair_ids, support_cell_i, support_cell_j, overlap_signature_i, overlap_signature_j, balance_class_i, balance_class_j, residue_delta) -> finite member-shared row-pair frontier table + witness-support vector + control gap vector",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_member_shared_balance_frontier_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_member_shared_balance_frontier_probe_results.json",
+    "status": "contract_complete"
+  },
+  "blocker_map": {
+    "finite_map": "B_post_AG_member_shared_balance_frontier_K : (AG_member_shared_balance_frontier_K_receipt, active_frontier_rows, candidate_map_list, blocked_downstream_set) -> active_frontier_blocked_reason",
+    "domain": [
+      "AG_member_shared_balance_frontier_K result receipt",
+      "active Phase 2 PEPS3D carrier-frontier matrix rows",
+      "current candidate-map list ending at AG_member_shared_balance_frontier_K",
+      "blocked downstream consumer set",
+      "finite member-shared row-pair frontier carrier with 387 row pairs, 495 shared-member edges, 153 unique shared member witnesses, 135 active row coverage, max parent 125 sites, max triple-overlap 27 sites, and max bond 3"
+    ],
+    "codomain_or_output": "active-frontier blocked-reason artifact requiring one fresh post-AG candidate map before any next scout"
+  },
+  "blocked_reason": "AG_member_shared_balance_frontier_K is contract-complete carrier evidence, but no further post-AG bounded carrier-frontier finite map has yet been named and audited. The correct controller action is candidate-map discovery using only active carrier-frontier receipts, then either write a fresh candidate artifact or preserve this blocker.",
+  "explicitly_rejected_candidate_maps": [
+    {
+      "candidate": "component/topology over the row-pair frontier",
+      "rejected_reason": "The AG map uses rustworkx/xgi only for finite row-pair/member incidence. Connected components, topology closure, homology, persistence, sheaf closure, or PEPS3D closure are downstream/closure claims and remain blocked."
+    },
+    {
+      "candidate": "fresh order witness from row-pair canonicalization",
+      "rejected_reason": "Row-pair ordering is canonicalized as a boundary control. AG inherits N01 only and does not create a fresh noncommuting operator."
+    },
+    {
+      "candidate": "orientation/chirality from balance class side labels",
+      "rejected_reason": "Balance classes and endpoint roles are finite carrier readouts only. They do not admit orientation, chirality, or Weyl sheet structure."
+    }
+  ],
+  "controls_preserved_from_latest_receipt": [
+    "member-erased",
+    "support-cell-erased",
+    "signature-erased",
+    "balance-class-erased",
+    "endpoint-count-erased",
+    "residue-erased",
+    "role-total-only",
+    "balance-vector-only",
+    "scalar-label",
+    "row-order permutation boundary",
+    "same-signature boundary",
+    "fresh-N01 rejected",
+    "orientation/chirality rejected",
+    "dense-state and dense-environment closure banned",
+    "topology/closure/downstream consumers blocked"
+  ],
+  "not_admitted": [
+    "fresh noncommuting operator",
+    "orientation/chirality/Weyl sheet cover",
+    "connected-component topology",
+    "homology/persistence/sheaf closure",
+    "restore/inverse",
+    "all-subset minimality",
+    "general shape law or bond convergence",
+    "full PEPS/PEPS3D closure",
+    "nested Hopf tori",
+    "terrain generator placement",
+    "operator substage cells",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "downstream_consumers_still_blocked": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "validator_state_before_blocker": {
+    "formal_scout_result_validator_all_pass": true,
+    "lint_sim_contract_violations": 0,
+    "frontier_row_count": 51,
+    "contract_complete_rows": 48,
+    "killed_rows": 3,
+    "frontier_pair_count": 387,
+    "shared_member_edge_count": 495,
+    "unique_shared_member_class_pair_count": 153,
+    "active_row_coverage": 135,
+    "support_cell_pair_count": 351,
+    "max_parent_peps3d_sites": 125,
+    "max_triple_overlap_peps3d_sites": 27,
+    "max_peps3d_bond": 3
+  },
+  "wizard_v4_2": {
+    "status": "BLOCKED",
+    "blocked_reason": "Full Wizard v4.2 remains BLOCKED; this packet used Codex-native read-only sidecar audits plus local tools. No FULL or PARTIAL Wizard receipt is claimed for AG_member_shared_balance_frontier_K."
+  },
+  "multi_model_parallelism_boundary": {
+    "codex_native_sidecars": [
+      "019e649e-a593-76e2-aacf-a220d38f4106",
+      "019e649e-ba7b-76b3-8dab-2e0d2905b6ac",
+      "019e649e-ca8b-71d3-8f8c-cc7c37071ed1"
+    ],
+    "local_tools": [
+      "python_runner",
+      "lint_sim_contract",
+      "validate_formal_scout_results",
+      "no_numpy_scan"
+    ],
+    "direct_provider_lanes": "not used in this packet; Gemini/Grok remain API-key lanes only, not Wizard children"
+  },
+  "next_admissible_step": "Run candidate-map discovery for the next post-AG finite carrier-frontier map. Reject count-only summaries, component/topology closure, row-order-as-N01 variants, endpoint orientation/chirality variants, restore/inverse variants, full PEPS3D closure, and all downstream variants. If no candidate survives, preserve this blocker and state Phase 2 locally saturated at this frontier.",
+  "recommended_next_move": "Do not run another formal scout after AG_member_shared_balance_frontier_K until a new Phase 2 candidate map is written first as a controller artifact and audited against the active frontier matrix.",
+  "not_a_stop": true
+}

@@ -1,0 +1,153 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T05:54:07-07:00",
+  "classification": "formal_scout_controller_candidate",
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_Z_delta_pair_source_cell_K",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "claim_ceiling": "Candidate-map artifact only. This does not admit the chosen map, run a scout, open Phase 3, or open downstream consumers.",
+  "input_state": {
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "transition_decision_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_Z_delta_pair_source_cell_active_frontier_blocker_20260526.json",
+    "latest_admitted_map": "Z_delta_pair_source_cell_K : (Y_fiber_pair_rank_delta_projection_K, Y_delta_class_source_fiber_K, projection_cells, source_binding_fiber_rows, delta_class_id, pair_binding_id, active_source_class_id, boundary_source_class_id, PEPS3D rank support transitions) -> finite delta-pair-source cell table + rank-transition signature vector + control gap vector",
+    "frontier_rows": 44,
+    "contract_complete_rows": 41,
+    "killed_rows": 3,
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "working_geometry": "The earned Phase 2 object is PEPS3D-anchored finite response-quotient carrier geometry. After Z_delta_pair_source_cell_K, the frontier consists of 27 finite delta/pair/source cells carrying 216 fiber rows and 108 rank-transition entries over PEPS3D V/E/F/C masks. This is carrier-frontier geometry only, not topology, closure, physical manifold geometry, or downstream physics.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "AA_rank_transition_residue_incidence_K",
+      "candidate_name": "finite rank-transition residue incidence",
+      "finite_map": "AA_rank_transition_residue_incidence_K : (Z_delta_pair_source_cell_K, delta_pair_source_cell_table, rank_transition_signature, cell_id, delta_class_id, pair_binding_id, source_class_ids, PEPS3D rank labels) -> finite rank-transition residue incidence table + residue support vector + control gap vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": [
+        "It consumes the claim-bearing output of Z_delta_pair_source_cell_K rather than restating the cell count.",
+        "It emits a new finite carrier-frontier object: incidence rows binding each rank-transition residue to its cell, delta class, pair binding, active source class, boundary source class, and PEPS3D rank label.",
+        "It preserves F01 because cells, ranks, support bits, delta bits, source ids, pair ids, residue ids, controls, and outputs are finite.",
+        "It preserves the inherited N01 boundary by keeping order-erased promotion blocked and requiring controls that collapse rank-only, delta-only, source-erased, pair-erased, and cell-erased summaries.",
+        "It uses only Phase 2 carrier receipts and does not consume Phase 7/downstream receipts."
+      ],
+      "chosen": true
+    },
+    {
+      "candidate_id": "cell_count_or_rank_transition_total_restatement",
+      "candidate_name": "cell-count-only or rank-transition-total-only summary",
+      "decision": "rejected",
+      "why_rejected": "It duplicates Z_delta_pair_source_cell_K summary fields and emits no fresh finite map."
+    },
+    {
+      "candidate_id": "source_pair_rank_erased_histogram",
+      "candidate_name": "source-erased, pair-erased, rank-erased, or cell-erased histogram",
+      "decision": "rejected",
+      "why_rejected": "It erases the carrier-frontier bindings that made Z_delta_pair_source_cell_K admissible."
+    },
+    {
+      "candidate_id": "restore_inverse_or_minimal_reconstruction_from_cells",
+      "candidate_name": "restore, inverse, or all-subset minimality from cells",
+      "decision": "rejected",
+      "why_rejected": "Restore, inverse, and all-subset minimality are not earned by the cell receipt."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_persistence_from_cells",
+      "candidate_name": "topology, sheaf, homology, persistence, or closure from cells",
+      "decision": "rejected",
+      "why_rejected": "The cell table is finite carrier-frontier evidence only and does not admit topology, sheaf, homology, persistence, or full PEPS3D closure."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_cells",
+      "candidate_name": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are blocked downstream consumers, not Phase 2 carrier-frontier maps."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "AA_rank_transition_residue_incidence_K",
+    "finite_map": "AA_rank_transition_residue_incidence_K : (Z_delta_pair_source_cell_K, delta_pair_source_cell_table, rank_transition_signature, cell_id, delta_class_id, pair_binding_id, source_class_ids, PEPS3D rank labels) -> finite rank-transition residue incidence table + residue support vector + control gap vector",
+    "domain": {
+      "Z_delta_pair_source_cell_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_delta_pair_source_cell_probe_results.json",
+      "delta_pair_source_cell_table": "27 finite cells",
+      "rank_transition_signature": "108 finite rank-transition entries of the form (rank, active_support_count, boundary_support_count, mask_delta_rank)",
+      "cell_ids": "finite delta_pair_source_cell ids",
+      "delta_class_ids": "finite mask-delta quotient class ids",
+      "pair_binding_ids": "finite active_pair_id -> boundary_pair_id bindings",
+      "source_class_ids": "finite active and F-boundary source class ids",
+      "PEPS3D_rank_labels": [
+        "V",
+        "E",
+        "F",
+        "C"
+      ]
+    },
+    "codomain_or_output": {
+      "rank_transition_residue_table": "finite rows binding each transition residue to cells, delta classes, pair bindings, source classes, and rank labels",
+      "residue_support_vector": "finite per-residue cell-support counts",
+      "rank_residue_vector": "finite per-rank residue counts",
+      "control_gap_vector": "finite rejection/collapse readouts for count-only, source-erased, pair-erased, rank-only, delta-only, cell-erased, dense-closure, and downstream controls"
+    },
+    "F01_witness": "All cells, rank labels, support bits, delta bits, source ids, pair ids, residue ids, controls, and outputs are finite and receipt-backed.",
+    "N01_witness": "No fresh noncommuting operator is claimed; the map inherits Phase 2 carrier N01 and requires order-erased promotion to remain rejected. A candidate that claims fresh order sensitivity from residues alone must be killed.",
+    "PEPS3D_carrier_anchor": "Every admitted row must retain a cell id plus PEPS3D V/E/F/C rank label and source/pair bindings. Scalar labels and histograms are controls only.",
+    "geometry_it_could_earn_if_later_run_and_passed": "finite rank-transition residue incidence geometry within the PEPS3D response-quotient carrier frontier",
+    "status": "admissible_candidate_not_run"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_delta_pair_source_cell_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_fiber_pair_rank_delta_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_class_source_fiber_probe_results.json"
+  ],
+  "controls_required_if_later_run": {
+    "positive": [
+      "residue incidence rows retain cell ids, delta classes, pair bindings, active source ids, boundary source ids, and PEPS3D rank labels",
+      "residue support counts are finite and not equal to a cell-count-only restatement",
+      "rank residue counts distinguish at least the F-null boundary from active V/E/C residue structure without promoting topology or closure"
+    ],
+    "negative": [
+      "cell-count-only output must fail",
+      "rank-transition-total-only output must fail",
+      "source-erased output must fail",
+      "pair-erased output must fail",
+      "rank-only output must fail",
+      "delta-only output must fail",
+      "cell-erased output must fail",
+      "scalar-label output must fail",
+      "Phase 7/downstream receipt reclassification must fail"
+    ],
+    "boundary": [
+      "F-rank residues may be null/support-boundary rows but cannot open full V/E/F/C coordinate coverage",
+      "heldout topology, sheaf, homology, persistence, restore, inverse, and all-subset claims remain blocked",
+      "dense state and dense environment closure remain blocked"
+    ],
+    "order_erased": [
+      "order-erased promotion remains rejected",
+      "residue incidence alone must not claim a fresh N01 operator"
+    ]
+  },
+  "failure_conditions": [
+    "the map emits only cell counts or rank-transition totals",
+    "source ids, pair bindings, cell ids, rank labels, or delta class ids are erased",
+    "all residues collapse to one scalar histogram",
+    "dense full-state or dense-environment closure is required",
+    "a fresh noncommuting operator is claimed from residues alone",
+    "topology, sheaf, homology, persistence, restore/inverse, all-subset minimality, bond convergence, shape law, full PEPS3D closure, Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, physics, IGT/game theory, or axes 7-12 are opened",
+    "any Phase 7/downstream receipt is consumed as a Phase 2 dependency"
+  ],
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "next_admissible_step": "Author and run one bounded formal scout for AA_rank_transition_residue_incidence_K, then lint, validate the result, run the bounded frontier validator, update the matrix/transition/blocker, and continue."
+}

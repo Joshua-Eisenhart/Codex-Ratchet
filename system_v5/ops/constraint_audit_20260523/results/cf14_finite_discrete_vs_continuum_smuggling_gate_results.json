@@ -1,0 +1,97 @@
+{
+  "schema": "cf14_finite_discrete_vs_continuum_smuggling_gate_result_v1",
+  "name": "cf14_finite_discrete_vs_continuum_smuggling_gate",
+  "classification": "constraint_gate",
+  "candidate_fence": "CF-14",
+  "gate": "EG-CF14-finite-discrete-vs-continuum-smuggling",
+  "claim_ceiling": "Candidate gate receipt only. Passing does not promote CF-14 to accepted DC without non-redundancy audit.",
+  "uses_numpy": false,
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite density carriers and finite operator/path fixtures"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "python_json": "supportive"
+  },
+  "generated_at": "2026-05-23T20:09:24Z",
+  "runtime_seconds": 0.004561185836791992,
+  "positive": {
+    "pass": true,
+    "carrier_family": [
+      {
+        "dim": 2,
+        "trace": 1.0,
+        "entropy": 0.6931471805599453,
+        "entropy_ceiling": 0.6931471805599453,
+        "entropy_gap": 0.0
+      },
+      {
+        "dim": 4,
+        "trace": 1.0,
+        "entropy": 1.3862943611198906,
+        "entropy_ceiling": 1.3862943611198906,
+        "entropy_gap": 0.0
+      },
+      {
+        "dim": 8,
+        "trace": 1.0,
+        "entropy": 2.0794415416798357,
+        "entropy_ceiling": 2.0794415416798357,
+        "entropy_gap": 0.0
+      }
+    ],
+    "path_families": [
+      {
+        "dim": 2,
+        "path_count": 4,
+        "trace_after_path_average": 1.0,
+        "finite_registry": true
+      },
+      {
+        "dim": 4,
+        "path_count": 4,
+        "trace_after_path_average": 1.0,
+        "finite_registry": true
+      },
+      {
+        "dim": 8,
+        "path_count": 4,
+        "trace_after_path_average": 1.0,
+        "finite_registry": true
+      }
+    ],
+    "forbidden_primitives": []
+  },
+  "negative": {
+    "pass": false,
+    "attempted_claim": {
+      "carrier": "rho over completed continuum",
+      "path_family": "integral over all smooth paths",
+      "load_bearing_terms": [
+        "completed_infinity",
+        "continuum_primitive",
+        "derivative_primitive",
+        "limit_without_epsilon"
+      ],
+      "finite_translation": null
+    },
+    "expected": "fail"
+  },
+  "boundary": {
+    "pass": true,
+    "smooth_language_status": "derived_readout_only",
+    "grid_points": 16,
+    "max_finite_step": 0.39018064403225716,
+    "no_continuum_claim": true
+  },
+  "all_pass": true
+}

@@ -1,0 +1,28 @@
+{
+  "artifact_id": "formal_layer_campaign_goal_prompt_selftest_20260526",
+  "kind": "prompt_selftest",
+  "generated_at": "2026-05-26T13:45:52-07:00",
+  "prompt_path": "system_v5/ops/FORMAL_SIM_LAYER_LEGO_CAMPAIGN_CONTINUATION_GOAL_20260526.md",
+  "supersedes": "system_v5/ops/FORMAL_SIM_ONE_LAYER_FIRST_REPAIR_GOAL_20260526.md",
+  "copy_paste_prompt_chars": 3625,
+  "checks": {
+    "under_4000": true,
+    "l0_not_terminal": true,
+    "never_complete_with_unrun_layers": true,
+    "l1_next": true,
+    "layer_queue": true,
+    "required_fields": true,
+    "tool_pressure": true,
+    "forbidden_downstream": true
+  },
+  "all_static_checks_pass": true,
+  "known_failure_repaired": "old prompt allowed L0 finite-scope pass to terminate the goal; new prompt makes any unrun/unblocked L1-L8 row a continuation condition",
+  "wizard_status": "not_run_full_this_patch; repo repair and static prompt checks only",
+  "non_admission_lock": {
+    "stacking_unlocked": false,
+    "flux_unlocked": false,
+    "axis0_unlocked": false,
+    "physics_unlocked": false,
+    "final_manifold_admitted": false
+  }
+}

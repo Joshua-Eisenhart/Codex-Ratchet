@@ -1,0 +1,205 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T03:03:00-07:00",
+  "scope": "phase2_post_AL_stratum_support_cell_pair_source_incidence_K_candidate_map_discovery",
+  "classification": "formal_scout_controller_candidate",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "selected_candidate_map_id": "AM_support_cell_pair_stratum_projection_K",
+  "current_state_assertion": {
+    "phase2_carrier_geometry": "real_bounded",
+    "frontier_row_count": 56,
+    "contract_complete_rows": 53,
+    "killed_rows": 3,
+    "active_transition_decision": "blocked",
+    "wizard_v4_2_status": "BLOCKED",
+    "latest_admitted_packet": "phase2_stratum_support_cell_pair_source_incidence_packet",
+    "latest_admitted_map": "AL_stratum_support_cell_pair_source_incidence_K"
+  },
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After AL_stratum_support_cell_pair_source_incidence_K, the earned object includes 1665 finite stratum/support-cell/source incidence rows retaining 459 q_AK assignments, 104 strata, 153 fibers, 135 source rows, 387 frontier pairs, 351 PEPS3D support-cell pair keys, 5 signature keys, 6 balance-class keys, and 41 residue support patterns. This remains carrier-frontier incidence/projection geometry only.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "AM_support_cell_pair_stratum_projection_K",
+      "candidate_name": "finite support-cell-pair stratum projection",
+      "finite_map": "AM_support_cell_pair_stratum_projection_K : (AL_stratum_support_cell_pair_source_incidence_K, support_cell_pair_key, stratum_ids, source_balance_row_ids, fiber_ids, frontier_pair_ids, signature_pair_keys, balance_class_pair_keys, residue_delta_support_patterns) -> finite support-cell-pair stratum projection table + exact-retention control vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": "It ratchets directly from AL by grouping already-earned incidence rows by explicit PEPS3D support-cell pair key while retaining stratum, source, fiber, frontier, signature, balance, and residue witnesses. This is anchor-first Phase 2 carrier-frontier projection, not count-only summary, topology, closure, restore/inverse, orientation/chirality, fresh-N01, or downstream geometry.",
+      "geometry_it_would_earn_if_later_passed": "A bounded finite PEPS3D support-cell-pair projection readout showing which exact strata and source/fiber/frontier witnesses are carried by each support-cell pair anchor.",
+      "not_run_in_this_artifact": true
+    },
+    {
+      "candidate_id": "AM_signature_projection_after_AL_K",
+      "candidate_name": "signature projection after support-cell localization",
+      "decision": "deferred_not_selected",
+      "why_deferred": "It is a finite projection but less anchor-local than support-cell-pair projection. Signature grouping risks label-first interpretation unless support-cell anchor projection is tested first."
+    },
+    {
+      "candidate_id": "AM_high_multiplicity_support_split_K",
+      "candidate_name": "split the nine high-multiplicity support-cell pairs",
+      "decision": "deferred_not_selected",
+      "why_deferred": "The multiplicity split is a boundary readout of the support-cell projection and should not precede the full finite support-cell projection table."
+    },
+    {
+      "candidate_id": "AM_support_component_topology_K",
+      "candidate_name": "support-cell component/topology closure",
+      "decision": "rejected",
+      "why_rejected": "Component, topology, sheaf, homology, persistence, all-subset minimality, and full PEPS3D closure remain blocked. A support-cell projection table is not a topology claim."
+    },
+    {
+      "candidate_id": "AM_restore_inverse_q_AK_K",
+      "candidate_name": "restore/inverse reconstruction from q_AK",
+      "decision": "rejected",
+      "why_rejected": "q_AK is a finite assignment boundary only. Restore/inverse reconstruction is explicitly blocked by the AL receipt."
+    },
+    {
+      "candidate_id": "AM_count_only_support_summary_K",
+      "candidate_name": "support-row multiplicity counts only",
+      "decision": "rejected",
+      "why_rejected": "Support-row multiplicity counts {2:36, 3:162, 4:144, 59:9} are controls/boundary summaries. A fresh map must retain exact support-cell pair keys and witness rows."
+    },
+    {
+      "candidate_id": "AM_orientation_or_chirality_from_support_K",
+      "candidate_name": "support-cell projection promoted to orientation/chirality",
+      "decision": "rejected",
+      "why_rejected": "Support-cell pair keys are finite PEPS3D carrier anchors only. They do not admit orientation, chirality, Weyl sheets, Hopf geometry, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "AM_support_cell_pair_stratum_projection_K",
+    "finite_map": "AM_support_cell_pair_stratum_projection_K : (AL_stratum_support_cell_pair_source_incidence_K, support_cell_pair_key, stratum_ids, source_balance_row_ids, fiber_ids, frontier_pair_ids, signature_pair_keys, balance_class_pair_keys, residue_delta_support_patterns) -> finite support-cell-pair stratum projection table + exact-retention control vector",
+    "plain_question": "Do AL incidence rows project onto exactly 351 finite PEPS3D support-cell pair anchors that retain all strata, source rows, fibers, frontier pairs, signature keys, balance classes, and residue patterns, while support-erased, witness-erased, count-only, scalar-label, restore/inverse, topology, fresh-N01, orientation/chirality, and downstream controls fail or remain blocked?",
+    "domain": {
+      "AL_stratum_support_cell_pair_source_incidence_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_stratum_support_cell_pair_source_incidence_probe_results.json",
+      "AK_signature_balance_residue_fiber_stratification_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_signature_balance_residue_fiber_stratification_probe_results.json",
+      "support_cell_pair_keys": "351 finite PEPS3D support-cell pair keys retained by AL",
+      "incidence_rows": "1665 finite AL stratum/support-cell/source incidence rows",
+      "strata": "104 finite exact signature/balance/residue strata",
+      "source_balance_row_ids": "135 finite source rows retained by AL",
+      "fiber_ids": "153 finite fibers retained by AL",
+      "frontier_pair_ids": "387 finite frontier pairs retained by AL",
+      "signature_pair_keys": "5 finite signature-pair keys retained by AL",
+      "balance_class_pair_keys": "6 finite balance-class pair keys retained by AL",
+      "residue_delta_support_patterns": "41 finite residue support patterns retained by AL",
+      "local_order_witness": "inherited Phase 2 order-sensitive carrier witness only; no fresh N01 operator is admitted"
+    },
+    "codomain_or_output": {
+      "support_cell_pair_stratum_projection_table": "finite table keyed by PEPS3D support-cell pair key retaining stratum ids, source-row ids, fiber ids, frontier-pair ids, signature-pair keys, balance-class pair keys, and residue support patterns",
+      "support_anchor_projection_vector": "finite support counts over support-cell pair keys, strata, source rows, fibers, frontier pairs, signatures, balance classes, and residue patterns",
+      "control_gap_vector": "finite failure/collapse statuses for support-erased, stratum-erased, source-erased, fiber-erased, frontier-erased, signature-erased, balance-erased, residue-erased, count-only, scalar-label, restore/inverse, topology, fresh-N01/order-erased, orientation/chirality, dense-closure, and downstream controls"
+    },
+    "expected_live_counts_from_local_audit": {
+      "support_cell_pair_projection_rows": 351,
+      "incidence_row_count": 1665,
+      "strata_count": 104,
+      "source_row_coverage": 135,
+      "fiber_coverage": 153,
+      "frontier_pair_coverage": 387,
+      "signature_key_support": 5,
+      "balance_key_support": 6,
+      "residue_pattern_support": 41,
+      "support_row_multiplicity_counts": {
+        "2": 36,
+        "3": 162,
+        "4": 144,
+        "59": 9
+      },
+      "strata_per_support_counts": {
+        "1": 342,
+        "14": 1,
+        "15": 3,
+        "16": 5
+      },
+      "source_per_support_counts": {
+        "2": 36,
+        "3": 162,
+        "4": 144,
+        "35": 9
+      },
+      "fiber_per_support_counts": {
+        "1": 342,
+        "17": 9
+      }
+    },
+    "PEPS3D_carrier_anchor": "Every projection row is keyed by an inherited PEPS3D support-cell pair key. A projection row without exact support-cell pair anchors is a scalar-label control.",
+    "F01_witness": "The support-cell pair keys, incidence rows, strata, source rows, fibers, frontier pairs, signature keys, balance classes, residue patterns, controls, and outputs are finite and receipt-backed.",
+    "N01_order_witness": "No fresh N01 is claimed. The candidate must preserve the inherited Phase 2 order-sensitive carrier witness while order-erased and commuting-only controls remain collapsed.",
+    "geometry_if_later_earned": "finite support-cell-pair stratum projection geometry over AL incidence rows on PEPS3D carrier anchors",
+    "promotion_allowed": false,
+    "not_a_scout_run": true
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_stratum_support_cell_pair_source_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_signature_balance_residue_fiber_stratification_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_source_fiber_support_residue_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_source_row_fiber_pullback_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_shared_member_frontier_fiber_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_member_shared_balance_frontier_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_signature_cell_role_balance_residue_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_signature_anchor_role_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_overlap_signature_fiber_probe_results.json"
+  ],
+  "controls_required_if_later_run": {
+    "positive": [
+      "351 finite support-cell-pair projection rows are produced",
+      "all 1665 incidence rows, 104 strata, 153 fibers, 135 source rows, and 387 frontier pairs remain covered",
+      "each projection row retains exact support-cell pair key, stratum ids, source-row ids, fiber ids, frontier-pair ids, signature-pair keys, balance-class pair keys, and residue support patterns"
+    ],
+    "negative": [
+      "support-cell-pair-erased control must fail",
+      "stratum-erased control must fail",
+      "source-erased control must fail",
+      "fiber-erased control must fail",
+      "frontier-pair-erased control must fail",
+      "signature-erased control must fail",
+      "balance-erased control must fail",
+      "residue-erased control must fail",
+      "support-count-only and scalar-label controls must fail"
+    ],
+    "boundary": [
+      "support-row multiplicity counts remain finite support readouts only",
+      "the nine high-multiplicity support rows remain boundary rows, not topology or hub structure claims",
+      "no restore/inverse, topology, sheaf, homology, persistence, all-subset minimality, or full PEPS3D closure is admitted"
+    ],
+    "order_erased": [
+      "order-erased local paths must not recover a fresh N01 witness",
+      "commuting-only variants remain controls"
+    ],
+    "downstream_leak": [
+      "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, and axes 7-12 remain blocked"
+    ]
+  },
+  "failure_conditions": [
+    "Any projection row lacks an explicit PEPS3D support-cell pair key.",
+    "The support-cell projection cannot cover 351 support-cell pair keys, 1665 incidence rows, 104 strata, 153 fibers, 135 source rows, and 387 frontier pairs.",
+    "The candidate can be replaced by support counts, multiplicities, cardinalities, or scalar labels.",
+    "The map promotes high-multiplicity support rows to topology/hub/closure evidence or requires connected components, homology, persistence, sheaf gluing, all-subset minimality, full PEPS3D closure, dense full-state closure, or dense environment closure.",
+    "Support-cell or side-swap labels are promoted to orientation/chirality.",
+    "Order-erased or commuting-only controls are treated as fresh N01 evidence.",
+    "The candidate opens Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12."
+  ],
+  "wizard_v4_2": {
+    "status": "BLOCKED",
+    "accepted_parent_count": 0,
+    "accepted_child_count": 0,
+    "attempted_codex_native_sidecars": 1,
+    "accepted_codex_native_sidecars": 0,
+    "blocked_reason": "Full Wizard v4.2 remains blocked. One Codex-native post-AL sidecar timed out and was closed; direct Gemini/Grok provider lanes, if later used, remain API lanes and are not Wizard children."
+  },
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_AL_stratum_support_cell_pair_source_incidence_active_frontier_blocker_20260526.json",
+  "next_admissible_step": "Only after this candidate artifact is audited: author one bounded formal_scout source for AM_support_cell_pair_stratum_projection_K, then run/lint/validate it. Do not open Phase 3 or downstream geometry from this artifact."
+}

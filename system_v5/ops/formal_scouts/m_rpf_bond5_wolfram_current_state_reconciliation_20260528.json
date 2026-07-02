@@ -1,0 +1,84 @@
+{
+  "artifact_id": "m_rpf_bond5_wolfram_current_state_reconciliation_20260528",
+  "kind": "m_rpf_bond5_wolfram_packet_0_reconciliation",
+  "schema": "m_rpf_bond5_wolfram_packet_0_v1",
+  "created_at": "2026-05-28T00:50:00Z",
+  "goal_path": "system_v5/ops/tmp/FORMAL_SIM_M_RPF_BOND5_WOLFRAM_LONG_RUNNING_GOAL_20260528.md",
+  "primary_object": "M_RPF(C)",
+  "object_order_required": [
+    "Omega_r future/refinement branches",
+    "compatibility weights",
+    "ordered adapters A0..A8",
+    "compression map C",
+    "rho_present",
+    "outward_record",
+    "derived readouts"
+  ],
+  "source_native_constraints_reconciled": {
+    "finite_K_V_E_F_C": true,
+    "local_spinor_phase_claim_bearing": true,
+    "spinor_derived_density_readout_only": true,
+    "Hopf_fiber_base_distinction": true,
+    "L_R_Weyl_sheet_sign": true,
+    "terrain_generator_action": true,
+    "local_operator_channel_action": true,
+    "PEPS3D_locality_and_bond_provenance": true,
+    "QIT_entropy_derived_readout_only": true,
+    "Wolfram_machinery_adapter_only": true
+  },
+  "checks": {
+    "object_packet_validator": {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/wizard_v4_3_object_preservation.py validate --input system_v5/ops/formal_scouts/retrocausal_shell_field_v43_object_packet_20260527.json",
+      "ok": true,
+      "errors": []
+    },
+    "post_stack_existing_results_validator": {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py system_v5/ops/formal_scouts/results/m_rpf_post_stack_stress_probe_results.json system_v5/ops/formal_scouts/results/m_rpf_post_stack_variant_stress_probe_results.json system_v5/ops/formal_scouts/results/m_rpf_post_stack_adversarial_object_audit_probe_results.json system_v5/ops/formal_scouts/results/m_rpf_post_stack_minimality_order_necessity_probe_results.json",
+      "all_pass": true,
+      "fresh_rerun": false
+    },
+    "monitor_once": {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/monitor_retrocausal_shell_field_v43.py --once",
+      "status": "active_preserved",
+      "result_reports_count": 14
+    },
+    "wolfram_adapter_receipts_present": {
+      "all_present": true,
+      "promotion_allowed": false,
+      "paths": [
+        "system_v5/ops/formal_scouts/results/wolfram_multiway_shell_adapter_fit_probe_results.json",
+        "system_v5/ops/formal_scouts/results/wolfram_multiway_shell_usefulness_deep_probe_results.json",
+        "system_v5/ops/formal_scouts/results/wolfram_toe_feature_adapter_matrix_probe_results.json",
+        "system_v5/ops/formal_scouts/results/wolfram_hypergraph_peps3d_support_fit_probe_results.json",
+        "system_v5/ops/formal_scouts/results/wolfram_shell_toolkit_scale_probe_results.json",
+        "system_v5/ops/formal_scouts/results/aligned_model_adapter_matrix_shell_probe_results.json"
+      ]
+    },
+    "continuation_agrees_next_map": {
+      "agrees": true,
+      "next_bounded_map": "M_RPF_post_stack_bond5_admission_micro_probe",
+      "source_artifacts": [
+        "system_v5/ops/formal_scouts/m_rpf_post_stack_tranche_progress_20260528.json",
+        "system_v5/ops/formal_scouts/m_rpf_post_stack_continuation_selector_20260528.json"
+      ]
+    }
+  },
+  "decision": "proceed_to_packet_1_bond5_admission_micro_probe",
+  "blocked_consumers_remain_locked": [
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics/gravity proof",
+    "IGT/game theory",
+    "axes7-12",
+    "PEPS3D closure theorem",
+    "final manifold admission"
+  ],
+  "wizard_truth": {
+    "status": "PARTIAL_BLOCKED",
+    "reason": "Codex-native subagent spawn was attempted for sidecar inspection and blocked by the current agent thread limit. No Wizard v4.2 FULL topology is claimed."
+  },
+  "not_terminal": true,
+  "next_packet": "M_RPF_post_stack_bond5_admission_micro_probe"
+}

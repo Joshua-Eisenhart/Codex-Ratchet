@@ -1,0 +1,178 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T00:45:00-07:00",
+  "classification": "formal_scout_controller_candidate",
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_T_triple_overlap_K",
+  "not_a_scout_run": true,
+  "claim_ceiling": "Candidate-map artifact only. No nested Hopf tori, Weyl sheet cover, terrain generator placement, operator substage cells, PEPS/PEPS3D closure, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, axes 7-12, general gluing law, shape law, bond convergence claim, sheaf theorem, or topology closure claim is opened.",
+  "current_state_inputs": {
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "transition_decision_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_T_triple_active_frontier_blocker_20260526.json",
+    "latest_earned_map": "T_triple_overlap_K : (O_overlap_K, pi_0, pi_1, pi_2, omega_01, omega_12, omega_02, omega_012, boundary_anchor, bond_dim, local_order_ops) -> finite triple-overlap consistency table + pairwise/triple route gap vector",
+    "frontier_rows": 21,
+    "contract_complete_rows": 20,
+    "killed_rows": 1,
+    "bounded_validator_all_pass": true
+  },
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "N_cover_nerve_K",
+      "finite_map": "N_cover_nerve_K : (T_triple_overlap_K, cover={K_0,K_1,K_2}, omega_01, omega_12, omega_02, omega_012, boundary_anchor, bond_dim, local_order_ops) -> finite cover-nerve incidence/readout table + control gap vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": [
+        "Uses only active carrier-frontier objects already earned by T_triple_overlap_K: three finite PEPS3D restrictions, pairwise overlaps, one triple overlap, inherited anchors, finite response vectors, and local order paths.",
+        "Produces a finite incidence/readout table for the cover nerve with 3 vertices, 3 pairwise edges, and one triple-overlap 2-simplex; it does not claim homology closure, sheaf closure, or a general gluing theorem.",
+        "Keeps torch-native spinor-derived density only as finite response carrier data.",
+        "Keeps F01 through finite cover elements, overlaps, probes, operators, paths, controls, and output table.",
+        "Keeps N01 through physical_filter/physical_shift order paths on the triple-simplex support and an order-erased control.",
+        "Does not import later scale/closure stress, Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12."
+      ],
+      "chosen": true
+    },
+    {
+      "candidate_id": "P_pullback_triple_K",
+      "finite_map": "P_pullback_triple_K : (T_triple_overlap_K, tau_restrict, omega_012, boundary_anchor, bond_dim, local_order_ops) -> finite pullback-square consistency signatures + control gap vector",
+      "decision": "rejected_for_now",
+      "why_rejected": "The current omega_012 support is shape (3,3,3); nontrivial smaller restrictions risk zero-interior all-boundary controls. This should be revisited only if a larger triple-overlap support is first earned."
+    },
+    {
+      "candidate_id": "I_overlap_interface_K",
+      "finite_map": "I_overlap_interface_K : (T_triple_overlap_K, inherited_edge_face_cell_anchors, cut_edge_support, boundary_anchor, bond_dim, local_order_ops) -> finite overlap-interface incidence/readout table + rejection gaps",
+      "decision": "rejected_for_now",
+      "why_rejected": "The interface wording is too close to the rejected later I_boundary scale/closure stress. It needs a stricter candidate artifact before any scout."
+    },
+    {
+      "candidate_id": "general_cover_gluing_or_sheaf_law",
+      "finite_map": "cover overlaps -> global gluing/sheaf law",
+      "decision": "rejected",
+      "why_rejected": "A general gluing or sheaf law is a closure/promotion claim, not a bounded finite carrier-frontier map."
+    },
+    {
+      "candidate_id": "cover_homology_or_topology_closure",
+      "finite_map": "cover nerve -> topology closure",
+      "decision": "rejected",
+      "why_rejected": "Homology/topology closure is not opened. Only a finite nerve incidence/readout table is admissible here."
+    },
+    {
+      "candidate_id": "hopf_weyl_or_flux_from_nerve",
+      "finite_map": "cover nerve -> Hopf/Weyl/flux/Axis0 readout",
+      "decision": "rejected",
+      "why_rejected": "Nested Hopf tori, Weyl sheets, flux, Xi/Phi0, Axis0, physics, FEP, IGT, and axes 7-12 remain blocked downstream consumers."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "N_cover_nerve_K",
+    "finite_map": "N_cover_nerve_K : (T_triple_overlap_K, cover={K_0,K_1,K_2}, omega_01, omega_12, omega_02, omega_012, boundary_anchor, bond_dim, local_order_ops) -> finite cover-nerve incidence/readout table + control gap vector",
+    "plain_question": "Does the three-restriction PEPS3D cover earned by T_triple_overlap_K carry a finite anchored cover-nerve incidence/readout table, with 3 vertices, 3 pairwise overlap edges, and one triple-overlap 2-simplex, while erased, empty, duplicate, wrong-incidence, label-only, single-probe, order-erased, dense-closure, and promotion controls fail?",
+    "domain": {
+      "T_triple_overlap_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_triple_overlap_consistency_probe_results.json",
+      "parent_carrier": "finite PEPS3D K_parent=(V,E,F,C) at shape (5,5,5), bond dimensions 2 and 3",
+      "cover_elements": "three finite anchor-preserving restrictions K_0,K_1,K_2 at offsets (0,0,0), (1,1,0), and (1,0,1) to shape (4,4,4) subcarriers",
+      "overlap_elements": "finite pairwise overlaps omega_01, omega_12, omega_02 and finite triple overlap omega_012 with inherited V/E/F/C anchors",
+      "finite_probe_effect_family": "finite SIC-effect local responses seeded by torch-native spinor-derived carrier data",
+      "finite_operator_paths": [
+        "physical_filter after physical_shift",
+        "physical_shift after physical_filter",
+        "order_erased"
+      ]
+    },
+    "codomain_or_output": {
+      "nerve_incidence_table": "finite table with 3 cover vertices, 3 pairwise-overlap edges, and 1 triple-overlap 2-simplex",
+      "anchor_preservation_signature": "finite V/E/F/C support-count and incidence-readout deltas for each cover element and overlap element",
+      "response_readout_table": "finite response signatures attached to cover vertices, pairwise overlaps, and the triple-overlap simplex",
+      "order_gap_vector": "finite noncommuting path gap on the triple-overlap simplex support",
+      "control_gap_vector": "finite gaps for rejected controls"
+    },
+    "F01_witness": {
+      "finite_carriers": "one finite PEPS3D parent, three finite restrictions, three finite pairwise overlaps, one finite triple overlap, and finitely many bond rows",
+      "finite_probes": "finite SIC-effect local response family from active receipts",
+      "finite_operators": "physical_filter, physical_shift, order_erased, restriction selectors, pairwise overlap selectors, triple-overlap selector, and finite nerve incidence map",
+      "finite_paths": "bounded path set {filter_after_shift, shift_after_filter, order_erased} on each finite nerve-readout row"
+    },
+    "N01_witness": "N_cover_nerve_K(filter_after_shift(T_omega012)) != N_cover_nerve_K(shift_after_filter(T_omega012)) on the triple-overlap simplex support, while order_erased collapses.",
+    "PEPS3D_anchor_requirement": "Each admitted row must preserve explicit site, edge, face, and cell anchors for cover elements and overlaps. No scalar carrier labels are admitted.",
+    "torch_spinor_or_density_status": "Torch-native two-component spinors and spinor-derived local densities seed finite response tensors as carrier data only. No Hopf/Weyl geometry is admitted.",
+    "positive_case": "The cover nerve has exactly 3 vertices, 3 pairwise overlap edges, and 1 triple-overlap 2-simplex with nonempty inherited anchors, nonzero response readouts, nonzero order gap, and no dense closure.",
+    "negative_controls": [
+      "no_anchor",
+      "scalar_label",
+      "triple_simplex_erased",
+      "empty_triple_overlap",
+      "duplicate_cover_element",
+      "wrong_nerve_incidence",
+      "single_probe_non_ic",
+      "order_erased",
+      "dense_state_closure",
+      "dense_environment_closure",
+      "later_boundary_reclassification"
+    ],
+    "boundary_controls": [
+      "bond_dim_one remains control-only",
+      "finite nerve incidence is not homology or topology closure",
+      "no general gluing law",
+      "no sheaf theorem",
+      "no shape law",
+      "no bond convergence",
+      "no PEPS3D closure claim"
+    ],
+    "failure_conditions": [
+      "The finite nerve table does not have exactly 3 vertices, 3 pairwise edges, and 1 triple-overlap 2-simplex.",
+      "Any cover or overlap row lacks inherited V/E/F/C anchors.",
+      "Wrong-incidence or triple-simplex-erased controls are admitted as support.",
+      "Order gap is zero for every admitted row.",
+      "Single-probe, order-erased, dense-closure, label-only, or promotion controls do not fail or collapse.",
+      "The map depends on Phase 7/downstream receipts or opens Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, axes 7-12, homology closure, sheaf closure, or full PEPS3D closure."
+    ],
+    "promotion_allowed": false,
+    "next_admissible_packet": {
+      "packet_id": "phase2_cover_nerve_consistency_candidate_packet",
+      "allowed_next_action": "Author a formal_scout source for N_cover_nerve_K, then run/lint/validate it. This artifact itself does not authorize downstream geometry.",
+      "must_not_run_from_this_artifact": [
+        "nested Hopf tori",
+        "Weyl sheet cover",
+        "terrain generator placement",
+        "operator substages",
+        "flux",
+        "Xi/Phi0",
+        "Axis0",
+        "Holodeck/FEP",
+        "physics",
+        "IGT/game theory",
+        "axes 7-12"
+      ],
+      "fallback_if_killed": "preserve post-T_triple blocker and return to candidate discovery"
+    }
+  },
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_spinor_density_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps_peps3d_local_environment_contraction_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_heldout_shape_anchor_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_bond_sweep_anchor_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_anchor_partition_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_patch_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_projection_shape_bond_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_replay_restriction_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_restriction_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_triple_overlap_consistency_probe_results.json"
+  ],
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ]
+}

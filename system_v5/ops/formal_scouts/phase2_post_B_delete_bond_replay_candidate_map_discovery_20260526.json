@@ -1,0 +1,175 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_B_delete_bond_replay_active_frontier_blocker_20260526.json",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "DD_pair_delete_interaction_K",
+      "candidate_name": "finite ordered pair-deletion interaction readout",
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "DD_pair_delete_interaction_K : (B_delete_bond_replay_K, ordered deletion pair (delta_i, delta_j), legal_anchor_preserving_relabeling pi, bond_dim in {2,3}, local_order_ops) -> finite ordered pair-deletion interaction table + control gap vector",
+      "geometry_it_would_earn_if_later_passed": "A bounded finite ordered-pair interaction readout for deletion-support atoms inside the Phase 2 PEPS3D response-quotient carrier.",
+      "not_run_in_this_artifact": true,
+      "why_admissible": "It ratchets directly from B_delete_bond_replay_K by using only the already admitted finite support atoms, legal anchor-preserving relabelings, bond dimensions, PEPS3D anchor counts, and inherited order-sensitive carrier path. It asks for a finite ordered pair readout, not all-subset minimality, topology, restore/inverse, shape law, bond convergence, PEPS3D closure, or downstream geometry."
+    },
+    {
+      "candidate_id": "H_delete_anchor_loss_idempotence_K",
+      "candidate_name": "delete-anchor loss idempotence",
+      "decision": "deferred_candidate",
+      "why_deferred": "It is carrier-only, but mostly re-expresses I_delete_idempotence_K and A_delete_anchor_orbit_K. Keep as fallback if DD_pair_delete_interaction_K is killed."
+    },
+    {
+      "candidate_id": "Q_delete_class_partition_K",
+      "candidate_name": "delete-class partition quotient",
+      "decision": "rejected_for_now",
+      "why_rejected": "It risks duplicating the existing response-quotient/one-delete support partition without a fresh map. A quotient refinement can be reconsidered only with a stricter nonduplicate invariant."
+    },
+    {
+      "candidate_id": "bond_convergence_or_shape_law_from_B",
+      "candidate_name": "bond convergence or shape law",
+      "decision": "rejected",
+      "why_rejected": "B_delete_bond_replay_K records finite two-bond deltas only. A convergence law or shape law would overclaim beyond bounded finite carrier evidence."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_or_downstream_from_B",
+      "candidate_name": "topology, sheaf, homology, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are closure or downstream consumers. Opening them from B_delete_bond_replay_K would skip the bounded Phase 2 carrier-frontier ratchet."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "F01_finite_witness": "The support atoms, ordered pairs, relabelings, bond dimensions, probes, paths, rows, and outputs are finite and receipt-backed.",
+    "N01_order_witness": "The full support inherited from B_delete_bond_replay_K preserves a nonzero order-sensitive gap, while order-erased controls collapse. DD itself is a finite pair readout, not a new noncommuting operator.",
+    "PEPS3D_carrier_anchor": "Every row must carry explicit inherited V/E/F/C anchor accounting from B_delete_bond_replay_K. Scalar pair labels are not evidence.",
+    "candidate_id": "DD_pair_delete_interaction_K",
+    "codomain_or_output": "finite ordered pair-deletion interaction rows, signed and absolute pair gap readouts, inherited anchor-count signatures, and a finite control gap vector",
+    "domain": {
+      "B_delete_bond_replay_K": "validated finite two-bond deletion replay delta receipt",
+      "bond_dim": [
+        2,
+        3
+      ],
+      "legal_anchor_preserving_relabelings": "six relabelings inherited from A_delete_anchor_orbit_K",
+      "local_order_ops": "finite order-sensitive local operation pair inherited from the Phase 2 carrier receipts",
+      "ordered_deletion_pairs": "all ordered pairs (delta_i, delta_j) with i != j over the seven finite support atoms",
+      "support_atoms": [
+        "v0",
+        "v1",
+        "v2",
+        "e01",
+        "e12",
+        "e02",
+        "sigma012"
+      ]
+    },
+    "finite_map": "DD_pair_delete_interaction_K : (B_delete_bond_replay_K, ordered deletion pair (delta_i, delta_j), legal_anchor_preserving_relabeling pi, bond_dim in {2,3}, local_order_ops) -> finite ordered pair-deletion interaction table + control gap vector",
+    "geometry_if_later_earned": "finite ordered pair-deletion carrier interaction geometry over the admitted PEPS3D support atoms",
+    "not_a_scout_run": true,
+    "promotion_allowed": false
+  },
+  "classification": "formal_scout_controller_candidate",
+  "controls_required_if_later_run": {
+    "boundary": [
+      "bond_dim=1 remains control-only",
+      "bond_dim=4 remains heldout non-support",
+      "all-subset minimality remains blocked",
+      "restore/inverse remains blocked"
+    ],
+    "downstream_leak": [
+      "topology, sheaf, homology, persistence, general gluing, shape law, bond convergence, PEPS3D closure, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, and axes 7-12 remain blocked"
+    ],
+    "negative": [
+      "same-deletion pair must collapse to idempotence/control",
+      "no-anchor pair labels must fail",
+      "scalar-label pair table must fail",
+      "wrong deletion pair must fail",
+      "single-probe non-IC pair table must collapse relative to full finite effects"
+    ],
+    "order_erased": [
+      "order-erased local paths must collapse the inherited N01 witness",
+      "unordered pair controls must not replace ordered pair rows"
+    ],
+    "positive": [
+      "all ordered pairs over distinct support atoms produce finite inherited anchor-count signatures",
+      "signed pair gaps are recorded as finite data, not promoted as convergence",
+      "at least one pair readout distinguishes ordered support atoms while pair-order-erased control collapses orientation"
+    ]
+  },
+  "created_at": "2026-05-26T02:51:00-07:00",
+  "current_state_assertion": {
+    "active_transition_decision": "blocked",
+    "contract_complete_rows": 26,
+    "frontier_row_count": 27,
+    "killed_rows": 1,
+    "latest_admitted_map": "B_delete_bond_replay_K",
+    "latest_admitted_packet": "phase2_delete_bond_replay_packet",
+    "phase2_carrier_geometry": "real_bounded",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_spinor_density_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps_peps3d_local_environment_contraction_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_heldout_shape_anchor_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_bond_sweep_anchor_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_anchor_partition_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_patch_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_projection_shape_bond_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_replay_restriction_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_restriction_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_triple_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cover_nerve_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_nerve_deletion_sensitivity_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_one_delete_necessity_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_deletion_idempotence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_orbit_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delete_bond_replay_probe_results.json"
+  ],
+  "failure_conditions": [
+    "any ordered pair row lacks explicit inherited PEPS3D V/E/F/C anchor accounting",
+    "the map requires dense state closure or dense environment closure",
+    "same-deletion or unordered controls pass as the ordered pair interaction table",
+    "no nonzero inherited order-sensitive gap survives",
+    "single-probe or non-IC controls pass as complete",
+    "the candidate promotes all-subset minimality, restore/inverse, bond convergence, shape law, topology, sheaf, homology, full PEPS3D closure, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12"
+  ],
+  "kind": "candidate_map_discovery",
+  "next_admissible_step": "Author one bounded formal_scout source for DD_pair_delete_interaction_K, then run/lint/validate it. This candidate artifact does not itself admit the map and does not open Phase 3 or downstream geometry.",
+  "next_fallback_candidate": {
+    "candidate_id": "H_delete_anchor_loss_idempotence_K",
+    "reason": "DD was killed; H is the next previously deferred carrier-only fallback, but must still be explicitly bounded before any downstream move.",
+    "status": "fallback_candidate_not_run"
+  },
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "run_result": {
+    "candidate_id": "DD_pair_delete_interaction_K",
+    "kill_reason": "all finite ordered pair-deletion gaps collapse to zero across the tested B_delete_bond_replay_K support atoms and legal relabelings",
+    "max_absolute_pair_gap": 0.0,
+    "nonzero_pair_gap_count": 0,
+    "ordered_pair_row_count": 252,
+    "promotion_allowed": false,
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_pair_delete_interaction_probe_results.json",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_pair_delete_interaction_probe.py",
+    "status": "killed"
+  },
+  "scope": "phase2_post_B_delete_bond_replay_K_candidate_map_discovery",
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. After B_delete_bond_replay_K, the earned object is a finite two-bond deletion replay delta table over explicit PEPS3D anchors, support atoms, legal relabelings, finite bond dimensions, and inherited order-sensitive local paths. It is not bond convergence, shape law, topology closure, PEPS3D closure, or the physical manifold."
+}

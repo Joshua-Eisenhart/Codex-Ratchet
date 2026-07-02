@@ -1,0 +1,116 @@
+{
+  "kind": "constraint_depth_order_audit",
+  "created_at": "2026-05-28T00:00:00-07:00",
+  "classification": "controller_audit",
+  "promotion_allowed": false,
+  "claim_ceiling": "Audit artifact only. It reconciles constraint-depth ordering and validator results; it does not admit full layer completion, stacking, flux, Xi/Phi0, Axis0, FEP, physics, a true G-structure, or final manifold claims.",
+  "source_files_read": [
+    "AGENTS.md",
+    "CODEX.md",
+    "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md",
+    "system_v5/docs/LLM_CONTROLLER_CONTRACT.md",
+    "system_v5/docs/LEGO_SIM_CONTRACT.md",
+    "system_v5/ops/CONSTRAINT_MANIFOLD_MATH_LEDGER_20260525.md",
+    "system_v5/ops/formal_scouts/formal_layer_lego_campaign_matrix_20260526.json",
+    "system_v5/ops/GEOMETRY_VS_G_STRUCTURE_AND_LAYER_COMPLETION_CORRECTION_20260528.md",
+    "system_v5/ops/NONCOMMUTATION_AND_NESTED_LAYER_TEST_GATE_20260528.md",
+    "system_v5/docs/AXIS_TERRAIN_MANIFOLD_CORRECTION_HANDOFF.md",
+    "system_v5/ops/QIT_ENGINE_FOUR_OPERATOR_SIGNED_MATH_20260522.md"
+  ],
+  "corrected_orientation": "constraint_depth_order_from_root_constraints_toward_more_constrained_survivor_structure",
+  "construction_dependency_order": [
+    "F01_N01_root_constraints",
+    "finite_probe_effect_quotient",
+    "finite_PEPS3D_spinor_network_carrier",
+    "local_spinor_sections",
+    "nested_Hopf_tori_shell_loop_geometry",
+    "quaternion_Clifford_orientation_map_if_used",
+    "left_right_Weyl_sheet_cover",
+    "terrain_generators",
+    "sixteen_sheet_loop_terrain_token_placements",
+    "operator_role_signed_token_layer",
+    "sixty_four_operator_substage_cells",
+    "ordered_engine_cycle_ratchet",
+    "entropy_cut_communication_layer",
+    "gluing_groupoid_equivariant_closure_candidate",
+    "true_G_structure_selection_and_embedding",
+    "derived_flux",
+    "Xi_Phi0_Axis0",
+    "FEP_physics_consumers"
+  ],
+  "audit_findings": [
+    {
+      "severity": "high",
+      "finding": "Campaign layer row numbers are not the construction ontology.",
+      "evidence": "The campaign matrix labels Hopf/shell projection as L7, but the math ledger requires nested Hopf tori and loop fields before Weyl/terrain placement can be source-native.",
+      "repair_rule": "Use construction_dependency_order for conceptual/manifold explanation. Use campaign L0-L8 ids only as formal-scout row identifiers."
+    },
+    {
+      "severity": "high",
+      "finding": "The deeper-than-terrain direction is placement -> operator substage -> engine/cycle, not finite quotient.",
+      "evidence": "The TUI failure audit and math ledger define substage cells as fibers over stage placements and require 64 PEPS3D-carried cells keyed by engine/loop/terrain/operator.",
+      "repair_rule": "When the user asks for more constraint after terrain, answer with 16 placements, 64 substage cells, ordered cycle/ratchet, then downstream readouts."
+    },
+    {
+      "severity": "medium",
+      "finding": "Formal scouts L4-L8 rerun, but remain bounded scout evidence.",
+      "evidence": "Fresh rerun validation passed for L4-L8, each with promotion_allowed=false and blocked downstream consumers.",
+      "repair_rule": "Do not call L4-L8 full layer completion, parent-complete, stack-ready, flux-ready, Axis0-ready, or final manifold evidence."
+    },
+    {
+      "severity": "medium",
+      "finding": "Layer completion claim gate caught self-promoting wording in cvc5 tool-manifest reasons.",
+      "evidence": "Initial validation failed on L4-L6 because the reason string used 'admission/nonpromotion gate'.",
+      "repair_rule": "Replace 'admission/nonpromotion gate' wording with 'claim-ceiling/downstream-lock check' in bounded scout receipts."
+    }
+  ],
+  "repairs_applied": [
+    {
+      "paths": [
+        "system_v5/ops/formal_scouts/sim_l4_terrain_channel_generator_layer_probe.py",
+        "system_v5/ops/formal_scouts/sim_l5_operator_substage_peps3d_cell_layer_probe.py",
+        "system_v5/ops/formal_scouts/sim_l6_entropy_cut_communication_layer_probe.py",
+        "system_v5/ops/formal_scouts/sim_l7_hopf_fibration_shell_projection_layer_probe.py",
+        "system_v5/ops/formal_scouts/sim_l8_gluing_groupoid_equivariant_dynamic_candidate_layer_probe.py"
+      ],
+      "change": "Replaced bounded-scout self-promotion wording around 'admits' and 'admission/nonpromotion gate' with bounded 'records' and 'claim-ceiling/downstream-lock check' wording."
+    }
+  ],
+  "fresh_test_results": [
+    {
+      "command": "python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun --fresh-rerun-timeout 240 L4-L8 result receipts",
+      "all_pass": true,
+      "results": [
+        "system_v5/ops/formal_scouts/results/l4_terrain_channel_generator_layer_probe_results.json",
+        "system_v5/ops/formal_scouts/results/l5_operator_substage_peps3d_cell_layer_probe_results.json",
+        "system_v5/ops/formal_scouts/results/l6_entropy_cut_communication_layer_probe_results.json",
+        "system_v5/ops/formal_scouts/results/l7_hopf_fibration_shell_projection_layer_probe_results.json",
+        "system_v5/ops/formal_scouts/results/l8_gluing_groupoid_equivariant_dynamic_candidate_layer_probe_results.json"
+      ]
+    },
+    {
+      "command": "python3 scripts/lint_sim_contract.py L4-L8 touched scout scripts",
+      "checked": 5,
+      "violation_total": 0
+    }
+  ],
+  "still_blocked": [
+    "full_layer_completion",
+    "parent_complete_layer_status",
+    "broad_noncommutation_order_sweeps",
+    "nested_layer_result_comparisons",
+    "official_G_structure_selection",
+    "layer_embedding_into_selected_G_structure",
+    "flux",
+    "Xi_Phi0",
+    "Axis0",
+    "FEP_Holodeck",
+    "physics_gravity",
+    "final_manifold_admission"
+  ],
+  "next_admissible_checks": [
+    "Run parent-completion gate per layer to decide which rows are deep enough for intrinsic order tests.",
+    "Build a true G-structure candidate test that consumes standalone geometry scouts and explicitly accepts or rejects layer carriers.",
+    "Deepen L5 operator-substage cells from bounded scout to parent-complete only if MPS, PEPS2D, PEPS3D, PyG views, tool ablations, 8/16/32/64 stress, and negative controls all satisfy the full layer claim gate."
+  ]
+}

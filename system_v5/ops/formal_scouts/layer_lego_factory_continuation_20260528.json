@@ -1,0 +1,63 @@
+{
+  "schema": "layer_lego_factory_continuation_v1",
+  "created_at_utc": "2026-05-28T07:57:31Z",
+  "classification": "controller_continuation",
+  "continuation_required": true,
+  "current_truth": "The layer-lego factory remains active. Compact L0-L8 receipts, bond4/full-spinor receipts, the G-structure candidate space scout, the tool-by-tool breadth scout, and the z3/cvc5 non-vacuous solver repair exist. They do not complete the full layer-depth/variant campaign, do not select an official G-structure, and do not open stacking, flux, Xi/Phi0, Axis0, FEP/Holodeck, physics/gravity, or final manifold admission.",
+  "last_completed_packet": {
+    "packet": "tool_depth_z3_cvc5_non_vacuous_solver_controls",
+    "source": "system_v5/ops/formal_scouts/sim_tool_depth_z3_cvc5_non_vacuous_solver_controls_probe.py",
+    "result": "system_v5/ops/formal_scouts/results/tool_depth_z3_cvc5_non_vacuous_solver_controls_probe_results.json",
+    "status": "passes local rerun",
+    "validated": true
+  },
+  "required_next_packet": {
+    "packet": "tool_depth_pytorch_autograd_per_row_spinor_phase",
+    "purpose": "deepen PyTorch/autograd from one global relative-phase witness into per-layer and per-G-structure finite gradient maps, including left/right Weyl separation where applicable, while preserving independent layer rows and blocked downstream consumers.",
+    "must_include": [
+      "one bounded source/result packet",
+      "F01 finite layer/G/tool row inputs",
+      "N01 noncommuting or order-sensitive control",
+      "torch-native spinor states or spinor-derived densities",
+      "PEPS2D and PEPS3D carrier provenance from the parent row facts",
+      "8/16/32/64 site stress or explicit resource blocker",
+      "positive gradient controls",
+      "negative detached/no-phase/no-order controls",
+      "non-vacuous ablation_outcome_delta",
+      "blocked downstream consumers"
+    ],
+    "stop_condition": "fresh rerun passes and status artifacts are updated, or a blocker names the first failed layer/G row or resource ceiling"
+  },
+  "forbidden_next_steps": [
+    "official G-structure selection",
+    "layer embedding in G-structure",
+    "stacking",
+    "post-stack stress",
+    "bond escalation as primary goal",
+    "Wolfram/ruliad integrated stress as primary goal",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics/gravity",
+    "final manifold admission"
+  ],
+  "validation_commands": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/lint_sim_contract.py <touched sim files>",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun --fresh-rerun-timeout 300 <touched result files>",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/wizard_v4_3_object_preservation.py validate --input system_v5/ops/formal_scouts/layer_lego_factory_v43_object_packet_20260528.json",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/wizard_v4_3_object_preservation.py validate --input system_v5/ops/formal_scouts/retrocausal_shell_field_v43_object_packet_20260527.json",
+    "git diff --check -- <touched paths>"
+  ],
+  "plan_retention_artifacts": [
+    "system_v5/ops/formal_scouts/layer_lego_factory_repair_matrix_20260528.json",
+    "system_v5/ops/formal_scouts/tool_depth_z3_cvc5_non_vacuous_solver_controls_status_20260528.json",
+    "system_v5/ops/formal_scouts/tool_by_tool_layer_g_structure_geometry_depth_status_20260528.json"
+  ],
+  "wizard_truth": {
+    "v43_object_packets": "validated",
+    "council": "Codex Decision, Failure/Premortem, and Follow-Up explorer lanes returned usable receipts",
+    "external_model_audit": "existing Gemini/Grok/Opus synthesis used as input audit; not rerun in this packet",
+    "max_assembly": "PARTIAL, not FULL"
+  }
+}

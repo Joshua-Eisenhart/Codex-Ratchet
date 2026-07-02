@@ -1,0 +1,128 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_Y_induced_quotient_projection_active_frontier_blocker_20260526.json",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "Y_collision_certificate_projection_K",
+      "candidate_name": "finite induced-quotient collision certificate projection",
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "Y_collision_certificate_projection_K : (Y_induced_quotient_projection_K, Q_p, kappa_Z, active_pair_ids, f_boundary_pair_ids) -> finite surviving-collision certificate table + F-boundary singleton certificate table + control gap vector",
+      "geometry_it_would_earn_if_later_passed": "A bounded certificate readout showing that explicit induced quotient partitions, not survival counts alone, identify the active surviving collision class after each legal row deletion and certify F-boundary singleton-only controls.",
+      "why_admissible": "It ratchets directly from the explicit Q_p rows emitted by Y_induced_quotient_projection_K. It requires class ids, class members, V/E/F/C masks, active/F-boundary pair identity, and legal single-row deletion identity. It does not require topology, all-subset minimality, restore/inverse, full PEPS3D closure, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12."
+    },
+    {
+      "candidate_id": "Y_survival_count_relabel_K",
+      "candidate_name": "survival matrix restatement",
+      "decision": "rejected_duplicate",
+      "why_rejected": "It would only restate Y_row_deletion_collision_stability_K or the active collision-count vector from Y_induced. A fresh post-Y-induced map must consume explicit quotient classes with source class ids, members, and V/E/F/C masks."
+    },
+    {
+      "candidate_id": "Y_all_subset_minimality_K",
+      "candidate_name": "all-subset minimality over row deletions",
+      "decision": "rejected_overclaim",
+      "why_rejected": "All-subset minimality is explicitly blocked. The current carrier only admits allowed single-row deletion evidence."
+    },
+    {
+      "candidate_id": "Y_restore_inverse_K",
+      "candidate_name": "restore or inverse reconstruction from deleted row",
+      "decision": "rejected_overclaim",
+      "why_rejected": "Restore/inverse claims are blocked by the active frontier and would overclaim from finite quotient projection evidence."
+    },
+    {
+      "candidate_id": "Y_topology_or_closure_K",
+      "candidate_name": "topology, sheaf, homology, persistence, shape law, bond convergence, or full PEPS3D closure",
+      "decision": "rejected_downstream_or_closure",
+      "why_rejected": "These are closure/topology consumers, not bounded Phase 2 carrier-frontier maps."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_Y_induced",
+      "candidate_name": "Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12",
+      "decision": "rejected_downstream",
+      "why_rejected": "These are blocked downstream consumers. Opening them from Y_induced would skip the bounded Phase 2 carrier-frontier ratchet."
+    }
+  ],
+  "classification": "formal_scout_controller_candidate",
+  "controller_dependency_artifacts": [
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_post_Y_induced_quotient_projection_active_frontier_blocker_20260526.json"
+  ],
+  "created_at": "2026-05-26T04:52:30-07:00",
+  "current_state_assertion": {
+    "active_transition_decision": "blocked",
+    "contract_complete_rows": 35,
+    "frontier_row_count": 38,
+    "killed_rows": 3,
+    "latest_admitted_map": "Y_induced_quotient_projection_K",
+    "phase2_carrier_geometry": "real_bounded",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_induced_quotient_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_row_deletion_collision_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_active_pair_collision_residue_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json"
+  ],
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_induced_quotient_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_row_deletion_collision_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_active_pair_collision_residue_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json"
+  ],
+  "failure_conditions": [
+    "certificate output only restates survival counts or collision-count vectors",
+    "certificate rows lack source_class_id, pair_members, V/E/F/C mask, removed_pair, or pair_id",
+    "no-anchor erasure still passes",
+    "F-boundary rows produce a collision certificate",
+    "dense closure is required",
+    "all-subset minimality, restore/inverse, topology, sheaf, homology, full PEPS3D closure, or downstream geometry is claimed"
+  ],
+  "kind": "candidate_map_discovery",
+  "next_admissible_step": "Author one bounded formal scout for Y_collision_certificate_projection_K, then run/lint/validate it. This candidate artifact does not itself admit the map and does not open downstream geometry.",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "scope": "phase2_post_Y_induced_quotient_projection_K_candidate_map_discovery",
+  "selected_candidate_map": {
+    "F01_witness": "finite Q_p rows, finite active/F-boundary pair ids, finite row-deletion ids, finite quotient class certificates, finite controls, and finite outputs",
+    "N01_order_witness": "No fresh noncommuting operator is claimed. The candidate inherits the Phase 2 carrier order witness and only tests a finite certificate projection over the admitted induced quotient table.",
+    "PEPS3D_carrier_anchor": "Every certificate row must carry explicit inherited V/E/F/C mask anchors, pair row identity, removed-row identity, source class id, and class members. Scalar labels alone are controls.",
+    "candidate_id": "Y_collision_certificate_projection_K",
+    "codomain_or_output": "finite surviving-collision certificate table, finite F-boundary singleton certificate table, certificate-size vector, and control gap vector",
+    "domain": {
+      "U_receipt": "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json",
+      "Y_induced_receipt": "system_v5/ops/formal_scouts/results/peps3d_induced_quotient_projection_probe_results.json",
+      "Y_receipt": "system_v5/ops/formal_scouts/results/peps3d_row_deletion_collision_stability_probe_results.json",
+      "Z_receipt": "system_v5/ops/formal_scouts/results/peps3d_active_pair_collision_residue_probe_results.json",
+      "active_pair_ids": [
+        "VE",
+        "VC",
+        "EC"
+      ],
+      "carrier": "finite PEPS3D V/E/F/C support-mask rows with explicit active and F-boundary row identities",
+      "f_boundary_pair_ids": [
+        "VF",
+        "EF",
+        "CF"
+      ],
+      "q_p": "explicit induced quotient partitions from Y_induced_quotient_projection_K"
+    },
+    "finite_map": "Y_collision_certificate_projection_K : (Y_induced_quotient_projection_K, Q_p, kappa_Z, active_pair_ids, f_boundary_pair_ids) -> finite surviving-collision certificate table + F-boundary singleton certificate table + control gap vector",
+    "status": "admissible_candidate_not_run"
+  },
+  "selected_candidate_map_id": "Y_collision_certificate_projection_K",
+  "working_geometry_plain": "The working geometry is still PEPS3D-anchored finite response-quotient carrier geometry. Y_induced earned explicit finite quotient partitions after allowed row deletion. The next candidate asks for a stricter finite certificate projection over those partitions: which active collision class survives, with source class id, members, and V/E/F/C mask, while F-boundary rows remain singleton-only controls. This is not topology, closure, Hopf/Weyl, terrain, substages, flux, Axis0, or physics."
+}

@@ -1,0 +1,162 @@
+{
+  "kind": "candidate_map_discovery",
+  "created_at": "2026-05-26T05:56:49-07:00",
+  "classification": "formal_scout_controller_candidate",
+  "scope": "phase_2_finite_peps3d_seed_carrier_after_AA_rank_transition_residue_incidence_K",
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "claim_ceiling": "Candidate-map artifact only. This does not admit the chosen map, run a scout, open Phase 3, or open downstream consumers.",
+  "input_state": {
+    "frontier_matrix_path": "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "transition_decision_path": "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "active_blocker_path": "system_v5/ops/formal_scouts/phase2_post_AA_rank_transition_residue_incidence_active_frontier_blocker_20260526.json",
+    "latest_admitted_map": "AA_rank_transition_residue_incidence_K : (Z_delta_pair_source_cell_K, delta_pair_source_cell_table, rank_transition_signature, cell_id, delta_class_id, pair_binding_id, source_class_ids, PEPS3D rank labels) -> finite rank-transition residue incidence table + residue support vector + control gap vector",
+    "frontier_rows": 45,
+    "contract_complete_rows": 42,
+    "killed_rows": 3,
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "working_geometry": "The earned Phase 2 object is PEPS3D-anchored finite response-quotient carrier geometry. After AA_rank_transition_residue_incidence_K, the frontier consists of 13 finite rank-transition residue classes and 108 incidence rows over 27 delta/pair/source cells. This is carrier-frontier geometry only, not topology, closure, physical manifold geometry, or downstream physics.",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "AB_cell_rank_transition_class_K",
+      "candidate_name": "finite cell rank-transition class normal form",
+      "finite_map": "AB_cell_rank_transition_class_K : (AA_rank_transition_residue_incidence_K, rank_transition_residue_incidence_table, cell_id, residue_id, delta_class_id, pair_binding_id, source_class_ids, PEPS3D rank labels) -> finite cell-to-rank-transition-class table + transition-class support vector + control gap vector",
+      "decision": "admissible_candidate_not_run",
+      "why_admissible": [
+        "It consumes the claim-bearing AA residue incidence rows instead of restating residue counts.",
+        "It emits a new finite carrier-frontier object: each cell is mapped to a complete four-rank transition normal form and then to a finite transition class.",
+        "It preserves cell, residue, delta, pair, source, and PEPS3D rank bindings.",
+        "F01 is preserved because cells, residues, ranks, source ids, pair ids, transition classes, controls, and outputs are finite.",
+        "N01 is inherited only; fresh-N01 promotion is explicitly blocked.",
+        "It uses only Phase 2 carrier receipts and does not consume Phase 7/downstream receipts."
+      ],
+      "chosen": true
+    },
+    {
+      "candidate_id": "residue_count_or_rank_residue_vector_restatement",
+      "candidate_name": "residue-count-only or rank-residue-vector-only summary",
+      "decision": "rejected",
+      "why_rejected": "It duplicates AA summary fields and emits no fresh finite map."
+    },
+    {
+      "candidate_id": "cell_erased_residue_histogram",
+      "candidate_name": "cell-erased residue histogram",
+      "decision": "rejected",
+      "why_rejected": "It erases the cell binding needed to assemble a complete four-rank transition normal form."
+    },
+    {
+      "candidate_id": "source_pair_delta_rank_erased_transition_class",
+      "candidate_name": "source-erased, pair-erased, delta-erased, or rank-erased transition class table",
+      "decision": "rejected",
+      "why_rejected": "It removes carrier-frontier bindings and can collapse into a scalar class histogram."
+    },
+    {
+      "candidate_id": "fresh_order_operator_from_transition_classes",
+      "candidate_name": "fresh noncommuting operator from transition classes",
+      "decision": "rejected",
+      "why_rejected": "AA and AB inherit Phase 2 N01 only. A fresh order-sensitive operator is not earned by transition classes."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_persistence_from_transition_classes",
+      "candidate_name": "topology, sheaf, homology, persistence, or closure from transition classes",
+      "decision": "rejected",
+      "why_rejected": "Transition classes are finite carrier-frontier readouts only and do not admit topology, sheaf, homology, persistence, or full PEPS3D closure."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_transition_classes",
+      "candidate_name": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, Holodeck/FEP, physics, IGT/game theory, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are blocked downstream consumers, not Phase 2 carrier-frontier maps."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "candidate_id": "AB_cell_rank_transition_class_K",
+    "finite_map": "AB_cell_rank_transition_class_K : (AA_rank_transition_residue_incidence_K, rank_transition_residue_incidence_table, cell_id, residue_id, delta_class_id, pair_binding_id, source_class_ids, PEPS3D rank labels) -> finite cell-to-rank-transition-class table + transition-class support vector + control gap vector",
+    "domain": {
+      "AA_rank_transition_residue_incidence_K_receipt": "system_v5/ops/formal_scouts/results/peps3d_rank_transition_residue_incidence_probe_results.json",
+      "rank_transition_residue_incidence_table": "108 finite incidence rows",
+      "rank_transition_residue_table": "13 finite residue classes",
+      "cell_ids": "27 finite delta_pair_source_cell ids",
+      "delta_class_ids": "finite mask-delta quotient class ids",
+      "pair_binding_ids": "finite active_pair_id -> boundary_pair_id bindings",
+      "source_class_ids": "finite active and F-boundary source class ids",
+      "PEPS3D_rank_labels": [
+        "V",
+        "E",
+        "F",
+        "C"
+      ]
+    },
+    "codomain_or_output": {
+      "cell_rank_transition_class_table": "27 finite rows mapping each cell to a four-rank transition class",
+      "transition_class_table": "finite class rows with support cell ids, source/pair/delta bindings, and four-rank normal forms",
+      "transition_class_support_vector": "finite per-class cell-support counts",
+      "control_gap_vector": "finite rejection/collapse readouts for count-only, residue-only, cell-erased, source-erased, pair-erased, delta-erased, rank-erased, dense-closure, fresh-N01, and downstream controls"
+    },
+    "F01_witness": "All cells, residues, ranks, source ids, pair ids, transition classes, controls, and outputs are finite and receipt-backed.",
+    "N01_witness": "No fresh noncommuting operator is claimed; the map inherits Phase 2 carrier N01 and requires order-erased/fresh-N01 promotion to remain rejected.",
+    "PEPS3D_carrier_anchor": "Every admitted row must retain cell id plus PEPS3D V/E/F/C rank normal form and source/pair/delta bindings. Scalar labels and histograms are controls only.",
+    "geometry_it_could_earn_if_later_run_and_passed": "finite cell transition-class geometry within the PEPS3D response-quotient carrier frontier",
+    "status": "admissible_candidate_not_run"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/peps3d_rank_transition_residue_incidence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_pair_source_cell_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_fiber_pair_rank_delta_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delta_class_source_fiber_probe_results.json"
+  ],
+  "controls_required_if_later_run": {
+    "positive": [
+      "each cell maps to one complete four-rank transition normal form",
+      "transition classes retain cell ids, delta classes, pair bindings, active source ids, boundary source ids, residue ids, and PEPS3D rank labels",
+      "transition class count is finite and not equal to residue-count-only or cell-count-only restatement"
+    ],
+    "negative": [
+      "cell-count-only output must fail",
+      "residue-count-only output must fail",
+      "rank-residue-vector-only output must fail",
+      "cell-erased output must fail",
+      "source-erased output must fail",
+      "pair-erased output must fail",
+      "delta-erased output must fail",
+      "rank-erased output must fail",
+      "scalar-label output must fail",
+      "Phase 7/downstream receipt reclassification must fail"
+    ],
+    "boundary": [
+      "F-rank null normal-form component remains boundary evidence only",
+      "heldout topology, sheaf, homology, persistence, restore, inverse, all-subset, shape-law, and bond-convergence claims remain blocked",
+      "dense state and dense environment closure remain blocked"
+    ],
+    "order_erased": [
+      "order-erased promotion remains rejected",
+      "transition classes alone must not claim a fresh N01 operator"
+    ]
+  },
+  "failure_conditions": [
+    "the map emits only cell counts, residue counts, rank-residue vectors, or class counts",
+    "cell ids, residue ids, source ids, pair bindings, delta ids, or rank labels are erased",
+    "all transition classes collapse to one scalar histogram",
+    "dense full-state or dense-environment closure is required",
+    "a fresh noncommuting operator is claimed from transition classes alone",
+    "topology, sheaf, homology, persistence, restore/inverse, all-subset minimality, bond convergence, shape law, full PEPS3D closure, Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, physics, IGT/game theory, or axes 7-12 are opened",
+    "any Phase 7/downstream receipt is consumed as a Phase 2 dependency"
+  ],
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "next_admissible_step": "Author and run one bounded formal scout for AB_cell_rank_transition_class_K, then lint, validate the result, run the bounded frontier validator, update the matrix/transition/blocker, and continue."
+}

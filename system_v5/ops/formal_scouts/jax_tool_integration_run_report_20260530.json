@@ -1,0 +1,585 @@
+{
+  "failed_processes": 0,
+  "generated_at": "2026-05-30T07:55:40Z",
+  "kind": "jax_tool_integration_run_report",
+  "passed_processes": 23,
+  "rows": [
+    {
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/jaxtool_equinox_capability_probe_results.json",
+      "result_exists": false,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_jaxtool_equinox_capability_probe.py",
+      "seconds": 1.89,
+      "stderr_tail": "",
+      "stdout_tail": "classification: diagnostic_only\ncdtype: complex128\nrtype: float64\nnum_array_leaves: 2 (expect 2)\nis_pytree_with_arrays: True\ny_module: [ 4.-7.5j -8.+9.j ]\ny_known : [ 4.-7.5j -8.+9.j ]\nmax_err: 0.0\nmatch: True\nSTATUS: works\n"
+    },
+    {
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/jaxtool_optax_capability_probe_results.json",
+      "result_exists": false,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_jaxtool_optax_capability_probe.py",
+      "seconds": 9.179,
+      "stderr_tail": "",
+      "stdout_tail": "rtype=float64 cdtype=complex128\nx_final=3.000000000000001 known=3.0 x_err=8.882e-16\ngrad_final=1.776e-15 grad_zero=True\nparams_float64=True\nmatch=True\nstatus=works\n"
+    },
+    {
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/jaxtool_jaxopt_capability_probe_results.json",
+      "result_exists": false,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_jaxtool_jaxopt_capability_probe.py",
+      "seconds": 3.908,
+      "stderr_tail": "",
+      "stdout_tail": "classification: diagnostic_only\njaxopt solvers: GradientDescent, LBFGS\nrtype: float64 cdtype: complex128 solve_dtype: float64\nb (known x*): [3.0, -1.5, 0.0, 7.25, -4.0]\nx_gd:         [3.000000000000241, -1.5000000000001206, 0.0, 7.250000000000582, -4.0000000000003215]\nx_lbfgs:      [3.0, -1.5, 0.0, 7.25, -4.0]\nerr_gd: 5.81756864903582e-13 err_lbfgs: 0.0\nmax_err: 5.81756864903582e-13 tol: 1e-05\ninvariant: argmin sum((x-b)^2) == b\nmatch: True\nPROBE_OK\n"
+    },
+    {
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/jaxtool_lineax_capability_probe_results.json",
+      "result_exists": false,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_jaxtool_lineax_capability_probe.py",
+      "seconds": 2.494,
+      "stderr_tail": "",
+      "stdout_tail": "x64 honored: A.dtype=float64, complex cast dtype=complex128\nlineax x = [ 0.15747724 -0.1928735   0.3038096  -0.01201019]\njnp.linalg.solve x_ref = [ 0.15747724 -0.1928735   0.3038096  -0.01201019]\nresidual ||A x - b|| = 4.475e-16\nmax |x - x_ref|      = 0.000e+00\nmatch = True\nOK: lineax linear_solve matches reference at float64 precision\n"
+    },
+    {
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/jaxtool_jraph_capability_probe_results.json",
+      "result_exists": false,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_jaxtool_jraph_capability_probe.py",
+      "seconds": 1.115,
+      "stderr_tail": "",
+      "stdout_tail": "rtype: float64\ncdtype: complex128\nx64_honored: True\naggregated:\n [[ 4. 40.]\n [ 8. 80.]\n [ 1. 10.]\n [ 0.  0.]]\nknown:\n [[ 4. 40.]\n [ 8. 80.]\n [ 1. 10.]\n [ 0.  0.]]\nmax_abs_err: 0.0\nmatch: True\nPROBE_OK\n"
+    },
+    {
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/jaxtool_ott_capability_probe_results.json",
+      "result_exists": false,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_jaxtool_ott_capability_probe.py",
+      "seconds": 4.877,
+      "stderr_tail": "",
+      "stdout_tail": "rtype=float64 cdtype=complex128\nP.dtype=float64 shape=(3, 4)\nrow_marginals=[0.5 0.2 0.3]\na            =[0.5 0.2 0.3]\ncol_marginals=[0.09999994 0.39999969 0.25000041 0.24999996]\nb            =[0.1  0.4  0.25 0.25]\ninvariant: Sinkhorn plan marginals match (a, b) with max violation < 1e-4 AND transport cost >= 0\ncomputed:  max_marginal_violation=4.084e-07 (row=1.354e-14, col=4.084e-07), transport_cost=2.475000, reg_ot_cost=2.481273\nknown:     max_marginal_violation < 1e-4 and transport_cost >= 0\nmatch:     True\nSTATUS=works\n"
+    },
+    {
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/jaxtool_netket_capability_probe_results.json",
+      "result_exists": false,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_jaxtool_netket_capability_probe.py",
+      "seconds": 4.652,
+      "stderr_tail": "",
+      "stdout_tail": "netket 3.21.0 | jax 0.10.1\nrtype=float64 cdtype=complex128 H_dense.dtype=float64\nE_netket(ARPACK on sparse) = -4.758770483143634\nE_dense  (eigvalsh dense)  = -4.758770483143635\n|delta| = 1.776e-15  match(<1e-8) = True\nOK: netket TFIM ground energy matches dense diagonalization\n"
+    },
+    {
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/jaxtool_e3nn_jax_capability_probe_results.json",
+      "result_exists": false,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_jaxtool_e3nn_jax_capability_probe.py",
+      "seconds": 3.213,
+      "stderr_tail": "",
+      "stdout_tail": "classification = diagnostic_only\nrtype  = float64\ncdtype = complex128\nx64_honored = True\nR.dtype = float64\nrecovered angles: alpha=0.700000000000000 beta=1.100000000000000 gamma=-0.400000000000000\nINVARIANT: matrix_to_angles(angles_to_matrix(a,b,g)) rebuilds R; recon_err<1e-12, det(R)==1, R R^T==I\nCOMPUTED : recon_err=0.000e+00 (ok=True), det(R)=1.000000000000000 (ok=True), ortho_err=2.220e-16 (ok=True)\nKNOWN    : recon_err==0, det(R)==1, ortho_err==0 for a proper SO(3) rotation; all < 1e-12 at x64\nMATCH    : True\nRESULT: works\n"
+    },
+    {
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/jaxtool_diffrax_capability_probe_results.json",
+      "result_exists": false,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_jaxtool_diffrax_capability_probe.py",
+      "seconds": 1.921,
+      "stderr_tail": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/equinox/_jit.py:55: UserWarning: Complex dtype support in Diffrax is a work in progress and may not yet produce correct results. Consider splitting your computation into real and imaginary parts instead.\n  out = fun(*args, **kwargs)\n",
+      "stdout_tail": "=== diffrax capability probe ===\nclassification      : diagnostic_only\nx64 rtype (live)    : float64\nx64 ctype (live)    : complex128\n--- op1: dy/dt=-y exponential decay ---\ndecay state dtype   : float64\ny(1) computed       : 0.36787944117414967\ny(1) known exp(-1)  : 0.36787944117144233\ndecay abs err       : 2.707e-12\ndecay match         : True\n--- op2: unitary norm preservation ---\npsi state dtype     : complex128\n||psi(2.3)|| comp   : 0.9999999999986483\n||psi|| known       : 1.0\nnorm abs err        : 1.352e-12\nnorm match          : True\n--- aggregate ---\nALL_MATCH           : True\nx64_honored         : True\n"
+    },
+    {
+      "actual_tools_used": [
+        "jax",
+        "sympy",
+        "z3",
+        "clifford",
+        "e3nn_jax"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "manifold_layers",
+        "stacking",
+        "coupling",
+        "G_structure",
+        "Axis0",
+        "flux",
+        "Xi",
+        "Phi0",
+        "bridge",
+        "basin",
+        "physics"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/geom_spinor_density_carrier_jax_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_geom_spinor_density_carrier_jax_probe.py",
+      "seconds": 17.4,
+      "stderr_tail": "",
+      "stdout_tail": "ue\n    },\n    {\n      \"invariant\": \"amplitude_damping(gamma=1)_fixed_point=|0><0|\",\n      \"computed\": \"||channel - ground|| = 2.22e-16\",\n      \"known\": \"0 (collapses to ground state)\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"dephasing(p=1/2)_kills_coherence_offdiag\",\n      \"computed\": \"|rho_01| = 0.00e+00\",\n      \"known\": \"0\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"SU(2)_rotor_induced_rotation_angle(theta=pi/2)\",\n      \"computed\": \"1.570796326794897\",\n      \"known\": \"1.570796326794897\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"clifford_Cl(3)_rotor==SU(2)_induced_SO(3)\",\n      \"computed\": \"||R_cl - R_su2|| = 2.17e-16\",\n      \"known\": \"0 (even-Cl(3)==SU(2) double cover)\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"e3nn_jax_certifies_Bloch_rotation_in_SO(3)\",\n      \"computed\": \"det=1.000000, orth=6.90e-17, recon=3.68e-17\",\n      \"known\": \"det=1, orthogonal, reconstructs (genuine SO(3))\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"jax.grad: d/dtheta Tr(U(theta)rho U^dag)^2 == 0 (unitary preserves purity)\",\n      \"computed\": \"max|grad| over 4 generators x 4 thetas = 6.38e-16\",\n      \"known\": \"0\",\n      \"match\": true\n    }\n  ]\n}\n",
+      "tool_depth_keys": [
+        "clifford",
+        "e3nn_jax",
+        "jax",
+        "sympy",
+        "z3"
+      ]
+    },
+    {
+      "actual_tools_used": [
+        "jax",
+        "sympy",
+        "z3",
+        "cvc5",
+        "clifford"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "manifold_membership",
+        "axis0",
+        "bridge",
+        "QIT_engine",
+        "stacking",
+        "coupling",
+        "flux",
+        "Phi0",
+        "Xi",
+        "physics",
+        "distinctness_gate",
+        "forcing_filter"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/geom_left_right_weyl_jax_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_geom_left_right_weyl_jax_probe.py",
+      "seconds": 4.958,
+      "stderr_tail": "",
+      "stdout_tail": "EXACT_P_L_idempotent\",\n      \"known\": \"True\",\n      \"match\": true\n    },\n    {\n      \"computed\": \"True\",\n      \"invariant\": \"sympy_EXACT_P_R_idempotent\",\n      \"known\": \"True\",\n      \"match\": true\n    },\n    {\n      \"computed\": \"True\",\n      \"invariant\": \"sympy_EXACT_P_L_hermitian\",\n      \"known\": \"True\",\n      \"match\": true\n    },\n    {\n      \"computed\": \"True\",\n      \"invariant\": \"sympy_EXACT_P_R_hermitian\",\n      \"known\": \"True\",\n      \"match\": true\n    },\n    {\n      \"computed\": \"(i*pseudoscalar)^2 = 1.000000\",\n      \"invariant\": \"clifford_Cl(1,3)_chirality_element_squared_eq_one\",\n      \"known\": \"1 (== gamma5^2)\",\n      \"match\": true\n    },\n    {\n      \"computed\": \"max anticommutator defect = 0.00e+00\",\n      \"invariant\": \"clifford_chirality_anticommutes_with_vectors\",\n      \"known\": \"0\",\n      \"match\": true\n    }\n  ],\n  \"n_known_value_checks\": 29,\n  \"negatives_all_kill\": true,\n  \"witness\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/geom_left_right_weyl_jax_probe_witness.json\",\n  \"wrote\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/geom_left_right_weyl_jax_probe_results.json\",\n  \"x64_enabled\": true\n}\n",
+      "tool_depth_keys": [
+        "clifford",
+        "cvc5",
+        "jax",
+        "sympy",
+        "z3"
+      ]
+    },
+    {
+      "actual_tools_used": [
+        "jax",
+        "sympy",
+        "z3",
+        "cvc5",
+        "e3nn_jax"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "manifold_membership",
+        "axis0",
+        "bridge",
+        "QIT_engine",
+        "stacking",
+        "coupling",
+        "flux",
+        "Phi0",
+        "Xi",
+        "physics",
+        "distinctness_gate",
+        "forcing_filter"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/geom_connection_holonomy_jax_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_geom_connection_holonomy_jax_probe.py",
+      "seconds": 13.939,
+      "stderr_tail": "",
+      "stdout_tail": "als_minus_sin2_half_theta_exact\",\n      \"known\": true,\n      \"match\": true\n    },\n    {\n      \"computed\": true,\n      \"invariant\": \"sympy_A_theta_is_zero_exact\",\n      \"known\": true,\n      \"match\": true\n    },\n    {\n      \"computed\": true,\n      \"invariant\": \"sympy_curvature_F_equals_minus_half_sin_theta_exact\",\n      \"known\": true,\n      \"match\": true\n    },\n    {\n      \"computed\": true,\n      \"invariant\": \"sympy_berry_phase_latitude_equals_minus_half_solid_angle_exact\",\n      \"known\": true,\n      \"match\": true\n    },\n    {\n      \"computed\": 4.440892098500626e-16,\n      \"invariant\": \"e3nn_berry_phase_invariant_under_SO3_loop_rotation_max_dev\",\n      \"known\": 0.0,\n      \"match\": true\n    },\n    {\n      \"computed\": true,\n      \"invariant\": \"e3nn_loop_rotations_are_genuine_SO3_elements\",\n      \"known\": true,\n      \"match\": true\n    }\n  ],\n  \"negatives_changed_signature\": true,\n  \"witness\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/geom_connection_holonomy_jax_probe_witness.json\",\n  \"wrote\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/geom_connection_holonomy_jax_probe_results.json\",\n  \"x64_enabled\": true\n}\n",
+      "tool_depth_keys": [
+        "cvc5",
+        "e3nn_jax",
+        "jax",
+        "sympy",
+        "z3"
+      ]
+    },
+    {
+      "actual_tools_used": [
+        "jax",
+        "sympy",
+        "z3",
+        "cvc5",
+        "clifford",
+        "e3nn_jax"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "manifold_layers",
+        "stacking",
+        "coupling",
+        "G_structure",
+        "Axis0",
+        "flux",
+        "Xi",
+        "Phi0",
+        "bridge",
+        "basin",
+        "physics"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/geom_symplectic_structure_jax_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_geom_symplectic_structure_jax_probe.py",
+      "seconds": 14.712,
+      "stderr_tail": "",
+      "stdout_tail": "rfect matching, 3 pairs (jnp Laplacian)\",\n      \"computed\": \"matching_size=3, perfect=True\",\n      \"known\": \"3\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"n=3: pairing complex Betti H0 (jnp Laplacian kernel)\",\n      \"computed\": \"3\",\n      \"known\": \"3\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"n=3: pairing complex Betti H1 (jnp forest check)\",\n      \"computed\": \"0\",\n      \"known\": \"0\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"n=3: Hodge L0 kernel dim == b0 (jnp graph Laplacian)\",\n      \"computed\": \"3\",\n      \"known\": \"3\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"n=1: clifford Cl(2) bivector B=e1e2, B^2 == -1\",\n      \"computed\": \"B^2=-1.000000\",\n      \"known\": \"-1\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"n=1: clifford bivector action == +/- J (compatible complex structure)\",\n      \"computed\": \"True\",\n      \"known\": \"True\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"n=1: symplectic-orthogonal U(1)=SO(2) preserves J & is genuine SO(3) (e3nn_jax)\",\n      \"computed\": \"preserves_J=2.10e-17, det=1.000000, recon=8.66e-17\",\n      \"known\": \"preserves J, det=1, reconstructs (genuine SO(3))\",\n      \"match\": true\n    }\n  ]\n}\n",
+      "tool_depth_keys": [
+        "clifford",
+        "cvc5",
+        "e3nn_jax",
+        "jax",
+        "sympy",
+        "z3"
+      ]
+    },
+    {
+      "actual_tools_used": [
+        "jax",
+        "sympy",
+        "z3",
+        "cvc5",
+        "e3nn_jax"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "manifold_layers",
+        "stacking",
+        "coupling",
+        "G_structure_admission",
+        "Axis0",
+        "flux",
+        "Xi",
+        "Phi0",
+        "bridge",
+        "basin",
+        "physics"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/geom_su3_calabi_yau_jax_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_geom_su3_calabi_yau_jax_probe.py",
+      "seconds": 19.193,
+      "stderr_tail": "",
+      "stdout_tail": "    },\n    {\n      \"invariant\": \"Omega nowhere zero on a frame (min |det frame|)\",\n      \"computed\": \"min 2.405e-01, standard frame 1.000\",\n      \"known\": \">0 (nonvanishing)\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"SU(2) subset SU(3) block det == 1\",\n      \"computed\": \"|det-1| 0.00e+00\",\n      \"known\": \"1\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"SU(2) subset SU(3) induced rotation angle (theta=2pi/3)\",\n      \"computed\": \"2.094395102393195\",\n      \"known\": \"2.094395102393195\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"e3nn certifies SU(2)-induced rotation in SO(3) (Wigner-D l=1)\",\n      \"computed\": \"det=1.000000, orth=5.44e-16, recon=2.830524433501838e-16, wignerD_det=0.9999999999999999\",\n      \"known\": \"det=1, orthogonal, reconstructs (genuine SO(3))\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"jax.grad: grad ||J^2+I||^2 == 0 at standard J (stationary)\",\n      \"computed\": \"defect=0.00e+00, ||grad||=0.00e+00\",\n      \"known\": \"0\",\n      \"match\": true\n    },\n    {\n      \"invariant\": \"jax.jacfwd: jacobian of real SO(6) action == embedding R\",\n      \"computed\": \"||jac - R|| = 0.00e+00\",\n      \"known\": \"0\",\n      \"match\": true\n    }\n  ]\n}\n",
+      "tool_depth_keys": [
+        "cvc5",
+        "e3nn_jax",
+        "jax",
+        "sympy",
+        "z3"
+      ]
+    },
+    {
+      "actual_tools_used": null,
+      "all_pass": true,
+      "blocked_consumers": [
+        "PEPS3D_manifold",
+        "geometry_stacking",
+        "G_structure",
+        "Axis0",
+        "flux",
+        "FEP",
+        "physics",
+        "final_manifold_admission"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/density_operator_carrier_8_16_32_64_dual_engine_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_density_operator_carrier_8_16_32_64_dual_engine_probe.py",
+      "seconds": 5.831,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/density_operator_carrier_8_16_32_64_dual_engine_probe_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"jax_vs_pytorch_max_value_delta\": 3.552713678800501e-15,\n    \"negative_pass\": true,\n    \"result_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/density_operator_carrier_8_16_32_64_dual_engine_probe_results.json\",\n    \"scale_pass\": true,\n    \"tool_pass\": true\n  }\n}\n",
+      "tool_depth_keys": [
+        "cvc5",
+        "jax",
+        "opt_einsum",
+        "quimb",
+        "sympy",
+        "torch",
+        "z3"
+      ]
+    },
+    {
+      "actual_tools_used": [
+        "torch",
+        "jax",
+        "sympy",
+        "z3",
+        "cvc5",
+        "quimb"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "coupled lego stages",
+        "bridge",
+        "flux",
+        "Xi/Phi0",
+        "Axis0",
+        "FEP/Holodeck",
+        "physics",
+        "final manifold admission"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/cptp_channel_family_8_16_32_64_dual_engine_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_cptp_channel_family_8_16_32_64_dual_engine_probe.py",
+      "seconds": 4.896,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"max_jax_vs_pytorch_delta\": 6.661338147750939e-15,\n  \"min_choi_eig\": 0.0,\n  \"scale_pass\": true,\n  \"wrote\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/cptp_channel_family_8_16_32_64_dual_engine_probe_results.json\"\n}\n",
+      "tool_depth_keys": [
+        "clifford",
+        "cvc5",
+        "e3nn",
+        "geomstats",
+        "gudhi",
+        "jax",
+        "opt_einsum",
+        "quimb",
+        "rustworkx",
+        "sympy",
+        "toponetx",
+        "torch",
+        "xgi",
+        "z3"
+      ]
+    },
+    {
+      "actual_tools_used": [
+        "pytorch",
+        "jax",
+        "z3",
+        "sympy"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "bridge",
+        "Axis0",
+        "flux",
+        "FEP/Holodeck",
+        "physics/gravity",
+        "final manifold"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/coherent_information_8_16_32_64_dual_engine_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_coherent_information_8_16_32_64_dual_engine_probe.py",
+      "seconds": 6.144,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/coherent_information_8_16_32_64_dual_engine_probe_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"elapsed_seconds\": 3.6251180171966553,\n    \"max_gradient_delta\": 2.7755575615628914e-17,\n    \"max_value_delta\": 2.220446049250313e-16,\n    \"n_known_value_checks\": 24,\n    \"n_known_value_checks_passed\": 24,\n    \"negative_pass\": true,\n    \"scale_pass\": true,\n    \"tool_pass\": true\n  }\n}\n",
+      "tool_depth_keys": [
+        "jax",
+        "pytorch",
+        "sympy",
+        "z3"
+      ]
+    },
+    {
+      "actual_tools_used": [
+        "torch",
+        "jax",
+        "quimb",
+        "opt_einsum",
+        "gudhi",
+        "toponetx",
+        "z3"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "flux",
+        "Xi",
+        "Phi0",
+        "Axis0",
+        "bridge",
+        "basin",
+        "physics",
+        "final manifold"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/entanglement_entropy_8_16_32_64_dual_engine_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_entanglement_entropy_8_16_32_64_dual_engine_probe.py",
+      "seconds": 9.624,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/entanglement_entropy_8_16_32_64_dual_engine_probe_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"elapsed_seconds\": 4.931657075881958,\n    \"known_value_checks_pass\": true,\n    \"negatives_all_kill\": true,\n    \"scale_pass\": true,\n    \"tools_have_nonzero_ablation_deltas\": true\n  }\n}\n",
+      "tool_depth_keys": [
+        "gudhi",
+        "jax",
+        "opt_einsum",
+        "quimb",
+        "toponetx",
+        "torch",
+        "z3"
+      ]
+    },
+    {
+      "actual_tools_used": [
+        "pytorch",
+        "jax",
+        "diffrax",
+        "sympy",
+        "z3",
+        "opt_einsum"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "bridge",
+        "Axis0",
+        "flux",
+        "physics",
+        "final manifold"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/lindbladian_evolution_8_16_32_64_dual_engine_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_lindbladian_evolution_8_16_32_64_dual_engine_probe.py",
+      "seconds": 8.492,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/lindbladian_evolution_8_16_32_64_dual_engine_probe_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"classification\": \"lego\",\n    \"dense_state_closure_used\": false,\n    \"elapsed_seconds\": 5.476542,\n    \"max_jax_vs_pytorch_delta\": 5.7170589224539204e-11,\n    \"max_site_count\": 64,\n    \"promotion_allowed\": false\n  }\n}\n",
+      "tool_depth_keys": [
+        "diffrax",
+        "jax",
+        "opt_einsum",
+        "pathlib",
+        "python_json",
+        "pytorch",
+        "sympy",
+        "z3"
+      ]
+    },
+    {
+      "actual_tools_used": [
+        "pytorch",
+        "jax",
+        "clifford",
+        "z3",
+        "cvc5",
+        "sympy",
+        "quimb",
+        "e3nn",
+        "geomstats",
+        "rustworkx",
+        "xgi",
+        "toponetx",
+        "gudhi",
+        "opt_einsum"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "flux",
+        "Xi",
+        "Phi0",
+        "Axis0",
+        "bridge",
+        "basin",
+        "physics",
+        "full_layer_completion"
+      ],
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/weyl_spinor_network_8_16_32_64_dual_engine_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_weyl_spinor_network_8_16_32_64_dual_engine_probe.py",
+      "seconds": 16.777,
+      "stderr_tail": "INFO: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"out_path\": \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/weyl_spinor_network_8_16_32_64_dual_engine_probe_results.json\",\n  \"summary\": {\n    \"all_pass\": true,\n    \"elapsed_seconds\": 9.881773233413696,\n    \"max_commutative_order_gap\": 2.8114909497870973e-08,\n    \"max_jax_vs_pytorch_delta\": 5.708975381324422e-07,\n    \"min_chirality_gap\": 1.137785106724706,\n    \"min_order_gap\": 0.443657773976883\n  }\n}\n",
+      "tool_depth_keys": []
+    },
+    {
+      "actual_tools_used": null,
+      "all_pass": true,
+      "blocked_consumers": null,
+      "jax_pass": null,
+      "jax_vs_pytorch_delta": null,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/dual_engine_quimb_peps3d_spinor_network_carrier_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_dual_engine_quimb_peps3d_spinor_network_carrier_probe.py",
+      "seconds": 3.599,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"cases\": [\n    [\n      \"2x2x2\",\n      2,\n      0.2213,\n      \"rhoDelta=0.0e+00\"\n    ],\n    [\n      \"2x2x2\",\n      3,\n      0.6085,\n      \"rhoDelta=0.0e+00\"\n    ],\n    [\n      \"2x2x2\",\n      4,\n      0.6669,\n      \"rhoDelta=0.0e+00\"\n    ],\n    [\n      \"3x2x2\",\n      2,\n      0.4284,\n      \"rhoDelta=7.9e-16\"\n    ],\n    [\n      \"3x2x2\",\n      3,\n      0.6285,\n      \"rhoDelta=5.3e-16\"\n    ],\n    [\n      \"3x2x2\",\n      4,\n      0.6848,\n      \"rhoDelta=3.6e-16\"\n    ]\n  ],\n  \"max_rho_delta\": 7.916423459515077e-16,\n  \"max_entropy_delta\": 4.440892098500626e-16,\n  \"entropy_by_bond_2x2x2\": {\n    \"2\": 0.22125549130048514,\n    \"3\": 0.6085447561882678,\n    \"4\": 0.6669222437868589\n  },\n  \"dual_engine_scope\": \"readout_only\",\n  \"all_pass\": true\n}\n",
+      "tool_depth_keys": []
+    },
+    {
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/carrier_finite_cell_complex_probe_results.json",
+      "result_exists": false,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_carrier_finite_cell_complex_probe.py",
+      "seconds": 6.395,
+      "stderr_tail": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/sim_carrier_finite_cell_complex_probe.py:183: UserWarning: Sparse invariant checks are implicitly disabled. Memory errors (e.g. SEGFAULT) will occur when operating on a sparse tensor which violates the invariants, but checks incur performance overhead. To silence this warning, explicitly opt in or out. See `torch.sparse.check_sparse_tensor_invariants.__doc__` for guidance.  (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/aten/src/ATen/Context.cpp:767.)\n  return torch.sparse_coo_tensor(indices, vals, tuple(int(v) for v in matrix.shape), dtype=DTYPE).coalesce()\n/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/sim_carrier_finite_cell_complex_probe.py:214: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:51.)\n  return torch.sparse.mm(a.coalesce(), b.coalesce()).coalesce()\n",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"jax_vs_pytorch_delta\": 0.0,\n  \"proof_pass\": true,\n  \"required_pass\": true,\n  \"result_path\": \"results/finite_cell_complex_results.json\",\n  \"scale_pass\": true\n}\n"
+    },
+    {
+      "actual_tools_used": [
+        "torch",
+        "jax",
+        "quimb",
+        "cotengra",
+        "autoray",
+        "clifford",
+        "z3",
+        "cvc5",
+        "sympy",
+        "python_stdlib"
+      ],
+      "all_pass": true,
+      "blocked_consumers": [
+        "Xi",
+        "Phi0",
+        "Axis0",
+        "flux",
+        "FEP",
+        "gravity"
+      ],
+      "jax_pass": true,
+      "jax_vs_pytorch_delta": 1.231653667943533e-15,
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/formal_scouts/results/carrier_peps3d_spinor_network_probe_results.json",
+      "result_exists": true,
+      "returncode": 0,
+      "script": "system_v5/ops/formal_scouts/sim_carrier_peps3d_spinor_network_probe.py",
+      "seconds": 10.89,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"all_pass\": true,\n  \"half_chain_entropy\": 0.07561276640517872,\n  \"jax_vs_pytorch_delta\": 1.231653667943533e-15,\n  \"mps_max_bond\": 2,\n  \"proof_pass\": true,\n  \"required_pass\": true,\n  \"result_path\": \"results/carrier_peps3d_spinor_network_probe_results.json\",\n  \"scale_pass\": true\n}\n",
+      "tool_depth_keys": [
+        "autoray",
+        "clifford",
+        "cotengra",
+        "cvc5",
+        "jax",
+        "numpy",
+        "python_stdlib",
+        "quimb",
+        "scipy",
+        "sympy",
+        "torch",
+        "z3"
+      ]
+    }
+  ],
+  "scripts_requested": 23
+}

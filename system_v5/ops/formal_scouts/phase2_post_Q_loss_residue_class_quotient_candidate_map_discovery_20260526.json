@@ -1,0 +1,140 @@
+{
+  "active_level": "phase_2_finite_peps3d_seed_carrier",
+  "blocked_consumers": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "blocker_preserved_until_candidate_is_explicitly_run": "system_v5/ops/formal_scouts/phase2_post_Q_loss_residue_class_quotient_active_frontier_blocker_20260526.json",
+  "candidate_maps_considered": [
+    {
+      "candidate_id": "S_loss_residue_class_separation_K",
+      "candidate_name": "finite loss-residue class-pair separation",
+      "decision": "admissible_candidate_not_run",
+      "finite_map": "S_loss_residue_class_separation_K : (Q_loss_residue_class_quotient_K, support_atom, q_Q support-to-class map, PEPS3D loss_vector in N^4, legal_anchor_preserving_relabeling) -> finite class-pair separation matrix + intra-class invariance table + control gap vector",
+      "geometry_it_would_earn_if_later_passed": "A finite class-pair separation readout for Phase 2 PEPS3D loss-residue classes: admitted Q classes have explicit pairwise PEPS3D loss-vector gaps and intra-class relabel stability.",
+      "not_run_in_this_artifact": true,
+      "why_admissible": "It ratchets directly from Q_loss_residue_class_quotient_K by adding only finite pairwise separation and intra-class invariance readouts over the already admitted PEPS3D V/E/F/C loss-vector quotient classes. It stays inside Phase 2 carrier-frontier evidence and does not require topology closure, sheaf gluing, homology, all-subset minimality, restore/inverse, Hopf/Weyl data, terrain, substages, flux, Axis0, physics, IGT, or axes 7-12."
+    },
+    {
+      "candidate_id": "S_loss_class_section_retraction_K",
+      "candidate_name": "finite loss-class section/retraction",
+      "decision": "rejected_as_named",
+      "why_rejected": "A bare section/retraction claim risks smuggling topology/sheaf language and mostly repeats Q's quotient table. It is narrowed away in favor of finite class-pair separation over PEPS3D loss vectors."
+    },
+    {
+      "candidate_id": "support_label_partition_from_Q",
+      "candidate_name": "support-label-only partition",
+      "decision": "rejected",
+      "why_rejected": "Q_loss_residue_class_quotient_K already rejects label-only support partitions. A post-Q map must use PEPS3D V/E/F/C loss vectors and explicit anchors, not labels."
+    },
+    {
+      "candidate_id": "all_subset_minimality_from_Q",
+      "candidate_name": "all-subset minimality from loss classes",
+      "decision": "rejected",
+      "why_rejected": "All-subset minimality is a stronger closure/minimality claim. Q_loss_residue_class_quotient_K only earns a finite quotient, not global minimal support."
+    },
+    {
+      "candidate_id": "restore_or_inverse_from_Q",
+      "candidate_name": "restore or inverse map from deleted supports",
+      "decision": "rejected",
+      "why_rejected": "A section representative is not an inverse or restoration of deletion. Restore/inverse consumers remain blocked."
+    },
+    {
+      "candidate_id": "topology_sheaf_homology_from_Q",
+      "candidate_name": "topology, sheaf, homology, persistence, or gluing closure",
+      "decision": "rejected",
+      "why_rejected": "A finite quotient section over loss classes does not admit topology/sheaf/homology closure."
+    },
+    {
+      "candidate_id": "downstream_geometry_from_Q",
+      "candidate_name": "Hopf/Weyl, terrain, operator substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12",
+      "decision": "rejected",
+      "why_rejected": "These are downstream consumers. Opening them from Q_loss_residue_class_quotient_K would skip the bounded Phase 2 carrier-frontier ratchet."
+    }
+  ],
+  "chosen_finite_map_artifact": {
+    "F01_finite_witness": "The support atoms, loss-vector classes, representative section, projection pi_Q, relabeling rows, controls, and outputs are finite and receipt-backed.",
+    "N01_order_witness": "The class-pair separation map is a finite carrier readout over Q and inherits the source order-sensitive carrier witness while requiring order-erased controls to collapse; it is not promoted as a new noncommuting operator.",
+    "PEPS3D_carrier_anchor": "Each class and pair row must be computed from inherited PEPS3D V/E/F/C loss vectors. Scalar labels are controls only.",
+    "candidate_id": "S_loss_residue_class_separation_K",
+    "codomain_or_output": "finite class-pair separation matrix, intra-class invariance table, class-member table, and positive/negative/boundary/order-erased control gap vectors",
+    "domain": {
+      "Q_loss_residue_class_quotient_K": "validated finite loss-residue quotient receipt",
+      "legal_anchor_preserving_relabeling": "finite relabeling family inherited from Q/H",
+      "loss_vector": "finite PEPS3D V/E/F/C loss vector in N^4",
+      "q_Q": "finite projection from support atom and loss vector to quotient class",
+      "support_atom": "finite PEPS3D support atom in an admitted Q loss class"
+    },
+    "failure_conditions": [
+      "class-pair separations collapse to the norm-only control",
+      "intra-class stability requires scalar labels instead of PEPS3D loss vectors",
+      "norm-only, label-only, no-anchor, or order-erased controls pass as complete",
+      "the map requires dense state closure or dense environment closure",
+      "the map opens topology, sheaf, homology, all-subset minimality, restore/inverse, Hopf/Weyl, terrain, substages, flux, Xi/Phi0, Axis0, physics, IGT, or axes 7-12",
+      "the map consumes any Phase 7/downstream receipt as a Phase 2 dependency"
+    ],
+    "finite_map": "S_loss_residue_class_separation_K : (Q_loss_residue_class_quotient_K, support_atom, q_Q support-to-class map, PEPS3D loss_vector in N^4, legal_anchor_preserving_relabeling) -> finite class-pair separation matrix + intra-class invariance table + control gap vector",
+    "geometry_if_later_earned": "finite anchored class-pair separation geometry for Phase 2 PEPS3D loss-residue classes",
+    "not_a_scout_run": true,
+    "promotion_allowed": false
+  },
+  "classification": "formal_scout_controller_candidate",
+  "controller_dependency_artifacts": [
+    "system_v5/ops/formal_scouts/phase2_peps3d_seed_frontier_matrix_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_seed_frontier_transition_decision_20260525.json",
+    "system_v5/ops/formal_scouts/phase2_post_Q_loss_residue_class_quotient_active_frontier_blocker_20260526.json"
+  ],
+  "created_at": "2026-05-26T03:06:20-07:00",
+  "current_state_assertion": {
+    "active_transition_decision": "blocked",
+    "contract_complete_rows": 28,
+    "frontier_row_count": 30,
+    "killed_rows": 2,
+    "latest_admitted_map": "Q_loss_residue_class_quotient_K",
+    "latest_admitted_packet": "phase2_loss_residue_class_quotient_packet",
+    "phase2_carrier_geometry": "real_bounded",
+    "wizard_v4_2_status": "BLOCKED"
+  },
+  "exact_dependency_receipts": [
+    "system_v5/ops/formal_scouts/results/finite_peps3d_probe_effect_seed_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_spinor_density_carrier_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps_peps3d_local_environment_contraction_gate_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_anchor_ablation_boundary_stress_continuation_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_heldout_shape_anchor_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_bond_sweep_anchor_stability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_anchor_partition_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cell_patch_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_response_quotient_substrate_distinguishability_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_k8_face_projection_response_quotient_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_response_projection_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_boundary_projection_shape_bond_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_replay_restriction_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_restriction_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_triple_overlap_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_cover_nerve_consistency_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_nerve_deletion_sensitivity_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_one_delete_necessity_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_deletion_idempotence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_orbit_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delete_bond_replay_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_pair_delete_interaction_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_delete_anchor_loss_idempotence_probe_results.json",
+    "system_v5/ops/formal_scouts/results/peps3d_loss_residue_class_quotient_probe_results.json"
+  ],
+  "kind": "candidate_map_discovery",
+  "next_admissible_step": "Author one bounded formal scout for S_loss_residue_class_separation_K, then run/lint/validate it. This artifact does not itself admit the map and does not open downstream geometry.",
+  "not_a_scout_run": true,
+  "promotion_allowed": false,
+  "scope": "phase2_post_Q_loss_residue_class_quotient_K_candidate_map_discovery",
+  "working_geometry_plain": "The working Phase 2 geometry is PEPS3D-anchored finite response-quotient carrier geometry. Through Q_loss_residue_class_quotient_K, the earned object is a finite quotient of PEPS3D V/E/F/C loss vectors into three loss-residue classes, with norm-only collapse to one class. It is not topology, not a full PEPS3D closure, not the physical manifold, and not any downstream geometry."
+}

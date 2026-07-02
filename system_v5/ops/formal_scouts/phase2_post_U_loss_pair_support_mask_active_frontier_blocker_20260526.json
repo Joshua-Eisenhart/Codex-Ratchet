@@ -1,0 +1,126 @@
+{
+  "kind": "blocked_reason",
+  "created_at": "2026-05-26T04:04:00-07:00",
+  "scope": "active_peps3d_carrier_frontier_after_U_loss_pair_support_mask_K",
+  "classification": "formal_scout_controller_blocker",
+  "latest_admitted_packet": {
+    "packet_id": "phase2_loss_pair_support_mask_packet",
+    "finite_map": "U_loss_pair_support_mask_K : (S_loss_residue_class_separation_K, C_Q, ell_Q:C_Q -> N^{V,E,F,C}, legal_anchor_preserving_relabeling) -> finite unordered-class-pair x {V,E,F,C} support-mask table + pair-support quotient + coordinate-coverage/null-coordinate report + controls",
+    "source_path": "system_v5/ops/formal_scouts/sim_peps3d_loss_pair_support_mask_probe.py",
+    "result_path": "system_v5/ops/formal_scouts/results/peps3d_loss_pair_support_mask_probe_results.json",
+    "status": "contract_complete"
+  },
+  "blocker_map": {
+    "finite_map": "B_post_U_loss_pair_support_mask_K : (U_loss_pair_support_mask_K_receipt, active_frontier_rows, candidate_map_list, blocked_downstream_set) -> active_frontier_blocked_reason",
+    "domain": [
+      "U_loss_pair_support_mask_K result receipt",
+      "active PEPS3D carrier frontier matrix rows",
+      "current candidate-map list ending at U_loss_pair_support_mask_K",
+      "blocked downstream consumer set",
+      "finite PEPS3D loss-pair support-mask carrier with 3 class pairs, 4 coordinates, 3 support-mask classes, active coordinates V/E/C, null coordinate F, max parent 125 sites, max triple-overlap 27 sites, and max bond 3"
+    ],
+    "codomain_or_output": "active-frontier blocked-reason artifact"
+  },
+  "blocked_reason": "U_loss_pair_support_mask_K is contract-complete Phase 2 carrier evidence, but no further post-U bounded carrier-frontier finite map has been named and audited yet. The correct controller action is candidate discovery or a repair packet before any new scout; no downstream geometry is opened.",
+  "explicitly_rejected_candidate_maps": [
+    {
+      "candidate": "full_coordinate_coverage_from_U",
+      "rejected_reason": "F coordinate is null in U, so full V/E/F/C coordinate coverage is not earned."
+    },
+    {
+      "candidate": "support_mask_topology_or_homology_from_U",
+      "rejected_reason": "Finite support masks are not topology, persistence, sheaf, gluing, or closure evidence."
+    },
+    {
+      "candidate": "norm_only_next_map_from_U",
+      "rejected_reason": "Norm-only pair control collapses to one scalar class and is non-informative."
+    },
+    {
+      "candidate": "hopf_weyl_terrain_substage_flux_axis0_from_U",
+      "rejected_reason": "All named downstream consumers remain blocked and cannot be opened from a Phase 2 carrier readout."
+    }
+  ],
+  "controls_preserved_from_latest_receipt": [
+    "norm_only",
+    "scalar_label",
+    "no_anchor",
+    "order_erased",
+    "illegal_coordinate_scramble",
+    "fake_face_positive",
+    "dense_state_closure",
+    "dense_environment_closure",
+    "topology",
+    "all_subset",
+    "restore_inverse",
+    "convergence",
+    "promotion"
+  ],
+  "not_admitted": [
+    "full V/E/F/C coordinate coverage",
+    "support-mask topology",
+    "homology/persistence/sheaf/gluing",
+    "all-subset minimality",
+    "restore/inverse",
+    "general shape law",
+    "bond convergence claim",
+    "full PEPS3D closure",
+    "next geometry layer transition",
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "downstream_consumers_still_blocked": [
+    "nested Hopf tori",
+    "Weyl sheet cover",
+    "terrain generator placement",
+    "operator substage cells",
+    "PEPS/PEPS3D closure beyond bounded finite seed-carrier evidence",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "Holodeck/FEP",
+    "physics",
+    "IGT/game theory",
+    "axes 7-12"
+  ],
+  "validator_state_before_blocker": {
+    "bounded_validator_all_pass": true,
+    "contract_complete_rows": 30,
+    "frontier_row_count": 32,
+    "killed_rows": 2,
+    "latest_U_class_pair_count": 3,
+    "latest_U_coordinate_count": 4,
+    "latest_U_support_mask_class_count": 3,
+    "latest_U_norm_only_pair_class_count": 1,
+    "latest_U_null_coordinates": [
+      "F"
+    ],
+    "max_peps3d_bond": 4,
+    "max_peps3d_sites": 125
+  },
+  "wizard_v4_2": {
+    "status": "BLOCKED",
+    "blocked_reason": "Full Wizard v4.2 remains BLOCKED. Codex-native sidecar attempts and local tools are recorded separately and are not a FULL or PARTIAL Max Assembly receipt."
+  },
+  "multi_model_parallelism_boundary": {
+    "gemini_grok_access_surface": "API-key provider lanes only when used",
+    "not_counted": [
+      "Gemini CLI or browser-auth route",
+      "Grok CLI route",
+      "OMX-managed route",
+      "direct provider API lanes as Wizard children"
+    ]
+  },
+  "next_admissible_step": "Name one fresh bounded active carrier-frontier finite map after U_loss_pair_support_mask_K with explicit domain, codomain, controls, dependency receipts, and blocked consumers, then audit it before any next scout.",
+  "recommended_next_move": "Run post-U candidate-map discovery; if a candidate survives, write its candidate artifact before running any new scout. If none survives, preserve this blocker and backfill the smallest missing dependency.",
+  "not_a_stop": true
+}

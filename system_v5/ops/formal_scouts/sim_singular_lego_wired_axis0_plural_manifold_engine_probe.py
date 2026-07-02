@@ -20,6 +20,9 @@ from this nonclassical sim surface, and lego load-bearingness remains deferred
 to v2 ablation work.
 
 WHAT THIS SIM IS NOT (per axis0 subagent's collapse-prevention contract):
+- not nonclassical root-manifold evidence while it imports NumPy-backed
+  engine_core; this is an adapter/control boundary row until that runtime is
+  torch-native spinor/quaternion
 - not a canonical singular engine
 - not a final axis0
 - not quantum advantage
@@ -106,17 +109,21 @@ NAME = "singular_lego_wired_axis0_plural_manifold_engine_probe"
 # a tool_lego_fit_probe at v1 — engine-cycle lego integration deferred to v2.
 CLASSIFICATION = "tool_lego_fit_probe"
 PROMOTION_ALLOWED = False
-SIM_EXECUTION_KIND = "nonclassical"
+SIM_EXECUTION_KIND = "adapter_control"
 SOURCE_ALIGNMENT_CATEGORY = "singular_lego_wired_axis0_plural_manifold_engine"
 
 CLAIM_CEILING = (
-    "tool_lego_fit_probe ONLY: verifies that the 12 nonclassical system_v5/legos "
+    "tool_lego_fit_probe ONLY / adapter-control boundary row: verifies that the "
+    "12 nonclassical system_v5/legos "
     "primitives in scope are importable AND each has its primary non-trivial "
     "callable exercised in isolation, while the classical matrix-baseline lego "
     "is intentionally excluded from this nonclassical surface, "
     "AND runs engine_core (Lindblad cycle) with the live 13-layer active manifold "
     "constraint chain, AND emits axis0 plurally across the 5 candidates from the "
-    "existing plural router with strict per-candidate predicates. Does NOT admit: "
+    "existing plural router with strict per-candidate predicates. Because this row "
+    "imports NumPy-backed engine_core, it is not nonclassical root-manifold "
+    "evidence until the runtime is ported to a torch-native spinor/quaternion "
+    "carrier. Does NOT admit: "
     "canonical engine, final axis0, Holodeck memory, retrocausality, quantum "
     "advantage, learned dynamics, intelligence, physics, cognition, canonical "
     "manifold tower claims, or lego load-bearingness in the per-substage axis0 path "

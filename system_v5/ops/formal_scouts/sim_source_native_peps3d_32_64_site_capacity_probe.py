@@ -393,7 +393,7 @@ def contraction_witness(sites: int, seed: int) -> dict[str, float]:
     sizes = {ix: 2 + ((n + seed + sites) % 3) for n, ix in enumerate(labels)}
     for ix in output:
         sizes[ix] = 2
-    tree = ctg.HyperOptimizer(max_repeats=4, progbar=False).search(inputs, output, sizes)
+    tree = ctg.HyperOptimizer(max_repeats=4, progbar=False, parallel=False).search(inputs, output, sizes)
     generator = torch.Generator().manual_seed(9000 + seed + sites)
     arrays = [
         torch.randn(tuple(sizes[ix] for ix in term), dtype=torch.float64, generator=generator)

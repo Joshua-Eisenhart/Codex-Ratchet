@@ -1,0 +1,54 @@
+{
+  "artifact_id": "formal_layer_campaign_schema_gap_20260526",
+  "kind": "blocked_reason",
+  "schema": "formal_layer_campaign_schema_gap_v1",
+  "created_at": "2026-05-26T22:18:46Z",
+  "updated_at": "2026-05-26T22:18:46Z",
+  "scope": "validate_bounded_max_exploration.py applied to L0-L5 layer-campaign receipts and the campaign matrix/continuation artifacts after the L5 gate repair",
+  "status": "blocked_schema_mismatch",
+  "validator_command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/validate_bounded_max_exploration.py --frontier-matrix system_v5/ops/formal_scouts/formal_layer_lego_campaign_matrix_20260526.json --transition-artifact system_v5/ops/formal_scouts/formal_layer_program_continuation_required_20260526.json system_v5/ops/formal_scouts/results/l0_response_quotient_peps3d_entropy_layer_probe_results.json system_v5/ops/formal_scouts/results/l1_peps3d_boundary_mps_environment_layer_probe_results.json system_v5/ops/formal_scouts/results/l2_spinor_chirality_weyl_cover_layer_probe_results.json system_v5/ops/formal_scouts/results/l3_clifford_quaternion_invariant_layer_probe_results.json system_v5/ops/formal_scouts/results/l4_terrain_channel_generator_layer_probe_results.json system_v5/ops/formal_scouts/results/l5_operator_substage_peps3d_cell_layer_probe_results.json",
+  "validator_exit_code": 1,
+  "validator_all_pass": false,
+  "blocked_reason": "The bounded max-exploration validator expects Phase/frontier rows with fields such as row_id, candidate_family, carrier, probe_or_effect_family, operator_or_path_witness, positive_case, negative_control, boundary_control, and next_in_level_move. The layer-campaign matrix uses a different schema: layer_id, variant_id, finite_map, source_path, result_path, ledger_path, stress/entropy/tool fields, campaign_caveat, and blocked_consumers. The validator also expects transition-artifact fields for a phase transition, while formal_layer_program_continuation_required_20260526.json is a layer-campaign controller artifact.",
+  "not_a_scientific_failure": true,
+  "not_a_lint_failure": true,
+  "not_a_formal_scout_validator_failure": true,
+  "evidence_still_valid_under_layer_campaign_checks": {
+    "lint_L5": "pass_exit_0_checked_1_violation_total_0",
+    "run_L5": "pass_exit_0_summary_all_pass_true",
+    "formal_validator_L5": "pass_exit_0_all_pass_true",
+    "campaign_json_parse": "pass",
+    "campaign_current_truth": "L0-L5 passed_candidate_finite_scope; L6 queued_next_after_L5_gate; L7/L8 blocked_pending_L6_gate"
+  },
+  "validator_failure_summary": {
+    "frontier_matrix_contract_complete_rows": 0,
+    "frontier_matrix_row_count": 9,
+    "frontier_matrix_violations": [
+      "frontier_matrix_rows_missing_required_fields",
+      "frontier_matrix_contract_complete_rows_lt_3"
+    ],
+    "receipt_violations": [
+      "missing_current_lego_minimal_fields under old frontier/LEGO schema",
+      "L0/L1 all_pass field absent because their older layer receipts report pass through result summaries rather than top-level all_pass",
+      "L3 next_admissible_step names terrain as next layer, which the frontier validator flags as downstream leakage even though this layer-campaign prompt explicitly ordered L4 terrain next"
+    ],
+    "transition_artifact_violations": [
+      "transition_artifact_missing_required_fields",
+      "transition_artifact_decision_invalid",
+      "transition_artifact_not_a_stop_not_true",
+      "transition_artifact_validator_all_pass_not_true",
+      "transition_artifact_working_geometry_missing"
+    ]
+  },
+  "next_admissible_step": "Either add a dedicated layer-campaign validator that checks formal_layer_lego_campaign_matrix_20260526.json against the layer schema, or adapt validate_bounded_max_exploration.py behind a new mode so it does not apply Phase/frontier field requirements to layer-campaign artifacts. Do not treat this old frontier-validator failure as permission to advance L6 in the L5-only repair objective.",
+  "blocked_consumers": [
+    "claiming validate_bounded_max_exploration.py passed for the layer campaign",
+    "using old Phase/frontier validator output as layer-campaign admission",
+    "stacking",
+    "flux",
+    "Xi/Phi0",
+    "Axis0",
+    "physics",
+    "final manifold"
+  ]
+}

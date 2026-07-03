@@ -450,15 +450,102 @@ UP-38 FIX  distinguishability_engine_core_sim.py + entropic_gravity_axis0_sim.py
            counterfactual control flips UNSAT(with law)->SAT(law dropped) so the law -- not
            arithmetic -- carries the verdict. Ledger v34/v35 (D)/(3) wording corrected. 53 pass.
 
-H-25 VERIFIED (seventh audit, second sandbox): engines 1q AND 3q validate
-              3/3 substrates including owner-hardware Julia results (1e-12 /
-              9.9e-13); all 8 new sims run green individually incl. the three
-              L18 bridges; ledger fencing on gravity/evolution confirmed
-              correct; corrections packet absorbed (Julia vec fix, scoped
-              a2 no-go, tier corrections all consistent with prior audits).
-H-26 ADDED    STATE_OF_THE_MODEL.md — master summary: tower grades, audit
-              trail, doc-corpus integration map (5 lanes -> layers, reading
-              order), complete open ledger, three-phase plan (Consolidate /
-              Contact / Extend). Source citations: scaffold L113 (Axis-2 =
-              V_s frame, connection K=iV†V̇) confirms the installed-frame
-              resolution from the owner's own hand.
+
+# CITATION CLOSURE (STATE_OF_THE_MODEL open-ledger V.1) — 2026-07-02
+UP-39 CONFIRM  Open item V.1 ("igt-pattern lines 470-478 verbatim (wiki) — the one uncited sentence
+               behind §7t's 'conjugated = x↔z image' source reading") is resolvable and now confirmed.
+               VERIFIED: the wiki doc concepts/igt-pattern-explicit-math-reference.md contains the
+               four-operator table verbatim at lines 475-478 (Ti z-dephasing / Te x-dephasing / Fi
+               x-rotation / Fe z-rotation; native terrains Se,Ne direct vs Ni,Si conjugated) and the
+               §7k tribunal sentence at line 166. The spec (CONSTRAINT_CORE_FORMAL_SPEC §7q/§7t) already
+               cites these lines and upgrades the "conjugated = x↔z image of direct" reading to the exact
+               W-covariance theorem (W·Ti·W=Te residual 3.4e-33). So the source is not merely cited but
+               earned; the STATE doc's ledger simply lagged the spec. No new sim needed. 53 pass.
+               NOTE ON PLAN: STATE_OF_THE_MODEL §VI orders Consolidate->Contact->Extend and warns
+               "extension before contact is the failure mode the whole harness exists to prevent."
+               A new coherent-information / i-scalar sim is a Phase-E action and is therefore HELD until
+               the Phase-X contact items (V.1-V.4) are addressed. This turn does the cheapest Phase-X
+               action (V.1 verbatim confirmation), per that ordering.
+
+
+# PHASE-X V.2 — 2026-07-02 (charge-specific chi2 via dissipation foothold: NEGATIVE)
+UP-40 NEW SIM (negative result)  eps_even_a2_dissipation_foothold_sim.py builds the instrument V.2
+               proposed -- read the installed frame through dissipation -- and resolves it NEGATIVELY.
+               Three honest findings: (1) the eps-even readout separates a2 but CIRCULARLY (a2 is the
+               installed frame, fed in); (2) the 0.22-vs-0 dissipation gate FAILS (unitary dynamics
+               also moves the eigenvector under the frame); (3) NOT a2-specific (any nontrivial frame
+               fires). So a2 is an installed-frame flag / operator-layer W-covariance label, not a
+               terrain-generator charge. STATE open-ledger V.2 -> RESOLVED NEGATIVE. Failure is signal:
+               the decisive 7m test is not decidable by this instrument; a real a2-specific meter stays
+               open. Held to Phase-X ordering (no Extend). 54 pass.
+
+
+# LAYER 0.3 — 2026-07-02 (signed Axis-0 primitive; loops back into gravity 0.2)
+UP-41 NEW LAYER  signed_axis0_primitive_sim.py builds the SIGNED Axis-0 primitive as its own
+               foundational object: coherent information I_c(A>B)=S(rho_B)-S(rho_AB)=-S(A|B), sourced
+               from ENTROPIC_MONISM sec 8 ("-S(A|B) kernel | Conditional entropy IS the entanglement
+               measure") + the entropy-tables doc (signed primitive; mutual info the unsigned
+               companion). FOUR results: (1) sign of I_c separates binding(+)/dispersing(-) where the
+               unsigned I(A:B)>=0 cannot; (2) STRUCTURAL THEOREM -- 4000 separable states max I_c=-6e-6
+               (positive I_c is a genuine, and STRICTER, entanglement witness: Werner entangled from
+               p=1/3 but binds only from p*=0.7476); (3) LOOP-BACK -- the 0.2 gravity two-regime split
+               is now the two MEASURED signs of I_c along a spatial chain (binding core attractive /
+               dispersing halo), replacing the hand-placed +/-S_anom stand-in; (4) z3+cvc5 gate,
+               derived inputs, law fits + flipped control. This EARNS the sign structure 0.2 asserted.
+               Honest scope unchanged: entropic-gravity MECHANISM under test, not a GR derivation. 55 pass.
+
+
+# LAYER 0.4 — 2026-07-02 (entropic foundation reproduces Newtonian gravity; dark-sector fenced)
+UP-42 NEW LAYER  entropic_newton_limit_sim.py answers the owner framing ("new foundations to GR that
+               lead to the SAME observations and account for what GR+visible-matter can't"). On the
+               0.2/0.3 gravity=entropy-gradient substrate, in Verlinde entropic-force form: (1) EXACT
+               Newtonian limit -- a=2pi c kT/hbar with holographic N=A c^3/(G hbar), kT=2Mc^2/N
+               reproduces a=GM/r^2 to ratio 1.000000 across Earth/Sun/galaxy (Earth g=9.7275 falls
+               out); (2) STRUCTURAL -- N∝r^p gives a∝r^(p-3): AREA p=2 -> slope -2 (Newton), VOLUME
+               p=3 -> slope -3 (wrong); holographic area-scaling FORCES inverse-square; (3) FENCED
+               dark-sector -- entropy-gradient 1/r term (log potential, the kind 0.3's signed I_c
+               source gives for an isothermal profile) flattens rotation curves without particulate
+               dark matter, BUT a0 is phenomenological NOT derived from RC-1+RC-2. Honest scope:
+               (1)+(2) reproduce established entropic-gravity (Verlinde) on the substrate -- not novel
+               physics; (3) owner doctrine under test (sec-7 fence). No claim to replace GR/SM. 56 pass.
+
+
+# LAYER 20.1 — 2026-07-02 (Standard-Model bridge: weak force left-handedness from F01+N01)
+UP-43 NEW LAYER  weak_force_chirality_bridge_sim.py earns one concrete SM fact -- the weak interaction
+               couples ONLY to left-handed fields (maximal parity violation) -- from the SAME F01+N01
+               move Layer 19.1 used for biological chirality, on the left-Weyl substrate. Source:
+               A2_CHIRALITY ("Universe is Type 1 LEFT_WEYL_CONVERGENT"; "Weak force parity violation:
+               only left-handed particles h=-1/2"; "Type 2 (Right) = antimatter") + axes-math sec 9
+               (Axis-3 selects Weyl rep; SU(2)/Hopf orbits). Chiral projectors P_L=1/2(1-g5). RESULTS:
+               (1) P_L vertex asymmetry A=1 (maximal, V-A) vs vector I control A=0 (parity conserved,
+               EM-like); (2) F01+N01 forces chirality -- P_L is finite + parity-noncommuting
+               (g0 P_L g0 = P_R), and the ONLY parity-symmetric combination 1/2(P_L+P_R)=I/2 is exactly
+               the parity-blind vector coupling; so any finite parity-noncommuting coupling must be
+               chiral (side=LEFT is empirical, as in 19.1); (3) z3+cvc5 gate, derived inputs, law
+               "finite AND parity-noncommuting => chiral" fits + flipped control. HONEST SCOPE:
+               reproduces the weak PARITY structure and its shared F01+N01 origin with 19.1/A2; does
+               NOT derive SU(2)xU(1), the Weinberg angle, or couplings. Owner doctrine under test;
+               no claim to replace the SM. 57 pass.
+
+
+# LAYERS 0.5 + 0.6 — 2026-07-02 (deep foundations: division-algebra ratchet + cosmogenesis persistence)
+UP-44 NEW LAYER 0.5  division_algebra_ratchet_sim.py -- the ratchet from WEAKEST structures / SHORTEST
+               leaps with nonassociativity ratcheted, as the Cayley-Dickson ladder R->C->H->O->(S kill).
+               Source: working_math_scaffold 10.3 (H assoc=0, O assoc!=0, sedenion zero-divisor kill-
+               control; G2=Aut(O)) + root_axioms:51 (nonassociativity = GROUPING-level face of N01).
+               Verified: commutativity dies at H, associativity at O (order/grouping faces of N01);
+               Hurwitz |xy|=|x||y| holds R..O, fails S; explicit sedenion zero-divisor (e1+e10)(e5+e14)=0
+               (persistence lost); G2=Aut(O) derivation-algebra dim = 14 (computed). z3+cvc5 gate:
+               "admit rung IFF it divides" fits R..O, control admit-S UNSAT-with-law -> SAT-without.
+UP-45 NEW LAYER 0.6  cosmogenesis_persistence_sim.py -- the owner's origin story (x_grok_chat_TOE lines
+               30,38: static fuzz field, no info between frames, time = sequence; "first pattern was an
+               entangled expanding field, dark energy came first"). The LEAST thing that persists between
+               information-less frames = a NORM-PRESERVING carrier (the division property of 0.5) = a
+               spinor. Verified: static fuzz frame-correlation ~0.01 (no carried time); norm-preserving
+               map persists (||psi||=1) vs lossy annihilates (~1e-9, sedenion-type death); product |00>
+               seed entangles I_c 0 -> +0.999, size 0 -> Bell (entangled expanding field); chirality ties
+               +entropy=dark energy(right)/-entropy=dark matter(left) to the two Weyl sheets (0.3+A2).
+HONEST SCOPE: 0.5 earns the ladder+kill-control+G2; does NOT build the octonion spinor network or derive
+               SM gauge from G2 (downstream, scaffold 10.4). 0.6 is a mechanism illustration of the owner
+               cosmogenesis, NOT a cosmological-constant derivation. Owner doctrine under test. FULL HARNESS VERIFIED: 59 pass / 0 fail / 0 skip GREEN
+               (in /tmp/final_base incl JAX + Julia cross-substrate lanes).

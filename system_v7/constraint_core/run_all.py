@@ -106,6 +106,8 @@ SUITE = [
    ("contains", "NO -- ranges overlap"),                              # eps-even still fails a2
    ("approx", r"\(operator a2-conjugation\) = ([0-9.e+-]+)", 0.0, 1e-12),   # a2 exact at operator layer
    ("contains", "a2 is an operator-layer label")]),
+ ("eps_even_a2_dissipation_foothold_sim.py", 120, False, [
+   ("contains", "PASS eps_even_a2_dissipation_foothold_sim")]),  # Phase-X V.2: dissipation foothold NEGATIVE (a2 not a channel charge)
  ("axis_loadbearing_n01_sim.py", 120, False, [
    ("approx", r"coherent axis z-axis\s*: \(damp,Fe\) order gap = ([0-9.e+-]+)", 0.0, 1e-10),
    ("contains", "load-bearing, not conventional")]),
@@ -170,6 +172,16 @@ SUITE = [
    ("contains", "PASS distinguishability_engine_core_sim")]), # z3+cvc5; MODEL CORE: fiber/base distinguishability-creation engine + Berry holonomy
  ("entropic_gravity_axis0_sim.py", 180, False, [
    ("contains", "PASS entropic_gravity_axis0_sim")]),         # z3+cvc5; axis-0 gravity model: gravity = gradient of entanglement entropy
+ ("signed_axis0_primitive_sim.py", 180, False, [
+   ("contains", "PASS signed_axis0_primitive_sim")]),          # z3+cvc5; Layer 0.3 signed Axis-0 primitive I_c=-S(A|B); earns 0.2 two-regime sign structure
+ ("entropic_newton_limit_sim.py", 120, False, [
+   ("contains", "PASS entropic_newton_limit_sim")]),           # Layer 0.4: entropic force reproduces Newton exactly (earned); dark-sector fenced
+ ("weak_force_chirality_bridge_sim.py", 120, False, [
+   ("contains", "PASS weak_force_chirality_bridge_sim")]),      # z3+cvc5; Layer 20.1 SM bridge: weak force left-handed coupling forced by F01+N01
+ ("division_algebra_ratchet_sim.py", 120, False, [
+   ("contains", "PASS division_algebra_ratchet_sim")]),         # z3+cvc5; Layer 0.5: R->C->H->O ratchet, nonassoc=grouping N01, S kill-control, G2=Aut(O)
+ ("cosmogenesis_persistence_sim.py", 120, False, [
+   ("contains", "PASS cosmogenesis_persistence_sim")]),         # Layer 0.6: least persisting carrier between fuzz frames = norm-preserving spinor; entangled expanding field
  ("flux_nesting_ablation_jax.py", 600, True, [
    ("approx", r'"total_chern_forward":\s*([0-9.]+)', 7.295389, 1e-3)]),
  ("manifold_build_ladder.py", 600, True, [

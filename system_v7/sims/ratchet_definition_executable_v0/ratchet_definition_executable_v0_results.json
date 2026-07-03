@@ -1,0 +1,484 @@
+{
+ "classification": "scratch_diagnostic",
+ "promotion_allowed": false,
+ "runs": {
+  "11": {
+   "terminal_level": "L3_Spinor",
+   "admitted_ladder": [
+    "L0_trivial",
+    "L1_Z",
+    "L2_Pauli",
+    "L3_Spinor"
+   ],
+   "terminal_classes": 9,
+   "ledger": [
+    {
+     "step": 1,
+     "event": "DEMAND_VOID",
+     "demand": "void_HH_vs_id",
+     "reason": "no level separates; no constraint witness -> trigger refuses"
+    },
+    {
+     "step": 1,
+     "event": "REJECTED_UNFORCED",
+     "candidate": "L2_Pauli",
+     "classes": 6,
+     "vs_weakest": 3
+    },
+    {
+     "step": 1,
+     "event": "REJECTED_UNFORCED",
+     "candidate": "L3_Spinor",
+     "classes": 9,
+     "vs_weakest": 3
+    },
+    {
+     "step": 1,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_plus_vs_mix",
+     "level": "L0_trivial",
+     "provenance": "pure vs mixed prep",
+     "readout_i": "()",
+     "readout_j": "()"
+    },
+    {
+     "step": 1,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_0_vs_1",
+     "level": "L0_trivial",
+     "provenance": "prep difference (physical)",
+     "readout_i": "()",
+     "readout_j": "()"
+    },
+    {
+     "step": 1,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_720_process",
+     "level": "L0_trivial",
+     "provenance": "R(2pi) applied vs not: rho identical, process distinct",
+     "readout_i": "()",
+     "readout_j": "()"
+    },
+    {
+     "step": 1,
+     "event": "LIFT_LOCKED",
+     "from": "L0_trivial",
+     "to": "L1_Z",
+     "lost_demands": [
+      "sep_plus_vs_mix",
+      "sep_0_vs_1",
+      "sep_720_process"
+     ],
+     "classes_before": 1,
+     "classes_after": 3
+    },
+    {
+     "step": 2,
+     "event": "DEMAND_MET",
+     "demand": "sep_0_vs_1",
+     "level": "L1_Z"
+    },
+    {
+     "step": 2,
+     "event": "REJECTED_UNFORCED",
+     "candidate": "L3_Spinor",
+     "classes": 9,
+     "vs_weakest": 6
+    },
+    {
+     "step": 2,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_plus_vs_mix",
+     "level": "L1_Z",
+     "provenance": "pure vs mixed prep",
+     "readout_i": "(0,)",
+     "readout_j": "(0,)"
+    },
+    {
+     "step": 2,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_720_process",
+     "level": "L1_Z",
+     "provenance": "R(2pi) applied vs not: rho identical, process distinct",
+     "readout_i": "(1000000000,)",
+     "readout_j": "(1000000000,)"
+    },
+    {
+     "step": 2,
+     "event": "LIFT_LOCKED",
+     "from": "L1_Z",
+     "to": "L2_Pauli",
+     "lost_demands": [
+      "sep_plus_vs_mix",
+      "sep_720_process"
+     ],
+     "classes_before": 3,
+     "classes_after": 6
+    },
+    {
+     "step": 3,
+     "event": "DEMAND_MET",
+     "demand": "sep_plus_vs_mix",
+     "level": "L2_Pauli"
+    },
+    {
+     "step": 3,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_720_process",
+     "level": "L2_Pauli",
+     "provenance": "R(2pi) applied vs not: rho identical, process distinct",
+     "readout_i": "(0, 0, 1000000000)",
+     "readout_j": "(0, 0, 1000000000)"
+    },
+    {
+     "step": 3,
+     "event": "LIFT_LOCKED",
+     "from": "L2_Pauli",
+     "to": "L3_Spinor",
+     "lost_demands": [
+      "sep_720_process"
+     ],
+     "classes_before": 6,
+     "classes_after": 9
+    },
+    {
+     "step": 4,
+     "event": "DEMAND_MET",
+     "demand": "sep_720_process",
+     "level": "L3_Spinor"
+    },
+    {
+     "step": 4,
+     "event": "NO_LIFT",
+     "level": "L3_Spinor",
+     "note": "Minimalist wins: no admissible lost distinction"
+    }
+   ],
+   "theorems": {
+    "T1_termination": true,
+    "T2_monotone_expressivity": true,
+    "T3_no_unforced_lift": true,
+    "T4_pawl": true
+   }
+  },
+  "23": {
+   "terminal_level": "L3_Spinor",
+   "admitted_ladder": [
+    "L0_trivial",
+    "L1_Z",
+    "L2_Pauli",
+    "L3_Spinor"
+   ],
+   "terminal_classes": 9,
+   "ledger": [
+    {
+     "step": 1,
+     "event": "DEMAND_VOID",
+     "demand": "void_HH_vs_id",
+     "reason": "no level separates; no constraint witness -> trigger refuses"
+    },
+    {
+     "step": 1,
+     "event": "REJECTED_UNFORCED",
+     "candidate": "L2_Pauli",
+     "classes": 6,
+     "vs_weakest": 3
+    },
+    {
+     "step": 1,
+     "event": "REJECTED_UNFORCED",
+     "candidate": "L3_Spinor",
+     "classes": 9,
+     "vs_weakest": 3
+    },
+    {
+     "step": 1,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_720_process",
+     "level": "L0_trivial",
+     "provenance": "R(2pi) applied vs not: rho identical, process distinct",
+     "readout_i": "()",
+     "readout_j": "()"
+    },
+    {
+     "step": 1,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_plus_vs_mix",
+     "level": "L0_trivial",
+     "provenance": "pure vs mixed prep",
+     "readout_i": "()",
+     "readout_j": "()"
+    },
+    {
+     "step": 1,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_0_vs_1",
+     "level": "L0_trivial",
+     "provenance": "prep difference (physical)",
+     "readout_i": "()",
+     "readout_j": "()"
+    },
+    {
+     "step": 1,
+     "event": "LIFT_LOCKED",
+     "from": "L0_trivial",
+     "to": "L1_Z",
+     "lost_demands": [
+      "sep_720_process",
+      "sep_plus_vs_mix",
+      "sep_0_vs_1"
+     ],
+     "classes_before": 1,
+     "classes_after": 3
+    },
+    {
+     "step": 2,
+     "event": "DEMAND_MET",
+     "demand": "sep_0_vs_1",
+     "level": "L1_Z"
+    },
+    {
+     "step": 2,
+     "event": "REJECTED_UNFORCED",
+     "candidate": "L3_Spinor",
+     "classes": 9,
+     "vs_weakest": 6
+    },
+    {
+     "step": 2,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_720_process",
+     "level": "L1_Z",
+     "provenance": "R(2pi) applied vs not: rho identical, process distinct",
+     "readout_i": "(1000000000,)",
+     "readout_j": "(1000000000,)"
+    },
+    {
+     "step": 2,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_plus_vs_mix",
+     "level": "L1_Z",
+     "provenance": "pure vs mixed prep",
+     "readout_i": "(0,)",
+     "readout_j": "(0,)"
+    },
+    {
+     "step": 2,
+     "event": "LIFT_LOCKED",
+     "from": "L1_Z",
+     "to": "L2_Pauli",
+     "lost_demands": [
+      "sep_720_process",
+      "sep_plus_vs_mix"
+     ],
+     "classes_before": 3,
+     "classes_after": 6
+    },
+    {
+     "step": 3,
+     "event": "DEMAND_MET",
+     "demand": "sep_plus_vs_mix",
+     "level": "L2_Pauli"
+    },
+    {
+     "step": 3,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_720_process",
+     "level": "L2_Pauli",
+     "provenance": "R(2pi) applied vs not: rho identical, process distinct",
+     "readout_i": "(0, 0, 1000000000)",
+     "readout_j": "(0, 0, 1000000000)"
+    },
+    {
+     "step": 3,
+     "event": "LIFT_LOCKED",
+     "from": "L2_Pauli",
+     "to": "L3_Spinor",
+     "lost_demands": [
+      "sep_720_process"
+     ],
+     "classes_before": 6,
+     "classes_after": 9
+    },
+    {
+     "step": 4,
+     "event": "DEMAND_MET",
+     "demand": "sep_720_process",
+     "level": "L3_Spinor"
+    },
+    {
+     "step": 4,
+     "event": "NO_LIFT",
+     "level": "L3_Spinor",
+     "note": "Minimalist wins: no admissible lost distinction"
+    }
+   ],
+   "theorems": {
+    "T1_termination": true,
+    "T2_monotone_expressivity": true,
+    "T3_no_unforced_lift": true,
+    "T4_pawl": true
+   }
+  },
+  "47": {
+   "terminal_level": "L3_Spinor",
+   "admitted_ladder": [
+    "L0_trivial",
+    "L1_Z",
+    "L2_Pauli",
+    "L3_Spinor"
+   ],
+   "terminal_classes": 9,
+   "ledger": [
+    {
+     "step": 1,
+     "event": "DEMAND_VOID",
+     "demand": "void_HH_vs_id",
+     "reason": "no level separates; no constraint witness -> trigger refuses"
+    },
+    {
+     "step": 1,
+     "event": "REJECTED_UNFORCED",
+     "candidate": "L2_Pauli",
+     "classes": 6,
+     "vs_weakest": 3
+    },
+    {
+     "step": 1,
+     "event": "REJECTED_UNFORCED",
+     "candidate": "L3_Spinor",
+     "classes": 9,
+     "vs_weakest": 3
+    },
+    {
+     "step": 1,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_0_vs_1",
+     "level": "L0_trivial",
+     "provenance": "prep difference (physical)",
+     "readout_i": "()",
+     "readout_j": "()"
+    },
+    {
+     "step": 1,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_plus_vs_mix",
+     "level": "L0_trivial",
+     "provenance": "pure vs mixed prep",
+     "readout_i": "()",
+     "readout_j": "()"
+    },
+    {
+     "step": 1,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_720_process",
+     "level": "L0_trivial",
+     "provenance": "R(2pi) applied vs not: rho identical, process distinct",
+     "readout_i": "()",
+     "readout_j": "()"
+    },
+    {
+     "step": 1,
+     "event": "LIFT_LOCKED",
+     "from": "L0_trivial",
+     "to": "L1_Z",
+     "lost_demands": [
+      "sep_0_vs_1",
+      "sep_plus_vs_mix",
+      "sep_720_process"
+     ],
+     "classes_before": 1,
+     "classes_after": 3
+    },
+    {
+     "step": 2,
+     "event": "DEMAND_MET",
+     "demand": "sep_0_vs_1",
+     "level": "L1_Z"
+    },
+    {
+     "step": 2,
+     "event": "REJECTED_UNFORCED",
+     "candidate": "L3_Spinor",
+     "classes": 9,
+     "vs_weakest": 6
+    },
+    {
+     "step": 2,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_plus_vs_mix",
+     "level": "L1_Z",
+     "provenance": "pure vs mixed prep",
+     "readout_i": "(0,)",
+     "readout_j": "(0,)"
+    },
+    {
+     "step": 2,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_720_process",
+     "level": "L1_Z",
+     "provenance": "R(2pi) applied vs not: rho identical, process distinct",
+     "readout_i": "(1000000000,)",
+     "readout_j": "(1000000000,)"
+    },
+    {
+     "step": 2,
+     "event": "LIFT_LOCKED",
+     "from": "L1_Z",
+     "to": "L2_Pauli",
+     "lost_demands": [
+      "sep_plus_vs_mix",
+      "sep_720_process"
+     ],
+     "classes_before": 3,
+     "classes_after": 6
+    },
+    {
+     "step": 3,
+     "event": "DEMAND_MET",
+     "demand": "sep_plus_vs_mix",
+     "level": "L2_Pauli"
+    },
+    {
+     "step": 3,
+     "event": "MINIMALIST_FAILED_PROOF",
+     "demand": "sep_720_process",
+     "level": "L2_Pauli",
+     "provenance": "R(2pi) applied vs not: rho identical, process distinct",
+     "readout_i": "(0, 0, 1000000000)",
+     "readout_j": "(0, 0, 1000000000)"
+    },
+    {
+     "step": 3,
+     "event": "LIFT_LOCKED",
+     "from": "L2_Pauli",
+     "to": "L3_Spinor",
+     "lost_demands": [
+      "sep_720_process"
+     ],
+     "classes_before": 6,
+     "classes_after": 9
+    },
+    {
+     "step": 4,
+     "event": "DEMAND_MET",
+     "demand": "sep_720_process",
+     "level": "L3_Spinor"
+    },
+    {
+     "step": 4,
+     "event": "NO_LIFT",
+     "level": "L3_Spinor",
+     "note": "Minimalist wins: no admissible lost distinction"
+    }
+   ],
+   "theorems": {
+    "T1_termination": true,
+    "T2_monotone_expressivity": true,
+    "T3_no_unforced_lift": true,
+    "T4_pawl": true
+   }
+  }
+ },
+ "T5_basin_convergence": true
+}

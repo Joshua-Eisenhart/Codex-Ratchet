@@ -636,3 +636,22 @@ UP-50 NEW LAYER 0.10  qit_active_inference_planning_sim.py -- the ACTIVE half of
                FEP loop -- perception (0.9) relaxes surprise, action (0.10) selects the path that will; both
                the SAME relative-entropy descent over trajectories; 0.8's N01 makes planning nontrivial.
                Hypothetical lane; finite 3-step enumeration, not continuous optimal control. FULL HARNESS VERIFIED: 63 pass / 0 fail / 0 skip GREEN (incl JAX + Julia lanes).
+
+
+# LAYER 0.11 — 16-STAGE ENGINE SCHEDULE AS ACTIVE-INFERENCE POLICY SPACE — 2026-07-03
+UP-51 NEW LAYER 0.11  sixteen_stage_engine_schedule_sim.py -- ties Layers 0.8/0.9/0.10 to the REAL geometric
+               constraint manifold: the 8 terrains (earned all-distinct 17.3, eps-signed coherent drive +
+               kind dissipator) as the state space, each admitting EXACTLY 2 of 4 native operators (one T,
+               one F) on its Axis-2 sheet (eps>0 direct {Ti,Fi}; eps<0 conjugated {Te,Fe}) = 8x2 = 16
+               distinct engine stages (owner: "16 unique stages ... each terrain has only 2 kinds of
+               operators it can use, in a certain signed axis6 way"). RESULTS: (1) 16/16 stages DISTINCT as
+               information transforms (fingerprint on 5-probe set, min pairwise 0.336) -- no DOF collapse.
+               (2) SHEET-ADMISSIBILITY is the UNIQUE partition (z3+cvc5 SEARCH not pin): sheet bit forced to
+               measured eps -> 1 model; eps-erased -> 2^8=256 ambiguous. (3) ACTIVE PLANNER (0.10 machinery)
+               on the REAL 16-stage schedule: min-cost 2-stage policy REACHES terrain-4 pointer (surprise
+               2.77->0.93); 240/256 policies order-sensitive (max gap 1.27) = N01 inherited from manifold.
+               LOOP-BACK: terrains (geometry) + 2-op admissibility (Axis-5/6 signed rule) + active planner
+               (0.10) are ONE engine -- the manifold with the FEP loop running on it. HONEST NEGATIVE:
+               surprise-reduction as SOLE admissibility criterion is NOT clean (4/8 single-probe) and is NOT
+               claimed; admissibility here is the structural Axis-2 sheet rule, SMT-gated. Hypothetical lane;
+               does NOT run the 720deg double-loop or 64-schedule; 2-stage enumeration. HARNESS PENDING.

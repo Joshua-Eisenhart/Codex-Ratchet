@@ -190,6 +190,8 @@ SUITE = [
    ("contains", "PASS qit_fep_ratchet_sim")]),          # Layer 0.9: QIT FEP earned through the ratchet stage by stage (F01->functional forced, Axis-0 geometry split, Axis-5 operators=inference, 3q Markov blanket, active selection, z3+cvc5); NO thermal/classical primitive
  ("qit_active_inference_planning_sim.py", 120, False, [
    ("contains", "PASS qit_active_inference_planning_sim")]),          # Layer 0.10: ACTIVE half of QIT-FEP -- policy selection by path-integral free energy; N01 order-sensitivity inherited from manifold; epistemic sign structure; z3+cvc5
+ ("sixteen_stage_engine_schedule_sim.py", 120, False, [
+   ("contains", "PASS sixteen_stage_engine_schedule_sim")]),          # Layer 0.11: 16-stage engine schedule (8 terrains x 2 admissible ops, Axis-2 sheet rule) as active-inference policy space; 16/16 distinct, unique sheet partition (z3+cvc5), planner reaches goal + N01 on real schedule
  ("flux_nesting_ablation_jax.py", 600, True, [
    ("approx", r'"total_chern_forward":\s*([0-9.]+)', 7.295389, 1e-3)]),
  ("manifold_build_ladder.py", 600, True, [

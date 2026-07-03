@@ -28,12 +28,16 @@ from world_fixture_3q import write_fixture
 
 SUBSTRATES = {
     "numpy_oracle_loop": BASE_DIR / "substrates" / "numpy_oracle_loop.py",
+    "jax_loop": BASE_DIR / "substrates" / "jax_loop.py",
+    "torch_loop": BASE_DIR / "substrates" / "torch_loop.py",
     "julia_loop": BASE_DIR / "substrates" / "julia_loop.jl",
 }
+PYTHON_SUBSTRATES = {"numpy_oracle_loop", "jax_loop", "torch_loop"}
 SIM_PY = Path("/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3")
 JULIA = Path("/opt/homebrew/bin/julia")
 JULIA_PROJECT = BASE_DIR.parents[2] / "system_v5" / "julia_carrier"
-PARITY_BAR = 1e-9
+PYTHON_TRIO_PARITY_BAR = 1e-10
+JULIA_PARITY_BAR = 1e-9
 
 
 def safe_fresh_dir(out_dir: Path) -> None:
@@ -95,6 +99,12 @@ def numeric_fields_report(a: dict, b: dict) -> dict:
     }
 
 
+def pair_threshold(left: str, right: str) -> float:
+    if left in PYTHON_SUBSTRATES and right in PYTHON_SUBSTRATES:
+        return PYTHON_TRIO_PARITY_BAR
+    return JULIA_PARITY_BAR
+
+
 def numeric_leaf_devs(a, b, prefix: str = "") -> list[tuple[str, float]]:
     if isinstance(a, bool) or isinstance(b, bool):
         return []
@@ -141,47 +151,60 @@ def validate_outputs(out_dir: Path, ticks: int) -> dict:
     global_stage_mismatch_ticks: dict[str, list[dict]] = {"D": [], "C": []}
     boundary_errors = []
 
+    substrate_names = list(SUBSTRATES)
+    pair_count_by_engine = {engine: 0 for engine in ("D", "C")}
     for engine in ("D", "C"):
-        pair_key = f"numpy_oracle_loop_vs_julia_loop_engine_{engine}"
-        pair_reports[pair_key] = {field: 0.0 for field in max_fields}
-        pair_reports[pair_key]["action_index_exact_match"] = True
-        pair_reports[pair_key]["global_stage_id_exact_match"] = True
-        for tick in range(ticks):
-            a = rows["numpy_oracle_loop"][engine][tick]
-            b = rows["julia_loop"][engine][tick]
-            if a.get("classification") != CLASSIFICATION or b.get("classification") != CLASSIFICATION:
-                boundary_errors.append(f"{engine} tick {tick}: classification mismatch")
-            if a.get("promotion_allowed") is not PROMOTION_ALLOWED or b.get("promotion_allowed") is not PROMOTION_ALLOWED:
-                boundary_errors.append(f"{engine} tick {tick}: promotion boundary mismatch")
-            if a.get("quarantine") != QUARANTINE or b.get("quarantine") != QUARANTINE:
-                boundary_errors.append(f"{engine} tick {tick}: quarantine mismatch")
-            devs = numeric_fields_report(a, b)
-            for field, value in devs.items():
-                pair_reports[pair_key][field] = max(pair_reports[pair_key][field], value)
-                max_fields[field] = max(max_fields[field], value)
-            leaf_devs = numeric_leaf_devs(a, b)
-            leaf_max = max((value for _, value in leaf_devs), default=0.0)
-            pair_reports[pair_key]["all_numeric_leaves"] = max(pair_reports[pair_key]["all_numeric_leaves"], leaf_max)
-            max_fields["all_numeric_leaves"] = max(max_fields["all_numeric_leaves"], leaf_max)
-            if a["chosen_action_index"] == b["chosen_action_index"]:
-                action_matches[engine] += 1
-            else:
-                pair_reports[pair_key]["action_index_exact_match"] = False
-                action_mismatch_ticks[engine].append(
-                    {"tick": tick, "numpy": a["chosen_action_index"], "julia": b["chosen_action_index"]}
-                )
-            if a["chosen_global_stage_id"] == b["chosen_global_stage_id"]:
-                global_stage_matches[engine] += 1
-            else:
-                pair_reports[pair_key]["global_stage_id_exact_match"] = False
-                global_stage_mismatch_ticks[engine].append(
-                    {"tick": tick, "numpy": a["chosen_global_stage_id"], "julia": b["chosen_global_stage_id"]}
-                )
+        for left_idx, left in enumerate(substrate_names):
+            for right in substrate_names[left_idx + 1 :]:
+                pair_count_by_engine[engine] += 1
+                threshold = pair_threshold(left, right)
+                pair_key = f"{left}_vs_{right}_engine_{engine}"
+                pair_reports[pair_key] = {field: 0.0 for field in max_fields}
+                pair_reports[pair_key]["threshold"] = threshold
+                pair_reports[pair_key]["action_index_exact_match"] = True
+                pair_reports[pair_key]["global_stage_id_exact_match"] = True
+                pair_reports[pair_key]["numeric_passed"] = True
+                for tick in range(ticks):
+                    a = rows[left][engine][tick]
+                    b = rows[right][engine][tick]
+                    for substrate, row in ((left, a), (right, b)):
+                        if row.get("classification") != CLASSIFICATION:
+                            boundary_errors.append(f"{substrate} {engine} tick {tick}: classification mismatch")
+                        if row.get("promotion_allowed") is not PROMOTION_ALLOWED:
+                            boundary_errors.append(f"{substrate} {engine} tick {tick}: promotion boundary mismatch")
+                        if row.get("quarantine") != QUARANTINE:
+                            boundary_errors.append(f"{substrate} {engine} tick {tick}: quarantine mismatch")
+                    devs = numeric_fields_report(a, b)
+                    for field, value in devs.items():
+                        pair_reports[pair_key][field] = max(pair_reports[pair_key][field], value)
+                        max_fields[field] = max(max_fields[field], value)
+                        if value > threshold:
+                            pair_reports[pair_key]["numeric_passed"] = False
+                    leaf_devs = numeric_leaf_devs(a, b)
+                    leaf_max = max((value for _, value in leaf_devs), default=0.0)
+                    pair_reports[pair_key]["all_numeric_leaves"] = max(pair_reports[pair_key]["all_numeric_leaves"], leaf_max)
+                    max_fields["all_numeric_leaves"] = max(max_fields["all_numeric_leaves"], leaf_max)
+                    if leaf_max > threshold:
+                        pair_reports[pair_key]["numeric_passed"] = False
+                    if a["chosen_action_index"] == b["chosen_action_index"]:
+                        action_matches[engine] += 1
+                    else:
+                        pair_reports[pair_key]["action_index_exact_match"] = False
+                        action_mismatch_ticks[engine].append(
+                            {"tick": tick, "left_substrate": left, "right_substrate": right, "left": a["chosen_action_index"], "right": b["chosen_action_index"]}
+                        )
+                    if a["chosen_global_stage_id"] == b["chosen_global_stage_id"]:
+                        global_stage_matches[engine] += 1
+                    else:
+                        pair_reports[pair_key]["global_stage_id_exact_match"] = False
+                        global_stage_mismatch_ticks[engine].append(
+                            {"tick": tick, "left_substrate": left, "right_substrate": right, "left": a["chosen_global_stage_id"], "right": b["chosen_global_stage_id"]}
+                        )
 
     passed = (
-        all(value <= PARITY_BAR for value in max_fields.values())
-        and all(count == ticks for count in action_matches.values())
-        and all(count == ticks for count in global_stage_matches.values())
+        all(pair["numeric_passed"] for pair in pair_reports.values())
+        and all(action_matches[engine] == ticks * pair_count_by_engine[engine] for engine in ("D", "C"))
+        and all(global_stage_matches[engine] == ticks * pair_count_by_engine[engine] for engine in ("D", "C"))
         and not boundary_errors
     )
     report = {
@@ -190,7 +213,12 @@ def validate_outputs(out_dir: Path, ticks: int) -> dict:
         "promotion_allowed": PROMOTION_ALLOWED,
         "quarantine": QUARANTINE,
         "ticks": ticks,
-        "thresholds": {"numeric_bar": PARITY_BAR},
+        "thresholds": {
+            "python_trio_numeric_bar": PYTHON_TRIO_PARITY_BAR,
+            "julia_numeric_bar": JULIA_PARITY_BAR,
+            "action_index": "exact",
+            "global_stage_id": "exact",
+        },
         "substrates": list(SUBSTRATES),
         "engines": {
             "D": {"sheet": "eps-sheet direct", "stage_defs": SHEET_STAGE_DEFS["D"]},
@@ -200,6 +228,8 @@ def validate_outputs(out_dir: Path, ticks: int) -> dict:
         "max_numeric_abs_dev": max_fields,
         "action_match_count_by_engine": action_matches,
         "global_stage_match_count_by_engine": global_stage_matches,
+        "pair_count_by_engine": pair_count_by_engine,
+        "expected_exact_matches_by_engine": {engine: ticks * pair_count_by_engine[engine] for engine in ("D", "C")},
         "action_mismatch_ticks": action_mismatch_ticks,
         "global_stage_mismatch_ticks": global_stage_mismatch_ticks,
         "boundary_errors": boundary_errors,
@@ -285,9 +315,9 @@ def write_results_md(out_dir: Path, summary: dict, parity: dict, sheet_gap: dict
         "",
         "## Verdicts",
         "",
-        f"- Parity passed: `{parity['all_parity_passed']}` with numeric bar `{parity['thresholds']['numeric_bar']}`.",
-        f"- Action matches D: `{parity['action_match_count_by_engine']['D']}/{parity['ticks']}`.",
-        f"- Action matches C: `{parity['action_match_count_by_engine']['C']}/{parity['ticks']}`.",
+        f"- Parity passed: `{parity['all_parity_passed']}` with Python-trio numeric bar `{parity['thresholds']['python_trio_numeric_bar']}` and Julia numeric bar `{parity['thresholds']['julia_numeric_bar']}`.",
+        f"- Action matches D: `{parity['action_match_count_by_engine']['D']}/{parity['expected_exact_matches_by_engine']['D']}` pair-ticks.",
+        f"- Action matches C: `{parity['action_match_count_by_engine']['C']}/{parity['expected_exact_matches_by_engine']['C']}` pair-ticks.",
         f"- Sheet-engines diverge by trace gap: `{sheet_gap['verdicts']['sheet_engines_diverge']}`.",
         f"- Surprise profiles diverge: `{sheet_gap['verdicts']['surprise_profiles_diverge']}`.",
         f"- Entropy coherent: `{sheet_gap['verdicts']['entropy_coherent']}`.",

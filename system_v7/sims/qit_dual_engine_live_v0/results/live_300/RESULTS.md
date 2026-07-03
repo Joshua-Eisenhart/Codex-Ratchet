@@ -8,9 +8,9 @@ Engine D: eps-sheet direct, terrains 0-3 x {Ti,Fi}. Engine C: eps-sheet conjugat
 
 ## Verdicts
 
-- Parity passed: `True` with numeric bar `1e-09`.
-- Action matches D: `300/300`.
-- Action matches C: `300/300`.
+- Parity passed: `True` with Python-trio numeric bar `1e-10` and Julia numeric bar `1e-09`.
+- Action matches D: `1800/1800` pair-ticks.
+- Action matches C: `1800/1800` pair-ticks.
 - Sheet-engines diverge by trace gap: `True`.
 - Surprise profiles diverge: `True`.
 - Entropy coherent: `True`.
@@ -18,14 +18,14 @@ Engine D: eps-sheet direct, terrains 0-3 x {Ti,Fi}. Engine C: eps-sheet conjugat
 
 ## Parity
 
-- Max belief_pauli_63 abs dev: `4.030109579389318e-14`.
-- Max surprise_bits abs dev: `3.1459279625778436e-12`.
-- Max fe_gradient abs dev: `3.149480676256644e-12`.
-- Max entropy_bits abs dev: `3.730349362740526e-14`.
-- Max efe_scores_8 abs dev: `1.1457501614131615e-13`.
-- Max sheet_gap_trace_distance abs dev: `7.216449660063518e-15`.
-- Max sheet_gap_abs_surprise_delta abs dev: `3.142375248899043e-12`.
-- Max memory_bit_fidelity abs dev: `2.3647750424515834e-14`.
+- Max belief_pauli_63 abs dev: `6.705747068735946e-14`.
+- Max surprise_bits abs dev: `3.980815677095961e-12`.
+- Max fe_gradient abs dev: `3.984368390774762e-12`.
+- Max entropy_bits abs dev: `6.816769371198461e-14`.
+- Max efe_scores_8 abs dev: `1.270095140171179e-13`.
+- Max sheet_gap_trace_distance abs dev: `1.1657341758564144e-14`.
+- Max sheet_gap_abs_surprise_delta abs dev: `3.977262963417161e-12`.
+- Max memory_bit_fidelity abs dev: `5.639932965095795e-14`.
 
 ## Sheet Gap
 
@@ -39,8 +39,10 @@ Engine D: eps-sheet direct, terrains 0-3 x {Ti,Fi}. Engine C: eps-sheet conjugat
 
 ## Runtimes
 
-- numpy_oracle_loop: wall `1.4313682499341667`, substrate total `1.160367916803807`.
-- julia_loop: wall `13.518810166977346`, substrate total `2.7965423749999996`.
+- numpy_oracle_loop: wall `1.1375542499590665`, substrate total `0.8781525411177427`.
+- jax_loop: wall `13.603867582976818`, substrate total `11.192326165968552`.
+- torch_loop: wall `3.1562483329325914`, substrate total `1.7721516259480268`.
+- julia_loop: wall `12.596877500182018`, substrate total `2.558524249`.
 
 ## Boundaries
 

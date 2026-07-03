@@ -33,7 +33,10 @@ PRIMARY_LEGO_IDS = [
     "stochastic_thermodynamics",
 ]
 
-TOOL_MANIFEST = record_base.TOOL_MANIFEST
+TOOL_MANIFEST = {'numpy': {'reason': 'Source calls NumPy APIs for finite array, matrix, or numeric baseline '
+                     'computation in this probe.',
+           'tried': True,
+           'used': True}}
 TOOL_INTEGRATION_DEPTH = record_base.TOOL_INTEGRATION_DEPTH
 
 MEASUREMENT_FLIP_PROB_GRID = [0.02]

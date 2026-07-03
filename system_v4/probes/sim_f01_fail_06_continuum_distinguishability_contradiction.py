@@ -5,8 +5,53 @@ sympy load-bearing: cardinality argument; z3 supportive on finite projection.
 import json, os, sympy as sp
 from z3 import Solver, Real, Bool, Or, unsat
 
-TOOL_MANIFEST = {t:{"tried":False,"used":False,"reason":"n/a"} for t in
-    ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}
+TOOL_MANIFEST = {'clifford': {'reason': 'Clifford appears only in the existing manifest scaffold or imports '
+                        'without a direct source call; kept unused pending review.',
+              'tried': False,
+              'used': False},
+ 'cvc5': {'reason': 'cvc5 appears only in the existing manifest scaffold or imports without a '
+                    'direct source call; kept unused pending review.',
+          'tried': False,
+          'used': False},
+ 'e3nn': {'reason': 'e3nn appears only in the existing manifest scaffold or imports without a '
+                    'direct source call; kept unused pending review.',
+          'tried': False,
+          'used': False},
+ 'geomstats': {'reason': 'geomstats appears only in the existing manifest scaffold or imports '
+                         'without a direct source call; kept unused pending review.',
+               'tried': False,
+               'used': False},
+ 'gudhi': {'reason': 'GUDHI appears only in the existing manifest scaffold or imports without a '
+                     'direct source call; kept unused pending review.',
+           'tried': False,
+           'used': False},
+ 'pyg': {'reason': 'PyG appears only in the existing manifest scaffold or imports without a direct '
+                   'source call; kept unused pending review.',
+         'tried': False,
+         'used': False},
+ 'pytorch': {'reason': 'PyTorch appears only in the existing manifest scaffold or imports without '
+                       'a direct source call; kept unused pending review.',
+             'tried': False,
+             'used': False},
+ 'rustworkx': {'reason': 'rustworkx appears only in the existing manifest scaffold or imports '
+                         'without a direct source call; kept unused pending review.',
+               'tried': False,
+               'used': False},
+ 'sympy': {'reason': 'Source calls SymPy APIs for symbolic algebra or expression manipulation in '
+                     'this probe.',
+           'tried': True,
+           'used': True},
+ 'toponetx': {'reason': 'TopoNetX appears only in the existing manifest scaffold or imports '
+                        'without a direct source call; kept unused pending review.',
+              'tried': False,
+              'used': False},
+ 'xgi': {'reason': 'XGI appears only in the existing manifest scaffold or imports without a direct '
+                   'source call; kept unused pending review.',
+         'tried': False,
+         'used': False},
+ 'z3': {'reason': 'Source calls z3 APIs to build or check finite SMT constraints in this probe.',
+        'tried': True,
+        'used': True}}
 TOOL_MANIFEST["sympy"] = {"tried":True,"used":True,"reason":"cardinality: |R| > |{0,1}^k|; load-bearing"}
 TOOL_MANIFEST["z3"] = {"tried":True,"used":True,"reason":"finite-k probe separation of >2^k states UNSAT"}
 TOOL_INTEGRATION_DEPTH = {"sympy":"load_bearing","z3":"supportive"}

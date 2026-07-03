@@ -10,8 +10,53 @@ DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 classification = "tool_lego_fit_probe"
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
-    ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}
+TOOL_MANIFEST = {'clifford': {'reason': 'Clifford appears only in the existing manifest scaffold or imports '
+                        'without a direct source call; kept unused pending review.',
+              'tried': False,
+              'used': False},
+ 'cvc5': {'reason': 'Source calls cvc5 APIs to build or cross-check finite solver constraints in '
+                    'this probe.',
+          'tried': True,
+          'used': True},
+ 'e3nn': {'reason': 'e3nn appears only in the existing manifest scaffold or imports without a '
+                    'direct source call; kept unused pending review.',
+          'tried': False,
+          'used': False},
+ 'geomstats': {'reason': 'geomstats appears only in the existing manifest scaffold or imports '
+                         'without a direct source call; kept unused pending review.',
+               'tried': False,
+               'used': False},
+ 'gudhi': {'reason': 'GUDHI appears only in the existing manifest scaffold or imports without a '
+                     'direct source call; kept unused pending review.',
+           'tried': False,
+           'used': False},
+ 'pyg': {'reason': 'PyG appears only in the existing manifest scaffold or imports without a direct '
+                   'source call; kept unused pending review.',
+         'tried': False,
+         'used': False},
+ 'pytorch': {'reason': 'PyTorch appears only in the existing manifest scaffold or imports without '
+                       'a direct source call; kept unused pending review.',
+             'tried': False,
+             'used': False},
+ 'rustworkx': {'reason': 'rustworkx appears only in the existing manifest scaffold or imports '
+                         'without a direct source call; kept unused pending review.',
+               'tried': False,
+               'used': False},
+ 'sympy': {'reason': 'SymPy appears only in the existing manifest scaffold or imports without a '
+                     'direct source call; kept unused pending review.',
+           'tried': False,
+           'used': False},
+ 'toponetx': {'reason': 'TopoNetX appears only in the existing manifest scaffold or imports '
+                        'without a direct source call; kept unused pending review.',
+              'tried': False,
+              'used': False},
+ 'xgi': {'reason': 'XGI appears only in the existing manifest scaffold or imports without a direct '
+                   'source call; kept unused pending review.',
+         'tried': False,
+         'used': False},
+ 'z3': {'reason': 'Source calls z3 APIs to build or check finite SMT constraints in this probe.',
+        'tried': True,
+        'used': True}}
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 
 try:

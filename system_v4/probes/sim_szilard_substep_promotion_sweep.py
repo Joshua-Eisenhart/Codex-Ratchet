@@ -25,7 +25,10 @@ CLASSIFICATION_NOTE = (
 
 LEGO_IDS = coarse.LEGO_IDS
 PRIMARY_LEGO_IDS = coarse.PRIMARY_LEGO_IDS
-TOOL_MANIFEST = coarse.TOOL_MANIFEST
+TOOL_MANIFEST = {'numpy': {'reason': 'Source calls NumPy APIs for finite array, matrix, or numeric baseline '
+                     'computation in this probe.',
+           'tried': True,
+           'used': True}}
 TOOL_INTEGRATION_DEPTH = coarse.TOOL_INTEGRATION_DEPTH
 
 MEASUREMENT_FLIP_PROB_GRID = [0.02]

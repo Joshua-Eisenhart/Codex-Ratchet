@@ -9,6 +9,10 @@ nonclassical I_c -- candidate admissibility probe, not a theorem.
 """
 import numpy as np
 from _doc_illum_common import build_manifest, write_results
+TOOL_MANIFEST = {'numpy': {'reason': 'Source calls NumPy APIs for finite array, matrix, or numeric baseline '
+                     'computation in this probe.',
+           'tried': True,
+           'used': True}}
 
 TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
 TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "fd gradient + entropy"}

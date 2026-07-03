@@ -33,20 +33,54 @@ except ImportError:
 # TOOL MANIFEST
 # =====================================================================
 
-TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": ""},
-    "pyg": {"tried": False, "used": False, "reason": ""},
-    "z3": {"tried": False, "used": False, "reason": ""},
-    "cvc5": {"tried": CVC5_AVAILABLE, "used": False, "reason": ""},
-    "sympy": {"tried": True, "used": False, "reason": ""},
-    "clifford": {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn": {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": ""},
-    "gudhi": {"tried": False, "used": False, "reason": ""},
-}
+TOOL_MANIFEST = {'clifford': {'reason': 'Clifford appears only in the existing manifest scaffold or imports '
+                        'without a direct source call; kept unused pending review.',
+              'tried': False,
+              'used': False},
+ 'cvc5': {'reason': 'Source calls cvc5 APIs to build or cross-check finite solver constraints in '
+                    'this probe.',
+          'tried': True,
+          'used': True},
+ 'e3nn': {'reason': 'e3nn appears only in the existing manifest scaffold or imports without a '
+                    'direct source call; kept unused pending review.',
+          'tried': False,
+          'used': False},
+ 'geomstats': {'reason': 'geomstats appears only in the existing manifest scaffold or imports '
+                         'without a direct source call; kept unused pending review.',
+               'tried': False,
+               'used': False},
+ 'gudhi': {'reason': 'GUDHI appears only in the existing manifest scaffold or imports without a '
+                     'direct source call; kept unused pending review.',
+           'tried': False,
+           'used': False},
+ 'pyg': {'reason': 'PyG appears only in the existing manifest scaffold or imports without a direct '
+                   'source call; kept unused pending review.',
+         'tried': False,
+         'used': False},
+ 'pytorch': {'reason': 'PyTorch appears only in the existing manifest scaffold or imports without '
+                       'a direct source call; kept unused pending review.',
+             'tried': False,
+             'used': False},
+ 'rustworkx': {'reason': 'rustworkx appears only in the existing manifest scaffold or imports '
+                         'without a direct source call; kept unused pending review.',
+               'tried': False,
+               'used': False},
+ 'sympy': {'reason': 'Source calls SymPy APIs for symbolic algebra or expression manipulation in '
+                     'this probe.',
+           'tried': True,
+           'used': True},
+ 'toponetx': {'reason': 'TopoNetX appears only in the existing manifest scaffold or imports '
+                        'without a direct source call; kept unused pending review.',
+              'tried': False,
+              'used': False},
+ 'xgi': {'reason': 'XGI appears only in the existing manifest scaffold or imports without a direct '
+                   'source call; kept unused pending review.',
+         'tried': False,
+         'used': False},
+ 'z3': {'reason': 'z3 appears only in the existing manifest scaffold or imports without a direct '
+                  'source call; kept unused pending review.',
+        'tried': False,
+        'used': False}}
 
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": None,

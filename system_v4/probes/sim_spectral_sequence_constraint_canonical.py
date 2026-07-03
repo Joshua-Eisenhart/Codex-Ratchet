@@ -96,20 +96,58 @@ except ImportError:
 # TOOL MANIFEST
 # =====================================================================
 
-TOOL_MANIFEST = {
-    "pytorch": {"tried": PYTORCH_AVAILABLE, "used": False, "reason": "Tensor ops optional for degree accounting"},
-    "pyg": {"tried": PYG_AVAILABLE, "used": False, "reason": "Graph secondary to algebraic topology chain complex"},
-    "z3": {"tried": Z3_AVAILABLE, "used": Z3_AVAILABLE, "reason": "Proves total degree consistency constraints; UNSAT for impossible pages"},
-    "cvc5": {"tried": CVC5_AVAILABLE, "used": False, "reason": "z3 sufficient for linear degree equations"},
-    "sympy": {"tried": SYMPY_AVAILABLE, "used": SYMPY_AVAILABLE, "reason": "Computes E² page explicitly for Hopf fibration"},
-    "clifford": {"tried": CLIFFORD_AVAILABLE, "used": False, "reason": "Spinors not primary to spectral sequences"},
-    "geomstats": {"tried": GEOMSTATS_AVAILABLE, "used": False, "reason": "Manifold structure secondary"},
-    "e3nn": {"tried": E3NN_AVAILABLE, "used": False, "reason": "Equivariance not central to Serre spectral sequence"},
-    "rustworkx": {"tried": RUSTWORKX_AVAILABLE, "used": False, "reason": "Graph not primary structure"},
-    "xgi": {"tried": XGI_AVAILABLE, "used": False, "reason": "Hypergraph structure not used"},
-    "toponetx": {"tried": TOPONETX_AVAILABLE, "used": False, "reason": "Cellular complex emerging but not load-bearing"},
-    "gudhi": {"tried": GUDHI_AVAILABLE, "used": False, "reason": "Persistent homology not load-bearing for spectral sequences"},
-}
+TOOL_MANIFEST = {'clifford': {'reason': 'Clifford appears only in the existing manifest scaffold or imports '
+                        'without a direct source call; kept unused pending review.',
+              'tried': False,
+              'used': False},
+ 'cvc5': {'reason': 'cvc5 appears only in the existing manifest scaffold or imports without a '
+                    'direct source call; kept unused pending review.',
+          'tried': False,
+          'used': False},
+ 'e3nn': {'reason': 'e3nn appears only in the existing manifest scaffold or imports without a '
+                    'direct source call; kept unused pending review.',
+          'tried': False,
+          'used': False},
+ 'geomstats': {'reason': 'geomstats appears only in the existing manifest scaffold or imports '
+                         'without a direct source call; kept unused pending review.',
+               'tried': False,
+               'used': False},
+ 'gudhi': {'reason': 'GUDHI appears only in the existing manifest scaffold or imports without a '
+                     'direct source call; kept unused pending review.',
+           'tried': False,
+           'used': False},
+ 'numpy': {'reason': 'NumPy appears only in the existing manifest scaffold or imports without a '
+                     'direct source call; kept unused pending review.',
+           'tried': False,
+           'used': False},
+ 'pyg': {'reason': 'PyG appears only in the existing manifest scaffold or imports without a direct '
+                   'source call; kept unused pending review.',
+         'tried': False,
+         'used': False},
+ 'pytorch': {'reason': 'PyTorch appears only in the existing manifest scaffold or imports without '
+                       'a direct source call; kept unused pending review.',
+             'tried': False,
+             'used': False},
+ 'rustworkx': {'reason': 'rustworkx appears only in the existing manifest scaffold or imports '
+                         'without a direct source call; kept unused pending review.',
+               'tried': False,
+               'used': False},
+ 'sympy': {'reason': 'SymPy appears only in the existing manifest scaffold or imports without a '
+                     'direct source call; kept unused pending review.',
+           'tried': False,
+           'used': False},
+ 'toponetx': {'reason': 'TopoNetX appears only in the existing manifest scaffold or imports '
+                        'without a direct source call; kept unused pending review.',
+              'tried': False,
+              'used': False},
+ 'xgi': {'reason': 'XGI appears only in the existing manifest scaffold or imports without a direct '
+                   'source call; kept unused pending review.',
+         'tried': False,
+         'used': False},
+ 'z3': {'reason': 'z3 appears only in the existing manifest scaffold or imports without a direct '
+                  'source call; kept unused pending review.',
+        'tried': False,
+        'used': False}}
 
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": None,

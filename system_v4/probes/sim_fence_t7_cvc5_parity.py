@@ -20,7 +20,16 @@ from _fence_unsat_common import fresh_manifest
 
 classification = "tool_lego_fit_probe"
 
-TOOL_MANIFEST = fresh_manifest()
+TOOL_MANIFEST = {'cvc5': {'reason': 'Source calls cvc5 APIs to build or cross-check finite solver constraints in '
+                    'this probe.',
+          'tried': True,
+          'used': True},
+ 'rustworkx': {'reason': 'Source calls rustworkx APIs for graph or DAG computation in this probe.',
+               'tried': True,
+               'used': True},
+ 'z3': {'reason': 'Source calls z3 APIs to build or check finite SMT constraints in this probe.',
+        'tried': True,
+        'used': True}}
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 
 try:

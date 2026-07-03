@@ -12,9 +12,58 @@ import numpy as np
 
 classification = "tool_lego_fit_probe"
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": "not needed"}
-                 for k in ["pytorch","pyg","z3","cvc5","sympy","clifford",
-                           "geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}
+TOOL_MANIFEST = {'clifford': {'reason': 'Clifford appears only in the existing manifest scaffold or imports '
+                        'without a direct source call; kept unused pending review.',
+              'tried': False,
+              'used': False},
+ 'cvc5': {'reason': 'cvc5 appears only in the existing manifest scaffold or imports without a '
+                    'direct source call; kept unused pending review.',
+          'tried': False,
+          'used': False},
+ 'e3nn': {'reason': 'e3nn appears only in the existing manifest scaffold or imports without a '
+                    'direct source call; kept unused pending review.',
+          'tried': False,
+          'used': False},
+ 'geomstats': {'reason': 'geomstats appears only in the existing manifest scaffold or imports '
+                         'without a direct source call; kept unused pending review.',
+               'tried': False,
+               'used': False},
+ 'gudhi': {'reason': 'GUDHI appears only in the existing manifest scaffold or imports without a '
+                     'direct source call; kept unused pending review.',
+           'tried': False,
+           'used': False},
+ 'numpy': {'reason': 'Source calls NumPy APIs for finite array, matrix, or numeric baseline '
+                     'computation in this probe.',
+           'tried': True,
+           'used': True},
+ 'pyg': {'reason': 'PyG appears only in the existing manifest scaffold or imports without a direct '
+                   'source call; kept unused pending review.',
+         'tried': False,
+         'used': False},
+ 'pytorch': {'reason': 'Source calls PyTorch APIs for tensor, autograd, or linear algebra '
+                       'computation in this probe.',
+             'tried': True,
+             'used': True},
+ 'rustworkx': {'reason': 'rustworkx appears only in the existing manifest scaffold or imports '
+                         'without a direct source call; kept unused pending review.',
+               'tried': False,
+               'used': False},
+ 'sympy': {'reason': 'SymPy appears only in the existing manifest scaffold or imports without a '
+                     'direct source call; kept unused pending review.',
+           'tried': False,
+           'used': False},
+ 'toponetx': {'reason': 'TopoNetX appears only in the existing manifest scaffold or imports '
+                        'without a direct source call; kept unused pending review.',
+              'tried': False,
+              'used': False},
+ 'xgi': {'reason': 'XGI appears only in the existing manifest scaffold or imports without a direct '
+                   'source call; kept unused pending review.',
+         'tried': False,
+         'used': False},
+ 'z3': {'reason': 'z3 appears only in the existing manifest scaffold or imports without a direct '
+                  'source call; kept unused pending review.',
+        'tried': False,
+        'used': False}}
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": None,
 }

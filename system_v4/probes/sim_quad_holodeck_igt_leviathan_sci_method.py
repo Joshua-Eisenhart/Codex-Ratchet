@@ -10,6 +10,9 @@ Four-way coexistence axiom (interacting):
   coexistence coupling'.
 """
 from _quad_common import run_kwise, write_results
+TOOL_MANIFEST = {'z3': {'reason': 'Source calls z3 APIs to build or check finite SMT constraints in this probe.',
+        'tried': True,
+        'used': True}}
 
 NAME = "sim_quad_holodeck_igt_leviathan_sci_method"
 SHELLS = ["holodeck", "igt", "leviathan", "sci_method"]

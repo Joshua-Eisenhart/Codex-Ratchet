@@ -12,6 +12,9 @@ Five-way coexistence axiom (interacting):
 classification = 'diagnostic_only'
 
 from _quad_common import run_kwise, write_results
+TOOL_MANIFEST = {'z3': {'reason': 'Source calls z3 APIs to build or check finite SMT constraints in this probe.',
+        'tried': True,
+        'used': True}}
 
 NAME = "sim_pent_all_five_frameworks"
 SHELLS = ["holodeck", "igt", "leviathan", "sci_method", "fep"]

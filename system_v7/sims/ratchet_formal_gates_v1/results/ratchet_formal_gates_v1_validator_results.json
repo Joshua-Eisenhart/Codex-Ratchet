@@ -1,0 +1,54 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "json": "load_bearing",
+    "markdown": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "json": {
+      "reason": "load-bearing result read and validator result serialization",
+      "tried": true,
+      "used": true
+    },
+    "markdown": {
+      "reason": "supportive FORMAL_SPEC.md and RESULTS.md emission",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "claim_ceiling": "formal_gate_diagnostic_only",
+  "classification": "scratch_diagnostic",
+  "formal_admission_allowed": false,
+  "gate_verdicts": {
+    "observable_quotient_R4": {
+      "basis": "full C^8 carrier enumeration with all 63 non-identity Pauli probes; numpy/Julia parity at 1e-9",
+      "pass": true
+    },
+    "progress_measure_R6": {
+      "basis": "z3+cvc5 effective-step strict lexicographic decrease plus objective non-step predicate",
+      "pass": true
+    },
+    "token_identity_R5": {
+      "basis": "z3+cvc5 both polarities: bad same-identity reentry UNSAT; erased bad reentry SAT; logged replay SAT-as-new-branch",
+      "pass": true
+    },
+    "xi_ref_quotient_lift": {
+      "basis": "representative-independence checked over every quotient-class pair in numpy and Julia",
+      "pass": true,
+      "status": "quotient_lift_constructed"
+    }
+  },
+  "generated_at": "2026-07-03T21:06:47Z",
+  "parity": {
+    "failure_count": 0,
+    "failures": [],
+    "max_pvec_abs_diff": 8.770761894538737e-15,
+    "max_trace_abs_diff": 3.3306690738754696e-16,
+    "parity_abs_tol": 1e-09,
+    "parity_pass": true,
+    "xi_ref_max_descriptor_spread_diff": 0.0
+  },
+  "promotion_allowed": false,
+  "schema": "codex_ratchet.ratchet_formal_gates_v1.validator.v1",
+  "sim_id": "ratchet_formal_gates_v1"
+}

@@ -1,0 +1,40 @@
+{
+  "sim_id": "ratchet_formal_gates_v1",
+  "name": "Axis-0 foundations formal gate layer v1",
+  "version": "1.0.0",
+  "classification": "scratch_diagnostic",
+  "claim_ceiling": "formal_gate_diagnostic_only",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "carrier": {
+    "source": "system_v7/constraint_core/engines/oracle_targets_3q.py",
+    "hilbert_space": "C^8",
+    "finite_executable_carrier": "all 16 engine stage states in both orderings plus all 8 terrain fixed states",
+    "probe_family": "all 63 non-identity 3-qubit Pauli strings",
+    "enumeration": "full deterministic enumeration; no sampling"
+  },
+  "gates": [
+    "token_identity_R5",
+    "progress_measure_R6",
+    "observable_quotient_R4",
+    "xi_ref_quotient_lift"
+  ],
+  "open_choices": [
+    {
+      "name": "progress_measure_codomain",
+      "choice": "N^3 lexicographic rank",
+      "reason": "The ratchet source spec requires a progress measure but does not fix codomain or order. N^3 records survivor/status/receipt budgets separately and is well-founded under lexicographic order.",
+      "alternatives": [
+        "single N rank via finite-state topological numbering",
+        "N^2 rank separating survivor and receipt budgets",
+        "ordinal notation below omega^k for the finite tuple"
+      ]
+    }
+  ],
+  "blocked_consumers": [
+    "Axis-0 bridge closure",
+    "Phi_0 evaluation claim",
+    "unified emergence admission",
+    "pipeline stage advancement"
+  ]
+}

@@ -1,0 +1,4757 @@
+{
+    "measured_label_policy": "adiabatic/isothermal are not imported; only measured dS-flat vs dS-carrying legs are reported.",
+    "result_path": "system_v7/sims/type1_engine_v0/results/entropy_gradient_axis_probe_julia_results.json",
+    "cool_heat_claim_cite": "17.5 cool/heat claim cited as source-language pressure only; this probe measures dS signs and does not import a thermodynamic mechanism.",
+    "claim_ceiling": "QUARANTINE_EXPLORATORY",
+    "source_sha256": "86318cfc20b999811dea064f16a1f4b4b9752d5901394cd9365fc2660e1fe0e3",
+    "terrains": {
+        "Ne-in": {
+            "name": "Vortex",
+            "scratch_bloch": ".94 R_N(.47)r",
+            "source": "IGT:487; ATLAS:108",
+            "jungian_function": "Ne",
+            "flux": "IN",
+            "generator": "-i[H0, rho] + epsilon_V sum_k D[L_k](rho)",
+            "params": {
+                "rotation": 0.47,
+                "shrink": 0.94
+            },
+            "type": "Type 1"
+        },
+        "Ni-in": {
+            "name": "Pit",
+            "scratch_bloch": "R_N(.09)(sqrt(.70)x, sqrt(.70)y, .70z-.30*.92)",
+            "source": "IGT:488; ATLAS:109",
+            "jungian_function": "Ni",
+            "flux": "IN",
+            "generator": "D[sqrt(gamma) sigma_-](rho) - i epsilon_P [H0, rho]",
+            "params": {
+                "keep_z": 0.7,
+                "epsilon": 0.09,
+                "target_z": -0.92,
+                "loss": 0.3
+            },
+            "type": "Type 1"
+        },
+        "Si-in": {
+            "name": "Hill",
+            "scratch_bloch": "R_{M_in}(.19)(P_{M_in}(r)+.58(r-P_{M_in}(r)))",
+            "source": "IGT:489; ATLAS:110",
+            "jungian_function": "Si",
+            "flux": "IN",
+            "generator": "-i[H_C, rho] + sum_j kappa_j(P_j rho P_j - 1/2(P_j rho + rho P_j))",
+            "params": {
+                "rotation": 0.19,
+                "transverse_keep": 0.58
+            },
+            "type": "Type 1"
+        },
+        "Se-in": {
+            "name": "Funnel",
+            "scratch_bloch": "R_N(.13)(sqrt(.78)x, sqrt(.78)y, .78z+.22*.86)",
+            "source": "IGT:484-487; ATLAS:103-108",
+            "jungian_function": "Se",
+            "flux": "IN",
+            "generator": "sum_k D[L_k](rho) - i epsilon_F [H0, rho]",
+            "params": {
+                "keep_z": 0.78,
+                "epsilon": 0.13,
+                "target_z": 0.86,
+                "loss": 0.22
+            },
+            "type": "Type 1"
+        }
+    },
+    "hypothesis_under_test": "Axis-1 eps sign or Axis-2 pole/frame sign predicts where measured entropy production concentrates around the two committed engine loops.",
+    "classification": "scratch_diagnostic",
+    "initial_states": [
+        "generic_a",
+        "generic_b",
+        "mixed",
+        "plus_x",
+        "plus_y",
+        "random_mixed_seed_101",
+        "random_mixed_seed_202",
+        "random_mixed_seed_303",
+        "random_mixed_seed_404",
+        "random_pure_seed_101",
+        "random_pure_seed_202",
+        "random_pure_seed_303",
+        "random_pure_seed_404",
+        "zero_z"
+    ],
+    "sim_id": "type1_engine_v0",
+    "traversals": {
+        "inner": {
+            "terrain_order": [
+                "Se-in",
+                "Si-in",
+                "Ni-in",
+                "Ne-in"
+            ],
+            "stage_ids": [
+                "SeFi",
+                "SiTe",
+                "TeNi",
+                "FiNe"
+            ],
+            "source": "IGT:464-469; IGT:517-525",
+            "direction": "CW",
+            "loop": "inductive"
+        },
+        "outer": {
+            "terrain_order": [
+                "Se-in",
+                "Ne-in",
+                "Ni-in",
+                "Si-in"
+            ],
+            "stage_ids": [
+                "TiSe",
+                "NeTi",
+                "NiFe",
+                "FeSi"
+            ],
+            "source": "IGT:464-469; IGT:517-525",
+            "direction": "CCW",
+            "loop": "deductive"
+        }
+    },
+    "formal_admission_allowed": false,
+    "TOOL_MANIFEST": {
+        "LinearAlgebra": {
+            "used": true,
+            "tried": true,
+            "reason": "load-bearing measured entropy deltas and sorting statistics"
+        },
+        "JSON3": {
+            "used": true,
+            "tried": true,
+            "reason": "supportive result serialization"
+        }
+    },
+    "generated_at": "2026-07-03T19:10:41Z",
+    "instrumented_engine_source": "system_v7/sims/type1_engine_v0/type1_engine_v0_julia.jl",
+    "cool_heat_phase_map": {
+        "inner_inductive": [
+            {
+                "max_dS": 0.32528183653712506,
+                "negative_count": 3,
+                "positive_count": 11,
+                "median_dS": 0.07839247012341717,
+                "stage_id": "SeFi",
+                "phase": "heat",
+                "mean_dS": 0.085155067574205,
+                "min_dS": -0.0288662618803025,
+                "flat_count": 0
+            },
+            {
+                "max_dS": 0.417090726651567,
+                "negative_count": 0,
+                "positive_count": 14,
+                "median_dS": 0.10862044239127328,
+                "stage_id": "SiTe",
+                "phase": "heat",
+                "mean_dS": 0.18285361943786266,
+                "min_dS": 0.00879731346154966,
+                "flat_count": 0
+            },
+            {
+                "max_dS": 0.2132300509629454,
+                "negative_count": 5,
+                "positive_count": 9,
+                "median_dS": 0.04169655896059621,
+                "stage_id": "TeNi",
+                "phase": "heat",
+                "mean_dS": 0.06696404386178485,
+                "min_dS": -0.04787117659622364,
+                "flat_count": 0
+            },
+            {
+                "max_dS": 0.035062405247195116,
+                "negative_count": 0,
+                "positive_count": 14,
+                "median_dS": 0.007973912406488592,
+                "stage_id": "FiNe",
+                "phase": "heat",
+                "mean_dS": 0.010507007665507563,
+                "min_dS": 0.0015556420462560228,
+                "flat_count": 0
+            }
+        ],
+        "outer_deductive": [
+            {
+                "max_dS": 0.5163763196544771,
+                "negative_count": 1,
+                "positive_count": 13,
+                "median_dS": 0.08755103341673709,
+                "stage_id": "TiSe",
+                "phase": "heat",
+                "mean_dS": 0.19479311873562435,
+                "min_dS": -0.017991707835756543,
+                "flat_count": 0
+            },
+            {
+                "max_dS": 0.1953874799479256,
+                "negative_count": 0,
+                "positive_count": 14,
+                "median_dS": 0.07275744942991891,
+                "stage_id": "NeTi",
+                "phase": "heat",
+                "mean_dS": 0.08260900430676034,
+                "min_dS": 0.0035903115468521873,
+                "flat_count": 0
+            },
+            {
+                "max_dS": 0.3982150808463051,
+                "negative_count": 6,
+                "positive_count": 8,
+                "median_dS": 0.011494034757865701,
+                "stage_id": "NiFe",
+                "phase": "heat",
+                "mean_dS": 0.08713764115651974,
+                "min_dS": -0.07479112815043842,
+                "flat_count": 0
+            },
+            {
+                "max_dS": 0.04591385024322958,
+                "negative_count": 0,
+                "positive_count": 14,
+                "median_dS": 0.014674061919379922,
+                "stage_id": "FeSi",
+                "phase": "heat",
+                "mean_dS": 0.0177837296098696,
+                "min_dS": 0.004624052513607868,
+                "flat_count": 0
+            }
+        ]
+    },
+    "terrain_header_note": "terrain equations are ONE CANDIDATE realization, not settled math (ATLAS:82-85)",
+    "stages": [
+        {
+            "composition": "terrain_after_operator",
+            "casing": "LOSE",
+            "source": "IGT:529-532; ATLAS:219-222",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "order_text": "Se-in(Ti(rho))",
+            "loop": "outer",
+            "terrain": "Se-in"
+        },
+        {
+            "composition": "operator_after_terrain",
+            "casing": "win",
+            "source": "IGT:529-532; ATLAS:219-222",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "order_text": "Fi(Se-in(rho))",
+            "loop": "inner",
+            "terrain": "Se-in"
+        },
+        {
+            "composition": "operator_after_terrain",
+            "casing": "WIN",
+            "source": "IGT:532; ATLAS:222",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "order_text": "Ti(Ne-in(rho))",
+            "loop": "outer",
+            "terrain": "Ne-in"
+        },
+        {
+            "composition": "terrain_after_operator",
+            "casing": "lose",
+            "source": "IGT:532; ATLAS:222",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "order_text": "Ne-in(Fi(rho))",
+            "loop": "inner",
+            "terrain": "Ne-in"
+        },
+        {
+            "composition": "operator_after_terrain",
+            "casing": "LOSE",
+            "source": "IGT:533; ATLAS:223",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "order_text": "Fe(Ni-in(rho))",
+            "loop": "outer",
+            "terrain": "Ni-in"
+        },
+        {
+            "composition": "terrain_after_operator",
+            "casing": "lose",
+            "source": "IGT:533; ATLAS:223",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "order_text": "Ni-in(Te(rho))",
+            "loop": "inner",
+            "terrain": "Ni-in"
+        },
+        {
+            "composition": "terrain_after_operator",
+            "casing": "WIN",
+            "source": "IGT:534; ATLAS:224",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "order_text": "Si-in(Fe(rho))",
+            "loop": "outer",
+            "terrain": "Si-in"
+        },
+        {
+            "composition": "operator_after_terrain",
+            "casing": "win",
+            "source": "IGT:534; ATLAS:224",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "order_text": "Te(Si-in(rho))",
+            "loop": "inner",
+            "terrain": "Si-in"
+        }
+    ],
+    "instrumented_engine_sha256": "57c9645d0a81f6e2a6c4f3a6a3c25cd33316c08e6e2b329e8eda2519536b4da0",
+    "all_pass": true,
+    "substrate": "julia",
+    "per_leg_dS": [
+        {
+            "S_before": 0.4988996472119054,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.4700333853316029,
+            "dS_leg": -0.0288662618803025,
+            "initial_state": "generic_a",
+            "dS_terrain_factor": -0.0288662618803025,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.0288662618803025,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": -0.0288662618803025,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.4700333853316029,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.5658751317871401,
+            "dS_leg": 0.09584174645553722,
+            "initial_state": "generic_a",
+            "dS_terrain_factor": 0.044317083868619656,
+            "dS_second_factor": 0.05152466258691757,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.09584174645553722,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.044317083868619656,
+            "dS_operator_factor": 0.05152466258691757
+        },
+        {
+            "S_before": 0.5658751317871401,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.6116143206860127,
+            "dS_leg": 0.04573918889887263,
+            "initial_state": "generic_a",
+            "dS_terrain_factor": 0.019107896086954623,
+            "dS_second_factor": 0.019107896086954623,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.04573918889887263,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.026631292811918006,
+            "dS_operator_factor": 0.026631292811918006
+        },
+        {
+            "S_before": 0.6116143206860127,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6213495828548743,
+            "dS_leg": 0.009735262168861558,
+            "initial_state": "generic_a",
+            "dS_terrain_factor": 0.009735262168861558,
+            "dS_second_factor": 0.009735262168861558,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.009735262168861558,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.5862285592583567,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.6185207025895796,
+            "dS_leg": 0.03229214333122288,
+            "initial_state": "generic_b",
+            "dS_terrain_factor": 0.03229214333122277,
+            "dS_second_factor": 1.1102230246251565e-16,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.03229214333122288,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.03229214333122277,
+            "dS_operator_factor": 1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.6185207025895796,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6623497700621027,
+            "dS_leg": 0.04382906747252313,
+            "initial_state": "generic_b",
+            "dS_terrain_factor": 0.03180128589042375,
+            "dS_second_factor": 0.012027781582099384,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.04382906747252313,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.03180128589042375,
+            "dS_operator_factor": 0.012027781582099384
+        },
+        {
+            "S_before": 0.6623497700621027,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.6524325879479027,
+            "dS_leg": -0.009917182114200007,
+            "initial_state": "generic_b",
+            "dS_terrain_factor": -0.016286195016534277,
+            "dS_second_factor": -0.016286195016534277,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.009917182114200007,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.00636901290233427,
+            "dS_operator_factor": 0.00636901290233427
+        },
+        {
+            "S_before": 0.6524325879479027,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6572306204999918,
+            "dS_leg": 0.004798032552089104,
+            "initial_state": "generic_b",
+            "dS_terrain_factor": 0.004798032552089215,
+            "dS_second_factor": 0.004798032552089215,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.004798032552089104,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": -1.1102230246251565e-16,
+            "dS_operator_factor": -1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.6931471805599453,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.6751554727241887,
+            "dS_leg": -0.017991707835756543,
+            "initial_state": "mixed",
+            "dS_terrain_factor": -0.017991707835756543,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.017991707835756543,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": -0.017991707835756543,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6751554727241887,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6855283313701706,
+            "dS_leg": 0.010372858645981808,
+            "initial_state": "mixed",
+            "dS_terrain_factor": 0.004240089305590833,
+            "dS_second_factor": 0.0061327693403909755,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.010372858645981808,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.004240089305590833,
+            "dS_operator_factor": 0.0061327693403909755
+        },
+        {
+            "S_before": 0.6855283313701706,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.6607391880392581,
+            "dS_leg": -0.024789143330912422,
+            "initial_state": "mixed",
+            "dS_terrain_factor": -0.028046989436375624,
+            "dS_second_factor": -0.028046989436375624,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.024789143330912422,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.0032578461054632024,
+            "dS_operator_factor": 0.0032578461054632024
+        },
+        {
+            "S_before": 0.6607391880392581,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.664548497478969,
+            "dS_leg": 0.0038093094397109173,
+            "initial_state": "mixed",
+            "dS_terrain_factor": 0.0038093094397109173,
+            "dS_second_factor": 0.0038093094397109173,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.0038093094397109173,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.20284893036257856,
+            "dS_leg": 0.20284893036257856,
+            "initial_state": "plus_x",
+            "dS_terrain_factor": 0.2028489303625785,
+            "dS_second_factor": 5.551115123125783e-17,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.20284893036257856,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.2028489303625785,
+            "dS_operator_factor": 5.551115123125783e-17
+        },
+        {
+            "S_before": 0.20284893036257856,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.31146937275385184,
+            "dS_leg": 0.10862044239127328,
+            "initial_state": "plus_x",
+            "dS_terrain_factor": 0.08799710861814336,
+            "dS_second_factor": 0.020623333773129915,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.10862044239127328,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.08799710861814336,
+            "dS_operator_factor": 0.020623333773129915
+        },
+        {
+            "S_before": 0.31146937275385184,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.4206141937840813,
+            "dS_leg": 0.10914482103022949,
+            "initial_state": "plus_x",
+            "dS_terrain_factor": 0.09836138261939059,
+            "dS_second_factor": 0.09836138261939059,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.10914482103022949,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.010783438410838897,
+            "dS_operator_factor": 0.010783438410838897
+        },
+        {
+            "S_before": 0.4206141937840813,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.45567659903127644,
+            "dS_leg": 0.035062405247195116,
+            "initial_state": "plus_x",
+            "dS_terrain_factor": 0.03506240524719534,
+            "dS_second_factor": 0.03506240524719534,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.035062405247195116,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": -2.220446049250313e-16,
+            "dS_operator_factor": -2.220446049250313e-16
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.18465917564681195,
+            "dS_leg": 0.18465917564681195,
+            "initial_state": "plus_y",
+            "dS_terrain_factor": 0.18465917564681192,
+            "dS_second_factor": 2.7755575615628914e-17,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.18465917564681195,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.18465917564681192,
+            "dS_operator_factor": 2.7755575615628914e-17
+        },
+        {
+            "S_before": 0.18465917564681195,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.5417249379686759,
+            "dS_leg": 0.357065762321864,
+            "initial_state": "plus_y",
+            "dS_terrain_factor": 0.20850223237502907,
+            "dS_second_factor": 0.14856352994683492,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.357065762321864,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.20850223237502907,
+            "dS_operator_factor": 0.14856352994683492
+        },
+        {
+            "S_before": 0.5417249379686759,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.669629398046694,
+            "dS_leg": 0.12790446007801803,
+            "initial_state": "plus_y",
+            "dS_terrain_factor": 0.055645453682778734,
+            "dS_second_factor": 0.055645453682778734,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.12790446007801803,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.0722590063952393,
+            "dS_operator_factor": 0.0722590063952393
+        },
+        {
+            "S_before": 0.669629398046694,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6723862130281194,
+            "dS_leg": 0.0027568149814254372,
+            "initial_state": "plus_y",
+            "dS_terrain_factor": 0.0027568149814255483,
+            "dS_second_factor": 0.0027568149814255483,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.0027568149814254372,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": -1.1102230246251565e-16,
+            "dS_operator_factor": -1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.48402416648896573,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.4891114989092489,
+            "dS_leg": 0.005087332420283142,
+            "initial_state": "random_mixed_seed_101",
+            "dS_terrain_factor": 0.0050873324202830306,
+            "dS_second_factor": 1.1102230246251565e-16,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.005087332420283142,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.0050873324202830306,
+            "dS_operator_factor": 1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.4891114989092489,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6323208974570785,
+            "dS_leg": 0.14320939854782966,
+            "initial_state": "random_mixed_seed_101",
+            "dS_terrain_factor": 0.08889761118115647,
+            "dS_second_factor": 0.05431178736667319,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.14320939854782966,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.08889761118115647,
+            "dS_operator_factor": 0.05431178736667319
+        },
+        {
+            "S_before": 0.6323208974570785,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.6199045192945121,
+            "dS_leg": -0.012416378162566466,
+            "initial_state": "random_mixed_seed_101",
+            "dS_terrain_factor": -0.040513158587538234,
+            "dS_second_factor": -0.040513158587538234,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.012416378162566466,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.028096780424971768,
+            "dS_operator_factor": 0.028096780424971768
+        },
+        {
+            "S_before": 0.6199045192945121,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6286260493230069,
+            "dS_leg": 0.00872153002849485,
+            "initial_state": "random_mixed_seed_101",
+            "dS_terrain_factor": 0.00872153002849474,
+            "dS_second_factor": 0.00872153002849474,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.00872153002849485,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 1.1102230246251565e-16,
+            "dS_operator_factor": 1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.42271485997126357,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.542610026721023,
+            "dS_leg": 0.11989516674975942,
+            "initial_state": "random_mixed_seed_202",
+            "dS_terrain_factor": 0.11989516674975942,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.11989516674975942,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.11989516674975942,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.542610026721023,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.5983048864012088,
+            "dS_leg": 0.05569485968018584,
+            "initial_state": "random_mixed_seed_202",
+            "dS_terrain_factor": 0.05335645105705722,
+            "dS_second_factor": 0.0023384086231286183,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.05569485968018584,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.05335645105705722,
+            "dS_operator_factor": 0.0023384086231286183
+        },
+        {
+            "S_before": 0.5983048864012088,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.5666346741015318,
+            "dS_leg": -0.031670212299677036,
+            "initial_state": "random_mixed_seed_202",
+            "dS_terrain_factor": -0.03291469170304551,
+            "dS_second_factor": -0.03291469170304551,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.031670212299677036,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.0012444794033684703,
+            "dS_operator_factor": 0.0012444794033684703
+        },
+        {
+            "S_before": 0.5666346741015318,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.5819758410200826,
+            "dS_leg": 0.015341166918550808,
+            "initial_state": "random_mixed_seed_202",
+            "dS_terrain_factor": 0.015341166918550808,
+            "dS_second_factor": 0.015341166918550808,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.015341166918550808,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.623377143450938,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.6651225700719244,
+            "dS_leg": 0.04174542662098646,
+            "initial_state": "random_mixed_seed_303",
+            "dS_terrain_factor": 0.04174542662098657,
+            "dS_second_factor": -1.1102230246251565e-16,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.04174542662098646,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.04174542662098657,
+            "dS_operator_factor": -1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.6651225700719244,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6739198835334741,
+            "dS_leg": 0.00879731346154966,
+            "initial_state": "random_mixed_seed_303",
+            "dS_terrain_factor": 0.004852117621631957,
+            "dS_second_factor": 0.003945195839917703,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.00879731346154966,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.004852117621631957,
+            "dS_operator_factor": 0.003945195839917703
+        },
+        {
+            "S_before": 0.6739198835334741,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.6260487069372505,
+            "dS_leg": -0.04787117659622364,
+            "initial_state": "random_mixed_seed_303",
+            "dS_terrain_factor": -0.04996924934153624,
+            "dS_second_factor": -0.04996924934153624,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.04787117659622364,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.002098072745312596,
+            "dS_operator_factor": 0.002098072745312596
+        },
+        {
+            "S_before": 0.6260487069372505,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.634022619343739,
+            "dS_leg": 0.007973912406488592,
+            "initial_state": "random_mixed_seed_303",
+            "dS_terrain_factor": 0.007973912406488592,
+            "dS_second_factor": 0.007973912406488592,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.007973912406488592,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.5036443597155156,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.4870686352818458,
+            "dS_leg": -0.01657572443366978,
+            "initial_state": "random_mixed_seed_404",
+            "dS_terrain_factor": -0.01657572443366978,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.01657572443366978,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": -0.01657572443366978,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.4870686352818458,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.5902147869262764,
+            "dS_leg": 0.10314615164443058,
+            "initial_state": "random_mixed_seed_404",
+            "dS_terrain_factor": 0.061641488849277504,
+            "dS_second_factor": 0.04150466279515308,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.10314615164443058,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.061641488849277504,
+            "dS_operator_factor": 0.04150466279515308
+        },
+        {
+            "S_before": 0.5902147869262764,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.6064900303775165,
+            "dS_leg": 0.016275243451240096,
+            "initial_state": "random_mixed_seed_404",
+            "dS_terrain_factor": -0.005321160854128593,
+            "dS_second_factor": -0.005321160854128593,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.016275243451240096,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.02159640430536869,
+            "dS_operator_factor": 0.02159640430536869
+        },
+        {
+            "S_before": 0.6064900303775165,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6168548143067436,
+            "dS_leg": 0.010364783929227128,
+            "initial_state": "random_mixed_seed_404",
+            "dS_terrain_factor": 0.01036478392922724,
+            "dS_second_factor": 0.01036478392922724,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.010364783929227128,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": -1.1102230246251565e-16,
+            "dS_operator_factor": -1.1102230246251565e-16
+        },
+        {
+            "S_before": 1.1102230246251564e-16,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.07839247012341728,
+            "dS_leg": 0.07839247012341717,
+            "initial_state": "random_pure_seed_101",
+            "dS_terrain_factor": 0.07839247012341714,
+            "dS_second_factor": 2.7755575615628914e-17,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.07839247012341717,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.07839247012341714,
+            "dS_operator_factor": 2.7755575615628914e-17
+        },
+        {
+            "S_before": 0.07839247012341728,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.49548319677498426,
+            "dS_leg": 0.417090726651567,
+            "initial_state": "random_pure_seed_101",
+            "dS_terrain_factor": 0.21286590857074972,
+            "dS_second_factor": 0.20422481808081727,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.417090726651567,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.21286590857074972,
+            "dS_operator_factor": 0.20422481808081727
+        },
+        {
+            "S_before": 0.49548319677498426,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.6798353422173874,
+            "dS_leg": 0.18435214544240314,
+            "initial_state": "random_pure_seed_101",
+            "dS_terrain_factor": 0.08929219003723743,
+            "dS_second_factor": 0.08929219003723743,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.18435214544240314,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.09505995540516571,
+            "dS_operator_factor": 0.09505995540516571
+        },
+        {
+            "S_before": 0.6798353422173874,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6813909842636434,
+            "dS_leg": 0.0015556420462560228,
+            "initial_state": "random_pure_seed_101",
+            "dS_terrain_factor": 0.0015556420462561338,
+            "dS_second_factor": 0.0015556420462561338,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.0015556420462560228,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": -1.1102230246251565e-16,
+            "dS_operator_factor": -1.1102230246251565e-16
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.10354082291913132,
+            "dS_leg": 0.10354082291913132,
+            "initial_state": "random_pure_seed_202",
+            "dS_terrain_factor": 0.10354082291913111,
+            "dS_second_factor": 2.0816681711721685e-16,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.10354082291913132,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.10354082291913111,
+            "dS_operator_factor": 2.0816681711721685e-16
+        },
+        {
+            "S_before": 0.10354082291913132,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.5040994699279893,
+            "dS_leg": 0.40055864700885796,
+            "initial_state": "random_pure_seed_202",
+            "dS_terrain_factor": 0.28312840830391856,
+            "dS_second_factor": 0.1174302387049394,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.40055864700885796,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.28312840830391856,
+            "dS_operator_factor": 0.1174302387049394
+        },
+        {
+            "S_before": 0.5040994699279893,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.646279538450738,
+            "dS_leg": 0.14218006852274878,
+            "initial_state": "random_pure_seed_202",
+            "dS_terrain_factor": 0.0841838109955233,
+            "dS_second_factor": 0.0841838109955233,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.14218006852274878,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.05799625752722548,
+            "dS_operator_factor": 0.05799625752722548
+        },
+        {
+            "S_before": 0.646279538450738,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6518133429804913,
+            "dS_leg": 0.005533804529753272,
+            "initial_state": "random_pure_seed_202",
+            "dS_terrain_factor": 0.005533804529753161,
+            "dS_second_factor": 0.005533804529753161,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.005533804529753272,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 1.1102230246251565e-16,
+            "dS_operator_factor": 1.1102230246251565e-16
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.32528183653712506,
+            "dS_leg": 0.32528183653712506,
+            "initial_state": "random_pure_seed_303",
+            "dS_terrain_factor": 0.32528183653712506,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.32528183653712506,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.32528183653712506,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.32528183653712506,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.5527130152060336,
+            "dS_leg": 0.2274311786689085,
+            "initial_state": "random_pure_seed_303",
+            "dS_terrain_factor": 0.1631126173113741,
+            "dS_second_factor": 0.06431856135753439,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.2274311786689085,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.1631126173113741,
+            "dS_operator_factor": 0.06431856135753439
+        },
+        {
+            "S_before": 0.5527130152060336,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.5944095741666298,
+            "dS_leg": 0.04169655896059621,
+            "initial_state": "random_pure_seed_303",
+            "dS_terrain_factor": 0.00872598960577986,
+            "dS_second_factor": 0.00872598960577986,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.04169655896059621,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.03297056935481635,
+            "dS_operator_factor": 0.03297056935481635
+        },
+        {
+            "S_before": 0.5944095741666298,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6062674906645495,
+            "dS_leg": 0.011857916497919785,
+            "initial_state": "random_pure_seed_303",
+            "dS_terrain_factor": 0.011857916497919785,
+            "dS_second_factor": 0.011857916497919785,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.011857916497919785,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.08240782277278987,
+            "dS_leg": 0.08240782277278987,
+            "initial_state": "random_pure_seed_404",
+            "dS_terrain_factor": 0.08240782277278964,
+            "dS_second_factor": 2.220446049250313e-16,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.08240782277278987,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.08240782277278964,
+            "dS_operator_factor": 2.220446049250313e-16
+        },
+        {
+            "S_before": 0.08240782277278987,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.27834590906039086,
+            "dS_leg": 0.195938086287601,
+            "initial_state": "random_pure_seed_404",
+            "dS_terrain_factor": 0.04458796855755766,
+            "dS_second_factor": 0.15135011773004334,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.195938086287601,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.04458796855755766,
+            "dS_operator_factor": 0.15135011773004334
+        },
+        {
+            "S_before": 0.27834590906039086,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.49157596002333626,
+            "dS_leg": 0.2132300509629454,
+            "initial_state": "random_pure_seed_404",
+            "dS_terrain_factor": 0.14426375900836974,
+            "dS_second_factor": 0.14426375900836974,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.2132300509629454,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.06896629195457565,
+            "dS_operator_factor": 0.06896629195457565
+        },
+        {
+            "S_before": 0.49157596002333626,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.5167247515728604,
+            "dS_leg": 0.025148791549524097,
+            "initial_state": "random_pure_seed_404",
+            "dS_terrain_factor": 0.025148791549524097,
+            "dS_second_factor": 0.025148791549524097,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.025148791549524097,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SeFi",
+            "operator": "Fi",
+            "terrain": "Se-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 1,
+            "first_factor": "terrain",
+            "S_after": 0.07945351270449309,
+            "dS_leg": 0.07945351270449309,
+            "initial_state": "zero_z",
+            "dS_terrain_factor": 0.07945351270449309,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.07945351270449309,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.07945351270449309,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.07945351270449309,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "SiTe",
+            "operator": "Te",
+            "terrain": "Si-in",
+            "traversal": "inner_inductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.47180794559646044,
+            "dS_leg": 0.39235443289196736,
+            "initial_state": "zero_z",
+            "dS_terrain_factor": 0.18408676327742746,
+            "dS_second_factor": 0.2082676696145399,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.39235443289196736,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.18408676327742746,
+            "dS_operator_factor": 0.2082676696145399
+        },
+        {
+            "S_before": 0.47180794559646044,
+            "axis2_frame_sign": -1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TeNi",
+            "operator": "Te",
+            "terrain": "Ni-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 3,
+            "first_factor": "operator",
+            "S_after": 0.6554461148179741,
+            "dS_leg": 0.18363816922151366,
+            "initial_state": "zero_z",
+            "dS_terrain_factor": 0.08748492753027859,
+            "dS_second_factor": 0.08748492753027859,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.18363816922151366,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.09615324169123507,
+            "dS_operator_factor": 0.09615324169123507
+        },
+        {
+            "S_before": 0.6554461148179741,
+            "axis2_frame_sign": 1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FiNe",
+            "operator": "Fi",
+            "terrain": "Ne-in",
+            "traversal": "inner_inductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6598848498395833,
+            "dS_leg": 0.004438735021609186,
+            "initial_state": "zero_z",
+            "dS_terrain_factor": 0.004438735021609186,
+            "dS_second_factor": 0.004438735021609186,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.004438735021609186,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.4988996472119054,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.509686478123985,
+            "dS_leg": 0.010786830912079659,
+            "initial_state": "generic_a",
+            "dS_terrain_factor": -0.03936305050270583,
+            "dS_second_factor": -0.03936305050270583,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.010786830912079659,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.05014988141478549,
+            "dS_operator_factor": 0.05014988141478549
+        },
+        {
+            "S_before": 0.509686478123985,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.5867488514403884,
+            "dS_leg": 0.07706237331640331,
+            "initial_state": "generic_a",
+            "dS_terrain_factor": 0.022724824540619637,
+            "dS_second_factor": 0.05433754877578367,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.07706237331640331,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.022724824540619637,
+            "dS_operator_factor": 0.05433754877578367
+        },
+        {
+            "S_before": 0.5867488514403884,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6563993970158046,
+            "dS_leg": 0.06965054557541628,
+            "initial_state": "generic_a",
+            "dS_terrain_factor": 0.06965054557541628,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.06965054557541628,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.06965054557541628,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6563993970158046,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6719004051263042,
+            "dS_leg": 0.015501008110499592,
+            "initial_state": "generic_a",
+            "dS_terrain_factor": 0.015501008110499592,
+            "dS_second_factor": 0.015501008110499592,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.015501008110499592,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.5862285592583567,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.6565985596501165,
+            "dS_leg": 0.07037000039175978,
+            "initial_state": "generic_b",
+            "dS_terrain_factor": 0.022158841411198837,
+            "dS_second_factor": 0.022158841411198837,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.07037000039175978,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.04821115898056094,
+            "dS_operator_factor": 0.04821115898056094
+        },
+        {
+            "S_before": 0.6565985596501165,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6715037349127366,
+            "dS_leg": 0.01490517526262014,
+            "initial_state": "generic_b",
+            "dS_terrain_factor": 0.004301512779385952,
+            "dS_second_factor": 0.010603662483234189,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.01490517526262014,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.004301512779385952,
+            "dS_operator_factor": 0.010603662483234189
+        },
+        {
+            "S_before": 0.6715037349127366,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6692127046248344,
+            "dS_leg": -0.0022910302879022293,
+            "initial_state": "generic_b",
+            "dS_terrain_factor": -0.0022910302879022293,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.0022910302879022293,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": -0.0022910302879022293,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6692127046248344,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6748491257548548,
+            "dS_leg": 0.005636421130020386,
+            "initial_state": "generic_b",
+            "dS_terrain_factor": 0.005636421130020386,
+            "dS_second_factor": 0.005636421130020386,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.005636421130020386,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6931471805599453,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.6751554727241887,
+            "dS_leg": -0.017991707835756543,
+            "initial_state": "mixed",
+            "dS_terrain_factor": -0.017991707835756543,
+            "dS_second_factor": -0.017991707835756543,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.017991707835756543,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6751554727241887,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6787457842710409,
+            "dS_leg": 0.0035903115468521873,
+            "initial_state": "mixed",
+            "dS_terrain_factor": 0.002105503158647992,
+            "dS_second_factor": 0.0014848083882041951,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.0035903115468521873,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.002105503158647992,
+            "dS_operator_factor": 0.0014848083882041951
+        },
+        {
+            "S_before": 0.6787457842710409,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6741114570459901,
+            "dS_leg": -0.0046343272250508605,
+            "initial_state": "mixed",
+            "dS_terrain_factor": -0.0046343272250508605,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.0046343272250508605,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": -0.0046343272250508605,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6741114570459901,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6787355095595979,
+            "dS_leg": 0.004624052513607868,
+            "initial_state": "mixed",
+            "dS_terrain_factor": 0.004624052513607868,
+            "dS_second_factor": 0.004624052513607868,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.004624052513607868,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.4773346557818243,
+            "dS_leg": 0.4773346557818243,
+            "initial_state": "plus_x",
+            "dS_terrain_factor": 0.046049720038982334,
+            "dS_second_factor": 0.046049720038982334,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.4773346557818243,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.431284935742842,
+            "dS_operator_factor": 0.431284935742842
+        },
+        {
+            "S_before": 0.4773346557818243,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6065498919829084,
+            "dS_leg": 0.1292152362010841,
+            "initial_state": "plus_x",
+            "dS_terrain_factor": 0.02708320597818492,
+            "dS_second_factor": 0.10213203022289918,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.1292152362010841,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.02708320597818492,
+            "dS_operator_factor": 0.10213203022289918
+        },
+        {
+            "S_before": 0.6065498919829084,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.5861443457375467,
+            "dS_leg": -0.020405546245361728,
+            "initial_state": "plus_x",
+            "dS_terrain_factor": -0.020405546245361617,
+            "dS_second_factor": -1.1102230246251565e-16,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.020405546245361728,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": -0.020405546245361617,
+            "dS_operator_factor": -1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.5861443457375467,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6320581959807763,
+            "dS_leg": 0.04591385024322958,
+            "initial_state": "plus_x",
+            "dS_terrain_factor": 0.04591385024322958,
+            "dS_second_factor": 0.04591385024322958,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.04591385024322958,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.4683251702503598,
+            "dS_leg": 0.4683251702503598,
+            "initial_state": "plus_y",
+            "dS_terrain_factor": 0.03704023450751781,
+            "dS_second_factor": 0.03704023450751781,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.4683251702503598,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.431284935742842,
+            "dS_operator_factor": 0.431284935742842
+        },
+        {
+            "S_before": 0.4683251702503598,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.5624957041345386,
+            "dS_leg": 0.09417053388417884,
+            "initial_state": "plus_y",
+            "dS_terrain_factor": 0.028320470359402994,
+            "dS_second_factor": 0.06585006352477585,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.09417053388417884,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.028320470359402994,
+            "dS_operator_factor": 0.06585006352477585
+        },
+        {
+            "S_before": 0.5624957041345386,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6578346812731675,
+            "dS_leg": 0.09533897713862882,
+            "initial_state": "plus_y",
+            "dS_terrain_factor": 0.09533897713862882,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.09533897713862882,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.09533897713862882,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6578346812731675,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6715027304068311,
+            "dS_leg": 0.013668049133663596,
+            "initial_state": "plus_y",
+            "dS_terrain_factor": 0.013668049133663596,
+            "dS_second_factor": 0.013668049133663596,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.013668049133663596,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.48402416648896573,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.5715751999057028,
+            "dS_leg": 0.08755103341673709,
+            "initial_state": "random_mixed_seed_101",
+            "dS_terrain_factor": -0.01835067619188324,
+            "dS_second_factor": -0.01835067619188324,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.08755103341673709,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.10590170960862033,
+            "dS_operator_factor": 0.10590170960862033
+        },
+        {
+            "S_before": 0.5715751999057028,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6345266200739491,
+            "dS_leg": 0.06295142016824629,
+            "initial_state": "random_mixed_seed_101",
+            "dS_terrain_factor": 0.014716272485953974,
+            "dS_second_factor": 0.04823514768229231,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.06295142016824629,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.014716272485953974,
+            "dS_operator_factor": 0.04823514768229231
+        },
+        {
+            "S_before": 0.6345266200739491,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6460206548318148,
+            "dS_leg": 0.011494034757865701,
+            "initial_state": "random_mixed_seed_101",
+            "dS_terrain_factor": 0.011494034757865923,
+            "dS_second_factor": -2.220446049250313e-16,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.011494034757865701,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.011494034757865923,
+            "dS_operator_factor": -2.220446049250313e-16
+        },
+        {
+            "S_before": 0.6460206548318148,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6563174018115729,
+            "dS_leg": 0.010296746979758131,
+            "initial_state": "random_mixed_seed_101",
+            "dS_terrain_factor": 0.01029674697975802,
+            "dS_second_factor": 0.01029674697975802,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.010296746979758131,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 1.1102230246251565e-16,
+            "dS_operator_factor": 1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.42271485997126357,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.6232323616571148,
+            "dS_leg": 0.20051750168585125,
+            "initial_state": "random_mixed_seed_202",
+            "dS_terrain_factor": 0.08523561213844955,
+            "dS_second_factor": 0.08523561213844955,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.20051750168585125,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.1152818895474017,
+            "dS_operator_factor": 0.1152818895474017
+        },
+        {
+            "S_before": 0.6232323616571148,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6540656492008422,
+            "dS_leg": 0.030833287543727383,
+            "initial_state": "random_mixed_seed_202",
+            "dS_terrain_factor": 0.008316215369825852,
+            "dS_second_factor": 0.02251707217390153,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.030833287543727383,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.008316215369825852,
+            "dS_operator_factor": 0.02251707217390153
+        },
+        {
+            "S_before": 0.6540656492008422,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.5792745210504038,
+            "dS_leg": -0.07479112815043842,
+            "initial_state": "random_mixed_seed_202",
+            "dS_terrain_factor": -0.07479112815043831,
+            "dS_second_factor": -1.1102230246251565e-16,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.07479112815043842,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": -0.07479112815043831,
+            "dS_operator_factor": -1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.5792745210504038,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6180602139547605,
+            "dS_leg": 0.03878569290435674,
+            "initial_state": "random_mixed_seed_202",
+            "dS_terrain_factor": 0.03878569290435663,
+            "dS_second_factor": 0.03878569290435663,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.03878569290435674,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 1.1102230246251565e-16,
+            "dS_operator_factor": 1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.623377143450938,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.6796564051531808,
+            "dS_leg": 0.056279261702242844,
+            "initial_state": "random_mixed_seed_303",
+            "dS_terrain_factor": 0.037380926418773885,
+            "dS_second_factor": 0.037380926418773885,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.056279261702242844,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.01889833528346896,
+            "dS_operator_factor": 0.01889833528346896
+        },
+        {
+            "S_before": 0.6796564051531808,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.687486688468709,
+            "dS_leg": 0.007830283315528153,
+            "initial_state": "random_mixed_seed_303",
+            "dS_terrain_factor": 0.0015766375695689394,
+            "dS_second_factor": 0.006253645745959213,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.007830283315528153,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.0015766375695689394,
+            "dS_operator_factor": 0.006253645745959213
+        },
+        {
+            "S_before": 0.687486688468709,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6432678743650959,
+            "dS_leg": -0.04421881410361306,
+            "initial_state": "random_mixed_seed_303",
+            "dS_terrain_factor": -0.04421881410361306,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.04421881410361306,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": -0.04421881410361306,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6432678743650959,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6481009344371049,
+            "dS_leg": 0.00483306007200901,
+            "initial_state": "random_mixed_seed_303",
+            "dS_terrain_factor": 0.00483306007200901,
+            "dS_second_factor": 0.00483306007200901,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.00483306007200901,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.5036443597155156,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.5455781643582408,
+            "dS_leg": 0.041933804642725225,
+            "initial_state": "random_mixed_seed_404",
+            "dS_terrain_factor": -0.03274417354023618,
+            "dS_second_factor": -0.03274417354023618,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.041933804642725225,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.0746779781829614,
+            "dS_operator_factor": 0.0746779781829614
+        },
+        {
+            "S_before": 0.5455781643582408,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6183356137881597,
+            "dS_leg": 0.07275744942991891,
+            "initial_state": "random_mixed_seed_404",
+            "dS_terrain_factor": 0.018031482750135996,
+            "dS_second_factor": 0.05472596667978291,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.07275744942991891,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.018031482750135996,
+            "dS_operator_factor": 0.05472596667978291
+        },
+        {
+            "S_before": 0.6183356137881597,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6476403888787268,
+            "dS_leg": 0.02930477509056706,
+            "initial_state": "random_mixed_seed_404",
+            "dS_terrain_factor": 0.02930477509056706,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.02930477509056706,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.02930477509056706,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6476403888787268,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6660021348415481,
+            "dS_leg": 0.018361745962821363,
+            "initial_state": "random_mixed_seed_404",
+            "dS_terrain_factor": 0.018361745962821363,
+            "dS_second_factor": 0.018361745962821363,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.018361745962821363,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 1.1102230246251564e-16,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.10890327632767387,
+            "dS_leg": 0.10890327632767376,
+            "initial_state": "random_pure_seed_101",
+            "dS_terrain_factor": 0.054413231620462174,
+            "dS_second_factor": 0.054413231620462174,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.10890327632767376,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.05449004470721158,
+            "dS_operator_factor": 0.05449004470721158
+        },
+        {
+            "S_before": 0.10890327632767387,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.2338865057060385,
+            "dS_leg": 0.12498322937836463,
+            "initial_state": "random_pure_seed_101",
+            "dS_terrain_factor": 0.09392259238786967,
+            "dS_second_factor": 0.031060636990494966,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.12498322937836463,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.09392259238786967,
+            "dS_operator_factor": 0.031060636990494966
+        },
+        {
+            "S_before": 0.2338865057060385,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6321015865523436,
+            "dS_leg": 0.3982150808463051,
+            "initial_state": "random_pure_seed_101",
+            "dS_terrain_factor": 0.3982150808463051,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.3982150808463051,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.3982150808463051,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6321015865523436,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6467756484717235,
+            "dS_leg": 0.014674061919379922,
+            "initial_state": "random_pure_seed_101",
+            "dS_terrain_factor": 0.014674061919379922,
+            "dS_second_factor": 0.014674061919379922,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.014674061919379922,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.36679022842067643,
+            "dS_leg": 0.36679022842067643,
+            "initial_state": "random_pure_seed_202",
+            "dS_terrain_factor": -0.005910344490703157,
+            "dS_second_factor": -0.005910344490703157,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.36679022842067643,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.3727005729113796,
+            "dS_operator_factor": 0.3727005729113796
+        },
+        {
+            "S_before": 0.36679022842067643,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.42866394184740697,
+            "dS_leg": 0.06187371342673054,
+            "initial_state": "random_pure_seed_202",
+            "dS_terrain_factor": 0.04310974380434074,
+            "dS_second_factor": 0.018763969622389798,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.06187371342673054,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.04310974380434074,
+            "dS_operator_factor": 0.018763969622389798
+        },
+        {
+            "S_before": 0.42866394184740697,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6706074384560938,
+            "dS_leg": 0.24194349660868686,
+            "initial_state": "random_pure_seed_202",
+            "dS_terrain_factor": 0.24194349660868686,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.24194349660868686,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.24194349660868686,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6706074384560938,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6783143920187467,
+            "dS_leg": 0.00770695356265283,
+            "initial_state": "random_pure_seed_202",
+            "dS_terrain_factor": 0.00770695356265283,
+            "dS_second_factor": 0.00770695356265283,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.00770695356265283,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.5163763196544771,
+            "dS_leg": 0.5163763196544771,
+            "initial_state": "random_pure_seed_303",
+            "dS_terrain_factor": 0.17318962864327225,
+            "dS_second_factor": 0.17318962864327225,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.5163763196544771,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.3431866910112048,
+            "dS_operator_factor": 0.3431866910112048
+        },
+        {
+            "S_before": 0.5163763196544771,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.6207748904552366,
+            "dS_leg": 0.10439857080075954,
+            "initial_state": "random_pure_seed_303",
+            "dS_terrain_factor": 0.02183919541478707,
+            "dS_second_factor": 0.08255937538597247,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.10439857080075954,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.02183919541478707,
+            "dS_operator_factor": 0.08255937538597247
+        },
+        {
+            "S_before": 0.6207748904552366,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6109677285025641,
+            "dS_leg": -0.009807161952672505,
+            "initial_state": "random_pure_seed_303",
+            "dS_terrain_factor": -0.009807161952672505,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.009807161952672505,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": -0.009807161952672505,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6109677285025641,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6382622354301754,
+            "dS_leg": 0.027294506927611262,
+            "initial_state": "random_pure_seed_303",
+            "dS_terrain_factor": 0.027294506927611262,
+            "dS_second_factor": 0.027294506927611262,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.027294506927611262,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.26047377424359675,
+            "dS_leg": 0.26047377424359675,
+            "initial_state": "random_pure_seed_404",
+            "dS_terrain_factor": 0.0033073123240531244,
+            "dS_second_factor": 0.0033073123240531244,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.26047377424359675,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.2571664619195436,
+            "dS_operator_factor": 0.2571664619195436
+        },
+        {
+            "S_before": 0.26047377424359675,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.45586125419152235,
+            "dS_leg": 0.1953874799479256,
+            "initial_state": "random_pure_seed_404",
+            "dS_terrain_factor": 0.06086517306462924,
+            "dS_second_factor": 0.13452230688329636,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.1953874799479256,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.06086517306462924,
+            "dS_operator_factor": 0.13452230688329636
+        },
+        {
+            "S_before": 0.45586125419152235,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6196261124772346,
+            "dS_leg": 0.1637648582857123,
+            "initial_state": "random_pure_seed_404",
+            "dS_terrain_factor": 0.1637648582857123,
+            "dS_second_factor": 0,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.1637648582857123,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.1637648582857123,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.6196261124772346,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6419585451947353,
+            "dS_leg": 0.022332432717500628,
+            "initial_state": "random_pure_seed_404",
+            "dS_terrain_factor": 0.022332432717500628,
+            "dS_second_factor": 0.022332432717500628,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.022332432717500628,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "terrain_after_operator",
+            "stage_id": "TiSe",
+            "operator": "Ti",
+            "terrain": "Se-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 1,
+            "first_factor": "operator",
+            "S_after": 0.07945351270449309,
+            "dS_leg": 0.07945351270449309,
+            "initial_state": "zero_z",
+            "dS_terrain_factor": 0.07945351270449309,
+            "dS_second_factor": 0.07945351270449309,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.07945351270449309,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        },
+        {
+            "S_before": 0.07945351270449309,
+            "axis2_frame_sign": 1,
+            "operator_class": "T_pinch",
+            "operator_class_sign": 1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NeTi",
+            "operator": "Ti",
+            "terrain": "Ne-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 2,
+            "first_factor": "terrain",
+            "S_after": 0.25602050877679833,
+            "dS_leg": 0.17656699607230525,
+            "initial_state": "zero_z",
+            "dS_terrain_factor": 0.10239599144197588,
+            "dS_second_factor": 0.07417100463032936,
+            "axis2_frame_class": "direct",
+            "abs_dS_leg": 0.17656699607230525,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0.10239599144197588,
+            "dS_operator_factor": 0.07417100463032936
+        },
+        {
+            "S_before": 0.25602050877679833,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "operator_after_terrain",
+            "stage_id": "NiFe",
+            "operator": "Fe",
+            "terrain": "Ni-in",
+            "traversal": "outer_deductive",
+            "second_factor": "operator",
+            "leg_index": 3,
+            "first_factor": "terrain",
+            "S_after": 0.6223837246299314,
+            "dS_leg": 0.3663632158531331,
+            "initial_state": "zero_z",
+            "dS_terrain_factor": 0.3663632158531332,
+            "dS_second_factor": -1.1102230246251565e-16,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.3663632158531331,
+            "axis1_eps_terrain_class": "dissipation_dominant",
+            "axis1_eps_terrain_sign": 1,
+            "dS_first_factor": 0.3663632158531332,
+            "dS_operator_factor": -1.1102230246251565e-16
+        },
+        {
+            "S_before": 0.6223837246299314,
+            "axis2_frame_sign": -1,
+            "operator_class": "F_rotation",
+            "operator_class_sign": -1,
+            "composition": "terrain_after_operator",
+            "stage_id": "FeSi",
+            "operator": "Fe",
+            "terrain": "Si-in",
+            "traversal": "outer_deductive",
+            "second_factor": "terrain",
+            "leg_index": 4,
+            "first_factor": "operator",
+            "S_after": 0.6417273569909949,
+            "dS_leg": 0.019343632361063512,
+            "initial_state": "zero_z",
+            "dS_terrain_factor": 0.019343632361063512,
+            "dS_second_factor": 0.019343632361063512,
+            "axis2_frame_class": "conjugated",
+            "abs_dS_leg": 0.019343632361063512,
+            "axis1_eps_terrain_class": "unitary_dominant",
+            "axis1_eps_terrain_sign": -1,
+            "dS_first_factor": 0,
+            "dS_operator_factor": 0
+        }
+    ],
+    "promotion_allowed": false,
+    "winner": "none",
+    "per_stage_axis_derivations": {
+        "SiTe": {
+            "operator_class": {
+                "derivation": "T operators are dephasing/pinch channels; F operators are unitary rotations",
+                "sign": 1,
+                "class": "T_pinch"
+            },
+            "axis2_frame": {
+                "derivation": "direct frame = Se,Ne; conjugated pole/frame = Ni,Si",
+                "sign": -1,
+                "class": "conjugated"
+            },
+            "axis1_eps_terrain": {
+                "derivation": "generator presents Hamiltonian first plus dissipative correction/dephasing term",
+                "sign": -1,
+                "class": "unitary_dominant",
+                "generator": "-i[H_C, rho] + sum_j kappa_j(P_j rho P_j - 1/2(P_j rho + rho P_j))"
+            }
+        },
+        "SeFi": {
+            "operator_class": {
+                "derivation": "T operators are dephasing/pinch channels; F operators are unitary rotations",
+                "sign": -1,
+                "class": "F_rotation"
+            },
+            "axis2_frame": {
+                "derivation": "direct frame = Se,Ne; conjugated pole/frame = Ni,Si",
+                "sign": 1,
+                "class": "direct"
+            },
+            "axis1_eps_terrain": {
+                "derivation": "generator presents dissipator first plus small Hamiltonian epsilon term",
+                "sign": 1,
+                "class": "dissipation_dominant",
+                "generator": "sum_k D[L_k](rho) - i epsilon_F [H0, rho]"
+            }
+        },
+        "FiNe": {
+            "operator_class": {
+                "derivation": "T operators are dephasing/pinch channels; F operators are unitary rotations",
+                "sign": -1,
+                "class": "F_rotation"
+            },
+            "axis2_frame": {
+                "derivation": "direct frame = Se,Ne; conjugated pole/frame = Ni,Si",
+                "sign": 1,
+                "class": "direct"
+            },
+            "axis1_eps_terrain": {
+                "derivation": "generator presents Hamiltonian first plus dissipative correction/dephasing term",
+                "sign": -1,
+                "class": "unitary_dominant",
+                "generator": "-i[H0, rho] + epsilon_V sum_k D[L_k](rho)"
+            }
+        },
+        "TiSe": {
+            "operator_class": {
+                "derivation": "T operators are dephasing/pinch channels; F operators are unitary rotations",
+                "sign": 1,
+                "class": "T_pinch"
+            },
+            "axis2_frame": {
+                "derivation": "direct frame = Se,Ne; conjugated pole/frame = Ni,Si",
+                "sign": 1,
+                "class": "direct"
+            },
+            "axis1_eps_terrain": {
+                "derivation": "generator presents dissipator first plus small Hamiltonian epsilon term",
+                "sign": 1,
+                "class": "dissipation_dominant",
+                "generator": "sum_k D[L_k](rho) - i epsilon_F [H0, rho]"
+            }
+        },
+        "TeNi": {
+            "operator_class": {
+                "derivation": "T operators are dephasing/pinch channels; F operators are unitary rotations",
+                "sign": 1,
+                "class": "T_pinch"
+            },
+            "axis2_frame": {
+                "derivation": "direct frame = Se,Ne; conjugated pole/frame = Ni,Si",
+                "sign": -1,
+                "class": "conjugated"
+            },
+            "axis1_eps_terrain": {
+                "derivation": "generator presents dissipator first plus small Hamiltonian epsilon term",
+                "sign": 1,
+                "class": "dissipation_dominant",
+                "generator": "D[sqrt(gamma) sigma_-](rho) - i epsilon_P [H0, rho]"
+            }
+        },
+        "NeTi": {
+            "operator_class": {
+                "derivation": "T operators are dephasing/pinch channels; F operators are unitary rotations",
+                "sign": 1,
+                "class": "T_pinch"
+            },
+            "axis2_frame": {
+                "derivation": "direct frame = Se,Ne; conjugated pole/frame = Ni,Si",
+                "sign": 1,
+                "class": "direct"
+            },
+            "axis1_eps_terrain": {
+                "derivation": "generator presents Hamiltonian first plus dissipative correction/dephasing term",
+                "sign": -1,
+                "class": "unitary_dominant",
+                "generator": "-i[H0, rho] + epsilon_V sum_k D[L_k](rho)"
+            }
+        },
+        "NiFe": {
+            "operator_class": {
+                "derivation": "T operators are dephasing/pinch channels; F operators are unitary rotations",
+                "sign": -1,
+                "class": "F_rotation"
+            },
+            "axis2_frame": {
+                "derivation": "direct frame = Se,Ne; conjugated pole/frame = Ni,Si",
+                "sign": -1,
+                "class": "conjugated"
+            },
+            "axis1_eps_terrain": {
+                "derivation": "generator presents dissipator first plus small Hamiltonian epsilon term",
+                "sign": 1,
+                "class": "dissipation_dominant",
+                "generator": "D[sqrt(gamma) sigma_-](rho) - i epsilon_P [H0, rho]"
+            }
+        },
+        "FeSi": {
+            "operator_class": {
+                "derivation": "T operators are dephasing/pinch channels; F operators are unitary rotations",
+                "sign": -1,
+                "class": "F_rotation"
+            },
+            "axis2_frame": {
+                "derivation": "direct frame = Se,Ne; conjugated pole/frame = Ni,Si",
+                "sign": -1,
+                "class": "conjugated"
+            },
+            "axis1_eps_terrain": {
+                "derivation": "generator presents Hamiltonian first plus dissipative correction/dephasing term",
+                "sign": -1,
+                "class": "unitary_dominant",
+                "generator": "-i[H_C, rho] + sum_j kappa_j(P_j rho P_j - 1/2(P_j rho + rho P_j))"
+            }
+        }
+    },
+    "schema": "codex_ratchet.type1_engine_v0.entropy_gradient_axis_probe.v1",
+    "axis_ranking": [
+        {
+            "label_erased_control": {
+                "null_abs_corr_p95": 0.3638293567410102,
+                "null_abs_corr_mean": 0.14744684312217607,
+                "permutations": 70,
+                "control": "exact_label_erasure_all_stage_sign_assignments_with_same_class_balance",
+                "percentile_by_abs_corr": 84.28571428571429
+            },
+            "axis": "operator_class",
+            "mean_abs_dS_negative_class": 0.05798806514848147,
+            "mean_abs_dS_positive_class": 0.13697122516905574,
+            "mean_abs_dS_ratio": 2.3620588964010745,
+            "sign_key": "operator_class_sign",
+            "wins_erased_control": false,
+            "point_biserial_corr_dS": 0.323828941308816,
+            "abs_point_biserial_corr_dS": 0.323828941308816
+        },
+        {
+            "label_erased_control": {
+                "null_abs_corr_p95": 0.3638293567410102,
+                "null_abs_corr_mean": 0.14744684312217607,
+                "permutations": 70,
+                "control": "exact_label_erasure_all_stage_sign_assignments_with_same_class_balance",
+                "percentile_by_abs_corr": 52.857142857142854
+            },
+            "axis": "axis1_eps_terrain",
+            "mean_abs_dS_negative_class": 0.07343834025500003,
+            "mean_abs_dS_positive_class": 0.12152095006253719,
+            "mean_abs_dS_ratio": 1.6547344294625923,
+            "sign_key": "axis1_eps_terrain_sign",
+            "wins_erased_control": false,
+            "point_biserial_corr_dS": 0.1390906791194133,
+            "abs_point_biserial_corr_dS": 0.1390906791194133
+        },
+        {
+            "label_erased_control": {
+                "null_abs_corr_p95": 0.3638293567410102,
+                "null_abs_corr_mean": 0.14744684312217607,
+                "permutations": 70,
+                "control": "exact_label_erasure_all_stage_sign_assignments_with_same_class_balance",
+                "percentile_by_abs_corr": 18.571428571428573
+            },
+            "axis": "axis2_frame",
+            "mean_abs_dS_negative_class": 0.09878519067610272,
+            "mean_abs_dS_positive_class": 0.09617409964143449,
+            "mean_abs_dS_ratio": 1.0271496280641375,
+            "sign_key": "axis2_frame_sign",
+            "wins_erased_control": false,
+            "point_biserial_corr_dS": 0.0181676616915741,
+            "abs_point_biserial_corr_dS": 0.0181676616915741
+        }
+    ],
+    "engine": "julia",
+    "TOOL_INTEGRATION_DEPTH": {
+        "LinearAlgebra": "load_bearing",
+        "JSON3": "supportive"
+    },
+    "loop_profiles": {
+        "inner_inductive": {
+            "generic_b": {
+                "cool_legs": [
+                    "TeNi"
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.5862285592583567
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.03229214333122288,
+                        "entropy": 0.6185207025895796
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.04382906747252313,
+                        "entropy": 0.6623497700621027
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": -0.009917182114200007,
+                        "entropy": 0.6524325879479027
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.004798032552089104,
+                        "entropy": 0.6572306204999918
+                    }
+                ]
+            },
+            "mixed": {
+                "cool_legs": [
+                    "SeFi",
+                    "TeNi"
+                ],
+                "heat_legs": [
+                    "SiTe",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.6931471805599453
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": -0.017991707835756543,
+                        "entropy": 0.6751554727241887
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.010372858645981808,
+                        "entropy": 0.6855283313701706
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": -0.024789143330912422,
+                        "entropy": 0.6607391880392581
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.0038093094397109173,
+                        "entropy": 0.664548497478969
+                    }
+                ]
+            },
+            "random_pure_seed_303": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.32528183653712506,
+                        "entropy": 0.32528183653712506
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.2274311786689085,
+                        "entropy": 0.5527130152060336
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": 0.04169655896059621,
+                        "entropy": 0.5944095741666298
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.011857916497919785,
+                        "entropy": 0.6062674906645495
+                    }
+                ]
+            },
+            "plus_y": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.18465917564681195,
+                        "entropy": 0.18465917564681195
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.357065762321864,
+                        "entropy": 0.5417249379686759
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": 0.12790446007801803,
+                        "entropy": 0.669629398046694
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.0027568149814254372,
+                        "entropy": 0.6723862130281194
+                    }
+                ]
+            },
+            "random_mixed_seed_404": {
+                "cool_legs": [
+                    "SeFi"
+                ],
+                "heat_legs": [
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.5036443597155156
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": -0.01657572443366978,
+                        "entropy": 0.4870686352818458
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.10314615164443058,
+                        "entropy": 0.5902147869262764
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": 0.016275243451240096,
+                        "entropy": 0.6064900303775165
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.010364783929227128,
+                        "entropy": 0.6168548143067436
+                    }
+                ]
+            },
+            "generic_a": {
+                "cool_legs": [
+                    "SeFi"
+                ],
+                "heat_legs": [
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.4988996472119054
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": -0.0288662618803025,
+                        "entropy": 0.4700333853316029
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.09584174645553722,
+                        "entropy": 0.5658751317871401
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": 0.04573918889887263,
+                        "entropy": 0.6116143206860127
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.009735262168861558,
+                        "entropy": 0.6213495828548743
+                    }
+                ]
+            },
+            "random_mixed_seed_303": {
+                "cool_legs": [
+                    "TeNi"
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.623377143450938
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.04174542662098646,
+                        "entropy": 0.6651225700719244
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.00879731346154966,
+                        "entropy": 0.6739198835334741
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": -0.04787117659622364,
+                        "entropy": 0.6260487069372505
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.007973912406488592,
+                        "entropy": 0.634022619343739
+                    }
+                ]
+            },
+            "random_pure_seed_404": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.08240782277278987,
+                        "entropy": 0.08240782277278987
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.195938086287601,
+                        "entropy": 0.27834590906039086
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": 0.2132300509629454,
+                        "entropy": 0.49157596002333626
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.025148791549524097,
+                        "entropy": 0.5167247515728604
+                    }
+                ]
+            },
+            "random_pure_seed_101": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 1.1102230246251564e-16
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.07839247012341717,
+                        "entropy": 0.07839247012341728
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.417090726651567,
+                        "entropy": 0.49548319677498426
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": 0.18435214544240314,
+                        "entropy": 0.6798353422173874
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.0015556420462560228,
+                        "entropy": 0.6813909842636434
+                    }
+                ]
+            },
+            "random_mixed_seed_101": {
+                "cool_legs": [
+                    "TeNi"
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.48402416648896573
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.005087332420283142,
+                        "entropy": 0.4891114989092489
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.14320939854782966,
+                        "entropy": 0.6323208974570785
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": -0.012416378162566466,
+                        "entropy": 0.6199045192945121
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.00872153002849485,
+                        "entropy": 0.6286260493230069
+                    }
+                ]
+            },
+            "random_mixed_seed_202": {
+                "cool_legs": [
+                    "TeNi"
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.42271485997126357
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.11989516674975942,
+                        "entropy": 0.542610026721023
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.05569485968018584,
+                        "entropy": 0.5983048864012088
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": -0.031670212299677036,
+                        "entropy": 0.5666346741015318
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.015341166918550808,
+                        "entropy": 0.5819758410200826
+                    }
+                ]
+            },
+            "plus_x": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.20284893036257856,
+                        "entropy": 0.20284893036257856
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.10862044239127328,
+                        "entropy": 0.31146937275385184
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": 0.10914482103022949,
+                        "entropy": 0.4206141937840813
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.035062405247195116,
+                        "entropy": 0.45567659903127644
+                    }
+                ]
+            },
+            "random_pure_seed_202": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.10354082291913132,
+                        "entropy": 0.10354082291913132
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.40055864700885796,
+                        "entropy": 0.5040994699279893
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": 0.14218006852274878,
+                        "entropy": 0.646279538450738
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.005533804529753272,
+                        "entropy": 0.6518133429804913
+                    }
+                ]
+            },
+            "zero_z": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "SeFi",
+                    "SiTe",
+                    "TeNi",
+                    "FiNe"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "SeFi",
+                        "dS": 0.07945351270449309,
+                        "entropy": 0.07945351270449309
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "SiTe",
+                        "dS": 0.39235443289196736,
+                        "entropy": 0.47180794559646044
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "TeNi",
+                        "dS": 0.18363816922151366,
+                        "entropy": 0.6554461148179741
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FiNe",
+                        "dS": 0.004438735021609186,
+                        "entropy": 0.6598848498395833
+                    }
+                ]
+            }
+        },
+        "outer_deductive": {
+            "generic_b": {
+                "cool_legs": [
+                    "NiFe"
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.5862285592583567
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.07037000039175978,
+                        "entropy": 0.6565985596501165
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.01490517526262014,
+                        "entropy": 0.6715037349127366
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": -0.0022910302879022293,
+                        "entropy": 0.6692127046248344
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.005636421130020386,
+                        "entropy": 0.6748491257548548
+                    }
+                ]
+            },
+            "mixed": {
+                "cool_legs": [
+                    "TiSe",
+                    "NiFe"
+                ],
+                "heat_legs": [
+                    "NeTi",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.6931471805599453
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": -0.017991707835756543,
+                        "entropy": 0.6751554727241887
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.0035903115468521873,
+                        "entropy": 0.6787457842710409
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": -0.0046343272250508605,
+                        "entropy": 0.6741114570459901
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.004624052513607868,
+                        "entropy": 0.6787355095595979
+                    }
+                ]
+            },
+            "random_pure_seed_303": {
+                "cool_legs": [
+                    "NiFe"
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.5163763196544771,
+                        "entropy": 0.5163763196544771
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.10439857080075954,
+                        "entropy": 0.6207748904552366
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": -0.009807161952672505,
+                        "entropy": 0.6109677285025641
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.027294506927611262,
+                        "entropy": 0.6382622354301754
+                    }
+                ]
+            },
+            "plus_y": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.4683251702503598,
+                        "entropy": 0.4683251702503598
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.09417053388417884,
+                        "entropy": 0.5624957041345386
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": 0.09533897713862882,
+                        "entropy": 0.6578346812731675
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.013668049133663596,
+                        "entropy": 0.6715027304068311
+                    }
+                ]
+            },
+            "random_mixed_seed_404": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.5036443597155156
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.041933804642725225,
+                        "entropy": 0.5455781643582408
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.07275744942991891,
+                        "entropy": 0.6183356137881597
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": 0.02930477509056706,
+                        "entropy": 0.6476403888787268
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.018361745962821363,
+                        "entropy": 0.6660021348415481
+                    }
+                ]
+            },
+            "generic_a": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.4988996472119054
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.010786830912079659,
+                        "entropy": 0.509686478123985
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.07706237331640331,
+                        "entropy": 0.5867488514403884
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": 0.06965054557541628,
+                        "entropy": 0.6563993970158046
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.015501008110499592,
+                        "entropy": 0.6719004051263042
+                    }
+                ]
+            },
+            "random_mixed_seed_303": {
+                "cool_legs": [
+                    "NiFe"
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.623377143450938
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.056279261702242844,
+                        "entropy": 0.6796564051531808
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.007830283315528153,
+                        "entropy": 0.687486688468709
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": -0.04421881410361306,
+                        "entropy": 0.6432678743650959
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.00483306007200901,
+                        "entropy": 0.6481009344371049
+                    }
+                ]
+            },
+            "random_pure_seed_404": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.26047377424359675,
+                        "entropy": 0.26047377424359675
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.1953874799479256,
+                        "entropy": 0.45586125419152235
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": 0.1637648582857123,
+                        "entropy": 0.6196261124772346
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.022332432717500628,
+                        "entropy": 0.6419585451947353
+                    }
+                ]
+            },
+            "random_pure_seed_101": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 1.1102230246251564e-16
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.10890327632767376,
+                        "entropy": 0.10890327632767387
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.12498322937836463,
+                        "entropy": 0.2338865057060385
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": 0.3982150808463051,
+                        "entropy": 0.6321015865523436
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.014674061919379922,
+                        "entropy": 0.6467756484717235
+                    }
+                ]
+            },
+            "random_mixed_seed_101": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.48402416648896573
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.08755103341673709,
+                        "entropy": 0.5715751999057028
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.06295142016824629,
+                        "entropy": 0.6345266200739491
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": 0.011494034757865701,
+                        "entropy": 0.6460206548318148
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.010296746979758131,
+                        "entropy": 0.6563174018115729
+                    }
+                ]
+            },
+            "random_mixed_seed_202": {
+                "cool_legs": [
+                    "NiFe"
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0.42271485997126357
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.20051750168585125,
+                        "entropy": 0.6232323616571148
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.030833287543727383,
+                        "entropy": 0.6540656492008422
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": -0.07479112815043842,
+                        "entropy": 0.5792745210504038
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.03878569290435674,
+                        "entropy": 0.6180602139547605
+                    }
+                ]
+            },
+            "plus_x": {
+                "cool_legs": [
+                    "NiFe"
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.4773346557818243,
+                        "entropy": 0.4773346557818243
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.1292152362010841,
+                        "entropy": 0.6065498919829084
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": -0.020405546245361728,
+                        "entropy": 0.5861443457375467
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.04591385024322958,
+                        "entropy": 0.6320581959807763
+                    }
+                ]
+            },
+            "random_pure_seed_202": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.36679022842067643,
+                        "entropy": 0.36679022842067643
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.06187371342673054,
+                        "entropy": 0.42866394184740697
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": 0.24194349660868686,
+                        "entropy": 0.6706074384560938
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.00770695356265283,
+                        "entropy": 0.6783143920187467
+                    }
+                ]
+            },
+            "zero_z": {
+                "cool_legs": [
+                ],
+                "heat_legs": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "flat_legs": [
+                ],
+                "stage_ids": [
+                    "TiSe",
+                    "NeTi",
+                    "NiFe",
+                    "FeSi"
+                ],
+                "trajectory": [
+                    {
+                        "step": 0,
+                        "stage_id": "initial",
+                        "entropy": 0
+                    },
+                    {
+                        "step": 1,
+                        "stage_id": "TiSe",
+                        "dS": 0.07945351270449309,
+                        "entropy": 0.07945351270449309
+                    },
+                    {
+                        "step": 2,
+                        "stage_id": "NeTi",
+                        "dS": 0.17656699607230525,
+                        "entropy": 0.25602050877679833
+                    },
+                    {
+                        "step": 3,
+                        "stage_id": "NiFe",
+                        "dS": 0.3663632158531331,
+                        "entropy": 0.6223837246299314
+                    },
+                    {
+                        "step": 4,
+                        "stage_id": "FeSi",
+                        "dS": 0.019343632361063512,
+                        "entropy": 0.6417273569909949
+                    }
+                ]
+            }
+        }
+    },
+    "source_cites": {
+        "operators": [
+            "IGT:471-479",
+            "SIGNED:136-557"
+        ],
+        "stages": [
+            "IGT:529-534",
+            "ATLAS:217-231"
+        ],
+        "terrain_type1": [
+            "IGT:482-489",
+            "ATLAS:82-85",
+            "ATLAS:103-110",
+            "ATLAS:135-141"
+        ],
+        "traversals": [
+            "IGT:464-469",
+            "IGT:517-525",
+            "ATLAS:156-179"
+        ],
+        "open_gaps": [
+            "ATLAS:82-85",
+            "IGT:215-218",
+            "IGT:656-658"
+        ]
+    },
+    "operators": {
+        "Ti": {
+            "channel": "Ti_q(rho) = (1 - q1) rho + q1 E_z(rho)",
+            "source": "SIGNED:136-148; IGT:475",
+            "lambda": 0.69,
+            "q": 0.31000000000000005
+        },
+        "Te": {
+            "channel": "Te_q(rho) = (1 - q2) rho + q2 E_x(rho)",
+            "source": "SIGNED:284-296; IGT:476",
+            "lambda": 0.73,
+            "q": 0.27
+        },
+        "Fi": {
+            "theta": 0.41,
+            "channel": "Fi_theta(rho) = U_x(theta) rho U_x(theta)^dagger",
+            "source": "SIGNED:437-445; IGT:477"
+        },
+        "Fe": {
+            "channel": "Fe_phi(rho) = U_z(phi) rho U_z(phi)^dagger",
+            "source": "SIGNED:549-557; IGT:478",
+            "phi": -0.37
+        }
+    },
+    "source_extraction": "../TYPE1_ENGINE_EXTRACTION_20260703.md",
+    "dual_smt_gate": {
+        "ran": false,
+        "reason": "no clear winner; SMT gate intentionally not run"
+    }
+}

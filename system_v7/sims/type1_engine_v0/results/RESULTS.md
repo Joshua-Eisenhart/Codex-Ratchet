@@ -63,3 +63,50 @@ Min pairwise distance: 0.597891141104 for ['FeSi', 'SiTe']
 
 NumPy and Julia legs agree on stage fingerprints, order sensitivity, and traversal trajectories at 1e-9.
 This is a source-faithful diagnostic implementation of the Type-1 chart, not promotion evidence.
+
+## Entropy Gradient Axis Probe
+
+Ceiling: QUARANTINE_EXPLORATORY / scratch_diagnostic. promotion_allowed=false.
+
+Parity pass: True at 1e-09
+Max abs diff: 1.33226762955e-15 at `axis_ranking[0].mean_abs_dS_ratio`
+
+Result artifacts:
+- `results/entropy_gradient_axis_probe_numpy_results.json`
+- `results/entropy_gradient_axis_probe_julia_results.json`
+
+Full per-initial-state dS rows are in each result artifact under `per_leg_dS`.
+
+### Per-Leg Mean dS
+
+| Traversal | Leg | Stage | Terrain | Operator | Mean dS | Mean terrain dS | Mean operator dS | Phase |
+|---|---:|---|---|---|---:|---:|---:|---|
+| outer_deductive | 1 | TiSe | Se-in | Ti | 0.194793118736 | 0.0302763619461 | 0.164516756789 | heat |
+| outer_deductive | 2 | NeTi | Ne-in | Ti | 0.0826090043068 | 0.0320934872218 | 0.050515517085 | heat |
+| outer_deductive | 3 | NiFe | Ni-in | Fe | 0.0871376411565 | 0.0871376411565 | -3.17206578464e-17 | heat |
+| outer_deductive | 4 | FeSi | Si-in | Fe | 0.0177837296099 | 0.0177837296099 | 1.58603289232e-17 | heat |
+| inner_inductive | 1 | SeFi | Se-in | Fi | 0.0851550675742 | 0.0851550675742 | -4.95635278851e-18 | heat |
+| inner_inductive | 2 | SiTe | Si-in | Te | 0.182853619438 | 0.105241938199 | 0.0776116812387 | heat |
+| inner_inductive | 3 | TeNi | Ni-in | Te | 0.0669640438618 | 0.0295724260448 | 0.037391617817 | heat |
+| inner_inductive | 4 | FiNe | Ne-in | Fi | 0.0105070076655 | 0.0105070076655 | -6.34413156929e-17 | heat |
+
+### Axis Sorting Ranking
+
+| Rank | Candidate | Corr(dS) | Mean abs dS ratio | Erased-control percentile | Wins? |
+|---:|---|---:|---:|---:|---|
+| 1 | operator_class | 0.323828941309 | 2.3620588964 | 84.2857 | False |
+| 2 | axis1_eps_terrain | 0.139090679119 | 1.65473442946 | 52.8571 | False |
+| 3 | axis2_frame | 0.0181676616916 | 1.02714962806 | 18.5714 | False |
+
+Axis-1 derivation: Funnel/Pit are `dissipation_dominant` because their documented generators present dissipators first with a small Hamiltonian epsilon term; Vortex/Hill are `unitary_dominant` because their documented generators present Hamiltonian flow first with dissipative correction/dephasing. Axis-2 derivation: Se/Ne are direct; Ni/Si are conjugated. Operator class derivation: Ti/Te are T-pinch dephasing channels; Fi/Fe are F-rotation unitary channels.
+
+### Cool/Heat Phase Map
+
+| Traversal | Cool legs | Heat legs | Flat legs | Source-pressure note |
+|---|---|---|---|---|
+| outer_deductive | none | TiSe, NeTi, NiFe, FeSi | none | 17.5 cool/heat claim cited only; dS labels are measured here. |
+| inner_inductive | none | SeFi, SiTe, TeNi, FiNe | none | 17.5 cool/heat claim cited only; dS labels are measured here. |
+
+### Verdict
+
+No candidate wins. Operator class has the largest measured correlation, but it reaches only the 84.285714 percentile against the exact label-erased control, below the 95% win rule. Axis-1 and Axis-2 are weaker. Because no clear winner exists, the dual-SMT gate was intentionally not run; the boolean gate remains open rather than decorative.

@@ -38,3 +38,18 @@ Required minimum controls:
 - Whether Gate 2 stops at L8 cut lattice or bundles L9/L10 in the same packet. If bundled, L9 Schmidt strata and L10 entropy inherit full enumeration and nesting-license obligations [contract:54-56,307-316].
 
 
+
+## Referee addendum (kimi, verified, 2026-07-03) — fold into the build prompt
+
+1. CUT-COUNT AMBIGUITY TO PIN FIRST: unordered bipartitions 2^(n-1)-1 = 3 at
+   n=3 (contract L8 wording) vs non-trivial party subsets 2^n-2 = 6 (ordered).
+   Builder must resolve from contract verbatim and assert the chosen formula
+   against the enumeration. Cuts are PARTY-indexed; the quotient acts on
+   states, never on cut labels.
+2. LABEL-ECHO SEAM: cross-epoch artifact reuse — "re-projects" must be
+   VERIFIED, not procedural: recompute marginals fresh per epoch and compare
+   against any cached value; mismatch = reject. No representative-lookup
+   substituting for actual partial trace.
+3. CONTINUITY TRAP: "all Schmidt strata with representatives" is finite ONLY
+   on the ratcheted finite quotient — never on local-unitary equivalence
+   (continuous). Stay on the admitted finite class roster.

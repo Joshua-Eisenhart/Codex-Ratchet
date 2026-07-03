@@ -789,3 +789,39 @@ UP-60 REPAIR  Applied WEB_THREAD_LOOPBACK_3 corrections (referee panel + stamp-i
      ledger); weak_force 20.1 -- "earned parity structure"/"FORCED" -> "admits ... hypothetical lane" /
      "STRUCTURE-FORCED within the chiral-algebra construction". All sims docstring/prose-only; still PASS.
    FULL HARNESS VERIFIED: 69 pass / 0 fail / 0 skip GREEN.
+
+
+# MANIFOLD SPINE RATCHET — L1 — 2026-07-03
+UP-61 NEW SPINE L1  manifold_L1_probe_quotient_sim.py -- process reset after owner flagged saliency-skipping
+               ("work the whole foundations of the manifold from constraints. with dual ratchet... no
+               saliency skipping"). Terrains/axes/engine stood on the carrier directly; the spine under them
+               was never ratcheted. L1 = the probe-quotient floor S/~_M built from L0 roots (F01/N01/probe-
+               identity), quotient COMPUTED not asserted, with the dual ratchet (quotient refines + entropy
+               readout recomputes per admitted probe), per-rung ladder 1q/2q/3q, full negative roster firing,
+               and a dual-solver identity gate (probe-identical->different-class UNSAT with law, SAT erased).
+               First rung of the spine; L2-L15 to follow in contract order, none skipped. Terrains/axes/engine
+               to be rebuilt ON this spine once it reaches them. FULL HARNESS VERIFIED: 70 pass / 0 fail / 0 skip GREEN.
+
+UP-62 NEW SPINE L2  manifold_L2_rank_strata_marginals_sim.py -- density-rank strata (dim 4^n-1, not a ball) +
+               partial-trace marginals Tr_{A\B} + marginal-compatibility law, nesting on L1. Dual ratchet:
+               rank stratum + marginal entropy co-move as the global state entangles (product->Bell, marginal
+               rank 1->2, S 0->1 bit, negativity 0->0.5). Negatives #1 (product-neg-zero), #2 (perturbed-
+               marginal-fails), #10 (per-rung 3q) fire. Dual-solver Schmidt/marginal-compatibility gate:
+               pure-state marginals forced to equal entropy (UNSAT with law, SAT erased). Second rung of the
+               spine. FULL HARNESS VERIFIED: 71 pass / 0 fail / 0 skip GREEN.
+
+UP-63 NEW SPINE L3  manifold_L3_spinor_hopf_sim.py -- spinor/phase/projective surface CP^{2^n-1} + Hopf
+               skeleton S^1->S^3->S^2 + relative-phase torus T^{n-1}, nesting on L2. The phase L1/L2 are blind
+               to (Hopf fiber = the divided-out global phase). Dual ratchet: phase is a new admitted dof
+               (projective point moves, density readout fixed). Negatives #8 (fiber load-bearing via 2pi sign)
+               and #4 (X resolves relative phase) fire. Dual-solver gate: spinor sign is fiber-exclusive
+               (UNSAT with law, SAT erased). Third rung; makes the old Axis-0 spinor-level finding a spine
+               object. FULL HARNESS VERIFIED: 72 pass / 0 fail / 0 skip GREEN.
+
+UP-64 NEW SPINE L4  manifold_L4_local_weyl_factors_sim.py -- local Weyl factors exist iff product state
+               (entangled keeps mixed marginals, no local pure spinor), nesting on L3+L2. Dual ratchet: Weyl
+               factor + marginal purity co-move (product->Bell, factor dissolves as purity 1->0.5, neg
+               0->0.5). Negatives #1 (product-neg-zero), #9 (factorization diverges entangled/separable), #10
+               (per-rung 3q GHZ) fire. Dual-solver gate: Weyl factorization needs product (UNSAT for
+               entangled, SAT erased). Fourth rung; first real spine referent for "Weyl factor" (chirality is
+               a later object). FULL HARNESS VERIFIED: 73 pass / 0 fail / 0 skip GREEN.

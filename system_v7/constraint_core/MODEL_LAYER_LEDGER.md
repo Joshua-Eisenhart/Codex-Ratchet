@@ -924,3 +924,87 @@ empirical, discovered by which admissibility tests bind, never prescribed from t
 authority surfaces (bundle ledger stamps EARNED; manifold draft ledger admits nothing) are kept separate as
 the docs demand. Hypothetical lane; owner doctrine under test.
 Artifacts: surface_identity_sim.py, surface_identity.png.
+
+
+## MANIFOLD SPINE RATCHET — Layer 1 (L1): the probe-quotient floor [hypothetical lane]
+THE RESET (owner, verbatim): "you have to work the whole foundations of the manifold from constraints. with
+dual ratchet. up to the terrains and beyond. no saliency skipping. you are violating process right now!!!"
+The terrains/axes/engine (Layers 0.11-0.17, 4.x, 17.x) were built standing on the C^2 carrier directly; the
+manifold spine UNDER them (the completeness-contract layers L1-L15) was never ratcheted. This begins the spine
+at its floor and earns it in the contract's canonical order, one layer at a time, NONE skipped. The doc layer
+order is used here as the ADMISSIBILITY order (which object each layer adds), per the contract's Part A; per
+owner it is not a prescribed walk but the empirical order in which admissibility tests bind -- and at the
+floor they bind in exactly this sequence (you cannot form strata (L2) or a spinor surface (L3) before you
+have the probe-quotient (L1)).
+L0 (root, not a sim): F01 finitude, N01 noncommutation, probe-relative identity a=a iff a~b -- the admission
+floor (allow-list, not a packet).
+L1 -- probe-quotient floor S/~_M: finite state set S, Pauli probe family M, equivalence rho_a ~_M rho_b iff
+they agree on every probe, and the QUOTIENT computed. DUAL RATCHET: admitting probes one at a time refines the
+quotient (classes only split -- the ratchet direction) while the entropy readout over the quotient recomputes
+each step -- geometry and readout co-ratchet at the lowest rung.
+Results: (1) quotient computed at 1q (|S|=10, M={X,Y,Z} -> 9 classes; the probe-identical pair merges -- the
+identity a=a iff a~b realized, not asserted). (2) dual ratchet: X,Y,Z admitted -> 5,6,9 classes (monotone
+split) with entropy readout recomputing. (3) per-rung ladder 1q/2q/3q (|M|=3/15/63) -- floor holds, duplicate
+always merges. (4) negative roster fires: #4 alternate-probe-family (M'={X} coarsens 9->5), #5 lineage-removed
+(erasing the identity law inflates 9->10), #7 forced-discriminator (merge->1, split->2), boundary (edge-merge
+under {X,Y}, Z splits). (5) SMT gate (dual solver): "probe-identical states in different classes?" UNSAT with
+the identity law, SAT erased -- identity structurally forced, z3 AND cvc5.
+Scope: earns L1 only, the floor. Does NOT build L2 (density-rank strata + marginals) or above -- next rung, in
+order. No terrain/axis/engine claim rides on this yet. Artifacts: manifold_L1_probe_quotient_sim.py.
+
+
+## MANIFOLD SPINE RATCHET — Layer 2 (L2): density-rank strata + partial-trace marginals [hypothetical lane]
+Nests on L1. L2 adds (contract Part A, layer 2) the DENSITY-RANK STRATA (the dim 4^n-1 state space stratified
+by density-matrix rank, NOT a Bloch ball) + the PARTIAL-TRACE MARGINAL maps Tr_{A\B} and the marginal-
+compatibility law. Built only after L1 green; nothing above L2 touched.
+DUAL RATCHET (real teeth at this layer): the rank STRATUM (geometry) and the marginal ENTROPY (readout)
+co-ratchet -- entangling the global state moves its marginal out of the rank-1 stratum AND raises the marginal
+entropy together.
+Results: (1) rank strata @2q clean (50/50 per rank, purity 1.00->0.47 pure->I/4). (2) marginal maps recover
+marginals (Bell->I/2 both, product->factors). (3) dual ratchet product->Bell: marginal rank 1->2 as S(rho_A)
+0->1 bit and negativity 0->0.5, co-moving. (4) negatives fire: #1 product-negativity-zero (0 vs Bell 0.5), #2
+perturbed-marginal-fails (perturbed rho_A incompatible with Bell global), #10 per-rung 3q (global rank 3, 1q
+marginal rank 2). (5) SMT gate (dual solver): the Schmidt/marginal-compatibility law -- a pure 2q state's two
+marginals share a spectrum so S(rho_A)=S(rho_B) FORCED; "can they differ?" UNSAT with law, SAT erased; z3 AND
+cvc5; confirmed numerically (Bell S_A=S_B=1.000).
+Scope: earns L2 on top of L1. Does NOT build L3 (spinor/phase/projective + Hopf) or above -- next rung. No
+terrain/axis/engine claim rides on this. Artifacts: manifold_L2_rank_strata_marginals_sim.py.
+
+
+## MANIFOLD SPINE RATCHET — Layer 3 (L3): spinor / phase / projective surface + Hopf skeleton [hypothetical lane]
+Nests on L2. L3 adds (contract Part A, layer 3) the SPINOR/PHASE/PROJECTIVE surface CP^{2^n-1} + the local
+HOPF skeleton S^1->S^3->S^2 per factor + the relative-phase torus (S^1)^n/S^1 = T^{n-1}. This is the layer the
+density quotient (L1) and rank strata (L2) are STRUCTURALLY BLIND to -- they divide out exactly the S^1 Hopf
+fiber (global phase). Built only after L2 green.
+DUAL RATCHET: L3 admits a genuinely new coordinate (phase); sweeping relative phase moves the projective point
+while a phase-blind density readout stays fixed -- from L3 up the ratchet must CARRY phase, and a phase-blind
+readout falling behind is the tell that a new dof was admitted.
+Results: (1) Hopf fiber (global phase 0..2pi) -> one Bloch point, density-blind. (2) projective CP^1: |+> vs
+|-> map to +x vs -x (relative phase physical). (3) spinor double cover: overlap +1/-1/+1 at 0/2pi/4pi with
+Bloch returning each step (2pi sign flip is a fiber invariant). (4) relative-phase torus T^1: global-phase
+shift preserves pa-pb. (5) dual ratchet: projective point sweeps +x,+y,-x,-y while diagonal readout fixed. (6)
+negatives fire: #8 value-coupled (fiber sign -1 vs density-blind +1 -> fiber load-bearing), #4 alternate-probe
+(X resolves relative phase, Z blind). (7) SMT gate (dual solver): spinor-sign/density-blindness XOR -- "can a
+density readout carry the 2pi sign?" UNSAT with law (fiber-exclusive), SAT erased; z3 AND cvc5.
+Scope: earns L3 on top of L2. Does NOT build L4 (local Weyl factors) or above -- next rung. Makes the earlier
+Axis-0 "spinor-level, density-blind" finding a spine object rather than a terrain-local surprise. No
+terrain/axis/engine claim rides on this. Artifacts: manifold_L3_spinor_hopf_sim.py.
+
+
+## MANIFOLD SPINE RATCHET — Layer 4 (L4): local Weyl factors [hypothetical lane]
+Nests on L3 (spinor surface) + L2 (marginals). L4 adds (contract Part A, layer 4) the LOCAL WEYL FACTORS: a
+global state decomposes into local spinor (Weyl) factors EXACTLY when it is a product state; entangled states
+keep mixed marginals and admit NO local pure-spinor factorization. First real spine referent for the model's
+"Weyl factor" language: the local factor is the L3 spinor of a PURE marginal, existing only on the product
+locus. Built only after L3 green.
+DUAL RATCHET: factorizability (geometry) and marginal purity (readout) co-ratchet -- entanglement dissolves
+the local Weyl factor exactly as purity drops; factor exists iff marginal pure iff product iff negativity 0.
+Results: (1) product |0>|+> admits local Weyl factors (marginals pure, factorizes). (2) Bell admits none
+(marginals mixed). (3) dual ratchet product->Bell: factor exists only at a=0 (purity 1.000, neg 0); a>0 kills
+it, purity 1.000->0.500, neg 0->0.500. (4) negatives fire: #1 product-negativity-zero, #9 entangled/separable
+factorization diverges, #10 per-rung 3q (GHZ mixed marginal vs product pure). (5) SMT gate (dual solver):
+"Weyl factors for an entangled state?" UNSAT with the factorization<=>product law, SAT erased; z3 AND cvc5.
+Scope: earns L4 (local-factor EXISTENCE criterion) on top of L3. Does NOT build L5 (nested shells + Schmidt
+strata) or above -- next rung. Weyl CHIRALITY and the engine-type split are much later objects (need flux/cut
+structure); this earns only factor existence, not handedness. No terrain/axis/engine claim rides on this.
+Artifacts: manifold_L4_local_weyl_factors_sim.py.

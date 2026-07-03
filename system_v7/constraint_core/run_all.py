@@ -234,6 +234,18 @@ SUITE = [
 
  ("surface_identity_sim.py", 120, False, [
    ("contains", "PASS surface_identity_sim")]),          # Layer 0.16: the surface identity -- entropy face (Hess of relative entropy) == geometry face (BKM information metric) as the SAME tensor at every terrain fixed point (1e-8); an application of Tomita-Takesaki / Connes-Rovelli thermal-time to the terrain surface; separation UNSAT (z3+cvc5), deformed control SAT
+
+ ("manifold_L1_probe_quotient_sim.py", 120, False, [
+   ("contains", "PASS manifold_L1_probe_quotient_sim")]),  # SPINE L1: the probe-quotient floor S/~_M built from L0 roots (F01/N01/identity), dual ratchet (quotient refines + entropy recomputes per admitted probe), per-rung 1q/2q/3q, negative roster fires, dual-solver identity gate. Start of the manifold spine ratchet -- no saliency skipping, one layer at a time up to terrains and beyond.
+
+ ("manifold_L2_rank_strata_marginals_sim.py", 120, False, [
+   ("contains", "PASS manifold_L2_rank_strata_marginals_sim")]),  # SPINE L2: density-rank strata (dim 4^n-1, not a ball) + partial-trace marginals Tr_{A\\B}; dual ratchet (rank stratum + marginal entropy co-move product->Bell), negatives #1/#2/#10 fire, dual-solver Schmidt/marginal-compatibility gate
+
+ ("manifold_L3_spinor_hopf_sim.py", 120, False, [
+   ("contains", "PASS manifold_L3_spinor_hopf_sim")]),  # SPINE L3: spinor/phase/projective surface CP^{2^n-1} + Hopf skeleton S^1->S^3->S^2 + relative-phase torus T^{n-1}; the phase L1/L2 are blind to; dual ratchet (phase dof moves, density readout fixed), negatives #8/#4 fire, dual-solver spinor-sign/density-blindness gate
+
+ ("manifold_L4_local_weyl_factors_sim.py", 120, False, [
+   ("contains", "PASS manifold_L4_local_weyl_factors_sim")]),  # SPINE L4: local Weyl factors exist iff product state (entangled keeps mixed marginals, no local pure spinor); dual ratchet (Weyl factor + marginal purity co-move product->Bell), negatives #1/#9/#10 fire, dual-solver factorization-needs-product gate
  ("flux_nesting_ablation_jax.py", 600, True, [
    ("approx", r'"total_chern_forward":\s*([0-9.]+)', 7.295389, 1e-3)]),
  ("manifold_build_ladder.py", 600, True, [

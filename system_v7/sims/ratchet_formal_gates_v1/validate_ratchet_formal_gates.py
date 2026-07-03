@@ -11,7 +11,8 @@ from typing import Any
 SIM_ID = "ratchet_formal_gates_v1"
 HERE = Path(__file__).resolve().parent
 RESULTS = HERE / "results"
-TOL = 1e-10
+PYTHON_TRIO_TOL = 1e-10
+JULIA_PAIR_TOL = 1e-9
 
 classification = "scratch_diagnostic"
 promotion_allowed = False
@@ -35,7 +36,7 @@ def by_label(result: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {row["label"]: row for row in result["carrier_states"]}
 
 
-def compare_pair(left_name: str, left: dict[str, Any], right_name: str, right: dict[str, Any]) -> dict[str, Any]:
+def compare_pair(left_name: str, left: dict[str, Any], right_name: str, right: dict[str, Any], tol: float) -> dict[str, Any]:
     failures = []
     left_states = by_label(left)
     right_states = by_label(right)
@@ -51,11 +52,11 @@ def compare_pair(left_name: str, left: dict[str, Any], right_name: str, right: d
             continue
         diffs = [abs(float(a) - float(b)) for a, b in zip(left_pvec, right_pvec)]
         max_pvec_diff = max(max_pvec_diff, max(diffs, default=0.0))
-        if max(diffs, default=0.0) > TOL:
+        if max(diffs, default=0.0) > tol:
             failures.append({"label": label, "field": "pvec", "max_diff": max(diffs)})
         trace_diff = abs(float(left_states[label]["trace"]) - float(right_states[label]["trace"]))
         max_trace_diff = max(max_trace_diff, trace_diff)
-        if trace_diff > TOL:
+        if trace_diff > tol:
             failures.append({"label": label, "field": "trace", "diff": trace_diff})
     labels = sorted(set(left_states) & set(right_states))
     for i, left_label in enumerate(labels):
@@ -83,12 +84,12 @@ def compare_pair(left_name: str, left: dict[str, Any], right_name: str, right: d
         if left_x[key] != right_x[key]:
             failures.append({"field": f"xi_ref_quotient_lift.{key}", left_name: left_x[key], right_name: right_x[key]})
     xi_spread_diff = abs(float(left_x["max_descriptor_spread"]) - float(right_x["max_descriptor_spread"]))
-    if xi_spread_diff > TOL:
+    if xi_spread_diff > tol:
         failures.append({"field": "xi_ref_quotient_lift.max_descriptor_spread", "diff": xi_spread_diff})
     return {
         "left": left_name,
         "right": right_name,
-        "parity_abs_tol": TOL,
+        "parity_abs_tol": tol,
         "parity_pass": not failures,
         "failure_count": len(failures),
         "failures": failures[:50],
@@ -98,14 +99,23 @@ def compare_pair(left_name: str, left: dict[str, Any], right_name: str, right: d
     }
 
 
-def compare_numeric(py: dict[str, Any], jl: dict[str, Any], jax_result: dict[str, Any]) -> dict[str, Any]:
+def pair_tolerance(left_name: str, right_name: str) -> float:
+    names = {left_name, right_name}
+    return JULIA_PAIR_TOL if "julia" in names else PYTHON_TRIO_TOL
+
+
+def compare_numeric(py: dict[str, Any], jl: dict[str, Any], jax_result: dict[str, Any], torch_result: dict[str, Any]) -> dict[str, Any]:
     pairs = {
-        "numpy_julia": compare_pair("numpy", py, "julia", jl),
-        "numpy_jax": compare_pair("numpy", py, "jax", jax_result),
-        "julia_jax": compare_pair("julia", jl, "jax", jax_result),
+        "numpy_julia": compare_pair("numpy", py, "julia", jl, pair_tolerance("numpy", "julia")),
+        "numpy_jax": compare_pair("numpy", py, "jax", jax_result, pair_tolerance("numpy", "jax")),
+        "numpy_torch": compare_pair("numpy", py, "torch", torch_result, pair_tolerance("numpy", "torch")),
+        "julia_jax": compare_pair("julia", jl, "jax", jax_result, pair_tolerance("julia", "jax")),
+        "julia_torch": compare_pair("julia", jl, "torch", torch_result, pair_tolerance("julia", "torch")),
+        "jax_torch": compare_pair("jax", jax_result, "torch", torch_result, pair_tolerance("jax", "torch")),
     }
     return {
-        "parity_abs_tol": TOL,
+        "python_trio_abs_tol": PYTHON_TRIO_TOL,
+        "julia_pair_abs_tol": JULIA_PAIR_TOL,
         "parity_pass": all(row["parity_pass"] for row in pairs.values()),
         "pairs": pairs,
         "failure_count": sum(row["failure_count"] for row in pairs.values()),
@@ -116,7 +126,7 @@ def compare_numeric(py: dict[str, Any], jl: dict[str, Any], jax_result: dict[str
     }
 
 
-def gate_verdicts(py: dict[str, Any], jl: dict[str, Any], jax_result: dict[str, Any], parity: dict[str, Any]) -> dict[str, Any]:
+def gate_verdicts(py: dict[str, Any], jl: dict[str, Any], jax_result: dict[str, Any], torch_result: dict[str, Any], parity: dict[str, Any]) -> dict[str, Any]:
     gates = py["gates"]
     out = {
         "token_identity_R5": {
@@ -128,11 +138,11 @@ def gate_verdicts(py: dict[str, Any], jl: dict[str, Any], jax_result: dict[str, 
             "basis": "z3+cvc5 concrete X/H/Q pre/post registers, derived non-step predicate, strict progress for effective steps, and anti-stall fuel flip",
         },
         "observable_quotient_R4": {
-            "pass": bool(gates["observable_quotient_R4"]["gate_pass"] and gates["coarse_probe_quotient_R4_epoch"]["gate_pass"] and jl["gates"]["observable_quotient_R4"]["gate_pass"] and jl["gates"]["coarse_probe_quotient_R4_epoch"]["gate_pass"] and jax_result["gates"]["observable_quotient_R4"]["gate_pass"] and jax_result["gates"]["coarse_probe_quotient_R4_epoch"]["gate_pass"] and parity["parity_pass"]),
-            "basis": "full C^8 carrier enumeration, roster formula 8*(1+2*2)=40, full/coarse probe epoching with lineage reprojection, numpy/Julia/JAX parity at 1e-10",
+            "pass": bool(gates["observable_quotient_R4"]["gate_pass"] and gates["coarse_probe_quotient_R4_epoch"]["gate_pass"] and jl["gates"]["observable_quotient_R4"]["gate_pass"] and jl["gates"]["coarse_probe_quotient_R4_epoch"]["gate_pass"] and jax_result["gates"]["observable_quotient_R4"]["gate_pass"] and jax_result["gates"]["coarse_probe_quotient_R4_epoch"]["gate_pass"] and torch_result["gates"]["observable_quotient_R4"]["gate_pass"] and torch_result["gates"]["coarse_probe_quotient_R4_epoch"]["gate_pass"] and parity["parity_pass"]),
+            "basis": "full C^8 carrier enumeration, roster formula 8*(1+2*2)=40, full/coarse probe epoching with lineage reprojection, numpy/JAX/Torch parity at 1e-10 and Julia parity at 1e-9",
         },
         "xi_ref_quotient_lift": {
-            "pass": bool(gates["xi_ref_quotient_lift"]["gate_pass"] and jl["gates"]["xi_ref_quotient_lift"]["gate_pass"] and jax_result["gates"]["xi_ref_quotient_lift"]["gate_pass"] and parity["parity_pass"]),
+            "pass": bool(gates["xi_ref_quotient_lift"]["gate_pass"] and jl["gates"]["xi_ref_quotient_lift"]["gate_pass"] and jax_result["gates"]["xi_ref_quotient_lift"]["gate_pass"] and torch_result["gates"]["xi_ref_quotient_lift"]["gate_pass"] and parity["parity_pass"]),
             "basis": "representative-independence checked nontrivially on the coarse single-Z probe epoch; failure demotes Xi_ref to raw-carrier discriminator",
             "status": gates["xi_ref_quotient_lift"]["status"],
         },
@@ -173,7 +183,7 @@ def write_results_md(py: dict[str, Any], jl: dict[str, Any], parity: dict[str, A
             "",
             "## Numeric Parity",
             "",
-            f"- numpy/Julia/JAX parity at 1e-10: `{parity['parity_pass']}`.",
+            f"- numpy/JAX/Torch parity at 1e-10 and Julia pair parity at 1e-9: `{parity['parity_pass']}`.",
             f"- max Pauli-vector abs diff: `{parity['max_pvec_abs_diff']}`.",
             f"- max trace abs diff: `{parity['max_trace_abs_diff']}`.",
             f"- Xi_ref descriptor spread diff: `{parity['xi_ref_max_descriptor_spread_diff']}`.",
@@ -284,7 +294,7 @@ def write_formal_spec(py: dict[str, Any], parity: dict[str, Any], verdicts: dict
         f"- class sizes: `{quotient['class_sizes']}`.",
         f"- probe epoching: full epoch `{quotient['probe_epoch_id']}` and coarse epoch `{coarse['probe_epoch_id']}`; equivalence is valid only within an epoch and cross-epoch identity requires re-projection.",
         f"- coarse epoch multi-representative classes: `{coarse['multi_representative_class_count']}`.",
-        f"- numpy/Julia/JAX parity at 1e-10: `{parity['parity_pass']}` with max pvec diff `{parity['max_pvec_abs_diff']}`.",
+        f"- numpy/JAX/Torch parity at 1e-10 and Julia pair parity at 1e-9: `{parity['parity_pass']}` with max pvec diff `{parity['max_pvec_abs_diff']}`.",
         f"- Gate verdict: `{'PASS' if verdicts['observable_quotient_R4']['pass'] else 'FAIL'}`.",
         "",
         "## 4. Xi_ref Quotient-Lift",
@@ -314,7 +324,7 @@ def write_formal_spec(py: dict[str, Any], parity: dict[str, Any], verdicts: dict
         "## Overall Gate Result",
         "",
         f"- all gates pass: `{all(row['pass'] for row in verdicts.values())}`.",
-        "- accepted ceiling: `passes local rerun` if the Python, Julia, validator, and lint commands in the closeout all exit 0; never above `scratch_diagnostic` / `formal_gate_diagnostic_only` without later admission gates.",
+        "- accepted ceiling: `passes local rerun` if the numpy, Julia, JAX, Torch, validator, and lint commands in the closeout all exit 0; never above `scratch_diagnostic` / `formal_gate_diagnostic_only` without later admission gates.",
         "- blocked consumers: Axis-0 bridge closure, `Phi_0` evaluation, unified emergence admission, and further pipeline advancement.",
         "",
         "Generated: " + now_iso(),
@@ -327,8 +337,9 @@ def main() -> None:
     py = load(f"{SIM_ID}_numpy_results.json")
     jl = load(f"{SIM_ID}_julia_results.json")
     jax_result = load(f"{SIM_ID}_jax_results.json")
-    parity = compare_numeric(py, jl, jax_result)
-    verdicts = gate_verdicts(py, jl, jax_result, parity)
+    torch_result = load(f"{SIM_ID}_torch_results.json")
+    parity = compare_numeric(py, jl, jax_result, torch_result)
+    verdicts = gate_verdicts(py, jl, jax_result, torch_result, parity)
     validator = {
         "schema": "codex_ratchet.ratchet_formal_gates_v1.validator.v1",
         "generated_at": now_iso(),

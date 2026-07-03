@@ -19,16 +19,16 @@ formal_admission_allowed: `false`
 |---|---|---|
 | `token_identity_R5` | `PASS` | z3+cvc5 tuple-field token model: same_entity/fresh/replay derived from content_id/probe_signature/lineage/branch/replay fields; identity grounded in probe_signature |
 | `progress_measure_R6` | `PASS` | z3+cvc5 concrete X/H/Q pre/post registers, derived non-step predicate, strict progress for effective steps, and anti-stall fuel flip |
-| `observable_quotient_R4` | `PASS` | full C^8 carrier enumeration, roster formula 8*(1+2*2)=40, full/coarse probe epoching with lineage reprojection, numpy/Julia/JAX parity at 1e-10 |
+| `observable_quotient_R4` | `PASS` | full C^8 carrier enumeration, roster formula 8*(1+2*2)=40, full/coarse probe epoching with lineage reprojection, numpy/JAX/Torch parity at 1e-10 and Julia parity at 1e-9 |
 | `xi_ref_quotient_lift` | `FAIL` | representative-independence checked nontrivially on the coarse single-Z probe epoch; failure demotes Xi_ref to raw-carrier discriminator |
 
 ## Numeric Parity
 
-- numpy/Julia/JAX parity at 1e-10: `True`.
-- max Pauli-vector abs diff: `2.063155202236544e-12`.
+- numpy/JAX/Torch parity at 1e-10 and Julia pair parity at 1e-9: `True`.
+- max Pauli-vector abs diff: `2.0650425813784068e-12`.
 - max trace abs diff: `4.440892098500626e-16`.
 - Xi_ref descriptor spread diff: `1.000088900582341e-12`.
-- pair parity: `{'numpy_julia': True, 'numpy_jax': True, 'julia_jax': True}`.
+- pair parity: `{'numpy_julia': True, 'numpy_jax': True, 'numpy_torch': True, 'julia_jax': True, 'julia_torch': True, 'jax_torch': True}`.
 - parity failures: `[]`.
 
 ## Quotient And Xi_ref
@@ -61,4 +61,4 @@ formal_admission_allowed: `false`
 
 doctor was not green in this session: quimb and clifford import-cache checks failed; active installer scan was blocked by sandbox ps permission
 
-Generated: 2026-07-03T22:37:17Z
+Generated: 2026-07-03T22:54:30Z

@@ -2,34 +2,105 @@
   "action_match_count": 300,
   "all_parity_passed": true,
   "classification": "scratch_diagnostic",
-  "fixture": "system_v7/sims/qit_live_loop_3q_v1/results/live_300/world_fixture.json",
+  "detector_boundary_reports": {
+    "100": {
+      "calibration_tick_end": 99,
+      "calibration_tick_start": 0,
+      "cusum_detection_tick": 105,
+      "detector_parameters": {
+        "baseline_mean": 2.0834337465637587,
+        "bootstrap_horizon": 512,
+        "calibration_window": 100,
+        "cusum": {
+          "delta": 8.821552425626876,
+          "derivation": "delta and lambda are empirical calibration cyclic-bootstrap quantiles at 1-alpha, plus numerical tie guard",
+          "lambda_threshold": 1e-12
+        },
+        "declared_false_positive_rate": 0.001,
+        "empirical_quantile_rank": 99,
+        "page_hinkley": {
+          "delta": 8.821552425626876,
+          "derivation": "delta and lambda are empirical calibration cyclic-bootstrap quantiles at 1-alpha, plus numerical tie guard",
+          "lambda_threshold": 0.2374297318068325
+        }
+      },
+      "dual_detection_tick": null,
+      "fires_near_boundary": false,
+      "monitored_tick_start": 100,
+      "near_window_ticks": 8,
+      "page_hinkley_detection_tick": null,
+      "statistics": {
+        "cusum_final": 0.0,
+        "cusum_max": 0.6400970275703344,
+        "page_hinkley_final": 0.0,
+        "page_hinkley_max": 0.0
+      }
+    },
+    "200": {
+      "calibration_tick_end": 199,
+      "calibration_tick_start": 100,
+      "cusum_detection_tick": 201,
+      "detector_parameters": {
+        "baseline_mean": 3.010737049788137,
+        "bootstrap_horizon": 512,
+        "calibration_window": 100,
+        "cusum": {
+          "delta": 8.12054275462518,
+          "derivation": "delta and lambda are empirical calibration cyclic-bootstrap quantiles at 1-alpha, plus numerical tie guard",
+          "lambda_threshold": 1e-12
+        },
+        "declared_false_positive_rate": 0.001,
+        "empirical_quantile_rank": 99,
+        "page_hinkley": {
+          "delta": 8.12054275462518,
+          "derivation": "delta and lambda are empirical calibration cyclic-bootstrap quantiles at 1-alpha, plus numerical tie guard",
+          "lambda_threshold": 0.07482977220097622
+        }
+      },
+      "dual_detection_tick": null,
+      "fires_near_boundary": false,
+      "monitored_tick_start": 200,
+      "near_window_ticks": 8,
+      "page_hinkley_detection_tick": 246,
+      "statistics": {
+        "cusum_final": 0.0,
+        "cusum_max": 0.4138033953476512,
+        "page_hinkley_final": 0.0,
+        "page_hinkley_max": 0.09997657808526128
+      }
+    }
+  },
+  "detector_report": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/detector_report.json",
+  "fixture": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/world_fixture.json",
   "fixture_sha256": "84d44b4c5969a921b39e4dbcfb68db3678b58dbbc0d1d385e0ce8f13b43436eb",
   "honest_boundaries": [
     "Julia loop is an independent scratch diagnostic parity leg, not promotion evidence.",
     "scratch_diagnostic; promotion_allowed=false.",
     "belief_bloch is q0 reduced projection, not full 3q state.",
+    "signal_povm is fixture metadata echoed for audit, not used in inference.",
+    "World remains fixture-driven; chosen actions feed back only into the belief predict step.",
     "L/R dual engine not claimed."
   ],
   "julia_passed": true,
   "julia_vs_oracle": {
     "action_index_exact_match": true,
-    "belief_pauli_63_max_abs_dev": 5.603156827405087e-16,
-    "efe_scores_16_max_abs_dev": 2.1316282072803006e-14,
-    "fe_gradient_max_abs_dev": 1.1812772982011666e-13,
-    "surprise_bits_max_abs_dev": 1.1901590823981678e-13
+    "belief_pauli_63_max_abs_dev": 2.1316282072803006e-14,
+    "efe_scores_16_max_abs_dev": 1.1723955140041653e-13,
+    "fe_gradient_max_abs_dev": 5.329070518200751e-12,
+    "surprise_bits_max_abs_dev": 5.329070518200751e-12
   },
   "lev_bridge_stream": {
     "errors": [],
-    "manifest": "system_v7/sims/qit_live_loop_3q_v1/results/live_300/lev_bridge_stream/segments_manifest.json",
+    "manifest": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/lev_bridge_stream/segments_manifest.json",
     "ok": true,
     "segment_count": 3,
     "ticks_verified": 300
   },
-  "max_belief_pauli_63_abs_dev": 5.603156827405087e-16,
-  "max_efe_scores_16_abs_dev": 2.1316282072803006e-14,
-  "max_fe_gradient_abs_dev": 1.1812772982011666e-13,
-  "max_surprise_bits_abs_dev": 1.1901590823981678e-13,
-  "parity_report": "system_v7/sims/qit_live_loop_3q_v1/results/live_300/parity_report.json",
+  "max_belief_pauli_63_abs_dev": 4.196643033083092e-14,
+  "max_efe_scores_16_abs_dev": 1.1723955140041653e-13,
+  "max_fe_gradient_abs_dev": 5.329070518200751e-12,
+  "max_surprise_bits_abs_dev": 5.329070518200751e-12,
+  "parity_report": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/parity_report.json",
   "promotion_allowed": false,
   "python_trio_action_match_count": 300,
   "python_trio_passed": true,
@@ -44,17 +115,21 @@
         "--out",
         "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/numpy_oracle_loop.jsonl"
       ],
-      "loop_seconds": 8.277367792092264,
+      "loop_seconds": 0.6702495000790805,
       "output": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/numpy_oracle_loop.jsonl",
-      "precompute_seconds": 0.06710095796734095,
+      "precompute_seconds": 0.06515958392992616,
       "ran": true,
       "returncode": 0,
       "substrate": "numpy_oracle_loop",
       "ticks": 300,
-      "total_seconds": 8.344468750059605,
-      "wall_seconds": 8.651564334053546
+      "total_seconds": 0.7354090840090066,
+      "wall_seconds": 0.9990520828869194
     },
     {
+      "aligned_packages_load_bearing": [
+        "jax.numpy",
+        "jax.scipy.linalg"
+      ],
       "command": [
         "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
         "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/substrates/jax_loop.py",
@@ -63,17 +138,26 @@
         "--out",
         "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/jax_loop.jsonl"
       ],
-      "loop_seconds": 7.737108833156526,
+      "loop_seconds": 10.24619337497279,
       "output": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/jax_loop.jsonl",
-      "precompute_seconds": 2.0212317500263453,
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "jax.scipy.linalg"
+      ],
+      "precompute_seconds": 0.6002328749746084,
       "ran": true,
+      "reads_peer_result": false,
       "returncode": 0,
       "substrate": "jax_loop",
       "ticks": 300,
-      "total_seconds": 9.758340583182871,
-      "wall_seconds": 10.11117741605267
+      "total_seconds": 10.846426249947399,
+      "wall_seconds": 13.755716915940866
     },
     {
+      "aligned_packages_load_bearing": [
+        "torch.linalg"
+      ],
       "command": [
         "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
         "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/substrates/torch_loop.py",
@@ -82,20 +166,50 @@
         "--out",
         "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/torch_loop.jsonl"
       ],
-      "loop_seconds": 7.696986708091572,
+      "loop_seconds": 1.5872076251544058,
       "output": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/torch_loop.jsonl",
-      "precompute_seconds": 0.8631792499218136,
+      "packages_used": [
+        "torch"
+      ],
+      "precompute_seconds": 0.02656808285973966,
       "ran": true,
+      "reads_peer_result": false,
       "returncode": 0,
       "substrate": "torch_loop",
       "ticks": 300,
-      "total_seconds": 8.560165958013386,
-      "wall_seconds": 8.973901292076334
+      "total_seconds": 1.6137757080141455,
+      "wall_seconds": 2.9271603340748698
     },
     {
-      "output": "system_v7/sims/qit_live_loop_3q_v1/results/live_300/julia_loop.jsonl",
-      "ran": "preexisting",
-      "substrate": "julia_loop"
+      "aligned_packages_load_bearing": [
+        "QuantumToolbox"
+      ],
+      "command": [
+        "/opt/homebrew/bin/julia",
+        "--startup-file=no",
+        "--project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/substrates/julia_loop.jl",
+        "--fixture",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/world_fixture.json",
+        "--out",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/julia_loop.jsonl"
+      ],
+      "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "loop_seconds": 0.822840666,
+      "output": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/julia_loop.jsonl",
+      "packages_used": [
+        "LinearAlgebra",
+        "JSON3",
+        "QuantumToolbox"
+      ],
+      "precompute_seconds": 0.0162105,
+      "ran": true,
+      "reads_peer_result": false,
+      "returncode": 0,
+      "substrate": "julia_loop",
+      "ticks": 300,
+      "total_seconds": 0.8390511660000001,
+      "wall_seconds": 10.179777999874204
     }
   ],
   "ticks": 300

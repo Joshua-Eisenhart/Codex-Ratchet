@@ -6,6 +6,18 @@ classification='scratch_diagnostic'; promotion_allowed=false.
 
 This directory implements the 3-qubit live QIT loop over the 16 stage channels from `system_v7/constraint_core/engines/*_3q.py`. It is a deterministic diagnostic fixture and parity run, not admission evidence.
 
+## v1.1 Contract
+
+- R1: Belief updates use Lüders conditioning on the q0 projective outcome followed by the hill relaxation channel.
+- R2: `efe_scores_16` is a schema-stable field name for a reactive-risk + entropy cost surrogate with persistence-prior preference; it is NOT full active-inference EFE and has no ambiguity/epistemic term.
+- R3: The chosen stage channel is applied to belief as the predict step of the next tick. The world remains fixture-driven; actions feed back into belief prediction, not into fixture outcome generation.
+- R4: NumPy, JAX, PyTorch, and Julia execute the entire per-tick computation in their own stacks. Only the fixture and final JSONL writing are shared.
+- R5: The validator gates every per-tick comparison, including `efe_scores_16`, and requires exact action-index parity for all 300 ticks.
+- R6: `surprise_bits` is an EPS-regularized Umegaki surrogate using `psd_floor` and `logm(obs + EPS I)`, not exact relative entropy.
+- R7: `signal_povm` is fixture metadata echoed for audit, not used in inference.
+- R8: `substrates/julia_loop.jl` implements the same R1-R3 transition in native Julia operations.
+- R9: The Page-Hinkley + CUSUM online regime-shift detector is run over the fresh live stream and writes `results/live_300/detector_report.json`.
+
 ## Scope
 
 - Substrates: NumPy oracle, JAX, PyTorch, Julia.
@@ -17,10 +29,11 @@ This directory implements the 3-qubit live QIT loop over the 16 stage channels f
 - Stage channels are 64x64 superoperators on vectorized 8x8 density matrices.
 - Each substrate precomputes all 16 stage channels once, in stage order `(t, op)` from the 3q engine native map.
 - Observation is the sampled q0 POVM outcome from `world_fixture.json`, lifted to `|0><0|` or `|1><1|` on q0 tensor maximally mixed q1q2.
-- `surprise_bits` is the full 3q Umegaki relative entropy `S(obs || belief)` in bits, following `lev_bridge_sim.py`.
-- `fe_gradient` is the full 3q free-energy reduction for the pre-store belief update, following `lev_bridge_sim.py`.
-- EFE scores follow `agent_loop_sim.py`: `risk - (S(belief) - S(post))`.
-- Deterministic tie-break: if multiple EFE scores share the minimum, the lowest stage index is chosen.
+- Per tick: previous chosen stage predicts belief, fixture outcome is Lüders-conditioned on q0, hill relaxation stores memory, then the next stage is chosen.
+- `surprise_bits` is the EPS-regularized Umegaki surrogate in bits, not exact relative entropy.
+- `fe_gradient` is the reduction in the same surrogate after Lüders conditioning.
+- `efe_scores_16` computes reactive risk against the persistence-prior preference plus the entropy cost term.
+- Deterministic tie-break: if multiple scores share the minimum within `1e-12`, the lowest stage index is chosen.
 
 ## Commands
 

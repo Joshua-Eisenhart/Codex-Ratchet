@@ -5,7 +5,9 @@
 #
 # This is an independent Julia loop. It consumes only world_fixture.json,
 # constructs the 16 stage superoperators from the julia_engine_3q.jl mechanics,
-# and writes the same per-tick JSONL schema as the Python oracle.
+# and writes the same per-tick JSONL schema as the Python oracle. It applies
+# the chosen stage as the next tick's predict channel, then uses Lüders
+# conditioning on q0 plus the hill relaxation channel.
 using LinearAlgebra
 using JSON3
 using QuantumToolbox
@@ -19,8 +21,8 @@ const SCHEMA = "cr.qit_live_loop_3q_v1.tick.v1"
 const STREAM_ID = "qit_live_loop_3q_v1.live_300"
 const CLASSIFICATION = "scratch_diagnostic"
 const PROMOTION_ALLOWED = false
-const RATE = 0.5
 const EPS = 1.0e-12
+const ACTION_TIE_TOL = 1.0e-12
 
 const I2 = Matrix{ComplexF64}(I, 2, 2)
 const I8 = Matrix{ComplexF64}(I, 8, 8)
@@ -144,10 +146,20 @@ function von_neumann_entropy_bits(rho)
     return Float64(-sum(vals .* log2.(vals)))
 end
 
-function efe_score(pred, belief, preference)
+function reactive_risk_entropy_cost_surrogate(pred, belief, preference)
+    pred = sym_norm(pred)
     risk = relative_entropy_bits(pred, preference)
-    post = sym_norm((1.0 - RATE) .* belief .+ RATE .* pred)
-    return Float64(risk - (von_neumann_entropy_bits(belief) - von_neumann_entropy_bits(post)))
+    return Float64(risk - (von_neumann_entropy_bits(belief) - von_neumann_entropy_bits(pred)))
+end
+
+function choose_action_index(scores)
+    min_score = minimum(scores)
+    for (idx, value) in enumerate(scores)
+        if value <= min_score + ACTION_TIE_TOL
+            return idx - 1
+        end
+    end
+    error("unreachable action tie-break state")
 end
 
 function gen_super(ti)
@@ -210,6 +222,19 @@ function obs_density_from_outcome(outcome)
     return kron3(projector, 0.5 .* I2, 0.5 .* I2)
 end
 
+function q0_projector_from_outcome(outcome)
+    projector = outcome == 0 ? ComplexF64[1 0; 0 0] : ComplexF64[0 0; 0 1]
+    return kron3(projector, I2, I2)
+end
+
+function luders_condition_q0(rho, outcome)
+    projector = q0_projector_from_outcome(outcome)
+    post = projector * rho * projector'
+    prob = real(LinearAlgebra.tr(post))
+    prob < EPS && error("Lüders conditioning probability collapsed for outcome $outcome")
+    return sym_norm(post ./ prob)
+end
+
 function q0_reduced(rho)
     reduced = zeros(ComplexF64, 2, 2)
     for a in 0:1, b in 0:1, q1 in 0:1, q2 in 0:1
@@ -266,21 +291,25 @@ function run_loop(fixture, stage_supers, precompute_seconds)
 
     stages = stage_metadata()
     hill = build_hill_store_super()
+    pending_stage_super = Matrix{ComplexF64}(I, 64, 64)
     belief = I8 ./ 8.0
     rows = Vector{Dict{String, Any}}()
     started = time_ns()
     for rec in fixture.ticks
         tick = Int(rec.tick)
-        obs = obs_density_from_outcome(Int(rec.outcome))
-        surprise = relative_entropy_bits(obs, belief)
-        updated = sym_norm((1.0 - RATE) .* belief .+ RATE .* obs)
-        fe_gradient = surprise - relative_entropy_bits(obs, updated)
-        belief = apply_super(hill, updated)
+        outcome = Int(rec.outcome)
+        predicted = apply_super(pending_stage_super, belief)
+        preference = apply_super(hill, predicted)
+        obs = obs_density_from_outcome(outcome)
+        surprise = relative_entropy_bits(obs, predicted)
+        conditioned = luders_condition_q0(predicted, outcome)
+        fe_gradient = surprise - relative_entropy_bits(obs, conditioned)
+        belief = apply_super(hill, conditioned)
 
-        preference = obs
-        scores = Float64[efe_score(apply_super(stage, belief), belief, preference) for stage in stage_supers]
-        chosen0 = argmin(scores) - 1
+        scores = Float64[reactive_risk_entropy_cost_surrogate(apply_super(stage, belief), belief, preference) for stage in stage_supers]
+        chosen0 = choose_action_index(scores)
         stage = stages[chosen0 + 1]
+        pending_stage_super = stage_supers[chosen0 + 1]
         push!(
             rows,
             Dict{String, Any}(
@@ -301,7 +330,7 @@ function run_loop(fixture, stage_supers, precompute_seconds)
                     "p0" => Float64(rec.signal_povm.p0),
                     "p1" => Float64(rec.signal_povm.p1),
                 ),
-                "sampled_outcome" => Int(rec.outcome),
+                "sampled_outcome" => outcome,
                 "classification" => CLASSIFICATION,
                 "promotion_allowed" => PROMOTION_ALLOWED,
             ),

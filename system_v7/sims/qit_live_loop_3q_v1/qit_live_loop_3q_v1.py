@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 import shutil
@@ -32,6 +33,7 @@ SIM_PY = Path("/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3")
 JULIA = Path("/opt/homebrew/bin/julia")
 JULIA_PROJECT = REPO_ROOT / "system_v5" / "julia_carrier"
 LEV_SEGMENT_LINES = 100
+DETECTOR_PATH = REPO_ROOT / "system_v7" / "sims" / "online_regime_shift_detector_v0" / "online_regime_shift_detector_v0_exact.py"
 
 
 def safe_fresh_dir(out_dir: Path) -> None:
@@ -79,6 +81,15 @@ def max_abs(xs: list[float], ys: list[float]) -> float:
 
 def sha256_path(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_detector_module():
+    spec = importlib.util.spec_from_file_location("qit_live_loop_detector_exact", DETECTOR_PATH)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot load detector mechanics from {DETECTOR_PATH}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def build_lev_bridge_stream(out_dir: Path, source_name: str = "numpy_oracle_loop") -> dict:
@@ -240,6 +251,7 @@ def validate_outputs(out_dir: Path, ticks: int | None = None) -> dict:
         max(pair["belief_pauli_63_max_abs_dev"] for pair in python_pair_reports.values()) <= TRIO_BAR
         and max(pair["surprise_bits_max_abs_dev"] for pair in python_pair_reports.values()) <= TRIO_BAR
         and max(pair["fe_gradient_max_abs_dev"] for pair in python_pair_reports.values()) <= TRIO_BAR
+        and max(pair["efe_scores_16_max_abs_dev"] for pair in python_pair_reports.values()) <= TRIO_BAR
         and python_trio_action_match_count == expected_ticks
         and lev_stream["ok"]
     )
@@ -247,6 +259,7 @@ def validate_outputs(out_dir: Path, ticks: int | None = None) -> dict:
         julia_report["belief_pauli_63_max_abs_dev"] <= JULIA_BAR
         and julia_report["surprise_bits_max_abs_dev"] <= JULIA_BAR
         and julia_report["fe_gradient_max_abs_dev"] <= JULIA_BAR
+        and julia_report["efe_scores_16_max_abs_dev"] <= JULIA_BAR
         and julia_report["action_index_exact_match"]
     )
     report = {
@@ -276,7 +289,66 @@ def validate_outputs(out_dir: Path, ticks: int | None = None) -> dict:
     return report
 
 
-def write_summary(out_dir: Path, fixture: Path, substrate_metrics: list[dict], parity_report: dict) -> dict:
+def transform_detection_tick(raw_tick: int | None, boundary_tick: int, calibration_count: int) -> int | None:
+    if raw_tick is None:
+        return None
+    return int(boundary_tick + (raw_tick - calibration_count))
+
+
+def run_detector_report(out_dir: Path, source_name: str = "numpy_oracle_loop") -> dict:
+    detector = load_detector_module()
+    rows = read_jsonl(out_dir / f"{source_name}.jsonl")
+    values = detector.values_from_ticks(rows)
+    agreement_window = 8
+    boundary_reports = {}
+    for boundary in (100, 200):
+        calibration_count = min(100, boundary)
+        calibration_start = boundary - calibration_count
+        calibration = values[calibration_start:boundary]
+        local_values = detector.np.concatenate([calibration, values[boundary:]])
+        local_spec = {
+            "declared_false_positive_rate": 0.001,
+            "calibration_window": calibration_count,
+            "bootstrap_horizon": 512,
+            "agreement_window": agreement_window,
+        }
+        params = detector.derive_parameters(calibration, local_spec)
+        raw = detector.detect(local_values, params, local_spec)
+        ph_tick = transform_detection_tick(raw["page_hinkley_detection_tick"], boundary, calibration_count)
+        cu_tick = transform_detection_tick(raw["cusum_detection_tick"], boundary, calibration_count)
+        dual_tick = transform_detection_tick(raw["dual_detection_tick"], boundary, calibration_count)
+        boundary_reports[str(boundary)] = {
+            "calibration_tick_start": calibration_start,
+            "calibration_tick_end": boundary - 1,
+            "monitored_tick_start": boundary,
+            "page_hinkley_detection_tick": ph_tick,
+            "cusum_detection_tick": cu_tick,
+            "dual_detection_tick": dual_tick,
+            "fires_near_boundary": dual_tick is not None and abs(dual_tick - boundary) <= agreement_window,
+            "near_window_ticks": agreement_window,
+            "detector_parameters": params,
+            "statistics": raw["statistics"],
+        }
+    report = {
+        "schema": "cr.qit_live_loop_3q_v1.detector_report.v1",
+        "classification": CLASSIFICATION,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "source_substrate": source_name,
+        "source_stream": str(out_dir / f"{source_name}.jsonl"),
+        "source_sha256": sha256_path(out_dir / f"{source_name}.jsonl"),
+        "mechanics_source": str(DETECTOR_PATH),
+        "mechanics_source_sha256": sha256_path(DETECTOR_PATH),
+        "detectors": ["page_hinkley", "cusum"],
+        "signal": "surprise_bits",
+        "boundary_reports": boundary_reports,
+        "world_shift_ticks": [100, 200],
+        "claim_ceiling": "scratch diagnostic detector pass over the qit_live_loop_3q_v1 stream only; no admission or drift-robustness claim",
+    }
+    (out_dir / "detector_report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    return report
+
+
+def write_summary(out_dir: Path, fixture: Path, substrate_metrics: list[dict], parity_report: dict, detector_report: dict) -> dict:
     fixture_hash = hashlib.sha256(fixture.read_bytes()).hexdigest()
     summary = {
         "schema": "cr.qit_live_loop_3q_v1.summary.v1",
@@ -286,6 +358,8 @@ def write_summary(out_dir: Path, fixture: Path, substrate_metrics: list[dict], p
         "fixture_sha256": fixture_hash,
         "substrate_metrics": substrate_metrics,
         "parity_report": str(out_dir / "parity_report.json"),
+        "detector_report": str(out_dir / "detector_report.json"),
+        "detector_boundary_reports": detector_report["boundary_reports"],
         "lev_bridge_stream": parity_report["lev_bridge_stream"],
         "python_trio_passed": parity_report["python_trio_passed"],
         "julia_passed": parity_report["julia_passed"],
@@ -302,11 +376,13 @@ def write_summary(out_dir: Path, fixture: Path, substrate_metrics: list[dict], p
             "Julia loop is an independent scratch diagnostic parity leg, not promotion evidence.",
             "scratch_diagnostic; promotion_allowed=false.",
             "belief_bloch is q0 reduced projection, not full 3q state.",
+            "signal_povm is fixture metadata echoed for audit, not used in inference.",
+            "World remains fixture-driven; chosen actions feed back only into the belief predict step.",
             "L/R dual engine not claimed.",
         ],
     }
     (out_dir / "summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
-    write_results_md(out_dir, summary, parity_report)
+    write_results_md(out_dir, summary, parity_report, detector_report)
     return summary
 
 
@@ -331,7 +407,7 @@ def validate_only_metrics(out_dir: Path) -> list[dict]:
     return metrics
 
 
-def write_results_md(out_dir: Path, summary: dict, parity_report: dict) -> None:
+def write_results_md(out_dir: Path, summary: dict, parity_report: dict, detector_report: dict) -> None:
     lines = [
         "# QUARANTINE_EXPLORATORY: qit_live_loop_3q_v1 results",
         "",
@@ -348,7 +424,26 @@ def write_results_md(out_dir: Path, summary: dict, parity_report: dict) -> None:
         f"Max belief_pauli_63 abs dev: `{parity_report['max_belief_pauli_63_abs_dev']}`.",
         f"Max surprise_bits abs dev: `{parity_report['max_surprise_bits_abs_dev']}`.",
         f"Max fe_gradient abs dev: `{parity_report['max_fe_gradient_abs_dev']}`.",
+        f"Max efe_scores_16 abs dev: `{parity_report['max_efe_scores_16_abs_dev']}`.",
         f"Lev stream verifies: `{parity_report['lev_bridge_stream']['ok']}` over `{parity_report['lev_bridge_stream']['ticks_verified']}` ticks.",
+        f"Detector report: `detector_report.json`.",
+        "",
+        "## v1.1 repairs",
+        "",
+        "- R1: Lüders conditioning on the q0 projective outcome + hill relaxation channel; no RATE=0.5 convex belief blend.",
+        "- R2: `efe_scores_16` is a reactive-risk + entropy cost surrogate with persistence-prior preference; NOT full active-inference EFE.",
+        "- R3: chosen stage channel feeds back as the next tick predict step; world outcomes remain fixture-driven.",
+        "- R4: NumPy, JAX, PyTorch, and Julia execute their per-tick loops in their own stacks; only fixture and JSONL writing are shared.",
+        "- R5: validator gates every per-tick comparison including `efe_scores_16` and exact action indices.",
+        "- R6: `surprise_bits` is an EPS-regularized Umegaki surrogate, not exact relative entropy.",
+        "- R7: `signal_povm` is fixture metadata echoed for audit, not used in inference.",
+        "- R8: Julia implements the same R1-R3 loop semantics in native Julia operations.",
+        "- R9: Page-Hinkley + CUSUM detector report is written over the fresh live stream.",
+        "",
+        "## Detector",
+        "",
+        f"Tick 100 dual fire: `{detector_report['boundary_reports']['100']['dual_detection_tick']}`; near 100: `{detector_report['boundary_reports']['100']['fires_near_boundary']}`.",
+        f"Tick 200 dual fire: `{detector_report['boundary_reports']['200']['dual_detection_tick']}`; near 200: `{detector_report['boundary_reports']['200']['fires_near_boundary']}`.",
         "",
         "## Julia parity",
         "",
@@ -392,9 +487,10 @@ def main() -> int:
         build_lev_bridge_stream(out_dir)
 
     parity_report = validate_outputs(out_dir, ticks=args.ticks)
+    detector_report = run_detector_report(out_dir)
     if args.validate_only:
         substrate_metrics = validate_only_metrics(out_dir)
-    summary = write_summary(out_dir, fixture, substrate_metrics, parity_report)
+    summary = write_summary(out_dir, fixture, substrate_metrics, parity_report, detector_report)
     print(json.dumps(summary, indent=2, sort_keys=True))
     return 0 if parity_report["all_parity_passed"] else 1
 

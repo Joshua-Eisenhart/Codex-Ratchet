@@ -1,9 +1,17 @@
-"""QUARANTINE_EXPLORATORY: shared 3q live-loop mechanics.
+"""QUARANTINE_EXPLORATORY: shared NumPy 3q live-loop mechanics.
 
 classification='scratch_diagnostic'; promotion_allowed=false.
 
 belief_bloch is the reduced q0/signal-qubit projection of the 3q belief state,
 not the full 3q state. The full 3q state is emitted as belief_pauli_63.
+
+Belief updates use Lüders conditioning on the q0 projective outcome + hill
+relaxation channel. surprise_bits is an EPS-regularized Umegaki surrogate
+(psd_floor on the reference plus logm(obs + EPS I)), not exact relative entropy.
+efe_scores_16 is a reactive-risk + entropy cost surrogate with
+persistence-prior preference; NOT full active-inference EFE (no
+ambiguity/epistemic term). signal_povm is fixture metadata echoed for audit,
+not used in inference.
 """
 from __future__ import annotations
 
@@ -19,7 +27,7 @@ from pathlib import Path
 from typing import Callable, Iterable
 
 import numpy as np
-from scipy.linalg import expm, logm
+from scipy.linalg import expm
 
 BASE_DIR = Path(__file__).resolve().parent
 REPO_ROOT = BASE_DIR.parents[2]
@@ -30,8 +38,8 @@ SCHEMA = "cr.qit_live_loop_3q_v1.tick.v1"
 STREAM_ID = "qit_live_loop_3q_v1.live_300"
 CLASSIFICATION = "scratch_diagnostic"
 PROMOTION_ALLOWED = False
-RATE = 0.5
 EPS = 1e-12
+ACTION_TIE_TOL = 1e-12
 
 I2 = np.eye(2, dtype=np.complex128)
 I8 = np.eye(8, dtype=np.complex128)
@@ -93,10 +101,16 @@ def psd_floor(rho: np.ndarray) -> np.ndarray:
     return sym_norm(basis @ np.diag(ev) @ basis.conj().T)
 
 
+def log_hermitian(a: np.ndarray) -> np.ndarray:
+    clean = 0.5 * (a + a.conj().T)
+    ev, basis = np.linalg.eigh(clean)
+    return basis @ np.diag(np.log(ev.real)) @ basis.conj().T
+
+
 def relative_entropy_bits(obs: np.ndarray, belief: np.ndarray) -> float:
     obs = sym_norm(obs)
     belief = psd_floor(belief)
-    value = np.trace(obs @ ((logm(obs + EPS * I8) - logm(belief)) / np.log(2)))
+    value = np.trace(obs @ ((log_hermitian(obs + EPS * I8) - log_hermitian(belief)) / np.log(2)))
     return float(np.real(value))
 
 
@@ -106,10 +120,19 @@ def von_neumann_entropy_bits(rho: np.ndarray) -> float:
     return float(-np.sum(ev * np.log2(ev)))
 
 
-def efe_score(pred: np.ndarray, belief: np.ndarray, preference: np.ndarray, rate: float = RATE) -> float:
+def reactive_risk_entropy_cost_surrogate(pred: np.ndarray, belief: np.ndarray, preference: np.ndarray) -> float:
     risk = relative_entropy_bits(pred, preference)
-    post = sym_norm((1.0 - rate) * belief + rate * pred)
-    return risk - (von_neumann_entropy_bits(belief) - von_neumann_entropy_bits(post))
+    pred = sym_norm(pred)
+    return risk - (von_neumann_entropy_bits(belief) - von_neumann_entropy_bits(pred))
+
+
+def choose_action_index(scores: Iterable[float]) -> int:
+    values = [float(x) for x in scores]
+    minimum = min(values)
+    for idx, value in enumerate(values):
+        if value <= minimum + ACTION_TIE_TOL:
+            return idx
+    raise RuntimeError("unreachable action tie-break state")
 
 
 def q0_reduced(rho: np.ndarray) -> np.ndarray:
@@ -143,6 +166,20 @@ def belief_pauli_63(rho: np.ndarray) -> list[float]:
 def obs_density_from_outcome(outcome: int) -> np.ndarray:
     projector = np.array([[1, 0], [0, 0]], dtype=np.complex128) if outcome == 0 else np.array([[0, 0], [0, 1]], dtype=np.complex128)
     return kron3(projector, 0.5 * I2, 0.5 * I2)
+
+
+def q0_projector_from_outcome(outcome: int) -> np.ndarray:
+    projector = np.array([[1, 0], [0, 0]], dtype=np.complex128) if outcome == 0 else np.array([[0, 0], [0, 1]], dtype=np.complex128)
+    return kron3(projector, I2, I2)
+
+
+def luders_condition_q0(rho: np.ndarray, outcome: int) -> np.ndarray:
+    projector = q0_projector_from_outcome(outcome)
+    post = projector @ rho @ projector.conj().T
+    prob = np.trace(post).real
+    if prob < EPS:
+        raise ValueError(f"Lüders conditioning probability collapsed for outcome {outcome}")
+    return sym_norm(post / prob)
 
 
 def signal_povm_from_record(record: dict) -> dict:
@@ -197,21 +234,24 @@ def run_records(
         raise ValueError(f"{substrate} precomputed {len(stage_supers)} stage channels, expected 16")
 
     hill = build_hill_store_super()
+    pending_stage_super = np.eye(64, dtype=np.complex128)
     belief = I8 / 8.0
     rows = []
     started = time.perf_counter()
     for rec in fixture["ticks"]:
         tick = int(rec["tick"])
+        predicted = apply_super(pending_stage_super, belief)
+        preference = apply_super(hill, predicted)
         obs = obs_density_from_outcome(int(rec["outcome"]))
-        surprise = relative_entropy_bits(obs, belief)
-        updated = sym_norm((1.0 - RATE) * belief + RATE * obs)
-        fe_gradient = surprise - relative_entropy_bits(obs, updated)
-        belief = apply_super(hill, updated)
+        surprise = relative_entropy_bits(obs, predicted)
+        conditioned = luders_condition_q0(predicted, int(rec["outcome"]))
+        fe_gradient = surprise - relative_entropy_bits(obs, conditioned)
+        belief = apply_super(hill, conditioned)
 
-        preference = obs
-        scores = [efe_score(apply_super(stage, belief), belief, preference) for stage in stage_supers]
-        chosen = int(np.argmin(np.asarray(scores, dtype=np.float64)))
+        scores = [reactive_risk_entropy_cost_surrogate(apply_super(stage, belief), belief, preference) for stage in stage_supers]
+        chosen = choose_action_index(scores)
         stage = stages[chosen]
+        pending_stage_super = stage_supers[chosen]
         rows.append(
             {
                 "tick": tick,

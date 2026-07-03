@@ -1,0 +1,88 @@
+{
+  "boundary_reports": {
+    "100": {
+      "calibration_tick_end": 99,
+      "calibration_tick_start": 0,
+      "cusum_detection_tick": 105,
+      "detector_parameters": {
+        "baseline_mean": 2.0834337465637587,
+        "bootstrap_horizon": 512,
+        "calibration_window": 100,
+        "cusum": {
+          "delta": 8.821552425626876,
+          "derivation": "delta and lambda are empirical calibration cyclic-bootstrap quantiles at 1-alpha, plus numerical tie guard",
+          "lambda_threshold": 1e-12
+        },
+        "declared_false_positive_rate": 0.001,
+        "empirical_quantile_rank": 99,
+        "page_hinkley": {
+          "delta": 8.821552425626876,
+          "derivation": "delta and lambda are empirical calibration cyclic-bootstrap quantiles at 1-alpha, plus numerical tie guard",
+          "lambda_threshold": 0.2374297318068325
+        }
+      },
+      "dual_detection_tick": null,
+      "fires_near_boundary": false,
+      "monitored_tick_start": 100,
+      "near_window_ticks": 8,
+      "page_hinkley_detection_tick": null,
+      "statistics": {
+        "cusum_final": 0.0,
+        "cusum_max": 0.6400970275703344,
+        "page_hinkley_final": 0.0,
+        "page_hinkley_max": 0.0
+      }
+    },
+    "200": {
+      "calibration_tick_end": 199,
+      "calibration_tick_start": 100,
+      "cusum_detection_tick": 201,
+      "detector_parameters": {
+        "baseline_mean": 3.010737049788137,
+        "bootstrap_horizon": 512,
+        "calibration_window": 100,
+        "cusum": {
+          "delta": 8.12054275462518,
+          "derivation": "delta and lambda are empirical calibration cyclic-bootstrap quantiles at 1-alpha, plus numerical tie guard",
+          "lambda_threshold": 1e-12
+        },
+        "declared_false_positive_rate": 0.001,
+        "empirical_quantile_rank": 99,
+        "page_hinkley": {
+          "delta": 8.12054275462518,
+          "derivation": "delta and lambda are empirical calibration cyclic-bootstrap quantiles at 1-alpha, plus numerical tie guard",
+          "lambda_threshold": 0.07482977220097622
+        }
+      },
+      "dual_detection_tick": null,
+      "fires_near_boundary": false,
+      "monitored_tick_start": 200,
+      "near_window_ticks": 8,
+      "page_hinkley_detection_tick": 246,
+      "statistics": {
+        "cusum_final": 0.0,
+        "cusum_max": 0.4138033953476512,
+        "page_hinkley_final": 0.0,
+        "page_hinkley_max": 0.09997657808526128
+      }
+    }
+  },
+  "claim_ceiling": "scratch diagnostic detector pass over the qit_live_loop_3q_v1 stream only; no admission or drift-robustness claim",
+  "classification": "scratch_diagnostic",
+  "detectors": [
+    "page_hinkley",
+    "cusum"
+  ],
+  "mechanics_source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/online_regime_shift_detector_v0/online_regime_shift_detector_v0_exact.py",
+  "mechanics_source_sha256": "891563000f79c2b8134f81ab98be2c8606ddfc061478ccb5521981cebb5bc6cd",
+  "promotion_allowed": false,
+  "schema": "cr.qit_live_loop_3q_v1.detector_report.v1",
+  "signal": "surprise_bits",
+  "source_sha256": "cd5a1af770e2d8574bcb81e3efaf89e79fc99068a3120b1e0f1a2ea783656f31",
+  "source_stream": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/numpy_oracle_loop.jsonl",
+  "source_substrate": "numpy_oracle_loop",
+  "world_shift_ticks": [
+    100,
+    200
+  ]
+}

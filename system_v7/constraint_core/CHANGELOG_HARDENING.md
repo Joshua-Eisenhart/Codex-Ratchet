@@ -549,3 +549,90 @@ HONEST SCOPE: 0.5 earns the ladder+kill-control+G2; does NOT build the octonion 
                SM gauge from G2 (downstream, scaffold 10.4). 0.6 is a mechanism illustration of the owner
                cosmogenesis, NOT a cosmological-constant derivation. Owner doctrine under test. FULL HARNESS VERIFIED: 59 pass / 0 fail / 0 skip GREEN
                (in /tmp/final_base incl JAX + Julia cross-substrate lanes).
+
+
+# LAYER 0.7 — 2026-07-02 (loop-back / convergence: one basin, many perspectives)
+UP-46 NEW LAYER 0.7  perspective_convergence_sim.py -- tests the owner reframe that the ratchet, QIT
+               engines, and physics model are ONE attractor basin seen from different perspectives, not a
+               divergent set. Takes ONE Werner state family and computes each already-built physics
+               bridge by its OWN native recipe: gravity (0.4) = sign of signed I_c; chirality (19.1/20.1)
+               = forced iff entangled (negativity>0); cosmogenesis (0.6) = expansion size S(rho_A).
+               RESULTS: (1) all three are projections of the single parameter p -- one object, many
+               views. (2) NESTED onset order: entanglement onsets at p=1/3, binding-sign at p*=0.7476 --
+               entanglement is necessary but NOT sufficient for the gravitational binding sign (a strict
+               entangled-but-nonbinding regime exists between). (3) LOOP-BACK LESSON: the master invariant
+               governing the physical sign is the SIGNED I_c (Layer 0.3), strictly stronger than raw
+               entanglement -- the convergence RANKS the invariants and tightens which quantity is
+               foundational. (4) z3+cvc5 gate: law chain bind<=>I_c, I_c=>ent, forced<=>ent fits all three
+               regimes; control "entangled-but-nonbinding forced to bind" UNSAT-with-law -> SAT-without.
+               HONEST SCOPE: demonstrates the one-basin claim as computed convergence on a one-parameter
+               family + extracts the invariant-ranking lesson; does NOT prove global basin uniqueness.
+               FULL HARNESS VERIFIED: 60 pass / 0 fail / 0 skip GREEN (incl JAX + Julia lanes).
+
+
+# LAYER 0.8 + LOOP-BACK PACKET REPAIRS — 2026-07-03 (octonion spinor network; WEB_THREAD_LOOPBACK_20260703)
+UP-47 NEW LAYER 0.8  octonion_spinor_network_sim.py -- the practical sim carrier of scaffold 10.4/11: a
+               finite spinor network, nodes=octonionic spinors, edges=noncommutative+nonassociative
+               couplings, built ON Layer 0.5. Closes loop-back packet item 3 ("exhibit a G2 action, not
+               just dim 14"). RESULTS: (1) path-bracketing gap ~1.6 across a 3-edge path = grouping-level
+               N01 as a NETWORK-level observable; (2) single-edge control gap = 0 (nonassoc invisible on a
+               point -> network necessary); (3) G2 ACTION exhibited: concrete phi=exp(0.3 D) with
+               phi(xy)=phi(x)phi(y) to ~1e-16 (real Aut(O) element), bracketing gap INVARIANT under it ->
+               G2 is the symmetry group of the network coupling schedule; (4) L/R chirality gap ~0.05 on
+               the network (ties to 19.1/20.1). Hypothetical lane; does NOT yet run terrain/operator
+               schedules on the network or derive SM gauge from G2.
+UP-48 LOOP-BACK REPAIRS (WEB_THREAD_LOOPBACK_20260703, local-harness adversarial review):
+   STATE_OF_THE_MODEL.md 6 wording-tier repairs (a-f): "validated across four substrates" -> "reproduced
+     ... (reproducibility engineering, not formal verification)"; Axis-6 b6 law -> "0/8 violations
+     OBSERVED ... construct-then-verify, known defect"; P12 (1,1,1)/sqrt3 -> "candidate/conditional per
+     lineage"; "EARN REALIZATION FAITHFULNESS" -> "earned realization checks ... no encoding bugs FOUND";
+     "P12 axis load-bearing" -> "axis-conditioned result"; added cross-family adversarial-review line.
+   FENCE BREACH (item 4): removed EARNS/EARNED self-stamps from sim docstrings (signed_axis0,
+     division_algebra, weak_force -> "renders/admits, hypothetical lane") and ledger rows; banned verb
+     "creates NO distinguishability" -> "registers NO". CLAIM SPLITS (item 3): entropic_newton "CONSEQUENCE
+     not assumed" -> "follows GIVEN assumed area law = Verlinde reproduced, not derived from F01+N01";
+     weak_force "earns one SM fact" -> "admits chirality STRUCTURE forced; vertex+side empirical".
+HONEST NEGATIVE recorded (item 5): eps_even_a2 dissipation-foothold route stays a diagnostic, not cited
+     as positive. FULL HARNESS VERIFIED: 61 pass / 0 fail / 0 skip GREEN (incl JAX + Julia lanes).
+
+
+# LAYER 0.9 — QIT FREE ENERGY PRINCIPLE EARNED THROUGH THE RATCHET — 2026-07-03
+UP-49 NEW LAYER 0.9  qit_fep_ratchet_sim.py -- a pure-QIT FEP DERIVED FROM the constraint surface stage by
+               stage, NO shortcuts, with EVERY classical/thermal primitive of standard FEP replaced by its
+               constraint-surface origin (owner directive: "the real math must always come before the
+               jargon"; "thermo sounds like a dangerous term"). Rejected the doc's own thermal prior
+               exp(-E/T)/Z (Boltzmann) and the amplitude-damping "ground state"; replaced by GKSL fixed
+               points of the native Axis-5 T-operators (Ti z-dephasing, Te x-dephasing), full-rank by
+               construction so relative entropy is finite with ZERO regularization -- no temperature, no
+               energy, no -log p, no classical probability anywhere in the math.
+               REPLACEMENTS: p(z)->density spectrum (F01); exp(-E/T)->GKSL fixed point; -log p(x)->S(rho||sigma);
+               Bayesian update->CPTP relaxation; Markov-blanket graph->vanishing I(A:C|B).
+               SIX EARNED STAGES: (1) F01 distinguishability FORCES the functional -- S(rho||sigma) unique as
+               BOTH CPTP-monotone AND additive (relent additive 3.6e-14; trace distance NOT, off 0.287).
+               (2) Axis-0 geometry splits surprise EXACTLY (Pythagorean |d|=0) into classical spectral
+               (entropy DOF) + quantum basis-mismatch (coherence DOF). (3) Axis-5 operators ARE inference:
+               each native T-op drives surprise vs OWN pointer monotone to 0 (self-evidencing); foreign
+               >0.1. (4) 3-qubit Markov blanket = vanishing I(A:C|B) (chain 0.0000; direct A-C 0.278).
+               (5) active selection = min-surprise (z->Ti, x->Te). (6) z3 AND cvc5: law fits, foreign-forced
+               control UNSAT->SAT. LOOP-BACK: FEP is a different VIEW of the ratchet, not a new mechanism.
+               Hypothetical lane; no Friston hierarchical continuous-state claim. FULL HARNESS VERIFIED: 62 pass / 0 fail / 0 skip GREEN (incl JAX + Julia lanes).
+
+
+# LAYER 0.10 — ACTIVE HALF OF QIT-FEP: POLICY SELECTION ON THE MANIFOLD — 2026-07-03
+UP-50 NEW LAYER 0.10  qit_active_inference_planning_sim.py -- the ACTIVE half of the QIT Free Energy
+               Principle (0.9 built perceptual), run as a PLANNING loop over operator PATHS. A policy is a
+               sequence of native operators (Ti/Te dephasings + F rotations); cost = PATH INTEGRAL of
+               surprise G(pi)=sum_t S(rho_t||goal); active inference = select min-cost policy. All CPTP +
+               relative entropy; NO reward, NO temperature, NO classical probability (goal = density-op
+               prior, cost = distinguishability). RESULTS: (1) PRAGMATIC: min-path-integral policy reaches
+               a tilted-pointer goal (rotate-then-commit), final surprise 0.06 from 0.16. (2) N01 INHERITED:
+               100/125 3-step policies cost != reverse (mean gap 0.21, max 0.87); selected fwd 0.31 vs rev
+               0.84 -- policy space carries the manifold's noncommutation, the SAME path-dependence as the
+               0.8 octonion-network bracketing gap. (3) EPISTEMIC (resolve which-concept, soft posterior
+               q(c)~exp(-S(rho||prior_c))): committing/dephasing policy resolves concept-identity (+0.013
+               bits), rotating does not (0.000) -- directional sign structure, magnitude honestly small
+               (nearby anchors). (4) GATE z3 AND cvc5: law "valid policy <=> reaches AND order-consistent"
+               fits, control "non-reaching forced valid" UNSAT-with-law->SAT-without. LOOP-BACK: closes the
+               FEP loop -- perception (0.9) relaxes surprise, action (0.10) selects the path that will; both
+               the SAME relative-entropy descent over trajectories; 0.8's N01 makes planning nontrivial.
+               Hypothetical lane; finite 3-step enumeration, not continuous optimal control. FULL HARNESS VERIFIED: 63 pass / 0 fail / 0 skip GREEN (incl JAX + Julia lanes).

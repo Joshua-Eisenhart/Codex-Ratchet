@@ -29,7 +29,7 @@ RESULTS (deterministic, seeded):
      "attractive-binding <=> I_c>0" fits (SAT); control "measured-dispersing halo also binds" is UNSAT
      with the law, SAT once dropped. z3 AND cvc5, fit + flipped control.
 
-This EARNS the sign structure the 0.2 gravity layer asserted: its two regimes are the two signs of
+This RENDERS (hypothetical lane) the sign structure the 0.2 gravity layer asserted: its two regimes are the two signs of
 the signed Axis-0 primitive, grounded in the owner's -S(A|B) kernel. Honest scope: still the entropic-
 gravity MECHANISM (owner doctrine under test, sec 7 fence), not a derivation of GR.
 scratch_diagnostic; promotion_allowed=false.

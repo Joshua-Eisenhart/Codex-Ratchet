@@ -31,7 +31,7 @@ RESULTS (deterministic, seeded):
      per rung; law "ratchet admits a rung IFF it still divides (norm-multiplicative)" fits R..O (SAT);
      control "admit S (measured non-dividing)" UNSAT with law -> SAT without. z3 AND cvc5, both halves.
 
-HONEST SCOPE: this earns the division-algebra ladder as the weakest-structure/shortest-leap ratchet
+HONEST SCOPE: this RENDERS (hypothetical lane) the division-algebra ladder as the weakest-structure/shortest-leap ratchet
 with nonassociativity as the grouping-level N01, and O as the kill-controlled endpoint with G2
 symmetry. It does NOT here build the octonion spinor network or derive SM gauge structure from G2 --
 those are downstream (working_math_scaffold 10.4). Owner doctrine under test.

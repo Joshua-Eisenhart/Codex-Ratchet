@@ -1,0 +1,150 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "python_stdlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "jax": {
+      "reason": "load-bearing x64 stream generation, calibration bootstrap, Page-Hinkley/CUSUM scans",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "load-bearing vectorized deterministic surprise stream and threshold derivation arrays",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive JSON/timestamp/hash result emission",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "battery_eligible": true,
+  "boundary_tests": {
+    "slow_drift_behavior_reported_without_promotion": true,
+    "small_shift_at_threshold_reported": true
+  },
+  "claim_ceiling": "battery-eligible local detector diagnostic only; does not prove Lev admission, QIT engine validity, bridge closure, or drift robustness beyond the reported controls",
+  "classification": "scratch_diagnostic",
+  "detector_parameters": {
+    "baseline_mean": 0.026,
+    "bootstrap_horizon": 512,
+    "calibration_window": 256,
+    "cusum": {
+      "delta": 0.0034992044504248802,
+      "derivation": "delta and lambda are empirical calibration cyclic-bootstrap quantiles at 1-alpha, plus numerical tie guard",
+      "lambda_threshold": 1e-12
+    },
+    "declared_false_positive_rate": 0.001,
+    "empirical_quantile_rank": 255,
+    "page_hinkley": {
+      "delta": 0.0034992044504248802,
+      "derivation": "delta and lambda are empirical calibration cyclic-bootstrap quantiles at 1-alpha, plus numerical tie guard",
+      "lambda_threshold": 0.0010819575826670701
+    }
+  },
+  "detectors": [
+    "page_hinkley",
+    "cusum"
+  ],
+  "engine": "jax",
+  "engine_leg_completeness": "FULL",
+  "facts": {
+    "declared_false_positive_rate": 0.001,
+    "drift_behavior": "slow monotone drift is the known hard case; detectors may trigger late because evidence is spread across many ticks",
+    "empirical_stationary_fpr": 0.0,
+    "positive_shift_detected_within": 0
+  },
+  "formal_admission_allowed": false,
+  "negative_tests": {
+    "label_erased_stream_id_invariant": true,
+    "stationary_10k_zero_dual_triggers": true
+  },
+  "package_versions": {
+    "jax": "0.10.1"
+  },
+  "positive_tests": {
+    "known_shift_detected_within_w": true,
+    "page_hinkley_and_cusum_agree": true
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "scenarios": {
+    "adversarial_slow_drift": {
+      "behavior": "slow monotone drift is the known hard case; detectors may trigger late because evidence is spread across many ticks",
+      "cusum_detection_tick": 627,
+      "detectors_agree_within_w": true,
+      "drift_horizon": 1000,
+      "dual_detection_tick": 629,
+      "page_hinkley_detection_tick": 629,
+      "shift_detected_after": 29,
+      "statistics": {
+        "cusum_final": 1569.09262521517,
+        "cusum_max": 1569.09262521517,
+        "page_hinkley_final": 397.05554803912514,
+        "page_hinkley_max": 397.05554803912514
+      }
+    },
+    "boundary_small_shift_at_threshold": {
+      "behavior": "near-threshold shifts are detected only if cumulative evidence crosses both calibration-derived thresholds inside the agreement window",
+      "cusum_detection_tick": 631,
+      "detectors_agree_within_w": true,
+      "dual_detection_tick": 637,
+      "page_hinkley_detection_tick": 637,
+      "shift_size": 0.0036194219596101104,
+      "statistics": {
+        "cusum_final": 0.1904047501481731,
+        "cusum_max": 0.23578424548665655,
+        "page_hinkley_final": 0.036352593282755086,
+        "page_hinkley_max": 0.14932311452976066
+      }
+    },
+    "label_erased": {
+      "invariant_to_stream_id_relabeling": true,
+      "pass": true,
+      "stream_a_detection_tick": 600,
+      "stream_b_detection_tick": 600
+    },
+    "positive_known_shift": {
+      "cusum_detection_tick": 600,
+      "detectors_agree_within_w": true,
+      "dual_detection_tick": 600,
+      "known_shift_tick": 600,
+      "page_hinkley_detection_tick": 600,
+      "pass": true,
+      "shift_detected_within": 0,
+      "statistics": {
+        "cusum_final": 105.88419037770579,
+        "cusum_max": 105.88419037770579,
+        "page_hinkley_final": 72.64433731359301,
+        "page_hinkley_max": 72.64433731359301
+      }
+    },
+    "stationary_10k": {
+      "cusum_detection_tick": null,
+      "declared_fpr": 0.001,
+      "detectors_agree_within_w": false,
+      "dual_detection_tick": null,
+      "dual_trigger_count": 0,
+      "empirical_fpr": 0.0,
+      "page_hinkley_detection_tick": null,
+      "pass": true,
+      "statistics": {
+        "cusum_final": 0.0,
+        "cusum_max": 0.0,
+        "page_hinkley_final": 0.0,
+        "page_hinkley_max": 0.0
+      }
+    }
+  },
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "online_regime_shift_detector_v0",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/online_regime_shift_detector_v0/online_regime_shift_detector_v0_jax.py",
+  "source_sha256": "decf0719764e0da16936b591a12a649138b124e353fe7d54eec11e105fcc5a19",
+  "spec_sha256": "6c834eca974daab51a62c05d6a15aa47fdb466d98843e01e400f8bd8fb97f9d6",
+  "trigger_rule": "dual trigger requires Page-Hinkley and CUSUM detection ticks within w=8",
+  "written_at": "2026-07-03T01:56:18Z"
+}

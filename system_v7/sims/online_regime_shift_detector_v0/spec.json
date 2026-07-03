@@ -1,0 +1,19 @@
+{
+  "schema": "codex_ratchet.sim_spec.v1",
+  "sim_id": "online_regime_shift_detector_v0",
+  "claim": "Dual deterministic Page-Hinkley and CUSUM detectors can flag an abrupt shift in a QIT surprise stream while remaining quiet on a deterministic stationary 10k-tick control under calibration-derived thresholds.",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "battery_eligible": true,
+  "declared_false_positive_rate": 0.001,
+  "calibration_window": 256,
+  "bootstrap_horizon": 512,
+  "agreement_window": 8,
+  "stationary_ticks": 10000,
+  "positive_ticks": 1200,
+  "positive_shift_tick": 600,
+  "positive_shift_size": 0.18,
+  "stream_period": 128,
+  "claim_ceiling": "battery-eligible local detector diagnostic only; does not prove Lev admission, QIT engine validity, bridge closure, or drift robustness beyond the reported controls"
+}

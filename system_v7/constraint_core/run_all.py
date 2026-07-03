@@ -29,6 +29,39 @@ def has_jax():
     except Exception:
         return False
 
+def torch_python():
+    """Return a python interpreter path that can import torch, or None.
+    Order: current interpreter; $CR_TORCH_PYTHON; any sibling conda env whose
+    python imports torch (torchcarrier by convention). Portable across machines --
+    the torch-lane sims (quantum Hopfield etc.) run wherever torch actually lives."""
+    def _imports_torch(py):
+        try:
+            r = subprocess.run([py, "-c", "import torch"], capture_output=True, timeout=60)
+            return r.returncode == 0
+        except Exception:
+            return False
+    if _imports_torch(sys.executable):
+        return sys.executable
+    env = os.environ.get("CR_TORCH_PYTHON")
+    if env and os.path.exists(env) and _imports_torch(env):
+        return env
+    # scan sibling conda envs (…/envs/<name>/bin/python), prefer names hinting torch
+    base = sys.executable
+    for _ in range(6):
+        base = os.path.dirname(base)
+        envs = os.path.join(base, "envs")
+        if os.path.isdir(envs):
+            names = sorted(os.listdir(envs),
+                           key=lambda n: (0 if "torch" in n.lower() else 1, n))
+            for n in names:
+                py = os.path.join(envs, n, "bin", "python")
+                if os.path.exists(py) and _imports_torch(py):
+                    return py
+            break
+    return None
+
+_TORCH_PY = None  # resolved lazily in main()
+
 # (script, timeout_s, needs_jax, checks)
 # check = ("contains", literal)  or  ("approx", regex_with_one_group, expected, tol)
 SUITE = [
@@ -194,16 +227,25 @@ SUITE = [
    ("contains", "PASS sixteen_stage_engine_schedule_sim")]),          # Layer 0.11: 16-stage engine schedule (8 terrains x 2 admissible ops, Axis-2 sheet rule) as active-inference policy space; 16/16 distinct, unique sheet partition (z3+cvc5), planner reaches goal + N01 on real schedule
  ("instrument_class_split_sim.py", 120, False, [
    ("contains", "PASS instrument_class_split_sim")]),          # Layer 0.12: instrument-class split as MEASURED object (loop-back #2 item 4) -- relaxation (magnitude-separable) vs conditioning (sequential-only, CUSUM), one free-energy core, not collapsed; z3+cvc5
+ ("spinor_memory_sim.py", 120, False, [
+   ("contains", "PASS spinor_memory_sim")]),          # Layer 0.14: spinor memory -- 720deg loop-parity bit + sheet-gated retention bit, both in psi and invisible to rho (density quotient kills spinor phase/holonomy); reproduces dual-engine 1.0-vs-0.146; z3+cvc5 spinor-only XOR
  ("flux_nesting_ablation_jax.py", 600, True, [
    ("approx", r'"total_chern_forward":\s*([0-9.]+)', 7.295389, 1e-3)]),
  ("manifold_build_ladder.py", 600, True, [
    ("contains", "doctrine realized (Ne/Ni:+ Se/Si:-): False")]),  # HONEST FAILURE -- must stay False
 ]
 
-def run_one(script, timeout):
+# TORCH lane -- sims whose CLAIM is learning (autograd through the tick loop). Run under a python
+# that imports torch (torchcarrier by convention); torch_python() discovers it portably.
+TORCH_SUITE = [
+ ("quantum_hopfield_memory_sim.py", 300, [
+   ("contains", "PASS quantum_hopfield_memory_sim")]),          # Layer 0.13: quantum associative memory as energy-descent recall on the spinor carrier; 3-qubit floor + capacity curve measured; torch autograd (trainable substrate) + numpy oracle cross-check; z3+cvc5
+]
+
+def run_one(script, timeout, interpreter=None):
     t0 = time.time()
     try:
-        p = subprocess.run([sys.executable, os.path.join(SIMS, script)],
+        p = subprocess.run([interpreter or sys.executable, os.path.join(SIMS, script)],
                            capture_output=True, text=True, timeout=timeout, cwd=SIMS)
         return p.returncode, p.stdout + p.stderr, time.time() - t0
     except subprocess.TimeoutExpired:
@@ -306,6 +348,33 @@ def main():
         else: n_pass += 1
         results.append({"sim": script, "status": status, "seconds": round(dt, 1), "fails": fails})
         print(f"{status} {script} ({dt:.1f}s)" + ("" if not fails else "\n      " + "\n      ".join(fails)))
+    # TORCH lane (learning-claim sims) -- route to a torch-capable interpreter
+    torch_py = torch_python()
+    for script, timeout, checks in TORCH_SUITE:
+        if torch_py is None:
+            results.append({"sim": script, "status": "SKIP (no torch interpreter)"})
+            n_skip += 1
+            print(f"SKIP {script} (no torch interpreter)")
+            continue
+        rc, out, dt = run_one(script, timeout, interpreter=torch_py)
+        if rc == 0 and "SKIP_OPTIONAL" in out:
+            results.append({"sim": script, "status": "SKIP (optional tool absent)"})
+            n_skip += 1
+            print(f"SKIP {script} (optional tool absent)")
+            continue
+        fails = []
+        if rc != 0:
+            fails.append(f"exit code {rc}")
+        else:
+            for chk in checks:
+                if chk[0] == "contains" and chk[1] not in out:
+                    fails.append(f"missing: {chk[1]!r}")
+        status = "PASS" if not fails else "FAIL"
+        if fails: n_fail += 1
+        else: n_pass += 1
+        results.append({"sim": script, "status": status, "seconds": round(dt, 1), "fails": fails})
+        print(f"{status} {script} ({dt:.1f}s) [torch]" + ("" if not fails else "\n      " + "\n      ".join(fails)))
+
     # cross-substrate engines lane (oracle vs jax/torch)
     if not FAST:
         est, edet = run_engines_lane()

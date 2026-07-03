@@ -3,7 +3,7 @@
 classification='scratch_diagnostic'; promotion_allowed=false.
 
 Mechanics mirror qit_live_loop_3q_v1/world_fixture_3q.py with seed 20260704
-for this eps-sheet direct/conjugated dual-engine run.
+for this eps-sheet direct/conjugated dual sheet-loop run.
 """
 from __future__ import annotations
 

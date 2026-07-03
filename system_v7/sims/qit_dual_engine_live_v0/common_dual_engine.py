@@ -4,8 +4,15 @@ classification='scratch_diagnostic'; promotion_allowed=false.
 
 This reuses qit_live_loop_3q_v1 loop mechanics: pending-stage prediction,
 Lüders conditioning on the shared q0 outcome, hill relaxation, persistence-prior
-EFE surrogate, and action feedback. It narrows action spaces to the pinned
-eps-sheet direct/conjugated partition.
+reactive-risk + entropy cost surrogate action score (labeled EFE-analogue, not
+full active-inference EFE), and action feedback. It narrows action spaces to the
+pinned eps-sheet direct/conjugated partition.
+
+Boundary: chosen actions feed only the next belief predict; world outcomes
+remain fixture-driven.
+
+efe_scores_8 is a schema-stable legacy field name; the quantity is the cost
+surrogate, not active-inference EFE.
 """
 from __future__ import annotations
 

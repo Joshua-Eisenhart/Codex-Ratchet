@@ -3,7 +3,7 @@
 classification='scratch_diagnostic'; promotion_allowed=false.
 
 Builds the pinned eps-sheet direct/conjugated stages from oracle_targets_3q.py
-generator/operator functions, then runs the same shared-world dual-engine loop.
+generator/operator functions, then runs the same shared-world dual sheet-loop.
 """
 from __future__ import annotations
 

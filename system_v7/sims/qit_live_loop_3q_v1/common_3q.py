@@ -8,10 +8,10 @@ not the full 3q state. The full 3q state is emitted as belief_pauli_63.
 Belief updates use Lüders conditioning on the q0 projective outcome + hill
 relaxation channel. surprise_bits is an EPS-regularized Umegaki surrogate
 (psd_floor on the reference plus logm(obs + EPS I)), not exact relative entropy.
-efe_scores_16 is a reactive-risk + entropy cost surrogate with
-persistence-prior preference; NOT full active-inference EFE (no
-ambiguity/epistemic term). signal_povm is fixture metadata echoed for audit,
-not used in inference.
+efe_scores_16 is a schema-stable legacy field name; the quantity is the cost
+surrogate, not active-inference EFE. It is a reactive-risk + entropy cost
+surrogate with persistence-prior preference and no ambiguity/epistemic term.
+signal_povm is fixture metadata echoed for audit, not used in inference.
 """
 from __future__ import annotations
 

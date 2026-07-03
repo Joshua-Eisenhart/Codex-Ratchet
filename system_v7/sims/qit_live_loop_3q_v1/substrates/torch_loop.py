@@ -4,7 +4,8 @@ classification='scratch_diagnostic'; promotion_allowed=false.
 
 Runs the full per-tick loop in PyTorch complex128: next-tick chosen-stage
 prediction, Lüders conditioning on q0, hill relaxation, and the reactive-risk
-+ entropy cost surrogate recorded under efe_scores_16 for schema stability.
++ entropy cost surrogate recorded under efe_scores_16, a schema-stable legacy
+field name; the quantity is the cost surrogate, not active-inference EFE.
 """
 from __future__ import annotations
 

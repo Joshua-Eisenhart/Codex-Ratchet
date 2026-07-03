@@ -2,10 +2,11 @@
 
 classification='scratch_diagnostic'; promotion_allowed=false.
 
-Runs both dual-engine sheets per tick in PyTorch complex128: pending-stage
-prediction, Luders conditioning on q0, hill relaxation, EFE over the sheet's 8
-stages, action feedback, and spinor memory-bit mechanics. NumPy is used only
-at JSON egress and scalar boundary conversion.
+Runs both sheet loops per tick in PyTorch complex128: pending-stage prediction,
+Luders conditioning on q0, hill relaxation, reactive-risk + entropy cost
+surrogate action score (labeled EFE-analogue, not full active-inference EFE)
+over the sheet's 8 stages, action feedback, and spinor memory-bit mechanics.
+NumPy is used only at JSON egress and scalar boundary conversion.
 """
 from __future__ import annotations
 

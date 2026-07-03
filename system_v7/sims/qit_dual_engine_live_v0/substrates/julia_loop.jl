@@ -3,8 +3,9 @@
 #
 # classification='scratch_diagnostic'; promotion_allowed=false.
 #
-# Independent Julia implementation of the eps-sheet direct/conjugated dual-engine
-# loop. It consumes only world_fixture.json and writes one stream per engine.
+# Independent Julia implementation of the eps-sheet direct/conjugated dual
+# sheet-loop. It consumes only world_fixture.json and writes one stream per
+# schema-stable engine_id.
 using LinearAlgebra
 using JSON3
 using QuantumToolbox

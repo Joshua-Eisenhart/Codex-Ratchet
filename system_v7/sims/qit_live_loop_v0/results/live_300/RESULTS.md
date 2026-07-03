@@ -10,10 +10,10 @@ QUARANTINE_EXPLORATORY.
 ## What Ran
 
 - Live driver: `qit_live_loop_v0.py`
-- Mechanics: imported `LevBridge.tick()` from `lev_bridge_sim.py`; minimally reimplemented EFE action scoring from `agent_loop_sim.py` to avoid import-time demo execution.
+- Mechanics: imported `LevBridge.tick()` from `lev_bridge_sim.py`; minimally reimplemented reactive-risk + entropy cost surrogate action score (labeled EFE-analogue, not full active-inference EFE) from `agent_loop_sim.py` to avoid import-time demo execution.
 - Ticks: `300`
 - True regime shifts: `[100, 200]`
-- Stream verification ok: `True` over `300` ticks
+- local stream integrity check ok: `True` over `300` ticks
 
 ## Exact Numbers
 

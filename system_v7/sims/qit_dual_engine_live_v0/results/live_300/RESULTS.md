@@ -2,19 +2,27 @@
 
 classification='scratch_diagnostic'; promotion_allowed=false.
 
-owner doctrine reads this partition as L/R chirality engines; that mapping is interpretive, not computed here.
+owner doctrine reads this partition as L/R chirality loops; that mapping is interpretive, not computed here.
 
-Engine D: eps-sheet direct, terrains 0-3 x {Ti,Fi}. Engine C: eps-sheet conjugated, terrains 4-7 x {Te,Fe}. Both consume the same world fixture and maintain separate 8x8 beliefs plus separate spinor-memory bits.
+sheet-D loop: eps-sheet direct, terrains 0-3 x {Ti,Fi}. sheet-C loop: eps-sheet conjugated, terrains 4-7 x {Te,Fe}. Both consume the same world fixture and maintain separate 8x8 beliefs plus separate spinor-memory bits.
+
+These are two sheet-restricted belief/action loops. They are NOT Type-1/Type-2 engines at full operator+geometry depth doing distinct per-stage work; that build does not exist yet.
+
+Boundary: chosen actions feed only the next belief predict; world outcomes remain fixture-driven.
+
+`efe_scores_8` is a schema-stable legacy field name; the quantity is the cost surrogate, not active-inference EFE.
+
+Directory name and emitted `engine_id` field values stay as-is for schema stability.
 
 ## Verdicts
 
 - Parity passed: `True` with Python-trio numeric bar `1e-10` and Julia numeric bar `1e-09`.
 - Action matches D: `1800/1800` pair-ticks.
 - Action matches C: `1800/1800` pair-ticks.
-- Sheet-engines diverge by trace gap: `True`.
+- Sheet loops diverge by trace gap: `True`.
 - Surprise profiles diverge: `True`.
 - Entropy coherent: `True`.
-- Memory bits differ by sheet: `True`.
+- Memory bits differ by sheet: `True`; partition-local exclusion reading only; no chirality/physics claim.
 
 ## Parity
 
@@ -39,10 +47,10 @@ Engine D: eps-sheet direct, terrains 0-3 x {Ti,Fi}. Engine C: eps-sheet conjugat
 
 ## Runtimes
 
-- numpy_oracle_loop: wall `1.1375542499590665`, substrate total `0.8781525411177427`.
-- jax_loop: wall `13.603867582976818`, substrate total `11.192326165968552`.
-- torch_loop: wall `3.1562483329325914`, substrate total `1.7721516259480268`.
-- julia_loop: wall `12.596877500182018`, substrate total `2.558524249`.
+- numpy_oracle_loop: wall `None`, substrate total `None`.
+- jax_loop: wall `None`, substrate total `None`.
+- torch_loop: wall `None`, substrate total `None`.
+- julia_loop: wall `None`, substrate total `None`.
 
 ## Boundaries
 

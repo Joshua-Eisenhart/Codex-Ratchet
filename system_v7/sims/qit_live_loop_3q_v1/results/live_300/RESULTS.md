@@ -14,13 +14,13 @@ Max belief_pauli_63 abs dev: `4.196643033083092e-14`.
 Max surprise_bits abs dev: `5.329070518200751e-12`.
 Max fe_gradient abs dev: `5.329070518200751e-12`.
 Max efe_scores_16 abs dev: `1.1723955140041653e-13`.
-Lev stream verifies: `True` over `300` ticks.
+local stream integrity check ok: `True` over `300` ticks.
 Detector report: `detector_report.json`.
 
 ## v1.1 repairs
 
 - R1: Lüders conditioning on the q0 projective outcome + hill relaxation channel; no RATE=0.5 convex belief blend.
-- R2: `efe_scores_16` is a reactive-risk + entropy cost surrogate with persistence-prior preference; NOT full active-inference EFE.
+- R2: `efe_scores_16` is a schema-stable legacy field name; the quantity is the cost surrogate, not active-inference EFE. It is a reactive-risk + entropy cost surrogate with persistence-prior preference.
 - R3: chosen stage channel feeds back as the next tick predict step; world outcomes remain fixture-driven.
 - R4: NumPy, JAX, PyTorch, and Julia execute their per-tick loops in their own stacks; only fixture and JSONL writing are shared.
 - R5: validator gates every per-tick comparison including `efe_scores_16` and exact action indices.
@@ -33,18 +33,6 @@ Detector report: `detector_report.json`.
 
 Tick 100 dual fire: `None`; near 100: `False`.
 Tick 200 dual fire: `None`; near 200: `False`.
-
-## mutation_test
-
-Temporary mutation: JAX stage construction flipped from `op @ terrain` to `terrain @ op`.
-
-Mutated rerun command: `/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v7/sims/qit_live_loop_3q_v1/substrates/jax_loop.py --fixture system_v7/sims/qit_live_loop_3q_v1/results/live_300/world_fixture.json --out system_v7/sims/qit_live_loop_3q_v1/results/live_300/jax_loop.jsonl`.
-
-Mutated validator command: `/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v7/sims/qit_live_loop_3q_v1/qit_live_loop_3q_v1.py --validate-only --out-dir system_v7/sims/qit_live_loop_3q_v1/results/live_300`.
-
-Mutation outcome: `FAIL` as required. Mutated validator numbers: `python_trio_action_match_count=144/300`, `action_match_count=144/300`, `max_belief_pauli_63_abs_dev=1.000507374648942`, `max_surprise_bits_abs_dev=4.686129060616404`, `max_fe_gradient_abs_dev=4.686084242961114`, `max_efe_scores_16_abs_dev=1.5282209464954537`.
-
-Restored code: JAX stage construction returned to `op @ terrain`; fresh four-substrate rerun restored `all_parity_passed=True`, `python_trio_passed=True`, `julia_passed=True`, and `action_match_count=300/300`.
 
 ## Julia parity
 

@@ -4,8 +4,9 @@ operator ratchet run as ONE loop around the 720deg double cover (inner + outer 4
 where each beat's operator acts on the state the previous beat left -- the two ratchets constrain
 each other rather than being tested separately. Implements the owner's DUAL_LOOP_SPINOR_GRAMMAR
 (a documented runtime GAP: the grammar was "not yet modeled as first-class objects"). Loops the
-Landauer (16.1), einselection (16.2) and noncommutation (16.7) bridges back in. Also the owner's
-Carnot/Szilard structural analogy: an engine pumping entropy around an information cycle.
+Landauer (16.1), einselection (16.2) and noncommutation (16.7) bridges back in. The structure is a
+dual loop (a deductive loop + an inductive loop, Axis-4) pumping entropy around an information cycle;
+any classical heat-engine correspondence is a rosetta label, not part of the mechanism here.
 NOT ToE validation -- an internal deepening of the geometric constraint ratchet.
 
 Grounded in DUAL_LOOP_SPINOR_GRAMMAR.md:

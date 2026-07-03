@@ -6,8 +6,9 @@ classification='scratch_diagnostic'; promotion_allowed=false.
 This is a live driver, not a gated canonical sim. It imports LevBridge from
 system_v7/constraint_core/sims_and_scripts/lev_bridge_sim.py for tick mechanics:
 belief update, Hill-cell store, belief_bloch, surprise_bits, and fe_gradient.
-It minimally reimplements the EFE action-selection equations from
-agent_loop_sim.py because that file executes a demo at import time.
+It minimally reimplements a reactive-risk + entropy cost surrogate action score
+(labeled EFE-analogue, not full active-inference EFE) from agent_loop_sim.py
+because that file executes a demo at import time.
 """
 
 from __future__ import annotations
@@ -242,10 +243,10 @@ def write_results_md(out_dir: Path, summary: dict[str, Any], verification: dict[
         "## What Ran",
         "",
         f"- Live driver: `{Path(__file__).name}`",
-        "- Mechanics: imported `LevBridge.tick()` from `lev_bridge_sim.py`; minimally reimplemented EFE action scoring from `agent_loop_sim.py` to avoid import-time demo execution.",
+        "- Mechanics: imported `LevBridge.tick()` from `lev_bridge_sim.py`; minimally reimplemented reactive-risk + entropy cost surrogate action score (labeled EFE-analogue, not full active-inference EFE) from `agent_loop_sim.py` to avoid import-time demo execution.",
         f"- Ticks: `{summary['ticks']}`",
         f"- True regime shifts: `{summary['true_shift_ticks']}`",
-        f"- Stream verification ok: `{verification['ok']}` over `{verification['ticks_verified']}` ticks",
+        f"- local stream integrity check ok: `{verification['ok']}` over `{verification['ticks_verified']}` ticks",
         "",
         "## Exact Numbers",
         "",

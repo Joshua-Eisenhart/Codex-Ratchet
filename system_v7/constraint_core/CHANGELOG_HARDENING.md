@@ -682,3 +682,45 @@ UP-53 NEW LAYER 0.12  instrument_class_split_sim.py -- makes the instrument-clas
                z3 AND cvc5: "magnitude-separable <=> high index" fits, forced-separable control flips.
                Does NOT collapse the classes (packet: "both live"); records them as two admissible readings
                of one free-energy core. Hypothetical lane; 1q single-seed demonstration. FULL HARNESS VERIFIED: 65 pass / 0 fail / 0 skip GREEN (incl JAX + Julia lanes).
+
+
+# SUBSTRATE DECISION + LAYER 0.13 (quantum Hopfield, torch trainable lane) — 2026-07-03
+UP-54 SUBSTRATE SPLIT (measured, owner-endorsed)  Benchmarked all four carriers on the SAME 16-stage GKSL
+               contract: numpy 0.49s (oracle/audit), JAX jit+vmap 0.18s (~2.8x, standing workhorse for
+               sweeps), torch 1.72s but the ONLY substrate with autograd THROUGH the tick loop (dS/dk
+               computed by backprop -- trainable perception, differentiable EFE planning, gradient energy
+               descent), julia = strongest fully-independent leg / canon arbiter. Decision (owner-endorsed):
+               julia canon arbiter everywhere; jax+julia standing pair; torch load-bearing wherever LEARNING
+               is the claim; all four when a result gets stamped. "Forward pass = possibilities, backward
+               pass = constraints -- torch is the ratchet's native architecture."
+UP-55 NEW LAYER 0.13  quantum_hopfield_memory_sim.py -- a quantum associative memory (Hopfield-class) EARNED
+               from the terrain attractor structure, not presumed (fresh-LLM spec forbids Hopfield-as-
+               primitive unless a lower layer forces it; here the lower layers are terrain-as-basin 4.x/17.3
+               + the norm-preserving spinor carrier 0.6). The energy SURFACE is the memory: stored patterns
+               = pure states that are the attractor fixed points of E(psi)=-sum_k|<p_k|psi>|^4; recall =
+               gradient descent of E on the spinor carrier (torch autograd -- the trainable substrate).
+               Results: (1) content-addressable recall probe fidelity 0.58 -> 1.0, energy -0.37 -> -1.01;
+               (2) 3-QUBIT FLOOR measured (owner's "need at least 3 qubits"): 4-pattern recall 0.25/0.25/1.00
+               at n=1/2/3; (3) capacity ~ Hilbert dim (1.0 to K~5, 0.38 at 8, 0.17 at 12, 0.06 at 16 on dim-8); (4)
+               numpy-oracle cross-check agrees on the recalled attractor; (5) z3 AND cvc5 gate on the recall
+               law + flipped control. HARNESS: new TORCH LANE added -- run_all.py gains torch_python()
+               portable interpreter discovery (current -> $CR_TORCH_PYTHON -> sibling conda env importing
+               torch) so learning-claim sims run wherever torch lives; harness stays GREEN on any machine
+               (SKIP if no torch). FULL HARNESS PENDING.
+
+
+# LAYER 0.14 — spinor memory — 2026-07-03
+UP-56 NEW LAYER 0.14  spinor_memory_sim.py -- the two 1-bit memory registers that live in the spinor psi and
+               are INVISIBLE to the density rho (scaffold 104/153: "the density quotient kills global spinor
+               phase, lifted path, 720deg return, holonomy"). (A) 720-DEGREE LOOP-PARITY bit: U(t)=exp(-i t/2
+               n.sigma) gives spinor sign +1/-1/+1 at t=0/2pi/4pi (two 360deg loops, deductive + inductive, over the SAME geometry closing at 720deg; the deductive-loop + inductive-loop
+               dual stack as one 720 cycle), carried in psi, density distance identically 0 at every stage.
+               (B) SHEET-GATED RETENTION bit: a z-encoded bit under the direct sheet's z-dephasing survives
+               (fidelity 1.0 for 300 ticks); under the conjugated sheet's x-dephasing it decays to 0.0 (>100x
+               ratio) -- independently reproduces the owner's local dual-engine measurement (direct 1.0,
+               conjugated 0.146). (C) z3 AND cvc5 gate: the parity bit is spinor-only (spinor_reads XOR
+               density_reads), forced-density-readable control flips. Loop-back: this is why the Axis-0 sims
+               had to re-base at spinor level; the spinor memory is the psi-only register (loop-parity +
+               sheet-history) that the associative memory (0.13, density pointer = which pattern) runs
+               alongside -- two registers, one carrier. FULL HARNESS VERIFIED: 67 pass / 0 fail / 0 skip
+               GREEN (incl torch + JAX + Julia lanes).

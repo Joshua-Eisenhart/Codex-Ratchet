@@ -6,7 +6,7 @@ late feedback-polarity gate implemented as a REAL perturb-evolve-classify loop o
 state-derived quantities (the step static-label models skip).
 
 Sources (recent wiki): shell-local-to-coupled-program, axis0-current-doctrine-state-card,
-terrain rosetta strong math (8 GKSL generators), weyl-flux (nesting), dual-carnot-szilard.
+terrain rosetta strong math (8 GKSL generators), weyl-flux (nesting), dual-loop grammar (deductive+inductive).
 Claim ceiling: scratch_diagnostic; promotion_allowed=false; Axis0 remains UNBUILT per doctrine.
 """
 import jax, math, json

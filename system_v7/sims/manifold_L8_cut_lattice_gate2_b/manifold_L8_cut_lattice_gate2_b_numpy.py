@@ -85,6 +85,14 @@ def reduced_full_pauli_signature(rho: np.ndarray, digits: int = ROUND_FULL) -> t
     return tuple(values)
 
 
+def single_pauli_signature_from_density(rho: np.ndarray, label: str) -> tuple[int]:
+    return (int(round(float(np.trace(rho @ pauli_matrix(label)).real))),)
+
+
+def label_echo_accepts(pair: dict[str, Any]) -> bool:
+    return pair.get("parent_label") == pair.get("claimed_marginal_parent_label")
+
+
 def density_from_pvec(pvec: list[float], pauli_labels: list[str]) -> np.ndarray:
     dim = 2**N
     rho = np.eye(dim, dtype=complex)
@@ -234,48 +242,81 @@ def cut_side_records(cut: tuple[int, ...]) -> list[tuple[str, tuple[int, ...]]]:
     return [("left", tuple(cut)), ("right", right)]
 
 
-def recompute_full_projection(carrier_states: list[dict[str, Any]], gate: dict[str, Any]) -> dict[str, Any]:
+def projection_from_grouped_labels(grouped: dict[Any, list[str]], cached_classes: dict[tuple[str, ...], int] | None = None) -> dict[str, int]:
+    projection: dict[str, int] = {}
+    for cid, labels in enumerate(sorted((sorted(v) for v in grouped.values()), key=lambda row: (len(row), row))):
+        class_id = cached_classes.get(tuple(labels), cid) if cached_classes is not None else cid
+        for label in labels:
+            projection[label] = int(class_id)
+    return projection
+
+
+def recompute_full_projection(carrier_states: list[dict[str, Any]], gate: dict[str, Any], pauli_labels: list[str]) -> dict[str, Any]:
     grouped: dict[tuple[float, ...], list[str]] = {}
+    fresh_grouped: dict[tuple[float, ...], list[str]] = {}
     for state in carrier_states:
         key = tuple(round(float(x), ROUND_FULL) for x in state["pvec"])
         grouped.setdefault(key, []).append(state["label"])
+        rho = density_from_pvec(state["pvec"], pauli_labels)
+        fresh_grouped.setdefault(reduced_full_pauli_signature(rho), []).append(state["label"])
     cached_classes = {tuple(sorted(c["labels"])): c["class_id"] for c in gate["classes"]}
-    fresh_projection: dict[str, int] = {}
-    for labels in grouped.values():
-        cid = cached_classes.get(tuple(sorted(labels)))
-        if cid is not None:
-            for label in labels:
-                fresh_projection[label] = cid
+    pvec_projection = projection_from_grouped_labels(grouped, cached_classes)
+    fresh_projection = projection_from_grouped_labels(fresh_grouped, cached_classes)
     cached_projection = {k: int(v) for k, v in gate["projection"].items()}
+    corrupted_cached_projection = dict(cached_projection)
+    first_label = sorted(corrupted_cached_projection)[0]
+    corrupted_cached_projection[first_label] = corrupted_cached_projection[first_label] + 999
     return {
         "epoch_id": gate["probe_epoch_id"],
         "fresh_class_count": len(grouped),
         "cached_class_count": int(gate["quotient_class_count"]),
         "fresh_projection_matches_cached": fresh_projection == cached_projection,
+        "pvec_projection_matches_cached": pvec_projection == cached_projection,
+        "independent_density_projection_matches_pvec": fresh_projection == pvec_projection,
+        "mutation_self_test": {
+            "corrupted_cached_projection_compare_failed": corrupted_cached_projection != fresh_projection,
+            "restored_cached_projection_compare_pass": cached_projection == fresh_projection,
+        },
         "singleton_classes": all(len(v) == 1 for v in grouped.values()),
     }
 
 
-def recompute_coarse_projection(carrier_states: list[dict[str, Any]], gate: dict[str, Any], zii_index: int) -> dict[str, Any]:
+def recompute_coarse_projection(
+    carrier_states: list[dict[str, Any]],
+    pauli_labels: list[str],
+    epoch_id: str,
+    pauli_label: str,
+    cached_gate: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    pauli_index = pauli_labels.index(pauli_label)
     grouped: dict[int, list[str]] = {}
+    fresh_grouped: dict[tuple[int], list[str]] = {}
     for state in carrier_states:
-        key = int(round(float(state["pvec"][zii_index])))
+        key = int(round(float(state["pvec"][pauli_index])))
         grouped.setdefault(key, []).append(state["label"])
-    cached_classes = {tuple(sorted(c["labels"])): c["class_id"] for c in gate["classes"]}
-    fresh_projection: dict[str, int] = {}
-    for labels in grouped.values():
-        cid = cached_classes.get(tuple(sorted(labels)))
-        if cid is not None:
-            for label in labels:
-                fresh_projection[label] = cid
-    cached_projection = {k: int(v) for k, v in gate["projection"].items()}
+        rho = density_from_pvec(state["pvec"], pauli_labels)
+        fresh_grouped.setdefault(single_pauli_signature_from_density(rho, pauli_label), []).append(state["label"])
+    cached_classes = {tuple(sorted(c["labels"])): c["class_id"] for c in cached_gate["classes"]} if cached_gate is not None else None
+    cached_projection = {k: int(v) for k, v in cached_gate["projection"].items()} if cached_gate is not None else projection_from_grouped_labels(grouped)
+    pvec_projection = projection_from_grouped_labels(grouped, cached_classes)
+    fresh_projection = projection_from_grouped_labels(fresh_grouped, cached_classes)
+    corrupted_cached_projection = dict(cached_projection)
+    first_label = sorted(corrupted_cached_projection)[0]
+    corrupted_cached_projection[first_label] = corrupted_cached_projection[first_label] + 999
     return {
-        "epoch_id": gate["probe_epoch_id"],
+        "epoch_id": epoch_id,
+        "pauli_label": pauli_label,
         "fresh_class_count": len(grouped),
-        "cached_class_count": int(gate["quotient_class_count"]),
+        "cached_class_count": int(cached_gate["quotient_class_count"]) if cached_gate is not None else len(grouped),
         "fresh_projection_matches_cached": fresh_projection == cached_projection,
+        "pvec_projection_matches_cached": pvec_projection == cached_projection,
+        "independent_density_projection_matches_pvec": fresh_projection == pvec_projection,
+        "mutation_self_test": {
+            "corrupted_cached_projection_compare_failed": corrupted_cached_projection != fresh_projection,
+            "restored_cached_projection_compare_pass": cached_projection == fresh_projection,
+        },
         "fresh_group_sizes": sorted(len(v) for v in grouped.values()),
-        "cached_group_sizes": sorted(int(c["size"]) for c in gate["classes"]),
+        "cached_group_sizes": sorted(int(c["size"]) for c in cached_gate["classes"]) if cached_gate is not None else sorted(len(v) for v in grouped.values()),
     }
 
 
@@ -300,6 +341,7 @@ def main() -> None:
                 "rho": rho,
             }
         )
+    roster_by_label = {item["label"]: item for item in rosters}
 
     per_state_cut = []
     roster_negativities = []
@@ -309,6 +351,7 @@ def main() -> None:
             roster_negativities.append(neg)
             for side, side_subset in cut_side_records(cut):
                 marginal = partial_trace(item["rho"], N, side_subset)
+                marginal_eigs = tuple(round(float(x), 12) for x in sorted(np.linalg.eigvalsh(marginal).real, reverse=True))
                 per_state_cut.append(
                     {
                         "label": item["label"],
@@ -320,11 +363,31 @@ def main() -> None:
                         "marginal_trace": round(float(np.trace(marginal).real), 12),
                         "marginal_rank": rank_from_eigs(marginal),
                         "marginal_entropy_bits": round(entropy_bits(marginal), 12),
+                        "marginal_eigenvalue_signature": list(marginal_eigs),
                         "parent_negativity": round(neg, 12),
                         "marginal_hash": matrix_hash(marginal),
                         "computed_by": "explicit_partial_trace",
                     }
                 )
+
+    schmidt_strata_by_cut: dict[str, Any] = {}
+    for cut in cut_list:
+        cut_label = cut_key(cut)
+        schmidt_strata_by_cut[cut_label] = {}
+        for side, _side_subset in cut_side_records(cut):
+            buckets: dict[tuple[float, ...], list[str]] = {}
+            for row in per_state_cut:
+                if row["cut_label"] == cut_label and row["side"] == side:
+                    buckets.setdefault(tuple(row["marginal_eigenvalue_signature"]), []).append(row["label"])
+            schmidt_strata_by_cut[cut_label][side] = [
+                {
+                    "size": len(members),
+                    "representative": sorted(members)[0],
+                    "labels_sample": sorted(members)[:5],
+                    "eigenvalue_signature": list(signature),
+                }
+                for signature, members in sorted(buckets.items(), key=lambda item: (len(item[1]), item[1]))
+            ]
 
     subset_classes: dict[str, dict[str, Any]] = {}
     for subset in all_nonempty_subsets(tuple(range(N))):
@@ -379,16 +442,54 @@ def main() -> None:
     true_marginal = partial_trace(true_parent["rho"], N, seam_cut)
     inconsistent_marginal = partial_trace(inconsistent_parent["rho"], N, seam_cut)
     computed_distance = float(np.linalg.norm(true_marginal - inconsistent_marginal, ord="fro"))
+    label_echo_pair = {
+        "parent_label": true_parent["label"],
+        "claimed_marginal_parent_label": true_parent["label"],
+        "actual_marginal_source_label": inconsistent_parent["label"],
+    }
+    label_echo_admits = label_echo_accepts(label_echo_pair)
     label_echo_negative = {
         "parent_label": true_parent["label"],
         "claimed_marginal_parent_label": true_parent["label"],
         "actual_marginal_source_label": inconsistent_parent["label"],
         "cut": list(seam_cut),
-        "label_echo_would_pass": True,
+        "cached_label_comparator": "parent_label == claimed_marginal_parent_label",
+        "cached_label_comparator_admits": label_echo_admits,
+        "label_echo_would_pass": label_echo_admits,
         "computed_trace_distance": computed_distance,
         "computed_trace_rejects": computed_distance > TOL,
-        "pass": computed_distance > TOL,
+        "pass": label_echo_admits and computed_distance > TOL,
     }
+
+    lineage_parent = (0, 1)
+    lineage_child = (0,)
+    lineage_row = {
+        "parent_label": true_parent["label"],
+        "gate1_quotient_class": int(true_parent["quotient_class"]),
+        "parent_subset": lineage_parent,
+        "child_subset": lineage_child,
+        "parent_rho": partial_trace(true_parent["rho"], N, lineage_parent),
+        "child_rho": partial_trace(true_parent["rho"], N, lineage_child),
+    }
+    removed_lineage_row = dict(lineage_row)
+    removed_lineage_row["parent_label"] = None
+
+    def lineage_nesting_check(row: dict[str, Any]) -> bool:
+        label = row.get("parent_label")
+        if label not in roster_by_label:
+            return False
+        if row.get("gate1_quotient_class") != int(roster_by_label[label]["quotient_class"]):
+            return False
+        parent_subset = tuple(row["parent_subset"])
+        child_subset = tuple(row["child_subset"])
+        if not set(child_subset).issubset(set(parent_subset)):
+            return False
+        local_child = tuple(parent_subset.index(axis) for axis in child_subset)
+        traced = partial_trace(row["parent_rho"], len(parent_subset), local_child)
+        return bool(np.linalg.norm(traced - row["child_rho"], ord="fro") <= TOL)
+
+    with_lineage_passes = lineage_nesting_check(lineage_row)
+    removed_lineage_passes = lineage_nesting_check(removed_lineage_row)
 
     perturbed = true_marginal.copy()
     perturbed[0, 0] += 0.01
@@ -397,8 +498,18 @@ def main() -> None:
 
     full_epoch = gate1["gates"]["observable_quotient_R4"]
     coarse_epoch = gate1["gates"]["coarse_probe_quotient_R4_epoch"]
-    full_reprojection = recompute_full_projection(carrier_states, full_epoch)
-    coarse_reprojection = recompute_coarse_projection(carrier_states, coarse_epoch, zii_index)
+    full_reprojection = recompute_full_projection(carrier_states, full_epoch, pauli_labels)
+    coarse_reprojection = recompute_coarse_projection(carrier_states, pauli_labels, "M_coarse_single_qubit_Z", "ZII", coarse_epoch)
+    coarse_xii_reprojection = recompute_coarse_projection(carrier_states, pauli_labels, "M_coarse_single_qubit_X", "XII")
+    epoch_mutation_self_tests = [
+        {"epoch": "M_full_pauli_63", **full_reprojection["mutation_self_test"]},
+        {"epoch": "M_coarse_single_qubit_Z", **coarse_reprojection["mutation_self_test"]},
+        {"epoch": "M_coarse_single_qubit_X", **coarse_xii_reprojection["mutation_self_test"]},
+    ]
+    epoch_mutation_self_tests_pass = all(
+        row["corrupted_cached_projection_compare_failed"] and row["restored_cached_projection_compare_pass"]
+        for row in epoch_mutation_self_tests
+    )
 
     coarse_spreads = []
     for klass in coarse_epoch["classes"]:
@@ -438,10 +549,14 @@ def main() -> None:
             "full_class_count": int(full_epoch["quotient_class_count"]),
             "coarse_class_count": int(coarse_epoch["quotient_class_count"]),
         },
-        "lineage_removed_fails": {
-            "pass": True,
-            "with_lineage": "admissible_to_compute_l8_roster_marginals",
-            "without_gate1_projection_or_label": "rejected_missing_ancestry",
+        "lineage_removed_rejected": {
+            "pass": with_lineage_passes and not removed_lineage_passes,
+            "with_lineage_passes": with_lineage_passes,
+            "removed_lineage_passes": removed_lineage_passes,
+            "mutation_self_test": "removed parent_label from a consumed Gate-1 state; the same ancestry+nested-trace checker rejected it",
+            "parent_label": true_parent["label"],
+            "parent_subset": list(lineage_parent),
+            "child_subset": list(lineage_child),
         },
         "cut_lattice_control_divergence": {
             "pass": product_neg != ghz_neg and ghz_neg != w_neg,
@@ -506,16 +621,35 @@ def main() -> None:
         "epoch_reprojection": {
             "full_pauli": full_reprojection,
             "coarse_zii": coarse_reprojection,
+            "coarse_xii": coarse_xii_reprojection,
+            "epoch_family": ["M_full_pauli_63", "M_coarse_single_qubit_Z", "M_coarse_single_qubit_X"],
             "fresh_recompute_compare_pass": full_reprojection["fresh_projection_matches_cached"]
-            and coarse_reprojection["fresh_projection_matches_cached"],
+            and coarse_reprojection["fresh_projection_matches_cached"]
+            and coarse_xii_reprojection["fresh_projection_matches_cached"],
+            "mutation_self_tests_pass": epoch_mutation_self_tests_pass,
+            "mutation_self_tests": epoch_mutation_self_tests,
             "representative_lookup_used_for_marginals": False,
         },
         "subset_quotient_summaries": subset_classes,
         "per_state_cut_marginals": per_state_cut,
+        "schmidt_strata_by_cut": schmidt_strata_by_cut,
         "coarse_representative_marginal_spreads": coarse_spreads,
         "extension_fibers_summary": {
-            "fiber_size_records": len(extension_fibers),
+            "compatibility_edge_records": len(extension_fibers),
+            "fiber_sizes_by_subset": {subset: row["class_sizes"] for subset, row in subset_classes.items()},
             "all_computed_compatible": all(x["compatible_by_computed_trace"] for x in extension_fibers),
+        },
+        "continuity_trap_guard": {
+            "finite_roster_only": True,
+            "local_unitary_equivalence_used": False,
+            "fresh_recompute_compare_pass": full_reprojection["fresh_projection_matches_cached"]
+            and coarse_reprojection["fresh_projection_matches_cached"]
+            and coarse_xii_reprojection["fresh_projection_matches_cached"],
+            "mutation_self_tests_pass": epoch_mutation_self_tests_pass,
+            "pass": full_reprojection["fresh_projection_matches_cached"]
+            and coarse_reprojection["fresh_projection_matches_cached"]
+            and coarse_xii_reprojection["fresh_projection_matches_cached"]
+            and epoch_mutation_self_tests_pass,
         },
         "negative_controls": controls,
         "summary": {
@@ -524,6 +658,8 @@ def main() -> None:
                 and all(negative_passes)
                 and full_reprojection["fresh_projection_matches_cached"]
                 and coarse_reprojection["fresh_projection_matches_cached"]
+                and coarse_xii_reprojection["fresh_projection_matches_cached"]
+                and epoch_mutation_self_tests_pass
                 and all(x["compatible_by_computed_trace"] for x in extension_fibers)
             ),
             "max_roster_negativity": round(max(roster_negativities), 12),

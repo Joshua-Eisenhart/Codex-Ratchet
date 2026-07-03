@@ -133,6 +133,30 @@ def subsystem_pvec(rho: np.ndarray, width: int) -> tuple[float, ...]:
     return tuple(values)
 
 
+def subsystem_pauli_matrix(label: str) -> np.ndarray:
+    mat = PAULI[label[0]]
+    for char in label[1:]:
+        mat = np.kron(mat, PAULI[char])
+    return mat
+
+
+def single_probe_signature_from_marginal(
+    rho_sub: np.ndarray,
+    subset: tuple[int, ...],
+    target_qubit: int,
+    observable: str,
+) -> tuple[float, ...]:
+    if target_qubit not in subset:
+        return tuple()
+    local_index = subset.index(target_qubit)
+    label = "I" * local_index + observable + "I" * (len(subset) - local_index - 1)
+    return (round(float(np.trace(rho_sub @ subsystem_pauli_matrix(label)).real), 0),)
+
+
+def label_echo_accepts(pair: dict[str, Any]) -> bool:
+    return pair.get("parent_label") == pair.get("claimed_marginal_parent_label")
+
+
 def rounded_key(values: tuple[float, ...], digits: int = 12) -> tuple[float, ...]:
     return tuple(round(float(v), digits) for v in values)
 
@@ -303,6 +327,24 @@ def main() -> int:
                 "schmidt_strata_basis": "finite density-roster cut marginal eigenvalue signatures; not local-unitary equivalence",
                 "left_stratum_count": len(left_strata),
                 "right_stratum_count": len(right_strata),
+                "left_schmidt_strata": [
+                    {
+                        "size": len(members),
+                        "representative": sorted(members)[0],
+                        "labels_sample": sorted(members)[:5],
+                        "eigenvalue_signature": list(signature),
+                    }
+                    for signature, members in sorted(left_strata.items(), key=lambda item: (len(item[1]), item[1]))
+                ],
+                "right_schmidt_strata": [
+                    {
+                        "size": len(members),
+                        "representative": sorted(members)[0],
+                        "labels_sample": sorted(members)[:5],
+                        "eigenvalue_signature": list(signature),
+                    }
+                    for signature, members in sorted(right_strata.items(), key=lambda item: (len(item[1]), item[1]))
+                ],
                 "negativity_min": float(min(negativities)),
                 "negativity_max": float(max(negativities)),
                 "entropy_readout_families_declared": ["S_A", "S_AB", "I_A_rest"],
@@ -328,28 +370,79 @@ def main() -> int:
         for label in cls:
             full_recomputed_projection[label] = idx
     zii_idx = STRINGS.index("ZII")
+    xii_idx = STRINGS.index("XII")
     coarse_signatures = {s["label"]: (round(float(s["pvec"][zii_idx]), 0),) for s in states}
+    coarse_x_signatures = {s["label"]: (round(float(s["pvec"][xii_idx]), 0),) for s in states}
     coarse_classes = quotient_classes(labels, coarse_signatures)
+    coarse_x_classes = quotient_classes(labels, coarse_x_signatures)
 
     epoch_cache_mismatches = []
+    coarse_epoch_defs = [
+        {"epoch_id": "M_coarse_single_qubit_Z", "target_qubit": 0, "observable": "Z"},
+        {"epoch_id": "M_coarse_single_qubit_X", "target_qubit": 0, "observable": "X"},
+    ]
+    coarse_epoch_cached_signatures: dict[tuple[str, tuple[int, ...], str], tuple[float, ...]] = {}
     for state in states:
         for subset in subsets:
             cached_full = marginal_signatures[str(list(subset))][state["label"]]
-            fresh_full = rounded_key(subsystem_pvec(partial_trace(state["rho"], subset), len(subset)))
+            fresh_rho = rho_from_pvec(list(state["pvec"]))
+            fresh_full = rounded_key(subsystem_pvec(partial_trace(fresh_rho, subset), len(subset)))
             if cached_full != fresh_full:
                 epoch_cache_mismatches.append({"epoch": "M_full_pauli_63", "label": state["label"], "subset": list(subset)})
-            if 0 in subset:
-                local_index = subset.index(0)
-                fresh = partial_trace(state["rho"], subset)
-                label = "I" * local_index + "Z" + "I" * (len(subset) - local_index - 1)
-                strings = subsystem_pauli_strings(len(subset))
-                coarse_cached = (round(subsystem_pvec(fresh, len(subset))[strings.index(label)], 0),)
-                coarse_fresh = coarse_cached
-            else:
-                coarse_cached = tuple()
-                coarse_fresh = tuple()
-            if coarse_cached != coarse_fresh:
-                epoch_cache_mismatches.append({"epoch": "M_coarse_single_qubit_Z", "label": state["label"], "subset": list(subset)})
+            for epoch_def in coarse_epoch_defs:
+                cached_marginal = marginal_cache[(state["label"], subset)]
+                coarse_cached = single_probe_signature_from_marginal(
+                    cached_marginal,
+                    subset,
+                    epoch_def["target_qubit"],
+                    epoch_def["observable"],
+                )
+                coarse_fresh = single_probe_signature_from_marginal(
+                    partial_trace(fresh_rho, subset),
+                    subset,
+                    epoch_def["target_qubit"],
+                    epoch_def["observable"],
+                )
+                coarse_epoch_cached_signatures[(state["label"], subset, epoch_def["epoch_id"])] = coarse_cached
+                if coarse_cached != coarse_fresh:
+                    epoch_cache_mismatches.append({"epoch": epoch_def["epoch_id"], "label": state["label"], "subset": list(subset)})
+
+    epoch_mutation_self_tests = []
+    mutation_state = states[0]
+    mutation_subset = (0,)
+    original_full = marginal_signatures[str(list(mutation_subset))][mutation_state["label"]]
+    fresh_full = rounded_key(subsystem_pvec(partial_trace(rho_from_pvec(list(mutation_state["pvec"])), mutation_subset), len(mutation_subset)))
+    corrupted_full = tuple(v + 1.0 for v in original_full)
+    epoch_mutation_self_tests.append(
+        {
+            "epoch": "M_full_pauli_63",
+            "label": mutation_state["label"],
+            "subset": list(mutation_subset),
+            "corrupted_compare_failed": corrupted_full != fresh_full,
+            "restored_compare_pass": original_full == fresh_full,
+        }
+    )
+    for epoch_def in coarse_epoch_defs:
+        original = coarse_epoch_cached_signatures[(mutation_state["label"], mutation_subset, epoch_def["epoch_id"])]
+        fresh = single_probe_signature_from_marginal(
+            partial_trace(rho_from_pvec(list(mutation_state["pvec"])), mutation_subset),
+            mutation_subset,
+            epoch_def["target_qubit"],
+            epoch_def["observable"],
+        )
+        corrupted = tuple(v + 1.0 for v in original)
+        epoch_mutation_self_tests.append(
+            {
+                "epoch": epoch_def["epoch_id"],
+                "label": mutation_state["label"],
+                "subset": list(mutation_subset),
+                "corrupted_compare_failed": corrupted != fresh,
+                "restored_compare_pass": original == fresh,
+            }
+        )
+    epoch_mutation_self_test_pass = all(
+        row["corrupted_compare_failed"] and row["restored_compare_pass"] for row in epoch_mutation_self_tests
+    )
 
     product_rho = make_control_state("product_000")
     ghz_rho = make_control_state("ghz")
@@ -367,8 +460,44 @@ def main() -> int:
 
     parent = states[0]
     bad_source = next(s for s in states[1:] if not np.allclose(marginal_cache[(s["label"], (0,))], marginal_cache[(parent["label"], (0,))], atol=1e-10))
-    label_echo_would_pass = parent["label"] == parent["label"]
-    computed_trace_rejects = not np.allclose(marginal_cache[(parent["label"], (0,))], marginal_cache[(bad_source["label"], (0,))], atol=1e-10)
+    label_echo_pair = {
+        "parent_label": parent["label"],
+        "claimed_marginal_parent_label": parent["label"],
+        "actual_marginal_source_label": bad_source["label"],
+    }
+    label_echo_admits = label_echo_accepts(label_echo_pair)
+    computed_trace_distance = float(np.linalg.norm(marginal_cache[(parent["label"], (0,))] - marginal_cache[(bad_source["label"], (0,))], ord="fro"))
+    computed_trace_rejects = computed_trace_distance > 1e-10
+
+    lineage_parent = (0, 1)
+    lineage_child = (0,)
+    lineage_row = {
+        "parent_label": parent["label"],
+        "gate1_quotient_class": int(full_projection_gate1[parent["label"]]),
+        "parent_subset": lineage_parent,
+        "child_subset": lineage_child,
+        "parent_rho": marginal_cache[(parent["label"], lineage_parent)],
+        "child_rho": marginal_cache[(parent["label"], lineage_child)],
+    }
+    removed_lineage_row = dict(lineage_row)
+    removed_lineage_row["parent_label"] = None
+
+    def lineage_nesting_check(row: dict[str, Any]) -> bool:
+        label = row.get("parent_label")
+        if label not in state_by_label:
+            return False
+        if row.get("gate1_quotient_class") != int(full_projection_gate1[label]):
+            return False
+        parent_subset = tuple(row["parent_subset"])
+        child_subset = tuple(row["child_subset"])
+        if not set(child_subset).issubset(set(parent_subset)):
+            return False
+        local_child = tuple(parent_subset.index(q) for q in child_subset)
+        traced = partial_trace(row["parent_rho"], local_child)
+        return bool(np.allclose(traced, row["child_rho"], atol=1e-10))
+
+    with_lineage_passes = lineage_nesting_check(lineage_row)
+    removed_lineage_passes = lineage_nesting_check(removed_lineage_row)
 
     perturbed = marginal_cache[(parent["label"], (0,))].copy()
     perturbed[0, 0] += 0.01
@@ -398,8 +527,13 @@ def main() -> int:
             "coarse_z_class_count": len(coarse_classes),
         },
         "lineage_removed_rejected": {
-            "pass": True,
-            "reason": "compatibility rows require parent label plus subset lineage; a marginal digest without parent lineage is not accepted into extension fibers",
+            "pass": with_lineage_passes and not removed_lineage_passes,
+            "with_lineage_passes": with_lineage_passes,
+            "removed_lineage_passes": removed_lineage_passes,
+            "mutation_self_test": "removed parent_label from a consumed Gate-1 state; the same ancestry+nested-trace checker rejected it",
+            "parent_label": parent["label"],
+            "parent_subset": list(lineage_parent),
+            "child_subset": list(lineage_child),
         },
         "cut_lattice_control_divergence": {
             "pass": product_negs != ghz_negs and ghz_negs != w_negs,
@@ -410,10 +544,12 @@ def main() -> int:
             "w_negativities": w_negs,
         },
         "label_echo_negative_control": {
-            "pass": label_echo_would_pass and computed_trace_rejects,
+            "pass": label_echo_admits and computed_trace_rejects,
             "parent_label": parent["label"],
             "inconsistent_marginal_source_label": bad_source["label"],
-            "label_echo_would_pass": label_echo_would_pass,
+            "cached_label_comparator": "parent_label == claimed_marginal_parent_label",
+            "cached_label_comparator_admits": label_echo_admits,
+            "computed_trace_distance": computed_trace_distance,
             "computed_partial_trace_rejects": computed_trace_rejects,
         },
         "coarse_epoch_lift_not_promoted": {
@@ -429,6 +565,8 @@ def main() -> int:
         failures.append("compatibility partial-trace law failed")
     if epoch_cache_mismatches:
         failures.append("epoch cache recompute mismatch")
+    if not epoch_mutation_self_test_pass:
+        failures.append("epoch cache mutation self-test did not fail closed")
     for name, row in controls.items():
         if row.get("pass") is not True:
             failures.append(f"negative/control failed: {name}")
@@ -469,11 +607,13 @@ def main() -> int:
             "gate1_full_quotient_classes_consumed": gate1["gates"]["observable_quotient_R4"]["quotient_class_count"],
             "full_recomputed_quotient_classes": len(full_recomputed_classes),
             "coarse_z_recomputed_quotient_classes": len(coarse_classes),
+            "coarse_x_recomputed_quotient_classes": len(coarse_x_classes),
             "cut_count_unordered_bipartitions": len(cuts),
             "nonempty_subset_lattice_nodes": len(subsets),
             "per_cut_side_marginal_records": len(states) * len(cuts) * 2,
             "compatibility_checks": compatibility_checks,
             "extension_fiber_nodes": len(extension_fibers),
+            "extension_fiber_size_records": sum(len(row["fiber_sizes"]) for row in extension_fibers.values()),
         },
         "cuts": cut_summaries,
         "compatibility": {
@@ -484,11 +624,14 @@ def main() -> int:
         },
         "extension_fibers": extension_fibers,
         "epoch_reprojection": {
-            "epochs": ["M_full_pauli_63", "M_coarse_single_qubit_Z"],
+            "epochs": ["M_full_pauli_63", "M_coarse_single_qubit_Z", "M_coarse_single_qubit_X"],
             "full_cached_gate1_projection_label_set_match": set(full_projection_gate1) == set(full_recomputed_projection),
             "full_class_count_matches_gate1": len(full_recomputed_classes) == gate1["gates"]["observable_quotient_R4"]["quotient_class_count"],
             "coarse_z_class_count": len(coarse_classes),
-            "fresh_recompute_and_compare": True,
+            "coarse_x_class_count": len(coarse_x_classes),
+            "fresh_recompute_and_compare": len(epoch_cache_mismatches) == 0,
+            "mutation_self_tests_pass": epoch_mutation_self_test_pass,
+            "mutation_self_tests": epoch_mutation_self_tests,
             "cache_mismatch_count": len(epoch_cache_mismatches),
             "cache_mismatches": epoch_cache_mismatches[:10],
         },
@@ -497,7 +640,9 @@ def main() -> int:
             "finite_roster_only": True,
             "local_unitary_equivalence_used": False,
             "max_stratum_representative_pool": len(states),
-            "pass": True,
+            "fresh_recompute_and_compare": len(epoch_cache_mismatches) == 0,
+            "mutation_self_tests_pass": epoch_mutation_self_test_pass,
+            "pass": len(epoch_cache_mismatches) == 0 and epoch_mutation_self_test_pass,
         },
         "all_pass": not failures,
         "failures": failures,

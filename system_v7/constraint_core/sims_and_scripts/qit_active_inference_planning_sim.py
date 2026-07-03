@@ -8,11 +8,12 @@ G(pi)=sum_t S(rho_t||goal). Active inference = select the min-cost policy. All C
 NO reward function, NO temperature, NO classical probability -- the "goal" is a density-operator prior,
 the "cost" is distinguishability from it.
 
-The deep structural result: planning INHERITS noncommutation (N01) from the manifold -- G(pi) is ORDER-
-SENSITIVE (forward policy != reversed policy), the SAME path-dependence the octonion spinor network
-(Layer 0.8) exhibited via bracketing. Active inference is not order-blind optimization; the manifold's
-N01 is carried into the policy space. This ties FEP (0.9), the network carrier (0.8), and the operator
-schedule (Axis-5) into one running planning engine.
+The structural result: policy evaluation is ORDER-SENSITIVE -- G(pi) for a forward policy != its reversal,
+because the stage operators are noncommuting CPTP maps (generic noncommuting Paulis suffice; this is the same
+order-sensitivity N01 names, not a special "inheritance" from a higher structure). Active inference over this
+schedule is therefore not order-blind optimization. This connects FEP (0.9), the operator schedule (Axis-5),
+and the manifold's order-sensitivity into one running planning loop -- a shared property, honestly, not a
+derived inheritance claim.
 
 RESULTS (deterministic):
  (1) PRAGMATIC value / policy selection: the min-path-integral policy REACHES a tilted-pointer goal that

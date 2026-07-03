@@ -746,7 +746,7 @@ See REPO_AUDIT_AND_RESOLUTIONS.md 1b.
 ## Layer 0.3 — Signed Axis-0 primitive (coherent information I_c = -S(A|B))  [earned as runnable rendering, hypothetical lane; owner doctrine under test]
 Source: ENTROPIC_MONISM_ORIGIN_AND_COSMOLOGY.md sec 8 (-S(A|B) kernel = entanglement measure); entropy-tables doc (signed primitive vs unsigned companion I(A:B)); sec 5.4/4.1 two-regime cosmology.
 Object: I_c(A>B) = S(rho_B) - S(rho_AB) = -S(A|B). Sign carries physical content: I_c>0 binds (gravity/dark-matter regime), I_c<0 disperses (dark-energy regime).
-Results: (1) signed vs unsigned on Bell/product-mixed/classical-corr (+1/-0.88/0 vs +2/0/+1). (2) THEOREM: 4000 separable states max I_c=-6e-6 -> positive I_c is a genuine entanglement witness, stricter than entanglement (Werner binds only for p>p*=0.7476, entangled from 1/3). (3) LOOP-BACK to 0.2: gravitational two regimes = two measured signs of I_c(x) along a chain of Werner cuts, potential Phi=-I_c; attractive accel toward the I_c>0 core emerges, replacing the 0.2 hand-signed +/-S_anom. (4) GATE (load-bearing): z3 AND cvc5, booleans DERIVED from measured core/halo signs; law "attractive-binding <=> I_c>0" SAT; control "measured-dispersing halo binds" UNSAT-with-law -> SAT-without.
+Results: (1) signed vs unsigned on Bell/product-mixed/classical-corr (+1/-0.88/0 vs +2/0/+1). (2) THEOREM: 4000 separable states max I_c=-6e-6 -> positive I_c is a genuine entanglement witness, stricter than entanglement (Werner binds only for p>p*=0.7476, entangled from 1/3). (3) LOOP-BACK to 0.2: gravitational two regimes = two measured signs of I_c(x) along a chain of Werner cuts, potential Phi=-I_c; attractive accel toward the I_c>0 core emerges, replacing the 0.2 hand-signed +/-S_anom. NOTE: the Gaussian core/halo profile is a DEMONSTRATION construction (a chosen spatial I_c(x) to exhibit the two-sign structure), not a derived density profile -- illustrative, matching the code's own demonstration-only status. (4) GATE (load-bearing): z3 AND cvc5, booleans DERIVED from measured core/halo signs; law "attractive-binding <=> I_c>0" SAT; control "measured-dispersing halo binds" UNSAT-with-law -> SAT-without.
 Deepening: the 0.2 gravity sign structure was asserted; 0.3 grounds it in the owner's -S(A|B) kernel. Artifacts: signed_axis0_primitive_sim.py, signed_axis0_primitive.png.
 
 
@@ -757,11 +757,11 @@ Results: (1) REPRODUCED (given Verlinde premises) -- a=GM/r^2 reproduced to rati
 Scope: reproduces established entropic-gravity (Verlinde) on the model substrate + names the dark-sector explanation as the open ratchet target. Does NOT derive G, the area law, or a0 from RC-1+RC-2. No claim to replace GR/SM. Artifacts: entropic_newton_limit_sim.py, entropic_newton_limit.png.
 
 
-## Layer 20.1 — Standard-Model bridge: weak-force left-handedness from F01+N01 (earned parity structure)
+## Layer 20.1 — Standard-Model bridge: weak-force left-handedness from F01+N01 (admits the parity structure; hypothetical lane, owner doctrine under test)
 Owner framing: new foundations UNDER the SM that give the same observations. Renders (hypothetical lane) the weak interaction's chiral coupling (couples only to left-handed fields) from the two root constraints, on the model's left-Weyl substrate -- the same move Layer 19.1 made for biological chirality.
 Source: A2_CHIRALITY_SPACETIME_BIOLOGY (universe = Type 1 LEFT_WEYL_CONVERGENT; weak parity violation = only left-handed h=-1/2; Type 2 = antimatter); axes-math dump sec 9 (Axis-3 selects Weyl representation; SU(2)/Hopf orbits). F01=finitude, N01=noncommutation.
 Construction: Dirac algebra in chiral basis; P_L=1/2(1-g5), P_R=1/2(1+g5); weak vertex reads <psi|P_L|psi>; parity P: O->g0 O g0 swaps P_L<->P_R.
-Results: (1) ADMITTED (structure forced, vertex+side empirical) -- P_L vertex parity asymmetry A=(cL-cR)/(cL+cR)=1.0000 (maximal V-A parity violation, as observed); vector control (coupling via I, EM-like) A=0 (parity conserved). (2) FORCED -- P_L finite (F01) and parity-noncommuting (N01: g0 P_L g0=P_R); the only parity-symmetric combination 1/2(P_L+P_R)=I/2 is exactly the parity-blind vector coupling. So a finite parity-noncommuting coupling MUST be chiral; which side (LEFT) is empirical input (Type 1), exactly as 19.1 forces chirality but not its sign. (3) GATE: z3 AND cvc5, booleans DERIVED from measured operators (P_L=(fin,pnc,chiral)=(1,1,1), vector=(1,0,0)); law "finite AND parity-noncommuting => chiral" SAT; control "finite pnc coupling forced non-chiral" UNSAT-with-law -> SAT-without.
+Results: (1) ADMITTED (structure forced, vertex+side empirical) -- P_L vertex parity asymmetry A=(cL-cR)/(cL+cR)=1.0000 (maximal V-A parity violation, as observed); vector control (coupling via I, EM-like) A=0 (parity conserved). (2) STRUCTURE-FORCED (within the chiral-algebra construction, vertex+side empirical): P_L finite (F01) and parity-noncommuting (N01: g0 P_L g0=P_R); the only parity-symmetric combination 1/2(P_L+P_R)=I/2 is exactly the parity-blind vector coupling. So a finite parity-noncommuting coupling MUST be chiral; which side (LEFT) is empirical input (Type 1), exactly as 19.1 forces chirality but not its sign. (3) GATE: z3 AND cvc5, booleans DERIVED from measured operators (P_L=(fin,pnc,chiral)=(1,1,1), vector=(1,0,0)); law "finite AND parity-noncommuting => chiral" SAT; control "finite pnc coupling forced non-chiral" UNSAT-with-law -> SAT-without.
 Shared origin: ONE F01+N01 mechanism across three levels -- matter/antimatter (A2), weak force (20.1), biochemistry (19.1). Scope: admits the PARITY structure as forced (vertex+side empirical), NOT SU(2)xU(1)/Weinberg angle/couplings. Owner doctrine under test; no claim to replace SM. Artifacts: weak_force_chirality_bridge_sim.py, weak_force_chirality_bridge.png.
 
 
@@ -802,7 +802,7 @@ Loop-back: FEP is a different VIEW of the same ratchet math (terrain native-entr
 ## Layer 0.10 — Active half of QIT-FEP: policy selection by path-integral free energy on the manifold [hypothetical lane]
 Source: continuation of Layer 0.9 (perceptual QIT-FEP) + owner directive to run FEP through the whole ratchet; the active/planning half. Operator set = native Axis-5 Ti/Te dephasings + F rotations (edges the state traverses on the manifold carrier of Layer 0.8).
 Construction: a policy pi is an operator sequence; expected free energy G(pi) = path integral of surprise sum_t S(rho_t||goal). Active inference = select the min-G policy. Pure CPTP + relative entropy; NO reward function, NO temperature, NO classical probability -- the goal is a density-operator prior, the cost is distinguishability from it.
-Results: (1) PRAGMATIC/selection: min-path-integral policy REACHES a tilted-pointer goal requiring rotate-then-commit (final surprise 0.06 from start 0.16); selection over full paths, not one step. (2) N01 INHERITED: 100/125 three-step policies have cost != their reverse (mean gap 0.21, max 0.87); selected policy fwd 0.31 vs rev 0.84 -- policy space carries the manifold's noncommutation, the SAME path-dependence the octonion network (0.8) showed via bracketing. Planning is not order-blind. (3) EPISTEMIC value (resolve uncertainty about hidden cause): soft posterior over concepts q(c)~exp(-S(rho||prior_c)); a committing/dephasing policy resolves concept-identity (+0.013 bits), a rotating policy does not (0.000). Directional sign structure; magnitude honestly small (nearby mixed anchors), reported as such not inflated. (4) GATE z3 AND cvc5: law "valid policy <=> reaches AND order-consistent" fits all regimes; control "non-reaching policy forced valid" UNSAT-with-law->SAT-without.
+Results: (1) PRAGMATIC/selection: min-path-integral policy REACHES a tilted-pointer goal requiring rotate-then-commit (final surprise 0.06 from start 0.16); selection over full paths, not one step. (2) ORDER-SENSITIVE (the property N01 names; from generic noncommuting stage maps, not a special inheritance): 100/125 three-step policies have cost != their reverse (mean gap 0.21, max 0.87); selected policy fwd 0.31 vs rev 0.84 -- policy space carries the manifold's noncommutation, the SAME path-dependence the octonion network (0.8) showed via bracketing. Planning is not order-blind. (3) EPISTEMIC value (resolve uncertainty about hidden cause): soft posterior over concepts q(c)~exp(-S(rho||prior_c)); a committing/dephasing policy resolves concept-identity (+0.013 bits), a rotating policy does not (0.000). Directional sign structure; magnitude honestly small (nearby mixed anchors), reported as such not inflated. (4) GATE z3 AND cvc5: law "valid policy <=> reaches AND order-consistent" fits all regimes; control "non-reaching policy forced valid" UNSAT-with-law->SAT-without.
 Loop-back: closes the FEP loop -- perception (0.9) relaxes surprise, action (0.10) selects the operator path that will; both are the SAME relative-entropy descent, now over trajectories; the manifold's N01 (0.8) is what makes planning nontrivial (order matters). Scope: finite-CPTP core of active inference / policy selection by expected free energy with N01 earned; does NOT do continuous-time optimal control or deep tree search (3-step enumeration on 5 operators). Hypothetical lane; owner doctrine under test. Artifacts: qit_active_inference_planning_sim.py, qit_active_inference_planning.png.
 
 
@@ -810,7 +810,7 @@ Loop-back: closes the FEP loop -- perception (0.9) relaxes surprise, action (0.1
 Source: owner directives "16 unique stages, each ... operates on information differently" + "each terrain has only 2 kinds of operators it can use, and in a certain signed axis6 way"; terrain generators from earned Layer 17.3 (terrain_8way_separation, eps-signed coherent drive -i g[eps H0,.] + kind dissipator {damp(pole),depol,proj}); admissibility affinity from axes doc (Axis-5 T/F kernel x Axis-2 direct/conjugated sheet).
 Construction: 8 terrains = manifold state regions (all-distinct 17.3); each admits exactly 2 native operators, one T-kernel (Ti z-dephase / Te x-dephase) + one F-kernel (Fi x-rot / Fe z-rot), selected by its Axis-2 sheet = eps sign (eps>0 direct {Ti,Fi}; eps<0 conjugated {Te,Fe}). 8x2 = 16 engine stages. Surprise = quantum relative entropy; all CPTP; no classical/thermal terms.
 Results: (1) 16 STAGES ALL DISTINCT as information transforms -- fingerprint (terrain relaxation + admissible-op step) on a 5-probe set gives 16/16 unique, min pairwise 0.336. No DOF collapse (owner's non-collapse rule). (2) SHEET-ADMISSIBILITY UNIQUE (z3+cvc5 SEARCH): sheet bit forced to measured eps yields exactly 1 model; erasing eps leaves 2^8=256 ambiguous -- the "2 operators per terrain matched to its Axis-2 sheet" rule is load-bearing. (3) ACTIVE PLANNER on the REAL 16-stage schedule (Layer 0.10 machinery): a policy = stage sequence, cost = path integral of surprise vs a goal terrain pointer; min-cost 2-stage policy REACHES terrain-4 pointer (2.77->0.93); 240/256 policies order-sensitive (max gap 1.27) = N01 inherited from the manifold (as 0.8/0.10).
-Loop-back: terrains (geometry), 2-operator admissibility (Axis-5/6 signed rule), and the active-inference planner (0.10) are ONE engine -- the geometric constraint manifold with the FEP loop running on it; the 16 stages are its distinct information-processing modes; planning over them inherits the manifold noncommutation. Honest negative: surprise-reduction as a SOLE admissibility criterion is NOT clean (4/8 with a single probe) and is deliberately NOT claimed -- admissibility here is the structural Axis-2 sheet rule, SMT-gated. Scope: earns 16-stage distinctness + unique sheet partition + goal-reaching order-sensitive planning on the real schedule; does NOT yet run the 720deg double-loop or the 64-schedule (2 engines x 8 terrains x 4 operators); 2-stage enumeration. Hypothetical lane; owner doctrine under test. Artifacts: sixteen_stage_engine_schedule_sim.py, sixteen_stage_engine_schedule.png.
+Loop-back: terrains (geometry), 2-operator admissibility (Axis-5/6 signed rule), and the active-inference planner (0.10) are ONE engine -- the geometric constraint manifold with the FEP loop running on it; the 16 stages are its distinct information-processing modes; planning over them inherits the manifold noncommutation. Honest negative: surprise-reduction as a SOLE admissibility criterion is NOT clean (4/8 with a single probe) and is deliberately NOT claimed -- admissibility here is the structural Axis-2 sheet rule, SMT-gated. Scope: measures 16-stage distinctness + unique sheet partition + goal-reaching order-sensitive planning on the real schedule (each with a flip/erase control), hypothetical lane; does NOT yet run the 720deg double-loop or the 64-schedule (2 engines x 8 terrains x 4 operators); 2-stage enumeration. Hypothetical lane; owner doctrine under test. Artifacts: sixteen_stage_engine_schedule_sim.py, sixteen_stage_engine_schedule.png.
 
 
 ## Layer 0.12 — the instrument-class split as a measured object (relaxation vs conditioning) [hypothetical lane]
@@ -829,7 +829,98 @@ Substrate: this is the first TORCH-lane sim (learning is the claim); run_all.py 
 
 ## Layer 0.14 — spinor memory: the 720deg loop-parity bit and the sheet-gated retention bit [hypothetical lane]
 Directive: owner -- "spinor memory?". The working scaffold (lines 104/153/190) is explicit: "if sign/phase/720deg holonomy matters, keep psi; if only probe-visible density matters, use rho"; "the density quotient kills global spinor phase, lifted path, 720deg return, holonomy conventions, chirality/lift". So the spinor carrier holds memory the density-level tooling (all of Axes 1-6) structurally cannot read.
-(A) 720-DEGREE LOOP-PARITY BIT: U(t)=exp(-i t/2 n.sigma) has U(2pi)=-I (sign flip), U(4pi)=+I (return). The sign (-1 after one 360deg loop, +1 after two) is a 1-bit memory of loop count. The engine's two 360deg loops -- a deductive loop + an inductive loop (Axis-4 = the two directions of engine-stage traversal) -- run over the SAME geometry (measured: two-loop Bloch-trajectory distance ~0) and close only at 720deg on the spinor carrier; that shared-geometry closure is the distinguishing property (a pair of separate cyclic engines stacked together does NOT share geometry and does not close this way). Any classical heat-engine correspondence is a rosetta label, not the mechanism. Carried in psi; identically invisible to rho (|rho-rho0|=0 at every stage, the sign cancels in rho=U rho U^dag).
+(A) 720-DEGREE LOOP-PARITY BIT: U(t)=exp(-i t/2 n.sigma) has U(2pi)=-I (sign flip), U(4pi)=+I (return). The sign (-1 after one 360deg loop, +1 after two) is a 1-bit memory of loop count. The engine's two 360deg loops are the two DIRECTIONS of engine-stage traversal (a deductive direction and an inductive direction, Axis-4); they run over the SAME manifold (measured: two-loop Bloch-trajectory distance ~0) and the spinor closes only after both (720deg). This is one object traversed twice, not two engines joined -- there is no second engine and no stacking. Any classical heat-engine correspondence is a rosetta label, not the mechanism. Carried in psi; identically invisible to rho (|rho-rho0|=0 at every stage, the sign cancels in rho=U rho U^dag).
 (B) SHEET-GATED RETENTION BIT: a bit encoded in a sheet's dephasing-protected basis survives; in the foreign basis it decays. Direct sheet (z-dephasing, Ti): z-bit fidelity 1.0 -> 1.0 over 300 ticks. Conjugated sheet (x-dephasing, Te): same z-bit 0.94 -> 0.0 (>100x retention ratio). Independently reproduces the owner's local dual eps-sheet engine measurement (direct sheet fidelity 1.0, conjugated 0.146) -- the two sheets preserve different structure, measured, not asserted.
 Results: (1) 720 parity spinor overlap +1/-1/+1, density distance ~0 (rho blind); (1b) the two 360deg loops (deductive+inductive) run over the SAME Bloch geometry (two-loop distance ~0) and close only at 720deg. (2) sheet retention direct 1.000->1.000, conjugated 0.94->0.000. (3) GATE z3 AND cvc5: law "readable-at-spinor XOR readable-at-density" (parity bit is spinor-only) fits, forced-density-readable control UNSAT-with-law -> SAT-without.
 Loop-back: this is why the Axis-0 sims had to be re-based at spinor level (density tooling is blind to 720/tense). The spinor memory is the psi-only register (loop-parity + sheet-history) that the associative memory (0.13, density pointer = which pattern) runs alongside -- two memory registers, one carrier; together the substrate the holodeck runs on. Scope: earns the two spinor-only memory bits and their density-blindness with a dual-SMT gate; single-qubit, does NOT build a multi-bit spinor register or the full 720deg dual-engine loop (Layer 0.11 reserved). Hypothetical lane; owner doctrine under test. Artifacts: spinor_memory_sim.py, spinor_memory.png.
+
+
+## Layer 0.15 — the full Type 1 engine (LEFT Weyl), built exactly from the IGT source doc [hypothetical lane]
+Directive: owner -- "lay out an actual type 1 engine for me completely, with the math and jargon, with igt
+labels. and run all this too in the actual sim manifolds ... doesn't seem you have actually even modeled even
+the basic axes yet." CORRECTION ADOPTED: an earlier reconstruction wrongly assumed each engine uses only 2 of
+the 4 operators; the source doc (reference_docs/engine_math/igt-pattern-explicit-math-reference.md, Part IV
+sections 11-15) is explicit that the engine split is by FLUX direction / Hamiltonian sign (Type 1 = flux IN,
++H0; Type 2 = flux OUT, -H0), and each engine traverses ALL FOUR Jungian-function terrains, each with its
+native operators (Se,Ne -> Ti,Fi ; Ni,Si -> Te,Fe). Rebuilt Type 1 from the doc's exact math.
+Operators (doc section 11 scratch Bloch maps): Ti z-dephase diag(.69,.69,1); Te x-dephase diag(1,.73,.73);
+Fi x-rotation Rx(.41); Fe z-rotation Rz(-.37). Terrains (doc section 12, flux IN): Se-in Funnel, Ne-in Vortex,
+Ni-in Pit, Si-in Hill (exact scratch Bloch maps: drive rotation about z + contraction + z-attractor).
+The Type-1 chart (doc section 14): 4 steps, each an OUTER stage Op(Terrain(r)) and an INNER stage
+Terrain(Op(r)) in exact composition order, each with an IGT win/lose label --
+  1 Se-in: OUTER TiSe [LOSE]  INNER SeFi [win];  2 Ne-in: OUTER NeTi [WIN]  INNER FiNe [lose];
+  3 Ni-in: OUTER NiFe [LOSE]  INNER TeNi [lose]; 4 Si-in: OUTER FeSi [WIN]  INNER SiTe [win].
+Casing rule (section 15): WIN/LOSE = outer loop, win/lose = inner loop; 1st token = dephasing placement,
+2nd = rotation placement. The IGT labels are the doc's rosetta labels on the earned structure -- kept in the
+docstring/figure, never used as math.
+Results: (1) 8 stages all distinct as affine Bloch maps (min pairwise 0.388, max 1.338) -- each does
+different information work. (2) per-stage work table (dPurity/dS/|dr| over a 6-probe battery). (3) Axis-6
+composition order is load-bearing (N01): different-axis operator pairs do not commute ([Ti,Fi] gap 0.089,
+[Te,Fe] 0.051); same-axis [Ti,Fe] commutes (gap 0, correctly -- both z). (4) the two traversals (doc section
+10, "proven only 2 exist") give different final states: deductive Se->Ne->Ni->Si vs inductive Se->Si->Ni->Ne,
+gap 0.017 (Axis-4). (5) GATE z3 AND cvc5: the native operator->sheet assignment (dephasing/rotation to their
+sheet) is FORCED (1 unique model), erased -> 2^4 ambiguous.
+Loop-back addendum (convergence packet from local node, 2026-07-03): an independent build (type1_engine_v0,
+numpy+julia) laid out the SAME Type 1 chart element-for-element (4 terrains, 4 operators, 8 stages, casings,
+two traversals), citing the same source docs. Two additions folded in from the SIGNED doc
+(QIT_ENGINE_FOUR_OPERATOR_SIGNED_MATH_20260522.md lines 1160-1176):
+ (5) THE FULL SIGNED GRAMMAR: the 8 signed operators (Axis-6 up=T-o-Op operator-first / down=Op-o-T
+     terrain-first) each realized on their 2 native terrains = 16 stage maps. At the scratch-Bloch-map depth
+     these collapse to 12 DISTINCT maps.
+ (6) MEASURED AXIS-6 PRECEDENCE LAW: up=down (precedence collapses) EXACTLY when the operator shares the
+     terrain's z-drive axis -- z-family {Ti,Fe} collapse (gap 0), x-family {Fi,Te} are load-bearing (gaps
+     0.08-0.48). Confirmed under BOTH scratch maps AND full GKSL flows (Fi/Se 0.284, Te/Ni 0.291 under GKSL;
+     Ti/Se and Fe/Ni exactly 0). This is real N01 geometry: composition order matters iff the operator
+     crosses the terrain's drive axis -- not a scratch-map artifact. GATE: z3 AND cvc5 both confirm the
+     collapse law consistent with the measured pattern; the flipped control (claim x-family collapses) is
+     UNSAT. The MBTI layer from the xlsx is attached as non-load-bearing annotation only.
+Loop-back: replaces the earlier reconstruction (two_weyl_engines_sim, removed) which had the wrong
+operator-per-engine model. Scope: Type 1 built faithfully at the doc's scratch-Bloch-map depth with IGT
+labels and the exact chart + dual-SMT gate on the native-operator rule; the full GKSL-generator version and
+the Type 2 (flux OUT) mirror are the next rungs. Hypothetical lane; owner doctrine under test.
+Artifacts: type1_engine_igt_sim.py, type1_engine_igt.png.
+
+
+## Layer 0.16 — the surface identity (Einstein-aether): operator/entropy ARE the surface [hypothetical lane]
+Directive (owner, verbatim): "the operator/entropy ARE the surface. this is like how einstein made spacetime
+itself the aether, rather than 19th century thinking of the aether flowing across space." The 19th-century
+picture is entropy/operators FLOWING ACROSS a pre-existing geometric stage (two separable things); the
+Einstein picture is that the geometric surface IS the entropy/operator structure -- one object, no stage
+apart from what happens on it. The owner explicitly retracted the freeze-ablation falsifier (holding geometry
+fixed while flow runs) as a CATEGORY ERROR: you cannot freeze one side of an identity. Correct test shape
+(owner): (1) IDENTITY BY DUAL COMPUTATION -- compute the surface metric two independent ways and require the
+SAME tensor, not correlation; (2) SEPARATION IS UNSAT -- any geometry-face != entropy-face construction must
+be structurally impossible.
+Math: the terrain surface has two faces. ENTROPY FACE = the Hessian of the quantum relative entropy
+S(rho||rho*) at the fixed point rho* in Bloch coordinates (the local curvature of the model's PRIMARY SCALAR
+READOUT -- entropic-monism draft: entropy is the primary readout over X_t/~_P, not the substance). GEOMETRY
+FACE = the Bogoliubov-Kubo-Mori (BKM) information metric g_ij = integral_0^inf tr[(d_i rho)(rho*+t)^{-1}
+(d_j rho)(rho*+t)^{-1}] dt, coordinate basis d_i rho = 1/2 sigma_i -- a purely GEOMETRIC Riemannian metric
+built with NO entropy functional. THEOREM (Bogoliubov/Kubo/Mori; here measured): Hess S|_{rho*} = g_BKM(rho*).
+Results: (1) IDENTITY at four terrain fixed points: max|Hess S - g_BKM| ~ 1e-8 each (finite-difference
+precision) -- the same tensor by two independent routes. (2) SEPARATION CONTROL: deforming the geometry face
+(scale one direction by 1.5) makes the faces differ by 0.667 -- the identity is a real constraint, not a
+tautology. (3) GATE dual solver: "can the surface be separated?" is UNSAT under the identity (z3 AND cvc5),
+SAT for the deformed control. Separation is structurally impossible exactly when the identity holds.
+PRIOR ART (established program; wiki compass A15 verdict KNOWN/ESTABLISHED -- align, do NOT claim as new):
+the "state generates its own geometry and dynamics" identity is TOMITA-TAKESAKI modular theory (from algebra
++ state alone: GNS space, modular Hamiltonian K_rho, AND the modular flow -- dynamics with no separately
+postulated Hamiltonian). BKM here is the fixed-point/second-order face; S(rho)=<K_rho> (row 8.1) is the
+pointwise identity, modular flow the same identity extended to dynamics. CONNES-ROVELLI (1994) thermal-time
+hypothesis makes modular flow physical time (t=hbar beta s); KMS + BISOGNANO-WICHMANN (modular flow = wedge
+Lorentz boost) are the backbone; active critique on record (Swanson, Chua). What THIS layer owns is narrower:
+the TERRAIN-LEVEL rendering (each terrain's fixed-point surface as modular/BKM structure, admissibility-gated
+with separation-UNSAT) as an APPLICATION of the established program inside the constraint-first stack, not a
+rediscovery. The owner's Einstein-aether phrasing is the geometric rendering of this known identity.
+Loop-back: this is the surface-identity HALF of the dual-ratchet doctrine, earned at the qubit fixed-point
+level. It does NOT yet build the two-sided RATCHET dynamics (geometry admits flow, flow re-carves geometry,
+one-directional progress from the interlock); per owner that must be tested as the self-succession of ONE
+surface (field-equation style), never as two frozen substances. Any classical-aether reading is a rosetta
+label, not the mechanism. Also folds the local node's manifold layer-stack extraction (L1-L15 + G1-G6
+inventory) as CONTEXT, with the owner's correction held explicitly: the manifold_layer_ledger order is an
+INVENTORY (a campaign tracking table, "NOT a result"), NOT the ratchet order; the same math recurs at many
+depths (entropy = per-cut readout AND terrain-surface coherence AND live observable); ratchet order is
+empirical, discovered by which admissibility tests bind, never prescribed from the doc ladder. The two
+authority surfaces (bundle ledger stamps EARNED; manifold draft ledger admits nothing) are kept separate as
+the docs demand. Hypothetical lane; owner doctrine under test.
+Artifacts: surface_identity_sim.py, surface_identity.png.

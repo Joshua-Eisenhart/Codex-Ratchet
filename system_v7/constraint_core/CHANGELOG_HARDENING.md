@@ -714,7 +714,7 @@ UP-56 NEW LAYER 0.14  spinor_memory_sim.py -- the two 1-bit memory registers tha
                are INVISIBLE to the density rho (scaffold 104/153: "the density quotient kills global spinor
                phase, lifted path, 720deg return, holonomy"). (A) 720-DEGREE LOOP-PARITY bit: U(t)=exp(-i t/2
                n.sigma) gives spinor sign +1/-1/+1 at t=0/2pi/4pi (two 360deg loops, deductive + inductive, over the SAME geometry closing at 720deg; the deductive-loop + inductive-loop
-               dual stack as one 720 cycle), carried in psi, density distance identically 0 at every stage.
+               the two directions of one manifold traversal closing at 720deg), carried in psi, density distance identically 0 at every stage.
                (B) SHEET-GATED RETENTION bit: a z-encoded bit under the direct sheet's z-dephasing survives
                (fidelity 1.0 for 300 ticks); under the conjugated sheet's x-dephasing it decays to 0.0 (>100x
                ratio) -- independently reproduces the owner's local dual-engine measurement (direct 1.0,
@@ -724,3 +724,68 @@ UP-56 NEW LAYER 0.14  spinor_memory_sim.py -- the two 1-bit memory registers tha
                sheet-history) that the associative memory (0.13, density pointer = which pattern) runs
                alongside -- two registers, one carrier. FULL HARNESS VERIFIED: 67 pass / 0 fail / 0 skip
                GREEN (incl torch + JAX + Julia lanes).
+
+
+# LAYER 0.15 — full Type 1 engine from IGT source doc — 2026-07-03
+UP-57 NEW LAYER 0.15  type1_engine_igt_sim.py -- the FULL Type 1 engine (LEFT Weyl, flux IN, +H0) built
+               EXACTLY from igt-pattern-explicit-math-reference.md sections 11-15, replacing an earlier
+               reconstruction (two_weyl_engines_sim, removed) that wrongly assumed each engine uses only 2
+               operators. CORRECT structure: engine split is by FLUX/Hamiltonian sign; each engine uses all
+               4 operators across its 4 terrains. 4 operators (Ti/Te/Fi/Fe scratch Bloch maps), 4 terrains
+               (Se/Ne/Ni/Si-in), 8 stages (outer Op(Terr) + inner Terr(Op)) in exact composition order with
+               IGT win/lose labels. Results: (1) 8 stages distinct (min 0.388); (2) per-stage work table;
+               (3) Axis-6 order N01 -- different-axis ops don't commute ([Ti,Fi] 0.089, [Te,Fe] 0.051),
+               same-axis [Ti,Fe] commutes; (4) two traversals differ (deductive vs inductive, gap 0.017);
+               (5) z3 AND cvc5 gate native op->sheet forced (1 vs 2^4). IGT labels are rosetta-layer only.
+               Removed two_weyl_engines_sim.py (wrong operator model). FULL HARNESS VERIFIED: 68 pass / 0 fail / 0 skip GREEN.
+
+UP-58 EXTEND 0.15  type1_engine_igt_sim.py -- folded convergence packet from local node (independent
+               type1_engine_v0 build reproduced the chart element-for-element). Added the FULL SIGNED GRAMMAR
+               (SIGNED doc 1160-1176): 8 signed operators (Axis-6 up=T-o-Op / down=Op-o-T) x 2 native
+               terrains = 16 stage maps -> 12 distinct at scratch depth. MEASURED Axis-6 precedence law:
+               collapses iff op shares terrain z-drive axis (z-family Ti,Fe gap 0; x-family Fi,Te load-bearing
+               0.08-0.48), confirmed under scratch maps AND GKSL flows. Second dual-solver gate (z3 AND cvc5)
+               on the collapse law, flipped control UNSAT. MBTI xlsx layer = non-load-bearing annotation.
+               FULL HARNESS VERIFIED: 68 pass / 0 fail / 0 skip GREEN.
+
+
+# LAYER 0.16 — surface identity (Einstein-aether) — 2026-07-03
+UP-59 NEW LAYER 0.16  surface_identity_sim.py -- the owner's "operator/entropy ARE the surface" made a
+               theorem (Einstein-aether move, not 19th-century aether-flowing-across-space). The terrain
+               surface has an ENTROPY face (Hessian of relative entropy S(rho||rho*) at the fixed point) and
+               a GEOMETRY face (Bogoliubov-Kubo-Mori information metric, independent integral, no entropy
+               functional); BKM theorem: they are the SAME tensor. MEASURED: max|Hess S - g_BKM| ~ 1e-8 at
+               four terrain fixed points (identical by two routes); separation control (deform geometry face)
+               differs by 0.667; dual-solver gate (z3 AND cvc5) -- separation UNSAT under identity, SAT for
+               deformed control. Correct test shape per owner: identity-by-dual-computation + separation-UNSAT
+               (freeze-ablation retracted as a category error -- can't freeze one side of an identity). Also
+               folds the local-node manifold layer-stack extraction as inventory context, with owner's
+               correction: doc layer order = inventory NOT ratchet order; math recurs at many depths; two
+               authority ledgers kept separate. FULL HARNESS: PENDING VERIFICATION.
+
+UP-59b ATTRIB 0.16  surface_identity_sim.py -- added prior-art attribution: the surface identity is the
+               ESTABLISHED Tomita-Takesaki modular theory / Connes-Rovelli thermal-time program (wiki compass
+               A15, KNOWN/ESTABLISHED), NOT a new result. BKM = the fixed-point face; row 8.1 S(rho)=<K_rho>
+               the pointwise identity; modular flow the dynamical extension. KMS + Bisognano-Wichmann backbone;
+               Swanson/Chua critique noted. The ownable claim is narrowed to the TERRAIN-LEVEL rendering as an
+               application inside the constraint-first stack, not a rediscovery. Also fixed a harness syntax
+               break (missing newline jammed the surface_identity entry into the next tuple). FULL HARNESS VERIFIED: 69 pass GREEN.
+
+
+# LOOP-BACK PACKET #3 CORRECTIONS — 2026-07-03
+UP-60 REPAIR  Applied WEB_THREAD_LOOPBACK_3 corrections (referee panel + stamp-inflation sweep):
+   Hopfield (1a-1d): dropped the "~0.14N Hopfield limit" analogy -- the quartic |<p|psi>|^4 is DENSE
+     associative memory (Krotov-Hopfield/Demircigil), capacity~dim, NOT classical Hebbian 0.14N; labeled the
+     patterns Haar-random/best-case with correlated/adversarial untested; reframed the n=1,2 floor as a
+     measured CONSEQUENCE of the dimension law (not a discovery); labeled E(psi) explicitly as ATTRACTOR
+     ENERGY (Lyapunov landscape), NOT a Hamiltonian (preempts physical-dynamics misread).
+   qit_active_inference_planning (3): "planning INHERITS noncommutation" -> order-sensitivity from generic
+     noncommuting stage maps (the property N01 names), a shared property not a derived inheritance.
+   qit_fep_ratchet (3): "forced (stage 1)"/"one earned stage" -> distinguishing-test-with-flip-control
+     wording; "quantum Markov chain" -> CLASSICAL-CMI scope (diagonal states), consistent with the 0.9 note.
+   Ledger stamp sweep (2,3): 0.11 "Scope: earns" -> "Scope: measures ... each with a flip/erase control,
+     hypothetical lane"; 0.10 "N01 INHERITED" -> "ORDER-SENSITIVE (from generic noncommuting maps)";
+     signed_axis0 0.3 -- added Gaussian core/halo DEMONSTRATION-only status (was in code, missing from
+     ledger); weak_force 20.1 -- "earned parity structure"/"FORCED" -> "admits ... hypothetical lane" /
+     "STRUCTURE-FORCED within the chiral-algebra construction". All sims docstring/prose-only; still PASS.
+   FULL HARNESS VERIFIED: 69 pass / 0 fail / 0 skip GREEN.

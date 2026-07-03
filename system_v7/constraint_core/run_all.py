@@ -229,6 +229,11 @@ SUITE = [
    ("contains", "PASS instrument_class_split_sim")]),          # Layer 0.12: instrument-class split as MEASURED object (loop-back #2 item 4) -- relaxation (magnitude-separable) vs conditioning (sequential-only, CUSUM), one free-energy core, not collapsed; z3+cvc5
  ("spinor_memory_sim.py", 120, False, [
    ("contains", "PASS spinor_memory_sim")]),          # Layer 0.14: spinor memory -- 720deg loop-parity bit + sheet-gated retention bit, both in psi and invisible to rho (density quotient kills spinor phase/holonomy); reproduces dual-engine 1.0-vs-0.146; z3+cvc5 spinor-only XOR
+ ("type1_engine_igt_sim.py", 120, False, [
+   ("contains", "PASS type1_engine_igt_sim")]),          # Layer 0.15: the FULL Type 1 engine (LEFT Weyl, flux IN) built EXACTLY from igt-pattern-explicit-math-reference doc sections 11-15 -- 4 operators (Ti/Te/Fi/Fe), 4 terrains (Se/Ne/Ni/Si-in), 8 stages (outer+inner) in exact composition order with IGT win/lose labels; 8 distinct, Axis-6 order N01, two traversals, native op->sheet forced (z3+cvc5)
+
+ ("surface_identity_sim.py", 120, False, [
+   ("contains", "PASS surface_identity_sim")]),          # Layer 0.16: the surface identity -- entropy face (Hess of relative entropy) == geometry face (BKM information metric) as the SAME tensor at every terrain fixed point (1e-8); an application of Tomita-Takesaki / Connes-Rovelli thermal-time to the terrain surface; separation UNSAT (z3+cvc5), deformed control SAT
  ("flux_nesting_ablation_jax.py", 600, True, [
    ("approx", r'"total_chern_forward":\s*([0-9.]+)', 7.295389, 1e-3)]),
  ("manifold_build_ladder.py", 600, True, [

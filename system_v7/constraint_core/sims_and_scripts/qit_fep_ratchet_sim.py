@@ -9,12 +9,14 @@ and correlation-diversity functionals ... deriving FEP from the constraint surfa
 primitive of standard FEP is REPLACED by its constraint-surface origin:
   classical probability p(z)        -> density-operator spectrum (finite, F01)
   Boltzmann thermal prior exp(-E/T) -> GKSL fixed point of a native operator (full-rank by construction)
-  Shannon surprise -log p(x)        -> quantum relative entropy S(rho||sigma) (forced, stage 1)
+  Shannon surprise -log p(x)        -> quantum relative entropy S(rho||sigma) (survives the CPTP-monotone
+                                       comparison in stage 1; a distinguishing test, not a uniqueness theorem)
   Bayesian belief update            -> CPTP relaxation toward the operator's pointer (stage 3)
   Markov blanket (graph partition)  -> vanishing quantum conditional mutual info I(A:C|B) (stage 4)
 NO temperature, NO energy, NO -log p, NO classical probability appears anywhere in the math below.
 
-The ratchet builds it one earned stage at a time:
+The ratchet builds it one stage at a time (each stage a distinguishing test with a flip control, not a
+uniqueness theorem):
 
 STAGE 1 -- DISTINGUISHABILITY forces the functional (F01, root). The surprise functional must be (i)
   monotone under every CPTP channel (post-processing cannot manufacture distinguishability = data
@@ -33,8 +35,10 @@ STAGE 3 -- OPERATORS are the inference dynamics (Axis-5). Each native T-operator
   Perception (relaxation) and the ratchet (native-entropy monotone descent) are the SAME dynamics.
 
 STAGE 4 -- MANIFOLD gives the Markov blanket (3-qubit floor). Internal(A)/external(C) separation = a
-  blanket B with vanishing conditional mutual info I(A:C|B)=0 (quantum Markov chain). Built from the
-  3-qubit state's correlation structure, not imposed. A direct A-C coupling gives I(A:C|B)>0 (no blanket).
+  blanket B with vanishing conditional mutual info I(A:C|B)=0 (a Markov-chain factorization; computed here
+  on diagonal states, so this is the CLASSICAL-CMI scope -- consistent with the 0.9 scope note, NOT a claim
+  about full quantum CMI / approximate Markov recovery). Built from the 3-qubit state's correlation
+  structure, not imposed. A direct A-C coupling gives I(A:C|B)>0 (no blanket).
 
 STAGE 5 -- ACTIVE inference: given a probe, the concept (operator pointer) of minimum surprise is
   selected. A z-aligned probe selects Ti; an x-aligned probe selects Te. The active half, pure QIT.

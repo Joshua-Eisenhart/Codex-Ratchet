@@ -21,10 +21,15 @@ RESULTS (deterministic):
      descends to fidelity 1.0 on pattern 0; energy drops (deeper well). Recall by gradient, not hand-coded
      dynamics.
  (2) THREE-QUBIT FLOOR (measured, owner's "need at least 3 qubits"): storing 4 patterns, recall accuracy is
-     0.25 (chance) at n=1 and n=2 but 1.00 at n=3 -- associative memory REQUIRES the 3-qubit floor because
-     the state space (dim 2^n) must exceed the pattern count with room for basins.
- (3) CAPACITY CURVE: at n=3 (dim 8), recall is 1.00 up to ~5 patterns, then degrades (0.38 at 8, 0.17 at
-     12) -- capacity ~ Hilbert dimension, the quantum analogue of Hopfield's ~0.14 N limit.
+     0.25 (chance) at n=1 and n=2 but 1.00 at n=3. The n=1,2 chance floor is a measured CONSEQUENCE of the
+     dimension law, not a separate discovery: 4 patterns cannot have basin room in dim 2 or 4 (dim <= pattern
+     count), so recall must sit at chance until dim exceeds the pattern count -- which first happens at n=3.
+ (3) CAPACITY CURVE (Haar-random patterns, best case): at n=3 (dim 8), recall is 1.00 up to ~5 patterns,
+     then degrades (0.38 at 8, 0.17 at 12, 0.06 at 16) -- capacity ~ Hilbert dimension. NOTE: this quartic
+     |<p|psi>|^4 energy is a DENSE associative memory (Krotov-Hopfield / Demircigil form), whose capacity
+     scales with dimension -- it is NOT the classical Hebbian ~0.14 N Hopfield limit (a different model); do
+     not conflate the two. Patterns here are Haar-random (expected overlap 1/2^n, the best case);
+     correlated/adversarial pattern sets are untested and would lower the usable capacity.
  (4) NUMPY-ORACLE CROSS-CHECK: an independent numpy fixed-point recall (no autograd -- softmax winner-take-
      all relaxation toward the nearest pattern) agrees with the torch autograd recall on which pattern is
      retrieved (cross-substrate agreement on the attractor identity).
@@ -39,7 +44,9 @@ possibilities, backward pass (autograd) = constraints -- the ratchet's native ar
 
 HONEST SCOPE: earns quantum associative memory as energy-descent recall on the spinor carrier, the 3-qubit
 floor, the capacity curve, and cross-substrate attractor agreement. It does NOT claim biological plausibility
-or a specific holodeck wiring; the energy is a chosen Hopfield-class quartic, not derived from a Hamiltonian.
+or a specific holodeck wiring; the energy E(psi) = -sum_k |<p_k|psi>|^4 is a chosen ATTRACTOR ENERGY
+(Lyapunov landscape whose minima are the stored patterns) that recall descends -- it is NOT a Hamiltonian and
+governs no physical time-evolution; reading it as physical dynamics is a category error.
 Hypothetical lane; owner doctrine under test. scratch_diagnostic; promotion_allowed=false.
 """
 import sys

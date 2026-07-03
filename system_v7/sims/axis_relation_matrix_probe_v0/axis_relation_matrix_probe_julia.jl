@@ -10,7 +10,7 @@ const HERE = @__DIR__
 const RESULTS = joinpath(HERE, "results")
 const NULL_PERMUTATIONS = 2000
 const TOL = 1.0e-12
-const AXIS_NAMES = ["a1", "a2", "a4", "a5", "a6", "b0", "b3", "b6"]
+const AXIS_NAMES = ["a1_branch", "a1_opchar", "a2", "a4", "a5", "a6", "b0", "b3", "b6"]
 
 const OUTER_LOOP_STAGE_IDS = ["TiSe", "NeTi", "NiFe", "FeSi"]
 const INNER_LOOP_STAGE_IDS = ["SeFi", "SiTe", "TeNi", "FiNe"]
@@ -50,7 +50,8 @@ function bit_row(stage, traversal, state_name, bloch)
         "traversal" => traversal,
         "state" => state_name,
         "bloch" => bloch,
-        "a1" => in(stage["operator"], ["Fi", "Fe"]) ? 1 : 0,
+        "a1_branch" => in(terrain_fn, ["Se", "Ni"]) ? 1 : -1,
+        "a1_opchar" => in(stage["operator"], ["Fi", "Fe"]) ? 1 : 0,
         "a2" => in(terrain_fn, ["Ni", "Si"]) ? 1 : 0,
         "a4" => traversal == "outer" ? 0 : 1,
         "a5" => startswith(stage["operator"], "F") ? 1 : 0,
@@ -189,6 +190,30 @@ function stress(rows)
     )
 end
 
+function branch_family_reachability(rows)
+    pairs = unique([(r["a1_branch"], r["a5"]) for r in rows])
+    sort!(pairs)
+    examples = Dict()
+    for pair in pairs
+        hit = first(r for r in rows if (r["a1_branch"], r["a5"]) == pair)
+        examples[string(pair)] = Dict(
+            "stage_id" => hit["stage_id"],
+            "terrain" => hit["terrain"],
+            "operator" => hit["operator"],
+            "traversal" => hit["traversal"],
+        )
+    end
+    return Dict(
+        "axes" => ["a1_branch", "a5_operator_family"],
+        "reachable_combination_count" => length(pairs),
+        "possible_combination_count" => 4,
+        "reachable_combinations" => [[p[1], p[2]] for p in pairs],
+        "examples" => examples,
+        "independent_variation_reached" => length(pairs) == 4,
+        "note" => "Type-1 terrain branch pairs {Se,Ni} vs {Ne,Si} cross the native operator-family split, so a1_branch and a5 can vary independently in this stage chart.",
+    )
+end
+
 function build_result()
     rows = readout_rows()
     relations = relation_matrix(rows)
@@ -207,6 +232,7 @@ function build_result()
         "relation_matrix" => relations,
         "laws" => laws(rows),
         "conflation_stress_test" => stress(rows),
+        "a1_branch_a5_reachability" => branch_family_reachability(rows),
         "TOOL_MANIFEST" => Dict(
             "julia" => Dict("tried" => true, "used" => true, "reason" => "load-bearing independent relation matrix and permutation nulls"),
             "JSON3" => Dict("tried" => true, "used" => true, "reason" => "artifact serialization"),

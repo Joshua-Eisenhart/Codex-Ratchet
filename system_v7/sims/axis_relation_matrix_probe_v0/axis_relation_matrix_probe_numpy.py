@@ -46,7 +46,7 @@ PROBE_STATES = {
     "seeded_1": (-0.532, 0.118, -0.374),
 }
 
-AXIS_NAMES = ["a1", "a2", "a4", "a5", "a6", "b0", "b3", "b6"]
+AXIS_NAMES = ["a1_branch", "a1_opchar", "a2", "a4", "a5", "a6", "b0", "b3", "b6"]
 
 
 def sign_bit(z: float) -> int:
@@ -67,7 +67,8 @@ def bit_row(stage: dict, traversal: str, state_name: str, bloch: tuple[float, fl
         "traversal": traversal,
         "state": state_name,
         "bloch": list(bloch),
-        "a1": 1 if stage["operator"] in {"Fi", "Fe"} else 0,
+        "a1_branch": 1 if terrain_fn in {"Se", "Ni"} else -1,
+        "a1_opchar": 1 if stage["operator"] in {"Fi", "Fe"} else 0,
         "a2": 1 if terrain_fn in {"Ni", "Si"} else 0,
         "a4": 0 if traversal == "outer" else 1,
         "a5": 1 if stage["operator"].startswith("F") else 0,
@@ -206,6 +207,28 @@ def stress(rows: list[dict]) -> dict:
     }
 
 
+def branch_family_reachability(rows: list[dict]) -> dict:
+    pairs = sorted({(r["a1_branch"], r["a5"]) for r in rows})
+    examples = {}
+    for pair in pairs:
+        hit = next(r for r in rows if (r["a1_branch"], r["a5"]) == pair)
+        examples[str(pair)] = {
+            "stage_id": hit["stage_id"],
+            "terrain": hit["terrain"],
+            "operator": hit["operator"],
+            "traversal": hit["traversal"],
+        }
+    return {
+        "axes": ["a1_branch", "a5_operator_family"],
+        "reachable_combination_count": len(pairs),
+        "possible_combination_count": 4,
+        "reachable_combinations": [list(p) for p in pairs],
+        "examples": examples,
+        "independent_variation_reached": len(pairs) == 4,
+        "note": "Type-1 terrain branch pairs {Se,Ni} vs {Ne,Si} cross the native operator-family split, so a1_branch and a5 can vary independently in this stage chart.",
+    }
+
+
 def z3_unique_function(rows: list[dict], left: str, right: str, erased: bool):
     import z3
 
@@ -311,7 +334,8 @@ def build_result() -> dict:
             "system_v7/constraint_core/sims_and_scripts/axis_laws_dual_proof.py",
         ],
         "bit_extraction": {
-            "a1": "operator factor: Fi/Fe unitary=1, Ti/Te proper CPTP/GKSL=0",
+            "a1_branch": "terrain-branch kernel chi1: Se/Ni=+1, Ne/Si=-1; independent of the operator factor",
+            "a1_opchar": "legacy comparison proxy only: operator factor Fi/Fe unitary=1, Ti/Te proper CPTP/GKSL=0; overlaps a5 and is not A1",
             "a2": "terrain function frame: Ni/Si conjugated=1, Se/Ne direct=0",
             "a4": "traversal order: outer/deductive=0, inner/inductive=1",
             "a5": "operator family: F family=1, T family=0",
@@ -330,6 +354,7 @@ def build_result() -> dict:
         "relation_matrix": relations,
         "laws": laws(rows),
         "conflation_stress_test": stress(rows),
+        "a1_branch_a5_reachability": branch_family_reachability(rows),
         "dual_smt_gate": smt_gate(rows, relations),
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,

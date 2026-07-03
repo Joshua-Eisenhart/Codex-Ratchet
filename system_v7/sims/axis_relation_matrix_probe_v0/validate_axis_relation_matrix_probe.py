@@ -77,11 +77,22 @@ def md_table(result: dict) -> str:
 
 def write_results(numpy_result: dict, julia_result: dict, parity: dict) -> None:
     stress = numpy_result["conflation_stress_test"]
+    branch_reach = numpy_result["a1_branch_a5_reachability"]
     laws = numpy_result["laws"]
     above = [r for r in numpy_result["relation_matrix"] if r["verdict"] == "dependent_above_95pct_null"]
+    relation_by_pair = relation_keyed(numpy_result)
+    a1_branch_a5 = relation_by_pair[("a1_branch", "a5")]
+    a1_opchar_a5 = relation_by_pair[("a1_opchar", "a5")]
+    branch_verdict = (
+        "trap confirmed; algebra orthogonality upheld at this depth"
+        if a1_branch_a5["verdict"] == "independent_at_this_depth"
+        else "genuine undocumented relation candidate; flag for discriminator sim"
+    )
     counts = verdict_counts(numpy_result)
     lines = [
         "# axis_relation_matrix_probe_v0 RESULTS",
+        "",
+        "v0.1: terrain-branch A1 re-extraction applied.",
         "",
         "classification: `scratch_diagnostic`",
         "claim_ceiling: `QUARANTINE_EXPLORATORY`",
@@ -92,7 +103,8 @@ def write_results(numpy_result: dict, julia_result: dict, parity: dict) -> None:
         "",
         f"Rows: {numpy_result['readout_row_count']} = 8 Type-1 stages across both traversals x {numpy_result['probe_state_count']} fixed probe states.",
         "",
-        "- a1: operator factor, Fi/Fe unitary=1 and Ti/Te proper CPTP/GKSL=0.",
+        "- a1_branch: terrain-branch kernel, chi1(Se)=chi1(Ni)=+1 and chi1(Ne)=chi1(Si)=-1.",
+        "- a1_opchar: legacy comparison proxy only, Fi/Fe unitary=1 and Ti/Te proper CPTP/GKSL=0; this overlaps a5 and is not A1.",
         "- a2: terrain frame, Ni/Si conjugated=1 and Se/Ne direct=0.",
         "- a4: traversal order, outer/deductive=0 and inner/inductive=1.",
         "- a5: operator family, F=1 and T=0.",
@@ -105,11 +117,20 @@ def write_results(numpy_result: dict, julia_result: dict, parity: dict) -> None:
         "## Laws",
         "",
         f"- b6 = -b0*b3: `{laws['b6_equals_minus_b0_times_b3']['holds']}` over {laws['b6_equals_minus_b0_times_b3']['defined_rows']} defined rows.",
-        f"- a0 = a1 XOR a2: `{laws['a0_equals_a1_xor_a2']['status']}`.",
+        f"- a0 = a1_branch XOR a2: `{laws['a0_equals_a1_xor_a2']['status']}`.",
         "",
         "## Relation Matrix",
         "",
         md_table(numpy_result),
+        "",
+        "## A1/A5 Caveat Re-Test",
+        "",
+        f"Reachable (a1_branch, a5) combinations: {branch_reach['reachable_combination_count']} / {branch_reach['possible_combination_count']}.",
+        f"Reachable combinations: `{branch_reach['reachable_combinations']}`.",
+        f"a1_branch-a5: n={a1_branch_a5['n']}, NMI={a1_branch_a5['nmi']:.6f}, corr={a1_branch_a5['corr']:.6f}, null95 NMI={a1_branch_a5['null95_nmi']:.6f}, null95 abs corr={a1_branch_a5['null95_abs_corr']:.6f}, verdict=`{a1_branch_a5['verdict']}`.",
+        f"a1_opchar-a5 comparison: n={a1_opchar_a5['n']}, NMI={a1_opchar_a5['nmi']:.6f}, corr={a1_opchar_a5['corr']:.6f}, verdict=`{a1_opchar_a5['verdict']}`.",
+        "",
+        f"Verdict: {branch_verdict}.",
         "",
         "## Conflation Stress Test",
         "",
@@ -125,7 +146,7 @@ def write_results(numpy_result: dict, julia_result: dict, parity: dict) -> None:
         "",
         "## Parity",
         "",
-        f"numpy/Juliа parity at 1e-9: `{parity['parity_pass']}`.",
+        f"numpy/Julia parity at 1e-9: `{parity['parity_pass']}`.",
         f"Parity diffs: `{parity['diffs']}`.",
         "",
         "## Honest Verdict Counts",

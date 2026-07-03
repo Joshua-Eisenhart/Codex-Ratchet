@@ -27,9 +27,64 @@
       "used": true
     }
   },
+  "a1_branch_a5_reachability": {
+    "axes": [
+      "a1_branch",
+      "a5_operator_family"
+    ],
+    "examples": {
+      "(-1, 0)": {
+        "operator": "Ti",
+        "stage_id": "NeTi",
+        "terrain": "Ne-in",
+        "traversal": "outer"
+      },
+      "(-1, 1)": {
+        "operator": "Fe",
+        "stage_id": "FeSi",
+        "terrain": "Si-in",
+        "traversal": "outer"
+      },
+      "(1, 0)": {
+        "operator": "Ti",
+        "stage_id": "TiSe",
+        "terrain": "Se-in",
+        "traversal": "outer"
+      },
+      "(1, 1)": {
+        "operator": "Fe",
+        "stage_id": "NiFe",
+        "terrain": "Ni-in",
+        "traversal": "outer"
+      }
+    },
+    "independent_variation_reached": true,
+    "note": "Type-1 terrain branch pairs {Se,Ni} vs {Ne,Si} cross the native operator-family split, so a1_branch and a5 can vary independently in this stage chart.",
+    "possible_combination_count": 4,
+    "reachable_combination_count": 4,
+    "reachable_combinations": [
+      [
+        -1,
+        0
+      ],
+      [
+        -1,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
   "all_pass": true,
   "bit_extraction": {
-    "a1": "operator factor: Fi/Fe unitary=1, Ti/Te proper CPTP/GKSL=0",
+    "a1_branch": "terrain-branch kernel chi1: Se/Ni=+1, Ne/Si=-1; independent of the operator factor",
+    "a1_opchar": "legacy comparison proxy only: operator factor Fi/Fe unitary=1, Ti/Te proper CPTP/GKSL=0; overlaps a5 and is not A1",
     "a2": "terrain function frame: Ni/Si conjugated=1, Se/Ne direct=0",
     "a4": "traversal order: outer/deductive=0, inner/inductive=1",
     "a5": "operator family: F family=1, T family=0",
@@ -106,7 +161,7 @@
   "dual_smt_gate": {
     "attempted_pairs": [
       [
-        "a1",
+        "a1_opchar",
         "a5"
       ],
       [
@@ -134,7 +189,7 @@
         ],
         "flip": true,
         "pair": [
-          "a1",
+          "a1_opchar",
           "a5"
         ],
         "polarity": "measured rows force a unique right=f(left) map; erased left-class control must make uniqueness false",
@@ -200,7 +255,7 @@
   },
   "engine": "numpy",
   "formal_admission_allowed": false,
-  "generated_at": "2026-07-03T19:52:43Z",
+  "generated_at": "2026-07-03T20:38:01Z",
   "laws": {
     "a0_equals_a1_xor_a2": {
       "note": "a0 needs Xi/cut bridge or explicit a0 proxy; this stage-level Type-1 readout excludes it honestly.",
@@ -223,7 +278,8 @@
   "readout_row_count": 56,
   "readout_rows": [
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -245,7 +301,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -267,7 +324,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -289,7 +347,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -311,7 +370,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -333,7 +393,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -355,7 +416,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -377,7 +439,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -399,7 +462,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -421,7 +485,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -443,7 +508,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -465,7 +531,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -487,7 +554,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -509,7 +577,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 0,
       "a4": 0,
       "a5": 0,
@@ -531,7 +600,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -553,7 +623,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -575,7 +646,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -597,7 +669,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -619,7 +692,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -641,7 +715,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -663,7 +738,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -685,7 +761,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -707,7 +784,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -729,7 +807,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -751,7 +830,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -773,7 +853,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -795,7 +876,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -817,7 +899,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 1,
       "a4": 0,
       "a5": 1,
@@ -839,7 +922,8 @@
       "traversal": "outer"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -861,7 +945,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -883,7 +968,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -905,7 +991,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -927,7 +1014,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -949,7 +1037,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -971,7 +1060,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": 1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -993,7 +1083,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1015,7 +1106,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1037,7 +1129,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1059,7 +1152,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1081,7 +1175,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1103,7 +1198,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1125,7 +1221,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": -1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1147,7 +1244,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1169,7 +1267,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1191,7 +1290,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1213,7 +1313,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1235,7 +1336,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1257,7 +1359,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1279,7 +1382,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 0,
+      "a1_branch": 1,
+      "a1_opchar": 0,
       "a2": 1,
       "a4": 1,
       "a5": 0,
@@ -1301,7 +1405,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -1323,7 +1428,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -1345,7 +1451,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -1367,7 +1474,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -1389,7 +1497,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -1411,7 +1520,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -1433,7 +1543,8 @@
       "traversal": "inner"
     },
     {
-      "a1": 1,
+      "a1_branch": -1,
+      "a1_opchar": 1,
       "a2": 0,
       "a4": 1,
       "a5": 1,
@@ -1460,10 +1571,22 @@
       "corr": 0.0,
       "n": 56,
       "nmi": 0.0,
-      "null95_abs_corr": 0.3571428571428572,
-      "null95_nmi": 0.09407178395700082,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
       "pair": [
-        "a1",
+        "a1_branch",
+        "a1_opchar"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "a1_branch",
         "a2"
       ],
       "verdict": "independent_at_this_depth"
@@ -1472,34 +1595,34 @@
       "corr": 0.0,
       "n": 56,
       "nmi": 0.0,
-      "null95_abs_corr": 0.3571428571428572,
-      "null95_nmi": 0.09407178395700082,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
       "pair": [
-        "a1",
+        "a1_branch",
         "a4"
       ],
       "verdict": "independent_at_this_depth"
     },
     {
-      "corr": 1.0,
+      "corr": 0.0,
       "n": 56,
-      "nmi": 1.0,
-      "null95_abs_corr": 0.3571428571428572,
-      "null95_nmi": 0.09407178395700082,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
       "pair": [
-        "a1",
+        "a1_branch",
         "a5"
       ],
-      "verdict": "dependent_above_95pct_null"
+      "verdict": "independent_at_this_depth"
     },
     {
       "corr": 0.0,
       "n": 56,
       "nmi": 0.0,
-      "null95_abs_corr": 0.3571428571428572,
-      "null95_nmi": 0.09407178395700082,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
       "pair": [
-        "a1",
+        "a1_branch",
         "a6"
       ],
       "verdict": "independent_at_this_depth"
@@ -1511,7 +1634,91 @@
       "null95_abs_corr": 0.0,
       "null95_nmi": 0.0,
       "pair": [
-        "a1",
+        "a1_branch",
+        "b0"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "a1_branch",
+        "b3"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 48,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "a1_branch",
+        "b6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a1_opchar",
+        "a2"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a1_opchar",
+        "a4"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 1.0,
+      "n": 56,
+      "nmi": 1.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a1_opchar",
+        "a5"
+      ],
+      "verdict": "dependent_above_95pct_null"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a1_opchar",
+        "a6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "a1_opchar",
         "b0"
       ],
       "verdict": "independent_at_this_depth"
@@ -1523,7 +1730,7 @@
       "null95_abs_corr": 0.3571428571428572,
       "null95_nmi": 0.09407178395700082,
       "pair": [
-        "a1",
+        "a1_opchar",
         "b3"
       ],
       "verdict": "independent_at_this_depth"
@@ -1535,7 +1742,7 @@
       "null95_abs_corr": 0.3333333333333334,
       "null95_nmi": 0.08170416594551039,
       "pair": [
-        "a1",
+        "a1_opchar",
         "b6"
       ],
       "verdict": "independent_at_this_depth"

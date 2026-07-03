@@ -1,5 +1,7 @@
 # axis_relation_matrix_probe_v0 RESULTS
 
+v0.1: terrain-branch A1 re-extraction applied.
+
 classification: `scratch_diagnostic`
 claim_ceiling: `QUARANTINE_EXPLORATORY`
 promotion_allowed: `false`
@@ -9,7 +11,8 @@ formal_admission_allowed: `false`
 
 Rows: 56 = 8 Type-1 stages across both traversals x 7 fixed probe states.
 
-- a1: operator factor, Fi/Fe unitary=1 and Ti/Te proper CPTP/GKSL=0.
+- a1_branch: terrain-branch kernel, chi1(Se)=chi1(Ni)=+1 and chi1(Ne)=chi1(Si)=-1.
+- a1_opchar: legacy comparison proxy only, Fi/Fe unitary=1 and Ti/Te proper CPTP/GKSL=0; this overlaps a5 and is not A1.
 - a2: terrain frame, Ni/Si conjugated=1 and Se/Ne direct=0.
 - a4: traversal order, outer/deductive=0 and inner/inductive=1.
 - a5: operator family, F=1 and T=0.
@@ -22,19 +25,27 @@ Rows: 56 = 8 Type-1 stages across both traversals x 7 fixed probe states.
 ## Laws
 
 - b6 = -b0*b3: `True` over 48 defined rows.
-- a0 = a1 XOR a2: `skipped_undefinable`.
+- a0 = a1_branch XOR a2: `skipped_undefinable`.
 
 ## Relation Matrix
 
 | pair | n | NMI | corr | null95 NMI | null95 abs corr | verdict |
 |---|---:|---:|---:|---:|---:|---|
-| a1-a2 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
-| a1-a4 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
-| a1-a5 | 56 | 1.000000 | 1.000000 | 0.094072 | 0.357143 | dependent_above_95pct_null |
-| a1-a6 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
-| a1-b0 | 56 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
-| a1-b3 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
-| a1-b6 | 48 | 0.000000 | 0.000000 | 0.081704 | 0.333333 | independent_at_this_depth |
+| a1_branch-a1_opchar | 56 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
+| a1_branch-a2 | 56 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
+| a1_branch-a4 | 56 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
+| a1_branch-a5 | 56 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
+| a1_branch-a6 | 56 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
+| a1_branch-b0 | 56 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
+| a1_branch-b3 | 56 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
+| a1_branch-b6 | 48 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
+| a1_opchar-a2 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
+| a1_opchar-a4 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
+| a1_opchar-a5 | 56 | 1.000000 | 1.000000 | 0.094072 | 0.357143 | dependent_above_95pct_null |
+| a1_opchar-a6 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
+| a1_opchar-b0 | 56 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
+| a1_opchar-b3 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
+| a1_opchar-b6 | 48 | 0.000000 | 0.000000 | 0.081704 | 0.333333 | independent_at_this_depth |
 | a2-a4 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
 | a2-a5 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
 | a2-a6 | 56 | 0.000000 | 0.000000 | 0.094072 | 0.357143 | independent_at_this_depth |
@@ -57,6 +68,15 @@ Rows: 56 = 8 Type-1 stages across both traversals x 7 fixed probe states.
 | b0-b6 | 48 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | independent_at_this_depth |
 | b3-b6 | 48 | 0.000000 | 0.000000 | 0.261715 | 0.583333 | independent_at_this_depth |
 
+## A1/A5 Caveat Re-Test
+
+Reachable (a1_branch, a5) combinations: 4 / 4.
+Reachable combinations: `[[-1, 0], [-1, 1], [1, 0], [1, 1]]`.
+a1_branch-a5: n=56, NMI=0.000000, corr=0.000000, null95 NMI=0.000000, null95 abs corr=0.000000, verdict=`independent_at_this_depth`.
+a1_opchar-a5 comparison: n=56, NMI=1.000000, corr=1.000000, verdict=`dependent_above_95pct_null`.
+
+Verdict: trap confirmed; algebra orthogonality upheld at this depth.
+
 ## Conflation Stress Test
 
 Reachable (a4, a6, b3) combinations: 4 / 8.
@@ -66,19 +86,19 @@ Verdict: fewer than 8 combinations are reachable. In this built Type-1 chart, a4
 
 ## SMT Gate
 
-Above-null relation pairs gated: `[['a1', 'a5'], ['a4', 'b3']]`.
+Above-null relation pairs gated: `[['a1_opchar', 'a5'], ['a4', 'b3']]`.
 SMT status: `ran`.
 
 ## Parity
 
-numpy/Juliа parity at 1e-9: `True`.
+numpy/Julia parity at 1e-9: `True`.
 Parity diffs: `[]`.
 
 ## Honest Verdict Counts
 
 - law: 1
 - dependent above 95% null: 2
-- independent at this depth: 26
+- independent at this depth: 34
 - undefinable: 1
 
-Generated: 2026-07-03T19:52:48Z
+Generated: 2026-07-03T20:38:40Z

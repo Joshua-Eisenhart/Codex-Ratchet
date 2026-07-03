@@ -21,7 +21,7 @@
   "formal_admission_allowed": false,
   "gate_verdicts": {
     "observable_quotient_R4": {
-      "basis": "full C^8 carrier enumeration, roster formula 8*(1+2*2)=40, full/coarse probe epoching with lineage reprojection, numpy/Julia parity at 1e-9",
+      "basis": "full C^8 carrier enumeration, roster formula 8*(1+2*2)=40, full/coarse probe epoching with lineage reprojection, numpy/Julia/JAX parity at 1e-10",
       "pass": true
     },
     "progress_measure_R6": {
@@ -38,15 +38,50 @@
       "status": "demoted_to_raw_carrier_discriminator"
     }
   },
-  "generated_at": "2026-07-03T22:15:14Z",
+  "generated_at": "2026-07-03T22:37:17Z",
   "parity": {
     "failure_count": 0,
     "failures": [],
-    "max_pvec_abs_diff": 8.770761894538737e-15,
-    "max_trace_abs_diff": 3.3306690738754696e-16,
-    "parity_abs_tol": 1e-09,
+    "max_pvec_abs_diff": 2.063155202236544e-12,
+    "max_trace_abs_diff": 4.440892098500626e-16,
+    "pairs": {
+      "julia_jax": {
+        "failure_count": 0,
+        "failures": [],
+        "left": "julia",
+        "max_pvec_abs_diff": 2.063155202236544e-12,
+        "max_trace_abs_diff": 4.440892098500626e-16,
+        "parity_abs_tol": 1e-10,
+        "parity_pass": true,
+        "right": "jax",
+        "xi_ref_max_descriptor_spread_diff": 1.000088900582341e-12
+      },
+      "numpy_jax": {
+        "failure_count": 0,
+        "failures": [],
+        "left": "numpy",
+        "max_pvec_abs_diff": 2.0630996910853128e-12,
+        "max_trace_abs_diff": 4.440892098500626e-16,
+        "parity_abs_tol": 1e-10,
+        "parity_pass": true,
+        "right": "jax",
+        "xi_ref_max_descriptor_spread_diff": 1.000088900582341e-12
+      },
+      "numpy_julia": {
+        "failure_count": 0,
+        "failures": [],
+        "left": "numpy",
+        "max_pvec_abs_diff": 8.770761894538737e-15,
+        "max_trace_abs_diff": 3.3306690738754696e-16,
+        "parity_abs_tol": 1e-10,
+        "parity_pass": true,
+        "right": "julia",
+        "xi_ref_max_descriptor_spread_diff": 0.0
+      }
+    },
+    "parity_abs_tol": 1e-10,
     "parity_pass": true,
-    "xi_ref_max_descriptor_spread_diff": 0.0
+    "xi_ref_max_descriptor_spread_diff": 1.000088900582341e-12
   },
   "promotion_allowed": false,
   "schema": "codex_ratchet.ratchet_formal_gates_v1.validator.v1",

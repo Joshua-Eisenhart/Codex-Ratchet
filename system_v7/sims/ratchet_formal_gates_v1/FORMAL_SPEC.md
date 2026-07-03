@@ -57,7 +57,7 @@ Executable numeric gate:
 - class sizes: `[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]`.
 - probe epoching: full epoch `M_full_pauli_63` and coarse epoch `M_coarse_single_qubit_Z`; equivalence is valid only within an epoch and cross-epoch identity requires re-projection.
 - coarse epoch multi-representative classes: `3`.
-- numpy/Julia parity at 1e-9: `True` with max pvec diff `8.770761894538737e-15`.
+- numpy/Julia/JAX parity at 1e-10: `True` with max pvec diff `2.063155202236544e-12`.
 - Gate verdict: `PASS`.
 
 ## 4. Xi_ref Quotient-Lift
@@ -90,4 +90,4 @@ Executable lift gate:
 - accepted ceiling: `passes local rerun` if the Python, Julia, validator, and lint commands in the closeout all exit 0; never above `scratch_diagnostic` / `formal_gate_diagnostic_only` without later admission gates.
 - blocked consumers: Axis-0 bridge closure, `Phi_0` evaluation, unified emergence admission, and further pipeline advancement.
 
-Generated: 2026-07-03T22:15:14Z
+Generated: 2026-07-03T22:37:17Z

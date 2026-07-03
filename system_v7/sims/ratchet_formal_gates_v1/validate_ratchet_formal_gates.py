@@ -11,7 +11,7 @@ from typing import Any
 SIM_ID = "ratchet_formal_gates_v1"
 HERE = Path(__file__).resolve().parent
 RESULTS = HERE / "results"
-TOL = 1e-9
+TOL = 1e-10
 
 classification = "scratch_diagnostic"
 promotion_allowed = False
@@ -35,57 +35,59 @@ def by_label(result: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {row["label"]: row for row in result["carrier_states"]}
 
 
-def compare_numeric(py: dict[str, Any], jl: dict[str, Any]) -> dict[str, Any]:
+def compare_pair(left_name: str, left: dict[str, Any], right_name: str, right: dict[str, Any]) -> dict[str, Any]:
     failures = []
-    py_states = by_label(py)
-    jl_states = by_label(jl)
-    if set(py_states) != set(jl_states):
-        failures.append({"field": "carrier_labels", "python_only": sorted(set(py_states) - set(jl_states)), "julia_only": sorted(set(jl_states) - set(py_states))})
+    left_states = by_label(left)
+    right_states = by_label(right)
+    if set(left_states) != set(right_states):
+        failures.append({"field": "carrier_labels", f"{left_name}_only": sorted(set(left_states) - set(right_states)), f"{right_name}_only": sorted(set(right_states) - set(left_states))})
     max_pvec_diff = 0.0
     max_trace_diff = 0.0
-    for label in sorted(set(py_states) & set(jl_states)):
-        pyp = py_states[label]["pvec"]
-        jlp = jl_states[label]["pvec"]
-        if len(pyp) != len(jlp):
-            failures.append({"label": label, "field": "pvec_length", "python": len(pyp), "julia": len(jlp)})
+    for label in sorted(set(left_states) & set(right_states)):
+        left_pvec = left_states[label]["pvec"]
+        right_pvec = right_states[label]["pvec"]
+        if len(left_pvec) != len(right_pvec):
+            failures.append({"label": label, "field": "pvec_length", left_name: len(left_pvec), right_name: len(right_pvec)})
             continue
-        diffs = [abs(float(a) - float(b)) for a, b in zip(pyp, jlp)]
+        diffs = [abs(float(a) - float(b)) for a, b in zip(left_pvec, right_pvec)]
         max_pvec_diff = max(max_pvec_diff, max(diffs, default=0.0))
         if max(diffs, default=0.0) > TOL:
             failures.append({"label": label, "field": "pvec", "max_diff": max(diffs)})
-        trace_diff = abs(float(py_states[label]["trace"]) - float(jl_states[label]["trace"]))
+        trace_diff = abs(float(left_states[label]["trace"]) - float(right_states[label]["trace"]))
         max_trace_diff = max(max_trace_diff, trace_diff)
         if trace_diff > TOL:
             failures.append({"label": label, "field": "trace", "diff": trace_diff})
-    labels = sorted(set(py_states) & set(jl_states))
-    for i, left in enumerate(labels):
-        for right in labels[i + 1 :]:
-            py_same = int(py_states[left]["quotient_class"]) == int(py_states[right]["quotient_class"])
-            jl_same = int(jl_states[left]["quotient_class"]) == int(jl_states[right]["quotient_class"])
-            if py_same != jl_same:
-                failures.append({"field": "quotient_equivalence_relation", "left": left, "right": right, "python_same": py_same, "julia_same": jl_same})
+    labels = sorted(set(left_states) & set(right_states))
+    for i, left_label in enumerate(labels):
+        for right_label in labels[i + 1 :]:
+            left_same = int(left_states[left_label]["quotient_class"]) == int(left_states[right_label]["quotient_class"])
+            right_same = int(right_states[left_label]["quotient_class"]) == int(right_states[right_label]["quotient_class"])
+            if left_same != right_same:
+                failures.append({"field": "quotient_equivalence_relation", "left": left_label, "right": right_label, f"{left_name}_same": left_same, f"{right_name}_same": right_same})
                 break
         if failures and failures[-1].get("field") == "quotient_equivalence_relation":
             break
-    pyq = py["gates"]["observable_quotient_R4"]
-    jlq = jl["gates"]["observable_quotient_R4"]
+    left_q = left["gates"]["observable_quotient_R4"]
+    right_q = right["gates"]["observable_quotient_R4"]
     for key in ("carrier_count", "probe_count", "quotient_class_count", "class_sizes", "pair_check_count", "surviving_difference_count", "collapsed_pair_count", "multi_representative_class_count"):
-        if pyq[key] != jlq[key]:
-            failures.append({"field": f"observable_quotient_R4.{key}", "python": pyq[key], "julia": jlq[key]})
-    pyc = py["gates"]["coarse_probe_quotient_R4_epoch"]
-    jlc = jl["gates"]["coarse_probe_quotient_R4_epoch"]
+        if left_q[key] != right_q[key]:
+            failures.append({"field": f"observable_quotient_R4.{key}", left_name: left_q[key], right_name: right_q[key]})
+    left_c = left["gates"]["coarse_probe_quotient_R4_epoch"]
+    right_c = right["gates"]["coarse_probe_quotient_R4_epoch"]
     for key in ("carrier_count", "probe_count", "quotient_class_count", "class_sizes", "pair_check_count", "surviving_difference_count", "collapsed_pair_count", "multi_representative_class_count"):
-        if pyc[key] != jlc[key]:
-            failures.append({"field": f"coarse_probe_quotient_R4_epoch.{key}", "python": pyc[key], "julia": jlc[key]})
-    pyx = py["gates"]["xi_ref_quotient_lift"]
-    jlx = jl["gates"]["xi_ref_quotient_lift"]
+        if left_c[key] != right_c[key]:
+            failures.append({"field": f"coarse_probe_quotient_R4_epoch.{key}", left_name: left_c[key], right_name: right_c[key]})
+    left_x = left["gates"]["xi_ref_quotient_lift"]
+    right_x = right["gates"]["xi_ref_quotient_lift"]
     for key in ("checked_class_pairs", "multi_representative_class_count", "failure_count", "status"):
-        if pyx[key] != jlx[key]:
-            failures.append({"field": f"xi_ref_quotient_lift.{key}", "python": pyx[key], "julia": jlx[key]})
-    xi_spread_diff = abs(float(pyx["max_descriptor_spread"]) - float(jlx["max_descriptor_spread"]))
+        if left_x[key] != right_x[key]:
+            failures.append({"field": f"xi_ref_quotient_lift.{key}", left_name: left_x[key], right_name: right_x[key]})
+    xi_spread_diff = abs(float(left_x["max_descriptor_spread"]) - float(right_x["max_descriptor_spread"]))
     if xi_spread_diff > TOL:
         failures.append({"field": "xi_ref_quotient_lift.max_descriptor_spread", "diff": xi_spread_diff})
     return {
+        "left": left_name,
+        "right": right_name,
         "parity_abs_tol": TOL,
         "parity_pass": not failures,
         "failure_count": len(failures),
@@ -96,7 +98,25 @@ def compare_numeric(py: dict[str, Any], jl: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def gate_verdicts(py: dict[str, Any], jl: dict[str, Any], parity: dict[str, Any]) -> dict[str, Any]:
+def compare_numeric(py: dict[str, Any], jl: dict[str, Any], jax_result: dict[str, Any]) -> dict[str, Any]:
+    pairs = {
+        "numpy_julia": compare_pair("numpy", py, "julia", jl),
+        "numpy_jax": compare_pair("numpy", py, "jax", jax_result),
+        "julia_jax": compare_pair("julia", jl, "jax", jax_result),
+    }
+    return {
+        "parity_abs_tol": TOL,
+        "parity_pass": all(row["parity_pass"] for row in pairs.values()),
+        "pairs": pairs,
+        "failure_count": sum(row["failure_count"] for row in pairs.values()),
+        "failures": [failure for row in pairs.values() for failure in row["failures"]][:50],
+        "max_pvec_abs_diff": max(row["max_pvec_abs_diff"] for row in pairs.values()),
+        "max_trace_abs_diff": max(row["max_trace_abs_diff"] for row in pairs.values()),
+        "xi_ref_max_descriptor_spread_diff": max(row["xi_ref_max_descriptor_spread_diff"] for row in pairs.values()),
+    }
+
+
+def gate_verdicts(py: dict[str, Any], jl: dict[str, Any], jax_result: dict[str, Any], parity: dict[str, Any]) -> dict[str, Any]:
     gates = py["gates"]
     out = {
         "token_identity_R5": {
@@ -108,11 +128,11 @@ def gate_verdicts(py: dict[str, Any], jl: dict[str, Any], parity: dict[str, Any]
             "basis": "z3+cvc5 concrete X/H/Q pre/post registers, derived non-step predicate, strict progress for effective steps, and anti-stall fuel flip",
         },
         "observable_quotient_R4": {
-            "pass": bool(gates["observable_quotient_R4"]["gate_pass"] and gates["coarse_probe_quotient_R4_epoch"]["gate_pass"] and jl["gates"]["observable_quotient_R4"]["gate_pass"] and jl["gates"]["coarse_probe_quotient_R4_epoch"]["gate_pass"] and parity["parity_pass"]),
-            "basis": "full C^8 carrier enumeration, roster formula 8*(1+2*2)=40, full/coarse probe epoching with lineage reprojection, numpy/Julia parity at 1e-9",
+            "pass": bool(gates["observable_quotient_R4"]["gate_pass"] and gates["coarse_probe_quotient_R4_epoch"]["gate_pass"] and jl["gates"]["observable_quotient_R4"]["gate_pass"] and jl["gates"]["coarse_probe_quotient_R4_epoch"]["gate_pass"] and jax_result["gates"]["observable_quotient_R4"]["gate_pass"] and jax_result["gates"]["coarse_probe_quotient_R4_epoch"]["gate_pass"] and parity["parity_pass"]),
+            "basis": "full C^8 carrier enumeration, roster formula 8*(1+2*2)=40, full/coarse probe epoching with lineage reprojection, numpy/Julia/JAX parity at 1e-10",
         },
         "xi_ref_quotient_lift": {
-            "pass": bool(gates["xi_ref_quotient_lift"]["gate_pass"] and jl["gates"]["xi_ref_quotient_lift"]["gate_pass"] and parity["parity_pass"]),
+            "pass": bool(gates["xi_ref_quotient_lift"]["gate_pass"] and jl["gates"]["xi_ref_quotient_lift"]["gate_pass"] and jax_result["gates"]["xi_ref_quotient_lift"]["gate_pass"] and parity["parity_pass"]),
             "basis": "representative-independence checked nontrivially on the coarse single-Z probe epoch; failure demotes Xi_ref to raw-carrier discriminator",
             "status": gates["xi_ref_quotient_lift"]["status"],
         },
@@ -153,10 +173,11 @@ def write_results_md(py: dict[str, Any], jl: dict[str, Any], parity: dict[str, A
             "",
             "## Numeric Parity",
             "",
-            f"- numpy/Julia parity at 1e-9: `{parity['parity_pass']}`.",
+            f"- numpy/Julia/JAX parity at 1e-10: `{parity['parity_pass']}`.",
             f"- max Pauli-vector abs diff: `{parity['max_pvec_abs_diff']}`.",
             f"- max trace abs diff: `{parity['max_trace_abs_diff']}`.",
             f"- Xi_ref descriptor spread diff: `{parity['xi_ref_max_descriptor_spread_diff']}`.",
+            f"- pair parity: `{ {k: v['parity_pass'] for k, v in parity['pairs'].items()} }`.",
             f"- parity failures: `{parity['failures']}`.",
             "",
             "## Quotient And Xi_ref",
@@ -263,7 +284,7 @@ def write_formal_spec(py: dict[str, Any], parity: dict[str, Any], verdicts: dict
         f"- class sizes: `{quotient['class_sizes']}`.",
         f"- probe epoching: full epoch `{quotient['probe_epoch_id']}` and coarse epoch `{coarse['probe_epoch_id']}`; equivalence is valid only within an epoch and cross-epoch identity requires re-projection.",
         f"- coarse epoch multi-representative classes: `{coarse['multi_representative_class_count']}`.",
-        f"- numpy/Julia parity at 1e-9: `{parity['parity_pass']}` with max pvec diff `{parity['max_pvec_abs_diff']}`.",
+        f"- numpy/Julia/JAX parity at 1e-10: `{parity['parity_pass']}` with max pvec diff `{parity['max_pvec_abs_diff']}`.",
         f"- Gate verdict: `{'PASS' if verdicts['observable_quotient_R4']['pass'] else 'FAIL'}`.",
         "",
         "## 4. Xi_ref Quotient-Lift",
@@ -305,8 +326,9 @@ def write_formal_spec(py: dict[str, Any], parity: dict[str, Any], verdicts: dict
 def main() -> None:
     py = load(f"{SIM_ID}_numpy_results.json")
     jl = load(f"{SIM_ID}_julia_results.json")
-    parity = compare_numeric(py, jl)
-    verdicts = gate_verdicts(py, jl, parity)
+    jax_result = load(f"{SIM_ID}_jax_results.json")
+    parity = compare_numeric(py, jl, jax_result)
+    verdicts = gate_verdicts(py, jl, jax_result, parity)
     validator = {
         "schema": "codex_ratchet.ratchet_formal_gates_v1.validator.v1",
         "generated_at": now_iso(),

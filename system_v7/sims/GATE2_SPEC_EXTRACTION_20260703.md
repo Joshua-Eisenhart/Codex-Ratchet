@@ -53,3 +53,23 @@ Required minimum controls:
 3. CONTINUITY TRAP: "all Schmidt strata with representatives" is finite ONLY
    on the ratcheted finite quotient — never on local-unitary equivalence
    (continuous). Stay on the admitted finite class roster.
+
+## Wave-1 disambiguation (2026-07-03)
+
+1. Reduced marginal quotient under the full-Pauli epoch means: compute the reduced
+   density matrix by partial trace, then quotient by the full Pauli expectation
+   tuple on that reduced subsystem. For a 1-qubit subsystem this is the
+   `(X,Y,Z)` expectation tuple. Matrix payload/hash equality may be recorded as
+   a diagnostic exact-state equality object, but it is not the named
+   full-Pauli reduced quotient.
+2. Gate 2 enumeration obligations are full subset obligations: every nonempty
+   parent subsystem `A` and every nonempty `B subset A` must be checked by
+   computed partial trace, matching the compatibility law above [contract:245-248].
+   Per-cut marginal records must include both sides of each unordered
+   bipartition, matching the "all per-cut marginals" acceptance gate above
+   [contract:252-256].
+3. The W-state cut-lattice control observable is pinned to entanglement
+   negativity. This follows the negative roster's explicit product/separable
+   zero-negativity and entangled-nonzero control [contract:170-171], with the
+   W-vs-GHZ cut-lattice divergence kept as the same negativity-family control
+   rather than an entropy substitute [contract:191-193].

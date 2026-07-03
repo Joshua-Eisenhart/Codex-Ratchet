@@ -1,0 +1,37 @@
+{
+  "sim_id": "manifold_L8_cut_lattice_gate2_a",
+  "name": "Gate 2 L8 cut lattice builder A",
+  "version": "1.0.0",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "source_spec": "system_v7/sims/GATE2_SPEC_EXTRACTION_20260703.md",
+  "input_gate1_result": "system_v7/sims/ratchet_formal_gates_v1/results/ratchet_formal_gates_v1_numpy_results.json",
+  "scope": "L8 cut lattice only",
+  "owner_tunable_bundling_choice": {
+    "choice": "OPEN-CHOICE followed: do not bundle L9/L10",
+    "L9_schmidt_strata": "recorded only as L8 finite cut-spectrum strata, not promoted as bundled L9",
+    "L10_entropy": "not bundled"
+  },
+  "cut_count_resolution": {
+    "chosen_formula": "2^(n-1)-1",
+    "n": 3,
+    "expected_cut_count": 3,
+    "why": "The referee addendum identifies this as the contract L8 unordered-bipartition wording. The alternative 2^n-2 counts ordered non-trivial party subsets and is not used for the L8 cut count.",
+    "party_indexed": true,
+    "quotient_acts_on": "states only; never cut labels"
+  },
+  "probe_epochs": [
+    "M_full_pauli_63",
+    "M_coarse_single_qubit_Z"
+  ],
+  "claim_ceiling": "Local L8 cut-lattice diagnostic over the finite Gate 1 roster. It computes partial traces, cut spectra, finite strata, controls, and numpy/Julia parity. It does not promote L9/L10, LU-equivalence, Axis-0 bridge closure, Phi_0, or canonical admission.",
+  "blocked_consumers": [
+    "L9 bundled Schmidt-stage promotion",
+    "L10 bundled entropy promotion",
+    "Axis-0 bridge closure",
+    "Phi_0 evaluation claim",
+    "unified emergence admission",
+    "canonical by process"
+  ]
+}

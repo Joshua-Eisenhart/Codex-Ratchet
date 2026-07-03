@@ -1,0 +1,216 @@
+{
+  "cut_count_resolution": {
+    "expected_cut_count": 3,
+    "chosen_formula": "2^(n-1)-1",
+    "actual_cut_count": 3,
+    "why": "The referee addendum identifies this as the contract L8 unordered-bipartition wording. The alternative 2^n-2 counts ordered non-trivial party subsets and is not used for the L8 cut count.",
+    "asserted_against_enumeration": true,
+    "quotient_acts_on": "states only; never cut labels",
+    "party_indexed": true,
+    "n": 3
+  },
+  "claim_ceiling": "Local L8 cut-lattice diagnostic over the finite Gate 1 roster. It computes partial traces, cut spectra, finite strata, controls, and numpy/Julia parity. It does not promote L9/L10, LU-equivalence, Axis-0 bridge closure, Phi_0, or canonical admission.",
+  "source_sha256": "5063a2b26c97bb1cea4ba7b3dd91c654222515b49752df2713193925fc2ddb1b",
+  "continuity_trap_guard": {
+    "finite_roster_only": true,
+    "max_stratum_representative_pool": 40,
+    "pass": true,
+    "local_unitary_equivalence_used": false
+  },
+  "classification": "scratch_diagnostic",
+  "epoch_reprojection": {
+    "epochs": [
+      "M_full_pauli_63",
+      "M_coarse_single_qubit_Z"
+    ],
+    "fresh_recompute_and_compare": true,
+    "full_class_count_matches_gate1": true,
+    "cache_mismatch_count": 0,
+    "coarse_z_class_count": 3
+  },
+  "written_at": "2026-07-03T22:54:58Z",
+  "sim_id": "manifold_L8_cut_lattice_gate2_a",
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing Gate 1 result JSON consumption and Julia result emission"
+    },
+    "SHA": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive result/source digesting"
+    },
+    "Julia LinearAlgebra": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing independent density reconstruction, partial trace, finite cut spectra, and negativity calculations"
+    }
+  },
+  "formal_admission_allowed": false,
+  "reads_peer_result": false,
+  "failures": [],
+  "open_choice_followed": {
+    "L10_entropy": "not bundled",
+    "L9_schmidt_strata": "recorded only as L8 finite cut-spectrum strata, not promoted as bundled L9",
+    "choice": "OPEN-CHOICE followed: do not bundle L9/L10"
+  },
+  "all_pass": true,
+  "promotion_allowed": false,
+  "QUARANTINE_EXPLORATORY": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "load_bearing",
+    "SHA": "supportive",
+    "Julia LinearAlgebra": "load_bearing"
+  },
+  "schema": "codex_ratchet.manifold_L8_cut_lattice_gate2_a.julia.v1",
+  "input_gate1": {
+    "gate1_global_clear": false,
+    "xi_ref_gate_pass": false,
+    "sha256": "2ccd8ff4e0c18668ec288d6c01e0fce48a5d3016f28ab368a221ca6b1fa63cc4",
+    "observable_quotient_R4_gate_pass": true,
+    "global_all_pass": false,
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/ratchet_formal_gates_v1/results/ratchet_formal_gates_v1_numpy_results.json",
+    "gate1_reaudit_for_consumed_roster_clear": true
+  },
+  "engine": "julia",
+  "compatibility": {
+    "checks": 760,
+    "failure_count": 0
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/manifold_L8_cut_lattice_gate2_a/manifold_L8_cut_lattice_gate2_a_julia.jl",
+  "enumeration_counts": {
+    "full_recomputed_quotient_classes": 40,
+    "cut_count_unordered_bipartitions": 3,
+    "nonempty_subset_lattice_nodes": 7,
+    "per_cut_side_marginal_records": 240,
+    "gate1_full_quotient_classes_consumed": 40,
+    "compatibility_checks": 760,
+    "finite_gate1_roster_states": 40,
+    "coarse_z_recomputed_quotient_classes": 3
+  },
+  "negative_controls": {
+    "alternate_probe_family_changes_quotient": {
+      "full_class_count": 40,
+      "pass": true,
+      "coarse_z_class_count": 3
+    },
+    "cut_lattice_control_divergence": {
+      "control_observable": "entanglement_negativity",
+      "spec_pin": "GATE2_SPEC_EXTRACTION_20260703.md wave-1 disambiguation: W-state control observable is entanglement negativity",
+      "product_negativities": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pass": true,
+      "w_negativities": [
+        0.471404520791032,
+        0.471404520791032,
+        0.471404520791032
+      ],
+      "ghz_negativities": [
+        0.4999999999999998,
+        0.4999999999999998,
+        0.4999999999999998
+      ]
+    },
+    "coarse_epoch_lift_not_promoted": {
+      "gate1_status": "demoted_to_raw_carrier_discriminator",
+      "pass": true
+    },
+    "entangled_finite_roster_nonzero_negativity": {
+      "label": "stage_6_Fe_operator_first",
+      "cut_id": "q1__q02",
+      "negativity": 0.17584356530183354,
+      "pass": true
+    },
+    "product_separable_zero_negativity": {
+      "values_by_cut": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pass": true
+    }
+  },
+  "scratch_diagnostic": true,
+  "cuts": [
+    {
+      "left": [
+        0
+      ],
+      "right_marginal_count": 40,
+      "entropy_readout_families_declared": [
+        "S_A",
+        "S_AB",
+        "I_A_rest"
+      ],
+      "negativity_max": 0.06671861981885119,
+      "right": [
+        1,
+        2
+      ],
+      "unordered_bipartition": true,
+      "left_marginal_count": 40,
+      "left_stratum_count": 40,
+      "negativity_min": 2.7644553313166398e-14,
+      "right_stratum_count": 32,
+      "cut_id": "q0__q12",
+      "schmidt_strata_basis": "finite density-roster cut marginal eigenvalue signatures; not local-unitary equivalence",
+      "party_indexed": true,
+      "state_count": 40
+    },
+    {
+      "left": [
+        1
+      ],
+      "right_marginal_count": 40,
+      "entropy_readout_families_declared": [
+        "S_A",
+        "S_AB",
+        "I_A_rest"
+      ],
+      "negativity_max": 0.17584356530183354,
+      "right": [
+        0,
+        2
+      ],
+      "unordered_bipartition": true,
+      "left_marginal_count": 40,
+      "left_stratum_count": 32,
+      "negativity_min": 0.04791406675506649,
+      "right_stratum_count": 40,
+      "cut_id": "q1__q02",
+      "schmidt_strata_basis": "finite density-roster cut marginal eigenvalue signatures; not local-unitary equivalence",
+      "party_indexed": true,
+      "state_count": 40
+    },
+    {
+      "left": [
+        2
+      ],
+      "right_marginal_count": 40,
+      "entropy_readout_families_declared": [
+        "S_A",
+        "S_AB",
+        "I_A_rest"
+      ],
+      "negativity_max": 0.17098615575476028,
+      "right": [
+        0,
+        1
+      ],
+      "unordered_bipartition": true,
+      "left_marginal_count": 40,
+      "left_stratum_count": 2,
+      "negativity_min": 0.047905529890731935,
+      "right_stratum_count": 40,
+      "cut_id": "q2__q01",
+      "schmidt_strata_basis": "finite density-roster cut marginal eigenvalue signatures; not local-unitary equivalence",
+      "party_indexed": true,
+      "state_count": 40
+    }
+  ]
+}
+

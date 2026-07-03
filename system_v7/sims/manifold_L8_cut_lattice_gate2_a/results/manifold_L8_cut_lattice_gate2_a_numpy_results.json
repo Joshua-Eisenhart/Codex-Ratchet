@@ -1,0 +1,762 @@
+{
+  "QUARANTINE_EXPLORATORY": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "load_bearing",
+    "numpy": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive matrix/signature digesting for finite-roster strata without storing matrices in result JSON",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "load-bearing consumption of Gate 1 result JSON quotient roster and emission of Gate 2 result JSON",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "load-bearing density reconstruction from Gate 1 full Pauli pvecs, partial traces, cut spectra, negativity controls, and full finite enumeration",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "claim_ceiling": "Local L8 cut-lattice diagnostic over the finite Gate 1 roster. It computes partial traces, cut spectra, finite strata, controls, and numpy/Julia parity. It does not promote L9/L10, LU-equivalence, Axis-0 bridge closure, Phi_0, or canonical admission.",
+  "classification": "scratch_diagnostic",
+  "compatibility": {
+    "checks": 760,
+    "failure_count": 0,
+    "failures": [],
+    "law": "rho_A in X_A^max and Tr_{A\\B}(rho_A) ~_B rho_B for every nonempty A and B subset A"
+  },
+  "continuity_trap_guard": {
+    "finite_roster_only": true,
+    "local_unitary_equivalence_used": false,
+    "max_stratum_representative_pool": 40,
+    "pass": true
+  },
+  "cut_count_resolution": {
+    "actual_cut_count": 3,
+    "asserted_against_enumeration": true,
+    "chosen_formula": "2^(n-1)-1",
+    "expected_cut_count": 3,
+    "n": 3,
+    "party_indexed": true,
+    "quotient_acts_on": "states only; never cut labels",
+    "why": "The referee addendum identifies this as the contract L8 unordered-bipartition wording. The alternative 2^n-2 counts ordered non-trivial party subsets and is not used for the L8 cut count."
+  },
+  "cuts": [
+    {
+      "cut_id": "q0__q12",
+      "entropy_readout_families_declared": [
+        "S_A",
+        "S_AB",
+        "I_A_rest"
+      ],
+      "left": [
+        0
+      ],
+      "left_marginal_count": 40,
+      "left_stratum_count": 40,
+      "negativity_max": 0.06671861981885108,
+      "negativity_min": 2.7644553313166398e-14,
+      "party_indexed": true,
+      "right": [
+        1,
+        2
+      ],
+      "right_marginal_count": 40,
+      "right_stratum_count": 32,
+      "sample_rows": [
+        {
+          "I_A_rest": 0.19320543819470626,
+          "S_A": 0.2687851722387294,
+          "S_AB": 0.6975026144251456,
+          "label": "terrain_0_fixed",
+          "left_marginal_sha256": "3e13d875c67762b3663465b84b2790c45e275710a7198cc4b8bc2389e971cb81",
+          "negativity": 0.0625143569121207,
+          "right_marginal_sha256": "2062cb8183f148e28df479eebeb008d7526d8c7fde1ea3f9abf5c3cfe4308b22"
+        },
+        {
+          "I_A_rest": 0.07086900758263193,
+          "S_A": 0.613100919998842,
+          "S_AB": 0.6678906849173702,
+          "label": "stage_0_Ti_terrain_first",
+          "left_marginal_sha256": "ef04cf1ea876b974601bf0477a536eb9fb7cd3e863651d072ba47e35c47e9f93",
+          "negativity": 0.006165044547192244,
+          "right_marginal_sha256": "b8aee73e2f1e391ebcfd9cafd828f056fe0a8a3e9c7aaaf6980a8f5d376b2cfd"
+        },
+        {
+          "I_A_rest": 0.07870167549703466,
+          "S_A": 0.5727301419531892,
+          "S_AB": 0.618903420714486,
+          "label": "stage_0_Ti_operator_first",
+          "left_marginal_sha256": "47e5674cfb1217cea06de2d8b94697359f6ba8328bdeb95c4b6ea34eccd53050",
+          "negativity": 0.008881248307240464,
+          "right_marginal_sha256": "d9a4fbeff2b790e8e7129822ee81b6424824095b06c05200cad7ce485c71f7dd"
+        }
+      ],
+      "schmidt_strata_basis": "finite density-roster cut marginal eigenvalue signatures; not local-unitary equivalence",
+      "state_count": 40,
+      "unordered_bipartition": true
+    },
+    {
+      "cut_id": "q1__q02",
+      "entropy_readout_families_declared": [
+        "S_A",
+        "S_AB",
+        "I_A_rest"
+      ],
+      "left": [
+        1
+      ],
+      "left_marginal_count": 40,
+      "left_stratum_count": 32,
+      "negativity_max": 0.17584356530183354,
+      "negativity_min": 0.047914066755066376,
+      "party_indexed": true,
+      "right": [
+        0,
+        2
+      ],
+      "right_marginal_count": 40,
+      "right_stratum_count": 40,
+      "sample_rows": [
+        {
+          "I_A_rest": 0.39427080797438363,
+          "S_A": 0.6686168926572295,
+          "S_AB": 0.6975026144251456,
+          "label": "terrain_0_fixed",
+          "left_marginal_sha256": "5e3b4878569030030763bdd568d85cd64c396927127cd4a502e42559e5b66125",
+          "negativity": 0.12358219672525572,
+          "right_marginal_sha256": "ab255820b6c2240804b18066ce4b525019d0967264772f9dde33f31f58e26d53"
+        },
+        {
+          "I_A_rest": 0.4117063435371202,
+          "S_A": 0.27138180162006476,
+          "S_AB": 0.6678906849173702,
+          "label": "stage_0_Ti_terrain_first",
+          "left_marginal_sha256": "149c117f9990d3e2ea652e61e75367b153d9c35ed7f9dc5285b3f8f42d3e9dd2",
+          "negativity": 0.16781117914821397,
+          "right_marginal_sha256": "4ea58221753d269d14dd374d95996b067ee48c7a3ce73c18b049db183d5ac5a0"
+        },
+        {
+          "I_A_rest": 0.419798595361058,
+          "S_A": 0.2708320116226114,
+          "S_AB": 0.618903420714486,
+          "label": "stage_0_Ti_operator_first",
+          "left_marginal_sha256": "3ece6817bf3e31a8d717485bf7e4aaa45fc06d50c7091cff7e1d2845cbc3adf2",
+          "negativity": 0.16882769207312087,
+          "right_marginal_sha256": "de45557806d4c14c9ceb6f304b58960b57a92425c5e435fd3a6bed9666fe8b1b"
+        }
+      ],
+      "schmidt_strata_basis": "finite density-roster cut marginal eigenvalue signatures; not local-unitary equivalence",
+      "state_count": 40,
+      "unordered_bipartition": true
+    },
+    {
+      "cut_id": "q2__q01",
+      "entropy_readout_families_declared": [
+        "S_A",
+        "S_AB",
+        "I_A_rest"
+      ],
+      "left": [
+        2
+      ],
+      "left_marginal_count": 40,
+      "left_stratum_count": 2,
+      "negativity_max": 0.17098615575476006,
+      "negativity_min": 0.04790552989073216,
+      "party_indexed": true,
+      "right": [
+        0,
+        1
+      ],
+      "right_marginal_count": 40,
+      "right_stratum_count": 40,
+      "sample_rows": [
+        {
+          "I_A_rest": 0.24757265066556922,
+          "S_A": 0.1887884142097004,
+          "S_AB": 0.6975026144251456,
+          "label": "terrain_0_fixed",
+          "left_marginal_sha256": "6d5b7d21522d79818e9301dee9db5956abbd4b8888e0e67c8bf738e848176576",
+          "negativity": 0.09419452474601964,
+          "right_marginal_sha256": "0474a2e506366c999fab94b32c17bb594998ed174344a52d33caa6cab5ed92fd"
+        },
+        {
+          "I_A_rest": 0.3647387293065736,
+          "S_A": 0.1959623344751476,
+          "S_AB": 0.6678906849173702,
+          "label": "stage_0_Ti_terrain_first",
+          "left_marginal_sha256": "48254f4a2faf0471474788cd4b068f8eaee2cfe76b3853cfbcf8ea14f8345593",
+          "negativity": 0.1668716441074004,
+          "right_marginal_sha256": "349d20e53fde5f95a92af373c91a36f2d57211eca96706fbfbe2cd7c76d58301"
+        },
+        {
+          "I_A_rest": 0.36862029608461344,
+          "S_A": 0.1959623344751513,
+          "S_AB": 0.618903420714486,
+          "label": "stage_0_Ti_operator_first",
+          "left_marginal_sha256": "ecf689dd338f297c4c8d458102d6f352808cb2f5d33ff43cc28577cef348dbdd",
+          "negativity": 0.16761122038770637,
+          "right_marginal_sha256": "d78cc21d7e1229f1887c43535d9f17a3469a4a453f7a579278320d44ad8ac3d1"
+        }
+      ],
+      "schmidt_strata_basis": "finite density-roster cut marginal eigenvalue signatures; not local-unitary equivalence",
+      "state_count": 40,
+      "unordered_bipartition": true
+    }
+  ],
+  "engine": "numpy",
+  "enumeration_counts": {
+    "coarse_z_recomputed_quotient_classes": 3,
+    "compatibility_checks": 760,
+    "cut_count_unordered_bipartitions": 3,
+    "extension_fiber_nodes": 7,
+    "finite_gate1_roster_states": 40,
+    "full_recomputed_quotient_classes": 40,
+    "gate1_full_quotient_classes_consumed": 40,
+    "nonempty_subset_lattice_nodes": 7,
+    "per_cut_side_marginal_records": 240
+  },
+  "epoch_reprojection": {
+    "cache_mismatch_count": 0,
+    "cache_mismatches": [],
+    "coarse_z_class_count": 3,
+    "epochs": [
+      "M_full_pauli_63",
+      "M_coarse_single_qubit_Z"
+    ],
+    "fresh_recompute_and_compare": true,
+    "full_cached_gate1_projection_label_set_match": true,
+    "full_class_count_matches_gate1": true
+  },
+  "extension_fibers": {
+    "[0, 1, 2]": {
+      "fiber_count": 40,
+      "fiber_sizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "sample_fibers": [
+        [
+          "stage_0_Fi_operator_first"
+        ],
+        [
+          "stage_0_Fi_terrain_first"
+        ],
+        [
+          "stage_0_Ti_operator_first"
+        ],
+        [
+          "stage_0_Ti_terrain_first"
+        ],
+        [
+          "stage_1_Fi_operator_first"
+        ]
+      ],
+      "subset": [
+        0,
+        1,
+        2
+      ]
+    },
+    "[0, 1]": {
+      "fiber_count": 40,
+      "fiber_sizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "sample_fibers": [
+        [
+          "stage_0_Fi_operator_first"
+        ],
+        [
+          "stage_0_Fi_terrain_first"
+        ],
+        [
+          "stage_0_Ti_operator_first"
+        ],
+        [
+          "stage_0_Ti_terrain_first"
+        ],
+        [
+          "stage_1_Fi_operator_first"
+        ]
+      ],
+      "subset": [
+        0,
+        1
+      ]
+    },
+    "[0, 2]": {
+      "fiber_count": 40,
+      "fiber_sizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "sample_fibers": [
+        [
+          "stage_0_Fi_operator_first"
+        ],
+        [
+          "stage_0_Fi_terrain_first"
+        ],
+        [
+          "stage_0_Ti_operator_first"
+        ],
+        [
+          "stage_0_Ti_terrain_first"
+        ],
+        [
+          "stage_1_Fi_operator_first"
+        ]
+      ],
+      "subset": [
+        0,
+        2
+      ]
+    },
+    "[0]": {
+      "fiber_count": 40,
+      "fiber_sizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "sample_fibers": [
+        [
+          "stage_0_Fi_operator_first"
+        ],
+        [
+          "stage_0_Fi_terrain_first"
+        ],
+        [
+          "stage_0_Ti_operator_first"
+        ],
+        [
+          "stage_0_Ti_terrain_first"
+        ],
+        [
+          "stage_1_Fi_operator_first"
+        ]
+      ],
+      "subset": [
+        0
+      ]
+    },
+    "[1, 2]": {
+      "fiber_count": 32,
+      "fiber_sizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sample_fibers": [
+        [
+          "stage_0_Fi_operator_first"
+        ],
+        [
+          "stage_0_Ti_operator_first"
+        ],
+        [
+          "stage_1_Fi_operator_first"
+        ],
+        [
+          "stage_1_Ti_operator_first"
+        ],
+        [
+          "stage_2_Fe_operator_first"
+        ]
+      ],
+      "subset": [
+        1,
+        2
+      ]
+    },
+    "[1]": {
+      "fiber_count": 32,
+      "fiber_sizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sample_fibers": [
+        [
+          "stage_0_Fi_operator_first"
+        ],
+        [
+          "stage_0_Ti_operator_first"
+        ],
+        [
+          "stage_1_Fi_operator_first"
+        ],
+        [
+          "stage_1_Ti_operator_first"
+        ],
+        [
+          "stage_2_Fe_operator_first"
+        ]
+      ],
+      "subset": [
+        1
+      ]
+    },
+    "[2]": {
+      "fiber_count": 2,
+      "fiber_sizes": [
+        8,
+        32
+      ],
+      "sample_fibers": [
+        [
+          "terrain_0_fixed",
+          "terrain_1_fixed",
+          "terrain_2_fixed",
+          "terrain_3_fixed",
+          "terrain_4_fixed",
+          "terrain_5_fixed",
+          "terrain_6_fixed",
+          "terrain_7_fixed"
+        ],
+        [
+          "stage_0_Fi_operator_first",
+          "stage_0_Fi_terrain_first",
+          "stage_0_Ti_operator_first",
+          "stage_0_Ti_terrain_first",
+          "stage_1_Fi_operator_first",
+          "stage_1_Fi_terrain_first",
+          "stage_1_Ti_operator_first",
+          "stage_1_Ti_terrain_first",
+          "stage_2_Fe_operator_first",
+          "stage_2_Fe_terrain_first",
+          "stage_2_Te_operator_first",
+          "stage_2_Te_terrain_first",
+          "stage_3_Fe_operator_first",
+          "stage_3_Fe_terrain_first",
+          "stage_3_Te_operator_first",
+          "stage_3_Te_terrain_first",
+          "stage_4_Fi_operator_first",
+          "stage_4_Fi_terrain_first",
+          "stage_4_Ti_operator_first",
+          "stage_4_Ti_terrain_first",
+          "stage_5_Fi_operator_first",
+          "stage_5_Fi_terrain_first",
+          "stage_5_Ti_operator_first",
+          "stage_5_Ti_terrain_first",
+          "stage_6_Fe_operator_first",
+          "stage_6_Fe_terrain_first",
+          "stage_6_Te_operator_first",
+          "stage_6_Te_terrain_first",
+          "stage_7_Fe_operator_first",
+          "stage_7_Fe_terrain_first",
+          "stage_7_Te_operator_first",
+          "stage_7_Te_terrain_first"
+        ]
+      ],
+      "subset": [
+        2
+      ]
+    }
+  },
+  "failures": [],
+  "formal_admission_allowed": false,
+  "input_gate1": {
+    "gate1_global_clear": false,
+    "gate1_reaudit_for_consumed_roster_clear": true,
+    "global_all_pass": false,
+    "observable_quotient_R4_gate_pass": true,
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/ratchet_formal_gates_v1/results/ratchet_formal_gates_v1_numpy_results.json",
+    "sha256": "2ccd8ff4e0c18668ec288d6c01e0fce48a5d3016f28ab368a221ca6b1fa63cc4",
+    "xi_ref_gate_pass": false
+  },
+  "negative_controls": {
+    "alternate_probe_family_changes_quotient": {
+      "coarse_z_class_count": 3,
+      "full_class_count": 40,
+      "pass": true
+    },
+    "coarse_epoch_lift_not_promoted": {
+      "gate1_status": "demoted_to_raw_carrier_discriminator",
+      "pass": true
+    },
+    "cut_lattice_control_divergence": {
+      "control_observable": "entanglement_negativity",
+      "ghz_negativities": [
+        0.4999999999999998,
+        0.4999999999999998,
+        0.4999999999999998
+      ],
+      "pass": true,
+      "product_negativities": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "spec_pin": "GATE2_SPEC_EXTRACTION_20260703.md wave-1 disambiguation: W-state control observable is entanglement negativity",
+      "w_negativities": [
+        0.471404520791032,
+        0.4714045207910321,
+        0.4714045207910321
+      ]
+    },
+    "entangled_finite_roster_nonzero_negativity": {
+      "cut_id": "q1__q02",
+      "label": "stage_6_Fe_operator_first",
+      "negativity": 0.17584356530183354,
+      "pass": true
+    },
+    "label_echo_negative_control": {
+      "computed_partial_trace_rejects": true,
+      "inconsistent_marginal_source_label": "stage_0_Ti_terrain_first",
+      "label_echo_would_pass": true,
+      "parent_label": "terrain_0_fixed",
+      "pass": true
+    },
+    "lineage_removed_rejected": {
+      "pass": true,
+      "reason": "compatibility rows require parent label plus subset lineage; a marginal digest without parent lineage is not accepted into extension fibers"
+    },
+    "perturbed_marginal_rejected": {
+      "parent_label": "terrain_0_fixed",
+      "pass": true,
+      "subset": [
+        0
+      ]
+    },
+    "product_separable_zero_negativity": {
+      "pass": true,
+      "values_by_cut": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "open_choice_followed": {
+    "L10_entropy": "not bundled",
+    "L9_schmidt_strata": "recorded only as L8 finite cut-spectrum strata, not promoted as bundled L9",
+    "choice": "OPEN-CHOICE followed: do not bundle L9/L10"
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "schema": "codex_ratchet.manifold_L8_cut_lattice_gate2_a.numpy.v1",
+  "scratch_diagnostic": true,
+  "sim_id": "manifold_L8_cut_lattice_gate2_a",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/manifold_L8_cut_lattice_gate2_a/manifold_L8_cut_lattice_gate2_a_numpy.py",
+  "source_sha256": "1e3569171641e13d454d4912fe559de5b3387ec3957cab9a15e9df96a96d6479",
+  "written_at": "2026-07-03T22:55:40Z"
+}

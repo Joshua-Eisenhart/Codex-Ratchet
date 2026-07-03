@@ -1,0 +1,31 @@
+{
+  "schema": "codex_ratchet.sim_spec.v1",
+  "sim_id": "manifold_L8_cut_lattice_gate2_b",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "scope": "L8 cut lattice only",
+  "source_spec": "system_v7/sims/GATE2_SPEC_EXTRACTION_20260703.md",
+  "gate1_input": "system_v7/sims/ratchet_formal_gates_v1/results/ratchet_formal_gates_v1_numpy_results.json",
+  "cut_count_pin": {
+    "chosen_formula": "2^(n-1)-1",
+    "n": 3,
+    "expected_cut_count": 3,
+    "contract_line": "The CUT LATTICE: 2^{n-1}-1 bipartitions (1Q:0, 2Q:1, 3Q:3, 4Q:7, ... 8Q:127).",
+    "rejected_ambiguity": "2^n-2 ordered non-trivial party subsets",
+    "reason": "The contract names bipartitions and gives the 3Q count as 3; cuts remain party-indexed labels, while quotienting applies only to state classes."
+  },
+  "open_choices_followed": {
+    "bundle_L9_L10": "OPEN-CHOICE followed: not bundled",
+    "coarse_epoch_role": "control-only; not treated as a full quotient proof"
+  },
+  "required_controls": [
+    "product/separable negativity zero and entangled control nonzero",
+    "perturbed marginal violates compatibility law",
+    "alternate probe family changes quotient/admissibility where expected",
+    "lineage removed makes nesting/ancestry fail",
+    "entangled-vs-separable and W-vs-GHZ controls diverge across the cut lattice",
+    "known-inconsistent parent/marginal rejected by computed partial trace while label echo would pass",
+    "coarse epoch representative-independence/lift control is not promoted"
+  ]
+}

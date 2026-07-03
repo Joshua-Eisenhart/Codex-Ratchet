@@ -1,0 +1,32 @@
+{
+  "sim_id": "manifold_dual_ratchet_foundations_v0",
+  "seed": 20260703,
+  "steps": 48,
+  "max_admitted_tokens": 42,
+  "wide_fresh_per_step": 14,
+  "narrow_fresh_per_step": 2,
+  "wide_max_word_len": 6,
+  "narrow_max_word_len": 2,
+  "wide_frontier": 24,
+  "narrow_frontier": 6,
+  "purgatory_mutants_per_step": 28,
+  "purgatory_mutation_budget": 5,
+  "hell_probe_period": 7,
+  "probe_family": ["XI", "YI", "ZI", "IX", "IY", "IZ", "ZZ", "XX"],
+  "generation_ops": ["H0", "H1", "X0", "X1", "S0", "S1", "CNOT01", "CNOT10"],
+  "initial_words": [[], ["H0"], ["H1"], ["X0"], ["X1"], ["S0"], ["S1"], ["CNOT01"], ["CNOT10"]],
+  "epsilon_mi": 1e-9,
+  "mi_max_bits": 2.0,
+  "metric_spectrum_size": 12,
+  "late_region_window": 8,
+  "constraints": {
+    "F01": "finite bound on admitted token count and finite Pauli probe family",
+    "N01": "ordered update pairs of length >=2 must be probe-distinguishable under the finite probe family",
+    "T01": "all >=3-fold compositions must carry explicit left bracketing",
+    "identity": "candidate identity is quotient identity: equal iff probe-indistinguishable"
+  },
+  "classification": "scratch_diagnostic",
+  "claim_ceiling": "QUARANTINE_EXPLORATORY",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false
+}

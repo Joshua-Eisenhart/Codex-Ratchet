@@ -15,30 +15,30 @@
       "used": true
     }
   },
-  "all_pass": true,
+  "all_pass": false,
   "claim_ceiling": "formal_gate_diagnostic_only",
   "classification": "scratch_diagnostic",
   "formal_admission_allowed": false,
   "gate_verdicts": {
     "observable_quotient_R4": {
-      "basis": "full C^8 carrier enumeration with all 63 non-identity Pauli probes; numpy/Julia parity at 1e-9",
+      "basis": "full C^8 carrier enumeration, roster formula 8*(1+2*2)=40, full/coarse probe epoching with lineage reprojection, numpy/Julia parity at 1e-9",
       "pass": true
     },
     "progress_measure_R6": {
-      "basis": "z3+cvc5 effective-step strict lexicographic decrease plus objective non-step predicate",
+      "basis": "z3+cvc5 concrete X/H/Q pre/post registers, derived non-step predicate, strict progress for effective steps, and anti-stall fuel flip",
       "pass": true
     },
     "token_identity_R5": {
-      "basis": "z3+cvc5 both polarities: bad same-identity reentry UNSAT; erased bad reentry SAT; logged replay SAT-as-new-branch",
+      "basis": "z3+cvc5 tuple-field token model: same_entity/fresh/replay derived from content_id/probe_signature/lineage/branch/replay fields; identity grounded in probe_signature",
       "pass": true
     },
     "xi_ref_quotient_lift": {
-      "basis": "representative-independence checked over every quotient-class pair in numpy and Julia",
-      "pass": true,
-      "status": "quotient_lift_constructed"
+      "basis": "representative-independence checked nontrivially on the coarse single-Z probe epoch; failure demotes Xi_ref to raw-carrier discriminator",
+      "pass": false,
+      "status": "demoted_to_raw_carrier_discriminator"
     }
   },
-  "generated_at": "2026-07-03T21:06:47Z",
+  "generated_at": "2026-07-03T22:15:14Z",
   "parity": {
     "failure_count": 0,
     "failures": [],

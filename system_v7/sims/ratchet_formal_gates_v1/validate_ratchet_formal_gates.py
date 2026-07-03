@@ -69,9 +69,14 @@ def compare_numeric(py: dict[str, Any], jl: dict[str, Any]) -> dict[str, Any]:
             break
     pyq = py["gates"]["observable_quotient_R4"]
     jlq = jl["gates"]["observable_quotient_R4"]
-    for key in ("carrier_count", "probe_count", "quotient_class_count", "class_sizes", "pair_check_count", "surviving_difference_count", "collapsed_pair_count"):
+    for key in ("carrier_count", "probe_count", "quotient_class_count", "class_sizes", "pair_check_count", "surviving_difference_count", "collapsed_pair_count", "multi_representative_class_count"):
         if pyq[key] != jlq[key]:
             failures.append({"field": f"observable_quotient_R4.{key}", "python": pyq[key], "julia": jlq[key]})
+    pyc = py["gates"]["coarse_probe_quotient_R4_epoch"]
+    jlc = jl["gates"]["coarse_probe_quotient_R4_epoch"]
+    for key in ("carrier_count", "probe_count", "quotient_class_count", "class_sizes", "pair_check_count", "surviving_difference_count", "collapsed_pair_count", "multi_representative_class_count"):
+        if pyc[key] != jlc[key]:
+            failures.append({"field": f"coarse_probe_quotient_R4_epoch.{key}", "python": pyc[key], "julia": jlc[key]})
     pyx = py["gates"]["xi_ref_quotient_lift"]
     jlx = jl["gates"]["xi_ref_quotient_lift"]
     for key in ("checked_class_pairs", "multi_representative_class_count", "failure_count", "status"):
@@ -96,19 +101,19 @@ def gate_verdicts(py: dict[str, Any], jl: dict[str, Any], parity: dict[str, Any]
     out = {
         "token_identity_R5": {
             "pass": bool(gates["token_identity_R5"]["gate_pass"]),
-            "basis": "z3+cvc5 both polarities: bad same-identity reentry UNSAT; erased bad reentry SAT; logged replay SAT-as-new-branch",
+            "basis": "z3+cvc5 tuple-field token model: same_entity/fresh/replay derived from content_id/probe_signature/lineage/branch/replay fields; identity grounded in probe_signature",
         },
         "progress_measure_R6": {
             "pass": bool(gates["progress_measure_R6"]["gate_pass"]),
-            "basis": "z3+cvc5 effective-step strict lexicographic decrease plus objective non-step predicate",
+            "basis": "z3+cvc5 concrete X/H/Q pre/post registers, derived non-step predicate, strict progress for effective steps, and anti-stall fuel flip",
         },
         "observable_quotient_R4": {
-            "pass": bool(gates["observable_quotient_R4"]["gate_pass"] and jl["gates"]["observable_quotient_R4"]["gate_pass"] and parity["parity_pass"]),
-            "basis": "full C^8 carrier enumeration with all 63 non-identity Pauli probes; numpy/Julia parity at 1e-9",
+            "pass": bool(gates["observable_quotient_R4"]["gate_pass"] and gates["coarse_probe_quotient_R4_epoch"]["gate_pass"] and jl["gates"]["observable_quotient_R4"]["gate_pass"] and jl["gates"]["coarse_probe_quotient_R4_epoch"]["gate_pass"] and parity["parity_pass"]),
+            "basis": "full C^8 carrier enumeration, roster formula 8*(1+2*2)=40, full/coarse probe epoching with lineage reprojection, numpy/Julia parity at 1e-9",
         },
         "xi_ref_quotient_lift": {
             "pass": bool(gates["xi_ref_quotient_lift"]["gate_pass"] and jl["gates"]["xi_ref_quotient_lift"]["gate_pass"] and parity["parity_pass"]),
-            "basis": "representative-independence checked over every quotient-class pair in numpy and Julia",
+            "basis": "representative-independence checked nontrivially on the coarse single-Z probe epoch; failure demotes Xi_ref to raw-carrier discriminator",
             "status": gates["xi_ref_quotient_lift"]["status"],
         },
     }
@@ -117,7 +122,9 @@ def gate_verdicts(py: dict[str, Any], jl: dict[str, Any], parity: dict[str, Any]
 
 def write_results_md(py: dict[str, Any], jl: dict[str, Any], parity: dict[str, Any], verdicts: dict[str, Any]) -> None:
     q = py["gates"]["observable_quotient_R4"]
+    cq = py["gates"]["coarse_probe_quotient_R4_epoch"]
     xi = py["gates"]["xi_ref_quotient_lift"]
+    xi_full = py["gates"]["xi_ref_full_resolution_caveat"]
     lines = [
         "# ratchet_formal_gates_v1 RESULTS",
         "",
@@ -132,6 +139,7 @@ def write_results_md(py: dict[str, Any], jl: dict[str, Any], parity: dict[str, A
         f"- Executable finite carrier states: `{q['carrier_count']}`.",
         f"- Probe family: `{q['probe_count']}` non-identity 3-qubit Pauli strings.",
         "- Enumeration: full deterministic carrier/probe enumeration; no sampling.",
+        f"- Roster formula: `{q['roster_formula']['formula']}` -> expected `{q['roster_formula']['expected_count']}`, actual `{q['roster_formula']['actual_count']}`.",
         "",
         "## Gate Verdicts",
         "",
@@ -157,10 +165,25 @@ def write_results_md(py: dict[str, Any], jl: dict[str, Any], parity: dict[str, A
             f"- class sizes: `{q['class_sizes']}`.",
             f"- collapsed pairs: `{q['collapsed_pair_count']}`.",
             f"- surviving differences: `{q['surviving_difference_count']}`.",
+            f"- coarse probe epoch: `{cq['probe_epoch_id']}` with probes `{cq['probe_labels']}`, rounding digits `{cq['rounding_digits']}`.",
+            f"- coarse quotient classes: `{cq['quotient_class_count']}`.",
+            f"- coarse multi-representative classes: `{cq['multi_representative_class_count']}`.",
+            f"- full-resolution Xi_ref caveat: `{xi_full['status']}`.",
             f"- Xi_ref status: `{xi['status']}`.",
+            f"- Xi_ref probe epoch: `{xi['probe_epoch_id']}`.",
             f"- Xi_ref checked class pairs: `{xi['checked_class_pairs']}`.",
             f"- Xi_ref multi-representative classes: `{xi['multi_representative_class_count']}`.",
             f"- Xi_ref failures: `{xi['failure_count']}`.",
+            "",
+            "## Gate 1.1 Repair Round",
+            "",
+            "- R5 was UNSOUND because booleans were hand-set. It now models token tuples in SMT and derives identity/fresh/replay from fields.",
+            "- R5 identity is now grounded in `probe_signature`, not `content_id`; content perturbation with unchanged probe signature remains the same entity.",
+            "- R6 was UNSOUND because changed/non-step flags were hand-set. It now derives change predicates from finite pre/post `X`, `H`, and `Q` registers.",
+            "- R6 now treats more than K consecutive non-steps as process failure via a fuel/stutter SMT flip.",
+            "- R4 now materializes the 40-state roster formula and tags quotient classes by probe epoch.",
+            "- Xi_ref was vacuous at full Pauli resolution because all classes were singleton. The full-resolution verdict is demoted to constructed-but-untested-nontrivially.",
+            "- Xi_ref was rerun on the coarse single-Z epoch; it failed representative-independence and is demoted to `raw-carrier discriminator`.",
             "",
             "## Runtime Caveat",
             "",
@@ -177,13 +200,15 @@ def write_formal_spec(py: dict[str, Any], parity: dict[str, Any], verdicts: dict
     token = py["gates"]["token_identity_R5"]
     progress = py["gates"]["progress_measure_R6"]
     quotient = py["gates"]["observable_quotient_R4"]
+    coarse = py["gates"]["coarse_probe_quotient_R4_epoch"]
     xi = py["gates"]["xi_ref_quotient_lift"]
+    xi_full = py["gates"]["xi_ref_full_resolution_caveat"]
     lines = [
         "# FORMAL_SPEC: ratchet_formal_gates_v1",
         "",
         "Status: `scratch_diagnostic`; `promotion_allowed=false`; `formal_admission_allowed=false`.",
         "",
-        "This file is generated from the executable gate artifacts in `results/`. It closes the referee-specified formalization gaps as a Gate-1 diagnostic layer only; it does not advance the Axis-0 bridge, `Phi_0`, or the unified emergence pipeline.",
+        "This file is generated from the executable gate artifacts in `results/`. It repairs and re-audits the referee-specified formalization gaps as a Gate 1.1 diagnostic layer only; it does not advance the Axis-0 bridge, `Phi_0`, or the unified emergence pipeline.",
         "",
         "## Source Anchors",
         "",
@@ -194,24 +219,32 @@ def write_formal_spec(py: dict[str, Any], parity: dict[str, Any], verdicts: dict
         "",
         "## 1. Token Identity (R5)",
         "",
-        "Formal definition: a token identity tuple is `(content, lineage_id, branch_id, replay_receipt_id)`. Two token occurrences are the same entity iff content is identical, probe observations are indistinguishable, lineage is connected, and there is no logged replay receipt separating the occurrences. A replay receipt opens a fresh branch identity even when content and probes match.",
+        "Formal definition: a token identity tuple is `(content_id, probe_signature, lineage_id, branch_id, replay_receipt_id)`. `same_entity`, `fresh`, and `replay` are derived from field equalities over small finite SMT domains. `same_entity` is grounded in `probe_signature`, lineage, branch, and absence of replay receipt, not in `content_id`; `content_id` is provenance metadata only.",
+        "",
+        "Root-axiom alignment: this implements `a=a iff a~b` by using the R4 quotient-facing `probe_signature` as the entity discriminator. A content perturbation with identical probe signature is the same entity, so laundering is caught. Different probe signature is genuinely different even if `content_id` matches.",
         "",
         "Executable SMT gate:",
-        f"- bad re-entry without fresh identity tuple: z3 `{token['without_fresh_identity_tuple']['z3_with_axioms']}`, cvc5 `{token['without_fresh_identity_tuple']['cvc5_with_axioms']}`.",
-        f"- erased-control bad re-entry: z3 `{token['without_fresh_identity_tuple']['z3_erased_axioms']}`, cvc5 `{token['without_fresh_identity_tuple']['cvc5_erased_axioms']}`.",
-        f"- logged replay as new branch: z3 `{token['with_logged_replay_receipt']['z3_with_axioms']}`, cvc5 `{token['with_logged_replay_receipt']['cvc5_with_axioms']}`.",
+        f"- content perturbation / same probe violation: z3 `{token['content_perturbation_same_probe_signature']['z3_violation']}`, cvc5 `{token['content_perturbation_same_probe_signature']['cvc5_violation']}`.",
+        f"- content perturbation erased predicates: z3 `{token['content_perturbation_same_probe_signature']['z3_erased_predicates']}`, cvc5 `{token['content_perturbation_same_probe_signature']['cvc5_erased_predicates']}`.",
+        f"- different probe signature violation: z3 `{token['different_probe_signature']['z3_violation']}`, cvc5 `{token['different_probe_signature']['cvc5_violation']}`.",
+        f"- replay receipt violation: z3 `{token['replay_receipt_opens_fresh_branch']['z3_violation']}`, cvc5 `{token['replay_receipt_opens_fresh_branch']['cvc5_violation']}`.",
         f"- Gate verdict: `{'PASS' if verdicts['token_identity_R5']['pass'] else 'FAIL'}`.",
         "",
         "## 2. Progress Measure mu (R6)",
         "",
         "Formal definition: `mu : State -> N^3` with strict lexicographic order. The source spec demands a progress measure but does not fix codomain/order; this is the one explicit OPEN-CHOICE. Alternatives retained in `spec.json` are a single finite-state rank in `N`, an `N^2` survivor/receipt rank, or an ordinal notation below `omega^k`.",
         "",
-        "Objective non-step predicate: a step is a non-step iff it changes none of `X_k`, `H_k`, or the observable quotient projection. This predicate is observer-independent because it is computed from equality of three finite registers, not from a narrative judgment.",
+        "Objective non-step predicate: a step is a non-step iff finite pre/post registers satisfy `X_pre=X_post`, `H_pre=H_post`, and `Q_pre=Q_post`. This predicate is observer-independent because `changed_x`, `changed_h`, and `changed_q` are derived from equality of three finite registers, not asserted as scenario booleans.",
+        "",
+        "Anti-stall rule: more than K consecutive non-steps is process failure, not a rest state. At full Pauli resolution on density matrices no nontrivial hidden activity exists because 63 expectations determine rho, but coarse probe families reintroduce the risk; the fuel rule is load-bearing for coarse epochs.",
         "",
         "Executable SMT gate:",
         f"- effective step with non-decreasing mu: z3 `{progress['strict_decrease']['z3_with_axioms']}`, cvc5 `{progress['strict_decrease']['cvc5_with_axioms']}`.",
         f"- erased-control effective step: z3 `{progress['strict_decrease']['z3_erased_axioms']}`, cvc5 `{progress['strict_decrease']['cvc5_erased_axioms']}`.",
-        f"- objective non-step definition violation: z3 `{progress['non_step_objectivity']['z3_definition_violation']}`, cvc5 `{progress['non_step_objectivity']['cvc5_definition_violation']}`.",
+        f"- objective non-step definition violation: z3 `{progress['register_equality_objectivity']['z3_definition_violation']}`, cvc5 `{progress['register_equality_objectivity']['cvc5_definition_violation']}`.",
+        f"- anti-stall K: `{progress['anti_stall_fuel_bound']['K']}`.",
+        f"- anti-stall violation with fuel axiom: z3 `{progress['anti_stall_fuel_bound']['z3_with_axioms']}`, cvc5 `{progress['anti_stall_fuel_bound']['cvc5_with_axioms']}`.",
+        f"- anti-stall erased fuel control: z3 `{progress['anti_stall_fuel_bound']['z3_erased_fuel_axiom']}`, cvc5 `{progress['anti_stall_fuel_bound']['cvc5_erased_fuel_axiom']}`.",
         f"- Termination argument: {progress['termination_argument']}",
         f"- Gate verdict: `{'PASS' if verdicts['progress_measure_R6']['pass'] else 'FAIL'}`.",
         "",
@@ -224,24 +257,38 @@ def write_formal_spec(py: dict[str, Any], parity: dict[str, Any], verdicts: dict
         "Executable numeric gate:",
         f"- carrier states: `{quotient['carrier_count']}`.",
         f"- probes: `{quotient['probe_count']}`.",
+        f"- roster formula: `{quotient['roster_formula']['formula']}`.",
+        f"- roster expected/actual: `{quotient['roster_formula']['expected_count']}` / `{quotient['roster_formula']['actual_count']}`.",
         f"- quotient classes: `{quotient['quotient_class_count']}`.",
         f"- class sizes: `{quotient['class_sizes']}`.",
+        f"- probe epoching: full epoch `{quotient['probe_epoch_id']}` and coarse epoch `{coarse['probe_epoch_id']}`; equivalence is valid only within an epoch and cross-epoch identity requires re-projection.",
+        f"- coarse epoch multi-representative classes: `{coarse['multi_representative_class_count']}`.",
         f"- numpy/Julia parity at 1e-9: `{parity['parity_pass']}` with max pvec diff `{parity['max_pvec_abs_diff']}`.",
         f"- Gate verdict: `{'PASS' if verdicts['observable_quotient_R4']['pass'] else 'FAIL'}`.",
         "",
         "## 4. Xi_ref Quotient-Lift",
         "",
-        "Formal definition: `x_ref` is selected as a quotient class `c_ref`, not as a raw representative. `Xi_ref(c_ref, c)` is well-defined only if the raw point-reference descriptor `Xi_ref(x_ref, x)` is independent of the representative choices `x_ref in c_ref` and `x in c`.",
+        "Formal definition: `x_ref` is selected as a quotient class `c_ref`, not as a raw representative. `Xi_ref(c_ref, c)` is well-defined only if the raw point-reference descriptor `Xi_ref(x_ref, x)` is independent of the representative choices `x_ref in c_ref` and `x in c`. Full Pauli resolution has singleton classes here, so the previous full-resolution verdict is only `constructed_untested_nontrivially_at_full_resolution`.",
         "",
         "Executable descriptor: the reference representative selects a cut qubit by maximal local Pauli strength; the target descriptor records coherent information `S(B)-S(AB)` for that cut plus local XYZ expectations. This is a discriminator/lift test, not a final Axis-0 bridge doctrine.",
         "",
         "Executable lift gate:",
+        f"- full-resolution caveat: `{xi_full['status']}`.",
+        f"- coarse probe epoch: `{xi['probe_epoch_id']}`.",
         f"- status: `{xi['status']}`.",
         f"- checked quotient-class pairs: `{xi['checked_class_pairs']}`.",
         f"- multi-representative classes: `{xi['multi_representative_class_count']}`.",
         f"- max descriptor spread: `{xi['max_descriptor_spread']}`.",
         f"- failure count: `{xi['failure_count']}`.",
         f"- Gate verdict: `{'PASS' if verdicts['xi_ref_quotient_lift']['pass'] else 'FAIL'}`.",
+        f"- Honest outcome: `{'Xi_ref quotient lift survives nontrivially' if verdicts['xi_ref_quotient_lift']['pass'] else 'Xi_ref is demoted to raw-carrier discriminator for this coarse epoch'}`.",
+        "",
+        "## Gate 1.1 Repair Round",
+        "",
+        "- Repaired UNSOUND R5: eliminated hand-set scenario booleans and modeled field tuples in z3/cvc5.",
+        "- Repaired UNSOUND R6: eliminated hand-set changed/non-step booleans and modeled concrete pre/post registers plus anti-stall fuel.",
+        "- Repaired R4 caveat: made the 40-state roster formula and probe-epoch tagging first-class artifacts.",
+        "- Repaired Xi_ref vacuity: demoted the singleton full-Pauli verdict and reran a nontrivial coarse-probe representative-independence test.",
         "",
         "## Overall Gate Result",
         "",

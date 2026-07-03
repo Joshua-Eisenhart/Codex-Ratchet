@@ -239,10 +239,36 @@ function key_for(pv)
     return join([string(round(v, digits=12)) for v in pv], "|")
 end
 
-function quotient_classes(states)
+function probe_indices(labels)
+    return [findfirst(==(label), STRINGS) for label in labels]
+end
+
+function roster_formula(states)
+    native_counts = Dict(string(t) => length(NATIVE[t]) for t in 0:7)
+    expected = sum(1 + 2 * length(NATIVE[t]) for t in 0:7)
+    return Dict(
+        "formula" => "8 terrains x (1 fixed + 2 native operators x 2 order states)",
+        "computed_from_oracle_NATIVE" => "sum_t(1 fixed + 2 order states * len(NATIVE[t]))",
+        "native_operator_counts" => native_counts,
+        "expected_count" => expected,
+        "actual_count" => length(states),
+        "count_matches_formula" => length(states) == expected
+    )
+end
+
+function key_for_indices(state, indices; digits=12)
+    values = Float64[]
+    for idx in indices
+        v = round(state["pvec"][idx], digits=digits)
+        push!(values, abs(v) < 1e-12 ? 0.0 : v)
+    end
+    return join([string(v) for v in values], "|")
+end
+
+function quotient_classes_for_indices(states, indices; probe_epoch_id, definition, digits=12)
     buckets = Dict{String, Vector{Dict{String, Any}}}()
     for state in states
-        key = key_for(state["pvec"])
+        key = key_for_indices(state, indices, digits=digits)
         if !haskey(buckets, key)
             buckets[key] = Vector{Dict{String, Any}}()
         end
@@ -267,7 +293,7 @@ function quotient_classes(states)
     for i in 1:length(states), j in (i + 1):length(states)
         pair_count += 1
         same = projection[states[i]["label"]] == projection[states[j]["label"]]
-        diff = norm(states[i]["pvec"] .- states[j]["pvec"])
+        diff = norm(states[i]["pvec"][indices] .- states[j]["pvec"][indices])
         if same
             collapsed += 1
             max_collapsed = max(max_collapsed, diff)
@@ -277,10 +303,16 @@ function quotient_classes(states)
         end
     end
     return Dict(
-        "probe_count" => length(STRINGS),
+        "probe_epoch_id" => probe_epoch_id,
+        "definition" => definition,
+        "rounding_digits" => digits,
+        "probe_count" => length(indices),
+        "probe_labels" => [STRINGS[idx] for idx in indices],
         "carrier_count" => length(states),
+        "roster_formula" => roster_formula(states),
         "quotient_class_count" => length(classes),
         "class_sizes" => [c["size"] for c in classes],
+        "multi_representative_class_count" => sum(c["size"] > 1 for c in classes),
         "classes" => classes,
         "projection" => projection,
         "pair_check_count" => pair_count,
@@ -288,8 +320,78 @@ function quotient_classes(states)
         "collapsed_pair_count" => collapsed,
         "max_collapsed_pair_probe_l2" => max_collapsed,
         "min_surviving_pair_probe_l2" => isinf(min_surviving) ? 0.0 : min_surviving,
-        "gate_pass" => length(classes) > 0 && length(STRINGS) == 63
+        "gate_pass" => length(classes) > 0
     )
+end
+
+function coarse_probe_quotient_classes(states)
+    return quotient_classes_for_indices(
+        states,
+        probe_indices(["ZII"]),
+        probe_epoch_id="M_coarse_single_qubit_Z",
+        definition="rho_a ~_M_coarse rho_b iff the first-qubit Z expectation ZII agrees after deterministic coarse rounding to the nearest integer",
+        digits=0
+    )
+end
+
+function probe_epoching(full, coarse)
+    coarse_to_full = Dict{Int, Set{Int}}()
+    full_to_coarse = Dict{Int, Int}()
+    for (label, full_class) in full["projection"]
+        coarse_class = coarse["projection"][label]
+        if !haskey(coarse_to_full, coarse_class)
+            coarse_to_full[coarse_class] = Set{Int}()
+        end
+        push!(coarse_to_full[coarse_class], full_class)
+        full_to_coarse[full_class] = coarse_class
+    end
+    merge_examples = Vector{Any}()
+    for coarse_class in sort(collect(keys(coarse_to_full)))
+        full_classes = sort(collect(coarse_to_full[coarse_class]))
+        if length(full_classes) > 1
+            push!(merge_examples, Dict(
+                "coarse_class" => coarse_class,
+                "merged_full_classes" => full_classes,
+                "labels" => coarse["classes"][coarse_class + 1]["labels"]
+            ))
+        end
+    end
+    return Dict(
+        "equivalence_scope" => "within_epoch_only",
+        "cross_epoch_identity_rule" => "requires_reprojection",
+        "two_epoch_example" => Dict(
+            "full_pauli_epoch" => Dict(
+                "epoch_id" => full["probe_epoch_id"],
+                "probe_count" => full["probe_count"],
+                "quotient_class_count" => full["quotient_class_count"],
+                "multi_representative_class_count" => full["multi_representative_class_count"]
+            ),
+            "coarse_z_epoch" => Dict(
+                "epoch_id" => coarse["probe_epoch_id"],
+                "probe_count" => coarse["probe_count"],
+                "quotient_class_count" => coarse["quotient_class_count"],
+                "multi_representative_class_count" => coarse["multi_representative_class_count"]
+            ),
+            "merge_examples" => merge_examples[1:min(length(merge_examples), 5)],
+            "full_class_to_coarse_reprojection_sample" => Dict(string(k) => full_to_coarse[k] for k in sort(collect(keys(full_to_coarse)))[1:min(length(full_to_coarse), 10)]),
+            "classes_split_or_merge_across_epochs" => !isempty(merge_examples) || full["quotient_class_count"] != coarse["quotient_class_count"],
+            "lineage_survives_reprojection" => Set(keys(full["projection"])) == Set(keys(coarse["projection"]))
+        )
+    )
+end
+
+function quotient_classes(states)
+    full = quotient_classes_for_indices(
+        states,
+        collect(1:length(STRINGS)),
+        probe_epoch_id="M_full_pauli_63",
+        definition="rho_a ~_M_full rho_b iff every one of the 63 non-identity 3-qubit Pauli expectations is equal after deterministic rounding at 12 decimals",
+        digits=12
+    )
+    coarse = coarse_probe_quotient_classes(states)
+    full["probe_epoching"] = probe_epoching(full, coarse)
+    full["gate_pass"] = full["gate_pass"] && full["probe_count"] == 63 && full["roster_formula"]["count_matches_formula"] && full["roster_formula"]["expected_count"] == 40 && full["probe_epoching"]["two_epoch_example"]["lineage_survives_reprojection"] && full["probe_epoching"]["two_epoch_example"]["coarse_z_epoch"]["multi_representative_class_count"] > 0
+    return full
 end
 
 function xi_ref_lift_check(states, quotient)
@@ -321,14 +423,16 @@ function xi_ref_lift_check(states, quotient)
             lifted["$(cref["class_id"])->$(ctgt["class_id"])"] = Dict("cut_qubit" => first[1], "coherent_info_bits" => first[2], "local_probe_xyz" => first[3])
         end
     end
+    nontrivial = sum(c["size"] > 1 for c in quotient["classes"]) > 0
     return Dict(
+        "probe_epoch_id" => get(quotient, "probe_epoch_id", "unknown"),
         "checked_class_pairs" => checked_pairs,
         "multi_representative_class_count" => sum(c["size"] > 1 for c in quotient["classes"]),
         "max_descriptor_spread" => max_descriptor_spread,
         "failure_count" => length(failures),
         "failures" => failures[1:min(length(failures), 20)],
-        "status" => isempty(failures) ? "quotient_lift_constructed" : "demoted_to_raw_carrier_discriminator",
-        "gate_pass" => isempty(failures),
+        "status" => nontrivial && isempty(failures) ? "quotient_lift_constructed_nontrivial" : "demoted_to_raw_carrier_discriminator",
+        "gate_pass" => nontrivial && isempty(failures),
         "lifted_values" => lifted
     )
 end
@@ -353,7 +457,11 @@ function main()
     mkpath(RESULTS)
     states = enumerate_carrier()
     quotient = quotient_classes(states)
-    xi = xi_ref_lift_check(states, quotient)
+    coarse_quotient = coarse_probe_quotient_classes(states)
+    xi_full = xi_ref_lift_check(states, quotient)
+    xi_full["status"] = "constructed_untested_nontrivially_at_full_resolution"
+    xi_full["gate_pass"] = false
+    xi = xi_ref_lift_check(states, coarse_quotient)
     result = Dict(
         "schema" => "codex_ratchet.ratchet_formal_gates_v1.julia_result.v1",
         "generated_at" => Dates.format(now(UTC), dateformat"yyyy-mm-ddTHH:MM:SSZ"),
@@ -376,6 +484,8 @@ function main()
         "carrier_states" => carrier_json(states, quotient["projection"]),
         "gates" => Dict(
             "observable_quotient_R4" => quotient,
+            "coarse_probe_quotient_R4_epoch" => coarse_quotient,
+            "xi_ref_full_resolution_caveat" => xi_full,
             "xi_ref_quotient_lift" => xi
         ),
         "all_pass" => quotient["gate_pass"] && xi["gate_pass"]

@@ -1,0 +1,1798 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "supportive",
+    "json": "supportive",
+    "numpy": "load_bearing",
+    "z3": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "dual-SMT erased-control cross-check for above-null relations when installed",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "artifact serialization",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "load-bearing relation matrix, correlation, deterministic label-permutation nulls",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "dual-SMT erased-control gate for above-null relations when installed",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "bit_extraction": {
+    "a1": "operator factor: Fi/Fe unitary=1, Ti/Te proper CPTP/GKSL=0",
+    "a2": "terrain function frame: Ni/Si conjugated=1, Se/Ne direct=0",
+    "a4": "traversal order: outer/deductive=0, inner/inductive=1",
+    "a5": "operator family: F family=1, T family=0",
+    "a6": "composition precedence: operator-first terrain_after_operator=1, terrain-first operator_after_terrain=0",
+    "b0": "chart state sign: sign(r_z) from fixed probe-state Bloch vector; zero retained as 0 and excluded from b6 law rows",
+    "b3": "chart role: outer loop=+1, inner loop=-1",
+    "b6": "derived chart law bit where b0 nonzero: -b0*b3",
+    "excluded": {
+      "a0": "undefinable at this stage-level engine depth without Xi/cut bridge or admitted a0 proxy",
+      "axes_7_12": "informal/game-theory tier only; not active axis math here"
+    }
+  },
+  "claim_ceiling": "QUARANTINE_EXPLORATORY",
+  "classification": "scratch_diagnostic",
+  "conflation_stress_test": {
+    "axes": [
+      "a4_traversal_order",
+      "a6_precedence",
+      "b3_loop_role"
+    ],
+    "examples": {
+      "(0, 0, 1)": {
+        "composition": "operator_after_terrain",
+        "loop": "outer",
+        "stage_id": "NeTi",
+        "traversal": "outer"
+      },
+      "(0, 1, 1)": {
+        "composition": "terrain_after_operator",
+        "loop": "outer",
+        "stage_id": "TiSe",
+        "traversal": "outer"
+      },
+      "(1, 0, -1)": {
+        "composition": "operator_after_terrain",
+        "loop": "inner",
+        "stage_id": "SeFi",
+        "traversal": "inner"
+      },
+      "(1, 1, -1)": {
+        "composition": "terrain_after_operator",
+        "loop": "inner",
+        "stage_id": "TeNi",
+        "traversal": "inner"
+      }
+    },
+    "note": "a4 and b3 are structurally coupled in the built Type-1 chart because outer=deductive and inner=inductive; a6 remains separable from them.",
+    "possible_combination_count": 8,
+    "reachable_combination_count": 4,
+    "reachable_combinations": [
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ],
+      [
+        1,
+        1,
+        -1
+      ]
+    ],
+    "structural_coupling": true
+  },
+  "dual_smt_gate": {
+    "attempted_pairs": [
+      [
+        "a1",
+        "a5"
+      ],
+      [
+        "a4",
+        "b3"
+      ]
+    ],
+    "results": [
+      {
+        "cvc5_erased_exists_unique_assignment": [
+          true,
+          false,
+          {
+            "0": 0,
+            "1": 0
+          }
+        ],
+        "cvc5_real_exists_unique_assignment": [
+          true,
+          true,
+          {
+            "0": 0,
+            "1": 1
+          }
+        ],
+        "flip": true,
+        "pair": [
+          "a1",
+          "a5"
+        ],
+        "polarity": "measured rows force a unique right=f(left) map; erased left-class control must make uniqueness false",
+        "z3_erased_exists_unique_assignment": [
+          true,
+          false,
+          {
+            "0": 0,
+            "1": 0
+          }
+        ],
+        "z3_real_exists_unique_assignment": [
+          true,
+          true,
+          {
+            "0": 0,
+            "1": 1
+          }
+        ]
+      },
+      {
+        "cvc5_erased_exists_unique_assignment": [
+          true,
+          false,
+          {
+            "0": 1,
+            "1": -1
+          }
+        ],
+        "cvc5_real_exists_unique_assignment": [
+          true,
+          true,
+          {
+            "0": 1,
+            "1": -1
+          }
+        ],
+        "flip": true,
+        "pair": [
+          "a4",
+          "b3"
+        ],
+        "polarity": "measured rows force a unique right=f(left) map; erased left-class control must make uniqueness false",
+        "z3_erased_exists_unique_assignment": [
+          true,
+          false,
+          {
+            "0": 1,
+            "1": -1
+          }
+        ],
+        "z3_real_exists_unique_assignment": [
+          true,
+          true,
+          {
+            "0": 1,
+            "1": -1
+          }
+        ]
+      }
+    ],
+    "status": "ran"
+  },
+  "engine": "numpy",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-03T19:52:43Z",
+  "laws": {
+    "a0_equals_a1_xor_a2": {
+      "note": "a0 needs Xi/cut bridge or explicit a0 proxy; this stage-level Type-1 readout excludes it honestly.",
+      "status": "skipped_undefinable"
+    },
+    "b6_equals_minus_b0_times_b3": {
+      "defined_rows": 48,
+      "holds": true,
+      "note": "b6 is derived only where b0 sign(r_z) is nonzero.",
+      "total_rows": 56
+    }
+  },
+  "probe_state_count": 7,
+  "promotion_allowed": false,
+  "read_first": [
+    "system_v7/sims/AXES_FULL_EXTRACTION_20260703.md",
+    "system_v7/sims/type1_engine_v0/",
+    "system_v7/constraint_core/sims_and_scripts/axis_laws_dual_proof.py"
+  ],
+  "readout_row_count": 56,
+  "readout_rows": [
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 1,
+      "b0": 0,
+      "b3": 1,
+      "b6": null,
+      "bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "TiSe",
+      "state": "mixed_zero",
+      "terrain": "Se-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 1,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "TiSe",
+      "state": "plus_z",
+      "terrain": "Se-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 1,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "TiSe",
+      "state": "minus_z",
+      "terrain": "Se-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 1,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.31,
+        -0.27,
+        0.44
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "TiSe",
+      "state": "generic_pos",
+      "terrain": "Se-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 1,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        -0.21,
+        0.36,
+        -0.18
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "TiSe",
+      "state": "generic_neg",
+      "terrain": "Se-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 1,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.173,
+        -0.422,
+        0.611
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "TiSe",
+      "state": "seeded_0",
+      "terrain": "Se-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 1,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        -0.532,
+        0.118,
+        -0.374
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "TiSe",
+      "state": "seeded_1",
+      "terrain": "Se-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 0,
+      "b0": 0,
+      "b3": 1,
+      "b6": null,
+      "bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "NeTi",
+      "state": "mixed_zero",
+      "terrain": "Ne-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 0,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "NeTi",
+      "state": "plus_z",
+      "terrain": "Ne-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 0,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "NeTi",
+      "state": "minus_z",
+      "terrain": "Ne-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 0,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.31,
+        -0.27,
+        0.44
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "NeTi",
+      "state": "generic_pos",
+      "terrain": "Ne-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 0,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        -0.21,
+        0.36,
+        -0.18
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "NeTi",
+      "state": "generic_neg",
+      "terrain": "Ne-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 0,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.173,
+        -0.422,
+        0.611
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "NeTi",
+      "state": "seeded_0",
+      "terrain": "Ne-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 0,
+      "a2": 0,
+      "a4": 0,
+      "a5": 0,
+      "a6": 0,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        -0.532,
+        0.118,
+        -0.374
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Ti",
+      "stage_id": "NeTi",
+      "state": "seeded_1",
+      "terrain": "Ne-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 0,
+      "b0": 0,
+      "b3": 1,
+      "b6": null,
+      "bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "NiFe",
+      "state": "mixed_zero",
+      "terrain": "Ni-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 0,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "NiFe",
+      "state": "plus_z",
+      "terrain": "Ni-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 0,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "NiFe",
+      "state": "minus_z",
+      "terrain": "Ni-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 0,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.31,
+        -0.27,
+        0.44
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "NiFe",
+      "state": "generic_pos",
+      "terrain": "Ni-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 0,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        -0.21,
+        0.36,
+        -0.18
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "NiFe",
+      "state": "generic_neg",
+      "terrain": "Ni-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 0,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.173,
+        -0.422,
+        0.611
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "NiFe",
+      "state": "seeded_0",
+      "terrain": "Ni-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 0,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        -0.532,
+        0.118,
+        -0.374
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "NiFe",
+      "state": "seeded_1",
+      "terrain": "Ni-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 1,
+      "b0": 0,
+      "b3": 1,
+      "b6": null,
+      "bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "FeSi",
+      "state": "mixed_zero",
+      "terrain": "Si-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 1,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "FeSi",
+      "state": "plus_z",
+      "terrain": "Si-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 1,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "FeSi",
+      "state": "minus_z",
+      "terrain": "Si-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 1,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.31,
+        -0.27,
+        0.44
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "FeSi",
+      "state": "generic_pos",
+      "terrain": "Si-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 1,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        -0.21,
+        0.36,
+        -0.18
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "FeSi",
+      "state": "generic_neg",
+      "terrain": "Si-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 1,
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "bloch": [
+        0.173,
+        -0.422,
+        0.611
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "FeSi",
+      "state": "seeded_0",
+      "terrain": "Si-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 1,
+      "a4": 0,
+      "a5": 1,
+      "a6": 1,
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "bloch": [
+        -0.532,
+        0.118,
+        -0.374
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "outer",
+      "operator": "Fe",
+      "stage_id": "FeSi",
+      "state": "seeded_1",
+      "terrain": "Si-in",
+      "traversal": "outer"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 0,
+      "b0": 0,
+      "b3": -1,
+      "b6": null,
+      "bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "SeFi",
+      "state": "mixed_zero",
+      "terrain": "Se-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 0,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "SeFi",
+      "state": "plus_z",
+      "terrain": "Se-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 0,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "SeFi",
+      "state": "minus_z",
+      "terrain": "Se-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 0,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.31,
+        -0.27,
+        0.44
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "SeFi",
+      "state": "generic_pos",
+      "terrain": "Se-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 0,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        -0.21,
+        0.36,
+        -0.18
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "SeFi",
+      "state": "generic_neg",
+      "terrain": "Se-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 0,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.173,
+        -0.422,
+        0.611
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "SeFi",
+      "state": "seeded_0",
+      "terrain": "Se-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 0,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        -0.532,
+        0.118,
+        -0.374
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "SeFi",
+      "state": "seeded_1",
+      "terrain": "Se-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 0,
+      "b0": 0,
+      "b3": -1,
+      "b6": null,
+      "bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "SiTe",
+      "state": "mixed_zero",
+      "terrain": "Si-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 0,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "SiTe",
+      "state": "plus_z",
+      "terrain": "Si-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 0,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "SiTe",
+      "state": "minus_z",
+      "terrain": "Si-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 0,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.31,
+        -0.27,
+        0.44
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "SiTe",
+      "state": "generic_pos",
+      "terrain": "Si-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 0,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        -0.21,
+        0.36,
+        -0.18
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "SiTe",
+      "state": "generic_neg",
+      "terrain": "Si-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 0,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.173,
+        -0.422,
+        0.611
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "SiTe",
+      "state": "seeded_0",
+      "terrain": "Si-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 0,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        -0.532,
+        0.118,
+        -0.374
+      ],
+      "composition": "operator_after_terrain",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "SiTe",
+      "state": "seeded_1",
+      "terrain": "Si-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 1,
+      "b0": 0,
+      "b3": -1,
+      "b6": null,
+      "bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "TeNi",
+      "state": "mixed_zero",
+      "terrain": "Ni-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 1,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "TeNi",
+      "state": "plus_z",
+      "terrain": "Ni-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 1,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "TeNi",
+      "state": "minus_z",
+      "terrain": "Ni-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 1,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.31,
+        -0.27,
+        0.44
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "TeNi",
+      "state": "generic_pos",
+      "terrain": "Ni-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 1,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        -0.21,
+        0.36,
+        -0.18
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "TeNi",
+      "state": "generic_neg",
+      "terrain": "Ni-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 1,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.173,
+        -0.422,
+        0.611
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "TeNi",
+      "state": "seeded_0",
+      "terrain": "Ni-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 0,
+      "a2": 1,
+      "a4": 1,
+      "a5": 0,
+      "a6": 1,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        -0.532,
+        0.118,
+        -0.374
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Te",
+      "stage_id": "TeNi",
+      "state": "seeded_1",
+      "terrain": "Ni-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 1,
+      "b0": 0,
+      "b3": -1,
+      "b6": null,
+      "bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "FiNe",
+      "state": "mixed_zero",
+      "terrain": "Ne-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 1,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "FiNe",
+      "state": "plus_z",
+      "terrain": "Ne-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 1,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "FiNe",
+      "state": "minus_z",
+      "terrain": "Ne-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 1,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.31,
+        -0.27,
+        0.44
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "FiNe",
+      "state": "generic_pos",
+      "terrain": "Ne-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 1,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        -0.21,
+        0.36,
+        -0.18
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "FiNe",
+      "state": "generic_neg",
+      "terrain": "Ne-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 1,
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "bloch": [
+        0.173,
+        -0.422,
+        0.611
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "FiNe",
+      "state": "seeded_0",
+      "terrain": "Ne-in",
+      "traversal": "inner"
+    },
+    {
+      "a1": 1,
+      "a2": 0,
+      "a4": 1,
+      "a5": 1,
+      "a6": 1,
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "bloch": [
+        -0.532,
+        0.118,
+        -0.374
+      ],
+      "composition": "terrain_after_operator",
+      "declared_loop": "inner",
+      "operator": "Fi",
+      "stage_id": "FiNe",
+      "state": "seeded_1",
+      "terrain": "Ne-in",
+      "traversal": "inner"
+    }
+  ],
+  "relation_matrix": [
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a1",
+        "a2"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a1",
+        "a4"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 1.0,
+      "n": 56,
+      "nmi": 1.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a1",
+        "a5"
+      ],
+      "verdict": "dependent_above_95pct_null"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a1",
+        "a6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "a1",
+        "b0"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a1",
+        "b3"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 48,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3333333333333334,
+      "null95_nmi": 0.08170416594551039,
+      "pair": [
+        "a1",
+        "b6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.0940717839570008,
+      "pair": [
+        "a2",
+        "a4"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a2",
+        "a5"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a2",
+        "a6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "a2",
+        "b0"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.0940717839570008,
+      "pair": [
+        "a2",
+        "b3"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 48,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3333333333333334,
+      "null95_nmi": 0.08170416594551039,
+      "pair": [
+        "a2",
+        "b6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.0940717839570008,
+      "pair": [
+        "a4",
+        "a5"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.0940717839570008,
+      "pair": [
+        "a4",
+        "a6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "a4",
+        "b0"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": -1.0,
+      "n": 56,
+      "nmi": 1.0,
+      "null95_abs_corr": 0.4285714285714286,
+      "null95_nmi": 0.13687943143336895,
+      "pair": [
+        "a4",
+        "b3"
+      ],
+      "verdict": "dependent_above_95pct_null"
+    },
+    {
+      "corr": 0.0,
+      "n": 48,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.5833333333333334,
+      "null95_nmi": 0.2617151338565495,
+      "pair": [
+        "a4",
+        "b6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a5",
+        "a6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "a5",
+        "b0"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.09407178395700082,
+      "pair": [
+        "a5",
+        "b3"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 48,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3333333333333334,
+      "null95_nmi": 0.08170416594551039,
+      "pair": [
+        "a5",
+        "b6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "a6",
+        "b0"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3571428571428572,
+      "null95_nmi": 0.0940717839570008,
+      "pair": [
+        "a6",
+        "b3"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 48,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.3333333333333334,
+      "null95_nmi": 0.08170416594551039,
+      "pair": [
+        "a6",
+        "b6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 56,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "b0",
+        "b3"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 48,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.0,
+      "null95_nmi": 0.0,
+      "pair": [
+        "b0",
+        "b6"
+      ],
+      "verdict": "independent_at_this_depth"
+    },
+    {
+      "corr": 0.0,
+      "n": 48,
+      "nmi": 0.0,
+      "null95_abs_corr": 0.5833333333333334,
+      "null95_nmi": 0.2617151338565495,
+      "pair": [
+        "b3",
+        "b6"
+      ],
+      "verdict": "independent_at_this_depth"
+    }
+  ],
+  "schema": "codex_ratchet.axis_relation_matrix_probe_v0.result.v1",
+  "sim_id": "axis_relation_matrix_probe_v0"
+}

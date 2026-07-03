@@ -3,7 +3,7 @@ entropic_newton_limit_sim.py -- PURE MATH, no jargon. 2026-07-02, Layer 0.4.
 
 "My engines account for how spacetime/gravity work -- not literally GR, but new foundations that lead
 to the SAME observations and explain what the empirical universe shows that GR+visible-matter can't."
-This sim EARNS the reproduction half honestly (Newtonian limit falls out exactly), and FENCES the
+This sim REPRODUCES the Newtonian limit (falls out exactly given the Verlinde premises), and FENCES the
 explanation half (flat rotation curves without particulate dark matter) as phenomenological-not-derived.
 
 Substrate: the model's "gravity = entropy gradient" (Layer 0.2) + signed -S(A|B) kernel (Layer 0.3),

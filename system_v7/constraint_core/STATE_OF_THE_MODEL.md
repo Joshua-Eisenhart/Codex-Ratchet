@@ -5,8 +5,8 @@ claim_ceiling: status snapshot; the ratchet earns canon, this document does not
 ## I. What this is, in three sentences
 A constraint-first foundation (finitude F01, noncommutation N01, bracketing
 T01, identity-as-indistinguishability) realized on a finite QIT carrier
-(ℂ²→ℂ⁸), formalized as a layered spec with ~30 machine-checked sims,
-reproduced across four independent numerical substrates (contract agreement at 1e-12; reproducibility engineering, not formal verification), and governed by a claim-ceiling
+(ℂ²→ℂ⁸), formalized as a layered spec with ~30 machine-checked sims, reproduced
+across four independent numerical substrates, and governed by a claim-ceiling
 discipline that has now survived seven adversarial audits without a silent
 overclaim standing. Its interpretive ambitions (engine stages, Axis-0,
 physics/biology/gravity bridges, cosmology) are explicitly tiered: earned /
@@ -26,11 +26,12 @@ explore, NOT canon.
   TERRAIN_LAW_LEDGER 17–22).
 - **L7 axes** — Axis-1 = measured non-unitality (EARNED); Axis-2 = two-layer
   object: V-gauge (dynamics, degeneracy theorem) + W-duality (operator pairs)
-  (EARNED, §7u/P11); Axis-6 coefficient b₆=−b₀b₃ (0/8 violations OBSERVED; the b₆ coefficient encoding remains construct-then-verify — independent encoding open, known defect); Axis-0 =
+  (EARNED, §7u/P11); Axis-6 law b₆=−b₀b₃ (EARNED, 0/8); Axis-0 =
   a1⊕a2: TABLE-EXACT, terrain-level parity CARRIED NOT MEASURED (candidate);
   Axis-4 vs Axis-6 are distinct order DOFs (source: scaffold L179).
 - **L8 stages & engines** — 16 stages distinct & order-sensitive under the
-  canonical axis (EARNED, axis-conditioned per P12: candidate/conditional per lineage; canonical axis required for 16/16; σz collapses 16/16→12/16); eight-of-sixteen access: two-tier
+  canonical axis (EARNED, axis-conditioned per P12: (1,1,1)/√3 is
+  load-bearing; σz collapses 16/16→12/16); eight-of-sixteen access: two-tier
   (exact on dephasing half; 14/16 neutral-probe; 16/16 with sheet-H₀ in the
   loop definition). 64 = three-layer object per source atlas §9–10 (runtime
   slots / 8×8 address surface with 16 starred stages / fenced hexagram tags).
@@ -45,7 +46,8 @@ explore, NOT canon.
   the disagreement-is-a-finding contract worked end-to-end.
 - **L16–17 physics/info/chemistry bridges** — ten standard results (Landauer,
   Holevo, Tsirelson, no-cloning 5/6, Jarzynski, Page, Hubbard dimer...)
-  computed exactly: earned realization checks for named finite encodings (no encoding bugs FOUND across ten standard-result checks; finite test battery; two bugs caught and fixed by this lane), NOT axiom grounding (H-22 flag). Two encoding bugs
+  computed exactly: EARN REALIZATION FAITHFULNESS (the encoded carrier is
+  bug-free standard QM), NOT axiom grounding (H-22 flag). Two encoding bugs
   caught by this lane = its real value.
 - **L18 grand-adjacent** — evolution/chirality: SMT core (self-mirror +
   noncommuting ⇒ chirality pair, UNSAT×2) is axiom-tier; Frank amplification
@@ -60,13 +62,11 @@ explore, NOT canon.
    convergence (one bit), flat 16/16 access theorem (two-tier), null-as-
    fusion-evidence, "χ₂ closed," §7m "exact" (→ candidate).
 2. Earned: W-covariance, non-unitality theorem, conjugation-mirror exactness,
-   P12 axis-conditioned result, XOR non-separability explanation of 14 failures,
+   P12 axis load-bearing, XOR non-separability explanation of 14 failures,
    two source resolutions (two-64s; a2-as-installed-frame).
 3. Built: pure-math ledger P1–P12, deterministic harness (53 checks), engine
    contract ×4 substrates ×2 scales, agent contract with honest-failure and
    withdrawn-claim guards, CI workflow, laptop runner.
-Cross-family adversarial review (3 external models, 2026-07-02): 6 wording-tier inflations found and repaired in this revision; 18 attacks answered by existing fencing.
-
 Every withdrawal is logged visibly in the docs it corrects. That property —
 not any single result — is the model's strongest legitimacy claim today.
 

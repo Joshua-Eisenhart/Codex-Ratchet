@@ -2,7 +2,7 @@
 weak_force_chirality_bridge_sim.py -- PURE MATH, no jargon. 2026-07-02, Layer 20.1 (Standard-Model bridge).
 
 Owner framing: the engines are new foundations UNDER the Standard Model that lead to the SAME
-observations. This ADMITS (hypothetical lane) chirality STRUCTURE as forced -- the weak interaction couples ONLY to left-handed
+observations. This ADMITS (hypothetical lane) one SM structural fact -- the weak interaction couples ONLY to left-handed
 fields (maximal parity violation) -- from the SAME F01+N01 move Layer 19.1 used for biological
 chirality, on the model's left-Weyl substrate.
 
@@ -33,8 +33,8 @@ RESULTS (deterministic, seeded):
      be NON-chiral -> UNSAT with the law, SAT once dropped. z3 AND cvc5, both halves.
 
 HONEST SCOPE: this REPRODUCES the weak force's chirality on the model substrate and shows it shares the
-F01+N01 origin of biological left-handedness (19.1) and matter/antimatter (A2). The vertex choice (P_L) and which side (LEFT) are empirical inputs, not derived. It does NOT derive the
-SU(2)xU(1) gauge group, the Weinberg angle, or coupling constants; it earns the PARITY structure, not
+F01+N01 origin of biological left-handedness (19.1) and matter/antimatter (A2). It does NOT derive the
+SU(2)xU(1) gauge group, the Weinberg angle, or coupling constants; it admits the PARITY structure as forced (vertex+side empirical), not
 the full electroweak theory. Owner doctrine under test; no claim to replace the SM.
 scratch_diagnostic; promotion_allowed=false.
 """

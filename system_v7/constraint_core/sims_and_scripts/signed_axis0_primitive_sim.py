@@ -20,7 +20,10 @@ RESULTS (deterministic, seeded):
      random entangled states I_c>0 for 100%. Positive I_c is a genuine entanglement witness -- and a
      STRICTER one than entanglement itself: a Werner state p*Bell+(1-p)I/4 is entangled for p>1/3 but
      has I_c>0 only for p>p*=0.7476 (the one-way/coherent boundary). Not all entanglement "binds."
- (3) LOOP-BACK TO GRAVITY (0.2): a spatial chain of Werner cuts p(x) with a high-entanglement core.
+ (3) LOOP-BACK TO GRAVITY (0.2) [DEMONSTRATION-ONLY profile]: a spatial chain of Werner cuts p(x) with a
+     high-entanglement core. The core/halo entanglement profile p_x=0.30+0.68*exp(-((x-0.5)/0.13)^2) is a
+     CONSTRUCTED Gaussian (a placed demonstration shape), NOT a derived profile. The MEASURED result is
+     that I_c changes sign across it (core I_c>0 vs halo I_c<0); the profile itself is illustrative.
      The gravitational potential Phi(x) = -I_c(x) (the -S(A|B) binding kernel). The two regimes --
      binding core (I_c>0, ATTRACTIVE) and dispersing halo (I_c<0) -- are the two MEASURED SIGNS of one
      primitive, with the boundary at the physical threshold p*, NOT a hand-placed +/- (which the 0.2

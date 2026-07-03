@@ -18,7 +18,8 @@ RESULTS (deterministic):
  (1) PRAGMATIC value / policy selection: the min-path-integral policy REACHES a tilted-pointer goal that
      requires rotate-then-commit (final surprise 0.06 from start 0.16). Selection is over full paths, not
      one step.
- (2) ORDER-SENSITIVITY = N01 inherited: 100/125 three-step policies have cost != their reverse (mean gap
+ (2) ORDER-SENSITIVITY (from noncommuting operations; consistent with N01, does not by itself PROVE N01
+     inheritance): 100/125 three-step policies have cost != their reverse (mean gap
      0.21, max 0.87); the selected policy costs 0.31 forward vs 0.84 reversed. Policy space carries the
      manifold's noncommutation -- the same phenomenon as 0.8's path-bracketing gap.
  (3) EPISTEMIC value (resolve uncertainty about hidden cause), pure QIT: a soft posterior over concepts
@@ -34,7 +35,12 @@ LOOP-BACK: the active engine closes the FEP loop -- perception (0.9) relaxes sur
 selects the operator path that will. Both are the SAME relative-entropy descent, now over trajectories.
 The manifold's N01 (0.8) is what makes planning nontrivial (order matters).
 
-HONEST SCOPE: the finite-CPTP core of active inference / policy selection by expected free energy, with
+HONEST SCOPE (external referee panel, loop-back #2): this is PROSPECTIVE policy selection against a FIXED
+goal density operator (expected free energy = path integral of a relative-entropy divergence) -- NOT
+belief-updating active inference (no belief update in the planning dynamics, goal fixed). The epistemic
+section (below) is a TWO-policy / TWO-anchor SIGN demo, not robust epistemic planning. The order-
+sensitivity follows from generic noncommuting operations and is CONSISTENT with N01, not a standalone
+proof of N01 inheritance. Finite-CPTP policy selection by expected free energy, with
 N01 order-sensitivity earned. Does NOT do continuous-time optimal control or deep multi-step tree search;
 3-step policy enumeration on 5 operators. Hypothetical lane; owner doctrine under test.
 scratch_diagnostic; promotion_allowed=false.
@@ -95,7 +101,7 @@ def Hpost(rho):
     return float(-np.sum(q*np.log2(q)))
 amb=0.5*(I2+0.35*sx+0.35*sz)
 ep_commit=Hpost(amb)-Hpost(run(('Ti','Ti','Ti'),amb)); ep_rot=Hpost(amb)-Hpost(run(('Fy','Fi','Fe'),amb))
-print(f"(3) epistemic (concept-identity resolved): commit policy {ep_commit:+.3f} bits, rotate policy {ep_rot:+.3f} bits (sign structure: commit resolves, rotate does not)")
+print(f"(3) epistemic 2-anchor SIGN demo (not robust epistemic planning): commit policy {ep_commit:+.3f} bits, rotate policy {ep_rot:+.3f} bits (commit resolves, rotate does not)")
 
 sel_reaches=relent(final,goal)<relent(start,goal); sel_order=abs(path_cost(best,start,goal)-path_cost(rev,start,goal))>1e-6
 def z3g():
@@ -125,7 +131,7 @@ zf,cf,zc1,cc1,zc0,cc0=z3g(),cvc5g(),z3c(True),cvc5c(True),z3c(False),cvc5c(False
 print(f"(4) gate: reaches={sel_reaches} order={sel_order}; fit z3={zf}/cvc5={cf}; nonreaching-forced-valid z3={zc1}/cvc5={cc1}(w/law) -> {zc0}/{cc0}(w/o)")
 
 assert relent(final,goal)<relent(start,goal), "selected policy reaches goal (pragmatic value)"
-assert n_order>=len(pols)//2 and max(gaps)>0.3, "policy cost strongly order-sensitive = N01 inherited from manifold"
+assert n_order>=len(pols)//2 and max(gaps)>0.3, "policy cost strongly order-sensitive (noncommuting ops; consistent with N01)"
 assert ep_commit>1e-3 and abs(ep_rot)<ep_commit, "committing policy resolves concept-identity; rotating does not (sign structure)"
 assert zf=="sat" and cf=="sat" and zc1=="unsat" and cc1=="unsat" and zc0=="sat" and cc0=="sat", "policy-validity law fits + flipped control both solvers"
 print("\nPASS qit_active_inference_planning_sim")

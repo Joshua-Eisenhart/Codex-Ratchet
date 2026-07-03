@@ -1,7 +1,7 @@
 """
 qit_fep_ratchet_sim.py -- PURE MATH, no jargon, no classical/thermal terms. 2026-07-03, Layer 0.9.
 
-A QIT Free Energy Principle EARNED THROUGH THE RATCHET, stage by stage -- geometry, entropy, operators,
+A QIT Free Energy Principle RENDERED THROUGH THE RATCHET (hypothetical lane), stage by stage -- geometry, entropy, operators,
 manifold -- no shortcuts. NOT the classical FEP applied to quantum systems, and NOT the doc's thermal-
 prior version (exp(-E/T)/Z is Boltzmann thermodynamics -- excluded). Source (owner, MODEL_CONTEXT.md:91):
 "a pure QIT version of the Free Energy Principle ... purely in terms of CPTP channels, density operators,
@@ -19,7 +19,8 @@ The ratchet builds it one earned stage at a time:
 STAGE 1 -- DISTINGUISHABILITY forces the functional (F01, root). The surprise functional must be (i)
   monotone under every CPTP channel (post-processing cannot manufacture distinguishability = data
   processing) AND (ii) additive over independent subsystems. Relative entropy S(rho||sigma) satisfies
-  both; trace distance is monotone but NOT additive; so the functional is FORCED, not chosen. No -log p.
+  both; trace distance is monotone but NOT additive; so S(rho||sigma) SURVIVES against the trace-distance
+  alternative (one comparison, NOT a uniqueness theorem). No -log p.
 
 STAGE 2 -- GEOMETRY splits the surprise (Axis-0). S(rho||sigma) decomposes EXACTLY (Pythagorean) into a
   classical spectral part (eigenvalue mismatch = the entropy DOF) + a quantum basis-mismatch part
@@ -46,6 +47,19 @@ HONEST SCOPE: derives the finite-CPTP core of perceptual + active inference from
 constraint surface, with every classical/thermal primitive replaced. It does NOT reproduce Friston's full
 hierarchical continuous-state message passing. Hypothetical lane; owner doctrine under test.
 scratch_diagnostic; promotion_allowed=false.
+
+INSTRUMENT SCOPE (external referee panel, 2026-07-03 loop-back #2 -- verified against code lines):
+  * The quantity relent() is quantum relative entropy used as a FREE-ENERGY ANALOGUE (a divergence),
+    NOT a variational free energy / evidence lower bound. Stage-1 "surprise" is this divergence.
+  * Belief dynamics are GKSL relaxation toward operator pointer priors -- the INSTRUMENT CLASS is
+    relaxation (smooth surprise streams), NOT Lüders conditioning on measurement outcomes. The sim does
+    not condition on outcomes.
+  * Stage 3 "self-evidencing" scores each fixed point against ITSELF: this is attractor/Lyapunov
+    STABILITY of the GKSL fixed point, not evidence accumulation over data.
+  * Stage 4 Markov blanket uses CLASSICAL diagonal conditional mutual info (diagonal states), not a
+    genuinely quantum-correlated blanket -- classical-CMI scope, stated.
+  * Stage 5 "active" = prospective selection of a fixed goal/concept, not belief-updating control.
+  These are scope statements; the numerical results stand as run.
 """
 import sys
 try:
@@ -63,13 +77,13 @@ def relent(ro,rm):
     return float(np.real(np.trace(ro@(Vo@np.diag(np.log(wo))@Vo.conj().T - Vm@np.diag(np.log(wm))@Vm.conj().T))))
 def trdist(a,b): w=np.linalg.eigvalsh((a-b+(a-b).conj().T)/2); return 0.5*float(np.sum(np.abs(w)))
 
-# STAGE 1: functional forced by monotone AND additive
+# STAGE 1: functional SURVIVES trace-distance alternative (monotone AND additive; one comparison, not uniqueness)
 def rand_rho(d):
     A=rng.normal(size=(d,d))+1j*rng.normal(size=(d,d)); M=A@A.conj().T; return M/np.trace(M)
 r1,s1,r2,s2=rand_rho(2),rand_rho(2),rand_rho(2),rand_rho(2)
 R=np.kron(r1,r2); S=np.kron(s1,s2)
 re_add=abs(relent(R,S)-(relent(r1,s1)+relent(r2,s2))); td_add=abs(trdist(R,S)-(trdist(r1,s1)+trdist(r2,s2)))
-print(f"(1) functional forced: relent additive |d|={re_add:.1e}; trace-dist additive |d|={td_add:.3f} (NOT) -> S(rho||sigma) forced")
+print(f"(1) functional survives trace-distance alternative: relent additive |d|={re_add:.1e}; trace-dist additive |d|={td_add:.3f} (NOT) -> S(rho||sigma) kept")
 
 # STAGE 2: geometric split (Axis-0)
 ro=0.5*(I2+0.5*sx+0.3*sz); rm=0.5*(I2+0.6*sz)

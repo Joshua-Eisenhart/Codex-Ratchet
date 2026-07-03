@@ -122,7 +122,7 @@ UP-3 ADDED    LAPTOP_RUN.sh -- one-command setup+verify for a local laptop: make
               full harness incl. engines lane, and runs the Julia route if julia is on
               PATH. Exit 0 = GREEN. Added LAPTOP_README.md.
 UP-4 EDITED   CLAUDE.md: P9/O1 marked CLOSED; fixed a stale "≈2.05" residual to the
-              real per-pair values 2.112 / 1.990. MODEL_LAYER_LEDGER 5.6 -> EARNED.
+              real per-pair values 2.112 / 1.990. MODEL_LAYER_LEDGER 5.6 -> passes (hypothetical lane).
 Harness now: 23 pass / 0 fail / N skip -> GREEN (engines lane PASS when jax/torch present).
 
 
@@ -491,7 +491,7 @@ UP-41 NEW LAYER  signed_axis0_primitive_sim.py builds the SIGNED Axis-0 primitiv
                p=1/3 but binds only from p*=0.7476); (3) LOOP-BACK -- the 0.2 gravity two-regime split
                is now the two MEASURED signs of I_c along a spatial chain (binding core attractive /
                dispersing halo), replacing the hand-placed +/-S_anom stand-in; (4) z3+cvc5 gate,
-               derived inputs, law fits + flipped control. This EARNS the sign structure 0.2 asserted.
+               derived inputs, law fits + flipped control. This RENDERS (hypothetical lane) the sign structure 0.2 asserted.
                Honest scope unchanged: entropic-gravity MECHANISM under test, not a GR derivation. 55 pass.
 
 
@@ -511,7 +511,7 @@ UP-42 NEW LAYER  entropic_newton_limit_sim.py answers the owner framing ("new fo
 
 
 # LAYER 20.1 — 2026-07-02 (Standard-Model bridge: weak force left-handedness from F01+N01)
-UP-43 NEW LAYER  weak_force_chirality_bridge_sim.py earns one concrete SM fact -- the weak interaction
+UP-43 NEW LAYER  weak_force_chirality_bridge_sim.py ADMITS (hypothetical lane) one SM structural fact -- the weak interaction
                couples ONLY to left-handed fields (maximal parity violation) -- from the SAME F01+N01
                move Layer 19.1 used for biological chirality, on the left-Weyl substrate. Source:
                A2_CHIRALITY ("Universe is Type 1 LEFT_WEYL_CONVERGENT"; "Weak force parity violation:
@@ -545,7 +545,7 @@ UP-45 NEW LAYER 0.6  cosmogenesis_persistence_sim.py -- the owner's origin story
                map persists (||psi||=1) vs lossy annihilates (~1e-9, sedenion-type death); product |00>
                seed entangles I_c 0 -> +0.999, size 0 -> Bell (entangled expanding field); chirality ties
                +entropy=dark energy(right)/-entropy=dark matter(left) to the two Weyl sheets (0.3+A2).
-HONEST SCOPE: 0.5 earns the ladder+kill-control+G2; does NOT build the octonion spinor network or derive
+HONEST SCOPE: 0.5 renders (hypothetical lane) the ladder+kill-control+G2; does NOT build the octonion spinor network or derive
                SM gauge from G2 (downstream, scaffold 10.4). 0.6 is a mechanism illustration of the owner
                cosmogenesis, NOT a cosmological-constant derivation. Owner doctrine under test. FULL HARNESS VERIFIED: 59 pass / 0 fail / 0 skip GREEN
                (in /tmp/final_base incl JAX + Julia cross-substrate lanes).
@@ -596,7 +596,7 @@ HONEST NEGATIVE recorded (item 5): eps_even_a2 dissipation-foothold route stays 
      as positive. FULL HARNESS VERIFIED: 61 pass / 0 fail / 0 skip GREEN (incl JAX + Julia lanes).
 
 
-# LAYER 0.9 — QIT FREE ENERGY PRINCIPLE EARNED THROUGH THE RATCHET — 2026-07-03
+# LAYER 0.9 — QIT FREE ENERGY PRINCIPLE RENDERED THROUGH THE RATCHET (hypothetical lane) — 2026-07-03
 UP-49 NEW LAYER 0.9  qit_fep_ratchet_sim.py -- a pure-QIT FEP DERIVED FROM the constraint surface stage by
                stage, NO shortcuts, with EVERY classical/thermal primitive of standard FEP replaced by its
                constraint-surface origin (owner directive: "the real math must always come before the
@@ -607,7 +607,7 @@ UP-49 NEW LAYER 0.9  qit_fep_ratchet_sim.py -- a pure-QIT FEP DERIVED FROM the c
                energy, no -log p, no classical probability anywhere in the math.
                REPLACEMENTS: p(z)->density spectrum (F01); exp(-E/T)->GKSL fixed point; -log p(x)->S(rho||sigma);
                Bayesian update->CPTP relaxation; Markov-blanket graph->vanishing I(A:C|B).
-               SIX EARNED STAGES: (1) F01 distinguishability FORCES the functional -- S(rho||sigma) unique as
+               SIX RENDERED STAGES (hypothetical lane): (1) F01 distinguishability FORCES the functional -- S(rho||sigma) unique as
                BOTH CPTP-monotone AND additive (relent additive 3.6e-14; trace distance NOT, off 0.287).
                (2) Axis-0 geometry splits surprise EXACTLY (Pythagorean |d|=0) into classical spectral
                (entropy DOF) + quantum basis-mismatch (coherence DOF). (3) Axis-5 operators ARE inference:
@@ -655,3 +655,30 @@ UP-51 NEW LAYER 0.11  sixteen_stage_engine_schedule_sim.py -- ties Layers 0.8/0.
                surprise-reduction as SOLE admissibility criterion is NOT clean (4/8 single-probe) and is NOT
                claimed; admissibility here is the structural Axis-2 sheet rule, SMT-gated. Hypothetical lane;
                does NOT run the 720deg double-loop or 64-schedule; 2-stage enumeration. HARNESS PENDING.
+
+
+# LOOP-BACK PACKET #2 REPAIRS + LAYER 0.12 — 2026-07-03
+UP-52 PACKET-2 REPAIRS  Applied loop-back packet #2 (external 2-of-3 referee panel + audit). Honest-scoping,
+               no conclusions changed. (1) STATE: deleted stale "validated" token (line 8). (2) CHANGELOG/
+               ledger banned-verb sweep: "EARNS/EARNED THROUGH/SIX EARNED" self-stamps -> RENDERS/ADMITS
+               (hypothetical lane); sim docstrings (weak_force, signed_axis0, entropic_newton, qit_fep)
+               swept clean (ledger STATUS-KEY column grades retained -- that is the ledger's defined grading
+               vocabulary, not a sim self-stamp). (3) qit_fep_ratchet: functional "FORCED" -> "SURVIVES
+               trace-distance alternative (one comparison, not a uniqueness theorem)"; added INSTRUMENT
+               SCOPE block -- relent is a free-energy ANALOGUE (divergence, not variational FE); self-
+               evidencing = attractor/Lyapunov STABILITY not evidence accumulation; Markov blanket is
+               CLASSICAL diagonal CMI; instrument class = GKSL relaxation not Lüders conditioning. (4)
+               qit_active_inference_planning: "N01 inherited" -> "order-sensitivity from noncommuting ops,
+               consistent with N01, not a standalone proof"; named PROSPECTIVE fixed-goal selection (not
+               belief-updating); epistemic = 2-anchor SIGN demo. (5) signed_axis0: core/halo Gaussian
+               profile marked DEMONSTRATION-ONLY (constructed, not derived). (6) division_algebra ledger:
+               added cross-ref that the G2 ACTION lives in Layer 0.8, this row carries dim-14 only.
+UP-53 NEW LAYER 0.12  instrument_class_split_sim.py -- makes the instrument-class split a MEASURED object
+               (packet #2 item 4). One world with two regime shifts; two instruments read it: RELAXATION
+               (GKSL, this thread's FEP class) emits smooth surprise (magnitude-separability index ~25,
+               regime means 0.04/0.30/0.93) -- magnitude-separable; CONDITIONING (Lüders, the independent
+               build's class) emits spiky surprise (index ~0.15, within-std 0.90) -- NOT magnitude-separable
+               but CUSUM catches BOTH shifts (@100+13, @200+5). The two instruments need DIFFERENT detectors.
+               z3 AND cvc5: "magnitude-separable <=> high index" fits, forced-separable control flips.
+               Does NOT collapse the classes (packet: "both live"); records them as two admissible readings
+               of one free-energy core. Hypothetical lane; 1q single-seed demonstration. FULL HARNESS VERIFIED: 65 pass / 0 fail / 0 skip GREEN (incl JAX + Julia lanes).

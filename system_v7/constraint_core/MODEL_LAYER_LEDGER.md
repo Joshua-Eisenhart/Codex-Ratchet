@@ -1,0 +1,742 @@
+# THE MODEL, LAYER BY LAYER — component-level status ledger
+# 2026-07-01. Every layer of the constraint manifold + engines, with its real
+# math, its earned/candidate/open grade, and the specific computed value.
+# Status key:  EARNED = exact/symbolic or machine-precision verified
+#              CANDIDATE = correct within stated scope; interpretation not closed
+#              OPEN = not yet derived/built
+# Build order the owner specified: axes run 6.5.3.4.1.2.0 (Axis-0 is the gate).
+
+################################################################################
+# LAYER 0 — FOUNDATIONS (the root axiom and the three base constraints)
+################################################################################
+0.1  Root axiom  a=a iff a~b        EARNED (symbolic). Identity is probe-relative:
+     (distinguishability)           two objects are equal iff no probe distinguishes them.
+0.2  C1 Finitude                    EARNED. Finite-dimensional throughout (no limits smuggled).
+0.3  C2 Non-commutation             EARNED. [A,B]!=0 is load-bearing; the whole order-
+                                    sensitivity (N01) rests on it. Commuting control -> gap ~2e-17.
+0.4  C3 Emergent identity           EARNED. First object = finite non-commutative refinement
+                                    category; identity emerges, not assumed.
+     --> forces H = C^2, D(C^2), Pauli basis (machine-checked realization, 1e-16).
+
+################################################################################
+# LAYER 1 — THE CARRIER (Hilbert space + Hopf fibration)
+################################################################################
+1.1  H = C^2, density matrices      EARNED. rho = 1/2(I + r.sigma), the concrete carrier.
+1.2  Hopf pi: S^3 -> S^2            EARNED. Fiber-blindness (global phase invisible) 1e-15.
+1.3  Entropy coordinate             EARNED (exact). S(rho(eta)) peaks at the Clifford torus
+                                    eta=pi/4, S = ln2. This is the Axis-0 entropy coordinate.
+
+################################################################################
+# LAYER 2 — GEOMETRY (nested Hopf tori + flux)  [flux REQUIRES nesting]
+################################################################################
+2.1  Nested Hopf tori T_eta         EARNED. Each shell carries Berry holonomy -2pi cos2eta.
+2.2  Flux needs nesting             EARNED (this is a real structural fact, your claim confirmed).
+                                    A SINGLE shell gives only holonomy; FLUX appears only ACROSS
+                                    nested shells: Phi(eta_i,eta_j) = 2pi(cos2eta_i - cos2eta_j).
+                                    Measured Phi(0,1)=3.46; total Chern 7.30, order-indifferent.
+2.3  A=0 ablation                   EARNED. Flat carrier -> curvature vanishes -> holonomy 0.
+                                    Confirms the geometry (not the code) carries the flux.
+
+################################################################################
+# LAYER 3 — WEYL SHEETS (the 2 independent engine types)  [your "L and R engines"]
+################################################################################
+3.1  Two Weyl chiralities           EARNED. rho_L: r'=+2 n x r ; rho_R: r'=-2 n x r
+     (opposite Bloch handedness)    (1e-16). H_L = +H0, H_R = -H0. These are the TWO
+                                    INDEPENDENT engine types — not two halves of one.
+3.2  Engine type = global loop sign EARNED (dynamical). Left engine all +geometric-phase,
+                                    Right all -. A person IS one chirality.
+3.3  Eight-of-sixteen access        EARNED. Left accesses in-terrains t0-t3, Right t4-t7;
+                                    each engine reaches exactly 8 of 16 stages. Forcing a stage
+                                    onto the wrong sheet flips its geometric phase 8/8 — a
+                                    person locked to one chirality genuinely cannot run the other 8.
+3.4  The two 8-sets are pole-mirrors EARNED. t0/t4 z*=+/-1, t2/t6 z*=-/+1 (sum 0).
+
+################################################################################
+# LAYER 4 — THE 8 TERRAINS (each fully specified; MAX-differentiated)
+################################################################################
+# Each terrain = a GKSL generator pinned to its scratch fixed point. nonunital bit
+# and fixed-point z are the oracle's verified values.
+4.0  t0 Funnel  (Se-in)   EARNED. damp(sigma+), NON-UNITAL, fixed z=+0.713
+4.1  t1 Vortex  (Ne-in)   EARNED. depolarizing, unital,   fixed z= 0.000
+4.2  t2 Pit     (Ni-in)   EARNED. damp(sigma-), NON-UNITAL, fixed z=-0.707
+4.3  t3 Hill    (Si-in)   EARNED. projective(sz), unital,  fixed z=+0.070
+4.4  t4 Cannon  (Se-out)  EARNED. damp(sigma-), NON-UNITAL, fixed z=-0.709
+4.5  t5 Spiral  (Ne-out)  EARNED. depolarizing, unital,   fixed z= 0.000
+4.6  t6 Source  (Ni-out)  EARNED. damp(sigma+), NON-UNITAL, fixed z=+0.711
+4.7  t7 Citadel (Si-out)  EARNED. projective(sz), unital,  fixed z=+0.094
+4.8  Max differentiation  EARNED. All 8 DISTINCT under a 14-feature fingerprint, mean
+                          pairwise 5.5, MIN 0.35 (t3-t7, the projective-Si pair — nearly
+                          sheet-symmetric; the real bottleneck, not a bug).
+4.9  Non-unitality theorem EARNED (exact). The damping terrains t0,t2,t4,t6 have ||L(I)||=
+                          sqrt2; the others 0. THIS is the physical surplus (see 5.4/6.3).
+
+################################################################################
+# LAYER 5 — THE 4 OPERATORS + the 2-native-per-terrain law
+################################################################################
+5.1  Ti (sigma_z dephasing)   EARNED. Dissipative, destroys Z-coherence. lambda~0.69.
+5.2  Te (sigma_x dephasing)   EARNED. Dissipative, destroys X-coherence. lambda~0.73.
+5.3  Fi (sigma_x rotation)    EARNED. Unitary R_x(theta), preserves purity.
+     Fe (sigma_z rotation)    EARNED. Unitary R_z(phi), preserves purity.
+5.4  Surface IS the operator  EARNED (your "geometry contains the operator"). Containment
+     (operator-geometry fusion) residual: projective/depol terrains 0.00-0.12 (the surface
+                              literally IS its operator algebra); source-locked 0.67 in EVERY
+                              frame (irreducible geometry the operators can't express).
+5.5  W-covariance (signed law) EARNED (exact). The Hadamard W=(sx+sz)/sqrt2 maps Ti<->Te and
+                              Fi<->Fe EXACTLY (3.4e-33 / 4.5e-17). This is the "signed Axis-6"
+                              relation between the operator pairs, as a theorem.
+5.6  "Exactly 2 operators per   EARNED (derived from C2). *** O1 CLOSED 2026-07-01. ***
+     terrain, in a signed       A stage needs one dissipative + one unitary generator (Axis-5)
+     Axis-6/Axis-2 way"         => 4 candidate pairs. Of these, the two SAME-basis pairs
+                              ({D_z,H_z},{D_x,H_x}) COMMUTE EXACTLY (generator-commutator 0,
+                              operational order-gap 0.00000) -> the stage collapses -> C2
+                              (non-commutation must not collapse) FORBIDS them. The 2 survivors
+                              ({D_z,H_x}={Ti,Fi}, {D_x,H_z}={Te,Fe}) are Axis-2 (W) conjugates
+                              (3e-16); each terrain's Axis-2 sign selects ONE. => exactly 2,
+                              signed -- forced, not labelled. admissibility_two_operator_sim.py.
+
+################################################################################
+# LAYER 6 — THE 16 STAGES and the 64 SCHEDULE (engines running, unique per stage)
+################################################################################
+6.1  16 stages                EARNED. 16 = 8 terrains x 2 native operators. ALL DISTINCT
+                              (mean pairwise 4.6). Each is a genuinely different information op.
+6.2  Unique processing = N01  EARNED. Order-blind readout collapses 64->11; the N01
+                              (order-sensitive, terrain-first vs operator-first) readout gives
+                              64/64 distinct. Uniqueness per stage IS the non-commutation.
+                              Per-stage order gaps range 0.020 (t1:Ti) to 0.459 (t6:Te); all >0.
+6.3  8-fused / 8-surplus split EARNED. Exactly 8 of 16 stages are operator-fused, 8 carry
+                              source-locked surplus geometry = the non-unitality bit (4.9).
+6.4  Load-bearing coherent axis EARNED (NEW, P12). The coherent axis (1,1,1)/sqrt3 is NOT a
+                              convention: put H0 on sz and the 4 Fe stages COMMUTE with their
+                              terrains (order gap 2e-16), collapsing 16/16 -> 12/16. Verified.
+6.5  64 = 2 x 8 x 4            EARNED as one reading; but see OPEN:
+6.6  Two-64s tension          RESOLVED BY SOURCE (2026-07-01 repo audit; see
+                              REPO_AUDIT_AND_RESOLUTIONS.md 1a). ENGINE_64_SCHEDULE_ATLAS.md
+                              9-10 declares a THREE-LAYER split: live-runtime 64 = 2x8x4
+                              slot space; chart-atlas 64 = 8x8 index surface with exactly
+                              16 STARRED chart-locked macro-stages; hexagram 64 = fenced
+                              tag family. 48 unstarred cells = legal addresses, not stages.
+                              Spec 7g conflated two layers the source separates. Pending:
+                              transcription into the spec (mechanical, not a decision).
+
+################################################################################
+# LAYER 7 — THE 7 AXES (the DOFs of the manifold; must NOT collapse)
+################################################################################
+7.1  Axis-1 (dynamics)        EARNED. dissipative {Se,Ni} | unitary {Ne,Si}. The ENTROPY
+                              charge (eigenvalue sector). All 14 single readouts land here.
+7.2  Axis-2 (frame)           EARNED. direct {Se,Ne} | conjugated {Ni,Si}. The PHASE charge
+                              (eigenvector sector), invisible to entropy (symbolic identity:
+                              unitary similarity preserves spectrum).
+7.3  Axis-3/4/5/6             EARNED as structural DOFs (topology, tense/loop-order, operator
+                              kernel family, signed handedness). Axis-6 sign law b6 = -b0*b3
+                              verified 0/8 violations.
+7.4  Axis-4 tense = loop order EARNED. Deductive = UEUE, Inductive = EUEU — the SAME four
+     (bidirectional science)   substeps in REVERSED order. This is your "deductive science =
+                              inductive reversed": it is the N01 order-reversal at the loop level.
+                              A terrain in isolation has no tense; tense is a loop property.
+7.5  Axis-0 (perceiving)      See LAYER 9 — the hard gate, resolved as a parity.
+7.6  DOFs do not collapse     EARNED. The three topology partitions (Axis-0/1/2) are mutually
+                              orthogonal; entropy is blind to the frame at 2e-15.
+
+################################################################################
+# LAYER 8 — THE CO-RATCHET (entropy and operators both run on the manifold)
+################################################################################
+8.1  Entropy IS a Hamiltonian EARNED. S(rho) = <K_rho> (modular/GNS). S(rho||sigma) =
+                              <K_sigma - K_rho> >= 0; GNS inner product PSD; DPI monotone
+                              (0.340 -> 0.235 under a channel). Entropy and operators co-ratchet.
+8.2  Parity tied to co-ratchet EARNED. The frame bit becomes physically readable only once the
+                              entropy (dissipative) sector is switched on — ties Axis-0's
+                              readability to the co-ratchet (see 9.4).
+
+################################################################################
+# LAYER 9 — AXIS-0 (the hard gate every prior model stalled on)
+################################################################################
+9.1  Axis-0 = intuition|sensing EARNED (candidate interpretation). {Ne,Ni} perceive many
+                              admissible futures; {Se,Si} perceive one actual present.
+9.2  Axis-0 = Axis-1 XOR Axis-2 EARNED (exact vs repo operator table). Sensing {Se,Si} = where
+                              dynamics & frame AGREE; intuition {Ne,Ni} = where they DISAGREE.
+                              NOT linearly separable -> why all 14 single readouts failed.
+9.3  Two-sector theorem       EARNED. Needs BOTH the entropy charge (Axis-1) and the phase
+                              charge (Axis-2); a single scalar necessarily collapses to Axis-1.
+9.4  Axis-0 is a LATE object  EARNED. Not terrain-local; it is downstream of the loop +
+                              entropy-sector becoming active. This is WHY it is the gate.
+9.5  Spinor 720deg tense       EARNED (exact). 360->-psi, 720->+psi (SU(2)); measurement decays
+                              the lifted phase. The density-level tooling is BLIND to this —
+                              which is why every prior density-level readout collapsed.
+9.6  chi2 phase-sector meter   CANDIDATE (scoped). An open-path Bargmann phase reads the
+                              eigenvector sector (earned) but is NOT a2-specific (reads a2/eps/K
+                              alike). The a2 bit is earned at the OPERATOR layer (5.5, exact) and
+                              provably does NOT descend to terrain generators (per-pair residuals
+                              2.112 for t0->t2, t4->t6 and 1.990 for t1->t3, t5->t7; all ~2, >>0).
+                              => Axis-0 parity reads end-to-end at the OPERATOR layer; carried,
+                              not measured, at the terrain layer.
+9.7  Per-terrain Ne/Ni+ vs      CANDIDATE. The intuition>sensing ordering holds at loop level
+     Se/Si- entropy split       (0.731 > 0.706) but is not a clean terrain-local functional —
+                              consistent with 9.4 (Axis-0 is late, not terrain-local).
+
+################################################################################
+# LAYER 10 — SUBSTRATE ENGINES (aligned compute: numpy oracle + JAX + PyTorch + Julia,
+#            all four verified in-house at 1q and 3q)
+################################################################################
+10.1 numpy RK4 oracle          EARNED. The 16-stage contract (targets.json): min pairwise
+                              0.0276, 16/16 order gaps > 0, nonunital bits [1,0,1,0,1,0,1,0].
+10.2 JAX pure-functional kernel EARNED. Exact superoperator expm, vmap+jit, float64. AGREES
+                              with the RK4 oracle to 1e-6 on all 16 stages -> a genuine
+                              two-METHOD cross-check (integration vs matrix-exp). This is
+                              "engines running on the aligned substrate", verified this pass.
+10.3 PyTorch engine            EARNED, verified in-house 2026-07-01 (torch 2.12.1, CPU, complex128):
+                              1q AND 3q torch engines run here and agree with the oracle (no
+                              Bus error -- D2 was fable's environment, not the code).
+10.4 Julia engine              EARNED, verified in-house 2026-07-02 (Julia 1.10.5). Installed
+                              the Julia runtime in the sandbox and RAN julia_engine.jl +
+                              julia_engine_3q.jl. Both agree with the numpy oracle: 1q min-dist
+                              0.0276 (matches jax/torch); 3q worst pvec dev 9.89e-13 on C^8.
+                              FINDING (CLAUDE.md rule 1): the first run DISAGREED (min-dist
+                              0.096) -- Julia is column-major, so the original
+                              reshape(transpose(rho),4) did NOT match numpy's column-stacking
+                              vec. Fixed to reshape(rho,4)/reshape(v,2,2); disagreement resolved.
+                              A real convention bug the 4th route caught before the laptop did.
+                              Made DEPENDENCY-FREE (hand-rolled JSON) so it needs no registry.
+10.5 3-qubit / Cl(0,6) scale-up EARNED (O3, 2026-07-01). Contract RUN at 3 qubits (C^8 =
+                              Cl(0,6) spinor dim). Genuinely multi-qubit (ZZ coupling -> max
+                              negativity 0.038>0, non-factorizing); 63-dim Pauli readout; 16
+                              stages distinct (min 0.174); 8/8 fusion + 16/16 gaps preserved.
+                              numpy RK4 oracle vs JAX exact-expm agree ~1e-12 across all 16
+                              stages. All four substrates (numpy/JAX/PyTorch/Julia) now
+                              verified in-house at BOTH 1q and 3q.
+
+################################################################################
+# LAYER 11 — INFORMATION PROCESSING (does the engine actually RUN information?)
+################################################################################
+11.1 Each stage is a channel   EARNED. Every stage applied as a CPTP channel to a message
+                              qubit maximally entangled with a reference. All 16 have
+                              coherent information I_coh < 0 -> genuine open-system processors
+                              (they exchange information with the environment, not toy unitaries).
+11.2 Distinct information work  EARNED. Entropy injected S(channel|0>) spans 0.006 -> 0.991 bits
+                              across the 16 stages -- a wide, structured range, not the same op
+                              relabeled. (info_processing_sim.py; figures/info_processing.png)
+11.3 Full-channel identity     EARNED. The Choi/process matrix separates ALL 16 stages
+                              (min pairwise 0.277). Each stage is a distinct information processor.
+11.4 Two-sector signature      EARNED (and consistent with Layer 7/9). Scalar entropy metrics
+     shows up in information    COLLAPSE 5 Weyl-mirror pairs (e.g. t1:Ti==t5:Ti): entropy is
+                              blind to the chirality/phase sector; only the full channel (Choi)
+                              sees it. Same two-sector structure as Axis-0/Axis-2, now visible
+                              at the information-processing layer.
+
+################################################################################
+# LAYER 12 — MEMORY & TRAJECTORIES (spinor + holodeck memory precursor)
+################################################################################
+12.1 Memory cells = projective-Si  EARNED. Write a classical z-bit, hold under a stage
+                              channel, read back. ONLY the projective terrains t3/t7 (Hill,
+                              Citadel = the "Si" cells) retain the bit (margin 0.71/0.53 after
+                              8 holds); dissipative (damp) and depolarizing cells erase it to
+                              ~0. The model's memory substrate is the projective sheet --
+                              matches the projective-holodeck-memory model. memory_sim.py.
+12.2 Spinor phase memory      EARNED (exact). 360deg loop -> spinor sign -1, 720deg -> +1;
+                              the loop-parity bit lives in the spinor sign and is INVISIBLE at
+                              the density level (rho identical at every point). A topologically
+                              protected bit -- the spinor-memory mechanism, distinct from 12.1.
+12.3 Memory<->computation      EARNED. Push two messages through a compute schedule then a
+     tradeoff                  projective store, vary per-stage flow time tau. At full strength
+                              (tau=1) the compute path thermalizes the message before the store
+                              (bit margin ~0); as tau shrinks the state carries the bit through
+                              and the store recovers it (margin 0.00 -> 0.43; monotone over tau<=0.25, a
+                              negligible ~0.004 dip at tau=0.5). DESIGN
+                              LAW: an engine that computes hard forgets; one that remembers must
+                              compute gently. figures/memory.png.
+12.4 Trajectory = running engine EARNED (mechanism). A schedule of stages run as a state-carrying
+                              computation (not per-stage-in-isolation) is the world-engine
+                              precursor: state written in, transformed by compute stages,
+                              stabilized by a store stage, read back. The 64-schedule is the
+                              full trajectory space; this is its memory-bearing use.
+
+################################################################################
+# LAYER 13 — LEARNING (holodeck prediction-first / active inference, pure QIT)
+################################################################################
+13.1 Free-energy prediction    EARNED. Belief meets observation; free energy F=S(obs||belief)
+     loop                       (Umegaki quantum relative entropy, bits -- NO classical math)
+                              is minimized by moving the belief toward the observation. F drops
+                              monotonically 2.62 -> ~0. This is the perception half of FEP.
+13.2 Learning (stationary)     EARNED. Belief stored between observations in the Hill projective
+                              memory cell (Layer 12); repeated exposure to one environment cuts
+                              surprise ~99% (0.426 -> 0.0035 bits). Genuine learning, not filtering.
+13.3 Memory-capacity boundary  EARNED. A SINGLE cell learns a stationary (k=1) environment to
+                              near-zero surprise but CANNOT learn a k>=2 cycling sequence
+                              (residual ~0.4 bits). Quantified limitation, not a failure.
+13.4 3-qubit register learns   EARNED. Using the extra qubits as a context/address register
+     sequences                 (4 memory slots), the engine learns k=2,3,4 sequences to <0.05
+                              bits. => an INDEPENDENT, DERIVED reason for the model's 3-qubit
+                              floor: it upgrades the holodeck from single memory to SEQUENCE
+                              memory. holodeck_sim.py; figures/holodeck.png.
+13.5 Action (expected FE)      EARNED. The ACTION half of active inference: the engine picks
+                              the action minimizing EXPECTED free energy G = risk - epistemic
+                              value (risk = F(predicted_obs||preference); epistemic = expected
+                              belief-entropy drop). CLOSED LOOP (perception+action): from a world
+                              OPPOSITE the goal (goal_dist 1.37) the agent drives the world to its
+                              preference (goal_dist <0.01, world_z +0.85) and holds it. The engine
+                              ACTS to make the world match its model -- a running world-engine.
+                              agent_loop_sim.py; figures/agent_loop.png. This is the reverse edge
+                              the Layer-14 bridge deferred, done on the ENGINE side (pure QIT);
+                              the live Lev wiring maps it onto a concrete world/action model.
+
+################################################################################
+# LAYER 14 — LEVIATHAN BRIDGE (world-engine output interface; stub, foundations-up)
+################################################################################
+14.1 Signal-stream contract    EARNED (stub). The engine exposes ONE thing to a Lev graph:
+                              a per-tick record {belief_bloch, surprise_bits, fe_gradient}.
+                              The graph never sees the density matrix -- only the stream.
+14.2 Surprise as control       EARNED. surprise_bits is near-zero on a predictable world
+     signal                    (0.006), spikes on a regime shift (1.50), decays as the engine
+                              relearns (0.03). Usable for Lev attention/novelty/when-to-act.
+                              (lev_bridge_sim.py; engines/lev_bridge_stream.json)
+14.3 Adapter surface           EARNED. LevBridge: .tick(obs)->record + .subscribe(cb). Minimal
+                              edge a graph node wraps. reference_docs/QIT_LEV_BRIDGE_SPEC.md.
+14.4 DEFERRED (needs live repo) mapping belief onto concrete Lev node types; routing surprise
+                              into Lev's priority mechanism; the reverse action edge (minimize
+                              EXPECTED free energy -- the action half of active inference; the
+                              engine side is ready, the world/action model lives in Lev).
+
+################################################################################
+# LAYER 15 — FORMAL PROOF LANE (the laws are FORCED, not fitted; Z3 ∧ cvc5 ∧ QuTiP)
+################################################################################
+15.1 Dual-solver axis laws     EARNED. Prior sims VERIFIED laws by enumeration ("all 8
+                              terrains satisfy b6=-b0*b3"). This proves the stronger claim:
+                              given the independently-earned physical bits, the laws are the
+                              UNIQUE satisfying model -- their negation is UNSAT. Proven the
+                              SAME way in Z3 AND cvc5, both agree (contract rule: z3 & cvc5
+                              must agree). axis_laws_dual_proof.py.
+15.2 XOR is the unique law     EARNED. Axis-0 = Axis-1 XOR Axis-2 is not just consistent -- it
+                              is the UNIQUE 2-input boolean function g with a0=g(a1,a2) across
+                              all 4 families, and it IS xor exactly. No other g fits.
+15.3 Erased control flips      EARNED (the contract's "controls that flip it"). Erasing the Ni
+                              constraint makes the XOR law NON-unique in both solvers -- proving
+                              the constraint is load-bearing, not decorative. A claim whose
+                              control does NOT flip would be vacuous.
+15.4 b6 genuinely bilinear     EARNED. b6=-b0*b3: the coefficient is uniquely forced to -1, and
+                              NO linear law b6=a*b0+b*b3+g fits any assignment. Same non-linear-
+                              separability signature as the XOR result (a product, not a sum).
+15.5 QuTiP operator cross-check EARNED. QuTiP's standard Lindblad liouvillian reproduces the
+                              hand-rolled terrain superoperators to 2.2e-16 across all 8; all 8
+                              flows are CPTP (QuTiP Choi PSD); nonunitality bits [1,0,1,0,1,0,1,0]
+                              confirmed independently. terrain_qutip_crosscheck.py. A 5th
+                              independent route (QIT library) at the operator level.
+15.6 Portability               Both sims self-SKIP if z3/cvc5/qutip absent (import guard ->
+                              SKIP_OPTIONAL, exit 0); harness counts as skip. GREEN on any machine.
+15.7 8-of-16 access law        EARNED (Z3). Given the sheet law (t <-> t+4 opposite Weyl
+                              chirality eps=+-1), the accessible-stage split is FORCED to 8/8 --
+                              any non-4/4 terrain chirality is UNSAT. Left {t0-t3}/Right {t4-t7}
+                              disjoint, union 16. manifold_laws_smt_proof.py.
+15.8 pole-mirror pairing       EARNED with a logged FINDING. The dissipative pairs' fixed_z
+                              sum to ~0, BUT zero-sum ALONE is degenerate -- (0,2)(4,6) and
+                              (0,4)(2,6) both zero-sum (near-equal |fixed_z|). The pole-mirror
+                              pairing (0,4)(2,6) is forced ONLY by zero-sum AND cross-sheet
+                              (in<->out) together. Documented, not overclaimed -- exactly the
+                              kind of near-degeneracy the proof lane exists to catch.
+15.9 two-sector theorem        EARNED as a SYMBOLIC IDENTITY (sympy, exact -- not 2e-15).
+                              Entropy is a function of eigenvalues only: eigs of rho(theta,phi)
+                              = {p,1-p} for ALL eigenvector angles, and dS/dtheta = 0 exactly.
+                              Entropy is IDENTICALLY blind to Axis-2 (the eigenvector/frame
+                              sector) -- the exact reason every entropy readout collapsed to
+                              Axis-1. The strongest possible form of the two-sector claim.
+
+################################################################################
+# LAYER 16 — PHYSICS BRIDGES (the engine reproduces established, confirmed physics)
+#            NOT a ToE validation -- checks that the engine's channels obey known law,
+#            chosen on the information<->physics seam the model lives on.
+################################################################################
+16.1 Landauer's principle      EARNED. The dissipative terrains RESET the qubit = logical
+                              erasure. In the pure-dissipation limit S:1->0 bit (purity->1),
+                              so the bath absorbs >= 1 bit = kT ln2 (2.87e-21 J @300K). The
+                              coherent drive makes erasure PARTIAL, never cheaper than the
+                              bound. Szilard's engine = the exact reverse. THE info<->physics
+                              bridge, reproduced by the engine's own channels.
+16.2 Einselection / pointer    EARNED. Zurek's predictability sieve: Ti (z-dephasing)
+     states                    einselects {|0>,|1>} (they stay pure; superpositions -> 0.5);
+                              Te einselects {|+>,|->}. Made EXACT: pointer states ARE the
+                              purity-1 fixed points of the channel (Liouvillian null space),
+                              coherences decay at rate 2. Einselection as an eigen-problem =
+                              "an attractor basin that selects for itself" in decoherence
+                              language -- selection built into the constraint, not added.
+                              physics_bridge_sim.py; figures/physics_bridge.png. (QuTiP.)
+16.3 Jarzynski + Crooks        EARNED. The engine's UNITARY drive obeys the nonequilibrium
+     fluctuation theorems      fluctuation theorems -- the exact generalization of the
+                              Szilard/Landauer bound to ARBITRARY driving speed. Two-point
+                              measurement on a driven qubit (thermal -> measure -> drive Hi->Hf
+                              -> measure): <e^{-bW}> = e^{-b dF} to 3e-14 at EVERY tau
+                              (fast=far-from-eq, slow=near); Crooks P_F(W)/P_R(-W)=e^{b(W-dF)}
+                              across all work bins (Trotter-limited 3e-5); <W> >= dF always
+                              (dissipated work W_diss drops 0.183->0.110 as the drive slows).
+                              Chosen with a GENUINE dF=-0.793 so the equality is nontrivial.
+                              FINDING (logged): the first Crooks pass FAILED at the tails --
+                              a reverse-protocol bug (measured Hf but drove from Hi), NOT a
+                              physics failure; fixing the time-reversed drive recovered the
+                              law to Trotter tolerance (Crooks 3e-5; Jarzynski 3e-14). fluctuation_theorem_sim.py; fluctuation_theorem.png.
+
+16.4 Quantum speed limit       EARNED. The engine's unitary drive obeys the QSL -- the
+     (finitude + noncommutation) physical bound that ties the model's TWO CORE AXIOMS to
+                              dynamics. Minimum time to an orthogonal state (hbar=1):
+                              Levitin-Toffoli t_min=(pi/2)/max(dE,E-E0). (1) FINITUDE: the
+                              drive SATURATES the bound (ratio 0.999, grid-limited) at every
+                              energy; larger dE = faster (linearly). (2) NONCOMMUTATION:
+                              [H,rho]!=0 <=> dE>0 <=> the state EVOLVES (three equivalent
+                              conditions); a commuting H never moves (QSL=infinity). Full
+                              orthogonality ADDITIONALLY needs |psi0> balanced across H's
+                              eigenstates -- a tilted H evolves but only precesses part-way.
+                              So noncommutation gates MOTION, finitude bounds SPEED, balance
+                              gives full distinguishability. quantum_speed_limit_sim.py;
+                              figures/quantum_speed_limit.png. numpy-only.
+
+16.5 Holographic / Bekenstein  EARNED. FINITUDE as the quantum kernel of the holographic
+     bound (finitude)          bound: a bounded region holds BOUNDED information. (1) capacity:
+                              S(rho) <= log2(dim) bits for ANY state; maximally-mixed saturates
+                              (S(I/2^n)=n). (2) area law / Page curve: random pure state on n=6
+                              qubits, subsystem entropy bounded by min(|A|,|B|) -- the smaller
+                              boundary caps shared information, peaking at the symmetric split;
+                              generic states near-maximally entangled. Finitude at whole-system
+                              AND subsystem level. holographic_bound_sim.py. numpy-only.
+16.6 Decoherence scaling       EARNED. HOW FAST einselection wins as the system grows -- the
+     (quantum->classical)      quantum->classical boundary as a SCALING LAW, not a threshold.
+                              n-qubit GHZ superposition: independent baths decohere at rate
+                              ~2n (LINEAR); collective bath at ~2n^2 (QUADRATIC super-
+                              decoherence, exact rate/n^2=2.000). Macroscopic n => decoheres
+                              essentially instantly => classical world. Extends bridge 16.2
+                              from WHICH states survive to HOW FAST. decoherence_scaling_sim.py;
+                              figures/holographic_decoherence.png. numpy+scipy.
+
+################################################################################
+# LAYER 17 -- THE BRIDGE LADDER (constraint core -> the natural sciences)
+################################################################################
+# Owner's directive: build bridges from the constraint core outward, most-reasonable first:
+#   math foundations -> physics -> chemistry -> biochemistry -> evolution -> consciousness.
+# Each bridge REPRODUCES established, quantitative, confirmed science from the engine's own
+# axioms (noncommutation, finitude, distinguishability). NOT ToE validation -- external
+# grounding: the model must agree with nature wherever nature already has an answer.
+#
+#   MATH FOUNDATIONS  DONE  -- proof lane (Layer 15) + repo v7 root-axiom sims (a=a iff a~b,
+#                             distinguishability quotient 1q-4q, noncommutation/GNVW floors).
+#   PHYSICS           DONE  -- Layer 16, six bridges (Landauer, einselection, Jarzynski/Crooks,
+#                             QSL, holographic, decoherence scaling).
+#   CHEMISTRY         17.1 (this rung).
+#   BIOCHEMISTRY      proposed next.
+#   EVOLUTION         proposed.
+#   CONSCIOUSNESS     proposed (the model's holodeck/FEP layer already gestures at this).
+#
+17.1 Chemistry: the chemical  EARNED. The HUBBARD DIMER -- minimal exactly-solvable covalent
+     bond (Hubbard dimer)     bond, the "H2 molecule" of quantum chemistry -- derived from the
+                              engine's axioms. (0) NONCOMMUTATION -> fermionic {c_i,c_j^dag}=
+                              delta_ij (Jordan-Wigner, signs exact to 0) = PAULI EXCLUSION.
+                              (1) ground state is a SPIN SINGLET (S^2=0) at every U/t, forced
+                              by antisymmetry; E_gs matches the exact analytic singlet
+                              (U-sqrt(U^2+16t^2))/2 to 1e-6. (2) the BOND IS ENTANGLEMENT:
+                              S(site1)>0 for all U -- 2 bits at U=0 (charge+spin) -> 1 bit at
+                              U>>t (pure spin, Heitler-London). (3) COVALENT->IONIC crossover:
+                              double occupancy 0.25->0 as U/t grows (Mott limit).
+                              chemistry_bridge_sim.py; figures/chemistry_bridge.png. numpy-only.
+
+16.7 Entropic uncertainty +    EARNED. Two theorems where NONCOMMUTATION becomes a sharp
+     CHSH/Tsirelson           bound on information and correlation (math foundations = physics).
+                              (1) Maassen-Uffink: H(A)+H(B) >= log2(1/c), c=max|<a|b>|^2; bound
+                              = 0 for commuting bases (c=1), = log2(d)=1 bit for mutually
+                              unbiased (Z vs X, c=1/2), TIGHT at the MUB limit. Noncommutation
+                              IS uncertainty in bits. (2) CHSH: quantum |S|=2sqrt2 (Tsirelson,
+                              exact) on an entangled state with noncommuting settings > classical
+                              LHV bound 2; commuting-settings control |S|=1.41 cannot violate.
+                              The excess above 2 is the sharpest signature that identity is
+                              measurement-relative (a=a iff a~b). noncommutation_bounds_sim.py;
+                              figures/noncommutation_bounds.png. numpy-only.
+
+16.8 Holevo bound             EARNED. FINITUDE of readout: the accessible CLASSICAL
+     (accessible info)        information in a quantum state is capped, any encoding or
+                              measurement. I(X:Y) <= chi = S(sum p_x rho_x) - sum p_x S(rho_x)
+                              <= log2(dim). (1) 1-bit code in 2 pure states: chi rises 0
+                              (identical) -> 1 bit (orthogonal); NON-ORTHOGONAL (noncommuting)
+                              signals lose accessible info. (2) chi is a TRUE upper bound -- the
+                              best measurement over all angles never beats it. (3) DIMENSION
+                              cap: 4 tetrahedral pure states (4 symbols) still give chi=1 bit,
+                              not 2 -- a qubit carries <= log2(d) accessible bits. Ties a=a iff
+                              a~b (probe-relative identity) to a capacity theorem. Purity
+                              assertion guards the pure-state construction (a normalization slip
+                              was caught: un-normalized Bloch vectors gave an unphysical chi>1).
+                              holevo_bound_sim.py; figures/holevo_bound.png. numpy-only.
+
+16.9 Data-processing         EARNED. The monotone that makes the co-ratchet DIRECTIONAL:
+     inequality (DPI)         information can only DECREASE under any physical channel. (1)
+                              relative-entropy monotonicity S(N(rho)||N(sigma))<=S(rho||sigma)
+                              -- distinguishability falls under dephasing (1.18->0.09). (2)
+                              chain DPI I(A:C)<=I(A:B). Stress test: ZERO violations across 400
+                              random CPTP channels for BOTH forms (min DPI margin >=0). This is
+                              the arrow einselection/Landauer/Holevo all descend from -- ties
+                              a=a iff a~b to a monotone: distinguishability is non-increasing
+                              under the dissipative flow. data_processing_sim.py;
+                              figures/data_processing.png. numpy-only.
+
+16.10 No-cloning theorem      EARNED. Linearity + finitude forbid copying an unknown state --
+      (store, not copy)        the reason memory STORES but cannot DUPLICATE, and why the DPI
+                              (16.9) is un-cheatable (you cannot copy-then-process to beat it).
+                              (1) unitarity needs <a|b>=<a|b>^2, so |<a|b>| in {0,1}: only
+                              ORTHOGONAL or IDENTICAL states clonable (copyable iff classically
+                              distinct, a=a iff a~b). (2) CNOT basis-cloner: F=1 on |0>,|1> but
+                              F=0.5 (entangled mess) on |+> -- no universal cloner. (3) the
+                              Buzek-Hillery UQCM CONSTRUCTED and MEASURED: F=5/6 for EVERY input
+                              (std 1e-16), finitude caps duplication below 1. Two bugs caught
+                              by construct-and-measure (not hardcoding 5/6): a malformed partial
+                              trace gave F>1, and non-orthogonal cloner branches broke
+                              normalization -- both fixed, F=5/6 now exact and universal.
+                              no_cloning_sim.py; figures/no_cloning.png. numpy-only.
+
+17.2 Bridge loopback ->        EARNED (with a finding). The Layer-16 physics/info bridges
+     terrain enrichment       loop BACK into the engine: each of the 8 terrains is a GKSL
+                              channel (the real engine objects), and the bridge observables
+                              characterize them -- ||L(I)|| (einselection/nonunitality),
+                              entropy-production rate (Landauer), coherence-kill rate
+                              (einselection), Holevo chi preserved (16.8). RESULT: the 8
+                              terrains sort into 3 MAX-DIFFERENTIATED dissipation classes --
+                              damp {t0,t2,t4,t6} non-unital ||L(I)||=sqrt2, lowest coherence-
+                              kill, highest chi; depol {t1,t5} middle; proj {t3,t7} highest
+                              kill, lowest chi. The 3 kinds are pairwise-distinguished by the
+                              measured rates; GIVEN that, the induced 3-class PARTITION of the 8
+                              terrains is UNIQUE -- a genuine combinatorial claim z3 AND cvc5
+                              verify by searching the labeling space c:8->{0,1,2} (3^8, nothing
+                              pinned): full law UNSAT to any second partition, erased control
+                              (drop distinct-kinds-distinct-classes) SAT to an alternative. SMT
+                              load-bearing as forcing, not an arithmetic float comparison.
+                              [Corrected after audit: the first pass pinned the measured rates to
+                              constants and compared them, which was a dressed-up if-check; the
+                              combinatorial partition-uniqueness search is the real structural test.]
+                              FINDING: these density-level observables separate the 3 KINDS but
+                              NOT all 8 terrains individually -- within-class terrains are
+                              degenerate here because the eps/pole (Axis-1/Axis-2) signs are the
+                              documented density-level blindness (§7m). Full 8-way separation
+                              needs the spinor-level tooling. terrain_information_signature_sim.py;
+                              figures/terrain_information_signature.png. numpy+scipy+z3+cvc5.
+
+17.3 8-way terrain          EARNED. RESOLVES the 17.2 finding (density observables separate
+     separation                 the 3 dissipation KINDS but not all 8 terrains). Per the a2
+                                source-resolution (REPO_AUDIT_AND_RESOLUTIONS.md 1b: a2 is an
+                                installed frame flag readable operationally through dissipation),
+                                add two dynamical readers to the coherence-kill KIND coordinate:
+                                (i) sign of steady-state <sz> = einselection POINTER (reads pole
+                                for damp; kind splits proj/depol); (ii) sign of coherence
+                                phase-velocity = rotation direction = -sign(eps) (Axis-1 charge).
+                                RESULT: all 8 measured terrain signatures DISTINCT. Genuine
+                                combinatorial proof -- z3 AND cvc5 SEARCH the 28 terrain-pairs for
+                                a collision: full feature set UNSAT (all 8 separated), dropping
+                                EITHER dynamical reader -> SAT (collision) => each reader NECESSARY.
+                                Pair-search whose answer changes with the feature set, not a pinned
+                                comparison. terrain_8way_separation_sim.py;
+                                figures/terrain_8way_separation.png. numpy+scipy+z3+cvc5.
+
+17.4 Co-ratchet + 7-axis     EARNED. DRIVES THE RATCHET DEEPER (owner directive: entropy
+     orthogonality lattice       constrained to the terrains; 2 signed operators on axes 5,6;
+                                orthogonal relations across all axes; loop the bridges back).
+                                THREE results, all grounded in AXIS_3_4_5_6_QIT_MATH.md + spec 7m:
+                                (A) CO-RATCHET -- entropy is constrained to the terrain surface.
+                                Each terrain's native entropy = coherence in ITS pointer basis
+                                (z direct / x conjugated). Under its OWN Axis-5 T-operator this
+                                falls monotonically to 0 (einselection 16.2, DPI 16.9); a FOREIGN
+                                T-op only plateaus (0.28, fails to einselect); a FOREIGN F-op PUMPS
+                                it back up (+0.39). Entropy is not a global functional -- it runs
+                                on each terrain's own surface. (B) TWO SIGNED OPERATORS on axes 5,6:
+                                Ax5 T-kernel dS=+0.16 (entropy-producing) vs F-kernel dS=0 exact
+                                (unitary, entropy-neutral); Ax6 sign b6=-(b0*b3) op-first/terrain-
+                                first. (C) 7-AXIS ORTHOGONALITY LATTICE: 5 primitive DOF
+                                (b1,b2,b3,b4,b5) jointly free (all 2^5=32 realizable = mutually
+                                orthogonal); 2 derived (b0=b1*b2, b6=-(b0*b3)) FORCED -- z3 AND
+                                cvc5 both UNSAT the derived-law negation AND both SAT after erasing a
+                                law (axis freed) -- both halves dual-solver, the flipping control
+                                per the three-engine contract. coratchet_axis_orthogonality_sim.py;
+                                figures/coratchet_axis_orthogonality.png. numpy+scipy+z3+cvc5.
+
+17.5 Coupled co-ratchet      EARNED. The entropy ratchet and operator ratchet run as ONE loop
+     (dual-loop 720)            around the 720deg double cover (inner+outer 4-beat loops) --
+                                the two ratchets constrain each other, not tested separately.
+                                Implements DUAL_LOOP_SPINOR_GRAMMAR (a documented runtime GAP:
+                                grammar "not yet modeled as first-class objects"). Also the
+                                owner's Carnot/Szilard structural analogy (engine pumping entropy
+                                around an info cycle). COOL = amplitude damping to a pure pointer
+                                (non-unital source-locked sigma-, S->0, Landauer limit); HEAT =
+                                rotate-into-coherence + dephase (S->1). RESULTS: (A) opposite fixed
+                                points S=0 (cool) vs S=1 (heat). (B) CHIRALITY ASYMMETRY -- LEFT
+                                (cool-outer) vs RIGHT (heat-outer) pump different net S around the
+                                same loop; LEFT-minus-RIGHT flux SIGN-CONSISTENT across 200 probes
+                                (mean +0.31, all>0) -- robust, not probe-dependent. (C) the two
+                                orderings NONCOMMUTE (||CH-HC||~0.22): dual-loop grammar is not a
+                                relabeling. z3 AND cvc5 ENUMERATE all 2^4 length-4 {cool,heat}
+                                words: alternating constraint -> exactly 2 models (chiralities
+                                CHCH,HCHC), else 16 (model-counting, count flips with constraint).
+                                Loops Landauer(16.1)+einselection(16.2)+noncommutation(16.7) back
+                                in. coupled_coratchet_dualloop_sim.py;
+                                figures/coupled_coratchet_dualloop.png. numpy+scipy+z3+cvc5.
+
+18.1 Biochemistry bridge      EARNED. Bridge-ladder rung 4 (math->physics->chemistry->BIOCHEM).
+     (tunneling switch)         A two-state biomolecular switch (conformational bistability:
+                                folded/unfolded, cis/trans, open/closed channel) IS a qubit;
+                                the double-well barrier is H = -(eps/2)sz -(Delta/2)sx; coherent
+                                tunneling L<->R is purely NONCOMMUTATIVE ([H_bias,H_tunnel]!=0).
+                                This is the pure-QIT biochem the owner's own classical Kramers
+                                baseline explicitly CANNOT encode (its divergence_log: classical
+                                rate ->0 as T->0, no tunneling/coherent splittings). Grounded in
+                                owner's catalysis framing (A2: "catalysis = the engine's dual loop,
+                                a catalyst gives an alternative CPTP path with lower cost").
+                                RESULTS: (A) T=0 coherent tunneling max transfer Delta^2/(Delta^2+
+                                eps^2) exact vs analytic (classical=0). (B) finite-T crossover:
+                                quantum rate plateaus at a tunneling FLOOR as T->0 (classical ->0);
+                                high-T Arrhenius slope = -Eb recovered. (C) catalysis = dual-loop
+                                path: enzyme opens a stronger coherent channel (raises Delta),
+                                >2x speedup, endpoints |L>,|R> UNCHANGED. (D) STRUCTURAL GATE:
+                                L<->R switching REQUIRES the noncommuting tunneling term -- z3 AND
+                                cvc5 SEARCH H=a*sz+b*sx: transfer-possible SAT with tunneling,
+                                UNSAT once erased (both solvers, both halves). Ties to the
+                                noncommutation axiom. biochem_bridge_sim.py;
+                                figures/biochem_bridge.png. numpy+scipy+z3+cvc5.
+
+19.1 Evolution/chirality      EARNED (with honest scope). Bridge-ladder rung 5 (...->biochem->
+     bridge                     EVOLUTION->consciousness). Builds the owner's TWO CHIRAL OPERATING
+                                SPACES (left/right Weyl engine families) as runnable math per
+                                LEFT_RIGHT_CHIRAL_OPERATING_SPACE_BUILD_NOTE.md, and tests -- NOT
+                                presuming the conclusion -- whether chirality emerges from the two
+                                core axioms F01 (finitude) + N01 (noncommutation). Grounded in
+                                A2_CHIRALITY_SPACETIME_BIOLOGY (symmetry-breaking: F01 forbids exact
+                                spectral symmetry, N01 non-commuting fluctuations don't cancel ->
+                                must split chirally). Left: H_L=+H0, sigma_- SINK; Right: H_R=-H0,
+                                sigma_+ SOURCE; mirror M(.)=X.X. Terrain laws Ne/Se/Ni/Si = the 4
+                                selection modes (Rosetta): Ne natural(fittest), Se kin, Ni drift/
+                                founder, Si sexual. RESULTS: (A) both spaces run the SAME 8-stage
+                                finite loop and drive to OPPOSITE poles (left <sz>=-0.60 sink,
+                                right +0.65 source) -- asymmetry EMERGES, not imposed. (B) mirror
+                                non-equivalence: M.X_L.M=X_R exactly but X_L!=X_R -- genuine mirror
+                                images, NOT a sign-flag collapse. (C) F01+N01 FORCING GATE: z3 AND
+                                cvc5 -- self-mirror AND noncommuting = UNSAT (chirality forced);
+                                drop N01 -> SAT only for the null generator (achiral=no dynamics);
+                                both solvers both halves. (D) Frank(1953) autocatalysis: tiny bias
+                                b=0.001 amplifies to homochirality (ee~1), b=0 racemic.
+                                HONEST SCOPE: the model forces THAT chirality splits and that the
+                                sides can't collapse; it does NOT derive WHICH side (left) is
+                                physical -- matching weak-force parity violation is empirical INPUT,
+                                not a derivation. evolution_chirality_bridge_sim.py;
+                                figures/evolution_chirality_bridge.png. numpy+scipy+z3+cvc5.
+
+ 0.1 Root axiom + entropic     EARNED (as runnable rendering of owner doctrine). THE FOUNDATION
+     monism + S-knots           beneath the whole bridge ladder. Grounded in ROOT_CONSTRAINT_
+                                EXTENDED_FOUNDATIONS.md (EC-1/EC-2/EC-3), ENTROPIC_MONISM_ORIGIN_
+                                AND_COSMOLOGY.md, A2_HOPF_FIBRATION_ENTROPY. The chain (entailed by
+                                RC-1 finitude + RC-2 noncommutation): EC-1 no primitive identity
+                                (a=a needs a finite probe family); EC-2 no primitive equality (a~b
+                                = indistinguishable under P); EC-3 THE ROOT: a=a IFF a~b (identity
+                                is meaningful iff a distinguishable other exists). RESULTS: (A) EC-1
+                                /EC-2: ~ equivalence classes CHANGE with the finite probe family
+                                (z-probe merges a~b, x-probe separates) -> no primitive identity.
+                                (B) EC-3 ROOT GATE: z3 AND cvc5 -- a=a possible with distinction
+                                allowed = SAT, with all distinction erased (undifferentiated field)
+                                = UNSAT; both solvers both halves, control flips -> a=a REQUIRES
+                                a~b. (C) entropic monism: von Neumann S of n distinguishable
+                                branches = log2(n) exactly (S IS distinguishability; n=1 -> 0 bits).
+                                (D) EC-3 needs the A|B cut: relational identity = I(A:B); product
+                                state 0, Bell 2 bits (ties root to entanglement-central physics).
+                                (E) S-KNOT: two distinct Hopf fibers link with Gauss number 1
+                                (invariant), unlinked control 0 -- a conserved integer identity
+                                charge compressed from the entropic substrate ("low-S structured
+                                knot: matter/memory/logic"). HONEST SCOPE: renders the owner's
+                                stated derivation as checkable math and shows the root gate is a
+                                genuine non-vacuous constraint; not a metaphysics proof.
+                                root_axiom_sim.py; figures/root_axiom.png. numpy+z3+cvc5.
+
+ 0.0 THE MODEL CORE:            EARNED. Engages the owner's INTEGRATED model as ONE object (per
+     distinguishability-        OWNER_THESIS_AND_COSMOLOGY.md + CONSTRAINT_ON_DISTINGUISHABILITY_
+     creation engine            FULL_MATH.md secs 2-3, "verified against sim results"), replacing the
+                                earlier fragmented keyword-demos. THE PRIMITIVE IS CONSTRAINT ON
+                                DISTINGUISHABILITY; entropy is a LATER measure, NOT the substance
+                                (this corrected an ontology error in the root_axiom sim, which had
+                                wrongly made entropy primitive). The core is a=a iff a~b made
+                                DYNAMICAL on the Hopf carrier: the SAME carrier has two loop
+                                placements -- FIBER loop (vary global phase) is DENSITY-STATIONARY
+                                (trace-distance drift 3e-16; creates NO distinguishability; it IS the
+                                ~_M equivalence class, a~a) and BASE loop (vary chi) is DENSITY-
+                                TRAVERSING (trace-distance travel 0.932; CREATES distinguishability;
+                                crosses classes, a!~b). RESULTS: (A) fiber stationary vs base
+                                traversing -> identity is created only on the base loop. (B) BERRY
+                                HOLONOMY = distinguishability created per base loop: numeric solid-
+                                angle matches the doc closed form gamma=-pi(1-|cos2eta|) EXACTLY
+                                (inner eta=pi/8 -> -0.920; Clifford great circle -> -pi, the max).
+                                (C) ONTOLOGY: along the base loop distinguishability grows to 0.932
+                                while von Neumann S stays 3e-16 -> DISTINGUISHABILITY WITHOUT
+                                ENTROPY, proving entropy is downstream, not primitive. (D) STRUCTURAL
+                                GATE (load-bearing): z3 AND cvc5 -- solver inputs DERIVED from measured fib_drift/base_travel; law
+                                "stationary=>not created" FITS both loops (SAT); control UNSAT w/law
+                                -> SAT w/o law (z3+cvc5 fit + flipped control). This is the object that grounds
+                                a=a iff a~b, the ratchet engagement, and the chirality seed together
+                                -- not another fragment. distinguishability_engine_core_sim.py;
+                                figures/distinguishability_engine_core.png. numpy+z3+cvc5.
+                                ALSO: root_axiom_sim.py corrected (entropy = a later MEASURE of
+                                distinguishability, not "the one substance").
+
+ 0.2 AXIS-0 GRAVITY MODEL:      EARNED (as checkable rendering of owner doctrine, fenced). Renders
+     gravity = gradient of        the owner's stated gravity model from ENTROPIC_MONISM_ORIGIN_AND_
+     entanglement entropy         COSMOLOGY.md sec 5-8 and the seeding Grok chat ("Gravity = entropy
+                                  gradient"). Central claim: an Einstein-FORM field equation sourced
+                                  by the gradient of ENTANGLEMENT entropy, not mass:
+                                  G_munu = kappa(grad_mu S grad_nu S - 1/2 g_munu (grad S)^2), with
+                                  S = entanglement entropy across a bipartite cut (the -S(A|B)/
+                                  coherent-info carrier; the Xi bridge geometry->rho_AB->S). Pure
+                                  math; cosmological labels are Rosetta only. RESULTS: (1) SOURCE: a
+                                  localized negentropy well (bound correlations = a "mass") gives
+                                  (grad S)^2 source total 518.6; a FLAT entanglement field gives
+                                  1.6e-29 -> gravity requires an entropy GRADIENT. (2) SIGN
+                                  STRUCTURE: same operator grad S gives an ATTRACTIVE well for a
+                                  negentropy anomaly (dark-matter regime) and a REPULSIVE hill for a
+                                  positive-entropy anomaly (dark-energy regime), EQUAL magnitude
+                                  opposite sign -> "expansion and gravity are one force, two regimes"
+                                  (doc sec 5.4). (3) STRUCTURAL GATE (load-bearing): z3 AND cvc5 --
+                                  solver inputs DERIVED from the computed
+                                  source/source_flat arrays (not hardcoded); law "source<=>gradient"
+                                  FITS both measured configs (SAT), control "flat field forced to have
+                                  gravity" UNSAT w/law -> SAT w/o law (z3+cvc5 fit + flipped control). HONEST SCOPE (matches doc
+                                  sec-7 fence, OWNER DOCTRINE under test): shows the mechanism is
+                                  self-consistent and non-vacuous; does NOT derive the field eq from
+                                  RC-1+RC-2, not GR's >1D tensor structure, does NOT replace GR/QM.
+                                  entropic_gravity_axis0_sim.py; figures/entropic_gravity_axis0.png.
+                                  numpy+z3+cvc5. NOTE: this is the first grand-physics-adjacent rung;
+                                  built only after reading the owner's actual gravity docs (grok
+                                  chats + cosmology doc the user supplied), not presumed.
+
+################################################################################
+# THE OPEN ITEMS, CONSOLIDATED (what actually needs work, by priority)
+################################################################################
+O1  [CLOSED 2026-07-01] 5.6 — why exactly 2 native operators per terrain.
+                 DERIVED from C2 (same-basis pairs commute exactly -> forbidden;
+                 2 cross-basis survivors are W-conjugates, terrain frame picks one).
+                 admissibility_two_operator_sim.py. No longer open.
+O2  [DONE 2026-07-02] 10.4 — Julia engine RUN in-house (4th substrate); caught + fixed a
+                 column-major vec-convention bug, now agrees with the oracle at 1q and 3q.
+O3  [DONE 2026-07-01] 10.5 — 16-stage contract lifted to 3 qubits (C^8). Genuinely
+                 multi-qubit (ZZ coupling, max negativity 0.038>0, not factorizing); readout
+                 = 63-dim Pauli-expectation vector; 16 stages distinct (min pairwise 0.174);
+                 8/8 fusion + 16/16 gaps preserved. numpy oracle vs JAX exact-expm agree
+                 ~1e-12. oracle_targets_3q.py / jax_engine_3q.py / validate_engines_3q.py.
+O4  [DECISION]   6.6 — the two-64s tension. Owner-only.
+O5  [INTERP]     9.6/9.7 — Axis-0 parity is instrumented at the operator layer; a terrain-local
+                 a2 meter is a proven no-go, so the terrain-level interpretation stays candidate.
+O6  [MOSTLY DONE] holodeck/FEP memory + Lev bridge: memory (Layer 12), active-inference
+                 learning (Layer 13), and the QIT->Lev signal-stream bridge STUB (Layer 14)
+                 are built in pure QIT. STILL AHEAD: wire the bridge to the LIVE leviathan
+                 repo (concrete node mapping + reverse action edge) and entropic-monism
+                 cosmology (fenced). The engine side of active inference is ready; the
+                 world/action model lives in Lev.
+
+
+################################################################################
+# ADDENDUM (2026-07-02, sixth audit) — terrain-level a2 RESOLVED BY SOURCE
+################################################################################
+The terrain-level direct/conjugated bit is DEFINED in TERRAIN_LAW_LEDGER.md
+lines 17-18 as an INSTALLED FRAME FLAG: Direct = "lab frame, V_s(u) = I";
+Conjugated = "co-rotating Weyl frame, V_s(u) != I". It is which frame a
+terrain RUNS in, not a generator property — which is why no functional reads
+it (P2/P3) and no element maps the generators (P11 r4). Consequences:
+  - "find the generator-level a2 invariant" CLOSES as ill-posed;
+  - 7m's XOR is over one MEASURED bit (a1 = non-unitality, earned) and one
+    INSTALLED bit (a2 = frame flag) -> candidate status cemented;
+  - the chi2 program's job reframes: read the INSTALLED frame operationally
+    through dissipation (frame-sensitivity 0.22 dissipative vs 0 unitary is
+    the foothold), not derive the flag.
+Ledger lines 21-22/64-77 also tie the native operator pairs to the frames
+("conjugated-frame ops"), substantiating 7u's two-layer V/W split from source.
+See REPO_AUDIT_AND_RESOLUTIONS.md 1b.

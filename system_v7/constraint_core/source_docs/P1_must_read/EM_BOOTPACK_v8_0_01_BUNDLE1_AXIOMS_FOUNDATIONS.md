@@ -1,0 +1,1432 @@
+# UPLOAD BUNDLE 1 — Axioms + Foundations + Pure Math
+
+Consolidated for easy re‑boot.
+
+Includes: Model overview, axioms, operational equivalence/oracle, pure math core, Noether bridge, axis‑0 bridge, Weyl outer/inner.
+
+
+---
+
+
+
+## Domain router and drift firewall
+
+This document is intentionally broad (physics → math → life → AI). To prevent default‑knowledge drift:
+
+### Interpretation tags (mandatory in all work)
+- **DEF** = definition / canon lock  
+- **DERIVE** = derived from axioms + contracts  
+- **BRIDGE** = proposed mapping between layers (e.g., QIT → spacetime)  
+- **PROJ** = projection layer (psychology, MBTI/HEXACO mappings, sociology, etc.)  
+- **OPEN** = explicit unresolved knot / hypothesis
+
+### Domain router (where to look before answering)
+Use this as an index to avoid “forgetting” the EM framing:
+
+| If asked about… | Read these sections first | Output rule |
+| --- | --- | --- |
+| **Axioms / identity / oracle** | *Axiom Ladder* + *Operational equivalence (a=a iff a~b)* notes | keep identity operational; avoid hidden essences |
+| **Engines (Type‑1/Type‑2)** | *Engines spec* + loop schedules + Axis‑3/4/6 separation | don’t treat “type” as personality |
+| **Hopf / spinor manifold / geometry** | *Hopf / spinor substrate* + holonomy/commutator reports | treat substrate as CTX unless derived |
+| **Axis‑1/2 Szilard dual‑stack** | *Axis‑1/2 + Szilard mechanics* sections | keep coupling/impedance explicit |
+| **IGT / Axes 7–12** | *IGT layer* sections (status + tables) | keep as planned/OPEN until payoff is derived |
+| **Physics (gravity, dark sector, singularities)** | *Entropic GR/SR* + *singularities/whiteholes/blackholes* + *boundary fuzz* | present EM view first; mainstream only if asked |
+| **Holodeck / science method / hashes** | *Holodeck* + *Science method* + *agent swarm* roadmap | keep as roadmap; no generic “LLM agent” drift |
+| **Leviathan / mimetic meme manifolds** | *Mimetic meme manifolds* + Leviathan roadmap sections | avoid coercive political prescriptions; keep descriptive |
+
+### “Don’t drift” default response behavior
+If you are unsure, answer in **OPEN‑KNOT mode**:
+- state what the canon currently supports
+- state what’s missing
+- propose the minimal next patch/test
+
+
+
+# SOURCE: 02_CORE/MODEL_OVERVIEW.md
+
+# Model Overview — Entropic Monism + Ontological Engine (v0.2)
+
+This is a single-page map of the whole framework.
+
+## Layer A — Cosmology: what reality is (monist substrate)
+- Primitive axiom: **randomness exists**
+- Randomness implies finite option sets in bounded regions (no actual infinity)
+- Fundamental state space is quantum/spinor-like (projective Hilbert space)
+- Identity is operational equivalence (a=a iff indistinguishable)
+- Spacetime is entropic capacity; time is monotone entropic ordering (expansion-as-clock)
+- Retrocausal boundary selection: many futures converge to a single present
+
+## Layer B — Ontology: how reality builds structure (engine/ratchet)
+- The “engine” is evolution abstracted: pattern → selection → persistence
+- Teleological selection: histories are weighted toward futures with higher exploratory capacity
+- Ratchet mechanism: non-commutation + boundary management allow irreversible accumulation
+- This pushes toward agents, modeling, and ultimately consciousness
+
+## Layer C — Rosetta: compilation target (QIT-native grammar)
+- States: density matrices ρ
+- Dynamics: CPTP maps / instruments
+- Token = Topology map P + Operator map J, with Axis‑6 precedence
+- Axes 0–6 define the mechanical “degrees” of the engine grammar
+
+## Layer D — Engines: specific cyclic programs
+- Type1 / Type2 loops (outer/inner), stroke direction (Axis‑4), precedence (Axis‑6)
+- Carnot/Szilard mapping is interpretive + tested via sim metrics
+
+## Layer E — Sims: falsify/validate structure
+- Toy harness tests order-sensitivity (Axis‑6) and schedule consistency
+- Next required upgrade: Axis‑2 boundary register + ratchet metrics (I(S:E), capacity, etc.)
+
+
+---
+
+# SOURCE: 02_CORE/AXIOM_LADDER.md
+
+# BOOT CORE AXIOM LADDER v0.13 (Pre‑IGT)
+
+Date: 2025-12-24  
+Status: **FOUNDATIONS** (no IGT payoff; no mimetic meme manifolds; no teleology proofs)
+
+This page is the “single anchor” that prevents drift:
+
+- what we *assume* (axioms),
+- what we *define* (carriers/objects),
+- what we *derive* (engine grammar),
+- what we can *test now* (sim contracts),
+- what remains *OPEN*.
+
+---
+
+## 0) Scope locks
+
+1) **No classical causality requirement** at the foundations layer.  
+   We only require: **order effects exist** (non‑commutation) and the engine chooses a precedence rule (Axis‑6).
+
+2) **No personality typing** is used as definition.  
+   Any MBTI/HEXACO/Big5 references are **PROJ overlays** and are not part of this ladder.
+
+3) **Pre‑IGT** means:
+   - no WIN/lose payoff functional,
+   - no future‑weighting,
+   - no group manifold / meme layer.
+
+---
+
+## 1) Axiom stack
+
+### A0 — Finitism (bounded capacity)
+Assume a finite effective capacity for distinguishable states / options.
+
+Operational consequence: we model the carrier with a **finite‑dimensional** state space (d < ∞).
+
+### A1 — Randomness first (maximal ignorance prior)
+Assume the primitive substrate is best modeled by a maximum‑ignorance prior over the carrier.  
+(Randomness is an axiom, not “noise added later.”)
+
+### A2 — Operational identity / nominalism
+“Same thing” means “indistinguishable under allowed probes.”
+
+Let Π be the set of allowed probes/measurements/interactions.
+
+Define an operational equivalence relation ("indistinguishable"):
+
+- **a ~_Π b**  ⇔  for all probes π ∈ Π, the resulting statistics match (within the admitted tolerance).
+
+Then **equality is not primitive**; it is induced:
+
+**Operational-identity axiom (notation lock):**
+
+\[
+\boxed{\;a = b\;\Longleftrightarrow\; a \sim_{\Pi} b\;}
+\]
+
+Read as: *two things are “the same” iff no admissible test can tell them apart.*
+
+(This is the compressed slogan you keep using as **“a=a iff a~b”**: identity is nothing over and above operational equivalence.)
+
+
+- **a = b  ⇔  a ~_Π b**
+
+Slogan (the one you keep using):
+
+- **“a=a iff a~b”** (read as: identity is an equivalence‑class fact, not an essence).
+
+> This is the axiom‑level hook for the “oracle vs Turing” distinction.
+
+### BRIDGE — Oracle vs Turing (why A2 matters)
+- A **Turing machine** manipulates discrete symbols.
+- A **physical oracle** is what makes those symbols *well‑defined* by supplying Π (the probe set) and therefore the equivalence relation ~_Π.
+
+So: **the oracle defines what counts as “the same”** (stability of meaning under interaction).  
+The TM is a *secondary* layer that runs *inside* those equivalence classes.
+
+
+
+**Implementation note (PRE‑IGT):**
+
+- See `02_CORE/OPERATIONAL_EQUIVALENCE_ORACLE.md` for a QIT‑native definition of `~` (trace distance / admissible probes) and how this ties to the oracle vs Turing distinction.
+### A3 — QIT carrier
+Represent system state as a density matrix ρ on a finite‑dimensional Hilbert space:
+
+- ρ ≥ 0, Tr(ρ)=1
+
+### A4 — Admissible dynamics
+Admissible transformations are **CPTP maps** (quantum channels).  
+Measurements are instruments (CPTP + classical output), but measurement theory is not needed yet for the engine tests.
+
+### A5 — Non‑commutation exists (time seed)
+There exist admissible maps P and J such that:
+
+- J∘P ≠ P∘J
+
+This is the minimal “arrow ingredient” we require.
+
+### A6 — Precedence rule (Axis‑6)
+The engine must pick a local composition convention for each stage:
+
+- DOWN: ρ′ = J(P(ρ))  (Topo→Op)
+- UP:   ρ′ = P(J(ρ))  (Op→Topo)
+
+This is not “± sign”; it is a precedence rule.
+
+### A7 — Minimal generating set (4×4)
+Choose 4 topology map‑classes P and 4 operator map‑classes J such that non‑commutation is guaranteed in generic settings.
+
+Canonical labels:
+
+Topologies P ∈ {Ne, Si, Se, Ni}  
+Operators J ∈ {Ti, Te, Fi, Fe}
+
+At this layer these are *map classes*, not psychology.
+
+### A8 — Engine grammar (tokens + loops)
+A token is a 2‑pair:
+
+- TopoOp or OpTopo, e.g. NeTi or TiNe
+
+Macro identities: (topology, operator_family).  
+Micro instances: (macro identity, Axis‑6 precedence from token order).
+
+**Type‑1 vs Type‑2** are the two chirality schedules (Axis‑3).  
+**Deduction vs Induction** are the two topology‑order strokes (Axis‑4).  
+**Outer/inner** roles (major/minor) are **derived** from (Type × Stroke) and are not a primitive axis.
+
+
+
+**Derived role geometry (NEW, still PRE‑IGT):**
+
+- Outer/inner = major/minor role is **derived** from (Type × Stroke), but we now also give it a **geometric interpretation** on the Hopf torus discretization: major ↔ “outer” torus cycle; minor ↔ “inner” torus cycle.
+- This is recorded in: `05_FOUNDATIONS/WEYL_OUTER_INNER_GEOMETRY.md`.
+
+This keeps “outer vs inner” from being only a schedule label and makes it a measurable invariant candidate (via impedance/holonomy proxies).
+
+### A9 — Chart / substrate (Bloch vs Hopf vs ring/checkerboard)
+At minimum, a qubit can be charted on the Bloch sphere (S²).  
+For “actual spinor mechanics,” we use the Hopf picture (S³ → S²) and discretize it.
+
+The ring/checkerboard discretizations are allowed as *discrete chart choices* so long as they preserve the tested invariants.
+
+---
+
+## 2) Derived observables (pre‑IGT metrics)
+
+### D0 — Entropy
+S(ρ) = −Tr(ρ log₂ ρ)
+
+### D1 — Capacity / negentropy proxy
+Φ(ρ) = log₂(d) − S(ρ)
+
+Note: Φ is not independent of S, so we do **not** treat (ΔΦ, ΔS) as two independent degrees of freedom.
+
+### D2 — Axis‑6 order witness
+W₆(ρ;P,J) = || (J∘P)(ρ) − (P∘J)(ρ) ||₁
+
+This is the “order matters” scalar we can test in sims.
+
+### D3 — Holonomy / curvature proxy (pre‑IGT)
+Aggregate commutator residues around a full cycle to form a “loop signature.”
+At this layer it is a **proxy**, not yet a GR tensor.
+
+---
+
+## 3) What is testable right now (contracts)
+
+### T1 — Non‑commutation is load‑bearing
+A commuting ablation should collapse W₆ → 0 and eliminate Axis‑6 swap effects.
+
+✅ Demonstrated in:
+- `THREEQUBIT_COMMUTING_ABLATION_REPORT_PRE_IGT_v0_1.md`
+- `threequbit_commuting_ablation_axis6swap_pre_igt_v0_1.csv`
+
+### T2 — Axis‑6 precedence is operationally real
+Global token‑order swap should produce measurable loop‑signature deltas when maps do not commute.
+
+✅ Demonstrated in:
+- `hopf_spinor_loop_summary_axis6swap_v0_1.csv`
+- `threequbit_axis6swap_summary_pre_igt_v0_1.csv`
+
+### T3 — Scaling beyond single qubit
+The loop signatures should remain stable on 2‑qubit and 3‑qubit carriers.
+
+✅ Demonstrated in:
+- `TWOQUBIT_ENGINE_PRE_IGT_VALIDATION_REPORT_v0_1.md`
+- `THREEQUBIT_ENGINE_PRE_IGT_VALIDATION_REPORT_v0_1.md`
+
+### T4 — Discretization invariance
+Ring/checkerboard/Hopf discretizations should preserve the qualitative invariants (W₆ non‑zero, axis6‑swap effects, loop separation) across reasonable parameter regimes.
+
+✅ Partial evidence in:
+- `HOPF_RING_CHECKERBOARD_CANON_TEST_v0_1.md`
+- `hopf_spinor_loop_summary_resolution_compare_v0_2.csv`
+
+---
+
+## 4) Symmetry & conservation wedge (Noether insertion — pre‑IGT compatible)
+
+We are missing an explicit “symmetry → invariant” bridge.
+
+At this layer we do **not** need a full action/Lagrangian. We can still state a usable contract:
+
+- A symmetry is a transformation g acting on states ρ (e.g., ρ ↦ U_g ρ U_g†).
+- A dynamics E (a channel) is symmetry‑respecting if it is **covariant** under g:
+  - E(U_g ρ U_g†) = U_g E(ρ) U_g†
+
+**Noether‑style claim (channel form):**  
+If the admissible dynamics are covariant under a group G, then there exist **invariants** (observables/structures preserved by E) that live in the commutant of that representation.
+
+This is the correct slot to later connect to energy‑momentum/curvature **once** we have a validated geometry dictionary.
+
+---
+
+## 5) OPEN knots (intentionally not solved here)
+
+1) **Physics dictionary** (GR/SM): mapping holonomy/commutator signatures to a spacetime metric/curvature remains conjectural.
+2) **“Mass as entropy volume”**: requires a precise identification of a conserved/invariant quantity and an operational measurement contract.
+3) **JK fuzz / universal present**: needs a boundary‑condition and no‑signaling formulation (constraint satisfaction, not a causal channel).
+4) **Life/evolution bridges**: interpreting the engine as biology/ANS/etc is a projection layer until a quantitative bridge is written.
+5) **7–12 axes**: explicitly postponed; depends on an IGT payoff layer and group coupling contracts.
+
+---
+
+## 6) Minimal next step (still pre‑IGT)
+
+Upgrade “holonomy proxy” into a stronger **geometry contract**:
+
+- define a discrete connection on the Hopf lattice,
+- compute holonomy around multiple loop families,
+- test resolution‑scaling and ablations (commuting / entangling).
+
+(IGT remains off until foundations stabilize.)
+
+---
+
+# SOURCE: 02_CORE/AXIOMS_COSMOLOGY.md
+
+# Cosmological Axioms — Entropic Monism (draft v0.2)
+
+This document is meant to be the **cosmological “axioms-first” layer** that sits *above* the Rosetta→Engines→Sims machinery.
+
+- **Cosmology layer** = what reality *is made of* (ontology-of-the-substrate).
+- **Ontology/engine layer** = the **teleological selection / ratchet** process that *acts on* the substrate and generates stable structure.
+- **Rosetta layer** = how we compile those commitments into QIT-native objects (density matrices + CPTP maps/instruments) and then simulate.
+
+**Non‑drift intent:** These are *conceptual locks* and “slots” (some are axioms, some are declared hypotheses). They do not replace the v0.1 canon locks on Axes 0–6 and token order; they contextualize them.
+
+---
+
+## A0 — Randomness is ontic (primitive)
+
+Reality has irreducible randomness. Randomness is not (only) epistemic ignorance; it is a primitive feature of the substrate.
+
+**Operational/QIT form:** There exist finite‑outcome quantum instruments \(\{\mathcal{E}_x\}_{x\in X}\), \(|X|<\infty\), such that outcomes occur with nontrivial probabilities \(p(x|\rho)\).
+
+---
+
+## A1 — Finitary possibility (no actual infinity)
+
+Randomness is only meaningful if there is a **finite set of options** in any bounded context.
+
+**Operational/QIT form:** In any bounded causal region (or “patch”), the effective Hilbert dimension is finite:
+\[
+\dim(\mathcal{H}_{patch}) < \infty.
+\]
+
+Interpretation: “the universe is a finite information object.” (This aligns with the ‘finite numbers / Bekenstein limit’ intuition in the source thread, but the exact bound is treated as a hypothesis slot.)
+
+---
+
+## A2 — Spinor substrate (state lives in projective Hilbert space)
+
+The primitive carrier of possibility is spinor-like: the minimal “bit of possibility” is qubit-like.
+
+**Operational/QIT form:** Pure states are rays \(|\psi\rangle\sim e^{i\phi}|\psi\rangle\). The natural geometry is projective Hilbert space (Bloch sphere in the qubit case).
+
+---
+
+## A3 — Identity is equivalence under indistinguishability
+
+“\(a=a\) iff \(a\sim b\)” is taken as a physical identity principle:
+
+Two states/descriptions count as identical **iff** no allowed experiment can distinguish them.
+
+**Operational/QIT form:** \(\rho\sim\sigma\) iff \(\mathrm{Tr}(E\rho)=\mathrm{Tr}(E\sigma)\) for all allowed effects \(E\).
+
+This supports the idea: “objects are stable equivalence classes in the entropy substrate,” not primitive labels.
+
+---
+
+## A4 — Spacetime is entropic capacity (monist claim)
+
+Spacetime is not a separate substance from information/entropy; it *is* entropic structure.
+
+**Tight version (slot):** spacetime corresponds to a capacity-like quantity:
+\[
+C := \log \dim(\mathcal{H}),
+\]
+and/or to an entropy bound associated with horizons/areas.
+
+**Note:** This does **not** force the global von Neumann entropy of the entire universe to increase (a globally pure state can have \(S=0\)). The “entropy” doing monist work is a *capacity/bound* or a coarse‑grained/relational entropy.
+
+---
+
+## A5 — Time is entropic ordering; expansion is the clock (universal time claim)
+
+Time’s arrow is the monotone increase of an entropic ordering parameter.
+
+**Universal time claim (slot):** There exists a global, observer‑independent parameter \(T\_U\) that can be operationally inferred by any observer, defined as a function of “universe size” / entropic capacity (e.g., scale factor, horizon entropy, or \(C\)).
+
+- Proper time differs by time dilation.
+- \(T\_U\) is a cosmological “entropic time” coordinate all observers can (in principle) agree on after correcting for motion/position.
+
+**Open precision requirement:** specify the exact operational protocol for “size of the universe” and what idealizations it assumes.
+
+---
+
+## A6 — Retrocausal boundary selection (many futures converge to a single present)
+
+The present is real and singular. The multiverse does not branch; instead many possible futures **converge** as constraints on the present.
+
+**Operational/QIT slot:** physics is described not only by an initial condition but also by (possible) final/boundary constraints (post‑selection / two‑boundary conditioning). Retrocausality is interpreted as constraint‑propagation rather than signaling.
+
+**Safety constraint:** preserve operational no‑signaling (retrocausality cannot be used for controllable FTL communication).
+
+---
+
+## A7 — Cosmological hypotheses (explicitly speculative, but part of the current worldview)
+
+These are *not yet locked axioms*. They are declared hypotheses to explore:
+
+- The “pre‑time” state resembles static fuzz / white noise: uncorrelated frames with no information flowing between them.
+- A first “pattern” arises as an entangled expanding patch (dark energy first / inflation‑like phase).
+- Dark energy ↔ expansive entropic drive (option-creating).
+- Dark matter ↔ contracted/stored structure (better modeled as high \(\Phi\) / negentropy, not literal negative VN entropy).
+- Cyclic / sequential universes: information from prior universes persists as deep substrate, possibly surfacing as dark matter–like structure; “big bangs” as bubble/void singularities.
+
+---
+
+## Relationship to the v0.1 Rosetta
+
+- The Rosetta uses **QIT-only foundations** (\(\rho\), CPTP maps/instruments) as the compilation target.
+- Axes 0–6 + token-order locks are *mechanistic grammar*. They should remain stable even as we refine which entropic functional is fundamental.
+
+Sources in pack:
+- `00_THREAD_RESET_PACKET.md`
+- `01_CANON_LOCKS_AND_OPEN.md`
+- `02_ROSETTA_DRAFT_v0_1.md`
+- `x grok chat TOE.docx`
+
+
+---
+
+# SOURCE: 02_CORE/ONTOLOGY_RATCHET.md
+
+# Ontological Engine — Teleological Selection & the Ratchet (draft v0.2)
+
+This document defines the **ontology layer** in the reboot:
+
+- **Cosmology axioms** say what the substrate is (entropic monism).
+- **Ontology/engine** says how structure *emerges and persists*: a **teleological selection ratchet**.
+- Rosetta/Engines/Sims then instantiate that process as composable QIT maps.
+
+---
+
+## O0 — The engine is evolution abstracted (not “just thermodynamics”)
+
+The “engine” is intended to be the *general pattern of evolution itself*, applied universally:
+
+- There is a substrate of possibilities (randomness/entropy/capacity).
+- Patterns arise.
+- Patterns that can **stably exploit** the substrate persist and amplify.
+- This produces a **ratchet**: accumulated structure that is hard to undo.
+- The ratchet naturally yields increasingly capable “agents,” up to humans and consciousness.
+
+In this framing:
+- **Cosmology** = what exists.
+- **Ontology (engine)** = the selection dynamic that makes “things” exist stably.
+
+---
+
+## O1 — Teleological selection (future-sensitive weighting)
+
+“Teleological” here means: histories are not selected purely by past-to-future causal push, but by a weighting that favors futures with certain properties.
+
+There are two equivalent ways to formalize this:
+
+### (1) Two-boundary / retrocausal selection (constraint form)
+A history is conditioned on both:
+- an initial state \(\rho\_0\),
+- and a class of allowed final constraints \(F\).
+
+Then present dynamics appear “pulled” by future constraints, while preserving no-signaling.
+
+### (2) Fitness functional / path-weighting (variational form)
+Assign each possible history \(h = (\rho\_t, \mathcal{E}\_t)\_{t=0..T}\) a weight:
+\[
+w(h) \propto \exp\Big( \lambda\, \mathcal{R}(h) \Big),
+\]
+where \(\mathcal{R}(h)\) is a **ratchet functional** that rewards “exploratory capacity” and stable structure.
+
+Teleology lives in the choice of \(\mathcal{R}(h)\): it references *future* possibilities, not only past states.
+
+---
+
+## O2 — The ratchet: what is being selected?
+
+The core intended meaning (from your description) is:
+
+> The engine selects that which can explore its full nuances.
+
+To make that operational, we define an **Exploratory Capacity** measure. Candidates that compile to QIT are:
+
+### Candidate R(1): capacity–entropy potential
+Let \(C=\log\dim(\mathcal{H})\) and \(S(\rho)\) be VN entropy. Define:
+\[
+\Phi(\rho) := C - S(\rho)
+\]
+(negentropy / stored order / “potential”).
+
+A ratchet functional can reward *sustained* \(\Phi\) while still allowing exploration:
+\[
+\mathcal{R}(h) = \sum\_{t=0}^{T} \big[ a\,\Phi(\rho\_t) + b\,\Delta C\_t \big].
+\]
+
+### Candidate R(2): mutual information / correlation structure
+If \(S\) is system and \(E\) is environment/memory, reward:
+\[
+I(S:E) = S(\rho\_S) + S(\rho\_E) - S(\rho\_{SE})
+\]
+because correlations are “knots” (structure) in an entropic substrate.
+
+### Candidate R(3): reachability / option-access
+Reward the number/volume of distinct accessible states under allowed operations (a controllability notion). In practice this can be approximated by “path entropy” of reachable futures.
+
+**Important:** These candidates are not mutually exclusive; the engine may need a blended functional.
+
+---
+
+## O3 — Why non-commutation is the mechanical lever (Axis‑6)
+
+A reversible/commuting world cannot ratchet: if operations commute, order doesn’t matter and cycles can unwind.
+
+In the Rosetta, the *mechanical ratchet handle* is:
+
+- \(J\circ P\neq P\circ J\)  (non‑commutation)
+- Axis‑6 encodes this as DOWN vs UP order inside a step, and token order locks it.
+
+So Axis‑6 is not just “a label”; it is the minimal place where order can create irreversible accumulation.
+
+---
+
+## O4 — Evolution as a universal process (ontology claim)
+
+“Evolution” here is generalized beyond biology:
+
+- Any pattern that **persists** must resist dissolution into background randomness.
+- Persistence requires a way to harvest, store, and deploy negentropy/structure.
+- That implies cyclic processes with memory and boundary management — i.e., “engines.”
+
+Biology is one special case where the pattern is self-replicating chemistry.
+Consciousness is a later case where the pattern becomes self-modeling and future-sensitive.
+
+---
+
+## O5 — How humans and consciousness arise (intended storyline)
+
+Within this ontology:
+
+1. Randomness substrate yields occasional local patterns.
+2. Teleological selection/ratchet favors patterns that:
+   - preserve structure (high \(\Phi\)),
+   - expand their future reachable options (high exploratory capacity),
+   - build internal models (correlations/memory) to steer outcomes.
+3. Over many ratchet steps, this pushes toward:
+   - agents capable of long-horizon planning,
+   - meta-learning,
+   - self-modeling.
+4. “Consciousness” is treated as the extreme limit: a pattern whose primary function is to **select/steer** across futures (strong future-sensitive agency).
+
+This is the bridge you’re aiming for: **from a single primitive axiom (randomness) to consciousness** via the engine’s selection dynamics.
+
+---
+
+## O6 — How to put the ratchet into the Sims (concrete next step)
+
+Right now the toy harness measures \(S\) and \(\Phi\) on a single qubit and stress-tests Axis‑6 order sensitivity.
+
+To actually simulate the ratchet:
+
+1) Add a context/memory register \(E\) (2-qubit state \(\rho\_{SE}\)).
+2) Implement Axis‑2 as a boundary rule:
+   - OPEN: reset/refresh \(E\) (Eulerian control volume)
+   - CLOSED: carry \(E\) forward (Lagrangian parcel)
+3) Track:
+   - \(\Phi\_S\), \(\Phi\_{SE}\) (capacity-sensitive),
+   - mutual information \(I(S:E)\),
+   - and a ratchet score \(\mathcal{R}\) per cycle.
+4) Compare which loops/tokens maximize \(\mathcal{R}\).
+
+That turns the “teleological engine” from narrative into a measurable selection criterion.
+
+---
+
+## Relationship to the v0.1 pack
+
+- This document supplies what the reset packet did not explicitly front-load: **axioms + ratchet**.
+- Rosetta remains the compiler target (QIT maps + axes + token-order locks).
+- Engines are the specific loop schedules; Sims test whether those schedules actually ratchet under \(\mathcal{R}\).
+
+Sources in pack:
+- `01_CANON_LOCKS_AND_OPEN.md`
+- `02_ROSETTA_DRAFT_v0_1.md`
+- `sim_summary.md`
+
+
+---
+
+# SOURCE: 02_CORE/OPERATIONAL_EQUIVALENCE_ORACLE.md
+
+# PRE‑IGT Operational Equivalence + Oracle Semantics (A2)
+
+Generated: 2025-12-24T17:44:54Z
+
+## Why this exists
+
+You flagged that the axiom slogan
+
+> **a = a iff a ~ b**
+
+was not showing up “in use” strongly enough in the foundations.
+
+This note makes it **operational** (QIT‑native) and ties it to the
+**oracle vs Turing** distinction that the engine is meant to model.
+
+This is **PRE‑IGT** (no payoff layer; no IGT).
+
+---
+
+## A2 (Operational Equivalence) in QIT form
+
+Let the engine’s substrate states be density operators **ρ** on a finite‑dimensional Hilbert space **H** (finitism).
+
+Let **𝓜** be the set of admissible probes/measurements (POVMs or instruments) available to an agent/engine.
+
+Define a tolerance ε ≥ 0 (measurement resolution / coarse‑graining).
+
+### Definition: observational equivalence (~)
+
+Two states are observationally equivalent:
+
+\[
+\rho \sim_\varepsilon \sigma \quad \Longleftrightarrow \quad
+\forall M\in\mathcal{M},\; \big|p(M\,|\,\rho)-p(M\,|\,\sigma)\big| \le \varepsilon.
+\]
+
+If **𝓜** is “all measurements,” this can be upper‑bounded by the trace distance:
+
+\[
+D(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1.
+\]
+
+So a convenient sufficient condition is:
+
+\[
+\rho\sim_\varepsilon \sigma \;\Leftarrow\; D(\rho,\sigma)\le \varepsilon.
+\]
+
+### Definition: identity (a = …)
+
+A symbol/name **a** denotes an **equivalence class** of microstates:
+
+\[
+a := [\rho]_{\sim_\varepsilon} = \{\sigma\,\mid\,\sigma\sim_\varepsilon\rho\}.
+\]
+
+So “a = a iff a ~ b” reads as:
+
+- **Identity is not primitive;** it is **defined** as membership in the same equivalence class.
+- “a” and “b” are the same *thing* **iff** the engine cannot distinguish them using admissible probes.
+
+This is the precise backbone for *Radical Humean nominalism* inside the canon:
+**no hidden essence**, only operational indistinguishability.
+
+---
+
+## Why this matters for the engine/oracle idea
+
+### Turing vs oracle: what is “external” to computation?
+
+A pure Turing machine is a deterministic symbol‑manipulator.  
+In this framework, symbols correspond to **equivalence classes** (finite, because finitism).
+
+The “oracle” shows up when:
+
+1) multiple microstates belong to the same symbol class (degeneracy), and  
+2) **which representative actually occurs** is not determined by the internal symbol dynamics alone.
+
+That is, the oracle’s action can be modeled as:
+
+- selecting a representative \(\sigma \in [\rho]_{\sim_\varepsilon}\)
+- subject to additional **global constraints** (boundary conditions, selection on histories, etc.)
+
+**PRE‑IGT** we do not yet assign a teleological weighting.  
+But A2 already gives us the formal place where “oracle freedom” lives:  
+inside **equivalence class degeneracy**.
+
+---
+
+## Where A2 plugs into PRE‑IGT sims (concrete changes)
+
+### 1) State equality in tests
+
+Any “equality” check in the sim harness should be “equivalence within ε,” not exact float equality.
+
+Suggested test contract:
+
+- “returns to the same state” means \(D(\rho_t,\rho_{t+T}) \le \varepsilon\)
+- “fixed point” means \(D(\rho_t,\rho_{t+1}) \le \varepsilon\)
+
+### 2) Boundary fuzz (JK fuzz) as equivalence widening
+
+If you interpret “boundary fuzz” as the universal present syncing across a boundary,
+one clean PRE‑IGT representation is:
+
+- fuzz increases ε at the boundary (coarser equivalence),
+- which increases degeneracy of admissible microstates consistent with the same macro‑observation.
+
+This is a **canonical** place to put “sync without signaling” later:
+the local agent sees the same equivalence class, while the global constraint selects representatives.
+
+### 3) Non‑commutation becomes “state‑class order sensitivity”
+
+Non‑commutation can be tracked at the class level:
+
+\[
+[\mathcal{E},\mathcal{F}](\rho)=\mathcal{E}\circ\mathcal{F}(\rho)-\mathcal{F}\circ\mathcal{E}(\rho).
+\]
+
+But the **observable** question is:
+
+- does order change the **equivalence class**?
+
+i.e., are \(\mathcal{E}\circ\mathcal{F}(\rho)\) and \(\mathcal{F}\circ\mathcal{E}(\rho)\) distinguishable above ε?
+
+This is a cleaner “oracle‑compatible” reading than saying “AB = −BA” at the CPTP level.
+
+---
+
+## Open knobs (still PRE‑IGT)
+
+1) What is the canonical admissible measurement set \(\mathcal{M}\)?
+   - “all measurements” is mathematically clean,
+   - but “restricted measurements” is closer to “agent‑bounded observers.”
+
+2) How should ε scale with “capacity” (A0 finitism) and with the Hopf lattice resolution?
+
+3) Which derived invariants should be expressed in equivalence‑class terms (holonomy, commutator, W6)?
+
+
+---
+
+# SOURCE: 05_FOUNDATIONS/PURE_MATH_CORE.md
+
+# Pure Math Core (Pre‑IGT) v0.3
+
+**Goal:** Keep a *compressed* math spine that every other document can point to, so Rosetta/Engines/Foundations don’t drift.
+
+**Scope:** Pre‑IGT only (no game‑theory overlay yet).
+
+---
+
+## 1) Axiom spine (math‑ready)
+
+### A0 — Randomness + finitism (bounded capacity)
+Assume a finite option space (finite state capacity).  
+In QIT terms: a finite‑dimensional Hilbert space \(\mathcal{H}\), \(d<\infty\).
+
+### A1 — Operational identity (nominalism)
+Identity is defined by operational indistinguishability:
+
+> **a = a iff a ~ b**  
+> where \(a \sim b\) means “no allowed probe distinguishes them.”
+
+This is the engine/oracle hinge: “reality” is equivalence‑classes under allowed measurements/updates.
+
+### A2 — Non‑commutation (time seed)
+There exist admissible operations \(A,B\) such that:
+\[
+A\circ B \neq B\circ A
+\]
+Order effects are the minimal “before/after” ingredient (no classical causality required).
+
+---
+
+## 2) QIT substrate (minimal)
+
+### 2.1 States and channels
+- States: density operators \(\rho\ge 0\), \(\mathrm{Tr}\,\rho=1\)
+- Dynamics (physical updates): CPTP maps \(\mathcal{E}\)
+
+### 2.2 Von Neumann entropy
+\[
+S(\rho) = -\mathrm{Tr}\,(\rho \log \rho)
+\]
+
+### 2.3 Max‑mix and information‑potential
+Let \(\tau = I/d\). Define:
+\[
+\Phi(\rho) \equiv D(\rho\Vert \tau) = \log d - S(\rho)
+\]
+\(\Phi\) is the canonical “structure / option‑capital” proxy in the pre‑IGT sims.
+
+---
+
+## 3) Axis dictionary (0–6) — math hooks only
+
+This section is *not* personality. It is a control grammar for experiments.
+
+### Axis‑0 — VN‑potential polarity (N/S)
+Axis‑0 is the **polarity/orientation** of the VN information‑potential \(\Phi\) relative to the max‑mix reference.  
+Canon‑safe signed potential:
+\[
+\Phi^{(A0)}(\rho)=
+\begin{cases}
++\Phi(\rho) & A0=N\\
+-\Phi(\rho) & A0=S
+\end{cases}
+\]
+**Important:** Axis‑0 is not “operator sign,” and not “high vs low entropy.”
+
+### Axis‑1 — Coupling legality (bath gating)
+A legality/gating bit: which environment couplings are admissible.
+
+### Axis‑2 — Chart lens (open/closed)
+A modeling lens bit (Eulerian/open vs Lagrangian/closed) that controls what is treated as state vs frame.  
+(Still needs tightening in QIT terms, but it is canon‑reserved.)
+
+### Axis‑3 — Type / chirality (Type‑1 vs Type‑2)
+Chirality label for the engine family (left vs right / Weyl‑like handedness).
+
+### Axis‑4 — Macro topology order (deduction vs induction)
+Controls the **macro topology ordering** (not local precedence):
+
+- Deduction: \(Ne\to Si\to Se\to Ni\to Ne\)
+- Induction: \(Ne\to Ni\to Se\to Si\to Ne\)
+
+### Axis‑5 — Texture / first‑vs‑second strategy (T‑slot vs F‑slot)
+Axis‑5 is reserved for the “first/second strategy” split that later becomes crucial for IGT.  
+Pre‑IGT: treat it as the *slot‑ordering / texture* axis (not “lines vs waves only”).
+
+### Axis‑6 — Precedence (UP/DOWN)
+Local composition order:
+
+- **UP:** Op→Topo
+- **DOWN:** Topo→Op
+
+Axis‑6 creates measurable order‑effects via non‑commutation.
+
+---
+
+## 4) Geometry substrate: Bloch / Hopf / ring‑checkerboard (pre‑IGT)
+
+### 4.1 Bloch baseline (qubit)
+A qubit state can be represented by a Bloch vector \(\vec r\in\mathbb{R}^3\), \(|\vec r|\le 1\).
+
+### 4.2 Hopf/spinor lift (Weyl‑friendly)
+Treat the underlying carrier as a spinor (e.g., \(\mathbb{C}^2\)) with Hopf fibration structure:
+\[
+S^3 \to S^2
+\]
+This supports “outer vs inner” as a *geometric* derived notion (Weyl/spinor structure), rather than an extra axis.
+
+### 4.3 Discretization: ring + checkerboard
+The ring/checkerboard is a discretized substrate:
+- checkerboard = discrete macro adjacency
+- ring = discrete flow around a cycle  
+Both can be nested to approximate “nested Hopf tori” without assuming continuum physics.
+
+---
+
+## 5) Engine core (pre‑IGT)
+
+### 5.1 Tokens
+Each stage token is a pairing of:
+- Topology \(P\in\{Ne,Si,Se,Ni\}\)
+- Operator family \(J\in\{Ti,Te,Fi,Fe\}\)
+
+A token has two precedence realizations (Axis‑6):
+- `TopoOp` (DOWN)
+- `OpTopo` (UP)
+
+### 5.2 Loops
+Type‑1 and Type‑2 each define canonical macro loops (8 macro stages per type).  
+Micro realizations include precedence and sub‑states (32 per engine type; 64 total across Type‑1+Type‑2).
+
+### 5.3 Minimal invariants used pre‑IGT
+- Entropy \(S\)
+- Potential \(\Phi\)
+- Commutator/precedence witnesses derived from non‑commutation (Axis‑6)
+- Holonomy / loop‑area signatures (geometry‑sensitive scalars)
+
+---
+
+## 6) Axis‑0 as entropy‑gradient and “JK‑fuzz” (bridge note)
+
+Axis‑0 is a polarity/orientation on \(\Phi\).  
+An **entropy gradient field** appears when the substrate provides adjacency:
+
+- define sitewise \(\Phi(x)\)
+- define discrete gradients \(\Phi(x)-\Phi(y)\) on edges  
+This “gradient battery” perspective is consistent with the earlier Bit‑0 framing.
+
+“JK‑fuzz” can be modeled as a boundary field of probability vectors on the shell, while Axis‑0 sets the polarity/orientation used to interpret radial flux between nested shells.
+
+(See: `05_FOUNDATIONS/AXIS0_JKFUZZ_BRIDGE.md` for the tightened bridge.)
+
+---
+
+## 7) What this level can and cannot claim (pre‑IGT)
+
+Can do now:
+- Build a coherent non‑commuting engine grammar on finite QIT states.
+- Measure precedence effects, loop signatures, holonomy/area proxies.
+- Stress‑test chirality (Type‑1 vs Type‑2), deduction vs induction (Axis‑4), and derived outer/inner roles.
+
+Cannot yet claim (must be derived later):
+- GR/SM equivalence or full cosmology claims as physics (still CTX/PROPOSED).
+- IGT payoff functions and “mimetic meme manifolds” (post‑IGT layer).
+
+
+---
+
+# SOURCE: 05_FOUNDATIONS/NOETHER_SYMMETRY_BRIDGE.md
+
+# FOUNDATIONS — Noether / Symmetry Bridge (Pre‑IGT) v0.1
+
+Date: 2025-12-24  
+Status: **BRIDGE NOTE** (not a physics claim; a constraints/checklist insertion)
+
+You said:
+
+> “I feel like I am missing how to apply Noether’s theorem … the universe for me is driven by statistics and symmetry. There must be some kind of symmetry conservation going on here, I haven’t made explicit.”
+
+This note makes the “Noether move” explicit in a way that fits the current pre‑IGT stack: axioms → carriers → engines → tests, without smuggling in classical Lagrangians.
+
+---
+
+## 0) Why Noether belongs here (in your dialect)
+
+Your foundations already lean on:
+
+- **Statistics first** (entropy/information are primitive constraints)
+- **Structure by symmetry‑breaking** (chirality, precedence, boundaries)
+- **Dynamics as composable maps** (QIT channels) rather than “forces”
+
+Noether is the “bridge law” that says:
+
+> **If a transformation is a symmetry of the rules, there exists something that stays invariant (is conserved).**
+
+In classical physics that’s framed as “symmetry of the action → conserved current.”  
+In our pre‑IGT engine layer we can phrase it as:
+
+> **symmetry of the update rule (channel covariance) → invariant quantities / invariant subspaces / conserved expectations.**
+
+---
+
+## 1) Noether in QIT language (what we can actually test)
+
+Let G be a group acting on states via unitary reps U(g).
+
+A quantum channel \(\mathcal E\) is **G‑covariant** if:
+
+\[
+\mathcal E\big(U(g)\rho U(g)^\dagger\big) \,=\, U(g)\,\mathcal E(\rho)\,U(g)^\dagger\quad\forall g\in G.
+\]
+
+When this holds, two practical consequences follow:
+
+1) **Equivariance / frame‑independence:** running the engine in a rotated frame gives the rotated result.
+2) **Invariants:** observables in the commutant of the group action (and/or fixed points of \(\mathcal E\)) behave like conserved quantities.
+
+This is the pre‑IGT place to “do Noether”: define what symmetries you are claiming, and then check whether the engine maps respect them.
+
+---
+
+## 2) Candidate symmetries in your substrate
+
+### 2.1 Spinor substrate symmetry (Hopf / SU(2))
+
+If the substrate is literally spinors:
+
+- natural group: **SU(2)** acting on the spinor
+- base manifold: Bloch sphere S² (projective), with a U(1) phase fiber
+
+**Testable claim (pre‑IGT):**
+- Some subfamily of maps should be approximately SU(2)‑covariant (at least in the “pure” limit).
+
+### 2.2 Gauge‑like fiber symmetry (U(1))
+
+The U(1) fiber (global phase) is a symmetry in standard QM.
+
+In channel language:
+- global phase is usually “physically redundant,”
+- but a **winding/holonomy** around the fiber can still be a topological invariant.
+
+This connects cleanly to your existing holonomy/loop‑geometry work (Berry‑phase‑like signatures).
+
+### 2.3 Discrete lattice symmetry (checkerboard / ring discretizations)
+
+Once you discretize:
+
+- continuous symmetries become **approximate** or **discrete** (C₄ rotations, reflections, translations on the lattice)
+
+**Testable claim (pre‑IGT):**
+- signatures should be stable under lattice relabelings that preserve adjacency (no chart artifacts).
+
+---
+
+## 3) Where symmetry‑breaking enters (and why it matters)
+
+In your system, the “important physics” is not only symmetry, but **how symmetry breaks**:
+
+- **Axis‑3 Type/chirality**: selects a handedness (a parity‑like break)
+- **Axis‑6 precedence**: selects an order (time‑ordering / non‑commutation)
+- **Boundary conditions**: select a global branch (your “universal present” framing)
+
+That’s the exact place to position your “JK fuzz on the outer boundary” idea:
+
+> boundary fuzz = a reservoir that selects (or regularizes) one branch of a globally constrained state, which *looks* retrocausal at the narrative layer but does not enable signaling.
+
+---
+
+## 4) The minimal Noether checklist to add to the foundations test suite
+
+These are all pre‑IGT, and all falsifiable.
+
+### N1 — Covariance test (frame change)
+
+Pick a candidate group action (start with a small discrete subgroup of SU(2)).
+
+For many random states ρ:
+
+- compare \(\mathcal E( U\rho U^\dagger )\) vs \(U\mathcal E(\rho)U^\dagger\)
+- measure the average trace distance
+
+Success = “engine respects the symmetry up to discretization noise.”
+
+### N2 — Invariant test (fixed points / conserved expectations)
+
+For each map class, test whether there exist nontrivial invariants:
+
+- fixed points: \(\mathcal E(\rho_*)=\rho_*\)
+- conserved expectation values: \(\mathrm{Tr}(Q\rho_t)\) constant across the cycle
+
+### N3 — Symmetry‑breaking signature test
+
+Flip the symmetry‑breaking choice and check the signatures flip predictably:
+
+- Type‑1 ↔ Type‑2 should flip an oriented holonomy/commutator sign
+- UP ↔ DOWN (Axis‑6 swap) should flip an order‑sensitivity signature
+
+If flips do **not** occur, the “chirality/precedence are real” claim weakens.
+
+---
+
+## 5) What this gives you later (when you return to GR/SM unification)
+
+This Noether bridge is how you keep the physics conservative:
+
+- you don’t assert modified GR equations first,
+- you assert symmetry principles + constraints,
+- then see what invariants and effective dynamics fall out.
+
+If your entropic monism wants “gravity = information geometry curvature,” then the conservative move is:
+
+1) Define what symmetry constraints the curvature must respect (Lorentz invariance / diffeo invariance analogs).
+2) Define how the engine’s loop holonomy approximates curvature.
+3) Show which quantities are conserved (or approximately conserved) under those symmetries.
+
+Only after that do you write down candidate field equations.
+
+---
+
+## 6) OPEN
+
+- Which symmetry group is *fundamental* in the fuzz layer (continuous SU(2), discrete remnants, something else)?
+- What is the correct “action” analog for the channel‑based engine (path‑integral measure, maximum caliber, etc.)?
+- Which invariants map to “energy / momentum” in the emergent physics dictionary?
+
+
+
+---
+
+# SOURCE: 05_FOUNDATIONS/AXIS0_JKFUZZ_BRIDGE.md
+
+# Axis‑0 Entropy‑Gradient / JK‑Fuzz Bridge (Pre‑IGT) v0.2
+
+**Scope:** This is a *foundations* bridge. It does **not** change any canon axis locks; it tightens the *math* that lets Axis‑0 participate in sim‑grade measurements without drifting into “operator sign,” “win/lose,” or personality overlays.
+
+---
+
+## 0) Canon lock recap (to prevent drift)
+
+- **Axis‑0 = VN‑potential polarity (N/S)**.  
+- Axis‑0 is **not** “high vs low entropy” and **not** “operator sign.” It is a **sign / flow‑language orientation** for the VN information‑potential relative to a reference (typically max‑mix).
+- Keep namespace clean:
+  - **Axis‑0:** `N/S` (potential polarity)
+  - **Axis‑6:** `UP/DOWN` (precedence only)
+  - **Operator MODE:** `+ / −` (reserved for operator mode only)
+
+---
+
+## 1) The scalar object behind Axis‑0: VN information‑potential
+
+Let the system be finite (finitism axiom), with Hilbert space \(\mathcal{H}\) and \(d = \dim\mathcal{H}\).
+
+### 1.1 Von Neumann entropy
+\[
+S(\rho) = -\mathrm{Tr}\,(\rho \log \rho)
+\]
+
+### 1.2 Max‑mix reference
+\[
+\tau \equiv \frac{I}{d}
+\]
+
+### 1.3 Information‑potential (negentropy proxy)
+Define:
+\[
+\Phi(\rho) \equiv D(\rho \Vert \tau)
+\]
+For finite \(d\), this reduces to:
+\[
+\Phi(\rho) = \log d - S(\rho)
+\]
+So \(\Phi\) measures *distance from max‑mix* (option‑capital / structure / “order budget”).
+
+This matches the earlier “Bit‑0 entropy gradient battery” framing: **a scalar potential defined by divergence from a max‑entropy reference**.
+
+---
+
+## 2) Axis‑0 definition: polarity as an orientation on \(\Phi\)
+
+Axis‑0 should not be “a different scalar.” It should be a **polarity / orientation choice** on the same scalar potential.
+
+### 2.1 Canon‑safe polarity convention
+Define a *signed* potential:
+\[
+\Phi^{(A0)}(\rho) =
+\begin{cases}
++\Phi(\rho) & \text{if } A0 = N \\
+-\Phi(\rho) & \text{if } A0 = S
+\end{cases}
+\]
+
+Interpretation:
+- **A0=N**: “north” is the direction of *increasing* information‑potential (more structure / lower entropy relative to max‑mix).
+- **A0=S**: the global sign convention is flipped.
+
+This is *exactly* what “sign / flow language orientation relative to max‑mix” means, while keeping CPTP dynamics physical (no “negative channel” claims).
+
+---
+
+## 3) How the “entropy gradient” enters: \(\nabla \Phi\) is derived once you add adjacency
+
+Axis‑0 is a polarity.  
+An **entropy‑gradient field** appears when we place the system on an adjacency graph (ring, checkerboard, Hopf‑lattice, nested tori).
+
+Let sites be \(x \in \mathcal{X}\) with adjacency edges \(e=(x\to y)\).
+
+### 3.1 Discrete gradient along an edge
+\[
+(\nabla \Phi)_e \equiv \Phi(x) - \Phi(y)
+\]
+or using polarity:
+\[
+(\nabla \Phi^{(A0)})_e \equiv \Phi^{(A0)}(x) - \Phi^{(A0)}(y)
+\]
+
+### 3.2 Flux along a path / cycle
+For an oriented cycle \(C\):
+\[
+\mathrm{Flux}_{A0}(C) = \sum_{e\in C} (\nabla \Phi^{(A0)})_e
+\]
+
+This is the **work‑like** scalar candidate for “compression vs expansion” *without* smuggling classical force language.
+
+---
+
+## 4) Where “JK‑fuzz” fits
+
+Your “JK‑fuzz” proposal is a *geometric substrate* idea:
+
+- **j,k:** probability‑vector degrees of freedom on the *shell/boundary* (a “field of possibilities” living on the surface)
+- **i:** a scalar degree, intended as a *time/size* coordinate (integral of entropy / expansion parameter)
+
+In that picture:
+- **JK‑fuzz is not Axis‑0** by itself. It’s a *field living on the boundary*.  
+- **Axis‑0 is the polarity/orientation** used to interpret *radial* potential flux between shell and interior:  
+  \(\partial \Phi / \partial i\) (or discrete analog between nested shells).
+
+So the clean bridge is:
+
+> **JK‑fuzz = boundary possibility field**  
+> **Axis‑0 = polarity/orientation of VN‑potential relative to that boundary reference**  
+> **Entropy‑gradient = derived field from adjacency + \(\Phi\)**
+
+---
+
+## 5) Pre‑IGT sim hook (minimal, canon‑safe)
+
+The current pre‑IGT engine sims already compute \(S\) and \(\Phi\).  
+To incorporate Axis‑0 without changing the physical maps:
+
+1) Keep dynamics unchanged (CPTP maps only).  
+2) When reporting “potential” or “flux‑like” scalars, report:
+   - \(\Delta\Phi\) and also \(\Delta\Phi^{(A0)}\)
+   - any cycle flux / holonomy computed from \(\Phi^{(A0)}\)
+
+This makes Axis‑0 a **measurable regime switch** in derived‑axis interactions (exactly what the Axis‑0 connector is meant to capture).
+
+Optional (canon‑safe; **now minimally operationalized in sims**):  
+Axis‑0 can be realized as a **choice of cold‑reference pole** for the **Ni (cold reset)** topology map.
+
+- `axis0_pole = "S"` keeps the prior baseline: `τ_cold = Gibbs(β_cold, H=+Z)` (south‑leaning reference)
+- `axis0_pole = "N"` flips the pole: `τ_cold = Gibbs(β_cold, H=−Z)` (north‑leaning reference)
+
+Ni then acts as: `ρ ↦ (1−γ_Ni) ρ + γ_Ni τ_cold(axis0_pole)`.
+
+This is **not yet** a full spatial entropy‑gradient field; it is a minimal polarity hook we can sweep and measure.
+See evidence: `09_EVIDENCE/AXIS0/AXIS0_POLE_SWEEP_MACRO4_PRE_IGT_REPORT.md`.
+
+---
+
+## 6) Open knots (explicitly not solved here)
+
+- Whether Axis‑0 polarity has an observable “absolute” physical meaning or is a gauge convention.  
+- How JK‑fuzz “instant sync” can be modeled while preserving no‑signaling in the QIT substrate.  
+- How to map \(\Phi\), its gradient/flux, and holonomy/curvature signatures to GR‑like objects (metric/connection/curvature) without classical smuggling.
+
+
+---
+
+# SOURCE: 05_FOUNDATIONS/WEYL_OUTER_INNER_GEOMETRY.md
+
+# Derived Outer/Inner (Major/Minor) as Weyl–Hopf Geometry — Patch v0.1 (PRE‑IGT)
+
+Status: **Canon‑tightening + geometry binding** (no new physics claims; sim‑testable).
+
+This patch exists to stop repeated drift around:
+- **AXIS‑3** (chirality / Weyl handedness) vs
+- **Outer/Inner casing** (major/minor impedance role), and
+- **AXIS‑4** (macro topology order: deduction vs induction).
+
+It also pins a *geometric* reading consistent with the Hopf‑spinor substrate used in the PRE‑IGT sims.
+
+---
+
+## 0) Canon locks (do not drift)
+
+### 0.1 AXIS‑3 is chirality/type (Weyl handedness)
+
+- **AXIS‑3 = Chirality / Type**
+  - Type‑1 = Left‑handed
+  - Type‑2 = Right‑handed
+
+Outer/inner casing is **derived** (not an axis).
+
+### 0.2 AXIS‑4 is macro topology order (stroke direction)
+
+- **Deduction order:** `Ne → Si → Se → Ni → Ne`
+- **Induction order:** `Ne → Ni → Se → Si → Ne`
+
+### 0.3 AXIS‑6 is local precedence only
+
+- `TopoOp` ⇒ **DOWN** (Topo→Op)
+- `OpTopo` ⇒ **UP** (Op→Topo)
+
+No “operator sign” lives in Axis‑6 directly; “sign” is a **derived witness** (commutator/holonomy).
+
+---
+
+## 1) Major/Minor is derived impedance role (outer/inner casing)
+
+### 1.1 Definition
+
+- **Outer loop = Major role**
+- **Inner loop = Minor role**
+
+This is your older **MAX/MIN** distinction reframed as a *derived impedance label*.
+
+### 1.2 Derived truth table (canon form)
+
+Major/Minor is determined jointly by **(AXIS‑3 chirality) × (AXIS‑4 stroke)**:
+
+| Chirality (AXIS‑3) | Stroke (AXIS‑4) | Derived role | Impedance mnemonic |
+|---|---|---|---|
+| Type‑1 (Left) | Deductive | **MAJOR** | low‑impedance (“with gradient”) |
+| Type‑1 (Left) | Inductive | **MINOR** | high‑impedance (“against gradient”) |
+| Type‑2 (Right) | Inductive | **MAJOR** | low‑impedance (“with gradient”) |
+| Type‑2 (Right) | Deductive | **MINOR** | high‑impedance (“against gradient”) |
+
+> This table is a *role/impedance* statement — not a “heat engine vs refrigerator” proof.
+
+---
+
+## 2) Geometric meaning (Weyl spinor + Hopf substrate)
+
+### 2.1 Why Hopf geometry is the right pre‑IGT substrate
+
+- SU(2) ≅ S³ (spinor manifold)
+- Hopf fibration: S³ → S² with S¹ fibers
+
+So the natural finite geometry for a spinor‑engine is a **Hopf torus lattice** (discretized).
+
+### 2.2 Where “outer vs inner” lives geometrically
+
+On a Hopf torus there are two canonical 1‑cycles (two “directions” you can wind):
+
+- the **major** cycle (around the torus)
+- the **minor** cycle (around the tube)
+
+This gives a clean geometric slot for:
+- **Outer/Major** = low‑impedance “big loop” direction
+- **Inner/Minor** = high‑impedance “small loop” direction
+
+### 2.3 How Type (chirality) enters
+
+On SU(2), “left vs right action” gives two chiral ways to generate motion on S³.
+This is the geometric backbone for **Type‑1 vs Type‑2**.
+
+**Interpretive binding (PRE‑IGT):**
+- Type‑1 selects one oriented bundle of loops on the Hopf lattice.
+- Type‑2 selects the mirror/opposite orientation bundle.
+
+So: **Outer/Inner is not “left/right”** — it is **major/minor cycle** *within* a chosen chirality.
+
+---
+
+## 3) Sim‑testable impedance (no IGT required)
+
+To make “impedance” measurable pre‑IGT, define a loop‑level quantity.
+
+### 3.1 Candidate impedance witness (recommended)
+
+Let a loop be a sequence of maps {M_k} acting on ρ.
+
+Define a per‑step order witness:
+- W₆(k) = || (J∘P − P∘J)(ρ_k) ||₁   (trace norm commutator witness)
+
+Define a per‑cycle oriented holonomy / area proxy:
+- A_loop = Σ_k s_k · W₆(k)
+  where s_k is the **orientation sign** induced by token order (Axis‑6) and loop direction (Axis‑4).
+
+Then define:
+- Z_loop = (ΔS_cycle + ε) / (|A_loop| + ε)
+
+Interpretation:
+- **Lower Z_loop = lower impedance = MAJOR**
+- **Higher Z_loop = higher impedance = MINOR**
+
+This creates a falsifiable statement:
+- For a fixed Type (chirality), the derived “major” loop should trend toward lower Z_loop than the derived “minor” loop across random initial states.
+
+### 3.2 What would falsify the geometric claim
+
+If across increasing discretization resolution and multi‑qubit lifts:
+- Z_major ≈ Z_minor (no separation), or
+- the ordering flips randomly with no stable regime,
+
+then “outer/inner as geometric impedance role” is not supported at this stage.
+
+---
+
+## 4) Doc hygiene patch (required)
+
+Any section header that says:
+- “Axis‑3 (outer/inner loops) — major/minor”
+
+must be renamed to:
+- “Derived: Outer/Inner (Major/Minor) impedance role”
+
+AXIS‑3 remains chirality/type everywhere.
+
+---
+
+## 5) Notes on “sign” (to avoid drift)
+
+- “Neti vs Tine sign flip” is **real** as an *order witness* fact:
+  the commutator flips sign under order reversal.
+
+- But “± sign” is not an axis primitive:
+  it is extracted from commutator / holonomy / oriented area.
+
+So: **Axis‑6 = precedence**, while **sign = derived orientation witness**.
+
+---
+
+## 6) Open hooks (PRE‑IGT)
+
+- Decide whether “major/minor = torus major/minor cycle” or “major/minor = fiber/base cycle” is the tighter binding on your discretized lattice.
+  (Both are plausible; the sim witness above will tell us which is stable.)
+
+- Connect to Noether later:
+  The (p,q) winding numbers on a torus are natural “conserved charges” for loop classes under continuous deformations.
+  A discrete Noether analogue can be stated in terms of invariants under admissible move groups.
+
+---
+
+END
+
+
+---
+
+## Empirical check (pre‑IGT sims)
+
+Using the Hopf‑spinor substrate + current engine maps, the impedance witness
+
+- **Z_imp = 1/(mean W6 + ε)**
+
+was computed over a 320‑state Hopf lattice for the four macro‑4 loops.
+
+| engine_type | role | W6_mean | Z_imp | |κ⃗_sum| | br |
+|---|---|---|---|---|---|
+| Type1 | inner | 0.135969 | 7.354616 | 0.315252 | 0.223968 |
+| Type1 | outer | 0.008935 | 111.922435 | 0.035739 | 0.331100 |
+| Type2 | inner | 0.008935 | 111.922432 | 0.035739 | 0.331102 |
+| Type2 | outer | 0.135259 | 7.393226 | 0.381030 | 0.226852 |
+
+### Interpretation
+- Low **W6_mean** ⇒ high Z_imp ⇒ **high impedance / stiff coupling** (order‑effects are small).
+- High **W6_mean** ⇒ low Z_imp ⇒ **low impedance / strong cross‑coupling** (order‑effects are large).
+
+In the current canon mapping, **deductive** macro‑4 loops sit in the high‑impedance regime, and **inductive** macro‑4 loops sit in the low‑impedance regime. Because Axis‑4 direction is Type×role‑dependent, the impedance assignment is also Type×role‑dependent:
+
+- Type‑1 outer (deduction) ⇒ high impedance
+- Type‑1 inner (induction) ⇒ low impedance
+- Type‑2 outer (induction) ⇒ low impedance
+- Type‑2 inner (deduction) ⇒ high impedance
+
+This is consistent with “outer vs inner is geometric” **if** chirality swaps which loop is impedance‑dominant at the spinor/Weyl level (still to be derived cleanly).
+
+---
+
+# SECTION: EM_UPLOAD_02_ROSETTA_ENGINES_v3_3

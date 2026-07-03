@@ -1,0 +1,149 @@
+SIM-LESS AUTHORING WEB THREAD ADDENDUM
+
+O1/5.6 SPLIT VERDICT -- DO NOT STAMP CLOSED
+
+5.6a CARDINALITY: EARNED, conditional on Axis-5.
+- C2 kills same-basis commuting pairs: gap 0.0000.
+- Exactly 2 cross-basis W-conjugate survivors: gaps 0.226 / 0.342.
+- admissibility_two_operator_sim.py step is sound.
+
+5.6b ASSIGNMENT: OPEN / AXIOM.
+- Which survivor per terrain remains prose-only in the sim.
+- Evidence lines: 17-19, 73-74.
+- Missing: terrain table; selection function; controls.
+- 4-model panel converged independently:
+  gpt-5.5-xhigh; deepseek-v4-pro; kimi-k2.6; qwen3-next-80b.
+- Required add: Hadamard-equivariant native-selection axiom over labeled positions.
+- Falsifier sim SUPPORTS the axiom:
+  all 8 terrains; wrong-pair sigma_y/R_y competitors lose everywhere;
+  label-erased invariant; W-conjugacy 4.7e-16.
+
+LAPTOP BUNDLE REGRESSIONS -- RESTORE FROM CORRECTED ROUND-6 COPY
+
+- Julia vec/unvec fix MISSING as shipped.
+  Required 2-line diff:
+  vecr(rho)=reshape(rho,4)
+  unvec(v)=reshape(v,2,2)
+  After applying: all 3 engines GREEN at 1e-12.
+- P12 guard regressed to 1 Fe case.
+  Extend to 4/4: canonical axis 16/16; H0=sz 12/16.
+- spec 7r + main stage claim still unqualified 16/16.
+- sixteen_stage_engine.json lacks axis_convention.
+- rosetta_layer.json stale linear/R2 gauge-breaking law.
+- terrain_fingerprints.json not regenerated.
+- ORIENTATION axis-conditioned wording missing.
+
+NEW FOUNDATIONS RESULTS TO ABSORB -- SCRATCH CEILING
+
+- CR floor sim now 3-engine:
+  pytorch leg; all_three_full_sims; --require-pytorch passes.
+- First engine-as-channel sim:
+  Holevo chi max 0.0924 at stage 1 -> 0 by stage 13;
+  Pauli-readable MI dies faster than chi;
+  identity chi=1.0; depol 0; label-invariant; parity 6.6e-15.
+- Spinor memory carrier v0:
+  bit in SU(2) lift; read fidelity 1.0;
+  density-blind 5e-16; dephasing decay to 0.5.
+- 3q lift draft:
+  8/16 stages; numpy-jax 1e-6.
+
+TIER REMINDERS
+
+- TERRAIN_LAW_LEDGER LOCKED/proven language + atlas LOCK language = tier leaks.
+- Keep source/support fencing.
+
+LAPTOP v2 ADDENDUM (2026-07-02)
+
+v2 RECEIVED AND RUN
+
+- Julia fix STILL missing: third export in a row.
+  Apply the 2-line diff above at source:
+  vecr(rho)=reshape(rho,4)
+  unvec(v)=reshape(v,2,2)
+- After re-applying fix:
+  run_all 29/0/0 GREEN.
+  validate_engines GREEN 3/3; min dist 0.0276.
+  validate_3q GREEN; jax+torch; 9.89e-13.
+
+CONVERGENCE NOTE
+
+- Laptop independently built the same 3 objects the same night.
+- Verdict: object-level convergence; metric-level divergence.
+- Your info_processing:
+  isolated per-stage S_out/I_coh/I(S:R)/Choi;
+  max I(S:R)=0.8786.
+- Laptop qit_channel:
+  cumulative 4-state Holevo chi through schedule;
+  0.0924 stage 1 -> 0 by stage 13;
+  Pauli-MI dies faster.
+- These are COMPLEMENTARY observables on the same 16 channels.
+- Cross-port:
+  add cumulative-chi + identity/depol/label-erased controls to yours;
+  we add your I_coh/Choi per-stage identity map to ours.
+- memory_sim spinor part matches:
+  360=-psi/720=+psi.
+- memory_sim still needs:
+  path-lift bookkeeping;
+  density-blindness battery;
+  dephasing decay control.
+- Laptop carrier has these:
+  read fidelity 1.0;
+  blindness 5e-16;
+  decay to 0.5.
+- Your density-level z-bit lane is a genuine addition.
+  Keep both lanes explicitly separate.
+- holodeck_sim is properly fenced and is a real foundation stone:
+  Umegaki prediction/update;
+  context-register for k>=2.
+- 3q objects differ:
+  your torch is 63-dim full-16, J=0.5;
+  laptop draft is 8-stage reduced, J=0.11.
+- Do not merge numbers.
+  Converge on one J and stage set before comparing.
+
+STILL REGRESSED IN v2 -- FIX FROM PACKET ABOVE
+
+- P12 guard one-case.
+- spec 7r unqualified 16/16.
+- rosetta stale laws.
+- stale fingerprints.
+- Docs still say "run real engines".
+  They HAVE run green on the laptop; cite this addendum.
+
+LAPTOP v8 ADDENDUM (2026-07-02)
+
+ABSORBED, confirmed by fresh runs:
+- cvc5 lane is real:
+  axis_laws z3+cvc5 with erased XOR control.
+- qutip dynamics legs are wired into run_all.
+- engines GREEN:
+  1q+3q all three substrates on your side.
+
+LAYER 16 v8:
+- All four new sims COMPUTE their laws with real controls.
+- Verified + ablations added:
+  non-Gibbs breaks Jarzynski/Crooks correctly;
+  GHZ scaling is endpoint-state-dependent.
+- Good work.
+- TWO RENAMES needed:
+  holographic_bound tests finite Hilbert capacity + Page bound, NOT Bekenstein.
+  Energy-radius control is absent:
+  rename it or add that control.
+  quantum_speed_limit covers the balanced Levitin-Toffoli case only.
+  ML-dominant branch is absent.
+
+STILL PENDING from prior addenda:
+- O1 split:
+  ledger still stamps CLOSED;
+  the adjudicated honest line is 5.6a cardinality earned conditional on Axis-5 /
+  5.6b assignment = Hadamard-equivariant native-selection axiom, falsifier-supported.
+- b6 tautology:
+  construct-then-prove.
+- tool manifests on Layer-16 sims:
+  stdout-only, no result JSONs.
+
+TIER DISCIPLINE:
+- Five new EARNED physics-bridge lines quoted at scratch tier.
+- Replace EARNED with "diagnostic reproduction (scratch)" wording.
+- The sims are good.
+  The stamps are the problem.

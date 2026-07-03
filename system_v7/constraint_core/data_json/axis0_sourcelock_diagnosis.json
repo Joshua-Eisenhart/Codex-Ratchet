@@ -1,0 +1,80 @@
+{
+ "source_locked_terrains": {
+  "Funnel": {
+   "kind": "Se",
+   "fixed_z": 0.78,
+   "scratch_target": 0.86
+  },
+  "Vortex": {
+   "kind": "Ne",
+   "fixed_z": 0.008,
+   "scratch_target": null
+  },
+  "Pit": {
+   "kind": "Ni",
+   "fixed_z": -0.9,
+   "scratch_target": -0.92
+  },
+  "Hill": {
+   "kind": "Si",
+   "fixed_z": 0.047,
+   "scratch_target": null
+  },
+  "Cannon": {
+   "kind": "Se",
+   "fixed_z": -0.774,
+   "scratch_target": -0.86
+  },
+  "Spiral": {
+   "kind": "Ne",
+   "fixed_z": 0.008,
+   "scratch_target": null
+  },
+  "Source": {
+   "kind": "Ni",
+   "fixed_z": 0.906,
+   "scratch_target": 0.92
+  },
+  "Citadel": {
+   "kind": "Si",
+   "fixed_z": 0.047,
+   "scratch_target": null
+  }
+ },
+ "axis0_functionals_tested": {
+  "entropy_production": {
+   "Se": -0.257,
+   "Ne": 0.144,
+   "Ni": -0.441,
+   "Si": 0.097,
+   "split": "{Se,Ni}- {Ne,Si}+ = Axis-1"
+  },
+  "response_derivative": {
+   "Se": 1.797,
+   "Ne": 0.011,
+   "Ni": 2.097,
+   "Si": 0.08,
+   "split": "{Se,Ni}high {Ne,Si}low = Axis-1"
+  },
+  "activity_arclen": {
+   "Se": 0.934,
+   "Ne": 1.064,
+   "Ni": 1.053,
+   "Si": 0.417,
+   "split": "Ne/Ni/Se+ Si- = 3/4"
+  },
+  "future_multiplicity": {
+   "Se": 12.0,
+   "Ne": 1.0,
+   "Ni": 12.0,
+   "Si": 1.0,
+   "split": "{Se,Ni}many {Ne,Si}few = Axis-1"
+  }
+ },
+ "conclusion": "Source-locking achieved (blocker lifted). Axis-0 (Ne/Ni|Se/Si) NOT realized by any single-trajectory dynamical functional (5 tested); grouping is orthogonal to the dissipative/unitary (Axis-1) contrast. Per teeth-map doctrine Axis-0 is a late object on the full Omega_r/JK->branch-kill->C_G->Xi->rho_AB->Phi0 spine, not terrain-local.",
+ "three_orthogonal_partitions": {
+  "active_conservative_AXIS0": "{Ne,Ni}|{Se,Si}",
+  "dissipative_unitary_AXIS1": "{Se,Ni}|{Ne,Si}",
+  "direct_conjugated_frame": "{Se,Ne}|{Ni,Si}"
+ }
+}

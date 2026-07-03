@@ -1,0 +1,17 @@
+# Core (all 18 non-JAX sims + harness)
+numpy>=1.26
+scipy>=1.11
+sympy>=1.12
+# Optional (flux_nesting_ablation_jax.py, manifold_build_ladder.py only; harness skips gracefully if absent)
+jax>=0.4
+# NOT required for verification: matplotlib (figures are pre-rendered in figures/)
+
+# --- optional: SMT proof lane + QIT cross-check (sims self-skip if absent) ---
+z3-solver
+cvc5
+qutip
+
+# Optional: unlocks 5 dependency-conditional sims (SMT proofs, qutip crosscheck, physics bridges)
+z3-solver>=4.13
+cvc5>=1.2
+qutip>=5.0

@@ -1,0 +1,28 @@
+{
+ "turn_goal": "Dig into the Xi bridge: can a genuine bipartite rho_AB construction NATURALLY compute Axis-1 XOR Axis-2?",
+ "result_1_gauge_proof": {
+  "claim": "Axis-2 (direct vs conjugated frame) is a GAUGE choice \u2014 every STATE invariant is exactly preserved under frame conjugation.",
+  "evidence": "200 random 2-qubit states: max change in entropy/purity/I_c/MI under frame conjugation = 2e-15 (machine precision).",
+  "consequence": "Half of Axis-0's information is provably NOT in any state functional. This is the deepest reason all 14 state-readouts failed."
+ },
+ "result_2_sector_theorem": {
+  "claim": "Axis-1 and Axis-2 are DIFFERENT KINDS of charge, living in orthogonal sectors of the density matrix.",
+  "axis1": "ENTROPY charge \u2014 lives in the EIGENVALUE sector; read by S, I_c, MI, purity.",
+  "axis2": "PHASE/GAUGE charge \u2014 lives in the EIGENVECTOR sector; invisible to every entropy functional (eigenvalue change under frame = 1.8e-16, eigenvector/state change = 0.67).",
+  "consequence": "Axis-0 = their parity requires ONE entropy readout AND ONE phase readout, multiplied. No single scalar functional spans both sectors -> the 14 entropy-type readouts could NEVER see Axis-0. Precise sector-level reason for the stall."
+ },
+ "result_3_frame_dynamical_visibility": {
+  "claim": "The frame is dynamically visible ONLY for dissipative terrains (Se,Ni); for unitary terrains (Ne,Si) it commutes with H0 and is invisible even dynamically.",
+  "evidence": "frame-sensitivity Se=0.225, Ni=0.222, Ne=0.000, Si=0.000.",
+  "meaning": "The frame charge is carried by the dissipative set {Se,Ni} \u2014 reading a basis fundamentally requires a second (reference) system, which is WHY Axis-0 needs bipartite rho_AB."
+ },
+ "result_4_bridge_prototype": {
+  "status": "OPEN \u2014 chi_1 (entropy charge) works; chi_2 (phase charge) NOT yet found.",
+  "design": "two-output Xi: chi_1 = entropy charge (eigenvalue sector, purity sign) \u2014 SOLID; chi_2 = phase charge (eigenvector sector) \u2014 the open piece.",
+  "holonomy_attempt_FAILED": "Closed-loop geometric phase (Berry/Pancharatnam) is itself GAUGE-INVARIANT (spectrum of H0 and V H0 V-dag identical) -> it cannot read the frame charge. A naive 4/4 obtained by assigning chi_2 from the known frame bit was CIRCULAR and discarded.",
+  "why_hard": "The frame charge is a gauge quantity; ANY closed-loop or state-invariant readout is blind to it by construction. It can only be read RELATIONALLY (open path against a reference the gauge does not act on).",
+  "next": "An OPEN-path relational phase observable: prepare A entangled with a reference B that the frame does NOT rotate, run A on an open (non-closed) segment, read the A-B relative phase. This is the specific unearned piece."
+ },
+ "strategic": "The Xi bridge is a TWO-SECTOR (entropy x phase) two-output map, not a single functional. Build chi_2 as a geometric-phase (holonomy) readout \u2014 that is the eigenvector-sector quantity the frame charge actually lives in, and it connects Axis-0 directly to the flux/holonomy machinery already built in section 7a.",
+ "honest_summary": "Three solid results (gauge proof, sector theorem, frame-needs-reference). The Xi bridge is now precisely characterized as a TWO-SECTOR map (entropy x phase), and the exact open piece is isolated: a relational (open-path) phase-charge readout for chi_2. Closed-loop/holonomy and all entropy functionals are provably insufficient."
+}

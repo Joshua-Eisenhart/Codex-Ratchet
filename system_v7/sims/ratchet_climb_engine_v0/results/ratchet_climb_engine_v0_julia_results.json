@@ -1,0 +1,1108 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "JSON": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing quotient graph/component construction for finite class partitions",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive formal-result/spec/result JSON handling",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side non-definitional Peres-Mermin UNSAT/SAT flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "attractor_measurement": {
+    "frontier_by_run": {
+      "A_formal_order": 4,
+      "B_reverse_probe_order": 4,
+      "C_seeded_probe_shuffle": 4
+    },
+    "ladder_by_run": {
+      "A_formal_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "B_reverse_probe_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "C_seeded_probe_shuffle": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "run_count": 3,
+    "same_admitted_ladder": true,
+    "same_frontier": true,
+    "verdict": "basin_evidence_same_rungs_and_same_frontier"
+  },
+  "capstone_status": "DRAFT_UNAUDITED",
+  "claim_ceiling": "scratch_diagnostic",
+  "classification": "scratch_diagnostic",
+  "climbed_ladder": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "crossover_proofs": {
+    "julia_z3": {
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "evidence_grade": "evidence_grade",
+  "formal_admission_allowed": false,
+  "frontier_reached": 4,
+  "frontier_status": "STOP_NO_MEASURED_DISTINCTION_LOSS_FOR_RUNG_5",
+  "generated_at": "2026-07-03T23:51:53Z",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "lifecycle_status": "SCRATCH_DIAGNOSTIC",
+  "package_observables": {
+    "Graphs": "quotient graph/component count agrees with finite class partition",
+    "Z3": "Julia-side Peres-Mermin contextuality UNSAT/SAT non-definitional flip"
+  },
+  "packages_used": [
+    "JSON",
+    "SHA",
+    "Dates",
+    "Graphs",
+    "Z3"
+  ],
+  "promotion_allowed": false,
+  "run_results": [
+    {
+      "all_pass": true,
+      "carrier": {
+        "coarse_class_count": 3,
+        "computed_full_class_count": 40,
+        "computed_no_probe_class_count": 1,
+        "graphs_component_count": 40,
+        "hilbert_space": "C^8",
+        "probe_count": 63,
+        "state_count": 40
+      },
+      "climbed_ladder": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "constraint_order": [
+        "label_shuffle",
+        "commuting_static_filters",
+        "lower_layer_can_do_it",
+        "contextuality_flip"
+      ],
+      "controls": {
+        "commuting_order": {
+          "even_then_stage_count": 16,
+          "passed": true,
+          "stage_then_even_count": 16
+        },
+        "label_shuffle": {
+          "original_class_count": 40,
+          "passed": true,
+          "shuffled_class_count": 40
+        },
+        "lower_layer_can_do_it": {
+          "carrier_count": 40,
+          "full_class_count": 40,
+          "passed": true
+        },
+        "non_definitional_flip": {
+          "flip_confirmed": true,
+          "julia_z3_contextual_peres_mermin": "unsat",
+          "julia_z3_noncontextual_control": "sat",
+          "name": "finite_contextuality_assignment_smt_lift_discriminator_pattern",
+          "non_definitional_reason": "same variable/context shape; only the frustrating sign is flipped",
+          "passed": true
+        }
+      },
+      "engine": "julia",
+      "formal_gate_reuse": {
+        "R1_R6_rebuilt_here": false,
+        "formal_result_path": "system_v7/sims/ratchet_formal_gates_v1/results/ratchet_formal_gates_v1_julia_results.json",
+        "formal_result_sha256": "81fb7f49241659da6442b25756036cddb63f9e0ee6755ce805f52feac9b7dedc",
+        "reused_lock_properties": [
+          "R4 observable quotient",
+          "R5 token identity",
+          "R6 progress/non-step distinction"
+        ]
+      },
+      "frontier_rung": 4,
+      "frontier_status": "STOP_NO_MEASURED_DISTINCTION_LOSS_FOR_RUNG_5",
+      "generated_at": "2026-07-03T23:51:53Z",
+      "minimalist_wins": [
+        "rung_5_candidate_rejected_unforced"
+      ],
+      "probe_order": "formal",
+      "rho_hopf_status": {
+        "hopf_rung_11": "not_reached_rejected_unforced",
+        "rho_rung_10": "not_reached_rejected_unforced"
+      },
+      "run_id": "A_formal_order",
+      "rung_receipts": [
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "carrier_count": 40,
+              "full_probe_class_count": 40
+            },
+            "measured": true
+          },
+          "lost_distinction": "no primitive identity collapses the finite carrier",
+          "minimalist_first": {
+            "attempt": "no identity tokens",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "finite_distinguishability",
+            "stronger_candidates_rejected_unforced": [
+              "finite_support_S",
+              "probe_family_P",
+              "quotient_S_mod_P"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_0",
+            "selection": "finite_distinguishability",
+            "variation": [
+              "finite_distinguishability",
+              "finite_support_S"
+            ]
+          },
+          "target_rung": 1
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "formal_state_count": 40
+            },
+            "measured": true
+          },
+          "lost_distinction": "finite distinguishability lacks explicit finite support roster",
+          "minimalist_first": {
+            "attempt": "labels without support roster",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "finite_support_S",
+            "stronger_candidates_rejected_unforced": [
+              "probe_family_P",
+              "quotient_S_mod_P"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_1",
+            "selection": "finite_support_S",
+            "variation": [
+              "finite_support_S",
+              "probe_family_P"
+            ]
+          },
+          "target_rung": 2
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "coarse_probe_class_count": 3,
+              "full_probe_class_count": 40,
+              "support_only_class_count": 1
+            },
+            "measured": true
+          },
+          "lost_distinction": "support-only readout erases probe-visible differences",
+          "minimalist_first": {
+            "attempt": "support membership alone",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "probe_family_P",
+            "stronger_candidates_rejected_unforced": [
+              "quotient_S_mod_P",
+              "density_operator_rho"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_2",
+            "selection": "probe_family_P",
+            "variation": [
+              "probe_family_P",
+              "quotient_S_mod_P"
+            ]
+          },
+          "target_rung": 3
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "projection_defined_for_all_labels": true,
+              "quotient_class_count": 40
+            },
+            "measured": true
+          },
+          "lost_distinction": "probe family without quotient cannot lock same-entity/replay identity",
+          "minimalist_first": {
+            "attempt": "probe family with no quotient projection",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "quotient_S_mod_P",
+            "stronger_candidates_rejected_unforced": [
+              "admissible_survivor_set_M_C",
+              "density_operator_rho",
+              "Hopf_projective_lift"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_3",
+            "selection": "quotient_S_mod_P",
+            "variation": [
+              "quotient_S_mod_P",
+              "density_operator_rho"
+            ]
+          },
+          "target_rung": 4
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "lower_layer_can_do_it": true,
+              "static_filters_commute": true
+            },
+            "measured": true
+          },
+          "lost_distinction": "no measured active distinction remains erased by the quotient",
+          "minimalist_first": {
+            "attempt": "rung-4 quotient carries active distinctions",
+            "succeeded": true
+          },
+          "mss_gate": {
+            "selected": null,
+            "stronger_candidates_rejected_unforced": [
+              "admissible_survivor_set_M_C",
+              "ordered_local_update",
+              "density_operator_rho",
+              "Hopf_projective_lift"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_4",
+            "selection": "minimalist_current_structure_suffices",
+            "variation": [
+              "admissible_survivor_set_M_C",
+              "ordered_local_update",
+              "density_operator_rho"
+            ]
+          },
+          "target_rung": 5
+        }
+      ],
+      "schema": "ratchet_climb_engine_v0.run_result.v1",
+      "seed": 101
+    },
+    {
+      "all_pass": true,
+      "carrier": {
+        "coarse_class_count": 3,
+        "computed_full_class_count": 40,
+        "computed_no_probe_class_count": 1,
+        "graphs_component_count": 40,
+        "hilbert_space": "C^8",
+        "probe_count": 63,
+        "state_count": 40
+      },
+      "climbed_ladder": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "constraint_order": [
+        "commuting_static_filters",
+        "label_shuffle",
+        "contextuality_flip",
+        "lower_layer_can_do_it"
+      ],
+      "controls": {
+        "commuting_order": {
+          "even_then_stage_count": 16,
+          "passed": true,
+          "stage_then_even_count": 16
+        },
+        "label_shuffle": {
+          "original_class_count": 40,
+          "passed": true,
+          "shuffled_class_count": 40
+        },
+        "lower_layer_can_do_it": {
+          "carrier_count": 40,
+          "full_class_count": 40,
+          "passed": true
+        },
+        "non_definitional_flip": {
+          "flip_confirmed": true,
+          "julia_z3_contextual_peres_mermin": "unsat",
+          "julia_z3_noncontextual_control": "sat",
+          "name": "finite_contextuality_assignment_smt_lift_discriminator_pattern",
+          "non_definitional_reason": "same variable/context shape; only the frustrating sign is flipped",
+          "passed": true
+        }
+      },
+      "engine": "julia",
+      "formal_gate_reuse": {
+        "R1_R6_rebuilt_here": false,
+        "formal_result_path": "system_v7/sims/ratchet_formal_gates_v1/results/ratchet_formal_gates_v1_julia_results.json",
+        "formal_result_sha256": "81fb7f49241659da6442b25756036cddb63f9e0ee6755ce805f52feac9b7dedc",
+        "reused_lock_properties": [
+          "R4 observable quotient",
+          "R5 token identity",
+          "R6 progress/non-step distinction"
+        ]
+      },
+      "frontier_rung": 4,
+      "frontier_status": "STOP_NO_MEASURED_DISTINCTION_LOSS_FOR_RUNG_5",
+      "generated_at": "2026-07-03T23:51:53Z",
+      "minimalist_wins": [
+        "rung_5_candidate_rejected_unforced"
+      ],
+      "probe_order": "reverse",
+      "rho_hopf_status": {
+        "hopf_rung_11": "not_reached_rejected_unforced",
+        "rho_rung_10": "not_reached_rejected_unforced"
+      },
+      "run_id": "B_reverse_probe_order",
+      "rung_receipts": [
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "carrier_count": 40,
+              "full_probe_class_count": 40
+            },
+            "measured": true
+          },
+          "lost_distinction": "no primitive identity collapses the finite carrier",
+          "minimalist_first": {
+            "attempt": "no identity tokens",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "finite_distinguishability",
+            "stronger_candidates_rejected_unforced": [
+              "finite_support_S",
+              "probe_family_P",
+              "quotient_S_mod_P"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_0",
+            "selection": "finite_distinguishability",
+            "variation": [
+              "finite_distinguishability",
+              "finite_support_S"
+            ]
+          },
+          "target_rung": 1
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "formal_state_count": 40
+            },
+            "measured": true
+          },
+          "lost_distinction": "finite distinguishability lacks explicit finite support roster",
+          "minimalist_first": {
+            "attempt": "labels without support roster",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "finite_support_S",
+            "stronger_candidates_rejected_unforced": [
+              "probe_family_P",
+              "quotient_S_mod_P"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_1",
+            "selection": "finite_support_S",
+            "variation": [
+              "finite_support_S",
+              "probe_family_P"
+            ]
+          },
+          "target_rung": 2
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "coarse_probe_class_count": 3,
+              "full_probe_class_count": 40,
+              "support_only_class_count": 1
+            },
+            "measured": true
+          },
+          "lost_distinction": "support-only readout erases probe-visible differences",
+          "minimalist_first": {
+            "attempt": "support membership alone",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "probe_family_P",
+            "stronger_candidates_rejected_unforced": [
+              "quotient_S_mod_P",
+              "density_operator_rho"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_2",
+            "selection": "probe_family_P",
+            "variation": [
+              "probe_family_P",
+              "quotient_S_mod_P"
+            ]
+          },
+          "target_rung": 3
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "projection_defined_for_all_labels": true,
+              "quotient_class_count": 40
+            },
+            "measured": true
+          },
+          "lost_distinction": "probe family without quotient cannot lock same-entity/replay identity",
+          "minimalist_first": {
+            "attempt": "probe family with no quotient projection",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "quotient_S_mod_P",
+            "stronger_candidates_rejected_unforced": [
+              "admissible_survivor_set_M_C",
+              "density_operator_rho",
+              "Hopf_projective_lift"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_3",
+            "selection": "quotient_S_mod_P",
+            "variation": [
+              "quotient_S_mod_P",
+              "density_operator_rho"
+            ]
+          },
+          "target_rung": 4
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "lower_layer_can_do_it": true,
+              "static_filters_commute": true
+            },
+            "measured": true
+          },
+          "lost_distinction": "no measured active distinction remains erased by the quotient",
+          "minimalist_first": {
+            "attempt": "rung-4 quotient carries active distinctions",
+            "succeeded": true
+          },
+          "mss_gate": {
+            "selected": null,
+            "stronger_candidates_rejected_unforced": [
+              "admissible_survivor_set_M_C",
+              "ordered_local_update",
+              "density_operator_rho",
+              "Hopf_projective_lift"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_4",
+            "selection": "minimalist_current_structure_suffices",
+            "variation": [
+              "admissible_survivor_set_M_C",
+              "ordered_local_update",
+              "density_operator_rho"
+            ]
+          },
+          "target_rung": 5
+        }
+      ],
+      "schema": "ratchet_climb_engine_v0.run_result.v1",
+      "seed": 202
+    },
+    {
+      "all_pass": true,
+      "carrier": {
+        "coarse_class_count": 3,
+        "computed_full_class_count": 40,
+        "computed_no_probe_class_count": 1,
+        "graphs_component_count": 40,
+        "hilbert_space": "C^8",
+        "probe_count": 63,
+        "state_count": 40
+      },
+      "climbed_ladder": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "constraint_order": [
+        "contextuality_flip",
+        "lower_layer_can_do_it",
+        "label_shuffle",
+        "commuting_static_filters"
+      ],
+      "controls": {
+        "commuting_order": {
+          "even_then_stage_count": 16,
+          "passed": true,
+          "stage_then_even_count": 16
+        },
+        "label_shuffle": {
+          "original_class_count": 40,
+          "passed": true,
+          "shuffled_class_count": 40
+        },
+        "lower_layer_can_do_it": {
+          "carrier_count": 40,
+          "full_class_count": 40,
+          "passed": true
+        },
+        "non_definitional_flip": {
+          "flip_confirmed": true,
+          "julia_z3_contextual_peres_mermin": "unsat",
+          "julia_z3_noncontextual_control": "sat",
+          "name": "finite_contextuality_assignment_smt_lift_discriminator_pattern",
+          "non_definitional_reason": "same variable/context shape; only the frustrating sign is flipped",
+          "passed": true
+        }
+      },
+      "engine": "julia",
+      "formal_gate_reuse": {
+        "R1_R6_rebuilt_here": false,
+        "formal_result_path": "system_v7/sims/ratchet_formal_gates_v1/results/ratchet_formal_gates_v1_julia_results.json",
+        "formal_result_sha256": "81fb7f49241659da6442b25756036cddb63f9e0ee6755ce805f52feac9b7dedc",
+        "reused_lock_properties": [
+          "R4 observable quotient",
+          "R5 token identity",
+          "R6 progress/non-step distinction"
+        ]
+      },
+      "frontier_rung": 4,
+      "frontier_status": "STOP_NO_MEASURED_DISTINCTION_LOSS_FOR_RUNG_5",
+      "generated_at": "2026-07-03T23:51:53Z",
+      "minimalist_wins": [
+        "rung_5_candidate_rejected_unforced"
+      ],
+      "probe_order": "seeded_shuffle",
+      "rho_hopf_status": {
+        "hopf_rung_11": "not_reached_rejected_unforced",
+        "rho_rung_10": "not_reached_rejected_unforced"
+      },
+      "run_id": "C_seeded_probe_shuffle",
+      "rung_receipts": [
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "carrier_count": 40,
+              "full_probe_class_count": 40
+            },
+            "measured": true
+          },
+          "lost_distinction": "no primitive identity collapses the finite carrier",
+          "minimalist_first": {
+            "attempt": "no identity tokens",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "finite_distinguishability",
+            "stronger_candidates_rejected_unforced": [
+              "finite_support_S",
+              "probe_family_P",
+              "quotient_S_mod_P"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_0",
+            "selection": "finite_distinguishability",
+            "variation": [
+              "finite_distinguishability",
+              "finite_support_S"
+            ]
+          },
+          "target_rung": 1
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "formal_state_count": 40
+            },
+            "measured": true
+          },
+          "lost_distinction": "finite distinguishability lacks explicit finite support roster",
+          "minimalist_first": {
+            "attempt": "labels without support roster",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "finite_support_S",
+            "stronger_candidates_rejected_unforced": [
+              "probe_family_P",
+              "quotient_S_mod_P"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_1",
+            "selection": "finite_support_S",
+            "variation": [
+              "finite_support_S",
+              "probe_family_P"
+            ]
+          },
+          "target_rung": 2
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "coarse_probe_class_count": 3,
+              "full_probe_class_count": 40,
+              "support_only_class_count": 1
+            },
+            "measured": true
+          },
+          "lost_distinction": "support-only readout erases probe-visible differences",
+          "minimalist_first": {
+            "attempt": "support membership alone",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "probe_family_P",
+            "stronger_candidates_rejected_unforced": [
+              "quotient_S_mod_P",
+              "density_operator_rho"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_2",
+            "selection": "probe_family_P",
+            "variation": [
+              "probe_family_P",
+              "quotient_S_mod_P"
+            ]
+          },
+          "target_rung": 3
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "projection_defined_for_all_labels": true,
+              "quotient_class_count": 40
+            },
+            "measured": true
+          },
+          "lost_distinction": "probe family without quotient cannot lock same-entity/replay identity",
+          "minimalist_first": {
+            "attempt": "probe family with no quotient projection",
+            "succeeded": false
+          },
+          "mss_gate": {
+            "selected": "quotient_S_mod_P",
+            "stronger_candidates_rejected_unforced": [
+              "admissible_survivor_set_M_C",
+              "density_operator_rho",
+              "Hopf_projective_lift"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_3",
+            "selection": "quotient_S_mod_P",
+            "variation": [
+              "quotient_S_mod_P",
+              "density_operator_rho"
+            ]
+          },
+          "target_rung": 4
+        },
+        {
+          "controls": {
+            "commuting_order": {
+              "passed": true
+            },
+            "label_shuffle": {
+              "passed": true
+            },
+            "lower_layer_can_do_it": {
+              "passed": true
+            },
+            "non_definitional_flip": {
+              "passed": true
+            }
+          },
+          "distinction_loss_detector": {
+            "evidence": {
+              "lower_layer_can_do_it": true,
+              "static_filters_commute": true
+            },
+            "measured": true
+          },
+          "lost_distinction": "no measured active distinction remains erased by the quotient",
+          "minimalist_first": {
+            "attempt": "rung-4 quotient carries active distinctions",
+            "succeeded": true
+          },
+          "mss_gate": {
+            "selected": null,
+            "stronger_candidates_rejected_unforced": [
+              "admissible_survivor_set_M_C",
+              "ordered_local_update",
+              "density_operator_rho",
+              "Hopf_projective_lift"
+            ]
+          },
+          "receipt_axes": {
+            "claim_ceiling": "scratch_diagnostic",
+            "evidence_grade": "evidence_grade",
+            "lifecycle_status": "SCRATCH_DIAGNOSTIC"
+          },
+          "replicator_accounting": {
+            "heredity": "rung_4",
+            "selection": "minimalist_current_structure_suffices",
+            "variation": [
+              "admissible_survivor_set_M_C",
+              "ordered_local_update",
+              "density_operator_rho"
+            ]
+          },
+          "target_rung": 5
+        }
+      ],
+      "schema": "ratchet_climb_engine_v0.run_result.v1",
+      "seed": 303
+    }
+  ],
+  "schema": "codex_ratchet.ratchet_climb_engine_v0.engine_result.v1",
+  "sim_id": "ratchet_climb_engine_v0",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/ratchet_climb_engine_v0/ratchet_climb_engine_v0_julia.jl",
+  "source_sha256": "a0d4e5cf0e2d2b2e31859cbb0e1b05ffc81a839c41c43126a27a438b9c0d7d1e",
+  "tool_calls": [
+    {
+      "boundary_case": "probe order permutations preserve component count",
+      "demotion_condition": "demote if graph/component count disagrees with quotient classes",
+      "gates": [
+        "distinction_loss_detector"
+      ],
+      "input_object": "finite quotient classes",
+      "negative/erased_control": "support-only quotient collapses to one class",
+      "output_object": "component/class count",
+      "positive_case": "full quotient component count equals carrier count",
+      "qualified_api/function": "Graphs.SimpleGraph / Graphs.nv",
+      "tool": "Graphs"
+    },
+    {
+      "boundary_case": "same variable/context shape in both systems",
+      "demotion_condition": "demote if flip does not occur",
+      "gates": [
+        "non_definitional_bias_check"
+      ],
+      "input_object": "Peres-Mermin contextual and noncontextual-control sign systems",
+      "negative/erased_control": "frustrating sign removed is feasible",
+      "output_object": "UNSAT contextual, SAT control",
+      "positive_case": "contextual assignment infeasible",
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.check",
+      "tool": "Z3"
+    }
+  ]
+}

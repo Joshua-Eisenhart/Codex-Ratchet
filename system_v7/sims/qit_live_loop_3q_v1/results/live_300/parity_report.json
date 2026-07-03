@@ -1,0 +1,76 @@
+{
+  "action_match_count": 300,
+  "action_mismatch_ticks": [],
+  "all_parity_passed": true,
+  "classification": "scratch_diagnostic",
+  "julia_passed": true,
+  "julia_status": {
+    "passed": true,
+    "scoped": true,
+    "threshold": 1e-09
+  },
+  "julia_vs_oracle": {
+    "action_index_exact_match": true,
+    "belief_pauli_63_max_abs_dev": 5.603156827405087e-16,
+    "efe_scores_16_max_abs_dev": 2.1316282072803006e-14,
+    "fe_gradient_max_abs_dev": 1.1812772982011666e-13,
+    "surprise_bits_max_abs_dev": 1.1901590823981678e-13
+  },
+  "lev_bridge_stream": {
+    "errors": [],
+    "manifest": "system_v7/sims/qit_live_loop_3q_v1/results/live_300/lev_bridge_stream/segments_manifest.json",
+    "ok": true,
+    "segment_count": 3,
+    "ticks_verified": 300
+  },
+  "max_belief_pauli_63_abs_dev": 5.603156827405087e-16,
+  "max_efe_scores_16_abs_dev": 2.1316282072803006e-14,
+  "max_fe_gradient_abs_dev": 1.1812772982011666e-13,
+  "max_surprise_bits_abs_dev": 1.1901590823981678e-13,
+  "pair_reports": {
+    "jax_loop_vs_torch_loop": {
+      "action_index_exact_match": true,
+      "belief_pauli_63_max_abs_dev": 0.0,
+      "efe_scores_16_max_abs_dev": 1.5987211554602254e-14,
+      "fe_gradient_max_abs_dev": 0.0,
+      "surprise_bits_max_abs_dev": 0.0
+    },
+    "numpy_oracle_loop_vs_jax_loop": {
+      "action_index_exact_match": true,
+      "belief_pauli_63_max_abs_dev": 0.0,
+      "efe_scores_16_max_abs_dev": 1.7763568394002505e-14,
+      "fe_gradient_max_abs_dev": 0.0,
+      "surprise_bits_max_abs_dev": 0.0
+    },
+    "numpy_oracle_loop_vs_julia_loop": {
+      "action_index_exact_match": true,
+      "belief_pauli_63_max_abs_dev": 5.603156827405087e-16,
+      "efe_scores_16_max_abs_dev": 2.1316282072803006e-14,
+      "fe_gradient_max_abs_dev": 1.1812772982011666e-13,
+      "surprise_bits_max_abs_dev": 1.1901590823981678e-13
+    },
+    "numpy_oracle_loop_vs_torch_loop": {
+      "action_index_exact_match": true,
+      "belief_pauli_63_max_abs_dev": 0.0,
+      "efe_scores_16_max_abs_dev": 1.7763568394002505e-14,
+      "fe_gradient_max_abs_dev": 0.0,
+      "surprise_bits_max_abs_dev": 0.0
+    }
+  },
+  "promotion_allowed": false,
+  "python_trio_action_match_count": 300,
+  "python_trio_action_mismatch_ticks": [],
+  "python_trio_passed": true,
+  "schema": "cr.qit_live_loop_3q_v1.parity_report.v1",
+  "substrates": [
+    "numpy_oracle_loop",
+    "jax_loop",
+    "torch_loop",
+    "julia_loop"
+  ],
+  "thresholds": {
+    "julia_bar": 1e-09,
+    "python_trio_bar": 1e-10
+  },
+  "ticks": 300
+}

@@ -1,0 +1,102 @@
+{
+  "action_match_count": 300,
+  "all_parity_passed": true,
+  "classification": "scratch_diagnostic",
+  "fixture": "system_v7/sims/qit_live_loop_3q_v1/results/live_300/world_fixture.json",
+  "fixture_sha256": "84d44b4c5969a921b39e4dbcfb68db3678b58dbbc0d1d385e0ce8f13b43436eb",
+  "honest_boundaries": [
+    "Julia loop is an independent scratch diagnostic parity leg, not promotion evidence.",
+    "scratch_diagnostic; promotion_allowed=false.",
+    "belief_bloch is q0 reduced projection, not full 3q state.",
+    "L/R dual engine not claimed."
+  ],
+  "julia_passed": true,
+  "julia_vs_oracle": {
+    "action_index_exact_match": true,
+    "belief_pauli_63_max_abs_dev": 5.603156827405087e-16,
+    "efe_scores_16_max_abs_dev": 2.1316282072803006e-14,
+    "fe_gradient_max_abs_dev": 1.1812772982011666e-13,
+    "surprise_bits_max_abs_dev": 1.1901590823981678e-13
+  },
+  "lev_bridge_stream": {
+    "errors": [],
+    "manifest": "system_v7/sims/qit_live_loop_3q_v1/results/live_300/lev_bridge_stream/segments_manifest.json",
+    "ok": true,
+    "segment_count": 3,
+    "ticks_verified": 300
+  },
+  "max_belief_pauli_63_abs_dev": 5.603156827405087e-16,
+  "max_efe_scores_16_abs_dev": 2.1316282072803006e-14,
+  "max_fe_gradient_abs_dev": 1.1812772982011666e-13,
+  "max_surprise_bits_abs_dev": 1.1901590823981678e-13,
+  "parity_report": "system_v7/sims/qit_live_loop_3q_v1/results/live_300/parity_report.json",
+  "promotion_allowed": false,
+  "python_trio_action_match_count": 300,
+  "python_trio_passed": true,
+  "schema": "cr.qit_live_loop_3q_v1.summary.v1",
+  "substrate_metrics": [
+    {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/substrates/numpy_oracle_loop.py",
+        "--fixture",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/world_fixture.json",
+        "--out",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/numpy_oracle_loop.jsonl"
+      ],
+      "loop_seconds": 8.277367792092264,
+      "output": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/numpy_oracle_loop.jsonl",
+      "precompute_seconds": 0.06710095796734095,
+      "ran": true,
+      "returncode": 0,
+      "substrate": "numpy_oracle_loop",
+      "ticks": 300,
+      "total_seconds": 8.344468750059605,
+      "wall_seconds": 8.651564334053546
+    },
+    {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/substrates/jax_loop.py",
+        "--fixture",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/world_fixture.json",
+        "--out",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/jax_loop.jsonl"
+      ],
+      "loop_seconds": 7.737108833156526,
+      "output": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/jax_loop.jsonl",
+      "precompute_seconds": 2.0212317500263453,
+      "ran": true,
+      "returncode": 0,
+      "substrate": "jax_loop",
+      "ticks": 300,
+      "total_seconds": 9.758340583182871,
+      "wall_seconds": 10.11117741605267
+    },
+    {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/substrates/torch_loop.py",
+        "--fixture",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/world_fixture.json",
+        "--out",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/torch_loop.jsonl"
+      ],
+      "loop_seconds": 7.696986708091572,
+      "output": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_live_loop_3q_v1/results/live_300/torch_loop.jsonl",
+      "precompute_seconds": 0.8631792499218136,
+      "ran": true,
+      "returncode": 0,
+      "substrate": "torch_loop",
+      "ticks": 300,
+      "total_seconds": 8.560165958013386,
+      "wall_seconds": 8.973901292076334
+    },
+    {
+      "output": "system_v7/sims/qit_live_loop_3q_v1/results/live_300/julia_loop.jsonl",
+      "ran": "preexisting",
+      "substrate": "julia_loop"
+    }
+  ],
+  "ticks": 300
+}

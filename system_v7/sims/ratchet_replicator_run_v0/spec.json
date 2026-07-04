@@ -1,0 +1,42 @@
+{
+  "sim_id": "ratchet_replicator_run_v0",
+  "status": "DRAFT_UNAUDITED",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "scratch_diagnostic",
+  "purpose": "Run the ratchet from only F01 and N01 over directed distinction-acts, with no target structure and no preloaded replicator shape.",
+  "read_first": [
+    "system_v7/sims/ratchet_climb_engine_v0/ratchet_climb_core.py",
+    "system_v7/sims/ratchet_definition_executable_v0/ratchet_definition_executable_v0.py"
+  ],
+  "root_constraints": {
+    "F01": "finite alphabet of tokens (size A) plus bounded active record window (size W); acts beyond W exclude old active acts to append-only graveyard",
+    "N01": "acts may disturb deterministic finite token states; order genuinely matters in the noncommuting variant"
+  },
+  "seed_floor": "finite append-only record of directed distinction-acts (t,x,y); reflexivity, symmetry, and transitivity are not seed properties",
+  "run_config": {
+    "seed": 17003,
+    "alphabet_size": 6,
+    "window_size": 8,
+    "max_steps": 72,
+    "candidates_per_step": 9,
+    "state_modulus": 997,
+    "motif_min_len": 2,
+    "motif_max_len": 4
+  },
+  "parity_required": [
+    "history-class counts over time",
+    "motif counts",
+    "commuting halt step",
+    "noncommuting halt or no-halt status",
+    "replicator verdict"
+  ],
+  "receipt_axes": {
+    "lifecycle_status": "SCRATCH_DIAGNOSTIC",
+    "evidence_grade": "evidence_grade",
+    "claim_ceiling": "scratch_diagnostic",
+    "capstone_status": "DRAFT_UNAUDITED"
+  }
+}
+

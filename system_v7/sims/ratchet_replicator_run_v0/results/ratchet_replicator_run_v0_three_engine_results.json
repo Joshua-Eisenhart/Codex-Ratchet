@@ -1,0 +1,519 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Julia Base": "load_bearing",
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "numpy": "supportive",
+    "python_stdlib": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing active directed-act graph construction for persistence and F01-window selection checks",
+      "tried": true,
+      "used": true
+    },
+    "Julia Base": {
+      "reason": "load-bearing independent finite ratchet loop, directed acts, window pressure, and motif counting",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing second-solver finite-domain guard for the same nonself directed-act constraint",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive finite-state disturbance checksum/control; shared core carries the exact ratchet counters",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "supportive oracle/control array checksum over finite token states; Python core carries the ratchet counters",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "load-bearing shared ratchet loop, record window, novelty summary, motif detection, and result emission",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing finite-domain guard that distinguishes nonself directed acts from forbidden reflexive candidates",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "capstone_status": "DRAFT_UNAUDITED",
+  "claim": "From F01+N01 only, directed distinction-act histories saturate in the commuting control but continue registering order-sensitive facts over the noncommuting run budget; equivalence lifts remain refused-unforced; the first replicator is whatever the motif counters detect.",
+  "claim_ceiling": "scratch_diagnostic",
+  "claim_path_tools": [
+    "python_stdlib",
+    "z3",
+    "cvc5",
+    "Graphs",
+    "Julia Base"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_only_tools": [
+    "numpy",
+    "jax"
+  ],
+  "crossover_proofs": {
+    "cvc5": {
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": 72.0,
+      "julia": 72.0,
+      "numpy": 72.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine": "agreement_envelope",
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "numpy_control",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "numpy_oracle_control"
+    ],
+    "mode": "julia_canon_jax_workhorse"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "python_stdlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v7/sims/ratchet_replicator_run_v0/results/ratchet_replicator_run_v0_jax_results.json",
+      "result_sha256": "34171061b683b1a420d0e248d1adf3a22be2ce03b410d79e2ced84bca6402524",
+      "source_path": "system_v7/sims/ratchet_replicator_run_v0/ratchet_replicator_run_v0_jax.py",
+      "source_sha256": "d4878bbf56d64b4d357a0991298da8a914e318fc45fe6bf243c542ae02e857dc"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "Graphs",
+        "JSON",
+        "SHA",
+        "Julia Base"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v7/sims/ratchet_replicator_run_v0/results/ratchet_replicator_run_v0_julia_results.json",
+      "result_sha256": "8fd53fc8cb440cc6510de5497fd66169d4bba06b98ef1e5cd5def5fe397eb1e4",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/ratchet_replicator_run_v0/ratchet_replicator_run_v0_julia.jl",
+      "source_sha256": "34e0d3e0c4bb4ca6f2dc1ba509443f8e04c5ba63eceb5edaddf0e17078e57526"
+    }
+  },
+  "equivalence_property_lifts": {
+    "reflexivity": {
+      "demand_failures_if_installed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "needed_by_run": false,
+      "verdict": "REFUSED_UNFORCED"
+    },
+    "symmetry": {
+      "demand_failures_if_installed": [],
+      "needed_by_run": false,
+      "verdict": "REFUSED_UNFORCED"
+    },
+    "transitivity": {
+      "demand_failures_if_installed": [],
+      "needed_by_run": false,
+      "verdict": "REFUSED_UNFORCED"
+    }
+  },
+  "failures": [],
+  "formal_admission_allowed": false,
+  "frontier_result": {
+    "commuting": {
+      "admitted_count": 28,
+      "final_history_class_count": 7,
+      "halt_step": 8
+    },
+    "noncommuting": {
+      "admitted_count": 648,
+      "final_history_class_count": 72,
+      "halt_step": null
+    }
+  },
+  "lifecycle_status": "SCRATCH_DIAGNOSTIC",
+  "numpy_oracle_control": {
+    "aligned_packages_load_bearing": [
+      "python_stdlib"
+    ],
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "packages_used": [
+      "numpy",
+      "python_stdlib"
+    ],
+    "promotion_allowed": false,
+    "ran": true,
+    "reads_peer_result": false,
+    "result_path": "system_v7/sims/ratchet_replicator_run_v0/results/ratchet_replicator_run_v0_numpy_results.json",
+    "result_sha256": "16b9a7d1f3be062ba2331ab7ac771ecc334d044c3a929873ee297109cdba4298",
+    "source_path": "system_v7/sims/ratchet_replicator_run_v0/ratchet_replicator_run_v0_numpy.py",
+    "source_sha256": "efc3683f202741d4293c09c53162759c05a5ee5da1487560e0cdfe46a59f6bb5"
+  },
+  "object_id": "ratchet_replicator_run_v0",
+  "parity": {
+    "halt_steps": "PASS",
+    "history_class_counts": "PASS",
+    "motif_counts": "PASS",
+    "replicator_verdict": "PASS"
+  },
+  "promotion_allowed": false,
+  "replicator_verdict": {
+    "first_replicator": {
+      "active_variant_count": 2,
+      "first_completed_at_step": 1,
+      "graveyard_variant_count": 86,
+      "growth_curve": [
+        {
+          "occurrences": 1,
+          "step": 1
+        },
+        {
+          "occurrences": 2,
+          "step": 2
+        },
+        {
+          "occurrences": 3,
+          "step": 3
+        },
+        {
+          "occurrences": 5,
+          "step": 4
+        },
+        {
+          "occurrences": 6,
+          "step": 6
+        },
+        {
+          "occurrences": 7,
+          "step": 8
+        },
+        {
+          "occurrences": 8,
+          "step": 9
+        },
+        {
+          "occurrences": 9,
+          "step": 11
+        },
+        {
+          "occurrences": 11,
+          "step": 12
+        },
+        {
+          "occurrences": 12,
+          "step": 13
+        },
+        {
+          "occurrences": 13,
+          "step": 14
+        },
+        {
+          "occurrences": 15,
+          "step": 15
+        },
+        {
+          "occurrences": 16,
+          "step": 16
+        },
+        {
+          "occurrences": 18,
+          "step": 17
+        },
+        {
+          "occurrences": 19,
+          "step": 19
+        },
+        {
+          "occurrences": 21,
+          "step": 20
+        },
+        {
+          "occurrences": 23,
+          "step": 21
+        },
+        {
+          "occurrences": 24,
+          "step": 22
+        },
+        {
+          "occurrences": 25,
+          "step": 29
+        },
+        {
+          "occurrences": 26,
+          "step": 30
+        },
+        {
+          "occurrences": 30,
+          "step": 32
+        },
+        {
+          "occurrences": 32,
+          "step": 33
+        },
+        {
+          "occurrences": 33,
+          "step": 34
+        },
+        {
+          "occurrences": 34,
+          "step": 35
+        },
+        {
+          "occurrences": 36,
+          "step": 36
+        },
+        {
+          "occurrences": 39,
+          "step": 37
+        },
+        {
+          "occurrences": 41,
+          "step": 38
+        },
+        {
+          "occurrences": 42,
+          "step": 39
+        },
+        {
+          "occurrences": 44,
+          "step": 40
+        },
+        {
+          "occurrences": 47,
+          "step": 42
+        },
+        {
+          "occurrences": 48,
+          "step": 43
+        },
+        {
+          "occurrences": 50,
+          "step": 46
+        },
+        {
+          "occurrences": 51,
+          "step": 49
+        },
+        {
+          "occurrences": 53,
+          "step": 50
+        },
+        {
+          "occurrences": 54,
+          "step": 51
+        },
+        {
+          "occurrences": 56,
+          "step": 52
+        },
+        {
+          "occurrences": 57,
+          "step": 53
+        },
+        {
+          "occurrences": 58,
+          "step": 55
+        },
+        {
+          "occurrences": 60,
+          "step": 56
+        },
+        {
+          "occurrences": 62,
+          "step": 57
+        },
+        {
+          "occurrences": 63,
+          "step": 58
+        },
+        {
+          "occurrences": 67,
+          "step": 59
+        },
+        {
+          "occurrences": 69,
+          "step": 60
+        },
+        {
+          "occurrences": 70,
+          "step": 61
+        },
+        {
+          "occurrences": 73,
+          "step": 62
+        },
+        {
+          "occurrences": 75,
+          "step": 63
+        },
+        {
+          "occurrences": 77,
+          "step": 64
+        },
+        {
+          "occurrences": 79,
+          "step": 65
+        },
+        {
+          "occurrences": 80,
+          "step": 66
+        },
+        {
+          "occurrences": 81,
+          "step": 68
+        },
+        {
+          "occurrences": 82,
+          "step": 69
+        },
+        {
+          "occurrences": 84,
+          "step": 70
+        },
+        {
+          "occurrences": 85,
+          "step": 71
+        },
+        {
+          "occurrences": 87,
+          "step": 72
+        }
+      ],
+      "heredity": true,
+      "occurrence_count": 87,
+      "pattern": "0>1,2>1",
+      "raw_variant_examples": [
+        [
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            5,
+            3
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        [
+          [
+            3,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            3,
+            5
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      ],
+      "selection": true,
+      "structure": [
+        "0>1",
+        "2>1"
+      ],
+      "variation": true
+    },
+    "near_misses": [],
+    "verdict": "FOUND"
+  },
+  "saturation_theorem_check": {
+    "commuting_halt_step": 8,
+    "commuting_saturates": true,
+    "derivation_check": "PASS",
+    "noncommuting_halt_step": null,
+    "noncommuting_halts": false,
+    "noncommuting_keeps_registering_order_facts_through_budget": true
+  },
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "ratchet_replicator_run_v0",
+  "written_at": "2026-07-04T00:18:51Z"
+}

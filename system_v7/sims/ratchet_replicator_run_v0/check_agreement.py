@@ -125,7 +125,7 @@ def main() -> int:
         "claim_ceiling": "scratch_diagnostic",
         "capstone_status": "DRAFT_UNAUDITED",
         "all_pass": not failures,
-        "claim": "From F01+N01 only, directed distinction-act histories saturate in the commuting control but continue registering order-sensitive facts over the noncommuting run budget; equivalence lifts remain refused-unforced; the first replicator is whatever the motif counters detect.",
+        "claim": "Scratch diagnostic only: old headline saturation, replicator, and equivalence verdicts were by-construction; repaired output reports parameter sweeps, copy-step-only replicator detection, and adversarial closure-demand fixtures.",
         "claim_path_tools": ["python_stdlib", "z3", "cvc5", "Graphs", "Julia Base"],
         "control_only_tools": ["numpy", "jax"],
         "TOOL_MANIFEST": {
@@ -154,6 +154,14 @@ def main() -> int:
         "saturation_theorem_check": jax["saturation_theorem_check"],
         "equivalence_property_lifts": jax["equivalence_property_lifts"],
         "replicator_verdict": jax["replicator_verdict"],
+        "replicator_scan_by_branch": jax["replicator_scan_by_branch"],
+        "possibility_field_ledger_summary": {
+            mode: {
+                "steps": len(jax["runs"][mode]["possibility_field_ledger"]),
+                "final": jax["runs"][mode]["possibility_field_ledger"][-1],
+            }
+            for mode in ("commuting", "noncommuting")
+        },
         "frontier_result": jax["frontier_result"],
         "divergence": {
             "julia_authoritative": True,

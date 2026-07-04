@@ -47,7 +47,7 @@
   },
   "all_pass": true,
   "capstone_status": "DRAFT_UNAUDITED",
-  "claim": "From F01+N01 only, directed distinction-act histories saturate in the commuting control but continue registering order-sensitive facts over the noncommuting run budget; equivalence lifts remain refused-unforced; the first replicator is whatever the motif counters detect.",
+  "claim": "Scratch diagnostic only: old headline saturation, replicator, and equivalence verdicts were by-construction; repaired output reports parameter sweeps, copy-step-only replicator detection, and adversarial closure-demand fixtures.",
   "claim_ceiling": "scratch_diagnostic",
   "claim_path_tools": [
     "python_stdlib",
@@ -117,7 +117,7 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "system_v7/sims/ratchet_replicator_run_v0/results/ratchet_replicator_run_v0_jax_results.json",
-      "result_sha256": "34171061b683b1a420d0e248d1adf3a22be2ce03b410d79e2ced84bca6402524",
+      "result_sha256": "1678e4b0debd1c13a851c3f93ab9eb4f8e4196d394bf31c9f2a23002027b8078",
       "source_path": "system_v7/sims/ratchet_replicator_run_v0/ratchet_replicator_run_v0_jax.py",
       "source_sha256": "d4878bbf56d64b4d357a0991298da8a914e318fc45fe6bf243c542ae02e857dc"
     },
@@ -137,14 +137,34 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "system_v7/sims/ratchet_replicator_run_v0/results/ratchet_replicator_run_v0_julia_results.json",
-      "result_sha256": "8fd53fc8cb440cc6510de5497fd66169d4bba06b98ef1e5cd5def5fe397eb1e4",
+      "result_sha256": "afa071b29b63b672dc8466670457009c2043801689547cf63ce20c2ecec1e869",
       "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/ratchet_replicator_run_v0/ratchet_replicator_run_v0_julia.jl",
-      "source_sha256": "34e0d3e0c4bb4ca6f2dc1ba509443f8e04c5ba63eceb5edaddf0e17078e57526"
+      "source_sha256": "9ab693e1dfdc6311c51a2a96d9a72af109c7e23421de7b1dd8cf0858d6f5ee06"
     }
   },
   "equivalence_property_lifts": {
     "reflexivity": {
-      "demand_failures_if_installed": [
+      "demanded_pairs": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "missing_pairs": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "ordinary_failures": [
         0,
         1,
         2,
@@ -152,18 +172,44 @@
         4,
         5
       ],
-      "needed_by_run": false,
-      "verdict": "REFUSED_UNFORCED"
+      "refusal_allowed": false,
+      "verdict": "FAIL"
     },
     "symmetry": {
-      "demand_failures_if_installed": [],
-      "needed_by_run": false,
-      "verdict": "REFUSED_UNFORCED"
+      "demanded_pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "missing_pairs": [],
+      "ordinary_failures": [],
+      "refusal_allowed": false,
+      "verdict": "PASS"
     },
     "transitivity": {
-      "demand_failures_if_installed": [],
-      "needed_by_run": false,
-      "verdict": "REFUSED_UNFORCED"
+      "demanded_pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "missing_pairs": [],
+      "ordinary_failures": [],
+      "refusal_allowed": false,
+      "verdict": "PASS"
     }
   },
   "failures": [],
@@ -195,7 +241,7 @@
     "ran": true,
     "reads_peer_result": false,
     "result_path": "system_v7/sims/ratchet_replicator_run_v0/results/ratchet_replicator_run_v0_numpy_results.json",
-    "result_sha256": "16b9a7d1f3be062ba2331ab7ac771ecc334d044c3a929873ee297109cdba4298",
+    "result_sha256": "2b45a8a2206c445937f56b3d9985c6cd4e912897bc9f5aa35161465c5ada6c08",
     "source_path": "system_v7/sims/ratchet_replicator_run_v0/ratchet_replicator_run_v0_numpy.py",
     "source_sha256": "efc3683f202741d4293c09c53162759c05a5ee5da1487560e0cdfe46a59f6bb5"
   },
@@ -206,314 +252,2982 @@
     "motif_counts": "PASS",
     "replicator_verdict": "PASS"
   },
+  "possibility_field_ledger_summary": {
+    "commuting": {
+      "final": {
+        "kinetic": 0,
+        "potential": 0,
+        "record_mi_halves": 2.0,
+        "record_mi_quarters_mean_pairwise": 1.0,
+        "step": 8
+      },
+      "steps": 8
+    },
+    "noncommuting": {
+      "final": {
+        "kinetic": 9,
+        "potential": 9,
+        "record_mi_halves": 2.0,
+        "record_mi_quarters_mean_pairwise": 1.0,
+        "step": 72
+      },
+      "steps": 72
+    }
+  },
   "promotion_allowed": false,
-  "replicator_verdict": {
-    "first_replicator": {
-      "active_variant_count": 2,
-      "first_completed_at_step": 1,
-      "graveyard_variant_count": 86,
-      "growth_curve": [
+  "replicator_scan_by_branch": {
+    "commuting": {
+      "first_replicator": null,
+      "near_misses": [
         {
-          "occurrences": 1,
-          "step": 1
+          "active_variant_count": 6,
+          "copied_offspring_count": 0,
+          "failed_criteria": [
+            "heredity"
+          ],
+          "first_completed_at_step": 1,
+          "graveyard_variant_count": 9,
+          "growth_curve": [
+            {
+              "occurrences": 4,
+              "step": 1
+            },
+            {
+              "occurrences": 6,
+              "step": 2
+            },
+            {
+              "occurrences": 8,
+              "step": 3
+            },
+            {
+              "occurrences": 11,
+              "step": 4
+            },
+            {
+              "occurrences": 13,
+              "step": 5
+            },
+            {
+              "occurrences": 14,
+              "step": 6
+            }
+          ],
+          "heredity": false,
+          "occurrence_count": 14,
+          "pattern": "0>1,2>3",
+          "raw_variant_examples": [
+            [
+              [
+                5,
+                3
+              ],
+              [
+                4,
+                1
+              ]
+            ],
+            [
+              [
+                4,
+                2
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                3
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                5
+              ]
+            ],
+            [
+              [
+                2,
+                5
+              ],
+              [
+                4,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                2
+              ],
+              [
+                5,
+                4
+              ]
+            ]
+          ],
+          "selection": true,
+          "structure": [
+            "0>1",
+            "2>3"
+          ],
+          "variation": true
         },
         {
-          "occurrences": 2,
-          "step": 2
-        },
-        {
-          "occurrences": 3,
-          "step": 3
-        },
-        {
-          "occurrences": 5,
-          "step": 4
-        },
-        {
-          "occurrences": 6,
-          "step": 6
-        },
-        {
-          "occurrences": 7,
-          "step": 8
-        },
-        {
-          "occurrences": 8,
-          "step": 9
-        },
-        {
-          "occurrences": 9,
-          "step": 11
-        },
-        {
-          "occurrences": 11,
-          "step": 12
-        },
-        {
-          "occurrences": 12,
-          "step": 13
-        },
-        {
-          "occurrences": 13,
-          "step": 14
-        },
-        {
-          "occurrences": 15,
-          "step": 15
-        },
-        {
-          "occurrences": 16,
-          "step": 16
-        },
-        {
-          "occurrences": 18,
-          "step": 17
-        },
-        {
-          "occurrences": 19,
-          "step": 19
-        },
-        {
-          "occurrences": 21,
-          "step": 20
-        },
-        {
-          "occurrences": 23,
-          "step": 21
-        },
-        {
-          "occurrences": 24,
-          "step": 22
-        },
-        {
-          "occurrences": 25,
-          "step": 29
-        },
-        {
-          "occurrences": 26,
-          "step": 30
-        },
-        {
-          "occurrences": 30,
-          "step": 32
-        },
-        {
-          "occurrences": 32,
-          "step": 33
-        },
-        {
-          "occurrences": 33,
-          "step": 34
-        },
-        {
-          "occurrences": 34,
-          "step": 35
-        },
-        {
-          "occurrences": 36,
-          "step": 36
-        },
-        {
-          "occurrences": 39,
-          "step": 37
-        },
-        {
-          "occurrences": 41,
-          "step": 38
-        },
-        {
-          "occurrences": 42,
-          "step": 39
-        },
-        {
-          "occurrences": 44,
-          "step": 40
-        },
-        {
-          "occurrences": 47,
-          "step": 42
-        },
-        {
-          "occurrences": 48,
-          "step": 43
-        },
-        {
-          "occurrences": 50,
-          "step": 46
-        },
-        {
-          "occurrences": 51,
-          "step": 49
-        },
-        {
-          "occurrences": 53,
-          "step": 50
-        },
-        {
-          "occurrences": 54,
-          "step": 51
-        },
-        {
-          "occurrences": 56,
-          "step": 52
-        },
-        {
-          "occurrences": 57,
-          "step": 53
-        },
-        {
-          "occurrences": 58,
-          "step": 55
-        },
-        {
-          "occurrences": 60,
-          "step": 56
-        },
-        {
-          "occurrences": 62,
-          "step": 57
-        },
-        {
-          "occurrences": 63,
-          "step": 58
-        },
-        {
-          "occurrences": 67,
-          "step": 59
-        },
-        {
-          "occurrences": 69,
-          "step": 60
-        },
-        {
-          "occurrences": 70,
-          "step": 61
-        },
-        {
-          "occurrences": 73,
-          "step": 62
-        },
-        {
-          "occurrences": 75,
-          "step": 63
-        },
-        {
-          "occurrences": 77,
-          "step": 64
-        },
-        {
-          "occurrences": 79,
-          "step": 65
-        },
-        {
-          "occurrences": 80,
-          "step": 66
-        },
-        {
-          "occurrences": 81,
-          "step": 68
-        },
-        {
-          "occurrences": 82,
-          "step": 69
-        },
-        {
-          "occurrences": 84,
-          "step": 70
-        },
-        {
-          "occurrences": 85,
-          "step": 71
-        },
-        {
-          "occurrences": 87,
-          "step": 72
+          "active_variant_count": 2,
+          "copied_offspring_count": 0,
+          "failed_criteria": [
+            "heredity"
+          ],
+          "first_completed_at_step": 1,
+          "graveyard_variant_count": 3,
+          "growth_curve": [
+            {
+              "occurrences": 1,
+              "step": 1
+            },
+            {
+              "occurrences": 2,
+              "step": 2
+            },
+            {
+              "occurrences": 3,
+              "step": 3
+            },
+            {
+              "occurrences": 5,
+              "step": 7
+            }
+          ],
+          "heredity": false,
+          "occurrence_count": 5,
+          "pattern": "0>1,1>2",
+          "raw_variant_examples": [
+            [
+              [
+                3,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            [
+              [
+                3,
+                2
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                5
+              ],
+              [
+                5,
+                0
+              ]
+            ],
+            [
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                4
+              ]
+            ],
+            [
+              [
+                5,
+                1
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          ],
+          "selection": true,
+          "structure": [
+            "0>1",
+            "1>2"
+          ],
+          "variation": true
         }
       ],
-      "heredity": true,
-      "occurrence_count": 87,
-      "pattern": "0>1,2>1",
-      "raw_variant_examples": [
-        [
-          [
-            3,
-            2
-          ],
-          [
-            5,
-            2
-          ]
-        ],
-        [
-          [
-            3,
-            0
-          ],
-          [
-            1,
-            0
-          ]
-        ],
-        [
-          [
-            5,
-            3
-          ],
-          [
-            4,
-            3
-          ]
-        ],
-        [
-          [
-            3,
-            2
-          ],
-          [
-            1,
-            2
-          ]
-        ],
-        [
-          [
-            3,
-            5
-          ],
-          [
-            1,
-            5
-          ]
-        ],
-        [
-          [
-            0,
-            1
-          ],
-          [
-            3,
-            1
-          ]
-        ]
-      ],
-      "selection": true,
-      "structure": [
-        "0>1",
-        "2>1"
-      ],
-      "variation": true
+      "verdict": "NONE_FOUND"
     },
-    "near_misses": [],
-    "verdict": "FOUND"
+    "negative_fixtures": {
+      "fails_heredity": {
+        "expected_failed_criterion": "heredity",
+        "raw_detector_verdict": "NONE_FOUND",
+        "raw_first_replicator": null,
+        "verdict": "NONE_FOUND"
+      },
+      "fails_selection": {
+        "expected_failed_criterion": "selection",
+        "raw_detector_verdict": "NONE_FOUND",
+        "raw_first_replicator": null,
+        "verdict": "NONE_FOUND"
+      },
+      "fails_variation": {
+        "expected_failed_criterion": "variation",
+        "raw_detector_verdict": "NONE_FOUND",
+        "raw_first_replicator": null,
+        "verdict": "NONE_FOUND"
+      }
+    },
+    "noncommuting": {
+      "first_replicator": null,
+      "near_misses": [
+        {
+          "active_variant_count": 2,
+          "copied_offspring_count": 0,
+          "failed_criteria": [
+            "heredity"
+          ],
+          "first_completed_at_step": 1,
+          "graveyard_variant_count": 86,
+          "growth_curve": [
+            {
+              "occurrences": 1,
+              "step": 1
+            },
+            {
+              "occurrences": 2,
+              "step": 2
+            },
+            {
+              "occurrences": 3,
+              "step": 3
+            },
+            {
+              "occurrences": 5,
+              "step": 4
+            },
+            {
+              "occurrences": 6,
+              "step": 6
+            },
+            {
+              "occurrences": 7,
+              "step": 8
+            },
+            {
+              "occurrences": 8,
+              "step": 9
+            },
+            {
+              "occurrences": 9,
+              "step": 11
+            },
+            {
+              "occurrences": 11,
+              "step": 12
+            },
+            {
+              "occurrences": 12,
+              "step": 13
+            },
+            {
+              "occurrences": 13,
+              "step": 14
+            },
+            {
+              "occurrences": 15,
+              "step": 15
+            },
+            {
+              "occurrences": 16,
+              "step": 16
+            },
+            {
+              "occurrences": 18,
+              "step": 17
+            },
+            {
+              "occurrences": 19,
+              "step": 19
+            },
+            {
+              "occurrences": 21,
+              "step": 20
+            },
+            {
+              "occurrences": 23,
+              "step": 21
+            },
+            {
+              "occurrences": 24,
+              "step": 22
+            },
+            {
+              "occurrences": 25,
+              "step": 29
+            },
+            {
+              "occurrences": 26,
+              "step": 30
+            },
+            {
+              "occurrences": 30,
+              "step": 32
+            },
+            {
+              "occurrences": 32,
+              "step": 33
+            },
+            {
+              "occurrences": 33,
+              "step": 34
+            },
+            {
+              "occurrences": 34,
+              "step": 35
+            },
+            {
+              "occurrences": 36,
+              "step": 36
+            },
+            {
+              "occurrences": 39,
+              "step": 37
+            },
+            {
+              "occurrences": 41,
+              "step": 38
+            },
+            {
+              "occurrences": 42,
+              "step": 39
+            },
+            {
+              "occurrences": 44,
+              "step": 40
+            },
+            {
+              "occurrences": 47,
+              "step": 42
+            },
+            {
+              "occurrences": 48,
+              "step": 43
+            },
+            {
+              "occurrences": 50,
+              "step": 46
+            },
+            {
+              "occurrences": 51,
+              "step": 49
+            },
+            {
+              "occurrences": 53,
+              "step": 50
+            },
+            {
+              "occurrences": 54,
+              "step": 51
+            },
+            {
+              "occurrences": 56,
+              "step": 52
+            },
+            {
+              "occurrences": 57,
+              "step": 53
+            },
+            {
+              "occurrences": 58,
+              "step": 55
+            },
+            {
+              "occurrences": 60,
+              "step": 56
+            },
+            {
+              "occurrences": 62,
+              "step": 57
+            },
+            {
+              "occurrences": 63,
+              "step": 58
+            },
+            {
+              "occurrences": 67,
+              "step": 59
+            },
+            {
+              "occurrences": 69,
+              "step": 60
+            },
+            {
+              "occurrences": 70,
+              "step": 61
+            },
+            {
+              "occurrences": 73,
+              "step": 62
+            },
+            {
+              "occurrences": 75,
+              "step": 63
+            },
+            {
+              "occurrences": 77,
+              "step": 64
+            },
+            {
+              "occurrences": 79,
+              "step": 65
+            },
+            {
+              "occurrences": 80,
+              "step": 66
+            },
+            {
+              "occurrences": 81,
+              "step": 68
+            },
+            {
+              "occurrences": 82,
+              "step": 69
+            },
+            {
+              "occurrences": 84,
+              "step": 70
+            },
+            {
+              "occurrences": 85,
+              "step": 71
+            },
+            {
+              "occurrences": 87,
+              "step": 72
+            }
+          ],
+          "heredity": false,
+          "occurrence_count": 87,
+          "pattern": "0>1,2>1",
+          "raw_variant_examples": [
+            [
+              [
+                3,
+                2
+              ],
+              [
+                5,
+                2
+              ]
+            ],
+            [
+              [
+                3,
+                0
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              [
+                5,
+                3
+              ],
+              [
+                4,
+                3
+              ]
+            ],
+            [
+              [
+                3,
+                2
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            [
+              [
+                3,
+                5
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                1
+              ]
+            ]
+          ],
+          "selection": true,
+          "structure": [
+            "0>1",
+            "2>1"
+          ],
+          "variation": true
+        },
+        {
+          "active_variant_count": 1,
+          "copied_offspring_count": 0,
+          "failed_criteria": [
+            "heredity"
+          ],
+          "first_completed_at_step": 1,
+          "graveyard_variant_count": 14,
+          "growth_curve": [
+            {
+              "occurrences": 1,
+              "step": 1
+            },
+            {
+              "occurrences": 2,
+              "step": 8
+            },
+            {
+              "occurrences": 3,
+              "step": 9
+            },
+            {
+              "occurrences": 4,
+              "step": 12
+            },
+            {
+              "occurrences": 5,
+              "step": 17
+            },
+            {
+              "occurrences": 6,
+              "step": 21
+            },
+            {
+              "occurrences": 7,
+              "step": 33
+            },
+            {
+              "occurrences": 8,
+              "step": 34
+            },
+            {
+              "occurrences": 9,
+              "step": 46
+            },
+            {
+              "occurrences": 10,
+              "step": 51
+            },
+            {
+              "occurrences": 11,
+              "step": 58
+            },
+            {
+              "occurrences": 12,
+              "step": 60
+            },
+            {
+              "occurrences": 13,
+              "step": 64
+            },
+            {
+              "occurrences": 14,
+              "step": 72
+            }
+          ],
+          "heredity": false,
+          "occurrence_count": 14,
+          "pattern": "0>1,2>1,0>3",
+          "raw_variant_examples": [
+            [
+              [
+                3,
+                2
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            [
+              [
+                5,
+                4
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                4
+              ],
+              [
+                5,
+                4
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            [
+              [
+                5,
+                2
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            [
+              [
+                3,
+                5
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                5
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          ],
+          "selection": true,
+          "structure": [
+            "0>1",
+            "2>1",
+            "0>3"
+          ],
+          "variation": true
+        },
+        {
+          "active_variant_count": 2,
+          "copied_offspring_count": 0,
+          "failed_criteria": [
+            "heredity"
+          ],
+          "first_completed_at_step": 1,
+          "graveyard_variant_count": 245,
+          "growth_curve": [
+            {
+              "occurrences": 4,
+              "step": 1
+            },
+            {
+              "occurrences": 7,
+              "step": 2
+            },
+            {
+              "occurrences": 10,
+              "step": 3
+            },
+            {
+              "occurrences": 13,
+              "step": 4
+            },
+            {
+              "occurrences": 19,
+              "step": 5
+            },
+            {
+              "occurrences": 24,
+              "step": 6
+            },
+            {
+              "occurrences": 27,
+              "step": 7
+            },
+            {
+              "occurrences": 30,
+              "step": 8
+            },
+            {
+              "occurrences": 32,
+              "step": 9
+            },
+            {
+              "occurrences": 37,
+              "step": 10
+            },
+            {
+              "occurrences": 41,
+              "step": 11
+            },
+            {
+              "occurrences": 46,
+              "step": 12
+            },
+            {
+              "occurrences": 50,
+              "step": 13
+            },
+            {
+              "occurrences": 55,
+              "step": 14
+            },
+            {
+              "occurrences": 57,
+              "step": 15
+            },
+            {
+              "occurrences": 60,
+              "step": 16
+            },
+            {
+              "occurrences": 65,
+              "step": 17
+            },
+            {
+              "occurrences": 67,
+              "step": 18
+            },
+            {
+              "occurrences": 69,
+              "step": 19
+            },
+            {
+              "occurrences": 70,
+              "step": 20
+            },
+            {
+              "occurrences": 73,
+              "step": 21
+            },
+            {
+              "occurrences": 79,
+              "step": 22
+            },
+            {
+              "occurrences": 83,
+              "step": 23
+            },
+            {
+              "occurrences": 88,
+              "step": 24
+            },
+            {
+              "occurrences": 90,
+              "step": 25
+            },
+            {
+              "occurrences": 94,
+              "step": 26
+            },
+            {
+              "occurrences": 100,
+              "step": 27
+            },
+            {
+              "occurrences": 105,
+              "step": 28
+            },
+            {
+              "occurrences": 110,
+              "step": 29
+            },
+            {
+              "occurrences": 116,
+              "step": 30
+            },
+            {
+              "occurrences": 120,
+              "step": 31
+            },
+            {
+              "occurrences": 123,
+              "step": 32
+            },
+            {
+              "occurrences": 127,
+              "step": 33
+            },
+            {
+              "occurrences": 129,
+              "step": 34
+            },
+            {
+              "occurrences": 133,
+              "step": 35
+            },
+            {
+              "occurrences": 135,
+              "step": 36
+            },
+            {
+              "occurrences": 137,
+              "step": 37
+            },
+            {
+              "occurrences": 140,
+              "step": 38
+            },
+            {
+              "occurrences": 142,
+              "step": 39
+            },
+            {
+              "occurrences": 143,
+              "step": 40
+            },
+            {
+              "occurrences": 147,
+              "step": 41
+            },
+            {
+              "occurrences": 151,
+              "step": 42
+            },
+            {
+              "occurrences": 154,
+              "step": 43
+            },
+            {
+              "occurrences": 157,
+              "step": 44
+            },
+            {
+              "occurrences": 163,
+              "step": 45
+            },
+            {
+              "occurrences": 168,
+              "step": 46
+            },
+            {
+              "occurrences": 173,
+              "step": 47
+            },
+            {
+              "occurrences": 177,
+              "step": 48
+            },
+            {
+              "occurrences": 180,
+              "step": 49
+            },
+            {
+              "occurrences": 182,
+              "step": 50
+            },
+            {
+              "occurrences": 186,
+              "step": 51
+            },
+            {
+              "occurrences": 190,
+              "step": 52
+            },
+            {
+              "occurrences": 193,
+              "step": 53
+            },
+            {
+              "occurrences": 199,
+              "step": 54
+            },
+            {
+              "occurrences": 203,
+              "step": 55
+            },
+            {
+              "occurrences": 207,
+              "step": 56
+            },
+            {
+              "occurrences": 209,
+              "step": 57
+            },
+            {
+              "occurrences": 213,
+              "step": 58
+            },
+            {
+              "occurrences": 214,
+              "step": 59
+            },
+            {
+              "occurrences": 216,
+              "step": 60
+            },
+            {
+              "occurrences": 217,
+              "step": 61
+            },
+            {
+              "occurrences": 219,
+              "step": 62
+            },
+            {
+              "occurrences": 222,
+              "step": 63
+            },
+            {
+              "occurrences": 225,
+              "step": 64
+            },
+            {
+              "occurrences": 228,
+              "step": 65
+            },
+            {
+              "occurrences": 233,
+              "step": 66
+            },
+            {
+              "occurrences": 236,
+              "step": 67
+            },
+            {
+              "occurrences": 239,
+              "step": 68
+            },
+            {
+              "occurrences": 242,
+              "step": 69
+            },
+            {
+              "occurrences": 244,
+              "step": 70
+            },
+            {
+              "occurrences": 245,
+              "step": 71
+            },
+            {
+              "occurrences": 247,
+              "step": 72
+            }
+          ],
+          "heredity": false,
+          "occurrence_count": 247,
+          "pattern": "0>1,2>3",
+          "raw_variant_examples": [
+            [
+              [
+                3,
+                1
+              ],
+              [
+                5,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                2
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                5
+              ],
+              [
+                3,
+                2
+              ]
+            ],
+            [
+              [
+                4,
+                3
+              ],
+              [
+                5,
+                1
+              ]
+            ],
+            [
+              [
+                2,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            [
+              [
+                4,
+                5
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          ],
+          "selection": true,
+          "structure": [
+            "0>1",
+            "2>3"
+          ],
+          "variation": true
+        },
+        {
+          "active_variant_count": 2,
+          "copied_offspring_count": 0,
+          "failed_criteria": [
+            "heredity"
+          ],
+          "first_completed_at_step": 1,
+          "graveyard_variant_count": 84,
+          "growth_curve": [
+            {
+              "occurrences": 2,
+              "step": 1
+            },
+            {
+              "occurrences": 3,
+              "step": 2
+            },
+            {
+              "occurrences": 5,
+              "step": 3
+            },
+            {
+              "occurrences": 6,
+              "step": 4
+            },
+            {
+              "occurrences": 7,
+              "step": 5
+            },
+            {
+              "occurrences": 8,
+              "step": 6
+            },
+            {
+              "occurrences": 10,
+              "step": 7
+            },
+            {
+              "occurrences": 11,
+              "step": 8
+            },
+            {
+              "occurrences": 12,
+              "step": 10
+            },
+            {
+              "occurrences": 14,
+              "step": 11
+            },
+            {
+              "occurrences": 17,
+              "step": 13
+            },
+            {
+              "occurrences": 18,
+              "step": 14
+            },
+            {
+              "occurrences": 21,
+              "step": 15
+            },
+            {
+              "occurrences": 22,
+              "step": 16
+            },
+            {
+              "occurrences": 24,
+              "step": 17
+            },
+            {
+              "occurrences": 28,
+              "step": 18
+            },
+            {
+              "occurrences": 29,
+              "step": 20
+            },
+            {
+              "occurrences": 31,
+              "step": 21
+            },
+            {
+              "occurrences": 32,
+              "step": 23
+            },
+            {
+              "occurrences": 34,
+              "step": 24
+            },
+            {
+              "occurrences": 35,
+              "step": 25
+            },
+            {
+              "occurrences": 36,
+              "step": 26
+            },
+            {
+              "occurrences": 38,
+              "step": 27
+            },
+            {
+              "occurrences": 39,
+              "step": 28
+            },
+            {
+              "occurrences": 40,
+              "step": 29
+            },
+            {
+              "occurrences": 41,
+              "step": 31
+            },
+            {
+              "occurrences": 42,
+              "step": 32
+            },
+            {
+              "occurrences": 44,
+              "step": 34
+            },
+            {
+              "occurrences": 46,
+              "step": 36
+            },
+            {
+              "occurrences": 47,
+              "step": 37
+            },
+            {
+              "occurrences": 49,
+              "step": 38
+            },
+            {
+              "occurrences": 52,
+              "step": 40
+            },
+            {
+              "occurrences": 53,
+              "step": 41
+            },
+            {
+              "occurrences": 55,
+              "step": 44
+            },
+            {
+              "occurrences": 56,
+              "step": 45
+            },
+            {
+              "occurrences": 57,
+              "step": 49
+            },
+            {
+              "occurrences": 58,
+              "step": 50
+            },
+            {
+              "occurrences": 60,
+              "step": 51
+            },
+            {
+              "occurrences": 62,
+              "step": 52
+            },
+            {
+              "occurrences": 64,
+              "step": 53
+            },
+            {
+              "occurrences": 65,
+              "step": 54
+            },
+            {
+              "occurrences": 66,
+              "step": 55
+            },
+            {
+              "occurrences": 68,
+              "step": 57
+            },
+            {
+              "occurrences": 69,
+              "step": 58
+            },
+            {
+              "occurrences": 70,
+              "step": 59
+            },
+            {
+              "occurrences": 73,
+              "step": 60
+            },
+            {
+              "occurrences": 75,
+              "step": 61
+            },
+            {
+              "occurrences": 76,
+              "step": 62
+            },
+            {
+              "occurrences": 77,
+              "step": 64
+            },
+            {
+              "occurrences": 79,
+              "step": 66
+            },
+            {
+              "occurrences": 80,
+              "step": 67
+            },
+            {
+              "occurrences": 81,
+              "step": 68
+            },
+            {
+              "occurrences": 82,
+              "step": 69
+            },
+            {
+              "occurrences": 83,
+              "step": 71
+            },
+            {
+              "occurrences": 86,
+              "step": 72
+            }
+          ],
+          "heredity": false,
+          "occurrence_count": 86,
+          "pattern": "0>1,0>2",
+          "raw_variant_examples": [
+            [
+              [
+                2,
+                4
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            [
+              [
+                4,
+                2
+              ],
+              [
+                4,
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              [
+                3,
+                2
+              ],
+              [
+                3,
+                0
+              ]
+            ],
+            [
+              [
+                3,
+                4
+              ],
+              [
+                3,
+                5
+              ]
+            ],
+            [
+              [
+                3,
+                0
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          ],
+          "selection": true,
+          "structure": [
+            "0>1",
+            "0>2"
+          ],
+          "variation": true
+        },
+        {
+          "active_variant_count": 1,
+          "copied_offspring_count": 0,
+          "failed_criteria": [
+            "heredity"
+          ],
+          "first_completed_at_step": 1,
+          "graveyard_variant_count": 15,
+          "growth_curve": [
+            {
+              "occurrences": 1,
+              "step": 1
+            },
+            {
+              "occurrences": 2,
+              "step": 2
+            },
+            {
+              "occurrences": 3,
+              "step": 5
+            },
+            {
+              "occurrences": 6,
+              "step": 18
+            },
+            {
+              "occurrences": 7,
+              "step": 21
+            },
+            {
+              "occurrences": 8,
+              "step": 26
+            },
+            {
+              "occurrences": 9,
+              "step": 31
+            },
+            {
+              "occurrences": 10,
+              "step": 34
+            },
+            {
+              "occurrences": 11,
+              "step": 44
+            },
+            {
+              "occurrences": 12,
+              "step": 45
+            },
+            {
+              "occurrences": 13,
+              "step": 53
+            },
+            {
+              "occurrences": 14,
+              "step": 61
+            },
+            {
+              "occurrences": 15,
+              "step": 66
+            },
+            {
+              "occurrences": 16,
+              "step": 72
+            }
+          ],
+          "heredity": false,
+          "occurrence_count": 16,
+          "pattern": "0>1,2>3,2>4",
+          "raw_variant_examples": [
+            [
+              [
+                1,
+                3
+              ],
+              [
+                4,
+                2
+              ],
+              [
+                4,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                2
+              ],
+              [
+                5,
+                4
+              ],
+              [
+                5,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                4
+              ],
+              [
+                5,
+                2
+              ]
+            ],
+            [
+              [
+                3,
+                0
+              ],
+              [
+                5,
+                1
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            [
+              [
+                1,
+                4
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                5,
+                0
+              ]
+            ],
+            [
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                0,
+                3
+              ]
+            ]
+          ],
+          "selection": true,
+          "structure": [
+            "0>1",
+            "2>3",
+            "2>4"
+          ],
+          "variation": true
+        }
+      ],
+      "verdict": "NONE_FOUND"
+    }
+  },
+  "replicator_verdict": {
+    "first_replicator": null,
+    "near_misses": [
+      {
+        "active_variant_count": 2,
+        "copied_offspring_count": 0,
+        "failed_criteria": [
+          "heredity"
+        ],
+        "first_completed_at_step": 1,
+        "graveyard_variant_count": 86,
+        "growth_curve": [
+          {
+            "occurrences": 1,
+            "step": 1
+          },
+          {
+            "occurrences": 2,
+            "step": 2
+          },
+          {
+            "occurrences": 3,
+            "step": 3
+          },
+          {
+            "occurrences": 5,
+            "step": 4
+          },
+          {
+            "occurrences": 6,
+            "step": 6
+          },
+          {
+            "occurrences": 7,
+            "step": 8
+          },
+          {
+            "occurrences": 8,
+            "step": 9
+          },
+          {
+            "occurrences": 9,
+            "step": 11
+          },
+          {
+            "occurrences": 11,
+            "step": 12
+          },
+          {
+            "occurrences": 12,
+            "step": 13
+          },
+          {
+            "occurrences": 13,
+            "step": 14
+          },
+          {
+            "occurrences": 15,
+            "step": 15
+          },
+          {
+            "occurrences": 16,
+            "step": 16
+          },
+          {
+            "occurrences": 18,
+            "step": 17
+          },
+          {
+            "occurrences": 19,
+            "step": 19
+          },
+          {
+            "occurrences": 21,
+            "step": 20
+          },
+          {
+            "occurrences": 23,
+            "step": 21
+          },
+          {
+            "occurrences": 24,
+            "step": 22
+          },
+          {
+            "occurrences": 25,
+            "step": 29
+          },
+          {
+            "occurrences": 26,
+            "step": 30
+          },
+          {
+            "occurrences": 30,
+            "step": 32
+          },
+          {
+            "occurrences": 32,
+            "step": 33
+          },
+          {
+            "occurrences": 33,
+            "step": 34
+          },
+          {
+            "occurrences": 34,
+            "step": 35
+          },
+          {
+            "occurrences": 36,
+            "step": 36
+          },
+          {
+            "occurrences": 39,
+            "step": 37
+          },
+          {
+            "occurrences": 41,
+            "step": 38
+          },
+          {
+            "occurrences": 42,
+            "step": 39
+          },
+          {
+            "occurrences": 44,
+            "step": 40
+          },
+          {
+            "occurrences": 47,
+            "step": 42
+          },
+          {
+            "occurrences": 48,
+            "step": 43
+          },
+          {
+            "occurrences": 50,
+            "step": 46
+          },
+          {
+            "occurrences": 51,
+            "step": 49
+          },
+          {
+            "occurrences": 53,
+            "step": 50
+          },
+          {
+            "occurrences": 54,
+            "step": 51
+          },
+          {
+            "occurrences": 56,
+            "step": 52
+          },
+          {
+            "occurrences": 57,
+            "step": 53
+          },
+          {
+            "occurrences": 58,
+            "step": 55
+          },
+          {
+            "occurrences": 60,
+            "step": 56
+          },
+          {
+            "occurrences": 62,
+            "step": 57
+          },
+          {
+            "occurrences": 63,
+            "step": 58
+          },
+          {
+            "occurrences": 67,
+            "step": 59
+          },
+          {
+            "occurrences": 69,
+            "step": 60
+          },
+          {
+            "occurrences": 70,
+            "step": 61
+          },
+          {
+            "occurrences": 73,
+            "step": 62
+          },
+          {
+            "occurrences": 75,
+            "step": 63
+          },
+          {
+            "occurrences": 77,
+            "step": 64
+          },
+          {
+            "occurrences": 79,
+            "step": 65
+          },
+          {
+            "occurrences": 80,
+            "step": 66
+          },
+          {
+            "occurrences": 81,
+            "step": 68
+          },
+          {
+            "occurrences": 82,
+            "step": 69
+          },
+          {
+            "occurrences": 84,
+            "step": 70
+          },
+          {
+            "occurrences": 85,
+            "step": 71
+          },
+          {
+            "occurrences": 87,
+            "step": 72
+          }
+        ],
+        "heredity": false,
+        "occurrence_count": 87,
+        "pattern": "0>1,2>1",
+        "raw_variant_examples": [
+          [
+            [
+              3,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          [
+            [
+              3,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              5,
+              3
+            ],
+            [
+              4,
+              3
+            ]
+          ],
+          [
+            [
+              3,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            [
+              3,
+              5
+            ],
+            [
+              1,
+              5
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        ],
+        "selection": true,
+        "structure": [
+          "0>1",
+          "2>1"
+        ],
+        "variation": true
+      },
+      {
+        "active_variant_count": 1,
+        "copied_offspring_count": 0,
+        "failed_criteria": [
+          "heredity"
+        ],
+        "first_completed_at_step": 1,
+        "graveyard_variant_count": 14,
+        "growth_curve": [
+          {
+            "occurrences": 1,
+            "step": 1
+          },
+          {
+            "occurrences": 2,
+            "step": 8
+          },
+          {
+            "occurrences": 3,
+            "step": 9
+          },
+          {
+            "occurrences": 4,
+            "step": 12
+          },
+          {
+            "occurrences": 5,
+            "step": 17
+          },
+          {
+            "occurrences": 6,
+            "step": 21
+          },
+          {
+            "occurrences": 7,
+            "step": 33
+          },
+          {
+            "occurrences": 8,
+            "step": 34
+          },
+          {
+            "occurrences": 9,
+            "step": 46
+          },
+          {
+            "occurrences": 10,
+            "step": 51
+          },
+          {
+            "occurrences": 11,
+            "step": 58
+          },
+          {
+            "occurrences": 12,
+            "step": 60
+          },
+          {
+            "occurrences": 13,
+            "step": 64
+          },
+          {
+            "occurrences": 14,
+            "step": 72
+          }
+        ],
+        "heredity": false,
+        "occurrence_count": 14,
+        "pattern": "0>1,2>1,0>3",
+        "raw_variant_examples": [
+          [
+            [
+              3,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          [
+            [
+              5,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          [
+            [
+              5,
+              2
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              5,
+              4
+            ]
+          ],
+          [
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        ],
+        "selection": true,
+        "structure": [
+          "0>1",
+          "2>1",
+          "0>3"
+        ],
+        "variation": true
+      },
+      {
+        "active_variant_count": 2,
+        "copied_offspring_count": 0,
+        "failed_criteria": [
+          "heredity"
+        ],
+        "first_completed_at_step": 1,
+        "graveyard_variant_count": 245,
+        "growth_curve": [
+          {
+            "occurrences": 4,
+            "step": 1
+          },
+          {
+            "occurrences": 7,
+            "step": 2
+          },
+          {
+            "occurrences": 10,
+            "step": 3
+          },
+          {
+            "occurrences": 13,
+            "step": 4
+          },
+          {
+            "occurrences": 19,
+            "step": 5
+          },
+          {
+            "occurrences": 24,
+            "step": 6
+          },
+          {
+            "occurrences": 27,
+            "step": 7
+          },
+          {
+            "occurrences": 30,
+            "step": 8
+          },
+          {
+            "occurrences": 32,
+            "step": 9
+          },
+          {
+            "occurrences": 37,
+            "step": 10
+          },
+          {
+            "occurrences": 41,
+            "step": 11
+          },
+          {
+            "occurrences": 46,
+            "step": 12
+          },
+          {
+            "occurrences": 50,
+            "step": 13
+          },
+          {
+            "occurrences": 55,
+            "step": 14
+          },
+          {
+            "occurrences": 57,
+            "step": 15
+          },
+          {
+            "occurrences": 60,
+            "step": 16
+          },
+          {
+            "occurrences": 65,
+            "step": 17
+          },
+          {
+            "occurrences": 67,
+            "step": 18
+          },
+          {
+            "occurrences": 69,
+            "step": 19
+          },
+          {
+            "occurrences": 70,
+            "step": 20
+          },
+          {
+            "occurrences": 73,
+            "step": 21
+          },
+          {
+            "occurrences": 79,
+            "step": 22
+          },
+          {
+            "occurrences": 83,
+            "step": 23
+          },
+          {
+            "occurrences": 88,
+            "step": 24
+          },
+          {
+            "occurrences": 90,
+            "step": 25
+          },
+          {
+            "occurrences": 94,
+            "step": 26
+          },
+          {
+            "occurrences": 100,
+            "step": 27
+          },
+          {
+            "occurrences": 105,
+            "step": 28
+          },
+          {
+            "occurrences": 110,
+            "step": 29
+          },
+          {
+            "occurrences": 116,
+            "step": 30
+          },
+          {
+            "occurrences": 120,
+            "step": 31
+          },
+          {
+            "occurrences": 123,
+            "step": 32
+          },
+          {
+            "occurrences": 127,
+            "step": 33
+          },
+          {
+            "occurrences": 129,
+            "step": 34
+          },
+          {
+            "occurrences": 133,
+            "step": 35
+          },
+          {
+            "occurrences": 135,
+            "step": 36
+          },
+          {
+            "occurrences": 137,
+            "step": 37
+          },
+          {
+            "occurrences": 140,
+            "step": 38
+          },
+          {
+            "occurrences": 142,
+            "step": 39
+          },
+          {
+            "occurrences": 143,
+            "step": 40
+          },
+          {
+            "occurrences": 147,
+            "step": 41
+          },
+          {
+            "occurrences": 151,
+            "step": 42
+          },
+          {
+            "occurrences": 154,
+            "step": 43
+          },
+          {
+            "occurrences": 157,
+            "step": 44
+          },
+          {
+            "occurrences": 163,
+            "step": 45
+          },
+          {
+            "occurrences": 168,
+            "step": 46
+          },
+          {
+            "occurrences": 173,
+            "step": 47
+          },
+          {
+            "occurrences": 177,
+            "step": 48
+          },
+          {
+            "occurrences": 180,
+            "step": 49
+          },
+          {
+            "occurrences": 182,
+            "step": 50
+          },
+          {
+            "occurrences": 186,
+            "step": 51
+          },
+          {
+            "occurrences": 190,
+            "step": 52
+          },
+          {
+            "occurrences": 193,
+            "step": 53
+          },
+          {
+            "occurrences": 199,
+            "step": 54
+          },
+          {
+            "occurrences": 203,
+            "step": 55
+          },
+          {
+            "occurrences": 207,
+            "step": 56
+          },
+          {
+            "occurrences": 209,
+            "step": 57
+          },
+          {
+            "occurrences": 213,
+            "step": 58
+          },
+          {
+            "occurrences": 214,
+            "step": 59
+          },
+          {
+            "occurrences": 216,
+            "step": 60
+          },
+          {
+            "occurrences": 217,
+            "step": 61
+          },
+          {
+            "occurrences": 219,
+            "step": 62
+          },
+          {
+            "occurrences": 222,
+            "step": 63
+          },
+          {
+            "occurrences": 225,
+            "step": 64
+          },
+          {
+            "occurrences": 228,
+            "step": 65
+          },
+          {
+            "occurrences": 233,
+            "step": 66
+          },
+          {
+            "occurrences": 236,
+            "step": 67
+          },
+          {
+            "occurrences": 239,
+            "step": 68
+          },
+          {
+            "occurrences": 242,
+            "step": 69
+          },
+          {
+            "occurrences": 244,
+            "step": 70
+          },
+          {
+            "occurrences": 245,
+            "step": 71
+          },
+          {
+            "occurrences": 247,
+            "step": 72
+          }
+        ],
+        "heredity": false,
+        "occurrence_count": 247,
+        "pattern": "0>1,2>3",
+        "raw_variant_examples": [
+          [
+            [
+              3,
+              1
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              5
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          [
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          [
+            [
+              2,
+              0
+            ],
+            [
+              5,
+              4
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        ],
+        "selection": true,
+        "structure": [
+          "0>1",
+          "2>3"
+        ],
+        "variation": true
+      },
+      {
+        "active_variant_count": 2,
+        "copied_offspring_count": 0,
+        "failed_criteria": [
+          "heredity"
+        ],
+        "first_completed_at_step": 1,
+        "graveyard_variant_count": 84,
+        "growth_curve": [
+          {
+            "occurrences": 2,
+            "step": 1
+          },
+          {
+            "occurrences": 3,
+            "step": 2
+          },
+          {
+            "occurrences": 5,
+            "step": 3
+          },
+          {
+            "occurrences": 6,
+            "step": 4
+          },
+          {
+            "occurrences": 7,
+            "step": 5
+          },
+          {
+            "occurrences": 8,
+            "step": 6
+          },
+          {
+            "occurrences": 10,
+            "step": 7
+          },
+          {
+            "occurrences": 11,
+            "step": 8
+          },
+          {
+            "occurrences": 12,
+            "step": 10
+          },
+          {
+            "occurrences": 14,
+            "step": 11
+          },
+          {
+            "occurrences": 17,
+            "step": 13
+          },
+          {
+            "occurrences": 18,
+            "step": 14
+          },
+          {
+            "occurrences": 21,
+            "step": 15
+          },
+          {
+            "occurrences": 22,
+            "step": 16
+          },
+          {
+            "occurrences": 24,
+            "step": 17
+          },
+          {
+            "occurrences": 28,
+            "step": 18
+          },
+          {
+            "occurrences": 29,
+            "step": 20
+          },
+          {
+            "occurrences": 31,
+            "step": 21
+          },
+          {
+            "occurrences": 32,
+            "step": 23
+          },
+          {
+            "occurrences": 34,
+            "step": 24
+          },
+          {
+            "occurrences": 35,
+            "step": 25
+          },
+          {
+            "occurrences": 36,
+            "step": 26
+          },
+          {
+            "occurrences": 38,
+            "step": 27
+          },
+          {
+            "occurrences": 39,
+            "step": 28
+          },
+          {
+            "occurrences": 40,
+            "step": 29
+          },
+          {
+            "occurrences": 41,
+            "step": 31
+          },
+          {
+            "occurrences": 42,
+            "step": 32
+          },
+          {
+            "occurrences": 44,
+            "step": 34
+          },
+          {
+            "occurrences": 46,
+            "step": 36
+          },
+          {
+            "occurrences": 47,
+            "step": 37
+          },
+          {
+            "occurrences": 49,
+            "step": 38
+          },
+          {
+            "occurrences": 52,
+            "step": 40
+          },
+          {
+            "occurrences": 53,
+            "step": 41
+          },
+          {
+            "occurrences": 55,
+            "step": 44
+          },
+          {
+            "occurrences": 56,
+            "step": 45
+          },
+          {
+            "occurrences": 57,
+            "step": 49
+          },
+          {
+            "occurrences": 58,
+            "step": 50
+          },
+          {
+            "occurrences": 60,
+            "step": 51
+          },
+          {
+            "occurrences": 62,
+            "step": 52
+          },
+          {
+            "occurrences": 64,
+            "step": 53
+          },
+          {
+            "occurrences": 65,
+            "step": 54
+          },
+          {
+            "occurrences": 66,
+            "step": 55
+          },
+          {
+            "occurrences": 68,
+            "step": 57
+          },
+          {
+            "occurrences": 69,
+            "step": 58
+          },
+          {
+            "occurrences": 70,
+            "step": 59
+          },
+          {
+            "occurrences": 73,
+            "step": 60
+          },
+          {
+            "occurrences": 75,
+            "step": 61
+          },
+          {
+            "occurrences": 76,
+            "step": 62
+          },
+          {
+            "occurrences": 77,
+            "step": 64
+          },
+          {
+            "occurrences": 79,
+            "step": 66
+          },
+          {
+            "occurrences": 80,
+            "step": 67
+          },
+          {
+            "occurrences": 81,
+            "step": 68
+          },
+          {
+            "occurrences": 82,
+            "step": 69
+          },
+          {
+            "occurrences": 83,
+            "step": 71
+          },
+          {
+            "occurrences": 86,
+            "step": 72
+          }
+        ],
+        "heredity": false,
+        "occurrence_count": 86,
+        "pattern": "0>1,0>2",
+        "raw_variant_examples": [
+          [
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          [
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          [
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "selection": true,
+        "structure": [
+          "0>1",
+          "0>2"
+        ],
+        "variation": true
+      },
+      {
+        "active_variant_count": 1,
+        "copied_offspring_count": 0,
+        "failed_criteria": [
+          "heredity"
+        ],
+        "first_completed_at_step": 1,
+        "graveyard_variant_count": 15,
+        "growth_curve": [
+          {
+            "occurrences": 1,
+            "step": 1
+          },
+          {
+            "occurrences": 2,
+            "step": 2
+          },
+          {
+            "occurrences": 3,
+            "step": 5
+          },
+          {
+            "occurrences": 6,
+            "step": 18
+          },
+          {
+            "occurrences": 7,
+            "step": 21
+          },
+          {
+            "occurrences": 8,
+            "step": 26
+          },
+          {
+            "occurrences": 9,
+            "step": 31
+          },
+          {
+            "occurrences": 10,
+            "step": 34
+          },
+          {
+            "occurrences": 11,
+            "step": 44
+          },
+          {
+            "occurrences": 12,
+            "step": 45
+          },
+          {
+            "occurrences": 13,
+            "step": 53
+          },
+          {
+            "occurrences": 14,
+            "step": 61
+          },
+          {
+            "occurrences": 15,
+            "step": 66
+          },
+          {
+            "occurrences": 16,
+            "step": 72
+          }
+        ],
+        "heredity": false,
+        "occurrence_count": 16,
+        "pattern": "0>1,2>3,2>4",
+        "raw_variant_examples": [
+          [
+            [
+              1,
+              3
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          [
+            [
+              3,
+              0
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              4
+            ]
+          ],
+          [
+            [
+              1,
+              4
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        ],
+        "selection": true,
+        "structure": [
+          "0>1",
+          "2>3",
+          "2>4"
+        ],
+        "variation": true
+      }
+    ],
+    "verdict": "NONE_FOUND"
   },
   "saturation_theorem_check": {
-    "commuting_halt_step": 8,
-    "commuting_saturates": true,
-    "derivation_check": "PASS",
-    "noncommuting_halt_step": null,
-    "noncommuting_halts": false,
-    "noncommuting_keeps_registering_order_facts_through_budget": true
+    "derivation_check": "DEMOTED_PARAMETER_SWEEP",
+    "headline_demoted": "old single-run halt contrast was by-construction; report is now a parameter sweep",
+    "sweep_rows": [
+      {
+        "alphabet_size": 4,
+        "budget": 24,
+        "commuting_admitted": 12,
+        "commuting_halt_step": 5,
+        "noncommuting_admitted": 216,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 4
+      },
+      {
+        "alphabet_size": 6,
+        "budget": 24,
+        "commuting_admitted": 24,
+        "commuting_halt_step": 6,
+        "noncommuting_admitted": 216,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 4
+      },
+      {
+        "alphabet_size": 4,
+        "budget": 24,
+        "commuting_admitted": 12,
+        "commuting_halt_step": 5,
+        "noncommuting_admitted": 216,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 8
+      },
+      {
+        "alphabet_size": 6,
+        "budget": 24,
+        "commuting_admitted": 28,
+        "commuting_halt_step": 8,
+        "noncommuting_admitted": 216,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 8
+      },
+      {
+        "alphabet_size": 4,
+        "budget": 48,
+        "commuting_admitted": 12,
+        "commuting_halt_step": 5,
+        "noncommuting_admitted": 432,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 4
+      },
+      {
+        "alphabet_size": 6,
+        "budget": 48,
+        "commuting_admitted": 24,
+        "commuting_halt_step": 6,
+        "noncommuting_admitted": 432,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 4
+      },
+      {
+        "alphabet_size": 4,
+        "budget": 48,
+        "commuting_admitted": 12,
+        "commuting_halt_step": 5,
+        "noncommuting_admitted": 432,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 8
+      },
+      {
+        "alphabet_size": 6,
+        "budget": 48,
+        "commuting_admitted": 28,
+        "commuting_halt_step": 8,
+        "noncommuting_admitted": 432,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 8
+      },
+      {
+        "alphabet_size": 4,
+        "budget": 72,
+        "commuting_admitted": 12,
+        "commuting_halt_step": 5,
+        "noncommuting_admitted": 648,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 4
+      },
+      {
+        "alphabet_size": 6,
+        "budget": 72,
+        "commuting_admitted": 24,
+        "commuting_halt_step": 6,
+        "noncommuting_admitted": 648,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 4
+      },
+      {
+        "alphabet_size": 4,
+        "budget": 72,
+        "commuting_admitted": 12,
+        "commuting_halt_step": 5,
+        "noncommuting_admitted": 648,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 8
+      },
+      {
+        "alphabet_size": 6,
+        "budget": 72,
+        "commuting_admitted": 28,
+        "commuting_halt_step": 8,
+        "noncommuting_admitted": 648,
+        "noncommuting_bound": "state_graph_recurrence_or_budget",
+        "noncommuting_halt_step": null,
+        "window_size": 8
+      }
+    ]
   },
   "schema_version": "three_engine_sim_result_v1",
   "sim_id": "ratchet_replicator_run_v0",
-  "written_at": "2026-07-04T00:18:51Z"
+  "written_at": "2026-07-04T03:48:48Z"
 }

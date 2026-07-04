@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import itertools
 import json
+import math
 import sys
 from collections import Counter, defaultdict, deque
 from dataclasses import dataclass
@@ -99,6 +100,42 @@ def motif_edit_distance(a: tuple[tuple[int, int], ...], b: tuple[tuple[int, int]
     if len(a) != len(b):
         return 999
     return sum(1 for left, right in zip(a, b, strict=True) if left != right)
+
+
+def mutual_information(labels_a: list[str], labels_b: list[str]) -> float:
+    if len(labels_a) != len(labels_b) or not labels_a:
+        return 0.0
+    total = float(len(labels_a))
+    ca = Counter(labels_a)
+    cb = Counter(labels_b)
+    cab = Counter(zip(labels_a, labels_b, strict=True))
+    out = 0.0
+    for (a, b), n in cab.items():
+        p_ab = n / total
+        out += p_ab * (math.log2(p_ab / ((ca[a] / total) * (cb[b] / total))))
+    return round(out, 12)
+
+
+def record_region_information(active_record: deque[dict[str, Any]]) -> dict[str, float]:
+    rows = list(active_record)
+    if len(rows) < 2:
+        return {"halves": 0.0, "quarters_mean_pairwise": 0.0}
+    labels = [f"{row['x']}>{row['y']}:{row['source']}" for row in rows]
+    mid = len(labels) // 2
+    left = labels[:mid]
+    right = labels[-mid:]
+    quarter = max(1, len(labels) // 4)
+    quarters = [labels[i * quarter : (i + 1) * quarter] for i in range(4)]
+    quarters = [q for q in quarters if q]
+    pairs = [
+        mutual_information(a[: min(len(a), len(b))], b[: min(len(a), len(b))])
+        for a, b in itertools.combinations(quarters, 2)
+        if a and b
+    ]
+    return {
+        "halves": mutual_information(left, right),
+        "quarters_mean_pairwise": round(sum(pairs) / len(pairs), 12) if pairs else 0.0,
+    }
 
 
 def propose_candidates(
@@ -219,8 +256,26 @@ def summarize_equivalence_demands(run: dict[str, Any]) -> dict[str, Any]:
     for token, sig in class_signature.items():
         class_buckets[sig].append(token)
 
+    demanded = {
+        "reflexivity": [(0, 0), (min(1, len(tokens) - 1), min(1, len(tokens) - 1))],
+        "symmetry": [(0, min(1, len(tokens) - 1)), (min(1, len(tokens) - 1), 0)],
+        "transitivity": [(0, min(1, len(tokens) - 1)), (min(1, len(tokens) - 1), min(2, len(tokens) - 1)), (0, min(2, len(tokens) - 1))],
+    }
+
+    def criterion(name: str, required: list[tuple[int, int]]) -> dict[str, Any]:
+        missing = [pair for pair in required if pair not in direct]
+        return {
+            "verdict": "PASS" if not missing else "FAIL",
+            "demanded_pairs": [list(pair) for pair in required],
+            "missing_pairs": [list(pair) for pair in missing],
+            "refusal_allowed": False,
+        }
+
     return {
         "demands": {
+            "adversarial_reflexive_closure": criterion("reflexivity", demanded["reflexivity"]),
+            "adversarial_symmetric_closure": criterion("symmetry", demanded["symmetry"]),
+            "adversarial_transitive_closure": criterion("transitivity", demanded["transitivity"]),
             "stable_under_repeating_an_act": {
                 "passed": repeat_failures == 0,
                 "forced_lifts": [],
@@ -234,21 +289,9 @@ def summarize_equivalence_demands(run: dict[str, Any]) -> dict[str, Any]:
             },
         },
         "lift_verdicts": {
-            "reflexivity": {
-                "verdict": "REFUSED_UNFORCED",
-                "demand_failures_if_installed": failures["reflexivity"][:12],
-                "needed_by_run": False,
-            },
-            "symmetry": {
-                "verdict": "REFUSED_UNFORCED",
-                "demand_failures_if_installed": failures["symmetry"][:12],
-                "needed_by_run": False,
-            },
-            "transitivity": {
-                "verdict": "REFUSED_UNFORCED",
-                "demand_failures_if_installed": failures["transitivity"][:12],
-                "needed_by_run": False,
-            },
+            "reflexivity": criterion("reflexivity", demanded["reflexivity"]) | {"ordinary_failures": failures["reflexivity"][:12]},
+            "symmetry": criterion("symmetry", demanded["symmetry"]) | {"ordinary_failures": failures["symmetry"][:12]},
+            "transitivity": criterion("transitivity", demanded["transitivity"]) | {"ordinary_failures": failures["transitivity"][:12]},
         },
         "raw_classes_without_equivalence": raw_classes,
     }
@@ -288,21 +331,26 @@ def detect_replicator(admitted: list[dict[str, Any]], graveyard: list[dict[str, 
         if len(rows) < 4:
             continue
         raw_variants = {row["raw"] for row in rows}
-        heredity_hits = 0
+        copied_offspring = 0
         for idx, row in enumerate(rows[1:], start=1):
-            prior_ids = {pid for prior in rows[:idx] for pid in prior["act_ids"]}
-            if prior_ids.intersection(row["parent_ids"]):
-                heredity_hits += 1
-                continue
-            if any(set(row["act_ids"]).intersection(prior["act_ids"]) for prior in rows[:idx]):
-                heredity_hits += 1
+            prior_occurrences = rows[:idx]
+            copied = False
+            for prior in prior_occurrences:
+                if not set(prior["act_ids"]).issubset(set(row["parent_ids"])):
+                    continue
+                child_rows = [entry for entry in admitted if int(entry["id"]) in set(row["act_ids"])]
+                copied = bool(child_rows) and all(entry["source"] == "copy_from_parent_occurrence" for entry in child_rows)
+                if copied:
+                    break
+            if copied:
+                copied_offspring += 1
         active_variant_count = sum(bool(set(row["act_ids"]).intersection(active_ids)) for row in rows)
         grave_variant_count = sum(bool(set(row["act_ids"]).intersection(grave_ids)) for row in rows)
         small_edit_variants = any(
             motif_edit_distance(a, b) in (1, 2)
             for a, b in itertools.combinations(raw_variants, 2)
         )
-        heredity = heredity_hits >= 2
+        heredity = copied_offspring >= 1
         variation = len(raw_variants) >= 2 and small_edit_variants
         selection = active_variant_count > 0 and grave_variant_count > 0
         growth_curve = Counter(row["active_at_step"] for row in rows)
@@ -319,6 +367,7 @@ def detect_replicator(admitted: list[dict[str, Any]], graveyard: list[dict[str, 
             "heredity": heredity,
             "variation": variation,
             "selection": selection,
+            "copied_offspring_count": copied_offspring,
             "raw_variant_examples": [list(map(list, raw)) for raw in list(raw_variants)[:6]],
             "growth_curve": cumulative,
             "active_variant_count": active_variant_count,
@@ -338,6 +387,57 @@ def detect_replicator(admitted: list[dict[str, Any]], graveyard: list[dict[str, 
     }
 
 
+def replicator_negative_fixtures() -> dict[str, dict[str, Any]]:
+    parent = [
+        {"id": 1, "step": 1, "x": 0, "y": 1, "source": "seed", "parent_ids": []},
+        {"id": 2, "step": 1, "x": 2, "y": 1, "source": "seed", "parent_ids": []},
+    ]
+    no_variation_parent = [
+        {"id": 1, "step": 1, "x": 0, "y": 1, "source": "seed", "parent_ids": []},
+        {"id": 2, "step": 1, "x": 0, "y": 1, "source": "seed", "parent_ids": []},
+    ]
+    fixtures = {
+        "fails_heredity": [
+            {"id": 1, "step": 1, "x": 0, "y": 1, "source": "seed", "parent_ids": []},
+            {"id": 2, "step": 1, "x": 2, "y": 1, "source": "seed", "parent_ids": []},
+            {"id": 3, "step": 2, "x": 0, "y": 2, "source": "recent_small_edit", "parent_ids": [1]},
+            {"id": 4, "step": 2, "x": 2, "y": 1, "source": "recent_small_edit", "parent_ids": [2]},
+            {"id": 5, "step": 3, "x": 0, "y": 2, "source": "recent_small_edit", "parent_ids": [3]},
+            {"id": 6, "step": 3, "x": 3, "y": 1, "source": "recent_small_edit", "parent_ids": [4]},
+        ],
+        "fails_variation": no_variation_parent
+        + [
+            {"id": 3, "step": 2, "x": 0, "y": 1, "source": "copy_from_parent_occurrence", "parent_ids": [1, 2]},
+            {"id": 4, "step": 2, "x": 0, "y": 1, "source": "copy_from_parent_occurrence", "parent_ids": [1, 2]},
+            {"id": 5, "step": 3, "x": 0, "y": 1, "source": "copy_from_parent_occurrence", "parent_ids": [3, 4]},
+            {"id": 6, "step": 3, "x": 0, "y": 1, "source": "copy_from_parent_occurrence", "parent_ids": [3, 4]},
+        ],
+        "fails_selection": parent
+        + [
+            {"id": 3, "step": 2, "x": 0, "y": 2, "source": "copy_from_parent_occurrence", "parent_ids": [1, 2]},
+            {"id": 4, "step": 2, "x": 2, "y": 1, "source": "copy_from_parent_occurrence", "parent_ids": [1, 2]},
+            {"id": 5, "step": 3, "x": 0, "y": 2, "source": "copy_from_parent_occurrence", "parent_ids": [3, 4]},
+            {"id": 6, "step": 3, "x": 3, "y": 1, "source": "copy_from_parent_occurrence", "parent_ids": [3, 4]},
+        ],
+    }
+    out = {}
+    for name, rows in fixtures.items():
+        normalized = [row | {"t": row["step"], "fact": ["fixture"], "pre_state_pair": [], "post_state_pair": [], "active_count": 1} for row in rows]
+        graveyard = [] if name == "fails_selection" else normalized[:2]
+        raw = detect_replicator(normalized, graveyard, 8)
+        failed = name.removeprefix("fails_")
+        accepted = raw["verdict"] == "NONE_FOUND" or (
+            raw.get("first_replicator") is not None and raw["first_replicator"].get(failed) is False
+        )
+        out[name] = {
+            "verdict": "NONE_FOUND" if accepted else "UNEXPECTED_ACCEPT",
+            "expected_failed_criterion": failed,
+            "raw_detector_verdict": raw["verdict"],
+            "raw_first_replicator": raw.get("first_replicator"),
+        }
+    return out
+
+
 def run_ratchet(config: dict[str, Any], *, mode: str, engine: str) -> dict[str, Any]:
     rng = LCG(int(config["seed"]))
     alphabet_size = int(config["alphabet_size"])
@@ -353,16 +453,20 @@ def run_ratchet(config: dict[str, Any], *, mode: str, engine: str) -> dict[str, 
     carried_facts: set[tuple[Any, ...]] = set()
     history_classes: set[str] = set()
     timeline: list[dict[str, Any]] = []
+    possibility_ledger: list[dict[str, Any]] = []
     locks: list[dict[str, Any]] = []
     prev_hash = "GENESIS"
     halted_at_step: int | None = None
 
     for step in range(1, max_steps + 1):
         candidates = propose_candidates(rng, alphabet_size=alphabet_size, k=k, active_record=active_record, admitted=admitted)
+        potential_this_step = 0
         admitted_this_step = 0
         rejected_this_step = 0
         for cand in candidates:
             fact = register_fact(mode, states, cand)
+            if fact not in carried_facts:
+                potential_this_step += 1
             if fact in carried_facts:
                 rejected_this_step += 1
                 excluded_candidates.append(
@@ -415,8 +519,19 @@ def run_ratchet(config: dict[str, Any], *, mode: str, engine: str) -> dict[str, 
             prev_hash = lock["entry_hash"]
 
         sig = history_signature(mode, active_record, states)
+        recurrent_state_graph = sig in history_classes
         history_classes.add(sig)
         all_commuting_facts_seen = mode == "commuting" and len(carried_facts) >= alphabet_size * (alphabet_size - 1)
+        info = record_region_information(active_record)
+        possibility_ledger.append(
+            {
+                "step": step,
+                "potential": potential_this_step,
+                "kinetic": admitted_this_step,
+                "record_mi_halves": info["halves"],
+                "record_mi_quarters_mean_pairwise": info["quarters_mean_pairwise"],
+            }
+        )
         timeline.append(
             {
                 "step": step,
@@ -428,12 +543,16 @@ def run_ratchet(config: dict[str, Any], *, mode: str, engine: str) -> dict[str, 
                 "distinguishable_history_class_count": len(history_classes),
                 "state_checksum": sum(states) % 1000003,
                 "coverage_exhausted": all_commuting_facts_seen,
+                "state_graph_recurrent": recurrent_state_graph,
             }
         )
         if admitted_this_step == 0 and (mode == "commuting" or len(timeline) >= 4):
             halted_at_step = step
             break
         if all_commuting_facts_seen:
+            halted_at_step = step
+            break
+        if mode == "noncommuting" and recurrent_state_graph:
             halted_at_step = step
             break
 
@@ -462,6 +581,7 @@ def run_ratchet(config: dict[str, Any], *, mode: str, engine: str) -> dict[str, 
         "excluded_candidate_count": len(excluded_candidates),
         "final_history_class_count": len(history_classes),
         "timeline": timeline,
+        "possibility_field_ledger": possibility_ledger,
         "admitted_record": admitted,
         "graveyard_sample": graveyard[:12],
         "excluded_candidate_sample": excluded_candidates[:12],
@@ -481,22 +601,35 @@ def run_ratchet(config: dict[str, Any], *, mode: str, engine: str) -> dict[str, 
 
 def result_envelope(engine: str, extra: dict[str, Any] | None = None) -> dict[str, Any]:
     spec = load_spec()
+    base_cfg = spec["run_config"]
     runs = {
-        mode: run_ratchet(spec["run_config"], mode=mode, engine=engine)
+        mode: run_ratchet(base_cfg, mode=mode, engine=engine)
         for mode in ("commuting", "noncommuting")
     }
     commute = runs["commuting"]
     noncommute = runs["noncommuting"]
+    saturation_sweep = []
+    for budget in (24, 48, 72):
+        for window_size in (4, 8):
+            for alphabet_size in (4, 6):
+                cfg = dict(base_cfg) | {"max_steps": budget, "window_size": window_size, "alphabet_size": alphabet_size}
+                sweep_runs = {mode: run_ratchet(cfg, mode=mode, engine=engine) for mode in ("commuting", "noncommuting")}
+                saturation_sweep.append(
+                    {
+                        "alphabet_size": alphabet_size,
+                        "window_size": window_size,
+                        "budget": budget,
+                        "commuting_halt_step": sweep_runs["commuting"]["halted_at_step"],
+                        "commuting_admitted": sweep_runs["commuting"]["admitted_count"],
+                        "noncommuting_halt_step": sweep_runs["noncommuting"]["halted_at_step"],
+                        "noncommuting_admitted": sweep_runs["noncommuting"]["admitted_count"],
+                        "noncommuting_bound": "state_graph_recurrence_or_budget",
+                    }
+                )
     verdict = {
-        "commuting_saturates": commute["halted_at_step"] is not None,
-        "commuting_halt_step": commute["halted_at_step"],
-        "noncommuting_halts": noncommute["halted_at_step"] is not None,
-        "noncommuting_halt_step": noncommute["halted_at_step"],
-        "noncommuting_keeps_registering_order_facts_through_budget": noncommute["halted_at_step"] is None
-        and noncommute["timeline"][-1]["admitted"] > 0,
-        "derivation_check": "PASS"
-        if commute["halted_at_step"] is not None and noncommute["halted_at_step"] is None
-        else "FAIL_OR_INCONCLUSIVE",
+        "headline_demoted": "old single-run halt contrast was by-construction; report is now a parameter sweep",
+        "sweep_rows": saturation_sweep,
+        "derivation_check": "DEMOTED_PARAMETER_SWEEP",
     }
     payload = {
         "schema": "codex_ratchet.ratchet_replicator_run_v0.engine_result.v1",
@@ -520,6 +653,11 @@ def result_envelope(engine: str, extra: dict[str, Any] | None = None) -> dict[st
         "saturation_theorem_check": verdict,
         "equivalence_property_lifts": noncommute["equivalence_lift_tests"]["lift_verdicts"],
         "replicator_verdict": noncommute["replicator_detection"],
+        "replicator_scan_by_branch": {
+            "commuting": commute["replicator_detection"],
+            "noncommuting": noncommute["replicator_detection"],
+            "negative_fixtures": replicator_negative_fixtures(),
+        },
         "frontier_result": {
             "commuting": {
                 "halt_step": commute["halted_at_step"],
@@ -539,4 +677,3 @@ def result_envelope(engine: str, extra: dict[str, Any] | None = None) -> dict[st
     if extra:
         payload.update(extra)
     return payload
-

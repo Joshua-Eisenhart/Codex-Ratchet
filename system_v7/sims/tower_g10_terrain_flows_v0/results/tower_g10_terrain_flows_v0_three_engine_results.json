@@ -23,23 +23,23 @@
     "label_shuffle_survives": true,
     "relabel_control_dies": true
   },
-  "created_at": "2026-07-05T01:25:48Z",
+  "created_at": "2026-07-05T01:40:21Z",
   "demotion_condition": "Demote if any terrain count, T1/T2 nonzero witness, relabel death, or engine parity check fails.",
   "engines": {
     "jax": {
       "all_pass": true,
       "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_jax_results.json",
-      "source_sha256": "0513a166f0ef967310d435dbe0d8e57cdcb6c717342e3c70452a46d670262c5d"
+      "source_sha256": "64eb6e90cfafaa93a4c4160a962d427daec344f5bf1ef543da4245a1e247ab96"
     },
     "julia": {
       "all_pass": true,
       "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_julia_results.json",
-      "source_sha256": "4f23e206064fbaeabf7c5b42f9f0365b791a3f178ce40b9c03a95a4c5c3de79f"
+      "source_sha256": "ef847cb7fe7dfd6445e6c2017f6f2e9a81acb16c94cecc900ddd274a08b95d36"
     },
     "pytorch": {
       "all_pass": true,
       "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_pytorch_results.json",
-      "source_sha256": "0513a166f0ef967310d435dbe0d8e57cdcb6c717342e3c70452a46d670262c5d"
+      "source_sha256": "542cc866aaf09b0d4b9795fbfdf9922db221d8ab4e9e971f76f158fbd04644d9"
     }
   },
   "formal_admission_allowed": false,
@@ -52,7 +52,7 @@
   "out_of_scope": "No terrain-as-axis claim, no Xi bridge, no formal admission, no promotion, no downstream G11/G12 composition.",
   "parity": {
     "check_agreement": true,
-    "max_engine_divergence": 0.0
+    "max_engine_divergence": 4.440892098500626e-16
   },
   "promotion_allowed": false,
   "promotion_condition": "Requires owner review plus independent non-peer Julia/JAX/PyTorch legs before any promotion discussion.",
@@ -61,7 +61,7 @@
   "sim_id": "tower_g10_terrain_flows_v0",
   "t1_t2_channel_distinguishability": {
     "Funnel_vs_Cannon": 0.5502736046731661,
-    "Hill_vs_Citadel": 2.0673171019463847,
+    "Hill_vs_Citadel": 2.067317101946385,
     "Pit_vs_Source": 1.4990663761154808,
     "Vortex_vs_Spiral": 2.0002257685071454
   },
@@ -69,90 +69,90 @@
     "Cannon": {
       "balance": -0.0,
       "contraction": -0.0,
-      "eps0_swirl": 1.5407439555097887e-33,
+      "eps0_swirl": 0.0,
       "fixed_point_diag": [
-        0.49999999999999917,
-        0.5000000000000006
+        0.4999999999999998,
+        0.5000000000000003
       ],
       "phase_portrait_witness": 0.2501884573676411,
-      "swirl": 9.67470464791461e-18
+      "swirl": 0.0
     },
     "Citadel": {
       "balance": -0.0,
       "contraction": -0.0,
-      "eps0_swirl": 2.3188179168019805e-17,
+      "eps0_swirl": 0.0,
       "fixed_point_diag": [
-        0.5,
-        0.4999999999999996
+        0.49999999999999994,
+        0.49999999999999994
       ],
       "phase_portrait_witness": 0.4586136718415621,
-      "swirl": 2.3188179168019805e-17
+      "swirl": 0.0
     },
     "Funnel": {
-      "balance": 96099289837.52641,
+      "balance": 96100000000.0,
       "contraction": 0.09609999999999999,
-      "eps0_swirl": 9.244463733058732e-33,
+      "eps0_swirl": 0.0,
       "fixed_point_diag": [
         0.5000000000000001,
         0.49999999999999994
       ],
-      "phase_portrait_witness": 0.17419026838489,
-      "swirl": 7.38988263875444e-18
+      "phase_portrait_witness": 0.17419026838488996,
+      "swirl": 0.0
     },
     "Hill": {
       "balance": -0.0,
       "contraction": -0.0,
-      "eps0_swirl": 2.7338438529242503e-17,
+      "eps0_swirl": 0.0,
       "fixed_point_diag": [
         0.4999999999999999,
         0.4999999999999999
       ],
       "phase_portrait_witness": 0.45237373929086555,
-      "swirl": 2.7338438529242503e-17
+      "swirl": 0.0
     },
     "Pit": {
-      "balance": 182499632491.89047,
+      "balance": 182500000000.0,
       "contraction": 0.1825,
       "eps0_swirl": 0.0,
       "fixed_point_diag": [
-        -2.220446049250313e-16,
+        -2.4637202244777325e-16,
         1.0
       ],
       "phase_portrait_witness": 0.7299178892176844,
-      "swirl": 2.013747121141728e-18
+      "swirl": 0.0
     },
     "Source": {
-      "balance": 182499739887.52347,
+      "balance": 182490363088.78925,
       "contraction": 0.1825,
       "eps0_swirl": 0.0,
       "fixed_point_diag": [
         0.951074995767733,
-        0.048925004232266874
+        0.04892500423226706
       ],
       "phase_portrait_witness": 0.622959669641623,
-      "swirl": 1.425275875531737e-18
+      "swirl": 5.28077814501134e-17
     },
     "Spiral": {
-      "balance": 10624812325.399076,
+      "balance": 10625000000.000002,
       "contraction": 0.010625,
-      "eps0_swirl": 6.469997437077379e-19,
+      "eps0_swirl": 0.0,
       "fixed_point_diag": [
-        0.5000000000000001,
-        0.5000000000000001
+        0.5000000000000002,
+        0.49999999999999994
       ],
       "phase_portrait_witness": 0.42863417714001756,
-      "swirl": 1.7663803856261714e-17
+      "swirl": 0.0
     },
     "Vortex": {
       "balance": -0.0,
       "contraction": -0.0,
-      "eps0_swirl": 1.232595164407831e-32,
+      "eps0_swirl": 0.0,
       "fixed_point_diag": [
         0.4999999999999999,
         0.4999999999999999
       ],
       "phase_portrait_witness": 0.42435984877224187,
-      "swirl": 4.3992759626364436e-17
+      "swirl": 0.0
     }
   }
 }

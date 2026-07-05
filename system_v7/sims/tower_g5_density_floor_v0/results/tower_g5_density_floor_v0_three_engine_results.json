@@ -1,0 +1,268 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "supportive",
+    "python_json": "supportive",
+    "z3": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "supportive envelope records JAX cvc5 proof agreement",
+      "tried": true,
+      "used": true
+    },
+    "python_json": {
+      "reason": "supportive readback of independent engine receipts and envelope write",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "supportive envelope records engine-local z3 proof agreement",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "canon_runtime": {
+    "consumer_policy": "three independent local density lifts; no tensor bridge or peer-result read",
+    "julia_project": "system_v5/julia_carrier/Project.toml",
+    "semantic_owner": "julia"
+  },
+  "claim": "Rung G5 installs D(H), H=C^2, as the rho-first object only when a removable downstream-operator closure demand is active.",
+  "claim_ceiling": "scratch_diagnostic G5 assembly only; it assembles density-floor evidence and does not promote G6+, bridge, Axis, terrain, or physics claims.",
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Z3",
+    "z3",
+    "cvc5",
+    "torch.func",
+    "sympy"
+  ],
+  "classification": "scratch_diagnostic",
+  "controller_source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/check_agreement.py",
+  "controller_source_sha256": "9c05b19e68025b0f2005af1c68bf1f5b040712e02471b66a79b06b638f409040",
+  "created_at": "2026-07-05T01:11:15Z",
+  "crossover_proofs": {
+    "cvc5": {
+      "claim": "JAX cvc5 agrees on the same separating control",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "claim": "Julia Z3 agrees on the same separating control",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "claim": "distinct-statistics equality control is UNSAT in JAX/PyTorch/JULIA z3 variants",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": {
+        "dephasing_trace_residual": 0.0,
+        "distinct_statistics_rho_distance": 0.5196152422706632,
+        "label_shuffle_same_rho_residual": 0.0,
+        "same_statistics_same_rho_residual": 0.0,
+        "unitary_trace_residual": 0.0
+      },
+      "julia": {
+        "dephasing_trace_residual": 0.0,
+        "distinct_statistics_rho_distance": 0.5196152422706632,
+        "label_shuffle_same_rho_residual": 0.0,
+        "same_statistics_same_rho_residual": 0.0,
+        "unitary_trace_residual": 0.0
+      },
+      "pytorch": {
+        "dephasing_trace_residual": 0.0,
+        "distinct_statistics_rho_distance": 0.5196152422706632,
+        "label_shuffle_same_rho_residual": 0.0,
+        "same_statistics_same_rho_residual": 0.0,
+        "unitary_trace_residual": 0.0
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "downstream_runs_on_rho": {
+    "dephasing": {
+      "expressible_on_bare_quotient": false,
+      "expressible_on_rho": true,
+      "trace_residuals": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      }
+    },
+    "licensing_direction": "rho licenses downstream unitary/CPTP expressions; bare quotient labels do not license those operators.",
+    "unitary": {
+      "expressible_on_bare_quotient": false,
+      "expressible_on_rho": true,
+      "trace_residuals": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      }
+    }
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engine_result_paths": {
+    "jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_jax_results.json",
+    "julia": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_julia_results.json",
+    "pytorch": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_pytorch_results.json"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "package_observables": {
+        "cvc5": "independent separating-control proof",
+        "z3": "separating-control proof"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_jax_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/tower_g5_density_floor_v0_jax.py",
+      "source_sha256": "3f5bba31f6efebb1927dc98caf2d4baa1d7278f32f37288d95797196de80c8e9"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "QuantumOptics",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "package_observables": {
+        "QuantumOptics": "C^2 SpinBasis and Pauli operator object dimension gate",
+        "Z3": "separating control: distinct probe statistics cannot be identified as the same rho under the installed lift"
+      },
+      "packages_used": [
+        "QuantumOptics",
+        "LinearAlgebra",
+        "JSON",
+        "SHA",
+        "Dates",
+        "Z3"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_julia_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/tower_g5_density_floor_v0_julia.jl",
+      "source_sha256": "99ee4665ff668ba4e28183f6fb150c33dd7e417fb784c9555be2d57194ae1321"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "sympy",
+        "z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "package_observables": {
+        "sympy": "exact trace-one density reconstruction",
+        "torch.func": "vmap label-shuffle density lift",
+        "z3": "separating-control proof"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "sympy",
+        "z3",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_pytorch_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/tower_g5_density_floor_v0_pytorch.py",
+      "source_sha256": "11f7aa5cde5e82ba39baf6519680844ed4698b561e03874e54634bd35cd38477"
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "role": "x64 independent mirror plus z3/cvc5 separating control"
+    },
+    "julia": {
+      "project": "system_v5/julia_carrier/Project.toml",
+      "role": "semantic_owner_density_carrier_gate"
+    },
+    "pytorch": {
+      "role": "torch-native density/operator leg with torch.func and sympy/z3 checks"
+    },
+    "tensor_exchange": "none; controller compares JSON receipts only"
+  },
+  "formal_admission_allowed": false,
+  "installed_vs_forced": {
+    "closure_demand": "downstream unitary and dephasing operators require rho in D(C^2), not only a probe-statistics quotient label",
+    "installed_by_closure_demand": true,
+    "removable": true,
+    "removed_demand_record": {
+      "bare_quotient_suffices": true,
+      "rho_required": false
+    }
+  },
+  "negative_controls": {
+    "distinct_statistics_preparations_map_to_different_rho": true,
+    "label_shuffle": true
+  },
+  "promotion_allowed": false,
+  "quotient_to_rho_witness": {
+    "a_equals_a_iff_a_equiv_b": true,
+    "distinct_statistics_rho_distances": {
+      "jax": 0.5196152422706632,
+      "julia": 0.5196152422706632,
+      "pytorch": 0.5196152422706632
+    },
+    "label_shuffle_residuals": {
+      "jax": 0.0,
+      "julia": 0.0,
+      "pytorch": 0.0
+    },
+    "same_statistics_same_rho_residuals": {
+      "jax": 0.0,
+      "julia": 0.0,
+      "pytorch": 0.0
+    }
+  },
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "tower_g5_density_floor_v0"
+}

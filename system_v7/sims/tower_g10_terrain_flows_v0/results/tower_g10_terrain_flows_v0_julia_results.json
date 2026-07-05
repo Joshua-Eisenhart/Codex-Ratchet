@@ -1,0 +1,137 @@
+{
+  "created_at": "2026-07-05T01:25:26Z",
+  "source_sha256": "4f23e206064fbaeabf7c5b42f9f0365b791a3f178ce40b9c03a95a4c5c3de79f",
+  "terrains": {
+    "Pit": {
+      "balance": 1.8249963249189047e11,
+      "eps0_swirl": 0.0,
+      "contraction": 0.1825,
+      "fixed_point_diag": [
+        -2.220446049250313e-16,
+        1.0
+      ],
+      "phase_portrait_witness": 0.7299178892176844,
+      "swirl": 2.013747121141728e-18
+    },
+    "Source": {
+      "balance": 1.8249973988752347e11,
+      "eps0_swirl": 0.0,
+      "contraction": 0.1825,
+      "fixed_point_diag": [
+        0.951074995767733,
+        0.048925004232266874
+      ],
+      "phase_portrait_witness": 0.622959669641623,
+      "swirl": 1.425275875531737e-18
+    },
+    "Funnel": {
+      "balance": 9.609928983752641e10,
+      "eps0_swirl": 9.244463733058732e-33,
+      "contraction": 0.09609999999999999,
+      "fixed_point_diag": [
+        0.5000000000000001,
+        0.49999999999999994
+      ],
+      "phase_portrait_witness": 0.17419026838489,
+      "swirl": 7.38988263875444e-18
+    },
+    "Cannon": {
+      "balance": -0.0,
+      "eps0_swirl": 1.5407439555097887e-33,
+      "contraction": -0.0,
+      "fixed_point_diag": [
+        0.49999999999999917,
+        0.5000000000000006
+      ],
+      "phase_portrait_witness": 0.2501884573676411,
+      "swirl": 9.67470464791461e-18
+    },
+    "Citadel": {
+      "balance": -0.0,
+      "eps0_swirl": 2.3188179168019805e-17,
+      "contraction": -0.0,
+      "fixed_point_diag": [
+        0.5,
+        0.4999999999999996
+      ],
+      "phase_portrait_witness": 0.4586136718415621,
+      "swirl": 2.3188179168019805e-17
+    },
+    "Spiral": {
+      "balance": 1.0624812325399076e10,
+      "eps0_swirl": 6.469997437077379e-19,
+      "contraction": 0.010625,
+      "fixed_point_diag": [
+        0.5000000000000001,
+        0.5000000000000001
+      ],
+      "phase_portrait_witness": 0.42863417714001756,
+      "swirl": 1.7663803856261714e-17
+    },
+    "Hill": {
+      "balance": -0.0,
+      "eps0_swirl": 2.7338438529242503e-17,
+      "contraction": -0.0,
+      "fixed_point_diag": [
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "phase_portrait_witness": 0.45237373929086555,
+      "swirl": 2.7338438529242503e-17
+    },
+    "Vortex": {
+      "balance": -0.0,
+      "eps0_swirl": 1.232595164407831e-32,
+      "contraction": -0.0,
+      "fixed_point_diag": [
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "phase_portrait_witness": 0.42435984877224187,
+      "swirl": 4.3992759626364436e-17
+    }
+  },
+  "geometry_not_axes": true,
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "eps0_degenerations_recorded": true,
+    "relabel_values": {
+      "Pit_identity_relabel": 0.0,
+      "Funnel_identity_relabel": 0.0,
+      "Hill_identity_relabel": 0.0,
+      "Vortex_identity_relabel": 0.0
+    },
+    "label_shuffle_survives": true,
+    "relabel_control_dies": true
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive result serialization"
+    },
+    "LinearAlgebra": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing independent Julia linear algebra leg availability plus same finite flow contract"
+    }
+  },
+  "sim_id": "tower_g10_terrain_flows_v0",
+  "formal_admission_allowed": false,
+  "all_pass": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing"
+  },
+  "nesting": "flows_on_G5_density_matrix_rho_floor",
+  "promotion_allowed": false,
+  "schema": "engine_leg_result_v1",
+  "engine": "julia",
+  "t1_t2_channel_distinguishability": {
+    "Hill_vs_Citadel": 2.0673171019463847,
+    "Funnel_vs_Cannon": 0.5502736046731661,
+    "Vortex_vs_Spiral": 2.0002257685071454,
+    "Pit_vs_Source": 1.4990663761154808
+  },
+  "terrain_count": 8
+}

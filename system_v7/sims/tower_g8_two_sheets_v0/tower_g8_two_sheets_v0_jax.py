@@ -7,36 +7,94 @@ from jax import config
 
 config.update("jax_enable_x64", True)
 import jax.numpy as jnp
+import numpy as np
 
 SIM_ID = "tower_g8_two_sheets_v0"
 HERE = pathlib.Path(__file__).resolve().parent
 OUT = HERE / "results" / f"{SIM_ID}_jax_results.json"
 N = jnp.array([0.0, 0.0, 1.0], dtype=jnp.float64)
 STATES = jnp.array([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.6, 0.8, 0.0], [0.5, -0.4, 0.7], [-0.3, 0.9, 0.2]], dtype=jnp.float64)
+DT = 1.0e-4
+STEPS = 240
+TOL = 3.0e-4
 
 
 def sha(path: pathlib.Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def evolve_point(r0: jnp.ndarray, sign: float) -> np.ndarray:
+    r = r0
+    points = []
+    for _ in range(STEPS):
+        points.append(np.asarray(r, dtype=float))
+        r = r + DT * sign * 2.0 * jnp.cross(N, r)
+    return np.asarray(points)
+
+
+def measure_rates(sign: float) -> list[float]:
+    times = np.arange(STEPS, dtype=float) * DT
+    rates = []
+    for state in STATES:
+        points = evolve_point(state, sign)
+        angles = np.unwrap(np.arctan2(points[:, 1], points[:, 0]))
+        rates.append(float(np.polyfit(times, angles, 1)[0]))
+    return rates
+
+
+def analytic_orientation(sign: float) -> list[float]:
+    return [float(sign * 2.0 * (state[0] ** 2 + state[1] ** 2)) for state in np.asarray(STATES)]
+
+
 def sheet(sign: float) -> dict:
-    rdot = sign * 2.0 * jnp.cross(N, STATES)
-    orient = jnp.dot(jnp.cross(STATES, rdot), N)
-    expected = sign * 2.0 * jnp.sum(STATES[:, :2] ** 2, axis=1)
+    rates = measure_rates(sign)
+    radii_sq = [float(state[0] ** 2 + state[1] ** 2) for state in np.asarray(STATES)]
+    orient = [rate * radius for rate, radius in zip(rates, radii_sq)]
+    expected = analytic_orientation(sign)
+    residuals = [abs(a - b) for a, b in zip(orient, expected)]
     return {
         "hamiltonian_sign": int(sign),
         "law": f"r_dot={int(sign):+d}2 n x r",
-        "orientation_values": [float(x) for x in orient],
-        "expected_values": [float(x) for x in expected],
-        "orientation_signs": [int(jnp.sign(x)) for x in orient],
-        "max_residual": float(jnp.max(jnp.abs(orient - expected))),
+        "measured_rates": rates,
+        "orientation_values": orient,
+        "expected_values": expected,
+        "orientation_signs": [int(np.sign(x)) for x in orient],
+        "max_residual": max(residuals),
+        "tolerance": TOL,
+    }
+
+
+def controls(left: dict, right: dict) -> dict:
+    zero_rates = measure_rates(0.0)
+    zero_orient = [rate * float(state[0] ** 2 + state[1] ** 2) for rate, state in zip(zero_rates, np.asarray(STATES))]
+    relabeled_right = sheet(1.0)
+    perm = [2, 0, 4, 1, 3]
+    shuffled_left = [left["orientation_values"][i] for i in perm]
+    return {
+        "H0_zero": {
+            "measured_rates": zero_rates,
+            "max_abs_rate": max(abs(x) for x in zero_rates),
+            "max_abs_orientation": max(abs(x) for x in zero_orient),
+            "sheets_indistinguishable": max(abs(x) for x in zero_rates) < TOL,
+        },
+        "sign_flip_relabel": {
+            "applied_relabel": "R sign -1 relabeled to +1",
+            "max_residual_after_relabel": max(abs(a - b) for a, b in zip(relabeled_right["orientation_values"], left["orientation_values"])),
+            "left_becomes_right": max(abs(a - b) for a, b in zip(relabeled_right["orientation_values"], left["orientation_values"])) < TOL,
+            "right_becomes_left": max(abs(a + b) for a, b in zip(right["orientation_values"], left["orientation_values"])) < TOL,
+        },
+        "label_shuffle": {
+            "permutation": perm,
+            "shuffled_values": shuffled_left,
+            "multiset_preserved": sorted(round(x, 12) for x in shuffled_left) == sorted(round(x, 12) for x in left["orientation_values"]),
+        },
     }
 
 
 def main() -> None:
     source = pathlib.Path(__file__).resolve()
     left, right = sheet(1.0), sheet(-1.0)
-    zero = jnp.zeros_like(STATES)
+    computed_controls = controls(left, right)
     result = {
         "schema": "engine_leg_result_v1",
         "sim_id": SIM_ID,
@@ -52,11 +110,7 @@ def main() -> None:
         "n01_order_fact": {"left_action": "A*B", "right_action": "B*A", "commutator_nonzero": True, "physics_import": False},
         "initial_state_count": int(STATES.shape[0]),
         "sheets": {"L": left, "R": right},
-        "controls": {
-            "H0_zero": {"max_speed": float(jnp.max(jnp.linalg.norm(zero, axis=1))), "distinction_dies": True, "sheets_indistinguishable": True},
-            "sign_flip_relabel": {"left_becomes_right": left["orientation_signs"] == [-x for x in right["orientation_signs"]], "right_becomes_left": True},
-            "label_shuffle": {"permutation": [2, 0, 4, 1, 3], "multiset_preserved": True},
-        },
+        "controls": computed_controls,
         "jax_reconciliation": {
             "prior_path": "system_v5/julia_carrier/weyl_sheet_pair_probe_jax_results.json",
             "prior_all_pass": False,
@@ -67,7 +121,7 @@ def main() -> None:
         "TOOL_MANIFEST": {"jax": {"tried": True, "used": True, "reason": "load-bearing independent vector/cross-product precession leg"}, "json": {"tried": True, "used": True, "reason": "supportive result serialization"}},
         "TOOL_INTEGRATION_DEPTH": {"jax": "load_bearing", "json": "supportive"},
     }
-    result["all_pass"] = left["max_residual"] < 1e-12 and right["max_residual"] < 1e-12 and all(v > 0 for v in left["orientation_values"]) and all(v < 0 for v in right["orientation_values"]) and result["controls"]["H0_zero"]["distinction_dies"]
+    result["all_pass"] = left["max_residual"] < TOL and right["max_residual"] < TOL and all(v > 0 for v in left["orientation_values"]) and all(v < 0 for v in right["orientation_values"]) and computed_controls["H0_zero"]["sheets_indistinguishable"] and computed_controls["sign_flip_relabel"]["left_becomes_right"] and computed_controls["sign_flip_relabel"]["right_becomes_left"] and computed_controls["label_shuffle"]["multiset_preserved"]
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
     print(json.dumps({"engine": "jax", "all_pass": result["all_pass"], "out": str(OUT)}, sort_keys=True))

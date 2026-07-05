@@ -40,8 +40,8 @@ def main() -> None:
             nums = [values[e][i] for e in values]
             max_diff = max(max_diff, max(nums) - min(nums))
     controls = {name: payload["controls"] for name, payload in legs.items()}
-    all_controls = all(c["H0_zero"]["distinction_dies"] and c["sign_flip_relabel"]["left_becomes_right"] and c["label_shuffle"]["multiset_preserved"] for c in controls.values())
-    all_pass = all(p["all_pass"] for p in legs.values()) and not lint_errors and max_diff < 1e-12 and all_controls
+    all_controls = all(c["H0_zero"]["sheets_indistinguishable"] and c["sign_flip_relabel"]["left_becomes_right"] and c["sign_flip_relabel"]["right_becomes_left"] and c["label_shuffle"]["multiset_preserved"] for c in controls.values())
+    all_pass = all(p["all_pass"] for p in legs.values()) and not lint_errors and max_diff < 3.0e-4 and all_controls
     source = pathlib.Path(__file__).resolve()
     result = {
         "schema_version": "three_engine_sim_result_v1",
@@ -57,8 +57,14 @@ def main() -> None:
         "precession_invariants": {"L": left, "R": right, "orientation_rule": "sign(dot(cross(r,r_dot),n)) is + on L and - on R"},
         "admission_reason": legs["julia"]["admission_reason"],
         "jax_reconciliation": legs["julia"]["jax_reconciliation"],
-        "controls": {"H0_zero": all(c["H0_zero"]["distinction_dies"] for c in controls.values()), "sign_flip_relabel": all(c["sign_flip_relabel"]["left_becomes_right"] for c in controls.values()), "label_shuffle": all(c["label_shuffle"]["multiset_preserved"] for c in controls.values())},
-        "parity": {"max_engine_divergence": max_diff, "check_agreement": max_diff < 1e-12},
+        "controls": {
+            "H0_zero": all(c["H0_zero"]["sheets_indistinguishable"] for c in controls.values()),
+            "H0_zero_max_abs_rate": max(c["H0_zero"]["max_abs_rate"] for c in controls.values()),
+            "sign_flip_relabel": all(c["sign_flip_relabel"]["left_becomes_right"] and c["sign_flip_relabel"]["right_becomes_left"] for c in controls.values()),
+            "sign_flip_max_residual": max(c["sign_flip_relabel"]["max_residual_after_relabel"] for c in controls.values()),
+            "label_shuffle": all(c["label_shuffle"]["multiset_preserved"] for c in controls.values()),
+        },
+        "parity": {"max_engine_divergence": max_diff, "tolerance": 3.0e-4, "check_agreement": max_diff < 3.0e-4},
         "lint": {"error_count": len(lint_errors), "errors": lint_errors},
         "TOOL_MANIFEST": {"python_json": {"tried": True, "used": True, "reason": "supportive three-engine receipt comparison and envelope write"}},
         "TOOL_INTEGRATION_DEPTH": {"python_json": "supportive"},

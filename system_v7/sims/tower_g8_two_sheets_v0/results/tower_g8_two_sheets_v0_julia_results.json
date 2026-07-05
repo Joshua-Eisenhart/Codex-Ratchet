@@ -1,31 +1,35 @@
 {
-  "TOOL_INTEGRATION_DEPTH": {
-    "JSON": "supportive",
-    "LinearAlgebra": "load_bearing"
-  },
-  "TOOL_MANIFEST": {
-    "JSON": {
-      "reason": "supportive result serialization",
-      "tried": true,
-      "used": true
-    },
-    "LinearAlgebra": {
-      "reason": "load-bearing independent cross/dot precession-orientation leg",
-      "tried": true,
-      "used": true
-    }
-  },
-  "admission_reason": "N01 grounding only: left action A*B and right action B*A are order-distinct when [A,B] != 0; the weakest realization records two orientations.",
-  "all_pass": true,
+  "created_at": "2026-07-05T01:40:31Z",
   "claim_ceiling": "G8 two-sheet precession-orientation rung only; no physics import, bridge, Axis, or promotion claim.",
+  "source_sha256": "b842a4ac11966ef3a91ced264c247733b15d677ca512b972e57ac979d935101c",
   "classification": "scratch_diagnostic",
   "controls": {
     "H0_zero": {
-      "distinction_dies": true,
-      "max_speed": 0.0,
-      "sheets_indistinguishable": true
+      "max_abs_orientation": 2.0222615503140686e-28,
+      "max_abs_rate": 2.246957278126743e-28,
+      "sheets_indistinguishable": true,
+      "measured_rates": [
+        0.0,
+        7.329360645318185e-29,
+        8.880831146881889e-29,
+        4.788158961722464e-29,
+        -2.246957278126743e-28
+      ]
+    },
+    "sign_flip_relabel": {
+      "right_becomes_left": true,
+      "left_becomes_right": true,
+      "max_residual_after_relabel": 0.0,
+      "applied_relabel": "R sign -1 relabeled to +1"
     },
     "label_shuffle": {
+      "shuffled_values": [
+        1.9999999733333136,
+        1.999999973333334,
+        1.7999999759999985,
+        1.999999973333333,
+        0.8199999890666739
+      ],
       "multiset_preserved": true,
       "permutation": [
         2,
@@ -34,43 +38,35 @@
         1,
         3
       ]
-    },
-    "sign_flip_relabel": {
-      "left_becomes_right": true,
-      "right_becomes_left": true
     }
   },
-  "created_at": "2026-07-05T01:20:49Z",
-  "engine": "julia",
-  "formal_admission_allowed": false,
-  "initial_state_count": 5,
-  "jax_reconciliation": {
-    "fixed_in_this_rung": true,
-    "prior_all_pass": false,
-    "prior_path": "system_v5/julia_carrier/weyl_sheet_pair_probe_jax_results.json",
-    "reason": "prior JAX receipt measured a carrier-only chirality diagnostic and self-blocked promotion/admission as noncanonical scratch evidence; it did not test H_L=+H0 vs H_R=-H0 precession orientation.",
-    "verdict": "spec_drift_not_engine_divergence"
-  },
   "n01_order_fact": {
-    "commutator_nonzero": true,
-    "left_action": "A*B",
     "physics_import": false,
+    "left_action": "A*B",
+    "commutator_nonzero": true,
     "right_action": "B*A"
   },
-  "promotion_allowed": false,
-  "schema": "engine_leg_result_v1",
+  "sim_id": "tower_g8_two_sheets_v0",
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive result serialization"
+    },
+    "LinearAlgebra": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing independent cross/dot precession-orientation leg"
+    }
+  },
+  "formal_admission_allowed": false,
+  "initial_state_count": 5,
   "sheets": {
     "L": {
-      "expected_values": [
-        2.0,
-        2.0,
-        2.0,
-        0.8200000000000001,
-        1.8
-      ],
-      "hamiltonian_sign": 1,
+      "tolerance": 0.0003,
       "law": "r_dot=+2 n x r",
-      "max_residual": 0.0,
+      "max_residual": 2.666668641460035e-8,
+      "hamiltonian_sign": 1,
       "orientation_signs": [
         1,
         1,
@@ -79,6 +75,20 @@
         1
       ],
       "orientation_values": [
+        1.999999973333334,
+        1.999999973333333,
+        1.9999999733333136,
+        0.8199999890666739,
+        1.7999999759999985
+      ],
+      "measured_rates": [
+        1.999999973333334,
+        1.999999973333333,
+        1.9999999733333136,
+        1.9999999733333509,
+        1.9999999733333316
+      ],
+      "expected_values": [
         2.0,
         2.0,
         2.0,
@@ -87,16 +97,10 @@
       ]
     },
     "R": {
-      "expected_values": [
-        -2.0,
-        -2.0,
-        -2.0,
-        -0.8200000000000001,
-        -1.8
-      ],
-      "hamiltonian_sign": -1,
+      "tolerance": 0.0003,
       "law": "r_dot=-2 n x r",
-      "max_residual": 0.0,
+      "max_residual": 2.666666754080893e-8,
+      "hamiltonian_sign": -1,
       "orientation_signs": [
         -1,
         -1,
@@ -105,6 +109,20 @@
         -1
       ],
       "orientation_values": [
+        -1.999999973333334,
+        -1.9999999733333325,
+        -1.999999973333356,
+        -0.8199999890666715,
+        -1.7999999759999932
+      ],
+      "measured_rates": [
+        -1.999999973333334,
+        -1.9999999733333325,
+        -1.999999973333356,
+        -1.999999973333345,
+        -1.9999999733333258
+      ],
+      "expected_values": [
         -2.0,
         -2.0,
         -2.0,
@@ -113,7 +131,21 @@
       ]
     }
   },
-  "sim_id": "tower_g8_two_sheets_v0",
+  "all_pass": true,
+  "promotion_allowed": false,
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing"
+  },
+  "jax_reconciliation": {
+    "prior_all_pass": false,
+    "verdict": "spec_drift_not_engine_divergence",
+    "fixed_in_this_rung": true,
+    "reason": "prior JAX receipt measured a carrier-only chirality diagnostic and self-blocked promotion/admission as noncanonical scratch evidence; it did not test H_L=+H0 vs H_R=-H0 precession orientation.",
+    "prior_path": "system_v5/julia_carrier/weyl_sheet_pair_probe_jax_results.json"
+  },
+  "schema": "engine_leg_result_v1",
+  "engine": "julia",
   "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g8_two_sheets_v0/tower_g8_two_sheets_v0_julia.jl",
-  "source_sha256": "886d124e7773a1f6f4806a345e9109a432e80cf16785beb88f5e292915e7e781"
+  "admission_reason": "N01 grounding only: left action A*B and right action B*A are order-distinct when [A,B] != 0; the weakest realization records two orientations."
 }

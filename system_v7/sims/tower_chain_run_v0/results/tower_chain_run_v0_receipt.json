@@ -1,0 +1,1555 @@
+{
+  "capstone": "DRAFT_UNAUDITED",
+  "chain_summary": {
+    "fresh_rerun_fail_or_partial": [],
+    "nesting_checks_passed": 11,
+    "nesting_checks_structural_only": 11,
+    "open_top": "Xi",
+    "rungs_instantiated": 12,
+    "rungs_reused": 1
+  },
+  "claim": "One scripted scratch pass instantiating the nested tower G0->G12 in admission order with Xi/G13 recorded open.",
+  "claim_ceiling": "DRAFT_UNAUDITED chain receipt; reused receipts and structural-only nesting checks do not promote the tower.",
+  "classification": "scratch_diagnostic",
+  "created_at": "2026-07-05T02:03:22Z",
+  "nesting_checks": [
+    {
+      "check": "G1 quotient presupposes finite carrier/classes from G0",
+      "from": "G0",
+      "status": "structural_only",
+      "to": "G1"
+    },
+    {
+      "check": "G2 probes refine quotient classes",
+      "from": "G1",
+      "status": "structural_only",
+      "to": "G2"
+    },
+    {
+      "check": "G3 survivors carve the probe quotient population",
+      "from": "G2",
+      "status": "structural_only",
+      "to": "G3"
+    },
+    {
+      "check": "G4 ordered updates act on survivor/state classes",
+      "from": "G3",
+      "status": "structural_only",
+      "to": "G4"
+    },
+    {
+      "check": "G5 installs rho after finite quotient/history prerequisites",
+      "from": "G4",
+      "status": "structural_only",
+      "to": "G5"
+    },
+    {
+      "check": "spinor-Hopf rung consumes rho/density-floor carrier licensing",
+      "from": "G5",
+      "status": "structural_only",
+      "to": "G6G7"
+    },
+    {
+      "check": "two-sheet chirality presupposes spinor/Hopf object class",
+      "from": "G6G7",
+      "status": "structural_only",
+      "to": "G8"
+    },
+    {
+      "check": "loop classes sit over sheet/fiber/base split",
+      "from": "G8",
+      "status": "structural_only",
+      "to": "G9"
+    },
+    {
+      "check": "terrain flows are applied after loop/fiber/base classes exist",
+      "from": "G9",
+      "status": "structural_only",
+      "to": "G10"
+    },
+    {
+      "check": "nested shells/flux presuppose terrain-flow stages",
+      "from": "G10",
+      "status": "structural_only",
+      "to": "G11"
+    },
+    {
+      "check": "cut lattice consumes nested shell/flux/cut class evidence",
+      "from": "G11",
+      "status": "structural_only",
+      "to": "G12"
+    }
+  ],
+  "open_top": {
+    "name": "Xi",
+    "rung": "G13",
+    "simulated": false,
+    "status": "OPEN"
+  },
+  "promotion_allowed": false,
+  "rungs": [
+    {
+      "caveats_carried": [
+        "toy/unbound solver controls in audit sweep; included only because campaign asks G0->G12 base instantiation"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/tower_g0_finite_support_v0",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "tower_g0_finite_support_v0_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\":true,\"engine\":\"julia\",\"out\":\"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_julia_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "tower_g0_finite_support_v0_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"jax\", \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_jax_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "tower_g0_finite_support_v0_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"pytorch\", \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_pytorch_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_three_engine_results.json\", \"parity\": true, \"refusals_ok\": true}\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_jax_results.json": "9aa38651b453650980d806fa1b174aef081196b996efdb44a6f4696ede478cb4",
+        "system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_julia_results.json": "69aa179bf23a43bbb7a31797e0a275cf8a574954ddbcf2fb3e89b3572958e5a1",
+        "system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_pytorch_results.json": "be17ec7cfbfad60d9fe4c6ac18eae1049d6f07afa578faf2008b54ca93e57114",
+        "system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_three_engine_results.json": "53ab82c9bb62e3949d79162def3ddbe479eb14e79861c382fba5f3cde3590915"
+      },
+      "rung": "G0",
+      "verdict_from_sweep": "BY-CONSTRUCTION \u2014 NOT chain-admissible",
+      "witnesses": {
+        "system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_jax_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "promotion_allowed": false,
+          "refusal_receipts.completed_infinity_pigeonhole.erased_injectivity_verdict": "sat",
+          "refusal_receipts.completed_infinity_pigeonhole.injective_pigeonhole_verdict": "unsat",
+          "witnesses": {
+            "carrier_size": 4,
+            "growth_all_finite": true,
+            "growth_counts": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "label_shuffle_signature": [
+              10,
+              20,
+              30
+            ],
+            "support_size": 3,
+            "supported_class_sum": 3
+          }
+        },
+        "system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_julia_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "promotion_allowed": false,
+          "witnesses": {
+            "carrier_size": 4,
+            "growth_all_finite": true,
+            "growth_counts": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "label_shuffle_signature": [
+              10,
+              20,
+              30
+            ],
+            "support_size": 3,
+            "supported_class_sum": 3
+          }
+        },
+        "system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_pytorch_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "promotion_allowed": false,
+          "refusal_receipts.completed_infinity_pigeonhole.erased_injectivity_verdict": "sat",
+          "refusal_receipts.completed_infinity_pigeonhole.injective_pigeonhole_verdict": "unsat",
+          "witnesses": {
+            "carrier_size": 4,
+            "growth_all_finite": true,
+            "growth_counts": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "label_shuffle_signature": [
+              10,
+              20,
+              30
+            ],
+            "support_size": 3,
+            "supported_class_sum": 3
+          }
+        },
+        "system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_three_engine_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "crossover_proofs.z3.pairs.jax.erased_injectivity_verdict": "sat",
+          "crossover_proofs.z3.pairs.jax.injective_pigeonhole_verdict": "unsat",
+          "crossover_proofs.z3.pairs.pytorch.erased_injectivity_verdict": "sat",
+          "crossover_proofs.z3.pairs.pytorch.injective_pigeonhole_verdict": "unsat",
+          "divergence": {
+            "engine_values": {
+              "jax": 3,
+              "julia": 3,
+              "pytorch": 3
+            },
+            "julia_authoritative": true,
+            "max_divergence": 0.0
+          },
+          "formal_admission_allowed": false,
+          "parity.refusal_parity": true,
+          "parity.witness_key_parity": true,
+          "promotion_allowed": false,
+          "refusal_receipts.jax.completed_infinity_pigeonhole.erased_injectivity_verdict": "sat",
+          "refusal_receipts.jax.completed_infinity_pigeonhole.injective_pigeonhole_verdict": "unsat",
+          "refusal_receipts.pytorch.completed_infinity_pigeonhole.erased_injectivity_verdict": "sat",
+          "refusal_receipts.pytorch.completed_infinity_pigeonhole.injective_pigeonhole_verdict": "unsat",
+          "witness_values.jax.supported_class_sum": 3,
+          "witness_values.julia.supported_class_sum": 3,
+          "witness_values.pytorch.supported_class_sum": 3
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "scratch ceiling"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/distinguishability_quotient_floor_v0",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "distinguishability_quotient_floor_v0_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "julia leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_julia_results.json\n  quotient classes full=4 erased=3\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "distinguishability_quotient_floor_v0_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "jax leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_jax_results.json\n  smt flip confirmed: True (z3 sat/unsat, cvc5 sat/unsat)\n  quotient classes full=4 erased=3\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "distinguishability_quotient_floor_v0_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "pytorch leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_pytorch_results.json\n  jacobian identity ok: True\n  quotient classes full=4 erased=3\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\n  \"sim_id\": \"distinguishability_quotient_floor_v0\",\n  \"computation_styles\": {\n    \"julia\": \"exact_hermitian_eigendecomposition\",\n    \"jax\": \"vmap_batched_expectation_matrix\",\n    \"pytorch\": \"autograd_jacobian_over_bloch_parameters\"\n  },\n  \"quotient_classes_full\": [\n    [\n      \"s0\"\n    ],\n    [\n      \"s1\"\n    ],\n    [\n      \"s2\"\n    ],\n    [\n      \"s3\"\n    ]\n  ],\n  \"quotient_classes_erased\": [\n    [\n      \"s0\"\n    ],\n    [\n      \"s1\",\n      \"s2\"\n    ],\n    [\n      \"s3\"\n    ]\n  ],\n  \"quotient_count_full\": 4,\n  \"quotient_count_erased\": 3,\n  \"smt_flip\": {\n    \"z3\": [\n      \"sat\",\n      \"unsat\"\n    ],\n    \"cvc5\": [\n      \"sat\",\n      \"unsat\"\n    ],\n    \"confirmed\": true\n  },\n  \"autograd_identity_ok\": true,\n  \"all_three_agree\": true,\n  \"failures\": [],\n  \"classification\": \"scratch_diagnostic\",\n  \"promotion_allowed\": false,\n  \"formal_admission_allowed\": false\n}\n\nAGREEMENT CHECK OK: three independent legs agree on the invariant.\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_agreement_results.json": "91f758f32ce977606c48a3f9f4cf3755eff28a5b6970d06fea77344775a8a734",
+        "system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_jax_results.json": "76669be1a97938f00c8183b1bbd88fa0251953cb79abdc704dc476c465394baf",
+        "system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_julia_results.json": "d2b325709795d5abc1cac9774b142ea3ab8c45e70c36c7d0466aa48699672658",
+        "system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_pytorch_results.json": "c652f1e1e3fc67f8898619c688dc5dbf648c0cdb080584803585a95ba7f5f2f0"
+      },
+      "rung": "G1",
+      "verdict_from_sweep": "READY from inventory",
+      "witnesses": {
+        "system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_agreement_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "quotient_count_erased": 3,
+          "quotient_count_full": 4
+        },
+        "system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_jax_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "quotient_class_count_erased": 3,
+          "quotient_class_count_full": 4
+        },
+        "system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_julia_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "quotient_class_count_erased": 3,
+          "quotient_class_count_full": 4
+        },
+        "system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_pytorch_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "quotient_class_count_erased": 3,
+          "quotient_class_count_full": 4
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "scratch ceiling"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "finite_probe_quotient_inverse_limit_tower_1q_through_4q_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "julia leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_julia_results.json\n  quotient counts full/erased=Dict(\"1q\" => [6, 6], \"2q\" => [12, 10], \"4q\" => [10, 10], \"3q\" => [15, 14])\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "finite_probe_quotient_inverse_limit_tower_1q_through_4q_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "jax leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_jax_results.json\n  quotient counts full/erased={'1q': [6, 6], '2q': [12, 10], '3q': [15, 14], '4q': [10, 10]}\n  smt z3=sat/unsat cvc5=sat/unsat\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "finite_probe_quotient_inverse_limit_tower_1q_through_4q_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "pytorch leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_pytorch_results.json\n  quotient counts full/erased={'1q': [6, 6], '2q': [12, 10], '3q': [15, 14], '4q': [10, 10]}\n  autograd identity ok=True\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "      2,\n        2,\n        2\n      ],\n      [\n        2,\n        2,\n        2,\n        2,\n        3,\n        3,\n        3\n      ]\n    ]\n  },\n  \"negative_controls\": {\n    \"perturbed_marginal_excluded\": {\n      \"fired\": true,\n      \"violates_compatibility\": true,\n      \"name_echo_would_pass\": null,\n      \"partial_trace_rejects\": null\n    },\n    \"label_echo_trap\": {\n      \"fired\": true,\n      \"violates_compatibility\": null,\n      \"name_echo_would_pass\": true,\n      \"partial_trace_rejects\": true\n    }\n  },\n  \"ladder_useful_depth\": \"3q\",\n  \"ladder_useful_depth_evidence\": \"3q is the first rung where separable, biseparable, and genuinely tripartite pure states split by Schmidt-rank strata across the three one-vs-two cuts.\",\n  \"ladder_one_beyond\": \"4q\",\n  \"ladder_one_beyond_evidence\": \"4q tests whether all 1q, 2q, and 3q projections compose consistently; this run records construction-seal and open-fixture seal outcomes separately.\",\n  \"all_three_agree\": true,\n  \"failures\": [],\n  \"classification\": \"scratch_diagnostic\",\n  \"promotion_allowed\": false,\n  \"formal_admission_allowed\": false,\n  \"does_not_self_upgrade\": true\n}\n\nAGREEMENT CHECK OK: three independent legs agree on shared invariants.\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_agreement_results.json": "37fa39029758a6e46713c540e8ab385dcc72e063086e867dcb6a04b6c067b754",
+        "system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_jax_results.json": "ea558bbf6fa1cdeb5262240a3e2ce5d1d263673855ec1b5994f38aa50675f8e9",
+        "system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_julia_results.json": "05579fd056e95c1919beec40ddc85ed6a9a79712843109576e3f5f99abe3a746",
+        "system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_pytorch_results.json": "4145bf2883bd6d0ef4d8780dfdae30ba3b7c008417fa6c2ba754582dcca5b09b"
+      },
+      "rung": "G2",
+      "verdict_from_sweep": "READY from inventory",
+      "witnesses": {
+        "system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_agreement_results.json": {
+          "classification": "scratch_diagnostic",
+          "forecast_gate_projection.4q_rank_tuple_lattice_computed": true,
+          "formal_admission_allowed": false,
+          "negative_controls.label_echo_trap.name_echo_would_pass": true,
+          "open_state_seal_test.class_table": "lower-rung full-probe quotient classes rebuilt with closure_* labels excluded",
+          "open_state_seal_test.landing_projection_count": 69,
+          "open_state_seal_test.missing_projection_count": 29,
+          "open_state_seal_test.projections.0.lands_in_existing_nonclosure_class": false,
+          "open_state_seal_test.projections.1.lands_in_existing_nonclosure_class": false,
+          "open_state_seal_test.projections.2.lands_in_existing_nonclosure_class": false,
+          "open_state_seal_test.projections.3.lands_in_existing_nonclosure_class": false,
+          "open_state_seal_test.projections.4.lands_in_existing_nonclosure_class": false,
+          "open_state_seal_test.projections.5.lands_in_existing_nonclosure_class": false,
+          "open_state_seal_test.total_projection_count": 98,
+          "promotion_allowed": false
+        },
+        "system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_jax_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "rungs.1q.quotient_class_count_erased": 6,
+          "rungs.1q.quotient_class_count_full": 6,
+          "rungs.1q.representative_states.closure_1q_w4_keep0.von_neumann_entropy": 0.562335144619,
+          "rungs.1q.representative_states.q0.von_neumann_entropy": -0.0,
+          "rungs.1q.representative_states.q1.von_neumann_entropy": -0.0,
+          "rungs.1q.representative_states.qmax.von_neumann_entropy": 0.69314718056,
+          "rungs.1q.representative_states.qplus.von_neumann_entropy": -0.0,
+          "rungs.1q.representative_states.qtwoone.von_neumann_entropy": 0.636514168295,
+          "rungs.2q.quotient_class_count_erased": 10,
+          "rungs.2q.quotient_class_count_full": 12,
+          "rungs.2q.representative_states.bell_phi_plus.partial_trace_marginals.0.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.bell_phi_plus.partial_trace_marginals.1.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.bell_phi_plus.von_neumann_entropy": -0.0,
+          "rungs.2q.representative_states.bell_psi_plus.partial_trace_marginals.0.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.bell_psi_plus.partial_trace_marginals.1.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.bell_psi_plus.von_neumann_entropy": -0.0,
+          "rungs.2q.representative_states.closure_2q_dicke4_2_keep01.partial_trace_marginals.0.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.closure_2q_dicke4_2_keep01.partial_trace_marginals.1.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.closure_2q_dicke4_2_keep01.von_neumann_entropy": 0.867563228481,
+          "rungs.2q.representative_states.closure_2q_w4_keep01.partial_trace_marginals.0.von_neumann_entropy": 0.562335144619,
+          "rungs.2q.representative_states.closure_2q_w4_keep01.partial_trace_marginals.1.von_neumann_entropy": 0.562335144619,
+          "rungs.2q.representative_states.closure_2q_w4_keep01.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.maxmix_0.von_neumann_entropy": 0.69314718056
+        },
+        "system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_julia_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "rungs.1q.quotient_class_count_erased": 6,
+          "rungs.1q.quotient_class_count_full": 6,
+          "rungs.1q.representative_states.closure_1q_w4_keep0.von_neumann_entropy": 0.562335144619,
+          "rungs.1q.representative_states.q0.von_neumann_entropy": 0.0,
+          "rungs.1q.representative_states.q1.von_neumann_entropy": 0.0,
+          "rungs.1q.representative_states.qmax.von_neumann_entropy": 0.69314718056,
+          "rungs.1q.representative_states.qplus.von_neumann_entropy": 0.0,
+          "rungs.1q.representative_states.qtwoone.von_neumann_entropy": 0.636514168295,
+          "rungs.2q.quotient_class_count_erased": 10,
+          "rungs.2q.quotient_class_count_full": 12,
+          "rungs.2q.representative_states.maxmix_0.partial_trace_marginals.0.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.maxmix_0.partial_trace_marginals.1.von_neumann_entropy": 0.0,
+          "rungs.2q.representative_states.maxmix_0.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.q00.partial_trace_marginals.0.von_neumann_entropy": 0.0,
+          "rungs.2q.representative_states.q00.partial_trace_marginals.1.von_neumann_entropy": 0.0,
+          "rungs.2q.representative_states.q00.von_neumann_entropy": 0.0,
+          "rungs.2q.representative_states.q0_maxmix.partial_trace_marginals.0.von_neumann_entropy": 0.0,
+          "rungs.2q.representative_states.q0_maxmix.partial_trace_marginals.1.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.q0_maxmix.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.q11.partial_trace_marginals.0.von_neumann_entropy": 0.0,
+          "rungs.2q.representative_states.q11.partial_trace_marginals.1.von_neumann_entropy": 0.0,
+          "rungs.2q.representative_states.q11.von_neumann_entropy": 0.0,
+          "rungs.2q.representative_states.qplusplus.partial_trace_marginals.1.von_neumann_entropy": 0.0,
+          "rungs.2q.representative_states.qplusplus.von_neumann_entropy": 0.0,
+          "rungs.2q.representative_states.w_pair.partial_trace_marginals.0.von_neumann_entropy": 0.636514168295,
+          "rungs.2q.representative_states.w_pair.partial_trace_marginals.1.von_neumann_entropy": 0.636514168295,
+          "rungs.2q.representative_states.w_pair.von_neumann_entropy": 0.636514168295
+        },
+        "system_v7/sims/finite_probe_quotient_inverse_limit_tower_1q_through_4q/results/finite_probe_quotient_inverse_limit_tower_1q_through_4q_pytorch_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "rungs.1q.quotient_class_count_erased": 6,
+          "rungs.1q.quotient_class_count_full": 6,
+          "rungs.1q.representative_states.closure_1q_w4_keep0.von_neumann_entropy": 0.562335144619,
+          "rungs.1q.representative_states.q0.von_neumann_entropy": -0.0,
+          "rungs.1q.representative_states.q1.von_neumann_entropy": -0.0,
+          "rungs.1q.representative_states.qmax.von_neumann_entropy": 0.69314718056,
+          "rungs.1q.representative_states.qplus.von_neumann_entropy": -0.0,
+          "rungs.1q.representative_states.qtwoone.von_neumann_entropy": 0.636514168295,
+          "rungs.2q.quotient_class_count_erased": 10,
+          "rungs.2q.quotient_class_count_full": 12,
+          "rungs.2q.representative_states.bell_phi_plus.partial_trace_marginals.0.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.bell_phi_plus.partial_trace_marginals.1.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.bell_phi_plus.von_neumann_entropy": -0.0,
+          "rungs.2q.representative_states.bell_psi_plus.partial_trace_marginals.0.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.bell_psi_plus.partial_trace_marginals.1.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.bell_psi_plus.von_neumann_entropy": -0.0,
+          "rungs.2q.representative_states.closure_2q_dicke4_2_keep01.partial_trace_marginals.0.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.closure_2q_dicke4_2_keep01.partial_trace_marginals.1.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.closure_2q_dicke4_2_keep01.von_neumann_entropy": 0.867563228481,
+          "rungs.2q.representative_states.closure_2q_w4_keep01.partial_trace_marginals.0.von_neumann_entropy": 0.562335144619,
+          "rungs.2q.representative_states.closure_2q_w4_keep01.partial_trace_marginals.1.von_neumann_entropy": 0.562335144619,
+          "rungs.2q.representative_states.closure_2q_w4_keep01.von_neumann_entropy": 0.69314718056,
+          "rungs.2q.representative_states.maxmix_0.von_neumann_entropy": 0.69314718056
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "later carve variants not rerun here"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "independent_survivor_restriction_noncommutation_verify_v0_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "julia leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_julia_results.json\n  deltas Dict(\"delta_mixed_amnesic\" => 0, \"delta_history_dependent\" => 2, \"delta_mixed_history_dependent\" => 2, \"delta_static_control_x_reactive\" => 3, \"delta_static_control_extensional\" => 0)\n  gnvw Dict(\"left_shift\" => -1, \"right_shift\" => 1, \"identity\" => 0)\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "independent_survivor_restriction_noncommutation_verify_v0_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "jax leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_jax_results.json\n  deltas hist=2 mix_hist=2 mix_amn=0 ext=0\n  parity_all=True smt_flip_confirmed=True (z3 sat/unsat, cvc5 sat)\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "independent_survivor_restriction_noncommutation_verify_v0_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "pytorch leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_pytorch_results.json\n  deltas {'delta_history_dependent': 2, 'delta_static_control_extensional': 0, 'delta_static_control_x_reactive': 3, 'delta_mixed_history_dependent': 2, 'delta_mixed_amnesic': 0}\n  parity_all=True gnvw={'left_shift': -1, 'right_shift': 1, 'identity': 0} gnvw_matches_core=True\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "\": 2,\n    \"delta_mixed_amnesic\": 0,\n    \"delta_static_control_x_reactive\": 3\n  },\n  \"gnvw_index_agreed\": {\n    \"left_shift\": -1,\n    \"right_shift\": 1,\n    \"identity\": 0\n  },\n  \"mismatches\": [],\n  \"three_engine_agreement\": true,\n  \"per_leg_self_parity_ok\": true,\n  \"audit\": {\n    \"legs_exit0\": true,\n    \"restriction_noncommutation_real\": true,\n    \"static_control_extensional_commutes\": true,\n    \"static_control_x_reactive_noncommutes\": true,\n    \"amnesic_collapses_clean_isolator\": true,\n    \"gnvw_signs_flip\": true,\n    \"phi_square_fidelity\": 1.0,\n    \"phi_square_wrong_lex_control\": 0.7777777777777778,\n    \"phi_square_scrambled_phi_control\": 0.2777777777777778,\n    \"smt_flip_confirmed\": true\n  },\n  \"engine_consensus\": {\n    \"independent\": true,\n    \"note\": \"JAX (vmap indicator XOR), PyTorch (boolean tensor XOR + permutation-matrix winding), and Julia (native Set symdiff + modular winding) are three distinct code paths; Julia is a from-scratch reimplementation in another language. reads_peer_result=false on all three.\"\n  },\n  \"classification\": \"scratch_diagnostic\",\n  \"claim_ceiling\": \"scratch_diagnostic\",\n  \"promotion_allowed\": false,\n  \"formal_admission_allowed\": false\n}\nAGREEMENT OK\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_agreement_results.json": "9511a5e9d6dfc684962553fdd762f7e9bbfb54d599ee41f13e5e2a687758d80d",
+        "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_jax_results.json": "bc1bd87dd9b81e5ccdfda885a85d03993bc5581c574ebe34a647d1196f26004c",
+        "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_julia_results.json": "f85d93fcbbca432bd4e7bf9281181ad04f5e292dbdc09041e1d6fb37911380b2",
+        "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_pytorch_results.json": "edb692d9cbc80a1325361eff7b78e52291c96827b2ca40af97699f3a5990b1d4"
+      },
+      "rung": "G3",
+      "verdict_from_sweep": "READY from inventory",
+      "witnesses": {
+        "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_agreement_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "per_leg_self_parity_ok": true,
+          "promotion_allowed": false
+        },
+        "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_jax_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "jax_core_parity_all": true,
+          "promotion_allowed": false
+        },
+        "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_julia_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false
+        },
+        "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_pytorch_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "torch_core_parity_all": true
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "ordered update/noncommutation matrix only"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "ordered_channel_maps_noncommutation_matrix_v0_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "julia leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_julia_results.json\n  all_maps_cptp=true symmetric=true commuting=11 noncommuting=4\n  disc_b2 (Ti-Fi probe-relative)=Dict(\"rho0_plus\" => 0.0, \"generic\" => 0.31224989991991986, \"mixed\" => 0.0, \"pole0\" => 0.8660254037844386)\n  classical_gap_max=1.1102230246251565e-16 reopens=0.34641016151377546\n  MAP-LEVEL: rho0_commuting=11 map_level_commuting=9 probe_specific_zeros=2\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "ordered_channel_maps_noncommutation_matrix_v0_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "jax leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_jax_results.json\n  all_maps_cptp=True symmetric=True commuting=11 noncommuting=4\n  disc_b2 (Ti-Fi probe-relative)={'rho0_plus': 2.581652997505183e-16, 'mixed': 2.5816529975051837e-16, 'pole0': 0.8660254037844386, 'generic': 0.3122498999199198}\n  classical_gap_max=1.110e-16 reopens=3.464e-01\n  MAP-LEVEL: rho0_commuting=11 map_level_commuting=9 probe_specific_zeros=2\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "ordered_channel_maps_noncommutation_matrix_v0_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "pytorch leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_pytorch_results.json\n  all_maps_cptp=True symmetric=True commuting=11 noncommuting=4\n  disc_b2 (Ti-Fi probe-relative)={'rho0_plus': 0.0, 'mixed': 0.0, 'pole0': 0.8660254037844385, 'generic': 0.3122498999199198}\n  classical_gap_max=1.283e-16 reopens=3.464e-01\n  MAP-LEVEL: rho0_commuting=11 map_level_commuting=9 probe_specific_zeros=2\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": " of load_bearing_facts.\",\n    \"commuting_pair_is_zero_on_rho0\": true,\n    \"identity_commutes_with_all\": true,\n    \"label_shuffle_invariant\": true,\n    \"matrix_symmetric\": true,\n    \"diag_self_zero\": true,\n    \"choi_psd_pass_is_tautology_for_kraus\": \"Choi-PSD holds for any Kraus list; the trace-preserving check is the actual CPTP gate.\",\n    \"trace_preserving_is_load_bearing_cptp_gate\": true,\n    \"lindblad_vs_te_equals_gamma_by_construction\": 0.3\n  },\n  \"failures\": [],\n  \"engine_consensus_note\": \"numpy (eigvalsh), jax (svdvals), pytorch (nuclear-norm API), and julia (from-scratch independent language, svdvals) are four distinct code paths in four languages/frameworks; reads_peer_result=false on all four. There are THREE distinct trace-norm routes (jax+julia share svdvals); for 2x2 trace-0 Hermitian input these routes are mathematically equivalent, so agreement is a code-path/language cross-check, not an independent-algorithm cross-check.\",\n  \"classification\": \"scratch_diagnostic\",\n  \"claim_ceiling\": \"scratch_diagnostic\",\n  \"promotion_allowed\": false,\n  \"formal_admission_allowed\": false\n}\n\nAGREEMENT OK: four engines agree on the noncommutation matrix and all discriminators/controls.\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_agreement_results.json": "2ee3da2c091da6c4f1f776294c0943ab78e9747f7b806e1aa0c217855f5f20fc",
+        "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_jax_results.json": "a030fb8399fa7bf714e9ff698b0ff029589ddd73e64379610605c982e0c6565e",
+        "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_julia_results.json": "d946fc60da6300762bc8fb9d7490e28d0182f4f29f23f653ccc54b3328e29790",
+        "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_numpy_results.json": "b417b1e3a1de7220b50a6aa42d4fc7b3caba1b0bed632f931b48f0ce88a225c3",
+        "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_pytorch_results.json": "a8d569f4e75bcedefadb26f5fdc5c0b8dbb0edaf5b0505d642a3a6827c8cbe48"
+      },
+      "rung": "G4",
+      "verdict_from_sweep": "READY from inventory",
+      "witnesses": {
+        "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_agreement_results.json": {
+          "agreed_values.classical_gap_max": 1.1102230246251565e-16,
+          "agreed_values.classical_gap_reopens_to": 0.34641016151377535,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "load_bearing_facts.classical_baseline_gap_collapses": true,
+          "promotion_allowed": false,
+          "structural_checks_recorded_not_load_bearing.choi_psd_pass_is_tautology_for_kraus": "Choi-PSD holds for any Kraus list; the trace-preserving check is the actual CPTP gate."
+        },
+        "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_jax_results.json": {
+          "classification": "scratch_diagnostic",
+          "discriminator_d_classical_baseline.classical_gap_collapses": true,
+          "discriminator_d_classical_baseline.classical_gap_max": 1.1102230246251565e-16,
+          "formal_admission_allowed": false,
+          "promotion_allowed": false
+        },
+        "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_julia_results.json": {
+          "classification": "scratch_diagnostic",
+          "discriminator_d_classical_baseline.classical_gap_collapses": true,
+          "discriminator_d_classical_baseline.classical_gap_max": 1.1102230246251565e-16,
+          "formal_admission_allowed": false,
+          "promotion_allowed": false
+        },
+        "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_numpy_results.json": {
+          "classification": "scratch_diagnostic",
+          "discriminator_d_classical_baseline.classical_gap_collapses": true,
+          "discriminator_d_classical_baseline.classical_gap_max": 1.1102230246251565e-16,
+          "formal_admission_allowed": false,
+          "promotion_allowed": false
+        },
+        "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_pytorch_results.json": {
+          "classification": "scratch_diagnostic",
+          "discriminator_d_classical_baseline.classical_gap_collapses": true,
+          "discriminator_d_classical_baseline.classical_gap_max": 1.283169577708704e-16,
+          "formal_admission_allowed": false,
+          "promotion_allowed": false
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "closure-demand/expressibility facts asserted not tested; toy z3/cvc5 control; shuffle is invariance not kill"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/tower_g5_density_floor_v0",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "tower_g5_density_floor_v0_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\":true,\"out\":\"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_julia_results.json\",\"engine\":\"julia\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "tower_g5_density_floor_v0_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"jax\", \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_jax_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "tower_g5_density_floor_v0_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"pytorch\", \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_pytorch_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"max_divergence\": 0.0, \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_three_engine_results.json\"}\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_jax_results.json": "c463e1528b96138b4d59dee7065c1ece70f72db59b0f441579b4b8833899a279",
+        "system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_julia_results.json": "33b5507f913fe1b1a0d972006de55607d4d5b0e401f16b843c2b7596c95fd9c1",
+        "system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_pytorch_results.json": "18856ea4b057dcf52d11d76cca1503e7aba8f97fda3ac7e0f9dbb07a688f81ad",
+        "system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_three_engine_results.json": "8baa02c27a1e754e225c4a9c8e98270e0fd5ac4d6934f1187d094030fa7491df"
+      },
+      "rung": "G5",
+      "verdict_from_sweep": "GENUINE-W-CAVEATS",
+      "witnesses": {
+        "system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_jax_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "installed_vs_forced": {
+            "closure_demand": "downstream unitary and dephasing operators require rho in D(C^2), not only a probe-statistics quotient label",
+            "installed_by_closure_demand": true,
+            "removable": true,
+            "removed_demand_record": {
+              "bare_quotient_suffices": true,
+              "rho_required": false
+            }
+          },
+          "promotion_allowed": false,
+          "witnesses": {
+            "cvc5_distinct_stats_equal_forbidden": "unsat",
+            "dephasing_expressible_on_bare_quotient": false,
+            "dephasing_expressible_on_rho": true,
+            "dephasing_trace_residual": 0.0,
+            "distinct_statistics_rho_distance": 0.5196152422706632,
+            "label_shuffle_same_rho_residual": 0.0,
+            "same_statistics_same_rho_residual": 0.0,
+            "unitary_expressible_on_bare_quotient": false,
+            "unitary_expressible_on_rho": true,
+            "unitary_trace_residual": 0.0,
+            "z3_distinct_stats_equal_forbidden": "unsat"
+          }
+        },
+        "system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_julia_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "installed_vs_forced": {
+            "closure_demand": "downstream unitary and dephasing operators require rho in D(C^2), not only a probe-statistics quotient label",
+            "installed_by_closure_demand": true,
+            "removable": true,
+            "removed_demand_record": {
+              "bare_quotient_suffices": true,
+              "rho_required": false
+            }
+          },
+          "promotion_allowed": false,
+          "witnesses": {
+            "dephasing_expressible_on_bare_quotient": false,
+            "dephasing_expressible_on_rho": true,
+            "dephasing_trace_residual": 0.0,
+            "distinct_statistics_rho_distance": 0.5196152422706632,
+            "label_shuffle_same_rho_residual": 0.0,
+            "same_statistics_same_rho_residual": 0.0,
+            "unitary_expressible_on_bare_quotient": false,
+            "unitary_expressible_on_rho": true,
+            "unitary_trace_residual": 0.0,
+            "z3_distinct_stats_equal_forbidden": "unsat"
+          }
+        },
+        "system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_pytorch_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "installed_vs_forced": {
+            "closure_demand": "downstream unitary and dephasing operators require rho in D(C^2), not only a probe-statistics quotient label",
+            "installed_by_closure_demand": true,
+            "removable": true,
+            "removed_demand_record": {
+              "bare_quotient_suffices": true,
+              "rho_required": false
+            }
+          },
+          "promotion_allowed": false,
+          "sympy_exact_density_check.pass": true,
+          "witnesses": {
+            "dephasing_expressible_on_bare_quotient": false,
+            "dephasing_expressible_on_rho": true,
+            "dephasing_trace_residual": 0.0,
+            "distinct_statistics_rho_distance": 0.5196152422706632,
+            "label_shuffle_same_rho_residual": 0.0,
+            "same_statistics_same_rho_residual": 0.0,
+            "sympy_exact_trace_one": true,
+            "unitary_expressible_on_bare_quotient": false,
+            "unitary_expressible_on_rho": true,
+            "unitary_trace_residual": 0.0,
+            "z3_distinct_stats_equal_forbidden": "unsat"
+          }
+        },
+        "system_v7/sims/tower_g5_density_floor_v0/results/tower_g5_density_floor_v0_three_engine_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "crossover_proofs.cvc5.verdict": "unsat",
+          "crossover_proofs.julia_z3.verdict": "unsat",
+          "crossover_proofs.z3.verdict": "unsat",
+          "divergence": {
+            "engine_values": {
+              "jax": {
+                "dephasing_trace_residual": 0.0,
+                "distinct_statistics_rho_distance": 0.5196152422706632,
+                "label_shuffle_same_rho_residual": 0.0,
+                "same_statistics_same_rho_residual": 0.0,
+                "unitary_trace_residual": 0.0
+              },
+              "julia": {
+                "dephasing_trace_residual": 0.0,
+                "distinct_statistics_rho_distance": 0.5196152422706632,
+                "label_shuffle_same_rho_residual": 0.0,
+                "same_statistics_same_rho_residual": 0.0,
+                "unitary_trace_residual": 0.0
+              },
+              "pytorch": {
+                "dephasing_trace_residual": 0.0,
+                "distinct_statistics_rho_distance": 0.5196152422706632,
+                "label_shuffle_same_rho_residual": 0.0,
+                "same_statistics_same_rho_residual": 0.0,
+                "unitary_trace_residual": 0.0
+              }
+            },
+            "julia_authoritative": true,
+            "max_divergence": 0.0
+          },
+          "engines.jax.classification": "scratch_diagnostic",
+          "engines.jax.promotion_allowed": false,
+          "engines.julia.classification": "scratch_diagnostic",
+          "engines.julia.promotion_allowed": false,
+          "engines.pytorch.classification": "scratch_diagnostic",
+          "engines.pytorch.promotion_allowed": false,
+          "formal_admission_allowed": false,
+          "installed_vs_forced": {
+            "closure_demand": "downstream unitary and dephasing operators require rho in D(C^2), not only a probe-statistics quotient label",
+            "installed_by_closure_demand": true,
+            "removable": true,
+            "removed_demand_record": {
+              "bare_quotient_suffices": true,
+              "rho_required": false
+            }
+          },
+          "promotion_allowed": false
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "Hopf closed=measured self-plant; horizontal residual hardcoded 0.0; flat-S2 kill weak"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/tower_g6g7_spinor_hopf_v0",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "tower_g6g7_spinor_hopf_v0_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\":true,\"out\":\"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_julia_results.json\",\"engine\":\"julia\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "tower_g6g7_spinor_hopf_v0_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"jax\", \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_jax_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "tower_g6g7_spinor_hopf_v0_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"pytorch\", \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_pytorch_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"lint_failures\": 0, \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_three_engine_results.json\", \"parity_max_diff\": 2.220446049250313e-16}\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_jax_results.json": "e687df3189dc8b3eb97975679aad7b842adea1063a997b92f86a2a368812c77f",
+        "system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_julia_results.json": "cbab3d625016a872234ef002792b36b587f038c0818d12b4eb73c747de1542fc",
+        "system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_pytorch_results.json": "bb84fea628692858ae679b7a16fff1d3c95a397a9d43a96b00b6fc77ae133133",
+        "system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_three_engine_results.json": "81706b189117de455900854b7701e15912826438712f2d3f5bda4a2b526d0edb"
+      },
+      "rung": "G6G7",
+      "verdict_from_sweep": "GENUINE-W-CAVEATS",
+      "witnesses": {
+        "system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_jax_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "hopf_connection.eta_rows.0.fiber_loop_density_stationary_residual": 6.304481211838311e-18,
+          "hopf_connection.eta_rows.0.horizontal_A_residual": 0.0,
+          "hopf_connection.eta_rows.0.lifted_base_loop_density_distance": 1.16207032107461,
+          "hopf_connection.eta_rows.1.fiber_loop_density_stationary_residual": 2.289415330023411e-16,
+          "hopf_connection.eta_rows.1.horizontal_A_residual": 0.0,
+          "hopf_connection.eta_rows.1.lifted_base_loop_density_distance": 1.8172669922317664,
+          "hopf_connection.eta_rows.2.fiber_loop_density_stationary_residual": 1.258897871195806e-16,
+          "hopf_connection.eta_rows.2.horizontal_A_residual": 0.0,
+          "hopf_connection.eta_rows.2.lifted_base_loop_density_distance": 1.938218257760913,
+          "promotion_allowed": false,
+          "shared_scalars.holonomy_2pi_class": -1.0,
+          "shared_scalars.holonomy_4pi_class": 1.0,
+          "shared_scalars.hopf_eta_0.31_base_distance": 1.16207032107461,
+          "shared_scalars.hopf_eta_0.31_fiber_residual": 6.304481211838311e-18,
+          "shared_scalars.hopf_eta_0.57_base_distance": 1.8172669922317664,
+          "shared_scalars.hopf_eta_0.57_fiber_residual": 2.289415330023411e-16,
+          "shared_scalars.hopf_eta_0.91_base_distance": 1.938218257760913,
+          "shared_scalars.hopf_eta_0.91_fiber_residual": 1.258897871195806e-16,
+          "shared_scalars.label_shuffle_residual": 0.0,
+          "shared_scalars.rho_path_residual_identical_readouts": 0.0,
+          "witnesses": {
+            "holonomy_2pi_class": -1.0,
+            "holonomy_4pi_class": 1.0,
+            "label_shuffle_residual": 0.0,
+            "rho_first_computed": true,
+            "rho_only_control_can_separate_720": false,
+            "rho_path_residual_identical_readouts": 0.0,
+            "spinor_separation_2pi": 2.0,
+            "spinor_separation_4pi": 0.0
+          }
+        },
+        "system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_julia_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "hopf_connection.eta_rows.0.fiber_loop_density_stationary_residual": 0.0,
+          "hopf_connection.eta_rows.0.horizontal_A_residual": 0.0,
+          "hopf_connection.eta_rows.0.lifted_base_loop_density_distance": 1.16207032107461,
+          "hopf_connection.eta_rows.1.fiber_loop_density_stationary_residual": 2.2887833992611187e-16,
+          "hopf_connection.eta_rows.1.horizontal_A_residual": 0.0,
+          "hopf_connection.eta_rows.1.lifted_base_loop_density_distance": 1.8172669922317666,
+          "hopf_connection.eta_rows.2.fiber_loop_density_stationary_residual": 1.2719202621569003e-16,
+          "hopf_connection.eta_rows.2.horizontal_A_residual": 0.0,
+          "hopf_connection.eta_rows.2.lifted_base_loop_density_distance": 1.938218257760913,
+          "promotion_allowed": false,
+          "shared_scalars.holonomy_2pi_class": -1.0,
+          "shared_scalars.holonomy_4pi_class": 1.0,
+          "shared_scalars.hopf_eta_0.31_base_distance": 1.16207032107461,
+          "shared_scalars.hopf_eta_0.31_fiber_residual": 0.0,
+          "shared_scalars.hopf_eta_0.57_base_distance": 1.8172669922317666,
+          "shared_scalars.hopf_eta_0.57_fiber_residual": 2.2887833992611187e-16,
+          "shared_scalars.hopf_eta_0.91_base_distance": 1.938218257760913,
+          "shared_scalars.hopf_eta_0.91_fiber_residual": 1.2719202621569003e-16,
+          "shared_scalars.label_shuffle_residual": 0.0,
+          "shared_scalars.rho_path_residual_identical_readouts": 0.0,
+          "witnesses": {
+            "holonomy_2pi_class": -1.0,
+            "holonomy_4pi_class": 1.0,
+            "label_shuffle_residual": 0.0,
+            "rho_first_computed": true,
+            "rho_only_control_can_separate_720": false,
+            "rho_path_residual_identical_readouts": 0.0,
+            "spinor_separation_2pi": 2.0,
+            "spinor_separation_4pi": 0.0
+          }
+        },
+        "system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_pytorch_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "hopf_connection.eta_rows.0.fiber_loop_density_stationary_residual": 6.304481211838311e-18,
+          "hopf_connection.eta_rows.0.horizontal_A_residual": 0.0,
+          "hopf_connection.eta_rows.0.lifted_base_loop_density_distance": 1.16207032107461,
+          "hopf_connection.eta_rows.1.fiber_loop_density_stationary_residual": 2.289415330023411e-16,
+          "hopf_connection.eta_rows.1.horizontal_A_residual": 0.0,
+          "hopf_connection.eta_rows.1.lifted_base_loop_density_distance": 1.8172669922317664,
+          "hopf_connection.eta_rows.2.fiber_loop_density_stationary_residual": 1.258897871195806e-16,
+          "hopf_connection.eta_rows.2.horizontal_A_residual": 0.0,
+          "hopf_connection.eta_rows.2.lifted_base_loop_density_distance": 1.938218257760913,
+          "promotion_allowed": false,
+          "shared_scalars.holonomy_2pi_class": -1.0,
+          "shared_scalars.holonomy_4pi_class": 1.0,
+          "shared_scalars.hopf_eta_0.31_base_distance": 1.16207032107461,
+          "shared_scalars.hopf_eta_0.31_fiber_residual": 6.304481211838311e-18,
+          "shared_scalars.hopf_eta_0.57_base_distance": 1.8172669922317664,
+          "shared_scalars.hopf_eta_0.57_fiber_residual": 2.289415330023411e-16,
+          "shared_scalars.hopf_eta_0.91_base_distance": 1.938218257760913,
+          "shared_scalars.hopf_eta_0.91_fiber_residual": 1.258897871195806e-16,
+          "shared_scalars.label_shuffle_residual": 0.0,
+          "shared_scalars.rho_path_residual_identical_readouts": 0.0,
+          "witnesses": {
+            "holonomy_2pi_class": -1.0,
+            "holonomy_4pi_class": 1.0,
+            "label_shuffle_residual": 0.0,
+            "rho_first_computed": true,
+            "rho_only_control_can_separate_720": false,
+            "rho_path_residual_identical_readouts": 0.0,
+            "spinor_separation_2pi": 1.9999999999999998,
+            "spinor_separation_4pi": 0.0
+          }
+        },
+        "system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_three_engine_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "lint.failure_count": 0,
+          "parity.max_divergence": 2.220446049250313e-16,
+          "promotion_allowed": false,
+          "witness_values.hopf_eta_rows.0.fiber_loop_density_stationary_residual": 0.0,
+          "witness_values.hopf_eta_rows.0.horizontal_A_residual": 0.0,
+          "witness_values.hopf_eta_rows.0.lifted_base_loop_density_distance": 1.16207032107461,
+          "witness_values.hopf_eta_rows.1.fiber_loop_density_stationary_residual": 2.2887833992611187e-16,
+          "witness_values.hopf_eta_rows.1.horizontal_A_residual": 0.0,
+          "witness_values.hopf_eta_rows.1.lifted_base_loop_density_distance": 1.8172669922317666,
+          "witness_values.hopf_eta_rows.2.fiber_loop_density_stationary_residual": 1.2719202621569003e-16,
+          "witness_values.hopf_eta_rows.2.horizontal_A_residual": 0.0,
+          "witness_values.hopf_eta_rows.2.lifted_base_loop_density_distance": 1.938218257760913
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "relabel subcontrol recomputes sheet(1.0) instead of transforming measured right sheet"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/tower_g8_two_sheets_v0",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "tower_g8_two_sheets_v0_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\":true,\"out\":\"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_julia_results.json\",\"engine\":\"julia\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "tower_g8_two_sheets_v0_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"jax\", \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_jax_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "tower_g8_two_sheets_v0_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"pytorch\", \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_pytorch_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"lint_errors\": 0, \"max_engine_divergence\": 3.9745984281580604e-14, \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_three_engine_results.json\"}\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_jax_results.json": "d8b912ccc427b5eb905bc33307ce679316ff00d5273241fb13dd2abf906926e7",
+        "system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_julia_results.json": "b59245dbc11c791b95c483845b473f35d5c30ac38c28a856d85f6cc75d4245a1",
+        "system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_pytorch_results.json": "6efa996556d1959e23bd7d80d8286db2314b7c8f7be4c5f174d6c3cc9ceb1d76",
+        "system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_three_engine_results.json": "103913243da4ee8719be7629518b5404560c7e1689f718015e0665e47f723768"
+      },
+      "rung": "G8",
+      "verdict_from_sweep": "GENUINE-W-CAVEATS \u2014 chain-admissible after repair",
+      "witnesses": {
+        "system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_jax_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "controls.sign_flip_relabel.max_residual_after_relabel": 5.395683899678261e-14,
+          "formal_admission_allowed": false,
+          "initial_state_count": 5,
+          "jax_reconciliation.prior_all_pass": false,
+          "jax_reconciliation.verdict": "spec_drift_not_engine_divergence",
+          "promotion_allowed": false,
+          "sheets.L.max_residual": 2.6666706620659397e-08,
+          "sheets.R.max_residual": 2.6666667318764326e-08
+        },
+        "system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_julia_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "controls.sign_flip_relabel.max_residual_after_relabel": 4.196643033083092e-14,
+          "formal_admission_allowed": false,
+          "initial_state_count": 5,
+          "jax_reconciliation.prior_all_pass": false,
+          "jax_reconciliation.verdict": "spec_drift_not_engine_divergence",
+          "promotion_allowed": false,
+          "sheets.L.max_residual": 2.6666686192555744e-08,
+          "sheets.R.max_residual": 2.6666666874675116e-08
+        },
+        "system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_pytorch_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "controls.sign_flip_relabel.max_residual_after_relabel": 5.395683899678261e-14,
+          "formal_admission_allowed": false,
+          "initial_state_count": 5,
+          "jax_reconciliation.prior_all_pass": false,
+          "jax_reconciliation.verdict": "spec_drift_not_engine_divergence",
+          "promotion_allowed": false,
+          "sheets.L.max_residual": 2.6666706620659397e-08,
+          "sheets.R.max_residual": 2.6666667318764326e-08
+        },
+        "system_v7/sims/tower_g8_two_sheets_v0/results/tower_g8_two_sheets_v0_three_engine_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "controls.sign_flip_max_residual": 5.395683899678261e-14,
+          "engines.jax.all_pass": true,
+          "engines.julia.all_pass": true,
+          "engines.pytorch.all_pass": true,
+          "formal_admission_allowed": false,
+          "jax_reconciliation.prior_all_pass": false,
+          "jax_reconciliation.verdict": "spec_drift_not_engine_divergence",
+          "lint.error_count": 0,
+          "promotion_allowed": false
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "loop/index behavior anchor"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "finite_ring_block_partition_reversible_qca_gnvw_index_v0_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "julia leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_julia_results.json\n  left_shift index_units_log_d=-1.0 log=-0.6931471805599453\n  right_shift index_units_log_d=1.0 log=0.6931471805599453\n  identity index_units_log_d=0.0 log=0.0\n  finite_depth_local_circuit index_units_log_d=0.0 log=0.0\n  non_shift_partitioned index_units_log_d=0.0 log=0.0\n  reversibility_ok=true\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "finite_ring_block_partition_reversible_qca_gnvw_index_v0_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "jax leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_jax_results.json\n  left_shift index_units_log_d=-1.0 log=-0.6931471805599453\n  right_shift index_units_log_d=1.0 log=0.6931471805599453\n  identity index_units_log_d=0.0 log=0.0\n  finite_depth_local_circuit index_units_log_d=0.0 log=0.0\n  non_shift_partitioned index_units_log_d=0.0 log=0.0\n  smt flip confirmed=True z3=unsat/sat cvc5=unsat/sat\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "finite_ring_block_partition_reversible_qca_gnvw_index_v0_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "pytorch leg wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_pytorch_results.json\n  left_shift index_units_log_d=-1.0 log=-0.6931471805599453\n  right_shift index_units_log_d=1.0 log=0.6931471805599453\n  identity index_units_log_d=0.0 log=0.0\n  finite_depth_local_circuit index_units_log_d=0.0 log=0.0\n  non_shift_partitioned index_units_log_d=0.0 log=0.0\n  reversibility_ok=True autograd_gradient_ok=True\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "       ],\n          \"A4_Z\": [\n            7\n          ],\n          \"A2_Z\": [\n            5\n          ]\n        }\n      }\n    }\n  },\n  \"left_right_sign_opposition\": true,\n  \"identity_zero\": true,\n  \"finite_depth_local_circuit_zero\": true,\n  \"jax_smt_status\": {\n    \"status\": \"supportive_demoted\",\n    \"demotion_reason\": \"z3/cvc5 query is a sign sanity check over computed ranks, not the source of the support-conjugation derivation\",\n    \"encoding\": \"solver signs are constrained to signs computed from support-algebra ranks; this is retained only as a supportive parity check\",\n    \"z3_same_nonzero_chirality_query\": \"unsat\",\n    \"cvc5_same_nonzero_chirality_query\": \"unsat\",\n    \"z3_identity_zero_control\": \"sat\",\n    \"cvc5_identity_zero_control\": \"sat\",\n    \"real_vs_trivial_flip_confirmed\": true,\n    \"computed_signs\": {\n      \"left_shift\": -1,\n      \"right_shift\": 1,\n      \"identity\": 0,\n      \"finite_depth_local_circuit\": 0,\n      \"non_shift_partitioned\": 0\n    }\n  },\n  \"index_operator_equals_reversibility_operator\": true,\n  \"pytorch_reversibility_ok\": true,\n  \"all_three_agree\": true,\n  \"failures\": []\n}\n\nAGREEMENT CHECK OK: all three legs agree on the support-algebra GNVW index controls.\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_agreement_results.json": "f475722e4ec0ebbc16f8ed425e45bb573e57c2052c23f0633bc42a440f053ce0",
+        "system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_jax_results.json": "380e1fb65dc02141d683cead1d3bc09c68d358257b3c31869c413c0d78f97306",
+        "system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_julia_results.json": "7d5db8e614b5fb778aa2cdf1253832a2b3bd4d21460659b78642dde826f925a2",
+        "system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_pytorch_results.json": "3c6dee3a3524065fc4b3057173d30398a4ac9ffbbdc300780849b70f787119b5"
+      },
+      "rung": "G9",
+      "verdict_from_sweep": "READY from inventory",
+      "witnesses": {
+        "system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_agreement_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "shift_by_k_index_units_log_d.left_shift.1.left_overlap_rank": 2,
+          "shift_by_k_index_units_log_d.left_shift.1.right_overlap_rank": 0,
+          "shift_by_k_index_units_log_d.left_shift.2.left_overlap_rank": 4,
+          "shift_by_k_index_units_log_d.left_shift.2.right_overlap_rank": 0,
+          "shift_by_k_index_units_log_d.left_shift.3.left_overlap_rank": 6,
+          "shift_by_k_index_units_log_d.left_shift.3.right_overlap_rank": 0,
+          "shift_by_k_index_units_log_d.right_shift.1.left_overlap_rank": 0,
+          "shift_by_k_index_units_log_d.right_shift.1.right_overlap_rank": 2,
+          "shift_by_k_index_units_log_d.right_shift.2.left_overlap_rank": 0,
+          "shift_by_k_index_units_log_d.right_shift.2.right_overlap_rank": 4,
+          "shift_by_k_index_units_log_d.right_shift.3.left_overlap_rank": 0,
+          "shift_by_k_index_units_log_d.right_shift.3.right_overlap_rank": 6
+        },
+        "system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_jax_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "gnvw_index_values.finite_depth_local_circuit.left_overlap_rank": 1,
+          "gnvw_index_values.finite_depth_local_circuit.right_overlap_rank": 1,
+          "gnvw_index_values.identity.left_overlap_rank": 0,
+          "gnvw_index_values.identity.right_overlap_rank": 0,
+          "gnvw_index_values.left_shift.left_overlap_rank": 2,
+          "gnvw_index_values.left_shift.right_overlap_rank": 0,
+          "gnvw_index_values.non_shift_partitioned.left_overlap_rank": 1,
+          "gnvw_index_values.non_shift_partitioned.right_overlap_rank": 1,
+          "gnvw_index_values.right_shift.left_overlap_rank": 0,
+          "gnvw_index_values.right_shift.right_overlap_rank": 2,
+          "promotion_allowed": false,
+          "shift_by_k_index_values.left_shift.1.left_overlap_rank": 2,
+          "shift_by_k_index_values.left_shift.1.right_overlap_rank": 0,
+          "shift_by_k_index_values.left_shift.2.left_overlap_rank": 4,
+          "shift_by_k_index_values.left_shift.2.right_overlap_rank": 0,
+          "shift_by_k_index_values.left_shift.3.left_overlap_rank": 6,
+          "shift_by_k_index_values.left_shift.3.right_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.1.left_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.1.right_overlap_rank": 2,
+          "shift_by_k_index_values.right_shift.2.left_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.2.right_overlap_rank": 4,
+          "shift_by_k_index_values.right_shift.3.left_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.3.right_overlap_rank": 6
+        },
+        "system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_julia_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "gnvw_index_values.finite_depth_local_circuit.left_overlap_rank": 1,
+          "gnvw_index_values.finite_depth_local_circuit.right_overlap_rank": 1,
+          "gnvw_index_values.identity.left_overlap_rank": 0,
+          "gnvw_index_values.identity.right_overlap_rank": 0,
+          "gnvw_index_values.left_shift.left_overlap_rank": 2,
+          "gnvw_index_values.left_shift.right_overlap_rank": 0,
+          "gnvw_index_values.non_shift_partitioned.left_overlap_rank": 1,
+          "gnvw_index_values.non_shift_partitioned.right_overlap_rank": 1,
+          "gnvw_index_values.right_shift.left_overlap_rank": 0,
+          "gnvw_index_values.right_shift.right_overlap_rank": 2,
+          "promotion_allowed": false,
+          "shift_by_k_index_values.left_shift.1.left_overlap_rank": 2,
+          "shift_by_k_index_values.left_shift.1.right_overlap_rank": 0,
+          "shift_by_k_index_values.left_shift.2.left_overlap_rank": 4,
+          "shift_by_k_index_values.left_shift.2.right_overlap_rank": 0,
+          "shift_by_k_index_values.left_shift.3.left_overlap_rank": 6,
+          "shift_by_k_index_values.left_shift.3.right_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.1.left_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.1.right_overlap_rank": 2,
+          "shift_by_k_index_values.right_shift.2.left_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.2.right_overlap_rank": 4,
+          "shift_by_k_index_values.right_shift.3.left_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.3.right_overlap_rank": 6
+        },
+        "system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_pytorch_results.json": {
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "gnvw_index_values.finite_depth_local_circuit.left_overlap_rank": 1,
+          "gnvw_index_values.finite_depth_local_circuit.right_overlap_rank": 1,
+          "gnvw_index_values.identity.left_overlap_rank": 0,
+          "gnvw_index_values.identity.right_overlap_rank": 0,
+          "gnvw_index_values.left_shift.left_overlap_rank": 2,
+          "gnvw_index_values.left_shift.right_overlap_rank": 0,
+          "gnvw_index_values.non_shift_partitioned.left_overlap_rank": 1,
+          "gnvw_index_values.non_shift_partitioned.right_overlap_rank": 1,
+          "gnvw_index_values.right_shift.left_overlap_rank": 0,
+          "gnvw_index_values.right_shift.right_overlap_rank": 2,
+          "promotion_allowed": false,
+          "shift_by_k_index_values.left_shift.1.left_overlap_rank": 2,
+          "shift_by_k_index_values.left_shift.1.right_overlap_rank": 0,
+          "shift_by_k_index_values.left_shift.2.left_overlap_rank": 4,
+          "shift_by_k_index_values.left_shift.2.right_overlap_rank": 0,
+          "shift_by_k_index_values.left_shift.3.left_overlap_rank": 6,
+          "shift_by_k_index_values.left_shift.3.right_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.1.left_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.1.right_overlap_rank": 2,
+          "shift_by_k_index_values.right_shift.2.left_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.2.right_overlap_rank": 4,
+          "shift_by_k_index_values.right_shift.3.left_overlap_rank": 0,
+          "shift_by_k_index_values.right_shift.3.right_overlap_rank": 6
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "fixture-authored terrain pairing; stale wrapper text in envelope"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/tower_g10_terrain_flows_v0",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "tower_g10_terrain_flows_v0_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\":true,\"out\":\"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_julia_results.json\",\"engine\":\"julia\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "tower_g10_terrain_flows_v0_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"jax\", \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_jax_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "tower_g10_terrain_flows_v0_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"pytorch\", \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_pytorch_results.json\"}\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"all_pass\": true, \"lint_errors\": 0, \"max_engine_divergence\": 4.440892098500626e-16, \"out\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_three_engine_results.json\"}\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_jax_results.json": "32ce5a606624117b762e41b59fd1f5abcef123d4cf7cad508f2ea7afc0352c03",
+        "system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_julia_results.json": "def608041b2435effff3b7bdb24a75c4ca131adc187342e3811e740e8da3b43a",
+        "system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_pytorch_results.json": "bdc5f8a63181495f411dd31bb32666772e6aa44d877d18ade6221a127dd15381",
+        "system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_three_engine_results.json": "4ed8238ca43721266a7efb9c50d1388c63b8185840e5d62d3569c588451e05d2"
+      },
+      "rung": "G10",
+      "verdict_from_sweep": "GENUINE-W-CAVEATS \u2014 chain-admissible after repair",
+      "witnesses": {
+        "system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_jax_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "terrain_count": 8
+        },
+        "system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_julia_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "terrain_count": 8
+        },
+        "system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_pytorch_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "terrain_count": 8
+        },
+        "system_v7/sims/tower_g10_terrain_flows_v0/results/tower_g10_terrain_flows_v0_three_engine_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "engines.jax.all_pass": true,
+          "engines.julia.all_pass": true,
+          "engines.pytorch.all_pass": true,
+          "formal_admission_allowed": false,
+          "lint.error_count": 0,
+          "promotion_allowed": false
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "existing formal-scout/json receipt reused; not mechanically rerun here"
+      ],
+      "engine_parity": "reused_existing_json",
+      "mode": "reused_receipt",
+      "packet": "system_v5/ops/formal_scouts",
+      "rerun_commands": [],
+      "rerun_exit_ok": null,
+      "result_hashes": {
+        "system_v5/ops/formal_scouts/../../julia_carrier/results/foundation_nested_hopf_weyl_signed_cut_ratchet_julia_results.json": "f7f64f6e3ae90cfe88ddc3a927befeed7f851cebe8581686e491e073b371e5db"
+      },
+      "rung": "G11",
+      "verdict_from_sweep": "READY from inventory",
+      "witnesses": {
+        "system_v5/ops/formal_scouts/../../julia_carrier/results/foundation_nested_hopf_weyl_signed_cut_ratchet_julia_results.json": {
+          "all_pass": true,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "promotion_allowed": false,
+          "rungs.0.conditional_entropy_S_A_given_B": 0.0,
+          "rungs.0.density.hermitian_residual": 0.0,
+          "rungs.0.density_quotient.distinguishable_class_count": 1,
+          "rungs.0.density_quotient.operator_count": 1,
+          "rungs.0.stacked_density.hermitian_residual": 0.0,
+          "rungs.1.conditional_entropy_S_A_given_B": -0.36207321415030524,
+          "rungs.1.density.hermitian_residual": 0.0,
+          "rungs.1.density_quotient.distinguishable_class_count": 3,
+          "rungs.1.density_quotient.operator_count": 2,
+          "rungs.1.stacked_density.hermitian_residual": 0.0,
+          "rungs.2.conditional_entropy_S_A_given_B": -0.6786324023685923,
+          "rungs.2.density.hermitian_residual": 0.0,
+          "rungs.2.density_quotient.distinguishable_class_count": 3,
+          "rungs.2.density_quotient.operator_count": 5,
+          "rungs.2.stacked_density.hermitian_residual": 0.0,
+          "shared_scalars.boundary_rung1_conditional_entropy": 0.0,
+          "shared_scalars.conditional_entropy_r1": 0.0,
+          "shared_scalars.conditional_entropy_r2": -0.36207321415030524,
+          "shared_scalars.conditional_entropy_r3": -0.6786324023685923,
+          "shared_scalars.quotient_class_count_M1": 1.0,
+          "shared_scalars.quotient_class_count_M2": 3.0,
+          "shared_scalars.quotient_class_count_M3": 3.0,
+          "shared_scalars.separable_conditional_entropy_r1": 0.0,
+          "shared_scalars.separable_conditional_entropy_r2": 0.36207321415030524,
+          "shared_scalars.separable_conditional_entropy_r3": 0.6786324023685926
+        }
+      }
+    },
+    {
+      "caveats_carried": [
+        "cut-lattice entropy anchor"
+      ],
+      "engine_parity": "fresh_check_exit_0",
+      "mode": "rerun",
+      "packet": "system_v7/sims/cut_lattice_schmidt_entropy_v0",
+      "rerun_commands": [
+        {
+          "cmd": [
+            "julia",
+            "cut_lattice_schmidt_entropy_v0_julia.jl"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_julia_results.json\nall_tests_pass=true all_controls_pass=true\ncuts n2/n3/n4 = 1/3/7\nn3 GHZ Dict(\"(0, 2)\" => 1.0, \"(0, 1)\" => 1.0, \"(0,)\" => 1.0)  W Dict(\"(0, 2)\" => 0.918295834, \"(0, 1)\" => 0.918295834, \"(0,)\" => 0.918295834)  gap 0.08170416594551067\nn4 GHZ vals [1.0]  W vals [0.811278, 1.0]\nn4 max cut S 2.0 rank 4; product neg 0.0  GHZ neg cut0 0.4999999999999999\nscramble S cut0 n3/n4 = 0.32891115927377634/0.3247700137343221\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "cut_lattice_schmidt_entropy_v0_jax.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_jax_results.json\nall_tests_pass=True all_controls_pass=True\nn3 GHZ {'(0,)': 1.0, '(0, 1)': 1.0, '(0, 2)': 1.0}  W {'(0,)': 0.918295834, '(0, 1)': 0.918295834, '(0, 2)': 0.918295834}  gap 0.081704\nn4 max cut S 2.000000000 rank 4; product neg 0.00e+00\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "cut_lattice_schmidt_entropy_v0_pytorch.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "wrote /Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_pytorch_results.json\nall_tests_pass=True all_controls_pass=True\nn3 GHZ {'(0,)': 1.0, '(0, 1)': 1.0, '(0, 2)': 1.0}  W {'(0,)': 0.918295834, '(0, 1)': 0.918295834, '(0, 2)': 0.918295834}  gap 0.081704\nn4 max cut S 2.000000000 rank 4; product neg 0.00e+00\n"
+        },
+        {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "check_agreement.py"
+          ],
+          "exit": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\n  \"agreement_ok\": true,\n  \"n_engines\": 4,\n  \"engines\": [\n    \"exact\",\n    \"jax\",\n    \"julia\",\n    \"pytorch\"\n  ],\n  \"failures\": []\n}\n"
+        }
+      ],
+      "rerun_exit_ok": true,
+      "result_hashes": {
+        "system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_agreement_results.json": "2e7f1cd17a9c22237fa66f00ed3b8f08f617c41fa857dd0ea88a8464b5f58d83",
+        "system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_exact_results.json": "5abe56e36dbe88106bb98a68ff5633647c1842b6c7f33bb0edf929410b99247b",
+        "system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_jax_results.json": "f744cfb05421cd441355306c9ac98468e631c7ee74ca94c6291347aefff89c0a",
+        "system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_julia_results.json": "1eee77250435571ae49a8fa2856e109f8760638214c4534a71982922e4ab38f9",
+        "system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_pytorch_results.json": "a75af3df4aa4b55db2b19babbdcceed59ec0c6271bbba6640bd6021617416a0e"
+      },
+      "rung": "G12",
+      "verdict_from_sweep": "READY from inventory",
+      "witnesses": {
+        "system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_agreement_results.json": {
+          "agreed_invariants.n4_max_cut_rank": 4,
+          "agreed_invariants.schmidt_rank_product": 1,
+          "classification": "scratch_diagnostic",
+          "formal_admission_allowed": false,
+          "load_bearing_discriminators.scramble_moves_entropy_off_baseline": true,
+          "promotion_allowed": false
+        },
+        "system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_exact_results.json": {
+          "all_controls_pass": true,
+          "all_tests_pass": true,
+          "classification": "scratch_diagnostic",
+          "controls.scramble_moves_entropy": true,
+          "formal_admission_allowed": false,
+          "invariants.n4_max_cut_rank": 4,
+          "invariants.schmidt_rank_product": 1,
+          "promotion_allowed": false,
+          "tests.cut_lattice_count_n2_n3_n4": true,
+          "tests.product_zero_entropy_every_cut": true
+        },
+        "system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_jax_results.json": {
+          "all_controls_pass": true,
+          "all_tests_pass": true,
+          "classification": "scratch_diagnostic",
+          "controls.scramble_moves_entropy": true,
+          "formal_admission_allowed": false,
+          "invariants.n4_max_cut_rank": 4,
+          "invariants.schmidt_rank_product": 1,
+          "promotion_allowed": false,
+          "tests.cut_lattice_count_n2_n3_n4": true,
+          "tests.product_zero_entropy_every_cut": true
+        },
+        "system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_julia_results.json": {
+          "all_controls_pass": true,
+          "all_tests_pass": true,
+          "classification": "scratch_diagnostic",
+          "controls.scramble_moves_entropy": true,
+          "formal_admission_allowed": false,
+          "invariants.n4_max_cut_rank": 4,
+          "invariants.schmidt_rank_product": 1,
+          "promotion_allowed": false,
+          "tests.cut_lattice_count_n2_n3_n4": true,
+          "tests.product_zero_entropy_every_cut": true
+        },
+        "system_v7/sims/cut_lattice_schmidt_entropy_v0/results/cut_lattice_schmidt_entropy_v0_pytorch_results.json": {
+          "all_controls_pass": true,
+          "all_tests_pass": true,
+          "classification": "scratch_diagnostic",
+          "controls.scramble_moves_entropy": true,
+          "formal_admission_allowed": false,
+          "invariants.n4_max_cut_rank": 4,
+          "invariants.schmidt_rank_product": 1,
+          "promotion_allowed": false,
+          "tests.cut_lattice_count_n2_n3_n4": true,
+          "tests.product_zero_entropy_every_cut": true
+        }
+      }
+    }
+  ],
+  "schema_version": "tower_chain_run_v0"
+}

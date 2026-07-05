@@ -2,11 +2,15 @@ using Dates
 using LinearAlgebra
 include(joinpath(@__DIR__, "..", "ratchet_climb_engine_v3_witness", "separation_witness_julia.jl"))
 
-const BASE = fill(0.25, 4)
-const ENTANGLED_A = [1.0 0.22 0.0 0.0; 0.0 1.0 0.0 0.0; 0.0 0.0 1.0 -0.16; 0.0 0.0 0.0 1.0]
-const ENTANGLED_B = [1.0 0.0 -0.19 0.0; 0.0 1.0 0.0 0.13; 0.0 0.0 1.0 0.0; 0.0 0.0 0.0 1.0]
-const COMMUTE_A = Diagonal([1.07, 0.97, 1.03, 0.93])
-const COMMUTE_B = Diagonal([0.91, 1.11, 0.89, 1.09])
+const DIM = 8
+const BASE = fill(1.0 / DIM, DIM)
+const INITIAL_QUOTIENT = [[0, 1, 2, 3, 4, 5, 6], [7]]
+const ENTANGLED_A = Matrix{Float64}(I, DIM, DIM)
+ENTANGLED_A[1,2] = 0.22; ENTANGLED_A[3,4] = -0.16; ENTANGLED_A[5,6] = 0.11; ENTANGLED_A[7,8] = -0.09
+const ENTANGLED_B = Matrix{Float64}(I, DIM, DIM)
+ENTANGLED_B[1,3] = -0.19; ENTANGLED_B[2,4] = 0.13; ENTANGLED_B[5,7] = -0.07; ENTANGLED_B[6,8] = 0.17
+const COMMUTE_A = Diagonal([1.07, 0.97, 1.03, 0.93, 1.05, 0.95, 1.01, 0.99])
+const COMMUTE_B = Diagonal([0.91, 1.11, 0.89, 1.09, 0.94, 1.06, 0.92, 1.08])
 @assert !(ENTANGLED_A * ENTANGLED_B ≈ ENTANGLED_B * ENTANGLED_A)
 @assert COMMUTE_A * COMMUTE_B ≈ COMMUTE_B * COMMUTE_A
 const INITIAL_READOUTS = ["global_population"]
@@ -35,15 +39,16 @@ canon(q) = [sort(c) for c in q]
 rid(k,q) = string(k, ":", join([join(sort(c), "-") for c in q], "."))
 
 function measure(k, s, q, previous=nothing, operators=nothing)
-    b0 = [1.0,1.0,-1.0,-1.0]; b1 = [1.0,-1.0,1.0,-1.0]
-    k == "global_population" && return [s[1]+s[2], s[1]+s[2], -(s[3]+s[4]), -(s[3]+s[4])]
+    b0 = [((i - 1) & 4) == 0 ? 1.0 : -1.0 for i in 1:DIM]
+    b1 = [((i - 1) & 2) == 0 ? 1.0 : -1.0 for i in 1:DIM]
+    k == "global_population" && return [b0[i] > 0 ? sum(s[j] for j in 1:DIM if b0[j] > 0) : -sum(s[j] for j in 1:DIM if b0[j] < 0) for i in 1:DIM]
     k == "within_cell_phase" && return s .* b1
     k == "pair_correlation" && return (s .* b1) * transpose(s .* b0)
     if k == "time_ordered_two_step"
         ops = operators === nothing ? (COMMUTE_A, COMMUTE_B) : operators
         a, b = ops
         x = previous === nothing ? BASE : previous
-        return fill(norm(b * (a * x) - a * (b * x)), 4)
+        return fill(norm(b * (a * x) - a * (b * x)), DIM)
     end
     error(k)
 end
@@ -52,14 +57,16 @@ fact(k, tick, s, q, ro, previous=nothing, operators=nothing) = Dict("tick"=>tick
 facts_for(readouts, tick, s, q, previous=nothing, operators=nothing) = [fact(ro["kind"], tick, s, q, ro, previous, operators) for ro in readouts]
 
 function g_history(carrier, history, tick, q, readouts)
-    mem = isempty(history) ? zeros(4) : sum(history[max(1,end-2):end]) ./ min(3, length(history))
+    mem = isempty(history) ? zeros(DIM) : sum(history[max(1,end-2):end]) ./ min(3, length(history))
     phase = tick + 0.17 * length(history)
-    s = BASE .+ 0.07 .* [sin(phase), cos(phase+0.4), -sin(phase+0.7), -cos(phase+0.2)] .+ 0.04 .* mem
+    wave = [iseven(i - 1) ? sin(phase + 0.31 * (i - 1)) : cos(phase + 0.23 * (i - 1)) for i in 1:DIM]
+    wave = wave .- (sum(wave) / length(wave))
+    s = BASE .+ 0.035 .* wave .+ 0.04 .* mem
     return s, facts_for(readouts, tick, s, q, carrier, (ENTANGLED_A, ENTANGLED_B))
 end
 
 function g_commute(carrier, history, tick, q, readouts)
-    s = BASE .+ 0.03*sin(tick) .* [1.0,1.0,-1.0,-1.0]
+    s = BASE .+ 0.015*sin(tick) .* [((i - 1) & 4) == 0 ? 1.0 : -1.0 for i in 1:DIM]
     return s, facts_for(readouts, tick, s, q, carrier, (COMMUTE_A, COMMUTE_B))
 end
 
@@ -148,8 +155,8 @@ function order_only_pairs(q, tick_facts)
     return separation_witness(q, order_facts; tolerance=1e-9)["witness_pairs"]
 end
 
-function run_pipeline(label, generator; persistent_k=3, max_ticks=50, stop_lossless=10, extend_licensing=true)
-    q = [[0,1,2,3]]; all_facts = Any[]; locks = Any[]; history = Any[]; carrier = copy(BASE)
+function run_pipeline(label, generator; persistent_k=3, max_ticks=100, stop_lossless=15, extend_licensing=true)
+    q = [copy(c) for c in INITIAL_QUOTIENT]; all_facts = Any[]; locks = Any[]; history = Any[]; carrier = copy(BASE)
     licensed = license_readouts(q, INITIAL_READOUTS, nothing); streaks = Dict(); lossless = 0; curve = Any[]; last = nothing; tick = 0
     for t in 1:max_ticks
         tick = t

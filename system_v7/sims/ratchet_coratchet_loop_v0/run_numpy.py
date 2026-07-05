@@ -12,11 +12,15 @@ RESULTS = SIM / "results"
 sys.path.insert(0, str(ROOT / "system_v7" / "sims" / "ratchet_climb_engine_v3_witness"))
 from separation_witness_numpy import separation_witness
 
-BASE = np.full(4, 0.25, dtype=float)
-ENTANGLED_A = np.array([[1.0, 0.22, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, 1.0, -0.16], [0.0, 0.0, 0.0, 1.0]], dtype=float)
-ENTANGLED_B = np.array([[1.0, 0.0, -0.19, 0.0], [0.0, 1.0, 0.0, 0.13], [0.0, 0.0, 1.0, 0.0], [0.0, 0.0, 0.0, 1.0]], dtype=float)
-COMMUTE_A = np.diag([1.07, 0.97, 1.03, 0.93])
-COMMUTE_B = np.diag([0.91, 1.11, 0.89, 1.09])
+DIM = 8
+BASE = np.full(DIM, 1.0 / DIM, dtype=float)
+INITIAL_QUOTIENT = [[0, 1, 2, 3, 4, 5, 6], [7]]
+ENTANGLED_A = np.eye(DIM, dtype=float)
+ENTANGLED_A[0, 1] = 0.22; ENTANGLED_A[2, 3] = -0.16; ENTANGLED_A[4, 5] = 0.11; ENTANGLED_A[6, 7] = -0.09
+ENTANGLED_B = np.eye(DIM, dtype=float)
+ENTANGLED_B[0, 2] = -0.19; ENTANGLED_B[1, 3] = 0.13; ENTANGLED_B[4, 6] = -0.07; ENTANGLED_B[5, 7] = 0.17
+COMMUTE_A = np.diag([1.07, 0.97, 1.03, 0.93, 1.05, 0.95, 1.01, 0.99])
+COMMUTE_B = np.diag([0.91, 1.11, 0.89, 1.09, 0.94, 1.06, 0.92, 1.08])
 assert not np.allclose(ENTANGLED_A @ ENTANGLED_B, ENTANGLED_B @ ENTANGLED_A)
 assert np.allclose(COMMUTE_A @ COMMUTE_B, COMMUTE_B @ COMMUTE_A)
 INITIAL_READOUTS = ("global_population",)
@@ -39,10 +43,11 @@ def canonical(q): return [sorted(c) for c in q]
 def readout_id(kind, q): return f"{kind}:{'.'.join('-'.join(map(str, sorted(c))) for c in q)}"
 
 def measure(kind, state, q, previous=None, operators=None):
-    bits0 = np.array([1, 1, -1, -1], dtype=float)
-    bits1 = np.array([1, -1, 1, -1], dtype=float)
+    idx = np.arange(DIM)
+    bits0 = np.where((idx & 4) == 0, 1.0, -1.0)
+    bits1 = np.where((idx & 2) == 0, 1.0, -1.0)
     if kind == "global_population":
-        return np.array([state[0] + state[1], state[0] + state[1], -(state[2] + state[3]), -(state[2] + state[3])], dtype=float)
+        return np.where(bits0 > 0, np.sum(state[bits0 > 0]), -np.sum(state[bits0 < 0]))
     if kind == "within_cell_phase":
         return state * bits1
     if kind == "pair_correlation":
@@ -50,7 +55,7 @@ def measure(kind, state, q, previous=None, operators=None):
     if kind == "time_ordered_two_step":
         a, b = operators if operators is not None else (COMMUTE_A, COMMUTE_B)
         x = BASE if previous is None else previous
-        return np.full(4, float(np.linalg.norm(b @ (a @ x) - a @ (b @ x))), dtype=float)
+        return np.full(DIM, float(np.linalg.norm(b @ (a @ x) - a @ (b @ x))), dtype=float)
     raise ValueError(kind)
 
 def fact(kind, tick, state, q, ro, previous=None, operators=None):
@@ -60,13 +65,16 @@ def facts_for(readouts, tick, state, q, previous=None, operators=None):
     return [fact(ro["kind"], tick, state, q, ro, previous, operators) for ro in readouts]
 
 def g_history(carrier, history, tick, q, readouts):
-    mem = sum(history[-3:]) / max(1, min(3, len(history))) if history else np.zeros(4)
+    mem = sum(history[-3:]) / max(1, min(3, len(history))) if history else np.zeros(DIM)
     phase = tick + 0.17 * len(history)
-    state = BASE + 0.07 * np.array([math.sin(phase), math.cos(phase + 0.4), -math.sin(phase + 0.7), -math.cos(phase + 0.2)]) + 0.04 * mem
+    wave = np.array([math.sin(phase + 0.31 * i) if i % 2 == 0 else math.cos(phase + 0.23 * i) for i in range(DIM)])
+    wave -= np.mean(wave)
+    state = BASE + 0.035 * wave + 0.04 * mem
     return state, facts_for(readouts, tick, state, q, carrier, (ENTANGLED_A, ENTANGLED_B))
 
 def g_commute(carrier, history, tick, q, readouts):
-    state = BASE + 0.03 * math.sin(tick) * np.array([1, 1, -1, -1], dtype=float)
+    idx = np.arange(DIM)
+    state = BASE + 0.015 * math.sin(tick) * np.where((idx & 4) == 0, 1.0, -1.0)
     return state, facts_for(readouts, tick, state, q, carrier, (COMMUTE_A, COMMUTE_B))
 
 def g_empty_history(carrier, history, tick, q, readouts):
@@ -141,9 +149,9 @@ def order_only_pairs(q, tick_facts):
         return []
     return separation_witness(q, order_facts, tolerance=1e-9)["witness_pairs"]
 
-def run_pipeline(label, generator, persistent_k=3, max_ticks=50, stop_lossless=10, extend_licensing=True):
-    q, all_facts, locks, history = [[0, 1, 2, 3]], [], [], []
-    carrier, licensed, streaks, lossless = BASE.copy(), license_readouts([[0, 1, 2, 3]], INITIAL_READOUTS, None), {}, 0
+def run_pipeline(label, generator, persistent_k=3, max_ticks=100, stop_lossless=15, extend_licensing=True):
+    q, all_facts, locks, history = [list(c) for c in INITIAL_QUOTIENT], [], [], []
+    carrier, licensed, streaks, lossless = BASE.copy(), license_readouts(q, INITIAL_READOUTS, None), {}, 0
     lock_curve, last_new_tick = [], None
     for tick in range(1, max_ticks + 1):
         carrier, tick_facts = generator(carrier, history, tick, q, list(licensed))

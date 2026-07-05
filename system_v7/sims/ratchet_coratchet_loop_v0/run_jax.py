@@ -5,11 +5,16 @@ import json, math
 import jax.numpy as jnp
 from run_numpy import RESULTS, VARIANT_RUNS, headline, now, run_pipeline, summarize, write
 
-BASE = jnp.full((4,), 0.25)
-ENTANGLED_A = jnp.asarray([[1.0, 0.22, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, 1.0, -0.16], [0.0, 0.0, 0.0, 1.0]])
-ENTANGLED_B = jnp.asarray([[1.0, 0.0, -0.19, 0.0], [0.0, 1.0, 0.0, 0.13], [0.0, 0.0, 1.0, 0.0], [0.0, 0.0, 0.0, 1.0]])
-COMMUTE_A = jnp.diag(jnp.asarray([1.07, 0.97, 1.03, 0.93]))
-COMMUTE_B = jnp.diag(jnp.asarray([0.91, 1.11, 0.89, 1.09]))
+DIM = 8
+BASE = jnp.full((DIM,), 1.0 / DIM)
+_EA = [[1.0 if i == j else 0.0 for j in range(DIM)] for i in range(DIM)]
+_EA[0][1] = 0.22; _EA[2][3] = -0.16; _EA[4][5] = 0.11; _EA[6][7] = -0.09
+_EB = [[1.0 if i == j else 0.0 for j in range(DIM)] for i in range(DIM)]
+_EB[0][2] = -0.19; _EB[1][3] = 0.13; _EB[4][6] = -0.07; _EB[5][7] = 0.17
+ENTANGLED_A = jnp.asarray(_EA)
+ENTANGLED_B = jnp.asarray(_EB)
+COMMUTE_A = jnp.diag(jnp.asarray([1.07, 0.97, 1.03, 0.93, 1.05, 0.95, 1.01, 0.99]))
+COMMUTE_B = jnp.diag(jnp.asarray([0.91, 1.11, 0.89, 1.09, 0.94, 1.06, 0.92, 1.08]))
 assert not bool(jnp.allclose(ENTANGLED_A @ ENTANGLED_B, ENTANGLED_B @ ENTANGLED_A))
 assert bool(jnp.allclose(COMMUTE_A @ COMMUTE_B, COMMUTE_B @ COMMUTE_A))
 GENERATOR_TABLE = {}
@@ -19,10 +24,11 @@ TOOL_INTEGRATION_DEPTH = {"jax": "load_bearing", "shared_python_pipeline": "load
 def readout_id(kind, q): return f"{kind}:{'.'.join('-'.join(map(str, sorted(c))) for c in q)}"
 
 def measure(kind, state, q, previous=None, operators=None):
-    bits0 = jnp.asarray([1.0, 1.0, -1.0, -1.0])
-    bits1 = jnp.asarray([1.0, -1.0, 1.0, -1.0])
+    idx = jnp.arange(DIM)
+    bits0 = jnp.where((idx & 4) == 0, 1.0, -1.0)
+    bits1 = jnp.where((idx & 2) == 0, 1.0, -1.0)
     if kind == "global_population":
-        return jnp.asarray([state[0] + state[1], state[0] + state[1], -(state[2] + state[3]), -(state[2] + state[3])])
+        return jnp.where(bits0 > 0, jnp.sum(jnp.where(bits0 > 0, state, 0.0)), -jnp.sum(jnp.where(bits0 < 0, state, 0.0)))
     if kind == "within_cell_phase":
         return state * bits1
     if kind == "pair_correlation":
@@ -30,7 +36,7 @@ def measure(kind, state, q, previous=None, operators=None):
     if kind == "time_ordered_two_step":
         a, b = operators if operators is not None else (COMMUTE_A, COMMUTE_B)
         x = BASE if previous is None else previous
-        return jnp.full((4,), jnp.linalg.norm(b @ (a @ x) - a @ (b @ x)))
+        return jnp.full((DIM,), jnp.linalg.norm(b @ (a @ x) - a @ (b @ x)))
     raise ValueError(kind)
 
 def fact(kind, tick, state, q, ro, previous=None, operators=None):
@@ -40,13 +46,16 @@ def facts_for(readouts, tick, state, q, previous=None, operators=None):
     return [fact(ro["kind"], tick, state, q, ro, previous, operators) for ro in readouts]
 
 def g_history(carrier, history, tick, q, readouts):
-    mem = sum(history[-3:]) / max(1, min(3, len(history))) if history else jnp.zeros(4)
+    mem = sum(history[-3:]) / max(1, min(3, len(history))) if history else jnp.zeros(DIM)
     phase = tick + 0.17 * len(history)
-    state = BASE + 0.07 * jnp.asarray([math.sin(phase), math.cos(phase + 0.4), -math.sin(phase + 0.7), -math.cos(phase + 0.2)]) + 0.04 * mem
+    wave = jnp.asarray([math.sin(phase + 0.31 * i) if i % 2 == 0 else math.cos(phase + 0.23 * i) for i in range(DIM)])
+    wave = wave - jnp.mean(wave)
+    state = BASE + 0.035 * wave + 0.04 * mem
     return state, facts_for(readouts, tick, state, q, carrier, (ENTANGLED_A, ENTANGLED_B))
 
 def g_commute(carrier, history, tick, q, readouts):
-    state = BASE + 0.03 * math.sin(tick) * jnp.asarray([1.0, 1.0, -1.0, -1.0])
+    idx = jnp.arange(DIM)
+    state = BASE + 0.015 * math.sin(tick) * jnp.where((idx & 4) == 0, 1.0, -1.0)
     return state, facts_for(readouts, tick, state, q, carrier, (COMMUTE_A, COMMUTE_B))
 
 def g_empty_history(carrier, history, tick, q, readouts):

@@ -13,29 +13,26 @@
   "capstone_status": "DRAFT_UNAUDITED",
   "classification": "scratch_diagnostic",
   "divergence_log": [
-    "agreement compares counts and final quotients; per-engine result files retain readout/license records"
+    "agreement compares K=3 lock counts, co-turns, last-new ticks, and final quotients; per-engine result files retain lock curves"
   ],
   "engine": "agreement_envelope",
   "engine_summaries": {
     "jax": {
       "commuting_drive": {
-        "co_turn_events": 1,
+        "co_turn_events": 0,
         "final_quotient": [
           [
-            0
-          ],
-          [
+            0,
             1
           ],
           [
-            2
-          ],
-          [
+            2,
             3
           ]
         ],
-        "locks": 2,
-        "ticks_run": 2
+        "last_new_tick": 3,
+        "locks": 1,
+        "ticks_run": 50
       },
       "entangled_memory": {
         "co_turn_events": 1,
@@ -53,8 +50,9 @@
             3
           ]
         ],
+        "last_new_tick": 6,
         "locks": 2,
-        "ticks_run": 2
+        "ticks_run": 16
       },
       "feedback_cut": {
         "co_turn_events": 0,
@@ -68,82 +66,69 @@
             3
           ]
         ],
+        "last_new_tick": 3,
         "locks": 1,
-        "ticks_run": 8
+        "ticks_run": 50
       },
       "label_shuffle": {
-        "co_turn_events": 1,
+        "co_turn_events": 0,
         "final_quotient": [
           [
-            0
-          ],
-          [
-            1
-          ],
-          [
-            2
-          ],
-          [
+            0,
+            1,
+            2,
             3
           ]
         ],
-        "locks": 2,
-        "ticks_run": 2
+        "last_new_tick": null,
+        "locks": 0,
+        "ticks_run": 50
       },
       "memoryless_drive": {
-        "co_turn_events": 1,
+        "co_turn_events": 0,
         "final_quotient": [
           [
-            0
-          ],
-          [
-            1
-          ],
-          [
-            2
-          ],
-          [
+            0,
+            1,
+            2,
             3
           ]
         ],
-        "locks": 2,
-        "ticks_run": 2
+        "last_new_tick": null,
+        "locks": 0,
+        "ticks_run": 50
       },
       "static_fact_list": {
         "co_turn_events": 0,
         "final_quotient": [
           [
             0,
-            1
-          ],
-          [
+            1,
             2,
             3
           ]
         ],
-        "locks": 1,
-        "ticks_run": 8
+        "last_new_tick": null,
+        "locks": 0,
+        "ticks_run": 50
       }
     },
     "julia": {
       "commuting_drive": {
-        "co_turn_events": 1,
+        "co_turn_events": 0,
         "final_quotient": [
           [
-            0
-          ],
-          [
+            0,
             1
           ],
           [
-            2
-          ],
-          [
+            2,
             3
           ]
         ],
-        "locks": 2,
-        "ticks_run": 2
+        "last_new_tick": 3,
+        "locks": 1,
+        "ticks_run": 50
       },
       "entangled_memory": {
         "co_turn_events": 1,
@@ -161,8 +146,9 @@
             3
           ]
         ],
+        "last_new_tick": 6,
         "locks": 2,
-        "ticks_run": 2
+        "ticks_run": 16
       },
       "feedback_cut": {
         "co_turn_events": 0,
@@ -176,82 +162,69 @@
             3
           ]
         ],
+        "last_new_tick": 3,
         "locks": 1,
-        "ticks_run": 8
+        "ticks_run": 50
       },
       "label_shuffle": {
-        "co_turn_events": 1,
+        "co_turn_events": 0,
         "final_quotient": [
           [
-            0
-          ],
-          [
-            1
-          ],
-          [
-            2
-          ],
-          [
+            0,
+            1,
+            2,
             3
           ]
         ],
-        "locks": 2,
-        "ticks_run": 2
+        "last_new_tick": null,
+        "locks": 0,
+        "ticks_run": 50
       },
       "memoryless_drive": {
-        "co_turn_events": 1,
+        "co_turn_events": 0,
         "final_quotient": [
           [
-            0
-          ],
-          [
-            1
-          ],
-          [
-            2
-          ],
-          [
+            0,
+            1,
+            2,
             3
           ]
         ],
-        "locks": 2,
-        "ticks_run": 2
+        "last_new_tick": null,
+        "locks": 0,
+        "ticks_run": 50
       },
       "static_fact_list": {
         "co_turn_events": 0,
         "final_quotient": [
           [
             0,
-            1
-          ],
-          [
+            1,
             2,
             3
           ]
         ],
-        "locks": 1,
-        "ticks_run": 8
+        "last_new_tick": null,
+        "locks": 0,
+        "ticks_run": 50
       }
     },
     "numpy": {
       "commuting_drive": {
-        "co_turn_events": 1,
+        "co_turn_events": 0,
         "final_quotient": [
           [
-            0
-          ],
-          [
+            0,
             1
           ],
           [
-            2
-          ],
-          [
+            2,
             3
           ]
         ],
-        "locks": 2,
-        "ticks_run": 2
+        "last_new_tick": 3,
+        "locks": 1,
+        "ticks_run": 50
       },
       "entangled_memory": {
         "co_turn_events": 1,
@@ -269,8 +242,9 @@
             3
           ]
         ],
+        "last_new_tick": 6,
         "locks": 2,
-        "ticks_run": 2
+        "ticks_run": 16
       },
       "feedback_cut": {
         "co_turn_events": 0,
@@ -284,89 +258,77 @@
             3
           ]
         ],
+        "last_new_tick": 3,
         "locks": 1,
-        "ticks_run": 8
+        "ticks_run": 50
       },
       "label_shuffle": {
-        "co_turn_events": 1,
+        "co_turn_events": 0,
         "final_quotient": [
           [
-            0
-          ],
-          [
-            1
-          ],
-          [
-            2
-          ],
-          [
+            0,
+            1,
+            2,
             3
           ]
         ],
-        "locks": 2,
-        "ticks_run": 2
+        "last_new_tick": null,
+        "locks": 0,
+        "ticks_run": 50
       },
       "memoryless_drive": {
-        "co_turn_events": 1,
+        "co_turn_events": 0,
         "final_quotient": [
           [
-            0
-          ],
-          [
-            1
-          ],
-          [
-            2
-          ],
-          [
+            0,
+            1,
+            2,
             3
           ]
         ],
-        "locks": 2,
-        "ticks_run": 2
+        "last_new_tick": null,
+        "locks": 0,
+        "ticks_run": 50
       },
       "static_fact_list": {
         "co_turn_events": 0,
         "final_quotient": [
           [
             0,
-            1
-          ],
-          [
+            1,
             2,
             3
           ]
         ],
-        "locks": 1,
-        "ticks_run": 8
+        "last_new_tick": null,
+        "locks": 0,
+        "ticks_run": 50
       }
     }
   },
   "failures": [],
   "feedback_cut_control_passed": true,
   "formal_admission_allowed": false,
-  "generated_at": "2026-07-05T03:09:34+00:00",
+  "generated_at": "2026-07-05T03:14:37+00:00",
+  "persistent_k": 3,
   "promotion_allowed": false,
   "schema_version": "ratchet_coratchet_loop_v0_agreement",
   "summary": {
     "commuting_drive": {
-      "co_turn_events": 1,
+      "co_turn_events": 0,
       "final_quotient": [
         [
-          0
-        ],
-        [
+          0,
           1
         ],
         [
-          2
-        ],
-        [
+          2,
           3
         ]
       ],
-      "locks": 2,
-      "ticks_run": 2
+      "last_new_tick": 3,
+      "locks": 1,
+      "ticks_run": 50
     },
     "entangled_memory": {
       "co_turn_events": 1,
@@ -384,8 +346,9 @@
           3
         ]
       ],
+      "last_new_tick": 6,
       "locks": 2,
-      "ticks_run": 2
+      "ticks_run": 16
     },
     "feedback_cut": {
       "co_turn_events": 0,
@@ -399,61 +362,51 @@
           3
         ]
       ],
+      "last_new_tick": 3,
       "locks": 1,
-      "ticks_run": 8
+      "ticks_run": 50
     },
     "label_shuffle": {
-      "co_turn_events": 1,
+      "co_turn_events": 0,
       "final_quotient": [
         [
-          0
-        ],
-        [
-          1
-        ],
-        [
-          2
-        ],
-        [
+          0,
+          1,
+          2,
           3
         ]
       ],
-      "locks": 2,
-      "ticks_run": 2
+      "last_new_tick": null,
+      "locks": 0,
+      "ticks_run": 50
     },
     "memoryless_drive": {
-      "co_turn_events": 1,
+      "co_turn_events": 0,
       "final_quotient": [
         [
-          0
-        ],
-        [
-          1
-        ],
-        [
-          2
-        ],
-        [
+          0,
+          1,
+          2,
           3
         ]
       ],
-      "locks": 2,
-      "ticks_run": 2
+      "last_new_tick": null,
+      "locks": 0,
+      "ticks_run": 50
     },
     "static_fact_list": {
       "co_turn_events": 0,
       "final_quotient": [
         [
           0,
-          1
-        ],
-        [
+          1,
           2,
           3
         ]
       ],
-      "locks": 1,
-      "ticks_run": 8
+      "last_new_tick": null,
+      "locks": 0,
+      "ticks_run": 50
     }
   }
 }

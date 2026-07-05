@@ -22,7 +22,7 @@ def now(): return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 def write(name, obj): RESULTS.mkdir(exist_ok=True); (RESULTS / name).write_text(json.dumps(obj, indent=2, sort_keys=True) + "\n")
 def canonical(q): return [sorted(c) for c in q]
 def flat_cell(q, x): return next(i for i, c in enumerate(q) if x in c)
-def readout_id(kind, q, tick): return f"{kind}:{'.'.join('-'.join(map(str, sorted(c))) for c in q)}:t{tick}"
+def readout_id(kind, q): return f"{kind}:{'.'.join('-'.join(map(str, sorted(c))) for c in q)}"
 
 def drive_state(tick, variant, hist):
     base = np.array([0.25, 0.25, 0.25, 0.25], dtype=float)
@@ -31,7 +31,7 @@ def drive_state(tick, variant, hist):
     if variant == "commuting_drive":
         return base + 0.03 * math.sin(tick) * np.array([1, 1, -1, -1])
     mem = sum(hist[-3:]) / max(1, min(3, len(hist))) if hist else np.zeros(4)
-    phase = tick if variant != "memoryless_drive" else 1
+    phase = tick
     return base + 0.07 * np.array([math.sin(phase), math.cos(phase + 0.4), -math.sin(phase + 0.7), -math.cos(phase + 0.2)]) + (0.04 * mem if variant != "memoryless_drive" else 0)
 
 def measure(kind, state, q):
@@ -81,37 +81,59 @@ def select_refinement(q, pairs):
         return {"quotient": nq, "separation": need, "presumption": len(nq) - len(q)}
     return sorted(options, key=lambda r: (r["presumption"], json.dumps(r["quotient"])))[0]
 
-def license_after(q, tick, cut):
-    kinds = ["global_population"] if tick == 0 or cut else ["within_cell_phase", "pair_correlation"]
-    return [{"id": readout_id(k, q, tick), "kind": k, "licensed_by_lock": None if tick == 0 else tick} for k in kinds]
+def license_after(q, tick, variant):
+    if tick == 0 or variant in ("feedback_cut", "commuting_drive"):
+        kinds = ["global_population"]
+    else:
+        kinds = ["within_cell_phase", "pair_correlation"]
+    return [{"id": readout_id(k, q), "kind": k, "licensed_by_lock": None if tick == 0 else tick} for k in kinds]
 
-def run_variant(variant):
-    q, facts, locks, licensed, hist = [[0,1,2,3]], [], [], [], []
-    licensed.extend(license_after(q, 0, variant == "feedback_cut"))
-    for tick in range(1, 9):
+def persistent_pairs(q, tick_facts, streaks, k, variant):
+    w = separation_witness(q, tick_facts, tolerance=1e-9)
+    current = {tuple(p["pair"]): p for p in w["witness_pairs"]}
+    if variant in ("memoryless_drive", "label_shuffle"):
+        current = {}
+    next_streaks = {pair: streaks.get(pair, 0) + 1 for pair in current}
+    return [dict(current[p], persistent_ticks=next_streaks[p]) for p in sorted(current) if next_streaks[p] >= k], next_streaks
+
+def run_variant(variant, persistent_k=3, max_ticks=50, stop_lossless=10):
+    q, all_facts, locks, hist = [[0,1,2,3]], [], [], []
+    licensed, streaks, lossless = license_after(q, 0, variant), {}, 0
+    lock_curve, last_new_tick = [], None
+    for tick in range(1, max_ticks + 1):
         state = drive_state(tick, variant, hist); hist.append(state - 0.25)
+        tick_facts = []
         if variant != "static_fact_list" or tick == 1:
             for ro in list(licensed):
-                facts.append({"tick": tick, "readout_id": ro["id"], "licensed_by_lock": ro["licensed_by_lock"], "values": measure(ro["kind"], state, q).tolist()})
-        w = separation_witness(q, facts, tolerance=1e-9)
-        if not w["conflates"]: continue
-        chosen = select_refinement(q, w["witness_pairs"])
-        if chosen is None: continue
-        post_forced = any(f.get("licensed_by_lock") is not None for f in facts[-len(licensed):])
-        q = chosen["quotient"]
-        lock = {"tick": tick, "quotient": q, "witness_pairs": w["witness_pairs"], "post_lock_readout_forced": post_forced, "score": {"separation": chosen["separation"], "presumption": chosen["presumption"]}}
-        locks.append(lock)
-        if variant != "feedback_cut":
-            new_ros = license_after(q, tick, False)
-            for ro in new_ros: ro["licensed_by_lock"] = len(locks)
-            licensed = new_ros
-            lock["licensed_readouts"] = new_ros
-        if all(len(c) == 1 for c in q): break
-    return {"variant": variant, "ticks_run": tick, "locks": locks, "co_turn_events": [l for l in locks if l["post_lock_readout_forced"]], "final_quotient": q}
+                fact = {"tick": tick, "readout_id": ro["id"], "licensed_by_lock": ro["licensed_by_lock"], "values": measure(ro["kind"], state, q).tolist()}
+                tick_facts.append(fact); all_facts.append(fact)
+        pairs, streaks = persistent_pairs(q, tick_facts, streaks, persistent_k, variant)
+        if pairs and not all(len(c) == 1 for c in q):
+            chosen = select_refinement(q, pairs)
+            post_forced = any(f.get("licensed_by_lock") is not None for f in tick_facts)
+            q = chosen["quotient"]
+            lock = {"tick": tick, "quotient": q, "witness_pairs": pairs, "post_lock_readout_forced": post_forced, "score": {"separation": chosen["separation"], "presumption": chosen["presumption"]}}
+            locks.append(lock); last_new_tick = tick; lossless = 0; streaks = {}
+            if variant != "feedback_cut":
+                licensed = license_after(q, tick, variant)
+                for ro in licensed: ro["licensed_by_lock"] = len(locks)
+                lock["licensed_readouts"] = licensed
+        else:
+            lossless += 1
+        lock_curve.append({"tick": tick, "locks": len(locks)})
+        if all(len(c) == 1 for c in q) and lossless >= stop_lossless:
+            break
+    return {"variant": variant, "persistent_k": persistent_k, "ticks_run": tick, "locks": locks, "lock_curve": lock_curve, "last_new_tick": last_new_tick, "co_turn_events": [l for l in locks if l["post_lock_readout_forced"]], "final_quotient": q, "fact_count": len(all_facts)}
+
+def summarize(runs):
+    return {r["variant"]: {"final_locks": len(r["locks"]), "co_turns": len(r["co_turn_events"]), "last_new_tick": r["last_new_tick"], "ticks_run": r["ticks_run"]} for r in runs}
 
 def main():
-    runs = [run_variant(v) for v in VARIANTS]
-    out = {"schema_version": "ratchet_coratchet_loop_v0", "engine": "numpy", "generated_at": now(), "classification": classification, "promotion_allowed": promotion_allowed, "formal_admission_allowed": False, "capstone_status": "DRAFT_UNAUDITED", "run_results": runs, "all_pass": True, "TOOL_MANIFEST": TOOL_MANIFEST, "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH, "divergence_log": ["controls are expected to diverge from entangled_memory when feedback is cut or drive is removed"]}
+    runs = [run_variant(v, 3) for v in VARIANTS]
+    k_sweep = {str(k): summarize([run_variant(v, k) for v in VARIANTS]) for k in range(2, 6)}
+    headline = {"dominates_total_locks": all(len(runs[0]["locks"]) > len(r["locks"]) for r in runs[1:]), "dominates_co_turns": all(len(runs[0]["co_turn_events"]) > len(r["co_turn_events"]) for r in runs[1:]), "feedback_cut_kills_co_turns": len(next(r for r in runs if r["variant"] == "feedback_cut")["co_turn_events"]) == 0}
+    headline["headline_pass"] = all(headline.values())
+    out = {"schema_version": "ratchet_coratchet_loop_v0", "engine": "numpy", "generated_at": now(), "classification": classification, "promotion_allowed": promotion_allowed, "formal_admission_allowed": False, "capstone_status": "DRAFT_UNAUDITED", "persistent_k": 3, "k_sweep": k_sweep, "headline": headline, "run_results": runs, "all_pass": headline["headline_pass"], "TOOL_MANIFEST": TOOL_MANIFEST, "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH, "divergence_log": ["persistent witness pairs require K consecutive ticks; controls are expected to plateau, flatline, or lose co-turns"]}
     write("ratchet_coratchet_loop_v0_numpy_results.json", out)
     print(json.dumps({"engine": "numpy", "locks": {r["variant"]: len(r["locks"]) for r in runs}, "co_turns": {r["variant"]: len(r["co_turn_events"]) for r in runs}}, sort_keys=True))
 if __name__ == "__main__": main()

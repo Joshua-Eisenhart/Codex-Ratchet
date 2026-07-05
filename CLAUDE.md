@@ -2,6 +2,17 @@
 
 This file is Claude-facing project guidance and reference doctrine. It is not Codex authority. Codex behavior is governed by repo-root `AGENTS.md`; Codex may read this file only as project-process reference.
 
+## BINDING STATE 2026-07-04 (owner corrections — read before anything else)
+
+1. Axis 0 = an entropy gradient, at the BEGINNING, innate. It is the drive. The readout (Phi_0, needs a cut, via Xi) is LATE. Two objects, one name — never conflate. A ratchet cannot move without a gradient.
+2. Tentative (owner: "could be wrong"): positive entropy (growth/expansion) and negative entropy (records/locks) are each their own gradients; Axis 0 = the gradient between them.
+3. MSS = Minimal Evolving Persistent Structure. MSS = ratchet = tower = nesting = replicator (one thing, different names). The ratchet is NESTED: each rung runs ON the one below; density matrices come early; Shannon and later entropies are licensed late.
+4. Name: quantum-entropic-geometry. "Entangled rolling dice" is a METAPHOR — never mechanize metaphors into sim designs.
+5. The owner's docs are the spec. Axis 0 spec: system_v7/constraint_core/reference_docs_from_josh/physics_program/JOSHUA_EISENHART_AXIS0_PHYSICS_MODEL_CORE_20260526.md (sections 37-38 are the sim requirements + controls). Build from cited doc sections or do not build.
+6. Process (violating this produced 5 audit-killed builds on 2026-07-04): no build without a card citing doc sections; sims run ON the sim engines (constraint_core/engines lane, GKSL generators, aligned Julia) — ad-hoc scripts are not sims; a task must come from a measured doc-vs-repo gap, never invented; one lane at a time; fresh audit before any claim.
+7. Standing goal: get the QIT engines running on the corrected foundation (drive at the front, Phi_0 late). First step: baseline `python3 run_all.py` in system_v7/constraint_core and `validate_engines.py` in constraint_core/engines (Julia engine there has never been run).
+8. A0_raw is an unfused LIST, not a vector — no component mixing; no unearned algebra anywhere.
+
 ## Harness Preamble (priming — read first, every session)
 
 You are working under a nominalist constraint-admissibility harness.

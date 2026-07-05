@@ -1,0 +1,160 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_json": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "python_json": {
+      "reason": "supportive envelope readback from completed engine receipts",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "canon_runtime": {
+    "consumer_policy": "three independent local calculations; JSON receipts compared only by controller",
+    "semantic_owner": "julia"
+  },
+  "claim": "One rerunnable G6/G7 rung: rho-first spinor lift with 720-degree witness plus Hopf torus/connection holonomy witness.",
+  "claim_ceiling": "scratch_diagnostic G6/G7 envelope only; no formal admission, tower promotion, bridge, Axis, or physics claim.",
+  "classification": "scratch_diagnostic",
+  "controller_source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/check_agreement.py",
+  "controller_source_sha256": "c742f57e243b6594bdeb83774861cda2a4e07f64bb8d60912187c2e5d17e2c99",
+  "controls": {
+    "flat_plain_s2_control_kills_connection_witness_all_engines": true,
+    "label_shuffle_preserves_density_all_engines": true,
+    "rho_only_control_fails_to_separate_720_all_engines": true
+  },
+  "created_at": "2026-07-05T01:21:55Z",
+  "engine_contract": {
+    "controller_reads_engine_results_after_lanes": true,
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engine_result_paths": {
+    "jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_jax_results.json",
+    "julia": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_julia_results.json",
+    "pytorch": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_pytorch_results.json"
+  },
+  "engines": {
+    "jax": {
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "ran": true,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_jax_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/tower_g6g7_spinor_hopf_v0_jax.py",
+      "source_sha256": "cea85f83424aaa61c3a36b56580923e5a5616702f8175b61ffa26f7414d1a965"
+    },
+    "julia": {
+      "packages_used": [
+        "Julia LinearAlgebra",
+        "JSON",
+        "SHA"
+      ],
+      "ran": true,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_julia_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/tower_g6g7_spinor_hopf_v0_julia.jl",
+      "source_sha256": "cd55e08967ef923999ee96e0e14a00ff9a88b419b3397e3918d9947e35535a36"
+    },
+    "pytorch": {
+      "packages_used": [
+        "torch",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "ran": true,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_pytorch_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g6g7_spinor_hopf_v0/tower_g6g7_spinor_hopf_v0_pytorch.py",
+      "source_sha256": "4e0431cc89125791ec0ff9ad4f0ac839d97dc32b6d0c528a2c60082422f0e28b"
+    }
+  },
+  "formal_admission_allowed": false,
+  "lint": {
+    "failure_count": 0,
+    "failures": []
+  },
+  "parity": {
+    "agreement_ok": true,
+    "engines": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "max_divergence": 2.220446049250313e-16,
+    "worst_key": "hopf_eta_0.57_base_distance"
+  },
+  "promotion_allowed": false,
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "tower_g6g7_spinor_hopf_v0",
+  "witness_values": {
+    "holonomy_2pi_class": {
+      "jax": -1.0,
+      "julia": -1.0,
+      "pytorch": -1.0
+    },
+    "holonomy_4pi_class": {
+      "jax": 1.0,
+      "julia": 1.0,
+      "pytorch": 1.0
+    },
+    "hopf_eta_rows": [
+      {
+        "abs_error": 0.0,
+        "eta": 0.31,
+        "fiber_loop_density_stationary_residual": 0.0,
+        "flat_plain_s2_control_holonomy": 0.0,
+        "flat_plain_s2_control_kills_connection": true,
+        "holonomy_closed_form": -5.113749160732031,
+        "holonomy_measured": -5.113749160732031,
+        "horizontal_A_residual": 0.0,
+        "lifted_base_loop_density_distance": 1.16207032107461
+      },
+      {
+        "abs_error": 0.0,
+        "eta": 0.57,
+        "fiber_loop_density_stationary_residual": 2.2887833992611187e-16,
+        "flat_plain_s2_control_holonomy": 0.0,
+        "flat_plain_s2_control_kills_connection": true,
+        "holonomy_closed_form": -2.6238236516301034,
+        "holonomy_measured": -2.6238236516301034,
+        "horizontal_A_residual": 0.0,
+        "lifted_base_loop_density_distance": 1.8172669922317666
+      },
+      {
+        "abs_error": 0.0,
+        "eta": 0.91,
+        "fiber_loop_density_stationary_residual": 1.2719202621569003e-16,
+        "flat_plain_s2_control_holonomy": 0.0,
+        "flat_plain_s2_control_kills_connection": true,
+        "holonomy_closed_form": 1.5496365062719395,
+        "holonomy_measured": 1.5496365062719395,
+        "horizontal_A_residual": 0.0,
+        "lifted_base_loop_density_distance": 1.938218257760913
+      }
+    ],
+    "rho_path_residual_identical_readouts": {
+      "jax": 0.0,
+      "julia": 0.0,
+      "pytorch": 0.0
+    },
+    "spinor_separation_2pi": {
+      "jax": 2.0,
+      "julia": 2.0,
+      "pytorch": 1.9999999999999998
+    },
+    "spinor_separation_4pi": {
+      "jax": 0.0,
+      "julia": 0.0,
+      "pytorch": 0.0
+    }
+  }
+}

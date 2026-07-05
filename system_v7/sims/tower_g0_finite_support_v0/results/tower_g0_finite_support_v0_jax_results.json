@@ -1,0 +1,69 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax.numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "jax.numpy": {
+      "reason": "finite carrier/support arithmetic",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "completed-infinity contradiction control",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "z3"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "created_at": "2026-07-05T01:46:25Z",
+  "engine": "jax",
+  "negative_controls": {
+    "completed_infinity_refused_or_unsat": true,
+    "label_shuffle_preserves_signature": true
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "z3",
+    "json"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "refusal_receipts": {
+    "completed_infinity_equality": {
+      "reason": "Exact equality over all natural-number indices demands completed infinity.",
+      "verdict": "unsat"
+    },
+    "unbounded_family_construction": {
+      "reason": "F01 admits each finite support step, not a completed unbounded family object.",
+      "receipt_type": "TYPED_REFUSAL"
+    }
+  },
+  "schema": "engine_leg_result_v1",
+  "sim_id": "tower_g0_finite_support_v0",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/tower_g0_finite_support_v0_jax.py",
+  "source_sha256": "21b67bea279c23daa49722d11021230171985d69b98acd618e8ab8054333c6a0",
+  "witnesses": {
+    "carrier_size": 4,
+    "growth_all_finite": true,
+    "growth_counts": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "label_shuffle_signature": [
+      10,
+      20,
+      30
+    ],
+    "support_size": 3,
+    "supported_class_sum": 3
+  }
+}

@@ -299,12 +299,34 @@ function run_climb(spec, formal, cfg)
     drive = drive_stream(variant_kind, Int(cfg["seed"]))
     forced = drive["minted_demands"]
     frontier = isempty(forced) ? 4 : 6
+    rejected_frontier_attempts = isempty(forced) ? [Dict(
+        "schema" => "ratchet_runbook_step_receipt.v1",
+        "run_id" => cfg["run_id"],
+        "target_rung" => 5,
+        "admitted" => false,
+        "minimalist_first" => Dict("attempt" => "carry active distinctions with the rung-4 quotient", "succeeded" => true, "success_reason" => "no drive-minted persistent distinction remains erased by the quotient"),
+        "mss_gate" => Dict("selected" => nothing, "stronger_candidates_rejected_unforced" => ["admissible_survivor_set_M_C", "ordered_local_update", "density_operator_rho", "Hopf_projective_lift"])
+    )] : Any[]
     status = isempty(forced) ? Dict(
         "commuting_control" => "STOP_COMMUTING_DRIVE_NO_ORDER_OR_ENTANGLEMENT_DISTINCTION",
         "static_control" => "STOP_NO_MEASURED_DISTINCTION_LOSS_FOR_RUNG_5",
         "memoryless_control" => "STOP_MEMORYLESS_DRIVE_RANDOM_WALK_NO_PERSISTENT_HISTORY"
     )[variant_kind] : "DRIVE_MINTED_RUNG_BEYOND_4"
     ladder = isempty(forced) ? [1, 2, 3, 4] : [1, 2, 3, 4, 5, 6]
+    receipts = rung_receipts(cfg["run_id"], q_full, no_probe_q, coarse_count, length(labels), ctrl)
+    lock_ledger = Any[receipts[idx] for idx in 1:4]
+    if !isempty(forced)
+        for demand in forced
+            push!(lock_ledger, Dict(
+                "schema" => "ratchet_runbook_step_receipt.v1",
+                "run_id" => cfg["run_id"],
+                "target_rung" => demand["target_rung"],
+                "admitted" => true,
+                "lost_distinction" => "Axis-0 drive minted $(demand["kind"])",
+                "mss_gate" => Dict("selected" => demand["target_rung"] == 5 ? "admissible_survivor_set_M_C" : "ordered_local_update")
+            ))
+        end
+    end
     Dict(
         "schema" => "ratchet_climb_engine_v1_drive.run_result.v1",
         "run_id" => cfg["run_id"],
@@ -335,7 +357,10 @@ function run_climb(spec, formal, cfg)
         "frontier_status" => status,
         "axis0_drive" => drive,
         "forced_beyond_rung4" => forced,
-        "rung_receipts" => rung_receipts(cfg["run_id"], q_full, no_probe_q, coarse_count, length(labels), ctrl),
+        "rung_receipts" => vcat(receipts, rejected_frontier_attempts),
+        "rejected_frontier_attempts" => rejected_frontier_attempts,
+        "append_only_lock_ledger" => lock_ledger,
+        "lock_ledger_semantics" => "admitted_receipts_only",
         "controls" => ctrl,
         "minimalist_wins" => isempty(forced) ? ["rung_5_candidate_rejected_unforced"] : Any[],
         "rho_hopf_status" => Dict("rho_rung_10" => "not_reached_rejected_unforced", "hopf_rung_11" => "not_reached_rejected_unforced"),
@@ -386,6 +411,10 @@ function main()
         "frontier_status_by_variant" => Dict(row["variant_id"] => row["frontier_status"] for row in runs),
         "forced_beyond_rung4_by_variant" => Dict(row["variant_id"] => !isempty(row["forced_beyond_rung4"]) for row in runs),
         "minted_demand_count_by_variant" => Dict(row["variant_id"] => row["axis0_drive"]["demand_count"] for row in runs),
+        "lock_ledger_semantics" => "admitted_receipts_only",
+        "lock_ledger_count_by_variant" => Dict(row["variant_id"] => length(row["append_only_lock_ledger"]) for row in runs),
+        "rejected_frontier_attempt_count_by_variant" => Dict(row["variant_id"] => length(row["rejected_frontier_attempts"]) for row in runs),
+        "rejected_frontier_attempts_by_variant" => Dict(row["variant_id"] => row["rejected_frontier_attempts"] for row in runs),
         "all_pass" => all(row -> row["all_pass"], runs),
         "packages_used" => ["JSON", "SHA", "Dates", "Graphs", "Z3"],
         "aligned_packages_load_bearing" => ["Graphs", "Z3"],

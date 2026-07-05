@@ -496,6 +496,7 @@ def run_climb(engine: str, run_cfg: dict[str, Any], engine_observables: dict[str
     probe_signature = sha256_json({"pauli_labels": carrier["pauli_labels"], "probe_order": run_cfg["probe_order"], "indices": indices})
     receipts = []
     locks = []
+    rejected_frontier_attempts = []
     prev_hash = "GENESIS"
 
     steps = [
@@ -631,8 +632,7 @@ def run_climb(engine: str, run_cfg: dict[str, Any], engine_observables: dict[str
             controls_summary={name: {"passed": row["passed"]} for name, row in ctrl.items()},
         )
         receipts.append(frontier_attempt)
-        lock = lock_entry(prev_hash, run_cfg["run_id"], 5, frontier_attempt, probe_signature)
-        locks.append(lock)
+        rejected_frontier_attempts.append(frontier_attempt)
         frontier_rung = 4
         frontier_status = stop_reason
         minimalist_wins = [frontier_attempt]
@@ -669,7 +669,9 @@ def run_climb(engine: str, run_cfg: dict[str, Any], engine_observables: dict[str
         "axis0_drive": drive,
         "forced_beyond_rung4": forced_beyond,
         "rung_receipts": receipts,
+        "rejected_frontier_attempts": rejected_frontier_attempts,
         "append_only_lock_ledger": locks,
+        "lock_ledger_semantics": "admitted_receipts_only",
         "controls": ctrl,
         "minimalist_wins": minimalist_wins,
         "rho_hopf_status": {
@@ -724,6 +726,10 @@ def result_envelope(engine: str, run_results: list[dict[str, Any]], extra: dict[
         "frontier_status_by_variant": {row["variant_id"]: row["frontier_status"] for row in run_results},
         "forced_beyond_rung4_by_variant": {row["variant_id"]: bool(row["forced_beyond_rung4"]) for row in run_results},
         "minted_demand_count_by_variant": {row["variant_id"]: row["axis0_drive"]["demand_count"] for row in run_results},
+        "lock_ledger_semantics": "admitted_receipts_only",
+        "lock_ledger_count_by_variant": {row["variant_id"]: len(row["append_only_lock_ledger"]) for row in run_results},
+        "rejected_frontier_attempt_count_by_variant": {row["variant_id"]: len(row["rejected_frontier_attempts"]) for row in run_results},
+        "rejected_frontier_attempts_by_variant": {row["variant_id"]: row["rejected_frontier_attempts"] for row in run_results},
         "minimalist_wins": [
             row["minimalist_wins"][0]["mss_gate"]["stronger_candidates_rejected_unforced"]
             for row in run_results

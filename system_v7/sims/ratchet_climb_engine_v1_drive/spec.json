@@ -1,0 +1,84 @@
+{
+  "sim_id": "ratchet_climb_engine_v1_drive",
+  "status": "DRAFT_UNAUDITED",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "scratch_diagnostic",
+  "purpose": "Executable Ratchet Runbook climb where Axis 0 is the enclosing circular drive: demands are minted by a noncommutative rolling-memory two-carrier update stream, not hand-supplied as a static list.",
+  "source_docs": [
+    "system_v7/constraint_core/reference_docs_from_josh/TAIJITU_axes_doc_axis_0_enclosing_circular_drive.md",
+    "system_v7/constraint_core/reference_docs_from_josh/hexagram_scaffold_axis_0_external_drive_through_space.md",
+    "system_v7/constraint_core/reference_docs_from_josh/physics_program/ratchet_runbook_DRAFT_20260615.md",
+    "system_v7/constraint_core/reference_docs_from_josh/foundations/mss_and_rung_climb_foundations_DRAFT_20260615.md",
+    "system_v7/sims/one_object_many_projection_registry_v0/PARTIAL_RUN_RECEIPT_20260615.md",
+    "system_v7/sims/ratchet_formal_gates_v1/FORMAL_SPEC.md"
+  ],
+  "reused_formal_gate_results": {
+    "jax": "system_v7/sims/ratchet_formal_gates_v1/results/ratchet_formal_gates_v1_jax_results.json",
+    "julia": "system_v7/sims/ratchet_formal_gates_v1/results/ratchet_formal_gates_v1_julia_results.json",
+    "numpy": "system_v7/sims/ratchet_formal_gates_v1/results/ratchet_formal_gates_v1_numpy_results.json"
+  },
+  "carrier_contract": {
+    "carrier": "C^8 finite 3-qubit roster from ratchet_formal_gates_v1 R4",
+    "expected_state_count": 40,
+    "expected_probe_count": 63,
+    "formal_gate_reuse": "R1-R6 lock properties are source inputs; this sim builds the climb process and does not rebuild formal gates."
+  },
+  "drive_contract": {
+    "axis_0_doctrine": "Axis 0 = enclosing circular drive / external drive through the space",
+    "fence": "The drive loop uses no cut, bipartition, or Phi0 machinery. The drive is early; those readouts stay late.",
+    "finite_history_window": 4,
+    "carrier_count": 2,
+    "minted_demand_sources": [
+      "noncommuting_update_order_distinction",
+      "rolling_history_persistence",
+      "entanglement_born_marginal_mixedness_pair"
+    ]
+  },
+  "ladder": [
+    {"rung": 0, "name": "no_primitive_identity"},
+    {"rung": 1, "name": "finite_distinguishability"},
+    {"rung": 2, "name": "finite_support_S"},
+    {"rung": 3, "name": "probe_family_P"},
+    {"rung": 4, "name": "quotient_S_mod_P"},
+    {"rung": 5, "name": "admissible_survivor_set_M_C"},
+    {"rung": 6, "name": "ordered_local_update"},
+    {"rung": 7, "name": "ring_checkerboard_finite_run_surface"},
+    {"rung": 8, "name": "entropy_readout_suite"},
+    {"rung": 9, "name": "state_functional_omega"},
+    {"rung": 10, "name": "density_operator_rho"},
+    {"rung": 11, "name": "Hopf_projective_lift"},
+    {"rung": 12, "name": "Weyl_spinor_lift"},
+    {"rung": 13, "name": "Clifford_G_structure"},
+    {"rung": 14, "name": "tensor_cut_correlation_geometry"},
+    {"rung": 15, "name": "smooth_manifold_metric_field_language"}
+  ],
+  "attractor_runs": [
+    {"run_id": "A_formal_order", "seed": 101, "probe_order": "formal", "constraint_order": ["label_shuffle", "commuting_static_filters", "lower_layer_can_do_it", "contextuality_flip"]},
+    {"run_id": "B_reverse_probe_order", "seed": 202, "probe_order": "reverse", "constraint_order": ["commuting_static_filters", "label_shuffle", "contextuality_flip", "lower_layer_can_do_it"]},
+    {"run_id": "C_seeded_probe_shuffle", "seed": 303, "probe_order": "seeded_shuffle", "constraint_order": ["contextuality_flip", "lower_layer_can_do_it", "label_shuffle", "commuting_static_filters"]}
+  ],
+  "drive_variants": [
+    {"variant_id": "axis0_drive", "run_id": "D_axis0_drive", "kind": "full_drive", "seed": 404, "probe_order": "formal", "constraint_order": ["axis0_drive", "mss_gate", "weakest_lift"], "expected_frontier_min": 5},
+    {"variant_id": "commuting_drive_control", "run_id": "E_commuting_drive_control", "kind": "commuting_control", "seed": 505, "probe_order": "formal", "constraint_order": ["commuting_drive_control", "mss_gate"], "expected_frontier": 4},
+    {"variant_id": "static_demand_list_control", "run_id": "F_static_demand_list_control", "kind": "static_control", "seed": 606, "probe_order": "formal", "constraint_order": ["static_demand_list_control", "mss_gate"], "expected_frontier": 4},
+    {"variant_id": "memoryless_drive_control", "run_id": "G_memoryless_drive_control", "kind": "memoryless_control", "seed": 707, "probe_order": "formal", "constraint_order": ["memoryless_drive_control", "mss_gate"], "expected_frontier": 4},
+    {"variant_id": "label_shuffle_control", "run_id": "H_label_shuffle_control", "kind": "label_shuffle_control", "seed": 808, "probe_order": "formal", "constraint_order": ["label_shuffle", "axis0_drive", "mss_gate"], "expected_frontier_min": 5}
+  ],
+  "controls_required": [
+    "commuting_drive_control",
+    "static_demand_list_control",
+    "memoryless_drive_control",
+    "label_shuffle",
+    "commuting_order",
+    "lower_layer_can_do_it",
+    "non_definitional_flip"
+  ],
+  "non_definitional_flip_standard": "Peres-Mermin contextuality assignment SMT discriminator: contextual case UNSAT and noncontextual control SAT in z3+cvc5. The holonomy circularity pattern is recorded only as an anti-pattern.",
+  "receipt_axes": {
+    "lifecycle_status": "SCRATCH_DIAGNOSTIC",
+    "evidence_grade": "evidence_grade",
+    "claim_ceiling": "scratch_diagnostic"
+  }
+}

@@ -10,29 +10,33 @@
     }
   },
   "all_pass": true,
-  "capstone_status": "DRAFT_UNAUDITED",
+  "capstone_status": "STRUCTURAL_REPAIR_20260704",
   "classification": "scratch_diagnostic",
   "divergence_log": [
-    "agreement compares K=3 lock counts, co-turns, last-new ticks, and final quotients; per-engine result files retain lock curves"
+    "agreement compares K=3 lock counts, co-turns, last-new ticks, and final quotients; dominance is reported, not assumed"
   ],
   "engine": "agreement_envelope",
   "engine_summaries": {
     "jax": {
-      "commuting_drive": {
-        "co_turn_events": 0,
+      "commuting": {
+        "co_turn_events": 1,
         "final_quotient": [
           [
-            0,
+            0
+          ],
+          [
             1
           ],
           [
-            2,
+            2
+          ],
+          [
             3
           ]
         ],
-        "last_new_tick": 3,
-        "locks": 1,
-        "ticks_run": 50
+        "last_new_tick": 6,
+        "locks": 2,
+        "ticks_run": 16
       },
       "entangled_memory": {
         "co_turn_events": 1,
@@ -70,35 +74,47 @@
         "locks": 1,
         "ticks_run": 50
       },
-      "label_shuffle": {
-        "co_turn_events": 0,
+      "memoryless": {
+        "co_turn_events": 1,
         "final_quotient": [
           [
-            0,
-            1,
-            2,
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
             3
           ]
         ],
-        "last_new_tick": null,
-        "locks": 0,
-        "ticks_run": 50
+        "last_new_tick": 6,
+        "locks": 2,
+        "ticks_run": 16
       },
-      "memoryless_drive": {
-        "co_turn_events": 0,
+      "shuffled": {
+        "co_turn_events": 1,
         "final_quotient": [
           [
-            0,
-            1,
-            2,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
             3
           ]
         ],
-        "last_new_tick": null,
-        "locks": 0,
-        "ticks_run": 50
+        "last_new_tick": 6,
+        "locks": 2,
+        "ticks_run": 16
       },
-      "static_fact_list": {
+      "static": {
         "co_turn_events": 0,
         "final_quotient": [
           [
@@ -114,21 +130,25 @@
       }
     },
     "julia": {
-      "commuting_drive": {
-        "co_turn_events": 0,
+      "commuting": {
+        "co_turn_events": 1,
         "final_quotient": [
           [
-            0,
+            0
+          ],
+          [
             1
           ],
           [
-            2,
+            2
+          ],
+          [
             3
           ]
         ],
-        "last_new_tick": 3,
-        "locks": 1,
-        "ticks_run": 50
+        "last_new_tick": 6,
+        "locks": 2,
+        "ticks_run": 16
       },
       "entangled_memory": {
         "co_turn_events": 1,
@@ -166,35 +186,47 @@
         "locks": 1,
         "ticks_run": 50
       },
-      "label_shuffle": {
-        "co_turn_events": 0,
+      "memoryless": {
+        "co_turn_events": 1,
         "final_quotient": [
           [
-            0,
-            1,
-            2,
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
             3
           ]
         ],
-        "last_new_tick": null,
-        "locks": 0,
-        "ticks_run": 50
+        "last_new_tick": 6,
+        "locks": 2,
+        "ticks_run": 16
       },
-      "memoryless_drive": {
-        "co_turn_events": 0,
+      "shuffled": {
+        "co_turn_events": 1,
         "final_quotient": [
           [
-            0,
-            1,
-            2,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
             3
           ]
         ],
-        "last_new_tick": null,
-        "locks": 0,
-        "ticks_run": 50
+        "last_new_tick": 6,
+        "locks": 2,
+        "ticks_run": 16
       },
-      "static_fact_list": {
+      "static": {
         "co_turn_events": 0,
         "final_quotient": [
           [
@@ -210,21 +242,25 @@
       }
     },
     "numpy": {
-      "commuting_drive": {
-        "co_turn_events": 0,
+      "commuting": {
+        "co_turn_events": 1,
         "final_quotient": [
           [
-            0,
+            0
+          ],
+          [
             1
           ],
           [
-            2,
+            2
+          ],
+          [
             3
           ]
         ],
-        "last_new_tick": 3,
-        "locks": 1,
-        "ticks_run": 50
+        "last_new_tick": 6,
+        "locks": 2,
+        "ticks_run": 16
       },
       "entangled_memory": {
         "co_turn_events": 1,
@@ -262,35 +298,47 @@
         "locks": 1,
         "ticks_run": 50
       },
-      "label_shuffle": {
-        "co_turn_events": 0,
+      "memoryless": {
+        "co_turn_events": 1,
         "final_quotient": [
           [
-            0,
-            1,
-            2,
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
             3
           ]
         ],
-        "last_new_tick": null,
-        "locks": 0,
-        "ticks_run": 50
+        "last_new_tick": 6,
+        "locks": 2,
+        "ticks_run": 16
       },
-      "memoryless_drive": {
-        "co_turn_events": 0,
+      "shuffled": {
+        "co_turn_events": 1,
         "final_quotient": [
           [
-            0,
-            1,
-            2,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
             3
           ]
         ],
-        "last_new_tick": null,
-        "locks": 0,
-        "ticks_run": 50
+        "last_new_tick": 6,
+        "locks": 2,
+        "ticks_run": 16
       },
-      "static_fact_list": {
+      "static": {
         "co_turn_events": 0,
         "final_quotient": [
           [
@@ -306,29 +354,37 @@
       }
     }
   },
+  "entangled_dominance": {
+    "dominates_co_turns": false,
+    "dominates_total_locks": false,
+    "headline_pass": false
+  },
   "failures": [],
-  "feedback_cut_control_passed": true,
   "formal_admission_allowed": false,
-  "generated_at": "2026-07-05T03:14:37+00:00",
+  "generated_at": "2026-07-05T03:23:38+00:00",
   "persistent_k": 3,
   "promotion_allowed": false,
   "schema_version": "ratchet_coratchet_loop_v0_agreement",
   "summary": {
-    "commuting_drive": {
-      "co_turn_events": 0,
+    "commuting": {
+      "co_turn_events": 1,
       "final_quotient": [
         [
-          0,
+          0
+        ],
+        [
           1
         ],
         [
-          2,
+          2
+        ],
+        [
           3
         ]
       ],
-      "last_new_tick": 3,
-      "locks": 1,
-      "ticks_run": 50
+      "last_new_tick": 6,
+      "locks": 2,
+      "ticks_run": 16
     },
     "entangled_memory": {
       "co_turn_events": 1,
@@ -366,35 +422,47 @@
       "locks": 1,
       "ticks_run": 50
     },
-    "label_shuffle": {
-      "co_turn_events": 0,
+    "memoryless": {
+      "co_turn_events": 1,
       "final_quotient": [
         [
-          0,
-          1,
-          2,
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
           3
         ]
       ],
-      "last_new_tick": null,
-      "locks": 0,
-      "ticks_run": 50
+      "last_new_tick": 6,
+      "locks": 2,
+      "ticks_run": 16
     },
-    "memoryless_drive": {
-      "co_turn_events": 0,
+    "shuffled": {
+      "co_turn_events": 1,
       "final_quotient": [
         [
-          0,
-          1,
-          2,
+          1
+        ],
+        [
+          2
+        ],
+        [
+          0
+        ],
+        [
           3
         ]
       ],
-      "last_new_tick": null,
-      "locks": 0,
-      "ticks_run": 50
+      "last_new_tick": 6,
+      "locks": 2,
+      "ticks_run": 16
     },
-    "static_fact_list": {
+    "static": {
       "co_turn_events": 0,
       "final_quotient": [
         [

@@ -16,6 +16,7 @@ def summarize(row):
             "ticks_run": r["ticks_run"],
             "locks": len(r["locks"]),
             "co_turn_events": len(r["co_turn_events"]),
+            "order_fact_events": len(r.get("order_fact_events", [])),
             "last_new_tick": r.get("last_new_tick"),
             "final_quotient": r["final_quotient"],
         }
@@ -31,12 +32,12 @@ def main():
     for e, r in rows.items():
         if r.get("classification") != "scratch_diagnostic" or r.get("promotion_allowed") is not False:
             failures.append(f"{e}: classification/promotion failed")
-        if r.get("capstone_status") != "STRUCTURAL_REPAIR_20260704":
+        if r.get("capstone_status") != "STRUCTURAL_REPAIR_20260704_TIME_ORDERED":
             failures.append(f"{e}: capstone not structural repair")
         if r.get("persistent_k") != 3:
             failures.append(f"{e}: persistent_k mismatch")
     canonical = summaries["numpy"]
-    out = {"schema_version": "ratchet_coratchet_loop_v0_agreement", "engine": "agreement_envelope", "generated_at": now(), "classification": "scratch_diagnostic", "promotion_allowed": False, "formal_admission_allowed": False, "capstone_status": "STRUCTURAL_REPAIR_20260704", "persistent_k": 3, "all_pass": not failures, "summary": canonical, "engine_summaries": summaries, "entangled_dominance": rows["numpy"].get("headline", {}), "failures": failures, "TOOL_MANIFEST": {"python_stdlib": {"tried": True, "used": True, "reason": "supportive agreement check"}}, "TOOL_INTEGRATION_DEPTH": {"python_stdlib": "supportive"}, "divergence_log": ["agreement compares K=3 lock counts, co-turns, last-new ticks, and final quotients; dominance is reported, not assumed"]}
+    out = {"schema_version": "ratchet_coratchet_loop_v0_agreement", "engine": "agreement_envelope", "generated_at": now(), "classification": "scratch_diagnostic", "promotion_allowed": False, "formal_admission_allowed": False, "capstone_status": "STRUCTURAL_REPAIR_20260704_TIME_ORDERED", "persistent_k": 3, "all_pass": not failures, "summary": canonical, "engine_summaries": summaries, "entangled_dominance": rows["numpy"].get("headline", {}), "failures": failures, "TOOL_MANIFEST": {"python_stdlib": {"tried": True, "used": True, "reason": "supportive agreement check"}}, "TOOL_INTEGRATION_DEPTH": {"python_stdlib": "supportive"}, "divergence_log": ["agreement compares K=3 lock counts, co-turns, order facts, last-new ticks, and final quotients; dominance is reported, not assumed"]}
     RESULTS.mkdir(exist_ok=True)
     (RESULTS / "ratchet_coratchet_loop_v0_three_engine_results.json").write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
     print(json.dumps({"all_pass": out["all_pass"], "entangled_dominance": out["entangled_dominance"], "summary": canonical}, sort_keys=True))

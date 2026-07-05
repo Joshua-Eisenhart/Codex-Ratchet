@@ -16,14 +16,18 @@
     }
   },
   "all_pass": false,
-  "capstone_status": "STRUCTURAL_REPAIR_20260704",
+  "capstone_status": "STRUCTURAL_REPAIR_20260704_TIME_ORDERED",
   "classification": "scratch_diagnostic",
+  "commutation_assertions": {
+    "commuting_pair_commutes": true,
+    "entangled_pair_noncommuting": true
+  },
   "divergence_log": [
-    "run labels differ only by generator output or the single licensing-extension flag"
+    "run labels differ only by generator output"
   ],
   "engine": "numpy",
   "formal_admission_allowed": false,
-  "generated_at": "2026-07-05T03:23:24+00:00",
+  "generated_at": "2026-07-05T03:37:39+00:00",
   "headline": {
     "dominates_co_turns": false,
     "dominates_total_locks": false,
@@ -35,36 +39,42 @@
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 4,
+        "order_fact_events": 0,
         "ticks_run": 14
       },
       "entangled_memory": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 4,
+        "order_fact_events": 0,
         "ticks_run": 14
       },
       "feedback_cut": {
         "co_turns": 0,
         "final_locks": 1,
         "last_new_tick": 2,
+        "order_fact_events": 0,
         "ticks_run": 50
       },
       "memoryless": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 4,
+        "order_fact_events": 0,
         "ticks_run": 14
       },
       "shuffled": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 4,
+        "order_fact_events": 0,
         "ticks_run": 14
       },
       "static": {
         "co_turns": 0,
         "final_locks": 0,
         "last_new_tick": null,
+        "order_fact_events": 0,
         "ticks_run": 50
       }
     },
@@ -73,36 +83,42 @@
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 6,
+        "order_fact_events": 0,
         "ticks_run": 16
       },
       "entangled_memory": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 6,
+        "order_fact_events": 0,
         "ticks_run": 16
       },
       "feedback_cut": {
         "co_turns": 0,
         "final_locks": 1,
         "last_new_tick": 3,
+        "order_fact_events": 0,
         "ticks_run": 50
       },
       "memoryless": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 6,
+        "order_fact_events": 0,
         "ticks_run": 16
       },
       "shuffled": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 6,
+        "order_fact_events": 0,
         "ticks_run": 16
       },
       "static": {
         "co_turns": 0,
         "final_locks": 0,
         "last_new_tick": null,
+        "order_fact_events": 0,
         "ticks_run": 50
       }
     },
@@ -111,36 +127,42 @@
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 8,
+        "order_fact_events": 0,
         "ticks_run": 18
       },
       "entangled_memory": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 8,
+        "order_fact_events": 0,
         "ticks_run": 18
       },
       "feedback_cut": {
         "co_turns": 0,
         "final_locks": 1,
         "last_new_tick": 4,
+        "order_fact_events": 0,
         "ticks_run": 50
       },
       "memoryless": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 8,
+        "order_fact_events": 0,
         "ticks_run": 18
       },
       "shuffled": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 8,
+        "order_fact_events": 0,
         "ticks_run": 18
       },
       "static": {
         "co_turns": 0,
         "final_locks": 0,
         "last_new_tick": null,
+        "order_fact_events": 0,
         "ticks_run": 50
       }
     },
@@ -149,36 +171,42 @@
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 10,
+        "order_fact_events": 0,
         "ticks_run": 20
       },
       "entangled_memory": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 10,
+        "order_fact_events": 0,
         "ticks_run": 20
       },
       "feedback_cut": {
         "co_turns": 0,
         "final_locks": 1,
         "last_new_tick": 5,
+        "order_fact_events": 0,
         "ticks_run": 50
       },
       "memoryless": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 10,
+        "order_fact_events": 0,
         "ticks_run": 20
       },
       "shuffled": {
         "co_turns": 1,
         "final_locks": 2,
         "last_new_tick": 10,
+        "order_fact_events": 0,
         "ticks_run": 20
       },
       "static": {
         "co_turns": 0,
         "final_locks": 0,
         "last_new_tick": null,
+        "order_fact_events": 0,
         "ticks_run": 50
       }
     }
@@ -199,8 +227,14 @@
               "id": "pair_correlation:0.1.2.3",
               "kind": "pair_correlation",
               "licensed_by_lock": 2
+            },
+            {
+              "id": "time_ordered_two_step:0.1.2.3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 2
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": true,
           "quotient": [
             [
@@ -243,7 +277,7 @@
           ]
         }
       ],
-      "fact_count": 29,
+      "fact_count": 42,
       "final_quotient": [
         [
           0
@@ -337,8 +371,14 @@
               "id": "pair_correlation:0-1.2-3",
               "kind": "pair_correlation",
               "licensed_by_lock": 1
+            },
+            {
+              "id": "time_ordered_two_step:0-1.2-3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 1
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": false,
           "quotient": [
             [
@@ -405,8 +445,14 @@
               "id": "pair_correlation:0.1.2.3",
               "kind": "pair_correlation",
               "licensed_by_lock": 2
+            },
+            {
+              "id": "time_ordered_two_step:0.1.2.3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 2
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": true,
           "quotient": [
             [
@@ -449,6 +495,7 @@
           ]
         }
       ],
+      "order_fact_events": [],
       "persistent_k": 3,
       "ticks_run": 16,
       "variant": "entangled_memory"
@@ -466,8 +513,14 @@
               "id": "pair_correlation:0.1.2.3",
               "kind": "pair_correlation",
               "licensed_by_lock": 2
+            },
+            {
+              "id": "time_ordered_two_step:0.1.2.3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 2
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": true,
           "quotient": [
             [
@@ -510,7 +563,7 @@
           ]
         }
       ],
-      "fact_count": 29,
+      "fact_count": 42,
       "final_quotient": [
         [
           0
@@ -604,8 +657,14 @@
               "id": "pair_correlation:0-1.2-3",
               "kind": "pair_correlation",
               "licensed_by_lock": 1
+            },
+            {
+              "id": "time_ordered_two_step:0-1.2-3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 1
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": false,
           "quotient": [
             [
@@ -672,8 +731,14 @@
               "id": "pair_correlation:0.1.2.3",
               "kind": "pair_correlation",
               "licensed_by_lock": 2
+            },
+            {
+              "id": "time_ordered_two_step:0.1.2.3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 2
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": true,
           "quotient": [
             [
@@ -716,6 +781,7 @@
           ]
         }
       ],
+      "order_fact_events": [],
       "persistent_k": 3,
       "ticks_run": 16,
       "variant": "commuting"
@@ -733,8 +799,14 @@
               "id": "pair_correlation:0.1.2.3",
               "kind": "pair_correlation",
               "licensed_by_lock": 2
+            },
+            {
+              "id": "time_ordered_two_step:0.1.2.3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 2
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": true,
           "quotient": [
             [
@@ -777,7 +849,7 @@
           ]
         }
       ],
-      "fact_count": 29,
+      "fact_count": 42,
       "final_quotient": [
         [
           0
@@ -871,8 +943,14 @@
               "id": "pair_correlation:0-1.2-3",
               "kind": "pair_correlation",
               "licensed_by_lock": 1
+            },
+            {
+              "id": "time_ordered_two_step:0-1.2-3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 1
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": false,
           "quotient": [
             [
@@ -939,8 +1017,14 @@
               "id": "pair_correlation:0.1.2.3",
               "kind": "pair_correlation",
               "licensed_by_lock": 2
+            },
+            {
+              "id": "time_ordered_two_step:0.1.2.3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 2
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": true,
           "quotient": [
             [
@@ -983,6 +1067,7 @@
           ]
         }
       ],
+      "order_fact_events": [],
       "persistent_k": 3,
       "ticks_run": 16,
       "variant": "memoryless"
@@ -1202,6 +1287,7 @@
         }
       ],
       "locks": [],
+      "order_fact_events": [],
       "persistent_k": 3,
       "ticks_run": 50,
       "variant": "static"
@@ -1219,8 +1305,14 @@
               "id": "pair_correlation:1.2.0.3",
               "kind": "pair_correlation",
               "licensed_by_lock": 2
+            },
+            {
+              "id": "time_ordered_two_step:1.2.0.3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 2
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": true,
           "quotient": [
             [
@@ -1263,7 +1355,7 @@
           ]
         }
       ],
-      "fact_count": 29,
+      "fact_count": 42,
       "final_quotient": [
         [
           1
@@ -1357,8 +1449,14 @@
               "id": "pair_correlation:1-2.0-3",
               "kind": "pair_correlation",
               "licensed_by_lock": 1
+            },
+            {
+              "id": "time_ordered_two_step:1-2.0-3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 1
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": false,
           "quotient": [
             [
@@ -1425,8 +1523,14 @@
               "id": "pair_correlation:1.2.0.3",
               "kind": "pair_correlation",
               "licensed_by_lock": 2
+            },
+            {
+              "id": "time_ordered_two_step:1.2.0.3",
+              "kind": "time_ordered_two_step",
+              "licensed_by_lock": 2
             }
           ],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": true,
           "quotient": [
             [
@@ -1469,13 +1573,14 @@
           ]
         }
       ],
+      "order_fact_events": [],
       "persistent_k": 3,
       "ticks_run": 16,
       "variant": "shuffled"
     },
     {
       "co_turn_events": [],
-      "fact_count": 50,
+      "fact_count": 3,
       "final_quotient": [
         [
           0,
@@ -1691,6 +1796,8 @@
       ],
       "locks": [
         {
+          "licensed_readouts": [],
+          "order_witness_pairs": [],
           "post_lock_readout_forced": false,
           "quotient": [
             [
@@ -1710,7 +1817,7 @@
           "witness_pairs": [
             {
               "cell": 0,
-              "delta": 1.0477549628663831,
+              "delta": 1.0491716912528557,
               "pair": [
                 0,
                 2
@@ -1719,7 +1826,7 @@
             },
             {
               "cell": 0,
-              "delta": 1.0477549628663831,
+              "delta": 1.0491716912528557,
               "pair": [
                 0,
                 3
@@ -1728,7 +1835,7 @@
             },
             {
               "cell": 0,
-              "delta": 1.0477549628663831,
+              "delta": 1.0491716912528557,
               "pair": [
                 1,
                 2
@@ -1737,7 +1844,7 @@
             },
             {
               "cell": 0,
-              "delta": 1.0477549628663831,
+              "delta": 1.0491716912528557,
               "pair": [
                 1,
                 3
@@ -1747,11 +1854,12 @@
           ]
         }
       ],
+      "order_fact_events": [],
       "persistent_k": 3,
       "ticks_run": 50,
       "variant": "feedback_cut"
     }
   ],
   "schema_version": "ratchet_coratchet_loop_v0",
-  "shared_pipeline": "persistence gate, v3 witness, refinement scoring, readout licensing, and co-turn detection are label-blind; one label disables licensing extension"
+  "shared_pipeline": "persistence gate, v3 witness, refinement scoring, extend_licensing-gated readouts, same-input order correlator, and later-tick post-lock detection are label-blind"
 }

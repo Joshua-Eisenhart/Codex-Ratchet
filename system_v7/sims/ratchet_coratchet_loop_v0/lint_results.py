@@ -13,7 +13,7 @@ for path in sorted(RESULTS.glob("ratchet_coratchet_loop_v0_*results.json")):
             failures.append(f"{path.name}: missing {key}")
     if row.get("classification") != "scratch_diagnostic" or row.get("promotion_allowed") is not False:
         failures.append(f"{path.name}: bad classification/promotion")
-    if row.get("capstone_status") != "STRUCTURAL_REPAIR_20260704":
+    if row.get("capstone_status") != "STRUCTURAL_REPAIR_20260704_TIME_ORDERED":
         failures.append(f"{path.name}: bad capstone")
 print(json.dumps({"lint_failures": failures, "lint_failure_count": len(failures)}, sort_keys=True))
 raise SystemExit(1 if failures else 0)

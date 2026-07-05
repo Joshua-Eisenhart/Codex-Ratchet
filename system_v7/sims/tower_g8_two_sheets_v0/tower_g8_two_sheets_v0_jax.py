@@ -67,9 +67,10 @@ def sheet(sign: float) -> dict:
 def controls(left: dict, right: dict) -> dict:
     zero_rates = measure_rates(0.0)
     zero_orient = [rate * float(state[0] ** 2 + state[1] ** 2) for rate, state in zip(zero_rates, np.asarray(STATES))]
-    relabeled_right = sheet(1.0)
+    relabeled_right_values = [-value for value in right["orientation_values"]]
     perm = [2, 0, 4, 1, 3]
     shuffled_left = [left["orientation_values"][i] for i in perm]
+    relabel_residual = max(abs(a - b) for a, b in zip(relabeled_right_values, left["orientation_values"]))
     return {
         "H0_zero": {
             "measured_rates": zero_rates,
@@ -78,9 +79,11 @@ def controls(left: dict, right: dict) -> dict:
             "sheets_indistinguishable": max(abs(x) for x in zero_rates) < TOL,
         },
         "sign_flip_relabel": {
-            "applied_relabel": "R sign -1 relabeled to +1",
-            "max_residual_after_relabel": max(abs(a - b) for a, b in zip(relabeled_right["orientation_values"], left["orientation_values"])),
-            "left_becomes_right": max(abs(a - b) for a, b in zip(relabeled_right["orientation_values"], left["orientation_values"])) < TOL,
+            "applied_relabel": "measured R orientation values multiplied by -1",
+            "measured_right_values": right["orientation_values"],
+            "relabeled_measured_right_values": relabeled_right_values,
+            "max_residual_after_relabel": relabel_residual,
+            "left_becomes_right": relabel_residual < TOL,
             "right_becomes_left": max(abs(a + b) for a, b in zip(right["orientation_values"], left["orientation_values"])) < TOL,
         },
         "label_shuffle": {

@@ -75,14 +75,14 @@ end
 function controls(left, right)
     zero_rates = measure_rates(0.0)
     zero_orient = [zero_rates[i] * (STATES[i][1]^2 + STATES[i][2]^2) for i in eachindex(STATES)]
-    relabeled_right = sheet(1.0)
+    relabeled_right_values = [-x for x in right["orientation_values"]]
     perm = [3, 1, 5, 2, 4]
     shuffled_left = [left["orientation_values"][i] for i in perm]
-    relabel_residual = maximum(abs.([relabeled_right["orientation_values"][i] - left["orientation_values"][i] for i in eachindex(STATES)]))
+    relabel_residual = maximum(abs.([relabeled_right_values[i] - left["orientation_values"][i] for i in eachindex(STATES)]))
     sign_residual = maximum(abs.([right["orientation_values"][i] + left["orientation_values"][i] for i in eachindex(STATES)]))
     return Dict(
         "H0_zero" => Dict("measured_rates" => zero_rates, "max_abs_rate" => maximum(abs.(zero_rates)), "max_abs_orientation" => maximum(abs.(zero_orient)), "sheets_indistinguishable" => maximum(abs.(zero_rates)) < TOL),
-        "sign_flip_relabel" => Dict("applied_relabel" => "R sign -1 relabeled to +1", "max_residual_after_relabel" => relabel_residual, "left_becomes_right" => relabel_residual < TOL, "right_becomes_left" => sign_residual < TOL),
+        "sign_flip_relabel" => Dict("applied_relabel" => "measured R orientation values multiplied by -1", "measured_right_values" => right["orientation_values"], "relabeled_measured_right_values" => relabeled_right_values, "max_residual_after_relabel" => relabel_residual, "left_becomes_right" => relabel_residual < TOL, "right_becomes_left" => sign_residual < TOL),
         "label_shuffle" => Dict("permutation" => [2, 0, 4, 1, 3], "shuffled_values" => shuffled_left, "multiset_preserved" => sort(round.(shuffled_left, digits=12)) == sort(round.(left["orientation_values"], digits=12))),
     )
 end

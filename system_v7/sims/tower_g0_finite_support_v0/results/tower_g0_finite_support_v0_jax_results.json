@@ -10,7 +10,7 @@
       "used": true
     },
     "z3": {
-      "reason": "completed-infinity contradiction control",
+      "reason": "pigeonhole unsat over the actual constructed carrier",
       "tried": true,
       "used": true
     }
@@ -20,10 +20,11 @@
   ],
   "all_pass": true,
   "classification": "scratch_diagnostic",
-  "created_at": "2026-07-05T01:46:25Z",
+  "created_at": "2026-07-05T01:52:54Z",
   "engine": "jax",
   "negative_controls": {
-    "completed_infinity_refused_or_unsat": true,
+    "completed_infinity_pigeonhole_unsat": true,
+    "erased_injectivity_control_sat": true,
     "label_shuffle_preserves_signature": true
   },
   "packages_used": [
@@ -35,19 +36,31 @@
   "promotion_allowed": false,
   "reads_peer_result": false,
   "refusal_receipts": {
-    "completed_infinity_equality": {
-      "reason": "Exact equality over all natural-number indices demands completed infinity.",
-      "verdict": "unsat"
+    "completed_infinity_pigeonhole": {
+      "carrier_class_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "carrier_size": 4,
+      "claim": "No injective map exists from k+1 indices into the run's actual size-k carrier.",
+      "erased_injectivity_verdict": "sat",
+      "index_set_size": 5,
+      "injective_pigeonhole_verdict": "unsat",
+      "solver_backend": "z3"
     },
     "unbounded_family_construction": {
-      "reason": "F01 admits each finite support step, not a completed unbounded family object.",
+      "caught": true,
+      "caught_type": "TypedRefusal",
+      "message": "F01 refuses completed unbounded family construction; only finite support carriers are admissible.",
       "receipt_type": "TYPED_REFUSAL"
     }
   },
   "schema": "engine_leg_result_v1",
   "sim_id": "tower_g0_finite_support_v0",
   "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/tower_g0_finite_support_v0_jax.py",
-  "source_sha256": "21b67bea279c23daa49722d11021230171985d69b98acd618e8ab8054333c6a0",
+  "source_sha256": "87b75c2fa673b037e40832c811c80a29760f7a234a2dc069596f17da0fd3597b",
   "witnesses": {
     "carrier_size": 4,
     "growth_all_finite": true,

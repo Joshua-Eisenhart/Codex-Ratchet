@@ -14,20 +14,32 @@
   "claim_ceiling": "scratch_diagnostic G0 finite-support rung only; no downstream tower promotion.",
   "classification": "scratch_diagnostic",
   "controller_source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/check_agreement.py",
-  "controller_source_sha256": "7f2a77ed69bdde7cd94d25692fb57617968e82996f0608c8548e2d05113ebc6c",
-  "created_at": "2026-07-05T01:47:31Z",
+  "controller_source_sha256": "a018a4255889b6f04791edee20dcfe8c12973c7886a73dc3a6d05390609d02f3",
+  "created_at": "2026-07-05T01:52:59Z",
   "crossover_proofs": {
     "cvc5": {
-      "claim": "same completed-infinity contradiction polarity recorded for validator crossover parity",
-      "ran": true,
-      "supportive": true,
-      "verdict": "unsat"
+      "ran": false,
+      "reason": "cvc5 was not invoked by this run",
+      "solver_envelope": "z3-only"
+    },
+    "julia": {
+      "finite_witness_only": true,
+      "solver_backend": "none_julia_leg"
     },
     "z3": {
-      "claim": "completed-infinity contradiction is refused/UNSAT in JAX and PyTorch legs",
+      "claim": "completed-infinity pigeonhole control binds to the actual constructed carrier in JAX and PyTorch",
       "load_bearing": true,
-      "ran": true,
-      "verdict": "unsat"
+      "pairs": {
+        "jax": {
+          "erased_injectivity_verdict": "sat",
+          "injective_pigeonhole_verdict": "unsat"
+        },
+        "pytorch": {
+          "erased_injectivity_verdict": "sat",
+          "injective_pigeonhole_verdict": "unsat"
+        }
+      },
+      "ran": true
     }
   },
   "divergence": {
@@ -62,7 +74,7 @@
       "reads_peer_result": false,
       "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_jax_results.json",
       "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/tower_g0_finite_support_v0_jax.py",
-      "source_sha256": "21b67bea279c23daa49722d11021230171985d69b98acd618e8ab8054333c6a0"
+      "source_sha256": "87b75c2fa673b037e40832c811c80a29760f7a234a2dc069596f17da0fd3597b"
     },
     "julia": {
       "aligned_packages_load_bearing": [
@@ -91,12 +103,12 @@
       "reads_peer_result": false,
       "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/results/tower_g0_finite_support_v0_pytorch_results.json",
       "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/tower_g0_finite_support_v0/tower_g0_finite_support_v0_pytorch.py",
-      "source_sha256": "7f94200d6e76bbe3f39c928a215850c71ae35b8db93d185b2bb168e25770c1cc"
+      "source_sha256": "99f48b32743105cb4a5a3541c93cbb6c1d8e40956295db3cf97ec482ba9e2e4e"
     }
   },
   "formal_admission_allowed": false,
   "negative_controls": {
-    "completed_infinity_demand": "UNSAT/refused",
+    "completed_infinity_demand": "z3 pigeonhole unsat over actual carrier; erased injectivity sat",
     "label_shuffle": "preserves sorted finite support signature"
   },
   "parity": {
@@ -106,32 +118,67 @@
   "promotion_allowed": false,
   "refusal_receipts": {
     "jax": {
-      "completed_infinity_equality": {
-        "reason": "Exact equality over all natural-number indices demands completed infinity.",
-        "verdict": "unsat"
+      "completed_infinity_pigeonhole": {
+        "carrier_class_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "carrier_size": 4,
+        "claim": "No injective map exists from k+1 indices into the run's actual size-k carrier.",
+        "erased_injectivity_verdict": "sat",
+        "index_set_size": 5,
+        "injective_pigeonhole_verdict": "unsat",
+        "solver_backend": "z3"
       },
       "unbounded_family_construction": {
-        "reason": "F01 admits each finite support step, not a completed unbounded family object.",
+        "caught": true,
+        "caught_type": "TypedRefusal",
+        "message": "F01 refuses completed unbounded family construction; only finite support carriers are admissible.",
         "receipt_type": "TYPED_REFUSAL"
       }
     },
     "julia": {
-      "completed_infinity_equality": {
-        "reason": "Exact equality over all natural-number indices demands completed infinity.",
-        "verdict": "UNSAT"
+      "completed_infinity_pigeonhole": {
+        "carrier_class_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "carrier_size": 4,
+        "claim": "Julia leg records the constructed finite carrier witness only; no hardcoded solver verdict.",
+        "finite_witness_only": true,
+        "index_set_size": 5,
+        "solver_backend": "none_julia_leg"
       },
       "unbounded_family_construction": {
-        "reason": "F01 admits each finite support step, not a completed unbounded family object.",
+        "caught": true,
+        "caught_type": "TypedRefusal",
+        "message": "F01 refuses completed unbounded family construction; only finite support carriers are admissible.",
         "receipt_type": "TYPED_REFUSAL"
       }
     },
     "pytorch": {
-      "completed_infinity_equality": {
-        "reason": "Exact equality over all natural-number indices demands completed infinity.",
-        "verdict": "unsat"
+      "completed_infinity_pigeonhole": {
+        "carrier_class_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "carrier_size": 4,
+        "claim": "No injective map exists from k+1 indices into the run's actual size-k carrier.",
+        "erased_injectivity_verdict": "sat",
+        "index_set_size": 5,
+        "injective_pigeonhole_verdict": "unsat",
+        "solver_backend": "z3"
       },
       "unbounded_family_construction": {
-        "reason": "F01 admits each finite support step, not a completed unbounded family object.",
+        "caught": true,
+        "caught_type": "TypedRefusal",
+        "message": "F01 refuses completed unbounded family construction; only finite support carriers are admissible.",
         "receipt_type": "TYPED_REFUSAL"
       }
     }

@@ -1,0 +1,103 @@
+{
+  "version": "0.1.0-qit-evidence-consumer",
+  "envelopeFile": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/lev_qit_engine_perception_evidence_v56_host_adapted.json",
+  "simId": "lev_qit_engine_perception_evidence_v56_host_adapted",
+  "ok": true,
+  "status": "host_evidence_consumed",
+  "sourceEnvelopeHash": "sha256:9af6d085f7394c7c0ecf26ddfe59059249dd32bd07e8078af56403b841cf20a5",
+  "receipt": {
+    "id": "rcpt-7b11ecc875e32c4f",
+    "scope": "invocation",
+    "sessionId": "qit-evidence-lev_qit_engine_perception_evidence_v56_host_adapted",
+    "workUnitId": "lev_qit_engine_perception_evidence_v56_host_adapted",
+    "contentHash": "b8a58e6187ec253f93286ee9f1f1c6ba822fd7990ebb8e1623012d29e97c61b0",
+    "evalResults": [
+      {
+        "id": "qit-evidence-lev_qit_engine_perception_evidence_v56_host_adapted",
+        "strategy": "gate-based",
+        "timestamp": "2026-07-07T22:44:34.410Z",
+        "passed": true,
+        "metric_value": 1,
+        "reasoning": "QIT envelope passed Lev host evidence-only boundary checks; no graph or runtime admission was applied.",
+        "metadata": {
+          "status": "host_evidence_consumed",
+          "source_all_pass": true,
+          "classification": "scratch_diagnostic",
+          "blocked_consumers": [
+            "Axis0",
+            "FEP",
+            "Lev_mesh_runtime",
+            "QIT_engine_admission",
+            "lev.axis0_fep.closure",
+            "lev.graph.admission",
+            "lev.local_verifier.quorum",
+            "lev.mesh.projection",
+            "lev.mmm.driver_authority",
+            "lev.ontology.writer",
+            "lev.runtime.object_factory",
+            "production_perception"
+          ],
+          "finding_codes": [],
+          "decision_ceiling": "accepted_as_evidence_only",
+          "graph_mutation_allowed": false,
+          "mesh_projection_allowed": false,
+          "source_boundary_mutated": false
+        }
+      }
+    ],
+    "effectResults": [],
+    "provenance": {
+      "surface": "cli",
+      "host": "lev",
+      "profile": "qit-evidence-consumer",
+      "consultedPaths": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/lev_qit_engine_perception_evidence_v56_host_adapted.json"
+      ],
+      "consultedFileHashes": {
+        "sourceEnvelope": "sha256:9af6d085f7394c7c0ecf26ddfe59059249dd32bd07e8078af56403b841cf20a5"
+      }
+    },
+    "sealedAt": "2026-07-07T22:44:34.411Z"
+  },
+  "findings": [],
+  "blockedConsumers": [
+    "Axis0",
+    "FEP",
+    "Lev_mesh_runtime",
+    "QIT_engine_admission",
+    "lev.axis0_fep.closure",
+    "lev.graph.admission",
+    "lev.local_verifier.quorum",
+    "lev.mesh.projection",
+    "lev.mmm.driver_authority",
+    "lev.ontology.writer",
+    "lev.runtime.object_factory",
+    "production_perception"
+  ],
+  "hostContract": {
+    "compositor_apply_allowed": false,
+    "cr_object_id_is_lev_entity_id": false,
+    "decision_ceiling": "accepted_as_evidence_only",
+    "evidence_kind": "measurement",
+    "graph_mutation_allowed": false,
+    "mesh_projection_allowed": false,
+    "source_boundary_mutated": false,
+    "truth_state": "proposed"
+  },
+  "metrics": {
+    "schemaVersion": "three_engine_sim_result_v1",
+    "classification": "scratch_diagnostic",
+    "allPass": true,
+    "promotionAllowed": false,
+    "formalAdmissionAllowed": false,
+    "evidenceGrade": "scratch_diagnostic_measurement",
+    "lifecycleStatus": "SCRATCH_DIAGNOSTIC"
+  },
+  "files": {
+    "sourceEnvelope": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/lev_qit_engine_perception_evidence_v56_host_adapted.json",
+    "hostConsumption": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/lev-qit-evidence-receipt.json",
+    "hostBoundary": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/lev-qit-evidence-boundary.json",
+    "hostEvents": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/lev-qit-evidence-events.jsonl",
+    "hostBlockedReason": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/lev-qit-evidence-blocked.json"
+  }
+}

@@ -1,0 +1,99 @@
+{
+ "adapter_note": "names/shape lifted only; all source ceilings preserved verbatim",
+ "all_pass": true,
+ "blocked_consumers": [
+  "Axis0",
+  "FEP",
+  "Lev_mesh_runtime",
+  "QIT_engine_admission",
+  "lev.axis0_fep.closure",
+  "lev.graph.admission",
+  "lev.local_verifier.quorum",
+  "lev.mesh.projection",
+  "lev.mmm.driver_authority",
+  "lev.ontology.writer",
+  "lev.runtime.object_factory",
+  "production_perception"
+ ],
+ "claim": "Shape-lift of the UP-93 perception-evidence envelope into the Lev host consumer schema; measurement evidence only, no new claims.",
+ "claim_ceiling": "measurement_candidate_not_truth",
+ "classification": "scratch_diagnostic",
+ "engine": "host_schema_adapter",
+ "evidence_grade": "scratch_diagnostic_measurement",
+ "formal_admission_allowed": false,
+ "lev_host_consumer_contract": {
+  "compositor_apply_allowed": false,
+  "cr_object_id_is_lev_entity_id": false,
+  "decision_ceiling": "accepted_as_evidence_only",
+  "evidence_kind": "measurement",
+  "graph_mutation_allowed": false,
+  "mesh_projection_allowed": false,
+  "source_boundary_mutated": false,
+  "truth_state": "proposed"
+ },
+ "lifecycle_status": "SCRATCH_DIAGNOSTIC",
+ "object_id": "lev_qit_engine_perception_evidence_v56_host_adapted",
+ "promotion_allowed": false,
+ "schema_version": "three_engine_sim_result_v1",
+ "sim_id": "lev_qit_engine_perception_evidence_v56_host_adapted",
+ "source_bundle": "constraint_core_unified v56 (audit_engines lane)",
+ "source_envelope_path": "lev_qit_engine_perception_evidence_v56.json",
+ "source_envelope_schema": "constraint_core.lev_qit_engine_perception_evidence.v1",
+ "source_envelope_sha256": "39496f3b8d0077636838babc67d6557eceaece75661c5b2a7febbb6649729e69",
+ "tool_intent": {
+  "note": "no z3/cvc5 gate in this packet",
+  "numpy_scipy": "control-lane oracle dynamics only"
+ },
+ "world_entry_payload": {
+  "binding_accuracy_on_non_degenerate": 1.0,
+  "binding_all_misses_are_degeneracies": true,
+  "candidate_object": "qit_engine_perception_state",
+  "failed_stage_pairs": [
+   [
+    "t1:Ti",
+    "t5:Ti"
+   ],
+   [
+    "t1:Fi",
+    "t5:Fi"
+   ],
+   [
+    "t3:Fe",
+    "t7:Fe"
+   ],
+   [
+    "t5:Ti",
+    "t1:Ti"
+   ],
+   [
+    "t5:Fi",
+    "t1:Fi"
+   ]
+  ],
+  "formation_loss_sum": 1.7059485335024294,
+  "missing_for_eval_admission": [
+   "recall_ratio",
+   "anti_key_penalty",
+   "attention_leak_check",
+   "cross_node_mesh_convergence"
+  ],
+  "object_binding_accuracy": 0.7916666666666666,
+  "schedule_source_fidelity": {
+   "control_catches_corruption": true,
+   "running_sims_consume_source_slots": true,
+   "table_is_source_faithful": true
+  },
+  "stage_reid_rate": 0.6875,
+  "stage_reid_separation_over_shuffled": 0.6203125,
+  "type1_type2_comparison": {
+   "not_relabeling_of_type1": true,
+   "polarity_readout": "density signed-volume through full flow (non-circular); chirality-flip-in-flow + Bloch-relabeling controls",
+   "type1_full_loop_order_gap": 0.5819,
+   "type1_polarity": -0.01946,
+   "type2_full_loop_order_gap": 0.5012,
+   "type2_opposite_to_type1": true,
+   "type2_polarity": 0.01094
+  }
+ },
+ "written_at": "2026-07-07T22:44:22Z"
+}

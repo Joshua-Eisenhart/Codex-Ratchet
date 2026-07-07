@@ -1,0 +1,35 @@
+{
+ "classification": "scratch_diagnostic",
+ "promotion_allowed": false,
+ "v7_repo_present": true,
+ "v7_source_sha256": "55c3ca4d089c2c21",
+ "v7_generated_at": "2026-07-07T21:42:39Z",
+ "aggregate_counts_agree": true,
+ "aggregate_count_diffs": {},
+ "bundle_unique_coordinate_count": 64,
+ "v7_unique_coordinate_count": 64,
+ "unique_coordinate_count_agrees": true,
+ "per_slot_content_note": "v7 result exposes only schedule_sha256=9549d3f786f82f73... and unique_coordinate_count; per-slot field-by-field diff is NOT possible from the result alone. This check compares aggregate counts + unique-coordinate cardinality, not full content.",
+ "engine_pairing_agrees": true,
+ "v7_loops": [
+  "T1_inner_inductive",
+  "T1_outer_deductive",
+  "T2_inner_deductive",
+  "T2_outer_inductive"
+ ],
+ "v7_formation_clean": true,
+ "v7_ordered_accuracy": 1.0,
+ "v7_object_count": 4,
+ "v7_mean_entropy_drop_bits": 2.0,
+ "bundle_reid_live": {
+  "rate": 0.6875,
+  "n_reid": 11,
+  "n": 16,
+  "degenerate_pairs": 3
+ },
+ "two_resolutions_consistent": true,
+ "two_resolutions_detail": "v7 4-loop clean True; bundle 16-stage rate 0.6875 (11/16) with 3 degenerate pairs",
+ "resolution_note": "v7 measures object formation over 4 engine LOOPS (fully distinguishable, 4/4); this bundle measures re-id over 16 STAGES (read LIVE from its result file) with degeneracies. Consistent: coarser granularity is cleaner, finer granularity exposes the oracle-predicted degeneracies -- same distinguishability criterion at two resolutions.",
+ "scope_note": "structural + aggregate-count + live re-id cross-check; NOT a bit-for-bit per-slot reproduction of the v7 trajectory (different substrate/probe battery, and v7 exposes only a schedule hash).",
+ "V7_CODEX_RATCHET_CROSSCHECK": true
+}

@@ -1,0 +1,130 @@
+{
+ "classification": "scratch_diagnostic",
+ "promotion_allowed": false,
+ "framing": "stage necessity by ablation: every non-degenerate stage does irreplaceable work -- scrambling/duplicating it induces binding errors the others cannot absorb",
+ "ablation": {
+  "baseline_errors": 10,
+  "n_nondegenerate": 10,
+  "n_degenerate": 6,
+  "scramble_induces_error_fraction": 1.0,
+  "duplicate_induces_error_fraction": 1.0,
+  "degenerate_expected_null_new_errors": [
+   [
+    "(1, 'Ti')",
+    0
+   ],
+   [
+    "(1, 'Fi')",
+    1
+   ],
+   [
+    "(3, 'Fe')",
+    -2
+   ],
+   [
+    "(5, 'Ti')",
+    0
+   ],
+   [
+    "(5, 'Fi')",
+    1
+   ],
+   [
+    "(7, 'Fe')",
+    -2
+   ]
+  ],
+  "mean_abs_new_error_nondegenerate": 3.0,
+  "mean_abs_new_error_degenerate": 1.0,
+  "scramble_new_errors": [
+   [
+    "(0, 'Ti')",
+    3
+   ],
+   [
+    "(0, 'Fi')",
+    3
+   ],
+   [
+    "(2, 'Te')",
+    3
+   ],
+   [
+    "(2, 'Fe')",
+    3
+   ],
+   [
+    "(3, 'Te')",
+    3
+   ],
+   [
+    "(4, 'Ti')",
+    3
+   ],
+   [
+    "(4, 'Fi')",
+    3
+   ],
+   [
+    "(6, 'Te')",
+    3
+   ],
+   [
+    "(6, 'Fe')",
+    3
+   ],
+   [
+    "(7, 'Te')",
+    3
+   ]
+  ],
+  "duplicate_new_errors": [
+   [
+    "(0, 'Ti')",
+    3
+   ],
+   [
+    "(0, 'Fi')",
+    3
+   ],
+   [
+    "(2, 'Te')",
+    3
+   ],
+   [
+    "(2, 'Fe')",
+    3
+   ],
+   [
+    "(3, 'Te')",
+    3
+   ],
+   [
+    "(4, 'Ti')",
+    3
+   ],
+   [
+    "(4, 'Fi')",
+    3
+   ],
+   [
+    "(6, 'Te')",
+    3
+   ],
+   [
+    "(6, 'Fe')",
+    3
+   ],
+   [
+    "(7, 'Te')",
+    3
+   ]
+  ]
+ },
+ "policy_eval": {
+  "every_nondegenerate_stage_scramble_induces_error": true,
+  "every_nondegenerate_stage_duplicate_induces_error": true,
+  "degenerate_stages_induce_much_less_error_expected_null": true,
+  "ALL_STAGES_DO_UNIQUE_WORK": true
+ }
+}

@@ -2126,3 +2126,36 @@ the repaired 16/16 state, still FAILS on a broken (at-chance) re-id (verified: f
 
 scratch_diagnostic. Harness 107 GREEN. Consumers of the re-id result (scorecard convergence_loss=5*(1-rate) now 0.0,
 perception recall, emitter, integrity sweep) all rerun GREEN.
+
+## WIN/LOSE WITHDRAWN; KNOWN/UNKNOWN developed as a testable FEP model + LOOP-level attractor structure (2026-07-08)
+
+CORRECTION (owner): there is NO testable win/lose definition. Win/lose is only a NAMING the owner maps onto the
+attractor-basin structure of the QIT engines; known/unknown is one alternate vocabulary among many pointing at the
+same pattern. Testing one label-system against another (UP-99) tested nothing. UP-99 (win_lose_as_known_unknown_fep_sim)
+is WITHDRAWN and removed from the harness. What matters is the PATTERN -- the attractor basin -- and known/unknown is
+the better working definition precisely because it is MEASURABLE (surprise = the measure of the unknown), and it plugs
+into FEP modeling of the engines.
+
+REPLACEMENTS:
+
+UP-101 loop_uniqueness_trajectory_probe_sim (artifact f7902f1e) -- the UP-100 stage-probe repair ONE LEVEL UP, on the
+attractor basin directly (not win/lose). The full-affine trajectory signature applied to the 4 engine LOOPS
+(T1_OUT/T1_IN/T2_OUT/T2_IN over doc-faithful canonical slots): (1) each loop re-identifies under a NEVER-SEEN probe
+family, real 1.000 vs shuffled mean 0.217 (chance 0.250), control flips; (2) ORDER CARRIED -- forward vs reverse
+traversal distinguishable (min fwd-vs-rev 0.654, self-null floor 0.0) for all 4 loops, so the loop is not its unordered
+stage set. Independent second implementation of the v7 loop-dynamics question (v7 uses per-segment SINDy).
+
+UP-102 known_unknown_fep_field_sim (artifact 0fa6ab54) -- KNOWN/UNKNOWN as a testable FEP model of the attractor basin,
+developed on its own terms (NOT compared to win/lose). Field U(rho)=S(rho||attractor) Umegaki bits; attractor = terrain
+GKSL fixed point = the KNOWN; U grows off-basin = the UNKNOWN. Three gated claims on the running engine, each with a
+control that can fail: (1) attractor is the known -- U~0 at fixed point, dist-surprise correlation 0.98-1.00 (graded
+field, not a label); (2) engine flow is SURPRISE-DESCENT -- U monotone ->0 for all 8 terrains = FEP free-energy
+minimization as relative-entropy descent (12x flow budget: the projective terrains t3/t7 have pure boundary fixed
+points that converge slower -- confirmed convergence-rate not a floor, t7 0.039@6x->0.002@12x->0.0002@20x); (3) the
+known is specific -- wrong-belief control leaves residual unknown at ~100% of the belief gap; coincident-attractor pairs
+(t1/t3, t5/t7 share fixed points) honestly excluded rather than forced. Pure QIT, no temperature/energy/-log p.
+
+The DIRECTIONAL reading that survives (reported, not a per-stage label test): Type-1 loops confirm-the-known,
+Type-2 loops reduce-the-unknown = FEP's two moves (perception updates belief; flow reduces surprise).
+
+scratch_diagnostic, promotion_allowed=false throughout. Harness 108 GREEN.

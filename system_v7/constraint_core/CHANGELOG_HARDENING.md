@@ -1134,3 +1134,11 @@ UP-100 STAGE-PROBE REPAIR trajectory-sensitive re-id 16/16  engine_reidentificat
                independent to 1e-15, not endpoint-overfit). Re-id 0.6875(11/16) -> 1.000(16/16), sep 0.073->0.927, gate
                unchanged (control-flip). v7 cross-check two-resolution check rewritten: require strong distinguishability
                at both resolutions (not the old "fine must be degenerate"); still fails on at-chance re-id. 107 GREEN.
+
+UP-101/102 WIN/LOSE WITHDRAWN; known/unknown as testable FEP model + loop-level attractor structure
+               -- CORRECTION: no testable win/lose def exists (it is only a naming on the attractor basin); UP-99
+               withdrawn + removed from harness. UP-101 loop_uniqueness_trajectory_probe: UP-100 signature one level
+               up -- 4 loops re-identify under novel probes (real 1.000 vs shuffled 0.217) AND order carried (fwd vs
+               rev min 0.654). UP-102 known_unknown_fep_field: field U(rho)=S(rho||attractor) bits; (1) attractor is
+               the known (corr 0.98-1.00), (2) flow is surprise-descent (U->0 all 8, FEP free-energy min), (3) known
+               is specific (wrong-belief residual ~100% of gap, coincident pairs excluded). Pure QIT. 108 GREEN.

@@ -2100,3 +2100,29 @@ exploring the unknown, and the duality would be a relabeling). SKIP-clean if v7 
 
 scratch_diagnostic, promotion_allowed=false. Records a real negative (per-stage) and a real positive (method-level).
 Harness 107 GREEN.
+
+## STAGE-PROBE REPAIR: trajectory-sensitive re-identification, 16/16 (2026-07-08)
+The named defect blocking L6/L9 "unique computing at every stage": the re-id battery was stuck at 0.6875 (11/16) with
+3 degenerate failure pairs (t1:Ti/t5:Ti, t1:Fi/t5:Fi, t3:Fe/t7:Fe). Diagnosis (measured, not assumed): the channel
+signature reduced the affine Bloch map A to its SINGULAR VALUES. For a qubit the stage channel is exactly affine, and
+SVD discards A's ORIENTATION -- exactly where the terrain chirality sign (Hamiltonian eps flip) lives. The 3
+degenerate pairs are chirality-mirror terrains (t1<->t5 depolarizing, t3<->t7 projective): same operator, same endpoint
+fixed point, opposite Hamiltonian sign. Verified directly: for all three pairs SVD-distance = 0.0000 (indistinguishable)
+while full-A distance = 0.30/0.52/0.67 (cleanly separated). Crucially the full A is probe-set-independent to ~1e-15
+(A from a disjoint novel probe family matches the seen-family A), so using it is orientation/trajectory information about
+the CHANNEL, NOT endpoint-overfitting.
+
+FIX (engine_reidentification_objective_sim, artifact 461708a8): channel_signature now returns the FULL flattened affine
+map A (orientation-bearing) + the nonunital I/2 image, replacing SVD(A). Re-id 0.6875 -> 1.000 (16/16), 0 degenerate
+pairs, separation over shuffled 0.073 -> 0.927. The gate was unchanged (control-flip: shuffled at chance AND real beats
+every scramble), so this is a MEASURED improvement, not a tuned one. "Unique computing at every stage" now earned at the
+data level: every one of the 16 stages re-identifies under a never-seen probe family.
+
+DOWNSTREAM (v7_codex_ratchet_crosscheck_sim, artifact 7dfa87f2 v2): its two-resolution-consistency check previously
+REQUIRED the finer 16-stage re-id to be degenerate (0<rate<1, >0 pairs), reading degeneracy as "finer granularity
+exposes what the coarse 4-loop hides." But that degeneracy was the DEFECT, not the thing validated. Rewritten to require
+STRONG distinguishability at both resolutions (fine rate>0.5 AND separation>0.5 over the shuffled control) -- passes on
+the repaired 16/16 state, still FAILS on a broken (at-chance) re-id (verified: forced rate 0.0625/sep 0.0 -> exit 1).
+
+scratch_diagnostic. Harness 107 GREEN. Consumers of the re-id result (scorecard convergence_loss=5*(1-rate) now 0.0,
+perception recall, emitter, integrity sweep) all rerun GREEN.

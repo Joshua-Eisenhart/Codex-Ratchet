@@ -1126,3 +1126,11 @@ UP-99 WIN/LOSE AS KNOWN/UNKNOWN (FEP) -- one frame among others  win_lose_as_kno
                bidirectional-science teeth: Type-1 tests-the-known (acc 1.0), Type-2 explores-the-unknown (acc 0.9,
                erased->chance 0.25); win table read epistemically = confirm-vs-explore. Control: Type-2 erased must
                be at chance. Harness 107 GREEN.
+
+UP-100 STAGE-PROBE REPAIR trajectory-sensitive re-id 16/16  engine_reidentification_objective_sim.py + v7 cross-check
+               -- root cause (measured): channel signature used SVD(A), which discards the affine map's ORIENTATION =
+               where terrain chirality (Hamiltonian eps sign) lives; the 3 degenerate pairs (t1/t5, t3/t7 chirality
+               mirrors) had SVD-dist 0.0000 but full-A dist 0.30-0.67. Fix: signature = FULL affine map A (probe-set-
+               independent to 1e-15, not endpoint-overfit). Re-id 0.6875(11/16) -> 1.000(16/16), sep 0.073->0.927, gate
+               unchanged (control-flip). v7 cross-check two-resolution check rewritten: require strong distinguishability
+               at both resolutions (not the old "fine must be degenerate"); still fails on at-chance re-id. 107 GREEN.

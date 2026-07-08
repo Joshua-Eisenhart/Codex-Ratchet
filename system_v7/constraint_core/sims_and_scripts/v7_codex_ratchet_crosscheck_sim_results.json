@@ -22,13 +22,14 @@
  "v7_object_count": 4,
  "v7_mean_entropy_drop_bits": 2.0,
  "bundle_reid_live": {
-  "rate": 0.6875,
-  "n_reid": 11,
+  "rate": 1.0,
+  "n_reid": 16,
   "n": 16,
-  "degenerate_pairs": 3
+  "degenerate_pairs": 0,
+  "separation": 0.9271875
  },
  "two_resolutions_consistent": true,
- "two_resolutions_detail": "v7 4-loop clean True; bundle 16-stage rate 0.6875 (11/16) with 3 degenerate pairs",
+ "two_resolutions_detail": "v7 4-loop clean True; bundle 16-stage rate 1.0 (16/16) sep 0.9271875 over shuffled, 0 degenerate pairs (fine resolution distinguishes far above chance: True)",
  "resolution_note": "v7 measures object formation over 4 engine LOOPS (fully distinguishable, 4/4); this bundle measures re-id over 16 STAGES (read LIVE from its result file) with degeneracies. Consistent: coarser granularity is cleaner, finer granularity exposes the oracle-predicted degeneracies -- same distinguishability criterion at two resolutions.",
  "scope_note": "structural + aggregate-count + live re-id cross-check; NOT a bit-for-bit per-slot reproduction of the v7 trajectory (different substrate/probe battery, and v7 exposes only a schedule hash).",
  "V7_CODEX_RATCHET_CROSSCHECK": true

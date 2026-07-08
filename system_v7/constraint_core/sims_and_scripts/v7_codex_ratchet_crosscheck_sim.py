@@ -40,7 +40,8 @@ def bundle_reid():
     r=json.load(open(BUNDLE_REID))
     rate=r.get("real_reidentification_rate_novel_probes")
     ndeg=len(set(frozenset(p) for p in r.get("stages_that_failed_reid",[])))
-    return {"rate":rate,"n_reid":r.get("n_stages_reidentified"),"n":r.get("n_stages"),"degenerate_pairs":ndeg}
+    return {"rate":rate,"n_reid":r.get("n_stages_reidentified"),"n":r.get("n_stages"),"degenerate_pairs":ndeg,
+            "separation":r.get("separation_real_minus_shuffled")}
 
 def bundle_canonical_coords():
     # derive the 64 canonical per-slot coordinate tuples from the bundle table (engine,loop,step,terrain,operator,sign)
@@ -83,17 +84,25 @@ def main():
     # 3. v7's own formation cleanliness
     formation_clean=(of["ordered_accuracy"]==1.0 and of["object_count"]==4 and of["all_entropy_gradients_monotone"])
     # 4. GENUINE two-resolution cross-comparison: read the bundle's REAL re-id result LIVE (not a hardcoded literal)
-    #    and confirm it is a strict subset-distinguishability of v7's clean 4-loop result: v7 sees 4 distinct objects
-    #    at loop granularity; the bundle sees fewer-than-all distinct at the finer 16-stage granularity (0<rate<1) with
-    #    >0 degeneracies. If the bundle re-id file is missing OR shows perfect/zero distinguishability, this FAILS.
+    #    and confirm both resolutions are internally distinguishable and mutually consistent. v7 sees 4 distinct
+    #    objects at the coarse 4-loop granularity; the bundle re-identifies its 16 STAGES at the finer granularity.
+    #    Consistency means: coarse clean AND fine strictly distinguishing (rate strictly above chance and above the
+    #    shuffled control -- i.e. identity survives probe rotation at BOTH resolutions). The fine resolution may be
+    #    fully clean (16/16) or partially degenerate (0<rate<1); what must hold is that it separates FAR above chance.
+    #    HISTORY: before the 2026-07-08 stage-probe repair the fine re-id was inherently degenerate (0.6875, 3 chirality-
+    #    mirror pairs collapsed by the singular-value signature). That was a DEFECT, not the thing being validated;
+    #    the repair (full affine map) lifted it to 16/16. This check therefore requires strong distinguishability,
+    #    NOT the presence of degeneracies. FAILS if the bundle re-id file is absent OR the fine rate does not clear
+    #    the shuffled control by a wide margin (identity not rotation-invariant at the fine resolution).
     br=bundle_reid()
     if br is None:
         resolutions_consistent=False; res_detail="bundle re-id result file absent"
     else:
-        finer_has_degeneracies=(br["degenerate_pairs"]>0 and 0.0<(br["rate"] or 0)<1.0)
+        rate=br["rate"] or 0
+        fine_distinguishes = (rate is not None and rate>0.5 and br["separation"] is not None and br["separation"]>0.5)
         coarser_is_clean=formation_clean
-        resolutions_consistent=bool(finer_has_degeneracies and coarser_is_clean)
-        res_detail=f"v7 4-loop clean {formation_clean}; bundle 16-stage rate {br['rate']} ({br['n_reid']}/{br['n']}) with {br['degenerate_pairs']} degenerate pairs"
+        resolutions_consistent=bool(fine_distinguishes and coarser_is_clean)
+        res_detail=f"v7 4-loop clean {formation_clean}; bundle 16-stage rate {br['rate']} ({br['n_reid']}/{br['n']}) sep {br['separation']} over shuffled, {br['degenerate_pairs']} degenerate pairs (fine resolution distinguishes far above chance: {fine_distinguishes})"
 
     agree=bool(counts_agree and unique_agree and pairing_agree and formation_clean and resolutions_consistent)
     out={"classification":"scratch_diagnostic","promotion_allowed":False,"v7_repo_present":True,

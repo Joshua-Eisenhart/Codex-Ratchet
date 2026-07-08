@@ -116,19 +116,26 @@ def probe_family(seed, n=6, radius=0.7):
 
 def channel_signature(chan, probes):
     """A PROBE-SET-INDEPENDENT identity signature of the channel: (a) its action on the maximally mixed state
-    I/2 (nonunitality vector), and (b) its Bloch-contraction singular values estimated from how it maps the
-    given probe family (the affine map's linear part, recovered by least squares). Both are properties of the
-    CHANNEL, so a signature built from S_seen and one built from S_novel should match for the SAME channel."""
+    I/2 (nonunitality vector), and (b) the FULL affine Bloch map A (r' = A r + b) recovered from the probe family.
+
+    TRAJECTORY-SENSITIVE FIX (stage-probe repair, 2026-07-08): the earlier signature reduced A to its SINGULAR
+    VALUES. For a qubit the stage channel is exactly affine, and SVD discards A's ORIENTATION -- which is precisely
+    where the terrain chirality sign (Hamiltonian eps flip) lives. That made the three chirality-mirror pairs
+    (t1:Ti/t5:Ti, t1:Fi/t5:Fi, t3:Fe/t7:Fe) collapse to SVD-distance 0.0000 (measured), the 3 degenerate re-id
+    failures. The FULL flattened A separates them (fullA-distance 0.30/0.52/0.67, measured) while remaining a genuine
+    channel property: A recovered from a disjoint novel probe family matches the seen-family A to ~1e-15, so this is
+    orientation/trajectory information about the CHANNEL, not endpoint-overfitting to a probe set. Both (a) and (b)
+    are therefore probe-set-independent, so a signature built from S_seen and one from S_novel match for the SAME
+    channel -- the re-identification remains a genuine survives-probe-rotation test, now with the handedness resolved."""
     # (a) nonunital image of I/2 (probe-independent exactly)
     img_mm = bloch(chan(0.5 * I2))
-    # (b) affine Bloch map r' = A r + b, recovered from the probe family, return sorted singular values of A
+    # (b) affine Bloch map r' = A r + b, recovered from the probe family; keep the FULL A (orientation-bearing)
     X = np.array([bloch(p) for p in probes])        # inputs
     Y = np.array([bloch(chan(p)) for p in probes])  # outputs
     Xa = np.hstack([X, np.ones((len(X), 1))])       # affine
     M, *_ = np.linalg.lstsq(Xa, Y, rcond=None)      # (4x3): rows 0-2 = A^T, row 3 = b
     A = M[:3, :].T
-    sv = np.linalg.svd(A, compute_uv=False)
-    return np.concatenate([img_mm, np.sort(sv)])
+    return np.concatenate([img_mm, A.reshape(-1)])
 
 def reident_rate(sig_seen, sig_novel, assignment=None, return_misses=False):
     """Fraction of channels whose NOVEL-probe signature nearest-neighbours back to its OWN seen signature.
@@ -190,7 +197,7 @@ def main():
 
     print("OBJECTIVE re-identification test -- the owner's criterion: identity is the survivor of probe rotation.")
     print("  16 real engine stages; fingerprint on a SEEN probe family; re-identify from a NEVER-SEEN one.")
-    print("  signature = channel action on I/2 + Bloch-contraction singular values (probe-set-independent).\n")
+    print("  signature = channel action on I/2 + FULL affine Bloch map A (orientation-bearing, probe-set-independent).\n")
     print(f"  REAL re-identification from novel probes : {real_rate:.3f}  ({int(round(real_rate*len(chans)))}/{len(chans)} stages, reported as-is)")
     print(f"  SHUFFLED-stage control (must -> chance)  : mean {shuffled_mean:.3f}  max {shuffled_max:.3f}  (chance {chance:.3f})")
     print(f"  separation (real - shuffled mean)        : {real_rate - shuffled_mean:.3f}")

@@ -1,0 +1,46 @@
+{
+ "classification": "scratch_diagnostic",
+ "promotion_status": "scratch_diagnostic",
+ "promotion_allowed": false,
+ "framing": "completes the four missing_for_eval_admission fields on the perception scorecard from the SAME real engine stage channels the re-id sim uses; pure instruments + separate eval.",
+ "recall_ratio_field": {
+  "recall_ratio": 0.6875,
+  "recall_loss": 1.5625,
+  "shuffled_recall_ratio": 0.0625,
+  "chance": 0.0625,
+  "separation": 0.625
+ },
+ "anti_key_penalty_field": {
+  "anti_key_penalty": 0.0,
+  "acceptance_radius": 0.0,
+  "decoy_false_bind_count": 0,
+  "n_decoys": 16,
+  "real_self_bind_rate": 0.875
+ },
+ "attention_leak_field": {
+  "attention_leak": 0.3993,
+  "attention_leak_penalty": 0.3993,
+  "mean_diag_similarity": 1.0,
+  "mean_offdiag_similarity": 0.3993,
+  "shuffled_leak_ratio": 1.0129
+ },
+ "cross_node_mesh_convergence_field": {
+  "cross_node_mesh_convergence": 0.75,
+  "shuffled_convergence": 0.0625,
+  "chance": 0.0625,
+  "separation": 0.6875
+ },
+ "eval_admission_checks": {
+  "recall_beats_own_control": true,
+  "anti_key_real_binds_more_than_decoys": true,
+  "attention_leak_below_shuffled": true,
+  "mesh_converges_over_control": true
+ },
+ "missing_fields_now_measured": [
+  "recall_ratio",
+  "anti_key_penalty",
+  "attention_leak",
+  "cross_node_mesh_convergence"
+ ],
+ "PERCEPTION_SCORECARD_EVAL_ADMISSION_COMPLETE": true
+}

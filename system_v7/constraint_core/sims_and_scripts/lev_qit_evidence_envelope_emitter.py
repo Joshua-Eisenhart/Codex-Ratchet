@@ -74,6 +74,10 @@ def build_envelope():
     t2f =_load("type2_full_engine_both_loops_sim_results.json")
     score=_load("engine_object_formation_scorecard_sim_results.json")
     lint=_load("schedule_source_fidelity_linter_results.json")
+    # the four formerly-missing eval-admission fields, now measured on real engine channels (optional -- if the
+    # eval-admission sim has not been run its file is absent and the fields stay listed as missing)
+    try: eva=_load("perception_scorecard_eval_admission_sim_results.json")
+    except Exception: eva=None
 
     # read the harness pass-count from the latest report if available, so the status field never drifts
     harness_status="all engine sims ran GREEN in the constraintcore harness"
@@ -109,8 +113,23 @@ def build_envelope():
             "running_sims_consume_source_slots":lint["SCHEDULE_SOURCE_FIDELITY_LINT_PASS"],
             "control_catches_corruption":lint["control_catches_corruption"],
         },
-        "missing_for_eval_admission":["recall_ratio","anti_key_penalty","attention_leak_check","cross_node_mesh_convergence"],
     }
+    # populate the four eval-admission fields live (from real engine channels); shrink missing list accordingly
+    _all_four=["recall_ratio","anti_key_penalty","attention_leak_check","cross_node_mesh_convergence"]
+    if eva is not None:
+        payload["eval_admission_fields"]={
+            "recall_ratio":eva["recall_ratio_field"]["recall_ratio"],
+            "recall_separation_over_shuffled":eva["recall_ratio_field"]["separation"],
+            "anti_key_penalty":eva["anti_key_penalty_field"]["anti_key_penalty"],
+            "anti_key_real_self_bind_rate":eva["anti_key_penalty_field"]["real_self_bind_rate"],
+            "attention_leak":eva["attention_leak_field"]["attention_leak"],
+            "attention_leak_shuffled_ratio":eva["attention_leak_field"]["shuffled_leak_ratio"],
+            "cross_node_mesh_convergence":eva["cross_node_mesh_convergence_field"]["cross_node_mesh_convergence"],
+            "cross_node_mesh_separation_over_shuffled":eva["cross_node_mesh_convergence_field"]["separation"],
+        }
+        payload["missing_for_eval_admission"]=[]   # all four now measured on real engine channels
+    else:
+        payload["missing_for_eval_admission"]=_all_four
     env={
         "evidence_type":"lev.qit_engine_perception_evidence.v1",
         "schema_version":"constraint_core.lev_qit_engine_perception_evidence.v1",

@@ -6,8 +6,9 @@ G3 gate: a per-tick signal surprise_bits = S(observation || belief), the Umegaki
 near-zero while the world is predictable, spiking on a regime shift, decaying as the engine relearns. It is the
 time-series companion to the two static FEP sims already in the bundle (qit_fep_ratchet = the perceptual functional
 forced by distinguishability; qit_active_inference_planning = the path-integral active half). Neither of those emits
-the per-tick stream; this one does, so the engine's belief/surprise trace can be looped back to Lev's evidence port
-(cr_qit_bridge_stream_v0) as evidence-only provider records.
+the per-tick stream; this one does. It emits the FULL per-tick records {tick, belief_bloch, surprise_bits,
+fe_gradient} under the constraint_core.lev_bridge_stream.v1 header -- the exact shape the Lev cr_qit_bridge_stream_v0
+evidence port parses -- so the trace is consumed directly with no header-lift adapter, as evidence-only records.
 
 MATH (every classical primitive replaced by its constraint-surface origin -- NO temperature, NO energy, NO -log p):
   observation rho_t  : the world state under the CURRENT regime (a terrain's GKSL flow) at tick t.
@@ -67,24 +68,32 @@ def S_rel(rho,sig):
     rho=rho+1e-12*I2; sig=sig+1e-12*I2
     return float(max(np.trace(rho@(logm(rho)-logm(sig))).real/np.log(2), 0.0))
 
-def stream(switch_at=15, n=30, terr_a=0, terr_b=2, lr=0.5, freeze_at_switch=False, switch=True):
+def stream(switch_at=15, n=30, terr_a=0, terr_b=2, lr=0.5, freeze_at_switch=False, switch=True, return_records=False):
     # terr_a damps toward +z pole, terr_b damps toward -z pole -> distinct non-degenerate fixed points.
     # learn: belief relaxes toward each observation. freeze_at_switch: belief keeps updating through phase A
     # (learns regime A), then is FROZEN at the switch tick so it cannot adapt to regime B (the honest "cannot
     # relearn" control -- stuck at A's pointer while the world moves to B).
-    belief=dm([0,0,0]); obs=dm([0.6,0.3,0.2]); out=[]
+    belief=dm([0,0,0]); obs=dm([0.6,0.3,0.2]); out=[]; recs=[]; prev=None
     for t in range(n):
         switched = (t>=switch_at) and switch
         ti = terr_b if switched else terr_a
-        obs=tflow(ti,obs); out.append(S_rel(obs,belief))
+        obs=tflow(ti,obs)
+        s=S_rel(obs,belief); out.append(s)
+        # per-tick record the Lev bridge-stream parser requires: tick, belief_bloch, surprise_bits, fe_gradient.
+        # fe_gradient = the tick-over-tick change in surprise (the free-energy gradient the belief descends).
+        fe_grad = 0.0 if prev is None else (s-prev)
+        recs.append({"tick":t,"belief_bloch":[round(float(x),6) for x in bvec(belief)],
+                     "surprise_bits":round(float(s),6),"fe_gradient":round(float(fe_grad),6)})
+        prev=s
         frozen_now = freeze_at_switch and switched
         if not frozen_now:
             belief=dm((1-lr)*bvec(belief)+lr*bvec(obs))
+    if return_records: return np.array(out), recs
     return np.array(out)
 
 def main():
     SW=15; N=30
-    real=stream(SW,N,freeze_at_switch=False,switch=True)     # learns through both regimes
+    real,records=stream(SW,N,freeze_at_switch=False,switch=True,return_records=True)  # learns through both regimes
     frozen=stream(SW,N,freeze_at_switch=True,switch=True)    # control 1: belief frozen at switch, cannot relearn regime B
     noswitch=stream(SW,N,freeze_at_switch=False,switch=False)# control 2: no regime change
 
@@ -112,7 +121,14 @@ def main():
          "control_frozen_belief_tail_bits":round(frozen_tail,4),"learning_beats_frozen":bool(learn_beats_frozen),
          "control_noswitch_at_switch_bits":round(noswitch_at_switch,4),"switch_beats_noswitch":bool(switch_beats_noswitch),
          "stream_bits":[round(float(x),4) for x in real],
-         "lev_bridge_note":"emits the per-tick {tick, belief_bloch, surprise_bits} trace the Lev cr_qit_bridge_stream_v0 evidence port consumes as evidence-only provider records; matches QIT_LEV_BRIDGE_SPEC signature (predictable ~0.006, spike ~1.5, decay).",
+         # FULL per-tick records the Lev cr_qit_bridge_stream_v0 parser requires (tick/belief_bloch/surprise_bits/
+         # fe_gradient), under the constraint_core.lev_bridge_stream.v1 header -- no adapter needed on the Lev side.
+         "lev_bridge_stream":{
+             "schema_version":"constraint_core.lev_bridge_stream.v1",
+             "source":"qit_fep_surprise_stream_sim","tick_count":len(records),
+             "surprise_measure":"umegaki_relative_entropy_bits","evidence_only":True,
+             "ticks":records},
+         "lev_bridge_note":"emits the full per-tick {tick, belief_bloch, surprise_bits, fe_gradient} trace under the constraint_core.lev_bridge_stream.v1 header the Lev cr_qit_bridge_stream_v0 evidence port consumes directly (no header-lift adapter needed); matches QIT_LEV_BRIDGE_SPEC signature (predictable ~0.006, spike ~1.5, decay).",
          "QIT_FEP_SURPRISE_STREAM_BUILT":verdict}
     path=__file__.replace(".py","_results.json"); json.dump(out,open(path,"w"),indent=1)
     print("QIT-FEP SURPRISE STREAM -- the FEP lens on the running engine (pure Umegaki relative entropy, bits).\n")
@@ -121,6 +137,7 @@ def main():
     print(f"  relearned phase mean:    {post:.4f} bits  (decays: {relearns})")
     print(f"  CONTROL frozen belief tail {frozen_tail:.4f} -> learning beats frozen: {learn_beats_frozen}")
     print(f"  CONTROL no-switch @ switch {noswitch_at_switch:.4f} -> switch beats no-switch: {switch_beats_noswitch}")
+    print(f"  emitted {len(records)} per-tick lev_bridge_stream.v1 records (tick/belief_bloch/surprise_bits/fe_gradient)")
     print(f"\n  QIT-FEP SURPRISE STREAM BUILT: {verdict}")
     if verdict: print("PASS qit_fep_surprise_stream")
     print("ALL_GATES:", "PASS" if verdict else "FAIL","->",path)

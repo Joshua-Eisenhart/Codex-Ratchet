@@ -2048,3 +2048,55 @@ distinct non-mixed fixed point and freeze belief AT the switch after learning A 
 
 scratch_diagnostic, promotion_allowed=false. The FEP lens on the ONE engine, not a new mechanism -- a different way
 to read the same density/entropy mechanics, exactly as the owner framed the QIT-FEP. Harness 105 GREEN.
+
+## PERCEPTION SCORECARD: the four missing_for_eval_admission fields + FEP stream now Lev-parseable (2026-07-07)
+Directive: complete the perception scorecard so the emitted Lev evidence carries a full formation-loss surface, and
+make the FEP stream directly consumable by Lev. Two builds + two auditor fixes.
+
+(1) perception_scorecard_eval_admission_sim.py (artifact 7631ded9) -- measures the four fields the codex Phase-3
+evidence lists as missing_for_eval_admission, all on the SAME real engine stage channels the re-id sim uses
+(imported, not re-derived), as pure instruments (numbers only) + a SEPARATE eval:
+  1. recall_ratio 0.6875 -- degraded/noisy-cue associative recall (shuffled-label control 0.0625 = chance, sep 0.625)
+  2. anti_key_penalty 0.0 -- 0/16 random-CPTP decoys false-bind inside the real self-match radius; real stages
+     self-bind at 0.875 (a real object binds to itself, a decoy is rejected)
+  3. attention_leak 0.3993 -- mean off-diagonal / mean diagonal of the stage-similarity matrix (shuffled-identity
+     control 1.01 has no diagonal advantage; the real matrix is well below it)
+  4. cross_node_mesh_convergence 0.75 -- two INDEPENDENT probe-family nodes agree on stage identity (shuffled-node
+     control 0.0625 = chance, sep 0.6875); the mesh/agent-network lens: independent observers converge (a=a iff a~b)
+  AUDITOR FIX: the eval policy originally used hand-picked constants (0.3/0.8/0.7) -- banned by
+  gate_must_derive_from_data_not_picked_count. Rewritten CONTROL-RELATIVE: each field admits iff the REAL
+  measurement beats its OWN negative control (recall>shuffled AND >chance; real-self-bind>decoy-false-bind;
+  leak<shuffled-leak; mesh>shuffled AND >chance). No literal pass-marks remain.
+  The emitter (lev_qit_evidence_envelope_emitter v3) now reads these live and shrinks missing_for_eval_admission to [].
+
+(2) qit_fep_surprise_stream_sim v2 (artifact 5845a80b) -- AUDITOR FIX: UP-97 computed belief per tick but emitted
+only the bare surprise list; the docstring's "emits the trace Lev consumes" outran the record. Now emits the FULL
+per-tick records {tick, belief_bloch, surprise_bits, fe_gradient} under the constraint_core.lev_bridge_stream.v1
+header -- the exact shape the Lev cr_qit_bridge_stream_v0 evidence port parses, so the trace is consumed with NO
+header-lift adapter. fe_gradient = tick-over-tick change in surprise (the free-energy gradient the belief descends);
+at the first post-switch tick (t=15) surprise spikes to 2.506 bits, then descends (t=16 fe_gradient -1.498).
+
+scratch_diagnostic, promotion_allowed=false throughout. Harness 106 GREEN.
+
+## WIN/LOSE AS KNOWN/UNKNOWN (FEP): one frame among others (2026-07-08)
+Owner reframe: win/lose is just one frame; known/unknown is another, and it works well for FEP (surprise = the measure
+of the unknown). win_lose_as_known_unknown_fep_sim.py (artifact 36b8f997) tests WHERE the reframe holds and records
+honestly where it does not:
+
+(A) PER-STAGE hypothesis (win-labeled Type-1 stages reduce surprise toward their terrain pointer more than lose-labeled):
+FALSIFIED, reported not gated. Measured surprise-reduction dS = S(rho_in||goal)-S(rho_out||goal) (Umegaki bits, goal =
+terrain GKSL pointer) per stage, partitioned by doc win/lose label: win-group 0.615 < lose-group 1.009, sep -0.393,
+does not beat shuffled-label control |sep| 0.319 or wrong-goal control -0.405. WHY: per-stage surprise-reduction is
+dominated by OPERATOR FAMILY (T-pinch reduces surprise more than F-rotation = Axis-5), not the win/lose label. So
+win/lose does NOT reduce to a per-stage FEP readout. Honest negative.
+
+(B) METHOD-LEVEL / DIRECTIONAL reframe: HOLDS, gated against v7 qit_bidirectional_science_type1_type2_v0 measured
+teeth. The real known/unknown structure is directional, not per-stage: Type-1 = candidate-first = TEST THE KNOWN
+(accuracy 1.0, wrong-candidate rejected); Type-2 = measurement-first = EXPLORE THE UNKNOWN (accuracy 0.9, erased
+controls collapse to chance 0.25). The unique-win table (2 Type-1-only, 0 Type-2-only, 18 shared) IS the win/lose
+frame; read epistemically it is confirm-vs-explore. That is why win/lose works well for FEP: at the METHOD level the
+two frames are one structure. CONTROL that can fail: Type-2's erased controls must be at chance (else it is not truly
+exploring the unknown, and the duality would be a relabeling). SKIP-clean if v7 absent.
+
+scratch_diagnostic, promotion_allowed=false. Records a real negative (per-stage) and a real positive (method-level).
+Harness 107 GREEN.

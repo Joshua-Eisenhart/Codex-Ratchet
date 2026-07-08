@@ -23,7 +23,7 @@
   "lev.axis0_fep.closure",
   "lev.runtime.object_factory"
  ],
- "mechanical_run_status": "all engine sims ran GREEN in the constraintcore harness (104 pass)",
+ "mechanical_run_status": "all engine sims ran GREEN in the constraintcore harness (105 pass)",
  "source_fidelity_status": "engine loops match the source-faithful 16-slot chart per slot (linter PASS)",
  "dynamic_claim_status": "distinctness/order-sensitivity/polarity are scratch diagnostics under a finite probe battery; not proofs",
  "promotion_status": "scratch_diagnostic",
@@ -76,12 +76,17 @@
    "running_sims_consume_source_slots": true,
    "control_catches_corruption": true
   },
-  "missing_for_eval_admission": [
-   "recall_ratio",
-   "anti_key_penalty",
-   "attention_leak_check",
-   "cross_node_mesh_convergence"
-  ]
+  "eval_admission_fields": {
+   "recall_ratio": 0.6875,
+   "recall_separation_over_shuffled": 0.625,
+   "anti_key_penalty": 0.0,
+   "anti_key_real_self_bind_rate": 0.875,
+   "attention_leak": 0.3993,
+   "attention_leak_shuffled_ratio": 1.0129,
+   "cross_node_mesh_convergence": 0.75,
+   "cross_node_mesh_separation_over_shuffled": 0.6875
+  },
+  "missing_for_eval_admission": []
  },
  "recommended_lev_actions": [
   "Consume as Measurement input only; do not mint ontology or mutate the graph.",

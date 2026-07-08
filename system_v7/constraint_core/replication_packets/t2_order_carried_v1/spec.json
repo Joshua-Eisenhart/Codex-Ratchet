@@ -1,0 +1,342 @@
+{
+  "packet_id": "t2_order_carried_v1",
+  "status": "frozen_replication_spec",
+  "claim_text": "Type2-inner-deductive and Type2-outer-inductive loops, composed from the same four (terrain, operator) stage contents in different orders, produce dynamically distinguishable trajectories: ordered signature distance >> resampling self-null, while unordered (best-match) distance falls within the null band.",
+  "claim_scope_note": "The executable frozen measurement compares the primary per-segment SINDy terrain-flow signature. The two Type2 loops use the same four terrain stages in different orders. The actual discrete operator placements are listed below and are applied during trajectory generation; they are not rewritten to be identical labels.",
+  "dependencies": {
+    "python": "3.10_or_newer",
+    "packages": [
+      "numpy",
+      "scipy",
+      "pysindy"
+    ],
+    "forbidden_dependencies": [
+      "imports from Codex-Ratchet",
+      "external data files",
+      "network access"
+    ]
+  },
+  "generator": {
+    "state": "2x2 density matrix rho = 0.5*(I + x*sx + y*sy + z*sz), with probe Bloch vectors of radius 0.62",
+    "pauli_matrices": {
+      "sx": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sy_complex": [
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "sz": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0
+        ]
+      ]
+    },
+    "constants": {
+      "G": 0.35,
+      "KAP": 1.0,
+      "T_FLOW": 1.0,
+      "N_STEPS": 220,
+      "CYCLES": 3,
+      "N_PROBES": 9,
+      "RADIUS": 0.62,
+      "Q": 0.6321205588285577,
+      "TH": 0.7853981633974483,
+      "H0": [
+        [
+          [
+            0.5773502691896258,
+            0.0
+          ],
+          [
+            0.5773502691896258,
+            -0.5773502691896258
+          ]
+        ],
+        [
+          [
+            0.5773502691896258,
+            0.5773502691896258
+          ],
+          [
+            -0.5773502691896258,
+            0.0
+          ]
+        ]
+      ],
+      "H0_formula": "(sx + sy + sz) / sqrt(3)"
+    },
+    "terrain_rhs": "X(rho) = -i*G*(eps*H0*rho - rho*eps*H0) + dissipator term",
+    "dissipator": "D_L(rho) = L*rho*L^dagger - 0.5*(L^dagger*L*rho + rho*L^dagger*L)",
+    "terrain_tuples": {
+      "Se-out": {
+        "eps": -1,
+        "kind": "damp",
+        "pole": -1,
+        "dissipator": "D_sigma_minus"
+      },
+      "Ne-out": {
+        "eps": -1,
+        "kind": "depol",
+        "pole": 0,
+        "dissipator": "0.5*(D_sx + D_sy)"
+      },
+      "Ni-out": {
+        "eps": -1,
+        "kind": "damp",
+        "pole": 1,
+        "dissipator": "D_sigma_plus"
+      },
+      "Si-out": {
+        "eps": -1,
+        "kind": "proj",
+        "pole": 0,
+        "dissipator": "D_sz"
+      }
+    },
+    "operators": {
+      "Ti": {
+        "formula": "(1-Q)*rho + Q*(P0*rho*P0 + P1*rho*P1)",
+        "P0": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "P1": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "Te": {
+        "formula": "(1-Q)*rho + Q*(Qp*rho*Qp + Qm*rho*Qm)",
+        "Qp": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ],
+        "Qm": [
+          [
+            0.5,
+            -0.5
+          ],
+          [
+            -0.5,
+            0.5
+          ]
+        ]
+      },
+      "Fi": {
+        "formula": "Ux*rho*Ux^dagger, Ux = exp(-i*(pi/4)/2*sx)",
+        "Ux": [
+          [
+            [
+              0.9238795325112867,
+              0.0
+            ],
+            [
+              0.0,
+              -0.3826834323650898
+            ]
+          ],
+          [
+            [
+              0.0,
+              -0.3826834323650898
+            ],
+            [
+              0.9238795325112867,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "Fe": {
+        "formula": "Uz*rho*Uz^dagger, Uz = exp(-i*(pi/4)/2*sz)",
+        "Uz": [
+          [
+            [
+              0.9238795325112867,
+              -0.3826834323650898
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.9238795325112867,
+              0.3826834323650898
+            ]
+          ]
+        ]
+      }
+    },
+    "axis6_ordering": {
+      "up": "operator first, then terrain GKSL flow",
+      "down": "terrain GKSL flow first, then operator"
+    }
+  },
+  "loops": {
+    "Type2-inner-deductive": [
+      {
+        "step": 1,
+        "terrain": "Se-out",
+        "terrain_tuple": [
+          -1,
+          "damp",
+          -1
+        ],
+        "operator": "Ti",
+        "axis6_sign": "down"
+      },
+      {
+        "step": 2,
+        "terrain": "Ne-out",
+        "terrain_tuple": [
+          -1,
+          "depol",
+          0
+        ],
+        "operator": "Ti",
+        "axis6_sign": "up"
+      },
+      {
+        "step": 3,
+        "terrain": "Ni-out",
+        "terrain_tuple": [
+          -1,
+          "damp",
+          1
+        ],
+        "operator": "Fe",
+        "axis6_sign": "up"
+      },
+      {
+        "step": 4,
+        "terrain": "Si-out",
+        "terrain_tuple": [
+          -1,
+          "proj",
+          0
+        ],
+        "operator": "Fe",
+        "axis6_sign": "down"
+      }
+    ],
+    "Type2-outer-inductive": [
+      {
+        "step": 1,
+        "terrain": "Se-out",
+        "terrain_tuple": [
+          -1,
+          "damp",
+          -1
+        ],
+        "operator": "Fi",
+        "axis6_sign": "up"
+      },
+      {
+        "step": 2,
+        "terrain": "Si-out",
+        "terrain_tuple": [
+          -1,
+          "proj",
+          0
+        ],
+        "operator": "Te",
+        "axis6_sign": "up"
+      },
+      {
+        "step": 3,
+        "terrain": "Ni-out",
+        "terrain_tuple": [
+          -1,
+          "damp",
+          1
+        ],
+        "operator": "Te",
+        "axis6_sign": "down"
+      },
+      {
+        "step": 4,
+        "terrain": "Ne-out",
+        "terrain_tuple": [
+          -1,
+          "depol",
+          0
+        ],
+        "operator": "Fi",
+        "axis6_sign": "down"
+      }
+    ]
+  },
+  "measurement_procedure": {
+    "probe_draws": "Use the required command-line seed to initialize numpy default_rng. Draw independent train, null, and test probe sets in that order. Each set contains 9 random unit directions scaled to Bloch radius 0.62.",
+    "trajectory_generation": "For each probe, run 3 complete cycles of the loop. At each stage, apply the axis6 ordering. Store the continuous terrain-flow trajectory for that segment; discrete operators are applied before or after flow according to axis6_sign and affect subsequent arrivals.",
+    "integrator": "RK4 with stage time 1.0 and 220 equal steps; density matrices are Hermitian-normalized after each RK4 step and operator application.",
+    "sindy": "For each of the 4 segment positions in each loop, fit one PySINDy model to train flow trajectories using PolynomialLibrary(degree=2) and STLSQ(threshold=0.02). Score the model on held-out test trajectories using derivative R2. Also fit a null-refit model from the independent null probe trajectories.",
+    "signature": "The primary loop signature is the ordered tuple of the four SINDy flow coefficient matrices.",
+    "ordered_distance": "Sum over positions 1..4 of RMS coefficient distance between corresponding segment models.",
+    "unordered_distance": "Minimum over all 24 permutations of the second loop positions of the same summed RMS coefficient distance.",
+    "null_band": "Maximum unordered self-null distance between each loop signature and its independently refit null signature.",
+    "recording_rule": "A replicator must record stdout and results JSON for their chosen seed before comparing to expected_ours.json."
+  },
+  "pre_registered_criteria": {
+    "instrument_validity_gate": "Every real segment fit must have held-out derivative R2 >= 0.9.",
+    "ordered_gate": "ordered_distance > null_band",
+    "unordered_gate": "unordered_distance <= null_band",
+    "pass": "instrument_validity_gate AND ordered_gate AND unordered_gate",
+    "fail": "Any gate false. The script must report FAIL honestly; do not tune seed or thresholds after seeing expected_ours.json."
+  }
+}

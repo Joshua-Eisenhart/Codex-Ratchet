@@ -1,0 +1,478 @@
+{
+  "sim_id": "belief_space_basin_map_sim",
+  "name": "belief-space basin map: hysteresis and path-dependence",
+  "version": "1.0",
+  "classification": "scratch_diagnostic",
+  "promotion_status": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "sim_execution_kind": "nonclassical",
+  "sim_class": "belief_space_basin_probe",
+  "rng_seed": 0,
+  "rng": "numpy.default_rng(0)",
+  "claim_ceiling": "runs; scratch diagnostic over finite terrain sequences; no formal admission, bridge, axis, or manifold claim",
+  "source_basis": {
+    "state_space_context": "engine_pair_basin_map_sim.py measured mono-basin state asymptotics under generic CPTP/GKSL contraction",
+    "belief_space_context": "fep_known_unknown_basin_sim.py claim_1 uses Umegaki surprise to partition occupied versus transition regimes",
+    "belief_update_rule": "shared convex Bloch relaxation toward observation with surprise_bits=S(observation||belief), matching qit_fep_surprise_stream_sim.py convention"
+  },
+  "parameters": {
+    "g": 0.35,
+    "kappa": 1.0,
+    "rk4_steps_per_terrain_tick": 96,
+    "belief_learning_rate": 0.045,
+    "attractor_ticks": 260,
+    "attractor_replicates_per_regime": 48,
+    "path_replicates_per_path": 72,
+    "null_pairs_per_path": 256,
+    "path_regime_tokens": {
+      "A": 0,
+      "B": 2,
+      "C": 4
+    }
+  },
+  "TOOL_MANIFEST": {
+    "numpy": "density matrices, Bloch vectors, seeded independent recomputations and null bands",
+    "scipy.linalg.logm": "Umegaki relative entropy S(observation||belief) in bits"
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "numpy": "load_bearing",
+    "scipy.linalg.logm": "load_bearing"
+  },
+  "divergence_log": [
+    "scratch diagnostic only; no canonical promotion",
+    "state asymptotics are not re-promoted; this probes belief-space finite-time structure",
+    "path-dependence verdicts are compared against independent within-path resampling nulls",
+    "controls are recomputed independently rather than predicate aliases"
+  ],
+  "claim_1_belief_attractors": {
+    "verdict": "baseline_holds",
+    "interpretation": "fixed terrain flow gives a regime-keyed belief attractor under the shared relaxation rule; this is the baseline, not the main hysteresis claim",
+    "regime_attractors": [
+      {
+        "terrain_index": 0,
+        "attractor_bloch": [
+          0.6336477,
+          -0.06717777,
+          0.71675825
+        ],
+        "replicates": 48,
+        "max_final_belief_spread": 5.38e-06,
+        "mean_final_belief_spread": 3.1e-06,
+        "tail_surprise_mean_bits": 0.0,
+        "verdict": "regime_keyed_attractor"
+      },
+      {
+        "terrain_index": 1,
+        "attractor_bloch": [
+          6e-08,
+          1e-07,
+          -2.2e-07
+        ],
+        "replicates": 48,
+        "max_final_belief_spread": 5.56e-06,
+        "mean_final_belief_spread": 2.56e-06,
+        "tail_surprise_mean_bits": 0.0,
+        "verdict": "regime_keyed_attractor"
+      },
+      {
+        "terrain_index": 2,
+        "attractor_bloch": [
+          -0.6336478,
+          0.06717751,
+          -0.7167582
+        ],
+        "replicates": 48,
+        "max_final_belief_spread": 5.58e-06,
+        "mean_final_belief_spread": 3.08e-06,
+        "tail_surprise_mean_bits": 0.0,
+        "verdict": "regime_keyed_attractor"
+      },
+      {
+        "terrain_index": 3,
+        "attractor_bloch": [
+          -3.9e-07,
+          3.3e-07,
+          -1.5e-07
+        ],
+        "replicates": 48,
+        "max_final_belief_spread": 5.43e-06,
+        "mean_final_belief_spread": 2.56e-06,
+        "tail_surprise_mean_bits": 0.0,
+        "verdict": "regime_keyed_attractor"
+      },
+      {
+        "terrain_index": 4,
+        "attractor_bloch": [
+          0.06717709,
+          -0.63364683,
+          -0.71675853
+        ],
+        "replicates": 48,
+        "max_final_belief_spread": 6e-06,
+        "mean_final_belief_spread": 2.23e-06,
+        "tail_surprise_mean_bits": 0.0,
+        "verdict": "regime_keyed_attractor"
+      },
+      {
+        "terrain_index": 5,
+        "attractor_bloch": [
+          -4.5e-07,
+          -8.5e-07,
+          3e-07
+        ],
+        "replicates": 48,
+        "max_final_belief_spread": 5.09e-06,
+        "mean_final_belief_spread": 2.73e-06,
+        "tail_surprise_mean_bits": 0.0,
+        "verdict": "regime_keyed_attractor"
+      },
+      {
+        "terrain_index": 6,
+        "attractor_bloch": [
+          -0.06717768,
+          0.63364744,
+          0.71675863
+        ],
+        "replicates": 48,
+        "max_final_belief_spread": 5.17e-06,
+        "mean_final_belief_spread": 2.96e-06,
+        "tail_surprise_mean_bits": 0.0,
+        "verdict": "regime_keyed_attractor"
+      },
+      {
+        "terrain_index": 7,
+        "attractor_bloch": [
+          1.6e-07,
+          2.3e-07,
+          1.6e-07
+        ],
+        "replicates": 48,
+        "max_final_belief_spread": 5.16e-06,
+        "mean_final_belief_spread": 3.02e-06,
+        "tail_surprise_mean_bits": 0.0,
+        "verdict": "regime_keyed_attractor"
+      }
+    ]
+  },
+  "claim_2_hysteresis_path_dependence": {
+    "overall_verdict": "path_dependent",
+    "path_dependent_families": 3,
+    "families_tested": [
+      {
+        "family": "A_B_C_vs_A_C",
+        "final_regime": 4,
+        "left_path": {
+          "label": "A_to_B_to_C",
+          "sequence": [
+            [
+              0,
+              20
+            ],
+            [
+              2,
+              20
+            ],
+            [
+              4,
+              36
+            ]
+          ]
+        },
+        "right_path": {
+          "label": "A_to_C_direct",
+          "sequence": [
+            [
+              0,
+              40
+            ],
+            [
+              4,
+              36
+            ]
+          ]
+        },
+        "replicates_per_path": 72,
+        "final_belief_centroid_distance": 0.22873882,
+        "final_observation_centroid_distance": 0.0,
+        "within_path_resampling_null": {
+          "probe": "independent final-belief draw pairs inside each path",
+          "pairs_per_path": 256,
+          "mean": 0.01920507,
+          "sd": 0.0086238,
+          "p95": 0.03384019,
+          "decision_band": 0.03645268
+        },
+        "verdict": "path_dependent",
+        "control_memoryless_belief": {
+          "control_type": "belief reset to current observation each tick; no cross-tick belief carry",
+          "final_belief_centroid_distance": 0.0,
+          "null_decision_band": 0.0,
+          "destroys_path_dependence": true
+        },
+        "tail_surprise_mean_bits": {
+          "A_to_B_to_C": 0.11427585,
+          "A_to_C_direct": 0.24942312
+        }
+      },
+      {
+        "family": "A_B_A_C_vs_A_C",
+        "final_regime": 4,
+        "left_path": {
+          "label": "A_B_A_to_C",
+          "sequence": [
+            [
+              0,
+              12
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              4,
+              36
+            ]
+          ]
+        },
+        "right_path": {
+          "label": "A_hold_to_C",
+          "sequence": [
+            [
+              0,
+              36
+            ],
+            [
+              4,
+              36
+            ]
+          ]
+        },
+        "replicates_per_path": 72,
+        "final_belief_centroid_distance": 0.09323922,
+        "final_observation_centroid_distance": 0.0,
+        "within_path_resampling_null": {
+          "probe": "independent final-belief draw pairs inside each path",
+          "pairs_per_path": 256,
+          "mean": 0.02233233,
+          "sd": 0.01034153,
+          "p95": 0.04057025,
+          "decision_band": 0.04301539
+        },
+        "verdict": "path_dependent",
+        "control_memoryless_belief": {
+          "control_type": "belief reset to current observation each tick; no cross-tick belief carry",
+          "final_belief_centroid_distance": 0.0,
+          "null_decision_band": 0.0,
+          "destroys_path_dependence": true
+        },
+        "tail_surprise_mean_bits": {
+          "A_B_A_to_C": 0.17563912,
+          "A_hold_to_C": 0.24279062
+        }
+      },
+      {
+        "family": "cycle_history_vs_direct_final",
+        "final_regime": 4,
+        "left_path": {
+          "label": "A_B_C_A_to_C",
+          "sequence": [
+            [
+              0,
+              10
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              4,
+              10
+            ],
+            [
+              0,
+              10
+            ],
+            [
+              4,
+              36
+            ]
+          ]
+        },
+        "right_path": {
+          "label": "A_B_to_C",
+          "sequence": [
+            [
+              0,
+              20
+            ],
+            [
+              2,
+              20
+            ],
+            [
+              4,
+              36
+            ]
+          ]
+        },
+        "replicates_per_path": 72,
+        "final_belief_centroid_distance": 0.11182109,
+        "final_observation_centroid_distance": 0.0,
+        "within_path_resampling_null": {
+          "probe": "independent final-belief draw pairs inside each path",
+          "pairs_per_path": 256,
+          "mean": 0.01854194,
+          "sd": 0.00870129,
+          "p95": 0.03418872,
+          "decision_band": 0.03594451
+        },
+        "verdict": "path_dependent",
+        "control_memoryless_belief": {
+          "control_type": "belief reset to current observation each tick; no cross-tick belief carry",
+          "final_belief_centroid_distance": 0.0,
+          "null_decision_band": 0.0,
+          "destroys_path_dependence": true
+        },
+        "tail_surprise_mean_bits": {
+          "A_B_C_A_to_C": 0.13053567,
+          "A_B_to_C": 0.11415331
+        }
+      }
+    ],
+    "control_memoryless_belief_all_pass": true
+  },
+  "claim_3_occupancy_vs_transit": {
+    "settled_rule": {
+      "surprise_bits_at_most": 0.22,
+      "current_regime_attractor_must_be_nearest": true,
+      "nearest_attractor_margin_at_least": 0.2
+    },
+    "transit_rule": {
+      "definition": "not settled by current-regime label; surprise and nearest-attractor margin are still reported for band strength",
+      "diagnostic_high_surprise_bits_at_least": 0.42,
+      "diagnostic_weak_nearest_margin_at_most": 0.05
+    },
+    "dwell_sweep": [
+      {
+        "dwell_ticks": 1,
+        "settled_fraction": 0.0,
+        "transit_fraction": 1.0,
+        "mean_surprise_bits": 0.20727092,
+        "settled_mean_surprise_bits": null,
+        "transit_mean_surprise_bits": 0.20727092,
+        "transit_minus_settled_surprise_gap_bits": 0.0
+      },
+      {
+        "dwell_ticks": 2,
+        "settled_fraction": 0.0,
+        "transit_fraction": 1.0,
+        "mean_surprise_bits": 0.37821259,
+        "settled_mean_surprise_bits": null,
+        "transit_mean_surprise_bits": 0.37821259,
+        "transit_minus_settled_surprise_gap_bits": 0.0
+      },
+      {
+        "dwell_ticks": 4,
+        "settled_fraction": 0.0,
+        "transit_fraction": 1.0,
+        "mean_surprise_bits": 0.5958757,
+        "settled_mean_surprise_bits": null,
+        "transit_mean_surprise_bits": 0.5958757,
+        "transit_minus_settled_surprise_gap_bits": 0.0
+      },
+      {
+        "dwell_ticks": 8,
+        "settled_fraction": 0.0,
+        "transit_fraction": 1.0,
+        "mean_surprise_bits": 0.6859677,
+        "settled_mean_surprise_bits": null,
+        "transit_mean_surprise_bits": 0.6859677,
+        "transit_minus_settled_surprise_gap_bits": 0.0
+      },
+      {
+        "dwell_ticks": 16,
+        "settled_fraction": 0.0,
+        "transit_fraction": 1.0,
+        "mean_surprise_bits": 0.68767177,
+        "settled_mean_surprise_bits": null,
+        "transit_mean_surprise_bits": 0.68767177,
+        "transit_minus_settled_surprise_gap_bits": 0.0
+      },
+      {
+        "dwell_ticks": 32,
+        "settled_fraction": 0.15277778,
+        "transit_fraction": 0.84722222,
+        "mean_surprise_bits": 0.65222279,
+        "settled_mean_surprise_bits": 0.14707756,
+        "transit_mean_surprise_bits": 0.74331455,
+        "transit_minus_settled_surprise_gap_bits": 0.59623699
+      }
+    ],
+    "control_shuffled_regime_labels": {
+      "control_type": "independent recomputation with cyclically permuted regime labels for attractor lookup",
+      "dwell_sweep": [
+        {
+          "dwell_ticks": 1,
+          "settled_fraction": 0.0,
+          "transit_fraction": 1.0,
+          "transit_minus_settled_surprise_gap_bits": 0.0
+        },
+        {
+          "dwell_ticks": 2,
+          "settled_fraction": 0.15740741,
+          "transit_fraction": 0.84259259,
+          "transit_minus_settled_surprise_gap_bits": 0.39891468
+        },
+        {
+          "dwell_ticks": 4,
+          "settled_fraction": 0.0787037,
+          "transit_fraction": 0.9212963,
+          "transit_minus_settled_surprise_gap_bits": 0.49523135
+        },
+        {
+          "dwell_ticks": 8,
+          "settled_fraction": 0.0,
+          "transit_fraction": 1.0,
+          "transit_minus_settled_surprise_gap_bits": 0.0
+        },
+        {
+          "dwell_ticks": 16,
+          "settled_fraction": 0.0,
+          "transit_fraction": 1.0,
+          "transit_minus_settled_surprise_gap_bits": 0.0
+        },
+        {
+          "dwell_ticks": 32,
+          "settled_fraction": 0.0,
+          "transit_fraction": 1.0,
+          "transit_minus_settled_surprise_gap_bits": 0.0
+        }
+      ],
+      "destroys_occupancy_transit_partition_at_slow_dwell": true
+    },
+    "verdicts": {
+      "occupancy_transit_partition": "partition_holds",
+      "fast_switching": "transit_dominated"
+    }
+  },
+  "control_independence_assertions": {
+    "seeded_rng": 0,
+    "path_witness_control_distinct_arrays": true,
+    "within_path_null_uses_independent_probe_draws": true,
+    "memoryless_control_recomputed": true,
+    "shuffled_label_control_recomputed": true,
+    "predicate_controls_used": false
+  },
+  "overall": {
+    "belief_attractor_baseline": "baseline_holds",
+    "hysteresis": "path_dependent",
+    "occupancy_transit_partition": "partition_holds",
+    "fast_switching": "transit_dominated",
+    "exit_policy": "exit 0 for honest verdict mix; exceptions only for broken computation/control invariants"
+  }
+}

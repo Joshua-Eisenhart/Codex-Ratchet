@@ -1,0 +1,3580 @@
+{
+ "claim_ceiling": "scratch_diagnostic only; leaves refuted v1 in place and makes no admission/source-edit claim.",
+ "classification": "scratch_diagnostic",
+ "formal_admission_allowed": false,
+ "instrument": {
+  "instrument_valid_all_slots": false,
+  "mean_r2": 0.9999906431665626,
+  "mean_shuffled_time_r2": -33.42059938669824,
+  "method": "v2 per-slot switched SINDy in schedule context; down rows fit O(r_t) over the flow trajectory so operator is causal",
+  "min_r2": 0.9994011717584742,
+  "r2_gate": 0.9,
+  "shuffled_time_flip": true
+ },
+ "operator_sensitivity_check": {
+  "all_contexts_operator_sensitive": false,
+  "context_results": {
+   "T1-I1|Type1_left|inner_inductive|1|down|Se-in": {
+    "axis6_sign": "down",
+    "engine": "Type1_left",
+    "loop": "inner_inductive",
+    "max_operator_self_null_band": 6.222182892614911e-06,
+    "min_operator_variant_distance": 0.23703536598234037,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.33162342429260716,
+      "self_null_band": 6.222182892614911e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 0.27039382355392233,
+      "self_null_band": 1.933800586349333e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 0.23703536598234037,
+      "self_null_band": 1.933800586349333e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.2915837222915112,
+      "self_null_band": 6.222182892614911e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.24016222131313378,
+      "self_null_band": 6.222182892614911e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 0.24978883817969594,
+      "self_null_band": 4.210478122065751e-07,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": true,
+    "slot_id": "T1-I1",
+    "step": 1,
+    "terrain": "Se-in"
+   },
+   "T1-I2|Type1_left|inner_inductive|2|down|Si-in": {
+    "axis6_sign": "down",
+    "engine": "Type1_left",
+    "loop": "inner_inductive",
+    "max_operator_self_null_band": 1.9930509012239853e-05,
+    "min_operator_variant_distance": 0.21062074448893084,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.31089948548847596,
+      "self_null_band": 1.9930509012239853e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 0.5076912339437352,
+      "self_null_band": 8.791768464243441e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 0.2370370883310804,
+      "self_null_band": 8.791768464243441e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.43534427497452316,
+      "self_null_band": 1.9930509012239853e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.21062074448893084,
+      "self_null_band": 1.9930509012239853e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 0.4097225441651876,
+      "self_null_band": 4.495325124600216e-06,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": true,
+    "slot_id": "T1-I2",
+    "step": 2,
+    "terrain": "Si-in"
+   },
+   "T1-I3|Type1_left|inner_inductive|3|up|Ni-in": {
+    "axis6_sign": "up",
+    "engine": "Type1_left",
+    "loop": "inner_inductive",
+    "max_operator_self_null_band": 4.634014090407057e-05,
+    "min_operator_variant_distance": 3.083315463180571e-05,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.0003047948056727271,
+      "self_null_band": 4.634014090407057e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 3.1679842665884424e-05,
+      "self_null_band": 2.0371812339025662e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 4.425466535169893e-05,
+      "self_null_band": 2.4977174709227593e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.00030689911410113237,
+      "self_null_band": 4.634014090407057e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.00030027225455307624,
+      "self_null_band": 4.634014090407057e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 3.083315463180571e-05,
+      "self_null_band": 2.4977174709227593e-05,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": true,
+    "slot_id": "T1-I3",
+    "step": 3,
+    "terrain": "Ni-in"
+   },
+   "T1-I4|Type1_left|inner_inductive|4|up|Ne-in": {
+    "axis6_sign": "up",
+    "engine": "Type1_left",
+    "loop": "inner_inductive",
+    "max_operator_self_null_band": 0.00020757256429133067,
+    "min_operator_variant_distance": 0.0006634481307778036,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.0013532042903766238,
+      "self_null_band": 0.00020271312061495572,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 0.001678607677104225,
+      "self_null_band": 0.00020757256429133067,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 0.0015115001835580546,
+      "self_null_band": 0.00020271312061495572,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.0009961383875096666,
+      "self_null_band": 0.00020757256429133067,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.0011926959690448076,
+      "self_null_band": 0.00020045819765344687,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 0.0006634481307778036,
+      "self_null_band": 0.00020757256429133067,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": true,
+    "slot_id": "T1-I4",
+    "step": 4,
+    "terrain": "Ne-in"
+   },
+   "T1-O1|Type1_left|outer_deductive|1|up|Se-in": {
+    "axis6_sign": "up",
+    "engine": "Type1_left",
+    "loop": "outer_deductive",
+    "max_operator_self_null_band": 1.1550636943935122e-06,
+    "min_operator_variant_distance": 1.260426317475596e-06,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 1.4501383958407195e-06,
+      "self_null_band": 1.1550636943935122e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 1.942108034293678e-06,
+      "self_null_band": 1.1550636943935122e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 1.9115827903487523e-06,
+      "self_null_band": 1.1550636943935122e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 1.260426317475596e-06,
+      "self_null_band": 1.1312751385860988e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 2.0957329735579438e-06,
+      "self_null_band": 1.1312751385860988e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 1.2847557132456577e-06,
+      "self_null_band": 8.420280137240148e-07,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": true,
+    "slot_id": "T1-O1",
+    "step": 1,
+    "terrain": "Se-in"
+   },
+   "T1-O2|Type1_left|outer_deductive|2|down|Ne-in": {
+    "axis6_sign": "down",
+    "engine": "Type1_left",
+    "loop": "outer_deductive",
+    "max_operator_self_null_band": 3.770695101136991e-05,
+    "min_operator_variant_distance": 0.21061835392630227,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.31090237972577156,
+      "self_null_band": 3.770695101136991e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 0.2505160501969472,
+      "self_null_band": 3.770695101136991e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 0.23704224483128658,
+      "self_null_band": 3.770695101136991e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.2992046320830858,
+      "self_null_band": 2.8898679035091204e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.21061835392630227,
+      "self_null_band": 2.8898679035091204e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 0.2605227519406931,
+      "self_null_band": 1.0254742838397757e-05,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": true,
+    "slot_id": "T1-O2",
+    "step": 2,
+    "terrain": "Ne-in"
+   },
+   "T1-O3|Type1_left|outer_deductive|3|down|Ni-in": {
+    "axis6_sign": "down",
+    "engine": "Type1_left",
+    "loop": "outer_deductive",
+    "max_operator_self_null_band": 4.086736867806232e-05,
+    "min_operator_variant_distance": 0.23703533839367086,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.33162582913951266,
+      "self_null_band": 4.086736867806232e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 0.27039774767338326,
+      "self_null_band": 1.6789836520795014e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 0.23703533839367086,
+      "self_null_band": 6.600418463603095e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.291593074809601,
+      "self_null_band": 4.086736867806232e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.24016909874746503,
+      "self_null_band": 4.086736867806232e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 0.2497943457131253,
+      "self_null_band": 1.6789836520795014e-05,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": true,
+    "slot_id": "T1-O3",
+    "step": 3,
+    "terrain": "Ni-in"
+   },
+   "T1-O4|Type1_left|outer_deductive|4|up|Si-in": {
+    "axis6_sign": "up",
+    "engine": "Type1_left",
+    "loop": "outer_deductive",
+    "max_operator_self_null_band": 0.00578558250553544,
+    "min_operator_variant_distance": 0.0008437190751224263,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.0012792678201016714,
+      "self_null_band": 0.00578558250553544,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 0.001830648802675131,
+      "self_null_band": 0.00578558250553544,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 0.0008437190751224263,
+      "self_null_band": 0.00578558250553544,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.0016086491056527,
+      "self_null_band": 0.0010720788101228336,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.0010514798197489357,
+      "self_null_band": 0.0007248367579206613,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 0.0018294249966363777,
+      "self_null_band": 0.0010720788101228336,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": false,
+    "slot_id": "T1-O4",
+    "step": 4,
+    "terrain": "Si-in"
+   },
+   "T2-I1|Type2_right|inner_deductive|1|down|Se-out": {
+    "axis6_sign": "down",
+    "engine": "Type2_right",
+    "loop": "inner_deductive",
+    "max_operator_self_null_band": 3.911244742682965e-06,
+    "min_operator_variant_distance": 0.2370361652349154,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.3316234479217547,
+      "self_null_band": 3.911244742682965e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 0.3236922720417347,
+      "self_null_band": 2.1377144778287122e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 0.2370361652349154,
+      "self_null_band": 2.1377144778287122e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.2915841199808823,
+      "self_null_band": 3.911244742682965e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.24016118200886125,
+      "self_null_band": 3.911244742682965e-06,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 0.24978935030258978,
+      "self_null_band": 1.6232541560151512e-06,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": true,
+    "slot_id": "T2-I1",
+    "step": 1,
+    "terrain": "Se-out"
+   },
+   "T2-I2|Type2_right|inner_deductive|2|up|Ne-out": {
+    "axis6_sign": "up",
+    "engine": "Type2_right",
+    "loop": "inner_deductive",
+    "max_operator_self_null_band": 3.148585597418355e-05,
+    "min_operator_variant_distance": 2.0039924615519554e-05,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 6.0544521902046396e-05,
+      "self_null_band": 3.148585597418355e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 6.053214121641408e-05,
+      "self_null_band": 3.105560887478827e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 4.718656525904598e-05,
+      "self_null_band": 3.0463609889144036e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 2.4826092936606886e-05,
+      "self_null_band": 3.148585597418355e-05,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 2.0039924615519554e-05,
+      "self_null_band": 3.148585597418355e-05,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 2.6475039529865353e-05,
+      "self_null_band": 3.105560887478827e-05,
+      "sensitive": false
+     }
+    ],
+    "operator_sensitive": false,
+    "slot_id": "T2-I2",
+    "step": 2,
+    "terrain": "Ne-out"
+   },
+   "T2-I3|Type2_right|inner_deductive|3|up|Ni-out": {
+    "axis6_sign": "up",
+    "engine": "Type2_right",
+    "loop": "inner_deductive",
+    "max_operator_self_null_band": 0.00023022297295868056,
+    "min_operator_variant_distance": 3.2893474518645594e-05,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 3.2893474518645594e-05,
+      "self_null_band": 0.00023022297295868056,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 4.1271971023816826e-05,
+      "self_null_band": 0.00023022297295868056,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 5.031345978060935e-05,
+      "self_null_band": 0.00023022297295868056,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 4.857742525384665e-05,
+      "self_null_band": 0.00015879949412580862,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 4.839875146408803e-05,
+      "self_null_band": 0.00015879949412580862,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 5.418187386114668e-05,
+      "self_null_band": 3.547954838133395e-05,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": false,
+    "slot_id": "T2-I3",
+    "step": 3,
+    "terrain": "Ni-out"
+   },
+   "T2-I4|Type2_right|inner_deductive|4|down|Si-out": {
+    "axis6_sign": "down",
+    "engine": "Type2_right",
+    "loop": "inner_deductive",
+    "max_operator_self_null_band": 0.0020050442584689672,
+    "min_operator_variant_distance": 0.21071394325281517,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.310933743480967,
+      "self_null_band": 0.0020050442584689672,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 0.3620620788367803,
+      "self_null_band": 0.0008817968803913278,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 0.23706244516232078,
+      "self_null_band": 0.0008817968803913278,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.4353771575546101,
+      "self_null_band": 0.0020050442584689672,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.21071394325281517,
+      "self_null_band": 0.0020050442584689672,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 0.4097234225922531,
+      "self_null_band": 0.0005224752245475436,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": true,
+    "slot_id": "T2-I4",
+    "step": 4,
+    "terrain": "Si-out"
+   },
+   "T2-O1|Type2_right|outer_inductive|1|up|Se-out": {
+    "axis6_sign": "up",
+    "engine": "Type2_right",
+    "loop": "outer_inductive",
+    "max_operator_self_null_band": 2.508183459657285e-06,
+    "min_operator_variant_distance": 1.5295222743399597e-07,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 4.899642666253561e-07,
+      "self_null_band": 2.508183459657285e-06,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 6.564955443665168e-07,
+      "self_null_band": 2.508183459657285e-06,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 7.700708293236165e-07,
+      "self_null_band": 2.508183459657285e-06,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 4.2751719614658466e-07,
+      "self_null_band": 1.3412839960768315e-06,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 5.793758640207518e-07,
+      "self_null_band": 1.3412839960768315e-06,
+      "sensitive": false
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 1.5295222743399597e-07,
+      "self_null_band": 1.1943418258009647e-06,
+      "sensitive": false
+     }
+    ],
+    "operator_sensitive": false,
+    "slot_id": "T2-O1",
+    "step": 1,
+    "terrain": "Se-out"
+   },
+   "T2-O2|Type2_right|outer_inductive|2|up|Si-out": {
+    "axis6_sign": "up",
+    "engine": "Type2_right",
+    "loop": "outer_inductive",
+    "max_operator_self_null_band": 1.298993369267277e-05,
+    "min_operator_variant_distance": 9.378986760587625e-06,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 2.9257386162795003e-05,
+      "self_null_band": 1.298993369267277e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 2.1666175824810358e-05,
+      "self_null_band": 1.298993369267277e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 2.5090700613780203e-05,
+      "self_null_band": 1.298993369267277e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 1.747916398705063e-05,
+      "self_null_band": 1.2749933450825454e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 1.5387992713083334e-05,
+      "self_null_band": 1.2749933450825454e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 9.378986760587625e-06,
+      "self_null_band": 9.600734223318569e-06,
+      "sensitive": false
+     }
+    ],
+    "operator_sensitive": false,
+    "slot_id": "T2-O2",
+    "step": 2,
+    "terrain": "Si-out"
+   },
+   "T2-O3|Type2_right|outer_inductive|3|down|Ni-out": {
+    "axis6_sign": "down",
+    "engine": "Type2_right",
+    "loop": "outer_inductive",
+    "max_operator_self_null_band": 0.28519655990782455,
+    "min_operator_variant_distance": 0.23703715678225074,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.3316176302305917,
+      "self_null_band": 2.31872873603251e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 0.3236939576379527,
+      "self_null_band": 0.28519655990782455,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 0.23703715678225074,
+      "self_null_band": 1.581674051010579e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.29157687267723964,
+      "self_null_band": 0.28519655990782455,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.2401551112984882,
+      "self_null_band": 2.31872873603251e-05,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 0.2497910121329703,
+      "self_null_band": 0.28519655990782455,
+      "sensitive": false
+     }
+    ],
+    "operator_sensitive": false,
+    "slot_id": "T2-O3",
+    "step": 3,
+    "terrain": "Ni-out"
+   },
+   "T2-O4|Type2_right|outer_inductive|4|down|Ne-out": {
+    "axis6_sign": "down",
+    "engine": "Type2_right",
+    "loop": "outer_inductive",
+    "max_operator_self_null_band": 0.005215210843745587,
+    "min_operator_variant_distance": 0.21061763199152483,
+    "operator_pair_details": [
+     {
+      "a_operator": "Ti",
+      "b_operator": "Te",
+      "distance": 0.3127262913588613,
+      "self_null_band": 0.005215210843745587,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fi",
+      "distance": 0.38264460195348104,
+      "self_null_band": 0.005215210843745587,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Ti",
+      "b_operator": "Fe",
+      "distance": 0.2568829280650647,
+      "self_null_band": 0.005215210843745587,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fi",
+      "distance": 0.29920654102416355,
+      "self_null_band": 0.000746554158644483,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Te",
+      "b_operator": "Fe",
+      "distance": 0.21061763199152483,
+      "self_null_band": 0.000513486848772532,
+      "sensitive": true
+     },
+     {
+      "a_operator": "Fi",
+      "b_operator": "Fe",
+      "distance": 0.2605200311488931,
+      "self_null_band": 0.000746554158644483,
+      "sensitive": true
+     }
+    ],
+    "operator_sensitive": true,
+    "slot_id": "T2-O4",
+    "step": 4,
+    "terrain": "Ne-out"
+   }
+  },
+  "rule": "Within each slot/sign/terrain context, all operator variants must change fitted coefficients beyond self-null.",
+  "sign_summary": {
+   "down": {
+    "all_sensitive": false,
+    "contexts": 8,
+    "sensitive_contexts": 7
+   },
+   "up": {
+    "all_sensitive": false,
+    "contexts": 8,
+    "sensitive_contexts": 3
+   }
+  }
+ },
+ "promotion_allowed": false,
+ "seed": 0,
+ "sim_id": "slot64_unique_computing_probe_v2",
+ "source_paths": {
+  "engine_64_source_schedule": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/reference_docs/engine_math/source_schedule_tables/engine_64_source_schedule.json",
+  "instrument_source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/loop_switched_sindy_probe_sim.py",
+  "stage_token_join": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/stage_token_join.json"
+ },
+ "task_a": {
+  "content_group_sizes": {
+   "Ne-in|Fe": 2,
+   "Ne-in|Fi": 2,
+   "Ne-in|Te": 2,
+   "Ne-in|Ti": 2,
+   "Ne-out|Fe": 2,
+   "Ne-out|Fi": 2,
+   "Ne-out|Te": 2,
+   "Ne-out|Ti": 2,
+   "Ni-in|Fe": 2,
+   "Ni-in|Fi": 2,
+   "Ni-in|Te": 2,
+   "Ni-in|Ti": 2,
+   "Ni-out|Fe": 2,
+   "Ni-out|Fi": 2,
+   "Ni-out|Te": 2,
+   "Ni-out|Ti": 2,
+   "Se-in|Fe": 2,
+   "Se-in|Fi": 2,
+   "Se-in|Te": 2,
+   "Se-in|Ti": 2,
+   "Se-out|Fe": 2,
+   "Se-out|Fi": 2,
+   "Se-out|Te": 2,
+   "Se-out|Ti": 2,
+   "Si-in|Fe": 2,
+   "Si-in|Fi": 2,
+   "Si-in|Te": 2,
+   "Si-in|Ti": 2,
+   "Si-out|Fe": 2,
+   "Si-out|Fi": 2,
+   "Si-out|Te": 2,
+   "Si-out|Ti": 2
+  },
+  "excluded_trivial_count": 1984,
+  "excluded_trivial_rule": "Different terrain or different operator; by-construction generator/operator content difference, not a finding.",
+  "matched_content_pair_count": 32,
+  "matched_content_pair_counts_by_parity": {
+   "down/up": 16,
+   "up/down": 16
+  },
+  "pair_results": [
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "TiSe",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "outer_deductive",
+     "operator": "Ti",
+     "row_index": 0,
+     "slot_id": "T1-O1",
+     "step": 1,
+     "terrain": "Se-in"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SeTi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Ti",
+     "row_index": 16,
+     "slot_id": "T1-I1",
+     "step": 1,
+     "terrain": "Se-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Ti",
+     "terrain": "Se-in"
+    },
+    "distance": 0.1910509648140278,
+    "pair": "T1-O1:TiSe@Type1-outer-deductive vs T1-I1:SeTi@Type1-inner-inductive",
+    "parity_class": "up/down",
+    "self_null_band": 1.933800586349333e-06,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "TeSe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Te",
+     "row_index": 1,
+     "slot_id": "T1-O1",
+     "step": 1,
+     "terrain": "Se-in"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SeTe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Te",
+     "row_index": 17,
+     "slot_id": "T1-I1",
+     "step": 1,
+     "terrain": "Se-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Te",
+     "terrain": "Se-in"
+    },
+    "distance": 0.22320247909263596,
+    "pair": "T1-O1:TeSe@Type1-outer-deductive vs T1-I1:SeTe@Type1-inner-inductive",
+    "parity_class": "up/down",
+    "self_null_band": 6.222182892614911e-06,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "FiSe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fi",
+     "row_index": 2,
+     "slot_id": "T1-O1",
+     "step": 1,
+     "terrain": "Se-in"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SeFi",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "inner_inductive",
+     "operator": "Fi",
+     "row_index": 18,
+     "slot_id": "T1-I1",
+     "step": 1,
+     "terrain": "Se-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Fi",
+     "terrain": "Se-in"
+    },
+    "distance": 0.20153582741975573,
+    "pair": "T1-O1:FiSe@Type1-outer-deductive vs T1-I1:SeFi@Type1-inner-inductive",
+    "parity_class": "up/down",
+    "self_null_band": 3.101688055760433e-07,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "FeSe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fe",
+     "row_index": 3,
+     "slot_id": "T1-O1",
+     "step": 1,
+     "terrain": "Se-in"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SeFe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fe",
+     "row_index": 19,
+     "slot_id": "T1-I1",
+     "step": 1,
+     "terrain": "Se-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Fe",
+     "terrain": "Se-in"
+    },
+    "distance": 0.11294726675531518,
+    "pair": "T1-O1:FeSe@Type1-outer-deductive vs T1-I1:SeFe@Type1-inner-inductive",
+    "parity_class": "up/down",
+    "self_null_band": 8.420280137240148e-07,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NeTi",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "outer_deductive",
+     "operator": "Ti",
+     "row_index": 4,
+     "slot_id": "T1-O2",
+     "step": 2,
+     "terrain": "Ne-in"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "TiNe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Ti",
+     "row_index": 28,
+     "slot_id": "T1-I4",
+     "step": 4,
+     "terrain": "Ne-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Ti",
+     "terrain": "Ne-in"
+    },
+    "distance": 0.19100452312199923,
+    "pair": "T1-O2:NeTi@Type1-outer-deductive vs T1-I4:TiNe@Type1-inner-inductive",
+    "parity_class": "down/up",
+    "self_null_band": 0.00020271312061495572,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NeTe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Te",
+     "row_index": 5,
+     "slot_id": "T1-O2",
+     "step": 2,
+     "terrain": "Ne-in"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "TeNe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Te",
+     "row_index": 29,
+     "slot_id": "T1-I4",
+     "step": 4,
+     "terrain": "Ne-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Te",
+     "terrain": "Ne-in"
+    },
+    "distance": 0.19105872012036898,
+    "pair": "T1-O2:NeTe@Type1-outer-deductive vs T1-I4:TeNe@Type1-inner-inductive",
+    "parity_class": "down/up",
+    "self_null_band": 7.836425084189178e-05,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NeFi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fi",
+     "row_index": 6,
+     "slot_id": "T1-O2",
+     "step": 2,
+     "terrain": "Ne-in"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "FiNe",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "inner_inductive",
+     "operator": "Fi",
+     "row_index": 30,
+     "slot_id": "T1-I4",
+     "step": 4,
+     "terrain": "Ne-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Fi",
+     "terrain": "Ne-in"
+    },
+    "distance": 0.21462195865646275,
+    "pair": "T1-O2:NeFi@Type1-outer-deductive vs T1-I4:FiNe@Type1-inner-inductive",
+    "parity_class": "down/up",
+    "self_null_band": 0.00020757256429133067,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NeFe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fe",
+     "row_index": 7,
+     "slot_id": "T1-O2",
+     "step": 2,
+     "terrain": "Ne-in"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "FeNe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fe",
+     "row_index": 31,
+     "slot_id": "T1-I4",
+     "step": 4,
+     "terrain": "Ne-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Fe",
+     "terrain": "Ne-in"
+    },
+    "distance": 0.11299408918308676,
+    "pair": "T1-O2:NeFe@Type1-outer-deductive vs T1-I4:FeNe@Type1-inner-inductive",
+    "parity_class": "down/up",
+    "self_null_band": 0.00020045819765344687,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NiTi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Ti",
+     "row_index": 8,
+     "slot_id": "T1-O3",
+     "step": 3,
+     "terrain": "Ni-in"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "TiNi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Ti",
+     "row_index": 24,
+     "slot_id": "T1-I3",
+     "step": 3,
+     "terrain": "Ni-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Ti",
+     "terrain": "Ni-in"
+    },
+    "distance": 0.19104926211502796,
+    "pair": "T1-O3:NiTi@Type1-outer-deductive vs T1-I3:TiNi@Type1-inner-inductive",
+    "parity_class": "down/up",
+    "self_null_band": 7.398651261397293e-06,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NiTe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Te",
+     "row_index": 9,
+     "slot_id": "T1-O3",
+     "step": 3,
+     "terrain": "Ni-in"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "TeNi",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "inner_inductive",
+     "operator": "Te",
+     "row_index": 25,
+     "slot_id": "T1-I3",
+     "step": 3,
+     "terrain": "Ni-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Te",
+     "terrain": "Ni-in"
+    },
+    "distance": 0.22320634739546105,
+    "pair": "T1-O3:NiTe@Type1-outer-deductive vs T1-I3:TeNi@Type1-inner-inductive",
+    "parity_class": "down/up",
+    "self_null_band": 4.634014090407057e-05,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NiFi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fi",
+     "row_index": 10,
+     "slot_id": "T1-O3",
+     "step": 3,
+     "terrain": "Ni-in"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "FiNi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fi",
+     "row_index": 26,
+     "slot_id": "T1-I3",
+     "step": 3,
+     "terrain": "Ni-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Fi",
+     "terrain": "Ni-in"
+    },
+    "distance": 0.20154112493056991,
+    "pair": "T1-O3:NiFi@Type1-outer-deductive vs T1-I3:FiNi@Type1-inner-inductive",
+    "parity_class": "down/up",
+    "self_null_band": 2.0371812339025662e-05,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NiFe",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "outer_deductive",
+     "operator": "Fe",
+     "row_index": 11,
+     "slot_id": "T1-O3",
+     "step": 3,
+     "terrain": "Ni-in"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "FeNi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fe",
+     "row_index": 27,
+     "slot_id": "T1-I3",
+     "step": 3,
+     "terrain": "Ni-in"
+    },
+    "both_operator_sensitive": true,
+    "content": {
+     "operator": "Fe",
+     "terrain": "Ni-in"
+    },
+    "distance": 0.11294829831673,
+    "pair": "T1-O3:NiFe@Type1-outer-deductive vs T1-I3:FeNi@Type1-inner-inductive",
+    "parity_class": "down/up",
+    "self_null_band": 2.4977174709227593e-05,
+    "verdict": "position-unique"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "TiSi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Ti",
+     "row_index": 12,
+     "slot_id": "T1-O4",
+     "step": 4,
+     "terrain": "Si-in"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SiTi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Ti",
+     "row_index": 20,
+     "slot_id": "T1-I2",
+     "step": 2,
+     "terrain": "Si-in"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Ti",
+     "terrain": "Si-in"
+    },
+    "distance": 0.19104769949435824,
+    "pair": "T1-O4:TiSi@Type1-outer-deductive vs T1-I2:SiTi@Type1-inner-inductive",
+    "parity_class": "up/down",
+    "self_null_band": 0.00578558250553544,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "TeSi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Te",
+     "row_index": 13,
+     "slot_id": "T1-O4",
+     "step": 4,
+     "terrain": "Si-in"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SiTe",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "inner_inductive",
+     "operator": "Te",
+     "row_index": 21,
+     "slot_id": "T1-I2",
+     "step": 2,
+     "terrain": "Si-in"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Te",
+     "terrain": "Si-in"
+    },
+    "distance": 0.19114585028718672,
+    "pair": "T1-O4:TeSi@Type1-outer-deductive vs T1-I2:SiTe@Type1-inner-inductive",
+    "parity_class": "up/down",
+    "self_null_band": 0.0007248367579206613,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "FiSi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fi",
+     "row_index": 14,
+     "slot_id": "T1-O4",
+     "step": 4,
+     "terrain": "Si-in"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SiFi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fi",
+     "row_index": 22,
+     "slot_id": "T1-I2",
+     "step": 2,
+     "terrain": "Si-in"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Fi",
+     "terrain": "Si-in"
+    },
+    "distance": 0.3822633212082237,
+    "pair": "T1-O4:FiSi@Type1-outer-deductive vs T1-I2:SiFi@Type1-inner-inductive",
+    "parity_class": "up/down",
+    "self_null_band": 0.0010720788101228336,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "FeSi",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "outer_deductive",
+     "operator": "Fe",
+     "row_index": 15,
+     "slot_id": "T1-O4",
+     "step": 4,
+     "terrain": "Si-in"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SiFe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fe",
+     "row_index": 23,
+     "slot_id": "T1-I2",
+     "step": 2,
+     "terrain": "Si-in"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Fe",
+     "terrain": "Si-in"
+    },
+    "distance": 0.11299099718407477,
+    "pair": "T1-O4:FeSi@Type1-outer-deductive vs T1-I2:SiFe@Type1-inner-inductive",
+    "parity_class": "up/down",
+    "self_null_band": 0.0006207542576315938,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "TiSe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Ti",
+     "row_index": 32,
+     "slot_id": "T2-O1",
+     "step": 1,
+     "terrain": "Se-out"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SeTi",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "inner_deductive",
+     "operator": "Ti",
+     "row_index": 48,
+     "slot_id": "T2-I1",
+     "step": 1,
+     "terrain": "Se-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Ti",
+     "terrain": "Se-out"
+    },
+    "distance": 0.1910510867911628,
+    "pair": "T2-O1:TiSe@Type2-outer-inductive vs T2-I1:SeTi@Type2-inner-deductive",
+    "parity_class": "up/down",
+    "self_null_band": 2.508183459657285e-06,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "TeSe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Te",
+     "row_index": 33,
+     "slot_id": "T2-O1",
+     "step": 1,
+     "terrain": "Se-out"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SeTe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Te",
+     "row_index": 49,
+     "slot_id": "T2-I1",
+     "step": 1,
+     "terrain": "Se-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Te",
+     "terrain": "Se-out"
+    },
+    "distance": 0.2232025470387687,
+    "pair": "T2-O1:TeSe@Type2-outer-inductive vs T2-I1:SeTe@Type2-inner-deductive",
+    "parity_class": "up/down",
+    "self_null_band": 3.911244742682965e-06,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "FiSe",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "outer_inductive",
+     "operator": "Fi",
+     "row_index": 34,
+     "slot_id": "T2-O1",
+     "step": 1,
+     "terrain": "Se-out"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SeFi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fi",
+     "row_index": 50,
+     "slot_id": "T2-I1",
+     "step": 1,
+     "terrain": "Se-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Fi",
+     "terrain": "Se-out"
+    },
+    "distance": 0.20153630057094044,
+    "pair": "T2-O1:FiSe@Type2-outer-inductive vs T2-I1:SeFi@Type2-inner-deductive",
+    "parity_class": "up/down",
+    "self_null_band": 6.951699577627105e-07,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "FeSe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fe",
+     "row_index": 35,
+     "slot_id": "T2-O1",
+     "step": 1,
+     "terrain": "Se-out"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SeFe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fe",
+     "row_index": 51,
+     "slot_id": "T2-I1",
+     "step": 1,
+     "terrain": "Se-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Fe",
+     "terrain": "Se-out"
+    },
+    "distance": 0.11294760542450291,
+    "pair": "T2-O1:FeSe@Type2-outer-inductive vs T2-I1:SeFe@Type2-inner-deductive",
+    "parity_class": "up/down",
+    "self_null_band": 1.6232541560151512e-06,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "TiSi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Ti",
+     "row_index": 36,
+     "slot_id": "T2-O2",
+     "step": 2,
+     "terrain": "Si-out"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SiTi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Ti",
+     "row_index": 60,
+     "slot_id": "T2-I4",
+     "step": 4,
+     "terrain": "Si-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Ti",
+     "terrain": "Si-out"
+    },
+    "distance": 0.1910747996671639,
+    "pair": "T2-O2:TiSi@Type2-outer-inductive vs T2-I4:SiTi@Type2-inner-deductive",
+    "parity_class": "up/down",
+    "self_null_band": 0.0008817968803913278,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "TeSi",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "outer_inductive",
+     "operator": "Te",
+     "row_index": 37,
+     "slot_id": "T2-O2",
+     "step": 2,
+     "terrain": "Si-out"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SiTe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Te",
+     "row_index": 61,
+     "slot_id": "T2-I4",
+     "step": 4,
+     "terrain": "Si-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Te",
+     "terrain": "Si-out"
+    },
+    "distance": 0.19113252143365086,
+    "pair": "T2-O2:TeSi@Type2-outer-inductive vs T2-I4:SiTe@Type2-inner-deductive",
+    "parity_class": "up/down",
+    "self_null_band": 0.0020050442584689672,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "FiSi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fi",
+     "row_index": 38,
+     "slot_id": "T2-O2",
+     "step": 2,
+     "terrain": "Si-out"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SiFi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fi",
+     "row_index": 62,
+     "slot_id": "T2-I4",
+     "step": 4,
+     "terrain": "Si-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Fi",
+     "terrain": "Si-out"
+    },
+    "distance": 0.38223029205624065,
+    "pair": "T2-O2:FiSi@Type2-outer-inductive vs T2-I4:SiFi@Type2-inner-deductive",
+    "parity_class": "up/down",
+    "self_null_band": 0.0005224752245475436,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "up",
+     "candidate_word": "FeSi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fe",
+     "row_index": 39,
+     "slot_id": "T2-O2",
+     "step": 2,
+     "terrain": "Si-out"
+    },
+    "b": {
+     "axis6_sign": "down",
+     "candidate_word": "SiFe",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "inner_deductive",
+     "operator": "Fe",
+     "row_index": 63,
+     "slot_id": "T2-I4",
+     "step": 4,
+     "terrain": "Si-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Fe",
+     "terrain": "Si-out"
+    },
+    "distance": 0.11295307986457541,
+    "pair": "T2-O2:FeSi@Type2-outer-inductive vs T2-I4:SiFe@Type2-inner-deductive",
+    "parity_class": "up/down",
+    "self_null_band": 0.0003309057703205103,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NiTi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Ti",
+     "row_index": 40,
+     "slot_id": "T2-O3",
+     "step": 3,
+     "terrain": "Ni-out"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "TiNi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Ti",
+     "row_index": 56,
+     "slot_id": "T2-I3",
+     "step": 3,
+     "terrain": "Ni-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Ti",
+     "terrain": "Ni-out"
+    },
+    "distance": 0.19105112201907729,
+    "pair": "T2-O3:NiTi@Type2-outer-inductive vs T2-I3:TiNi@Type2-inner-deductive",
+    "parity_class": "down/up",
+    "self_null_band": 0.00023022297295868056,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NiTe",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "outer_inductive",
+     "operator": "Te",
+     "row_index": 41,
+     "slot_id": "T2-O3",
+     "step": 3,
+     "terrain": "Ni-out"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "TeNi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Te",
+     "row_index": 57,
+     "slot_id": "T2-I3",
+     "step": 3,
+     "terrain": "Ni-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Te",
+     "terrain": "Ni-out"
+    },
+    "distance": 0.2231953556917312,
+    "pair": "T2-O3:NiTe@Type2-outer-inductive vs T2-I3:TeNi@Type2-inner-deductive",
+    "parity_class": "down/up",
+    "self_null_band": 0.00015879949412580862,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NiFi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fi",
+     "row_index": 42,
+     "slot_id": "T2-O3",
+     "step": 3,
+     "terrain": "Ni-out"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "FiNi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fi",
+     "row_index": 58,
+     "slot_id": "T2-I3",
+     "step": 3,
+     "terrain": "Ni-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Fi",
+     "terrain": "Ni-out"
+    },
+    "distance": 0.20153254594075248,
+    "pair": "T2-O3:NiFi@Type2-outer-inductive vs T2-I3:FiNi@Type2-inner-deductive",
+    "parity_class": "down/up",
+    "self_null_band": 0.28519655990782455,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NiFe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fe",
+     "row_index": 43,
+     "slot_id": "T2-O3",
+     "step": 3,
+     "terrain": "Ni-out"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "FeNi",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "inner_deductive",
+     "operator": "Fe",
+     "row_index": 59,
+     "slot_id": "T2-I3",
+     "step": 3,
+     "terrain": "Ni-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Fe",
+     "terrain": "Ni-out"
+    },
+    "distance": 0.11294720450811943,
+    "pair": "T2-O3:NiFe@Type2-outer-inductive vs T2-I3:FeNi@Type2-inner-deductive",
+    "parity_class": "down/up",
+    "self_null_band": 2.017432352950542e-05,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NeTi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Ti",
+     "row_index": 44,
+     "slot_id": "T2-O4",
+     "step": 4,
+     "terrain": "Ne-out"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "TiNe",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "inner_deductive",
+     "operator": "Ti",
+     "row_index": 52,
+     "slot_id": "T2-I2",
+     "step": 2,
+     "terrain": "Ne-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Ti",
+     "terrain": "Ne-out"
+    },
+    "distance": 0.21101440595312637,
+    "pair": "T2-O4:NeTi@Type2-outer-inductive vs T2-I2:TiNe@Type2-inner-deductive",
+    "parity_class": "down/up",
+    "self_null_band": 0.005215210843745587,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NeTe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Te",
+     "row_index": 45,
+     "slot_id": "T2-O4",
+     "step": 4,
+     "terrain": "Ne-out"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "TeNe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Te",
+     "row_index": 53,
+     "slot_id": "T2-I2",
+     "step": 2,
+     "terrain": "Ne-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Te",
+     "terrain": "Ne-out"
+    },
+    "distance": 0.1910500580456367,
+    "pair": "T2-O4:NeTe@Type2-outer-inductive vs T2-I2:TeNe@Type2-inner-deductive",
+    "parity_class": "down/up",
+    "self_null_band": 0.000513486848772532,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NeFi",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "outer_inductive",
+     "operator": "Fi",
+     "row_index": 46,
+     "slot_id": "T2-O4",
+     "step": 4,
+     "terrain": "Ne-out"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "FiNe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fi",
+     "row_index": 54,
+     "slot_id": "T2-I2",
+     "step": 2,
+     "terrain": "Ne-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Fi",
+     "terrain": "Ne-out"
+    },
+    "distance": 0.2146910441207356,
+    "pair": "T2-O4:NeFi@Type2-outer-inductive vs T2-I2:FiNe@Type2-inner-deductive",
+    "parity_class": "down/up",
+    "self_null_band": 0.000746554158644483,
+    "verdict": "instrument_invalid"
+   },
+   {
+    "a": {
+     "axis6_sign": "down",
+     "candidate_word": "NeFe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fe",
+     "row_index": 47,
+     "slot_id": "T2-O4",
+     "step": 4,
+     "terrain": "Ne-out"
+    },
+    "b": {
+     "axis6_sign": "up",
+     "candidate_word": "FeNe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fe",
+     "row_index": 55,
+     "slot_id": "T2-I2",
+     "step": 2,
+     "terrain": "Ne-out"
+    },
+    "both_operator_sensitive": false,
+    "content": {
+     "operator": "Fe",
+     "terrain": "Ne-out"
+    },
+    "distance": 0.11295086835625066,
+    "pair": "T2-O4:NeFe@Type2-outer-inductive vs T2-I2:FeNe@Type2-inner-deductive",
+    "parity_class": "down/up",
+    "self_null_band": 5.4235889860178956e-05,
+    "verdict": "instrument_invalid"
+   }
+  ],
+  "pair_verdict_counts": {
+   "degenerate": 0,
+   "instrument_invalid": 20,
+   "position-unique": 12
+  },
+  "slot_fit_summaries": [
+   {
+    "heldout_r2": 0.9999999998513985,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": true,
+    "self_null": 1.1550636943935122e-06,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TiSe",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "outer_deductive",
+     "operator": "Ti",
+     "row_index": 0,
+     "slot_id": "T1-O1",
+     "step": 1,
+     "terrain": "Se-in"
+    }
+   },
+   {
+    "heldout_r2": 0.999999999891311,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": true,
+    "self_null": 1.1312751385860988e-06,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TeSe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Te",
+     "row_index": 1,
+     "slot_id": "T1-O1",
+     "step": 1,
+     "terrain": "Se-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999612165,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": true,
+    "self_null": 1.1474026242026726e-07,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FiSe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fi",
+     "row_index": 2,
+     "slot_id": "T1-O1",
+     "step": 1,
+     "terrain": "Se-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999061329,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": true,
+    "self_null": 8.420280137240148e-07,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FeSe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fe",
+     "row_index": 3,
+     "slot_id": "T1-O1",
+     "step": 1,
+     "terrain": "Se-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998642307,
+    "nonzero_terms": 19,
+    "operator_sensitive_context": true,
+    "self_null": 3.770695101136991e-05,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NeTi",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "outer_deductive",
+     "operator": "Ti",
+     "row_index": 4,
+     "slot_id": "T1-O2",
+     "step": 2,
+     "terrain": "Ne-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998680481,
+    "nonzero_terms": 23,
+    "operator_sensitive_context": true,
+    "self_null": 2.8898679035091204e-05,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NeTe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Te",
+     "row_index": 5,
+     "slot_id": "T1-O2",
+     "step": 2,
+     "terrain": "Ne-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999162436,
+    "nonzero_terms": 8,
+    "operator_sensitive_context": true,
+    "self_null": 2.116550599870671e-07,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NeFi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fi",
+     "row_index": 6,
+     "slot_id": "T1-O2",
+     "step": 2,
+     "terrain": "Ne-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998598424,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": true,
+    "self_null": 1.0254742838397757e-05,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NeFe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fe",
+     "row_index": 7,
+     "slot_id": "T1-O2",
+     "step": 2,
+     "terrain": "Ne-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999038783,
+    "nonzero_terms": 17,
+    "operator_sensitive_context": true,
+    "self_null": 1.5663754280427436e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NiTi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Ti",
+     "row_index": 8,
+     "slot_id": "T1-O3",
+     "step": 3,
+     "terrain": "Ni-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999050709,
+    "nonzero_terms": 17,
+    "operator_sensitive_context": true,
+    "self_null": 4.086736867806232e-05,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NiTe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Te",
+     "row_index": 9,
+     "slot_id": "T1-O3",
+     "step": 3,
+     "terrain": "Ni-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999839195,
+    "nonzero_terms": 20,
+    "operator_sensitive_context": true,
+    "self_null": 1.6789836520795014e-05,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NiFi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fi",
+     "row_index": 10,
+     "slot_id": "T1-O3",
+     "step": 3,
+     "terrain": "Ni-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998864929,
+    "nonzero_terms": 17,
+    "operator_sensitive_context": true,
+    "self_null": 6.600418463603095e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NiFe",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "outer_deductive",
+     "operator": "Fe",
+     "row_index": 11,
+     "slot_id": "T1-O3",
+     "step": 3,
+     "terrain": "Ni-in"
+    }
+   },
+   {
+    "heldout_r2": 0.999999999912348,
+    "nonzero_terms": 30,
+    "operator_sensitive_context": false,
+    "self_null": 0.00578558250553544,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TiSi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Ti",
+     "row_index": 12,
+     "slot_id": "T1-O4",
+     "step": 4,
+     "terrain": "Si-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998755054,
+    "nonzero_terms": 22,
+    "operator_sensitive_context": false,
+    "self_null": 0.0007248367579206613,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TeSi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Te",
+     "row_index": 13,
+     "slot_id": "T1-O4",
+     "step": 4,
+     "terrain": "Si-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999995520928,
+    "nonzero_terms": 27,
+    "operator_sensitive_context": false,
+    "self_null": 0.0010720788101228336,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FiSi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "outer_deductive",
+     "operator": "Fi",
+     "row_index": 14,
+     "slot_id": "T1-O4",
+     "step": 4,
+     "terrain": "Si-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999985858984,
+    "nonzero_terms": 26,
+    "operator_sensitive_context": false,
+    "self_null": 0.0006207542576315938,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FeSi",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "outer_deductive",
+     "operator": "Fe",
+     "row_index": 15,
+     "slot_id": "T1-O4",
+     "step": 4,
+     "terrain": "Si-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999617426,
+    "nonzero_terms": 12,
+    "operator_sensitive_context": true,
+    "self_null": 1.933800586349333e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SeTi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Ti",
+     "row_index": 16,
+     "slot_id": "T1-I1",
+     "step": 1,
+     "terrain": "Se-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999622625,
+    "nonzero_terms": 13,
+    "operator_sensitive_context": true,
+    "self_null": 6.222182892614911e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SeTe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Te",
+     "row_index": 17,
+     "slot_id": "T1-I1",
+     "step": 1,
+     "terrain": "Se-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999719819,
+    "nonzero_terms": 9,
+    "operator_sensitive_context": true,
+    "self_null": 3.101688055760433e-07,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SeFi",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "inner_inductive",
+     "operator": "Fi",
+     "row_index": 18,
+     "slot_id": "T1-I1",
+     "step": 1,
+     "terrain": "Se-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999702404,
+    "nonzero_terms": 8,
+    "operator_sensitive_context": true,
+    "self_null": 4.210478122065751e-07,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SeFe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fe",
+     "row_index": 19,
+     "slot_id": "T1-I1",
+     "step": 1,
+     "terrain": "Se-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999141723,
+    "nonzero_terms": 19,
+    "operator_sensitive_context": true,
+    "self_null": 8.791768464243441e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SiTi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Ti",
+     "row_index": 20,
+     "slot_id": "T1-I2",
+     "step": 2,
+     "terrain": "Si-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999107828,
+    "nonzero_terms": 16,
+    "operator_sensitive_context": true,
+    "self_null": 1.9930509012239853e-05,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SiTe",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "inner_inductive",
+     "operator": "Te",
+     "row_index": 21,
+     "slot_id": "T1-I2",
+     "step": 2,
+     "terrain": "Si-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998878556,
+    "nonzero_terms": 7,
+    "operator_sensitive_context": true,
+    "self_null": 4.495325124600216e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SiFi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fi",
+     "row_index": 22,
+     "slot_id": "T1-I2",
+     "step": 2,
+     "terrain": "Si-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999192347,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": true,
+    "self_null": 1.1780792818350643e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SiFe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fe",
+     "row_index": 23,
+     "slot_id": "T1-I2",
+     "step": 2,
+     "terrain": "Si-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999381313,
+    "nonzero_terms": 19,
+    "operator_sensitive_context": true,
+    "self_null": 7.398651261397293e-06,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TiNi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Ti",
+     "row_index": 24,
+     "slot_id": "T1-I3",
+     "step": 3,
+     "terrain": "Ni-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999148207,
+    "nonzero_terms": 24,
+    "operator_sensitive_context": true,
+    "self_null": 4.634014090407057e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TeNi",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "inner_inductive",
+     "operator": "Te",
+     "row_index": 25,
+     "slot_id": "T1-I3",
+     "step": 3,
+     "terrain": "Ni-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998890358,
+    "nonzero_terms": 16,
+    "operator_sensitive_context": true,
+    "self_null": 2.0371812339025662e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FiNi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fi",
+     "row_index": 26,
+     "slot_id": "T1-I3",
+     "step": 3,
+     "terrain": "Ni-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999208556,
+    "nonzero_terms": 18,
+    "operator_sensitive_context": true,
+    "self_null": 2.4977174709227593e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FeNi",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fe",
+     "row_index": 27,
+     "slot_id": "T1-I3",
+     "step": 3,
+     "terrain": "Ni-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998256778,
+    "nonzero_terms": 29,
+    "operator_sensitive_context": true,
+    "self_null": 0.00020271312061495572,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TiNe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Ti",
+     "row_index": 28,
+     "slot_id": "T1-I4",
+     "step": 4,
+     "terrain": "Ne-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999995216383,
+    "nonzero_terms": 22,
+    "operator_sensitive_context": true,
+    "self_null": 7.836425084189178e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TeNe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Te",
+     "row_index": 29,
+     "slot_id": "T1-I4",
+     "step": 4,
+     "terrain": "Ne-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998716875,
+    "nonzero_terms": 29,
+    "operator_sensitive_context": true,
+    "self_null": 0.00020757256429133067,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FiNe",
+     "engine": "Type1_left",
+     "is_source_canonical": true,
+     "loop": "inner_inductive",
+     "operator": "Fi",
+     "row_index": 30,
+     "slot_id": "T1-I4",
+     "step": 4,
+     "terrain": "Ne-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999997572834,
+    "nonzero_terms": 29,
+    "operator_sensitive_context": true,
+    "self_null": 0.00020045819765344687,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FeNe",
+     "engine": "Type1_left",
+     "is_source_canonical": false,
+     "loop": "inner_inductive",
+     "operator": "Fe",
+     "row_index": 31,
+     "slot_id": "T1-I4",
+     "step": 4,
+     "terrain": "Ne-in"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998308523,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": false,
+    "self_null": 2.508183459657285e-06,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TiSe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Ti",
+     "row_index": 32,
+     "slot_id": "T2-O1",
+     "step": 1,
+     "terrain": "Se-out"
+    }
+   },
+   {
+    "heldout_r2": 0.999999999934872,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": false,
+    "self_null": 1.3412839960768315e-06,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TeSe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Te",
+     "row_index": 33,
+     "slot_id": "T2-O1",
+     "step": 1,
+     "terrain": "Se-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999355396,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": false,
+    "self_null": 6.951699577627105e-07,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FiSe",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "outer_inductive",
+     "operator": "Fi",
+     "row_index": 34,
+     "slot_id": "T2-O1",
+     "step": 1,
+     "terrain": "Se-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999360546,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": false,
+    "self_null": 1.1943418258009647e-06,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FeSe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fe",
+     "row_index": 35,
+     "slot_id": "T2-O1",
+     "step": 1,
+     "terrain": "Se-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999997899268,
+    "nonzero_terms": 22,
+    "operator_sensitive_context": false,
+    "self_null": 1.298993369267277e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TiSi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Ti",
+     "row_index": 36,
+     "slot_id": "T2-O2",
+     "step": 2,
+     "terrain": "Si-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999406612,
+    "nonzero_terms": 21,
+    "operator_sensitive_context": false,
+    "self_null": 1.2749933450825454e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TeSi",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "outer_inductive",
+     "operator": "Te",
+     "row_index": 37,
+     "slot_id": "T2-O2",
+     "step": 2,
+     "terrain": "Si-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998706776,
+    "nonzero_terms": 18,
+    "operator_sensitive_context": false,
+    "self_null": 9.600734223318569e-06,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FiSi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fi",
+     "row_index": 38,
+     "slot_id": "T2-O2",
+     "step": 2,
+     "terrain": "Si-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998862856,
+    "nonzero_terms": 17,
+    "operator_sensitive_context": false,
+    "self_null": 3.582884501590148e-06,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FeSi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fe",
+     "row_index": 39,
+     "slot_id": "T2-O2",
+     "step": 2,
+     "terrain": "Si-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999412813,
+    "nonzero_terms": 15,
+    "operator_sensitive_context": false,
+    "self_null": 1.581674051010579e-05,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NiTi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Ti",
+     "row_index": 40,
+     "slot_id": "T2-O3",
+     "step": 3,
+     "terrain": "Ni-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999461422,
+    "nonzero_terms": 18,
+    "operator_sensitive_context": false,
+    "self_null": 2.31872873603251e-05,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NiTe",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "outer_inductive",
+     "operator": "Te",
+     "row_index": 41,
+     "slot_id": "T2-O3",
+     "step": 3,
+     "terrain": "Ni-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999231054,
+    "nonzero_terms": 17,
+    "operator_sensitive_context": false,
+    "self_null": 0.28519655990782455,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NiFi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fi",
+     "row_index": 42,
+     "slot_id": "T2-O3",
+     "step": 3,
+     "terrain": "Ni-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999325233,
+    "nonzero_terms": 16,
+    "operator_sensitive_context": false,
+    "self_null": 8.701909957011966e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NiFe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fe",
+     "row_index": 43,
+     "slot_id": "T2-O3",
+     "step": 3,
+     "terrain": "Ni-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9994011717584742,
+    "nonzero_terms": 12,
+    "operator_sensitive_context": true,
+    "self_null": 0.005215210843745587,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NeTi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Ti",
+     "row_index": 44,
+     "slot_id": "T2-O4",
+     "step": 4,
+     "terrain": "Ne-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999995567354,
+    "nonzero_terms": 17,
+    "operator_sensitive_context": true,
+    "self_null": 0.000513486848772532,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NeTe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Te",
+     "row_index": 45,
+     "slot_id": "T2-O4",
+     "step": 4,
+     "terrain": "Ne-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999995777237,
+    "nonzero_terms": 24,
+    "operator_sensitive_context": true,
+    "self_null": 0.000746554158644483,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NeFi",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "outer_inductive",
+     "operator": "Fi",
+     "row_index": 46,
+     "slot_id": "T2-O4",
+     "step": 4,
+     "terrain": "Ne-out"
+    }
+   },
+   {
+    "heldout_r2": 0.999999999847061,
+    "nonzero_terms": 20,
+    "operator_sensitive_context": true,
+    "self_null": 5.4235889860178956e-05,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "NeFe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "outer_inductive",
+     "operator": "Fe",
+     "row_index": 47,
+     "slot_id": "T2-O4",
+     "step": 4,
+     "terrain": "Ne-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999167816,
+    "nonzero_terms": 12,
+    "operator_sensitive_context": true,
+    "self_null": 2.1377144778287122e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SeTi",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "inner_deductive",
+     "operator": "Ti",
+     "row_index": 48,
+     "slot_id": "T2-I1",
+     "step": 1,
+     "terrain": "Se-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999167918,
+    "nonzero_terms": 10,
+    "operator_sensitive_context": true,
+    "self_null": 3.911244742682965e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SeTe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Te",
+     "row_index": 49,
+     "slot_id": "T2-I1",
+     "step": 1,
+     "terrain": "Se-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999321876,
+    "nonzero_terms": 9,
+    "operator_sensitive_context": true,
+    "self_null": 1.3024366616333428e-07,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SeFi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fi",
+     "row_index": 50,
+     "slot_id": "T2-I1",
+     "step": 1,
+     "terrain": "Se-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999381776,
+    "nonzero_terms": 8,
+    "operator_sensitive_context": true,
+    "self_null": 1.6232541560151512e-06,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SeFe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fe",
+     "row_index": 51,
+     "slot_id": "T2-I1",
+     "step": 1,
+     "terrain": "Se-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998516569,
+    "nonzero_terms": 18,
+    "operator_sensitive_context": false,
+    "self_null": 3.0463609889144036e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TiNe",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "inner_deductive",
+     "operator": "Ti",
+     "row_index": 52,
+     "slot_id": "T2-I2",
+     "step": 2,
+     "terrain": "Ne-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999122468,
+    "nonzero_terms": 20,
+    "operator_sensitive_context": false,
+    "self_null": 3.148585597418355e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TeNe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Te",
+     "row_index": 53,
+     "slot_id": "T2-I2",
+     "step": 2,
+     "terrain": "Ne-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999545629,
+    "nonzero_terms": 18,
+    "operator_sensitive_context": false,
+    "self_null": 3.105560887478827e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FiNe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fi",
+     "row_index": 54,
+     "slot_id": "T2-I2",
+     "step": 2,
+     "terrain": "Ne-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998668995,
+    "nonzero_terms": 16,
+    "operator_sensitive_context": false,
+    "self_null": 4.714487759138582e-06,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FeNe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fe",
+     "row_index": 55,
+     "slot_id": "T2-I2",
+     "step": 2,
+     "terrain": "Ne-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999264387,
+    "nonzero_terms": 17,
+    "operator_sensitive_context": false,
+    "self_null": 0.00023022297295868056,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TiNi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Ti",
+     "row_index": 56,
+     "slot_id": "T2-I3",
+     "step": 3,
+     "terrain": "Ni-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999174835,
+    "nonzero_terms": 17,
+    "operator_sensitive_context": false,
+    "self_null": 0.00015879949412580862,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "TeNi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Te",
+     "row_index": 57,
+     "slot_id": "T2-I3",
+     "step": 3,
+     "terrain": "Ni-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999268719,
+    "nonzero_terms": 16,
+    "operator_sensitive_context": false,
+    "self_null": 3.547954838133395e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FiNi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fi",
+     "row_index": 58,
+     "slot_id": "T2-I3",
+     "step": 3,
+     "terrain": "Ni-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999254608,
+    "nonzero_terms": 18,
+    "operator_sensitive_context": false,
+    "self_null": 2.017432352950542e-05,
+    "slot": {
+     "axis6_sign": "up",
+     "candidate_word": "FeNi",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "inner_deductive",
+     "operator": "Fe",
+     "row_index": 59,
+     "slot_id": "T2-I3",
+     "step": 3,
+     "terrain": "Ni-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998308226,
+    "nonzero_terms": 26,
+    "operator_sensitive_context": true,
+    "self_null": 0.0008817968803913278,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SiTi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Ti",
+     "row_index": 60,
+     "slot_id": "T2-I4",
+     "step": 4,
+     "terrain": "Si-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999998306851,
+    "nonzero_terms": 27,
+    "operator_sensitive_context": true,
+    "self_null": 0.0020050442584689672,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SiTe",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Te",
+     "row_index": 61,
+     "slot_id": "T2-I4",
+     "step": 4,
+     "terrain": "Si-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999999242669,
+    "nonzero_terms": 29,
+    "operator_sensitive_context": true,
+    "self_null": 0.0005224752245475436,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SiFi",
+     "engine": "Type2_right",
+     "is_source_canonical": false,
+     "loop": "inner_deductive",
+     "operator": "Fi",
+     "row_index": 62,
+     "slot_id": "T2-I4",
+     "step": 4,
+     "terrain": "Si-out"
+    }
+   },
+   {
+    "heldout_r2": 0.9999999996197291,
+    "nonzero_terms": 21,
+    "operator_sensitive_context": true,
+    "self_null": 0.0003309057703205103,
+    "slot": {
+     "axis6_sign": "down",
+     "candidate_word": "SiFe",
+     "engine": "Type2_right",
+     "is_source_canonical": true,
+     "loop": "inner_deductive",
+     "operator": "Fe",
+     "row_index": 63,
+     "slot_id": "T2-I4",
+     "step": 4,
+     "terrain": "Si-out"
+    }
+   }
+  ],
+  "total_pair_cells": 2016,
+  "total_slots": 64
+ },
+ "task_b_t1_reseed_robustness": {
+  "fraction_exceeds_band": 0.9,
+  "instrument_valid_all_reseeds": true,
+  "ratio_max": 4.476301879923961,
+  "ratio_median": 1.8116941740997043,
+  "ratio_min": 0.5963522302223285,
+  "seeds": [
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 2.6365545002797246,
+    "min_segment_r2": 0.9999999985858984,
+    "seed": 0,
+    "unordered_distance": 0.0017303281332387323,
+    "unordered_self_null_band": 0.0006562838481264672
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 1.4412011053732379,
+    "min_segment_r2": 0.999999998366638,
+    "seed": 1,
+    "unordered_distance": 0.002362492953383757,
+    "unordered_self_null_band": 0.0016392528041892708
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 1.3332636604234709,
+    "min_segment_r2": 0.9999999984601603,
+    "seed": 2,
+    "unordered_distance": 0.00454587939548813,
+    "unordered_self_null_band": 0.0034095877135391726
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 1.3934451821609866,
+    "min_segment_r2": 0.9999999984187741,
+    "seed": 3,
+    "unordered_distance": 0.0021636272710390037,
+    "unordered_self_null_band": 0.0015527178957148505
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 1.9404596848158189,
+    "min_segment_r2": 0.9999999986251181,
+    "seed": 4,
+    "unordered_distance": 0.0032569859340767994,
+    "unordered_self_null_band": 0.001678461015996805
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": false,
+    "margin_over_band_ratio": 0.5963522302223285,
+    "min_segment_r2": 0.9999999984758321,
+    "seed": 5,
+    "unordered_distance": 0.0029393649545441506,
+    "unordered_self_null_band": 0.004928907457004586
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": false,
+    "margin_over_band_ratio": 0.9548705080604627,
+    "min_segment_r2": 0.9999999986180962,
+    "seed": 6,
+    "unordered_distance": 0.0024170308174276457,
+    "unordered_self_null_band": 0.0025312655454582315
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 1.012660725881018,
+    "min_segment_r2": 0.9999999984474196,
+    "seed": 7,
+    "unordered_distance": 0.004223852935469714,
+    "unordered_self_null_band": 0.0041710444846125025
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 1.6696216685002787,
+    "min_segment_r2": 0.9999999986236833,
+    "seed": 8,
+    "unordered_distance": 0.002101144675918491,
+    "unordered_self_null_band": 0.0012584555624543514
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 3.3799667560477413,
+    "min_segment_r2": 0.9999999986640337,
+    "seed": 9,
+    "unordered_distance": 0.0027602708015112038,
+    "unordered_self_null_band": 0.000816656198340495
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 1.6829286633835898,
+    "min_segment_r2": 0.9999999983735325,
+    "seed": 10,
+    "unordered_distance": 0.002547980523454189,
+    "unordered_self_null_band": 0.0015140157624574416
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 3.059901322825192,
+    "min_segment_r2": 0.9999999984354663,
+    "seed": 11,
+    "unordered_distance": 0.0022009955502062034,
+    "unordered_self_null_band": 0.0007193027872461047
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 3.004597085835611,
+    "min_segment_r2": 0.9999999985913123,
+    "seed": 12,
+    "unordered_distance": 0.002007754810793038,
+    "unordered_self_null_band": 0.0006682276369960132
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 3.2581495987209643,
+    "min_segment_r2": 0.9999999987426246,
+    "seed": 13,
+    "unordered_distance": 0.002993869060044707,
+    "unordered_self_null_band": 0.0009188863093395084
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 4.171243652187972,
+    "min_segment_r2": 0.9999999985050199,
+    "seed": 14,
+    "unordered_distance": 0.0029417811451131286,
+    "unordered_self_null_band": 0.0007052527712137016
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 1.5137476775851855,
+    "min_segment_r2": 0.999999998586016,
+    "seed": 15,
+    "unordered_distance": 0.002252569525989516,
+    "unordered_self_null_band": 0.001488074637103946
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 4.476301879923961,
+    "min_segment_r2": 0.9999999987076226,
+    "seed": 16,
+    "unordered_distance": 0.002739822887191808,
+    "unordered_self_null_band": 0.0006120728585084503
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 1.4406403959107659,
+    "min_segment_r2": 0.9999999985566985,
+    "seed": 17,
+    "unordered_distance": 0.002404787060310153,
+    "unordered_self_null_band": 0.001669248666867944
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 4.085374566967645,
+    "min_segment_r2": 0.9999999985350709,
+    "seed": 18,
+    "unordered_distance": 0.0026517913148008504,
+    "unordered_self_null_band": 0.0006490938031097435
+   },
+   {
+    "best_match_positions_outer": [
+     1,
+     4,
+     3,
+     2
+    ],
+    "exceeds_band": true,
+    "margin_over_band_ratio": 2.5008781554944526,
+    "min_segment_r2": 0.9999999984296396,
+    "seed": 19,
+    "unordered_distance": 0.0031967984862066342,
+    "unordered_self_null_band": 0.0012782703864173623
+   }
+  ],
+  "verdict": "content-carried-robust"
+ },
+ "tool_integration_depth": {
+  "json": "supportive",
+  "numpy": "supportive",
+  "pysindy": "load_bearing",
+  "scipy": "supportive"
+ },
+ "tool_manifest": {
+  "json": "supportive source/result serialization",
+  "numpy": "supportive: density matrices, probe draws, coefficient distances, reseed statistics",
+  "pysindy": "load_bearing: per-slot/per-loop switched sparse dynamics ID and held-out derivative R2 gate",
+  "scipy.linalg": "supportive through imported switched-SINDy instrument operators"
+ }
+}

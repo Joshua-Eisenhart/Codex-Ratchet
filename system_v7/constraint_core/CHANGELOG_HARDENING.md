@@ -1159,3 +1159,10 @@ UP-104/105 64/64 WITHDRAWN + substage architecture discriminated -- (104) engine
                cycle + enclose ORIENTED net work + effective substages): engine-like={A 4-ops-at-casing, C
                4-loop-terrains}; B piston/lever lattice FAILS oriented-work (0/6 seeds). Discriminated, not picked.
                110 GREEN.
+
+UP-106 downstream dominance-window discriminator -- answers the tournament's handed-back question. Re-id does NOT
+               separate canonical-only (B/D) from dominant-with-subordinates (C): 16/16 all alpha. OBJECT FORMATION is
+               the separator, with a TWO-SIDED window: matches canonical (14 objects) only for alpha in [0.10,0.30],
+               over-resolves (15) at 0.05, under-resolves (12) at >=0.40. Downstream-safe window is STRICTER than
+               stage-identity window. Independently reproduced the parallel run's dominance window on our instruments.
+               111 GREEN.

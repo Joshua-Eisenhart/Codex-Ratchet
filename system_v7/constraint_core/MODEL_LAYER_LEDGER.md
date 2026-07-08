@@ -2213,3 +2213,26 @@ seeds even when implemented as a faithful uniform 8-substage lattice) -- the pis
 NOT by itself produce oriented cyclic work. So the two architectures that behave like real engine cycles are the
 4-operators-at-casing (A) and the 4-loop-terrains (C); the piston/lever lattice (B) is not the engine cycle. This is a
 DISCRIMINATED result, not a picked one. scratch_diagnostic, promotion_allowed=false. Harness 110 GREEN.
+
+## UP-106 -- DOWNSTREAM discriminator: dominance window is TWO-SIDED at object formation (2026-07-08)
+
+The substage tournament (UP-105 this side; the parallel v7 run independently) left three live readings of a stage: B
+(select-1 canonical), D (parallel-branch, observationally = B at loop output), C-in-window (all four operators run,
+canonical dominant, subordinates at attenuation alpha). The parallel run measured a DOMINANCE WINDOW on stage identity
+(subordinates tolerated to ~half strength alpha<=0.5, equality=pathology) -- INDEPENDENTLY REPRODUCED here on our own
+instruments (min-pairwise stage distinctness 0.1385 canonical -> 0.0453 at alpha=1.0, ~3.1x degradation; monotone). It
+handed back one question: does anything DOWNSTREAM distinguish canonical-only (B/D) from dominant-with-subordinates (C)?
+
+ANSWER (downstream_dominance_window_discriminator_sim, artifact 49625942): sweep alpha, score on 3 real instruments.
+ - RE-IDENTIFICATION (UP-100 full-affine): does NOT discriminate -- 16/16 for every alpha in window. The full-affine
+   signature is robust to in-window subordinates, so re-id is blind to the B/D-vs-C fork.
+ - STAGE IDENTITY: degrades monotonically with alpha (the parallel run's one-sided window).
+ - OBJECT FORMATION: THE separator, and it reveals a genuine TWO-SIDED window. Object count matches canonical (14)
+   only for alpha in [0.10, 0.30]; at alpha=0.05 subordinates too weak -> OVER-resolves (15 objects); at alpha>=0.40 too
+   strong -> UNDER-resolves (12, pairs blur). Diverges on BOTH sides = a real discriminator, not a rubber stamp.
+
+CONCLUSION: the downstream-safe window (alpha in [0.10,0.30]) is STRICTER than the stage-identity window (alpha<=0.5) --
+object formation closes it from both ends. B/D and C-in-window are observationally equivalent ONLY inside [0.10,0.30];
+outside, C is downstream-distinguishable and worse. So "canonical-only" and "dominant-with-subordinates" are the SAME
+engine downstream precisely when subordinates sit in [0.10,0.30] of canonical strength -- the dominance-not-exclusivity
+doctrine given a measured two-sided boundary. No reading crowned. scratch_diagnostic. Harness 111 GREEN.

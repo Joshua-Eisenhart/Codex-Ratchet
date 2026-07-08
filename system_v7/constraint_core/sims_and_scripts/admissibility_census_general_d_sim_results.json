@@ -1,0 +1,443 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "numpy": "None",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "numpy": {
+      "reason": "not needed; no floating tolerance used",
+      "tried": false,
+      "used": false
+    },
+    "sympy": {
+      "reason": "load-bearing exact rational generated-algebra rank and commutant nullity",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing QF_LRA UNSAT certificates that each exact generated-algebra basis is linearly independent",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "d2_sanity": {
+    "admitted_pair_count": 2,
+    "admitted_pairs": [
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "X",
+        "dissipative_kind": "dephase",
+        "generated_algebra_dimension": 4,
+        "hamiltonian_axis": "Z"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "Z",
+        "dissipative_kind": "dephase",
+        "generated_algebra_dimension": 4,
+        "hamiltonian_axis": "X"
+      }
+    ],
+    "native_operators_per_terrain": 2,
+    "reproduces_admissibility_two_operator_sim": true,
+    "stage_count": 16,
+    "stage_count_note": "8 terrain/sign placements x 2 native operators; the algebraic d=2 pair census has 2 surviving dephasing/Hamiltonian pairs.",
+    "terrain_slots": 8
+  },
+  "d4_census": {
+    "admitted_count_by_dissipative_kind": {
+      "lowering": 16
+    },
+    "admitted_pair_count": 16,
+    "admitted_pairs": [
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "XX",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "IZ"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "XX",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "XZ"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "XX",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "ZI"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "XX",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "ZX"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "XZ",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "IX"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "XZ",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "XX"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "XZ",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "ZI"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "XZ",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "ZZ"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "ZX",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "IZ"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "ZX",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "XI"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "ZX",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "XX"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "ZX",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "ZZ"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "ZZ",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "IX"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "ZZ",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "XI"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "ZZ",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "XZ"
+      },
+      {
+        "commutant_dimension": 1,
+        "dissipative_axis": "ZZ",
+        "dissipative_kind": "lowering",
+        "generated_algebra_dimension": 16,
+        "hamiltonian_axis": "ZX"
+      }
+    ],
+    "all_z3_rank_certificates_independent": true,
+    "axis_family": [
+      "IX",
+      "IZ",
+      "XI",
+      "XX",
+      "XZ",
+      "ZI",
+      "ZX",
+      "ZZ"
+    ],
+    "candidate_pair_count": 128,
+    "dissipative_kinds": [
+      "dephase",
+      "lowering"
+    ],
+    "exclusion_counts": {
+      "dephasing_pauli_string_pair_generates_proper_pauli_subalgebra": 64,
+      "full_support_lowering_but_hamiltonian_axis_commutes_even_parity": 16,
+      "lowering_axis_has_partial_support_tensor_factor_trap": 32
+    },
+    "generated_algebra_dimension_histogram": {
+      "16": 16,
+      "2": 8,
+      "4": 64,
+      "5": 4,
+      "6": 12,
+      "8": 24
+    },
+    "hilbert_dimension": 4,
+    "n_qubits": 2,
+    "unitary_kinds": [
+      "hamiltonian_pauli_axis"
+    ]
+  },
+  "d4_controls": {
+    "all_z3_rank_certificates_independent": true,
+    "commuting_pair_spot_check": {
+      "commutant_dimension": 8,
+      "exclusion_reason": "dephasing_pauli_string_pair_generates_proper_pauli_subalgebra",
+      "generated_algebra_dimension": 2,
+      "pair": {
+        "dissipative_axis": "ZZ",
+        "dissipative_kind": "dephase",
+        "hamiltonian_axis": "ZZ"
+      },
+      "pauli_axes_anticommute": false,
+      "reducible": true
+    }
+  },
+  "differential_verdict": {
+    "count_verdict": "naive_scaling_holds",
+    "d2_admitted_pair_count": 2,
+    "d4_admitted_pair_count": 16,
+    "d4_axis_count": 8,
+    "honest_summary": "The admitted count equals the naive 8x2 scaling under this premise, but the d=4 candidate pool is not a trivial lift: dephasing pairs never reach M4, partial-support lowerings remain tensor-factor reducible, and full-support lowerings require odd X/Z symplectic parity with the Hamiltonian.",
+    "literature_check_nontrivial_count": false,
+    "naive_d4_count": 16,
+    "structural_exclusion_verdict": "new_subalgebra_traps_present",
+    "structural_exclusions": {
+      "commuting_even_parity_traps": 16,
+      "dephasing_subalgebra_traps": 64,
+      "partial_support_traps": 32
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-08T04:53:49.395570+00:00",
+  "involution_orbits": {
+    "admitted_pair_orbits": {
+      "orbit_class_count": 2,
+      "orbit_sizes": [
+        8,
+        8
+      ],
+      "orbits": [
+        [
+          {
+            "dissipative_axis": "XX",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "IZ"
+          },
+          {
+            "dissipative_axis": "XX",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "ZI"
+          },
+          {
+            "dissipative_axis": "XZ",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "IX"
+          },
+          {
+            "dissipative_axis": "XZ",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "ZI"
+          },
+          {
+            "dissipative_axis": "ZX",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "IZ"
+          },
+          {
+            "dissipative_axis": "ZX",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "XI"
+          },
+          {
+            "dissipative_axis": "ZZ",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "IX"
+          },
+          {
+            "dissipative_axis": "ZZ",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "XI"
+          }
+        ],
+        [
+          {
+            "dissipative_axis": "XX",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "XZ"
+          },
+          {
+            "dissipative_axis": "XX",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "ZX"
+          },
+          {
+            "dissipative_axis": "XZ",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "XX"
+          },
+          {
+            "dissipative_axis": "XZ",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "ZZ"
+          },
+          {
+            "dissipative_axis": "ZX",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "XX"
+          },
+          {
+            "dissipative_axis": "ZX",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "ZZ"
+          },
+          {
+            "dissipative_axis": "ZZ",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "XZ"
+          },
+          {
+            "dissipative_axis": "ZZ",
+            "dissipative_kind": "lowering",
+            "hamiltonian_axis": "ZX"
+          }
+        ]
+      ]
+    },
+    "normalizing_involutions": {
+      "involution_count_including_identity": 6,
+      "involutions": [
+        {
+          "axis_map": {
+            "IX": "IX",
+            "IZ": "IZ",
+            "XI": "ZI",
+            "XX": "ZX",
+            "XZ": "ZZ",
+            "ZI": "XI",
+            "ZX": "XX",
+            "ZZ": "XZ"
+          },
+          "name": "H_q0",
+          "nontrivial": true
+        },
+        {
+          "axis_map": {
+            "IX": "IZ",
+            "IZ": "IX",
+            "XI": "XI",
+            "XX": "XZ",
+            "XZ": "XX",
+            "ZI": "ZI",
+            "ZX": "ZZ",
+            "ZZ": "ZX"
+          },
+          "name": "H_q1",
+          "nontrivial": true
+        },
+        {
+          "axis_map": {
+            "IX": "IZ",
+            "IZ": "IX",
+            "XI": "ZI",
+            "XX": "ZZ",
+            "XZ": "ZX",
+            "ZI": "XI",
+            "ZX": "XZ",
+            "ZZ": "XX"
+          },
+          "name": "H_q1*H_q0",
+          "nontrivial": true
+        },
+        {
+          "axis_map": {
+            "IX": "XI",
+            "IZ": "ZI",
+            "XI": "IX",
+            "XX": "XX",
+            "XZ": "ZX",
+            "ZI": "IZ",
+            "ZX": "XZ",
+            "ZZ": "ZZ"
+          },
+          "name": "SWAP",
+          "nontrivial": true
+        },
+        {
+          "axis_map": {
+            "IX": "ZI",
+            "IZ": "XI",
+            "XI": "IZ",
+            "XX": "ZZ",
+            "XZ": "XZ",
+            "ZI": "IX",
+            "ZX": "ZX",
+            "ZZ": "XX"
+          },
+          "name": "SWAP*H_q1*H_q0",
+          "nontrivial": true
+        },
+        {
+          "axis_map": {
+            "IX": "IX",
+            "IZ": "IZ",
+            "XI": "XI",
+            "XX": "XX",
+            "XZ": "XZ",
+            "ZI": "ZI",
+            "ZX": "ZX",
+            "ZZ": "ZZ"
+          },
+          "name": "I",
+          "nontrivial": false
+        }
+      ],
+      "nontrivial_involution_count": 5,
+      "normalizer_generators": [
+        "H_q0",
+        "H_q1",
+        "SWAP"
+      ],
+      "normalizer_group_size": 8
+    }
+  },
+  "premise": {
+    "admissibility_rule": "admit exactly pairs with one dissipative generator and one unitary Hamiltonian whose FES generated *-algebra <I,L,L^dagger,H> is M_d; equivalently commutant dimension is 1.",
+    "d2_convention_generalized": "admissibility_two_operator_sim.py uses dephasing Lindblad jumps D_z,D_x and Hamiltonians H_x,H_z; the d=4 strengthening keeps the same one-dissipative-plus-one-unitary algebra rule and expands the axis set to nonidentity two-qubit words over {I,X,Z}, adding canonical tensor-product lowering jumps as the extra dissipative branch named in the build card.",
+    "dissipative_generators": {
+      "dephase": "L_P = P for nonidentity P in {I,X,Z}^{tensor n}; FES algebra uses P=P^dagger.",
+      "lowering": "L_a = tensor_j ell_{a_j}, with ell_I=I, ell_Z=|1><0|, ell_X=H ell_Z H; FES algebra uses L_a and L_a^dagger."
+    },
+    "rank_method": "exact SymPy rational rank and commutant nullity; z3 QF_LRA linear-independence UNSAT certificate for every reported generated-algebra basis; no numeric tolerance.",
+    "scope": "finite enumeration theorem for the stated X/Z Pauli-axis generator family only",
+    "unitary_generators": "Hamiltonian H_Q = Q for nonidentity Q in the same X/Z Pauli-axis family."
+  },
+  "promotion_allowed": false,
+  "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/admissibility_census_general_d_sim_results.json",
+  "schema_version": "admissibility_census_general_d_v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/admissibility_census_general_d_sim.py"
+}

@@ -1,0 +1,1562 @@
+{
+  "sim_id": "memory_carrier_belief_basin_sim",
+  "name": "belief basins on a memory-bearing Hopfield/spinor carrier",
+  "version": "1.0",
+  "classification": "scratch_diagnostic",
+  "promotion_status": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "sim_execution_kind": "nonclassical",
+  "sim_class": "memory_carrier_belief_basin_probe",
+  "rng_seed": 0,
+  "rng": "torch.manual_seed(0)",
+  "claim_ceiling": "runs; scratch diagnostic only; no formal admission, bridge, axis, or manifold claim",
+  "source_basis": {
+    "memory_carrier": "quantum_hopfield_memory_sim.py pure-state Hopfield energy on norm-preserving spinor carrier",
+    "spinor_boundary": "spinor_memory_sim.py density-blind phase/history motivates projective distance for visible attractor identity",
+    "audit_fix": "belief_space_basin_map hysteresis was refuted as smoother lag; this run measures tau and reports 1x/3x/10x final dwell"
+  },
+  "parameters": {
+    "n_qubits": 3,
+    "dim": 8,
+    "k_stored_regime_patterns": 4,
+    "k_capacity_edge": 4,
+    "learning_rate": 0.08,
+    "regime_cue_strength": 0.005,
+    "final_regime": 3,
+    "grid_denominator": 4,
+    "smoother_alpha": 0.12
+  },
+  "TOOL_MANIFEST": {
+    "torch": "load-bearing pure-state Hopfield/spinor carrier, autograd energy descent, seeded recomputation controls",
+    "json": "result receipt emission"
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing",
+    "json": "supportive"
+  },
+  "divergence_log": [
+    "linear smoother contrast must collapse long-dwell path distance",
+    "final dwell is measured from carrier relaxation and swept at 1x/3x/10x",
+    "projective distance prevents global spinor phase from masquerading as belief difference",
+    "scrambled-memory control tests original stored-pattern partition, not an unrelated new memory basis"
+  ],
+  "capacity_check": {
+    "verdict": "within_capacity",
+    "k": 4,
+    "capacity_edge": 4,
+    "recall_correct": 12,
+    "recall_total": 12
+  },
+  "timescale_measurement": {
+    "criterion": "first step with intended winner and fidelity >= 0.99 from 60/40 corrupted probes",
+    "rows": [
+      {
+        "pattern": 0,
+        "replicate": 0,
+        "steps_to_fidelity_0_99": 9,
+        "winner": 0,
+        "winner_fidelity": 0.9925826
+      },
+      {
+        "pattern": 0,
+        "replicate": 1,
+        "steps_to_fidelity_0_99": 9,
+        "winner": 0,
+        "winner_fidelity": 0.9917293
+      },
+      {
+        "pattern": 0,
+        "replicate": 2,
+        "steps_to_fidelity_0_99": 8,
+        "winner": 0,
+        "winner_fidelity": 0.99061835
+      },
+      {
+        "pattern": 1,
+        "replicate": 0,
+        "steps_to_fidelity_0_99": 8,
+        "winner": 1,
+        "winner_fidelity": 0.99065328
+      },
+      {
+        "pattern": 1,
+        "replicate": 1,
+        "steps_to_fidelity_0_99": 9,
+        "winner": 1,
+        "winner_fidelity": 0.99328555
+      },
+      {
+        "pattern": 1,
+        "replicate": 2,
+        "steps_to_fidelity_0_99": 7,
+        "winner": 1,
+        "winner_fidelity": 0.99039348
+      },
+      {
+        "pattern": 2,
+        "replicate": 0,
+        "steps_to_fidelity_0_99": 7,
+        "winner": 2,
+        "winner_fidelity": 0.9940522
+      },
+      {
+        "pattern": 2,
+        "replicate": 1,
+        "steps_to_fidelity_0_99": 7,
+        "winner": 2,
+        "winner_fidelity": 0.99346537
+      },
+      {
+        "pattern": 2,
+        "replicate": 2,
+        "steps_to_fidelity_0_99": 10,
+        "winner": 2,
+        "winner_fidelity": 0.99408324
+      },
+      {
+        "pattern": 3,
+        "replicate": 0,
+        "steps_to_fidelity_0_99": 9,
+        "winner": 3,
+        "winner_fidelity": 0.99143326
+      },
+      {
+        "pattern": 3,
+        "replicate": 1,
+        "steps_to_fidelity_0_99": 9,
+        "winner": 3,
+        "winner_fidelity": 0.99273383
+      },
+      {
+        "pattern": 3,
+        "replicate": 2,
+        "steps_to_fidelity_0_99": 8,
+        "winner": 3,
+        "winner_fidelity": 0.99203642
+      }
+    ],
+    "max_relaxation_steps": 10
+  },
+  "dwell_sufficiency": {
+    "carrier_tau_steps": 10,
+    "final_dwell_10x_steps": 100,
+    "passes_audit_minimum": true
+  },
+  "claim_1_stored_regime_attractors": {
+    "stored_patterns": 4,
+    "pattern_orthonormality_max_offdiag_fidelity": 0.0,
+    "verdict": "within_capacity"
+  },
+  "claim_2_hysteresis_honest_long_dwell": {
+    "paths": {
+      "left": [
+        [
+          0,
+          30
+        ],
+        [
+          3,
+          "sweep"
+        ]
+      ],
+      "right": [
+        [
+          1,
+          30
+        ],
+        [
+          3,
+          "sweep"
+        ]
+      ],
+      "same_final_regime": 3
+    },
+    "history_dwell_steps": 30,
+    "dwell_sweep": [
+      {
+        "final_dwell_multiple": 1,
+        "final_dwell_steps": 10,
+        "left_winner": 0,
+        "right_winner": 1,
+        "left_winner_fidelity": 0.99972344,
+        "right_winner_fidelity": 0.99972344,
+        "left_fidelities": [
+          0.999723,
+          3e-06,
+          3e-06,
+          0.00027
+        ],
+        "right_fidelities": [
+          3e-06,
+          0.999723,
+          3e-06,
+          0.00027
+        ],
+        "projective_path_distance": 0.99999269
+      },
+      {
+        "final_dwell_multiple": 3,
+        "final_dwell_steps": 30,
+        "left_winner": 0,
+        "right_winner": 1,
+        "left_winner_fidelity": 0.99975552,
+        "right_winner_fidelity": 0.99975552,
+        "left_fidelities": [
+          0.999756,
+          0.0,
+          0.0,
+          0.000244
+        ],
+        "right_fidelities": [
+          0.0,
+          0.999756,
+          0.0,
+          0.000244
+        ],
+        "projective_path_distance": 0.99999997
+      },
+      {
+        "final_dwell_multiple": 10,
+        "final_dwell_steps": 100,
+        "left_winner": 0,
+        "right_winner": 1,
+        "left_winner_fidelity": 0.99975562,
+        "right_winner_fidelity": 0.99975562,
+        "left_fidelities": [
+          0.999756,
+          0.0,
+          0.0,
+          0.000244
+        ],
+        "right_fidelities": [
+          0.0,
+          0.999756,
+          0.0,
+          0.000244
+        ],
+        "projective_path_distance": 0.99999997
+      }
+    ],
+    "verdict": "multi_stable"
+  },
+  "control_linear_smoother_identical_protocol": {
+    "carrier": "linear_exponential_smoother",
+    "alpha": 0.12,
+    "measured_tau_steps": 34,
+    "identical_protocol_history_dwell_steps": 30,
+    "dwell_sweep": [
+      {
+        "final_dwell_multiple": 1,
+        "final_dwell_steps": 10,
+        "left_argmax": 3,
+        "right_argmax": 3,
+        "l2_path_distance": 0.38535197,
+        "left_state": [
+          0.273989,
+          0.001504,
+          0.001504,
+          0.723003
+        ],
+        "right_state": [
+          0.001504,
+          0.273989,
+          0.001504,
+          0.723003
+        ]
+      },
+      {
+        "final_dwell_multiple": 3,
+        "final_dwell_steps": 30,
+        "left_argmax": 3,
+        "right_argmax": 3,
+        "l2_path_distance": 0.02988898,
+        "left_state": [
+          0.021251,
+          0.000117,
+          0.000117,
+          0.978515
+        ],
+        "right_state": [
+          0.000117,
+          0.021251,
+          0.000117,
+          0.978515
+        ]
+      },
+      {
+        "final_dwell_multiple": 10,
+        "final_dwell_steps": 100,
+        "left_argmax": 3,
+        "right_argmax": 3,
+        "l2_path_distance": 3.88e-06,
+        "left_state": [
+          3e-06,
+          0.0,
+          0.0,
+          0.999997
+        ],
+        "right_state": [
+          0.0,
+          3e-06,
+          0.0,
+          0.999997
+        ]
+      }
+    ],
+    "verdict": "no_long_dwell_path_dependence"
+  },
+  "claim_3_basin_boundaries_fixed_regime": {
+    "label": "original_memory",
+    "fixed_regime": 3,
+    "grid": "simplex coefficients over 4 stored patterns, denominator=4",
+    "grid_points": 35,
+    "counts": {
+      "0": 9,
+      "1": 8,
+      "2": 7,
+      "3": 11
+    },
+    "volumes": {
+      "0": 0.257143,
+      "1": 0.228571,
+      "2": 0.2,
+      "3": 0.314286
+    },
+    "low_confidence_points_fidelity_lt_0_90": 3,
+    "mean_winner_fidelity": 0.95695426,
+    "rows": [
+      {
+        "grid_index": 0,
+        "coefficients": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 1,
+        "coefficients": [
+          0.0,
+          0.0,
+          0.25,
+          0.75
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 2,
+        "coefficients": [
+          0.0,
+          0.0,
+          0.5,
+          0.5
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 3,
+        "coefficients": [
+          0.0,
+          0.0,
+          0.75,
+          0.25
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.999756,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 4,
+        "coefficients": [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.999756,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 5,
+        "coefficients": [
+          0.0,
+          0.25,
+          0.0,
+          0.75
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 6,
+        "coefficients": [
+          0.0,
+          0.25,
+          0.25,
+          0.5
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 7,
+        "coefficients": [
+          0.0,
+          0.25,
+          0.5,
+          0.25
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.999756,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 8,
+        "coefficients": [
+          0.0,
+          0.25,
+          0.75,
+          0.0
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.999756,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 9,
+        "coefficients": [
+          0.0,
+          0.5,
+          0.0,
+          0.5
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 10,
+        "coefficients": [
+          0.0,
+          0.5,
+          0.25,
+          0.25
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.999756,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 11,
+        "coefficients": [
+          0.0,
+          0.5,
+          0.5,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.49950954,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.49951,
+          0.499508,
+          0.000982
+        ]
+      },
+      {
+        "grid_index": 12,
+        "coefficients": [
+          0.0,
+          0.75,
+          0.0,
+          0.25
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.999756,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 13,
+        "coefficients": [
+          0.0,
+          0.75,
+          0.25,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.999756,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 14,
+        "coefficients": [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.999756,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 15,
+        "coefficients": [
+          0.25,
+          0.0,
+          0.0,
+          0.75
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 16,
+        "coefficients": [
+          0.25,
+          0.0,
+          0.25,
+          0.5
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 17,
+        "coefficients": [
+          0.25,
+          0.0,
+          0.5,
+          0.25
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.999756,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 18,
+        "coefficients": [
+          0.25,
+          0.0,
+          0.75,
+          0.0
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.999756,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 19,
+        "coefficients": [
+          0.25,
+          0.25,
+          0.0,
+          0.5
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 20,
+        "coefficients": [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 21,
+        "coefficients": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.999756,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 22,
+        "coefficients": [
+          0.25,
+          0.5,
+          0.0,
+          0.25
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.999756,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 23,
+        "coefficients": [
+          0.25,
+          0.5,
+          0.25,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.999756,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 24,
+        "coefficients": [
+          0.25,
+          0.75,
+          0.0,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.999756,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 25,
+        "coefficients": [
+          0.5,
+          0.0,
+          0.0,
+          0.5
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 1.0,
+        "fidelities_against_original_patterns": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "grid_index": 26,
+        "coefficients": [
+          0.5,
+          0.0,
+          0.25,
+          0.25
+        ],
+        "winner": 0,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.999756,
+          0.0,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 27,
+        "coefficients": [
+          0.5,
+          0.0,
+          0.5,
+          0.0
+        ],
+        "winner": 0,
+        "winner_fidelity_against_original_patterns": 0.49951141,
+        "fidelities_against_original_patterns": [
+          0.499511,
+          0.0,
+          0.499506,
+          0.000982
+        ]
+      },
+      {
+        "grid_index": 28,
+        "coefficients": [
+          0.5,
+          0.25,
+          0.0,
+          0.25
+        ],
+        "winner": 0,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.999756,
+          0.0,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 29,
+        "coefficients": [
+          0.5,
+          0.25,
+          0.25,
+          0.0
+        ],
+        "winner": 0,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.999756,
+          0.0,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 30,
+        "coefficients": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "winner": 0,
+        "winner_fidelity_against_original_patterns": 0.49951024,
+        "fidelities_against_original_patterns": [
+          0.49951,
+          0.499507,
+          0.0,
+          0.000982
+        ]
+      },
+      {
+        "grid_index": 31,
+        "coefficients": [
+          0.75,
+          0.0,
+          0.0,
+          0.25
+        ],
+        "winner": 0,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.999756,
+          0.0,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 32,
+        "coefficients": [
+          0.75,
+          0.0,
+          0.25,
+          0.0
+        ],
+        "winner": 0,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.999756,
+          0.0,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 33,
+        "coefficients": [
+          0.75,
+          0.25,
+          0.0,
+          0.0
+        ],
+        "winner": 0,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.999756,
+          0.0,
+          0.0,
+          0.000244
+        ]
+      },
+      {
+        "grid_index": 34,
+        "coefficients": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "winner": 0,
+        "winner_fidelity_against_original_patterns": 0.99975562,
+        "fidelities_against_original_patterns": [
+          0.999756,
+          0.0,
+          0.0,
+          0.000244
+        ]
+      }
+    ]
+  },
+  "control_memory_erasure_scrambled_patterns": {
+    "label": "scrambled_memory_against_original_labels",
+    "fixed_regime": 3,
+    "grid": "simplex coefficients over 4 stored patterns, denominator=4",
+    "grid_points": 35,
+    "counts": {
+      "0": 0,
+      "1": 16,
+      "2": 12,
+      "3": 7
+    },
+    "volumes": {
+      "0": 0.0,
+      "1": 0.457143,
+      "2": 0.342857,
+      "3": 0.2
+    },
+    "low_confidence_points_fidelity_lt_0_90": 35,
+    "mean_winner_fidelity": 0.26611274,
+    "rows": [
+      {
+        "grid_index": 0,
+        "coefficients": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 0.33556597,
+        "fidelities_against_original_patterns": [
+          0.01344,
+          0.030025,
+          0.037061,
+          0.335566
+        ]
+      },
+      {
+        "grid_index": 1,
+        "coefficients": [
+          0.0,
+          0.0,
+          0.25,
+          0.75
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 0.33556597,
+        "fidelities_against_original_patterns": [
+          0.01344,
+          0.030025,
+          0.037061,
+          0.335566
+        ]
+      },
+      {
+        "grid_index": 2,
+        "coefficients": [
+          0.0,
+          0.0,
+          0.5,
+          0.5
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.15513041,
+        "fidelities_against_original_patterns": [
+          0.074304,
+          0.032845,
+          0.15513,
+          0.125497
+        ]
+      },
+      {
+        "grid_index": 3,
+        "coefficients": [
+          0.0,
+          0.0,
+          0.75,
+          0.25
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.15614845,
+        "fidelities_against_original_patterns": [
+          0.073996,
+          0.032575,
+          0.156148,
+          0.125352
+        ]
+      },
+      {
+        "grid_index": 4,
+        "coefficients": [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.1569776,
+        "fidelities_against_original_patterns": [
+          0.073973,
+          0.032637,
+          0.156978,
+          0.121888
+        ]
+      },
+      {
+        "grid_index": 5,
+        "coefficients": [
+          0.0,
+          0.25,
+          0.0,
+          0.75
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 0.33556597,
+        "fidelities_against_original_patterns": [
+          0.01344,
+          0.030025,
+          0.037061,
+          0.335566
+        ]
+      },
+      {
+        "grid_index": 6,
+        "coefficients": [
+          0.0,
+          0.25,
+          0.25,
+          0.5
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 0.33556597,
+        "fidelities_against_original_patterns": [
+          0.01344,
+          0.030025,
+          0.037061,
+          0.335566
+        ]
+      },
+      {
+        "grid_index": 7,
+        "coefficients": [
+          0.0,
+          0.25,
+          0.5,
+          0.25
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.15519275,
+        "fidelities_against_original_patterns": [
+          0.074282,
+          0.032825,
+          0.155193,
+          0.125527
+        ]
+      },
+      {
+        "grid_index": 8,
+        "coefficients": [
+          0.0,
+          0.25,
+          0.75,
+          0.0
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.15675255,
+        "fidelities_against_original_patterns": [
+          0.073894,
+          0.032515,
+          0.156753,
+          0.124083
+        ]
+      },
+      {
+        "grid_index": 9,
+        "coefficients": [
+          0.0,
+          0.5,
+          0.0,
+          0.5
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 0.33556597,
+        "fidelities_against_original_patterns": [
+          0.01344,
+          0.030025,
+          0.037061,
+          0.335566
+        ]
+      },
+      {
+        "grid_index": 10,
+        "coefficients": [
+          0.0,
+          0.5,
+          0.25,
+          0.25
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30586526,
+        "fidelities_against_original_patterns": [
+          0.145901,
+          0.305865,
+          0.012832,
+          0.061226
+        ]
+      },
+      {
+        "grid_index": 11,
+        "coefficients": [
+          0.0,
+          0.5,
+          0.5,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.38019335,
+        "fidelities_against_original_patterns": [
+          0.02901,
+          0.380193,
+          0.006438,
+          0.040594
+        ]
+      },
+      {
+        "grid_index": 12,
+        "coefficients": [
+          0.0,
+          0.75,
+          0.0,
+          0.25
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30581367,
+        "fidelities_against_original_patterns": [
+          0.145961,
+          0.305814,
+          0.012807,
+          0.061413
+        ]
+      },
+      {
+        "grid_index": 13,
+        "coefficients": [
+          0.0,
+          0.75,
+          0.25,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.38088134,
+        "fidelities_against_original_patterns": [
+          0.029263,
+          0.380881,
+          0.006477,
+          0.039135
+        ]
+      },
+      {
+        "grid_index": 14,
+        "coefficients": [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.3810475,
+        "fidelities_against_original_patterns": [
+          0.029439,
+          0.381047,
+          0.006452,
+          0.038025
+        ]
+      },
+      {
+        "grid_index": 15,
+        "coefficients": [
+          0.25,
+          0.0,
+          0.0,
+          0.75
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 0.33556597,
+        "fidelities_against_original_patterns": [
+          0.01344,
+          0.030025,
+          0.037061,
+          0.335566
+        ]
+      },
+      {
+        "grid_index": 16,
+        "coefficients": [
+          0.25,
+          0.0,
+          0.25,
+          0.5
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.15549929,
+        "fidelities_against_original_patterns": [
+          0.074181,
+          0.032733,
+          0.155499,
+          0.125612
+        ]
+      },
+      {
+        "grid_index": 17,
+        "coefficients": [
+          0.25,
+          0.0,
+          0.5,
+          0.25
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.15628953,
+        "fidelities_against_original_patterns": [
+          0.073963,
+          0.03255,
+          0.15629,
+          0.125186
+        ]
+      },
+      {
+        "grid_index": 18,
+        "coefficients": [
+          0.25,
+          0.0,
+          0.75,
+          0.0
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.15679017,
+        "fidelities_against_original_patterns": [
+          0.074198,
+          0.032893,
+          0.15679,
+          0.119456
+        ]
+      },
+      {
+        "grid_index": 19,
+        "coefficients": [
+          0.25,
+          0.25,
+          0.0,
+          0.5
+        ],
+        "winner": 3,
+        "winner_fidelity_against_original_patterns": 0.33556597,
+        "fidelities_against_original_patterns": [
+          0.01344,
+          0.030025,
+          0.037061,
+          0.335566
+        ]
+      },
+      {
+        "grid_index": 20,
+        "coefficients": [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30602941,
+        "fidelities_against_original_patterns": [
+          0.145612,
+          0.306029,
+          0.012947,
+          0.060176
+        ]
+      },
+      {
+        "grid_index": 21,
+        "coefficients": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30298148,
+        "fidelities_against_original_patterns": [
+          0.145601,
+          0.302981,
+          0.012729,
+          0.05489
+        ]
+      },
+      {
+        "grid_index": 22,
+        "coefficients": [
+          0.25,
+          0.5,
+          0.0,
+          0.25
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30594427,
+        "fidelities_against_original_patterns": [
+          0.145794,
+          0.305944,
+          0.012876,
+          0.060867
+        ]
+      },
+      {
+        "grid_index": 23,
+        "coefficients": [
+          0.25,
+          0.5,
+          0.25,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30481827,
+        "fidelities_against_original_patterns": [
+          0.145162,
+          0.304818,
+          0.013019,
+          0.05603
+        ]
+      },
+      {
+        "grid_index": 24,
+        "coefficients": [
+          0.25,
+          0.75,
+          0.0,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30594608,
+        "fidelities_against_original_patterns": [
+          0.14531,
+          0.305946,
+          0.013049,
+          0.058647
+        ]
+      },
+      {
+        "grid_index": 25,
+        "coefficients": [
+          0.5,
+          0.0,
+          0.0,
+          0.5
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.1558788,
+        "fidelities_against_original_patterns": [
+          0.074067,
+          0.032634,
+          0.155879,
+          0.125546
+        ]
+      },
+      {
+        "grid_index": 26,
+        "coefficients": [
+          0.5,
+          0.0,
+          0.25,
+          0.25
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.15619413,
+        "fidelities_against_original_patterns": [
+          0.073985,
+          0.032567,
+          0.156194,
+          0.125304
+        ]
+      },
+      {
+        "grid_index": 27,
+        "coefficients": [
+          0.5,
+          0.0,
+          0.5,
+          0.0
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.15583492,
+        "fidelities_against_original_patterns": [
+          0.074748,
+          0.033467,
+          0.155835,
+          0.11577
+        ]
+      },
+      {
+        "grid_index": 28,
+        "coefficients": [
+          0.5,
+          0.25,
+          0.0,
+          0.25
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.3060325,
+        "fidelities_against_original_patterns": [
+          0.145599,
+          0.306033,
+          0.012952,
+          0.060126
+        ]
+      },
+      {
+        "grid_index": 29,
+        "coefficients": [
+          0.5,
+          0.25,
+          0.25,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30109808,
+        "fidelities_against_original_patterns": [
+          0.146473,
+          0.301098,
+          0.01228,
+          0.055663
+        ]
+      },
+      {
+        "grid_index": 30,
+        "coefficients": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30492602,
+        "fidelities_against_original_patterns": [
+          0.145152,
+          0.304926,
+          0.013031,
+          0.056169
+        ]
+      },
+      {
+        "grid_index": 31,
+        "coefficients": [
+          0.75,
+          0.0,
+          0.0,
+          0.25
+        ],
+        "winner": 2,
+        "winner_fidelity_against_original_patterns": 0.1555374,
+        "fidelities_against_original_patterns": [
+          0.074169,
+          0.032722,
+          0.155537,
+          0.125615
+        ]
+      },
+      {
+        "grid_index": 32,
+        "coefficients": [
+          0.75,
+          0.0,
+          0.25,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30016445,
+        "fidelities_against_original_patterns": [
+          0.147734,
+          0.300164,
+          0.011762,
+          0.059857
+        ]
+      },
+      {
+        "grid_index": 33,
+        "coefficients": [
+          0.75,
+          0.25,
+          0.0,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30012471,
+        "fidelities_against_original_patterns": [
+          0.147688,
+          0.300125,
+          0.011776,
+          0.059576
+        ]
+      },
+      {
+        "grid_index": 34,
+        "coefficients": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "winner": 1,
+        "winner_fidelity_against_original_patterns": 0.30089168,
+        "fidelities_against_original_patterns": [
+          0.147914,
+          0.300892,
+          0.011751,
+          0.061934
+        ]
+      }
+    ],
+    "destroys_original_partition": true
+  },
+  "control_resampling_nulls": {
+    "replicates": 24,
+    "independent_initial_jitter": "0.98 neutral superposition + 0.02 independent random pure state",
+    "between_path_distance_mean": 0.99999997,
+    "between_path_distance_min": 0.99999997,
+    "within_path_null_mean": 0.000233,
+    "within_path_null_max": 0.00074952,
+    "verdict": "between_exceeds_independent_within_path_null"
+  },
+  "overall": {
+    "verdict": "multi_stable",
+    "allowed_verdict_tokens": [
+      "multi_stable",
+      "single_basin",
+      "capacity_exceeded"
+    ],
+    "exit_policy": "exit 0 for honest verdict mix; exceptions only for broken computation/control invariants"
+  }
+}

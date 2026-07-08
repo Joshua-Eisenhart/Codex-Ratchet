@@ -2159,3 +2159,57 @@ The DIRECTIONAL reading that survives (reported, not a per-stage label test): Ty
 Type-2 loops reduce-the-unknown = FEP's two moves (perception updates belief; flow reduces surprise).
 
 scratch_diagnostic, promotion_allowed=false throughout. Harness 108 GREEN.
+
+## UP-103 -- EPISTEMIC active inference: selecting actions that reduce the unknown (2026-07-08)
+
+The pragmatic (goal-directed) half of active inference already existed (qit_active_inference_planning: min path-integral
+of surprise toward a KNOWN goal prior). UP-103 adds the EPISTEMIC (explore) half -- the engine faces an UNKNOWN hidden
+terrain and selects probe-actions that maximally RESOLVE that unknown. This is FEP's epistemic value / expected
+information gain, in pure QIT (finite belief over the 8-terrain hidden-state set; Shannon/relative entropy only; no
+reward, temperature, or classical probability beyond the belief). Prediction-first loop per the v7 holodeck doctrine
+(model predicts -> readout error corrects -> belief updates -> next action). It uses the known/unknown field (UP-102)
+as the drive: surprise IS the measure of the unknown, and the action that most reduces expected surprise about the
+hidden state is chosen.
+
+Mechanism: belief b over 8 terrains, uniform at start. Action = a probe input state; run one flow-step under the
+(unknown) true terrain, read the output Bloch vector, Bayesian-update b. Epistemic value of an action BEFORE taking it
+= I(terrain; readout | b) = H(b) - E_readout[H(b|readout)] (expected information gain, Monte-Carlo over b). Greedy
+policy picks the max-info-gain action each tick.
+
+Three gated claims (cap 16 ticks, 3 seeds/terrain averaged): (1) the epistemic policy resolves all 8 hidden terrains
+(mean 8.88 ticks, correct MAP each); (2) it beats a random-action policy (8.88 vs 10.83 ticks -- and the margin GROWS
+when uncensored, 0.76 at cap-8 -> 1.96 at cap-16, so it is a real advantage compressed by the cap, not a cap artifact);
+(3) CONTROL -- an uninformative low-info probe (all terrains map near-identically) leaves belief entropy 1.33 bits, the
+unknown NOT resolved (if it collapsed anyway, information gain would be vacuous). Runtime: the action->readout map is
+deterministic per (terrain,action), precomputed once, so belief updates + info-gain are pure array math (60s+ timeout
+-> 2.8s, identical result). scratch_diagnostic, promotion_allowed=false. Harness 109 GREEN.
+
+## UP-104/105 -- 64/64 overclaim WITHDRAWN + substage architecture DISCRIMINATED (2026-07-08)
+
+Triggered by the owner's audit ("how can a stage run without all 4 strokes? seems we mass hallucinated") and the
+Carnot/Szilard structural questions. Two corrections, both fixed in CODE not prose:
+
+UP-104 engine_64_schedule_sim CORRECTED (artifact 2c23e04d). The old sim claimed the N01 order-sensitive readout
+"lifts uniqueness to 64/64". That counted distinct output signatures across 64 (engine,terrain,flux,operator) slots --
+distinct BY CONSTRUCTION because each slot has a different terrain/operator (the 1984 excluded_trivial cells v7's
+slot64 probe correctly removes). WITHDRAWN in code + harness gate. The sim now computes and gates on the honest fields:
+(1) order-blind coarse readout collapses 64->11 (kept, honest failure by design); (2) matched-content
+order-carriedness -- hold engine+terrain+operator fixed, vary ONLY order (operator-first vs terrain-first) -- 16/16
+order-carried (well-posed N01, WEAKER than full position-uniqueness). 64-slot position-uniqueness stays OPEN with v7's
+named instrument gap (12/32 matched pairs position-unique, 20 untestable). Also: running a stage as a stage shows the
+F-rotation substages do NO entropy work (entropy held constant across Fi/Fe beats) -- "every substage does something"
+is only trivially true (moves the vector), not in the work sense.
+
+UP-105 substage_architecture_discriminator (artifact ce7b2e4a). Carnot AND Szilard each have 4 STROKES per cycle (NOT
+16), and each stroke has 2 CONTROL DOF (piston=continuous volume/flow, lever=discrete reservoir/valve). So the 16-stage
+x 4-substage=64 architecture is the QIT engine's OWN structure, NOT inherited from Carnot/Szilard. Three candidate
+substage architectures built and scored on ONE engine battery, no canon assumed: A=4 operators at fixed casing
+(previously coded), B=uniform 2x2 piston x lever lattice (8 substages, Carnot/Szilard control reading), C=substages ARE
+the 4 loop terrains. Battery: S1 closes on a limit cycle (all 3 pass, per-cycle move->0 -- a stage does NOT close from
+an arbitrary start but converges to a closed limit cycle, like Carnot's P-V loop); S2 encloses ORIENTED net work (area
+flips sign under cycle reversal = the Carnot work signature; robust 6/6 random seeds, common projection plane); S3 all
+substages effective (weak). RESULT: engine-like (S1+S2) = {A, C}; B FAILS S2 (area does not flip under reversal, 0/6
+seeds even when implemented as a faithful uniform 8-substage lattice) -- the piston/lever control decomposition does
+NOT by itself produce oriented cyclic work. So the two architectures that behave like real engine cycles are the
+4-operators-at-casing (A) and the 4-loop-terrains (C); the piston/lever lattice (B) is not the engine cycle. This is a
+DISCRIMINATED result, not a picked one. scratch_diagnostic, promotion_allowed=false. Harness 110 GREEN.

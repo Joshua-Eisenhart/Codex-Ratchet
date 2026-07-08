@@ -2025,3 +2025,26 @@ not a hard dependency). Both builds are scratch_diagnostic/promotion_allowed=fal
 CORRECTION (auditor): an earlier draft said "byte-for-byte" (only 7 counts were compared -> overstated) and had a
 tautological two_resolutions check (tested hardcoded literals, reduced to formation_clean); both fixed -- scope
 relabeled to aggregate-count, and the re-id is now read live so the cross-comparison is real. Harness 104 GREEN.
+
+## QIT-FEP SURPRISE STREAM: the FEP lens on the running engine (2026-07-07)
+Directive: see the attractor-basin engine across multiple lenses -- physics, FEP, math foundations, Lev needs, world
+engine, mesh, biochem, evolution, consciousness. This adds the FEP LENS as running mechanics -- the per-tick surprise
+stream Lev's G3 gate consumes (the seam the parallel Lev-side run just wired: cr_qit_bridge_stream_v0).
+
+qit_fep_surprise_stream_sim.py (artifact 5845a80b) emits surprise_bits = S(observation||belief), the Umegaki quantum
+relative entropy in bits -- pure QIT, NO temperature/energy/-log p. It is the TIME-SERIES companion to the bundle's
+two static FEP sims (qit_fep_ratchet = the perceptual functional forced from F01 by distinguishability;
+qit_active_inference_planning = the path-integral active half). Neither emits the per-tick stream; this one does.
+
+SIGNATURE (matches QIT_LEV_BRIDGE_SPEC predictable ~0.006 / spike ~1.5 / decay): a regime runs (terrain 0, damp -> +z),
+belief tracks it, surprise decays to ~0.002 bits; at the switch tick the regime changes (terrain 2, damp -> -z),
+surprise SPIKES to 2.51 bits; belief relearns, surprise decays to ~0.
+
+TWO FALSIFIABLE CONTROLS (both fail when they should): (1) belief FROZEN at the switch (learned regime A, then
+frozen) cannot relearn -> tail stays high at 5.35 bits; learning beats frozen ~25000x. (2) NO regime switch -> no
+spike at the switch tick (0.0). A control-bug found during build (regime B had the same maximally-mixed fixed point
+as the frozen belief, so surprise fell to 0 regardless) was fixed in the CONTROL MATH -- use a regime B with a
+distinct non-mixed fixed point and freeze belief AT the switch after learning A -- never by relaxing the gate.
+
+scratch_diagnostic, promotion_allowed=false. The FEP lens on the ONE engine, not a new mechanism -- a different way
+to read the same density/entropy mechanics, exactly as the owner framed the QIT-FEP. Harness 105 GREEN.

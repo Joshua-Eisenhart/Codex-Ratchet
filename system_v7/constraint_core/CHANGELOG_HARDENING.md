@@ -1102,3 +1102,11 @@ UP-96 V7 CODEX-RATCHET CROSS-CHECK -- loop this bundle back against the v7 qit e
                a GENUINE two-resolution consistency reading the bundle re-id LIVE (0.6875/16 w/ 3 degenerate pairs)
                against v7's clean 4-loop result. Honest scope: aggregate-count + cardinality, NOT per-slot byte diff
                (v7 exposes only a hash). SKIP-clean if v7 repo absent. Harness 104 GREEN.
+
+UP-97 QIT-FEP SURPRISE STREAM -- the FEP lens on the running engine  qit_fep_surprise_stream_sim.py
+               -- per-tick surprise_bits = S(observation||belief), Umegaki quantum relative entropy (bits), pure QIT
+               no classical/thermal. Time-series companion to the static FEP sims; emits the {tick, belief_bloch,
+               surprise_bits} trace Lev's cr_qit_bridge_stream_v0 evidence port consumes. Signature: predictable
+               ~0.002, regime-shift spike 2.51, relearn decay ~0. Controls: (1) belief frozen at switch -> tail 5.35
+               (learning beats frozen ~25000x); (2) no switch -> no spike. Control-bug fixed in control math not gate.
+               Harness 105 GREEN.

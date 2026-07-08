@@ -1,0 +1,453 @@
+{
+  "sim_id": "fep_known_unknown_basin_sim",
+  "name": "known/unknown as FEP on attractor basin structure",
+  "version": "1.0",
+  "classification": "scratch_diagnostic",
+  "promotion_status": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "sim_execution_kind": "nonclassical",
+  "sim_class": "basin_fep_probe",
+  "rng_seed": 0,
+  "source_sections": {
+    "UP-99B": {
+      "path": "system_v7/constraint_core/sims_and_scripts/win_lose_as_known_unknown_fep_sim.py",
+      "section": "part B method-level result: Type-1 tests the modeled regime; Type-2 explores unmodeled regimes; erased Type-2 control goes to chance",
+      "reuse": "bidirectional-science allocation machinery only; outcome labels are not test referents"
+    },
+    "UP-97": {
+      "path": "system_v7/constraint_core/sims_and_scripts/qit_fep_surprise_stream_sim.py",
+      "section": "Umegaki surprise stream S(observation||belief) in bits",
+      "reuse": "relative-entropy signal and stream partition gates"
+    },
+    "UP-94": {
+      "path": "system_v7/constraint_core/sims_and_scripts/unified_attractor_basin_seven_axes_sim.py",
+      "section": "engine-pair GKSL basin substrate and nested engine schedules",
+      "reuse": "terrain flow, operator precedence, Type1/Type2 engine pair schedules"
+    },
+    "owner_definitions_2026_07_07": {
+      "known": "well-modeled / low expected surprise; belief predicts; occupied basin",
+      "unknown": "high surprise / model-class gap; basin exit or transition"
+    }
+  },
+  "schedule_source": {
+    "path": "system_v7/constraint_core/sims_and_scripts/stage_token_join.json",
+    "type1_tokens": [
+      "TiSe",
+      "NeTi",
+      "NiFe",
+      "FeSi",
+      "SeFi",
+      "SiTe",
+      "TeNi",
+      "FiNe"
+    ],
+    "type2_tokens": [
+      "FiSe",
+      "TeSi",
+      "NiTe",
+      "NeFi",
+      "SeTi",
+      "TiNe",
+      "FeNi",
+      "SiFe"
+    ]
+  },
+  "TOOL_MANIFEST": {
+    "numpy": "density matrices, Bloch readouts, seeded independent controls",
+    "scipy.linalg.expm": "unitary operator maps inside engine stages",
+    "scipy.linalg.logm": "Umegaki relative entropy S(observation||belief)",
+    "stage_token_join.json": "structural schedule token source for engine-pair GKSL stage ordering"
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "numpy": "load_bearing",
+    "scipy.linalg.logm": "load_bearing",
+    "scipy.linalg.expm": "supportive",
+    "stage_token_join.json": "load_bearing"
+  },
+  "divergence_log": [
+    "scratch diagnostic only; no canonical promotion",
+    "controls are independent recomputations, not predicate aliases",
+    "result supports local rerun evidence only"
+  ],
+  "claim_1_basin_known": {
+    "verdict": "basin-partition-holds",
+    "surprise_measure": "Umegaki relative entropy S(observation||belief) in bits",
+    "witness": {
+      "occupied_mean_bits": 0.00173308,
+      "transition_mean_bits": 0.54172645,
+      "transition_minus_occupied_gap_bits": 0.53999338,
+      "pre_occupied_mean_bits": 0.00165975,
+      "late_occupied_mean_bits": 0.00137228,
+      "post_relearn_mean_bits": 0.00184161,
+      "stream_bits": [
+        0.442171,
+        0.029923,
+        0.162929,
+        0.122504,
+        0.22566,
+        0.007968,
+        0.297552,
+        0.130215,
+        0.051231,
+        0.000564,
+        0.01646,
+        0.011936,
+        0.021265,
+        0.000631,
+        0.02918,
+        0.011861,
+        0.004128,
+        4.4e-05,
+        0.001436,
+        0.001031,
+        0.00184,
+        5e-05,
+        0.002591,
+        0.001008,
+        1.323486,
+        0.039731,
+        0.517903,
+        0.27971,
+        0.745566,
+        0.016307,
+        1.197859,
+        0.21325,
+        0.065447,
+        0.002601,
+        0.040516,
+        0.021917,
+        0.060135,
+        0.001275,
+        0.096985,
+        0.016962,
+        0.005798,
+        0.000204,
+        0.003481,
+        0.001814,
+        0.005303,
+        0.0001,
+        0.009133,
+        0.001386,
+        0.000477,
+        1.6e-05,
+        0.000283,
+        0.000145,
+        0.000435,
+        8e-06,
+        0.000772,
+        0.00011
+      ],
+      "tick_roles": [
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "transition",
+        "transition",
+        "transition",
+        "transition",
+        "transition",
+        "transition",
+        "transition",
+        "transition",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "warmup",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied",
+        "occupied"
+      ]
+    },
+    "control_shuffled_tick_labels": {
+      "control_type": "independent_recompute_then_shuffle_partition_labels",
+      "occupied_mean_bits": 0.11506069,
+      "transition_mean_bits": 0.20174363,
+      "transition_minus_occupied_gap_bits": 0.08668294,
+      "destroys_partition": true
+    }
+  },
+  "claim_2_engine_allocation": {
+    "verdict": "allocation-split-holds",
+    "witness": {
+      "type1_loop": {
+        "within_basin_surprise_reduction_rate": 0.02300169,
+        "post_novelty_relearn_rate": 0.02619935,
+        "novelty_spike_bits": 1.31265706,
+        "tail_mean_bits": 0.28127088,
+        "surprise_bits": [
+          0.412329,
+          0.003912,
+          0.297515,
+          0.248064,
+          0.168317,
+          0.008467,
+          0.300874,
+          0.032684,
+          0.010192,
+          0.000213,
+          0.001236,
+          0.001001,
+          0.000743,
+          3e-05,
+          0.001567,
+          0.000122,
+          3.5e-05,
+          1e-06,
+          5e-06,
+          4e-06,
+          3e-06,
+          0.0,
+          6e-06,
+          0.0,
+          1.312657,
+          0.042859,
+          0.566574,
+          0.304174,
+          0.740689,
+          0.016625,
+          1.236991,
+          0.208129,
+          0.682995,
+          0.024492,
+          0.366294,
+          0.201625,
+          0.510707,
+          0.011744,
+          0.80461,
+          0.149474,
+          0.466927,
+          0.017309,
+          0.246832,
+          0.136723,
+          0.360477,
+          0.008283,
+          0.554459,
+          0.107705
+        ]
+      },
+      "type2_loop": {
+        "within_basin_surprise_reduction_rate": 0.01595888,
+        "post_novelty_relearn_rate": 0.0391679,
+        "novelty_spike_bits": 0.90003795,
+        "tail_mean_bits": 0.00040522,
+        "surprise_bits": [
+          0.63783,
+          0.052341,
+          0.031726,
+          0.001444,
+          0.28133,
+          0.007464,
+          0.294219,
+          0.227753,
+          0.137823,
+          0.01162,
+          0.025918,
+          0.001686,
+          0.196773,
+          0.005047,
+          0.204124,
+          0.156869,
+          0.094983,
+          0.007834,
+          0.017505,
+          0.001134,
+          0.137045,
+          0.003397,
+          0.142361,
+          0.108481,
+          0.900038,
+          0.014942,
+          0.37737,
+          0.257862,
+          0.340671,
+          0.010311,
+          0.590138,
+          0.053608,
+          0.030285,
+          0.000415,
+          0.00171,
+          0.001043,
+          0.001442,
+          3.5e-05,
+          0.003073,
+          0.000193,
+          9.1e-05,
+          1e-06,
+          6e-06,
+          4e-06,
+          5e-06,
+          0.0,
+          1.2e-05,
+          1e-06
+        ]
+      },
+      "known_gap_type1_minus_type2": 0.00704281,
+      "novelty_gap_type2_minus_type1": 0.01296855,
+      "split_threshold_bits_per_tick": 0.005,
+      "verdict": "allocation-split-holds"
+    },
+    "control_engine_erasure_same_loop": {
+      "control_type": "both streams recomputed through the same loop and same schedule",
+      "collapsed": true,
+      "metrics": {
+        "type1_loop": {
+          "within_basin_surprise_reduction_rate": 0.02244917,
+          "post_novelty_relearn_rate": 7.189e-05,
+          "novelty_spike_bits": 0.00123308,
+          "tail_mean_bits": 3.496e-05
+        },
+        "type2_loop": {
+          "within_basin_surprise_reduction_rate": 0.02244917,
+          "post_novelty_relearn_rate": 7.189e-05,
+          "novelty_spike_bits": 0.00123308,
+          "tail_mean_bits": 3.496e-05
+        },
+        "known_gap_type1_minus_type2": 0.0,
+        "novelty_gap_type2_minus_type1": 0.0,
+        "split_threshold_bits_per_tick": 0.005,
+        "verdict": "no-split"
+      }
+    }
+  },
+  "claim_3_drive_coupling": {
+    "installed_interpretation": "engine_pair_axes_axis0_bookends_v2_sim.py present; installed a0-front interpretation follows its growth-polarity higher-entropy state versus record/lock lower-entropy state before dynamics.",
+    "verdict": "no-measured-shift",
+    "gradient_initialization": {
+      "growth_vec": [
+        0.09804904,
+        -0.06163082,
+        0.2549275
+      ],
+      "record_vec": [
+        -0.24512259,
+        0.15407706,
+        -0.63731874
+      ],
+      "growth_entropy_bits": 0.942683189255,
+      "record_entropy_bits": 0.609840304716,
+      "a0_front_unfused": [
+        0.387871725249
+      ],
+      "allocation": {
+        "type1_loop": {
+          "within_basin_surprise_reduction_rate": 0.02300169,
+          "post_novelty_relearn_rate": 0.02619935,
+          "novelty_spike_bits": 1.31265706,
+          "tail_mean_bits": 0.28127088
+        },
+        "type2_loop": {
+          "within_basin_surprise_reduction_rate": 0.01595888,
+          "post_novelty_relearn_rate": 0.0391679,
+          "novelty_spike_bits": 0.90003795,
+          "tail_mean_bits": 0.00040522
+        },
+        "known_gap_type1_minus_type2": 0.00704281,
+        "novelty_gap_type2_minus_type1": 0.01296855,
+        "split_threshold_bits_per_tick": 0.005,
+        "verdict": "allocation-split-holds"
+      }
+    },
+    "no_gradient_control": {
+      "control_type": "two_distinct_equal_entropy_states",
+      "left_vec": [
+        0.34,
+        0.0,
+        0.0
+      ],
+      "right_vec": [
+        0.0,
+        -0.34,
+        0.0
+      ],
+      "left_entropy_bits": 0.91492637278,
+      "right_entropy_bits": 0.91492637278,
+      "distinct_arrays": true,
+      "distinct_states": true,
+      "equal_entropy": true,
+      "allocation": {
+        "type1_loop": {
+          "within_basin_surprise_reduction_rate": 0.0212191,
+          "post_novelty_relearn_rate": 0.02619064,
+          "novelty_spike_bits": 1.311739,
+          "tail_mean_bits": 0.2812512
+        },
+        "type2_loop": {
+          "within_basin_surprise_reduction_rate": 0.0122523,
+          "post_novelty_relearn_rate": 0.03853079,
+          "novelty_spike_bits": 0.8609562,
+          "tail_mean_bits": 0.00040552
+        },
+        "known_gap_type1_minus_type2": 0.0089668,
+        "novelty_gap_type2_minus_type1": 0.01234015,
+        "split_threshold_bits_per_tick": 0.005,
+        "verdict": "allocation-split-holds"
+      }
+    },
+    "measured_shift": {
+      "known_gap_shift": -0.00192399,
+      "novelty_gap_shift": 0.0006284,
+      "shift_norm": 0.00202401
+    },
+    "A0_like_quantities_stay_unfused_lists": [
+      {
+        "name": "a0_front",
+        "values": [
+          0.387871725249
+        ]
+      }
+    ]
+  },
+  "control_independence_assertions": {
+    "seeded_rng": 0,
+    "basin_witness_control_distinct_arrays": true,
+    "gradient_vs_no_gradient_distinct_arrays": true,
+    "no_gradient_uses_two_distinct_equal_entropy_states": true,
+    "predicate_controls_used": false
+  },
+  "overall": {
+    "claim_1": "basin-partition-holds",
+    "claim_2": "allocation-split-holds",
+    "claim_2_control_collapsed": true,
+    "claim_3": "no-measured-shift",
+    "exit_policy": "exit 0 for honest verdict mix; exceptions only for broken computation/control invariants"
+  }
+}

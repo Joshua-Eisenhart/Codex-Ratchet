@@ -275,13 +275,10 @@ def long_fixed_point(ti: int) -> np.ndarray:
     _, kind, _ = TERR[ti]
     if kind in {"depol", "proj"}:
         return 0.5 * I2
-    generator = np.column_stack([terrain_generator(ti)(basis).reshape(-1) for basis in BASIS_MATS])
-    _, _, vh = np.linalg.svd(generator)
-    candidate = vh[-1].reshape(2, 2)
-    candidate = 0.5 * (candidate + candidate.conj().T)
-    if np.trace(candidate).real < 0:
-        candidate = -candidate
-    return normalize_rho(candidate)
+    state = rho_from_bloch([0.23, -0.31, 0.41])
+    for _ in range(40):
+        state = terrain_endpoint(ti, state, total_t=2.0)
+    return normalize_rho(state)
 
 
 def operator_map(name: str) -> Callable[[np.ndarray], np.ndarray]:

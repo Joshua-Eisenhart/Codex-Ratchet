@@ -1166,3 +1166,12 @@ UP-106 downstream dominance-window discriminator -- answers the tournament's han
                over-resolves (15) at 0.05, under-resolves (12) at >=0.40. Downstream-safe window is STRICTER than
                stage-identity window. Independently reproduced the parallel run's dominance window on our instruments.
                111 GREEN.
+
+UP-107 dual-ratchet DEPTH: L3 floor + forced Jordan/octonion rung -- L2 (per-terrain entropy forcing) done by the v7
+               runner (U=Umegaki-to-fixed-point universal monotone pawl on all 8 terrains) and reproduced here, not
+               re-derived. L3 floor: NO forced structure below terrain x operator (native op has 31 sub-splits, U
+               micro-budget arbitrary) => that rung is the ratchet floor; engine DOFs play out on it. The predicted
+               deeper rung, built and gated: octonions (valid, Fano table) -> Jordan product (survives
+               nonassociativity) -> Hermitian octonionic matrices form a Jordan algebra ONLY n<=3 (Albert algebra
+               H_3(O); fails n=4) = INDEPENDENT forcing of the 3-qubit floor -> signed conditional entropy S(A|B)<0 on
+               entangled states (Bell -1.0). Controls flip. 113 GREEN.

@@ -2236,3 +2236,36 @@ object formation closes it from both ends. B/D and C-in-window are observational
 outside, C is downstream-distinguishable and worse. So "canonical-only" and "dominant-with-subordinates" are the SAME
 engine downstream precisely when subordinates sit in [0.10,0.30] of canonical strength -- the dominance-not-exclusivity
 doctrine given a measured two-sided boundary. No reading crowned. scratch_diagnostic. Harness 111 GREEN.
+
+## UP-107 -- dual-ratchet DEPTH: L3 floor + the forced Jordan/octonion observable rung (2026-07-08)
+
+Owner frame: "the dual ratchet runs entropy and geometry as one. each terrain will have to be ratcheted and with the
+kinds of entropy it can run... and to even deeper levels of ratcheting, if possible." then: "jordan algebras? seems we
+need entropy that handles finite noncommutative nonassociative octonians. and that can be negative."
+
+DEPTH MAP (what is earned): L1 entropy==geometry (BKM surface identity; v7 census makes it exact at d=2 -- S(rho) a
+strict monotone of Bloch radius, transition-match 1.0). Carrier floor = octonions (division-algebra ratchet, sedenion
+zero-divisors inadmissible). 8 terrains FORCED as distinct channels (bridge tooth). L2 per-terrain entropy forcing DONE
+by the v7 runner (terrain_entropy_kind_ratchet_sim, 2026-07-08) and REPRODUCED here: the forced terrain-native
+ratcheting entropy is U = Umegaki relative entropy to the terrain's OWN fixed point, the UNIVERSAL monotone pawl on all
+8 terrains (CPTP data-processing); von Neumann S is a pawl only on depol/proj terrains (they mix), NOT on damp (they
+purify). Grounded + shuffled-generator controlled. I did NOT re-derive L2; v7 owns it.
+
+L3 FLOOR (per_terrain_entropy_forcing_sim, artifact TBD): is anything forced BELOW terrain x operator? T1 the native
+qubit operator has 31 valid (q1,q2) sub-splits composing to the same channel (not unique => not forced); T2 the total
+U-decrement is fixed (0.2804->0.0355) but the intermediate-U split across sub-steps slides freely (span 0.1321,
+arbitrary). BOTH => the ratchet FLOOR is the terrain x (operator, U-entropy) rung; below it is engine DYNAMICS (the DOFs
+playing out), not more ratchet. The floor test explicitly predicted: a deeper forced rung would need a richer carrier
+(3-qubit/octonion), a DIFFERENT ladder, not a finer qubit split.
+
+THE DEEPER RUNG (jordan_octonion_observable_rung_sim, artifact TBD) -- exactly the ladder the floor test predicted, and
+the owner named it. Valid octonions from scratch (Fano-plane table, norm-composition-exact 0.0, alternative 1.8e-14,
+nonassoc 36.3, noncomm 17.9). THREE forced facts: (1) octonion nonassociativity breaks associative-matrix observables;
+the Jordan product a o b=1/2(ab+ba) is the surviving observable algebra. (2) Hermitian octonionic n x n matrices satisfy
+the Jordan identity ONLY for n<=3 (defect ~1e-13 at n=2,3; ~6e2 at n=4) = the exceptional Albert algebra H_3(O). This
+INDEPENDENTLY FORCES the owner's 3-qubit floor from a completely different direction than tomography counting: the
+octonionic carrier admits a consistent (Jordan) observable algebra only up to 3x3. Two unrelated routes to the same 3.
+(3) the forced entropy on this rung is the SIGNED conditional/coherent entropy S(A|B)=S(AB)-S(B), NEGATIVE exactly on
+entangled states (Bell -1.0, product 0) -- the honest upgrade over the U-to-fixed-point pawl (>=0, correct for
+single-terrain relaxation): the ENTANGLEMENT entropy that lives on the octonionic/3-qubit rung carries a sign.
+Controls flip (n=4 Jordan-fails; conditional entropy negative only on entangled). scratch_diagnostic. Harness 113 GREEN.

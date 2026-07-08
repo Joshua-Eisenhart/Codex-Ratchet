@@ -1,0 +1,47 @@
+{
+  "label": "OUR outcomes; compare only after recording the stranger-run stdout and JSON",
+  "not_targets_to_fit": true,
+  "reference_seed": 0,
+  "expected_qualitative_outcome": {
+    "full_affine_reidentified": "16/16",
+    "separation": "minimum separation margin > 10x maximum self-noise",
+    "svd_only_contrast": "less than 16/16, with at least one chirality-mirror pair collapsed under SVD(A)",
+    "verdict": "PASS under frozen qualitative criteria"
+  },
+  "stage_reid_16_reference_seed_0": {
+    "full_affine_reidentified": "16/16",
+    "full_affine_max_self_noise": 2.3482639502654206e-15,
+    "full_affine_min_nearest_wrong_distance": 0.2769475324052723,
+    "full_affine_min_separation_margin": 0.2769475324052714,
+    "svd_only_reidentified": "11/16",
+    "svd_mirror_collapses": 3,
+    "chirality_mirror_pair_distances": [
+      {
+        "pair": [
+          "t1:Ti",
+          "t5:Ti"
+        ],
+        "full_A_distance": 0.2963798987294026,
+        "svd_A_distance": 4.0125770192081414e-16
+      },
+      {
+        "pair": [
+          "t1:Fi",
+          "t5:Fi"
+        ],
+        "full_A_distance": 0.521087489188652,
+        "svd_A_distance": 8.41868291085074e-16
+      },
+      {
+        "pair": [
+          "t3:Fe",
+          "t7:Fe"
+        ],
+        "full_A_distance": 0.6675101646143877,
+        "svd_A_distance": 3.152427400121712e-16
+      }
+    ],
+    "verdict": "PASS"
+  },
+  "claim_ceiling": "standalone replication packet only; not canonical admission or bridge/axis/manifold evidence"
+}

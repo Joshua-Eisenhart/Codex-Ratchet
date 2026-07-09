@@ -1,0 +1,80 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "supportive",
+    "torch.func": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "torch": {
+      "reason": "supportive finite tensor method table",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing jacrev/vmap sensitivity check on method-order margin",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-07T20:29:27Z",
+  "method_summary": {
+    "method_order_delta_mean": 0.1,
+    "paired_trial_count": 20,
+    "torch_func_jacrev_grad_norms": [
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951,
+      1.4142135623730951
+    ],
+    "torch_func_jacrev_nonzero": true,
+    "trial_count": 40,
+    "type1_accuracy": 1.0,
+    "type2_accuracy": 0.9,
+    "unique_win_counts": {
+      "shared_fail": 0,
+      "shared_win": 18,
+      "type1_only": 2,
+      "type2_only": 0
+    }
+  },
+  "object_count": 4,
+  "package_observables": {
+    "torch.func": "jacrev/vmap gradient norms of the Type-1 minus Type-2 method-order margin; nonzero sensitivity is required"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func"
+  ],
+  "promotion_allowed": false,
+  "ran": true,
+  "reads_peer_result": false,
+  "result_path": "system_v7/sims/qit_bidirectional_science_type1_type2_v0/results/qit_bidirectional_science_type1_type2_v0_pytorch_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "qit_bidirectional_science_type1_type2_v0",
+  "source_path": "system_v7/sims/qit_bidirectional_science_type1_type2_v0/qit_bidirectional_science_type1_type2_v0_pytorch.py",
+  "source_sha256": "79fd64c7b8ff15617c01d59d7936946a290c2a0a67841b834c2bb215448cfafc",
+  "trial_count": 40,
+  "view_count": 5
+}

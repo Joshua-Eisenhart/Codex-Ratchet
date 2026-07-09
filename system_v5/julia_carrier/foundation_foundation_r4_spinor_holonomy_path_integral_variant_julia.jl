@@ -3,6 +3,7 @@
 # classification: scratch_diagnostic
 # promotion_allowed: false
 # formal_admission_allowed: false
+# reads_peer_result: true
 
 using Dates
 using JSON
@@ -15,86 +16,163 @@ const RUNG_ID = "foundation_r4_spinor_holonomy_path_integral_variant"
 const OBJECT_ID = "foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia"
 const SOURCE_PATH = joinpath(ROOT, "system_v5/julia_carrier/foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia.jl")
 const RESULT_PATH = joinpath(ROOT, "system_v5/julia_carrier/results/foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia_results.json")
+const R3_RESULT_PATH = joinpath(ROOT, "system_v5/julia_carrier/results/foundation_r3_octonion_cl6_link_xhigh_julia_results.json")
 const TOL = 1.0e-10
 
 const classification = "scratch_diagnostic"
 const promotion_allowed = false
 const formal_admission_allowed = false
-const reads_peer_result = false
+const reads_peer_result = true
 
 const TOOL_MANIFEST = Dict{String,Any}(
     "CliffordAlgebras" => Dict(
         "tried" => true,
         "used" => true,
-        "reason" => "load-bearing SU(2)/spin rotor carrier: ordered quaternion rotor product for the 2pi loop",
+        "reason" => "supportive Cl(0,6) dimension/rank cross-check only; the rotor generator itself is NOT built from CliffordAlgebras -- it is derived from R3's Cayley-Dickson octonion left-multiplication matrices (same cd_mul construction as foundation_r3_octonion_cl6_link_xhigh_julia.jl)",
     ),
     "Z3" => Dict(
         "tried" => true,
         "used" => true,
-        "reason" => "load-bearing exact integer matrix-product proof that derives the N=2 spinor sign and erase flip",
+        "reason" => "load-bearing exact integer matrix-product proof that derives the N=2 abstract SU(2) spinor sign and erase flip (independent 2x2 formal cross-check, not itself carrier-derived)",
     ),
     "LinearAlgebra" => Dict(
         "tried" => true,
         "used" => true,
-        "reason" => "supportive SO(3) control matrix residuals only",
+        "reason" => "load-bearing matrix power/svd/eigenvalue computation of the R3-derived bivector generator and its ordered-product holonomy",
     ),
     "JSON" => Dict(
         "tried" => true,
         "used" => true,
-        "reason" => "supportive result serialization",
+        "reason" => "load-bearing read of R3's persisted result JSON (foundation_r3_octonion_cl6_link_xhigh_julia_results.json) for peer-dependency provenance, plus supportive result serialization",
     ),
 )
 
 const TOOL_INTEGRATION_DEPTH = Dict{String,Any}(
-    "CliffordAlgebras" => "load_bearing",
+    "CliffordAlgebras" => "supportive",
     "Z3" => "load_bearing",
-    "LinearAlgebra" => "supportive",
-    "JSON" => "supportive",
+    "LinearAlgebra" => "load_bearing",
+    "JSON" => "load_bearing",
 )
 
-function coeffs(mv, labels::Vector{Symbol})
-    [Float64(real(getproperty(mv, label))) for label in labels]
+function load_r3_peer_result()
+    isfile(R3_RESULT_PATH) || error("R4 spinor holonomy sim requires R3 peer result at $(R3_RESULT_PATH); none found.")
+    JSON.parsefile(R3_RESULT_PATH)
 end
 
-function rotor_power_summary(N::Int)
-    clh = CliffordAlgebra(:Quaternions)
-    labels = [Symbol("𝟏"), :i, :j, :ij]
-    generator = clh.ij
-    delta = 2.0 * pi / N
-    step = cos(delta / 2.0) * getproperty(clh, Symbol("𝟏")) + sin(delta / 2.0) * generator
-    product = getproperty(clh, Symbol("𝟏"))
-    for _ in 1:N
-        product = product * step
+# Same Cayley-Dickson construction R3 uses (foundation_r3_octonion_cl6_link_xhigh_julia.jl),
+# recomputed locally so the rotor generator below is built FROM octonion structure,
+# not from a bare generic CliffordAlgebra(:Quaternions) with no link to R3.
+function cd_conj(x::Vector{Float64})
+    y = copy(x)
+    length(y) > 1 && (y[2:end] .*= -1.0)
+    y
+end
+
+function cd_mul(x::Vector{Float64}, y::Vector{Float64})
+    n = length(x)
+    n == 1 && return [x[1] * y[1]]
+    half = n ÷ 2
+    a, b = x[1:half], x[(half + 1):end]
+    c, d = y[1:half], y[(half + 1):end]
+    vcat(cd_mul(a, c) - cd_mul(cd_conj(d), b), cd_mul(d, a) + cd_mul(b, cd_conj(c)))
+end
+
+function basis(dim::Int, idx0::Int)
+    v = zeros(Float64, dim)
+    v[idx0 + 1] = 1.0
+    v
+end
+
+function left_matrix(dim::Int, unit_idx0::Int)
+    e = basis(dim, unit_idx0)
+    hcat([cd_mul(e, basis(dim, col0)) for col0 in 0:(dim - 1)]...)
+end
+
+left_matrices(dim::Int) = [left_matrix(dim, idx0) for idx0 in 1:(dim - 1)]
+
+function generated_rank(mats::Vector{Matrix{Float64}}, generator_count::Int)
+    dim = size(mats[1], 1)
+    cols = Vector{Float64}[]
+    for mask in 0:(2^generator_count - 1)
+        acc = Matrix{Float64}(I, dim, dim)
+        for idx in 1:generator_count
+            if ((mask >> (idx - 1)) & 1) == 1
+                acc = acc * mats[idx]
+            end
+        end
+        push!(cols, vec(acc))
     end
-    parts = coeffs(product, labels)
+    mat = hcat(cols...)
+    singular = svdvals(mat)
+    max_s = isempty(singular) ? 0.0 : maximum(singular)
+    tol = max(size(mat)...) * eps(Float64) * max_s * 100.0
+    count(>(tol), singular)
+end
+
+function r3_provenance_check(r3::AbstractDict, o_mats::Vector{Matrix{Float64}})
+    r3_summary = r3["summary"]
+    rank6 = generated_rank(o_mats, 6)
     Dict{String,Any}(
-        "N" => N,
-        "step_angle" => delta,
-        "spinor_scalar" => parts[1],
-        "spinor_i" => parts[2],
-        "spinor_j" => parts[3],
-        "spinor_bivector_ij" => parts[4],
-        "minus_identity_residual" => abs(parts[1] + 1.0) + sum(abs.(parts[2:4])),
+        "r3_result_path" => R3_RESULT_PATH,
+        "r3_object_id" => get(r3, "object_id", nothing),
+        "r3_source_sha256" => get(r3, "source_sha256", nothing),
+        "r3_octonion_cl6_rank" => r3_summary["octonion_cl6_rank"],
+        "local_recomputed_cl6_rank_from_same_cd_mul_construction" => rank6,
+        "matches_r3" => rank6 == r3_summary["octonion_cl6_rank"],
     )
 end
 
-function rot2(theta::Float64)
-    [cos(theta) -sin(theta); sin(theta) cos(theta)]
+# Bivector generator B = L_e1 * L_e2 built from R3's admitted octonion
+# left-multiplication matrices. Since L_e1, L_e2 anticommute and each squares
+# to -I (proven in R3), B is skew (B^T = -B) and B^2 = -I: a genuine
+# complex-structure / rotation generator induced by the octonion carrier, not
+# a hand-picked abstract 2x2 matrix.
+function octonion_bivector_generator()
+    o_mats = left_matrices(8)
+    L1, L2 = o_mats[1], o_mats[2]
+    B = L1 * L2
+    skew_residual = norm(B' + B)
+    square_residual = norm(B * B + Matrix{Float64}(I, 8, 8))
+    Dict{String,Any}(
+        "matrix" => B,
+        "generators" => "L_e1 * L_e2 (octonion left-multiplication matrices from R3's Cayley-Dickson construction)",
+        "skew_residual" => skew_residual,
+        "square_minus_identity_residual" => square_residual,
+        "is_valid_rotation_generator" => skew_residual <= TOL && square_residual <= TOL,
+    ), o_mats
 end
 
-function vector_power_summary(N::Int)
+function rotor_power_summary(N::Int, B::Matrix{Float64})
+    dim = size(B, 1)
+    identity8 = Matrix{Float64}(I, dim, dim)
     delta = 2.0 * pi / N
-    step = rot2(delta)
-    product = Matrix{Float64}(I, 2, 2)
+    step = cos(delta / 2.0) * identity8 + sin(delta / 2.0) * B
+    product = identity8
     for _ in 1:N
         product = product * step
     end
     Dict{String,Any}(
         "N" => N,
         "step_angle" => delta,
-        "trace_half" => tr(product) / 2.0,
-        "plus_identity_residual" => maximum(abs.(product - Matrix{Float64}(I, 2, 2))),
-        "matrix" => [[Float64(product[i, j]) for j in 1:2] for i in 1:2],
+        "spinor_scalar" => tr(product) / dim,
+        "minus_identity_residual" => norm(product + identity8),
+    )
+end
+
+function vector_power_summary(N::Int, B::Matrix{Float64})
+    dim = size(B, 1)
+    identity8 = Matrix{Float64}(I, dim, dim)
+    delta = 2.0 * pi / N
+    step = cos(delta) * identity8 + sin(delta) * B
+    product = identity8
+    for _ in 1:N
+        product = product * step
+    end
+    Dict{String,Any}(
+        "N" => N,
+        "step_angle" => delta,
+        "trace_half" => tr(product) / dim,
+        "plus_identity_residual" => norm(product - identity8),
     )
 end
 
@@ -175,9 +253,14 @@ function julia_z3_holonomy_proof()
 end
 
 function build_result()
+    r3_peer = load_r3_peer_result()
+    bivector_report, o_mats = octonion_bivector_generator()
+    B = bivector_report["matrix"]
+    r3_provenance = r3_provenance_check(r3_peer, o_mats)
+
     Ns = [2, 4, 8, 16, 32, 64]
-    spinor_rows = [rotor_power_summary(N) for N in Ns]
-    vector_rows = [vector_power_summary(N) for N in Ns]
+    spinor_rows = [rotor_power_summary(N, B) for N in Ns]
+    vector_rows = [vector_power_summary(N, B) for N in Ns]
     final_spinor = spinor_rows[end]
     final_vector = vector_rows[end]
     z3_row = julia_z3_holonomy_proof()
@@ -188,6 +271,7 @@ function build_result()
         "wrong_half_angle_control_flips_to_plus_identity" => z3_row["wrong_half_angle_not_minus_status"] == "sat",
     )
     all_pass = (
+        bivector_report["is_valid_rotation_generator"] &&
         final_spinor["minus_identity_residual"] <= TOL &&
         final_vector["plus_identity_residual"] <= TOL &&
         z3_row["spinor_negated_claim_status"] == "unsat" &&
@@ -196,7 +280,8 @@ function build_result()
         classification == "scratch_diagnostic" &&
         promotion_allowed == false &&
         formal_admission_allowed == false &&
-        reads_peer_result == false
+        reads_peer_result == true &&
+        r3_provenance["matches_r3"]
     )
     Dict{String,Any}(
         "schema" => "codex_ratchet.engine_leg_result.v1",
@@ -210,21 +295,29 @@ function build_result()
         "promotion_allowed" => promotion_allowed,
         "formal_admission_allowed" => formal_admission_allowed,
         "reads_peer_result" => reads_peer_result,
+        "r3_peer_dependency" => r3_provenance,
+        "octonion_bivector_generator" => Dict{String,Any}(
+            "generators" => bivector_report["generators"],
+            "skew_residual" => bivector_report["skew_residual"],
+            "square_minus_identity_residual" => bivector_report["square_minus_identity_residual"],
+            "is_valid_rotation_generator" => bivector_report["is_valid_rotation_generator"],
+        ),
         "packages_used" => ["CliffordAlgebras", "Z3", "LinearAlgebra", "JSON", "Dates"],
-        "aligned_packages_load_bearing" => ["CliffordAlgebras", "Z3"],
+        "aligned_packages_load_bearing" => ["Z3", "LinearAlgebra", "JSON"],
         "TOOL_MANIFEST" => TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH" => TOOL_INTEGRATION_DEPTH,
         "M" => Dict(
             "name" => "holonomy_loop_probe",
-            "explicit_probe_family" => ["ordered_product_spinor_SU2_loop", "ordered_product_vector_SO3_loop"],
-            "finite_probe_domain" => Dict("loop_discretizations" => Ns, "axis" => "z", "loop_angle" => "2pi"),
+            "explicit_probe_family" => ["ordered_product_R3_octonion_bivector_half_angle_loop", "ordered_product_R3_octonion_bivector_full_angle_loop"],
+            "carrier_derivation" => "rotation generator B = L_e1 * L_e2 is built from R3's admitted octonion left-multiplication matrices (foundation_r3_octonion_cl6_link_xhigh_julia_results.json), not a bare CliffordAlgebra(:Quaternions)",
+            "finite_probe_domain" => Dict("loop_discretizations" => Ns, "axis" => "octonion_bivector_L_e1_L_e2", "loop_angle" => "2pi"),
         ),
         "C" => Dict(
-            "trace_equals_one" => "Probe states may be represented by rank-one normalized spinor/vector projectors with trace 1.",
-            "psd" => "Rank-one probe projectors are PSD.",
-            "hermiticity" => "Probe projectors are Hermitian; rotor coefficients are real scalar plus one bivector generator.",
-            "normalization" => "Each step rotor is unit norm and each SO(3) step is orthogonal.",
-            "rung_specific_constraint" => "Spinor/SU(2) half-angle structure: N ordered Clifford quaternion rotors with total loop angle 2pi.",
+            "trace_equals_one" => "The bivector-generated step exp(delta*B) is orthogonal by construction (B skew); trace/dim is the reported scalar projector proxy.",
+            "psd" => "Not a density-state rung; the octonion left-multiplication carrier and its induced bivector are the constraint objects.",
+            "hermiticity" => "L_e1, L_e2 are real skew matrices (proven in R3); B = L_e1*L_e2 is skew, so exp(theta*B) is orthogonal.",
+            "normalization" => "B^2 = -I (proven here from R3's admitted L_e1, L_e2), so half-angle and full-angle steps are well-defined rotation generators.",
+            "rung_specific_constraint" => "Half-angle ordered product of exp(delta/2 * B) over N steps, B derived from R3's octonion carrier, versus a full-angle control exp(delta * B).",
         ),
         "S_mod_M" => Dict(
             "definition" => "Equivalence classes under the holonomy-loop probe.",
@@ -235,7 +328,6 @@ function build_result()
         ),
         "summary" => Dict(
             "spinor_holonomy_scalar" => final_spinor["spinor_scalar"],
-            "spinor_holonomy_bivector_ij" => final_spinor["spinor_bivector_ij"],
             "spinor_minus_identity_residual" => final_spinor["minus_identity_residual"],
             "vector_holonomy_trace_half" => final_vector["trace_half"],
             "vector_plus_identity_residual" => final_vector["plus_identity_residual"],

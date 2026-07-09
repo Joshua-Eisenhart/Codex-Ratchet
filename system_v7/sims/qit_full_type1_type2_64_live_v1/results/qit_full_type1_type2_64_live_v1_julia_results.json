@@ -1,0 +1,83 @@
+{
+  "ran": true,
+  "julia_z3": {
+    "ran": true,
+    "load_bearing": true,
+    "verdict": "unsat"
+  },
+  "package_observables": {
+    "Graphs": "SimpleDiGraph loop closure with four directed edges per loop object",
+    "Z3": "UNSAT negation of ordered_unique=object_count and bag_unique<object_count gate"
+  },
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_full_type1_type2_64_live_v1/results/qit_full_type1_type2_64_live_v1_julia_results.json",
+  "loop_graphs": {
+    "T1_outer_deductive": {
+      "vertices": 4,
+      "edges": 4
+    },
+    "T2_outer_inductive": {
+      "vertices": 4,
+      "edges": 4
+    },
+    "T1_inner_inductive": {
+      "vertices": 4,
+      "edges": 4
+    },
+    "T2_inner_deductive": {
+      "vertices": 4,
+      "edges": 4
+    }
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "source_sha256": "96bdc0827a4851331779029b36fc31976c30fb6f547350f06d5b53469a16d972",
+  "classification": "scratch_diagnostic",
+  "type1_slots": 32,
+  "object_count": 4,
+  "sim_id": "qit_full_type1_type2_64_live_v1",
+  "reads_peer_result": false,
+  "formal_admission_allowed": false,
+  "type2_slots": 32,
+  "generated_at": "2026-07-07T21:40:06Z",
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive result serialization"
+    },
+    "Graphs": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing directed loop closure graph for each object"
+    },
+    "Z3": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing Julia-side structural polarity proof"
+    }
+  },
+  "bag_unique_count": 1,
+  "all_pass": true,
+  "promotion_allowed": false,
+  "slot_count": 64,
+  "macro_stage_count": 16,
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "chart_locked_slots": 16,
+  "engine": "julia",
+  "ordered_unique_count": 4,
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_full_type1_type2_64_live_v1/qit_full_type1_type2_64_live_v1_julia.jl"
+}

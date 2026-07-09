@@ -174,19 +174,19 @@ def build_result() -> dict[str, Any]:
         "all_pass": all_pass,
         "M": {
             "noncommuting_probe_family": ["Pauli_Z", "Pauli_X"],
-            "commuting_control_family": ["Pauli_Z", "Identity"],
+            "commuting_control_family": ["Pauli_Z", "Diag_2_3"],
             "fixture_states": julia["M"]["fixture_states"],
         },
         "C": {
             "admissibility": ["Hermitian rho", "trace(rho)=1", "rho PSD", "normalized finite ket fixtures"],
             "rung_specific_constraint": "N01 noncommutation: [Z, X] != 0; order application Z then X is distinguishable from X then Z",
-            "negative_control_constraint": "Commutative collapse replaces X with Identity, forcing [Z, I]=0",
+            "negative_control_constraint": "Commuting collapse replaces X with the informative commuting observable D = diag(2, 3) (not I, not a scalar multiple of I), forcing [Z, D]=0 while keeping the control information-bearing",
         },
         "quotient_summary": {
             "definition": julia["quotient_summary"]["definition"],
             "S_over_M": "Equivalence classes of admissible qubit states under finite probe expectations.",
             "noncommuting_coordinates": ["<Z>", "<X>"],
-            "commuting_control_coordinates": ["<Z>", "<I>"],
+            "commuting_control_coordinates": ["<Z>", "<D>"],
             "fixture_class_count_noncommuting": class_counts_noncommuting[0],
             "fixture_class_count_commuting": class_counts_commuting[0],
             "noncommuting_classes": julia["quotient_summary"]["noncommuting_classes"],

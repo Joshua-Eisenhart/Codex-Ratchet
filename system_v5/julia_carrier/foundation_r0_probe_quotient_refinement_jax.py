@@ -11,6 +11,7 @@ scratch_diagnostic; promotion_allowed=false. Engine: jax-ecosystem (quimb).
 Exit 0 on all_pass, 2 otherwise — so a host runner derives lane.ran from exit.
 """
 import json
+import os
 import sys
 
 from jax import config
@@ -56,6 +57,40 @@ def quotient(families):
 
 q_z = quotient(["Z"])
 q_zx = quotient(["Z", "X"])
+
+if os.environ.get("LEV_R0_NEGATIVE_CONTROL") == "duplicate_Z_does_not_refine":
+    q_zz = quotient(["Z", "Z"])
+    duplicate_z_does_not_refine = len(q_zz) == len(q_z)
+    control_pass = (
+        duplicate_z_does_not_refine
+        and len(q_z) == 3
+        and distribution(states["rho_plus"], Z) == distribution(states["rho_minus"], Z)
+    )
+    result = {
+        "schema": "codex_ratchet.formal_scout.scratch_diagnostic.v1",
+        "object_id": "foundation_r0_probe_quotient_refinement_jax_negative_control_v1",
+        "classification": "scratch_diagnostic",
+        "engine": "jax",
+        "promotion_allowed": False,
+        "formal_admission_allowed": False,
+        "reads_peer_result": False,
+        "packages": {"load_bearing": ["jax", "jax.numpy", "quimb"]},
+        "negative_control": "duplicate_Z_does_not_refine",
+        "quotient": {"M_Z_class_count": len(q_z), "M_ZZ_class_count": len(q_zz)},
+        "core_checks": {
+            "duplicate_Z_does_not_refine": duplicate_z_does_not_refine,
+            "strict_quotient_refinement": False,
+            "all_pass": control_pass,
+        },
+        "all_pass": control_pass,
+        "claim_ceiling": "R0 scratch_diagnostic JAX negative-control run; proves duplicate Z does not refine the quotient.",
+    }
+    print(json.dumps(result))
+    print(
+        "NEGATIVE_CONTROL_DONE engine=jax pass="
+        f"{str(control_pass).lower()} duplicate_Z_does_not_refine={str(duplicate_z_does_not_refine).lower()}"
+    )
+    sys.exit(0 if control_pass else 2)
 
 def class_of(q, sid):
     for cls in q:

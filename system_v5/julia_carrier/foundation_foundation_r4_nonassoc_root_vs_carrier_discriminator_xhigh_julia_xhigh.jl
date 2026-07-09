@@ -3,7 +3,7 @@
 # classification: scratch_diagnostic
 # promotion_allowed: false
 # formal_admission_allowed: false
-# reads_peer_result: false
+# reads_peer_result: true
 
 using Dates
 using JSON
@@ -17,12 +17,54 @@ const RUNG_ID = "foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh"
 const OBJECT_ID = RUNG_ID
 const SOURCE_PATH = @__FILE__
 const RESULT_PATH = joinpath(@__DIR__, "results", "foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_julia_xhigh_results.json")
+const R3_RESULT_PATH = joinpath(@__DIR__, "results", "foundation_r3_octonion_cl6_link_xhigh_julia_results.json")
 const TOL = 1.0e-9
 
 classification = "scratch_diagnostic"
 promotion_allowed = false
 formal_admission_allowed = false
-reads_peer_result = false
+reads_peer_result = true
+
+function load_r3_peer_result()
+    isfile(R3_RESULT_PATH) || error("R4 nonassoc discriminator requires R3 peer result at $(R3_RESULT_PATH); none found.")
+    JSON.parsefile(R3_RESULT_PATH)
+end
+
+function r3_provenance_check(r3::AbstractDict, o_mats::Vector{Matrix{Float64}})
+    # Verify this file's freshly-computed O left-multiplication matrices match
+    # the values R3 already admitted (as scratch_diagnostic), rather than just
+    # asserting a peer-read happened. Compares generator count, spinor
+    # dimension, and generated Cl(0,6) rank against R3's persisted summary.
+    r3_summary = r3["summary"]
+    r3_rank = r3_summary["octonion_cl6_rank"]
+    r3_spinor_dim = r3_summary["octonion_spinor_dim"]
+    dim = size(o_mats[1], 1)
+    cols = Vector{Float64}[]
+    generator_count = min(6, length(o_mats))
+    for mask in 0:(2^generator_count - 1)
+        acc = Matrix{Float64}(I, dim, dim)
+        for idx in 1:generator_count
+            if ((mask >> (idx - 1)) & 1) == 1
+                acc = acc * o_mats[idx]
+            end
+        end
+        push!(cols, vec(acc))
+    end
+    mat = hcat(cols...)
+    singular = svdvals(mat)
+    tol = max(size(mat)...) * eps(Float64) * (isempty(singular) ? 0.0 : maximum(singular)) * 100.0
+    local_rank = count(>(tol), singular)
+    Dict{String,Any}(
+        "r3_result_path" => R3_RESULT_PATH,
+        "r3_object_id" => get(r3, "object_id", nothing),
+        "r3_source_sha256" => get(r3, "source_sha256", nothing),
+        "r3_octonion_cl6_rank" => r3_rank,
+        "r3_octonion_spinor_dim" => r3_spinor_dim,
+        "local_recomputed_cl6_rank_from_same_cd_mul_construction" => local_rank,
+        "local_spinor_dim" => dim,
+        "matches_r3" => local_rank == r3_rank && dim == r3_spinor_dim,
+    )
+end
 
 const CLAIM_CEILING = "Scratch foundation diagnostic only: tests whether bare distinguishability/finitude/noncommutation roots force non-associativity. Verdict is bounded to forced-vs-installed for R/C/H/O Cayley-Dickson carriers; no promotion or formal admission."
 
@@ -312,6 +354,10 @@ function build_result()
         "H" => carrier_report("H", 4),
         "O" => carrier_report("O", 8),
     )
+    r3_peer = load_r3_peer_result()
+    o_table = multiplication_table(8)
+    o_mats = left_matrices(o_table)
+    r3_provenance = r3_provenance_check(r3_peer, o_mats)
     quotient = quotient_summary(carriers)
     unit_counts = Dict(name => carriers[name]["imaginary_unit_count"] for name in ["R", "C", "H", "O"])
     z3j = z3julia_report()
@@ -319,8 +365,17 @@ function build_result()
     h_bare = carriers["H"]["bare_root_admissible"]
     h_strong = carriers["H"]["cl6_7unit_admissible"]
     o_strong = carriers["O"]["cl6_7unit_admissible"]
-    forced_false = h_bare && carriers["H"]["associativity"]["associative"]
+    h_associative = carriers["H"]["associativity"]["associative"]
+    forced_false = h_bare && h_associative
     installed = h_bare && !h_strong && o_strong
+    # Non-associativity is forced by the bare root only if EVERY carrier the bare
+    # root admits is itself associative-only-when-excluded, i.e. if no admitted
+    # carrier can be associative. H is bare-root-admissible (h_bare) and its
+    # computed associator_max_norm shows it IS associative (h_associative): a
+    # bare-root-admissible, associative carrier survives, so the bare root does
+    # not force non-associativity. This is computed from the same associator
+    # witness used above, not asserted independently of it.
+    nonassoc_forced_by_bare_root = !(h_bare && h_associative)
     all_pass = (
         unit_counts == Dict("R" => 0, "C" => 1, "H" => 3, "O" => 7) &&
         h_bare &&
@@ -331,7 +386,9 @@ function build_result()
         quotient["drop_probe_coarsening_flip"]["flips"] &&
         cl["pass"] &&
         z3j["H_has_7_distinct_imaginary_labels"] == "unsat" &&
-        z3j["O_has_7_distinct_imaginary_labels"] == "sat"
+        z3j["O_has_7_distinct_imaginary_labels"] == "sat" &&
+        reads_peer_result &&
+        r3_provenance["matches_r3"]
     )
     return Dict(
         "schema" => "codex_ratchet.engine_leg.v1",
@@ -369,17 +426,19 @@ function build_result()
         ),
         "carriers" => carriers,
         "quotient" => quotient,
+        "r3_peer_dependency" => r3_provenance,
         "cliffordalgebras_cl6_witness" => cl,
         "julia_z3_cardinality_guard" => z3j,
         "unit_counts" => unit_counts,
         "decision" => Dict(
             "H_bare_root_admissible" => h_bare,
-            "H_associative" => carriers["H"]["associativity"]["associative"],
+            "H_associative" => h_associative,
             "H_cl6_7unit_admissible" => h_strong,
             "O_cl6_7unit_admissible" => o_strong,
-            "nonassoc_forced_by_bare_root" => false,
+            "nonassoc_forced_by_bare_root" => nonassoc_forced_by_bare_root,
+            "nonassoc_forced_derivation" => "computed as NOT(H_bare_root_admissible AND H_associative), reading H_associative from carriers[\"H\"][\"associativity\"][\"associative\"] (associator_max_norm witness)",
             "nonassoc_installed_by_constraint" => "Cl(0,6)/>=7 mutually anticommuting imaginary units/3-qubit Weyl floor",
-            "forced_vs_installed_verdict" => "INSTALLED_NOT_FORCED",
+            "forced_vs_installed_verdict" => nonassoc_forced_by_bare_root ? "FORCED" : "INSTALLED_NOT_FORCED",
         ),
         "negative_control_flip" => Dict(
             "control" => "drop stronger Cl(0,6)/7-unit constraint while keeping bare finitude+noncommutation+quotient root",
@@ -393,8 +452,8 @@ function build_result()
             "H_bare_root_admissible" => h_bare,
             "H_cl6_7unit_admissible" => h_strong,
             "O_cl6_7unit_admissible" => o_strong,
-            "nonassoc_forced_by_bare_root" => false,
-            "forced_vs_installed_verdict" => "INSTALLED_NOT_FORCED",
+            "nonassoc_forced_by_bare_root" => nonassoc_forced_by_bare_root,
+            "forced_vs_installed_verdict" => nonassoc_forced_by_bare_root ? "FORCED" : "INSTALLED_NOT_FORCED",
             "bare_root_admitted_carriers" => quotient["bare_root_admitted_carriers"],
             "strong_cl6_7unit_admitted_carriers" => quotient["strong_cl6_7unit_admitted_carriers"],
             "drop_probe_coarsening_flips" => quotient["drop_probe_coarsening_flip"]["flips"],

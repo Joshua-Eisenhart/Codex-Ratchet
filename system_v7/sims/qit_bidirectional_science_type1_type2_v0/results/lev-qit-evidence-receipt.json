@@ -1,0 +1,99 @@
+{
+  "version": "0.1.0-qit-evidence-consumer",
+  "envelopeFile": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_bidirectional_science_type1_type2_v0/results/qit_bidirectional_science_type1_type2_v0_envelope_results.json",
+  "simId": "qit_bidirectional_science_type1_type2_v0",
+  "ok": true,
+  "status": "host_evidence_consumed",
+  "sourceEnvelopeHash": "sha256:c002f9ee11bb1279a8cf89d7519de63b0e8531a8d61e664f234d2c26112ea70a",
+  "receipt": {
+    "id": "rcpt-5ae34e8bdd9c3f5a",
+    "scope": "invocation",
+    "sessionId": "qit-evidence-qit_bidirectional_science_type1_type2_v0",
+    "workUnitId": "qit_bidirectional_science_type1_type2_v0",
+    "contentHash": "63e577d926003163317e04d0558940316758cfab2d12d2dee52c7bbaff388415",
+    "evalResults": [
+      {
+        "id": "qit-evidence-qit_bidirectional_science_type1_type2_v0",
+        "strategy": "gate-based",
+        "timestamp": "2026-07-07T22:11:59.899Z",
+        "passed": true,
+        "metric_value": 1,
+        "reasoning": "QIT envelope passed Lev host evidence-only boundary checks; no graph or runtime admission was applied.",
+        "metadata": {
+          "status": "host_evidence_consumed",
+          "source_all_pass": true,
+          "classification": "scratch_diagnostic",
+          "blocked_consumers": [
+            "QIT_engine_admission",
+            "Axis0",
+            "FEP",
+            "Xi/Phi0",
+            "physics",
+            "production_perception",
+            "production_ontology",
+            "MMM_driver",
+            "Lev_mesh_runtime",
+            "mesh_visible_projection"
+          ],
+          "finding_codes": [],
+          "decision_ceiling": "accepted_as_evidence_only",
+          "graph_mutation_allowed": false,
+          "mesh_projection_allowed": false,
+          "source_boundary_mutated": false
+        }
+      }
+    ],
+    "effectResults": [],
+    "provenance": {
+      "surface": "cli",
+      "host": "lev",
+      "profile": "qit-evidence-consumer",
+      "consultedPaths": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_bidirectional_science_type1_type2_v0/results/qit_bidirectional_science_type1_type2_v0_envelope_results.json"
+      ],
+      "consultedFileHashes": {
+        "sourceEnvelope": "sha256:c002f9ee11bb1279a8cf89d7519de63b0e8531a8d61e664f234d2c26112ea70a"
+      }
+    },
+    "sealedAt": "2026-07-07T22:11:59.899Z"
+  },
+  "findings": [],
+  "blockedConsumers": [
+    "QIT_engine_admission",
+    "Axis0",
+    "FEP",
+    "Xi/Phi0",
+    "physics",
+    "production_perception",
+    "production_ontology",
+    "MMM_driver",
+    "Lev_mesh_runtime",
+    "mesh_visible_projection"
+  ],
+  "hostContract": {
+    "compositor_apply_allowed": false,
+    "cr_object_id_is_lev_entity_id": false,
+    "decision_ceiling": "accepted_as_evidence_only",
+    "evidence_kind": "measurement",
+    "graph_mutation_allowed": false,
+    "mesh_projection_allowed": false,
+    "source_boundary_mutated": false,
+    "truth_state": "proposed"
+  },
+  "metrics": {
+    "schemaVersion": "three_engine_sim_result_v1",
+    "classification": "scratch_diagnostic",
+    "allPass": true,
+    "promotionAllowed": false,
+    "formalAdmissionAllowed": false,
+    "evidenceGrade": "scratch_diagnostic_measurement",
+    "lifecycleStatus": "SCRATCH_DIAGNOSTIC"
+  },
+  "files": {
+    "sourceEnvelope": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_bidirectional_science_type1_type2_v0/results/qit_bidirectional_science_type1_type2_v0_envelope_results.json",
+    "hostConsumption": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_bidirectional_science_type1_type2_v0/results/lev-qit-evidence-receipt.json",
+    "hostBoundary": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_bidirectional_science_type1_type2_v0/results/lev-qit-evidence-boundary.json",
+    "hostEvents": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_bidirectional_science_type1_type2_v0/results/lev-qit-evidence-events.jsonl",
+    "hostBlockedReason": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_bidirectional_science_type1_type2_v0/results/lev-qit-evidence-blocked.json"
+  }
+}

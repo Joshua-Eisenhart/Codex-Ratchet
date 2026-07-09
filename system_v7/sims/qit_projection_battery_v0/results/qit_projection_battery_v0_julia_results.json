@@ -1,0 +1,485 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "JSON": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing object-view projection graph for the finite battery",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side scaled structural polarity proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-07T20:04:47Z",
+  "julia_z3": {
+    "erased_control_verdict": "sat",
+    "load_bearing": true,
+    "ran": true,
+    "verdict": "unsat"
+  },
+  "object_count": 4,
+  "package_observables": {
+    "Graphs": "SimpleGraph object-view projection graph has five view leaves per object and four disconnected object components",
+    "Z3": "UNSAT negation of scaled projection-convergence gate with SAT erased controls"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "projection_graph": {
+    "connected_components": 4,
+    "edges": 20,
+    "expected_object_components": 4,
+    "vertices": 24
+  },
+  "projection_readouts": {
+    "bag_erased_control": {
+      "control": "bag_erased",
+      "mean_heldout_accuracy": 0.25,
+      "min_heldout_accuracy": 0.25,
+      "object_count": 4,
+      "view_count": 5,
+      "view_results": [
+        {
+          "accuracy": 0.25,
+          "heldout_view": "maintenance_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "finance_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "safety_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "planning_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "ontology_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        }
+      ]
+    },
+    "nominal": {
+      "control": "none",
+      "mean_heldout_accuracy": 0.9,
+      "min_heldout_accuracy": 0.5,
+      "object_count": 4,
+      "view_count": 5,
+      "view_results": [
+        {
+          "accuracy": 1.0,
+          "heldout_view": "maintenance_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_inner_inductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T2_outer_inductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T2_inner_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 1.0,
+          "heldout_view": "finance_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_inner_inductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T2_outer_inductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T2_inner_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 1.0,
+          "heldout_view": "safety_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_inner_inductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T2_outer_inductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T2_inner_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 0.5,
+          "heldout_view": "planning_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T2_outer_inductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T2_outer_inductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 1.0,
+          "heldout_view": "ontology_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_inner_inductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T2_outer_inductive"
+            },
+            {
+              "correct": true,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T2_inner_deductive"
+            }
+          ]
+        }
+      ]
+    },
+    "view_erased_control": {
+      "control": "view_erased",
+      "mean_heldout_accuracy": 0.25,
+      "min_heldout_accuracy": 0.25,
+      "object_count": 4,
+      "view_count": 5,
+      "view_results": [
+        {
+          "accuracy": 0.25,
+          "heldout_view": "maintenance_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "finance_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "safety_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "planning_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "ontology_mmm",
+          "predictions": [
+            {
+              "correct": true,
+              "object_id": "T1_outer_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T1_inner_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_outer_inductive",
+              "predicted_object_id": "T1_outer_deductive"
+            },
+            {
+              "correct": false,
+              "object_id": "T2_inner_deductive",
+              "predicted_object_id": "T1_outer_deductive"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "promotion_allowed": false,
+  "ran": true,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "qit_projection_battery_v0",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_julia.jl",
+  "source_sha256": "bf7059412a61f3a9f6be2696ac034f9a48cbaecd6a8a29e2b800f8c9fd2d0e2e",
+  "view_count": 5
+}

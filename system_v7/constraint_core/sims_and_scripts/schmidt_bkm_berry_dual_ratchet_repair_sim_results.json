@@ -1,0 +1,335 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_stdlib": "supportive",
+    "pytorch": "load_bearing",
+    "sympy": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "supportive hashing, timestamps, paths, runtime metadata, and JSON serialization",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "load-bearing complex128 Schmidt states and partial traces, torch.func.hessian Umegaki metric, torch.linalg.eigh BKM metric, CPTP/nonpositive controls, and discrete Berry transport",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact derivation of g_eta_eta=4, Berry curvature, rectangle flux, and the -1/2 normalization ratio",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_gates_pass": true,
+  "allowed_claims": [
+    "The two-qubit Schmidt marginal has radius |cos(2 eta)| and entropy increasing toward eta=pi/4.",
+    "For full-rank interior marginals, the Umegaki Hessian and spectral BKM metric both give g_eta_eta=4.",
+    "The tested depolarizing CPTP map contracts the BKM metric and a unitary change of basis preserves it.",
+    "A nonpositive Bloch amplifier increases the metric on a valid interior witness and fails positivity on a pure-state control.",
+    "The global Schmidt phase family has Berry curvature sin(2 eta), while its one-qubit marginal erases phi.",
+    "For the declared rectangle orientation, Berry holonomy is -pi delta_r, not the packet's +2 pi delta_r."
+  ],
+  "blocked_consumers": [
+    "nested_tori",
+    "manifold_spine",
+    "global_bundle",
+    "chern_quantization",
+    "terrain_forcing",
+    "Axis0",
+    "engine_admission",
+    "formal_admission",
+    "physics"
+  ],
+  "claim_ceiling": "Scratch diagnostic only: finite two-qubit Schmidt marginal, BKM/Umegaki Hessian, CPTP contraction, nonpositive-map control, and Berry-connection identities. No nested-torus, manifold-spine, terrain, Axis0, engine, admission, or physics claim.",
+  "classification": "scratch_diagnostic",
+  "external_claim_disposition": {
+    "BKM_hessian_identity": "survives on full-rank two-level marginals",
+    "Berry_curvature_on_global_phase_family": "survives as a bounded two-parameter calculation",
+    "CPTP_metric_contraction": "survives for the tested depolarizing family",
+    "external_L5_flux_normalization": "rejected; signed ratio is -1/2 for the declared orientation",
+    "finite_schmidt_radius_entropy_family": "survives with explicit domain",
+    "nested_tori_or_manifold_spine": "not tested",
+    "one_dimensional_intrinsic_curvature": "rejected by constant eta-coordinate metric",
+    "single_shell_holonomy_is_pure_gauge": "rejected"
+  },
+  "formal_admission_allowed": false,
+  "gates": {
+    "berry_phase_family": {
+      "global_state_family": "cos(eta) exp(i phi)|00> + sin(eta)|11>",
+      "loop_rows": [
+        {
+          "absolute_error": 2.1780303960383662e-07,
+          "analytic_holonomy": -5.363034122668976,
+          "discrete_holonomy": -5.363034340472016,
+          "eta": 0.39269908169872414
+        },
+        {
+          "absolute_error": 2.310146260953161e-07,
+          "analytic_holonomy": -4.712388980384691,
+          "discrete_holonomy": -4.712389211399317,
+          "eta": 0.5235987755982988
+        },
+        {
+          "absolute_error": 4.884981308350689e-15,
+          "analytic_holonomy": -3.141592653589794,
+          "discrete_holonomy": -3.141592653589789,
+          "eta": 0.7853981633974483
+        }
+      ],
+      "max_loop_error": 2.310146260953161e-07,
+      "pass": true,
+      "phase_location_control": {
+        "global_density_distance_across_phi": 0.5838382556828376,
+        "marginal_distance_across_phi": 1.1102230246251565e-16,
+        "marginal_erases_phi_while_global_state_retains_it": true
+      },
+      "rectangle": {
+        "absolute_error": 1.321158715761328e-08,
+        "analytic_minus_pi_delta_r": -0.6506451422842863,
+        "discrete_holonomy": -0.6506451290726991,
+        "eta_i": 0.39269908169872414,
+        "eta_j": 0.5235987755982988,
+        "external_L5_plus_2pi_delta_r": 1.3012902845685725,
+        "external_normalization_rejected": true,
+        "observed_to_external_ratio": -0.49999998984731747,
+        "path_orientation": "phi+, eta+, phi-, eta-",
+        "signed_radius_delta": 0.20710678118654746
+      },
+      "single_loop_pure_gauge_claim": "rejected; closed-loop Berry phase is gauge invariant modulo 2*pi, although a chosen connection potential is gauge dependent",
+      "tool_calls": [
+        "torch.vdot",
+        "torch.angle",
+        "torch partial trace"
+      ]
+    },
+    "bkm_hessian_and_coordinate_flatness": {
+      "max_coordinate_pullback_error_from_4": 2.6645352591003757e-15,
+      "max_hessian_error_from_4": 8.881784197001252e-16,
+      "max_spectral_bkm_error_from_4": 8.881784197001252e-16,
+      "one_dimensional_curvature_claim": "rejected; the metric is exactly constant in eta",
+      "pass": true,
+      "rows": [
+        {
+          "eta": 0.15,
+          "radius_coordinate_metric": 11.450531251495647,
+          "radius_metric_pulled_back_to_eta": 3.9999999999999973,
+          "signed_radius": 0.955336489125606,
+          "spectral_bkm_metric": 3.9999999999999996,
+          "torch_func_hessian_D_rho_eta_plus_delta_parallel_rho_eta": 3.999999999999999
+        },
+        {
+          "eta": 0.27,
+          "radius_coordinate_metric": 3.7830665851293563,
+          "radius_metric_pulled_back_to_eta": 4.000000000000002,
+          "signed_radius": 0.8577086813638242,
+          "spectral_bkm_metric": 4.000000000000001,
+          "torch_func_hessian_D_rho_eta_plus_delta_parallel_rho_eta": 3.999999999999999
+        },
+        {
+          "eta": 0.41,
+          "radius_coordinate_metric": 1.8706476191568868,
+          "radius_metric_pulled_back_to_eta": 3.9999999999999996,
+          "signed_radius": 0.6822212072876136,
+          "spectral_bkm_metric": 3.999999999999999,
+          "torch_func_hessian_D_rho_eta_plus_delta_parallel_rho_eta": 4.0
+        },
+        {
+          "eta": 0.59,
+          "radius_coordinate_metric": 1.1697325459501042,
+          "radius_metric_pulled_back_to_eta": 4.0,
+          "signed_radius": 0.38092482436688185,
+          "spectral_bkm_metric": 3.9999999999999996,
+          "torch_func_hessian_D_rho_eta_plus_delta_parallel_rho_eta": 4.000000000000001
+        },
+        {
+          "eta": 0.7853981633974483,
+          "radius_coordinate_metric": 1.0,
+          "radius_metric_pulled_back_to_eta": 4.0,
+          "signed_radius": 6.123233995736766e-17,
+          "spectral_bkm_metric": 4.0,
+          "torch_func_hessian_D_rho_eta_plus_delta_parallel_rho_eta": 4.0
+        }
+      ],
+      "tool_calls": [
+        "torch.func.hessian",
+        "torch.linalg.eigh"
+      ]
+    },
+    "channel_controls": {
+      "cptp_depolarizing": {
+        "all_contract": true,
+        "rows": [
+          {
+            "after": 0.39946155200915523,
+            "before": 4.000000000000001,
+            "contracts": true,
+            "eta": 0.2,
+            "ratio": 0.09986538800228878
+          },
+          {
+            "after": 1.0940413473186452,
+            "before": 4.0,
+            "contracts": true,
+            "eta": 0.4,
+            "ratio": 0.2735103368296613
+          },
+          {
+            "after": 1.55432475307457,
+            "before": 3.999999999999999,
+            "contracts": true,
+            "eta": 0.6,
+            "ratio": 0.38858118826864263
+          }
+        ],
+        "strength": 0.35
+      },
+      "nonpositive_amplifier_control": {
+        "amplifier": 1.25,
+        "interior_state_remains_full_rank": true,
+        "map_is_not_positive_on_full_state_space": true,
+        "metric_after": 6.533229387189982,
+        "metric_before": 4.0,
+        "metric_increases": true,
+        "pass": true,
+        "pure_state_output_min_eigenvalue": -0.125
+      },
+      "pass": true,
+      "tool_calls": [
+        "torch.linalg.eigh",
+        "torch complex128 channel pushforwards"
+      ],
+      "unitary_isometry": {
+        "absolute_difference": 1.7763568394002505e-15,
+        "after": 4.000000000000002,
+        "before": 4.0,
+        "pass": true
+      }
+    },
+    "exact_symbolic_identities": {
+      "berry_connection_A_phi": "-cos(eta)**2",
+      "berry_curvature_F_eta_phi": "sin(2*eta)",
+      "bkm_metric_eta_eta": "4",
+      "bkm_metric_radius_radius": "1/(1 - r**2)",
+      "delta_signed_radius": "cos(2*eta_i) - cos(2*eta_j)",
+      "domain": "0 < eta < pi/4",
+      "entropy_derivative": "2*(-log(sin(eta)) + log(cos(eta)))*sin(2*eta)",
+      "entropy_derivative_sign_on_domain": "positive because sin(2*eta)>0 and log(cos(eta))-log(sin(eta))>0",
+      "entropy_nats": "-log(sin(eta)**2)*sin(eta)**2 - log(cos(eta)**2)*cos(eta)**2",
+      "external_L5_asserted_flux": "2*pi*(cos(2*eta_i) - cos(2*eta_j))",
+      "interpretation": "The BKM line element is flat in eta but coordinate-dependent in r. The Berry rectangle is -pi*delta_r for the declared path orientation; it does not derive the external +2*pi*delta_r normalization.",
+      "pass": true,
+      "rectangle_holonomy_orientation_phi_plus_eta_plus_phi_minus_eta_minus": "-2*pi*(-sin(eta_i)**2 + sin(eta_j)**2)",
+      "rectangle_to_external_L5_ratio": "-1/2",
+      "signed_radius": "cos(2*eta)",
+      "signed_radius_derivative": "-2*sin(2*eta)",
+      "signed_radius_derivative_sign_on_domain": "negative because sin(2*eta)>0",
+      "surface_flux_orientation_deta_wedge_dphi": "2*pi*(-sin(eta_i)**2 + sin(eta_j)**2)",
+      "tool_calls": [
+        "sympy.diff",
+        "sympy.integrate",
+        "sympy.trigsimp"
+      ]
+    },
+    "marginal_radius_entropy": {
+      "domain": "0 < eta <= pi/4",
+      "entropy_strictly_increases": true,
+      "max_partial_trace_error": 2.220446049250313e-16,
+      "max_radius_identity_error": 2.220446049250313e-16,
+      "pass": true,
+      "radius_strictly_decreases": true,
+      "rows": [
+        {
+          "entropy_nats": 0.07506769822628895,
+          "eta": 0.12,
+          "expected_abs_cos_2eta": 0.9713379748520296,
+          "partial_trace_max_abs_error": 1.1102230246251565e-16,
+          "probabilities": [
+            0.9856689874260149,
+            0.014331012573985199
+          ],
+          "radius": 0.9713379748520298
+        },
+        {
+          "entropy_nats": 0.2302804841297848,
+          "eta": 0.25,
+          "expected_abs_cos_2eta": 0.8775825618903728,
+          "partial_trace_max_abs_error": 1.1102230246251565e-16,
+          "probabilities": [
+            0.9387912809451864,
+            0.06120871905481365
+          ],
+          "radius": 0.8775825618903728
+        },
+        {
+          "entropy_nats": 0.4255547592869222,
+          "eta": 0.4,
+          "expected_abs_cos_2eta": 0.6967067093471654,
+          "partial_trace_max_abs_error": 0.0,
+          "probabilities": [
+            0.8483533546735827,
+            0.1516466453264173
+          ],
+          "radius": 0.6967067093471655
+        },
+        {
+          "entropy_nats": 0.6259776577072931,
+          "eta": 0.6,
+          "expected_abs_cos_2eta": 0.3623577544766736,
+          "partial_trace_max_abs_error": 2.220446049250313e-16,
+          "probabilities": [
+            0.681178877238337,
+            0.31882112276166324
+          ],
+          "radius": 0.3623577544766738
+        },
+        {
+          "entropy_nats": 0.6931471805599453,
+          "eta": 0.7853981633974483,
+          "expected_abs_cos_2eta": 6.123233995736766e-17,
+          "partial_trace_max_abs_error": 0.0,
+          "probabilities": [
+            0.5000000000000001,
+            0.4999999999999999
+          ],
+          "radius": 2.220446049250313e-16
+        }
+      ],
+      "tool_calls": [
+        "torch complex128 state construction",
+        "torch partial trace",
+        "torch entropy"
+      ]
+    },
+    "support_boundaries": {
+      "eta_pi_over_4_maximally_mixed_marginal": {
+        "BKM_metric_eta_eta": 4.0,
+        "min_eigenvalue": 0.4999999999999999
+      },
+      "eta_zero_pure_marginal": {
+        "finite_full_rank_BKM_rejected": true,
+        "min_eigenvalue": 0.0,
+        "note": "The eta-coordinate metric has an interior limit, but the matrix BKM formula is support-singular at the pure boundary."
+      },
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "runtime": {
+    "command": "CPython /Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/schmidt_bkm_berry_dual_ratchet_repair_sim.py",
+    "deterministic": true,
+    "generated_at_utc": "2026-07-09T20:40:24.282481+00:00",
+    "python": "3.13.6",
+    "pytorch": "2.8.0",
+    "random_seed": null,
+    "sympy": "1.14.0"
+  },
+  "schema": "SCRATCH_DIAGNOSTIC_RESULT_v1",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "schmidt_bkm_berry_dual_ratchet_repair_sim",
+  "source": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/schmidt_bkm_berry_dual_ratchet_repair_sim.py",
+    "sha256": "43165678b1e8931ce218481800adf87c5a3c5a32b461e568ba284d5474bec46a"
+  },
+  "verdict": "PASS_BOUNDED_REPAIR"
+}

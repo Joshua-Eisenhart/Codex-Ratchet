@@ -22,6 +22,13 @@ PROMOTION_ALLOWED = False
 FORMAL_ADMISSION_ALLOWED = False
 READS_PEER_RESULT = False
 
+TOOL_MANIFEST = {
+    "json": {"tried": True, "used": True, "reason": "supportive envelope assembly from independent engine receipts"},
+    "pathlib": {"tried": True, "used": True, "reason": "supportive deterministic path binding"},
+}
+
+TOOL_INTEGRATION_DEPTH = {"json": "supportive", "pathlib": "supportive"}
+
 
 def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -213,11 +220,8 @@ def main() -> int:
             "engine_values": engine_values,
             "max_divergence": divergence_value,
         },
-        "TOOL_MANIFEST": {
-            "json": {"tried": True, "used": True, "reason": "supportive envelope assembly from independent engine receipts"},
-            "pathlib": {"tried": True, "used": True, "reason": "supportive deterministic path binding"},
-        },
-        "TOOL_INTEGRATION_DEPTH": {"json": "supportive", "pathlib": "supportive"},
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "all_pass": all_pass,
     }
     RESULT_PATH.parent.mkdir(parents=True, exist_ok=True)

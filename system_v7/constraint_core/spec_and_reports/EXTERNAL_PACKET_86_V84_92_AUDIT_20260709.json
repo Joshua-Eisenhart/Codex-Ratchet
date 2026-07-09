@@ -1,0 +1,270 @@
+{
+  "schema": "EXTERNAL_PACKET_INTAKE_AUDIT_v1",
+  "audit_id": "external_packet_86_v84_92_audit_20260709",
+  "created_at": "2026-07-09T19:53:08Z",
+  "classification": "audit",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "repo": {
+    "authority_path": "/Users/joshuaeisenhart/Codex-Ratchet",
+    "branch_at_audit": "session/r0-three-engine-probes",
+    "shared_worktree_dirty": true,
+    "ownership_note": "This audit added disjoint receipts and one scratch diagnostic. It did not revert, stage, or rewrite concurrent owner changes."
+  },
+  "inputs": {
+    "86.zip": {
+      "path": "/Users/joshuaeisenhart/Desktop/86.zip",
+      "sha256": "abb9596ab4675ddcbefb61a20908087565ba6167996ec6e55a187241eb44306f",
+      "archive_entries": 437,
+      "non_directory_entries": 437,
+      "lineage_role": "direct parent of 92.zip"
+    },
+    "constraint_core_unified_v84_plus_v7runner_20260708.zip": {
+      "path": "/Users/joshuaeisenhart/Desktop/constraint_core_unified_v84_plus_v7runner_20260708.zip",
+      "sha256": "319462f941bac25186750cd5c9643ea15749f4b107b9d66a321d11c02f690639",
+      "archive_entries": 555,
+      "non_directory_entries": 528,
+      "lineage_role": "separate integration and replication branch; neither a subset nor a superset of 92.zip"
+    },
+    "92.zip": {
+      "path": "/Users/joshuaeisenhart/Desktop/92.zip",
+      "sha256": "8518e88a2a99c5bc02061c7d050a58e3fdae94e41a921fa7825254a23cebb834",
+      "archive_entries": 447,
+      "non_directory_entries": 447,
+      "lineage_role": "86.zip plus exactly five source/result pairs"
+    }
+  },
+  "lineage_delta_86_to_92": [
+    "alfsen_shultz_dynamical_correspondence_deficit_sim.py and results",
+    "manifold_L5_nested_shells_schmidt_strata_sim.py and results",
+    "manifold_L6_shell_metric_bkm_connection_sim.py and results",
+    "petz_dpi_forces_the_pawl_sim.py and results",
+    "umegaki_pawl_is_finite_modular_theory_sim.py and results"
+  ],
+  "runtime": {
+    "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "environment_doctor": "PASS",
+    "environment_doctor_skip_julia": "PASS",
+    "package_installs_performed": false,
+    "repo_local_environment_pollution_found": false
+  },
+  "harness_receipts": {
+    "92_full_rerun": {
+      "execution_status": "fresh_local_rerun",
+      "summary": {
+        "pass": 130,
+        "fail": 0,
+        "skip": 0,
+        "green": true
+      },
+      "runner_sha256": "9bb0a55173336f1522fdcdf219bba4ace9cc989a2351f9978484746f2aee5c17",
+      "report_sha256": "baf1429ffec2700b1159418b5d4915a8ad4c87b45f2101a3d0650b4d4e629d06",
+      "ceiling": "Real process execution coverage including Julia/JAX/PyTorch validators; mostly exit-code and stdout-pattern assertions, not universal scientific proof or provenance-bound admission."
+    },
+    "v84_packaged_report": {
+      "execution_status": "packaged_report_inspected_not_full_harness_rerun",
+      "summary": {
+        "pass": 123,
+        "fail": 0,
+        "skip": 0,
+        "green": true
+      },
+      "ceiling": "Package-held runner record only. Fresh stranger-seed replication was performed separately below."
+    },
+    "supplemental_full_base": {
+      "execution_status": "fresh_local_rerun_of_nonarchive_supplement",
+      "summary": {
+        "pass": 131,
+        "fail": 0,
+        "skip": 0,
+        "green": true
+      },
+      "difference_from_92": "92 plus manifold_L7_shell_connection_holonomy_sim.py and qutip_coeffs_1.3",
+      "ceiling": "Execution green only; the added L7 semantic claim fails audit."
+    }
+  },
+  "new_92_probe_reruns": {
+    "all_five_exit_zero": true,
+    "contract_lint": {
+      "checked": 5,
+      "violation_total": 15,
+      "violations_per_probe": [
+        "classification missing",
+        "TOOL_MANIFEST missing",
+        "TOOL_INTEGRATION_DEPTH missing"
+      ],
+      "canonical_process_eligible": false
+    },
+    "probes": {
+      "alfsen_shultz_dynamical_correspondence_deficit": {
+        "source_sha256": "4bea08f0998f16c94037b849fb10933ea2e7165af00342892304883e5324a2b3",
+        "rerun_result_sha256": "fc83718560b6cf79bb9f5f998e066bd979defe809c4339c8a7f026551bd912cd",
+        "measured": "Herm3(C) selected generator residual 0; wrong-sign control 1.414; H3(O) naive generator sampled residual 143.654; one pair commutator residual about 1.9e-13.",
+        "disposition": "The finite residuals survive. Nonexistence of a single-observable correspondence and a 52-dimensional f4 span are not computed and are killed as claims.",
+        "live_stronger_prior_art": "system_v7/constraint_core/sims_and_scripts/alfsen_shultz_correspondence_probe_sim.py"
+      },
+      "manifold_L5_nested_shells_schmidt_strata": {
+        "source_sha256": "f7c03a0c6c2e475c7b4bda4e83f5e7aa48115061e1cee5eb8361f1668bef3413",
+        "rerun_result_sha256": "ba96e5888e42851798925572b238d564ca0c1797b07362c4c876a97e4af04116",
+        "measured": "On one restricted Schmidt family, marginal radius falls while entropy rises; two selected parameters have different radii.",
+        "disposition": "The shell, torus, nesting, and flux claims are killed. Phi=2*pi*(r_i-r_j) is defined and then rechecked, not independently derived."
+      },
+      "manifold_L6_shell_metric_bkm_connection": {
+        "source_sha256": "5f9939c6441bf01cf9b052b41e2fba562f4be14887ce761bfe244fe07d3a659c",
+        "rerun_result_sha256": "e0c6606fa55f4f602d0082cfc9f5e755912552e081059a74dac6e51d422e373f",
+        "measured": "One spectral BKM value agrees with one finite-difference Umegaki Hessian within about 6e-8; one depolarizing map contracts the value.",
+        "disposition": "No connection is computed. The one-dimensional curvature claim is a coordinate artifact. The non-CPTP tangent control is malformed."
+      },
+      "petz_dpi_forces_the_pawl": {
+        "source_sha256": "6c12e9f33349c703b905deb6f1181f5e3aa9ddceeb4de930fee640de984cb721",
+        "rerun_result_sha256": "913e2d53a062a141a3d09a28c99400fe26657a52c4756218ab26e06277d6ee84",
+        "measured": "No Umegaki DPI violations on 200 selected pairs for one lossy channel; a binary unitary/lossy recovery correlation; four tested quasi-entropies decrease on one replacement flow.",
+        "disposition": "Umegaki uniqueness or forcing is killed. The same implemented criterion admits the tested family and lacks decisive negatives.",
+        "live_stronger_prior_art": [
+          "system_v7/constraint_core/sims_and_scripts/petz_recovery_reversibility_census_sim.py",
+          "system_v7/constraint_core/sims_and_scripts/petz_quasi_entropy_pawl_census_sim.py"
+        ]
+      },
+      "umegaki_pawl_is_finite_modular_theory": {
+        "source_sha256": "4ef9f442624e32a819ad007277f79cb3423b8dfd25b35d4ea03b725ef72f2b80",
+        "rerun_result_sha256": "0a99d91023559dda281fbcdb241a9c8ae8865d5995b33454aa3eb16a914ab871",
+        "measured": "Selected full-rank qubit relative-modular expressions agree numerically with Umegaki; swapped Delta mismatches; singular sigma is flagged.",
+        "disposition": "Bounded finite modular identity survives. BKM extraction, thermal time, terrain provenance, and unique forcing remain blocked.",
+        "live_stronger_prior_art": "system_v7/constraint_core/sims_and_scripts/araki_modular_umegaki_crosscheck_sim.py"
+      }
+    }
+  },
+  "independent_pressure": {
+    "grok45_receipt": {
+      "path": "system_v7/constraint_core/sims_and_scripts/grok45_v92_foundations_pressure_20260709.json",
+      "sha256": "1fc5a862427e750bed44fd238cec8ebd0a0a835f30d7d8cd94d2372f27091e91",
+      "persisted_response_id": "676e6453-275e-948a-88c5-4b17bc82b1c6",
+      "classification": "external_pressure_not_proof"
+    },
+    "local_read_only_auditors": {
+      "alfsen_correspondence": "semantic overclaim; finite residual sample only",
+      "entropy_pawl": "finite examples only; uniqueness not forced",
+      "shell_bkm_geometry": "restricted Schmidt family and local BKM diagnostic; no shells, connection, or intrinsic 1D curvature",
+      "v84_runner": "packaged harness is mechanically green but lacks fresh stranger receipts until the runs below",
+      "lev_consumer": "evidence envelope is structurally parseable but not a proof-bound, idempotent, non-mutating live consumer",
+      "hollow_mirror": "four of five external probe narratives overclaim; the bounded modular identity is the lone surviving scientific core"
+    }
+  },
+  "fresh_stranger_seed_replication": {
+    "seed_selection": "20260709 selected before opening expected_ours.json",
+    "stage_reid_16_v1": {
+      "verdict": "PASS",
+      "result_sha256": "867884113f3d65957194c71e1af1a91a4b333cda53550455fed895eb334ff074",
+      "runner_sha256": "fd8e8e462d9f4f6d26a13b71ce762cf8e558ae64cd6ff00a7b187d09c928f386",
+      "full_affine_correct": "16/16",
+      "max_self_noise": 2.30448856847083e-15,
+      "min_wrong_distance": 0.27694753240527215,
+      "svd_only_correct": "7/16",
+      "mirror_collapses": 3,
+      "claim": "The 16 named stage channels are re-identifiable under full affine maps on this stranger seed; an SVD proxy destroys stage identity. This is finite stage-noncollapse evidence, not proof of 64 unique intelligences."
+    },
+    "t2_order_carried_v1": {
+      "verdict": "FAIL",
+      "result_sha256": "25363470e68e79e6f4ccb2cd7fcacb43bc109161a7a16c35118c73e2253c956f",
+      "runner_sha256": "9b0bc1cec2071048931bfddee30ba602301d242b95df65f4346fe85883a86c16",
+      "ordered_distance": 0.8944733859137964,
+      "unordered_distance": 0.00048594467724844356,
+      "null_band": 0.000324458949901359,
+      "minimum_segment_r2": 0.9999999995846697,
+      "failed_criterion": "unordered_distance_lte_null_band",
+      "post_run_expected_comparison": {
+        "reference_seed_0_verdict": "PASS",
+        "reference_unordered_distance": 0.0006122395648479697,
+        "reference_null_band": 0.0007455861728240706,
+        "related_20_seed_fraction_exceeding_band": 0.9
+      },
+      "claim": "Order is strongly detectable, but the stronger content-equivalence-after-permutation criterion is unstable and failed the stranger seed. The negative is preserved."
+    }
+  },
+  "supplemental_L7_audit": {
+    "source_sha256": "f8d112b3ea409eb60970aa2c0076dd19e880a35740d4344808f8a585a7c298f7",
+    "rerun_result_sha256": "951f2f63d4bb384a70da0f4b0ef068f4376ca82d3933c0ececa5e6956cd906d7",
+    "execution_exit_zero": true,
+    "contract_lint_violations": 3,
+    "finite_survivor": "A two-parameter spinor family has nonzero Berry curvature and a rectangle holonomy matching -pi*(cos(2 eta_i)-cos(2 eta_j)).",
+    "killed_claims": [
+      "It does not derive the earlier +2*pi delta-radius flux; the signed ratio is -1/2.",
+      "A closed-loop Berry phase is not generally pure gauge.",
+      "The spinor chart does not establish nested tori or a manifold spine."
+    ]
+  },
+  "bounded_repair": {
+    "source": "system_v7/constraint_core/sims_and_scripts/schmidt_bkm_berry_dual_ratchet_repair_sim.py",
+    "source_sha256": "43165678b1e8931ce218481800adf87c5a3c5a32b461e568ba284d5474bec46a",
+    "result": "system_v7/constraint_core/sims_and_scripts/schmidt_bkm_berry_dual_ratchet_repair_sim_results.json",
+    "result_sha256": "a4259cf4d09d69b9b2dd63c664c30ae3dc6fe554384d8c1f5b252ebe64663a85",
+    "verdict": "PASS_BOUNDED_REPAIR",
+    "contract_lint_violations": 0,
+    "measured": {
+      "max_Umegaki_hessian_error_from_4": 8.881784197001252e-16,
+      "max_spectral_BKM_error_from_4": 8.881784197001252e-16,
+      "max_coordinate_pullback_error_from_4": 2.6645352591003757e-15,
+      "exact_signed_radius_derivative": "-2*sin(2*eta) < 0 on 0 < eta < pi/4",
+      "exact_entropy_derivative": "2*(log(cos(eta))-log(sin(eta)))*sin(2*eta) > 0 on 0 < eta < pi/4",
+      "depolarizing_BKM_ratios": [
+        0.09986538800228878,
+        0.2735103368296613,
+        0.38858118826864263
+      ],
+      "unitary_isometry_error": 4.440892098500626e-16,
+      "nonpositive_amplifier_metric_before": 4.0,
+      "nonpositive_amplifier_metric_after": 6.533229387189982,
+      "nonpositive_amplifier_pure_output_min_eigenvalue": -0.125,
+      "Berry_rectangle_to_external_L5_ratio": -0.49999998984731747,
+      "marginal_phase_distance": 1.1102230246251565e-16,
+      "global_density_phase_distance": 0.5838382556828376
+    },
+    "independent_fabrication_audit": {
+      "found_fabrication": false,
+      "status": "PASS after final low-severity receipt-quality repairs",
+      "remaining_defects": "none",
+      "repairs": [
+        "renamed the gate from global bundle to phase family",
+        "changed the partial-trace comparison from diagonal-only to the full reduced matrix",
+        "made the four-edge rectangle orientation explicit",
+        "renamed the implementation function to phase family",
+        "added exact radius and entropy derivative identities so continuous monotonicity is not inferred from samples"
+      ],
+      "highest_honest_ceiling": "untracked scratch_diagnostic with a hash-consistent receipt and independently corroborated finite two-qubit identities"
+    },
+    "claim": "The finite Schmidt marginal, BKM/Umegaki Hessian, channel controls, and global-state Berry connection are real bounded objects. The one-dimensional intrinsic-curvature, +2*pi flux normalization, pure-gauge loop, nested-torus, global-bundle, and manifold-spine claims are rejected."
+  },
+  "lev_consumer_boundary": {
+    "repo": "/Users/joshuaeisenhart/lev-main",
+    "head_at_audit": "77cf36c9d44c13fe4a3eeecfce87c3a52acd3d63",
+    "current_status": "Evidence envelope can be structurally parsed as non-authoritative input, but there is no fresh ProofBundle-compatible, idempotent, end-to-end non-mutating consumer receipt.",
+    "state_mutation_performed_by_this_audit": false,
+    "required_before_live_consumption": [
+      "fresh adapter with durable RunEvidence",
+      "proof-backed receipt binding trace, gates, and claims",
+      "idempotency test",
+      "explicit promotion_allowed=false enforcement",
+      "end-to-end no-state-mutation test"
+    ]
+  },
+  "claim_ceiling": {
+    "system_process": "The supplied system genuinely executes a broad 130-case harness and selected cross-runtime validators, but a green harness is not equivalent to scientific validity.",
+    "engine_teeth": "The 16 affine stage channels are measurably noncollapsed on one fresh seed. This does not yet establish 64 unique reasoning personalities, full Type-1/Type-2 bidirectional science, perception, learning, or utility.",
+    "dual_ratchet": "The deepest locally earned geometry/entropy coupling in this intake is a finite Schmidt marginal with exact BKM/Umegaki Hessian and a separate Berry connection on the global phase family. No full manifold ratchet, Axis0 closure, terrain forcing, or engine admission is earned.",
+    "perception_and_objects": "Not exercised by these packet deltas. No object-formation or MMM/ontology consumer can inherit this audit as perception evidence.",
+    "lev": "Evidence-only. No live Lev state mutation or protocol admission is earned."
+  },
+  "blocked_consumers": [
+    "canonical sim admission",
+    "formal theorem admission",
+    "Axis0 completion",
+    "manifold-spine completion",
+    "64-stage unique-intelligence claim",
+    "Type-1/Type-2 full scientific-method claim",
+    "QIT perception or object-formation claim",
+    "MMM or ontology runtime",
+    "Lev mesh state mutation",
+    "physics or thermal-time interpretation"
+  ],
+  "work_handoff": ".lev/pm/handoffs/20260709-external-packets-86-v84-92-audit-session-1.md"
+}

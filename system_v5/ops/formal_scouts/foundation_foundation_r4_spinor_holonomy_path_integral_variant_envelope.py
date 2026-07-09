@@ -98,11 +98,15 @@ def build_result() -> dict[str, Any]:
         "wrong_half_angle_control_flips_to_plus_identity": bool(julia["negative_control_flip"]["wrong_half_angle_control_flips_to_plus_identity"] and jax["negative_control_flip"]["wrong_half_angle_control_flips_to_plus_identity"] and pytorch["negative_control_flip"]["wrong_half_angle_control_flips_to_plus_identity"]),
         "torch_func_jacrev_independent_sensitivity": bool(pytorch["negative_control_flip"]["torch_func_jacrev_independent_sensitivity"]),
     }
+    # Each leg is now required to read R3's persisted octonion carrier result
+    # (directly in the Julia leg; by cross-engine parity against the
+    # R3-derived Julia leg in the jax/pytorch legs), so reads_peer_result is
+    # True for all three, not False.
     fences_ok = all(
         payload["classification"] == "scratch_diagnostic"
         and payload["promotion_allowed"] is False
         and payload["formal_admission_allowed"] is False
-        and payload["reads_peer_result"] is False
+        and payload["reads_peer_result"] is True
         for payload in (julia, jax, pytorch)
     )
     all_pass = bool(
@@ -116,7 +120,6 @@ def build_result() -> dict[str, Any]:
         and classification == "scratch_diagnostic"
         and promotion_allowed is False
         and formal_admission_allowed is False
-        and reads_peer_result is False
     )
     return {
         "schema_version": "three_engine_sim_result_v1",

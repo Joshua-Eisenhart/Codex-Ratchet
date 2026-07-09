@@ -49,8 +49,7 @@
     "resolves_identity": true
   },
   "aligned_packages_load_bearing": [
-    "QuantumOptics",
-    "Z3"
+    "QuantumOptics"
   ],
   "all_pass": true,
   "claim_path_tools": [
@@ -86,8 +85,8 @@
   },
   "engine": "julia",
   "formal_admission_allowed": false,
-  "generated_at": "2026-06-08T00:29:55.912",
-  "julia_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "generated_at": "2026-07-01T01:16:05.134",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
   "negative_control": {
     "computed_rank_values": {
       "d": 3,
@@ -100,6 +99,7 @@
       "full_probe_class_count": 3
     },
     "erase": "drop_f01_finite_support_constraint",
+    "flip_ceiling": "the verdict genuinely tracks Julia-measured d and r (not a planted literal), but z3 itself only evaluates an IntVal comparison here -- it does not derive r from bound density-matrix entries the way the sibling JAX/z3 leg does. Read this as a supportive comparison-check flip, not a load-bearing structural-derivation flip.",
     "flipped": true,
     "with_f01": "unsat",
     "without_f01": "sat"
@@ -170,7 +170,7 @@
   "summary": {
     "all_admitted_have_finite_support": true,
     "all_pass": true,
-    "claim_ceiling": "F01 finite support fence at micro scale; no promotion, no later-rung claim",
+    "claim_ceiling": "F01 finite support fence at micro scale; no promotion, no later-rung claim; z3 leg is supportive (IntVal comparison of Julia-computed values), not load-bearing -- see z3.depth_ceiling_reason",
     "computed_dim": 3,
     "computed_padded_dim": 4,
     "computed_rank_admit": 3,
@@ -184,10 +184,12 @@
       "d": 3,
       "over_support_r": 4
     },
-    "integer_model": "assert d == computed reference dimension; assert r == computed spectral rank; optional F01 asserts r <= d",
-    "load_bearing": true,
+    "depth_ceiling_reason": "Z3.jl in this project exports only Int/BitVec/Float/Bool sorts with comparison and Bool connectives; no Real sort and no arithmetic Sum/+/* on Expr, so support-rank cannot be derived inside the solver from bound density-matrix entries (contrast: sibling JAX/z3 leg foundation_foundation_r1_f01_finitude_jax.py derives support in-solver via characteristic-relation lambdas). This leg only compares a Julia-precomputed rank integer against a Julia-precomputed dimension integer via IntVal equality/inequality; the SAT/UNSAT verdict tracks the measured values but z3 performs no independent derivation, so it is a comparison check, not a load-bearing structural proof.",
+    "integer_model": "assert d == computed reference dimension; assert r == computed spectral rank (both computed upstream in Julia by QuantumOptics, not derived in-solver); optional F01 asserts r <= d",
+    "load_bearing": false,
     "over_support_with_f01": "unsat",
     "over_support_without_f01": "sat",
-    "ran": true
+    "ran": true,
+    "tool_integration_depth": "supportive"
   }
 }

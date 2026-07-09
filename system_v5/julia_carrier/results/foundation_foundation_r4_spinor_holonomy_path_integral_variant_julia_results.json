@@ -1,90 +1,21 @@
 {
-  "C": {
-    "hermiticity": "Probe projectors are Hermitian; rotor coefficients are real scalar plus one bivector generator.",
-    "normalization": "Each step rotor is unit norm and each SO(3) step is orthogonal.",
-    "psd": "Rank-one probe projectors are PSD.",
-    "rung_specific_constraint": "Spinor/SU(2) half-angle structure: N ordered Clifford quaternion rotors with total loop angle 2pi.",
-    "trace_equals_one": "Probe states may be represented by rank-one normalized spinor/vector projectors with trace 1."
-  },
-  "M": {
-    "explicit_probe_family": [
-      "ordered_product_spinor_SU2_loop",
-      "ordered_product_vector_SO3_loop"
-    ],
-    "finite_probe_domain": {
-      "axis": "z",
-      "loop_angle": "2pi",
-      "loop_discretizations": [
-        2,
-        4,
-        8,
-        16,
-        32,
-        64
-      ]
-    },
-    "name": "holonomy_loop_probe"
-  },
-  "S_mod_M": {
-    "definition": "Equivalence classes under the holonomy-loop probe.",
-    "drop_M_classes": 1,
-    "spinor_SU2_class": "2pi_holonomy_minus_identity",
-    "vector_SO3_class": "2pi_holonomy_plus_identity",
-    "with_M_classes": 2
-  },
-  "TOOL_INTEGRATION_DEPTH": {
-    "CliffordAlgebras": "load_bearing",
-    "JSON": "supportive",
-    "LinearAlgebra": "supportive",
-    "Z3": "load_bearing"
-  },
-  "TOOL_MANIFEST": {
-    "CliffordAlgebras": {
-      "reason": "load-bearing SU(2)/spin rotor carrier: ordered quaternion rotor product for the 2pi loop",
-      "tried": true,
-      "used": true
-    },
-    "JSON": {
-      "reason": "supportive result serialization",
-      "tried": true,
-      "used": true
-    },
-    "LinearAlgebra": {
-      "reason": "supportive SO(3) control matrix residuals only",
-      "tried": true,
-      "used": true
-    },
-    "Z3": {
-      "reason": "load-bearing exact integer matrix-product proof that derives the N=2 spinor sign and erase flip",
-      "tried": true,
-      "used": true
-    }
-  },
-  "aligned_packages_load_bearing": [
-    "CliffordAlgebras",
-    "Z3"
-  ],
-  "all_pass": true,
-  "classification": "scratch_diagnostic",
-  "engine": "julia",
-  "formal_admission_allowed": false,
-  "generated_at": "2026-06-08T02:05:48Z",
   "julia_z3": {
-    "derivation": "step-product entries are sum_k step[i,k]*step[k,j] inside Z3.jl; only step matrix entries are bound",
-    "drop_spinor_step_binding_status": "sat",
     "erase_flip_unsat_to_sat": true,
-    "solver": "Z3.jl",
-    "spinor_negated_claim_status": "unsat",
     "vector_plus_identity_status": "sat",
-    "wrong_half_angle_not_minus_status": "sat"
+    "derivation": "step-product entries are sum_k step[i,k]*step[k,j] inside Z3.jl; only step matrix entries are bound",
+    "wrong_half_angle_not_minus_status": "sat",
+    "solver": "Z3.jl",
+    "drop_spinor_step_binding_status": "sat",
+    "spinor_negated_claim_status": "unsat"
   },
-  "negative_control_flip": {
-    "drop_M_coarsens_quotient": true,
-    "drop_spinor_constraint_unsat_to_sat": true,
-    "spinor_vs_vector_holonomy_flip": true,
-    "wrong_half_angle_control_flips_to_plus_identity": true
+  "C": {
+    "rung_specific_constraint": "Half-angle ordered product of exp(delta/2 * B) over N steps, B derived from R3's octonion carrier, versus a full-angle control exp(delta * B).",
+    "trace_equals_one": "The bivector-generated step exp(delta*B) is orthogonal by construction (B skew); trace/dim is the reported scalar projector proxy.",
+    "hermiticity": "L_e1, L_e2 are real skew matrices (proven in R3); B = L_e1*L_e2 is skew, so exp(theta*B) is orthogonal.",
+    "normalization": "B^2 = -I (proven here from R3's admitted L_e1, L_e2), so half-angle and full-angle steps are well-defined rotation generators.",
+    "psd": "Not a density-state rung; the octonion left-multiplication carrier and its induced bivector are the constraint objects."
   },
-  "object_id": "foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia_results.json",
   "packages_used": [
     "CliffordAlgebras",
     "Z3",
@@ -92,171 +23,177 @@
     "JSON",
     "Dates"
   ],
-  "promotion_allowed": false,
-  "reads_peer_result": false,
-  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia_results.json",
+  "negative_control_flip": {
+    "wrong_half_angle_control_flips_to_plus_identity": true,
+    "drop_M_coarsens_quotient": true,
+    "spinor_vs_vector_holonomy_flip": true,
+    "drop_spinor_constraint_unsat_to_sat": true
+  },
   "rung_id": "foundation_r4_spinor_holonomy_path_integral_variant",
-  "schema": "codex_ratchet.engine_leg_result.v1",
-  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia.jl",
+  "r3_peer_dependency": {
+    "matches_r3": true,
+    "local_recomputed_cl6_rank_from_same_cd_mul_construction": 64,
+    "r3_source_sha256": "87ee7968b4ceab87089e15fc971d0b95d77c524b840f7f675e1874fa437b4eea",
+    "r3_object_id": "foundation_r3_octonion_cl6_link_xhigh",
+    "r3_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_r3_octonion_cl6_link_xhigh_julia_results.json",
+    "r3_octonion_cl6_rank": 64
+  },
+  "classification": "scratch_diagnostic",
+  "S_mod_M": {
+    "definition": "Equivalence classes under the holonomy-loop probe.",
+    "spinor_SU2_class": "2pi_holonomy_minus_identity",
+    "drop_M_classes": 1,
+    "with_M_classes": 2,
+    "vector_SO3_class": "2pi_holonomy_plus_identity"
+  },
+  "M": {
+    "carrier_derivation": "rotation generator B = L_e1 * L_e2 is built from R3's admitted octonion left-multiplication matrices (foundation_r3_octonion_cl6_link_xhigh_julia_results.json), not a bare CliffordAlgebra(:Quaternions)",
+    "name": "holonomy_loop_probe",
+    "finite_probe_domain": {
+      "axis": "octonion_bivector_L_e1_L_e2",
+      "loop_discretizations": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "loop_angle": "2pi"
+    },
+    "explicit_probe_family": [
+      "ordered_product_R3_octonion_bivector_half_angle_loop",
+      "ordered_product_R3_octonion_bivector_full_angle_loop"
+    ]
+  },
+  "reads_peer_result": true,
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing read of R3's persisted result JSON (foundation_r3_octonion_cl6_link_xhigh_julia_results.json) for peer-dependency provenance, plus supportive result serialization"
+    },
+    "LinearAlgebra": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing matrix power/svd/eigenvalue computation of the R3-derived bivector generator and its ordered-product holonomy"
+    },
+    "CliffordAlgebras": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive Cl(0,6) dimension/rank cross-check only; the rotor generator itself is NOT built from CliffordAlgebras -- it is derived from R3's Cayley-Dickson octonion left-multiplication matrices (same cd_mul construction as foundation_r3_octonion_cl6_link_xhigh_julia.jl)"
+    },
+    "Z3": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing exact integer matrix-product proof that derives the N=2 abstract SU(2) spinor sign and erase flip (independent 2x2 formal cross-check, not itself carrier-derived)"
+    }
+  },
+  "formal_admission_allowed": false,
+  "aligned_packages_load_bearing": [
+    "Z3",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "generated_at": "2026-07-01T02:26:19Z",
   "summary": {
-    "discretization_convergence": [
+    "spinor_holonomy_scalar": -1.0000000000000009,
+    "spinor_minus_identity_residual": 2.6074432530915875e-15,
+    "vector_control_convergence": [
       {
+        "plus_identity_residual": 6.927648449883947e-16,
         "N": 2,
-        "minus_identity_residual": 1.2246467991473532e-16,
-        "spinor_bivector_ij": 1.2246467991473532e-16,
-        "spinor_i": 0.0,
-        "spinor_j": 0.0,
-        "spinor_scalar": -1.0,
+        "trace_half": 1.0,
         "step_angle": 3.141592653589793
       },
       {
+        "plus_identity_residual": 6.927648449883947e-16,
         "N": 4,
-        "minus_identity_residual": 2.7755575615628914e-16,
-        "spinor_bivector_ij": 2.7755575615628914e-16,
-        "spinor_i": 0.0,
-        "spinor_j": 0.0,
-        "spinor_scalar": -1.0,
+        "trace_half": 1.0,
         "step_angle": 1.5707963267948966
       },
       {
+        "plus_identity_residual": 1.8527671918533577e-15,
         "N": 8,
-        "minus_identity_residual": 1.6653345369377348e-16,
-        "spinor_bivector_ij": -1.6653345369377348e-16,
-        "spinor_i": 0.0,
-        "spinor_j": 0.0,
-        "spinor_scalar": -1.0,
+        "trace_half": 0.9999999999999999,
         "step_angle": 0.7853981633974483
       },
       {
+        "plus_identity_residual": 1.115772939310163e-15,
         "N": 16,
-        "minus_identity_residual": 6.106226635438361e-16,
-        "spinor_bivector_ij": 5.551115123125783e-17,
-        "spinor_i": 0.0,
-        "spinor_j": 0.0,
-        "spinor_scalar": -0.9999999999999994,
+        "trace_half": 0.9999999999999999,
         "step_angle": 0.39269908169872414
       },
       {
+        "plus_identity_residual": 2.5888363232609557e-15,
         "N": 32,
-        "minus_identity_residual": 1.4016565685892601e-15,
-        "spinor_bivector_ij": 6.938893903907228e-17,
-        "spinor_i": 0.0,
-        "spinor_j": 0.0,
-        "spinor_scalar": -1.0000000000000013,
+        "trace_half": 0.9999999999999992,
         "step_angle": 0.19634954084936207
       },
       {
+        "plus_identity_residual": 8.239640565982001e-15,
         "N": 64,
-        "minus_identity_residual": 8.881784197001252e-16,
-        "spinor_bivector_ij": 0.0,
-        "spinor_i": 0.0,
-        "spinor_j": 0.0,
-        "spinor_scalar": -1.0000000000000009,
+        "trace_half": 1.0000000000000029,
         "step_angle": 0.09817477042468103
       }
     ],
-    "spinor_holonomy_bivector_ij": 0.0,
-    "spinor_holonomy_scalar": -1.0000000000000009,
-    "spinor_minus_identity_residual": 8.881784197001252e-16,
-    "vector_control_convergence": [
+    "vector_holonomy_trace_half": 1.0000000000000029,
+    "vector_plus_identity_residual": 8.239640565982001e-15,
+    "discretization_convergence": [
       {
+        "spinor_scalar": -1.0,
         "N": 2,
-        "matrix": [
-          [
-            1.0,
-            2.4492935982947064e-16
-          ],
-          [
-            -2.4492935982947064e-16,
-            1.0
-          ]
-        ],
-        "plus_identity_residual": 2.4492935982947064e-16,
         "step_angle": 3.141592653589793,
-        "trace_half": 1.0
+        "minus_identity_residual": 3.4638242249419736e-16
       },
       {
+        "spinor_scalar": -1.0,
         "N": 4,
-        "matrix": [
-          [
-            1.0,
-            2.4492935982947064e-16
-          ],
-          [
-            -2.4492935982947064e-16,
-            1.0
-          ]
-        ],
-        "plus_identity_residual": 2.4492935982947064e-16,
         "step_angle": 1.5707963267948966,
-        "trace_half": 1.0
+        "minus_identity_residual": 8.380935554275409e-16
       },
       {
+        "spinor_scalar": -0.9999999999999999,
         "N": 8,
-        "matrix": [
-          [
-            1.0,
-            6.661338147750939e-16
-          ],
-          [
-            -6.661338147750939e-16,
-            1.0
-          ]
-        ],
-        "plus_identity_residual": 6.661338147750939e-16,
         "step_angle": 0.7853981633974483,
-        "trace_half": 1.0
+        "minus_identity_residual": 6.818912871815941e-16
       },
       {
+        "spinor_scalar": -0.9999999999999998,
         "N": 16,
-        "matrix": [
-          [
-            0.9999999999999998,
-            -3.885780586188048e-16
-          ],
-          [
-            3.885780586188048e-16,
-            0.9999999999999998
-          ]
-        ],
-        "plus_identity_residual": 3.885780586188048e-16,
         "step_angle": 0.39269908169872414,
-        "trace_half": 0.9999999999999998
+        "minus_identity_residual": 1.3123105554894617e-15
       },
       {
+        "spinor_scalar": -1.0000000000000016,
         "N": 32,
-        "matrix": [
-          [
-            0.9999999999999987,
-            3.0531133177191805e-16
-          ],
-          [
-            -3.0531133177191805e-16,
-            0.9999999999999987
-          ]
-        ],
-        "plus_identity_residual": 1.3322676295501878e-15,
         "step_angle": 0.19634954084936207,
-        "trace_half": 0.9999999999999987
+        "minus_identity_residual": 4.097419076651089e-15
       },
       {
+        "spinor_scalar": -1.0000000000000009,
         "N": 64,
-        "matrix": [
-          [
-            1.000000000000003,
-            4.163336342344337e-17
-          ],
-          [
-            -4.163336342344337e-17,
-            1.000000000000003
-          ]
-        ],
-        "plus_identity_residual": 3.1086244689504383e-15,
         "step_angle": 0.09817477042468103,
-        "trace_half": 1.000000000000003
+        "minus_identity_residual": 2.6074432530915875e-15
       }
-    ],
-    "vector_holonomy_trace_half": 1.000000000000003,
-    "vector_plus_identity_residual": 3.1086244689504383e-15
-  }
+    ]
+  },
+  "all_pass": true,
+  "octonion_bivector_generator": {
+    "generators": "L_e1 * L_e2 (octonion left-multiplication matrices from R3's Cayley-Dickson construction)",
+    "skew_residual": 0.0,
+    "square_minus_identity_residual": 0.0,
+    "is_valid_rotation_generator": true
+  },
+  "object_id": "foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia",
+  "promotion_allowed": false,
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "CliffordAlgebras": "supportive",
+    "Z3": "load_bearing"
+  },
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "engine": "julia",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia.jl"
 }

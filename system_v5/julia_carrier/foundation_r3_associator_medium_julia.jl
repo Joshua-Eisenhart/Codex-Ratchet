@@ -127,24 +127,69 @@ function alternativity_summary(table::Array{Int,3})
     )
 end
 
-function z3_computed_flip(max_norm::Float64)
-    ctx = Z3.Context()
-    solver = Z3.Solver(ctx)
-    scaled = round(Int, max_norm * 1_000_000)
-    v = Z3.IntVar("computed_associator_norm_scaled", ctx)
-    Z3.add(solver, v == Z3.IntVal(scaled, ctx))
-    Z3.add(solver, v == Z3.IntVal(0, ctx))
-    with_zero = string(Z3.check(solver))
+function z3_sum_terms(terms)
+    isempty(terms) && return Z3.IntVal(0)
+    Z3.Expr(terms[1].ctx, Z3.Z3_mk_add(Z3.ctx_ref(terms[1]), length(terms), map(e -> Z3.as_ast(e), terms)))
+end
 
-    erased = Z3.Solver(ctx)
-    Z3.add(erased, v == Z3.IntVal(scaled, ctx))
+function z3_mul(left, right)
+    Z3.Expr(left.ctx, Z3.Z3_mk_mul(Z3.ctx_ref(left), 2, [Z3.as_ast(left), Z3.as_ast(right)]))
+end
+
+function z3_sub(left, right)
+    Z3.Expr(left.ctx, Z3.Z3_mk_sub(Z3.ctx_ref(left), 2, [Z3.as_ast(left), Z3.as_ast(right)]))
+end
+
+function z3_derived_associator_certificate(name::String, values::Array{Int,3})
+    dim = size(values, 1)
+    cache = Dict{Tuple{Int,Int,Int},Any}()
+    constraints = Any[]
+
+    function table_var(k::Int, i::Int, j::Int)
+        key = (k, i, j)
+        if !haskey(cache, key)
+            var = Z3.IntVar("$(name)_T_$(k)_$(i)_$(j)")
+            cache[key] = var
+            push!(constraints, var == Z3.IntVal(values[k + 1, i + 1, j + 1]))
+        end
+        cache[key]
+    end
+
+    function assoc_component(a::Int, b::Int, c::Int, k::Int)
+        left = z3_sum_terms([z3_mul(table_var(m, a, b), table_var(k, m, c)) for m in 0:(dim - 1)])
+        right = z3_sum_terms([z3_mul(table_var(n, b, c), table_var(k, a, n)) for n in 0:(dim - 1)])
+        z3_sub(left, right)
+    end
+
+    assoc_rows = Any[]
+    for a in 0:(dim - 1), b in 0:(dim - 1), c in 0:(dim - 1), k in 0:(dim - 1)
+        push!(assoc_rows, assoc_component(a, b, c, k))
+    end
+
+    all_zero = Z3.Solver()
+    for constraint in constraints
+        Z3.add(all_zero, constraint)
+    end
+    for expr in assoc_rows
+        Z3.add(all_zero, expr == Z3.IntVal(0))
+    end
+    with_zero = string(Z3.check(all_zero))
+
+    erased = Z3.Solver()
+    for constraint in constraints
+        Z3.add(erased, constraint)
+    end
     without_zero = string(Z3.check(erased))
     Dict{String,Any}(
         "ran" => true,
-        "scaled_computed_norm" => scaled,
+        "solver" => "Z3.jl",
+        "bound_table_entry_equalities" => length(constraints),
+        "derived_assoc_component_count" => length(assoc_rows),
+        "asserted_precomputed_associator_coefficients" => 0,
         "assert_all_zero_status" => with_zero,
         "drop_all_zero_constraint_status" => without_zero,
         "erase_flip_unsat_to_sat" => with_zero == "unsat" && without_zero == "sat",
+        "derivation" => "assoc_k=sum_m T[m,a,b]*T[k,m,c]-sum_n T[n,b,c]*T[k,a,n], expanded inside Z3.jl from bound T[k,i,j] table entries",
     )
 end
 
@@ -156,7 +201,7 @@ function main()
     h_summary = associator_summary(h_table, h_labels)
     o_summary = associator_summary(o_table, o_labels)
     o_structure = alternativity_summary(o_table)
-    z3_flip = z3_computed_flip(o_summary["max_associator_norm"])
+    z3_flip = z3_derived_associator_certificate("julia_O_medium", o_table)
 
     all_pass = (
         h_summary["max_associator_norm"] <= TOL &&

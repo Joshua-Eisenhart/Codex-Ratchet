@@ -1,0 +1,302 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "python_stdlib": "supportive",
+    "torch.func": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing object-view projection graph for the finite battery",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side scaled structural polarity proof",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent structural gate polarity",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive vectorized heldout-view centroid distance readout",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive result readback, source-hash binding, and three-engine envelope emission",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing jacrev/vmap sensitivity check on the learned nominal projection readout",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing structural gate polarity",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "QIT_engine_admission",
+    "Axis0",
+    "FEP",
+    "Xi/Phi0",
+    "physics",
+    "Lev_mesh_runtime",
+    "production_perception",
+    "production_ontology",
+    "MMM_driver",
+    "mesh_visible_projection"
+  ],
+  "claim": "The v1 finite object-card carrier supports partial MMM-style projection convergence across JAX/JAX-SMT, Julia graph/Z3, and PyTorch prototype-learning lanes, while erased controls stay at chance.",
+  "claim_ceiling": "Projection-battery scout over finite qit_full_type1_type2_64_live_v1 object cards only; not live perception, Axis0, FEP, production ontology, or Lev mesh graph mutation.",
+  "claim_path_tools": [
+    "Graphs",
+    "Z3",
+    "jax",
+    "z3",
+    "cvc5",
+    "torch.func"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_only_tools": [],
+  "controller_source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_envelope.py",
+  "controller_source_sha256": "c7c6a4587e399f2448347a08671ae68bfd96fcc577f50e17fd4bbba254817fef",
+  "crossover_proofs": {
+    "cvc5": {
+      "claim": "independent cvc5 encoding agrees with z3 on projection battery polarity",
+      "erased_control_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "erased_control_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "claim": "nominal projection convergence gate is UNSAT under negation; erased controls are SAT/chance",
+      "erased_control_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": 4.0,
+      "julia": 4.0,
+      "pytorch": 4.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "metric": "survivor_object_count",
+    "view_max_divergence": 0.0,
+    "view_values": {
+      "jax": 5.0,
+      "julia": 5.0,
+      "pytorch": 5.0
+    }
+  },
+  "engine": "three_engine_envelope_controller",
+  "engine_contract": {
+    "audit_order": [
+      "controller_result",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "envelope_comparison"
+    ],
+    "lane_evidence": {
+      "jax": "independent projection records, vectorized heldout centroid readout, z3/cvc5 gate",
+      "julia": "independent finite carrier recompute, object-view projection graph, and Julia Z3 gate",
+      "pytorch": "learned finite prototype readout plus torch.func jacrev/vmap sensitivity"
+    },
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "julia_graph_z3_jax_smt_pytorch_learned_projection_battery"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "independent cvc5 encoding agrees with z3 on projection battery polarity",
+        "z3": "UNSAT negation of nominal projection convergence gate with SAT erased controls"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_jax_results.json",
+      "result_sha256": "578911f479105d5fa074682069b4e7205e3886897f4c851b5506c92d4e577fdd",
+      "source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_jax.py",
+      "source_sha256": "881f301a071dc75967c1ead7b83202bc85b241a4919f38c7364c69cda2b0efff"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "all_pass": true,
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Graphs": "SimpleGraph object-view projection graph has five view leaves per object and four disconnected object components",
+        "Z3": "UNSAT negation of scaled projection-convergence gate with SAT erased controls"
+      },
+      "packages_used": [
+        "Graphs",
+        "Z3",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_julia_results.json",
+      "result_sha256": "21741a685dc663f34b9b6a3182d9e7e4e58ef84e811247d5152513bbaea702d0",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_julia.jl",
+      "source_sha256": "bf7059412a61f3a9f6be2696ac034f9a48cbaecd6a8a29e2b800f8c9fd2d0e2e"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func"
+      ],
+      "all_pass": true,
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "torch.func": "jacrev/vmap gradient norms of the learned finite projection readout; nonzero nominal sensitivity is required"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_pytorch_results.json",
+      "result_sha256": "52807b6af35d8909f7a87039af20ae229241de5bcacb46c06157d72d30f5486e",
+      "source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_pytorch.py",
+      "source_sha256": "f3232ab5832cb246a1725a8b3569a4294580ab99d66ae563c13d9a96082faf63"
+    }
+  },
+  "evidence_grade": "scratch_diagnostic_measurement",
+  "failures": [],
+  "formal_admission_allowed": false,
+  "graph_mutation_allowed": false,
+  "host_consumed": false,
+  "lev_host_consumer_contract": {
+    "compositor_apply_allowed": false,
+    "cr_object_id_is_lev_entity_id": false,
+    "decision_ceiling": "accepted_as_evidence_only",
+    "evidence_kind": "measurement",
+    "graph_mutation_allowed": false,
+    "mesh_projection_allowed": false,
+    "source_boundary_mutated": false,
+    "truth_state": "proposed"
+  },
+  "lifecycle_status": "SCRATCH_DIAGNOSTIC",
+  "live_lev_consumed": false,
+  "mesh_projection_allowed": false,
+  "object_id": "qit_projection_battery_v0",
+  "out_of_scope": [
+    "Axis0 admission",
+    "FEP admission",
+    "production perception",
+    "Lev mesh runtime integration",
+    "remote peer graph mutation",
+    "ontology writer admission",
+    "MMM driver admission",
+    "physics/manifold admission"
+  ],
+  "parent_lineage": {
+    "common_source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_common.py",
+    "common_source_sha256": "3410928bf00123eab6c7f2f426e0116ef1f087000128a6ff84d7ff4ccf3673f4",
+    "controller_result": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_results.json",
+    "controller_result_sha256": "6c786637981540836eefec1d04fcc5c8ca1721bcfa5f2b29865f41880e9152dd",
+    "parent_envelope": "system_v7/sims/qit_full_type1_type2_64_live_v1/results/qit_full_type1_type2_64_live_v1_envelope_results.json",
+    "parent_envelope_sha256": "1ad747e8334f2d44f42665b31f9414bf1d98818c70197b6c6154d62ea5a2a930",
+    "parent_sim_id": "qit_full_type1_type2_64_live_v1"
+  },
+  "promotion_allowed": false,
+  "release_admission_allowed": false,
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "qit_projection_battery_v0",
+  "source_file_hashes": {
+    "common_source": "3410928bf00123eab6c7f2f426e0116ef1f087000128a6ff84d7ff4ccf3673f4",
+    "envelope_source": "c7c6a4587e399f2448347a08671ae68bfd96fcc577f50e17fd4bbba254817fef",
+    "jax_source": "881f301a071dc75967c1ead7b83202bc85b241a4919f38c7364c69cda2b0efff",
+    "julia_source": "bf7059412a61f3a9f6be2696ac034f9a48cbaecd6a8a29e2b800f8c9fd2d0e2e",
+    "main_source": "3a73ba6f3f6201fc45dd4ad4cf99dbd8aa61e04ed4e19a68f7a8591f344cbbf7",
+    "pytorch_source": "f3232ab5832cb246a1725a8b3569a4294580ab99d66ae563c13d9a96082faf63"
+  },
+  "source_result_paths": {
+    "jax": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_jax_results.json",
+    "julia": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_julia_results.json",
+    "main": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_results.json",
+    "pytorch": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_pytorch_results.json"
+  },
+  "stability_pairs": {
+    "nominal_vs_bag": {
+      "bag_mean": 0.25,
+      "nominal_mean": 0.9
+    },
+    "nominal_vs_view_erased": {
+      "nominal_mean": 0.9,
+      "view_erased_mean": 0.25
+    },
+    "pytorch_nominal_vs_bag": {
+      "bag_mean": 0.25,
+      "nominal_mean": 0.9
+    }
+  },
+  "tool_intent": {
+    "claim_classes": [
+      "finite_projection_convergence",
+      "erasure_control",
+      "source_backed_three_engine_scout"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "independent cvc5 gate must agree with z3 on the same measured values",
+        "z3": "projection-convergence gate negation must be UNSAT with SAT erased controls"
+      },
+      "julia": {
+        "Graphs": "object-view projection graph must have five projection leaves per object and four components",
+        "Z3": "scaled projection-convergence gate negation must be UNSAT while erased controls are SAT"
+      },
+      "pytorch": {
+        "torch.func": "jacrev/vmap gradient norms must be nonzero for the learned nominal projection readout"
+      }
+    }
+  },
+  "written_at": "2026-07-07T20:04:58Z"
+}

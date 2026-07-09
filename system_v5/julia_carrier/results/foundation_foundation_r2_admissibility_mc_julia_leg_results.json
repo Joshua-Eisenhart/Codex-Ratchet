@@ -1,75 +1,15 @@
 {
-  "C_constraints": [
-    "trace=1",
-    "PSD",
-    "Hermiticity",
-    "0 <= Tr(P rho) <= 1 for every P in M"
-  ],
-  "M_probe_family": [
-    {
-      "id": "P_z0",
-      "projector": "|0><0|"
-    },
-    {
-      "id": "P_z1",
-      "projector": "|1><1|"
-    },
-    {
-      "id": "P_xplus",
-      "projector": "|+><+|"
-    }
-  ],
-  "TOOL_INTEGRATION_DEPTH": {
-    "JSON": "supportive",
-    "LinearAlgebra": "supportive",
-    "QuantumOptics": "load_bearing",
-    "SHA": "supportive"
-  },
-  "TOOL_MANIFEST": {
-    "JSON": {
-      "reason": "supportive receipt serialization",
-      "tried": true,
-      "used": true
-    },
-    "LinearAlgebra": {
-      "reason": "supportive eigenvalue/determinant checks on QuantumOptics operator data",
-      "tried": true,
-      "used": true
-    },
-    "QuantumOptics": {
-      "reason": "load-bearing finite Hilbert basis, DenseOperator projectors/states, and Born expectations Tr(P rho) for M and C",
-      "tried": true,
-      "used": true
-    },
-    "SHA": {
-      "reason": "supportive source fingerprint",
-      "tried": true,
-      "used": true
-    }
-  },
-  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
-  "admitted_names": [
-    "rho_z0",
-    "rho_z1",
-    "rho_xplus",
-    "rho_yplus",
-    "rho_yminus",
-    "rho_convex_mix_z0_xplus_0p4_0p6"
-  ],
-  "all_pass": true,
-  "backend": "julia_quantumoptics_authoritative",
-  "classification": "scratch_diagnostic",
+  "ran": true,
   "convex_closure": {
     "admitted": true,
-    "min_eigenvalue": 0.13944487245360104,
-    "mixture": "0.4*rho_z0 + 0.6*rho_xplus",
     "probe_probabilities": {
+      "P_z1": 0.3,
       "P_xplus": 0.8,
-      "P_z0": 0.7,
-      "P_z1": 0.3
-    }
+      "P_z0": 0.7
+    },
+    "min_eigenvalue": 0.13944487245360104,
+    "mixture": "0.4*rho_z0 + 0.6*rho_xplus"
   },
-  "engine": "julia",
   "excluded": [
     {
       "name": "excluded_non_psd_imag_coherence",
@@ -91,17 +31,350 @@
       ]
     }
   ],
-  "formal_admission_allowed": false,
-  "generated_at": "2026-06-07T23:39:46Z",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r2_admissibility_mc_julia_leg_results.json",
+  "source_sha256": "aa008be4679d492563421f11734f8f700ef71d3ffe423318de860d87b3688b65",
+  "M_probe_family": [
+    {
+      "id": "P_z0",
+      "projector": "|0><0|"
+    },
+    {
+      "id": "P_z1",
+      "projector": "|1><1|"
+    },
+    {
+      "id": "P_xplus",
+      "projector": "|+><+|"
+    }
+  ],
+  "states": [
+    {
+      "trace_imag": 0.0,
+      "probe_probabilities": {
+        "P_z1": 0.0,
+        "P_xplus": 0.5,
+        "P_z0": 1.0
+      },
+      "matrix": [
+        [
+          "1.0 + 0.0im",
+          "0.0 + 0.0im"
+        ],
+        [
+          "0.0 + 0.0im",
+          "0.0 + 0.0im"
+        ]
+      ],
+      "min_eigenvalue": 0.0,
+      "hermitian_residual": 0.0,
+      "violations": [],
+      "name": "rho_z0",
+      "quotient_key_M": "1.0|0.0|0.5",
+      "expected_admitted_candidate": true,
+      "eigenvalues": [
+        0.0,
+        1.0
+      ],
+      "determinant": 0.0,
+      "admitted_under_C": true,
+      "trace_real": 1.0
+    },
+    {
+      "trace_imag": 0.0,
+      "probe_probabilities": {
+        "P_z1": 1.0,
+        "P_xplus": 0.5,
+        "P_z0": 0.0
+      },
+      "matrix": [
+        [
+          "0.0 + 0.0im",
+          "0.0 + 0.0im"
+        ],
+        [
+          "0.0 + 0.0im",
+          "1.0 + 0.0im"
+        ]
+      ],
+      "min_eigenvalue": 0.0,
+      "hermitian_residual": 0.0,
+      "violations": [],
+      "name": "rho_z1",
+      "quotient_key_M": "0.0|1.0|0.5",
+      "expected_admitted_candidate": true,
+      "eigenvalues": [
+        0.0,
+        1.0
+      ],
+      "determinant": 0.0,
+      "admitted_under_C": true,
+      "trace_real": 1.0
+    },
+    {
+      "trace_imag": 0.0,
+      "probe_probabilities": {
+        "P_z1": 0.5,
+        "P_xplus": 1.0,
+        "P_z0": 0.5
+      },
+      "matrix": [
+        [
+          "0.5 + 0.0im",
+          "0.5 + 0.0im"
+        ],
+        [
+          "0.5 + 0.0im",
+          "0.5 + 0.0im"
+        ]
+      ],
+      "min_eigenvalue": 0.0,
+      "hermitian_residual": 0.0,
+      "violations": [],
+      "name": "rho_xplus",
+      "quotient_key_M": "0.5|0.5|1.0",
+      "expected_admitted_candidate": true,
+      "eigenvalues": [
+        0.0,
+        1.0
+      ],
+      "determinant": 0.0,
+      "admitted_under_C": true,
+      "trace_real": 1.0
+    },
+    {
+      "trace_imag": 0.0,
+      "probe_probabilities": {
+        "P_z1": 0.5,
+        "P_xplus": 0.5,
+        "P_z0": 0.5
+      },
+      "matrix": [
+        [
+          "0.5 + 0.0im",
+          "0.0 - 0.5im"
+        ],
+        [
+          "0.0 + 0.5im",
+          "0.5 + 0.0im"
+        ]
+      ],
+      "min_eigenvalue": 0.0,
+      "hermitian_residual": 0.0,
+      "violations": [],
+      "name": "rho_yplus",
+      "quotient_key_M": "0.5|0.5|0.5",
+      "expected_admitted_candidate": true,
+      "eigenvalues": [
+        0.0,
+        1.0
+      ],
+      "determinant": 0.0,
+      "admitted_under_C": true,
+      "trace_real": 1.0
+    },
+    {
+      "trace_imag": 0.0,
+      "probe_probabilities": {
+        "P_z1": 0.5,
+        "P_xplus": 0.5,
+        "P_z0": 0.5
+      },
+      "matrix": [
+        [
+          "0.5 + 0.0im",
+          "0.0 + 0.5im"
+        ],
+        [
+          "0.0 - 0.5im",
+          "0.5 + 0.0im"
+        ]
+      ],
+      "min_eigenvalue": 0.0,
+      "hermitian_residual": 0.0,
+      "violations": [],
+      "name": "rho_yminus",
+      "quotient_key_M": "0.5|0.5|0.5",
+      "expected_admitted_candidate": true,
+      "eigenvalues": [
+        0.0,
+        1.0
+      ],
+      "determinant": 0.0,
+      "admitted_under_C": true,
+      "trace_real": 1.0
+    },
+    {
+      "trace_imag": 0.0,
+      "probe_probabilities": {
+        "P_z1": 0.3,
+        "P_xplus": 0.8,
+        "P_z0": 0.7
+      },
+      "matrix": [
+        [
+          "0.7 + 0.0im",
+          "0.3 + 0.0im"
+        ],
+        [
+          "0.3 + 0.0im",
+          "0.3 + 0.0im"
+        ]
+      ],
+      "min_eigenvalue": 0.13944487245360104,
+      "hermitian_residual": 0.0,
+      "violations": [],
+      "name": "rho_convex_mix_z0_xplus_0p4_0p6",
+      "quotient_key_M": "0.7|0.3|0.8",
+      "expected_admitted_candidate": true,
+      "eigenvalues": [
+        0.13944487245360104,
+        0.860555127546399
+      ],
+      "determinant": 0.12,
+      "admitted_under_C": true,
+      "trace_real": 1.0
+    },
+    {
+      "trace_imag": 0.0,
+      "probe_probabilities": {
+        "P_z1": 0.5,
+        "P_xplus": 0.5,
+        "P_z0": 0.5
+      },
+      "matrix": [
+        [
+          "0.5 + 0.0im",
+          "0.0 + 0.6im"
+        ],
+        [
+          "0.0 - 0.6im",
+          "0.5 + 0.0im"
+        ]
+      ],
+      "min_eigenvalue": -0.09999999999999995,
+      "hermitian_residual": 0.0,
+      "violations": [
+        "PSD"
+      ],
+      "name": "excluded_non_psd_imag_coherence",
+      "quotient_key_M": "0.5|0.5|0.5",
+      "expected_admitted_candidate": false,
+      "eigenvalues": [
+        -0.09999999999999995,
+        1.1
+      ],
+      "determinant": -0.10999999999999997,
+      "admitted_under_C": false,
+      "trace_real": 1.0
+    },
+    {
+      "trace_imag": 0.0,
+      "probe_probabilities": {
+        "P_z1": 0.6,
+        "P_xplus": 0.6,
+        "P_z0": 0.6
+      },
+      "matrix": [
+        [
+          "0.6 + 0.0im",
+          "0.0 + 0.0im"
+        ],
+        [
+          "0.0 + 0.0im",
+          "0.6 + 0.0im"
+        ]
+      ],
+      "min_eigenvalue": 0.6,
+      "hermitian_residual": 0.0,
+      "violations": [
+        "trace=1"
+      ],
+      "name": "excluded_trace_1p2",
+      "quotient_key_M": "0.6|0.6|0.6",
+      "expected_admitted_candidate": false,
+      "eigenvalues": [
+        0.6,
+        0.6
+      ],
+      "determinant": 0.36,
+      "admitted_under_C": false,
+      "trace_real": 1.2
+    },
+    {
+      "trace_imag": 0.0,
+      "probe_probabilities": {
+        "P_z1": 0.5,
+        "P_xplus": 1.1,
+        "P_z0": 0.5
+      },
+      "matrix": [
+        [
+          "0.5 + 0.0im",
+          "0.6 + 0.0im"
+        ],
+        [
+          "0.6 + 0.0im",
+          "0.5 + 0.0im"
+        ]
+      ],
+      "min_eigenvalue": -0.09999999999999995,
+      "hermitian_residual": 0.0,
+      "violations": [
+        "PSD",
+        "Born bound P_xplus"
+      ],
+      "name": "excluded_probe_prob_gt_1",
+      "quotient_key_M": "0.5|0.5|1.1",
+      "expected_admitted_candidate": false,
+      "eigenvalues": [
+        -0.09999999999999995,
+        1.1
+      ],
+      "determinant": -0.10999999999999997,
+      "admitted_under_C": false,
+      "trace_real": 1.0
+    }
+  ],
+  "admitted_names": [
+    "rho_z0",
+    "rho_z1",
+    "rho_xplus",
+    "rho_yplus",
+    "rho_yminus",
+    "rho_convex_mix_z0_xplus_0p4_0p6"
+  ],
+  "classification": "scratch_diagnostic",
+  "backend": "julia_quantumoptics_authoritative",
   "julia_version": "1.12.6",
-  "negative_controls": {
-    "drop_P_xplus_coarsens_quotient": true,
-    "excluded_non_psd_imag_coherence_violation": "PSD"
+  "runtime_seconds": 0.171426,
+  "reads_peer_result": false,
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive receipt serialization"
+    },
+    "SHA": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive source fingerprint"
+    },
+    "LinearAlgebra": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive eigenvalue/determinant checks on QuantumOptics operator data"
+    },
+    "QuantumOptics": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing finite Hilbert basis, DenseOperator projectors/states, and Born expectations Tr(P rho) for M and C"
+    }
   },
-  "object_id": "foundation_r2_admissibility_mc_julia_leg",
-  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-01T01:17:26Z",
   "quotient_summary": {
-    "drop_P_xplus_class_count": 4,
+    "full_M_class_count": 5,
+    "drop_probe_coarsens_quotient": true,
     "drop_P_xplus_classes": {
       "0.0|1.0": [
         "rho_z1"
@@ -118,320 +391,47 @@
         "rho_z0"
       ]
     },
-    "drop_probe_coarsens_quotient": true,
-    "full_M_class_count": 5,
+    "relation": "rho ~_M sigma iff all finite probe probabilities match",
     "full_M_classes": {
+      "0.7|0.3|0.8": [
+        "rho_convex_mix_z0_xplus_0p4_0p6"
+      ],
       "0.0|1.0|0.5": [
         "rho_z1"
       ],
-      "0.5|0.5|0.5": [
-        "rho_yplus",
-        "rho_yminus"
+      "1.0|0.0|0.5": [
+        "rho_z0"
       ],
       "0.5|0.5|1.0": [
         "rho_xplus"
       ],
-      "0.7|0.3|0.8": [
-        "rho_convex_mix_z0_xplus_0p4_0p6"
-      ],
-      "1.0|0.0|0.5": [
-        "rho_z0"
+      "0.5|0.5|0.5": [
+        "rho_yplus",
+        "rho_yminus"
       ]
     },
-    "relation": "rho ~_M sigma iff all finite probe probabilities match"
+    "drop_P_xplus_class_count": 4
   },
-  "ran": true,
-  "reads_peer_result": false,
-  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r2_admissibility_mc_julia_leg_results.json",
-  "runtime_seconds": 0.172258,
+  "all_pass": true,
+  "object_id": "foundation_r2_admissibility_mc_julia_leg",
+  "promotion_allowed": false,
+  "C_constraints": [
+    "trace=1",
+    "PSD",
+    "Hermiticity",
+    "0 <= Tr(P rho) <= 1 for every P in M"
+  ],
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "SHA": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing"
+  },
+  "engine": "julia",
+  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
   "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r2_admissibility_mc_julia_leg.jl",
-  "source_sha256": "aa008be4679d492563421f11734f8f700ef71d3ffe423318de860d87b3688b65",
-  "states": [
-    {
-      "admitted_under_C": true,
-      "determinant": 0.0,
-      "eigenvalues": [
-        0.0,
-        1.0
-      ],
-      "expected_admitted_candidate": true,
-      "hermitian_residual": 0.0,
-      "matrix": [
-        [
-          "1.0 + 0.0im",
-          "0.0 + 0.0im"
-        ],
-        [
-          "0.0 + 0.0im",
-          "0.0 + 0.0im"
-        ]
-      ],
-      "min_eigenvalue": 0.0,
-      "name": "rho_z0",
-      "probe_probabilities": {
-        "P_xplus": 0.5,
-        "P_z0": 1.0,
-        "P_z1": 0.0
-      },
-      "quotient_key_M": "1.0|0.0|0.5",
-      "trace_imag": 0.0,
-      "trace_real": 1.0,
-      "violations": []
-    },
-    {
-      "admitted_under_C": true,
-      "determinant": 0.0,
-      "eigenvalues": [
-        0.0,
-        1.0
-      ],
-      "expected_admitted_candidate": true,
-      "hermitian_residual": 0.0,
-      "matrix": [
-        [
-          "0.0 + 0.0im",
-          "0.0 + 0.0im"
-        ],
-        [
-          "0.0 + 0.0im",
-          "1.0 + 0.0im"
-        ]
-      ],
-      "min_eigenvalue": 0.0,
-      "name": "rho_z1",
-      "probe_probabilities": {
-        "P_xplus": 0.5,
-        "P_z0": 0.0,
-        "P_z1": 1.0
-      },
-      "quotient_key_M": "0.0|1.0|0.5",
-      "trace_imag": 0.0,
-      "trace_real": 1.0,
-      "violations": []
-    },
-    {
-      "admitted_under_C": true,
-      "determinant": 0.0,
-      "eigenvalues": [
-        0.0,
-        1.0
-      ],
-      "expected_admitted_candidate": true,
-      "hermitian_residual": 0.0,
-      "matrix": [
-        [
-          "0.5 + 0.0im",
-          "0.5 + 0.0im"
-        ],
-        [
-          "0.5 + 0.0im",
-          "0.5 + 0.0im"
-        ]
-      ],
-      "min_eigenvalue": 0.0,
-      "name": "rho_xplus",
-      "probe_probabilities": {
-        "P_xplus": 1.0,
-        "P_z0": 0.5,
-        "P_z1": 0.5
-      },
-      "quotient_key_M": "0.5|0.5|1.0",
-      "trace_imag": 0.0,
-      "trace_real": 1.0,
-      "violations": []
-    },
-    {
-      "admitted_under_C": true,
-      "determinant": 0.0,
-      "eigenvalues": [
-        0.0,
-        1.0
-      ],
-      "expected_admitted_candidate": true,
-      "hermitian_residual": 0.0,
-      "matrix": [
-        [
-          "0.5 + 0.0im",
-          "0.0 - 0.5im"
-        ],
-        [
-          "0.0 + 0.5im",
-          "0.5 + 0.0im"
-        ]
-      ],
-      "min_eigenvalue": 0.0,
-      "name": "rho_yplus",
-      "probe_probabilities": {
-        "P_xplus": 0.5,
-        "P_z0": 0.5,
-        "P_z1": 0.5
-      },
-      "quotient_key_M": "0.5|0.5|0.5",
-      "trace_imag": 0.0,
-      "trace_real": 1.0,
-      "violations": []
-    },
-    {
-      "admitted_under_C": true,
-      "determinant": 0.0,
-      "eigenvalues": [
-        0.0,
-        1.0
-      ],
-      "expected_admitted_candidate": true,
-      "hermitian_residual": 0.0,
-      "matrix": [
-        [
-          "0.5 + 0.0im",
-          "0.0 + 0.5im"
-        ],
-        [
-          "0.0 - 0.5im",
-          "0.5 + 0.0im"
-        ]
-      ],
-      "min_eigenvalue": 0.0,
-      "name": "rho_yminus",
-      "probe_probabilities": {
-        "P_xplus": 0.5,
-        "P_z0": 0.5,
-        "P_z1": 0.5
-      },
-      "quotient_key_M": "0.5|0.5|0.5",
-      "trace_imag": 0.0,
-      "trace_real": 1.0,
-      "violations": []
-    },
-    {
-      "admitted_under_C": true,
-      "determinant": 0.12,
-      "eigenvalues": [
-        0.13944487245360104,
-        0.860555127546399
-      ],
-      "expected_admitted_candidate": true,
-      "hermitian_residual": 0.0,
-      "matrix": [
-        [
-          "0.7 + 0.0im",
-          "0.3 + 0.0im"
-        ],
-        [
-          "0.3 + 0.0im",
-          "0.3 + 0.0im"
-        ]
-      ],
-      "min_eigenvalue": 0.13944487245360104,
-      "name": "rho_convex_mix_z0_xplus_0p4_0p6",
-      "probe_probabilities": {
-        "P_xplus": 0.8,
-        "P_z0": 0.7,
-        "P_z1": 0.3
-      },
-      "quotient_key_M": "0.7|0.3|0.8",
-      "trace_imag": 0.0,
-      "trace_real": 1.0,
-      "violations": []
-    },
-    {
-      "admitted_under_C": false,
-      "determinant": -0.10999999999999997,
-      "eigenvalues": [
-        -0.09999999999999995,
-        1.1
-      ],
-      "expected_admitted_candidate": false,
-      "hermitian_residual": 0.0,
-      "matrix": [
-        [
-          "0.5 + 0.0im",
-          "0.0 + 0.6im"
-        ],
-        [
-          "0.0 - 0.6im",
-          "0.5 + 0.0im"
-        ]
-      ],
-      "min_eigenvalue": -0.09999999999999995,
-      "name": "excluded_non_psd_imag_coherence",
-      "probe_probabilities": {
-        "P_xplus": 0.5,
-        "P_z0": 0.5,
-        "P_z1": 0.5
-      },
-      "quotient_key_M": "0.5|0.5|0.5",
-      "trace_imag": 0.0,
-      "trace_real": 1.0,
-      "violations": [
-        "PSD"
-      ]
-    },
-    {
-      "admitted_under_C": false,
-      "determinant": 0.36,
-      "eigenvalues": [
-        0.6,
-        0.6
-      ],
-      "expected_admitted_candidate": false,
-      "hermitian_residual": 0.0,
-      "matrix": [
-        [
-          "0.6 + 0.0im",
-          "0.0 + 0.0im"
-        ],
-        [
-          "0.0 + 0.0im",
-          "0.6 + 0.0im"
-        ]
-      ],
-      "min_eigenvalue": 0.6,
-      "name": "excluded_trace_1p2",
-      "probe_probabilities": {
-        "P_xplus": 0.6,
-        "P_z0": 0.6,
-        "P_z1": 0.6
-      },
-      "quotient_key_M": "0.6|0.6|0.6",
-      "trace_imag": 0.0,
-      "trace_real": 1.2,
-      "violations": [
-        "trace=1"
-      ]
-    },
-    {
-      "admitted_under_C": false,
-      "determinant": -0.10999999999999997,
-      "eigenvalues": [
-        -0.09999999999999995,
-        1.1
-      ],
-      "expected_admitted_candidate": false,
-      "hermitian_residual": 0.0,
-      "matrix": [
-        [
-          "0.5 + 0.0im",
-          "0.6 + 0.0im"
-        ],
-        [
-          "0.6 + 0.0im",
-          "0.5 + 0.0im"
-        ]
-      ],
-      "min_eigenvalue": -0.09999999999999995,
-      "name": "excluded_probe_prob_gt_1",
-      "probe_probabilities": {
-        "P_xplus": 1.1,
-        "P_z0": 0.5,
-        "P_z1": 0.5
-      },
-      "quotient_key_M": "0.5|0.5|1.1",
-      "trace_imag": 0.0,
-      "trace_real": 1.0,
-      "violations": [
-        "PSD",
-        "Born bound P_xplus"
-      ]
-    }
-  ]
+  "negative_controls": {
+    "excluded_non_psd_imag_coherence_violation": "PSD",
+    "drop_P_xplus_coarsens_quotient": true
+  }
 }

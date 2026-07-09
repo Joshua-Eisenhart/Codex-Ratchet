@@ -23,6 +23,13 @@ PROMOTION_ALLOWED = False
 FORMAL_ADMISSION_ALLOWED = False
 READS_PEER_RESULT = False
 
+TOOL_MANIFEST = {
+    "torch": {"tried": True, "used": True, "reason": "torch-native float64 Cayley-Dickson tensor arithmetic for the selected witness"},
+    "torch.func": {"tried": True, "used": True, "reason": "load-bearing jacrev sensitivity of the selected sedenion norm-defect witness"},
+}
+
+TOOL_INTEGRATION_DEPTH = {"torch": "supportive", "torch.func": "load_bearing"}
+
 
 def cd_conj(x: torch.Tensor) -> torch.Tensor:
     signs = torch.ones_like(x)
@@ -279,11 +286,8 @@ def main() -> int:
             },
         },
         "independent_check_note": "Genuine PyTorch-side check: torch.func.jacrev computes sensitivity of the sedenion norm-multiplicativity defect at the selected defective-line zero product; it is not used to re-count the Julia/JAX quotient.",
-        "TOOL_MANIFEST": {
-            "torch": {"tried": True, "used": True, "reason": "torch-native float64 Cayley-Dickson tensor arithmetic for the selected witness"},
-            "torch.func": {"tried": True, "used": True, "reason": "load-bearing jacrev sensitivity of the selected sedenion norm-defect witness"},
-        },
-        "TOOL_INTEGRATION_DEPTH": {"torch": "supportive", "torch.func": "load_bearing"},
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "all_pass": all_pass,
     }
     RESULT_PATH.parent.mkdir(parents=True, exist_ok=True)

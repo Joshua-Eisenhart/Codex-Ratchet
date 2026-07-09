@@ -87,7 +87,7 @@
     "shuffled, truncated, and bit-coordinate-erasure controls computed"
   ],
   "base_result_path": "system_v6/sims/engine_64_stage_full_run_v0/results/engine_64_stage_full_run_v0_results.json",
-  "base_result_sha256": "ac39eb345058c57db68f5d7e83af8159d281b5d1567280e2836f752a0d1d33dc",
+  "base_result_sha256": "614014f1b58027882a1035cd25d641dc1b3a35e2a87f60385889332758e54972",
   "boundary": {
     "basin_claim": false,
     "claim_ceiling": "scratch_diagnostic; realization-relative schedule trajectory only; no source admission, no match-lane claim, no basin/subbasin claim",
@@ -2094,11 +2094,26 @@
     "physics, bridge, or axis-level admission"
   ],
   "divergence": {
+    "engine_independence": {
+      "independent_recompute_lanes": [],
+      "independent_signal": false,
+      "max_divergence_meaning": "independence-unverified: one or more lanes did not declare whether they independently recompute or only verify a shared payload; treat max_divergence as a SHAPE/agreement check, not an independence signal.",
+      "note": "Lanes that call a shared core-compute and only verify its payload cannot diverge on that payload; their agreement is structural. See system_v6/receipts/engine_consensus_relabel_20260613.md.",
+      "unspecified_lanes": [
+        "jax",
+        "julia"
+      ],
+      "verify_payload_lanes": []
+    },
     "engine_values": {
       "jax": 64.0,
       "julia": 64.0
     },
     "julia_authoritative": true,
+    "lane_evidence": {
+      "jax": "unspecified",
+      "julia": "unspecified"
+    },
     "max_divergence": 0.0,
     "metric": "unique_coordinate_count"
   },
@@ -2161,7 +2176,7 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "system_v6/sims/engine_64_stage_full_run_v0/results/engine_64_stage_full_run_v0_jax_results.json",
-      "result_sha256": "5648cf195d0e94633574bfef6d7481086c12dae9428ff0f3062f808005ad2a18",
+      "result_sha256": "ce114628eff361c53ddb4e274ea37102bf6493a25a39718e4b92c3e59952444d",
       "source_path": "system_v6/sims/engine_64_stage_full_run_v0/engine_64_stage_full_run_v0_jax.py",
       "source_sha256": "513f19e378e05ae373652fefa557e7697e87aef5e450359930584a6735f24862"
     },
@@ -2190,7 +2205,7 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "system_v6/sims/engine_64_stage_full_run_v0/results/engine_64_stage_full_run_v0_julia_results.json",
-      "result_sha256": "cb5a40e8593b96007349781db493e0e78502db45d7b7cdc7646534756af0c696",
+      "result_sha256": "8c40812caf95997332ee576a5944ee4bf617aeed60158a3a6d0d4118a853969b",
       "source_path": "system_v6/sims/engine_64_stage_full_run_v0/engine_64_stage_full_run_v0_julia.jl",
       "source_sha256": "92f731f131e77471c0f7cbc4ba5186c9ba516d379464e3689f65bc19e2a9803b"
     }
@@ -2261,7 +2276,7 @@
     "type2_slots": 32,
     "unique_coordinate_count": 64
   },
-  "generated_at": "2026-06-12T09:02:19Z",
+  "generated_at": "2026-07-07T19:00:09Z",
   "mode": "julia_canon_plus_jax_diagnostic_pytorch_omitted",
   "object_id": "engine_64_stage_full_run_v0",
   "parent_lineage": {
@@ -2281,15 +2296,15 @@
   "source_sha256": "b7e70640f8d6e7812a54a79859a20f96bd4805ccdc0c2ba25d63d6e56f7d41ab",
   "stability_pairs": [
     {
-      "hash": "ac39eb345058c57db68f5d7e83af8159d281b5d1567280e2836f752a0d1d33dc",
+      "hash": "614014f1b58027882a1035cd25d641dc1b3a35e2a87f60385889332758e54972",
       "subtree": "base_result"
     },
     {
-      "hash": "cb5a40e8593b96007349781db493e0e78502db45d7b7cdc7646534756af0c696",
+      "hash": "8c40812caf95997332ee576a5944ee4bf617aeed60158a3a6d0d4118a853969b",
       "subtree": "julia_lane"
     },
     {
-      "hash": "5648cf195d0e94633574bfef6d7481086c12dae9428ff0f3062f808005ad2a18",
+      "hash": "ce114628eff361c53ddb4e274ea37102bf6493a25a39718e4b92c3e59952444d",
       "subtree": "jax_lane"
     }
   ],

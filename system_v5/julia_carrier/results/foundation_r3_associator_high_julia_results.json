@@ -30,27 +30,53 @@
       "used": true
     },
     "Z3": {
-      "reason": "load-bearing SMT over computed associator coefficients",
+      "reason": "load-bearing in-solver associator derivation from bound multiplication-table entries",
       "tried": true,
       "used": true
     }
   },
-  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
   "aligned_packages_load_bearing": [
     "CliffordAlgebras",
     "Z3"
   ],
   "all_pass": true,
   "classification": "scratch_diagnostic",
-  "created_at": "2026-06-08T00:52:47Z",
+  "created_at": "2026-07-01T01:17:05Z",
   "engine": "julia",
   "executable": "/opt/homebrew/bin/julia --project=@v1.12 --startup-file=no",
   "finite_certificates": {
     "julia_z3": {
       "H_all_zero_status": "sat",
+      "H_certificate": {
+        "all_coefficients_zero_status": "sat",
+        "asserted_precomputed_associator_coefficients": 0,
+        "bound_table_entry_equalities": 64,
+        "derivation": "assoc_k=sum_m T[m,a,b]*T[k,m,c]-sum_n T[n,b,c]*T[k,a,n], expanded inside Z3.jl from bound T[k,i,j] table entries",
+        "derived_assoc_component_count": 256,
+        "drop_zero_constraint_flips_unsat_to_sat": false,
+        "drop_zero_constraint_keeps_table_bindings": true,
+        "drop_zero_constraint_status": "sat",
+        "logic": "integer-domain exact derivation from bound table constants; Z3.jl RealVar is not exposed in this environment",
+        "probe_triple_count": 64,
+        "solver": "Z3.jl"
+      },
       "O_all_zero_status": "unsat",
+      "O_certificate": {
+        "all_coefficients_zero_status": "unsat",
+        "asserted_precomputed_associator_coefficients": 0,
+        "bound_table_entry_equalities": 512,
+        "derivation": "assoc_k=sum_m T[m,a,b]*T[k,m,c]-sum_n T[n,b,c]*T[k,a,n], expanded inside Z3.jl from bound T[k,i,j] table entries",
+        "derived_assoc_component_count": 4096,
+        "drop_zero_constraint_flips_unsat_to_sat": true,
+        "drop_zero_constraint_keeps_table_bindings": true,
+        "drop_zero_constraint_status": "sat",
+        "logic": "integer-domain exact derivation from bound table constants; Z3.jl RealVar is not exposed in this environment",
+        "probe_triple_count": 512,
+        "solver": "Z3.jl"
+      },
       "O_drop_all_zero_constraint_status": "sat",
-      "claim": "SMT assertions are over computed associator coefficients from the Julia package-derived tables.",
+      "claim": "Z3.jl binds the raw multiplication-table entries T[k,i,j] and derives the associator components in-solver; no precomputed associator coefficient is asserted.",
       "erase_flip_unsat_to_sat": true,
       "load_bearing": true,
       "ran": true

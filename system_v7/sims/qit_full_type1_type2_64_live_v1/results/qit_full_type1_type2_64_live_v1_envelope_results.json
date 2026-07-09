@@ -1,0 +1,269 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "python_stdlib": "supportive",
+    "torch.func": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing directed loop closure graph for each object",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side structural polarity proof",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent structural gate polarity",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive vectorized pairwise finite object distance readout",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive result readback, source-hash binding, and three-engine envelope emission",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing jacrev/vmap sensitivity check on the learned ordered-stream readout",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing structural gate polarity",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "QIT_engine_admission",
+    "Axis0",
+    "FEP",
+    "Xi/Phi0",
+    "physics",
+    "Lev_mesh_runtime",
+    "production_perception"
+  ],
+  "claim": "The atlas-derived finite 64-slot Type-1/Type-2 carrier forms four ordered loop objects under ordered observations; bag/static controls collapse identity; PyTorch can learn the ordered readout but loses the bag-erased ablation.",
+  "claim_ceiling": "64-row Type-1/Type-2 atlas schedule-runtime object-formation scout only; not manifold, bridge, Axis0, FEP, hexagram, cognition, or physics admission.",
+  "claim_path_tools": [
+    "Graphs",
+    "Z3",
+    "jax",
+    "z3",
+    "cvc5",
+    "torch.func"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_only_tools": [],
+  "controller_source_path": "system_v7/sims/qit_full_type1_type2_64_live_v1/qit_full_type1_type2_64_live_v1_envelope.py",
+  "controller_source_sha256": "aa589000f54f737c9f068289f0cff284b1cad8e892b47aa8f32c44f80df4794d",
+  "crossover_proofs": {
+    "cvc5": {
+      "claim": "independent cvc5 encoding agrees with z3 on full and erased polarity",
+      "erased_control_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "claim": "ordered unique object gate is UNSAT under negation; bag-erased control is SAT/collapsed",
+      "erased_control_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": 4.0,
+      "julia": 4.0,
+      "pytorch": 4.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "metric": "survivor_object_count"
+  },
+  "engine": "three_engine_envelope_controller",
+  "engine_contract": {
+    "audit_order": [
+      "controller_result",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "envelope_comparison"
+    ],
+    "lane_evidence": {
+      "jax": "independent_numeric_feature_recompute_plus_z3_cvc5_gate",
+      "julia": "independent_recompute_schedule_graph_and_z3_gate",
+      "pytorch": "learned_readout_with_order_erasure_ablation"
+    },
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "julia_graph_z3_jax_smt_pytorch_learned_readout"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "independent UNSAT polarity for the same finite gate",
+        "z3": "UNSAT negation of ordered_unique=object_count and bag_unique<object_count gate"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v7/sims/qit_full_type1_type2_64_live_v1/results/qit_full_type1_type2_64_live_v1_jax_results.json",
+      "result_sha256": "b195ddf695dc1c96903d23c811abc8f782252c5ae4e038f344f2101f8588e2b9",
+      "source_path": "system_v7/sims/qit_full_type1_type2_64_live_v1/qit_full_type1_type2_64_live_v1_jax.py",
+      "source_sha256": "111ff9bccb24921a4091c97d3c4c7cc18dfa2fa84811379b04b73e7d31adb116"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "all_pass": true,
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Graphs": "SimpleDiGraph loop closure with four directed edges per loop object",
+        "Z3": "UNSAT negation of ordered_unique=object_count and bag_unique<object_count gate"
+      },
+      "packages_used": [
+        "Graphs",
+        "Z3",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v7/sims/qit_full_type1_type2_64_live_v1/results/qit_full_type1_type2_64_live_v1_julia_results.json",
+      "result_sha256": "010b481c9954399b879b0aa246e985d5c6d0386b299bcdc861a7e4fb98a5029c",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_full_type1_type2_64_live_v1/qit_full_type1_type2_64_live_v1_julia.jl",
+      "source_sha256": "96bdc0827a4851331779029b36fc31976c30fb6f547350f06d5b53469a16d972"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func"
+      ],
+      "all_pass": true,
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "torch.func": "jacrev/vmap gradient norms of the learned ordered-stream readout; nonzero sensitivity is required"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v7/sims/qit_full_type1_type2_64_live_v1/results/qit_full_type1_type2_64_live_v1_pytorch_results.json",
+      "result_sha256": "714491a9c9e79abcaa0b3da6e6a12dc32472013ed60cb748b7d87625570088a5",
+      "source_path": "system_v7/sims/qit_full_type1_type2_64_live_v1/qit_full_type1_type2_64_live_v1_pytorch.py",
+      "source_sha256": "1bda96d55ea1c79e8622400aeeb7a1fcf1ee491e89feea30bf20102dfb46ebb0"
+    }
+  },
+  "evidence_grade": "scratch_diagnostic_measurement",
+  "failures": [],
+  "formal_admission_allowed": false,
+  "graph_mutation_allowed": false,
+  "host_consumed": false,
+  "lev_host_consumer_contract": {
+    "compositor_apply_allowed": false,
+    "cr_object_id_is_lev_entity_id": false,
+    "decision_ceiling": "accepted_as_evidence_only",
+    "evidence_kind": "measurement",
+    "graph_mutation_allowed": false,
+    "mesh_projection_allowed": false,
+    "source_boundary_mutated": false,
+    "truth_state": "proposed"
+  },
+  "lifecycle_status": "SCRATCH_DIAGNOSTIC",
+  "live_lev_consumed": false,
+  "mesh_projection_allowed": false,
+  "object_id": "qit_full_type1_type2_64_live_v1",
+  "out_of_scope": [
+    "Axis0 admission",
+    "FEP admission",
+    "production perception",
+    "Lev mesh runtime integration",
+    "physics/manifold admission",
+    "hexagram semantics"
+  ],
+  "parent_lineage": {
+    "atlas_source": "system_v4/docs/ENGINE_64_SCHEDULE_ATLAS.md",
+    "atlas_source_sha256": "9c13fd46b641b766e8762103220d5d5916a542a4a84a683feda2471f12a25d31",
+    "controller_result": "system_v7/sims/qit_full_type1_type2_64_live_v1/results/qit_full_type1_type2_64_live_v1_results.json",
+    "controller_result_sha256": "425293bba67ab07e7a4f399e210ad7fcdc206406e93b7f2f8a90447bdc8b49a4"
+  },
+  "promotion_allowed": false,
+  "release_admission_allowed": false,
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "qit_full_type1_type2_64_live_v1",
+  "stability_pairs": {
+    "ordered_vs_bag": {
+      "bag_expected_accuracy": 0.25,
+      "ordered_accuracy": 1.0
+    },
+    "pytorch_ordered_vs_bag": {
+      "bag_accuracy": 0.25,
+      "ordered_accuracy": 1.0
+    }
+  },
+  "tool_intent": {
+    "claim_classes": [
+      "finite_ordered_object_formation",
+      "erasure_control",
+      "learned_ordered_readout"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "independent cvc5 gate must agree with z3 on the same measured values",
+        "z3": "ordered-object gate negation must be UNSAT with SAT erased control"
+      },
+      "julia": {
+        "Graphs": "loop-object graph must close four ordered edges per loop object",
+        "Z3": "scaled ordered-object gate negation must be UNSAT while bag-erased control is SAT"
+      },
+      "pytorch": {
+        "torch.func": "jacrev/vmap gradient norms must be nonzero for the learned ordered-stream readout"
+      }
+    }
+  },
+  "written_at": "2026-07-07T21:39:36Z"
+}

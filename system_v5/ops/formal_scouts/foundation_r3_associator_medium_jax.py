@@ -96,22 +96,71 @@ def summary(name: str, table: jax.Array, labels: list[str]) -> dict[str, Any]:
     }
 
 
-def z3_all_zero_probe(name: str, computed: list[int]) -> dict[str, Any]:
-    xs = [z3.Int(f"{name}_a_{idx}") for idx in range(len(computed))]
+def all_basis_triples(dim: int) -> list[tuple[int, int, int]]:
+    return [(a, b, c) for a in range(dim) for b in range(dim) for c in range(dim)]
+
+
+def int_table_values(table: jax.Array) -> list[list[list[int]]]:
+    values = jax.device_get(table)
+    dim = int(values.shape[0])
+    rows: list[list[list[int]]] = []
+    for k in range(dim):
+        k_rows: list[list[int]] = []
+        for i in range(dim):
+            row: list[int] = []
+            for j in range(dim):
+                coeff = int(round(float(values[k, i, j])))
+                if abs(float(values[k, i, j]) - coeff) > TOL:
+                    raise ValueError(f"non-integral table entry {(k, i, j)}")
+                row.append(coeff)
+            k_rows.append(row)
+        rows.append(k_rows)
+    return rows
+
+
+def z3_all_zero_probe(name: str, table: jax.Array) -> dict[str, Any]:
+    """Bind raw table entries and derive the associator inside z3."""
+
+    values = int_table_values(table)
+    dim = len(values)
+    triples = all_basis_triples(dim)
+    cache: dict[tuple[int, int, int], z3.ArithRef] = {}
+    constraints: list[z3.BoolRef] = []
+
+    def table_var(k: int, i: int, j: int) -> z3.ArithRef:
+        key = (k, i, j)
+        if key not in cache:
+            var = z3.Real(f"{name}_T_{k}_{i}_{j}")
+            cache[key] = var
+            constraints.append(var == z3.RealVal(values[k][i][j]))
+        return cache[key]
+
+    def assoc_component(a: int, b: int, c: int, k: int) -> z3.ArithRef:
+        left = z3.Sum([table_var(m, a, b) * table_var(k, m, c) for m in range(dim)])
+        right = z3.Sum([table_var(n, b, c) * table_var(k, a, n) for n in range(dim)])
+        return left - right
+
+    assoc_rows = [z3.simplify(assoc_component(a, b, c, k)) for (a, b, c) in triples for k in range(dim)]
+
     s = z3.Solver()
-    s.add([var == value for var, value in zip(xs, computed, strict=True)])
-    s.add([var == 0 for var in xs])
+    s.set("timeout", 30000)
+    s.add(constraints)
+    s.add([expr == 0 for expr in assoc_rows])
     all_zero = s.check()
     erased = z3.Solver()
-    erased.add([var == value for var, value in zip(xs, computed, strict=True)])
+    erased.set("timeout", 30000)
+    erased.add(constraints)
     erased_status = erased.check()
     return {
         "solver": "z3",
+        "logic": "QF_NRA via z3 Real variables bound to computed table constants",
+        "bound_table_entry_equalities": len(constraints),
+        "derived_assoc_component_count": len(assoc_rows),
+        "asserted_precomputed_associator_coefficients": 0,
         "assert_all_associators_zero_status": str(all_zero),
         "drop_all_zero_constraint_status": str(erased_status),
         "erase_flip_unsat_to_sat": all_zero == z3.unsat and erased_status == z3.sat,
-        "asserted_coeff_count": len(computed),
-        "nonzero_coeff_count": sum(1 for value in computed if value != 0),
+        "derivation": "assoc_k=sum_m T[m,a,b]*T[k,m,c]-sum_n T[n,b,c]*T[k,a,n], expanded inside z3 from bound T[k,i,j] table entries",
     }
 
 
@@ -131,29 +180,65 @@ def cvc5_status(res: Any) -> str:
     return str(res)
 
 
-def cvc5_all_zero_probe(name: str, computed: list[int]) -> dict[str, Any]:
-    def mk() -> tuple[cvc5.Solver, list[Any]]:
-        solver = cvc5.Solver()
-        solver.setLogic("QF_LIA")
-        int_sort = solver.getIntegerSort()
-        zero = solver.mkInteger(0)
-        xs = [solver.mkConst(int_sort, f"{name}_a_{idx}") for idx in range(len(computed))]
-        for var, value in zip(xs, computed, strict=True):
-            solver.assertFormula(solver.mkTerm(Kind.EQUAL, var, solver.mkInteger(value)))
-        return solver, [solver.mkTerm(Kind.EQUAL, var, zero) for var in xs]
+def cvc5_real(solver: cvc5.Solver, value: int) -> Any:
+    return solver.mkReal(value)
 
-    s, zero_terms = mk()
+
+def cvc5_sum(solver: cvc5.Solver, terms: list[Any]) -> Any:
+    if not terms:
+        return cvc5_real(solver, 0)
+    if len(terms) == 1:
+        return terms[0]
+    return solver.mkTerm(Kind.ADD, *terms)
+
+
+def cvc5_all_zero_probe(name: str, table: jax.Array) -> dict[str, Any]:
+    values = int_table_values(table)
+    dim = len(values)
+    triples = all_basis_triples(dim)
+
+    def mk() -> tuple[cvc5.Solver, list[Any], int]:
+        solver = cvc5.Solver()
+        solver.setLogic("QF_NRA")
+        solver.setOption("tlimit-per", "30000")
+        real_sort = solver.getRealSort()
+        zero = cvc5_real(solver, 0)
+        cache: dict[tuple[int, int, int], Any] = {}
+        constraints: list[Any] = []
+
+        def table_var(k: int, i: int, j: int) -> Any:
+            key = (k, i, j)
+            if key not in cache:
+                var = solver.mkConst(real_sort, f"{name}_T_{k}_{i}_{j}")
+                cache[key] = var
+                constraints.append(solver.mkTerm(Kind.EQUAL, var, cvc5_real(solver, values[k][i][j])))
+            return cache[key]
+
+        def assoc_component(a: int, b: int, c: int, k: int) -> Any:
+            left = cvc5_sum(solver, [solver.mkTerm(Kind.MULT, table_var(m, a, b), table_var(k, m, c)) for m in range(dim)])
+            right = cvc5_sum(solver, [solver.mkTerm(Kind.MULT, table_var(n, b, c), table_var(k, a, n)) for n in range(dim)])
+            return solver.mkTerm(Kind.SUB, left, right)
+
+        assoc_rows = [assoc_component(a, b, c, k) for (a, b, c) in triples for k in range(dim)]
+        for constraint in constraints:
+            solver.assertFormula(constraint)
+        return solver, [solver.mkTerm(Kind.EQUAL, expr, zero) for expr in assoc_rows], len(constraints)
+
+    s, zero_terms, bound_count = mk()
     s.assertFormula(cvc5_and(s, zero_terms))
     all_zero = s.checkSat()
-    erased, _ = mk()
+    erased, _, _ = mk()
     erased_status = erased.checkSat()
     return {
         "solver": "cvc5",
+        "logic": "QF_NRA using Real variables bound to computed table constants",
+        "bound_table_entry_equalities": bound_count,
+        "derived_assoc_component_count": len(zero_terms),
+        "asserted_precomputed_associator_coefficients": 0,
         "assert_all_associators_zero_status": cvc5_status(all_zero),
         "drop_all_zero_constraint_status": cvc5_status(erased_status),
         "erase_flip_unsat_to_sat": all_zero.isUnsat() and erased_status.isSat(),
-        "asserted_coeff_count": len(computed),
-        "nonzero_coeff_count": sum(1 for value in computed if value != 0),
+        "derivation": "assoc_k=sum_m T[m,a,b]*T[k,m,c]-sum_n T[n,b,c]*T[k,a,n], expanded inside cvc5 from bound T[k,i,j] table entries",
     }
 
 
@@ -161,12 +246,10 @@ def main() -> int:
     labels_h = ["1", "i", "j", "k"]
     labels_o = labels_h + ["ell", "iell", "jell", "kell"]
     tables = build_tables()
-    h_coeffs = coeffs(tables["H"])
-    o_coeffs = coeffs(tables["O"])
-    h_z3 = z3_all_zero_probe("H", h_coeffs)
-    o_z3 = z3_all_zero_probe("O", o_coeffs)
-    h_cvc5 = cvc5_all_zero_probe("H", h_coeffs)
-    o_cvc5 = cvc5_all_zero_probe("O", o_coeffs)
+    h_z3 = z3_all_zero_probe("H", tables["H"])
+    o_z3 = z3_all_zero_probe("O", tables["O"])
+    h_cvc5 = cvc5_all_zero_probe("H", tables["H"])
+    o_cvc5 = cvc5_all_zero_probe("O", tables["O"])
     h_summary = summary("H", tables["H"], labels_h)
     o_summary = summary("O", tables["O"], labels_o)
 
@@ -194,7 +277,7 @@ def main() -> int:
         "S_quotient_under_M": {"relation": "(AB)C ~ A(BC) iff associator == 0", "H": "sat all-zero", "O": "unsat all-zero"},
         "values": {"H": h_summary, "O": o_summary},
         "smt_structural_proof": {
-            "encoding": "SMT Int variables are asserted equal to JAX-computed associator coefficients, then all-zero is tested.",
+            "encoding": "z3/cvc5 Real table variables T[k,i,j] are bound to the JAX-computed Cayley-Dickson entries; associators are derived inside the solvers, so no precomputed associator coefficient is asserted.",
             "z3": {"H": h_z3, "O": o_z3},
             "cvc5": {"H": h_cvc5, "O": o_cvc5},
             "agreement": {"H_all_zero": h_sat, "O_all_zero_unsat": o_unsat},

@@ -51,12 +51,18 @@ def max_divergence(values: dict[str, dict[str, float]]) -> float:
 
 
 def same_contract_flags(*payloads: dict[str, Any]) -> bool:
-    return all(
-        payload["classification"] == CLASSIFICATION
-        and payload["promotion_allowed"] is False
-        and payload["formal_admission_allowed"] is False
-        and payload["reads_peer_result"] is False
-        for payload in payloads
+    # The Julia leg (canonical engine) reads R3's persisted octonion/Cl(6)
+    # result as an explicit peer dependency; JAX/PyTorch legs were not in
+    # scope for that repair and remain standalone (reads_peer_result=False).
+    julia_payload = payloads[0]
+    return (
+        all(
+            payload["classification"] == CLASSIFICATION
+            and payload["promotion_allowed"] is False
+            and payload["formal_admission_allowed"] is False
+            for payload in payloads
+        )
+        and julia_payload["reads_peer_result"] is True
     )
 
 

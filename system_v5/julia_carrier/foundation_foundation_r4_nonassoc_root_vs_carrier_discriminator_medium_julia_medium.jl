@@ -1,4 +1,5 @@
 #!/usr/bin/env julia
+# reads_peer_result: true
 
 using Dates
 using JSON
@@ -9,7 +10,13 @@ const ROOT = "/Users/joshuaeisenhart/Codex-Ratchet"
 const RUNG_ID = "foundation_r4_nonassoc_root_vs_carrier_discriminator_medium"
 const SOURCE_PATH = joinpath(ROOT, "system_v5/julia_carrier/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_medium_julia_medium.jl")
 const RESULT_PATH = joinpath(ROOT, "system_v5/julia_carrier/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_medium_julia_medium_results.json")
+const R3_RESULT_PATH = joinpath(ROOT, "system_v5/julia_carrier/results/foundation_r3_octonion_cl6_link_xhigh_julia_results.json")
 const TOL = 1.0e-10
+
+function load_r3_peer_result()
+    isfile(R3_RESULT_PATH) || error("R4 nonassoc discriminator (medium) requires R3 peer result at $(R3_RESULT_PATH); none found.")
+    JSON.parsefile(R3_RESULT_PATH)
+end
 
 function multiply(table::Array{Int,3}, x::Vector{Int}, y::Vector{Int})
     n = size(table, 1)
@@ -158,6 +165,42 @@ function main()
     h_cl6_pass = counts["H"]["count"] >= 7
     o_cl6_pass = counts["O"]["count"] >= 7
     installed = bare_h["admissible"] && !h_cl6_pass && o_cl6_pass
+    h_associative = assoc["H"]["max_norm"] <= TOL
+    # forced_by_bare_root is computed, not asserted: non-associativity is forced
+    # by the bare root only if no bare-root-admissible carrier is associative.
+    # H is bare-root-admissible (bare_h["admissible"]) and its own computed
+    # associator_max_norm shows it is associative (h_associative), so the bare
+    # root does not force non-associativity.
+    forced_by_bare_root = !(bare_h["admissible"] && h_associative)
+    r3_peer = load_r3_peer_result()
+    r3_summary = r3_peer["summary"]
+    o_table = tables["O"]
+    o_generator_words = 2^6
+    o_cols = Vector{Float64}[]
+    o_generator_indices = 2:7  # first six IMAGINARY basis units (index 1 is the real unit e0)
+    for mask in 0:(o_generator_words - 1)
+        dim = size(o_table, 1)
+        acc = Matrix{Float64}(I, dim, dim)
+        for (bit, idx) in enumerate(o_generator_indices)
+            if ((mask >> (bit - 1)) & 1) == 1
+                mat = Float64.(hcat([product_basis(o_table, idx, col) for col in 1:dim]...))
+                acc = acc * mat
+            end
+        end
+        push!(o_cols, vec(acc))
+    end
+    o_mat = hcat(o_cols...)
+    o_singular = svdvals(o_mat)
+    o_tol = max(size(o_mat)...) * eps(Float64) * (isempty(o_singular) ? 0.0 : maximum(o_singular)) * 100.0
+    o_local_rank = count(>(o_tol), o_singular)
+    r3_provenance = Dict{String,Any}(
+        "r3_result_path" => R3_RESULT_PATH,
+        "r3_object_id" => get(r3_peer, "object_id", nothing),
+        "r3_source_sha256" => get(r3_peer, "source_sha256", nothing),
+        "r3_octonion_cl6_rank" => r3_summary["octonion_cl6_rank"],
+        "local_recomputed_cl6_rank_from_same_cayley_dickson_table" => o_local_rank,
+        "matches_r3" => o_local_rank == r3_summary["octonion_cl6_rank"],
+    )
 
     payload = Dict{String,Any}(
         "schema_version" => "engine_leg_result_v1",
@@ -166,7 +209,8 @@ function main()
         "classification" => "scratch_diagnostic",
         "promotion_allowed" => false,
         "formal_admission_allowed" => false,
-        "reads_peer_result" => false,
+        "reads_peer_result" => true,
+        "r3_peer_dependency" => r3_provenance,
         "generated_at" => string(now(UTC)),
         "source_path" => SOURCE_PATH,
         "result_path" => RESULT_PATH,
@@ -214,11 +258,12 @@ function main()
             ),
         ),
         "decision" => Dict(
-            "forced_by_bare_root" => false,
+            "forced_by_bare_root" => forced_by_bare_root,
+            "forced_by_bare_root_derivation" => "computed as NOT(H_bare_root_admissible AND H_associative), reading H_associative from assoc[\"H\"][\"max_norm\"] <= TOL",
             "installed_by_constraint" => ">=7 mutually anticommuting imaginary units / Cl(6) / 3-qubit Weyl floor",
             "verdict" => installed ? "INSTALLED_NOT_FORCED" : "FAILED_CONTROL",
         ),
-        "all_pass" => installed,
+        "all_pass" => installed && !forced_by_bare_root && r3_provenance["matches_r3"],
     )
 
     mkpath(dirname(RESULT_PATH))

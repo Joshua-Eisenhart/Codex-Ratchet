@@ -3,7 +3,7 @@
 # classification: scratch_diagnostic
 # promotion_allowed: false
 # formal_admission_allowed: false
-# reads_peer_result: false
+# reads_peer_result: true
 
 using Dates
 using JSON
@@ -15,6 +15,7 @@ using Z3
 
 const OBJECT_ID = "foundation_r4_nonassoc_root_vs_carrier_discriminator_high"
 const RESULT_PATH = joinpath(@__DIR__, "results", "foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_high_julia_results.json")
+const R3_RESULT_PATH = joinpath(@__DIR__, "results", "foundation_r3_octonion_cl6_link_xhigh_julia_results.json")
 const TOL = 1.0e-9
 
 function sha256_file(path::String)
@@ -127,7 +128,22 @@ function associator_coeffs(table::Array{Int,3}, i0::Int, j0::Int, k0::Int)
     left - right
 end
 
-function carrier_report(name::String, dim::Int, associative::Bool)
+function associator_max_norm(table::Array{Int,3})
+    dim = size(table, 1)
+    max_norm = 0.0
+    witness = nothing
+    for a0 in 0:(dim - 1), b0 in 0:(dim - 1), c0 in 0:(dim - 1)
+        coeffs = associator_coeffs(table, a0, b0, c0)
+        n = norm(Float64.(coeffs))
+        if n > max_norm
+            max_norm = n
+            witness = Dict{String,Any}("a" => a0, "b" => b0, "c" => c0, "coefficients" => coeffs)
+        end
+    end
+    Dict{String,Any}("max_norm" => max_norm, "witness" => witness, "associative" => max_norm <= TOL)
+end
+
+function carrier_report(name::String, dim::Int)
     table = multiplication_table(dim)
     unit_count = max_mutually_anticommuting_units(table)
     noncommuting = false
@@ -140,6 +156,8 @@ function carrier_report(name::String, dim::Int, associative::Bool)
             break
         end
     end
+    assoc = associator_max_norm(table)
+    associative = assoc["associative"]
     rank = dim > 1 ? generated_rank(left_matrices(dim), max(dim - 2, 0)) : Dict{String,Any}("rank" => 1, "generator_count" => 0, "word_count" => 1, "rank_tol" => 0.0)
     bare_admissible = dim < Inf && noncommuting
     cl6_admissible = unit_count >= 7
@@ -148,6 +166,8 @@ function carrier_report(name::String, dim::Int, associative::Bool)
         "real_dimension" => dim,
         "associative" => associative,
         "nonassociative" => !associative,
+        "associator_max_norm" => assoc["max_norm"],
+        "associator_witness" => assoc["witness"],
         "mutually_anticommuting_imaginary_unit_count" => unit_count,
         "finite" => true,
         "noncommuting" => noncommuting,
@@ -260,14 +280,49 @@ function quotient_summary(carriers::Dict{String,Any})
     )
 end
 
+function load_r3_peer_result()
+    isfile(R3_RESULT_PATH) || error("R4 nonassoc discriminator (high) requires R3 peer result at $(R3_RESULT_PATH); none found.")
+    JSON.parsefile(R3_RESULT_PATH)
+end
+
+function r3_provenance_check(r3::AbstractDict, o_table::Array{Int,3})
+    r3_summary = r3["summary"]
+    dim = size(o_table, 1)
+    mats = left_matrices(dim)
+    cols = Vector{Float64}[]
+    for mask in 0:(2^6 - 1)
+        acc = Matrix{Float64}(I, dim, dim)
+        for idx in 1:6
+            if ((mask >> (idx - 1)) & 1) == 1
+                acc = acc * mats[idx]
+            end
+        end
+        push!(cols, vec(acc))
+    end
+    mat = hcat(cols...)
+    singular = svdvals(mat)
+    tol = max(size(mat)...) * eps(Float64) * (isempty(singular) ? 0.0 : maximum(singular)) * 100.0
+    local_rank = count(>(tol), singular)
+    Dict{String,Any}(
+        "r3_result_path" => R3_RESULT_PATH,
+        "r3_object_id" => get(r3, "object_id", nothing),
+        "r3_source_sha256" => get(r3, "source_sha256", nothing),
+        "r3_octonion_cl6_rank" => r3_summary["octonion_cl6_rank"],
+        "local_recomputed_cl6_rank_from_same_cd_mul_construction" => local_rank,
+        "matches_r3" => local_rank == r3_summary["octonion_cl6_rank"],
+    )
+end
+
 function build_result()
     mkpath(dirname(RESULT_PATH))
     carriers = Dict{String,Any}(
-        "R" => carrier_report("R", 1, true),
-        "C" => carrier_report("C", 2, true),
-        "H" => carrier_report("H", 4, true),
-        "O" => carrier_report("O", 8, false),
+        "R" => carrier_report("R", 1),
+        "C" => carrier_report("C", 2),
+        "H" => carrier_report("H", 4),
+        "O" => carrier_report("O", 8),
     )
+    r3_peer = load_r3_peer_result()
+    r3_provenance = r3_provenance_check(r3_peer, multiplication_table(8))
     q = quotient_summary(carriers)
     z3_h = z3_commutator_report(multiplication_table(4))
     qo = quantumoptics_constraint_witness(4)
@@ -275,6 +330,11 @@ function build_result()
     unit_counts = Dict(name => row["mutually_anticommuting_imaginary_unit_count"] for (name, row) in carriers)
     h_assoc_pass = carriers["H"]["associative"] && carriers["H"]["bare_root_admissible"] && !carriers["H"]["cl6_7unit_admissible"]
     verdict = h_assoc_pass ? "INSTALLED_NOT_FORCED" : "OPEN_OR_FAILED"
+    # forced_nonassociativity is computed, not asserted: it is true only if no
+    # bare-root-admissible carrier is associative. H is bare-root-admissible
+    # and (per its own computed associator_max_norm) associative, so bare-root
+    # constraints do not force non-associativity.
+    forced_nonassociativity = !(carriers["H"]["bare_root_admissible"] && carriers["H"]["associative"])
     all_pass = h_assoc_pass &&
                carriers["O"]["cl6_7unit_admissible"] &&
                q["bare_root_admitted_carriers"] == ["H", "O"] &&
@@ -284,7 +344,8 @@ function build_result()
                qo["trace_one_pass"] &&
                qo["psd_pass"] &&
                qo["hermitian_pass"] &&
-               clifford["pass"]
+               clifford["pass"] &&
+               r3_provenance["matches_r3"]
 
     Dict{String,Any}(
         "schema" => "codex_ratchet.engine_leg.v1",
@@ -295,7 +356,8 @@ function build_result()
         "engine" => "julia",
         "ran" => true,
         "standalone" => true,
-        "reads_peer_result" => false,
+        "reads_peer_result" => true,
+        "r3_peer_dependency" => r3_provenance,
         "active_project" => Base.active_project(),
         "julia_version" => string(VERSION),
         "source_path" => abspath(@__FILE__),
@@ -328,9 +390,10 @@ function build_result()
             "flips" => true,
         ),
         "decision" => Dict{String,Any}(
-            "forced_nonassociativity" => false,
+            "forced_nonassociativity" => forced_nonassociativity,
+            "forced_nonassociativity_derivation" => "computed as NOT(H_bare_root_admissible AND H_associative), reading H_associative from carriers[\"H\"][\"associative\"] (associator_max_norm witness, not a hardcoded literal)",
             "verdict" => verdict,
-            "reason" => "H is associative and satisfies bare finitude + noncommutation + finite quotient probes; H is excluded only after the >=7 anticommuting-unit / Cl(6) constraint is added.",
+            "reason" => "H is associative (per computed associator_max_norm) and satisfies bare finitude + noncommutation + finite quotient probes; H is excluded only after the >=7 anticommuting-unit / Cl(6) constraint is added.",
         ),
         "packages_used" => ["QuantumOptics", "CliffordAlgebras", "Z3", "LinearAlgebra", "JSON", "SHA", "Dates"],
         "aligned_packages_load_bearing" => ["QuantumOptics", "CliffordAlgebras", "Z3"],
@@ -341,7 +404,7 @@ function build_result()
             "H_bare_root_admissible" => carriers["H"]["bare_root_admissible"],
             "H_cl6_7unit_admissible" => carriers["H"]["cl6_7unit_admissible"],
             "O_cl6_7unit_admissible" => carriers["O"]["cl6_7unit_admissible"],
-            "forced_nonassociativity" => false,
+            "forced_nonassociativity" => forced_nonassociativity,
             "verdict" => verdict,
             "all_pass" => all_pass,
         ),

@@ -553,7 +553,16 @@ def build_result() -> dict[str, Any]:
     collapse_ops = [row["operation"] for row in classifications if row["operation_class"] == "collapse"]
     all_cptp = all(row["cptp"]["pass"] for row in classifications)
     finite_op_set = len(op_names) == len(set(op_names)) and len(op_names) == 6
-    ops_classified_preserve_vs_collapse = len(preserve_ops) > 0 and len(collapse_ops) > 0 and len(classifications) == len(operations)
+    # Re-scoped: preserve/collapse is a property of THIS declared finite S, not
+    # an intrinsic operation property. Under a generic/random support set every
+    # op classifies as preserve (collapse set empties), so the both-populated
+    # invariant is state-set-engineered and is NOT gated. We report only the
+    # S-relative witness: at least one op strictly shrinks the quotient class
+    # count on this declared S.
+    collapse_witnessed_relative_to_declared_S = (
+        any(row["collapse_count"] > 0 for row in classifications)
+        and len(classifications) == len(operations)
+    )
     erasure_load_bearing = bool(load_bearing_erasure["pass"] and non_load_bearing_erasure["pass"])
 
     shared_scalars: dict[str, float] = {
@@ -580,7 +589,7 @@ def build_result() -> dict[str, Any]:
         "finite_op_set": finite_op_set,
         "all_cptp": all_cptp,
         "commutation_order_measured": bool(commutation["commutation_order_measured"]),
-        "ops_classified_preserve_vs_collapse": ops_classified_preserve_vs_collapse,
+        "collapse_witnessed_relative_to_declared_S": collapse_witnessed_relative_to_declared_S,
         "n01_control_genuine": bool(order_control["n01_control_genuine"]),
         "load_bearing_erasure_control": erasure_load_bearing,
         "classification_is_scratch_diagnostic": classification == "scratch_diagnostic",
@@ -619,7 +628,15 @@ def build_result() -> dict[str, Any]:
         "purpose": "Measure the finite R2 candidate operation layer without declaring the order in advance.",
         "scientific_question": "Which finite CPTP operations preserve the R2 probe quotient, and which operation pairs force order?",
         "branch_status_before_run": "scratch_diagnostic_only",
-        "support_layer": "finite_2x2_probe_quotient_only",
+        "support_layer": "finite_2x2_density_operator_kraus_choi_superoperator_carrier",
+        "support_layer_note": (
+            "Corrected from finite_2x2_probe_quotient_only. The CPTP admissibility "
+            "check (rho=psi psi', Tr(effect@rho), Choi PSD) and the order-forced "
+            "commutation witness are computed on the finite 2x2 density-operator / "
+            "Kraus / Choi / 4x4 superoperator carrier, not purely at the probe "
+            "quotient S/~_M. The commutation gap is a channel-algebra fact on this "
+            "carrier, not an R2 probe-quotient fact."
+        ),
         "bridge_layer": "none",
         "cut_layer": "none",
         "law_or_candidate_tested": "finite CPTP operation commutation and quotient preservation",
@@ -663,8 +680,9 @@ def build_result() -> dict[str, Any]:
             ],
         },
         "operation_classification": {
-            "admissible_preserve_operations": preserve_ops,
-            "excluded_collapse_operations": collapse_ops,
+            "scope": "preserve/collapse are relative to this declared finite S; under a generic support set the collapse set empties (not an intrinsic operation property)",
+            "preserve_operations_on_declared_S": preserve_ops,
+            "collapse_operations_on_declared_S": collapse_ops,
             "rows": classifications,
         },
         "commutation_order": commutation,
@@ -682,7 +700,10 @@ def build_result() -> dict[str, Any]:
             "finite_op_set": {"pass": finite_op_set},
             "all_cptp": {"pass": all_cptp},
             "commutation_order_measured": {"pass": bool(commutation["commutation_order_measured"])},
-            "ops_classified_preserve_vs_collapse": {"pass": ops_classified_preserve_vs_collapse},
+            "collapse_witnessed_relative_to_declared_S": {
+                "pass": collapse_witnessed_relative_to_declared_S,
+                "scope": "relative to this declared finite S only; not an intrinsic operation property",
+            },
             "n01_control_genuine": {"pass": bool(order_control["n01_control_genuine"])},
             "load_bearing_erasure_control": {"pass": erasure_load_bearing},
         },
@@ -722,7 +743,7 @@ def build_result() -> dict[str, Any]:
             "any candidate operation fails CPTP check",
             "commutation matrix not measured",
             "no order-forced pair or no order-free pair",
-            "operation classification lacks preserve or collapse cases",
+            "no operation collapses the quotient class count on this declared S",
             "erasing the load-bearing operation does not change reachable quotient",
             "JAX/Julia parity exceeds tolerance",
         ],
@@ -738,7 +759,7 @@ def build_result() -> dict[str, Any]:
     result["n01_order_forced_pairs"] = commutation["n01_order_forced_pairs"]
     result["commuting_free_pairs"] = commutation["commuting_free_pairs"]
     result["commutation_order_measured"] = bool(commutation["commutation_order_measured"])
-    result["ops_classified_preserve_vs_collapse"] = ops_classified_preserve_vs_collapse
+    result["collapse_witnessed_relative_to_declared_S"] = collapse_witnessed_relative_to_declared_S
     result["n01_control_genuine"] = bool(order_control["n01_control_genuine"])
     result["all_pass"] = bool(
         finite_op_set
@@ -746,7 +767,6 @@ def build_result() -> dict[str, Any]:
         and commutation["commutation_order_measured"]
         and commutation["n01_order_forced_pairs"] > 0
         and commutation["commuting_free_pairs"] > 0
-        and ops_classified_preserve_vs_collapse
         and erasure_load_bearing
         and result["parity"]["within_1e_12"]
         and classification == "scratch_diagnostic"
@@ -764,7 +784,7 @@ def build_result() -> dict[str, Any]:
         "n01_order_forced_pairs": commutation["n01_order_forced_pairs"],
         "commuting_free_pairs": commutation["commuting_free_pairs"],
         "commutation_order_measured": bool(commutation["commutation_order_measured"]),
-        "ops_classified_preserve_vs_collapse": ops_classified_preserve_vs_collapse,
+        "collapse_witnessed_relative_to_declared_S": collapse_witnessed_relative_to_declared_S,
         "n01_control_genuine": bool(order_control["n01_control_genuine"]),
         "parity_with_julia": result["parity"]["within_1e_12"],
         "all_pass": result["all_pass"],
@@ -775,7 +795,7 @@ def build_result() -> dict[str, Any]:
         "pairwise superoperator commutation matrix measured",
         "order-forced pairs discovered by nonzero gap",
         "order-free pairs discovered by near-zero gap",
-        "operations classified preserve vs collapse by quotient response",
+        "at least one operation collapses the quotient class count on this declared S (S-relative, not intrinsic)",
         "N01 positive and commuting-erased controls compare distinct operation orders",
         "operation erasure compares distinct reachable quotient computations",
         "JAX/Julia shared scalar, boolean, and string parity",
@@ -790,7 +810,6 @@ def refresh_all_pass(result: dict[str, Any]) -> None:
         and result["commutation_order_measured"]
         and result["n01_order_forced_pairs"] > 0
         and result["commuting_free_pairs"] > 0
-        and result["ops_classified_preserve_vs_collapse"]
         and result["shared_booleans"]["load_bearing_erasure_control"]
         and result["parity"]["within_1e_12"]
         and classification == "scratch_diagnostic"

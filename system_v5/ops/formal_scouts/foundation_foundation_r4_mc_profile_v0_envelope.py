@@ -90,6 +90,7 @@ def build_result() -> dict[str, Any]:
         and payload["promotion_allowed"] is False
         and payload["formal_admission_allowed"] is False
         and payload["reads_peer_result"] is False
+        and payload.get("rung_reclassified_from_r4_to_r2") is True
         and payload["all_pass"] is True
         for payload in engine_payloads
     )
@@ -118,7 +119,9 @@ def build_result() -> dict[str, Any]:
         "generated_at": _dt.datetime.now(_dt.UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "source_path": str(SOURCE_PATH),
         "result_path": str(RESULT_PATH),
-        "claim_ceiling": "Foundation R4 M(C) profile v0 scratch diagnostic only: finite probe-family quotient under explicit density/admissibility constraints. No promotion, no formal admission, no bridge or axis-level claim.",
+        "claim_ceiling": "Reclassified R2 M(C) profile v0 (not R4) scratch diagnostic only: finite probe-family quotient under explicit density/admissibility constraints on a generic qubit; no octonion/Cl(6) carrier dependency exists. No promotion, no formal admission, no bridge or axis-level claim.",
+        "rung_reclassified_from_r4_to_r2": True,
+        "rung_reclassification_reason": "All three engine legs profile a generic qubit Bloch-sphere family with zero derivation link to R3's admitted octonion/Cl(6) carrier; per the R4 reopen review, this object is demoted to R2 rather than asserting a fake R3 dependency.",
         "all_pass": all_pass,
         "M_probe_family": julia["M_probe_family"],
         "C_constraints": julia["C_constraints"],

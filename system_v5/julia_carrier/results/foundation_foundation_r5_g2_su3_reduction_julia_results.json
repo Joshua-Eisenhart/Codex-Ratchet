@@ -40,7 +40,7 @@
   },
   "TOOL_INTEGRATION_DEPTH": {
     "CliffordAlgebras": "load_bearing",
-    "JSON": "supportive",
+    "JSON": "load_bearing",
     "LinearAlgebra": "supportive",
     "QuantumOptics": "load_bearing",
     "Z3": "load_bearing"
@@ -52,7 +52,7 @@
       "used": true
     },
     "JSON": {
-      "reason": "supportive result receipt serialization",
+      "reason": "load-bearing read of R3's persisted result JSON (foundation_r3_octonion_cl6_link_xhigh_julia_results.json) for peer-dependency provenance, plus supportive result receipt serialization",
       "tried": true,
       "used": true
     },
@@ -81,7 +81,7 @@
   "classification": "scratch_diagnostic",
   "engine": "julia",
   "formal_admission_allowed": false,
-  "generated_at": "2026-06-08T02:33:34Z",
+  "generated_at": "2026-07-01T02:55:36Z",
   "julia_z3": {
     "asserted_constrained_rows": 520,
     "asserted_derivation_only_rows": 512,
@@ -154,11 +154,23 @@
     "Dates"
   ],
   "promotion_allowed": false,
-  "reads_peer_result": false,
+  "r3_peer_provenance_check": {
+    "local_cd_double_octonion_table_sha256": "4b82f7b3bd9efbe6eee61d5813fedd2c9ab3018bccfed37cf1274527c3f25360",
+    "octonion_table_max_entry_residual_between_implementations": 0,
+    "octonion_tables_match": true,
+    "r3_object_id": "foundation_r3_octonion_cl6_link_xhigh",
+    "r3_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_r3_octonion_cl6_link_xhigh_julia_results.json",
+    "r3_source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_r3_octonion_cl6_link_xhigh_julia.jl",
+    "r3_source_sha256_from_own_result": "87ee7968b4ceab87089e15fc971d0b95d77c524b840f7f675e1874fa437b4eea",
+    "r3_source_sha256_recomputed_here": "87ee7968b4ceab87089e15fc971d0b95d77c524b840f7f675e1874fa437b4eea",
+    "r3_source_sha_matches": true,
+    "r3_style_cd_mul_octonion_table_sha256": "4b82f7b3bd9efbe6eee61d5813fedd2c9ab3018bccfed37cf1274527c3f25360"
+  },
+  "reads_peer_result": true,
   "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r5_g2_su3_reduction_julia_results.json",
   "rung_id": "foundation_r5_g2_su3_reduction",
   "runtime_preflight": {
-    "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+    "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
     "julia_version": "1.12.6"
   },
   "schema": "codex_ratchet.engine_leg_result.v1",

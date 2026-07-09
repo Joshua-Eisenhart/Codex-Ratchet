@@ -1,15 +1,192 @@
 {
   "C": {
-    "rung_specific_constraint": "operator-composition and P_M quotient-section bracketing",
     "constraints": [
       "trace=1",
       "Hermitian",
       "PSD under Lindblad/unitary evolution",
       "3-qubit finite carrier"
+    ],
+    "rung_specific_constraint": "operator-composition and P_M quotient-section bracketing"
+  },
+  "M": {
+    "defines": "finite probe signatures for S/~_M",
+    "probe_family": [
+      "Z0",
+      "X0",
+      "Z0Z1"
     ]
   },
-  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_qit_operator_composition_mcp_julia_results.json",
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "supportive",
+    "DifferentialEquations": "load_bearing",
+    "Graphs": "load_bearing",
+    "Grassmann": "supportive",
+    "ITensorMPS": "supportive",
+    "ITensors": "supportive",
+    "JSON/Dates/SHA": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumClifford": "supportive",
+    "QuantumOptics": "load_bearing",
+    "Symbolics": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "supportive Cl(3,0) geometric product and pseudoscalar side readout for the bracketing structure; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "DifferentialEquations": {
+      "reason": "load-bearing ODEProblem + solve(Tsit5) integration of Ti/Te Lindblad master equations",
+      "tried": true,
+      "used": true
+    },
+    "Graphs": {
+      "reason": "load-bearing composition DAG and commutation graph checks",
+      "tried": true,
+      "used": true
+    },
+    "Grassmann": {
+      "reason": "supportive exterior/geometric product side readout on v1*v2*v3; not used by all_pass, quotient, divergence, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "ITensorMPS": {
+      "reason": "supportive MPS representation and maxlinkdim side readout for a 3-qubit carrier state; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "ITensors": {
+      "reason": "supportive 3-qubit tensor-network operator-contraction side readout; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "JSON/Dates/SHA": {
+      "reason": "supportive serialization, timestamping, and source pinning",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "control-only Hermitian/eigenvalue/norm checks; not in claim_path_tools",
+      "tried": true,
+      "used": true
+    },
+    "QuantumClifford": {
+      "reason": "supportive 3-qubit GHZ stabilizer/tableau side readout for the finite multi-qubit carrier; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing SpinBasis tensor carrier, density operator, Ti/Te/Fi/Fe operator construction, unitary channels, entropy_vn, ptrace, fidelity, and probe expectations",
+      "tried": true,
+      "used": true
+    },
+    "Symbolics": {
+      "reason": "supportive symbolic associator / projected product structure-constant side readout; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing derive-in-solver matrix-entry commutation flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "DifferentialEquations",
+    "Z3"
+  ],
+  "all_pass": true,
+  "backend": "julia_authoritative_quantumoptics_diffeq_qit_stack",
+  "carrier": {
+    "basis": "QuantumOptics tensor(SpinBasis(1//2), SpinBasis(1//2), SpinBasis(1//2))",
+    "dimension": 8,
+    "n_qubits": 3
+  },
   "claim_ceiling": "Scratch diagnostic only: finite 3-qubit QIT operator-composition, quotient, bracketing, and controls. No promotion, formal admission, bridge, Axis0, IGT truth, or physics claim.",
+  "claim_path_tools": [
+    "QuantumOptics",
+    "DifferentialEquations",
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "composition": {
+    "bracketing": {
+      "erased_projected_gap": 0.0,
+      "left_formula": "P_M(Ti(P_M(Fi(Fe(rho)))))",
+      "projected_nonassoc_gap": 1.0013607843543977,
+      "projection": "P_M maps rho to product-state section preserving single-qubit Z probe expectations",
+      "raw_associative_gap": 0.0,
+      "right_formula": "P_M(Ti(Fi(P_M(Fe(rho)))))"
+    },
+    "carrier_erasure_order_gap": 7.850462293418876e-17,
+    "commuting_control_Fe_then_Ti_vs_Ti_then_Fe": 1.2473132257778372e-16,
+    "order_gap_Fi_then_Ti_vs_Ti_then_Fi": 0.2754790186642815
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-01T02:23:31Z",
+  "geometry": {
+    "clifford_grassmann": {
+      "CliffordAlgebras_call": "CliffordAlgebra(3,0); e1*e2*e3; (e1*e2*e3)^2",
+      "Grassmann_call": "basis\"3\"; (v1*v2)*v3 and v1*(v2*v3)",
+      "cl3_pseudoscalar": "+1×e1e2e3 ∈ Cl(3, 0, 0)",
+      "cl3_pseudoscalar_square": "-1 ∈ Cl(3, 0, 0)",
+      "grassmann_associative_control_zero": "0v₁₂₃",
+      "grassmann_left": "v₁₂₃",
+      "grassmann_right": "v₁₂₃"
+    },
+    "graph": {
+      "call": "Graphs.DiGraph; add_edge!; is_cyclic; topological_sort_by_dfs",
+      "edges": 5,
+      "is_cyclic": false,
+      "nodes": 6,
+      "topological_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "itensor_network": {
+      "call": "ITensorMPS.MPS(siteinds(\"Qubit\",3),\"0\"); ITensors.op(\"H\"); ITensorMPS.expect(psi,\"Z\")",
+      "maxlinkdim": 1,
+      "z0_expectation_after_h_on_q0": -2.2371143170757388e-17
+    },
+    "quantum_clifford": {
+      "call": "QuantumClifford.ghz(3); stabilizerview; stab_to_gf2",
+      "gf2_cols": 6,
+      "gf2_rows": 3,
+      "stabilizer": "+ XXX\n+ ZZ_\n+ _ZZ",
+      "view_size": [
+        3,
+        3
+      ]
+    },
+    "symbolic_associator": {
+      "associative_control": "0",
+      "call": "Symbolics.simplify scalar associator plus projected-product structure constants",
+      "projected_product_associator_e0_e1_e2": [
+        0,
+        0,
+        -1
+      ],
+      "projected_product_nonzero": true
+    }
+  },
+  "julia_version": "1.12.6",
+  "object_id": "foundation_qit_operator_composition_mcp_julia",
+  "operators": {
+    "Fe": "QuantumOptics exp(-im*theta*Z0) unitary rotation",
+    "Fi": "QuantumOptics exp(-im*theta*X0) unitary rotation",
+    "Te": "DifferentialEquations.solve(ODEProblem(lindblad_rhs!, ...), Tsit5()) with QuantumOptics jump sqrt(0.7*gamma)*X1",
+    "Ti": "DifferentialEquations.solve(ODEProblem(lindblad_rhs!, ...), Tsit5()) with QuantumOptics jump sqrt(gamma)*Z0"
+  },
   "packages_used": [
     "QuantumOptics",
     "DifferentialEquations",
@@ -26,334 +203,59 @@
     "Dates",
     "SHA"
   ],
-  "source_sha256": "6c4c74150e3f67af3be318564074e2cce0ebfdf313bf1a9e275566bc67171943",
-  "rung_id": "qit_operator_composition_mcp",
-  "backend": "julia_authoritative_quantumoptics_diffeq_qit_stack",
-  "classification": "scratch_diagnostic",
-  "julia_version": "1.12.6",
-  "M": {
-    "defines": "finite probe signatures for S/~_M",
-    "probe_family": [
-      "Z0",
-      "X0",
-      "Z0Z1"
-    ]
-  },
-  "carrier": {
-    "dimension": 8,
-    "basis": "QuantumOptics tensor(SpinBasis(1//2), SpinBasis(1//2), SpinBasis(1//2))",
-    "n_qubits": 3
-  },
-  "geometry": {
-    "symbolic_associator": {
-      "associative_control": "0",
-      "call": "Symbolics.simplify scalar associator plus projected-product structure constants",
-      "projected_product_associator_e0_e1_e2": [
-        0,
-        0,
-        -1
-      ],
-      "projected_product_nonzero": true
-    },
-    "clifford_grassmann": {
-      "Grassmann_call": "basis\"3\"; (v1*v2)*v3 and v1*(v2*v3)",
-      "CliffordAlgebras_call": "CliffordAlgebra(3,0); e1*e2*e3; (e1*e2*e3)^2",
-      "cl3_pseudoscalar": "+1\u00d7e1e2e3 \u2208 Cl(3, 0, 0)",
-      "cl3_pseudoscalar_square": "-1 \u2208 Cl(3, 0, 0)",
-      "grassmann_associative_control_zero": "0v\u2081\u2082\u2083",
-      "grassmann_right": "v\u2081\u2082\u2083",
-      "grassmann_left": "v\u2081\u2082\u2083"
-    },
-    "itensor_network": {
-      "call": "ITensorMPS.MPS(siteinds(\"Qubit\",3),\"0\"); ITensors.op(\"H\"); ITensorMPS.expect(psi,\"Z\")",
-      "z0_expectation_after_h_on_q0": -2.2371143170757388e-17,
-      "maxlinkdim": 1
-    },
-    "graph": {
-      "nodes": 6,
-      "call": "Graphs.DiGraph; add_edge!; is_cyclic; topological_sort_by_dfs",
-      "is_cyclic": false,
-      "edges": 5,
-      "topological_order": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ]
-    },
-    "quantum_clifford": {
-      "call": "QuantumClifford.ghz(3); stabilizerview; stab_to_gf2",
-      "stabilizer": "+ XXX\n+ ZZ_\n+ _ZZ",
-      "gf2_rows": 3,
-      "view_size": [
-        3,
-        3
-      ],
-      "gf2_cols": 6
-    }
-  },
-  "reads_peer_result": false,
-  "TOOL_MANIFEST": {
-    "CliffordAlgebras": {
-      "used": true,
-      "tried": true,
-      "reason": "supportive Cl(3,0) geometric product and pseudoscalar side readout for the bracketing structure; not used by all_pass, divergence, quotient, control, or proof gates"
-    },
-    "Grassmann": {
-      "used": true,
-      "tried": true,
-      "reason": "supportive exterior/geometric product side readout on v1*v2*v3; not used by all_pass, quotient, divergence, or proof gates"
-    },
-    "QuantumClifford": {
-      "used": true,
-      "tried": true,
-      "reason": "supportive 3-qubit GHZ stabilizer/tableau side readout for the finite multi-qubit carrier; not used by all_pass, divergence, quotient, control, or proof gates"
-    },
-    "ITensorMPS": {
-      "used": true,
-      "tried": true,
-      "reason": "supportive MPS representation and maxlinkdim side readout for a 3-qubit carrier state; not used by all_pass, divergence, quotient, control, or proof gates"
-    },
-    "ITensors": {
-      "used": true,
-      "tried": true,
-      "reason": "supportive 3-qubit tensor-network operator-contraction side readout; not used by all_pass, divergence, quotient, control, or proof gates"
-    },
-    "Graphs": {
-      "used": true,
-      "tried": true,
-      "reason": "load-bearing composition DAG and commutation graph checks"
-    },
-    "Symbolics": {
-      "used": true,
-      "tried": true,
-      "reason": "supportive symbolic associator / projected product structure-constant side readout; not used by all_pass, divergence, quotient, control, or proof gates"
-    },
-    "DifferentialEquations": {
-      "used": true,
-      "tried": true,
-      "reason": "load-bearing ODEProblem + solve(Tsit5) integration of Ti/Te Lindblad master equations"
-    },
-    "LinearAlgebra": {
-      "used": true,
-      "tried": true,
-      "reason": "control-only Hermitian/eigenvalue/norm checks; not in claim_path_tools"
-    },
-    "JSON/Dates/SHA": {
-      "used": true,
-      "tried": true,
-      "reason": "supportive serialization, timestamping, and source pinning"
-    },
-    "Z3": {
-      "used": true,
-      "tried": true,
-      "reason": "load-bearing derive-in-solver matrix-entry commutation flip"
-    },
-    "QuantumOptics": {
-      "used": true,
-      "tried": true,
-      "reason": "load-bearing SpinBasis tensor carrier, density operator, Ti/Te/Fi/Fe operator construction, unitary channels, entropy_vn, ptrace, fidelity, and probe expectations"
-    }
-  },
-  "formal_admission_allowed": false,
-  "aligned_packages_load_bearing": [
-    "QuantumOptics",
-    "DifferentialEquations",
-    "Z3"
-  ],
-  "generated_at": "2026-06-09T08:37:35Z",
-  "composition": {
-    "commuting_control_Fe_then_Ti_vs_Ti_then_Fe": 1.2473132257778372e-16,
-    "carrier_erasure_order_gap": 7.850462293418876e-17,
-    "bracketing": {
-      "projected_nonassoc_gap": 1.0013607843543977,
-      "left_formula": "P_M(Ti(P_M(Fi(Fe(rho)))))",
-      "right_formula": "P_M(Ti(Fi(P_M(Fe(rho)))))",
-      "erased_projected_gap": 0.0,
-      "raw_associative_gap": 0.0,
-      "projection": "P_M maps rho to product-state section preserving single-qubit Z probe expectations"
-    },
-    "order_gap_Fi_then_Ti_vs_Ti_then_Fi": 0.2754790186642815
-  },
-  "all_pass": true,
-  "object_id": "foundation_qit_operator_composition_mcp_julia",
   "promotion_allowed": false,
-  "TOOL_INTEGRATION_DEPTH": {
-    "CliffordAlgebras": "supportive",
-    "Grassmann": "supportive",
-    "QuantumClifford": "supportive",
-    "ITensorMPS": "supportive",
-    "ITensors": "supportive",
-    "Graphs": "load_bearing",
-    "Symbolics": "supportive",
-    "DifferentialEquations": "load_bearing",
-    "LinearAlgebra": "supportive",
-    "JSON/Dates/SHA": "supportive",
-    "Z3": "load_bearing",
-    "QuantumOptics": "load_bearing"
-  },
-  "tool_calls": {
-    "Graphs": "DiGraph, add_edge!, is_cyclic, topological_sort_by_dfs",
-    "Symbolics": {
-      "call": "Symbolics.simplify and structure-constant associator derivation",
-      "status": "supportive",
-      "demotion_condition": "output remains a side readout and gates no all_pass, divergence, quotient, control, or proof condition",
-      "gates": "none"
-    },
-    "DifferentialEquations": "ODEProblem + solve(Tsit5) for Ti and Te Lindblad channels",
-    "CliffordAlgebras": {
-      "call": "CliffordAlgebra(3,0), e1*e2*e3 pseudoscalar product",
-      "status": "supportive",
-      "demotion_condition": "output remains a side readout and gates no all_pass, divergence, quotient, control, or proof condition",
-      "gates": "none"
-    },
-    "Grassmann": "basis\"3\" and v1*v2*v3 geometric/exterior control",
-    "QuantumClifford": {
-      "call": "ghz(3), stabilizerview, stab_to_gf2",
-      "status": "supportive",
-      "demotion_condition": "output remains a side readout and gates no all_pass, divergence, quotient, control, or proof condition",
-      "gates": "none"
-    },
-    "Z3": "derive-in-solver AB==BA SAT/UNSAT flip from bound matrix entries",
-    "QuantumOptics": "SpinBasis/tensor/dm/exp/entropy_vn/ptrace/fidelity/expect",
-    "ITensors/ITensorMPS": {
-      "call": "siteinds, MPS, op(H), ITensorMPS.expect(psi,\"Z\")",
-      "status": "supportive",
-      "demotion_condition": "output remains a side readout and gates no all_pass, divergence, quotient, control, or proof condition",
-      "gates": "none"
-    }
-  },
-  "engine": "julia",
-  "operators": {
-    "Ti": "DifferentialEquations.solve(ODEProblem(lindblad_rhs!, ...), Tsit5()) with QuantumOptics jump sqrt(gamma)*Z0",
-    "Te": "DifferentialEquations.solve(ODEProblem(lindblad_rhs!, ...), Tsit5()) with QuantumOptics jump sqrt(0.7*gamma)*X1",
-    "Fi": "QuantumOptics exp(-im*theta*X0) unitary rotation",
-    "Fe": "QuantumOptics exp(-im*theta*Z0) unitary rotation"
-  },
-  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
-  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_qit_operator_composition_mcp_julia.jl",
   "quotient": {
-    "drop_X0_probe_control": {
+    "S_mod_M_full": {
+      "class_count": 5,
       "classes": [
         {
-          "signature": [
-            -0.26777701,
-            0.26777701
-          ],
           "members": [
             "Fi_then_Ti"
-          ]
-        },
-        {
-          "signature": [
-            -0.3,
-            0.3
           ],
-          "members": [
-            "Fe_then_Ti",
-            "rho0"
-          ]
-        },
-        {
-          "signature": [
-            0.0,
-            0.0
-          ],
-          "members": [
-            "carrier_erased"
-          ]
-        },
-        {
-          "signature": [
-            0.02619187,
-            -0.02619187
-          ],
-          "members": [
-            "Ti_then_Fi"
-          ]
-        }
-      ],
-      "probe_names": [
-        "Z0",
-        "Z0Z1"
-      ],
-      "class_count": 4,
-      "signatures": {
-        "rho0": [
-          -0.3,
-          0.3
-        ],
-        "Ti_then_Fi": [
-          0.02619187,
-          -0.02619187
-        ],
-        "Fi_then_Ti": [
-          -0.26777701,
-          0.26777701
-        ],
-        "Fe_then_Ti": [
-          -0.3,
-          0.3
-        ],
-        "carrier_erased": [
-          0.0,
-          0.0
-        ]
-      }
-    },
-    "probe_drop_coarsens": true,
-    "S_mod_M_full": {
-      "classes": [
-        {
           "signature": [
             -0.26777701,
             0.11111088,
             0.26777701
-          ],
-          "members": [
-            "Fi_then_Ti"
           ]
         },
         {
+          "members": [
+            "Fe_then_Ti"
+          ],
           "signature": [
             -0.3,
             0.01672413,
             0.3
-          ],
-          "members": [
-            "Fe_then_Ti"
           ]
         },
         {
+          "members": [
+            "rho0"
+          ],
           "signature": [
             -0.3,
             0.8893836,
             0.3
-          ],
-          "members": [
-            "rho0"
           ]
         },
         {
+          "members": [
+            "carrier_erased"
+          ],
           "signature": [
             0.0,
             0.0,
             0.0
-          ],
-          "members": [
-            "carrier_erased"
           ]
         },
         {
+          "members": [
+            "Ti_then_Fi"
+          ],
           "signature": [
             0.02619187,
             0.11111088,
             -0.02619187
-          ],
-          "members": [
-            "Ti_then_Fi"
           ]
         }
       ],
@@ -362,89 +264,187 @@
         "X0",
         "Z0Z1"
       ],
-      "class_count": 5,
       "signatures": {
-        "rho0": [
+        "Fe_then_Ti": [
           -0.3,
-          0.8893836,
+          0.01672413,
           0.3
-        ],
-        "Ti_then_Fi": [
-          0.02619187,
-          0.11111088,
-          -0.02619187
         ],
         "Fi_then_Ti": [
           -0.26777701,
           0.11111088,
           0.26777701
         ],
-        "Fe_then_Ti": [
-          -0.3,
-          0.01672413,
-          0.3
+        "Ti_then_Fi": [
+          0.02619187,
+          0.11111088,
+          -0.02619187
         ],
         "carrier_erased": [
           0.0,
           0.0,
           0.0
+        ],
+        "rho0": [
+          -0.3,
+          0.8893836,
+          0.3
         ]
       }
-    }
+    },
+    "drop_X0_probe_control": {
+      "class_count": 4,
+      "classes": [
+        {
+          "members": [
+            "Fi_then_Ti"
+          ],
+          "signature": [
+            -0.26777701,
+            0.26777701
+          ]
+        },
+        {
+          "members": [
+            "Fe_then_Ti",
+            "rho0"
+          ],
+          "signature": [
+            -0.3,
+            0.3
+          ]
+        },
+        {
+          "members": [
+            "carrier_erased"
+          ],
+          "signature": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "members": [
+            "Ti_then_Fi"
+          ],
+          "signature": [
+            0.02619187,
+            -0.02619187
+          ]
+        }
+      ],
+      "probe_names": [
+        "Z0",
+        "Z0Z1"
+      ],
+      "signatures": {
+        "Fe_then_Ti": [
+          -0.3,
+          0.3
+        ],
+        "Fi_then_Ti": [
+          -0.26777701,
+          0.26777701
+        ],
+        "Ti_then_Fi": [
+          0.02619187,
+          -0.02619187
+        ],
+        "carrier_erased": [
+          0.0,
+          0.0
+        ],
+        "rho0": [
+          -0.3,
+          0.3
+        ]
+      }
+    },
+    "probe_drop_coarsens": true
   },
+  "readouts": {
+    "Fi_unitary": {
+      "coherent_information_q0_to_q12": -2.220446049250313e-16,
+      "subsystem_entropy_q0": 2.220446049250313e-16,
+      "subsystem_entropy_q12": 0.0,
+      "trace_real": 1.0,
+      "von_neumann_entropy": 2.220446049250313e-16
+    },
+    "QuantumOptics_fidelity_Bures_FiTi_vs_TiFi": {
+      "call": "QuantumOptics.fidelity then Bures formula",
+      "distance": 0.13877967599478036
+    },
+    "Te_dissipative": {
+      "coherent_information_q0_to_q12": 1.1102230246251565e-16,
+      "subsystem_entropy_q0": -2.220446049250313e-16,
+      "subsystem_entropy_q12": 0.665711905676857,
+      "trace_real": 1.0,
+      "von_neumann_entropy": 0.6657119056768569
+    },
+    "Ti_dissipative": {
+      "coherent_information_q0_to_q12": -0.640100920663218,
+      "subsystem_entropy_q0": 0.640100920663218,
+      "subsystem_entropy_q12": 0.0,
+      "trace_real": 1.0,
+      "von_neumann_entropy": 0.640100920663218
+    },
+    "initial": {
+      "coherent_information_q0_to_q12": 0.0,
+      "subsystem_entropy_q0": -2.220446049250313e-16,
+      "subsystem_entropy_q12": -2.220446049250313e-16,
+      "trace_real": 1.0000000000000002,
+      "von_neumann_entropy": -2.220446049250313e-16
+    },
+    "te_entropy_increase": 0.6657119056768571,
+    "ti_entropy_increase": 0.6401009206632182,
+    "unitary_entropy_delta_abs": 4.440892098500626e-16
+  },
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_qit_operator_composition_mcp_julia_results.json",
+  "rung_id": "qit_operator_composition_mcp",
   "schema_version": "three_engine_sim_result_v1",
   "smt": {
     "commuting_control": {
-      "z3_force_commute_verdict": "sat",
-      "expected": "sat"
+      "expected": "sat",
+      "z3_force_commute_verdict": "sat"
     },
     "encoding": "Z3 binds exact 2x2 finite operator-entry matrices, derives AB and BA entries internally, then asserts AB == BA.",
     "noncommuting_scaled_pauli_transfer": {
-      "z3_force_commute_verdict": "unsat",
-      "expected": "unsat"
+      "expected": "unsat",
+      "z3_force_commute_verdict": "unsat"
     }
   },
-  "claim_path_tools": [
-    "QuantumOptics",
-    "DifferentialEquations",
-    "Graphs",
-    "Z3"
-  ],
-  "readouts": {
-    "Te_dissipative": {
-      "trace_real": 1.0,
-      "subsystem_entropy_q0": -2.220446049250313e-16,
-      "coherent_information_q0_to_q12": 1.1102230246251565e-16,
-      "subsystem_entropy_q12": 0.665711905676857,
-      "von_neumann_entropy": 0.6657119056768569
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_qit_operator_composition_mcp_julia.jl",
+  "source_sha256": "6c4c74150e3f67af3be318564074e2cce0ebfdf313bf1a9e275566bc67171943",
+  "tool_calls": {
+    "CliffordAlgebras": {
+      "call": "CliffordAlgebra(3,0), e1*e2*e3 pseudoscalar product",
+      "demotion_condition": "output remains a side readout and gates no all_pass, divergence, quotient, control, or proof condition",
+      "gates": "none",
+      "status": "supportive"
     },
-    "Fi_unitary": {
-      "trace_real": 1.0,
-      "subsystem_entropy_q0": 2.220446049250313e-16,
-      "coherent_information_q0_to_q12": -2.220446049250313e-16,
-      "subsystem_entropy_q12": 0.0,
-      "von_neumann_entropy": 2.220446049250313e-16
+    "DifferentialEquations": "ODEProblem + solve(Tsit5) for Ti and Te Lindblad channels",
+    "Graphs": "DiGraph, add_edge!, is_cyclic, topological_sort_by_dfs",
+    "Grassmann": "basis\"3\" and v1*v2*v3 geometric/exterior control",
+    "ITensors/ITensorMPS": {
+      "call": "siteinds, MPS, op(H), ITensorMPS.expect(psi,\"Z\")",
+      "demotion_condition": "output remains a side readout and gates no all_pass, divergence, quotient, control, or proof condition",
+      "gates": "none",
+      "status": "supportive"
     },
-    "Ti_dissipative": {
-      "trace_real": 1.0,
-      "subsystem_entropy_q0": 0.640100920663218,
-      "coherent_information_q0_to_q12": -0.640100920663218,
-      "subsystem_entropy_q12": 0.0,
-      "von_neumann_entropy": 0.640100920663218
+    "QuantumClifford": {
+      "call": "ghz(3), stabilizerview, stab_to_gf2",
+      "demotion_condition": "output remains a side readout and gates no all_pass, divergence, quotient, control, or proof condition",
+      "gates": "none",
+      "status": "supportive"
     },
-    "unitary_entropy_delta_abs": 4.440892098500626e-16,
-    "QuantumOptics_fidelity_Bures_FiTi_vs_TiFi": {
-      "distance": 0.13877967599478036,
-      "call": "QuantumOptics.fidelity then Bures formula"
+    "QuantumOptics": "SpinBasis/tensor/dm/exp/entropy_vn/ptrace/fidelity/expect",
+    "Symbolics": {
+      "call": "Symbolics.simplify and structure-constant associator derivation",
+      "demotion_condition": "output remains a side readout and gates no all_pass, divergence, quotient, control, or proof condition",
+      "gates": "none",
+      "status": "supportive"
     },
-    "initial": {
-      "trace_real": 1.0000000000000002,
-      "subsystem_entropy_q0": -2.220446049250313e-16,
-      "coherent_information_q0_to_q12": 0.0,
-      "subsystem_entropy_q12": -2.220446049250313e-16,
-      "von_neumann_entropy": -2.220446049250313e-16
-    },
-    "ti_entropy_increase": 0.6401009206632182,
-    "te_entropy_increase": 0.6657119056768571
+    "Z3": "derive-in-solver AB==BA SAT/UNSAT flip from bound matrix entries"
   }
 }

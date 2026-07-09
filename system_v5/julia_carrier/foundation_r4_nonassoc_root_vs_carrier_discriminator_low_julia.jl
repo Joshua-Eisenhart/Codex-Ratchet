@@ -3,7 +3,7 @@
 # classification: scratch_diagnostic
 # promotion_allowed: false
 # formal_admission_allowed: false
-# reads_peer_result: false
+# reads_peer_result: true
 
 using Dates
 using JSON
@@ -16,6 +16,7 @@ using Z3
 const OBJECT_ID = "foundation_r4_nonassoc_root_vs_carrier_discriminator_low"
 const SOURCE_PATH = joinpath(@__DIR__, "foundation_r4_nonassoc_root_vs_carrier_discriminator_low_julia.jl")
 const RESULT_PATH = joinpath(@__DIR__, "results", "foundation_r4_nonassoc_root_vs_carrier_discriminator_low_julia_results.json")
+const R3_RESULT_PATH = joinpath(@__DIR__, "results", "foundation_r3_octonion_cl6_link_xhigh_julia_results.json")
 const TOL = 1.0e-9
 
 function cd_conj(x::Vector{Float64})
@@ -62,6 +63,21 @@ function imag_count(tbl)
     units = [i for i in 1:(length(tbl) - 1) if unit_square_minus_one(tbl, i)]
     good = [i for i in units if all(i == j || anticommutes(tbl, i, j) for j in units)]
     length(good)
+end
+
+function associator_max_norm(tbl)
+    dim = length(tbl)
+    max_norm = 0.0
+    for a in 0:(dim - 1), b in 0:(dim - 1), c in 0:(dim - 1)
+        ab = Float64.(prod_vec(tbl, a, b))
+        left = cd_mul(ab, basis(dim, c))
+        bc = Float64.(prod_vec(tbl, b, c))
+        right = cd_mul(basis(dim, a), bc)
+        residual = left - right
+        n = sqrt(sum(residual .^ 2))
+        max_norm = max(max_norm, n)
+    end
+    max_norm
 end
 
 function left_matrix(tbl, unit::Int)
@@ -141,14 +157,52 @@ function sha256_file(path::String)
     end
 end
 
+function load_r3_peer_result()
+    isfile(R3_RESULT_PATH) || error("R4 nonassoc discriminator (low) requires R3 peer result at $(R3_RESULT_PATH); none found.")
+    JSON.parsefile(R3_RESULT_PATH)
+end
+
 function main()
     mkpath(dirname(RESULT_PATH))
     tables = Dict("R" => table(1), "C" => table(2), "H" => table(4), "O" => table(8))
     counts = Dict(k => imag_count(v) for (k, v) in tables)
     bare = Dict(k => bare_root_report(v, k) for (k, v) in tables)
+    assoc = Dict(k => associator_max_norm(v) for (k, v) in tables)
     h_admits = bare["H"]["bare_root_admissible"]
     h_cl6 = counts["H"] >= 7
     o_cl6 = counts["O"] >= 7
+    h_associative = assoc["H"] <= TOL
+    # forced_nonassoc_under_bare_root is computed, not asserted: true only if
+    # no bare-root-admissible carrier is associative. H is bare-root-admissible
+    # and its own computed associator_max_norm shows it is associative.
+    forced_nonassoc_under_bare_root = !(h_admits && h_associative)
+    r3_peer = load_r3_peer_result()
+    r3_summary = r3_peer["summary"]
+    o_tbl = tables["O"]
+    o_generator_indices = 1:6  # first six imaginary units (index 0 is the real unit)
+    o_mats = [Float64.(hcat([prod_vec(o_tbl, idx, col) for col in 0:7]...)) for idx in o_generator_indices]
+    o_cols = Vector{Float64}[]
+    for mask in 0:(2^6 - 1)
+        acc = Matrix{Float64}(I, 8, 8)
+        for (bit, mat) in enumerate(o_mats)
+            if ((mask >> (bit - 1)) & 1) == 1
+                acc = acc * mat
+            end
+        end
+        push!(o_cols, vec(acc))
+    end
+    o_mat = hcat(o_cols...)
+    o_singular = svdvals(o_mat)
+    o_tol = max(size(o_mat)...) * eps(Float64) * (isempty(o_singular) ? 0.0 : maximum(o_singular)) * 100.0
+    o_local_rank = count(>(o_tol), o_singular)
+    r3_provenance = Dict{String,Any}(
+        "r3_result_path" => R3_RESULT_PATH,
+        "r3_object_id" => get(r3_peer, "object_id", nothing),
+        "r3_source_sha256" => get(r3_peer, "source_sha256", nothing),
+        "r3_octonion_cl6_rank" => r3_summary["octonion_cl6_rank"],
+        "local_recomputed_cl6_rank_from_same_cd_mul_construction" => o_local_rank,
+        "matches_r3" => o_local_rank == r3_summary["octonion_cl6_rank"],
+    )
     quotient = Dict{String,Any}(
         "S" => ["R", "C", "H", "O"],
         "equivalence_relation" => "carriers are equivalent under M when dimension, imaginary-unit count, noncommutation witness, and Cl6/7-unit admissibility flag match",
@@ -166,7 +220,8 @@ function main()
         "generated_at" => Dates.format(now(UTC), dateformat"yyyy-mm-ddTHH:MM:SSZ"),
         "source_path" => SOURCE_PATH,
         "result_path" => RESULT_PATH,
-        "reads_peer_result" => false,
+        "reads_peer_result" => true,
+        "r3_peer_dependency" => r3_provenance,
         "packages_used" => ["QuantumOptics", "CliffordAlgebras", "Z3", "LinearAlgebra", "JSON", "SHA", "Dates"],
         "aligned_packages_load_bearing" => ["QuantumOptics", "CliffordAlgebras", "Z3"],
         "claim_path_tools" => ["QuantumOptics", "CliffordAlgebras", "Z3"],
@@ -175,12 +230,14 @@ function main()
         "density_constraint_witness" => quantumoptics_density_witness(4),
         "unit_counts" => counts,
         "bare_root" => bare,
+        "associator_max_norms" => assoc,
         "quotient" => quotient,
         "negative_control_flip" => Dict(
             "bare_root_admits_H" => h_admits,
             "cl6_excludes_H" => !h_cl6,
             "cl6_admits_O" => o_cl6,
-            "forced_nonassoc_under_bare_root" => false,
+            "forced_nonassoc_under_bare_root" => forced_nonassoc_under_bare_root,
+            "forced_nonassoc_derivation" => "computed as NOT(H_bare_root_admissible AND H_associative), reading H_associative from associator_max_norm(tables[\"H\"]) <= TOL",
             "verdict" => "INSTALLED_BY_CL6_7_UNIT_CONSTRAINT_NOT_FORCED_BY_BARE_ROOT",
             "flips" => h_admits && !h_cl6 && o_cl6,
         ),
@@ -194,10 +251,10 @@ function main()
             "H_bare_root_admissible" => h_admits,
             "H_cl6_admissible" => h_cl6,
             "O_cl6_admissible" => o_cl6,
-            "forced_nonassoc_under_bare_root" => false,
+            "forced_nonassoc_under_bare_root" => forced_nonassoc_under_bare_root,
             "installed_constraint" => "Cl(6)/>=7 mutually anticommuting imaginary units",
         ),
-        "all_pass" => h_admits && !h_cl6 && o_cl6 && counts["R"] == 0 && counts["C"] == 1 && counts["H"] == 3 && counts["O"] == 7,
+        "all_pass" => h_admits && !h_cl6 && o_cl6 && counts["R"] == 0 && counts["C"] == 1 && counts["H"] == 3 && counts["O"] == 7 && !forced_nonassoc_under_bare_root && r3_provenance["matches_r3"],
         "source_sha256" => sha256_file(SOURCE_PATH),
     )
     open(RESULT_PATH, "w") do io

@@ -20,6 +20,17 @@ classification = "scratch_diagnostic"
 promotion_allowed = False
 formal_admission_allowed = False
 reads_peer_result = False
+# REPAIR NOTE (R4 reopen): this probe family (Bloch-diagonal qubit boundary)
+# has zero derivation link to R3's admitted octonion/Cl(6) carrier. No
+# non-fabricated R3 derivation exists, so this object is reclassified to R2
+# rather than asserting a fake R3 dependency.
+rung_reclassified_from_r4_to_r2 = True
+rung_reclassification_reason = (
+    "Probe family (generic qubit Bloch boundary) has zero derivation link to "
+    "R3's admitted octonion/Cl(6) carrier; no non-fabricated R3 derivation "
+    "exists, so this object is demoted to R2 (admissible-operations layer on "
+    "M(C)) rather than asserting a fake R3 dependency."
+)
 DTYPE = torch.float64
 
 
@@ -97,6 +108,8 @@ def build_result() -> dict[str, Any]:
         "promotion_allowed": promotion_allowed,
         "formal_admission_allowed": formal_admission_allowed,
         "reads_peer_result": reads_peer_result,
+        "rung_reclassified_from_r4_to_r2": rung_reclassified_from_r4_to_r2,
+        "rung_reclassification_reason": rung_reclassification_reason,
         "ran": True,
         "generated_at": _dt.datetime.now(_dt.UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "source_path": str(SOURCE_PATH),

@@ -8,6 +8,40 @@
       "normalization"
     ]
   },
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_r4_nonassoc_root_vs_carrier_discriminator_low_julia_results.json",
+  "julia_z3_control": {
+    "ran": true,
+    "verdict": "unsat",
+    "claim": "integer equality contradiction for H 3-vs-7 control"
+  },
+  "packages_used": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "source_sha256": "ec7c8bf701710fc5f21037a403f0c33d752631ce3a9a1dc48c789e252bbe5826",
+  "negative_control_flip": {
+    "flips": true,
+    "bare_root_admits_H": true,
+    "forced_nonassoc_under_bare_root": false,
+    "verdict": "INSTALLED_BY_CL6_7_UNIT_CONSTRAINT_NOT_FORCED_BY_BARE_ROOT",
+    "cl6_admits_O": true,
+    "forced_nonassoc_derivation": "computed as NOT(H_bare_root_admissible AND H_associative), reading H_associative from associator_max_norm(tables[\"H\"]) <= TOL",
+    "cl6_excludes_H": true
+  },
+  "r3_peer_dependency": {
+    "matches_r3": true,
+    "local_recomputed_cl6_rank_from_same_cd_mul_construction": 64,
+    "r3_source_sha256": "87ee7968b4ceab87089e15fc971d0b95d77c524b840f7f675e1874fa437b4eea",
+    "r3_object_id": "foundation_r3_octonion_cl6_link_xhigh",
+    "r3_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_r3_octonion_cl6_link_xhigh_julia_results.json",
+    "r3_octonion_cl6_rank": 64
+  },
+  "classification": "scratch_diagnostic",
   "M": {
     "probes": [
       "finite dimension",
@@ -17,23 +51,16 @@
       "Cl6/7-unit flag"
     ]
   },
-  "aligned_packages_load_bearing": [
-    "QuantumOptics",
-    "CliffordAlgebras",
-    "Z3"
-  ],
-  "all_pass": true,
   "bare_root": {
     "C": {
       "bare_root_admissible": false,
       "carrier": "C",
-      "dimension": 2,
-      "finite": true,
-      "noncommutation_nonzero": false,
       "noncommutation_witness_units_1_2": [
         0,
         0
       ],
+      "noncommutation_nonzero": false,
+      "dimension": 2,
       "quotient": {
         "M": [
           "dimension",
@@ -46,73 +73,17 @@
           0
         ],
         "well_defined": true
-      }
-    },
-    "H": {
-      "bare_root_admissible": true,
-      "carrier": "H",
-      "dimension": 4,
-      "finite": true,
-      "noncommutation_nonzero": true,
-      "noncommutation_witness_units_1_2": [
-        0,
-        0,
-        0,
-        2
-      ],
-      "quotient": {
-        "M": [
-          "dimension",
-          "imaginary_unit_square_minus_one_count",
-          "noncommutator_witness"
-        ],
-        "signature": [
-          4,
-          3,
-          1
-        ],
-        "well_defined": true
-      }
-    },
-    "O": {
-      "bare_root_admissible": true,
-      "carrier": "O",
-      "dimension": 8,
-      "finite": true,
-      "noncommutation_nonzero": true,
-      "noncommutation_witness_units_1_2": [
-        0,
-        0,
-        0,
-        2,
-        0,
-        0,
-        0,
-        0
-      ],
-      "quotient": {
-        "M": [
-          "dimension",
-          "imaginary_unit_square_minus_one_count",
-          "noncommutator_witness"
-        ],
-        "signature": [
-          8,
-          7,
-          1
-        ],
-        "well_defined": true
-      }
+      },
+      "finite": true
     },
     "R": {
       "bare_root_admissible": false,
       "carrier": "R",
-      "dimension": 1,
-      "finite": true,
-      "noncommutation_nonzero": false,
       "noncommutation_witness_units_1_2": [
         0
       ],
+      "noncommutation_nonzero": false,
+      "dimension": 1,
       "quotient": {
         "M": [
           "dimension",
@@ -125,75 +96,136 @@
           0
         ],
         "well_defined": true
-      }
+      },
+      "finite": true
+    },
+    "H": {
+      "bare_root_admissible": true,
+      "carrier": "H",
+      "noncommutation_witness_units_1_2": [
+        0,
+        0,
+        0,
+        2
+      ],
+      "noncommutation_nonzero": true,
+      "dimension": 4,
+      "quotient": {
+        "M": [
+          "dimension",
+          "imaginary_unit_square_minus_one_count",
+          "noncommutator_witness"
+        ],
+        "signature": [
+          4,
+          3,
+          1
+        ],
+        "well_defined": true
+      },
+      "finite": true
+    },
+    "O": {
+      "bare_root_admissible": true,
+      "carrier": "O",
+      "noncommutation_witness_units_1_2": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "noncommutation_nonzero": true,
+      "dimension": 8,
+      "quotient": {
+        "M": [
+          "dimension",
+          "imaginary_unit_square_minus_one_count",
+          "noncommutator_witness"
+        ],
+        "signature": [
+          8,
+          7,
+          1
+        ],
+        "well_defined": true
+      },
+      "finite": true
     }
   },
-  "claim_path_tools": [
+  "sim_id": "foundation_r4_nonassoc_root_vs_carrier_discriminator_low",
+  "reads_peer_result": true,
+  "formal_admission_allowed": false,
+  "aligned_packages_load_bearing": [
     "QuantumOptics",
     "CliffordAlgebras",
     "Z3"
   ],
-  "classification": "scratch_diagnostic",
+  "generated_at": "2026-07-01T02:27:15Z",
+  "density_constraint_witness": {
+    "trace": 1.0,
+    "trace_one_pass": true,
+    "psd_pass": true,
+    "min_eigenvalue": 0.25,
+    "hermitian_pass": true,
+    "normalization": 1.0,
+    "hermiticity_residual": 0.0
+  },
+  "associator_max_norms": {
+    "C": 0.0,
+    "R": 0.0,
+    "H": 0.0,
+    "O": 2.0
+  },
+  "summary": {
+    "O_cl6_admissible": true,
+    "H_unit_count": 3,
+    "H_cl6_admissible": false,
+    "forced_nonassoc_under_bare_root": false,
+    "C_unit_count": 1,
+    "installed_constraint": "Cl(6)/>=7 mutually anticommuting imaginary units",
+    "H_bare_root_admissible": true,
+    "R_unit_count": 0,
+    "O_unit_count": 7
+  },
+  "all_pass": true,
+  "object_id": "foundation_r4_nonassoc_root_vs_carrier_discriminator_low",
+  "promotion_allowed": false,
   "cliffordalgebras_report": {
-    "basis_symbol_count": 64,
-    "constructed": "CliffordAlgebra(0, 6)",
     "generator_anticommutation_max_residual": 0.0,
+    "basis_symbol_count": 64,
     "package": "CliffordAlgebras",
+    "constructed": "CliffordAlgebra(0, 6)",
     "pass": true
   },
-  "density_constraint_witness": {
-    "hermitian_pass": true,
-    "hermiticity_residual": 0.0,
-    "min_eigenvalue": 0.25,
-    "normalization": 1.0,
-    "psd_pass": true,
-    "trace": 1.0,
-    "trace_one_pass": true
+  "unit_counts": {
+    "C": 1,
+    "R": 0,
+    "H": 3,
+    "O": 7
   },
-  "formal_admission_allowed": false,
-  "generated_at": "2026-06-08T02:03:13Z",
-  "julia_z3_control": {
-    "claim": "integer equality contradiction for H 3-vs-7 control",
-    "ran": true,
-    "verdict": "unsat"
-  },
-  "negative_control_flip": {
-    "bare_root_admits_H": true,
-    "cl6_admits_O": true,
-    "cl6_excludes_H": true,
-    "flips": true,
-    "forced_nonassoc_under_bare_root": false,
-    "verdict": "INSTALLED_BY_CL6_7_UNIT_CONSTRAINT_NOT_FORCED_BY_BARE_ROOT"
-  },
-  "object_id": "foundation_r4_nonassoc_root_vs_carrier_discriminator_low",
-  "packages_used": [
-    "QuantumOptics",
-    "CliffordAlgebras",
-    "Z3",
-    "LinearAlgebra",
-    "JSON",
-    "SHA",
-    "Dates"
-  ],
-  "promotion_allowed": false,
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_r4_nonassoc_root_vs_carrier_discriminator_low_julia.jl",
   "quotient": {
+    "equivalence_relation": "carriers are equivalent under M when dimension, imaginary-unit count, noncommutation witness, and Cl6/7-unit admissibility flag match",
     "S": [
       "R",
       "C",
       "H",
       "O"
     ],
-    "admitted_under_bare_root": [
-      "H",
-      "O"
-    ],
-    "admitted_under_cl6_constraint": [
-      "O"
-    ],
     "classes": {
       "C": [
         2,
         1,
+        0,
+        0
+      ],
+      "R": [
+        1,
+        0,
         0,
         0
       ],
@@ -208,37 +240,20 @@
         7,
         1,
         1
-      ],
-      "R": [
-        1,
-        0,
-        0,
-        0
       ]
     },
-    "equivalence_relation": "carriers are equivalent under M when dimension, imaginary-unit count, noncommutation witness, and Cl6/7-unit admissibility flag match"
+    "admitted_under_bare_root": [
+      "H",
+      "O"
+    ],
+    "admitted_under_cl6_constraint": [
+      "O"
+    ]
   },
-  "reads_peer_result": false,
-  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_r4_nonassoc_root_vs_carrier_discriminator_low_julia_results.json",
   "schema_version": "three_engine_leg_result_v1",
-  "sim_id": "foundation_r4_nonassoc_root_vs_carrier_discriminator_low",
-  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_r4_nonassoc_root_vs_carrier_discriminator_low_julia.jl",
-  "source_sha256": "aaea0c6a9529914edb245ba75767a36307e521b01c0206c03a46ede14fbc8b1e",
-  "summary": {
-    "C_unit_count": 1,
-    "H_bare_root_admissible": true,
-    "H_cl6_admissible": false,
-    "H_unit_count": 3,
-    "O_cl6_admissible": true,
-    "O_unit_count": 7,
-    "R_unit_count": 0,
-    "forced_nonassoc_under_bare_root": false,
-    "installed_constraint": "Cl(6)/>=7 mutually anticommuting imaginary units"
-  },
-  "unit_counts": {
-    "C": 1,
-    "H": 3,
-    "O": 7,
-    "R": 0
-  }
+  "claim_path_tools": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3"
+  ]
 }

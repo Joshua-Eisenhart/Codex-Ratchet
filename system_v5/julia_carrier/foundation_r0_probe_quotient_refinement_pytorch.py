@@ -41,6 +41,41 @@ def class_of(q, sid):
     return next((tuple(c) for c in q if sid in c), None)
 
 q_z, q_zx = quotient(["Z"]), quotient(["Z", "X"])
+
+if os.environ.get("LEV_R0_NEGATIVE_CONTROL") == "duplicate_Z_does_not_refine":
+    q_zz = quotient(["Z", "Z"])
+    duplicate_z_does_not_refine = len(q_zz) == len(q_z)
+    control_pass = (
+        duplicate_z_does_not_refine
+        and len(q_z) == 3
+        and distribution(xp, Z) == distribution(xm, Z)
+    )
+    result = {
+        "schema": "codex_ratchet.formal_scout.scratch_diagnostic.v1",
+        "object_id": "foundation_r0_probe_quotient_refinement_pytorch_negative_control_v1",
+        "classification": "scratch_diagnostic",
+        "engine": "pytorch",
+        "promotion_allowed": False,
+        "formal_admission_allowed": False,
+        "reads_peer_result": False,
+        "packages": {"load_bearing": ["torch", "geomstats"]},
+        "negative_control": "duplicate_Z_does_not_refine",
+        "quotient": {"M_Z_class_count": len(q_z), "M_ZZ_class_count": len(q_zz)},
+        "core_checks": {
+            "duplicate_Z_does_not_refine": duplicate_z_does_not_refine,
+            "strict_quotient_refinement": False,
+            "all_pass": control_pass,
+        },
+        "all_pass": control_pass,
+        "claim_ceiling": "R0 scratch_diagnostic PyTorch negative-control run; proves duplicate Z does not refine the quotient.",
+    }
+    print(json.dumps(result))
+    print(
+        "NEGATIVE_CONTROL_DONE engine=pytorch pass="
+        f"{str(control_pass).lower()} duplicate_Z_does_not_refine={str(duplicate_z_does_not_refine).lower()}"
+    )
+    sys.exit(0 if control_pass else 2)
+
 witness = {
     "same_under_Z": distribution(xp, Z) == distribution(xm, Z),
     "distinct_under_X": distribution(xp, X) != distribution(xm, X),
@@ -64,6 +99,7 @@ result = {
     "classification": "scratch_diagnostic",
     "engine": "pytorch",
     "promotion_allowed": False,
+    "formal_admission_allowed": False,
     "reads_peer_result": False,
     "packages": {"load_bearing": ["torch", "geomstats"]},
     "quotient": {"M_Z_class_count": len(q_z), "M_ZX_class_count": len(q_zx)},

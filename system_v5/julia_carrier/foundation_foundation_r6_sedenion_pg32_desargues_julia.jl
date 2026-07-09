@@ -14,6 +14,13 @@ const CLASSIFICATION = "scratch_diagnostic"
 const PROMOTION_ALLOWED = false
 const FORMAL_ADMISSION_ALLOWED = false
 const READS_PEER_RESULT = false
+# reads_peer_result is false by design, not by omission: every R5 leg
+# (foundation_foundation_r5_{g2_su3_reduction,hopf_fibration,weyl_chirality_pair})
+# is itself classification=scratch_diagnostic / promotion_allowed=false in its
+# own result JSON (system_v5/julia_carrier/results/foundation_foundation_r5_*_julia_results.json).
+# There is no admitted/canonical R5 carrier for R6 to build on top of, so R6
+# does not claim to derive from one. R6 is a self-contained finite-math scratch
+# stage; the whole R5->R6 ladder to this point is scratch-diagnostic.
 
 function basis(dim::Int, idx0::Int)
     v = zeros(Int, dim)
@@ -338,6 +345,16 @@ function smt_product_exprs(ctx, table::Array{Int,3}, left_vars, right_vars)
     exprs
 end
 
+function drop_line_type_probe(lines::Vector{Vector{Int}})
+    with_classes = length(unique(line_type.(lines)))
+    without_classes = length(unique(fill("undifferentiated", length(lines))))
+    Dict(
+        "with_line_type_classes" => with_classes,
+        "without_line_type_classes" => without_classes,
+        "flips" => with_classes != without_classes,
+    )
+end
+
 function z3_product_zero_verdict(table::Array{Int,3}, left::Vector{Int}, right::Vector{Int})
     ctx = Z3.Context()
     solver = Z3.Solver(ctx)
@@ -406,11 +423,7 @@ function main()
         ),
     )
     negative_control = Dict(
-        "drop_line_type_probe" => Dict(
-            "with_line_type_classes" => 2,
-            "without_line_type_classes" => 1,
-            "flips" => true,
-        ),
+        "drop_line_type_probe" => drop_line_type_probe(s_lines),
         "ordinary_same_target_control" => Dict(
             "line" => [1, 2, 3],
             "same_target_zero_divisor_exists" => same_target_ordinary !== nothing,

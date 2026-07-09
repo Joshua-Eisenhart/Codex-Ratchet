@@ -113,15 +113,88 @@ def tensor_summary(name: str, table: jax.Array) -> dict[str, Any]:
     }
 
 
-def z3_zero_claim(name: str, coeffs: list[int], *, force_all_zero: bool) -> dict[str, Any]:
-    solver = z3.Solver()
-    xs = [z3.Int(f"{name}_a_{idx}") for idx in range(len(coeffs))]
-    for var, value in zip(xs, coeffs, strict=True):
-        solver.add(var == value)
-        if force_all_zero:
-            solver.add(var == 0)
-    status = solver.check()
-    return {"solver": "z3", "status": str(status), "sat": status == z3.sat, "unsat": status == z3.unsat}
+def all_basis_triples(dim: int) -> list[tuple[int, int, int]]:
+    return [(a, b, c) for a in range(dim) for b in range(dim) for c in range(dim)]
+
+
+def int_table_values(table: jax.Array) -> list[list[list[int]]]:
+    values = jax.device_get(table)
+    dim = int(values.shape[0])
+    rows: list[list[list[int]]] = []
+    for k in range(dim):
+        k_rows: list[list[int]] = []
+        for i in range(dim):
+            row: list[int] = []
+            for j in range(dim):
+                coeff = int(round(float(values[k, i, j])))
+                if abs(float(values[k, i, j]) - coeff) > TOL:
+                    raise ValueError(f"non-integral table entry {(k, i, j)}")
+                row.append(coeff)
+            k_rows.append(row)
+        rows.append(k_rows)
+    return rows
+
+
+def z3_structural_proof(name: str, table: jax.Array) -> dict[str, Any]:
+    """Derive associator components inside z3 from bound table entries."""
+
+    values = int_table_values(table)
+    dim = len(values)
+    triples = all_basis_triples(dim)
+    cache: dict[tuple[int, int, int], z3.ArithRef] = {}
+    constraints: list[z3.BoolRef] = []
+
+    def table_var(k: int, i: int, j: int) -> z3.ArithRef:
+        key = (k, i, j)
+        if key not in cache:
+            var = z3.Real(f"{name}_T_{k}_{i}_{j}")
+            cache[key] = var
+            constraints.append(var == z3.RealVal(values[k][i][j]))
+        return cache[key]
+
+    def assoc_component(a: int, b: int, c: int, k: int) -> z3.ArithRef:
+        left = z3.Sum([table_var(m, a, b) * table_var(k, m, c) for m in range(dim)])
+        right = z3.Sum([table_var(n, b, c) * table_var(k, a, n) for n in range(dim)])
+        return left - right
+
+    assoc_rows = [
+        (a, b, c, k, z3.simplify(assoc_component(a, b, c, k)))
+        for (a, b, c) in triples
+        for k in range(dim)
+    ]
+
+    all_zero = z3.Solver()
+    all_zero.set("timeout", 30000)
+    all_zero.add(constraints)
+    all_zero.add([expr == 0 for *_idx, expr in assoc_rows])
+    all_zero_status = all_zero.check()
+
+    erased = z3.Solver()
+    erased.set("timeout", 30000)
+    erased.add(constraints)
+    erased_status = erased.check()
+
+    nonzero = z3.Solver()
+    nonzero.set("timeout", 30000)
+    nonzero.add(constraints)
+    nonzero.add(z3.Or([expr != 0 for *_idx, expr in assoc_rows]))
+    nonzero_status = nonzero.check()
+
+    return {
+        "solver": "z3",
+        "logic": "QF_NRA via z3 Real variables bound to computed table constants",
+        "bound_table_entry_equalities": len(constraints),
+        "probe_triple_count": len(triples),
+        "derived_assoc_component_count": len(assoc_rows),
+        "asserted_precomputed_associator_coefficients": 0,
+        "all_coefficients_zero_status": str(all_zero_status),
+        "nonzero_exists_status": str(nonzero_status),
+        "drop_zero_constraint_status": str(erased_status),
+        "drop_zero_constraint_keeps_table_bindings": True,
+        "drop_zero_constraint_flips_unsat_to_sat": all_zero_status == z3.unsat and erased_status == z3.sat,
+        "drop_nonzero_constraint_flips_unsat_to_sat": nonzero_status == z3.unsat and erased_status == z3.sat,
+        "derivation": "assoc_k=sum_m T[m,a,b]*T[k,m,c]-sum_n T[n,b,c]*T[k,a,n], expanded inside z3 from bound T[k,i,j] table entries",
+    }
 
 
 def cvc5_status_text(result: Any) -> str:
@@ -132,36 +205,119 @@ def cvc5_status_text(result: Any) -> str:
     return str(result)
 
 
-def cvc5_zero_claim(name: str, coeffs: list[int], *, force_all_zero: bool) -> dict[str, Any]:
-    solver = cvc5.Solver()
-    solver.setLogic("QF_LIA")
-    int_sort = solver.getIntegerSort()
-    zero = solver.mkInteger(0)
-    for idx, value in enumerate(coeffs):
-        var = solver.mkConst(int_sort, f"{name}_a_{idx}")
-        solver.assertFormula(solver.mkTerm(Kind.EQUAL, var, solver.mkInteger(value)))
-        if force_all_zero:
-            solver.assertFormula(solver.mkTerm(Kind.EQUAL, var, zero))
-    result = solver.checkSat()
-    status = cvc5_status_text(result)
-    return {"solver": "cvc5", "status": status, "sat": result.isSat(), "unsat": result.isUnsat()}
+def cvc5_join(solver: cvc5.Solver, terms: list[Any], kind: Kind) -> Any:
+    if not terms:
+        return solver.mkBoolean(True) if kind == Kind.AND else solver.mkBoolean(False)
+    if len(terms) == 1:
+        return terms[0]
+    return solver.mkTerm(kind, *terms)
+
+
+def cvc5_real(solver: cvc5.Solver, value: int) -> Any:
+    return solver.mkReal(value)
+
+
+def cvc5_sum(solver: cvc5.Solver, terms: list[Any]) -> Any:
+    if not terms:
+        return cvc5_real(solver, 0)
+    if len(terms) == 1:
+        return terms[0]
+    return solver.mkTerm(Kind.ADD, *terms)
+
+
+def cvc5_structural_proof(name: str, table: jax.Array) -> dict[str, Any]:
+    values = int_table_values(table)
+    dim = len(values)
+    triples = all_basis_triples(dim)
+
+    def make_solver() -> tuple[cvc5.Solver, list[Any], list[Any], list[tuple[int, int, int, int, Any]], int]:
+        solver = cvc5.Solver()
+        solver.setLogic("QF_NRA")
+        solver.setOption("produce-models", "true")
+        solver.setOption("tlimit-per", "30000")
+        real_sort = solver.getRealSort()
+        zero = cvc5_real(solver, 0)
+        cache: dict[tuple[int, int, int], Any] = {}
+        constraints: list[Any] = []
+
+        def table_var(k: int, i: int, j: int) -> Any:
+            key = (k, i, j)
+            if key not in cache:
+                var = solver.mkConst(real_sort, f"{name}_T_{k}_{i}_{j}")
+                cache[key] = var
+                constraints.append(solver.mkTerm(Kind.EQUAL, var, cvc5_real(solver, values[k][i][j])))
+            return cache[key]
+
+        def assoc_component(a: int, b: int, c: int, k: int) -> Any:
+            left = cvc5_sum(
+                solver,
+                [solver.mkTerm(Kind.MULT, table_var(m, a, b), table_var(k, m, c)) for m in range(dim)],
+            )
+            right = cvc5_sum(
+                solver,
+                [solver.mkTerm(Kind.MULT, table_var(n, b, c), table_var(k, a, n)) for n in range(dim)],
+            )
+            return solver.mkTerm(Kind.SUB, left, right)
+
+        assoc_rows = [
+            (a, b, c, k, assoc_component(a, b, c, k))
+            for (a, b, c) in triples
+            for k in range(dim)
+        ]
+        for constraint in constraints:
+            solver.assertFormula(constraint)
+        zero_terms = [solver.mkTerm(Kind.EQUAL, expr, zero) for *_idx, expr in assoc_rows]
+        nonzero_terms = [solver.mkTerm(Kind.NOT, solver.mkTerm(Kind.EQUAL, expr, zero)) for *_idx, expr in assoc_rows]
+        return solver, zero_terms, nonzero_terms, assoc_rows, len(constraints)
+
+    all_zero, zero_terms, _nonzero_terms, _assoc_rows, bound_count = make_solver()
+    all_zero.assertFormula(cvc5_join(all_zero, zero_terms, Kind.AND))
+    all_zero_result = all_zero.checkSat()
+
+    erased, _zero_terms, _nonzero_terms, _assoc_rows, _bound_count = make_solver()
+    erased_result = erased.checkSat()
+
+    nonzero, _zero_terms, nonzero_terms, _assoc_rows, _bound_count = make_solver()
+    nonzero.assertFormula(cvc5_join(nonzero, nonzero_terms, Kind.OR))
+    nonzero_result = nonzero.checkSat()
+
+    return {
+        "solver": "cvc5",
+        "logic": "QF_NRA using Real variables bound to computed table constants",
+        "bound_table_entry_equalities": bound_count,
+        "probe_triple_count": len(triples),
+        "derived_assoc_component_count": len(_assoc_rows),
+        "asserted_precomputed_associator_coefficients": 0,
+        "all_coefficients_zero_status": cvc5_status_text(all_zero_result),
+        "nonzero_exists_status": cvc5_status_text(nonzero_result),
+        "drop_zero_constraint_status": cvc5_status_text(erased_result),
+        "drop_zero_constraint_keeps_table_bindings": True,
+        "drop_zero_constraint_flips_unsat_to_sat": all_zero_result.isUnsat() and erased_result.isSat(),
+        "drop_nonzero_constraint_flips_unsat_to_sat": nonzero_result.isUnsat() and erased_result.isSat(),
+        "derivation": "assoc_k=sum_m T[m,a,b]*T[k,m,c]-sum_n T[n,b,c]*T[k,a,n], expanded inside cvc5 from bound T[k,i,j] table entries",
+    }
 
 
 def main() -> int:
     tables = build_tables()
     summaries = {name: tensor_summary(name, table) for name, table in tables.items()}
-    coeffs = {name: coeffs_from_tensor(associator_tensor(table)) for name, table in tables.items()}
 
-    z3_h_zero = z3_zero_claim("jax_H_zero_high", coeffs["H"], force_all_zero=True)
-    z3_o_zero = z3_zero_claim("jax_O_zero_high", coeffs["O"], force_all_zero=True)
-    z3_o_erased = z3_zero_claim("jax_O_erased_high", coeffs["O"], force_all_zero=False)
-    cvc5_h_zero = cvc5_zero_claim("jax_H_zero_high", coeffs["H"], force_all_zero=True)
-    cvc5_o_zero = cvc5_zero_claim("jax_O_zero_high", coeffs["O"], force_all_zero=True)
-    cvc5_o_erased = cvc5_zero_claim("jax_O_erased_high", coeffs["O"], force_all_zero=False)
+    z3_proofs = {name: z3_structural_proof(f"jax_{name}_high", tables[name]) for name in ("H", "O")}
+    cvc5_proofs = {name: cvc5_structural_proof(f"jax_{name}_high", tables[name]) for name in ("H", "O")}
+    z3_h_zero = z3_proofs["H"]
+    z3_o_zero = z3_proofs["O"]
+    cvc5_h_zero = cvc5_proofs["H"]
+    cvc5_o_zero = cvc5_proofs["O"]
 
-    solver_agreement = z3_h_zero["status"] == cvc5_h_zero["status"] and z3_o_zero["status"] == cvc5_o_zero["status"]
-    erase_flip = z3_o_zero["status"] == cvc5_o_zero["status"] == "unsat" and z3_o_erased["status"] == cvc5_o_erased["status"] == "sat"
-    h_sat_o_unsat = z3_h_zero["status"] == cvc5_h_zero["status"] == "sat" and z3_o_zero["status"] == cvc5_o_zero["status"] == "unsat"
+    solver_agreement = (
+        z3_h_zero["all_coefficients_zero_status"] == cvc5_h_zero["all_coefficients_zero_status"]
+        and z3_o_zero["all_coefficients_zero_status"] == cvc5_o_zero["all_coefficients_zero_status"]
+    )
+    erase_flip = z3_o_zero["drop_zero_constraint_flips_unsat_to_sat"] and cvc5_o_zero["drop_zero_constraint_flips_unsat_to_sat"]
+    h_sat_o_unsat = (
+        z3_h_zero["all_coefficients_zero_status"] == cvc5_h_zero["all_coefficients_zero_status"] == "sat"
+        and z3_o_zero["all_coefficients_zero_status"] == cvc5_o_zero["all_coefficients_zero_status"] == "unsat"
+    )
     h_zero = summaries["H"]["associator_max_norm"] <= TOL
     o_nonzero = summaries["O"]["associator_max_norm"] > TOL
     all_pass = bool(
@@ -207,24 +363,24 @@ def main() -> int:
         },
         "values": summaries,
         "smt_structural_proof": {
-            "encoding": "Computed integer associator coefficients are asserted as exact SMT Int equalities before all-zero constraints are tested.",
-            "z3": {"H_all_zero": z3_h_zero, "O_all_zero": z3_o_zero, "O_drop_all_zero_constraint": z3_o_erased},
-            "cvc5": {"H_all_zero": cvc5_h_zero, "O_all_zero": cvc5_o_zero, "O_drop_all_zero_constraint": cvc5_o_erased},
+            "encoding": "z3/cvc5 Real table variables T[k,i,j] are bound to the computed Cayley-Dickson entries; associators are derived inside the solvers, so no precomputed associator coefficient is asserted.",
+            "z3": {"H_all_zero": z3_h_zero, "O_all_zero": z3_o_zero, "O_drop_all_zero_constraint": z3_o_zero["drop_zero_constraint_status"]},
+            "cvc5": {"H_all_zero": cvc5_h_zero, "O_all_zero": cvc5_o_zero, "O_drop_all_zero_constraint": cvc5_o_zero["drop_zero_constraint_status"]},
             "solver_agreement": solver_agreement,
             "H_sat_O_unsat_flip": h_sat_o_unsat,
             "erase_flip_unsat_to_sat": erase_flip,
         },
         "negative_control": {
             "H_to_O_structure_flip": {"pass": h_zero and o_nonzero, "H_associator_max_norm": summaries["H"]["associator_max_norm"], "O_associator_max_norm": summaries["O"]["associator_max_norm"]},
-            "drop_zero_associator_constraint_flip": {"pass": erase_flip, "with_constraint": z3_o_zero["status"], "constraint_erased": z3_o_erased["status"]},
+            "drop_zero_associator_constraint_flip": {"pass": erase_flip, "with_constraint": z3_o_zero["all_coefficients_zero_status"], "constraint_erased": z3_o_zero["drop_zero_constraint_status"]},
         },
         "packages_used": ["jax", "jax.numpy", "z3", "cvc5", "json", "hashlib"],
         "aligned_packages_load_bearing": ["z3", "cvc5"],
         "TOOL_MANIFEST": {
             "jax": {"tried": True, "used": True, "reason": "supportive x64 structure-constant computation"},
             "jax.numpy": {"tried": True, "used": True, "reason": "supportive x64 finite Cayley-Dickson arithmetic"},
-            "z3": {"tried": True, "used": True, "reason": "load-bearing SMT over computed associator coefficients"},
-            "cvc5": {"tried": True, "used": True, "reason": "load-bearing independent SMT over the same computed coefficients"},
+            "z3": {"tried": True, "used": True, "reason": "load-bearing in-solver associator derivation from bound multiplication-table entries"},
+            "cvc5": {"tried": True, "used": True, "reason": "load-bearing independent in-solver associator derivation from the same bound table entries"},
         },
         "TOOL_INTEGRATION_DEPTH": {"jax": "supportive", "jax.numpy": "supportive", "z3": "load_bearing", "cvc5": "load_bearing"},
         "all_pass": all_pass,
@@ -238,7 +394,7 @@ def main() -> int:
         f"H_assoc={summaries['H']['associator_max_norm']} "
         f"O_assoc={summaries['O']['associator_max_norm']} "
         f"witness={','.join(summaries['O']['witness']['basis_labels'])} "
-        f"z3_O_zero={z3_o_zero['status']} cvc5_O_zero={cvc5_o_zero['status']} erase={z3_o_erased['status']}"
+        f"z3_O_zero={z3_o_zero['all_coefficients_zero_status']} cvc5_O_zero={cvc5_o_zero['all_coefficients_zero_status']} erase={z3_o_zero['drop_zero_constraint_status']}"
     )
     return 0 if all_pass else 1
 

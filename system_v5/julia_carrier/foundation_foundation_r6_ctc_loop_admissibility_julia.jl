@@ -4,6 +4,13 @@
 # promotion_allowed: false
 # formal_admission_allowed: false
 # reads_peer_result: false
+# reads_peer_result is false by design, not by omission: every R5 leg
+# (foundation_foundation_r5_{g2_su3_reduction,hopf_fibration,weyl_chirality_pair})
+# is itself classification=scratch_diagnostic / promotion_allowed=false in its
+# own result JSON (system_v5/julia_carrier/results/foundation_foundation_r5_*_julia_results.json).
+# There is no admitted/canonical R5 carrier for R6 to build on top of, so R6
+# does not claim to derive from one. R6 is a self-contained finite-math scratch
+# stage; the whole R5->R6 ladder to this point is scratch-diagnostic.
 
 using Dates
 using Graphs
@@ -222,6 +229,7 @@ function build_result()
         "packages_used" => ["Graphs", "Z3", "LinearAlgebra", "JSON", "Dates"],
         "aligned_packages_load_bearing" => ["Z3"],
         "claim_ceiling" => "Finite directed constraint-order diagnostic only. Closed directed loops are tested on a four-event order; no GR metric, cosmology, Godel, chronology-protection, or promotion claim.",
+        "carrier_family" => "finite directed-graph / Z3 reachability diagnostic (Graphs.jl + Z3), independent of the Cayley-Dickson/octonion (fano, g2, sedenion, spin7) and A5-group (oph_icosahedral) construction families used by the other five R6 objects. Grouped under R6 by rung sequence only, not by shared algebraic carrier; no derivation from those families is claimed or attempted.",
         "M" => Dict{String,Any}(
             "explicit_probe_family" => [
                 "edge(A_prepare,B_apply)",

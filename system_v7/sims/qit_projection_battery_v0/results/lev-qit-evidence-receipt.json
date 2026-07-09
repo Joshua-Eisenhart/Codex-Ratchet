@@ -1,0 +1,99 @@
+{
+  "version": "0.1.0-qit-evidence-consumer",
+  "envelopeFile": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json",
+  "simId": "qit_projection_battery_v0",
+  "ok": true,
+  "status": "host_evidence_consumed",
+  "sourceEnvelopeHash": "sha256:26fc537efce17a6afff7c31fc9e36f1dbf7db64d30d4a3a85f9927c16b8ac726",
+  "receipt": {
+    "id": "rcpt-b5175a6417b01a14",
+    "scope": "invocation",
+    "sessionId": "qit-evidence-qit_projection_battery_v0",
+    "workUnitId": "qit_projection_battery_v0",
+    "contentHash": "588e8bf49baa68e92e1111a29c79086b49d989a1855a5b165d92dc1f91d8ad42",
+    "evalResults": [
+      {
+        "id": "qit-evidence-qit_projection_battery_v0",
+        "strategy": "gate-based",
+        "timestamp": "2026-07-07T22:11:59.896Z",
+        "passed": true,
+        "metric_value": 1,
+        "reasoning": "QIT envelope passed Lev host evidence-only boundary checks; no graph or runtime admission was applied.",
+        "metadata": {
+          "status": "host_evidence_consumed",
+          "source_all_pass": true,
+          "classification": "scratch_diagnostic",
+          "blocked_consumers": [
+            "QIT_engine_admission",
+            "Axis0",
+            "FEP",
+            "Xi/Phi0",
+            "physics",
+            "Lev_mesh_runtime",
+            "production_perception",
+            "production_ontology",
+            "MMM_driver",
+            "mesh_visible_projection"
+          ],
+          "finding_codes": [],
+          "decision_ceiling": "accepted_as_evidence_only",
+          "graph_mutation_allowed": false,
+          "mesh_projection_allowed": false,
+          "source_boundary_mutated": false
+        }
+      }
+    ],
+    "effectResults": [],
+    "provenance": {
+      "surface": "cli",
+      "host": "lev",
+      "profile": "qit-evidence-consumer",
+      "consultedPaths": [
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json"
+      ],
+      "consultedFileHashes": {
+        "sourceEnvelope": "sha256:26fc537efce17a6afff7c31fc9e36f1dbf7db64d30d4a3a85f9927c16b8ac726"
+      }
+    },
+    "sealedAt": "2026-07-07T22:11:59.896Z"
+  },
+  "findings": [],
+  "blockedConsumers": [
+    "QIT_engine_admission",
+    "Axis0",
+    "FEP",
+    "Xi/Phi0",
+    "physics",
+    "Lev_mesh_runtime",
+    "production_perception",
+    "production_ontology",
+    "MMM_driver",
+    "mesh_visible_projection"
+  ],
+  "hostContract": {
+    "compositor_apply_allowed": false,
+    "cr_object_id_is_lev_entity_id": false,
+    "decision_ceiling": "accepted_as_evidence_only",
+    "evidence_kind": "measurement",
+    "graph_mutation_allowed": false,
+    "mesh_projection_allowed": false,
+    "source_boundary_mutated": false,
+    "truth_state": "proposed"
+  },
+  "metrics": {
+    "schemaVersion": "three_engine_sim_result_v1",
+    "classification": "scratch_diagnostic",
+    "allPass": true,
+    "promotionAllowed": false,
+    "formalAdmissionAllowed": false,
+    "evidenceGrade": "scratch_diagnostic_measurement",
+    "lifecycleStatus": "SCRATCH_DIAGNOSTIC"
+  },
+  "files": {
+    "sourceEnvelope": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json",
+    "hostConsumption": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/results/lev-qit-evidence-receipt.json",
+    "hostBoundary": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/results/lev-qit-evidence-boundary.json",
+    "hostEvents": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/results/lev-qit-evidence-events.jsonl",
+    "hostBlockedReason": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/results/lev-qit-evidence-blocked.json"
+  }
+}

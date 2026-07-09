@@ -4,6 +4,21 @@
 # promotion_allowed: false
 # formal_admission_allowed: false
 # reads_peer_result: false
+# rung_reclassified_from_r4_to_r2: true
+#
+# REPAIR NOTE (R4 reopen): this sim's probe family (P_z0, P_xplus, P_yplus on
+# a generic single-qubit Bloch sphere) has no derivation link to R3's
+# admitted octonion/Cl(6) carrier (foundation_r3_octonion_cl6_link_xhigh) --
+# it is a bare SpinBasis(1/2) toy with zero octonion or Cl(6) content.
+# Per the reopen instructions, honest options were: (a) derive the probe
+# family from the R3 carrier with a stated derivation, or (b) reclassify as
+# R2-level since it has zero linkage to any R3 carrier structure. No
+# non-fabricated derivation exists (this is an ordinary qubit density-matrix
+# quotient profile, not an octonion/Cl(6) object), so this object is
+# reclassified to R2 (foundation_build_spine.md's "admissible-operations
+# layer on M(C)") rather than faking an R3 link. It stays scratch_diagnostic,
+# promotion_allowed=false, formal_admission_allowed=false, and does not claim
+# R4 carrier status.
 
 using Dates
 using JSON
@@ -19,6 +34,8 @@ const CLASSIFICATION = "scratch_diagnostic"
 const PROMOTION_ALLOWED = false
 const FORMAL_ADMISSION_ALLOWED = false
 const READS_PEER_RESULT = false
+const RUNG_RECLASSIFIED_FROM_R4_TO_R2 = true
+const RUNG_RECLASSIFICATION_REASON = "Probe family (P_z0, P_xplus, P_yplus on a generic SpinBasis(1/2)) has zero derivation link to R3's admitted octonion/Cl(6) carrier; no non-fabricated R3 derivation exists, so this object is demoted to R2 (admissible-operations layer on M(C)) rather than asserting a fake R3 dependency."
 const PROBE_LO = 1 // 8
 const PROBE_HI = 7 // 8
 const GRID = [-1 // 1, -1 // 2, 0 // 1, 1 // 2, 1 // 1]
@@ -183,6 +200,8 @@ function build_result()
         "promotion_allowed" => PROMOTION_ALLOWED,
         "formal_admission_allowed" => FORMAL_ADMISSION_ALLOWED,
         "reads_peer_result" => READS_PEER_RESULT,
+        "rung_reclassified_from_r4_to_r2" => RUNG_RECLASSIFIED_FROM_R4_TO_R2,
+        "rung_reclassification_reason" => RUNG_RECLASSIFICATION_REASON,
         "ran" => true,
         "generated_at" => Dates.format(now(UTC), dateformat"yyyy-mm-ddTHH:MM:SSZ"),
         "source_path" => SOURCE_PATH,
@@ -222,7 +241,7 @@ function build_result()
             "SHA" => "supportive",
             "Dates" => "supportive",
         ),
-        "claim_ceiling" => "Foundation R4 M(C) profile v0 scratch diagnostic only. It profiles a finite 2x2 probe quotient under explicit constraints; no promotion or formal admission.",
+        "claim_ceiling" => "Reclassified R2 M(C) profile v0 (not R4) scratch diagnostic only. It profiles a finite 2x2 probe quotient under explicit constraints on a generic qubit; no octonion/Cl(6) carrier dependency exists, so this is NOT an R4 object. No promotion or formal admission.",
         "runtime_seconds" => round(time() - started; digits=6),
     )
 end

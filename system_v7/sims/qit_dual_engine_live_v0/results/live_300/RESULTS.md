@@ -47,10 +47,10 @@ Directory name and emitted `engine_id` field values stay as-is for schema stabil
 
 ## Runtimes
 
-- numpy_oracle_loop: wall `None`, substrate total `None`.
-- jax_loop: wall `None`, substrate total `None`.
-- torch_loop: wall `None`, substrate total `None`.
-- julia_loop: wall `None`, substrate total `None`.
+- numpy_oracle_loop: wall `1.192026749951765`, substrate total `0.9248807081021369`.
+- jax_loop: wall `12.805874124867842`, substrate total `11.035461750114337`.
+- torch_loop: wall `3.3338738328311592`, substrate total `1.7914291659835726`.
+- julia_loop: wall `13.13280070782639`, substrate total `2.541049333`.
 
 ## Boundaries
 

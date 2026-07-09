@@ -3,6 +3,14 @@
 # classification: scratch_diagnostic
 # promotion_allowed: false
 # formal_admission_allowed: false
+# reads_peer_result: false
+# reads_peer_result is false by design, not by omission: every R5 leg
+# (foundation_foundation_r5_{g2_su3_reduction,hopf_fibration,weyl_chirality_pair})
+# is itself classification=scratch_diagnostic / promotion_allowed=false in its
+# own result JSON (system_v5/julia_carrier/results/foundation_foundation_r5_*_julia_results.json).
+# There is no admitted/canonical R5 carrier for R6 to build on top of, so R6
+# does not claim to derive from one. R6 is a self-contained finite-math scratch
+# stage; the whole R5->R6 ladder to this point is scratch-diagnostic.
 
 using Dates
 using JSON

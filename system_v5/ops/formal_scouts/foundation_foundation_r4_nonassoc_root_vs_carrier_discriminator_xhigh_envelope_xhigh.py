@@ -91,13 +91,18 @@ def engine_record(payload: dict[str, Any], result_path: Path, packages_used: lis
 
 
 def same_fences(*payloads: dict[str, Any]) -> bool:
+    # The Julia leg is the canonical engine for this discriminator (per
+    # project doctrine) and now reads R3's persisted octonion/Cl(6) result as
+    # an explicit peer dependency (reads_peer_result=True, with a verified
+    # rank/dim provenance match). The JAX/PyTorch legs remain standalone
+    # structural cross-checks and were not in scope for the R3 peer-read
+    # repair, so they keep reads_peer_result=False.
     return all(
         payload["classification"] == classification
         and payload["promotion_allowed"] is False
         and payload["formal_admission_allowed"] is False
-        and payload["reads_peer_result"] is False
         for payload in payloads
-    )
+    ) and payloads[0]["reads_peer_result"] is True
 
 
 def build_result() -> dict[str, Any]:

@@ -56,8 +56,12 @@ def scalar(value: torch.Tensor | float | int) -> float:
 def pauli_operators() -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     z_probe = torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=torch.float64)
     x_probe = torch.tensor([[0.0, 1.0], [1.0, 0.0]], dtype=torch.float64)
-    identity_probe = torch.eye(2, dtype=torch.float64)
-    return z_probe, x_probe, identity_probe
+    # Informative commuting partner in the Z eigenbasis: D = diag(2, 3).
+    # D commutes with Z (both diagonal) but is not the identity and not a
+    # scalar multiple of it, so <D> carries state-dependent information.
+    # This isolates non-commutation instead of information loss.
+    d_probe = torch.tensor([[2.0, 0.0], [0.0, 3.0]], dtype=torch.float64)
+    return z_probe, x_probe, d_probe
 
 
 def fixture_states() -> list[tuple[str, torch.Tensor]]:
@@ -92,7 +96,7 @@ def quotient_classes(probes: list[torch.Tensor], states: list[tuple[str, torch.T
 
 
 def order_gap_squared_from_theta(theta: torch.Tensor) -> torch.Tensor:
-    z_probe, x_probe, _identity_probe = pauli_operators()
+    z_probe, x_probe, _d_probe = pauli_operators()
     ket_0 = torch.tensor([1.0 + 0.0j, 0.0 + 0.0j], dtype=torch.complex128)
     moving_probe = torch.cos(theta) * z_probe + torch.sin(theta) * x_probe
     commutator = z_probe @ moving_probe - moving_probe @ z_probe
@@ -101,24 +105,24 @@ def order_gap_squared_from_theta(theta: torch.Tensor) -> torch.Tensor:
 
 
 def commuting_control_gap_squared_from_theta(theta: torch.Tensor) -> torch.Tensor:
-    z_probe, _x_probe, identity_probe = pauli_operators()
+    z_probe, _x_probe, d_probe = pauli_operators()
     ket_0 = torch.tensor([1.0 + 0.0j, 0.0 + 0.0j], dtype=torch.complex128)
-    moving_probe = torch.cos(theta) * z_probe + torch.sin(theta) * identity_probe
+    moving_probe = torch.cos(theta) * z_probe + torch.sin(theta) * d_probe
     commutator = z_probe @ moving_probe - moving_probe @ z_probe
     vector = commutator.to(torch.complex128) @ ket_0
     return torch.sum(torch.abs(vector) ** 2)
 
 
 def build_result() -> dict[str, Any]:
-    z_probe, x_probe, identity_probe = pauli_operators()
+    z_probe, x_probe, d_probe = pauli_operators()
     states = fixture_states()
     noncommutator = z_probe @ x_probe - x_probe @ z_probe
-    commuting_commutator = z_probe @ identity_probe - identity_probe @ z_probe
+    commuting_commutator = z_probe @ d_probe - d_probe @ z_probe
     ket_0 = states[0][1]
     order_gap_noncommuting = scalar(torch.linalg.vector_norm(noncommutator.to(torch.complex128) @ ket_0))
     order_gap_commuting = scalar(torch.linalg.vector_norm(commuting_commutator.to(torch.complex128) @ ket_0))
     noncommuting_classes = quotient_classes([z_probe, x_probe], states)
-    commuting_classes = quotient_classes([z_probe, identity_probe], states)
+    commuting_classes = quotient_classes([z_probe, d_probe], states)
 
     theta = torch.tensor(math.pi / 4.0, dtype=torch.float64)
     control_theta = torch.tensor(math.pi / 4.0, dtype=torch.float64)
@@ -154,18 +158,18 @@ def build_result() -> dict[str, Any]:
         "aligned_packages_load_bearing": ["torch.func"],
         "M": {
             "noncommuting_probe_family": ["Pauli_Z", "Pauli_X"],
-            "commuting_control_family": ["Pauli_Z", "Identity"],
+            "commuting_control_family": ["Pauli_Z", "Diag_2_3"],
             "fixture_states": [name for name, _ in states],
         },
         "C": {
             "admissibility": ["Hermitian density operator", "trace=1", "PSD", "normalized ket fixtures"],
             "rung_specific_constraint": "Differentiable order-gap sensitivity remains nonzero for a Z-to-X probe deformation",
-            "control_constraint": "Z-to-Identity diagonal deformation has zero order-gap and zero jacrev sensitivity",
+            "control_constraint": "Z-to-D diagonal deformation (D = diag(2, 3), informative and not I) has zero order-gap and zero jacrev sensitivity",
         },
         "quotient_summary": {
             "definition": "rho ~_M sigma iff Tr(rho O)=Tr(sigma O) for every O in M",
             "noncommuting_coordinates": ["<Z>", "<X>"],
-            "commuting_control_coordinates": ["<Z>", "<I>"],
+            "commuting_control_coordinates": ["<Z>", "<D>"],
             "fixture_class_count_noncommuting": class_count_noncommuting,
             "fixture_class_count_commuting": class_count_commuting,
             "noncommuting_classes": noncommuting_classes,

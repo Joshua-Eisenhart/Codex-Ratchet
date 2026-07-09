@@ -1,0 +1,338 @@
+{
+  "FORMAL_ADMISSION_ALLOWED": false,
+  "PROMOTION_ALLOWED": false,
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX jax.numpy x64": "load_bearing",
+    "Julia LinearAlgebra": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "JAX jax.numpy x64": {
+      "reason": "load-bearing for density matrices, Pauli traces, Bloch vectors, cross/dot witness, and residual norms using jax.numpy x64",
+      "role": "mirror_stress_jnp_x64",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "supportive peer parity lane read from its result JSON when present; no Julia compute is used inside JAX",
+      "role": "peer_reference_expected",
+      "tried": true,
+      "used": false
+    }
+  },
+  "all_pass": false,
+  "allowed_claims": [
+    "finite chiral carrier readout for independent L/R Hopf-base sheets",
+    "control-bounded load-bearing status of the parity-odd pair witness"
+  ],
+  "backend": "jax",
+  "backend_roles": {
+    "jax": "mirror_stress_jnp_x64",
+    "julia": "reference_exact_linearalgebra"
+  },
+  "blocked_consumers": [
+    "engine_admission",
+    "Axis0",
+    "gravity",
+    "win_lose_dynamics",
+    "formal_admission",
+    "bridge_or_downstream_claim"
+  ],
+  "blocked_until": "A separate admitted process defines IGT win/lose and downstream engine/Axis gates; this probe intentionally does not.",
+  "carrier_layer": "left_right_weyl_pair_over_two_independent_hopf_maps",
+  "claim_ceiling": "Carrier-only L/R Weyl sheet chirality diagnostic; no engine admission, Axis0, gravity, win/lose, bridge, or formal admission claim.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "no_chirality_antipodal_zero": true,
+    "no_chirality_zero": true,
+    "parity_symmetric_zero": true,
+    "swap_sign_flip": true
+  },
+  "created_at": "2026-06-29T09:56:22Z",
+  "demotion_condition": "Demote to miswired scratch diagnostic if swap sign does not flip, same-sheet phase control is nonzero, parity-symmetric reflection is nonzero, NumPy compute appears, or peer shared scalar parity fails.",
+  "divergence_log": [
+    "Generic independent L/R sheets produce nonzero chi under the fixed carrier-frame reference axis.",
+    "L/R swap is required to flip chi sign, not merely change magnitude.",
+    "Same Hopf base with pure fiber phase and parity-symmetric reflected base are required to collapse chi to zero.",
+    "This divergence is carrier-only and does not define IGT win/lose, engine admission, Axis0, gravity, bridge, or formal admission."
+  ],
+  "eligible_consumers": [
+    "formal_scout_review_only"
+  ],
+  "formal_admission_allowed": false,
+  "geometry_layer": "C2_spinor_to_Bloch_Hopf_base_per_sheet",
+  "honest_caveat": "scratch_diagnostic is used intentionally; generic receipt validators that only admit canonical/classical/tool-fit/supporting/audit classes may reject this as noncanonical.",
+  "jax_x64_enabled": true,
+  "julia_reference_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/weyl_sheet_pair_probe_julia_results.json",
+  "numpy_compute_used": false,
+  "object_id": "weyl_sheet_pair_probe",
+  "out_of_scope": [
+    "engine admission",
+    "Axis0",
+    "gravity",
+    "win/lose dynamics",
+    "formal admission",
+    "bridge or downstream physical claim"
+  ],
+  "pairs": {
+    "generic": {
+      "chi": 0.6382081404405828,
+      "chi_trace_form": 0.6382081404405828,
+      "chi_trace_residual": 0.0,
+      "fiber_phase_L": 0.73,
+      "fiber_phase_R": -0.17999999999999997,
+      "hermitian_residual": 2.0722631007362374e-17,
+      "hopf_s2_residual": 0.0,
+      "idempotency_residual": 1.3605173750162192e-16,
+      "label": "generic_independent_LR",
+      "overlap_abs": 0.7949936554208508,
+      "r_L": [
+        0.804498848255537,
+        -0.34966030351652777,
+        0.4801242290285341
+      ],
+      "r_R": [
+        0.2235967572207585,
+        0.6961168827771614,
+        0.6822212072876136
+      ],
+      "relative_fiber_phase": 0.9099999999999999,
+      "rho_L_trace_residual": 0.0,
+      "rho_R_trace_residual": 0.0,
+      "rho_reconstruction_residual": 1.2455840563392223e-16,
+      "spinor_norm_residual": 0.0,
+      "trace_rho_residual": 0.0,
+      "transverse_scale": 0.6413614905347638
+    },
+    "no_chirality": {
+      "chi": 2.3498984427972137e-17,
+      "chi_trace_form": 0.0,
+      "chi_trace_residual": 2.3498984427972137e-17,
+      "fiber_phase_L": 0.73,
+      "fiber_phase_R": 1.34,
+      "hermitian_residual": 1.6294006400690193e-17,
+      "hopf_s2_residual": 2.220446049250313e-16,
+      "idempotency_residual": 2.6343851589903654e-16,
+      "label": "no_chirality_same_hopf_base_pure_phase",
+      "overlap_abs": 1.0,
+      "r_L": [
+        0.804498848255537,
+        -0.34966030351652777,
+        0.4801242290285341
+      ],
+      "r_R": [
+        0.8044988482555372,
+        -0.3496603035165278,
+        0.48012422902853413
+      ],
+      "relative_fiber_phase": -0.6100000000000001,
+      "rho_L_trace_residual": 0.0,
+      "rho_R_trace_residual": 2.220446049250313e-16,
+      "rho_reconstruction_residual": 1.5722047242424587e-16,
+      "spinor_norm_residual": 2.220446049250313e-16,
+      "trace_rho_residual": 2.220446049250313e-16,
+      "transverse_scale": 0.769480724699756
+    },
+    "no_chirality_antipodal": {
+      "chi": -6.072469913810666e-17,
+      "chi_trace_form": -5.551115123125783e-17,
+      "chi_trace_residual": 5.213547906848829e-18,
+      "fiber_phase_L": 0.14000000000000004,
+      "fiber_phase_R": -0.32,
+      "hermitian_residual": 1.400732799824074e-17,
+      "hopf_s2_residual": 1.1102230246251565e-16,
+      "idempotency_residual": 1.4169940977661066e-16,
+      "label": "no_chirality_antipodal_hopf_base",
+      "overlap_abs": 5.551115123125783e-17,
+      "r_L": [
+        0.8350843780828926,
+        0.3238984671326391,
+        0.4446615167417066
+      ],
+      "r_R": [
+        -0.8350843780828926,
+        -0.32389846713263915,
+        -0.4446615167417069
+      ],
+      "relative_fiber_phase": 0.4600000000000001,
+      "rho_L_trace_residual": 1.1102230246251565e-16,
+      "rho_R_trace_residual": 0.0,
+      "rho_reconstruction_residual": 1.2432413629102943e-16,
+      "spinor_norm_residual": 1.1102230246251565e-16,
+      "trace_rho_residual": 1.1102230246251565e-16,
+      "transverse_scale": 0.8022761355289647
+    },
+    "parity_symmetric": {
+      "chi": -2.4734191356739254e-17,
+      "chi_trace_form": 0.0,
+      "chi_trace_residual": 2.4734191356739254e-17,
+      "fiber_phase_L": 0.21999999999999997,
+      "fiber_phase_R": -0.49,
+      "hermitian_residual": 2.740042476211465e-17,
+      "hopf_s2_residual": 2.220446049250313e-16,
+      "idempotency_residual": 2.451979735817157e-16,
+      "label": "parity_symmetric_reflection_across_ref_plane",
+      "overlap_abs": 0.8956986856800476,
+      "r_L": [
+        0.8350843780828928,
+        0.3238984671326392,
+        0.4446615167417068
+      ],
+      "r_R": [
+        0.8350843780828926,
+        0.3238984671326391,
+        -0.4446615167417068
+      ],
+      "relative_fiber_phase": 0.71,
+      "rho_L_trace_residual": 2.220446049250313e-16,
+      "rho_R_trace_residual": 0.0,
+      "rho_reconstruction_residual": 1.2488048436158456e-16,
+      "spinor_norm_residual": 2.220446049250313e-16,
+      "trace_rho_residual": 2.220446049250313e-16,
+      "transverse_scale": 0.802276135528965
+    },
+    "swap": {
+      "chi": -0.6382081404405828,
+      "chi_trace_form": -0.6382081404405828,
+      "chi_trace_residual": 0.0,
+      "fiber_phase_L": -0.17999999999999997,
+      "fiber_phase_R": 0.73,
+      "hermitian_residual": 2.0722631007362374e-17,
+      "hopf_s2_residual": 0.0,
+      "idempotency_residual": 1.3605173750162192e-16,
+      "label": "swap_RL",
+      "overlap_abs": 0.7949936554208508,
+      "r_L": [
+        0.2235967572207585,
+        0.6961168827771614,
+        0.6822212072876136
+      ],
+      "r_R": [
+        0.804498848255537,
+        -0.34966030351652777,
+        0.4801242290285341
+      ],
+      "relative_fiber_phase": -0.9099999999999999,
+      "rho_L_trace_residual": 0.0,
+      "rho_R_trace_residual": 0.0,
+      "rho_reconstruction_residual": 1.2455840563392223e-16,
+      "spinor_norm_residual": 0.0,
+      "trace_rho_residual": 0.0,
+      "transverse_scale": 0.6413614905347638
+    }
+  },
+  "parity": {
+    "missing_from_peer": [
+      "control_no_chirality_zero",
+      "control_parity_symmetric_zero",
+      "control_swap_sign_flip",
+      "generic_chi",
+      "generic_chi_trace_form",
+      "generic_chi_trace_residual",
+      "generic_overlap_abs",
+      "generic_relative_fiber_phase",
+      "generic_transverse_scale",
+      "max_pair_residual",
+      "no_chirality_abs",
+      "no_chirality_antipodal_abs",
+      "no_chirality_antipodal_chi",
+      "no_chirality_chi",
+      "numpy_compute_used_flag",
+      "parity_symmetric_abs",
+      "parity_symmetric_chi",
+      "swap_chi",
+      "swap_sign_flip_residual",
+      "verdict_chirality_load_bearing",
+      "verdict_generic_chi_nonzero"
+    ],
+    "missing_from_self": [],
+    "parity_max_diff": null,
+    "peer_available": false,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/weyl_sheet_pair_probe_julia_results.json",
+    "stop_condition_fired": true,
+    "strict_divergence_gt_1e_6": true,
+    "within_1e_9": false,
+    "worst_key": null
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/weyl_sheet_pair_probe_julia_results.json",
+  "plain_sentence": "L/R chirality is load-bearing for this finite chiral carrier witness: the independent sheet pair has a nonzero parity-odd readout, while same-sheet and parity-symmetric controls collapse to generic spinor geometry.",
+  "promotion_allowed": false,
+  "promotion_condition": "None in this run; promotion_allowed is false and formal_admission_allowed is false.",
+  "reference_axis": {
+    "name": "pauli_z_sheet_normal",
+    "role": "fixed label-neutral carrier-frame axis for the parity-odd witness",
+    "vector": [
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/weyl_sheet_pair_probe_jax_results.json",
+  "shared_scalars": {
+    "control_no_chirality_zero": 1.0,
+    "control_parity_symmetric_zero": 1.0,
+    "control_swap_sign_flip": 1.0,
+    "generic_chi": 0.6382081404405828,
+    "generic_chi_trace_form": 0.6382081404405828,
+    "generic_chi_trace_residual": 0.0,
+    "generic_overlap_abs": 0.7949936554208508,
+    "generic_relative_fiber_phase": 0.9099999999999999,
+    "generic_transverse_scale": 0.6413614905347638,
+    "max_pair_residual": 1.3605173750162192e-16,
+    "no_chirality_abs": 2.3498984427972137e-17,
+    "no_chirality_antipodal_abs": 6.072469913810666e-17,
+    "no_chirality_antipodal_chi": -6.072469913810666e-17,
+    "no_chirality_chi": 2.3498984427972137e-17,
+    "numpy_compute_used_flag": 0.0,
+    "parity_symmetric_abs": 2.4734191356739254e-17,
+    "parity_symmetric_chi": -2.4734191356739254e-17,
+    "swap_chi": -0.6382081404405828,
+    "swap_sign_flip_residual": 0.0,
+    "verdict_chirality_load_bearing": 1.0,
+    "verdict_generic_chi_nonzero": 1.0
+  },
+  "sim_class": "carrier_probe",
+  "sim_execution_kind": "nonclassical",
+  "source_numpy_markers": {
+    "import_numpy_present": false,
+    "np_dot_present": false,
+    "numpy_method_bridge_present": false
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_weyl_sheet_pair_probe.py",
+  "stop_condition_fired": true,
+  "strict_stop_tol": 1e-06,
+  "tol": 1e-09,
+  "tool_integration_depth": {
+    "JAX jax.numpy x64": "load_bearing",
+    "Julia LinearAlgebra": "supportive"
+  },
+  "tool_manifest": {
+    "JAX jax.numpy x64": {
+      "reason": "load-bearing for density matrices, Pauli traces, Bloch vectors, cross/dot witness, and residual norms using jax.numpy x64",
+      "role": "mirror_stress_jnp_x64",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "supportive peer parity lane read from its result JSON when present; no Julia compute is used inside JAX",
+      "role": "peer_reference_expected",
+      "tried": true,
+      "used": false
+    }
+  },
+  "tools": [
+    "JAX jax.numpy x64",
+    "Julia LinearAlgebra"
+  ],
+  "verdicts": {
+    "chirality_load_bearing": true,
+    "controls_all_pass": true,
+    "generic_chi_nonzero": true,
+    "generic_independent_LR": true
+  },
+  "witness": {
+    "fiber_phase_role": "diagnostic_only_not_load_bearing",
+    "formula": "chi = n_ref dot (r_L cross r_R)",
+    "swap_rule": "chi(R,L) = -chi(L,R)",
+    "trace_equivalent": "chi = 2 Im Tr(rho_L rho_R (n_ref dot sigma))"
+  }
+}

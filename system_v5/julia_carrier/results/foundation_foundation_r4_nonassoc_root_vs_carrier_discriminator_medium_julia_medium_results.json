@@ -1,109 +1,105 @@
 {
   "C": {
+    "rung_specific_constraint": "bare root requires finite basis, noncommuting pair, and a well-defined M quotient; stronger installed constraint is >=7 mutually anticommuting imaginary units / Cl(6) floor",
+    "trace_equals_one": "not a density-state rung; unit e0=1 is the carrier normalization witness",
     "hermiticity": "real Cayley-Dickson conjugation fixes the star operation",
     "normalization": "basis units are normalized coordinate units",
-    "psd": "not a density-state rung; division-carrier admissibility uses square=-1 imaginary unit checks",
-    "rung_specific_constraint": "bare root requires finite basis, noncommuting pair, and a well-defined M quotient; stronger installed constraint is >=7 mutually anticommuting imaginary units / Cl(6) floor",
-    "trace_equals_one": "not a density-state rung; unit e0=1 is the carrier normalization witness"
+    "psd": "not a density-state rung; division-carrier admissibility uses square=-1 imaginary unit checks"
   },
-  "M": {
-    "finite_probe_family": {
-      "H": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "description": "coordinate probes on the finite basis define indistinguishability"
-    },
-    "name": "bare-root finite coordinate probes plus noncommuting Z/X analog"
-  },
-  "S_quotient_under_M": {
-    "H_bare_root_classes": "coordinate probes separate the four H basis classes",
-    "H_bare_root_quotient_rank": 4,
-    "relation": "a ~_M b iff every finite coordinate probe in M has the same value on a and b"
-  },
-  "aligned_packages_load_bearing": [
-    "CliffordAlgebras"
-  ],
-  "all_pass": true,
-  "claim_path_tools": [
-    "CliffordAlgebras"
-  ],
-  "classification": "scratch_diagnostic",
-  "decision": {
-    "forced_by_bare_root": false,
-    "installed_by_constraint": ">=7 mutually anticommuting imaginary units / Cl(6) / 3-qubit Weyl floor",
-    "verdict": "INSTALLED_NOT_FORCED"
-  },
-  "engine": "julia",
-  "formal_admission_allowed": false,
-  "generated_at": "2026-06-08T02:04:33.464",
-  "julia_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
-  "negative_control": {
-    "add_Cl6_7_unit_constraint_admits_O": true,
-    "add_Cl6_7_unit_constraint_excludes_H": true,
-    "bare_root_admits_H": true,
-    "flip": {
-      "H_under_Cl6_7_unit_constraint": "unsat",
-      "H_under_bare_root": "sat",
-      "sat_to_unsat": true
-    }
-  },
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_medium_julia_medium_results.json",
   "packages_used": [
     "CliffordAlgebras",
     "LinearAlgebra",
     "JSON",
     "Dates"
   ],
-  "promotion_allowed": false,
-  "reads_peer_result": false,
-  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_medium_julia_medium_results.json",
+  "S_quotient_under_M": {
+    "H_bare_root_classes": "coordinate probes separate the four H basis classes",
+    "relation": "a ~_M b iff every finite coordinate probe in M has the same value on a and b",
+    "H_bare_root_quotient_rank": 4
+  },
   "rung_id": "foundation_r4_nonassoc_root_vs_carrier_discriminator_medium",
-  "schema_version": "engine_leg_result_v1",
-  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_medium_julia_medium.jl",
+  "r3_peer_dependency": {
+    "matches_r3": true,
+    "r3_source_sha256": "87ee7968b4ceab87089e15fc971d0b95d77c524b840f7f675e1874fa437b4eea",
+    "r3_object_id": "foundation_r3_octonion_cl6_link_xhigh",
+    "local_recomputed_cl6_rank_from_same_cayley_dickson_table": 64,
+    "r3_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_r3_octonion_cl6_link_xhigh_julia_results.json",
+    "r3_octonion_cl6_rank": 64
+  },
+  "classification": "scratch_diagnostic",
+  "M": {
+    "name": "bare-root finite coordinate probes plus noncommuting Z/X analog",
+    "finite_probe_family": {
+      "description": "coordinate probes on the finite basis define indistinguishability",
+      "H": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
   "values": {
+    "associator_max_norms": {
+      "C": 0.0,
+      "R": 0.0,
+      "H": 0.0,
+      "O": 2.0
+    },
+    "unit_counts": {
+      "C": 1,
+      "R": 0,
+      "H": 3,
+      "O": 7
+    },
     "H_bare_root": {
+      "quotient_rank": 4,
+      "finite_basis_dimension": 4,
+      "noncommuting_ZX_analog": true,
       "M_probe_indices_zero_based": [
         0,
         1,
         2,
         3
       ],
+      "quotient_separates_basis": true,
       "ZX_commutator_vector": [
         0,
         0,
         0,
         2
       ],
-      "admissible": true,
       "finite": true,
-      "finite_basis_dimension": 4,
-      "noncommuting_ZX_analog": true,
-      "quotient_rank": 4,
-      "quotient_separates_basis": true
+      "admissible": true
     },
     "anticommuting_units": {
       "C": {
-        "all_pairwise_anticommuting": true,
+        "pair_failures": [],
         "basis_indices_zero_based": [
           1
         ],
-        "count": 1,
-        "pair_failures": []
+        "all_pairwise_anticommuting": true,
+        "count": 1
+      },
+      "R": {
+        "pair_failures": [],
+        "basis_indices_zero_based": [],
+        "all_pairwise_anticommuting": true,
+        "count": 0
       },
       "H": {
-        "all_pairwise_anticommuting": true,
+        "pair_failures": [],
         "basis_indices_zero_based": [
           1,
           2,
           3
         ],
-        "count": 3,
-        "pair_failures": []
+        "all_pairwise_anticommuting": true,
+        "count": 3
       },
       "O": {
-        "all_pairwise_anticommuting": true,
+        "pair_failures": [],
         "basis_indices_zero_based": [
           1,
           2,
@@ -113,31 +109,44 @@
           6,
           7
         ],
-        "count": 7,
-        "pair_failures": []
-      },
-      "R": {
         "all_pairwise_anticommuting": true,
-        "basis_indices_zero_based": [],
-        "count": 0,
-        "pair_failures": []
+        "count": 7
       }
-    },
-    "associator_max_norms": {
-      "C": 0.0,
-      "H": 0.0,
-      "O": 2.0,
-      "R": 0.0
     },
     "clifford_reference_dimensions": {
       "Cl_0_2_dimension": 4,
       "Cl_0_6_dimension": 64
-    },
-    "unit_counts": {
-      "C": 1,
-      "H": 3,
-      "O": 7,
-      "R": 0
     }
-  }
+  },
+  "reads_peer_result": true,
+  "decision": {
+    "forced_by_bare_root_derivation": "computed as NOT(H_bare_root_admissible AND H_associative), reading H_associative from assoc[\"H\"][\"max_norm\"] <= TOL",
+    "verdict": "INSTALLED_NOT_FORCED",
+    "installed_by_constraint": ">=7 mutually anticommuting imaginary units / Cl(6) / 3-qubit Weyl floor",
+    "forced_by_bare_root": false
+  },
+  "formal_admission_allowed": false,
+  "aligned_packages_load_bearing": [
+    "CliffordAlgebras"
+  ],
+  "generated_at": "2026-07-01T02:26:49.303",
+  "all_pass": true,
+  "promotion_allowed": false,
+  "julia_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "engine": "julia",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_medium_julia_medium.jl",
+  "schema_version": "engine_leg_result_v1",
+  "negative_control": {
+    "add_Cl6_7_unit_constraint_excludes_H": true,
+    "add_Cl6_7_unit_constraint_admits_O": true,
+    "bare_root_admits_H": true,
+    "flip": {
+      "sat_to_unsat": true,
+      "H_under_bare_root": "sat",
+      "H_under_Cl6_7_unit_constraint": "unsat"
+    }
+  },
+  "claim_path_tools": [
+    "CliffordAlgebras"
+  ]
 }

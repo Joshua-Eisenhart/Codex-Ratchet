@@ -3,6 +3,7 @@
 # classification: scratch_diagnostic
 # promotion_allowed: false
 # formal_admission_allowed: false
+# reads_peer_result: true
 
 using Dates
 using JSON
@@ -17,6 +18,8 @@ const OBJECT_ID = "foundation_r5_g2_su3_reduction_julia"
 const ROOT = "/Users/joshuaeisenhart/Codex-Ratchet"
 const SOURCE_PATH = joinpath(ROOT, "system_v5/julia_carrier/foundation_foundation_r5_g2_su3_reduction_julia.jl")
 const RESULT_PATH = joinpath(ROOT, "system_v5/julia_carrier/results/foundation_foundation_r5_g2_su3_reduction_julia_results.json")
+const R3_SOURCE_PATH = joinpath(ROOT, "system_v5/julia_carrier/foundation_r3_octonion_cl6_link_xhigh_julia.jl")
+const R3_RESULT_PATH = joinpath(ROOT, "system_v5/julia_carrier/results/foundation_r3_octonion_cl6_link_xhigh_julia_results.json")
 const TOL = 1.0e-10
 
 const classification = "scratch_diagnostic"
@@ -25,7 +28,8 @@ const promotion_allowed = false
 const PROMOTION_ALLOWED = promotion_allowed
 const formal_admission_allowed = false
 const FORMAL_ADMISSION_ALLOWED = formal_admission_allowed
-const reads_peer_result = false
+const reads_peer_result = true
+const READS_PEER_RESULT = reads_peer_result
 
 const TOOL_MANIFEST = Dict{String,Any}(
     "QuantumOptics" => Dict(
@@ -51,7 +55,7 @@ const TOOL_MANIFEST = Dict{String,Any}(
     "JSON" => Dict(
         "tried" => true,
         "used" => true,
-        "reason" => "supportive result receipt serialization",
+        "reason" => "load-bearing read of R3's persisted result JSON (foundation_r3_octonion_cl6_link_xhigh_julia_results.json) for peer-dependency provenance, plus supportive result receipt serialization",
     ),
 )
 
@@ -60,7 +64,7 @@ const TOOL_INTEGRATION_DEPTH = Dict{String,Any}(
     "CliffordAlgebras" => "load_bearing",
     "Z3" => "load_bearing",
     "LinearAlgebra" => "supportive",
-    "JSON" => "supportive",
+    "JSON" => "load_bearing",
 )
 
 function coeffs(mv, labels::Vector{Symbol})
@@ -244,6 +248,67 @@ function table_sha(table::Array{Int,3})
     bytes2hex(sha256(bytes))
 end
 
+function load_r3_peer_result()
+    isfile(R3_RESULT_PATH) || error("R5 G2/SU3 reduction sim requires R3 peer result at $(R3_RESULT_PATH); none found.")
+    JSON.parsefile(R3_RESULT_PATH)
+end
+
+# R3's own Cayley-Dickson octonion construction (foundation_r3_octonion_cl6_link_xhigh_julia.jl,
+# function cd_mul), recomputed locally in structure-constant table[c,a,b] form so it can be
+# cross-checked, index by index, against this rung's independently-written cd_double/
+# cd_pair_multiply octonion table -- the two Cayley-Dickson implementations were previously
+# never compared against each other.
+function r3_cd_conj(x::Vector{Float64})
+    y = copy(x)
+    length(y) > 1 && (y[2:end] .*= -1.0)
+    y
+end
+
+function r3_cd_mul(x::Vector{Float64}, y::Vector{Float64})
+    n = length(x)
+    n == 1 && return [x[1] * y[1]]
+    half = n ÷ 2
+    a, b = x[1:half], x[(half + 1):end]
+    c, d = y[1:half], y[(half + 1):end]
+    vcat(r3_cd_mul(a, c) - r3_cd_mul(r3_cd_conj(d), b), r3_cd_mul(d, a) + r3_cd_mul(b, r3_cd_conj(c)))
+end
+
+function r3_cd_basis(dim::Int, idx0::Int)
+    v = zeros(Float64, dim)
+    v[idx0 + 1] = 1.0
+    v
+end
+
+function r3_style_octonion_table()
+    dim = 8
+    table = zeros(Int, dim, dim, dim)
+    for a in 1:dim, b in 1:dim
+        prod = r3_cd_mul(r3_cd_basis(dim, a - 1), r3_cd_basis(dim, b - 1))
+        table[:, a, b] .= Int.(round.(prod))
+    end
+    table
+end
+
+function r3_provenance_check(r3::AbstractDict, o_table::Array{Int,3})
+    r3_source_present = isfile(R3_SOURCE_PATH)
+    r3_style_table = r3_style_octonion_table()
+    max_entry_residual = maximum(abs.(r3_style_table .- o_table))
+    tables_match = max_entry_residual == 0
+    r3_sha = r3_source_present ? bytes2hex(sha256(read(R3_SOURCE_PATH))) : nothing
+    Dict{String,Any}(
+        "r3_result_path" => R3_RESULT_PATH,
+        "r3_source_path" => R3_SOURCE_PATH,
+        "r3_object_id" => get(r3, "object_id", nothing),
+        "r3_source_sha256_from_own_result" => get(r3, "source_sha256", nothing),
+        "r3_source_sha256_recomputed_here" => r3_sha,
+        "r3_source_sha_matches" => r3_sha === nothing ? false : r3_sha == get(r3, "source_sha256", nothing),
+        "local_cd_double_octonion_table_sha256" => table_sha(o_table),
+        "r3_style_cd_mul_octonion_table_sha256" => table_sha(r3_style_table),
+        "octonion_table_max_entry_residual_between_implementations" => max_entry_residual,
+        "octonion_tables_match" => tables_match,
+    )
+end
+
 function forced_commutative_table(table::Array{Int,3})
     control = copy(table)
     dim = size(table, 1)
@@ -395,6 +460,9 @@ function build_result()
     derivation_only_mat = derivation_constraint_matrix(o)
     julia_z3 = z3_kernel_guard("O_fix_e1", unit_mat, derivation_only_mat, Int.(unit["free_columns_1based"]))
 
+    r3_peer = load_r3_peer_result()
+    r3_check = r3_provenance_check(r3_peer, o)
+
     negative_control = Dict{String,Any}(
         "drop_unit_fixing_probe_dim_14_vs_8" => full["stabilizer_dim"] == 14 && unit["stabilizer_dim"] == 8,
         "drop_unit_fixing_probe_z3_unsat_to_sat" => julia_z3["erase_flip_unsat_to_sat"],
@@ -416,10 +484,11 @@ function build_result()
         julia_z3["dimension_not_expected_status"] == "unsat" &&
         julia_z3["drop_unit_fixing_constraints_status"] == "sat" &&
         all(value for value in values(negative_control) if value isa Bool) &&
+        r3_check["octonion_tables_match"] &&
         classification == "scratch_diagnostic" &&
         promotion_allowed == false &&
         formal_admission_allowed == false &&
-        reads_peer_result == false
+        reads_peer_result == true
     )
 
     Dict{String,Any}(
@@ -434,6 +503,7 @@ function build_result()
         "promotion_allowed" => promotion_allowed,
         "formal_admission_allowed" => formal_admission_allowed,
         "reads_peer_result" => reads_peer_result,
+        "r3_peer_provenance_check" => r3_check,
         "packages_used" => ["QuantumOptics", "CliffordAlgebras", "Z3", "LinearAlgebra", "JSON", "SHA", "Dates"],
         "aligned_packages_load_bearing" => ["QuantumOptics", "CliffordAlgebras", "Z3"],
         "TOOL_MANIFEST" => TOOL_MANIFEST,
@@ -508,7 +578,8 @@ function main()
         "fix_e1_dim=", result["summary"]["fix_e1_stabilizer_dim"], " ",
         "two_unit_dim=", result["summary"]["fix_e1_e2_stabilizer_dim"], " ",
         "forced_comm_fix_dim=", result["summary"]["forced_commutative_fix_e1_dim"], " ",
-        "z3_dim_not_8=", result["summary"]["z3_dimension_not_8"],
+        "z3_dim_not_8=", result["summary"]["z3_dimension_not_8"], " ",
+        "r3_octonion_tables_match=", lowercase(string(result["r3_peer_provenance_check"]["octonion_tables_match"])),
     )
     result["all_pass"] ? 0 : 1
 end

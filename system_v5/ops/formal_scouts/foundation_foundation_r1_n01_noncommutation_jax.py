@@ -82,8 +82,12 @@ def jsonable(value: Any) -> Any:
 def pauli_operators() -> tuple[jax.Array, jax.Array, jax.Array]:
     z_probe = jnp.array([[1, 0], [0, -1]], dtype=jnp.int64)
     x_probe = jnp.array([[0, 1], [1, 0]], dtype=jnp.int64)
-    identity_probe = jnp.eye(2, dtype=jnp.int64)
-    return z_probe, x_probe, identity_probe
+    # Informative commuting partner in the Z eigenbasis: D = diag(2, 3).
+    # D commutes with Z (both diagonal) but is not the identity and not a
+    # scalar multiple of it, so <D> carries state-dependent information.
+    # This isolates non-commutation instead of information loss.
+    d_probe = jnp.array([[2, 0], [0, 3]], dtype=jnp.int64)
+    return z_probe, x_probe, d_probe
 
 
 def fixture_states() -> list[tuple[str, jax.Array]]:
@@ -142,7 +146,7 @@ def z3_commutator_entries(a: list[list[z3.ArithRef]], b: list[list[z3.ArithRef]]
     return entries
 
 
-def z3_order_gap_proof(z_values: list[list[int]], x_values: list[list[int]], i_values: list[list[int]]) -> dict[str, Any]:
+def z3_order_gap_proof(z_values: list[list[int]], x_values: list[list[int]], d_values: list[list[int]]) -> dict[str, Any]:
     a = z3_matrix("A")
     b = z3_matrix("B")
     entries = z3_commutator_entries(a, b)
@@ -160,7 +164,7 @@ def z3_order_gap_proof(z_values: list[list[int]], x_values: list[list[int]], i_v
 
     control = z3.Solver()
     z3_bind_matrix(control, a, z_values)
-    z3_bind_matrix(control, b, i_values)
+    z3_bind_matrix(control, b, d_values)
     control.add([entry == 0 for entry in entries])
     control_status = control.check()
 
@@ -232,10 +236,10 @@ def cvc5_zero_comm_status(
     return str(solver.checkSat())
 
 
-def cvc5_order_gap_proof(z_values: list[list[int]], x_values: list[list[int]], i_values: list[list[int]]) -> dict[str, Any]:
+def cvc5_order_gap_proof(z_values: list[list[int]], x_values: list[list[int]], d_values: list[list[int]]) -> dict[str, Any]:
     main_status = cvc5_zero_comm_status(z_values, x_values)
     erased_status = cvc5_zero_comm_status(z_values, None)
-    control_status = cvc5_zero_comm_status(z_values, i_values)
+    control_status = cvc5_zero_comm_status(z_values, d_values)
     return {
         "solver": "cvc5",
         "version": cvc5.__version__,
@@ -251,21 +255,21 @@ def cvc5_order_gap_proof(z_values: list[list[int]], x_values: list[list[int]], i
 
 
 def build_result() -> dict[str, Any]:
-    z_probe, x_probe, identity_probe = pauli_operators()
+    z_probe, x_probe, d_probe = pauli_operators()
     states = fixture_states()
     noncommutator = z_probe @ x_probe - x_probe @ z_probe
-    commuting_commutator = z_probe @ identity_probe - identity_probe @ z_probe
+    commuting_commutator = z_probe @ d_probe - d_probe @ z_probe
     ket_0 = states[0][1]
     order_gap_noncommuting = float(jax.device_get(jnp.linalg.norm(noncommutator.astype(jnp.complex128) @ ket_0)))
     order_gap_commuting = float(jax.device_get(jnp.linalg.norm(commuting_commutator.astype(jnp.complex128) @ ket_0)))
     noncommuting_classes = quotient_classes([z_probe, x_probe], states)
-    commuting_classes = quotient_classes([z_probe, identity_probe], states)
+    commuting_classes = quotient_classes([z_probe, d_probe], states)
 
     z_values = int_matrix(z_probe)
     x_values = int_matrix(x_probe)
-    i_values = int_matrix(identity_probe)
-    z3_proof = z3_order_gap_proof(z_values, x_values, i_values)
-    cvc5_proof = cvc5_order_gap_proof(z_values, x_values, i_values)
+    d_values = int_matrix(d_probe)
+    z3_proof = z3_order_gap_proof(z_values, x_values, d_values)
+    cvc5_proof = cvc5_order_gap_proof(z_values, x_values, d_values)
 
     class_count_noncommuting = len(noncommuting_classes)
     class_count_commuting = len(commuting_classes)
@@ -295,18 +299,19 @@ def build_result() -> dict[str, Any]:
         "aligned_packages_load_bearing": ["z3", "cvc5"],
         "M": {
             "noncommuting_probe_family": ["Pauli_Z", "Pauli_X"],
-            "commuting_control_family": ["Pauli_Z", "Identity"],
+            "commuting_control_family": ["Pauli_Z", "Diag_2_3"],
             "fixture_states": [name for name, _ in states],
         },
         "C": {
             "admissibility": ["Hermitian density operator", "trace=1", "PSD", "normalized ket fixtures"],
             "rung_specific_constraint": "[Z, X] != 0 encoded as UNSAT of zero-commutator equations over computed entries",
             "erase_control": "Drop the X probe constraint while keeping zero-commutator equations",
+            "commuting_control_constraint": "[Z, D] = 0 for the informative commuting observable D = diag(2, 3); the control is not information-free (D is not I and not a scalar multiple of I)",
         },
         "quotient_summary": {
             "definition": "rho ~_M sigma iff Tr(rho O)=Tr(sigma O) for every O in M",
             "noncommuting_coordinates": ["<Z>", "<X>"],
-            "commuting_control_coordinates": ["<Z>", "<I>"],
+            "commuting_control_coordinates": ["<Z>", "<D>"],
             "fixture_class_count_noncommuting": class_count_noncommuting,
             "fixture_class_count_commuting": class_count_commuting,
             "noncommuting_classes": noncommuting_classes,
@@ -316,9 +321,9 @@ def build_result() -> dict[str, Any]:
         "computed_operators": {
             "Z": z_values,
             "X": x_values,
-            "I": i_values,
+            "D": d_values,
             "commutator_ZX_minus_XZ": int_matrix(noncommutator),
-            "commutator_ZI_minus_IZ": int_matrix(commuting_commutator),
+            "commutator_ZD_minus_DZ": int_matrix(commuting_commutator),
         },
         "smt": {
             "z3": z3_proof,

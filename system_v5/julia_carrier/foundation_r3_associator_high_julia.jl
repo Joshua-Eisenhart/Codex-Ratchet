@@ -191,18 +191,85 @@ function coeffs_int(tensor::Array{Float64,4})
     values
 end
 
-function z3_zero_claim_status(prefix::String, coeffs::Vector{Int}; force_all_zero::Bool)
-    solver = Solver()
-    witness_idx = findfirst(!=(0), coeffs)
-    if witness_idx === nothing
-        probe = IntVar("$(prefix)_all_zero_probe")
-        add(solver, probe == IntVal(0))
-    else
-        probe = IntVar("$(prefix)_witness_coeff")
-        add(solver, probe == IntVal(coeffs[witness_idx]))
-        force_all_zero && add(solver, probe == IntVal(0))
+function int_table_values(table::Array{Float64,3})
+    dim = size(table, 1)
+    values = zeros(Int, dim, dim, dim)
+    for k in 1:dim, i in 1:dim, j in 1:dim
+        rounded = round(Int, table[k, i, j])
+        abs(table[k, i, j] - rounded) <= TOL || error("non-integral table entry")
+        values[k, i, j] = rounded
     end
-    string(check(solver))
+    values
+end
+
+function z3_sum_terms(terms)
+    isempty(terms) && return Z3.IntVal(0)
+    Z3.Expr(terms[1].ctx, Z3.Z3_mk_add(Z3.ctx_ref(terms[1]), length(terms), map(e -> Z3.as_ast(e), terms)))
+end
+
+function z3_mul(left, right)
+    Z3.Expr(left.ctx, Z3.Z3_mk_mul(Z3.ctx_ref(left), 2, [Z3.as_ast(left), Z3.as_ast(right)]))
+end
+
+function z3_sub(left, right)
+    Z3.Expr(left.ctx, Z3.Z3_mk_sub(Z3.ctx_ref(left), 2, [Z3.as_ast(left), Z3.as_ast(right)]))
+end
+
+function z3_derived_associator_certificate(name::String, table::Array{Float64,3})
+    values = int_table_values(table)
+    dim = size(values, 1)
+    cache = Dict{Tuple{Int,Int,Int},Any}()
+    constraints = Any[]
+
+    function table_var(k::Int, i::Int, j::Int)
+        key = (k, i, j)
+        if !haskey(cache, key)
+            var = Z3.IntVar("$(name)_T_$(k)_$(i)_$(j)")
+            cache[key] = var
+            push!(constraints, var == Z3.IntVal(values[k + 1, i + 1, j + 1]))
+        end
+        cache[key]
+    end
+
+    function assoc_component(a::Int, b::Int, c::Int, k::Int)
+        left = z3_sum_terms([z3_mul(table_var(m, a, b), table_var(k, m, c)) for m in 0:(dim - 1)])
+        right = z3_sum_terms([z3_mul(table_var(n, b, c), table_var(k, a, n)) for n in 0:(dim - 1)])
+        z3_sub(left, right)
+    end
+
+    assoc_rows = Any[]
+    for a in 0:(dim - 1), b in 0:(dim - 1), c in 0:(dim - 1), k in 0:(dim - 1)
+        push!(assoc_rows, (a, b, c, k, assoc_component(a, b, c, k)))
+    end
+
+    all_zero = Z3.Solver()
+    for constraint in constraints
+        Z3.add(all_zero, constraint)
+    end
+    for row in assoc_rows
+        Z3.add(all_zero, row[5] == Z3.IntVal(0))
+    end
+    all_zero_status = string(Z3.check(all_zero))
+
+    erased = Z3.Solver()
+    for constraint in constraints
+        Z3.add(erased, constraint)
+    end
+    erased_status = string(Z3.check(erased))
+
+    Dict{String,Any}(
+        "solver" => "Z3.jl",
+        "logic" => "integer-domain exact derivation from bound table constants; Z3.jl RealVar is not exposed in this environment",
+        "bound_table_entry_equalities" => length(constraints),
+        "probe_triple_count" => dim^3,
+        "derived_assoc_component_count" => length(assoc_rows),
+        "asserted_precomputed_associator_coefficients" => 0,
+        "all_coefficients_zero_status" => all_zero_status,
+        "drop_zero_constraint_status" => erased_status,
+        "drop_zero_constraint_keeps_table_bindings" => true,
+        "drop_zero_constraint_flips_unsat_to_sat" => all_zero_status == "unsat" && erased_status == "sat",
+        "derivation" => "assoc_k=sum_m T[m,a,b]*T[k,m,c]-sum_n T[n,b,c]*T[k,a,n], expanded inside Z3.jl from bound T[k,i,j] table entries",
+    )
 end
 
 function build_result()
@@ -210,18 +277,18 @@ function build_result()
     o_table = cd_double(h_table)
     h = analyze_associator("H", h_table)
     o = analyze_associator("O", o_table)
-    h_coeffs = coeffs_int(associator_tensor(h_table))
-    o_coeffs = coeffs_int(associator_tensor(o_table))
-    h_zero_status = z3_zero_claim_status("julia_H_zero_high", h_coeffs; force_all_zero=true)
-    o_zero_status = z3_zero_claim_status("julia_O_zero_high", o_coeffs; force_all_zero=true)
-    o_erased_status = z3_zero_claim_status("julia_O_erased_high", o_coeffs; force_all_zero=false)
+    h_cert = z3_derived_associator_certificate("julia_H_high", h_table)
+    o_cert = z3_derived_associator_certificate("julia_O_high", o_table)
+    h_zero_status = h_cert["all_coefficients_zero_status"]
+    o_zero_status = o_cert["all_coefficients_zero_status"]
+    o_erased_status = o_cert["drop_zero_constraint_status"]
     alt = alternativity_residual(o_table)
     anti = antisymmetry_residual(o_table)
     power = power_associativity_residual(o_table)
 
     h_zero = h["associator_max_norm"] <= TOL
     o_nonzero = o["associator_max_norm"] > TOL
-    smt_flip = o_zero_status == "unsat" && o_erased_status == "sat"
+    smt_flip = o_cert["drop_zero_constraint_flips_unsat_to_sat"]
     all_pass = h_zero && o_nonzero && alt["pass"] && anti["pass"] && power["pass"] &&
         h_zero_status == "sat" && o_zero_status == "unsat" && smt_flip &&
         CLASSIFICATION == "scratch_diagnostic" && !PROMOTION_ALLOWED &&
@@ -283,7 +350,9 @@ function build_result()
                 "O_all_zero_status" => o_zero_status,
                 "O_drop_all_zero_constraint_status" => o_erased_status,
                 "erase_flip_unsat_to_sat" => smt_flip,
-                "claim" => "SMT assertions are over computed associator coefficients from the Julia package-derived tables.",
+                "H_certificate" => h_cert,
+                "O_certificate" => o_cert,
+                "claim" => "Z3.jl binds the raw multiplication-table entries T[k,i,j] and derives the associator components in-solver; no precomputed associator coefficient is asserted.",
             ),
         ),
         "negative_control" => Dict{String,Any}(
@@ -294,7 +363,7 @@ function build_result()
         "aligned_packages_load_bearing" => ["CliffordAlgebras", "Z3"],
         "TOOL_MANIFEST" => Dict{String,Any}(
             "CliffordAlgebras" => Dict("tried" => true, "used" => true, "reason" => "load-bearing Cl(0,2) quaternion structure constants for H"),
-            "Z3" => Dict("tried" => true, "used" => true, "reason" => "load-bearing SMT over computed associator coefficients"),
+            "Z3" => Dict("tried" => true, "used" => true, "reason" => "load-bearing in-solver associator derivation from bound multiplication-table entries"),
             "LinearAlgebra" => Dict("tried" => true, "used" => true, "reason" => "supportive finite norms over package-derived tables"),
         ),
         "TOOL_INTEGRATION_DEPTH" => Dict("CliffordAlgebras" => "load_bearing", "Z3" => "load_bearing", "LinearAlgebra" => "supportive"),

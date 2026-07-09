@@ -24,12 +24,13 @@ RUNG_ID = "foundation_r4_spinor_holonomy_path_integral_variant"
 OBJECT_ID = "foundation_foundation_r4_spinor_holonomy_path_integral_variant_pytorch"
 SOURCE_PATH = ROOT / "system_v5/ops/formal_scouts/foundation_foundation_r4_spinor_holonomy_path_integral_variant_pytorch.py"
 RESULT_PATH = ROOT / "system_v5/ops/formal_scouts/results/foundation_foundation_r4_spinor_holonomy_path_integral_variant_pytorch_results.json"
+JULIA_PEER_RESULT_PATH = ROOT / "system_v5/julia_carrier/results/foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia_results.json"
 TOL = 1.0e-10
 
 classification = "scratch_diagnostic"
 promotion_allowed = False
 formal_admission_allowed = False
-reads_peer_result = False
+reads_peer_result = True
 
 TOOL_MANIFEST = {
     "torch": {"tried": True, "used": True, "reason": "supportive float64 ordered-product tensor arithmetic"},
@@ -66,8 +67,38 @@ def vector_holonomy_from_increments(increments: torch.Tensor) -> torch.Tensor:
     return product
 
 
+def load_julia_peer_result() -> dict[str, Any]:
+    if not JULIA_PEER_RESULT_PATH.exists():
+        raise FileNotFoundError(
+            f"pytorch leg requires the R3-derived Julia leg's peer result at {JULIA_PEER_RESULT_PATH}; none found."
+        )
+    return json.loads(JULIA_PEER_RESULT_PATH.read_text(encoding="utf-8"))
+
+
+def julia_peer_provenance(julia_result: dict[str, Any]) -> dict[str, Any]:
+    # This torch leg abstracts the SU(2) rotor to a differentiable 2-vector for
+    # tractable jacrev sensitivity analysis; it does not itself reimplement the
+    # octonion carrier. Provenance is established by cross-engine parity
+    # against the Julia leg, which derives its rotor generator directly from
+    # R3's admitted octonion left-multiplication matrices
+    # (foundation_r3_octonion_cl6_link_xhigh_julia_results.json).
+    julia_summary = julia_result["summary"]
+    julia_r3_dep = julia_result.get("r3_peer_dependency", {})
+    return {
+        "julia_result_path": str(JULIA_PEER_RESULT_PATH),
+        "julia_object_id": julia_result.get("object_id"),
+        "julia_reads_peer_result": julia_result.get("reads_peer_result"),
+        "julia_r3_matches_r3": julia_r3_dep.get("matches_r3"),
+        "julia_spinor_holonomy_scalar": julia_summary.get("spinor_holonomy_scalar"),
+        "julia_vector_holonomy_trace_half": julia_summary.get("vector_holonomy_trace_half"),
+        "julia_carrier_derivation": "L_e1 * L_e2 octonion bivector generator, not a bare abstract rotor",
+    }
+
+
 def build_result() -> dict[str, Any]:
     torch.set_default_dtype(torch.float64)
+    julia_peer = load_julia_peer_result()
+    peer_provenance = julia_peer_provenance(julia_peer)
     n = 64
     increments = torch.full((n,), 2.0 * math.pi / n, dtype=torch.float64)
     spinor = spinor_holonomy_from_increments(increments)
@@ -103,15 +134,23 @@ def build_result() -> dict[str, Any]:
         "wrong_half_angle_control_flips_to_plus_identity": bool(wrong_plus_residual.item() <= TOL),
         "torch_func_jacrev_independent_sensitivity": bool(jac_residual.item() <= TOL and torch.max(torch.abs(bivector_jac)).item() > 0.49),
     }
+    julia_cross_engine_sign_parity = bool(
+        peer_provenance["julia_reads_peer_result"] is True
+        and peer_provenance["julia_r3_matches_r3"] is True
+        and peer_provenance["julia_spinor_holonomy_scalar"] is not None
+        and abs(peer_provenance["julia_spinor_holonomy_scalar"] - spinor[0].item()) <= 1.0e-6
+        and abs(peer_provenance["julia_vector_holonomy_trace_half"] - (torch.trace(vector) / 2.0).item()) <= 1.0e-6
+    )
     all_pass = bool(
         spinor_minus_residual.item() <= TOL
         and vector_plus_residual.item() <= TOL
         and finite_linearization_residual.item() < 1.0e-8
         and all(negative.values())
+        and julia_cross_engine_sign_parity
         and classification == "scratch_diagnostic"
         and promotion_allowed is False
         and formal_admission_allowed is False
-        and reads_peer_result is False
+        and reads_peer_result is True
     )
     return {
         "schema": "codex_ratchet.engine_leg_result.v1",
@@ -125,6 +164,8 @@ def build_result() -> dict[str, Any]:
         "promotion_allowed": promotion_allowed,
         "formal_admission_allowed": formal_admission_allowed,
         "reads_peer_result": reads_peer_result,
+        "julia_peer_dependency": peer_provenance,
+        "julia_cross_engine_sign_parity": julia_cross_engine_sign_parity,
         "packages_used": ["torch", "torch.func", "json", "math", "pathlib"],
         "aligned_packages_load_bearing": ["torch.func"],
         "TOOL_MANIFEST": TOOL_MANIFEST,

@@ -29,6 +29,14 @@ PROMOTION_ALLOWED = False
 FORMAL_ADMISSION_ALLOWED = False
 READS_PEER_RESULT = False
 
+TOOL_MANIFEST = {
+    "jax": {"tried": True, "used": True, "reason": "supportive x64 Cayley-Dickson table construction and finite enumeration"},
+    "z3": {"tried": True, "used": True, "reason": "load-bearing product, line-index, and ordinary-control derivations from bound table constants"},
+    "cvc5": {"tried": True, "used": True, "reason": "load-bearing independent SMT derivations matching z3"},
+}
+
+TOOL_INTEGRATION_DEPTH = {"jax": "supportive", "z3": "load_bearing", "cvc5": "load_bearing"}
+
 
 def py_int(value: Any) -> int:
     return int(jax.device_get(value))
@@ -621,12 +629,8 @@ def main() -> int:
                 "ordinary_line_index_relation": cvc5_ordinary_line,
             },
         },
-        "TOOL_MANIFEST": {
-            "jax": {"tried": True, "used": True, "reason": "supportive x64 Cayley-Dickson table construction and finite enumeration"},
-            "z3": {"tried": True, "used": True, "reason": "load-bearing product, line-index, and ordinary-control derivations from bound table constants"},
-            "cvc5": {"tried": True, "used": True, "reason": "load-bearing independent SMT derivations matching z3"},
-        },
-        "TOOL_INTEGRATION_DEPTH": {"jax": "supportive", "z3": "load_bearing", "cvc5": "load_bearing"},
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "all_pass": all_pass,
     }
     RESULT_PATH.parent.mkdir(parents=True, exist_ok=True)

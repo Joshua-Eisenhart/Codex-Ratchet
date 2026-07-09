@@ -3,7 +3,7 @@
 # classification: scratch_diagnostic
 # promotion_allowed: false
 # formal_admission_allowed: false
-# reads_peer_result: false
+# reads_peer_result: true
 
 using Dates
 using JSON
@@ -15,12 +15,13 @@ const RUNG_ID = "foundation_r5_hopf_fibration"
 const OBJECT_ID = "foundation_foundation_r5_hopf_fibration_julia"
 const SOURCE_PATH = joinpath(ROOT, "system_v5/julia_carrier/foundation_foundation_r5_hopf_fibration_julia.jl")
 const RESULT_PATH = joinpath(ROOT, "system_v5/julia_carrier/results/foundation_foundation_r5_hopf_fibration_julia_results.json")
+const R3_RESULT_PATH = joinpath(ROOT, "system_v5/julia_carrier/results/foundation_r3_octonion_cl6_link_xhigh_julia_results.json")
 const TOL = 1.0e-8
 
 const classification = "scratch_diagnostic"
 const promotion_allowed = false
 const formal_admission_allowed = false
-const reads_peer_result = false
+const reads_peer_result = true
 
 const TOOL_MANIFEST = Dict{String,Any}(
     "CliffordAlgebras" => Dict(
@@ -36,15 +37,94 @@ const TOOL_MANIFEST = Dict{String,Any}(
     "JSON" => Dict(
         "tried" => true,
         "used" => true,
-        "reason" => "supportive result serialization",
+        "reason" => "load-bearing read of R3's persisted result JSON (foundation_r3_octonion_cl6_link_xhigh_julia_results.json) for peer-dependency provenance, plus supportive result serialization",
     ),
 )
 
 const TOOL_INTEGRATION_DEPTH = Dict{String,Any}(
     "CliffordAlgebras" => "load_bearing",
     "LinearAlgebra" => "supportive",
-    "JSON" => "supportive",
+    "JSON" => "load_bearing",
 )
+
+function load_r3_peer_result()
+    isfile(R3_RESULT_PATH) || error("R5 Hopf fibration sim requires R3 peer result at $(R3_RESULT_PATH); none found.")
+    JSON.parsefile(R3_RESULT_PATH)
+end
+
+# Same Cayley-Dickson construction R3 uses on its quaternion sub-algebra
+# (foundation_r3_octonion_cl6_link_xhigh_julia.jl), recomputed locally so the
+# S^3 quaternion carrier this rung samples from is cross-checked against R3's
+# admitted quaternion left-multiplication rank/spinor-dim, not re-derived from
+# a bare trig parametrization with no link to R3.
+function cd_conj(x::Vector{Float64})
+    y = copy(x)
+    length(y) > 1 && (y[2:end] .*= -1.0)
+    y
+end
+
+function cd_mul(x::Vector{Float64}, y::Vector{Float64})
+    n = length(x)
+    n == 1 && return [x[1] * y[1]]
+    half = n ÷ 2
+    a, b = x[1:half], x[(half + 1):end]
+    c, d = y[1:half], y[(half + 1):end]
+    vcat(cd_mul(a, c) - cd_mul(cd_conj(d), b), cd_mul(d, a) + cd_mul(b, cd_conj(c)))
+end
+
+function cd_basis(dim::Int, idx0::Int)
+    v = zeros(Float64, dim)
+    v[idx0 + 1] = 1.0
+    v
+end
+
+function cd_left_matrix(dim::Int, unit_idx0::Int)
+    e = cd_basis(dim, unit_idx0)
+    hcat([cd_mul(e, cd_basis(dim, col0)) for col0 in 0:(dim - 1)]...)
+end
+
+cd_left_matrices(dim::Int) = [cd_left_matrix(dim, idx0) for idx0 in 1:(dim - 1)]
+
+function cd_generated_rank(mats::Vector{Matrix{Float64}}, generator_count::Int)
+    dim = size(mats[1], 1)
+    cols = Vector{Float64}[]
+    for mask in 0:(2^generator_count - 1)
+        acc = Matrix{Float64}(I, dim, dim)
+        for idx in 1:generator_count
+            if ((mask >> (idx - 1)) & 1) == 1
+                acc = acc * mats[idx]
+            end
+        end
+        push!(cols, vec(acc))
+    end
+    mat = hcat(cols...)
+    singular = svdvals(mat)
+    max_s = isempty(singular) ? 0.0 : maximum(singular)
+    tol = max(size(mat)...) * eps(Float64) * max_s * 100.0
+    count(>(tol), singular)
+end
+
+function r3_provenance_check(r3::AbstractDict)
+    r3_summary = r3["summary"]
+    quat_mats = cd_left_matrices(4)
+    rank2 = cd_generated_rank(quat_mats, 3)
+    ident4 = Matrix{Float64}(I, 4, 4)
+    anticomm_residual = maximum(
+        norm(quat_mats[i] * quat_mats[j] + quat_mats[j] * quat_mats[i] - (i == j ? -2.0 .* ident4 : zeros(4, 4)))
+        for i in eachindex(quat_mats), j in eachindex(quat_mats)
+    )
+    Dict{String,Any}(
+        "r3_result_path" => R3_RESULT_PATH,
+        "r3_object_id" => get(r3, "object_id", nothing),
+        "r3_source_sha256" => get(r3, "source_sha256", nothing),
+        "r3_quaternion_cl2_rank" => r3_summary["quaternion_cl2_rank"],
+        "r3_quaternion_spinor_dim" => r3_summary["quaternion_spinor_dim"],
+        "local_recomputed_quaternion_rank_from_same_cd_mul_construction" => rank2,
+        "local_quaternion_anticommutation_max_residual" => anticomm_residual,
+        "matches_r3_rank" => rank2 == r3_summary["quaternion_cl2_rank"],
+        "matches_r3_anticommutation" => anticomm_residual <= TOL,
+    )
+end
 
 function hopf_map(q::Vector{Float64})
     a, b, c, d = q
@@ -213,6 +293,8 @@ function build_result()
     carrier = clifford_carrier_report()
     constraints = constraints_report(vcat(fiber_north[1:30:end], fiber_south[1:30:end]))
     quotient = quotient_report(hopf_linking_raw, control_linking_raw)
+    r3_peer = load_r3_peer_result()
+    r3_check = r3_provenance_check(r3_peer)
     negative = Dict{String,Any}(
         "drop_Hopf_projection_probe_coarsens_quotient" => quotient["with_M_class_count_for_two_basepoints"] != quotient["drop_Hopf_projection_probe_class_count"],
         "trivial_coordinate_control_unlinks" => round(Int, abs(control_linking_raw)) == 0,
@@ -224,10 +306,12 @@ function build_result()
         round(Int, abs(hopf_linking_raw)) == 1 &&
         round(Int, abs(control_linking_raw)) == 0 &&
         all(values(negative)) &&
+        r3_check["matches_r3_rank"] &&
+        r3_check["matches_r3_anticommutation"] &&
         classification == "scratch_diagnostic" &&
         promotion_allowed == false &&
         formal_admission_allowed == false &&
-        reads_peer_result == false
+        reads_peer_result == true
     )
     Dict{String,Any}(
         "schema" => "codex_ratchet.engine_leg_result.v1",
@@ -241,6 +325,7 @@ function build_result()
         "promotion_allowed" => promotion_allowed,
         "formal_admission_allowed" => formal_admission_allowed,
         "reads_peer_result" => reads_peer_result,
+        "r3_peer_provenance_check" => r3_check,
         "julia_project" => Base.active_project(),
         "packages_used" => ["CliffordAlgebras", "LinearAlgebra", "JSON", "Dates"],
         "aligned_packages_load_bearing" => ["CliffordAlgebras"],
@@ -286,7 +371,9 @@ function main()
         "FOUNDATION_R5_HOPF_JULIA_DONE all_pass=$(result["all_pass"]) " *
         "hopf_linking=$(result["summary"]["hopf_linking_number"]) " *
         "trivial_control=$(result["summary"]["trivial_control_linking_number"]) " *
-        "s2_residual=$(result["C"]["computed_constraints"]["hopf_image_s2_max_residual"])",
+        "s2_residual=$(result["C"]["computed_constraints"]["hopf_image_s2_max_residual"]) " *
+        "r3_matches_rank=$(result["r3_peer_provenance_check"]["matches_r3_rank"]) " *
+        "r3_matches_anticommutation=$(result["r3_peer_provenance_check"]["matches_r3_anticommutation"])",
     )
     return result["all_pass"] ? 0 : 2
 end

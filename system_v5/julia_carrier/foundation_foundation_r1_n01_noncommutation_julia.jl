@@ -73,7 +73,12 @@ function build_result()
     basis = SpinBasis(1 // 2)
     z_probe = sigmaz(basis)
     x_probe = sigmax(basis)
-    identity_probe = identityoperator(basis)
+    # Informative commuting partner in the Z eigenbasis: D = diag(2, 3).
+    # D commutes with Z (both diagonal) but is not the identity and is not a
+    # scalar multiple of the identity, so <D> carries real, state-dependent
+    # information. This isolates non-commutation: the coarsening is no longer
+    # explained by an information-free control.
+    d_probe = SparseOperator(basis, ComplexF64[2 0; 0 3])
 
     ket_0 = spinup(basis)
     ket_1 = spindown(basis)
@@ -91,10 +96,10 @@ function build_result()
     ]
 
     noncommuting_probes = [z_probe, x_probe]
-    commuting_probes = [z_probe, identity_probe]
+    commuting_probes = [z_probe, d_probe]
 
     noncommutator = z_probe * x_probe - x_probe * z_probe
-    commuting_commutator = z_probe * identity_probe - identity_probe * z_probe
+    commuting_commutator = z_probe * d_probe - d_probe * z_probe
     order_gap_noncommuting = vec_norm((noncommutator * ket_0).data)
     order_gap_commuting = vec_norm((commuting_commutator * ket_0).data)
 
@@ -121,18 +126,18 @@ function build_result()
         "aligned_packages_load_bearing" => ["QuantumOptics"],
         "M" => Dict(
             "noncommuting_probe_family" => ["Pauli_Z", "Pauli_X"],
-            "commuting_control_family" => ["Pauli_Z", "Identity"],
+            "commuting_control_family" => ["Pauli_Z", "Diag_2_3"],
             "fixture_states" => [name for (name, _) in states],
         ),
         "C" => Dict(
             "admissibility" => ["Hermitian density operator", "trace=1", "PSD", "normalized ket fixtures"],
             "rung_specific_constraint" => "[Z, X] != 0 over the probe family",
-            "control_constraint" => "[Z, I] = 0 after commutative collapse",
+            "control_constraint" => "[Z, D] = 0 for the informative commuting observable D = diag(2, 3); the control is not information-free (D is not I and not a scalar multiple of I)",
         ),
         "quotient_summary" => Dict(
             "definition" => "rho ~_M sigma iff Tr(rho O)=Tr(sigma O) for every O in M",
             "noncommuting_coordinates" => ["<Z>", "<X>"],
-            "commuting_control_coordinates" => ["<Z>", "<I>"],
+            "commuting_control_coordinates" => ["<Z>", "<D>"],
             "fixture_class_count_noncommuting" => class_count_noncommuting,
             "fixture_class_count_commuting" => class_count_commuting,
             "noncommuting_classes" => noncommuting_classes,

@@ -117,9 +117,13 @@ Build:
 - independent geometry and entropy survivor ledgers whose intersection emits
   the substage count; no four-count or operator list may be hard-coded into the
   admission gate;
+- the already-passing `four_substages_dual_product_v0` prerequisite, which
+  conditionally recovers the four source operator cells and one MSS square
+  cycle but does not yet establish sequential stage dynamics;
 - `engine_dual_ratchet_substage_emergence_v0`, which derives the minimal
-  substage equivalence classes and only then runs the resulting sequential
-  maps while holding each macro-stage's precedence sign fixed;
+  stage-bound survivor classes from a declared superset, then tests whether
+  the product-square cells are independently recovered and runs the resulting
+  sequential maps while holding each macro-stage's precedence sign fixed;
 - an explicit distinction between operator transitions and the current `candidate -> measurement -> gate -> receipt` narrative wrapper;
 - a preregistered 20-seed census for `stage_reid_16_v1`;
 - a preregistered 20-seed census for `t2_order_carried_v1`;

@@ -1,0 +1,395 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "numpy": "load_bearing",
+    "python_stdlib": "supportive",
+    "scipy": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "numpy": {
+      "reason": "load-bearing complex matrix algebra, Bloch adjoint matrices, superoperator commutators, spectra, entropy, and finite controls",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive ZIP-member source lock, SHA-256 hashing, AST inspection, word enumeration, timestamps, paths, and JSON serialization",
+      "tried": true,
+      "used": true
+    },
+    "scipy": {
+      "reason": "load-bearing scipy.linalg.expm reproduction of the audited exp(-i*pi*sigma/2) and half-leg operators",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_gates_pass": true,
+  "allowed_claims": [
+    "The audited source executes a finite two-letter word construction.",
+    "Its exp(-i*pi*sigma/2) legs induce 180-degree Bloch rotations.",
+    "Its Ad_Z and Ad_X channels commute and preserve von Neumann entropy.",
+    "Its C3 count predicate fixes length four before the scan.",
+    "Its stated controls do not isolate their claimed gates.",
+    "ABAB and BABA form one cyclic orbit.",
+    "The parsed chart count is four but is not an independent derivation."
+  ],
+  "blocked_consumers": [
+    "four_substage_architecture",
+    "dual_ratchet_architecture",
+    "engine_schedule_admission",
+    "manifold_layer_admission",
+    "Axis0",
+    "formal_admission",
+    "physics"
+  ],
+  "claim_ceiling": "Scratch diagnostic only for the exact UP-130 source hash. A passing run catches the stated derivation overclaim; it does not establish a correct substage count, a replacement dual-ratchet mechanism, engine admission, Axis0, a manifold layer, or physics.",
+  "classification": "scratch_diagnostic",
+  "fabrication_audit": {
+    "finding_types": [
+      "misidentified Bloch angle",
+      "commuting adjoint channels presented as order-sensitive axes",
+      "zero entropy change presented as an entropy-sector ratchet",
+      "minimal length imposed by C3",
+      "non-isolating controls",
+      "duplicate cyclic representatives presented as two chiralities",
+      "chart-count circularity"
+    ],
+    "found_fabrication": true,
+    "found_overclaim": true,
+    "target_claim_disposition": "rejected for the exact source hash"
+  },
+  "formal_admission_allowed": false,
+  "gates": {
+    "ABAB_BABA_cyclic_orbit_count": {
+      "ABAB_and_BABA_same_cyclic_orbit": true,
+      "ABAB_reversal_is_a_rotation": true,
+      "canonical_representatives": [
+        "ABAB"
+      ],
+      "distinct_cyclic_orbit_count": 1,
+      "finding": "ABAB and BABA are rotations of one period-two cyclic word, not two cyclic classes.",
+      "orbits": {
+        "ABAB": [
+          "ABAB",
+          "BABA"
+        ],
+        "BABA": [
+          "ABAB",
+          "BABA"
+        ]
+      },
+      "pass": true,
+      "words": [
+        "ABAB",
+        "BABA"
+      ]
+    },
+    "C3_count_constraint_forces_length_4": {
+      "allowed_lengths_under_C3": [
+        4
+      ],
+      "finding": "C3 alone fixes L=4, so the scan cannot independently derive the count four.",
+      "forced_length": 4,
+      "logical_identity": "length = count(A) + count(B) = 2 + 2 = 4",
+      "matching_words_by_length": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 6,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "minimal_length_preselected_by_C3": true,
+      "n_C3_words_at_length_4": 6,
+      "pass": true,
+      "source_ast": {
+        "count_requirements": {
+          "A": 2,
+          "B": 2
+        },
+        "line": 76,
+        "return_expression": "word.count('A')==2 and word.count('B')==2"
+      }
+    },
+    "actual_bloch_angle": {
+      "finding": "exp(-i*pi*sigma/2)=-i*sigma induces a pi (180 degree) Bloch rotation, not a pi/2 quarter-turn.",
+      "pass": true,
+      "rows": {
+        "A_about_Z": {
+          "actual_bloch_angle_degrees": 180.0,
+          "actual_bloch_angle_radians": 3.141592653589793,
+          "angle_multiplier_over_claim": 2.0,
+          "bloch_rotation_matrix": [
+            [
+              -1.0,
+              -1.2246467991473532e-16,
+              0.0
+            ],
+            [
+              1.2246467991473532e-16,
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "claimed_quarter_turn_degrees": 90.0,
+          "source_exponential": "exp(-i*pi*Z/2)",
+          "unitary_minus_minus_i_sigma_max_abs": 6.123233995736766e-17
+        },
+        "B_about_X": {
+          "actual_bloch_angle_degrees": 180.0,
+          "actual_bloch_angle_radians": 3.141592653589793,
+          "angle_multiplier_over_claim": 2.0,
+          "bloch_rotation_matrix": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          ],
+          "claimed_quarter_turn_degrees": 90.0,
+          "source_exponential": "exp(-i*pi*X/2)",
+          "unitary_minus_minus_i_sigma_max_abs": 0.0
+        }
+      }
+    },
+    "adjoint_superoperator_commutator": {
+      "Ad_Z_Ad_X_commutator_frobenius_norm": 3.463824224941973e-16,
+      "Ad_Z_Ad_X_commutator_spectral_norm": 2.4492935982947064e-16,
+      "adjoint_channels_commute": true,
+      "finding": "The Pauli representatives anticommute as unitaries, but their global phase disappears under conjugation, so Ad_Z and Ad_X commute.",
+      "pass": true,
+      "underlying_unitary_commutator_frobenius_norm": 2.8284271247461903
+    },
+    "chart_count_circularity": {
+      "C3_forced_length": 4,
+      "chart_count_circularity_caught": true,
+      "chart_count_is_independent_derivation": false,
+      "chart_matches_C3_forced_length": true,
+      "chart_member": "reference_docs/engine_math/source_schedule_tables/engine_16_source_stage_slots.json",
+      "chart_substage_count": 4,
+      "finding": "The chart already contains four steps per loop, while C3 already forces L=4; testing equality between those two fours is consistency, not an independent derivation of the architecture.",
+      "pass": true,
+      "per_engine_loop_distinct_step_counts": {
+        "Type1_left/inner_inductive": 4,
+        "Type1_left/outer_deductive": 4,
+        "Type2_right/inner_deductive": 4,
+        "Type2_right/outer_inductive": 4
+      },
+      "slot_count": 16,
+      "source_ast": {
+        "chart_count_compared_to_minimal": true,
+        "expression": "bool(src_path is not None and engine_substages_per_stage==minimal)",
+        "line": 128
+      },
+      "unique_substage_counts": [
+        4
+      ]
+    },
+    "control_truth_vectors": {
+      "controls": {
+        "AAAA": {
+          "row": {
+            "half_leg_at": null,
+            "isolates_claimed_semantic_gate": false,
+            "isolates_claimed_source_gate": false,
+            "isolates_exactly_one_semantic_gate": false,
+            "isolates_exactly_one_source_gate": false,
+            "return_distance": 3.1401849173675503e-16,
+            "semantic_full_leg_failed_gates": [
+              "C2_alternation",
+              "C3_both_directions"
+            ],
+            "semantic_full_leg_failure_count": 2,
+            "semantic_full_leg_truth_vector_C1_C2_C3": [
+              true,
+              false,
+              false
+            ],
+            "source_predicate_failed_gates": [
+              "C2_alternation",
+              "C3_both_directions"
+            ],
+            "source_predicate_failure_count": 2,
+            "source_predicate_truth_vector_C1_C2_C3": [
+              true,
+              false,
+              false
+            ],
+            "word": "AAAA"
+          },
+          "target_gate": "C2_alternation"
+        },
+        "AB": {
+          "row": {
+            "half_leg_at": null,
+            "isolates_claimed_semantic_gate": false,
+            "isolates_claimed_source_gate": false,
+            "isolates_exactly_one_semantic_gate": false,
+            "isolates_exactly_one_source_gate": false,
+            "return_distance": 0.9867694240086065,
+            "semantic_full_leg_failed_gates": [
+              "C1_closure",
+              "C3_both_directions"
+            ],
+            "semantic_full_leg_failure_count": 2,
+            "semantic_full_leg_truth_vector_C1_C2_C3": [
+              false,
+              true,
+              false
+            ],
+            "source_predicate_failed_gates": [
+              "C1_closure",
+              "C3_both_directions"
+            ],
+            "source_predicate_failure_count": 2,
+            "source_predicate_truth_vector_C1_C2_C3": [
+              false,
+              true,
+              false
+            ],
+            "word": "AB"
+          },
+          "target_gate": "C1_closure"
+        },
+        "ABAB_half_A_at_0": {
+          "row": {
+            "half_leg_at": 0,
+            "isolates_claimed_semantic_gate": false,
+            "isolates_claimed_source_gate": false,
+            "isolates_exactly_one_semantic_gate": false,
+            "isolates_exactly_one_source_gate": true,
+            "return_distance": 0.6996997841348409,
+            "semantic_full_leg_failed_gates": [
+              "C1_closure",
+              "C3_both_directions"
+            ],
+            "semantic_full_leg_failure_count": 2,
+            "semantic_full_leg_truth_vector_C1_C2_C3": [
+              false,
+              true,
+              false
+            ],
+            "source_predicate_failed_gates": [
+              "C1_closure"
+            ],
+            "source_predicate_failure_count": 1,
+            "source_predicate_truth_vector_C1_C2_C3": [
+              false,
+              true,
+              true
+            ],
+            "word": "ABAB"
+          },
+          "target_gate": "C3_both_directions"
+        }
+      },
+      "each_control_isolates_its_claimed_gate": false,
+      "finding": "AB and AAAA each fail two source predicates. The half-leg fails source C1 while source C3 remains true because C3 ignores leg size; under the intended full-leg meaning it fails C1 and C3 together.",
+      "gate_order": [
+        "C1_closure",
+        "C2_alternation",
+        "C3_both_directions"
+      ],
+      "pass": true
+    },
+    "source_lock": {
+      "actual_source_sha256": "6d412087c47b12dbf82b982589c801e531e8fff1c0398bdb117a64bd084b3741",
+      "chart_member": "reference_docs/engine_math/source_schedule_tables/engine_16_source_stage_slots.json",
+      "chart_sha256": "5410c6011d6bf95ba83b7d72002e7770fb66f13646356e104eb22a9a1f0dbc27",
+      "expected_source_sha256": "6d412087c47b12dbf82b982589c801e531e8fff1c0398bdb117a64bd084b3741",
+      "package_path": "/Users/joshuaeisenhart/Desktop/97.zip",
+      "package_sha256": "23f455a7cf609e533cdff307edda99c9ca77980c2e2932d76c800b26327aee98",
+      "pass": true,
+      "source_hash_match": true,
+      "source_member": "sims_and_scripts/four_substages_emerge_from_dual_ratchet_sim.py",
+      "target_result_claimed_verdict": true,
+      "target_result_member": "sims_and_scripts/four_substages_emerge_from_dual_ratchet_sim_results.json",
+      "target_result_sha256": "5ded98a87f4a421b6d7bcf934b50db6718605f6ce4b5b664522846a69b494682"
+    },
+    "unitary_entropy_changes": {
+      "entropy_ratcheting_detected": false,
+      "finding": "Every audited leg is unitary conjugation, so von Neumann entropy is invariant.",
+      "global_max_abs_delta_entropy_nats": 3.885780586188048e-16,
+      "pass": true,
+      "probe_bloch_radius": 0.7,
+      "probe_count": 12,
+      "rows": {
+        "A": {
+          "max_abs_delta_entropy_nats": 3.885780586188048e-16,
+          "max_delta_entropy_nats": 3.885780586188048e-16,
+          "min_delta_entropy_nats": -1.6653345369377348e-16
+        },
+        "AB": {
+          "max_abs_delta_entropy_nats": 1.6653345369377348e-16,
+          "max_delta_entropy_nats": 1.6653345369377348e-16,
+          "min_delta_entropy_nats": -1.6653345369377348e-16
+        },
+        "ABAB": {
+          "max_abs_delta_entropy_nats": 0.0,
+          "max_delta_entropy_nats": 0.0,
+          "min_delta_entropy_nats": 0.0
+        },
+        "ABAB_half_A_at_0": {
+          "max_abs_delta_entropy_nats": 1.1102230246251565e-16,
+          "max_delta_entropy_nats": 1.1102230246251565e-16,
+          "min_delta_entropy_nats": -5.551115123125783e-17
+        },
+        "B": {
+          "max_abs_delta_entropy_nats": 2.7755575615628914e-16,
+          "max_delta_entropy_nats": 2.7755575615628914e-16,
+          "min_delta_entropy_nats": -2.220446049250313e-16
+        }
+      }
+    }
+  },
+  "policy_eval": {
+    "UP130_OVERCLAIM_CAUGHT": true
+  },
+  "promotion_allowed": false,
+  "rejected_claims": [
+    "The source implements quarter-turn legs.",
+    "The source demonstrates an order-sensitive dual ratchet.",
+    "The source demonstrates entropy ratcheting.",
+    "The source independently derives the count four.",
+    "The controls each isolate the claimed gate.",
+    "ABAB and BABA are two cyclic chiralities.",
+    "Agreement with the four-step chart closes the architecture claim."
+  ],
+  "runtime": {
+    "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 /Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/four_substages_up130_fabrication_audit_sim.py",
+    "deterministic": true,
+    "generated_at_utc": "2026-07-09T22:48:23.665133+00:00",
+    "numpy": "2.3.4",
+    "python": "3.13.6",
+    "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "random_seed": 0,
+    "scipy": "1.17.1"
+  },
+  "schema": "RATCHET_SCRATCH_DIAGNOSTIC_RESULT_v1",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "four_substages_up130_fabrication_audit_sim",
+  "source": {
+    "audit_sim_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/four_substages_up130_fabrication_audit_sim.py",
+    "audit_sim_sha256": "00b54e46a3710c1ab85d83bd96de0e2d85c1203937cba9b81bdda918dfb8ac70",
+    "package_path": "/Users/joshuaeisenhart/Desktop/97.zip",
+    "target_member": "sims_and_scripts/four_substages_emerge_from_dual_ratchet_sim.py",
+    "target_sha256": "6d412087c47b12dbf82b982589c801e531e8fff1c0398bdb117a64bd084b3741"
+  },
+  "up_id": "UP-130",
+  "verdict": "UP130_OVERCLAIM_CAUGHT"
+}

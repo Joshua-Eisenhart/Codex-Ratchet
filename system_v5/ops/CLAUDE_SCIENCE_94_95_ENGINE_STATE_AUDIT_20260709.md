@@ -116,17 +116,20 @@ four-beat sequential interior for each macro stage, and it remains
 `scratch_diagnostic` with `promotion_allowed=false`. It cannot establish that
 four substages emerged from the dual ratchet.
 
-### External UP-130 claim discovered during wiki sync
+### UP-130 disposition after packet 97
 
-The current wiki remote contains an UP-130 claim that a separate sim derives
-the minimal cycle `{ABAB, BABA}` from closure, alternation, and both-direction
-controls, and reports `135 GREEN`. That source was in the wiki's runtime/sim
-surface, not in this Codex-Ratchet checkout; the wiki cleanup intentionally
-removed the non-Markdown copy from the live wiki. It is therefore external
-evidence pending import into Codex-Ratchet, source review, and a fresh local
-run. It does not supersede the bounded result above or yet prove that the
-four survivors are the four same-sign operator substages required by the
-engine architecture.
+Packet 97 supplied the source and passed a fresh isolated `135/0/0` runner,
+but a source-locked local falsifier rejects its derivation. Its maps are
+commuting entropy-preserving Bloch half-turns; its count predicate already
+fixes length four; its controls are confounded; and `ABAB/BABA` are one cyclic
+orbit. See `CLAUDE_SCIENCE_97_UP129_UP130_AUDIT_20260709.md` and
+`four_substages_up130_fabrication_audit_sim.py`.
+
+A separate Julia/JAX scout now supports only a conditional replacement: the
+source's `x/z` Pauli/Bloch operator axes crossed with its pinching/unitary
+family split form four cells and one MSS square cycle modulo reversal. That
+does not yet bind the four cells into each macro stage or prove sequential
+engine dynamics.
 
 ### Sequential four-beat interior
 
@@ -218,6 +221,10 @@ operation. A passing sim must name which one it implements and test any claimed
 equivalence.
 
 ## Required Dual-Ratchet Experiment
+
+The conditional product-square prerequisite now passes independently in Julia
+and JAX. The remaining experiment begins at the unearned bridge from that
+four-cell graph into each source macro stage.
 
 Build `engine_dual_ratchet_substage_emergence_v0` as one source-derived
 experiment:

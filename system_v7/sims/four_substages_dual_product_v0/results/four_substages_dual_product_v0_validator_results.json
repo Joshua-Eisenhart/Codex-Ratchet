@@ -1,0 +1,83 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_json": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "python_json": {
+      "reason": "load-bearing independent-result parsing, normalized cycle comparison, and validator serialization",
+      "tried": true,
+      "used": true
+    }
+  },
+  "accepted_status_label": "passes local rerun",
+  "all_pass": true,
+  "blocked_consumers": [
+    "sequential substage admission",
+    "16x4 engine schedule",
+    "Type-1/Type-2 engine architecture",
+    "Axis0, perception, personality, ontology, or useful-work claims"
+  ],
+  "claim_ceiling": "conditional product-square theorem and independent implementation parity only",
+  "classification": "scratch_diagnostic",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-09T22:52:13Z",
+  "promotion_allowed": false,
+  "schema": "codex_ratchet.four_substages_dual_product_v0.validator.v1",
+  "source_results": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/four_substages_dual_product_v0/results/four_substages_dual_product_v0_jax_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/four_substages_dual_product_v0/results/four_substages_dual_product_v0_julia_results.json"
+  ],
+  "validation": {
+    "all_checks_pass": true,
+    "checks": {
+      "both_fenced_scratch": true,
+      "both_independent_runs_pass": true,
+      "cell_removal_agrees": true,
+      "coordinate_erasure_agrees": true,
+      "core_graph_shape_agrees": true,
+      "diagonal_control_agrees": true,
+      "four_measured_cells_agree": true,
+      "jax_does_not_read_julia": true,
+      "julia_does_not_read_jax": true,
+      "one_unoriented_operator_cycle_agrees": true,
+      "oriented_operator_cycles_agree": true,
+      "parameter_variant_quotient_agrees": true,
+      "premise_boundary_present": true,
+      "y_axis_control_agrees": true
+    },
+    "jax_oriented_cycles": [
+      [
+        "Te",
+        "Fi",
+        "Fe",
+        "Ti"
+      ],
+      [
+        "Te",
+        "Ti",
+        "Fe",
+        "Fi"
+      ]
+    ],
+    "julia_oriented_cycles": [
+      [
+        "Ti",
+        "Fe",
+        "Fi",
+        "Te"
+      ],
+      [
+        "Ti",
+        "Te",
+        "Fi",
+        "Fe"
+      ]
+    ],
+    "unoriented_cycle": [
+      "Fe",
+      "Fi",
+      "Te",
+      "Ti"
+    ]
+  }
+}

@@ -389,6 +389,55 @@ TORCH_SUITE = [
    ("contains", "PASS quantum_hopfield_memory_sim")]),          # Layer 0.13: quantum associative memory as energy-descent recall on the spinor carrier; 3-qubit floor + capacity curve measured; torch autograd (trainable substrate) + numpy oracle cross-check; z3+cvc5
 ]
 
+# Result-consuming sims must run after the producers they read. A packaged
+# result JSON can otherwise mask a stale-input dependency-order defect.
+SUITE_DEPENDENCIES = {
+    "v7_codex_ratchet_crosscheck_sim.py": [
+        "engine_reidentification_objective_sim.py",
+    ],
+    "engine_object_formation_scorecard_sim.py": [
+        "engine_dynamics_id_arbiter_sim.py",
+        "engine_reidentification_objective_sim.py",
+    ],
+    "objective_gate_integrity_sweep_sim.py": [
+        "engine_dynamics_id_arbiter_sim.py",
+        "engine_reidentification_objective_sim.py",
+    ],
+    "lev_qit_evidence_envelope_emitter.py": [
+        "engine_reidentification_objective_sim.py",
+        "perception_object_binding_sim.py",
+        "type1_full_engine_both_loops_sim.py",
+        "type2_full_engine_both_loops_sim.py",
+        "engine_object_formation_scorecard_sim.py",
+        "schedule_source_fidelity_linter.py",
+        "perception_scorecard_eval_admission_sim.py",
+    ],
+}
+
+
+def dependency_ordered(suite):
+    """Return a stable topological order for result-producing dependencies."""
+    by_name = {entry[0]: entry for entry in suite}
+    ordered, visited, active = [], set(), set()
+
+    def visit(name):
+        if name in visited:
+            return
+        if name in active:
+            raise RuntimeError(f"suite dependency cycle at {name}")
+        if name not in by_name:
+            raise RuntimeError(f"suite dependency is not declared: {name}")
+        active.add(name)
+        for dependency in SUITE_DEPENDENCIES.get(name, []):
+            visit(dependency)
+        active.remove(name)
+        visited.add(name)
+        ordered.append(by_name[name])
+
+    for entry in suite:
+        visit(entry[0])
+    return ordered
+
 def run_one(script, timeout, interpreter=None):
     t0 = time.time()
     try:
@@ -456,7 +505,7 @@ def run_engines_lane():
 def main():
     jax_ok = has_jax() and not FAST
     results, n_pass, n_fail, n_skip = [], 0, 0, 0
-    for script, timeout, needs_jax, checks in SUITE:
+    for script, timeout, needs_jax, checks in dependency_ordered(SUITE):
         if needs_jax and not jax_ok:
             results.append({"sim": script, "status": "SKIP (jax unavailable or --fast)"})
             n_skip += 1

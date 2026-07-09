@@ -4,6 +4,7 @@
 **Status:** proposed; ready for bounded implementation
 **Classification:** implementation plan, not evidence
 **Primary target:** one end-to-end SME object workflow with measured engine, learning, perception, and Lev receipt boundaries
+**Current engine audit:** `system_v5/ops/CLAUDE_SCIENCE_94_95_ENGINE_STATE_AUDIT_20260709.md`
 
 ## Viability Verdict
 
@@ -13,7 +14,11 @@ Already executable:
 
 - cross-runtime 1q/3q engine calculations;
 - a 300-tick dual-engine scratch loop;
-- a 16-stage affine re-identification result;
+- a 16-channel affine re-identification result over the proxy namespace
+  `8 terrains x 2 selected/native operators`, not the 16 signed source slots;
+- a source linter for 16 signed macro slots and their proposed 16 x 4 expansion;
+- 64 independently probed terrain/sign/operator channels under one finite
+  parameterization;
 - a 64-slot ordered object-card scout;
 - a five-view projection battery;
 - bounded Type-1 and Type-2 science-method trials;
@@ -22,6 +27,9 @@ Already executable:
 
 Not yet earned:
 
+- a dual-ratchet experiment that derives four sequential substage survivors
+  from independent geometry and entropy ratchets;
+- necessity of all 16 macro slots or all four substages;
 - 64 independent intelligences or personalities;
 - stable Type-2 equivalence across seeds;
 - learning that changes engine dynamics rather than a bounded readout;
@@ -65,7 +73,10 @@ All of these must be true:
 9. A passed quorum can project only through an explicit host-owned policy.
 10. Every output keeps source evidence, anti-hashes, rejected alternatives, and claim ceiling.
 11. One frozen authority manifest names the branch, source files, fixtures, commands, seeds, and hashes needed to reproduce the run.
-12. The claimed 64-stage path consists of 64 parsed operator transitions, not four narrative phases repeated around 16 authored rows.
+12. The claimed 16 x 4 path consists of 16 parsed source slots whose
+    substage classes are emitted by dual ratcheting, then execute sequentially
+    under one inherited Axis-6 precedence sign; independent one-step channel
+    probes and four narrative phases do not meet this condition.
 13. Engine actions causally change or select subsequent observations; a fixture-driven belief-only loop does not satisfy the done condition.
 
 ## Fixed Pilot Object Family
@@ -98,7 +109,17 @@ The fixture must contain multiple incidents on similar assets, reused part numbe
 Build:
 
 - one authority manifest that pins the repo branch, checkout, source files, fixtures, commands, runtime versions, seeds, and expected output paths;
-- one source parser that yields exactly 16 macro-stages and 64 actual operator transitions from the declared atlas or source contract;
+- one source parser that yields exactly 16 macro-stages and a declared
+  candidate pool of operator transitions from the atlas or source contract;
+- three explicitly named namespaces: the 16 signed source slots, the proxy
+  `8 terrains x 2 selected/native operators` fingerprint set, and the
+  proposed 16 x 4 expansion;
+- independent geometry and entropy survivor ledgers whose intersection emits
+  the substage count; no four-count or operator list may be hard-coded into the
+  admission gate;
+- `engine_dual_ratchet_substage_emergence_v0`, which derives the minimal
+  substage equivalence classes and only then runs the resulting sequential
+  maps while holding each macro-stage's precedence sign fixed;
 - an explicit distinction between operator transitions and the current `candidate -> measurement -> gate -> receipt` narrative wrapper;
 - a preregistered 20-seed census for `stage_reid_16_v1`;
 - a preregistered 20-seed census for `t2_order_carried_v1`;
@@ -108,16 +129,31 @@ Build:
 Pass gates:
 
 - a clean-checkout rerun reproduces every claimed hash-bound result;
-- the parsed schedule has 16 macro-stages, four operator transitions per stage, zero duplicate hand-coded source tables, and a corruption control that fails;
+- the parsed schedule has 16 macro-stages, zero duplicate hand-coded source
+  tables, and a corruption control that fails;
+- geometry-first and entropy-first ratchets converge to the same survivor set
+  and the same four-class count across seeds and candidate enumeration order;
+- exact superoperator or Choi fingerprints accompany state-probe signatures;
+- reverse-order, one-beat removal, duplicate-beat, sign-flip,
+  terrain-identity, native-only, and non-native controls are all reported;
+- each claimed load-bearing substage degrades a held-out task or object metric
+  when removed or permuted;
 - full-affine stage re-identification at least `0.95` over seeds;
 - SVD-only proxy materially worse than the full affine representation;
 - no mirror-pair conclusion from one seed;
 - Type-2 order claim limited to the statistic that survives the multi-seed null.
+- the sim-contract linter is clean for classification, manifest, depth,
+  provenance, and result-shape requirements;
+- PySINDy and every numerical dependency that changes an admitted metric are
+  pinned and reproduced in the authority manifest.
 
 Kill condition:
 
 - if authority remains split across ambiguous checkouts, stop promotion until it is frozen;
 - if the 64 count depends on repeated narrative labels instead of source-derived operator transitions, call it a 16-row object-card protocol rather than a 64-stage engine;
+- if the two ratchets do not converge on four sequential, same-sign,
+  load-bearing survivor classes, retain the one-step channel atlas and demote
+  the four-substage engine interpretation;
 - if full-affine identity falls near the proxy/null distribution, stop calling the 16 stages unique computational modes.
 
 ### WP1 - Object Contract And Battery

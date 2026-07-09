@@ -1,0 +1,3494 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "numpy": "supportive",
+    "terrain_lyapunov_pawl_census_sim": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "numpy": {
+      "reason": "2x2 density matrices, spectral Petz quasi-entropy formula, monotonicity census, controls",
+      "used": true
+    },
+    "terrain_lyapunov_pawl_census_sim": {
+      "reason": "verbatim reuse of seeded_state_grid, terrain_flow, long_fixed_point, terrain constants, and monotonicity classifier",
+      "used": true
+    }
+  },
+  "claim_ceiling": "scratch_diagnostic; runs/pass-local-rerun only; no canonical, bridge, axis, manifold-completion, or admission claim",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "wrong_fixed_point_control": {
+      "breaks_every_family_member": true,
+      "by_f": {
+        "impostor_petz_alpha_3_centered": {
+          "breaks_this_family_member": true,
+          "lost_count": 8,
+          "lost_terrains": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "impostor_wavy_nonconvex": {
+          "breaks_this_family_member": true,
+          "lost_count": 8,
+          "lost_terrains": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "petz_alpha_0_5_centered": {
+          "breaks_this_family_member": true,
+          "lost_count": 8,
+          "lost_terrains": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "petz_alpha_0_75_centered": {
+          "breaks_this_family_member": true,
+          "lost_count": 8,
+          "lost_terrains": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "petz_alpha_1_5_centered": {
+          "breaks_this_family_member": true,
+          "lost_count": 8,
+          "lost_terrains": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "petz_alpha_2_centered": {
+          "breaks_this_family_member": true,
+          "lost_count": 8,
+          "lost_terrains": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "sqrt_hellinger_divergence": {
+          "breaks_this_family_member": true,
+          "lost_count": 8,
+          "lost_terrains": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        "umegaki_x_log_x": {
+          "breaks_this_family_member": true,
+          "lost_count": 8,
+          "lost_terrains": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      },
+      "control": "wrong_fixed_point_uses_farthest_foreign_fixed_point_by_bloch_distance",
+      "rows": [
+        {
+          "classification": "non-monotone",
+          "f": "umegaki_x_log_x",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.08545967055,
+          "native_label": "Se_f/direct_damp_plus",
+          "terrain": 0
+        },
+        {
+          "classification": "non-monotone",
+          "f": "umegaki_x_log_x",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.121539884689,
+          "native_label": "Ne_f/direct_depol",
+          "terrain": 1
+        },
+        {
+          "classification": "non-monotone",
+          "f": "umegaki_x_log_x",
+          "foreign_fixed_point_terrain": 0,
+          "foreign_label": "Se_f/direct_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.070449107365,
+          "native_label": "Ni_f/conjugate_damp_minus",
+          "terrain": 2
+        },
+        {
+          "classification": "non-monotone",
+          "f": "umegaki_x_log_x",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.114906419243,
+          "native_label": "Si_f/conjugate_proj",
+          "terrain": 3
+        },
+        {
+          "classification": "non-monotone",
+          "f": "umegaki_x_log_x",
+          "foreign_fixed_point_terrain": 6,
+          "foreign_label": "Ni_b/conjugate_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.075673603187,
+          "native_label": "Se_b/direct_damp_minus",
+          "terrain": 4
+        },
+        {
+          "classification": "non-monotone",
+          "f": "umegaki_x_log_x",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.12263462837,
+          "native_label": "Ne_b/direct_depol_minus",
+          "terrain": 5
+        },
+        {
+          "classification": "non-monotone",
+          "f": "umegaki_x_log_x",
+          "foreign_fixed_point_terrain": 4,
+          "foreign_label": "Se_b/direct_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.05953510554,
+          "native_label": "Ni_b/conjugate_damp_plus",
+          "terrain": 6
+        },
+        {
+          "classification": "non-monotone",
+          "f": "umegaki_x_log_x",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.073226652311,
+          "native_label": "Si_b/conjugate_proj_minus",
+          "terrain": 7
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_5_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.138410261357,
+          "native_label": "Se_f/direct_damp_plus",
+          "terrain": 0
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_5_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.080979243734,
+          "native_label": "Ne_f/direct_depol",
+          "terrain": 1
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_5_centered",
+          "foreign_fixed_point_terrain": 0,
+          "foreign_label": "Se_f/direct_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.138410261357,
+          "native_label": "Ni_f/conjugate_damp_minus",
+          "terrain": 2
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_5_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.06422576431,
+          "native_label": "Si_f/conjugate_proj",
+          "terrain": 3
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_5_centered",
+          "foreign_fixed_point_terrain": 6,
+          "foreign_label": "Ni_b/conjugate_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.13866923818,
+          "native_label": "Se_b/direct_damp_minus",
+          "terrain": 4
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_5_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.074118259851,
+          "native_label": "Ne_b/direct_depol_minus",
+          "terrain": 5
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_5_centered",
+          "foreign_fixed_point_terrain": 4,
+          "foreign_label": "Se_b/direct_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.140182401754,
+          "native_label": "Ni_b/conjugate_damp_plus",
+          "terrain": 6
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_5_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.049412435154,
+          "native_label": "Si_b/conjugate_proj_minus",
+          "terrain": 7
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_75_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.121995501255,
+          "native_label": "Se_f/direct_damp_plus",
+          "terrain": 0
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_75_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.097608854435,
+          "native_label": "Ne_f/direct_depol",
+          "terrain": 1
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_75_centered",
+          "foreign_fixed_point_terrain": 0,
+          "foreign_label": "Se_f/direct_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.104995710639,
+          "native_label": "Ni_f/conjugate_damp_minus",
+          "terrain": 2
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_75_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.085995722503,
+          "native_label": "Si_f/conjugate_proj",
+          "terrain": 3
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_75_centered",
+          "foreign_fixed_point_terrain": 6,
+          "foreign_label": "Ni_b/conjugate_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.104995710639,
+          "native_label": "Se_b/direct_damp_minus",
+          "terrain": 4
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_75_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.094223506994,
+          "native_label": "Ne_b/direct_depol_minus",
+          "terrain": 5
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_75_centered",
+          "foreign_fixed_point_terrain": 4,
+          "foreign_label": "Se_b/direct_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.0916075171,
+          "native_label": "Ni_b/conjugate_damp_plus",
+          "terrain": 6
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_0_75_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.058407850861,
+          "native_label": "Si_b/conjugate_proj_minus",
+          "terrain": 7
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_1_5_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.158578282143,
+          "native_label": "Se_f/direct_damp_plus",
+          "terrain": 0
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_1_5_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.22005705053,
+          "native_label": "Ne_f/direct_depol",
+          "terrain": 1
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_1_5_centered",
+          "foreign_fixed_point_terrain": 0,
+          "foreign_label": "Se_f/direct_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.138140962377,
+          "native_label": "Ni_f/conjugate_damp_minus",
+          "terrain": 2
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_1_5_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.219351254293,
+          "native_label": "Si_f/conjugate_proj",
+          "terrain": 3
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_1_5_centered",
+          "foreign_fixed_point_terrain": 6,
+          "foreign_label": "Ni_b/conjugate_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.168397501594,
+          "native_label": "Se_b/direct_damp_minus",
+          "terrain": 4
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_1_5_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.225222535389,
+          "native_label": "Ne_b/direct_depol_minus",
+          "terrain": 5
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_1_5_centered",
+          "foreign_fixed_point_terrain": 4,
+          "foreign_label": "Se_b/direct_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.138140962377,
+          "native_label": "Ni_b/conjugate_damp_plus",
+          "terrain": 6
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_1_5_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.142765677155,
+          "native_label": "Si_b/conjugate_proj_minus",
+          "terrain": 7
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_2_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.755616685977,
+          "native_label": "Se_f/direct_damp_plus",
+          "terrain": 0
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_2_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.480480379609,
+          "native_label": "Ne_f/direct_depol",
+          "terrain": 1
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_2_centered",
+          "foreign_fixed_point_terrain": 0,
+          "foreign_label": "Se_f/direct_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.664853698429,
+          "native_label": "Ni_f/conjugate_damp_minus",
+          "terrain": 2
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_2_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.530182378958,
+          "native_label": "Si_f/conjugate_proj",
+          "terrain": 3
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_2_centered",
+          "foreign_fixed_point_terrain": 6,
+          "foreign_label": "Ni_b/conjugate_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.818382552809,
+          "native_label": "Se_b/direct_damp_minus",
+          "terrain": 4
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_2_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.473115982072,
+          "native_label": "Ne_b/direct_depol_minus",
+          "terrain": 5
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_2_centered",
+          "foreign_fixed_point_terrain": 4,
+          "foreign_label": "Se_b/direct_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.664853698429,
+          "native_label": "Ni_b/conjugate_damp_plus",
+          "terrain": 6
+        },
+        {
+          "classification": "non-monotone",
+          "f": "petz_alpha_2_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.378458357652,
+          "native_label": "Si_b/conjugate_proj_minus",
+          "terrain": 7
+        },
+        {
+          "classification": "non-monotone",
+          "f": "sqrt_hellinger_divergence",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.069205130678,
+          "native_label": "Se_f/direct_damp_plus",
+          "terrain": 0
+        },
+        {
+          "classification": "non-monotone",
+          "f": "sqrt_hellinger_divergence",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.040489621867,
+          "native_label": "Ne_f/direct_depol",
+          "terrain": 1
+        },
+        {
+          "classification": "non-monotone",
+          "f": "sqrt_hellinger_divergence",
+          "foreign_fixed_point_terrain": 0,
+          "foreign_label": "Se_f/direct_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.069205130678,
+          "native_label": "Ni_f/conjugate_damp_minus",
+          "terrain": 2
+        },
+        {
+          "classification": "non-monotone",
+          "f": "sqrt_hellinger_divergence",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.032112882155,
+          "native_label": "Si_f/conjugate_proj",
+          "terrain": 3
+        },
+        {
+          "classification": "non-monotone",
+          "f": "sqrt_hellinger_divergence",
+          "foreign_fixed_point_terrain": 6,
+          "foreign_label": "Ni_b/conjugate_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.06933461909,
+          "native_label": "Se_b/direct_damp_minus",
+          "terrain": 4
+        },
+        {
+          "classification": "non-monotone",
+          "f": "sqrt_hellinger_divergence",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.037059129926,
+          "native_label": "Ne_b/direct_depol_minus",
+          "terrain": 5
+        },
+        {
+          "classification": "non-monotone",
+          "f": "sqrt_hellinger_divergence",
+          "foreign_fixed_point_terrain": 4,
+          "foreign_label": "Se_b/direct_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.070091200877,
+          "native_label": "Ni_b/conjugate_damp_plus",
+          "terrain": 6
+        },
+        {
+          "classification": "non-monotone",
+          "f": "sqrt_hellinger_divergence",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 0.024706217577,
+          "native_label": "Si_b/conjugate_proj_minus",
+          "terrain": 7
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_petz_alpha_3_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 18.628718222617,
+          "native_label": "Se_f/direct_damp_plus",
+          "terrain": 0
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_petz_alpha_3_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 3.892110158281,
+          "native_label": "Ne_f/direct_depol",
+          "terrain": 1
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_petz_alpha_3_centered",
+          "foreign_fixed_point_terrain": 0,
+          "foreign_label": "Se_f/direct_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 18.606645225401,
+          "native_label": "Ni_f/conjugate_damp_minus",
+          "terrain": 2
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_petz_alpha_3_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 6.638650282028,
+          "native_label": "Si_f/conjugate_proj",
+          "terrain": 3
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_petz_alpha_3_centered",
+          "foreign_fixed_point_terrain": 6,
+          "foreign_label": "Ni_b/conjugate_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 18.65772693336,
+          "native_label": "Se_b/direct_damp_minus",
+          "terrain": 4
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_petz_alpha_3_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 3.638017929266,
+          "native_label": "Ne_b/direct_depol_minus",
+          "terrain": 5
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_petz_alpha_3_centered",
+          "foreign_fixed_point_terrain": 4,
+          "foreign_label": "Se_b/direct_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 17.270110394398,
+          "native_label": "Ni_b/conjugate_damp_plus",
+          "terrain": 6
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_petz_alpha_3_centered",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 5.17489035938,
+          "native_label": "Si_b/conjugate_proj_minus",
+          "terrain": 7
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_wavy_nonconvex",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 4.587031838409,
+          "native_label": "Se_f/direct_damp_plus",
+          "terrain": 0
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_wavy_nonconvex",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 2.798615221915,
+          "native_label": "Ne_f/direct_depol",
+          "terrain": 1
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_wavy_nonconvex",
+          "foreign_fixed_point_terrain": 0,
+          "foreign_label": "Se_f/direct_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 4.587031838409,
+          "native_label": "Ni_f/conjugate_damp_minus",
+          "terrain": 2
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_wavy_nonconvex",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 2.639077442774,
+          "native_label": "Si_f/conjugate_proj",
+          "terrain": 3
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_wavy_nonconvex",
+          "foreign_fixed_point_terrain": 6,
+          "foreign_label": "Ni_b/conjugate_damp_plus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 4.587031838409,
+          "native_label": "Se_b/direct_damp_minus",
+          "terrain": 4
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_wavy_nonconvex",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 2.778708345687,
+          "native_label": "Ne_b/direct_depol_minus",
+          "terrain": 5
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_wavy_nonconvex",
+          "foreign_fixed_point_terrain": 4,
+          "foreign_label": "Se_b/direct_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 4.587031838409,
+          "native_label": "Ni_b/conjugate_damp_plus",
+          "terrain": 6
+        },
+        {
+          "classification": "non-monotone",
+          "f": "impostor_wavy_nonconvex",
+          "foreign_fixed_point_terrain": 2,
+          "foreign_label": "Ni_f/conjugate_damp_minus",
+          "lost_monotone_decreasing": true,
+          "max_violation": 2.565435577903,
+          "native_label": "Si_b/conjugate_proj_minus",
+          "terrain": 7
+        }
+      ]
+    }
+  },
+  "f_x_terrain_census": {
+    "by_f": {
+      "impostor_petz_alpha_3_centered": {
+        "all_terrains_pawl": false,
+        "failed_terrains": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "family": "non_operator_convex_impostor",
+        "formula": "same centered power form with alpha=3; outside operator-convex validity",
+        "impostor_control": true,
+        "operator_convex_claim": false,
+        "terrain_verdicts": {
+          "0": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Se_f/direct_damp_plus",
+            "max_decreasing_violation": 0.002825274664,
+            "max_increasing_violation": 81.542684725031,
+            "max_violation_against_assigned_direction": 0.002825274664,
+            "net_delta_max": -8.33394636354,
+            "net_delta_min": -326.257922525241,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.002825274664,
+              "state_index": 194,
+              "step": 23,
+              "violation": 0.002825274664
+            }
+          },
+          "1": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.155023912578,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.478741369299,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "2": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Ni_f/conjugate_damp_minus",
+            "max_decreasing_violation": 0.000806766588,
+            "max_increasing_violation": 84.457506141473,
+            "max_violation_against_assigned_direction": 0.000806766588,
+            "net_delta_max": -1.028684946246,
+            "net_delta_min": -353.662492047569,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.000806766588,
+              "state_index": 117,
+              "step": 20,
+              "violation": 0.000806766588
+            }
+          },
+          "3": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.155020363438,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.469508145819,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "4": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Se_b/direct_damp_minus",
+            "max_decreasing_violation": 0.002358236388,
+            "max_increasing_violation": 81.54268472503,
+            "max_violation_against_assigned_direction": 0.002358236388,
+            "net_delta_max": -2.131819064868,
+            "net_delta_min": -346.654223783606,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.002358236388,
+              "state_index": 116,
+              "step": 19,
+              "violation": 0.002358236388
+            }
+          },
+          "5": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.155023912578,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.480342354022,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "6": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Ni_b/conjugate_damp_plus",
+            "max_decreasing_violation": 0.0093399871,
+            "max_increasing_violation": 82.703835939422,
+            "max_violation_against_assigned_direction": 0.0093399871,
+            "net_delta_max": -5.432457395801,
+            "net_delta_min": -337.539475101831,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0093399871,
+              "state_index": 118,
+              "step": 23,
+              "violation": 0.0093399871
+            }
+          },
+          "7": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.155020363438,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.479301098299,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          }
+        }
+      },
+      "impostor_wavy_nonconvex": {
+        "all_terrains_pawl": false,
+        "failed_terrains": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "family": "non_operator_convex_impostor",
+        "formula": "f(t)=(t-1)^2*(1+0.85*sin(5*log(t)))",
+        "impostor_control": true,
+        "operator_convex_claim": false,
+        "terrain_verdicts": {
+          "0": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Se_f/direct_damp_plus",
+            "max_decreasing_violation": 2.153235060553,
+            "max_increasing_violation": 21.807192116742,
+            "max_violation_against_assigned_direction": 2.153235060553,
+            "net_delta_max": -1.193837308646,
+            "net_delta_min": -55.754835696054,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 2.153235060553,
+              "state_index": 53,
+              "step": 3,
+              "violation": 2.153235060553
+            }
+          },
+          "1": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Ne_f/direct_depol",
+            "max_decreasing_violation": 0.593191510939,
+            "max_increasing_violation": 0.808319825889,
+            "max_violation_against_assigned_direction": 0.593191510939,
+            "net_delta_max": 0.0,
+            "net_delta_min": -1.232750428238,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.593191510939,
+              "state_index": 171,
+              "step": 0,
+              "violation": 0.593191510939
+            }
+          },
+          "2": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Ni_f/conjugate_damp_minus",
+            "max_decreasing_violation": 2.20091568542,
+            "max_increasing_violation": 23.283354074843,
+            "max_violation_against_assigned_direction": 2.20091568542,
+            "net_delta_max": -0.164174362182,
+            "net_delta_min": -62.54601606704,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 2.20091568542,
+              "state_index": 232,
+              "step": 1,
+              "violation": 2.20091568542
+            }
+          },
+          "3": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Si_f/conjugate_proj",
+            "max_decreasing_violation": 0.45527051318,
+            "max_increasing_violation": 0.808316836665,
+            "max_violation_against_assigned_direction": 0.45527051318,
+            "net_delta_max": 0.151443663173,
+            "net_delta_min": -1.227692631915,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.45527051318,
+              "state_index": 114,
+              "step": 1,
+              "violation": 0.45527051318
+            }
+          },
+          "4": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Se_b/direct_damp_minus",
+            "max_decreasing_violation": 2.153235060553,
+            "max_increasing_violation": 21.807192116742,
+            "max_violation_against_assigned_direction": 2.153235060553,
+            "net_delta_max": -0.226050746768,
+            "net_delta_min": -59.299937008188,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 2.153235060553,
+              "state_index": 52,
+              "step": 3,
+              "violation": 2.153235060553
+            }
+          },
+          "5": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Ne_b/direct_depol_minus",
+            "max_decreasing_violation": 0.585372826039,
+            "max_increasing_violation": 0.808319825889,
+            "max_violation_against_assigned_direction": 0.585372826039,
+            "net_delta_max": 0.0,
+            "net_delta_min": -1.230446225283,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.585372826039,
+              "state_index": 171,
+              "step": 0,
+              "violation": 0.585372826039
+            }
+          },
+          "6": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Ni_b/conjugate_damp_plus",
+            "max_decreasing_violation": 2.203207645551,
+            "max_increasing_violation": 22.040981412178,
+            "max_violation_against_assigned_direction": 2.203207645551,
+            "net_delta_max": -0.665612542889,
+            "net_delta_min": -57.597866467143,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 2.203207645551,
+              "state_index": 109,
+              "step": 0,
+              "violation": 2.203207645551
+            }
+          },
+          "7": {
+            "classification": "non-monotone",
+            "direction": "none",
+            "failure_label": "Si_b/conjugate_proj_minus",
+            "max_decreasing_violation": 0.477230235508,
+            "max_increasing_violation": 0.808316836665,
+            "max_violation_against_assigned_direction": 0.477230235508,
+            "net_delta_max": 0.155297776105,
+            "net_delta_min": -1.215156126493,
+            "pawl": false,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.477230235508,
+              "state_index": 114,
+              "step": 1,
+              "violation": 0.477230235508
+            }
+          }
+        }
+      },
+      "petz_alpha_0_5_centered": {
+        "all_terrains_pawl": true,
+        "failed_terrains": [],
+        "family": "operator_convex_petz_alpha",
+        "formula": "f_alpha(t)=(t^alpha-1-alpha(t-1))/(alpha(alpha-1)), alpha=0.5",
+        "impostor_control": false,
+        "operator_convex_claim": true,
+        "terrain_verdicts": {
+          "0": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.650737485655,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.069500189983,
+            "net_delta_min": -2.444596354846,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.083269972089,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "1": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.442645376395,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.913063733533,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "2": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.722032569186,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.019999609191,
+            "net_delta_min": -2.776134675657,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.083269972089,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "3": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.457349173251,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.881450575958,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "4": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.659960572301,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.047062507649,
+            "net_delta_min": -2.688647687961,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.083269972089,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "5": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.445349544929,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.914203300517,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "6": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.664951569161,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.05323322597,
+            "net_delta_min": -2.585694755298,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.083269972089,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "7": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.461766125998,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.897634539853,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          }
+        }
+      },
+      "petz_alpha_0_75_centered": {
+        "all_terrains_pawl": true,
+        "failed_terrains": [],
+        "family": "operator_convex_petz_alpha",
+        "formula": "f_alpha(t)=(t^alpha-1-alpha(t-1))/(alpha(alpha-1)), alpha=0.75",
+        "impostor_control": false,
+        "operator_convex_claim": true,
+        "terrain_verdicts": {
+          "0": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.504979701237,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.071902331374,
+            "net_delta_min": -2.622571573511,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.102668594699,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "1": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.322949023162,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.74462444746,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "2": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.543312436336,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.02179022332,
+            "net_delta_min": -2.87978416231,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.102668594699,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "3": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.330390832343,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.713203424111,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "4": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.504979701237,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.052472298189,
+            "net_delta_min": -2.829769985521,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.102668594699,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "5": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.3252278201,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.745762965854,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "6": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.517373452639,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.05612133735,
+            "net_delta_min": -2.72654933132,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.102668594699,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "7": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.334106292036,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.7373471156,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          }
+        }
+      },
+      "petz_alpha_1_5_centered": {
+        "all_terrains_pawl": true,
+        "failed_terrains": [],
+        "family": "operator_convex_petz_alpha",
+        "formula": "f_alpha(t)=(t^alpha-1-alpha(t-1))/(alpha(alpha-1)), alpha=1.5",
+        "impostor_control": false,
+        "operator_convex_claim": true,
+        "terrain_verdicts": {
+          "0": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.950791746425,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.172306938171,
+            "net_delta_min": -6.755027448214,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.293559072061,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "1": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.182325592192,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.52509888141,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "2": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.984674971914,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.03866805591,
+            "net_delta_min": -7.142550378817,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.293559072061,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "3": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.18232163349,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.512539978474,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "4": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.950791746425,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.094521053986,
+            "net_delta_min": -7.070501717468,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.293559072061,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "5": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.182325592192,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.52623509697,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "6": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.968921979151,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.141275946641,
+            "net_delta_min": -6.849983050918,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.293559072061,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "7": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.18232163349,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.524823605495,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          }
+        }
+      },
+      "petz_alpha_2_centered": {
+        "all_terrains_pawl": true,
+        "failed_terrains": [],
+        "family": "operator_convex_petz_alpha",
+        "formula": "f_alpha(t)=(t^alpha-1-alpha(t-1))/(alpha(alpha-1)), alpha=2",
+        "impostor_control": false,
+        "operator_convex_claim": true,
+        "terrain_verdicts": {
+          "0": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 3.428414454349,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.508527827695,
+            "net_delta_min": -19.98942811832,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.810327893223,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "1": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.155023912578,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.478741369299,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "2": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 3.53510247708,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.083740972123,
+            "net_delta_min": -21.398529272441,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.810327893223,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "3": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.155020363438,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.469508145819,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "4": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 3.428414454349,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.195236786908,
+            "net_delta_min": -21.116005075758,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.810327893223,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "5": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.155023912578,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.480342354022,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "6": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 3.478588505222,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.421870658038,
+            "net_delta_min": -20.520488754627,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.810327893223,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "7": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.155020363438,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.479301098299,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          }
+        }
+      },
+      "sqrt_hellinger_divergence": {
+        "all_terrains_pawl": true,
+        "failed_terrains": [],
+        "family": "operator_convex_sqrt",
+        "formula": "f(t)=(sqrt(t)-1)^2",
+        "impostor_control": false,
+        "operator_convex_claim": true,
+        "terrain_verdicts": {
+          "0": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.325368742828,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.034750094991,
+            "net_delta_min": -1.222298177423,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.041634986045,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "1": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.221322688198,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.456531866766,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "2": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.361016284593,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.009999804596,
+            "net_delta_min": -1.388067337828,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.041634986045,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "3": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.228674586626,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.440725287979,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "4": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.329980286151,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.023531253824,
+            "net_delta_min": -1.344323843981,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.041634986045,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "5": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.222674772464,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.457101650258,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "6": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.332475784581,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.026616612985,
+            "net_delta_min": -1.292847377649,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.041634986045,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "7": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.230883062999,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.448817269927,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          }
+        }
+      },
+      "umegaki_x_log_x": {
+        "all_terrains_pawl": true,
+        "failed_terrains": [],
+        "family": "operator_convex_petz",
+        "formula": "f(t)=t log(t)-t+1; affine-equivalent to U(rho||sigma)",
+        "impostor_control": false,
+        "operator_convex_claim": true,
+        "terrain_verdicts": {
+          "0": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.489395887684,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.085240665456,
+            "net_delta_min": -3.22480705977,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.135681912001,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "1": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.253458921569,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.638484781216,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "2": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.516774489493,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.024847870135,
+            "net_delta_min": -3.447845800011,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.135681912001,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "3": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.253978401825,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.614322521048,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "4": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.489395887684,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.060745715016,
+            "net_delta_min": -3.409130441864,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.135681912001,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "5": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.253458921569,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.639622391724,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "6": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.501503163208,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": -0.067766009517,
+            "net_delta_min": -3.290195287413,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": -0.135681912001,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          },
+          "7": {
+            "classification": "monotone-decreasing",
+            "direction": "decreasing",
+            "max_decreasing_violation": 0.0,
+            "max_increasing_violation": 0.257186233733,
+            "max_violation_against_assigned_direction": 0.0,
+            "net_delta_max": 0.0,
+            "net_delta_min": -0.635169323858,
+            "pawl": true,
+            "threshold": 1e-07,
+            "worst_case": {
+              "delta": 0.0,
+              "state_index": 0,
+              "step": 0,
+              "violation": 0.0
+            }
+          }
+        }
+      }
+    },
+    "rows": [
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "umegaki_x_log_x",
+        "family": "operator_convex_petz",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_f/direct_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.085240665456,
+        "net_delta_min": -3.22480705977,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 0,
+        "worst_case": {
+          "delta": -0.135681912001,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "umegaki_x_log_x",
+        "family": "operator_convex_petz",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_f/direct_depol",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.638484781216,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 1,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "umegaki_x_log_x",
+        "family": "operator_convex_petz",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_f/conjugate_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.024847870135,
+        "net_delta_min": -3.447845800011,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 2,
+        "worst_case": {
+          "delta": -0.135681912001,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "umegaki_x_log_x",
+        "family": "operator_convex_petz",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_f/conjugate_proj",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.614322521048,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 3,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "umegaki_x_log_x",
+        "family": "operator_convex_petz",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_b/direct_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.060745715016,
+        "net_delta_min": -3.409130441864,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 4,
+        "worst_case": {
+          "delta": -0.135681912001,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "umegaki_x_log_x",
+        "family": "operator_convex_petz",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_b/direct_depol_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.639622391724,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 5,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "umegaki_x_log_x",
+        "family": "operator_convex_petz",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_b/conjugate_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.067766009517,
+        "net_delta_min": -3.290195287413,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 6,
+        "worst_case": {
+          "delta": -0.135681912001,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "umegaki_x_log_x",
+        "family": "operator_convex_petz",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_b/conjugate_proj_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.635169323858,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 7,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_f/direct_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.069500189983,
+        "net_delta_min": -2.444596354846,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 0,
+        "worst_case": {
+          "delta": -0.083269972089,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_f/direct_depol",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.913063733533,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 1,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_f/conjugate_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.019999609191,
+        "net_delta_min": -2.776134675657,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 2,
+        "worst_case": {
+          "delta": -0.083269972089,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_f/conjugate_proj",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.881450575958,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 3,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_b/direct_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.047062507649,
+        "net_delta_min": -2.688647687961,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 4,
+        "worst_case": {
+          "delta": -0.083269972089,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_b/direct_depol_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.914203300517,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 5,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_b/conjugate_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.05323322597,
+        "net_delta_min": -2.585694755298,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 6,
+        "worst_case": {
+          "delta": -0.083269972089,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_b/conjugate_proj_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.897634539853,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 7,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_75_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_f/direct_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.071902331374,
+        "net_delta_min": -2.622571573511,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 0,
+        "worst_case": {
+          "delta": -0.102668594699,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_75_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_f/direct_depol",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.74462444746,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 1,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_75_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_f/conjugate_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.02179022332,
+        "net_delta_min": -2.87978416231,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 2,
+        "worst_case": {
+          "delta": -0.102668594699,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_75_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_f/conjugate_proj",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.713203424111,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 3,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_75_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_b/direct_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.052472298189,
+        "net_delta_min": -2.829769985521,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 4,
+        "worst_case": {
+          "delta": -0.102668594699,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_75_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_b/direct_depol_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.745762965854,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 5,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_75_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_b/conjugate_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.05612133735,
+        "net_delta_min": -2.72654933132,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 6,
+        "worst_case": {
+          "delta": -0.102668594699,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_0_75_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_b/conjugate_proj_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.7373471156,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 7,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_1_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_f/direct_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.172306938171,
+        "net_delta_min": -6.755027448214,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 0,
+        "worst_case": {
+          "delta": -0.293559072061,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_1_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_f/direct_depol",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.52509888141,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 1,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_1_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_f/conjugate_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.03866805591,
+        "net_delta_min": -7.142550378817,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 2,
+        "worst_case": {
+          "delta": -0.293559072061,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_1_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_f/conjugate_proj",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.512539978474,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 3,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_1_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_b/direct_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.094521053986,
+        "net_delta_min": -7.070501717468,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 4,
+        "worst_case": {
+          "delta": -0.293559072061,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_1_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_b/direct_depol_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.52623509697,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 5,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_1_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_b/conjugate_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.141275946641,
+        "net_delta_min": -6.849983050918,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 6,
+        "worst_case": {
+          "delta": -0.293559072061,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_1_5_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_b/conjugate_proj_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.524823605495,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 7,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_2_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_f/direct_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.508527827695,
+        "net_delta_min": -19.98942811832,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 0,
+        "worst_case": {
+          "delta": -0.810327893223,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_2_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_f/direct_depol",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.478741369299,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 1,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_2_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_f/conjugate_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.083740972123,
+        "net_delta_min": -21.398529272441,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 2,
+        "worst_case": {
+          "delta": -0.810327893223,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_2_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_f/conjugate_proj",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.469508145819,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 3,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_2_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_b/direct_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.195236786908,
+        "net_delta_min": -21.116005075758,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 4,
+        "worst_case": {
+          "delta": -0.810327893223,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_2_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_b/direct_depol_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.480342354022,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 5,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_2_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_b/conjugate_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.421870658038,
+        "net_delta_min": -20.520488754627,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 6,
+        "worst_case": {
+          "delta": -0.810327893223,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "petz_alpha_2_centered",
+        "family": "operator_convex_petz_alpha",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_b/conjugate_proj_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.479301098299,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 7,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "sqrt_hellinger_divergence",
+        "family": "operator_convex_sqrt",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_f/direct_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.034750094991,
+        "net_delta_min": -1.222298177423,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 0,
+        "worst_case": {
+          "delta": -0.041634986045,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "sqrt_hellinger_divergence",
+        "family": "operator_convex_sqrt",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_f/direct_depol",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.456531866766,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 1,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "sqrt_hellinger_divergence",
+        "family": "operator_convex_sqrt",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_f/conjugate_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.009999804596,
+        "net_delta_min": -1.388067337828,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 2,
+        "worst_case": {
+          "delta": -0.041634986045,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "sqrt_hellinger_divergence",
+        "family": "operator_convex_sqrt",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_f/conjugate_proj",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.440725287979,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 3,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "sqrt_hellinger_divergence",
+        "family": "operator_convex_sqrt",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Se_b/direct_damp_minus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.023531253824,
+        "net_delta_min": -1.344323843981,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 4,
+        "worst_case": {
+          "delta": -0.041634986045,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "sqrt_hellinger_divergence",
+        "family": "operator_convex_sqrt",
+        "impostor_control": false,
+        "kind": "depol",
+        "label": "Ne_b/direct_depol_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.457101650258,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 5,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "sqrt_hellinger_divergence",
+        "family": "operator_convex_sqrt",
+        "impostor_control": false,
+        "kind": "damp",
+        "label": "Ni_b/conjugate_damp_plus",
+        "max_violation": 0.0,
+        "net_delta_max": -0.026616612985,
+        "net_delta_min": -1.292847377649,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 6,
+        "worst_case": {
+          "delta": -0.041634986045,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "sqrt_hellinger_divergence",
+        "family": "operator_convex_sqrt",
+        "impostor_control": false,
+        "kind": "proj",
+        "label": "Si_b/conjugate_proj_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.448817269927,
+        "operator_convex_claim": true,
+        "pawl": true,
+        "terrain": 7,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_petz_alpha_3_centered",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "damp",
+        "label": "Se_f/direct_damp_plus",
+        "max_violation": 0.002825274664,
+        "net_delta_max": -8.33394636354,
+        "net_delta_min": -326.257922525241,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 0,
+        "worst_case": {
+          "delta": 0.002825274664,
+          "state_index": 194,
+          "step": 23,
+          "violation": 0.002825274664
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "impostor_petz_alpha_3_centered",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "depol",
+        "label": "Ne_f/direct_depol",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.478741369299,
+        "operator_convex_claim": false,
+        "pawl": true,
+        "terrain": 1,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_petz_alpha_3_centered",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "damp",
+        "label": "Ni_f/conjugate_damp_minus",
+        "max_violation": 0.000806766588,
+        "net_delta_max": -1.028684946246,
+        "net_delta_min": -353.662492047569,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 2,
+        "worst_case": {
+          "delta": 0.000806766588,
+          "state_index": 117,
+          "step": 20,
+          "violation": 0.000806766588
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "impostor_petz_alpha_3_centered",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "proj",
+        "label": "Si_f/conjugate_proj",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.469508145819,
+        "operator_convex_claim": false,
+        "pawl": true,
+        "terrain": 3,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_petz_alpha_3_centered",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "damp",
+        "label": "Se_b/direct_damp_minus",
+        "max_violation": 0.002358236388,
+        "net_delta_max": -2.131819064868,
+        "net_delta_min": -346.654223783606,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 4,
+        "worst_case": {
+          "delta": 0.002358236388,
+          "state_index": 116,
+          "step": 19,
+          "violation": 0.002358236388
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "impostor_petz_alpha_3_centered",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "depol",
+        "label": "Ne_b/direct_depol_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.480342354022,
+        "operator_convex_claim": false,
+        "pawl": true,
+        "terrain": 5,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_petz_alpha_3_centered",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "damp",
+        "label": "Ni_b/conjugate_damp_plus",
+        "max_violation": 0.0093399871,
+        "net_delta_max": -5.432457395801,
+        "net_delta_min": -337.539475101831,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 6,
+        "worst_case": {
+          "delta": 0.0093399871,
+          "state_index": 118,
+          "step": 23,
+          "violation": 0.0093399871
+        }
+      },
+      {
+        "classification": "monotone-decreasing",
+        "direction": "decreasing",
+        "f": "impostor_petz_alpha_3_centered",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "proj",
+        "label": "Si_b/conjugate_proj_minus",
+        "max_violation": 0.0,
+        "net_delta_max": 0.0,
+        "net_delta_min": -0.479301098299,
+        "operator_convex_claim": false,
+        "pawl": true,
+        "terrain": 7,
+        "worst_case": {
+          "delta": 0.0,
+          "state_index": 0,
+          "step": 0,
+          "violation": 0.0
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_wavy_nonconvex",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "damp",
+        "label": "Se_f/direct_damp_plus",
+        "max_violation": 2.153235060553,
+        "net_delta_max": -1.193837308646,
+        "net_delta_min": -55.754835696054,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 0,
+        "worst_case": {
+          "delta": 2.153235060553,
+          "state_index": 53,
+          "step": 3,
+          "violation": 2.153235060553
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_wavy_nonconvex",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "depol",
+        "label": "Ne_f/direct_depol",
+        "max_violation": 0.593191510939,
+        "net_delta_max": 0.0,
+        "net_delta_min": -1.232750428238,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 1,
+        "worst_case": {
+          "delta": 0.593191510939,
+          "state_index": 171,
+          "step": 0,
+          "violation": 0.593191510939
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_wavy_nonconvex",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "damp",
+        "label": "Ni_f/conjugate_damp_minus",
+        "max_violation": 2.20091568542,
+        "net_delta_max": -0.164174362182,
+        "net_delta_min": -62.54601606704,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 2,
+        "worst_case": {
+          "delta": 2.20091568542,
+          "state_index": 232,
+          "step": 1,
+          "violation": 2.20091568542
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_wavy_nonconvex",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "proj",
+        "label": "Si_f/conjugate_proj",
+        "max_violation": 0.45527051318,
+        "net_delta_max": 0.151443663173,
+        "net_delta_min": -1.227692631915,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 3,
+        "worst_case": {
+          "delta": 0.45527051318,
+          "state_index": 114,
+          "step": 1,
+          "violation": 0.45527051318
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_wavy_nonconvex",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "damp",
+        "label": "Se_b/direct_damp_minus",
+        "max_violation": 2.153235060553,
+        "net_delta_max": -0.226050746768,
+        "net_delta_min": -59.299937008188,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 4,
+        "worst_case": {
+          "delta": 2.153235060553,
+          "state_index": 52,
+          "step": 3,
+          "violation": 2.153235060553
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_wavy_nonconvex",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "depol",
+        "label": "Ne_b/direct_depol_minus",
+        "max_violation": 0.585372826039,
+        "net_delta_max": 0.0,
+        "net_delta_min": -1.230446225283,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 5,
+        "worst_case": {
+          "delta": 0.585372826039,
+          "state_index": 171,
+          "step": 0,
+          "violation": 0.585372826039
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_wavy_nonconvex",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "damp",
+        "label": "Ni_b/conjugate_damp_plus",
+        "max_violation": 2.203207645551,
+        "net_delta_max": -0.665612542889,
+        "net_delta_min": -57.597866467143,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 6,
+        "worst_case": {
+          "delta": 2.203207645551,
+          "state_index": 109,
+          "step": 0,
+          "violation": 2.203207645551
+        }
+      },
+      {
+        "classification": "non-monotone",
+        "direction": "none",
+        "f": "impostor_wavy_nonconvex",
+        "family": "non_operator_convex_impostor",
+        "impostor_control": true,
+        "kind": "proj",
+        "label": "Si_b/conjugate_proj_minus",
+        "max_violation": 0.477230235508,
+        "net_delta_max": 0.155297776105,
+        "net_delta_min": -1.215156126493,
+        "operator_convex_claim": false,
+        "pawl": false,
+        "terrain": 7,
+        "worst_case": {
+          "delta": 0.477230235508,
+          "state_index": 114,
+          "step": 1,
+          "violation": 0.477230235508
+        }
+      }
+    ]
+  },
+  "fixed_points_bloch": {
+    "0": [
+      0.633651897485,
+      -0.067177909046,
+      0.71676300578
+    ],
+    "1": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "2": [
+      -0.633651897485,
+      0.067177909046,
+      -0.71676300578
+    ],
+    "3": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "4": [
+      0.067177909046,
+      -0.633651897485,
+      -0.71676300578
+    ],
+    "5": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "6": [
+      -0.067177909046,
+      0.633651897485,
+      0.71676300578
+    ],
+    "7": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "formal_admission_allowed": false,
+  "name": "Petz quasi-entropy pawl census",
+  "petz_formula": "S_f(rho||sigma)=sum_{i,j} mu_j f(lambda_i/mu_j) |<rho_i|sigma_j>|^2 from spectral decompositions rho=sum_i lambda_i |rho_i><rho_i| and sigma=sum_j mu_j |sigma_j><sigma_j|",
+  "promotion_allowed": false,
+  "quasi_entropy_family": [
+    {
+      "family": "operator_convex_petz",
+      "formula": "f(t)=t log(t)-t+1; affine-equivalent to U(rho||sigma)",
+      "impostor_control": false,
+      "name": "umegaki_x_log_x",
+      "operator_convex_claim": true
+    },
+    {
+      "family": "operator_convex_petz_alpha",
+      "formula": "f_alpha(t)=(t^alpha-1-alpha(t-1))/(alpha(alpha-1)), alpha=0.5",
+      "impostor_control": false,
+      "name": "petz_alpha_0_5_centered",
+      "operator_convex_claim": true
+    },
+    {
+      "family": "operator_convex_petz_alpha",
+      "formula": "f_alpha(t)=(t^alpha-1-alpha(t-1))/(alpha(alpha-1)), alpha=0.75",
+      "impostor_control": false,
+      "name": "petz_alpha_0_75_centered",
+      "operator_convex_claim": true
+    },
+    {
+      "family": "operator_convex_petz_alpha",
+      "formula": "f_alpha(t)=(t^alpha-1-alpha(t-1))/(alpha(alpha-1)), alpha=1.5",
+      "impostor_control": false,
+      "name": "petz_alpha_1_5_centered",
+      "operator_convex_claim": true
+    },
+    {
+      "family": "operator_convex_petz_alpha",
+      "formula": "f_alpha(t)=(t^alpha-1-alpha(t-1))/(alpha(alpha-1)), alpha=2",
+      "impostor_control": false,
+      "name": "petz_alpha_2_centered",
+      "operator_convex_claim": true
+    },
+    {
+      "family": "operator_convex_sqrt",
+      "formula": "f(t)=(sqrt(t)-1)^2",
+      "impostor_control": false,
+      "name": "sqrt_hellinger_divergence",
+      "operator_convex_claim": true
+    },
+    {
+      "family": "non_operator_convex_impostor",
+      "formula": "same centered power form with alpha=3; outside operator-convex validity",
+      "impostor_control": true,
+      "name": "impostor_petz_alpha_3_centered",
+      "operator_convex_claim": false
+    },
+    {
+      "family": "non_operator_convex_impostor",
+      "formula": "f(t)=(t-1)^2*(1+0.85*sin(5*log(t)))",
+      "impostor_control": true,
+      "name": "impostor_wavy_nonconvex",
+      "operator_convex_claim": false
+    }
+  ],
+  "run_parameters": {
+    "flow_segments": 24,
+    "flow_t": 2.4,
+    "noise_threshold": 1e-07,
+    "spectral_floor": 1e-12,
+    "state_grid_size": 256
+  },
+  "seed": 0,
+  "sim_id": "petz_quasi_entropy_pawl_census_sim",
+  "source_spine": [
+    "system_v7/constraint_core/sims_and_scripts/terrain_lyapunov_pawl_census_sim.py",
+    "system_v5/ops/QIT_ENGINE_FOUR_OPERATOR_SIGNED_MATH_20260522.md",
+    "system_v5/ops/AXES_TERRAINS_OPERATORS_MANIFOLD_SOURCE_LAYOUT_20260522.md",
+    "system_v5/ops/AXES_0_6_DEEP_MATH_DEFINITIONS_20260522.md"
+  ],
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "terrain_lyapunov_pawl_census_sim": "load_bearing"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "2x2 density matrices, spectral Petz quasi-entropy formula, monotonicity census, controls",
+      "used": true
+    },
+    "terrain_lyapunov_pawl_census_sim": {
+      "reason": "verbatim reuse of seeded_state_grid, terrain_flow, long_fixed_point, terrain constants, and monotonicity classifier",
+      "used": true
+    }
+  },
+  "verdict": {
+    "exit_policy": "always_exit_0_for_honest_verdict_mix",
+    "family_verdict": "family_pawls_uniformly",
+    "formal_admission_allowed": false,
+    "impostor_controls": {
+      "impostor_petz_alpha_3_centered": {
+        "failed_terrains": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "fails_monotonicity_somewhere": true,
+        "loud_if_pawls_everywhere": null
+      },
+      "impostor_wavy_nonconvex": {
+        "failed_terrains": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "fails_monotonicity_somewhere": true,
+        "loud_if_pawls_everywhere": null
+      }
+    },
+    "impostors_all_flip_somewhere": true,
+    "interpretation": "Umegaki is installed within a forced Petz operator-convex family on this grid",
+    "operator_convex_failures": {},
+    "promotion_allowed": false,
+    "wrong_fixed_point_breaks_every_family_member": true
+  },
+  "version": "1.0"
+}

@@ -1,0 +1,617 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "numpy": "load_bearing",
+    "python_stdlib": "supportive",
+    "scipy.linalg.expm": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "numpy": {
+      "reason": "load-bearing finite J3(O) coordinate arithmetic, fixed linear Peirce channel, cubic spectra, and grid DPI checks",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive import loading, timestamps, paths, and JSON serialization",
+      "tried": true,
+      "used": true
+    },
+    "scipy.linalg.expm": {
+      "reason": "load-bearing automorphism/isometry control from exp([L_a,L_b])",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "banned_modes_guard": {
+    "J2_or_spin_factor_exceptional_claim": false,
+    "conditioned_single_kraus_branch": false,
+    "diagonal_shadow_relative_entropy_formula_for_main_claim": false,
+    "hardcoded_verdict": false,
+    "state_dependent_normalization_in_phi": false
+  },
+  "blocked_consumers": [
+    "formal Jordan-DPI theorem",
+    "canonical-by-process promotion",
+    "J2/spin-factor exceptional-rung claims",
+    "Axis0, bridge, manifold, or physics admission"
+  ],
+  "claim_ceiling": "Scratch diagnostic finite-grid evidence for one linear positive trace-preserving J3(O) Peirce channel; no theorem, no canonical admission, no J2/spin-factor exceptional claim.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "automorphism_isometry": {
+      "definition": "automorphism A=exp(t[L_a,L_b]); compare D(A rho || A sigma) to D(rho || sigma)",
+      "derivation_matrix_norm": 2.5495097567963922,
+      "max_product_preservation_error": 7.688453649380384e-17,
+      "max_relative_entropy_isometry_error": 4.440892098500626e-16,
+      "pass": true,
+      "sample_rows": [
+        {
+          "abs_diff": 3.3306690738754696e-16,
+          "after": 0.3742744655089627,
+          "before": 0.37427446550896304,
+          "state_index": 0
+        },
+        {
+          "abs_diff": 3.3306690738754696e-16,
+          "after": 0.4354651608331338,
+          "before": 0.43546516083313414,
+          "state_index": 1
+        },
+        {
+          "abs_diff": 0.0,
+          "after": 0.3210380973055038,
+          "before": 0.3210380973055038,
+          "state_index": 2
+        },
+        {
+          "abs_diff": 1.1102230246251565e-16,
+          "after": 0.49482486184061947,
+          "before": 0.4948248618406196,
+          "state_index": 3
+        },
+        {
+          "abs_diff": 0.0,
+          "after": 0.48923351604001997,
+          "before": 0.48923351604001997,
+          "state_index": 4
+        },
+        {
+          "abs_diff": 1.1102230246251565e-16,
+          "after": 0.3274692718251321,
+          "before": 0.3274692718251322,
+          "state_index": 5
+        }
+      ]
+    },
+    "classical_simplex": {
+      "architecture": "same fixed-weight identity plus Peirce diagonal projection; on the classical simplex the projection is identity",
+      "max_increase": 0.0,
+      "sample_count": 128,
+      "violation_count": 0,
+      "zero_violations": true
+    },
+    "wrong_sigma": {
+      "breaks": true,
+      "max_increase": 0.0030867777917249484,
+      "meaning": "Control deliberately uses a full octonionic sigma that is not fixed by Phi; the first control state is wrong_sigma itself, so D(sigma||sigma)=0 and Phi(sigma)!=sigma must break the premise.",
+      "phi_wrong_sigma_distance": 0.014172059684015722,
+      "sample_count": 37,
+      "sample_rows": [
+        {
+          "after": 0.0030867777917246153,
+          "before": -3.3306690738754696e-16,
+          "delta": 0.0030867777917249484,
+          "state_index": 0,
+          "state_role": "wrong_sigma_itself"
+        },
+        {
+          "after": 0.6206830598233385,
+          "before": 0.6323579992187608,
+          "delta": -0.011674939395422301,
+          "state_index": 1,
+          "state_role": "main_grid_state"
+        },
+        {
+          "after": 0.9969486834855438,
+          "before": 1.0155639420473106,
+          "delta": -0.018615258561766823,
+          "state_index": 2,
+          "state_role": "main_grid_state"
+        },
+        {
+          "after": 1.256407562009942,
+          "before": 1.2750912821736375,
+          "delta": -0.018683720163695572,
+          "state_index": 3,
+          "state_role": "main_grid_state"
+        },
+        {
+          "after": 1.3093808101441173,
+          "before": 1.337292498523678,
+          "delta": -0.027911688379560706,
+          "state_index": 4,
+          "state_role": "main_grid_state"
+        },
+        {
+          "after": 1.2150307532543114,
+          "before": 1.2504777859720209,
+          "delta": -0.03544703271770944,
+          "state_index": 5,
+          "state_role": "main_grid_state"
+        },
+        {
+          "after": 1.1750476328802066,
+          "before": 1.1903711050208792,
+          "delta": -0.015323472140672534,
+          "state_index": 6,
+          "state_role": "main_grid_state"
+        },
+        {
+          "after": 1.2875657536731624,
+          "before": 1.322497188874304,
+          "delta": -0.034931435201141614,
+          "state_index": 7,
+          "state_role": "main_grid_state"
+        }
+      ],
+      "violation_count": 1,
+      "wrong_sigma_log": {
+        "method": "Lagrange interpolation on the cubic roots of sigma",
+        "projector_idempotent_error_max": 7.813658491917151e-16,
+        "projector_orthogonality_error_max": 6.97667693925902e-16,
+        "projector_reconstruction_error": 1.1835081091072396e-16,
+        "projector_unit_sum_error": 2.8762949809361383e-16,
+        "sigma_eigenvalues": [
+          0.6829735773999693,
+          0.3045891520603582,
+          0.012437270539672418
+        ]
+      },
+      "wrong_sigma_sampling": {
+        "associator_norm": 0.006798930780527256,
+        "attempts": 35,
+        "block_norms": [
+          0.21042432610121894,
+          0.16553571176899196,
+          0.19975322510603105
+        ],
+        "imaginary_block_norms": [
+          0.1953660958647737,
+          0.1654422679037677,
+          0.1993065828990337
+        ],
+        "min_eigenvalue": 0.012437270539672418
+      }
+    }
+  },
+  "dpi_table": {
+    "associator_gate": {
+      "floor": 0.001,
+      "flow_confined_to_associative_slice": false,
+      "fraction_above_floor": 1.0,
+      "pass": true,
+      "pass_count": 36,
+      "required_fraction": 0.8,
+      "sample_count": 36,
+      "trajectory_max_max": 0.012051358471678741,
+      "trajectory_max_median": 0.006754748952547495,
+      "trajectory_max_min": 0.002682099072144721,
+      "trajectory_min_min": 0.0015501225450115588,
+      "trajectory_statistic": "max associator(x01,x02,x12) along each trajectory"
+    },
+    "comparison": "D(Phi(rho)||sigma) - D(rho||sigma)",
+    "dpi_holds_on_grid": true,
+    "max_increase": -0.009207645136616538,
+    "most_negative_delta": -0.05350336324704441,
+    "sample_count": 36,
+    "serialized_violation_trajectories": [],
+    "steps_per_state": 6,
+    "violation_count": 0,
+    "witness_rows": [
+      {
+        "D_end": 0.23620929639722454,
+        "D_start": 0.37427446550896304,
+        "associator_max": 0.005026369070731227,
+        "associator_min": 0.0029049963504364025,
+        "max_step_increase": -0.017038258037684106,
+        "state_index": 0
+      },
+      {
+        "D_end": 0.31982284556272433,
+        "D_start": 0.43546516083313414,
+        "associator_max": 0.004983861729408783,
+        "associator_min": 0.002880429178851749,
+        "max_step_increase": -0.014829188326125786,
+        "state_index": 1
+      },
+      {
+        "D_end": 0.25380844722691853,
+        "D_start": 0.3210380973055038,
+        "associator_max": 0.0032124744366839944,
+        "associator_min": 0.001856653656568758,
+        "max_step_increase": -0.009207645136616538,
+        "state_index": 2
+      },
+      {
+        "D_end": 0.36933303549527263,
+        "D_start": 0.4948248618406196,
+        "associator_max": 0.004540411264565304,
+        "associator_min": 0.002624136422820161,
+        "max_step_increase": -0.016878022351291433,
+        "state_index": 3
+      },
+      {
+        "D_end": 0.3172986675714501,
+        "D_start": 0.48923351604001997,
+        "associator_max": 0.008896127119708686,
+        "associator_min": 0.005141527900579018,
+        "max_step_increase": -0.021155162209189005,
+        "state_index": 4
+      },
+      {
+        "D_end": 0.25934547641213124,
+        "D_start": 0.3274692718251322,
+        "associator_max": 0.0027996164768804366,
+        "associator_min": 0.001618041877449348,
+        "max_step_increase": -0.009429543045314404,
+        "state_index": 5
+      }
+    ]
+  },
+  "eligible_consumers": [],
+  "formal_admission_allowed": false,
+  "gates": {
+    "diagonal_regression": {
+      "max_abs_diff": 2.220446049250313e-16,
+      "meaning": "For diagonal sigma only, the full spectral-projector log must agree with the old diagonal-shadow formula.",
+      "pass": true,
+      "sample_rows": [
+        {
+          "abs_diff": 1.1102230246251565e-16,
+          "diagonal_shadow": 0.08512282595722165,
+          "full": 0.08512282595722176,
+          "sample": 0
+        },
+        {
+          "abs_diff": 2.220446049250313e-16,
+          "diagonal_shadow": 0.2059024334173949,
+          "full": 0.20590243341739511,
+          "sample": 1
+        },
+        {
+          "abs_diff": 2.220446049250313e-16,
+          "diagonal_shadow": 0.06558296087047388,
+          "full": 0.0655829608704741,
+          "sample": 2
+        },
+        {
+          "abs_diff": 2.220446049250313e-16,
+          "diagonal_shadow": 0.3742744655089628,
+          "full": 0.37427446550896304,
+          "sample": 3
+        },
+        {
+          "abs_diff": 2.220446049250313e-16,
+          "diagonal_shadow": 0.4354651608331339,
+          "full": 0.43546516083313414,
+          "sample": 4
+        },
+        {
+          "abs_diff": 0.0,
+          "diagonal_shadow": 0.3210380973055038,
+          "full": 0.3210380973055038,
+          "sample": 5
+        },
+        {
+          "abs_diff": 0.0,
+          "diagonal_shadow": 0.4948248618406196,
+          "full": 0.4948248618406196,
+          "sample": 6
+        },
+        {
+          "abs_diff": 2.220446049250313e-16,
+          "diagonal_shadow": 0.48923351604001974,
+          "full": 0.48923351604001997,
+          "sample": 7
+        }
+      ],
+      "samples": 15,
+      "tolerance": 1e-12
+    },
+    "fixed_point": {
+      "pass": true,
+      "phi_sigma_distance": 0.0,
+      "sigma": "diag(0.50,0.30,0.20)",
+      "sigma_min_eigenvalue": 0.19999999999999987,
+      "sigma_trace": 1.0
+    },
+    "linearity": {
+      "max_superposition_error": 1.3650445506097805e-16,
+      "pass": true,
+      "sample_rows": [
+        {
+          "a": 0.5898959165637815,
+          "b": -2.192496725059042,
+          "sample": 0,
+          "superposition_error": 4.696685723975016e-17
+        },
+        {
+          "a": -1.1911495707048543,
+          "b": 2.070178576907857,
+          "sample": 1,
+          "superposition_error": 6.909830630627594e-17
+        },
+        {
+          "a": -1.0418078020668382,
+          "b": 1.8951476562581178,
+          "sample": 2,
+          "superposition_error": 7.973656504502513e-17
+        },
+        {
+          "a": 0.4223207306512584,
+          "b": 0.28473800722111225,
+          "sample": 3,
+          "superposition_error": 1.8344025122097024e-17
+        }
+      ],
+      "samples": 24,
+      "test": "Phi(a*x+b*y) == a*Phi(x)+b*Phi(y)",
+      "tolerance": 1e-14
+    },
+    "octonion_associator": {
+      "floor": 0.001,
+      "flow_confined_to_associative_slice": false,
+      "fraction_above_floor": 1.0,
+      "pass": true,
+      "pass_count": 36,
+      "required_fraction": 0.8,
+      "sample_count": 36,
+      "trajectory_max_max": 0.012051358471678741,
+      "trajectory_max_median": 0.006754748952547495,
+      "trajectory_max_min": 0.002682099072144721,
+      "trajectory_min_min": 0.0015501225450115588,
+      "trajectory_statistic": "max associator(x01,x02,x12) along each trajectory"
+    },
+    "trace_positivity": {
+      "grid_states": 36,
+      "max_trace_error": 2.220446049250313e-16,
+      "min_eigenvalue": 2.5169162670146683e-06,
+      "positivity_pass": true,
+      "positivity_tolerance": 1e-09,
+      "sample_rows": [
+        {
+          "min_eigenvalue": 0.015721257743291417,
+          "state_index": 0,
+          "step": 0,
+          "trace": 1.0
+        },
+        {
+          "min_eigenvalue": 0.025029106537576062,
+          "state_index": 0,
+          "step": 1,
+          "trace": 1.0
+        },
+        {
+          "min_eigenvalue": 0.06730301462033916,
+          "state_index": 0,
+          "step": 6,
+          "trace": 1.0
+        },
+        {
+          "min_eigenvalue": 0.027664091928458645,
+          "state_index": 1,
+          "step": 0,
+          "trace": 1.0
+        },
+        {
+          "min_eigenvalue": 0.036286689389179505,
+          "state_index": 1,
+          "step": 1,
+          "trace": 1.0
+        },
+        {
+          "min_eigenvalue": 0.07549511653876084,
+          "state_index": 1,
+          "step": 6,
+          "trace": 1.0
+        },
+        {
+          "min_eigenvalue": 0.08083233577633792,
+          "state_index": 2,
+          "step": 0,
+          "trace": 1.0
+        },
+        {
+          "min_eigenvalue": 0.08778971530288476,
+          "state_index": 2,
+          "step": 1,
+          "trace": 1.0
+        },
+        {
+          "min_eigenvalue": 0.1194905687749507,
+          "state_index": 2,
+          "step": 6,
+          "trace": 1.0
+        }
+      ],
+      "trace_preservation_pass": true,
+      "trace_tolerance": 1e-12,
+      "trajectory_steps": 6
+    }
+  },
+  "generated_at": "2026-07-09T05:17:11Z",
+  "map": {
+    "alpha": 0.97,
+    "fixed_point_sigma": [
+      0.5,
+      0.3,
+      0.2
+    ],
+    "formula": "Phi(rho)=alpha*U_1(rho)+(1-alpha)*sum_i U_ei(rho)",
+    "positivity_reason": "convex combination of positive quadratic-representation/Peirce projection maps",
+    "trace_preservation_reason": "tr(U_1 rho)=tr(rho), and sum_i U_ei is the trace-preserving Peirce diagonal projection for the standard Jordan frame",
+    "weights_state_independent": true
+  },
+  "object_id": "jordan_dpi_probe_v3",
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/jordan_dpi_probe_v3_sim_results.json",
+  "rng": "numpy.default_rng(0)",
+  "schema": "codex_ratchet.jordan_dpi_probe_v3_result.v1",
+  "seed": 0,
+  "sim_class": "jordan_dpi_finite_grid_probe",
+  "sim_execution_kind": "classical",
+  "sim_id": "jordan_dpi_probe_v3",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/jordan_dpi_probe_v3_sim.py",
+  "spectral_log_sigma": {
+    "method": "Lagrange interpolation on the cubic roots of sigma",
+    "projector_idempotent_error_max": 2.8469428476805095e-15,
+    "projector_orthogonality_error_max": 2.554334094661818e-15,
+    "projector_reconstruction_error": 6.206335383118183e-17,
+    "projector_unit_sum_error": 2.482534153247273e-16,
+    "sigma_eigenvalues": [
+      0.4999999999999999,
+      0.3000000000000002,
+      0.19999999999999987
+    ]
+  },
+  "state_grid": {
+    "construction": "regenerated random_density_candidate pool; accepted only density states with all three off-diagonal octonion blocks nonzero and generic imaginary parts",
+    "first_rows": [
+      {
+        "associator_norm": 0.005026369070731227,
+        "attempts": 30,
+        "block_norms": [
+          0.17910710491389362,
+          0.2156050237139725,
+          0.10450237139576979
+        ],
+        "imaginary_block_norms": [
+          0.17901971962338378,
+          0.20360067274920027,
+          0.10446881767371217
+        ],
+        "min_eigenvalue": 0.015721257743291417,
+        "state_index": 0
+      },
+      {
+        "associator_norm": 0.004983861729408783,
+        "attempts": 1,
+        "block_norms": [
+          0.18614416860911162,
+          0.1664977295476276,
+          0.13207204646038856
+        ],
+        "imaginary_block_norms": [
+          0.17723105049583265,
+          0.12139691127177911,
+          0.12224283449960657
+        ],
+        "min_eigenvalue": 0.027664091928458645,
+        "state_index": 1
+      },
+      {
+        "associator_norm": 0.0032124744366839944,
+        "attempts": 2,
+        "block_norms": [
+          0.183541166286228,
+          0.11229626260112965,
+          0.1111332509521648
+        ],
+        "imaginary_block_norms": [
+          0.16115429506520082,
+          0.10558510326253671,
+          0.10941249020166192
+        ],
+        "min_eigenvalue": 0.08083233577633792,
+        "state_index": 2
+      },
+      {
+        "associator_norm": 0.004540411264565304,
+        "attempts": 9,
+        "block_norms": [
+          0.21714360680667366,
+          0.1795780749470712,
+          0.19290606729997384
+        ],
+        "imaginary_block_norms": [
+          0.18696456214308155,
+          0.1793497902587624,
+          0.1880370816816432
+        ],
+        "min_eigenvalue": 0.042845899292710765,
+        "state_index": 3
+      },
+      {
+        "associator_norm": 0.008896127119708686,
+        "attempts": 14,
+        "block_norms": [
+          0.21304745050884813,
+          0.23194576104679349,
+          0.17544429740153367
+        ],
+        "imaginary_block_norms": [
+          0.20906775555183746,
+          0.21430799523688057,
+          0.15924761764182335
+        ],
+        "min_eigenvalue": 0.003745510746888059,
+        "state_index": 4
+      },
+      {
+        "associator_norm": 0.0027996164768804366,
+        "attempts": 47,
+        "block_norms": [
+          0.11993408945993272,
+          0.1347839174833735,
+          0.18388579247483955
+        ],
+        "imaginary_block_norms": [
+          0.09695265361922914,
+          0.12234039241742459,
+          0.17797585825592158
+        ],
+        "min_eigenvalue": 0.08900426169471418,
+        "state_index": 5
+      }
+    ],
+    "initial_associator_max": 0.012051358471678741,
+    "initial_associator_median": 0.006754748952547495,
+    "initial_associator_min": 0.002682099072144721,
+    "min_initial_eigenvalue": 2.5169162670146683e-06,
+    "sample_count": 36,
+    "source_indices_note": "Equivalent to using the random_density_candidate tail at indices 122+ of the older grid; no coordinate-only or primitive-frame states are sampled.",
+    "state_scale": 0.09,
+    "total_attempts": 554
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "python_stdlib": "supportive",
+    "scipy.linalg.expm": "load_bearing"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "load-bearing finite J3(O) coordinate arithmetic, fixed linear Peirce channel, cubic spectra, and grid DPI checks",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive import loading, timestamps, paths, and JSON serialization",
+      "tried": true,
+      "used": true
+    },
+    "scipy.linalg.expm": {
+      "reason": "load-bearing automorphism/isometry control from exp([L_a,L_b])",
+      "tried": true,
+      "used": true
+    }
+  },
+  "verdict": "dpi_holds_on_grid",
+  "violation_crosscheck": {
+    "checked_count": 0,
+    "confirmed_count": 0,
+    "method": "closed cubic solver vs numpy.roots cubic solver; trace-log-sigma term recomputed through numpy.longdouble",
+    "rows": [],
+    "triggered": false
+  }
+}

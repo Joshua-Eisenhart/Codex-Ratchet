@@ -2251,14 +2251,14 @@ ratcheting entropy is U = Umegaki relative entropy to the terrain's OWN fixed po
 8 terrains (CPTP data-processing); von Neumann S is a pawl only on depol/proj terrains (they mix), NOT on damp (they
 purify). Grounded + shuffled-generator controlled. I did NOT re-derive L2; v7 owns it.
 
-L3 FLOOR (per_terrain_entropy_forcing_sim, artifact TBD): is anything forced BELOW terrain x operator? T1 the native
+L3 FLOOR (per_terrain_entropy_forcing_sim, version 254ca5de-6305-4523-a546-369425f34eb2): is anything forced BELOW terrain x operator? T1 the native
 qubit operator has 31 valid (q1,q2) sub-splits composing to the same channel (not unique => not forced); T2 the total
 U-decrement is fixed (0.2804->0.0355) but the intermediate-U split across sub-steps slides freely (span 0.1321,
 arbitrary). BOTH => the ratchet FLOOR is the terrain x (operator, U-entropy) rung; below it is engine DYNAMICS (the DOFs
 playing out), not more ratchet. The floor test explicitly predicted: a deeper forced rung would need a richer carrier
 (3-qubit/octonion), a DIFFERENT ladder, not a finer qubit split.
 
-THE DEEPER RUNG (jordan_octonion_observable_rung_sim, artifact TBD) -- exactly the ladder the floor test predicted, and
+THE DEEPER RUNG (jordan_octonion_observable_rung_sim, version ecf02924-90cc-45ed-b8aa-6ad9ce829cc7) -- exactly the ladder the floor test predicted, and
 the owner named it. Valid octonions from scratch (Fano-plane table, norm-composition-exact 0.0, alternative 1.8e-14,
 nonassoc 36.3, noncomm 17.9). THREE forced facts: (1) octonion nonassociativity breaks associative-matrix observables;
 the Jordan product a o b=1/2(ab+ba) is the surviving observable algebra. (2) Hermitian octonionic n x n matrices satisfy
@@ -2269,3 +2269,248 @@ octonionic carrier admits a consistent (Jordan) observable algebra only up to 3x
 entangled states (Bell -1.0, product 0) -- the honest upgrade over the U-to-fixed-point pawl (>=0, correct for
 single-terrain relaxation): the ENTANGLEMENT entropy that lives on the octonionic/3-qubit rung carries a sign.
 Controls flip (n=4 Jordan-fails; conditional entropy negative only on entangled). scratch_diagnostic. Harness 113 GREEN.
+
+## UP-108 -- the exceptional Lie algebras as a ratchet over the octonionic carrier (2026-07-08)
+
+Owner: "so g2 ratchets to f4? the exceptional lie algebras all have to be processed in the ratchet. not sure order."
+
+ANSWER (derived, not asserted): the order is G2 -> F4 -> E6 -> E7 -> E8, each the symmetry of ONE additional layer of
+structure built on the SAME octonions (shortest-leaps-up). This is the symmetry-group SHADOW of the UP-107 carrier ->
+observable ladder (O -> H_3(O)); G2 -> F4 is literally that step seen through automorphisms.
+  G2 = Aut(O) = Der(octonions),        dim 14  -- symmetry of the CARRIER            [DERIVED in-sim]
+  F4 = Aut(H_3(O)) = Der(Albert alg),  dim 52  -- symmetry of the OBSERVABLE algebra [DERIVED in-sim]
+  E6 = str(H_3(O)) = Der + L_traceless,dim 78  -- symmetry of the CUBIC form         [DERIVED in-sim, 26 traceless L]
+  E7 = conformal / Freudenthal triple, dim 133 -- CONFORMAL level                    [CITED, magic square]
+  E8 = full magic-square corner,       dim 248 -- FULL structure                     [CITED, magic square]
+G2 c F4 confirmed constructively: a G2 derivation of O, applied entrywise to the octonionic off-diagonals of a
+Hermitian 3x3 matrix, is an F4 derivation of H_3(O) (Jordan-derivation defect 9.1e-15). So the O->H_3(O) ratchet and
+the G2->F4 ratchet are the SAME step. Derivation boundary marked: g2/f4/e6 derived from the octonion/Albert structure;
+e7/e8 cited from Freudenthal-Tits. Controls: wrong octonion table -> wrong Der-dims; non-derivation entrywise map ->
+nonzero Jordan defect. Harness 114 GREEN. (exceptional_lie_ratchet_sim.py)
+
+## UP-109 -- where the engines sit on the division-algebra ladder; the exceptional tower is the NEXT climb (2026-07-08)
+
+Closes the forcing-link left open by UP-107 (jordan_octonion_observable_rung flagged: H_3(O) dim 27 != 3-qubit 64 !=
+single-qubit engine-op 4; "do engines run on H_3(O)?" OPEN).
+
+RESOLUTION (derived): a SINGLE qubit's rotation algebra su(2) IS the quaternions Im(H), exactly -- with i=-i*sx,
+j=-i*sy, k=-i*sz the Hamilton relations hold (i^2=j^2=k^2=-1, ij=k, jk=i, ki=j; defect <1e-9). The engines are
+single-qubit-per-terrain, so they run on the QUATERNION rung H (associative, dim 4). Octonions (dim 8, nonassoc, defect
+14.2), H_3(O) (dim 27), and the F4/E6 tower are STRICTLY HIGHER -- the next forced division-algebra step, NOT the
+engines' current floor.
+
+DIVISION-ALGEBRA LADDER (Hurwitz) and where the model sits:
+  R dim 1 pre-quantum | C dim 2 complex qubit EARNED (F01+N01) | H dim 4 quaternion = ENGINES RUN HERE (su(2)=Im H) |
+  O dim 8 octonion nonassoc = NEXT FORCED CLIMB (carrier floor, H_3(O) Jordan rung, F4/E6 exceptional tower per UP-107/108)
+
+So "engines run on H_3(O)" is FALSE (dim 4 != 27); the honest statement is the engines are at H, one division-algebra
+step below O, and the octonion/exceptional tower is a genuine target the ratchet points at. Counting coincidences
+(8 terrains ~ dim O=8; 2 engine types ~ 2 chiralities) are correspondences, NOT algebra homomorphisms: O has an
+identity unit, the terrain set has no distinguished identity terrain. Controls: octonion nonassociativity (14.2>0)
+confirms no associative qubit algebra can carry it. Harness 115 GREEN. (engine_division_algebra_rung_sim.py)
+
+## UP-110 -- the UPPER MANIFOLD (axes 7-12): field of engines, Choi/superoperator level, home of IGT (2026-07-08)
+
+Owner: "axis 7-12, which is a field of engines running in relation to each other, and the natural home of igt. so there
+may need more ratcheting for a field of engines, and the geometry those engines themselves are embedded into, rather
+than just a flat finite checkerboard. so the exceptional lie algebras may have more value at that level."
+
+DOC-GROUNDED in AXES_0_12_MASTER.md sec 2 (Upper Manifold / Mirror Axes): axes 7-12 map the constraint slices onto the
+Operator/Choi manifold, "strictly isomorphic A_i -> A_{i+6} operating over superoperators (Choi matrices) rather than
+density matrices"; base<->mirror conflation = KILL.
+
+(1) MIRROR = GENUINE HIGHER OBJECT. base engine = single qubit, 2x2 density, dim 4 (= H quaternion, UP-109). mirror =
+the channel's Choi matrix, 4x4, dim 16 -- one tier up. Built by direct Lindblad integration of each terrain channel on
+the 4 basis matrices (linear, TP; the naive trace-normalized flow divides-by-zero on traceless basis inputs -- fixed).
+All 8 terrain Choi valid CPTP (Tr_out J=I, defect 5.6e-16), pairwise-distinct at full-Choi (min 0.5211).
+
+(2) DOC CORRECTION -- "strictly isomorphic A_i->A_{i+6}" is TOO STRONG. base Axis-1 (state mixedness) vs mirror Axis-7
+(Choi entropy = deviation from unitary): Spearman rho ~+0.77, NOT +1.0. The mirror is a COARSER, channel-KIND partition
+(damp terrains 0/2/4/6 one Choi-entropy value, depol 1/5 another, proj 3/7 another) because the Choi carries channel
+structure a single state lacks. So the mirror is a genuine DISTINCT upper level, not an order-identical copy. Corrected
+to "structurally related, rank-correlated (~0.77), not isomorphic." (Auditor-style catch of a doc overclaim.)
+
+(3) IGT FIELD RELATION (the tier's point). engines-as-objects compared pairwise = a meta-graph (Axis-8 seed). Choi-
+distance adjacency has non-trivial centrality (depol terrains 1,5 most central, row-sum 5.99 vs 7.99). IGT lives HERE
+(engines as players in a field), not inside one engine. Where exceptional algebras gain value: the SYMMETRY of the
+field of engines (many Choi, dim >> one channel's 16), consistent with UP-109 (single engine at H; the field/upper-
+manifold is where higher structure -- O, H_3(O), F4/E6 -- becomes native). SEED: field geometry + symmetry group OPEN
+for further ratcheting. Harness 116 GREEN. (upper_manifold_mirror_axes_field_sim.py)
+
+## UP-111 -- field symmetry is CLASSICAL, not exceptional (honest negative; constrains where the tower lives) (2026-07-08)
+
+Owner instinct under test: "the exceptional lie algebras may have more value at that [field] level."
+
+Direct answer: NO -- the exceptional tower does not emerge for free at the field/upper-manifold level of QUBIT engines.
+(1) discrete 8-terrain field: Choi-distance metric automorphism group order 4 (finite; equivalence classes {0,2,4,6}
+damp / {1,5} depol / {3,7} proj). A finite point set cannot carry a continuous Lie symmetry -> NOT G2/F4. (2) continuous
+single-engine Choi symmetry: J -> (U(x)V)J(U(x)V)^dag, U,V in SU(2) => su(2)+su(2)=so(4), dim 6 (verified by generator
+rank). so(4) is classical/quaternionic (H(x)H~so(4)), NOT exceptional (g2=14/f4=52/e6=78).
+
+CONCLUSION: the mirror lift (density->Choi, UP-110) is a CLASSICAL so(4) step on the MIRROR axis; the exceptional
+structure lives on the CARRIER axis (H->O, UP-107/108). The two are ORTHOGONAL -- the field/upper-manifold does NOT
+bypass the carrier rung. Reaching the exceptional tower requires lifting the engine CARRIER H->O (the open UP-109
+forcing step), not the field lift alone. This is a useful negative: it locates the exceptional tower on the carrier
+axis, not the field axis, and disciplines the "exceptional at the field level" intuition. Consistent with UP-109
+(single qubit engine sits at H). Harness 117 GREEN. (field_symmetry_is_classical_not_exceptional_sim.py)
+
+## UP-112 -- octonion FORK: H->O is NOT forced (honest closure of the exceptional arc) (2026-07-08)
+
+Owner: "clifford, jordan, albert, are just some [math] that have been [useful]" -- map the RANGE, forced vs available.
+Also processed codex desktop's bundle-77 return: their choi_field_multiaxis_null_albert_stress_sim + Grok 4.5 matched
+UP-110/111 exactly (TP defect 5.555e-16, Choi min-dist 0.521087, mixedness<->Choi-entropy rho +0.771) and BLOCK the
+"natural/canonical Choi-to-octonion/Albert map" claim. Third independent corroboration.
+
+FINDING: the carrier lift H->O is an UNFORCED observable-side FORK, not a forced rung. (1) the 3-qubit operator algebra
+M_8(C) is ASSOCIATIVE (defect ~4e-14) -> the 3-qubit floor does NOT force octonions. (2) the quaternions H are
+noncommutative (2.83) AND associative (0) -> N01 does NOT force octonions; N01 is satisfied at H. (3) THE FORK
+(root_axioms:51; 05_NONASSOCIATIVITY_BRANCHES.md:104-126; whole-physics ledger:561-572): associativity-required basin
+= {H}; not-required basin = {H,O}; both consistent with {F01,N01}; sedenions excluded by zero-divisors either way. This
+independently reproduces the owner's DECISIVE, 3-model-panel-cleared root-axiom finding: "non-associativity is INSTALLED
+not forced." Nonassociativity is an observable/probe-side fork, NOT a new root constraint.
+
+RANGE MAP (forced vs fork): quaternion H = FORCED (engines run here, UP-109). Octonion O / Albert H_3(O) / exceptional
+F4,E6 (UP-107/108) = genuine math but LIVE on the {H,O} branch, NOT forced. Clifford Cl_n = associative -> {H} branch,
+always available. TO EARN the octonion rung: exhibit a mechanism where GROUPING (nonassociativity/T01) is load-bearing
+-- a demand a single associative carrier cannot close. No current engine mechanism requires it. So the exceptional
+tower is genuine mathematics on a LIVE-but-unforced branch; the precise missing piece is a T01-load-bearing demand.
+Harness 118 GREEN. (octonion_fork_not_forced_sim.py)
+
+## UP-113 -- T01 grouping-demand search: H is the CEILING for the present engines (closes the octonion arc) (2026-07-08)
+
+Follows UP-112 (H->O is an unforced fork; to EARN O need a mechanism where grouping/T01 is load-bearing with OCTONIONIC
+nonassociativity). This sim exhaustively searches the engine's stage-combining operations for such a mechanism.
+
+THREE candidates, each classified: (1) CHANNEL COMPOSITION -- the engine's ACTUAL stage-combining operation -- is
+ASSOCIATIVE by construction (((S3.S2).S1)==(S3.(S2.S1)), defect 1.3e-16); function composition always is, so it cannot
+be a T01 demand. (2) JORDAN PRODUCT 1/2(AB+BA) of stage superoperators is nonassociative (defect 0.07) but the engine
+does NOT compose via it -> not load-bearing. (3) FIELD/LIE BRACKET [A,B]=AB-BA (3-engine interaction) is nonassociative
+(defect 0.28) but OBEYS the JACOBI identity (defect 2.2e-16) -> a LIE algebra (so(4)-type, matching UP-111's classical
+field symmetry), NOT octonionic.
+
+THE JACOBI DISCRIMINATOR (decisive): octonions are NON-Lie -- they FAIL Jacobi and satisfy Moufang instead. Every
+natural qubit-superoperator combination is built from the matrix commutator, which ALWAYS obeys Jacobi -> stays
+Lie/classical. So NO operation available to the engine mechanics yields octonionic (non-Jacobi) nonassociativity.
+
+CONCLUSION: H is the CEILING for the present engine mechanics. Earning the octonion rung requires a genuinely NON-LIE,
+NON-JACOBI (Moufang) combination of engines -- a NEW mechanism absent from the engines as built (channel composition is
+associative; every bracket is Lie). The octonion/exceptional tower (UP-107/108) is genuine mathematics on the {H,O}
+branch but stays LIVE-but-unforced (UP-112). This is the precise, constructive close of the octonion arc: not "octonions
+are wrong," but "the current engines close all demands at H; a specifically non-Jacobi grouping mechanism is the exact
+missing piece that would lift them to O." Harness 119 GREEN. (t01_grouping_demand_search_sim.py)
+
+## UP-114 -- Axis-0 entropy gradient run END-TO-END on the engine pair (closes the biggest engine seam) (2026-07-08)
+
+Owner: "axis0 ... it is an entropy gradient" / "do we have running qit engines. axis0 at start and end?" The entropy-
+gradient FACE of Axis-0 was earned at the cosmogenesis carrier (foundational_ratchet_entropy_gradient_sim) but never
+run on the RUNNING engine pair. This closes that seam using the EARNED definition: Axis-0 = available distinguishability
+(sum of pairwise trace distances the possibility set offers) MINUS resolved distinguishability (best-basis access of the
+carrier's acquired probes). Pure quantum distinguishability, no bits/vectors.
+
+Run on the full Type-1+Type-2 closed 720 double loop (slot order T1_OUT,T1_IN,T2_OUT,T2_IN), measured at START (pair
+opens, 8 terrains live) and END (after closure, 8 seeds):
+  - ABSOLUTE gap relaxes 0.4579 -> 0.0159. HONEST CORRECTION: this is mostly CONTRACTION -- the dissipative flow
+    collapses available distinguishability (9.10 -> 0.23), and a pure depolarizing collapse closes the gap just as well.
+    So "the Axis-0 gradient vanishes at closure" is NOT a clean engine claim; it inherits the flow's contraction.
+  - CONTRACTION-FREE Axis-0 = scale-invariant unresolved fraction (avail-resolved)/avail = 0.0503 START, 0.0694 END:
+    small and near-stable. The engine's acquired bases resolve ~93-95% of the distinguishability the room offers,
+    THROUGHOUT. That is the honest engine-pair Axis-0 reading -- near-complete resolution, not a vanishing gradient.
+
+CONTROLS: 1-probe (impoverished bases) unresolved frac 0.5312 (bases genuinely matter, not tautology); N01 loop-order
+shuffle 0.0685 ~ canonical 0.0694 (resolution fraction order-insensitive at the density level, consistent with
+axis0_readouts_density_blind -- Axis-0 order-structure is spinor/loop-level); chirality-erase (eps->+1) 0.0828 vs 0.0694
+(terrain chirality load-bearing for resolution). Harness 120 GREEN. (axis0_entropy_gradient_engine_pair_endtoend_sim.py)
+
+## UP-115 -- Clifford / Hopf / Weyl processed one by one + grand-synthesis placement (negatives first-class) (2026-07-09)
+
+Owner: "you haven't mentioned clifford, hopf or weyl in a long time. these all need formal processing one by one through
+the whole system. and the things like them. the negatives are as important as the positives." Also attached a 5-part
+grand synthesis (entropy=topology via Atiyah-Singer on the Albert algebra H_3(O); F_4 gravity, E_6 gauge, 27 = three
+generations from chi/2; E_6->F_4 as the arrow of time). This sim processes each structure and PLACES the synthesis on
+the forced-vs-unforced map from UP-107..114.
+
+WEYL (spinor carrier + chirality): the complex Hopf quotient S^3->S^2 is the spinor->Bloch density map, verified phase-
+fiber (S^1) invariant to 1.6e-16. FORCED (persistence_is_norm_preserving + spinor_lift_is_forced +
+chirality_forced_by_F01_N01). The exceptional Weyl POLYTOPES (24-cell W(F_4) order 1152; 2_21 W(E_6) order 51840, 27
+vertices = dim H_3(O)) are real but on the UNFORCED branch; the FORCED Weyl structure is only S_2 (chirality reflection)
+and so(4)/W(D_2) order 4 at the field level (matches UP-111).
+
+CLIFFORD (the decisive NEGATIVE): the engine's Pauli operators satisfy {s_i,s_j}=2 delta_ij I exactly (defect 0) -- they
+ARE a Cl_3 representation, so Clifford is FORCED at the operator level. BUT the Clifford product is ASSOCIATIVE (defect
+0). So the forced operator algebra lives on the {H} (associative) branch and STRUCTURALLY CANNOT carry the octonionic
+nonassociativity the grand synthesis requires. The forced operator algebra is Clifford/associative, not octonionic.
+
+HOPF (four-fold ladder): real S^0->S^1; complex S^3->S^2 FORCED (the single-qubit engine's state geometry);
+quaternionic S^7->S^4 AVAILABLE at the H carrier but NOT the engine's state map (calling the engine quaternionic-Hopf is
+an overclaim); octonionic S^15->S^8 on the UNFORCED {H,O} fork (UP-112). Adams' theorem: normed-division Hopf
+fibrations exist ONLY at K-dim {1,2,4,8} -> the ladder STOPS at O (matches division_algebra_ratchet).
+
+GRAND SYNTHESIS placement: the ONE piece it shares with the FORCED ratchet is the Umegaki relative-entropy monotone
+pawl (UP-107, established data-processing; verified monotone 0.111->0.021 under a dephasing channel). Everything else --
+"entropy = Atiyah-Singer index" (an ANSATZ, not a derived theorem), F_4 gravity, E_6 gauge, dim-27, three generations
+from chi/2 -- sits on the UNFORCED {H,O} branch (UP-112/113). So the synthesis is genuine, established, internally-
+coherent mathematics (Connes noncommutative geometry + exceptional Jordan algebra program: Dubois-Violette, Todorov,
+Boyle-Farnsworth) on a LIVE-but-UNFORCED branch. It is NOT earned by {F01,N01}; earning it needs the T01-load-bearing
+mechanism UP-113 showed is absent. Honest status: aspirational target, not forced result -- and that IS the informative
+negative the owner asked for. Harness 121 GREEN. (clifford_hopf_weyl_ratchet_placement_sim.py)
+
+## UP-116 -- Holism does NOT force octonions (testing the grand-synthesis physics attachments) (2026-07-09)
+
+The owner attached three physics extensions of the octonionic grand synthesis: (1) time's arrow = the topological
+unfolding E6->F4 (spectral flow of the Dirac operator crossing zero); (2) dark energy = positive entropy (index
+increase, Verlinde/Ng entropic gravity, infinite statistics) and dark matter = negative entropy (non-associative
+holism resisting the unfolding); (3) non-associativity resolving the core-cusp problem (holistic binding prevents
+density cusps, giving flat cores). All three rest on ONE load-bearing claim: "non-associativity prevents independent
+subsystems (no tensor product), so the entropy of the whole is not the sum of parts -> HOLISM," and holism forces the
+octonionic algebra. This is exactly the T01-load-bearing candidate flagged at the end of UP-115. Tested honestly.
+
+RESULT (a clean, informative NEGATIVE): holism does NOT force octonions.
+  TEST 1: non-factorizable entropy ("whole != sum of parts") is ALREADY present in ASSOCIATIVE multipartite QM.
+    GHZ 3-qubit: S(whole ABC)=0 (pure) but S(single party)=1 (maximally mixed), S(pair)=1 -- genuine holism, not
+    reducible to pairs. W state: S(whole)=0, S(party)=0.918 (also holistic). The 3-qubit operator algebra M_8(C) is
+    ASSOCIATIVE (defect 3.2e-14). So holism lives entirely in associative QM; it does not require the non-associative
+    algebra. The attachments CONFLATE (a) non-factorizable ENTROPY = holism (real, associative, does NOT force O) with
+    (b) non-associative ALGEBRA = octonions (strictly stronger, a different property).
+
+  TEST 2 (being fair -- the CORRECT forcing demand, more precise than the attachments' argument): H_3(O) is the UNIQUE
+    finite simple formally-real Jordan algebra with NO associative matrix representation (Jordan-von Neumann-Wigner
+    1934); H_3(R/C/H) and H_n(O) for n<3 are all "special" (embed in an associative M_k), ONLY H_3(O) is exceptional.
+    So the demand that WOULD force H_3(O) is a forced OBSERVABLE requiring a 3-level system whose measurement algebra
+    is NON-special -- an "octonionic qutrit." The engines are qubits (2-level; 2x2 octonionic Jordan is special), and
+    every engine operation is associative composition or a Jacobi bracket (UP-113). So the correct forcing demand is
+    ABSENT, not the math. Holism is the WRONG demand; this is the right one, and it is not present.
+
+CONSEQUENCE for the physics: the dark-energy/dark-matter-as-(+/-)entropy and core-cusp arguments all rest on
+"non-associativity -> holism," but the holism they invoke is the ASSOCIATIVE kind standard entanglement already
+provides. The physics intuitions may be independently valuable, but they are NOT forced by (nor do they force)
+octonions. The octonion fork stays unforced (UP-112/113 hold). Harness 122 GREEN. (holism_does_not_force_octonions_sim.py)
+
+## UP-117 -- Non-associative CA as a CONSTRUCTIBLE (not forced) T01 mechanism + tensor-product-failure sharpening (2026-07-09)
+
+Two owner attachments sharpened the octonion-fork picture. Both credited; verdict unchanged (constructible, not forced).
+
+ATTACHMENT 1 (the correct non-factorizability): named the RIGHT property behind the failed UP-116 holism argument.
+H_3(O) is EXCEPTIONAL -- it admits NO tensor product in the Jordan category (Jordan-von Neumann-Wigner 1934;
+Hanche-Olsen), so there is no composite H_3(O)(x)H_3(O) and subsystems genuinely cannot be defined. This is distinct
+from associative entanglement (UP-116) and is exactly the "non-special" distinction, now named. COMPUTED here (not
+asserted, per gate_must_derive_from_data): the Jordan-identity ladder on random Hermitian octonionic matrices holds at
+n=2 (9.2e-15) and n=3 (1.7e-13) and FAILS at n=4 (8.8e2); and the forced engine's product operator has multilinear rank
+(1,1,1) across the three qubit cuts -> M_8(C)=M_2(C)^(x)3 FACTORIZES. So the engine never demands a non-tensor-
+decomposable observable algebra; the demand is still ABSENT (UP-116 holds). The special/exceptional/no-tensor-product
+theorem is CITED in the notes, not a gate leg.
+
+ATTACHMENT 2 (the constructible T01 mechanism): a von Neumann / Penrose-E8 / Fano-plane cellular automaton whose cell
+states are unit octonions and whose update multiplies the (left,self,right) neighbourhood makes the BRACKETING load-
+bearing. On a ring of N=12 cells over 8 steps: LEFT-bracket (a o b) o c vs RIGHT-bracket a o (b o c) evolutions DIVERGE
+(mean cell divergence grows to 1.447) -- grouping is genuinely load-bearing OVER TIME, a real running realization of a
+T01 demand. ASSOCIATIVE control (restrict every cell to the quaternion subalgebra): LEFT/RIGHT stay IDENTICAL (5.6e-15).
+Grouping matters ONLY when the carrier is non-associative. So the T01 mechanism is CONSTRUCTIBLE and simulatable -- but
+the octonion update rule is CHOSEN (installed); nothing in {F01,N01}+the qubit engines forces it (UP-113: every forced
+engine operation is associative composition or a Jacobi bracket).
+
+CONSEQUENCE: the grand synthesis (entropy=topology, E6->F4 arrow) is CONDITIONAL -- valid iff nature exhibits a FORCED
+non-associative (non-tensor-factorizable) demand. This sim shows such a demand is BUILDABLE (running CA) but ABSENT from
+the current forced ratchet. The gap between the Clifford/associative forced engine and the octonionic synthesis is now a
+precise, runnable object. Gate: all four legs COMPUTED (Jordan ladder + engine factorization + CA divergence +
+associative control), auditor-hardened from an earlier draft that hardcoded two legs as True. Harness 123 GREEN.
+(nonassociative_ca_t01_constructible_not_forced_sim.py)

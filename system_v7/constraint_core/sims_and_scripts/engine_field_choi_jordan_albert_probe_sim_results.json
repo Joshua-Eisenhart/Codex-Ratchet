@@ -1,0 +1,351 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "numpy": "load_bearing",
+    "python_stdlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "numpy": {
+      "reason": "load-bearing finite algebra tables, Choi matrices, Jordan residuals, and sampled controls",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive JSON, timestamps, paths, and scalar math",
+      "tried": true,
+      "used": true
+    }
+  },
+  "actual_tools_used": [
+    "numpy",
+    "python_stdlib"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "H2(O) and H3(O) pass the sampled Jordan identity while H4(O) fails.",
+    "A frozen Choi-deviation projection can populate H2(O)/H3(O) candidate field objects without breaking channel validity.",
+    "Dimension 52 from H4(O) is not a valid Jordan state-space claim; F4 remains Aut(H3(O)), not H4(O)."
+  ],
+  "blocked_consumers": [
+    "axes 7-12 runtime admission",
+    "IGT admission",
+    "F4/E6/E7/E8 action or symmetry claim",
+    "natural/canonical Choi-to-octonion map claim",
+    "Axis0, bridge, manifold, or physics claims"
+  ],
+  "blocked_downstream_consumers": [
+    "axes 7-12 runtime admission",
+    "IGT admission",
+    "F4/E6/E7/E8 action or symmetry claim",
+    "natural/canonical Choi-to-octonion map claim",
+    "Axis0, bridge, manifold, or physics claims"
+  ],
+  "branch_status_before_run": "axes 7-12 planned/provisional only",
+  "bridge_layer": "none; planned axes 7-12 mirror layer remains inactive",
+  "carrier_layer": "candidate n-engine complete graph: n node Choi scalars plus 8 real Choi-relation features per pair, packed as H_n(O)",
+  "choi_field_projection": {
+    "diagonal_scalar": "Frobenius distance from identity Choi",
+    "edge_features": "real Hilbert-Schmidt projections of Choi_i - Choi_j onto fixed eight-frame",
+    "field_sweeps": {
+      "four_engine_field_H4O_control": {
+        "all_choi_cp_tp": true,
+        "choi_max_partial_trace_identity_error": 1.5639803474524458e-15,
+        "choi_min_eigenvalue": -2.2735185205938603e-16,
+        "edge_norm_max": 0.06973700715427354,
+        "edge_norm_min": 0.016582316015165247,
+        "identical_channel_edge_norm_control": 0.0,
+        "max_jordan_residual_against_random_probe": 0.0006429499109465164,
+        "median_jordan_residual": 0.00020891309611277737,
+        "n": 4,
+        "pass_fraction_under_tol": 0.0,
+        "samples": 24
+      },
+      "three_engine_field_H3O": {
+        "all_choi_cp_tp": true,
+        "choi_max_partial_trace_identity_error": 1.786174132820544e-15,
+        "choi_min_eigenvalue": -3.0723962377472873e-16,
+        "edge_norm_max": 0.06476262922927156,
+        "edge_norm_min": 0.019187922376821768,
+        "identical_channel_edge_norm_control": 0.0,
+        "max_jordan_residual_against_random_probe": 4.919137929141065e-16,
+        "median_jordan_residual": 2.672736449494367e-16,
+        "n": 3,
+        "pass_fraction_under_tol": 1.0,
+        "samples": 24
+      },
+      "two_engine_field_H2O": {
+        "all_choi_cp_tp": true,
+        "choi_max_partial_trace_identity_error": 1.2719595464759798e-15,
+        "choi_min_eigenvalue": -3.0326616931925277e-16,
+        "edge_norm_max": 0.05741885108550435,
+        "edge_norm_min": 0.013965933619774874,
+        "identical_channel_edge_norm_control": 0.0,
+        "max_jordan_residual_against_random_probe": 3.945134612124511e-16,
+        "median_jordan_residual": 1.420515324660539e-16,
+        "n": 2,
+        "pass_fraction_under_tol": 1.0,
+        "samples": 24
+      }
+    },
+    "frame": [
+      "XxI",
+      "YxI",
+      "ZxI",
+      "IxX",
+      "IxY",
+      "IxZ",
+      "XxX",
+      "ZxZ"
+    ],
+    "map_status": "frozen_a_priori_lossy_projection_not_canonical"
+  },
+  "claim_ceiling": "Scratch diagnostic: a frozen Choi-to-edge packing can populate H2(O)/H3(O) candidate field objects and reproduces the H2/H3 pass vs H4 fail Jordan pattern. No axes 7-12 admission, IGT admission, E-series action, or natural-map claim.",
+  "classification": "scratch_diagnostic",
+  "created_at": "2026-07-08T19:43:56Z",
+  "cut_layer": "none",
+  "data_or_artifact_dependencies": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/grok45_engine_field_jordan_design_pressure_20260708.json"
+  ],
+  "dimensions": {
+    "F4_warning": "52 is the dimension of Aut(H3(O)), not a valid H4(O) Jordan state-space admission.",
+    "H2O": 10,
+    "H3O": 27,
+    "H4O": 52,
+    "formula": "dim H_n(A_dim=d) = n + d*n*(n-1)/2"
+  },
+  "divergence_log": [
+    {
+      "observed": "Jordan identity fails generically",
+      "reason": "Hermitian octonionic matrices stop at n=3 for the exceptional Jordan algebra; n=4 dimension 52 is count-only noise.",
+      "surface": "H4(O)"
+    },
+    {
+      "observed": "H3 Jordan identity fails",
+      "reason": "The Fano/octonion multiplication table is load-bearing, not decorative.",
+      "surface": "wrong_fano"
+    },
+    {
+      "observed": "R/C/H H4 pass",
+      "reason": "The H4 failure is specific to octonionic nonassociativity, not generic matrix size.",
+      "surface": "associative H4 controls"
+    }
+  ],
+  "eligible_consumers": [],
+  "fano_unit_tests": {
+    "anticommutativity_max_residual": 0.0,
+    "e_i_square_minus_one_max_residual": 0.0,
+    "fano_line_failures": [],
+    "nonassociative_witness_e1_e2_e4_norm": 2.0,
+    "nonassociative_witness_terms": [
+      {
+        "basis_index": 7,
+        "coefficient": 2.0,
+        "label": "e7"
+      }
+    ],
+    "pass": true
+  },
+  "formal_admission_allowed": false,
+  "generic_jordan_identity": {
+    "H2O": {
+      "dim_Hn": 10,
+      "dim_algebra": 8,
+      "max_residual": 7.121935740739475e-17,
+      "median_residual": 2.0835511040802116e-17,
+      "n": 2,
+      "pass_fraction_under_tol": 1.0,
+      "samples": 48
+    },
+    "H3O_albert": {
+      "dim_Hn": 27,
+      "dim_algebra": 8,
+      "max_residual": 4.1521953757871407e-16,
+      "median_residual": 1.7977122494710161e-16,
+      "n": 3,
+      "pass_fraction_under_tol": 1.0,
+      "samples": 48
+    },
+    "H3O_wrong_fano_control": {
+      "dim_Hn": 27,
+      "dim_algebra": 8,
+      "max_residual": 0.5057294121315884,
+      "median_residual": 0.18545193885450784,
+      "n": 3,
+      "pass_fraction_under_tol": 0.0,
+      "samples": 48
+    },
+    "H3S_sedenion_control": {
+      "dim_Hn": 51,
+      "dim_algebra": 16,
+      "max_residual": 1.3426553019935614,
+      "median_residual": 0.7022483925564631,
+      "n": 3,
+      "pass_fraction_under_tol": 0.0,
+      "samples": 48
+    },
+    "H4C_associative_control": {
+      "dim_Hn": 16,
+      "dim_algebra": 2,
+      "max_residual": 1.4497141276170868e-16,
+      "median_residual": 4.0610092850273024e-17,
+      "n": 4,
+      "pass_fraction_under_tol": 1.0,
+      "samples": 48
+    },
+    "H4H_associative_control": {
+      "dim_Hn": 28,
+      "dim_algebra": 4,
+      "max_residual": 3.035022538983784e-16,
+      "median_residual": 1.450952320834137e-16,
+      "n": 4,
+      "pass_fraction_under_tol": 1.0,
+      "samples": 48
+    },
+    "H4O_count_control_dim52_not_jordan": {
+      "dim_Hn": 52,
+      "dim_algebra": 8,
+      "max_residual": 1.5835656268053566,
+      "median_residual": 0.7221925426799158,
+      "n": 4,
+      "pass_fraction_under_tol": 0.0,
+      "samples": 48
+    },
+    "H4R_associative_control": {
+      "dim_Hn": 10,
+      "dim_algebra": 1,
+      "max_residual": 6.472169365090996e-17,
+      "median_residual": 9.200818510578917e-18,
+      "n": 4,
+      "pass_fraction_under_tol": 1.0,
+      "samples": 48
+    }
+  },
+  "geometry_layer": "Choi-space deviations and normalized fixed Pauli-tensor projection frame; not a canonical geometry",
+  "graph_surfaces_used": [],
+  "kill_conditions": [
+    "H3(O) generic or field residual fails tolerance",
+    "H4(O) does not fail generically",
+    "wrong Fano or sedenion controls reproduce the selective H2/H3 pass pattern",
+    "Choi inputs are not CP/TP",
+    "identical-channel edges do not collapse"
+  ],
+  "law_or_candidate_tested": "H_n(O) Jordan identity and Choi-to-8-edge packing for n=2,3,4 with wrong-algebra controls",
+  "name": "engine field Choi Jordan Albert probe",
+  "negatives_run": {
+    "associative_H4C_passes": true,
+    "associative_H4H_passes": true,
+    "associative_H4R_passes": true,
+    "fano_unit_tests": true,
+    "field_H2O_passes": true,
+    "field_H3O_passes": true,
+    "field_H4O_fails": true,
+    "field_choi_checks": true,
+    "generic_H2O_passes": true,
+    "generic_H3O_passes": true,
+    "generic_H4O_fails": true,
+    "identical_channels_collapse_edges": true,
+    "sedenion_H3_fails": true,
+    "wrong_fano_H3_fails": true
+  },
+  "pass_conditions": {
+    "associative_H4C_passes": true,
+    "associative_H4H_passes": true,
+    "associative_H4R_passes": true,
+    "fano_unit_tests": true,
+    "field_H2O_passes": true,
+    "field_H3O_passes": true,
+    "field_H4O_fails": true,
+    "field_choi_checks": true,
+    "generic_H2O_passes": true,
+    "generic_H3O_passes": true,
+    "generic_H4O_fails": true,
+    "identical_channels_collapse_edges": true,
+    "sedenion_H3_fails": true,
+    "wrong_fano_H3_fails": true
+  },
+  "pass_rule": "all pass_conditions true; otherwise diagnostic fails",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "Choi-to-8 map is frozen but not natural/canonical.",
+    "No E-series action, equivariance, Freudenthal construction, or axes 7-12 runtime admission is tested.",
+    "No formal proof beyond sampled finite residuals."
+  ],
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [],
+  "purpose": "Test whether Choi-derived pairwise engine relations can populate H_n(O) carrier candidates while preserving the classical H2/H3 valid and H4 invalid Jordan pattern.",
+  "required_inputs": [
+    "planned axes 7-12 Choi mirror layer source note",
+    "Grok 4.5 external pressure receipt",
+    "Fano octonion convention from local Jordan/octonion sims"
+  ],
+  "required_negatives": [
+    "H4(O) Jordan failure despite dimension 52",
+    "wrong Fano H3 failure",
+    "sedenion H3 failure",
+    "associative R/C/H H4 pass controls",
+    "identical Choi channels collapse pairwise edges"
+  ],
+  "required_tools": [
+    "numpy"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/engine_field_choi_jordan_albert_probe_sim_results.json",
+  "root_constraints_in_force": [
+    "F01 finite sampled channels, finite algebra tables, finite H_n(O) matrices",
+    "N01 noncommutative/nonassociative octonion product with explicit order/grouping tests"
+  ],
+  "schema": "codex_ratchet.engine_field_choi_jordan_albert_probe_result.v1",
+  "scientific_question": "Does the many-engine mirror layer have a bounded Albert-coordinate carrier candidate, and do the right controls prevent count-only overclaim?",
+  "sedenion_zero_divisor_control": {
+    "left_norm": 1.4142135623730951,
+    "left_terms": [
+      {
+        "basis_index": 1,
+        "coefficient": 1.0,
+        "label": "e1"
+      },
+      {
+        "basis_index": 10,
+        "coefficient": 1.0,
+        "label": "e10"
+      }
+    ],
+    "product_norm": 0.0,
+    "right_norm": 1.4142135623730951,
+    "right_terms": [
+      {
+        "basis_index": 5,
+        "coefficient": 1.0,
+        "label": "e5"
+      },
+      {
+        "basis_index": 14,
+        "coefficient": 1.0,
+        "label": "e14"
+      }
+    ],
+    "zero_divisor_found": true
+  },
+  "sim_class": "carrier_packing_probe",
+  "sim_execution_kind": "classical",
+  "sim_id": "engine_field_choi_jordan_albert_probe",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/engine_field_choi_jordan_albert_probe_sim.py",
+  "tier": "planned many-engine mirror layer / axes 7-12 candidate carrier scout",
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "python_stdlib": "supportive"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "load-bearing finite algebra tables, Choi matrices, Jordan residuals, and sampled controls",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive JSON, timestamps, paths, and scalar math",
+      "tried": true,
+      "used": true
+    }
+  },
+  "topology_surfaces_used": [],
+  "verdict": "bounded_albert_field_candidate_survives",
+  "version": "1.0"
+}

@@ -89,6 +89,20 @@ def jordan_defect(n,trials=8,seed=3):
         defs.append(np.linalg.norm(jor(jor(A,B),AA)-jor(A,jor(B,AA))))
     return float(max(defs))
 
+def dimension_reconciliation():
+    # HONEST GUARD against the overclaim "the engines run ON H_3(O)". Three DIFFERENT objects, by real dimension:
+    #   H_3(O): 3 real diag + 3 octonionic off-diag x 8 = 27
+    #   3-qubit Hermitian observables: 8x8 Hermitian = 64
+    #   current engine terrain operator: single qubit, 2x2 Hermitian = 4
+    # The 3-qubit tomography floor and the H_3(O) n<=3 ceiling AGREE on the NUMBER 3, but H_3(O) (27) is NOT the
+    # 3-qubit tensor algebra (64), and the current engines run on ONE qubit per terrain (4), not on the Albert algebra.
+    # So "engines run on H_3(O)" is NOT earned: it is a coincidence of the number 3, not a structural identity.
+    dim_H3=3+3*8; dim_3q=8*8; dim_engine_op=2*2
+    same_structure=bool(dim_H3==dim_3q==dim_engine_op)  # False -- deliberately: the guard must show they DIFFER
+    return {"dim_H3_octonion":dim_H3,"dim_3qubit_hermitian":dim_3q,"dim_current_engine_operator":dim_engine_op,
+            "engines_run_on_H3_octonion":same_structure,
+            "note":"the two routes agree on the number 3 (3-qubit tomography floor; H_3(O) Jordan n<=3 ceiling) but H_3(O) dim 27 != 3-qubit dim 64 != current single-qubit engine dim 4. The forcing LINK (do the engines actually live in the Albert algebra?) is OPEN; claiming they run on H_3(O) would be unearned."}
+
 def S_vn(rho):
     w=np.linalg.eigvalsh(rho); w=w[w>1e-12]; return float(-(w*np.log2(w)).sum())
 def ptrace_B(rho):
@@ -107,7 +121,10 @@ def main():
     bell=(np.kron([1,0],[1,0])+np.kron([0,1],[0,1])).astype(complex)/np.sqrt(2); rho_b=np.outer(bell,bell.conj())
     cond_prod=conditional_entropy(rho_p); cond_bell=conditional_entropy(rho_b)
     neg_entropy_ok=bool(cond_prod>=-1e-9 and cond_bell<-1e-9)
-    verdict=bool(oct_ok["valid_octonions"] and forced_to_3 and neg_entropy_ok)
+    dimrec=dimension_reconciliation()
+    # the forcing-link guard must correctly report the engines do NOT (yet) run on H_3(O): the three dims differ.
+    link_honestly_open=bool(not dimrec["engines_run_on_H3_octonion"])
+    verdict=bool(oct_ok["valid_octonions"] and forced_to_3 and neg_entropy_ok and link_honestly_open)
     out={"classification":"scratch_diagnostic","promotion_allowed":False,
          "claim1_octonions_valid_and_nonassociative":oct_ok,
          "claim2_jordan_identity_defect_by_n":{str(n):jdef[n] for n in jdef},
@@ -115,6 +132,7 @@ def main():
          "claim2_forced_to_3x3_Albert_algebra":forced_to_3,
          "claim3_conditional_entropy":{"product_state":round(cond_prod,4),"bell_state":round(cond_bell,4),
              "goes_negative_only_on_entangled":neg_entropy_ok},
+         "claim4_forcing_link_guard":dimrec,"forcing_link_to_engines_open":link_honestly_open,
          "ties_to_L3_floor":"per_terrain_entropy_forcing_sim said a deeper forced rung needs a richer carrier (octonion), a different ladder; this IS that ladder: octonion carrier -> Jordan observables (only consistent algebra over nonassociative octonions) -> H_3 (forced maximal dim, independently forces the 3-qubit floor) -> signed conditional entropy (the entanglement entropy that structure runs).",
          "verdict":"PASS" if verdict else "FAIL"}
     path=__file__.replace(".py","_results.json"); json.dump(out,open(path,"w"),indent=1)
@@ -123,7 +141,9 @@ def main():
     print(f"  (2) Jordan identity defect: n=2 {jdef[2]:.2e} ({holds[2]}) | n=3 {jdef[3]:.2e} ({holds[3]}) | n=4 {jdef[4]:.2e} ({holds[4]})")
     print(f"      FORCED to 3x3 (Albert algebra H_3(O); holds n<=3, fails n=4): {forced_to_3}  <- independently forces the 3-qubit floor")
     print(f"  (3) conditional entropy S(A|B): product {cond_prod:+.3f} | Bell {cond_bell:+.3f}  negative-only-on-entangled: {neg_entropy_ok}")
-    print(f"\n  VERDICT: {'PASS' if verdict else 'FAIL'} (valid octonions + forced 3x3 + signed entropy)")
+    print(f"  (4) forcing-link guard: dims H_3(O)={dimrec['dim_H3_octonion']} vs 3-qubit={dimrec['dim_3qubit_hermitian']} vs engine-op={dimrec['dim_current_engine_operator']}")
+    print(f"      engines run ON H_3(O): {dimrec['engines_run_on_H3_octonion']} -- link honestly OPEN: {link_honestly_open} (two routes agree on the NUMBER 3, not the structure)")
+    print(f"\n  VERDICT: {'PASS' if verdict else 'FAIL'} (valid octonions + forced 3x3 + signed entropy + honest open link)")
     if verdict: print("PASS jordan_octonion_observable_rung")
     print("ALL_GATES:","PASS" if verdict else "FAIL","->",path)
     sys.exit(0 if verdict else 1)

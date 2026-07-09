@@ -1,0 +1,38 @@
+{
+ "classification": "scratch_diagnostic",
+ "promotion_allowed": false,
+ "single_qubit_su2_hamilton_defect": 0.0,
+ "single_qubit_is_quaternion": true,
+ "dim_engine_operator": 4,
+ "dim_H": 4,
+ "dim_O": 8,
+ "dim_H3O": 27,
+ "engines_run_on_quaternion_rung_H": true,
+ "octonion_nonassociativity": 14.219,
+ "octonion_is_strictly_higher_rung": true,
+ "division_algebra_ladder": [
+  {
+   "algebra": "R",
+   "dim": 1,
+   "role": "pre-quantum"
+  },
+  {
+   "algebra": "C",
+   "dim": 2,
+   "role": "complex qubit -- EARNED (F01+N01)"
+  },
+  {
+   "algebra": "H",
+   "dim": 4,
+   "role": "quaternion -- ENGINES RUN HERE (single-qubit su(2)=Im H)"
+  },
+  {
+   "algebra": "O",
+   "dim": 8,
+   "role": "octonion nonassoc -- NEXT FORCED CLIMB (H_3(O), F4/E6 tower)"
+  }
+ ],
+ "forcing_link_resolution": "NOT 'engines run on H_3(O)' (dim 4 != 27). The engines run on the QUATERNION rung H; octonions/H_3(O)/F4/E6 are the NEXT forced division-algebra step above them. The exceptional tower is a target/upper-structure the ratchet points at, not the engines' current floor.",
+ "counting_match_is_not_homomorphism": "8 terrains ~ dim O=8 and 2 engine-types ~ 2 chiralities are counting/chirality correspondences; roles differ (O has an identity unit, terrains have no identity terrain) -- not an algebra map.",
+ "verdict": "PASS"
+}

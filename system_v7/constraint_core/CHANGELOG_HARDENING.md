@@ -1175,3 +1175,77 @@ UP-107 dual-ratchet DEPTH: L3 floor + forced Jordan/octonion rung -- L2 (per-ter
                nonassociativity) -> Hermitian octonionic matrices form a Jordan algebra ONLY n<=3 (Albert algebra
                H_3(O); fails n=4) = INDEPENDENT forcing of the 3-qubit floor -> signed conditional entropy S(A|B)<0 on
                entangled states (Bell -1.0). Controls flip. 113 GREEN.
+
+UP-108 exceptional Lie ratchet -- G2->F4->E6->E7->E8 as symmetry of nested structure over the octonions. DERIVED from
+               scratch: dim g2=14 (Der O), f4=52 (Der Albert), e6=78 (str = Der + 26 traceless L). G2 c F4 constructive
+               (entrywise-extended derivation, Jordan defect 9e-15) = the symmetry image of the UP-107 O->H_3(O) step.
+               E7=133/E8=248 CITED (magic square), boundary marked. Order forced by shortest-leaps-up nesting: carrier
+               -> Jordan product -> cubic form -> triple -> full. 114 GREEN.
+
+UP-109 engine division-algebra rung -- closes the UP-107 forcing link. Single-qubit su(2) IS the quaternions Im(H)
+               (Hamilton relations, defect <1e-9), so the single-qubit-per-terrain engines run on the QUATERNION rung
+               H (dim 4). Octonions (dim 8)/H_3(O) (dim 27)/F4/E6 are STRICTLY HIGHER = the next forced climb, not the
+               engines' current floor. "engines run on H_3(O)" = FALSE (4 != 27); ladder R->C(earned)->H(engines)->O(next).
+               Counting matches are correspondences not homomorphisms (O has identity, terrains do not). 115 GREEN.
+
+UP-110 upper manifold (axes 7-12) -- engines as OBJECTS in a field, read on Choi matrices (dim 16) not density states
+               (dim 4=H); home of IGT. All 8 terrain Choi valid CPTP (TP defect 5.6e-16), pairwise-distinct (min 0.52).
+               DOC CORRECTED: AXES_0_12_MASTER "strictly isomorphic A_i->A_i+6" too strong -- base Axis-1 vs mirror
+               Axis-7 Spearman rho~0.77 not 1.0; mirror is a coarser channel-kind partition (damp/depol/proj), genuine-
+               but-distinct upper level. IGT field non-trivial (Choi-distance meta-graph, depol most central);
+               exceptional algebras = field symmetry (consistent with UP-109 engines-at-H). SEED. 116 GREEN.
+
+UP-111 field symmetry classical not exceptional (honest negative) -- does the exceptional tower emerge at the qubit-
+               engine field level? NO. discrete 8-terrain metric symmetry order 4 (finite); continuous single-engine
+               Choi symmetry so(4)=su(2)+su(2) dim 6 (classical). Exceptional structure lives on the CARRIER axis
+               (H->O), NOT the MIRROR/field axis -- the two orthogonal, field does not bypass carrier. Locates the
+               tower correctly; disciplines the "exceptional at field level" intuition. 117 GREEN.
+
+UP-112 octonion fork not forced (honest closure) -- H->O is an unforced observable-side FORK, not a forced rung.
+               3-qubit M_8(C) associative (no force); H noncommutative AND associative (N01 no force); fork basins
+               {H} (assoc required) vs {H,O} (not required), both consistent with {F01,N01}. Reproduces the owner's
+               3-model-panel-cleared doc finding "nonassociativity is INSTALLED not forced"; corroborated 3rd time by
+               codex albert_stress + Grok 4.5. Range map: H forced (engines); O/Albert/F4/E6 live-not-forced;
+               Clifford associative/{H}. To earn O: need a grouping(T01)-load-bearing demand; none present. 118 GREEN.
+
+UP-113 T01 grouping-demand search (closes octonion arc) -- H is the CEILING for present engines. Exhaustive over stage-
+               combining ops: (1) channel composition ASSOCIATIVE (1.3e-16, the engine's real op); (2) Jordan product
+               nonassoc (0.07) but not used to compose; (3) Lie/field bracket nonassoc (0.28) but OBEYS Jacobi (2.2e-16)
+               -> Lie (so(4), UP-111), not octonionic. Jacobi discriminator: octonions fail Jacobi (Moufang); matrix
+               commutators always obey it -> stay classical. No octonionic (non-Jacobi) T01 in the mechanics -> earning
+               O needs a NEW non-Lie non-Jacobi combination, absent as built. Octonion tower stays live-but-unforced.
+               119 GREEN.
+
+UP-114 Axis-0 entropy gradient end-to-end on the engine pair -- closes the biggest unbuilt engine seam. Earned gradient
+               (available - resolved distinguishability) run on the full Type-1+Type-2 720 loop, start AND end. Absolute
+               gap relaxes 0.458->0.016 BUT mostly CONTRACTION (honest correction: pure depol closes it too, not a clean
+               vanishing-gradient claim). Contraction-free signal = scale-invariant unresolved fraction 0.05->0.07:
+               engine resolves ~93-95% of the room throughout (near-complete resolution). Controls: 1-probe 0.53 (bases
+               matter), N01 shuffle 0.068 (order-insensitive at density), chirality-erase 0.083 (chirality load-bearing).
+               120 GREEN.
+
+UP-115 Clifford/Hopf/Weyl processed one by one + grand-synthesis placement -- WEYL (spinor+chirality+complex Hopf
+               S^3->S^2) FORCED; exceptional Weyl polytopes UNFORCED-branch. CLIFFORD (key negative): Pauli=Cl_3 FORCED
+               at operator level BUT ASSOCIATIVE -> {H} branch, cannot carry octonionic nonassoc. HOPF: complex FORCED,
+               quaternionic available-not-engine, octonionic UNFORCED fork; Adams -> stops at O. GRAND SYNTHESIS
+               (entropy=topology, Albert algebra, E6->F4 arrow): only forced anchor is the Umegaki monotone pawl
+               (0.111->0.021); entropy=Atiyah-Singer is an ANSATZ, F4/E6/27/3-gen on the UNFORCED {H,O} branch -> real
+               established math (Connes NCG + exceptional Jordan) but NOT earned by {F01,N01}. 121 GREEN.
+
+UP-116 Holism does NOT force octonions -- tested the grand-synthesis physics attachments' load-bearing claim
+               (time-arrow=E6->F4, dark energy/matter=+/-entropy, core-cusp from non-associativity, all resting on
+               "non-associativity -> holism forces O"). NEGATIVE: non-factorizable entropy (holism) is ALREADY in
+               ASSOCIATIVE multipartite QM (GHZ S_whole=0/S_party=1, W state; M_8(C) associative defect 3e-14). The
+               attachments conflate non-factorizable ENTROPY (associative holism) with non-associative ALGEBRA
+               (octonions). FAIR/CONSTRUCTIVE: the correct forcing demand is a non-special 3-level observable
+               (octonionic qutrit; H_3(O) unique exceptional per Jordan-vNW 1934) -- absent from qubit engines.
+               DE/DM/core-cusp physics rest on associative holism; fork stays unforced. 122 GREEN.
+
+UP-117 Non-associative CA as a CONSTRUCTIBLE (not forced) T01 mechanism + tensor-product-failure sharpening -- credits
+               two attachments. (1) exceptional-Jordan tensor-product FAILURE (Hanche-Olsen) is the correct non-
+               factorizability (distinct from UP-116 associative holism); COMPUTED Jordan-identity ladder (n<=3 hold
+               9e-15/2e-13, n=4 fails 8.8e2) + engine factorization (rank (1,1,1)) -> demand still ABSENT. (2) octonion
+               CA update makes neighbor-GROUPING load-bearing over time (LEFT vs RIGHT bracket diverge to 1.447;
+               associative quaternion control collapses to 5.6e-15) -> constructible+running T01 mechanism, INSTALLED
+               not forced. Grand synthesis CONDITIONAL on a forced non-associative demand: buildable, absent in forced
+               ratchet. Gate all four legs COMPUTED (auditor-hardened; earlier draft hardcoded two legs True). 123 GREEN.

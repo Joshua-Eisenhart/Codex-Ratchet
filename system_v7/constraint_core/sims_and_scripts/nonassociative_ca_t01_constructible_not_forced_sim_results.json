@@ -1,0 +1,42 @@
+{
+ "classification": "scratch_diagnostic",
+ "promotion_allowed": false,
+ "part1_computed_structure": {
+  "jordan_identity_defect": {
+   "H2(O)": 9.213510085525985e-15,
+   "H3(O)": 1.6727236949148311e-13,
+   "H4(O)": 879.0188775604897
+  },
+  "jordan_ladder_holds_n_le_3_fails_n4": true,
+  "engine_product_operator_multilinear_ranks": [
+   1,
+   1,
+   1
+  ],
+  "engine_state_space_factorizes": true,
+  "non_special_demand_absent_from_engine": true,
+  "cited_theorem_not_gated": "H_2(O) (dim 10) is SPECIAL and H_3(O) (dim 27) is the UNIQUE EXCEPTIONAL Jordan algebra with NO tensor product (Jordan-von Neumann-Wigner 1934; Hanche-Olsen). This is the CORRECT non-factorizability (distinct from UP-116 associative holism); it is CITED, not a computed gate leg. The COMPUTED facts here are the Jordan-identity ladder (n<=3 hold, n=4 fails) and the engine factorization (rank (1,1,1)).",
+  "note": "crediting attachment 1: the tensor-product FAILURE is the correct non-factorizability. But the qubit engine's M_8(C) factorizes (COMPUTED rank (1,1,1)), so the non-special demand is still absent."
+ },
+ "part2_nonassociative_CA": {
+  "grouping_divergence_octonion": 1.447,
+  "grouping_divergence_per_step": [
+   1.005,
+   1.328,
+   1.377,
+   1.417,
+   1.339,
+   1.202,
+   1.521,
+   1.447
+  ],
+  "grouping_divergence_associative_control": 5.565825235656598e-15,
+  "grouping_load_bearing_over_time": true,
+  "associative_control_collapses": true,
+  "t01_mechanism_constructible": true,
+  "t01_forced_by_engine": false,
+  "note": "crediting attachment 2: a non-associative (octonion) CA update makes neighbor-GROUPING load-bearing over time (LEFT vs RIGHT bracket diverge to ~1.4); the associative (quaternion) control collapses it (~1e-15). Constructible + running, but INSTALLED not FORCED."
+ },
+ "headline": "Both attachments sharpen the picture and are credited. (1) The exceptional-Jordan tensor-product FAILURE is the correct non-factorizability (distinct from UP-116 associative holism) but the qubit engine's state space factorizes, so the demand is still absent. (2) A non-associative CA is a CONSTRUCTIBLE, running T01 mechanism (neighbor-grouping load-bearing over time; associative control collapses it) -- but INSTALLED, not forced. The grand synthesis is CONDITIONAL on a FORCED non-associative demand, which is buildable but not present in the forced ratchet (UP-112/113/116 hold).",
+ "verdict": "PASS"
+}

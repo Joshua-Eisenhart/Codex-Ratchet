@@ -116,6 +116,18 @@ four-beat sequential interior for each macro stage, and it remains
 `scratch_diagnostic` with `promotion_allowed=false`. It cannot establish that
 four substages emerged from the dual ratchet.
 
+### External UP-130 claim discovered during wiki sync
+
+The current wiki remote contains an UP-130 claim that a separate sim derives
+the minimal cycle `{ABAB, BABA}` from closure, alternation, and both-direction
+controls, and reports `135 GREEN`. That source was in the wiki's runtime/sim
+surface, not in this Codex-Ratchet checkout; the wiki cleanup intentionally
+removed the non-Markdown copy from the live wiki. It is therefore external
+evidence pending import into Codex-Ratchet, source review, and a fresh local
+run. It does not supersede the bounded result above or yet prove that the
+four survivors are the four same-sign operator substages required by the
+engine architecture.
+
 ### Sequential four-beat interior
 
 `sixteen_intelligences_substages_terrain_ratchet_sim.py` does run four ordered,

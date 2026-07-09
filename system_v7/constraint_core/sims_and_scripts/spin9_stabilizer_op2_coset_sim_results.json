@@ -1,0 +1,479 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "numpy": "load_bearing",
+    "python_stdlib": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "numpy": {
+      "reason": "load-bearing Fano octonion table, Albert product structure constants, SVD nullspaces, and stabilizer rank counts",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive paths, timestamps, JSON serialization, and report formatting",
+      "tried": true,
+      "used": true
+    },
+    "scipy": {
+      "reason": "supportive pivoted-QR minor selection for the optional z3 nonzero-minor certificate",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "supportive lower-bound nonzero-minor check on the measured primitive stabilizer action rank when available",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "blocked_consumers": [
+    "formal Lie algebra identification proof beyond dimension",
+    "canonical-by-process promotion",
+    "bridge, manifold, or Axis0 claims"
+  ],
+  "blocked_downstream_consumers": [
+    "formal Lie algebra identification proof beyond dimension",
+    "canonical-by-process promotion",
+    "bridge, manifold, or Axis0 claims"
+  ],
+  "claim_ceiling": "Scratch diagnostic local rank computation only: derives F4, the primitive-idempotent stabilizer dimension, and the 16-dimensional OP2 coset from linear algebra over the constructed Albert product. No formal admission, no bridge, no Axis0, no canonical-by-process claim.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "corrupted_fano_upstream": {
+      "breaks_52_gate": true,
+      "constraint_rank_after_corruption": 722,
+      "corruption": "single upstream sign flip: e1*e2 coefficient of e3 multiplied by -1",
+      "f4_dimension_after_corruption": 7,
+      "svd": {
+        "first_uncounted_singular_value": 4.719399377776801e-15,
+        "largest_singular_value": 6.8109924876868595,
+        "last_counted_singular_value": 0.3321563166406617,
+        "rank": 722,
+        "smallest_singular_value": 8.710081278683412e-16,
+        "threshold": 1e-08
+      }
+    },
+    "generic_distinct_diagonal_non_idempotent": {
+      "flips_from_primitive": true,
+      "stabilizer": {
+        "action_rank_on_f4": 24,
+        "condition_matrix_shape": [
+          27,
+          52
+        ],
+        "coset_or_orbit_dimension": 24,
+        "label": "generic_distinct_diagonal_non_idempotent_control",
+        "stabilizer_dimension": 28,
+        "svd": {
+          "first_uncounted_singular_value": 4.439812330121287e-16,
+          "largest_singular_value": 0.39223227027636853,
+          "last_counted_singular_value": 0.19611613513818266,
+          "rank": 24,
+          "smallest_singular_value": 2.237449247117778e-16,
+          "threshold": 1e-08
+        },
+        "vectors_fixed": 1
+      }
+    },
+    "rank2_idempotent_complement": {
+      "flips_from_primitive": false,
+      "gate": {
+        "det": 0.0,
+        "idempotent_residual": 0.0,
+        "primitive_gate_pass": false,
+        "rank2_idempotent_signature": true,
+        "sigma2": 1.0,
+        "trace": 2.0
+      },
+      "honest_note": "This rank-2 idempotent is 1-e for a primitive e. Since derivations kill the Jordan unit, fixing 1-e is equivalent to fixing e, so this control does not flip and should not be used as a negative for the Spin(9) rung.",
+      "stabilizer": {
+        "action_rank_on_f4": 16,
+        "condition_matrix_shape": [
+          27,
+          52
+        ],
+        "coset_or_orbit_dimension": 16,
+        "label": "rank2_idempotent_diag_011_complement_control",
+        "stabilizer_dimension": 36,
+        "svd": {
+          "first_uncounted_singular_value": 5.609238191051621e-16,
+          "largest_singular_value": 0.19611613513818432,
+          "last_counted_singular_value": 0.19611613513818385,
+          "rank": 16,
+          "smallest_singular_value": 4.860067084397342e-17,
+          "threshold": 1e-08
+        },
+        "vectors_fixed": 1
+      }
+    },
+    "seeded_generic_full_non_idempotent": {
+      "coordinate_seed": 108,
+      "det": -32.06082355123238,
+      "flips_from_primitive": true,
+      "idempotent_residual": 74.47325741133649,
+      "sigma2": -37.942025148379436,
+      "stabilizer": {
+        "action_rank_on_f4": 24,
+        "condition_matrix_shape": [
+          27,
+          52
+        ],
+        "coset_or_orbit_dimension": 24,
+        "label": "seeded_generic_full_non_idempotent_control",
+        "stabilizer_dimension": 28,
+        "svd": {
+          "first_uncounted_singular_value": 4.275056865088364e-15,
+          "largest_singular_value": 3.1495729171566342,
+          "last_counted_singular_value": 1.0937713724861204,
+          "rank": 24,
+          "smallest_singular_value": 2.4238477380103884e-15,
+          "threshold": 1e-08
+        },
+        "vectors_fixed": 1
+      },
+      "trace": 4.989530302195875
+    }
+  },
+  "divergence_log": [
+    {
+      "expected": "different dimension from primitive-idempotent stabilizer",
+      "observed": {
+        "generic_distinct_diagonal_dim": 28,
+        "generic_full_dim": 28
+      },
+      "pass": true,
+      "surface": "generic_non_idempotent_stabilizer"
+    },
+    {
+      "expected_from_prompt": "different dimension",
+      "observed": 36,
+      "pass": true,
+      "reason": "The measured rank-2 idempotent is the complement of a primitive idempotent, so equality is the mathematically honest control outcome.",
+      "surface": "rank2_idempotent_complement"
+    },
+    {
+      "expected": "upstream f4 dimension not 52",
+      "observed": 7,
+      "pass": true,
+      "surface": "corrupted_fano_table"
+    }
+  ],
+  "eligible_consumers": [],
+  "f4_from_scratch": {
+    "ambient_endomorphism_dimension": 729,
+    "constraint_rank": 677,
+    "derivation_constraint_matrix_shape": [
+      10206,
+      729
+    ],
+    "f4_dimension": 52,
+    "svd": {
+      "first_uncounted_singular_value": 4.700277279917417e-15,
+      "largest_singular_value": 6.811503504603858,
+      "last_counted_singular_value": 1.7007150087004776,
+      "rank": 677,
+      "smallest_singular_value": 7.146790019125222e-16,
+      "threshold": 1e-08
+    }
+  },
+  "formal_admission_allowed": false,
+  "gates": {
+    "corrupted_fano_breaks_upstream_52": true,
+    "dims_on_the_nose": true,
+    "generic_controls_flip": true,
+    "rank2_complement_same_expected": true,
+    "stretch_dimension_matches": {
+      "J3C_preservation_dim_16": true,
+      "g2_probe_dim_14": true,
+      "spin7_probe_dim_21": true
+    }
+  },
+  "generated_at": "2026-07-09T04:32:19Z",
+  "object_id": "spin9_stabilizer_op2_coset",
+  "primary_rung": {
+    "computed_coset": {
+      "coset_dimension": 16,
+      "f4_dimension": 52,
+      "formula": "dim(F4)-dim(stabilizer)",
+      "interpretation": "The 16-dimensional Cayley-plane tangent/coset dimension is computed from the stabilizer rank, not cited as an input.",
+      "matches_dim_OP2": true,
+      "stabilizer_dimension": 36
+    },
+    "primitive_idempotent": {
+      "description": "e=diag(1,0,0)",
+      "gate": {
+        "det": 0.0,
+        "idempotent_residual": 0.0,
+        "pass": true,
+        "sigma2": 0.0,
+        "trace": 1.0
+      }
+    },
+    "question": "Is F4 > Spin(9) computable as the stabilizer subalgebra of f4 fixing one primitive idempotent of J3(O), with OP2 coset dimension 16?",
+    "spin9_stabilizer": {
+      "action_rank_on_f4": 16,
+      "condition_matrix_shape": [
+        27,
+        52
+      ],
+      "coset_or_orbit_dimension": 16,
+      "direct_729_variable_augmented_check": {
+        "augmented_matrix_shape": [
+          10233,
+          729
+        ],
+        "augmented_nullity": 36,
+        "augmented_rank": 693,
+        "rank_added_over_f4_constraints": 16,
+        "svd": {
+          "first_uncounted_singular_value": 3.6046619116327355e-15,
+          "largest_singular_value": 6.833647523595211,
+          "last_counted_singular_value": 0.1912226701007531,
+          "rank": 693,
+          "smallest_singular_value": 7.541626460387904e-16,
+          "threshold": 1e-08
+        }
+      },
+      "label": "primitive_idempotent_diag_100",
+      "stabilizer_dimension": 36,
+      "svd": {
+        "first_uncounted_singular_value": 4.813421794321729e-16,
+        "largest_singular_value": 0.19611613513818413,
+        "last_counted_singular_value": 0.19611613513818377,
+        "rank": 16,
+        "smallest_singular_value": 5.0496902692719265e-18,
+        "threshold": 1e-08
+      },
+      "vectors_fixed": 1,
+      "z3_certificate": {
+        "attempted": true,
+        "available": true,
+        "determinant_decimal": -9.533858431754844e-15,
+        "limitation": "This is not an exact rational certificate for the original 729-variable derivation matrix; the integer rank verdict remains SVD-threshold based.",
+        "minor_shape": [
+          16,
+          16
+        ],
+        "nonzero_minor_certified": true,
+        "rank_lower_bound": 16,
+        "scope": "supportive lower-bound certificate for rank >= measured_rank on the floating SVD-basis action matrix",
+        "selected_columns": [
+          34,
+          24,
+          7,
+          27,
+          37,
+          46,
+          51,
+          43,
+          38,
+          39,
+          22,
+          49,
+          48,
+          28,
+          29,
+          20
+        ],
+        "selected_rows": [
+          3,
+          4,
+          18,
+          7,
+          15,
+          6,
+          16,
+          14,
+          5,
+          9,
+          17,
+          10,
+          12,
+          11,
+          13,
+          8
+        ],
+        "z3_check_det_equals_zero": "unsat"
+      }
+    }
+  },
+  "primitive_gate_source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/j3o_bloch_body_entropy_pawl_sim.py",
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/spin9_stabilizer_op2_coset_sim_results.json",
+  "schema": "codex_ratchet.spin9_stabilizer_op2_coset_result.v1",
+  "seed": 108,
+  "sim_class": "exceptional_jordan_stabilizer_rank_probe",
+  "sim_execution_kind": "classical",
+  "sim_id": "spin9_stabilizer_op2_coset",
+  "source_conventions_reused": {
+    "FANO": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        4,
+        5
+      ],
+      [
+        1,
+        7,
+        6
+      ],
+      [
+        2,
+        4,
+        6
+      ],
+      [
+        2,
+        5,
+        7
+      ],
+      [
+        3,
+        4,
+        7
+      ],
+      [
+        3,
+        6,
+        5
+      ]
+    ],
+    "albert_basis_order": "3 diagonal basis elements, then octonion coordinates for slots (0,1), (0,2), (1,2)",
+    "f4_derivation_method": "linear nullspace of D(x.y)=D(x).y+x.D(y) over the 27-dimensional Albert coordinate basis",
+    "primitive_idempotent_gate": "trace=1, sigma2=0, det=0, and Jordan-square residual zero"
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/spin9_stabilizer_op2_coset_sim.py",
+  "stretch_attempts": {
+    "g2_from_point_plus_two_compatible_peirce_spinors": {
+      "dimension_match": true,
+      "stabilizer": {
+        "action_rank_on_f4": 38,
+        "condition_matrix_shape": [
+          81,
+          52
+        ],
+        "coset_or_orbit_dimension": 38,
+        "label": "stretch_point_plus_two_compatible_peirce_spinors",
+        "stabilizer_dimension": 14,
+        "svd": {
+          "first_uncounted_singular_value": 6.639424525992498e-16,
+          "largest_singular_value": 0.6201736729460435,
+          "last_counted_singular_value": 0.2773500981126138,
+          "rank": 38,
+          "smallest_singular_value": 1.5888958283264655e-16,
+          "threshold": 1e-08
+        },
+        "vectors_fixed": 3
+      },
+      "status": "measured",
+      "target_dimension": 14
+    },
+    "left_complex_structure_centralizer_control": {
+      "reason": "Commuting with left multiplication by e1 on all octonion slots gives dimension 10 here, so the SU(3)xSU(3) stretch claim is tied to preserving the embedded complex J3(C) subalgebra, not to this stricter centralizer.",
+      "stabilizer": {
+        "condition_matrix_shape": [
+          729,
+          52
+        ],
+        "condition_rank": 42,
+        "label": "diagnostic_left_multiplication_i_centralizer_not_SU3xSU3_target",
+        "stabilizer_dimension": 10,
+        "svd": {
+          "first_uncounted_singular_value": 3.5402564405875206e-15,
+          "largest_singular_value": 2.0000000000000013,
+          "last_counted_singular_value": 0.620173672946042,
+          "rank": 42,
+          "smallest_singular_value": 2.190410370303177e-15,
+          "threshold": 1e-08
+        }
+      },
+      "status": "measured_not_target"
+    },
+    "spin7_from_point_plus_peirce_spinor": {
+      "dimension_match": true,
+      "stabilizer": {
+        "action_rank_on_f4": 31,
+        "condition_matrix_shape": [
+          54,
+          52
+        ],
+        "coset_or_orbit_dimension": 31,
+        "label": "stretch_point_plus_one_peirce_spinor",
+        "stabilizer_dimension": 21,
+        "svd": {
+          "first_uncounted_singular_value": 4.170491800231032e-16,
+          "largest_singular_value": 0.5883484054145531,
+          "last_counted_singular_value": 0.19611613513818377,
+          "rank": 31,
+          "smallest_singular_value": 5.157654511258642e-18,
+          "threshold": 1e-08
+        },
+        "vectors_fixed": 2
+      },
+      "status": "measured",
+      "target_dimension": 21
+    },
+    "su3_su3_via_complex_subalgebra_preservation": {
+      "boundary": "This measures the f4 stabilizer of the embedded J3(C) coordinate subalgebra C=span(1,e1) inside each off-diagonal octonion slot.",
+      "dimension_match": true,
+      "stabilizer": {
+        "condition_matrix_shape": [
+          729,
+          52
+        ],
+        "condition_rank": 36,
+        "label": "stretch_preserve_embedded_J3C_subalgebra",
+        "stabilizer_dimension": 16,
+        "svd": {
+          "first_uncounted_singular_value": 1.059432869068398e-15,
+          "largest_singular_value": 0.5773502691896263,
+          "last_counted_singular_value": 0.48038446141526103,
+          "rank": 36,
+          "smallest_singular_value": 2.6938932940819487e-16,
+          "threshold": 1e-08
+        }
+      },
+      "status": "measured",
+      "target_dimension": 16
+    }
+  },
+  "svd_threshold": 1e-08,
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "python_stdlib": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "load-bearing Fano octonion table, Albert product structure constants, SVD nullspaces, and stabilizer rank counts",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive paths, timestamps, JSON serialization, and report formatting",
+      "tried": true,
+      "used": true
+    },
+    "scipy": {
+      "reason": "supportive pivoted-QR minor selection for the optional z3 nonzero-minor certificate",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "supportive lower-bound nonzero-minor check on the measured primitive stabilizer action rank when available",
+      "tried": true,
+      "used": true
+    }
+  },
+  "upstream_source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/exceptional_lie_ratchet_sim.py",
+  "verdict": "rung_derived"
+}

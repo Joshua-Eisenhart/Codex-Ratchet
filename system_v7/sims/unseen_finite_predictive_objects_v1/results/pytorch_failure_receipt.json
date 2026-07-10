@@ -10,7 +10,7 @@
   "exception_type": "RunnerError",
   "exception_message": "visible tensors have inconsistent shapes",
   "exception_site": "run_pytorch.py:1021 calling laplace1_order2(record.visible), rejected by assert_model_visible_schema at line 184",
-  "root_cause": "The order-2 Laplace baseline reused the model-visible schema assertion frozen around four train/validation views, while each sealed test object has eight views.",
+  "root_cause": "The order-2 Laplace baseline passed one unbatched ViewRecord.visible mapping whose tensors have ndim=2 into assert_model_visible_schema, which requires batched ndim=3 tensors. This is independent of whether the split has four or eight views per object.",
   "source_sha256": "4b1e8d536c1d06137cc3dd74f4018ad24be669e60be9333466867c1433eb506a",
   "seal_receipt_sha256": "c93d711f3001a583c3f2a2a3d2b1b3020b5ba17ebb9472b6ba36d00d5fc7ef01",
   "spec_sha256": "7db2d7400f98fd32108e365950cd5a6e23b8872734f73aa82ce0b4375b19a36e",
@@ -18,7 +18,8 @@
   "elapsed_seconds": 10.14,
   "maximum_resident_set_bytes": 296058880,
   "swaps": 0,
-  "retry_policy": "Do not repair and rerun v1. Any prospective retry requires a new namespace, freshly generated unseen test objects, a new manifest, new source seal, and a preflight that exercises both four-view and eight-view baseline shapes without test identities.",
+  "receipt_generation": "Manually normalized from the preserved Python traceback and /usr/bin/time output; no runner code emitted this failure receipt.",
+  "retry_policy": "Do not repair and rerun v1 because the sealed one-shot evaluation protocol was consumed. Any prospective retry requires a new namespace, fresh test objects, a new manifest and seal, plus a synthetic pre-seal rehearsal of the exact sealed-test call graph covering unbatched and batched baseline inputs without using v2 test records.",
   "accepted_claim_label": "UNSEEN_PREDICTIVE_OBJECT_LEARNING_NOT_ESTABLISHED",
   "promotion_allowed": false,
   "formal_admission_allowed": false

@@ -27,9 +27,9 @@ the bounded unseen-object learning/perception claim is not established.
 - Julia canonical sealed leg: all exact-semantic gates passed in
   `system_v5/julia_carrier` with `JULIA_LOAD_PATH='@:@stdlib'`.
 - PyTorch sealed leg: opened frozen test records, then failed before training
-  or metric completion because the order-2 baseline passed an eight-view test
-  tensor through a schema assertion frozen around four-view train/validation
-  tensors.
+  or metric completion because the order-2 baseline passed one unbatched
+  record (`ndim=2`) through a schema assertion requiring batched tensors
+  (`ndim=3`). The failure is independent of the four-view/eight-view split.
 - Controller: correctly failed closed because `pytorch_result.json` does not
   exist.
 
@@ -58,7 +58,10 @@ baseline schema boundary, not in PyTorch's general capability.
 
 ## Retry Rule
 
-Do not patch and rerun v1. Test objects were opened. A valid retry must be v2
-with a new namespace, fresh unseen test objects, new manifest, new seal, and a
-train/validation-only synthetic shape preflight covering both four-view and
-eight-view baseline inputs without exposing test identities.
+Do not patch and rerun v1. The sealed one-shot evaluation was consumed. The
+test machine tables were already plaintext in the preregistered manifest; they
+were hidden from the model-visible schema, not secret from repo readers. A
+valid retry must be v2 with a new namespace, fresh test objects, new manifest,
+new seal, and a synthetic pre-seal rehearsal of the exact sealed-test call
+graph covering unbatched and batched baseline inputs without using v2 test
+records.

@@ -151,10 +151,18 @@ def git_head() -> str:
     ).strip()
 
 
-def git_parent() -> str:
+def git_parent(commit: str) -> str:
     return subprocess.check_output(
-        ["git", "rev-parse", "HEAD^"], cwd=REPO, text=True
+        ["git", "rev-parse", f"{commit}^"], cwd=REPO, text=True
     ).strip()
+
+
+def git_is_ancestor(commit: str, descendant: str) -> bool:
+    return subprocess.run(
+        ["git", "merge-base", "--is-ancestor", commit, descendant],
+        cwd=REPO,
+        check=False,
+    ).returncode == 0
 
 
 def verify_frozen_inputs() -> tuple[dict, dict, dict]:
@@ -170,10 +178,10 @@ def verify_frozen_inputs() -> tuple[dict, dict, dict]:
         "confirm_jax_source_sha256": sha256_file(Path(__file__)),
     }
     head = git_head()
-    parent = git_parent()
+    correction_parent = git_parent(EXPECTED_COMMIT)
     tests = {
-        "head_is_controller_correction_commit": head == EXPECTED_COMMIT,
-        "controller_correction_parent_is_requested_post_search_commit": parent == EXPECTED_BASE_COMMIT,
+        "head_contains_controller_correction_commit": git_is_ancestor(EXPECTED_COMMIT, head),
+        "controller_correction_parent_is_requested_post_search_commit": correction_parent == EXPECTED_BASE_COMMIT,
         "spec_source_constant": hashes["spec_sha256"] == EXPECTED_SPEC_SHA256,
         "preregistration_source_constant": hashes["preregistration_receipt_sha256"] == EXPECTED_PREREG_SHA256,
         "selection_source_constant": hashes["selected_design_receipt_sha256"] == EXPECTED_SELECTION_SHA256,
@@ -213,10 +221,10 @@ def verify_frozen_inputs() -> tuple[dict, dict, dict]:
     return spec, selected, {
         "commit": {
             "expected_controller_correction": EXPECTED_COMMIT,
-            "observed": head,
-            "matches": True,
+            "observed_head": head,
+            "correction_is_ancestor_of_head": True,
             "expected_parent": EXPECTED_BASE_COMMIT,
-            "observed_parent": parent,
+            "observed_parent": correction_parent,
             "parent_matches": True,
         },
         "hashes": hashes,

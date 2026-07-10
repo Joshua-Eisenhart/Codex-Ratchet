@@ -2,7 +2,7 @@
 
 Status: current runtime map and install-location guard for Codex Ratchet.
 Authority: subordinate to `AGENTS.md`, `CODEX.md`, and the process docs.
-Updated: 2026-06-09.
+Updated: 2026-07-09.
 
 This page exists because package state can be true in one environment and false
 in another. Agents must check the actual target runtime before installing,
@@ -115,7 +115,18 @@ quimb, cotengra, autoray, e3nn_jax, jraph, haiku, numpyro, ott, qutip,
 qutip_jax, jax_dataclasses, jaxlie, jaxga, pymc, scikit-learn, torch, torch_geometric,
 torchdiffeq, torchode, xitorch, cvxpylayers, geomstats, e3nn, torch_ga,
 clifford, z3, cvc5, sympy, numpy, scipy, pandas, networkx, igraph,
-rustworkx, xgi, TopoNetX, gudhi, kanren, kahypar, opt_einsum
+rustworkx, xgi, TopoNetX, gudhi, kanren, kahypar, opt_einsum,
+pysindy
+```
+
+PySINDy `2.1.0` is canonical-env verified and has a bounded affine-generator
+function receipt. PyKoopman `1.2.1` also imports, but it is not canonical-core:
+only its `Identity + EDMD` surface with an explicit affine bias coordinate has
+a green function receipt. Its full distribution, `Polynomial` observable under
+modern scikit-learn, and NNDMD/neural path remain quarantined. Exact status:
+
+```text
+system_v5/ops/PYSINDY_PYKOOPMAN_TOOL_STATUS_20260709.md
 ```
 
 Use the full target-set page for the current split between `canon/core`,

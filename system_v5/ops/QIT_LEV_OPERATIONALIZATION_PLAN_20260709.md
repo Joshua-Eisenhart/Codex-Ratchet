@@ -6,6 +6,34 @@
 **Primary target:** one end-to-end SME object workflow with measured engine, learning, perception, and Lev receipt boundaries
 **Current engine audit:** `system_v5/ops/CLAUDE_SCIENCE_94_95_ENGINE_STATE_AUDIT_20260709.md`
 
+## July 9 System-ID Update
+
+`system_v7/sims/stage16x4_system_id_instrument_v0/` now executes both
+conditional product-square orientations across all 16 source macro slots. Each
+candidate contains 64 same-sign beats. PySINDy reconstructs the continuous
+terrain generators, PyKoopman learns each discrete beat, and exact held-out
+house-map transitions provide the target.
+
+The local packet and validator are green: both candidates re-identify all 16
+macro maps, all beat removals and duplications change the held-out endpoint,
+and reversal, sign, terrain, operator, permutation, source-corruption, and
+identity-boundary controls behave as preregistered.
+
+This closes the **execution and system-identification instrument** portion of
+WP0 under one finite parameterization. It does not close the emergence portion:
+the four cells, cycle, source slots, canonical-first rotation, exact derivative
+access, and house maps remain premises. Independent geometry-first and
+entropy-first ratchets over a larger declared candidate set must still emit
+their survivor intersection without receiving a hard-coded count of four.
+
+The broad current v7 harness is also green at `123/0/0`, including independent
+1q/3q JAX, PyTorch, and Julia cross-substrate checks. That mechanical green
+must not be read as product success: the regenerated Lev/QIT evidence envelope
+now reports `formation_loss_sum = 43.546185436758485`, driven by the current
+trajectory-window PySINDy mean R2 of `-42.54618543675848`. The exact-derivative
+system-ID packet and the noisy/trajectory observation problem are separate
+evidence families.
+
 ## Viability Verdict
 
 The bounded system is buildable from the current repo. The grand system is not yet established.
@@ -17,6 +45,9 @@ Already executable:
 - a 16-channel affine re-identification result over the proxy namespace
   `8 terrains x 2 selected/native operators`, not the 16 signed source slots;
 - a source linter for 16 signed macro slots and their proposed 16 x 4 expansion;
+- a green local system-identification instrument in which each of the two
+  candidate orientations executes 64 same-sign beats and survives held-out
+  removal/order/sign/terrain/operator controls;
 - 64 independently probed terrain/sign/operator channels under one finite
   parameterization;
 - a 64-slot ordered object-card scout;

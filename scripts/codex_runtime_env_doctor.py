@@ -72,6 +72,14 @@ PYTHON_EXPECT_OK = [
     "z3",
     "cvc5",
     "sympy",
+    "pysindy",
+]
+
+# Import-probed for visibility but deliberately excluded from canonical-core
+# success/failure. Its bounded Identity+EDMD surface has a function receipt,
+# while the full distribution remains dependency-quarantined.
+PYTHON_EXPECT_QUARANTINED = [
+    "pykoopman",
 ]
 
 PYTHON_EXPECT_BLOCKED = [
@@ -181,6 +189,7 @@ def python_probe() -> dict[str, Any]:
 import importlib, json, site, sys
 mods_ok = __MODS_OK__
 mods_blocked = __MODS_BLOCKED__
+mods_quarantined = __MODS_QUARANTINED__
 out = {
     "executable": sys.executable,
     "version": sys.version,
@@ -188,7 +197,7 @@ out = {
     "user_site": getattr(site, "getusersitepackages", lambda: None)(),
     "modules": {},
 }
-for name in mods_ok + mods_blocked:
+for name in mods_ok + mods_blocked + mods_quarantined:
     try:
         mod = importlib.import_module(name)
         out["modules"][name] = {
@@ -205,6 +214,8 @@ for name in mods_ok + mods_blocked:
 print(json.dumps(out, sort_keys=True))
 """.replace("__MODS_OK__", repr(PYTHON_EXPECT_OK)).replace(
         "__MODS_BLOCKED__", repr(PYTHON_EXPECT_BLOCKED)
+    ).replace(
+        "__MODS_QUARANTINED__", repr(PYTHON_EXPECT_QUARANTINED)
     )
     result = run([str(CANONICAL_PYTHON), "-c", code], timeout=180)
     parsed: dict[str, Any] = {"exists": True, "path": str(CANONICAL_PYTHON), "raw": result}

@@ -5,6 +5,41 @@
 **Classification:** audit receipt; not engine admission  
 **Promotion allowed:** false
 
+## Follow-On System-ID Result
+
+After this packet audit, the repo gained
+`system_v7/sims/stage16x4_system_id_instrument_v0/`. It uses the 16 source
+slots directly and evaluates both conditional product-square orientations as
+real sequential maps under one inherited Axis-6 sign per macro slot.
+
+The bounded local result is green: 64 beat maps per candidate orientation,
+all beat removals and duplications load-bearing against held-out exact
+transitions, all 16 macro maps re-identified in both orientations, and sign,
+terrain, operator, reversal, permutation, corruption, and identity-boundary
+controls behaving as preregistered. PySINDy and PyKoopman now have separate
+function receipts and are load-bearing in this packet.
+
+This changes the third namespace below from an unexecuted schedule hypothesis
+to a **locally executed and identifiable conditional architecture**. It does
+not make the expansion source-canonical or emergent: the four cells, cycle,
+canonical-first rotation, source slots, house maps, and exact derivative access
+are inputs. Independent geometry-first and entropy-first survivor ratchets are
+still absent.
+
+Fresh active-repo harness after the follow-on work: `123 pass / 0 fail / 0
+skip`, report SHA-256
+`5e724476efbfada289bd8bd275f24e09b18196cde852edd6b4d99ef1c3f906bc`.
+This is distinct from packet 97's isolated `135/0/0`. The active harness also
+regenerates `formation_loss_sum = 43.546185436758485`; the poor current
+trajectory-window PySINDy absolute score therefore remains a product/perception
+blocker despite mechanical green.
+
+The active `run_all.py` now has an explicit stable dependency order that runs
+`engine_reidentification_objective_sim.py` before the crosscheck and all
+measurement producers before the Lev evidence emitter. That closes the active
+repo ordering defect described below; it does not alter the archived packet's
+original missing-result behavior.
+
 ## Packet Identity And Ceiling
 
 | Packet | SHA-256 | Members | Intake result |
@@ -44,7 +79,9 @@ They must not be pooled.
    signs gives 16 macro channels; a candidate pool can contain four exact
    operators at the same sign, giving 64 possible transitions. Only 16 of
    those 64 rows are source-canonical under the older chart. The other 48 are
-   an architecture hypothesis, not a result.
+   a candidate architecture. The follow-on system-ID packet executes and
+   identifies that architecture under one finite parameterization, but does
+   not derive it from the source or from dual ratcheting.
 
 This distinction controls every uniqueness, necessity, personality, and
 objecthood claim.

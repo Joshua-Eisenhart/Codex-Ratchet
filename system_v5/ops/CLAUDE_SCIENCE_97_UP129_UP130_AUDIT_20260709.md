@@ -141,8 +141,29 @@ It does **not** prove that each of the 16 macro stages contains these four maps
 as sequential substages, that a fixed Axis-6 sign is inherited through the
 cycle, or that any beat is dynamically necessary or useful.
 
-The next experiment must parse each macro slot, hold its terrain and Axis-6
-precedence fixed, execute both square orientations as real ordered CPTP stage
-maps, and require held-out task/object degradation under beat removal,
-permutation, coordinate erasure, and wrong-sign controls. Only that can bridge
-the four-cell theorem to a 16 x 4 engine interior.
+### Follow-on execution result
+
+`system_v7/sims/stage16x4_system_id_instrument_v0/` now performs that next
+bounded execution test. Both candidate orientations run across all 16 source
+slots under one inherited sign, external system-ID tools recover the held-out
+maps, and removal, duplication, reversal, wrong-sign, terrain-erasure,
+operator-erasure, and permutation controls all move the endpoint beyond fit
+noise.
+
+This closes sequential execution and local dynamic necessity **conditional on
+the supplied four-cell architecture and one finite house-map
+parameterization**. It does not repair the premise boundary of this audit:
+four is still not emitted by independent geometry-first and entropy-first
+ratchets, and the held-out transition task is not yet a business/object task.
+
+The active repo's broader harness now reruns at `123/0/0`. Packet 97 remains a
+separate isolated `135/0/0` receipt. The active evidence envelope reports
+formation loss `43.546185436758485`, so neither green count may be used to
+claim perception or object usefulness.
+
+That execution bridge now exists. The next experiment must remove its supplied
+four-count: enumerate a larger candidate pool, run independent geometry-first
+and entropy-first ratchets, intersect only their measured survivors, and then
+feed the emitted sequence into the same held-out controls. A separate SME
+object fixture must test whether those beats improve useful work rather than
+only reproducing their authored transition map.

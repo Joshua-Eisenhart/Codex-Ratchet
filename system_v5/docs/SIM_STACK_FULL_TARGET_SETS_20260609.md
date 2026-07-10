@@ -1,7 +1,7 @@
 # Sim Stack Full Target Sets
 
 Status: current stack target map for Codex Ratchet agents.
-Updated: 2026-06-09.
+Updated: 2026-07-09.
 Authority: subordinate to `AGENTS.md`, `CODEX.md`, process docs, and the live runtime doctor.
 
 This page answers the package-map question only. Import reachability is not
@@ -145,8 +145,44 @@ Missing but not required for current Ratchet claims:
 ```text
 torchvision
 torchaudio
-lightning
-pytorch_lightning
+```
+
+`lightning==2.6.5` and `pytorch-lightning==2.6.5` are now import-visible in the
+canonical environment, but they are not canon engine dependencies. They are
+reached eagerly by PyKoopman's NNDMD import path, which remains quarantined and
+untested.
+
+## Python System Identification Surface
+
+Canonical function surface:
+
+```text
+pysindy==2.1.0
+```
+
+PySINDy has a green affine continuous-generator function receipt and selected
+upstream tests. Use exact `x_dot` only when the simulation genuinely exposes
+the derivative; trajectory-estimation results need their own absolute error
+gate. Discrete PySINDy uses `DiscreteSINDy` with `x_next=` by keyword.
+
+Quarantined package with one admitted core function surface:
+
+```text
+pykoopman==1.2.1
+  admitted: Koopman + Identity + EDMD with explicit affine bias coordinate
+  blocked: Polynomial on canonical sklearn, NNDMD/neural path, full package contract
+```
+
+Do not satisfy PyKoopman's old pinned metadata by downgrading the canonical
+NumPy, SciPy, scikit-learn, PyDMD, Torch, or Lightning stack. Use the pinned
+Python 3.11 environment only for upstream compatibility tests.
+
+Receipts and exact paths:
+
+```text
+system_v5/ops/PYSINDY_PYKOOPMAN_TOOL_STATUS_20260709.md
+system_v4/probes/a2_state/sim_results/pysindy_capability_results.json
+system_v4/probes/a2_state/sim_results/pykoopman_capability_results.json
 ```
 
 ## Python Graph, Topology, CS, And AI Surface

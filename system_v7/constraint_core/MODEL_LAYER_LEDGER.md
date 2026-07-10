@@ -1470,9 +1470,8 @@ washes out under a rotation-invariant signature), and t3:Fe->t7:Fe (the proj+Fe 
 commuting with their terrain, the 16->12 collapse). So 11/16 engine stages carry genuine probe-rotation-invariant
 identity; the 5 that don't are the known-degenerate pairs, not failures of the test. This is an OBJECTIVE measure
 an AI can compute without buying the theory. scratch_diagnostic, promotion_allowed=False. artifact 461708a8.
-NEXT (deferred, larger build): install PySINDy/PyKoopman (named in the Lev docs) + export per-stage engine
-time-traces for a fully MODEL-BLIND dynamics-ID arbiter -- an external tool with no knowledge of the QIT theory
-that predicts each stage's dynamics, with a shuffled-time control that must break it.
+HISTORICAL NEXT (executed in stages by the July 9 update below): install
+PySINDy/PyKoopman and export per-stage dynamics to external system-ID tools.
 
 ## FULLY EXTERNAL DYNAMICS-ID ARBITER -- PySINDy on the terrain flows (2026-07-06) [owner-driven, off-the-shelf judge]
 OWNER: "install what is needed." -> installed PySINDy 2.1.0 (+ derivative) into constraintcore (the Lev
@@ -1497,8 +1496,46 @@ with degree-2 polynomial dynamics (real held-out R^2 -0.017). Physically sensibl
 collapses fast to its fixed point, so the held-out second half is near-stationary and carries almost no derivative
 signal to identify. So the external arbiter independently flags t3 as the terrain whose dynamics are not
 polynomial-identifiable on this window -- reported, not hidden. scratch_diagnostic, promotion_allowed=False.
-artifact 26ce1c99. (PyKoopman deferred: its sdist pulls an old scikit-learn with no py3.13 wheel; PySINDy alone,
-installed --no-build-isolation --no-deps against the env's sklearn 1.9.0, is the working external arbiter.)
+artifact 26ce1c99. Historical environment note: PyKoopman was deferred at this
+point because its release stack pinned old scikit-learn. The July 9 update
+below supersedes the install-status part of that note, not this result.
+
+## PYKOOPMAN CORE + CONDITIONAL 16 x 4 SYSTEM-ID INSTRUMENT (2026-07-09)
+
+PySINDy `2.1.0` and PyKoopman `1.2.1` now have separate function-level
+capability receipts. PySINDy is clean in the canonical Python 3.13 stack.
+PyKoopman's full package remains quarantined because its metadata pins old
+NumPy/SciPy/scikit-learn/PyDMD/Torch/Lightning versions and its Polynomial
+observable uses a removed scikit-learn attribute. The admitted PyKoopman
+surface is only `Koopman + Identity + EDMD` with an explicit affine bias
+coordinate. No canonical package was downgraded.
+
+`system_v7/sims/stage16x4_system_id_instrument_v0/` parses the 16 source slots,
+rotates both conditional product-square orientations to each slot's canonical
+operator, and executes four beats under one inherited Axis-6 sign. PySINDy
+recovers each exact affine terrain generator; its reconstructed flow generates
+the PyKoopman beat training pairs. Held-out targets come independently from the
+exact house GKSL/channel implementation.
+
+LOCAL RESULT: both candidate orientations are green. Each has 64 beat maps;
+128 models appear only because two candidates were compared. Minimum beat and
+rollout held-out R2 is `1.0`, maximum rollout RMSE is
+`1.729546854431812e-15`, and both candidates re-identify `16/16` macro maps.
+All `128/128` beat removals and `128/128` duplications change the endpoint.
+All 32 slot/orientation rows also pass reverse, wrong-sign, terrain-erasure,
+operator-erasure, and all-permutation controls; the identity boundary remains
+order-insensitive. Accepted label: `passes local rerun`, fenced
+`scratch_diagnostic`, no stage movement.
+
+EXACT CEILING: this establishes that a concrete conditional 16 x 4 schedule
+can execute, be externally identified, and carry locally load-bearing ordered
+maps under one finite parameterization. It does not derive four substages.
+Four cells, cycle orientations, canonical-first rotation, the source slots,
+house maps, and analytic derivative access are premises. The prior
+trajectory-window PySINDy arbiter also remains a weaker observation result;
+perfect analytic-derivative recovery is not perception. Independent
+geometry-first and entropy-first ratchets over a declared superset must still
+emit the survivor intersection before the four-count can be called emergent.
 
 ## OBJECT-FORMATION SCORECARD -- two external targets composed under the Lev measurement discipline (2026-07-06)
 OWNER attached leviathan_object_formation_mesh_package_20260706.zip (version_id 92aa9309-d8f4-493f-b690-ce4c78d8623f,
@@ -1524,6 +1561,15 @@ RESULT: convergence_loss 1.562 (rate 0.688), handling_loss_mean 0.143, defined-c
 flip -> PASS. Full harness 81 pass/0/0 GREEN. scratch_diagnostic, promotion_allowed=False. artifact 42698a1a.
 This gives the two external targets (re-id UP-73 + PySINDy UP-74) a single formation-loss readout under an explicit
 measurement/verdict split -- the discipline that would have prevented the four gate-tuning audits.
+
+CURRENT RERUN CORRECTION (2026-07-09): the active trajectory-window PySINDy
+result now has mean real held-out R2 `-42.54618543675848`. A fresh full harness
+is mechanically green at `123/0/0`, but the regenerated evidence envelope
+correctly raises `formation_loss_sum` from the historical `0.14344853350242942`
+to `43.546185436758485`. The shuffle is still catastrophically worse, so the
+old control-flip predicate passes; absolute handling accuracy does not. Treat
+the paragraph above as historical receipt state, not current perception or
+object-formation evidence.
 
 ## COSMOGENESIS AS THE ROOT RATCHET'S FIRST TOOTH -- MSS in a static field (2026-07-06) [owner framing, under test]
 OWNER: "my explanation of how the universe was created as an example of the very ratchet working ... mss in a

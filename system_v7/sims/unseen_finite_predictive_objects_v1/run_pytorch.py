@@ -933,11 +933,17 @@ def clean_tracked_source() -> bool:
 
 def validate_seal_receipt(spec_hash: str, manifest_hash: str) -> dict[str, Any]:
     receipt = load_json(SEAL_RECEIPT_PATH)
-    required = {"schema", "source_sha256", "spec_sha256", "object_manifest_sha256", "recompute_metrics_sha256"}
+    required = {
+        "schema", "sim_id", "seal_status", "learner_source_sealed",
+        "source_sha256", "spec_sha256", "object_manifest_sha256",
+        "recompute_metrics_sha256",
+    }
     if not required.issubset(receipt):
         raise RunnerError("seal receipt is missing a required hash binding")
-    if receipt["schema"] != "codex_ratchet.unseen_finite_predictive_objects_v1.learner_seal.v1":
+    if receipt["schema"] != "codex_ratchet.unseen_finite_predictive_objects_v1.seal_receipt.v1":
         raise RunnerError("unexpected seal receipt schema")
+    if receipt["sim_id"] != SIM_ID or receipt["seal_status"] != "sealed" or receipt["learner_source_sealed"] is not True:
+        raise RunnerError("seal receipt does not declare the accepted v1 learner seal")
     if receipt["source_sha256"] != sha256_file(SOURCE_PATH) or receipt["spec_sha256"] != spec_hash or receipt["object_manifest_sha256"] != manifest_hash:
         raise RunnerError("seal receipt hash binding mismatch")
     if receipt["recompute_metrics_sha256"] != sha256_file(RECOMPUTE_PATH):

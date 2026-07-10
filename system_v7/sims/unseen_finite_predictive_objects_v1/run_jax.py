@@ -785,7 +785,7 @@ def validate_seal(path: Path, spec: dict[str, Any], manifest: dict[str, Any]) ->
     expected = {
         "sim_id": SIM_ID,
         "spec_sha256": sha256_file(SPEC_PATH),
-        "manifest_sha256": sha256_file(MANIFEST_PATH),
+        "object_manifest_sha256": sha256_file(MANIFEST_PATH),
     }
     mismatches = {key: {"expected": value, "actual": receipt.get(key)} for key, value in expected.items() if receipt.get(key) != value}
     if mismatches:

@@ -1,0 +1,241 @@
+{
+  "schema": "codex_ratchet.dual_ratchet_four_count_nonforcing_smt_v0.spec.v1",
+  "sim_id": "dual_ratchet_four_count_nonforcing_smt_v0",
+  "version": "0.1.0",
+  "preregistered_on": "2026-07-09",
+  "preregistration_status": "locked_before_any_solver_receipt",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "stage_movement_allowed": false,
+  "scientific_question": "Within the declared finite phase carrier and length search 2..8, do the explicit count-free dual-ratchet axioms, or any one preregistered count-free strengthening, admit only length four?",
+  "source_locks": [
+    {
+      "path": "system_v7/constraint_core/corrections/ENGINE_SOURCE_SLOT_SEMANTIC_CORRECTION_2026-07-09.md",
+      "sha256": "4e742542431d2c30660914118e2c884229327c48e0e6927a0a8add2183c0cce8",
+      "role": "source correction and 16x4 claim boundary"
+    },
+    {
+      "path": "system_v7/constraint_core/sims_and_scripts/four_substages_emerge_from_dual_ratchet_sim.py",
+      "sha256": "6d412087c47b12dbf82b982589c801e531e8fff1c0398bdb117a64bd084b3741",
+      "role": "rejected emergence construction"
+    },
+    {
+      "path": "system_v7/constraint_core/sims_and_scripts/four_substages_up130_fabrication_audit_sim.py",
+      "sha256": "00b54e46a3710c1ab85d83bd96de0e2d85c1203937cba9b81bdda918dfb8ac70",
+      "role": "fabrication-audit implementation"
+    },
+    {
+      "path": "system_v7/constraint_core/sims_and_scripts/four_substages_up130_fabrication_audit_sim_results.json",
+      "sha256": "9022c2a99f8a2dda86df2d6f989b54e42a6d39e821d2178207c2c40dbdbb84d9",
+      "role": "fabrication-audit receipt"
+    },
+    {
+      "path": "system_v7/sims/dual_ratchet_substage_survivor_discovery_v0/spec.json",
+      "sha256": "8887c17756ab7e6710fdfcbcf68ef526029d10c93e9801ef35799b644ae76375",
+      "role": "nonduplicated operator-quotient scout preregistration"
+    },
+    {
+      "path": "system_v7/sims/dual_ratchet_substage_survivor_discovery_v0/results/dual_ratchet_substage_survivor_discovery_v0_agreement.json",
+      "sha256": "7a7607ee63694e3910f52c4c38df1f83bb579fb7078cd317ed782fb116ec71ff",
+      "role": "conditional four-class quotient and generic-axis kill receipt"
+    }
+  ],
+  "finite_formalization": {
+    "phase_carrier": "Z3_geometry x Z3_entropy",
+    "phase_state_count": 9,
+    "state_encoding": "state = 3 * geometry_coordinate + entropy_coordinate",
+    "carrier_reason": "Nine states permit a simple closed trace at every searched length through eight and do not privilege length four.",
+    "work_kinds": [
+      "geometry",
+      "entropy"
+    ],
+    "axis6_signs": [
+      "down",
+      "up"
+    ],
+    "transition_object": "One total finite transition table for each work-kind/sign pair; every leg selects the table for its work kind and the cycle's shared sign.",
+    "search_lengths": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "desired_cardinality_supplied": false,
+    "source_operator_names_supplied": false,
+    "source_16x4_schedule_supplied": false
+  },
+  "baseline_axioms": [
+    {
+      "id": "B1_two_distinct_work_kinds_both_used",
+      "formula": "The cycle word contains at least one geometry leg and at least one entropy leg, and the selected geometry and entropy transition tables differ on at least one carrier state.",
+      "count_free": true
+    },
+    {
+      "id": "B2_order_sensitivity_noncommutation",
+      "formula": "For the shared sign, there exists a carrier state q with G(E(q)) != E(G(q)).",
+      "count_free": true
+    },
+    {
+      "id": "B3_entropy_progress",
+      "formula": "At least one entropy leg changes the entropy coordinate of the visited phase state.",
+      "count_free": true
+    },
+    {
+      "id": "B4_geometry_progress",
+      "formula": "At least one geometry leg changes the geometry coordinate of the visited phase state.",
+      "count_free": true
+    },
+    {
+      "id": "B5_finite_phase_closure",
+      "formula": "The finite trace obeys the selected transition table at every leg and its final state equals its initial state.",
+      "count_free": true
+    },
+    {
+      "id": "B6_one_shared_axis6_sign",
+      "formula": "A single Boolean Axis-6 sign is selected for the cycle; each leg sign equals it and the selected sign indexes every applied transition table.",
+      "count_free": true
+    },
+    {
+      "id": "B7_no_desired_cardinality",
+      "formula": "No count of geometry legs, entropy legs, directions, classes, phase states, or positions is constrained to four or to factors whose exact coverage totals four.",
+      "count_free": true
+    }
+  ],
+  "candidate_additional_axioms": [
+    {
+      "id": "A1_cyclic_alternation",
+      "formula": "Every adjacent pair of legs, including the last/first pair, has different work kinds.",
+      "tested_one_at_a_time": true,
+      "cardinality_premise": false
+    },
+    {
+      "id": "A2_every_leg_primary_progress",
+      "formula": "Every geometry leg changes the geometry coordinate and every entropy leg changes the entropy coordinate.",
+      "tested_one_at_a_time": true,
+      "cardinality_premise": false
+    },
+    {
+      "id": "A3_simple_phase_cycle",
+      "formula": "The visited states before final closure are pairwise distinct.",
+      "tested_one_at_a_time": true,
+      "cardinality_premise": false
+    },
+    {
+      "id": "A4_no_early_return",
+      "formula": "No proper nonempty prefix of the trace returns to the initial state.",
+      "tested_one_at_a_time": true,
+      "cardinality_premise": false
+    },
+    {
+      "id": "A5_noncommutation_witness_on_cycle",
+      "formula": "At least one visited pre-closure state witnesses G(E(q)) != E(G(q)).",
+      "tested_one_at_a_time": true,
+      "cardinality_premise": false
+    },
+    {
+      "id": "A6_opposite_sign_breaks_closure",
+      "formula": "Replaying the same work word from the same initial state with the opposite shared Axis-6 sign does not close.",
+      "tested_one_at_a_time": true,
+      "cardinality_premise": false
+    },
+    {
+      "id": "A7_selected_maps_bijective",
+      "formula": "For the selected sign, both work maps are permutations of the nine-state carrier.",
+      "tested_one_at_a_time": true,
+      "cardinality_premise": false
+    },
+    {
+      "id": "A8_single_kind_flip_breaks_closure",
+      "formula": "Flipping the work kind of any one leg while holding its position and the shared sign fixed breaks closure.",
+      "tested_one_at_a_time": true,
+      "cardinality_premise": false
+    },
+    {
+      "id": "A9_single_leg_deletion_breaks_closure",
+      "formula": "Deleting any one leg while preserving the order of all remaining legs breaks closure.",
+      "tested_one_at_a_time": true,
+      "cardinality_premise": false
+    },
+    {
+      "id": "A10_reverse_word_breaks_closure",
+      "formula": "Replaying the work word in reverse order from the same initial state and shared sign does not close.",
+      "tested_one_at_a_time": true,
+      "cardinality_premise": false
+    }
+  ],
+  "forbidden_cardinality_controls": [
+    {
+      "id": "F1_exactly_two_of_each_kind",
+      "formula": "Exactly two geometry legs and exactly two entropy legs.",
+      "rejection_reason": "The equation L = count(G) + count(E) = 2 + 2 directly fixes four.",
+      "cardinality_contaminated": true
+    },
+    {
+      "id": "F2_binary_x_binary_exact_coverage",
+      "formula": "An auxiliary binary role crossed with the binary work kind covers each of the four pairs exactly once.",
+      "rejection_reason": "Exact binary x binary coverage is the prohibited four-cell premise.",
+      "cardinality_contaminated": true
+    },
+    {
+      "id": "F3_explicit_four_step_word",
+      "formula": "The query length is four and the word is geometry, entropy, geometry, entropy.",
+      "rejection_reason": "A four-step word directly states the desired cardinality and order.",
+      "cardinality_contaminated": true
+    },
+    {
+      "id": "F4_exactly_four_legs",
+      "formula": "The query length equals four.",
+      "rejection_reason": "This is the desired cardinality itself.",
+      "cardinality_contaminated": true
+    }
+  ],
+  "solver_contract": {
+    "required_independent_solvers": [
+      "z3",
+      "cvc5"
+    ],
+    "z3_surface": "Python z3-solver API with a solver-local encoding",
+    "cvc5_surface": "Python cvc5 API with a separately written solver-local encoding",
+    "peer_result_reads_allowed": false,
+    "cross_solver_agreement_definition": "For every scenario and length, SAT/UNSAT status must match. SAT witnesses may differ but each must pass the solver-free validator.",
+    "missing_solver_policy": "fail_closed",
+    "unknown_solver_status_policy": "fail_closed",
+    "disagreement_policy": "fail_closed"
+  },
+  "preregistered_branch_table": {
+    "baseline_has_any_nonfour_model": "The current explicit count-free axioms do not force four in this finite formalization.",
+    "one_clean_candidate_admits_only_four": "That candidate forces four only within this declared carrier and length window; no broader theorem or 16x4 admission follows.",
+    "no_clean_candidate_admits_only_four_but_contaminated_controls_do": "Record the finite nonforcing/impossibility result: the tested honest additions do not force four, while only premises carrying four in disguise do.",
+    "solver_missing_unknown_or_disagreement": "BLOCKED; emit no scientific verdict.",
+    "no_baseline_models": "INCONCLUSIVE; the baseline formalization is inconsistent rather than four-forcing."
+  },
+  "required_artifacts": [
+    "spec.json",
+    "wizard_v4_3_object_card.json",
+    "dual_ratchet_four_count_nonforcing_smt_v0_z3.py",
+    "dual_ratchet_four_count_nonforcing_smt_v0_cvc5.py",
+    "validate_dual_ratchet_four_count_nonforcing_smt_v0.py",
+    "run_dual_ratchet_four_count_nonforcing_smt_v0.py",
+    "results/z3_raw_solver_receipt.json",
+    "results/cvc5_raw_solver_receipt.json",
+    "results/agreement_validation.json",
+    "results/malformed_input_selftest.json",
+    "results/deterministic_rerun_hashes.json",
+    "README.md",
+    "RESULTS.md"
+  ],
+  "claim_ceiling": "Finite scratch diagnostic only. A nonforcing result means that these explicitly encoded count-free properties, and the listed one-at-a-time additions, do not select four over the other admitted lengths on this nine-state carrier for L=2..8. It is not a theorem over all carriers or all dual-ratchet axioms.",
+  "schedule_16x4_boundary": "The source defines 16 source slots, each expanded across four operator substages at one shared Axis-6 sign. This scout can only test whether a separate count-free temporal axiom set earns the multiplier four. If nonforcing, the source-defined 16x4 schedule remains a source rule/candidate carrier and is not independently earned by these axioms.",
+  "blocked_consumers": [
+    "universal four-substage theorem",
+    "source-native 16x4 schedule derivation",
+    "canonical per-stage operator order",
+    "Type-1/Type-2 engine admission",
+    "Axis0 or global engine admission",
+    "manifold, FEP, perception, object, cognition, or physics claims"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "claude-fable-5",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "3.5",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--allowedTools",
+    "Read,Grep"
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-07-10T05:55:44.757193+00:00",
+  "model": "claude-fable-5",
+  "output_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/external_packet_audits/packet_107_20260709/advisory/20260710T055250Z-fable-high-packet107-foundation-audit-145c4de8af78.json",
+  "parsed": {
+    "duration_ms": 171742,
+    "is_error": false,
+    "models": [
+      "claude-fable-5"
+    ],
+    "result_preview": "MEASURED\n\nUP-135 sim (`physics_a0_redshift_fork_selected_by_data_sim.py`):\n- Branch A: a0(z) = cH(z)/2\u03c0 with H(z) = H0\u221a(0.3(1+z)\u00b3+0.7). Computed values check out: a0_local = cH0/2\u03c0 = 1.083e-10 m/s\u00b2 (ratio 0.902 to a0_obs = 1.2e-10); a0_A(z=2)/a0_A(0) = \u221a8.8 \u2248 2.97; fitted log-log slope at z=3\u20136 \u2192 1.5.\n- The \"data kills A\" gate is `ratio_A_z2 > 2.0 and |slope-1.5| < 0.15` (line 68). The 2.0 threshold is chosen by the sim, not taken from the paper. The docstring itself flags the exclusion as \"attribution, not re-verified verbatim\".\n- The sim is honestly labelled `scratch_diagnostic, promotion_allowed=false`, but its verdict key is `DATA_SELECTS_DARK_ENERGY_HORIZON_READING_OF_COSMOGENESIS`.\n\nUP-136 sim (`physics_loops_back_into_core_axis0_rate_sim.py`):\n- State |\u03c8(\u03c6)\u27e9 = (cos \u03b7 e^{i\u03c6}, sin \u03b7). Its connection A_\u03c6 = i\u27e8\u03c8|\u2202_\u03c6\u03c8\u27e9 = \u2212cos\u00b2\u03b7 is algebraically correct; at \u03b7=0, \u222eA d\u03c6 = \u22122\u03c0; half loop gives \u2212\u03c0. The numerics do what the code says.\n- Claim 1 (H(z)/H_dS \u2192 1 as z \u2192 \u22121, matter fraction \u2192 0)",
+    "result_subtype": "success",
+    "total_cost_usd": 1.689171
+  },
+  "prompt_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/external_packet_audits/packet_107_20260709/advisory/20260710T055250Z-fable-high-packet107-foundation-audit-145c4de8af78.prompt.txt",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/external_packet_audits/packet_107_20260709/advisory/20260710T055250Z-fable-high-packet107-foundation-audit-145c4de8af78.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 600.0
+}

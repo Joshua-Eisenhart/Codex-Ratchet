@@ -1,0 +1,76 @@
+{
+  "all_pass": true,
+  "case_count": 6,
+  "cases": [
+    {
+      "expected_error_code": "scenario.query_lengths",
+      "name": "missing_length_query",
+      "observed_error_codes": [
+        "agreement.status_projection",
+        "scenario.admitted_lengths",
+        "scenario.nonfour_lengths",
+        "scenario.query_lengths"
+      ],
+      "pass": true,
+      "validator_rejected": true
+    },
+    {
+      "expected_error_code": "model.transition_trace",
+      "name": "invalid_transition_trace",
+      "observed_error_codes": [
+        "model.coordinates",
+        "model.entropy_progress",
+        "model.transition_trace"
+      ],
+      "pass": true,
+      "validator_rejected": true
+    },
+    {
+      "expected_error_code": "model.axis6_signs",
+      "name": "mixed_axis6_signs",
+      "observed_error_codes": [
+        "model.axis6_signs"
+      ],
+      "pass": true,
+      "validator_rejected": true
+    },
+    {
+      "expected_error_code": "query.status",
+      "name": "unknown_solver_status",
+      "observed_error_codes": [
+        "agreement.status_projection",
+        "query.status",
+        "scenario.admitted_lengths",
+        "scenario.decided",
+        "scenario.nonfour_lengths"
+      ],
+      "pass": true,
+      "validator_rejected": true
+    },
+    {
+      "expected_error_code": "agreement.status_projection",
+      "name": "cross_solver_status_disagreement",
+      "observed_error_codes": [
+        "agreement.status_projection",
+        "scenario.admitted_lengths",
+        "scenario.nonfour_lengths"
+      ],
+      "pass": true,
+      "validator_rejected": true
+    },
+    {
+      "expected_error_code": "scenario.cardinality_contamination",
+      "name": "cardinality_contamination_laundered",
+      "observed_error_codes": [
+        "scenario.cardinality_contamination"
+      ],
+      "pass": true,
+      "validator_rejected": true
+    }
+  ],
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "schema": "codex_ratchet.dual_ratchet_four_count_nonforcing_smt_v0.malformed_selftest.v1",
+  "selftest_kind": "in_memory_receipt_corruption",
+  "sim_id": "dual_ratchet_four_count_nonforcing_smt_v0"
+}

@@ -1,0 +1,41 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "claude-fable-5",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "15.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/lev/current-main-wizard-port-20260709",
+    "--effort",
+    "high",
+    "--allowedTools",
+    "Read,Grep,Glob,Bash"
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-07-10T06:31:28.903811+00:00",
+  "model": "claude-fable-5",
+  "output_path": "20260710T062352Z-fable-high-current-main-wizard-architecture-retr-1f6f8f5ed90a.json",
+  "parsed": {
+    "duration_ms": 453479,
+    "is_error": false,
+    "models": [
+      "claude-fable-5",
+      "claude-opus-4-8[1m]"
+    ],
+    "result_preview": "All four explorers have returned and I verified the load-bearing claims directly. Here is the audit.\n\n---\n\n# Audit: porting a receipt-bound multi-model Wizard onto current main\n\nBottom line: do not port the old Wizard. Every contract it needs already exists on current main. Build a bounded single-model proof-of-concept as a plugin flow first, then widen to three seats. The baseline has two real defects (lockfile drift and a missing dependency) plus one boundary gap (provider SDK code in `core/flowmind`), none of which block the POC but all of which must be named in its receipts.\n\nAll paths are relative to the worktree root. Claims marked \"inference\" were not directly observed.\n\n## 1. Contracts the Wizard should reuse (verified by read)\n\nInvocation truth (core/exec, core/domain):\n\n- `createExec` \u2014 `core/exec/src/index.ts:69` \u2014 the blessed execution factory; emits `exec.started/completed/failed` and captures `durationMs` per call.\n- `resolveExecutionBinding` \u2014 `core/exec/src/execution/ex",
+    "result_subtype": "success",
+    "total_cost_usd": 9.744512750000002
+  },
+  "prompt_path": "20260710T062352Z-fable-high-current-main-wizard-architecture-retr-1f6f8f5ed90a.prompt.txt",
+  "receipt_path": "20260710T062352Z-fable-high-current-main-wizard-architecture-retr-1f6f8f5ed90a.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/lev/current-main-wizard-port-20260709",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 1200.0
+}

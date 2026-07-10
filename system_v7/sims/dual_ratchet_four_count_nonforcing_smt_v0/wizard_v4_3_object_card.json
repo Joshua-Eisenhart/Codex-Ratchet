@@ -1,0 +1,256 @@
+{
+  "schema_version": "wizard_v4_3_primary_object_card_v1",
+  "primary_object_card": {
+    "object_name": "CountFreeFiniteDualRatchetCycle",
+    "object_type": "finite_count_free_transition_cycle",
+    "object_statement": "A finite cycle over two distinct sign-indexed work maps is admissible when both kinds occur, the selected maps are noncommuting, at least one leg advances each named phase coordinate, the trace closes, and every leg shares one Axis-6 sign; no cycle length is preferred.",
+    "object_statement_sha256": "2a8e0cc399743425c6e91199fccf6bcb3a3727a1e8625a9575275f95cdce94de",
+    "plain_language_definition": "The object is an abstract finite closed trace, not the source's four operators. It carries a geometry coordinate, an entropy coordinate, two anonymous work maps, their order-sensitive compositions, and one sign shared by every leg. The number of legs is queried rather than supplied.",
+    "source_anchors": [
+      {
+        "surface": "repo_correction",
+        "reference": "system_v7/constraint_core/corrections/ENGINE_SOURCE_SLOT_SEMANTIC_CORRECTION_2026-07-09.md",
+        "quote_or_summary": "UP-130 does not derive four because its count predicate fixes two A and two B symbols before scanning."
+      },
+      {
+        "surface": "repo_audit_receipt",
+        "reference": "system_v7/constraint_core/sims_and_scripts/four_substages_up130_fabrication_audit_sim_results.json",
+        "quote_or_summary": "The audited C3 premise fixes L=4; the channels commute and preserve entropy."
+      },
+      {
+        "surface": "repo_scout_receipt",
+        "reference": "system_v7/sims/dual_ratchet_substage_survivor_discovery_v0/results/dual_ratchet_substage_survivor_discovery_v0_agreement.json",
+        "quote_or_summary": "A conditional four-class Pauli quotient does not earn temporal four or the per-stage schedule."
+      }
+    ],
+    "native_terms": {
+      "geometry work": "A leg selecting the anonymous geometry transition table.",
+      "entropy work": "A leg selecting the anonymous entropy transition table.",
+      "progress": "A visited leg changes its named phase coordinate.",
+      "closure": "The final finite phase state equals the initial state after applying every leg in order.",
+      "shared Axis-6 sign": "One Boolean selector indexes the transition table used by every leg in the cycle."
+    },
+    "weirdness_signature": [
+      "noncommutation is a property of anonymous total finite maps rather than imported operator names",
+      "progress is witnessed on the actual closing trace rather than asserted as a label",
+      "the phase carrier has nine states so simple cycles through eight are representable without privileging four",
+      "four is a queried outcome and never a baseline field"
+    ],
+    "first_class_fields": [
+      "finite_phase_carrier",
+      "geometry_coordinate",
+      "entropy_coordinate",
+      "geometry_work_map",
+      "entropy_work_map",
+      "shared_axis6_sign",
+      "ordered_work_word",
+      "phase_trace",
+      "closure_witness",
+      "noncommutation_witness"
+    ],
+    "domain": "All total geometry/entropy transition-table pairs on Z3 x Z3, both Axis-6 sign choices, and words of each separately queried length 2..8.",
+    "codomain_or_output": "SAT models or UNSAT results per length, plus a solver-free agreement and contamination classification.",
+    "allowed_operations": [
+      "synthesize finite total transition tables",
+      "apply a work word in order",
+      "compare G after E with E after G",
+      "measure named-coordinate progress",
+      "check finite closure",
+      "add one preregistered count-free axiom at a time",
+      "run explicitly contaminated forcing controls only as kill controls"
+    ],
+    "required_invariants": [
+      "both anonymous work kinds remain distinct and used",
+      "noncommutation remains an explicit solver constraint",
+      "geometry and entropy progress remain separate trace observables",
+      "one sign is shared by every leg and indexes each applied map",
+      "no clean scenario receives a desired count, four-class coverage, or source operator schedule",
+      "all claims remain bounded to the finite carrier and L=2..8"
+    ],
+    "forbidden_substitutions": [
+      "any proxy or label replacing the finite count-free transition-cycle object",
+      "Ti/Te/Fi/Fe imported as the four solver answers",
+      "exactly two geometry and two entropy legs",
+      "binary x binary exact coverage",
+      "an explicit four-step word",
+      "the source-defined 16x4 schedule treated as solver evidence",
+      "the survivor packet's four classes treated as temporal four"
+    ],
+    "negative_controls": [
+      "exactly two of each kind",
+      "binary x binary exact coverage",
+      "explicit four-step word",
+      "exactly four legs",
+      "malformed receipt with an invalid transition witness",
+      "cross-solver status disagreement"
+    ],
+    "adapter_policy": "SMT encodings may represent the finite object only when every model is replayed by a solver-free validator. A solver model, source chart, or quotient-class count cannot replace the primary object.",
+    "promotion_locks": [
+      "finite SAT/UNSAT results cannot promote beyond scratch_diagnostic",
+      "a clean L=4-only result would remain carrier/window-local",
+      "a nonforcing result cannot be widened into impossibility over untested axioms or carriers"
+    ],
+    "artifact_surface": "system_v7/sims/dual_ratchet_four_count_nonforcing_smt_v0/",
+    "blocked_downstream_consumers": [
+      "source-native 16x4 schedule derivation",
+      "canonical engine order",
+      "Axis0, manifold, FEP, perception, object, or physics admission"
+    ]
+  },
+  "constraint_bands": {
+    "root_constraints": [
+      "finite carrier and finite word",
+      "two distinct work kinds both used",
+      "selected work maps noncommute",
+      "one progress witness for each named coordinate",
+      "finite closure",
+      "one sign shared across the cycle",
+      "no desired cardinality"
+    ],
+    "extended_constraints": [
+      "cyclic alternation",
+      "every-leg primary progress",
+      "simple cycle and no-early-return variants",
+      "on-cycle noncommutation witness",
+      "opposite-sign closure kill",
+      "selected-map bijectivity",
+      "single-edit and reversal closure kills"
+    ]
+  },
+  "exploration_contract": {
+    "lateral_lane_types": [
+      "adapter",
+      "probe",
+      "analogy",
+      "proxy"
+    ],
+    "wildcard_lanes_min": 1,
+    "fixation_breakers": [
+      "show an explicit non-four SAT witness before discussing any four model",
+      "demote every L=4-only condition that mentions exact counts, exact four-cell coverage, or an explicit four-position word"
+    ]
+  },
+  "lateral_mappings": [
+    {
+      "label": "SMT transition-table encoding",
+      "target": "finite anonymous work-map cycle",
+      "use_type": "adapter",
+      "preserves": [
+        "finite maps",
+        "ordered composition",
+        "trace progress",
+        "closure",
+        "shared sign"
+      ],
+      "loses": [
+        "continuous dynamics",
+        "physical channel semantics",
+        "all carriers larger or structurally different from Z3 x Z3"
+      ],
+      "preconditions": [
+        "separate Z3 and cvc5 encodings",
+        "solver-free model replay",
+        "no cardinality premise in clean scenarios"
+      ],
+      "kill_control": "Any SAT witness that fails solver-free replay invalidates the receipt.",
+      "promotion_allowed": true
+    },
+    {
+      "label": "source 16x4 schedule",
+      "target": "comparison with the source-defined multiplier four",
+      "use_type": "proxy",
+      "preserves": [
+        "the downstream question whose multiplier needs independent support"
+      ],
+      "loses": [
+        "count-free derivation",
+        "anonymous work-map semantics"
+      ],
+      "preconditions": [
+        "must remain outside solver premises"
+      ],
+      "kill_control": "Remove every source count and operator label; solver outcomes must remain unchanged.",
+      "promotion_allowed": false
+    },
+    {
+      "label": "survivor-discovery four-class quotient",
+      "target": "contrast between operator-class count and temporal cycle length",
+      "use_type": "probe",
+      "preserves": [
+        "the warning that four classes can be registry-conditional"
+      ],
+      "loses": [
+        "temporal order",
+        "per-stage execution",
+        "cycle cardinality"
+      ],
+      "preconditions": [
+        "cannot enter the SMT assertion set"
+      ],
+      "kill_control": "Generic-axis eight-class result blocks promotion of its four-class quotient into temporal four.",
+      "promotion_allowed": false
+    }
+  ],
+  "loop_contract": {
+    "max_loops": 3,
+    "phases": [
+      "build",
+      "premortem",
+      "repair",
+      "selftest"
+    ],
+    "repair_rule": "Repair the first count leak, solver disagreement, or validator-replay failure before adding another axiom.",
+    "stop_condition": "Both solvers agree for every preregistered query, every SAT model replays, deterministic hashes match, and malformed inputs are rejected; otherwise fail closed."
+  },
+  "method_contracts": {
+    "question_is_not_authorization": "A question asks for an answer; it is not authorization to implement unless the user explicitly says to do it.",
+    "order_check_separate": "Any sequence or ordering claim must be checked separately from content correctness, with the order witness named.",
+    "baseline_preservation": "When debugging runtime behavior, preserve the tuned visible/output baseline and debug the execution path underneath.",
+    "falsifier_first": "A Popper pass names the target claim, strongest live falsifier, decisive check, and killed/open/survived classification before agreement.",
+    "feynman_testability": "A Feynman pass names the operation, the observable measured, and the pass/fail condition.",
+    "synthesis_refusal": "Synthesis must name distinct receipts and explicitly refuse the merge, sequence, or reframe it is not performing.",
+    "human_offload": "Resolve with tools before asking; ask the human only for private, preference-bound, or unrecoverable information."
+  },
+  "evidence_spine": {
+    "wizard_runtime": "Wizard v4.3 object-preservation guard; v4.2 surfaces are legacy/provenance and are not the current run target.",
+    "source_math_locks": [
+      {
+        "path": "system_v7/constraint_core/corrections/ENGINE_SOURCE_SLOT_SEMANTIC_CORRECTION_2026-07-09.md",
+        "status": "repo source correction",
+        "preserves": "the distinction between source-defined four and independently earned temporal four"
+      },
+      {
+        "path": "system_v7/sims/dual_ratchet_four_count_nonforcing_smt_v0/spec.json",
+        "status": "preregistered task spec",
+        "preserves": "the exact count-free baseline, one-at-a-time candidates, contaminated controls, and finite claim ceiling"
+      }
+    ],
+    "sim_audit_receipts": [
+      {
+        "path": "system_v7/constraint_core/sims_and_scripts/four_substages_up130_fabrication_audit_sim_results.json",
+        "claim_ceiling": "Rejects the exact UP-130 derivation overclaim; supplies no replacement substage count.",
+        "blocked_consumers": [
+          "correct substage count",
+          "dual-ratchet architecture",
+          "engine admission"
+        ]
+      },
+      {
+        "path": "system_v7/sims/dual_ratchet_substage_survivor_discovery_v0/results/dual_ratchet_substage_survivor_discovery_v0_agreement.json",
+        "claim_ceiling": "Conditional four-class quotient in the finite Pauli registry only; not temporal four or per-stage substages.",
+        "blocked_consumers": [
+          "unconditional four-substage emergence",
+          "history-dependent dual ratchet",
+          "source-native 16x4 schedule"
+        ]
+      }
+    ],
+    "claude_pattern_cards": [],
+    "claim_ceiling": "Object-preservation preflight for a finite count-free SMT scout only; no sim result, theorem, source 16x4 derivation, engine admission, Axis0, or physics claim.",
+    "blocked_consumers": [
+      "any solver run before this card and spec validate",
+      "any four-substage claim that imports source counts as premises",
+      "any promotion beyond scratch_diagnostic"
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "schema": "codex_ratchet.lev_current_main_baseline_audit.v1",
+  "classification": "external_executor_baseline_audit",
+  "claim_ceiling": "current_main_build_and_focused_test_receipt_only",
+  "promotion_allowed": false,
+  "runtime_integration_admitted": false,
+  "lev": {
+    "worktree": "/Users/joshuaeisenhart/.config/superpowers/worktrees/lev/current-main-wizard-port-20260709",
+    "branch": "codex/current-main-wizard-port-20260709",
+    "head": "6bcb9974e41c3d59bfef5ffc6341fecc99cf7eee",
+    "origin_main_at_audit": "6bcb9974e41c3d59bfef5ffc6341fecc99cf7eee"
+  },
+  "install": {
+    "frozen_lockfile_green": false,
+    "first_remaining_frozen_failure": "core/storage/package.json adds @lev-os/config@workspace:* absent from pnpm-lock.yaml",
+    "lock_importer_drift": {
+      "total_mismatches": 209,
+      "missing_entries": 16,
+      "specifier_mismatches": 175,
+      "extra_entries": 18,
+      "affected_importers": 103
+    },
+    "isolated_no_lock_install_green": true,
+    "isolated_no_lock_install_command": "pnpm install --no-frozen-lockfile --lockfile=false --ignore-scripts"
+  },
+  "scoped_repairs": {
+    "workstream_declares_config_dependency": true,
+    "event_provider_lock_entry_added": true,
+    "workstream_lock_entry_added": true,
+    "seam_receipt_classified_as_non_authoritative_projection": true,
+    "broader_lockfile_regeneration_attempt_retained": false
+  },
+  "build": {
+    "command": "pnpm --workspace-concurrency=4 --filter @lev-os/exec... run build",
+    "workspace_projects_selected": 25,
+    "workspace_projects_built": 25,
+    "green": true
+  },
+  "tests": {
+    "workstream": {
+      "typecheck": "pass",
+      "test_files_passed": 10,
+      "tests_passed": 175,
+      "tests_failed": 0
+    },
+    "event_providers": {
+      "typecheck": "pass",
+      "test_files_passed": 5,
+      "tests_passed": 86,
+      "tests_failed": 0
+    },
+    "eval_full": {
+      "typecheck": "pass",
+      "test_files_passed": 31,
+      "test_files_failed": 1,
+      "tests_passed": 182,
+      "tests_failed": 1,
+      "tests_skipped_or_not_run": 1,
+      "failure": "committed world-engine seam receipt does not match the currently recomputed content addresses"
+    },
+    "exec_full": {
+      "typecheck": "pass",
+      "test_files_passed": 59,
+      "test_files_failed": 8,
+      "tests_passed": 504,
+      "tests_failed": 1,
+      "collection_failures": 7,
+      "failures": [
+        "Vitest module runner does not support import.meta.resolve in orchestration source discovery",
+        "runtime-intent test references a missing committed S3-flowmind-admission-plan.json receipt",
+        "DNA rejection test reaches the same import.meta.resolve failure"
+      ]
+    },
+    "focused_eval_trust_spine": {
+      "test_files_passed": 4,
+      "tests_passed": 26,
+      "tests_failed": 0,
+      "scope": [
+        "proof bundle",
+        "invocation receipt",
+        "provider evidence adapter",
+        "false-green gate"
+      ]
+    },
+    "focused_exec_trust_spine": {
+      "test_files_passed": 5,
+      "tests_passed": 38,
+      "tests_failed": 0,
+      "scope": [
+        "enterprise proof bundle",
+        "enterprise proof assembly",
+        "exec receipt",
+        "provider argv binding",
+        "dispatch gate"
+      ]
+    },
+    "receipt_role_map": {
+      "test_files_passed": 1,
+      "tests_passed": 1,
+      "tests_failed": 0
+    }
+  },
+  "current_main_ceiling": {
+    "proof_and_provider_contracts_exist": true,
+    "focused_contract_tests_green": true,
+    "fresh_checkout_install_green": false,
+    "full_eval_suite_green": false,
+    "full_exec_suite_green": false,
+    "wizard_provider_port_present": false,
+    "real_model_invocation_run_on_current_main": false
+  },
+  "architecture_reviews": {
+    "codex_read_only_explorer": {
+      "gating": false,
+      "verdict": "do not revive the deleted Wizard core; compose current FlowMind, Exec, Eval, and provider-plugin contracts",
+      "preferred_application_home": "Samurai or existing CDO topology after prior-art reconciliation",
+      "production_gap": "assembleProofBundle has no observed production caller in current Exec"
+    },
+    "fable_high": {
+      "gating": false,
+      "actual_model": "claude-fable-5",
+      "effort": "high",
+      "duration_ms": 453479,
+      "cost_usd": 9.744512750000002,
+      "output_sha256": "3178cc684a2e337452b60ebecef7c5fba40ad852be2f790917362db95c35cd3f",
+      "receipt_sha256": "38106dfb9f2b44370f9c0a592d8c4ff6c03f7022229bd3a4ecee90671214b274",
+      "verdict": "bounded single-seat plugin POC now; wholesale old-Wizard port never",
+      "reported_subagents_evidenced_by_stream_receipt": false
+    },
+    "fable_failed_attempt": {
+      "gating": false,
+      "status": "error_max_budget_usd",
+      "declared_budget_usd": 4.5,
+      "reported_cost_usd": 7.978250249999999,
+      "usable_output": false,
+      "output_sha256": "12c0c390a95e54ecd5e3c69ec3a2963cf759d5af9c16c37117a793b86e75ba79",
+      "receipt_sha256": "d142a71020515f163dd6df5279d0a6b58b4dd6af7504e9df0a991114254ab678"
+    }
+  },
+  "samurai_application_probe": {
+    "classification": "bounded_current_main_executor_repair",
+    "promotion_allowed": false,
+    "qit_engine_claim_allowed": false,
+    "repairs": [
+      "registered cursor-agent adapter and composer-2-fast model defaults",
+      "execution runId, execId, receiptId, runEnvelope, and full response preservation",
+      "developer-specific absolute path removal from verification flow",
+      "bounded execution profile"
+    ],
+    "tests": {
+      "samurai_node_tests": "3 pass / 0 fail",
+      "flowmind_documents": "7 validate with normalization and hook-mapping warnings",
+      "focused_typescript_compile": "blocked by pre-existing core/domain discriminated-union errors"
+    },
+    "claim_ceiling": "samurai_receipt_and_portability_repairs_only"
+  },
+  "source_separation": {
+    "stale_branch_provider_receipts_are_current_main_receipts": false,
+    "external_model_outputs_are_gate_decisions": false,
+    "lev_executor_state_changes_codex_ratchet_scientific_canon": false
+  }
+}

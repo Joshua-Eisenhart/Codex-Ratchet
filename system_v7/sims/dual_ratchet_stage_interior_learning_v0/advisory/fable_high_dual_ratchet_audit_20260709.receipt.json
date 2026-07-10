@@ -1,0 +1,40 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "fable",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "4.0",
+    "--add-dir",
+    "/Users/joshuaeisenhart/Codex-Ratchet",
+    "--effort",
+    "high",
+    "--allowedTools",
+    "Read,Grep,Glob"
+  ],
+  "cwd": "/tmp",
+  "generated_at": "2026-07-10T04:06:48.038115+00:00",
+  "model": "fable",
+  "output_path": "/tmp/codex_claude_bridge/20260710T040443Z-fable-high-dual-ratchet-audit-933212b0854f.json",
+  "parsed": {
+    "duration_ms": 122850,
+    "is_error": false,
+    "models": [
+      "claude-fable-5"
+    ],
+    "result_preview": "All seven files read. Here is the audit.\n\nThe packet under test is UP-130 (the request's key name says `packet_102_claim_valid`; no packet 102 appears in any file, so I treat the key as referring to the UP-130 claim). The fabrication audit rejects the UP-130 derivation decisively for its exact source hash, and the newer stage-interior receipts do not rescue it: PyTorch is locally red (seed-unstable Type-2 selection) and the JAX sweep verdict is fail (Type-2 ranking unstable with ties).\n\n```json\n{\n  \"source_rule\": \"Each source stage applies all four base operators Ti, Te, Fi, Fe as four substages at one shared per-slot Axis-6 precedence; the source-native operator fixes the phase of a candidate cycle, not exclusion. Type-1/Type-2 chirality is opposite outer/inner deductive-inductive placement and is encoded separately from Axis-6 (operator-first vs terrain-first); the four substages are the four base operators, not candidate/measurement/gate/receipt. Signed up/down variants are Axis-6 p",
+    "result_subtype": "success",
+    "total_cost_usd": 2.479553
+  },
+  "prompt_path": "/tmp/codex_claude_bridge/20260710T040443Z-fable-high-dual-ratchet-audit-933212b0854f.prompt.txt",
+  "receipt_path": "/tmp/codex_claude_bridge/20260710T040443Z-fable-high-dual-ratchet-audit-933212b0854f.receipt.json",
+  "requested_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "returncode": 0,
+  "stream": false,
+  "timed_out": false,
+  "timeout_sec": 240.0
+}

@@ -27,6 +27,24 @@ from torch.func import jacrev
 
 
 ROOT = Path(__file__).resolve().parent
+classification = "scratch_diagnostic"
+promotion_allowed = False
+formal_admission_allowed = False
+sim_execution_kind = "nonclassical"
+TOOL_MANIFEST = {
+    "torch": {
+        "tried": True,
+        "used": True,
+        "reason": "quarantined v0 pilot learner; no valid result receipt was emitted",
+    },
+    "torch.func": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive-only temporal Jacobian in the quarantined v0 pilot",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"torch": "load_bearing", "torch.func": "supportive"}
+V0_PROSPECTIVE_CLAIM_INVALID = True
 SPEC_PATH = ROOT / "spec.json"
 MANIFEST_PATH = ROOT / "object_manifest.json"
 PREREGISTRATION_PATH = ROOT / "preregistration_receipt.json"
@@ -878,7 +896,10 @@ def run(smoke: bool, requested_device: str) -> dict[str, Any]:
             "torch_func_receipts": temporal_receipts,
             "runtime_seconds": time.perf_counter() - started_wall,
         }
-    deltas, gate_report, all_pass = evaluate_gates(arm_results, temporal_receipts)
+    deltas, gate_report, metric_gates_pass = evaluate_gates(
+        arm_results, temporal_receipts
+    )
+    all_pass = False
     completed_at = datetime.now(timezone.utc).isoformat()
     result = {
         "schema": "codex_ratchet.unseen_finite_predictive_objects_v0.pytorch_result.v1",
@@ -887,6 +908,8 @@ def run(smoke: bool, requested_device: str) -> dict[str, Any]:
         "classification": "scratch_diagnostic",
         "promotion_allowed": False,
         "formal_admission_allowed": False,
+        "v0_prospective_claim_invalid": V0_PROSPECTIVE_CLAIM_INVALID,
+        "metric_gates_pass_without_provenance_audit": metric_gates_pass,
         "preregistration_commit": "44d733e48",
         "source_path": str(Path(__file__).resolve()),
         "source_sha256": sha256_file(Path(__file__).resolve()),
@@ -958,11 +981,7 @@ def run(smoke: bool, requested_device: str) -> dict[str, Any]:
             receipt["passed"] for receipt in temporal_receipts.values()
         ),
         "all_pass": all_pass,
-        "accepted_ceiling": (
-            spec["accepted_green_ceiling"]
-            if all_pass
-            else spec["accepted_red_ceiling"]
-        ),
+        "accepted_ceiling": spec["accepted_red_ceiling"],
         "blocked_consumers": spec["blocked_consumers"],
         "started_at": started_at,
         "completed_at": completed_at,

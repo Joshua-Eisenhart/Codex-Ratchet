@@ -4,7 +4,7 @@
   "classification": "scratch_diagnostic",
   "promotion_allowed": false,
   "formal_admission_allowed": false,
-  "claim": "A fixed sequence model may be evaluated on independent lossy views of unseen finite predictive objects, using exact frozen target signatures and full-observation-horizon-matched test pairs.",
+  "claim": "A fixed supervised multi-view sequence model may be evaluated for predictive reconstruction and identity-free nearest-view retrieval on independent lossy views of unseen finite predictive objects, using exact frozen target signatures and full-observation-horizon-matched test pairs.",
   "learner_source_status": "not_sealed_by_manifest_generation",
   "object_family": {
     "kind": "minimal strongly connected four-state binary unifilar process",
@@ -45,7 +45,7 @@
     "initial_state": "independent uniform draw for every trajectory",
     "erasure_probability": 0.35,
     "substitution_probability_after_non_erasure": 0.10,
-    "seed_domain": "ufpo-v1|view-seed|object-hash|split|view-index|model-seed",
+    "seed_domain": "ufpo-v1|view|split|machine-hash|view-index|trajectory-index|channel",
     "seed_domain_is_new_relative_to_v0": true,
     "model_seeds": [2701, 2702, 2703],
     "independence": "every view uses a disjoint SHA-256-derived PRNG subtree; no latent trajectory, initial-state draw, mask, or corruption draw is shared",
@@ -78,7 +78,7 @@
   "metrics_and_gates": {
     "forbidden_metrics": ["K", "ARI", "Bcubed"],
     "loo_same_object_retrieval_min": 0.50,
-    "loo_same_object_retrieval_gain_over_histogram_plus_temporal_min": 0.15,
+    "loo_same_object_retrieval_gain_over_each_of_histogram_and_temporal_min": 0.15,
     "predictive_js": {
       "horizons": [3, 4, 5, 6, 7, 8],
       "train_mean": {"max": 0.75, "wins": 24, "denominator": 32},
@@ -86,7 +86,7 @@
       "histogram": {"max": 0.90, "wins": 23, "denominator": 32},
       "temporal": {"max": 0.90, "wins": 23, "denominator": 32}
     },
-    "full_observation_horizon_matched_pair_retrieval": {
+    "full_observation_horizon_matched_own_target_prediction": {
       "both_members_own_target_min": 13,
       "pair_count": 16,
       "every_seed": true,
@@ -97,14 +97,17 @@
     "all_primary_gates_required_for_each_seed": true
   },
   "engine_contract": {
-    "mode": "manifest_generation_only",
+    "mode": "all_three_full_sims",
     "registry_proposal_owner": "Python stdlib Fraction generator freezes candidate enumeration, canonical records, v0 exclusions, splits, exact signatures, and full-observation-horizon-matched pair distances; it does not own predictive-object semantics",
-    "semantic_owner": "independent exact finite predictive-equivalence verification remains required",
+    "julia": "independent exact Rational semantic verification and arbitration",
+    "jax": "Python/JAX x64 exact-numerator, view-generation, leakage, and solver workhorse; Python canonicalization is not relabeled as JAX semantics",
+    "pytorch": "supervised multi-view GRU/DeepSets prediction and nearest-view retrieval with frozen controls",
+    "semantic_owner": "Julia independent exact finite predictive-equivalence verification and arbitration",
     "jacrev": "supportive only; never a semantic arbiter or primary gate",
     "learner_source_seal": "not performed by this generator",
     "numpy_on_claim_path": false
   },
-  "accepted_green_ceiling": "BOUNDED_LEARNED_RECOVERY_OF_UNSEEN_FOUR_STATE_PREDICTIVE_OBJECTS_UNDER_FROZEN_LOSSY_VIEWS",
+  "accepted_green_ceiling": "BOUNDED_SUPERVISED_MULTI_VIEW_PREDICTIVE_RETRIEVAL_ON_UNSEEN_FOUR_STATE_OBJECTS_UNDER_FROZEN_LOSSY_VIEWS",
   "accepted_red_ceiling": "UNSEEN_PREDICTIVE_OBJECT_LEARNING_NOT_ESTABLISHED",
   "blocked_consumers": [
     "exact latent machine recovery",

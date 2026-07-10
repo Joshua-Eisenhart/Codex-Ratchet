@@ -1,0 +1,98 @@
+{
+  "schema": "codex_ratchet.finite_dual_ratchet_object_formation_v0.spec.v1",
+  "sim_id": "finite_dual_ratchet_object_formation_v0",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim": "A four-role executable cycle can form a probe-relative finite behavioral object, preserve it across relabeled perspectives, compress it to a congruent quotient, and reject a corrupted projection on frozen finite automata.",
+  "explicit_non_claims": [
+    "four roles are not four QIT substages",
+    "four refinement rounds are not universally forced",
+    "the sixteen source slots or sixty-four microsteps are not earned by this battery",
+    "runtime personality, general perception, MMM admission, ontology admission, Axis0, physics, life, and consciousness are blocked"
+  ],
+  "carrier": {
+    "base_state_count": 16,
+    "lift_multiplicity": 4,
+    "lifted_state_count": 64,
+    "actions": 2,
+    "probe": [
+      "base-state Hamming-weight parity",
+      "base-state least-significant bit"
+    ],
+    "generator": "Python random.Random(seed), two independent successor draws per base state",
+    "lift": "state=(base,copy); probe ignores copy; both actions preserve copy while applying the base action"
+  },
+  "depth_census": {
+    "seed_interval_inclusive": [1, 20000],
+    "frozen_expected_counts": {
+      "all": {"1": 4636, "2": 14656, "3": 692, "4": 16},
+      "non_discrete": {"1": 618, "2": 1523, "3": 75, "4": 3}
+    },
+    "interpretation": "The census is a falsifier for universal four-count language. Four is rare in this family and no depth above four occurs in the frozen interval."
+  },
+  "fixtures": {
+    "target_depth4_non_discrete": [8565, 10288, 19937],
+    "depth1_controls": [1, 2, 3],
+    "depth2_controls": [4, 5, 6],
+    "depth3_controls": [58, 78, 99],
+    "perspective_permutation_seeds": [901, 902, 903, 904],
+    "include_action_swap_view": true
+  },
+  "candidate_cycle": [
+    {
+      "role": "measure",
+      "map": "raw states -> initial probe partition",
+      "tooth": "probe erasure must change at least one frozen target relation"
+    },
+    {
+      "role": "distinguish",
+      "map": "partition -> stable successor-signature refinement",
+      "tooth": "depth-3 truncation must fail exact recovery on every depth-4 target"
+    },
+    {
+      "role": "quotient",
+      "map": "stable relation -> induced two-action quotient graph",
+      "tooth": "quotient must preserve dynamics and reduce every lifted target from 64 states to at most 15 classes"
+    },
+    {
+      "role": "gate",
+      "map": "candidate quotient + perspective receipts -> accept or reject",
+      "tooth": "intact perspectives must pass and every frozen quotient corruption must be rejected"
+    }
+  ],
+  "perspective_contract": {
+    "views": "four hidden state relabelings plus one action-swapped relabeling per fixture",
+    "known_bijection_check": "pull each relation back to the source carrier and require exact equality",
+    "unlabeled_check": "require color-preserving directed quotient-graph isomorphism without supplying the state bijection",
+    "anti_projection": "alter one induced quotient successor in each target view"
+  },
+  "gates": {
+    "G1_census_exact": true,
+    "G2_target_depth_exactly_four": true,
+    "G3_cross_view_relation_exact": true,
+    "G4_unlabeled_quotient_isomorphic": true,
+    "G5_probe_erasure_changes_relation": true,
+    "G6_depth3_truncation_fails_all_targets": true,
+    "G7_quotient_congruent_and_at_most_15_classes": true,
+    "G8_all_corruptions_rejected": true,
+    "G9_julia_jax_exact_parity": true
+  },
+  "engine_contract": {
+    "mode": "julia_canon_jax_workhorse",
+    "julia_role": "independent exact finite semantic owner and Graphs quotient verifier",
+    "jax_role": "batched 20000-seed census, perspective sweep, and ablation workhorse",
+    "pytorch_role": "excluded from this exact battery; a later learned-proxy battery consumes only frozen outputs",
+    "numpy_on_claim_path": false
+  },
+  "accepted_green_ceiling": "BOUNDED_EXACT_FOUR_ROLE_OBJECT_FORMATION_ON_FROZEN_FINITE_AUTOMATA",
+  "accepted_red_ceiling": "FOUR_ROLE_OBJECT_FORMATION_NOT_ESTABLISHED",
+  "blocked_consumers": [
+    "QIT four-substage derivation",
+    "sixteen-slot schedule promotion",
+    "sixty-four-microstep schedule promotion",
+    "learned perception",
+    "general object perception",
+    "MMMs and ontologies"
+  ]
+}

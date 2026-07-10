@@ -6,6 +6,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import subprocess
 from collections import Counter
 from pathlib import Path
 
@@ -25,9 +26,13 @@ TOOL_MANIFEST = {
     "python_stdlib": {
         "used": True,
         "reason": "Exact finite rule-symmetry enumeration, SHA ordering, and frozen-surface validation.",
-    }
+    },
+    "git": {
+        "used": True,
+        "reason": "Historical tree inspection proves builder sources were absent in the first committed packet state.",
+    },
 }
-TOOL_INTEGRATION_DEPTH = {"python_stdlib": "supportive"}
+TOOL_INTEGRATION_DEPTH = {"python_stdlib": "supportive", "git": "supportive"}
 
 
 def sha256_file(path: Path) -> str:
@@ -131,12 +136,39 @@ def receipt_mutation_detected(receipt: dict) -> bool:
     return mutated["spec_sha256"] != sha256_file(SPEC_PATH)
 
 
+def builders_absent_in_first_packet_commit() -> dict:
+    repo = HERE.parents[2]
+    relative = HERE.relative_to(repo)
+    commits = subprocess.check_output(
+        ["git", "-C", str(repo), "log", "--reverse", "--format=%H", "--", str(relative)],
+        text=True,
+    ).splitlines()
+    if not commits:
+        return {"passed": False, "reason": "packet has no committed history"}
+    first_commit = commits[0]
+    builder_presence = {}
+    for name in ("run_jax.py", "run_julia.jl"):
+        probe = subprocess.run(
+            ["git", "-C", str(repo), "cat-file", "-e", f"{first_commit}:{relative}/{name}"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        builder_presence[name] = probe.returncode == 0
+    return {
+        "passed": not any(builder_presence.values()),
+        "first_packet_commit": first_commit,
+        "builder_sources_present": builder_presence,
+    }
+
+
 def main() -> int:
     spec = json.loads(SPEC_PATH.read_text())
     card = json.loads(CARD_PATH.read_text())
     receipt = json.loads(RECEIPT_PATH.read_text())
     split = enumerate_split()
     sentinel = invalid_one_rule_transform_detected()
+    historical_builder_check = builders_absent_in_first_packet_commit()
     statement = card["primary_object_card"]["object_statement"]
     tests = {
         "P1_sim_id_matches": spec.get("sim_id") == receipt.get("sim_id") == SIM_ID,
@@ -149,8 +181,7 @@ def main() -> int:
             "builder_sources_present_when_frozen"
         )
         is False
-        and not (HERE / "run_jax.py").exists()
-        and not (HERE / "run_julia.jl").exists(),
+        and historical_builder_check["passed"],
         "P6_complete_pair_universe": split["pair_count"] == 32640,
         "P7_orbit_members_do_not_cross_hidden_batches": split[
             "all_orbit_members_share_batch"
@@ -172,6 +203,7 @@ def main() -> int:
         "formal_admission_allowed": FORMAL_ADMISSION_ALLOWED,
         "split_receipt": split,
         "invalid_symmetry_sentinel": sentinel,
+        "historical_builder_check": historical_builder_check,
         "tests": tests,
         "all_pass": all(tests.values()),
         "claim_ceiling": "frozen N9 complete-census, hidden-batch, and downstream V2-admission design only; no N9 labels or learned result",

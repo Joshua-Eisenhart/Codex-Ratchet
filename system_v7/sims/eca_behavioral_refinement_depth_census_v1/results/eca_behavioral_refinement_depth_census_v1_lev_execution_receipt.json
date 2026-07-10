@@ -1,0 +1,63 @@
+{
+  "schema": "codex_ratchet.lev_execution_receipt.v1",
+  "sim_id": "eca_behavioral_refinement_depth_census_v1",
+  "classification": "executor_provenance_only",
+  "lev_role": "bounded local-process executor, not scientific authority",
+  "lev_runtime": {
+    "repo_path": "/Users/joshuaeisenhart/GitHub/lev",
+    "head": "e9a4ba7717dbc35e478b3db737a4d5b752ba8252",
+    "dirty_at_execution": true,
+    "installed_launcher_targets_this_checkout": true,
+    "newer_lev_main_is_not_installed_launcher_target": true
+  },
+  "execution": {
+    "api": "core/exec createExec with frozen local-process dispatch allowlist",
+    "execution_id": "04a9a185-488e-4126-921e-c65cd47b2014",
+    "started_event": {
+      "id": "1783684574396-87c2fff8",
+      "time": "2026-07-10T11:56:14.396Z",
+      "provider": "local-process",
+      "method": "spawn"
+    },
+    "completed_event": {
+      "id": "1783684602307-0b716965",
+      "time": "2026-07-10T11:56:42.307Z",
+      "duration_ms": 27911,
+      "success": true
+    },
+    "exit_code": 0,
+    "signal": null,
+    "timeout_ms": 1800000,
+    "python_bytecode_disabled": true,
+    "allowlisted_argv": [
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/eca_behavioral_refinement_depth_census_v1/run_jax.py",
+      "--output",
+      "<temporary-run-directory>/sim-result.json"
+    ]
+  },
+  "sim_receipt": {
+    "all_pass": true,
+    "source_sha256": "bddaf0e9f92b56c51e22625245dc9d984e547c4f601e3702425a1a3c1e4b21f2",
+    "temporary_result_sha256": "95616275566fddd3a0c23e46d95158cc5d92b6445264a6ae17e15ad03512d5c8",
+    "repo_result_sha256": "a7cd192b17d97710ebd1808c62109ace6d5cb6f1ff95412097d4214198a15375",
+    "pair_ledger_hash": "e2f39df3b39d0bed5dd565e6db22f42f7975df59d3b10e86cd3c1f6cb111304c",
+    "maximum_strict_refinement_depth": 10,
+    "repo_and_lev_result_field_differences": [
+      "elapsed_seconds"
+    ],
+    "all_scientific_fields_match_repo_run": true
+  },
+  "raw_runtime_artifacts": {
+    "temporary_directory": "/tmp/lev-cr-eca-n9.GZCMmW",
+    "policy": "removed after extracting this bounded durable receipt",
+    "retained_in_repo": false
+  },
+  "claim_ceiling": "Lev successfully executed the existing JAX sim through createExec and emitted matched start/completion events; this does not strengthen the scientific census or establish clean-current Lev readiness",
+  "blocked_claims": [
+    "Lev as scientific arbiter",
+    "installed Lev synchronized to newest lev-main",
+    "clean Lev runtime state",
+    "learned perception or QIT engine promotion"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "codex_ratchet.finite_probe_behavioral_object_engine_v1.spec.v1",
+  "sim_id": "finite_probe_behavioral_object_engine_v1",
+  "classification": "scratch_diagnostic",
+  "engine_contract": {
+    "mode": "all_three_full_sims",
+    "roles": {
+      "julia": "independent exact semantic construction and graph receipt",
+      "jax": "independent batched exhaustive construction and baseline census",
+      "pytorch": "learned pair-graph refinement proxy on held-out action families",
+      "controller": "closed-receipt comparison, leakage gate, metrics, corruption tests, and claim ceiling"
+    },
+    "runtime_names_are_not_unique_intelligences": true,
+    "peer_result_reads_forbidden": true
+  },
+  "claim": "bounded prediction of probe-relative behavioral equivalence on symmetry-family-disjoint held-out ECA rule pairs, plus explicit structural-holdout partition probes",
+  "allowed_claim_label_if_all_learning_gates_pass": "HELD_OUT_RULE_FAMILY_BEHAVIORAL_EQUIVALENCE_PREDICTION_WITH_TWO_STRUCTURAL_HOLDOUT_PROBES",
+  "carrier": {
+    "ring_size": 6,
+    "state_count": 64,
+    "rules": "elementary cellular automata 0 through 255",
+    "probe_family": ["Hamming weight", "periodic domain-wall count"],
+    "refinement": "P_(d+1)(x)=(P_d(x),P_d(T_a(x)),P_d(T_b(x))) with canonical class labels",
+    "maximum_refinement_depth": 63,
+    "target": "same exact stable behavioral class for every ordered state pair"
+  },
+  "rule_symmetry_split": {
+    "tag": "ECA6-PRBOG-v1",
+    "orbit_generators": [
+      "left-right reflection f(l,c,r)=f(r,c,l)",
+      "black-white conjugacy f(l,c,r)=1-f(1-l,1-c,1-r)"
+    ],
+    "expected_orbit_count": 88,
+    "orbit_order": "ascending SHA256('ECA6-PRBOG-v1|orbit|'+comma_sorted_members)",
+    "orbit_blocks": {"train": [0, 59], "validation": [60, 73], "test": [74, 87]},
+    "pair_order": "ascending SHA256('ECA6-PRBOG-v1|pair|a,b') with a<b",
+    "rules_are_used_at_most_once_within_each_selected_split": true,
+    "no_symmetry_orbit_crosses_splits": true
+  },
+  "behavioral_partition_hash": {
+    "encoding": "SHA256 of compact JSON canonical stable labels for states 0..63",
+    "structural_holdout_hashes_excluded_from_train_and_validation": [
+      "5acf9e8048dcffd3a82c090e72a27e080926471d5a0e06430c516012a8d1ea33",
+      "d588f62c217f478e533475df0f998289058f5a5e4179bc3697a99c3e4fc3a471"
+    ]
+  },
+  "fixtures": {
+    "train": [[3,32],[21,115],[41,161],[29,251],[55,236],[135,182],[6,126],[9,193],[57,241],[39,140],[35,165],[85,97],[59,201],[131,194],[14,54],[73,132],[130,217],[170,207],[103,144],[18,100],[145,246],[228,252],[84,107],[111,121],[206,247],[151,191],[62,237],[20,30],[65,192],[28,34],[133,240],[123,230],[119,187],[61,254],[96,146],[2,250],[40,215],[112,114],[44,235],[16,179],[53,185],[74,154],[63,124],[83,220],[137,149],[26,196],[105,243],[163,203],[118,210],[15,156],[86,199],[177,180],[72,122],[27,94],[88,202],[167,213],[50,222],[98,136],[147,198],[33,157],[183,231],[24,109],[129,232],[48,181]],
+    "validation": [[78,102],[60,141],[169,176],[52,195],[11,168],[153,211],[113,239],[43,242],[120,253],[13,197],[8,92],[93,225],[76,77],[38,186],[47,69],[117,205]],
+    "test_primary": [[45,91],[138,142],[218,244],[148,212],[37,233],[23,139],[158,175],[10,226],[89,184],[164,209],[46,101],[104,116],[75,214],[80,134]],
+    "test_structural_holdout": [[1,223],[4,127]]
+  },
+  "learning_contract": {
+    "input_graph": "4096-node ordered state-pair graph per rule pair; two directed successor edges per node",
+    "node_input": "probe-equality bit only",
+    "forbidden_inputs": ["class ID", "history fingerprint", "rule number embedding", "split ID", "Julia result", "JAX result"],
+    "architecture": "shared six-step PyG MessagePassing refinement with symmetric action aggregation and one scalar logit per ordered state pair",
+    "seeds": [730241, 730251, 730261],
+    "maximum_epochs": 300,
+    "early_stopping": "validation macro MCC, patience 30",
+    "threshold_selection": "single validation macro-MCC optimum; ties choose larger threshold",
+    "test_labels_may_not_influence": ["architecture", "optimizer", "epoch", "checkpoint", "threshold", "control definition"]
+  },
+  "baselines": [
+    "always negative",
+    "probe-only depth zero",
+    "exact depth one",
+    "exact depth two",
+    "cyclic rotation equivalence",
+    "rule-blind state-pair prevalence",
+    "exact stable-refinement oracle"
+  ],
+  "primary_learning_gates": {
+    "test_primary_macro_mcc_min": 0.55,
+    "test_primary_macro_balanced_accuracy_min": 0.78,
+    "test_primary_macro_positive_recall_min": 0.65,
+    "test_primary_macro_false_positive_rate_max": 0.04,
+    "rule_sensitive_mcc_min": 0.50,
+    "rule_sensitive_mcc_advantage_over_best_rule_blind_min": 0.15,
+    "minimum_seed_macro_mcc_min": 0.35,
+    "predicted_partition_macro_ari_min": 0.75,
+    "predicted_partition_macro_normalized_vi_max": 0.20,
+    "structural_holdout_report_required": true,
+    "structural_holdout_is_required_for_stronger_label": true
+  },
+  "negative_controls": {
+    "split_leakage_sentinel": "inject one symmetry-equivalent rule across the boundary and require pre-training rejection",
+    "state_swap_invariance_max_abs": 1e-10,
+    "action_swap_invariance_max_abs": 1e-10,
+    "cyclic_rotation_invariance_max_abs": 1e-8,
+    "zero_rule_or_transition_information_rule_sensitive_mcc_drop_min": 0.15,
+    "ring_edge_erasure_macro_mcc_drop_min": 0.10,
+    "shuffled_training_label_test_mcc_max": 0.05,
+    "relation_laws": "zero reflexivity, symmetry, and transitivity violations after thresholding",
+    "one_bit_transition_mutation": "must alter the exact label hash or be recorded as behaviorally silent"
+  },
+  "T9_rewrite": {
+    "name": "counterfactual evidence contribution and adaptive replaceability",
+    "output_vector": ["role_contribution", "runtime_replaceability", "resource_advantage", "diversity_gain", "claim_ceiling"],
+    "deletion_only_is_invalid": true,
+    "receipt_or_policy_loss_is_not_scientific_failure": true,
+    "runtime_non_substitutability_requires": "remaining runtimes may reimplement the removed role under frozen interfaces and equal resource bounds",
+    "this_card_expected_ceiling": "exact-role replication can be measured; full 3x3 adaptive replacement is not presumed green"
+  },
+  "validator_requirements": [
+    "reconstruct symmetry orbits and reject leakage",
+    "reconstruct stable partitions independently",
+    "verify source and result hashes",
+    "verify no peer-result reads",
+    "compare Julia and JAX exact receipts",
+    "recompute every learning metric from raw predictions",
+    "reject coherent result corruption",
+    "separate artifact validity from scientific gates"
+  ],
+  "blocked_consumers": [
+    "sixteen-stage or sixty-four-stage QIT schedule",
+    "unique engine personality or intelligence",
+    "general perception",
+    "MMMs or ontology admission",
+    "cross-domain attractor",
+    "Axis0, physics, life, or consciousness"
+  ],
+  "promotion_allowed": false,
+  "formal_admission_allowed": false
+}

@@ -1,0 +1,192 @@
+{
+  "schema_version": "wizard_v4_3_primary_object_card_v1",
+  "primary_object_card": {
+    "object_name": "ProbeRelativeBehavioralObject",
+    "object_type": "finite_behavioral_equivalence_class",
+    "object_statement": "A behavioral object is a probe-relative equivalence class of finite states that remains indistinguishable under every admitted action history through the declared refinement depth; a learned proxy may predict this relation but cannot define or certify it.",
+    "object_statement_sha256": "353425db9fc655d742512c23442a40bf1f9ad273e03c609c138c7325790723c0",
+    "plain_language_definition": "States count as the same object only when the declared probes cannot distinguish them now or after any admitted action history through the frozen finite depth. Exact refinement defines the object. A neural model can only predict the resulting same-object relation on held-out action families.",
+    "source_anchors": [
+      {
+        "surface": "repo_sim",
+        "reference": "system_v7/sims/finite_probe_behavioral_object_engine_v0/README.md",
+        "quote_or_summary": "The v0 fixture defines objects by probe outcomes under all action histories and blocks learned labels from semantic authority."
+      },
+      {
+        "surface": "repo_result",
+        "reference": "system_v7/sims/finite_probe_behavioral_object_engine_v0/results/finite_probe_behavioral_object_engine_v0_validation.json",
+        "quote_or_summary": "The accepted v0 ceiling is exact finite semantics plus topology-dependent fitting; engine nonredundancy and unseen-object transfer remain red."
+      }
+    ],
+    "native_terms": {
+      "behavioral object": "An equivalence class induced by a frozen probe family and action-history language.",
+      "held-out action family": "A rule or rule pair excluded from model fitting and threshold selection.",
+      "semantic owner": "The exact finite construction that defines labels and checks congruence; never the learned proxy."
+    },
+    "weirdness_signature": [
+      "identity is probe-relative rather than intrinsic",
+      "future action histories participate in present object identity",
+      "a learned presentation-invariant proxy is not the object factory"
+    ],
+    "first_class_fields": [
+      "finite_carrier",
+      "probe_family",
+      "action_family",
+      "history_language",
+      "refinement_depth",
+      "behavioral_partition",
+      "quotient_congruence",
+      "held_out_action_split",
+      "learned_same_object_score",
+      "negative_controls"
+    ],
+    "domain": "finite six-site binary rings, frozen probe family, and preregistered ECA rule-pair splits",
+    "codomain_or_output": "exact behavioral partitions, same-object pair labels, quotient receipts, and bounded learned predictions",
+    "allowed_operations": [
+      "enumerate finite action histories",
+      "refine probe-relative partitions",
+      "check quotient congruence",
+      "split by complete action families",
+      "fit a graph proxy on training families",
+      "score untouched held-out families",
+      "ablate workflow evidence roles"
+    ],
+    "required_invariants": [
+      "test rule families never enter fitting or threshold selection",
+      "exact labels are generated independently of the neural model",
+      "object identity always names its probe and action scope",
+      "presentation symmetry does not count as unseen-object transfer",
+      "runtime-role removal cannot be called mathematical uniqueness"
+    ],
+    "forbidden_substitutions": [
+      "cyclic orbit label as universal object identity",
+      "held-out rotations as unseen objects",
+      "runtime language name as unique intelligence",
+      "neural cluster as exact quotient",
+      "aggregate accuracy without class-balanced and trivial baselines"
+    ],
+    "negative_controls": [
+      "rule-identity permutation after split",
+      "probe erasure",
+      "ring-edge erasure",
+      "train-test rule overlap detector",
+      "majority and state-pair lookup baselines",
+      "exact-engine removal and learned-proxy removal"
+    ],
+    "adapter_policy": "ECA, graph, JAX, Julia, and PyTorch surfaces are typed probes or adapters. None may replace the probe-relative equivalence relation.",
+    "promotion_locks": [
+      "no unseen-object claim without complete held-out action families",
+      "no engine-intelligence claim from language-level role assignment",
+      "no QIT or cross-domain promotion from a classical ECA fixture"
+    ],
+    "artifact_surface": "versioned repo packet with preregistration, independent engine receipts, validator, and fabrication audit",
+    "blocked_downstream_consumers": [
+      "sixteen-stage QIT engine schedule",
+      "four-substage derivation",
+      "general AI perception",
+      "MMMs or ontology admission",
+      "Axis0, physics, life, or consciousness claims"
+    ]
+  },
+  "constraint_bands": {
+    "root_constraints": [
+      "finite carrier/probe/action/history set",
+      "probe-relative identity and distinguishability",
+      "noncommuting or order-sensitive admitted actions"
+    ],
+    "extended_constraints": [
+      "six-site ECA carrier",
+      "Julia exact semantics",
+      "JAX exhaustive batches",
+      "PyTorch Geometric learned proxy"
+    ]
+  },
+  "lateral_mappings": [
+    {
+      "label": "ECA rule-pair carrier",
+      "use_type": "adapter",
+      "target": "finite action-family benchmark",
+      "preserves": ["finite actions", "order sensitivity", "exact enumeration"],
+      "loses": ["QIT structure", "continuous geometry", "domain semantics"],
+      "preconditions": ["rules and split are preregistered", "carrier claim stays classical"],
+      "kill_control": "replace both actions by the same rule; order-sensitive claims must fail",
+      "promotion_allowed": true
+    },
+    {
+      "label": "PyG same-object score",
+      "use_type": "proxy",
+      "target": "learned prediction of exact pair equivalence",
+      "preserves": ["bounded pairwise prediction task"],
+      "loses": ["exactness", "quotient proof", "semantic authority"],
+      "preconditions": ["exact labels stay external", "held-out rules stay untouched"],
+      "kill_control": "erase graph edges or rule identity; held-out performance must demote",
+      "promotion_allowed": false
+    },
+    {
+      "label": "engine personality",
+      "use_type": "analogy",
+      "target": "different workflow failure modes",
+      "preserves": ["role-specific evidence contribution"],
+      "loses": ["mathematical runtime uniqueness", "agent subjectivity"],
+      "preconditions": ["ablation measures missing evidence, not impossible computation"],
+      "kill_control": "a clean reimplementation in another universal runtime defeats uniqueness wording",
+      "promotion_allowed": false
+    }
+  ],
+  "exploration_contract": {
+    "lateral_lane_types": ["adapter", "probe", "analogy", "proxy"],
+    "wildcard_lanes_min": 1,
+    "fixation_breakers": [
+      "test a split where cyclic orbits are not the behavioral quotient",
+      "demote runtime uniqueness to workflow evidence if cross-runtime reimplementation is possible"
+    ]
+  },
+  "loop_contract": {
+    "max_loops": 3,
+    "phases": ["build", "premortem", "repair", "selftest"],
+    "repair_rule": "repair the first object-preservation or leakage failure before tuning the model",
+    "stop_condition": "all preservation and leakage checks pass, or held-out transfer/T9 is decisively red"
+  },
+  "method_contracts": {
+    "question_is_not_authorization": "A question asks for an answer; it is not authorization to implement unless the user explicitly says to do it.",
+    "order_check_separate": "Any sequence or ordering claim must be checked separately from content correctness, with the order witness named.",
+    "baseline_preservation": "When debugging runtime behavior, preserve the tuned visible/output baseline and debug the execution path underneath.",
+    "falsifier_first": "A Popper pass names the target claim, strongest live falsifier, decisive check, and killed/open/survived classification before agreement.",
+    "feynman_testability": "A Feynman pass names the operation, the observable measured, and the pass/fail condition.",
+    "synthesis_refusal": "Synthesis must name distinct receipts and explicitly refuse the merge, sequence, or reframe it is not performing.",
+    "human_offload": "Resolve with tools before asking; ask the human only for private, preference-bound, or unrecoverable information."
+  },
+  "evidence_spine": {
+    "wizard_runtime": "Wizard v4.3 object-preservation guard; v4.2 surfaces are legacy/provenance and are not the current run target.",
+    "source_math_locks": [
+      {
+        "path": "system_v7/sims/finite_probe_behavioral_object_engine_v0/spec.json",
+        "preserves": "the original finite behavioral-equivalence construction and its bounded carrier",
+        "status": "validated scratch-diagnostic source"
+      }
+    ],
+    "sim_audit_receipts": [
+      {
+        "path": "system_v7/sims/finite_probe_behavioral_object_engine_v0/results/finite_probe_behavioral_object_engine_v0_validation.json",
+        "role": "independent validator and mutation-test receipt",
+        "status": "validator green; scientific aggregate red on T9",
+        "claim_ceiling": "exact v0 finite fixture plus topology-dependent fitting only",
+        "blocked_consumers": ["unseen-object transfer", "engine nonredundancy", "QIT schedule"]
+      },
+      {
+        "path": "system_v7/sims/finite_probe_behavioral_object_engine_v0/FABRICATION_AUDIT.md",
+        "role": "semantic claim-ceiling audit",
+        "status": "unseen-object and engine-nonredundancy claims demoted",
+        "claim_ceiling": "semantic audit of the v0 packet only",
+        "blocked_consumers": ["general perception", "unique engine intelligence", "formal admission"]
+      }
+    ],
+    "claude_pattern_cards": [],
+    "claim_ceiling": "object-preservation and benchmark preflight only; no unseen-object, T9, QIT, stage, Axis0, physics, or consciousness claim",
+    "blocked_consumers": [
+      "model training before object-card and preregistration validation",
+      "engine schedule admission",
+      "cross-domain attractor claims"
+    ]
+  }
+}

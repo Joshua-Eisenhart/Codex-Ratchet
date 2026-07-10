@@ -1,0 +1,46 @@
+{
+ "classification": "scratch_diagnostic",
+ "promotion_allowed": false,
+ "branch": "manifold_spine_L6",
+ "layer": "L6",
+ "nests_on": [
+  "L5_nested_shells_schmidt_strata",
+  "L3_spinor_phase_surface"
+ ],
+ "adds": "the monotone BKM/Fisher metric on the L5 shell family = curvature of the forced relative-entropy pawl (surface identity); CPTP contraction = infinitesimal DPI",
+ "fact1_metric_is_bkm_hessian": {
+  "bkm": 4.491500222330558,
+  "rel_entropy_hessian": 4.491500282074632,
+  "abs_diff": 5.974407457642883e-08,
+  "pass": true,
+  "wrong_direction_metric": 4.33183765396344,
+  "wrong_direction_differs": true,
+  "note": "shell metric IS the Hessian of S(rho||rho0) = BKM = surface identity (UP-120), not an arbitrary metric"
+ },
+ "fact2_metric_flat_in_eta_choice_vs_euclidean": {
+  "g_eta_eta_values": [
+   3.999999907351498,
+   3.999999948934717,
+   3.9999999457674913,
+   3.9999999588687194,
+   3.99999995957074
+  ],
+  "g_eta_eta_constant_at_4": true,
+  "g_rr_reparam": 1.3333333152558309,
+  "reparam_jacobian_confirmed": true,
+  "bkm_differs_from_euclidean_r": true,
+  "pass": true,
+  "note": "CORRECTED (codex/loop-back audit): g_eta_eta=4 EXACTLY CONSTANT in the Schmidt-angle eta -> a 1D family has NO intrinsic curvature; the earlier 'curved' was a coordinate artifact of the r=2cos^2eta-1 reparametrization (Jacobian dr/deta=-2 sin2eta). Real fact: BKM differs from the naive Euclidean-r metric (a metric-CHOICE), and BKM is the forced/monotone one."
+ },
+ "fact3_monotone_cptp_contraction": {
+  "before": 4.491500222330558,
+  "after_depol": 2.0695018422654354,
+  "contracts": true,
+  "after_amplify_noncptp": 7.335778037166637,
+  "noncptp_does_not_contract": true,
+  "pass": true,
+  "note": "metric contracts under CPTP (infinitesimal DPI, UP-121); non-CPTP amplify increases it -> contraction is CPTP-specific"
+ },
+ "scope": "earns L6 (monotone BKM metric on the shell family + curvature + CPTP contraction) on top of L5. Does NOT build L7 (connection/parallel-transport + Berry holonomy across shells) or above. Hypothetical lane; owner doctrine under test.",
+ "verdict": "PASS"
+}

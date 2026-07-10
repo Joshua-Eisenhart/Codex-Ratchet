@@ -1,0 +1,32 @@
+{
+ "classification": "scratch_diagnostic",
+ "promotion_allowed": false,
+ "reproduces": "system_v7/constraint_core/sims_and_scripts/malcev_signature_search_sim.py (codex-ratchet parallel finding)",
+ "reference_detector": {
+  "Im_O_commutator": {
+   "class": "malcev_not_lie",
+   "jacobi_defect": 276.9899464090782,
+   "malcev_defect": 3.037933755426813e-13
+  },
+  "Im_H_su2_commutator": {
+   "class": "lie",
+   "jacobi_defect": 5.929048329109094e-15,
+   "malcev_defect": 3.537124730033682e-14
+  },
+  "random_antisymmetric_R7": {
+   "class": "neither",
+   "jacobi_defect": 534.7994237350842,
+   "malcev_defect": 6580.274202733639
+  },
+  "corrupted_malcev_sign_defect": 4998.9840756295325,
+  "detector_valid": true
+ },
+ "engine_native_census": {
+  "max_engine_jacobi_defect": 5.035470350033487e-14,
+  "engine_brackets_all_lie": true,
+  "engine_malcev_not_lie_hit_count": 0,
+  "note": "every engine bracket is a matrix commutator -> obeys Jacobi -> Lie. The Malcev (Moufang/octonion) bracket is NEVER engine-native."
+ },
+ "headline": "The T01 ceiling now has a NAME: MALCEV. The octonion imaginary bracket is Malcev-not-Lie (the tangent algebra of the octonion Moufang loop / g2 structure); su(2)=Im(H) is the degenerate Lie case. Every engine-native bracket is a matrix commutator -> Lie (Jacobi-obeying), so the engine NEVER realizes the Malcev structure. Earning the octonion rung requires a forced Malcev (non-Jacobi) demand that the associative carrier structurally cannot generate. Converges with UP-111 (so(4) Lie field symmetry) and UP-115 (associative Clifford operators) from a third direction. Reproduces the codex malcev_signature_search independently.",
+ "verdict": "PASS"
+}

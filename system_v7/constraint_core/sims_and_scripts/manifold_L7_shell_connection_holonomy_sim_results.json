@@ -1,0 +1,67 @@
+{
+ "classification": "scratch_diagnostic",
+ "promotion_allowed": false,
+ "branch": "manifold_spine_L7",
+ "layer": "L7",
+ "nests_on": [
+  "L6_shell_metric_bkm",
+  "L5_nested_shells_schmidt_strata",
+  "L3_spinor_phase_surface"
+ ],
+ "adds": "the shell connection: parallel-transport holonomy DERIVES the L5 flux Phi=2pi(cos2eta_i-cos2eta_j) as a Berry holonomy, and shows it is real (non-integrable) curvature",
+ "fact1_flux_is_berry_holonomy": {
+  "per_shell": [
+   {
+    "eta": 0.0,
+    "holonomy": -6.283185307179583,
+    "analytic": -6.283185307179586,
+    "abs_err": 3.552713678800501e-15
+   },
+   {
+    "eta": 0.5235987755982988,
+    "holonomy": -4.712389950301128,
+    "analytic": -4.712388980384691,
+    "abs_err": 9.699164378318414e-07
+   },
+   {
+    "eta": 0.7853981633974483,
+    "holonomy": -3.141592653589791,
+    "analytic": -3.141592653589794,
+    "abs_err": 3.1086244689504383e-15
+   },
+   {
+    "eta": 1.0471975511965976,
+    "holonomy": -1.5707953568785167,
+    "analytic": -1.5707963267948972,
+    "abs_err": 9.699163805443334e-07
+   },
+   {
+    "eta": 1.5707963267948966,
+    "holonomy": -2.3558132786398783e-32,
+    "analytic": -2.3558171576799582e-32,
+    "abs_err": 3.8790400798684937e-38
+   }
+  ],
+  "max_analytic_err": 9.699164378318414e-07,
+  "analytic_match": true,
+  "flux_nested": -3.141594593422612,
+  "ledger_form_-pi(cos2eta_i-cos2eta_j)": -3.141592653589793,
+  "flux_matches_ledger": true,
+  "note": "Berry connection A=i<psi|dpsi> on the L3 Hopf chart; loop holonomy -2pi cos^2(eta); shell-difference = ledger L2.1 flux, now DERIVED not posited"
+ },
+ "fact2_nonintegrable_curvature": {
+  "closed_loop_holonomy": -3.141596098735476,
+  "analytic": -3.141592653589793,
+  "real_curvature": true,
+  "note": "parallel transport around a closed (phi,eta) rectangle returns net phase -pi != 0 -> genuine curvature, flux is a gauge-invariant of the nested-shell family"
+ },
+ "fact3_flux_is_cross_shell": {
+  "flux_self": 0.0,
+  "self_flux_zero": true,
+  "erased_nesting_holonomy": -5.421010862427522e-17,
+  "erase_kills_flux": true,
+  "note": "CORRECTED (codex/loop-back audit): single-shell CLOSED-loop holonomy is gauge-INVARIANT (mod 2pi), not 'pure gauge/removable'. The cross-shell fact rests on the holonomy DIFFERENCE: self-difference exactly 0 and erase-nesting -> 0, so flux is a relation BETWEEN nested shells (flux_needs_nesting)."
+ },
+ "scope": "earns L7 (shell connection + transport holonomy deriving the L5 flux + non-integrable curvature) on top of L6. Does NOT build L8 (global bundle / Chern quantization) or above. Weyl chirality = SIGN of this holonomy, a later object. Hypothetical lane; owner doctrine under test.",
+ "verdict": "PASS"
+}

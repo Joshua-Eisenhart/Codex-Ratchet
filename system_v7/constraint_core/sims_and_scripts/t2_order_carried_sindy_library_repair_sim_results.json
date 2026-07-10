@@ -1,0 +1,274 @@
+{
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "framing": "repairs the v7 t2_order_carried SINDy loop-order instrument: degree-2 library on affine GKSL flow is seed-fragile; degree-1 (affine) library is seed-robust",
+  "claim1_affine_repair_seed_robust": {
+    "ratios": [
+      56540.0962630936,
+      66803.48576683181,
+      75015.49293887196,
+      71570.74301506174,
+      69998.77520473665,
+      58725.03132173959,
+      51715.30721381273,
+      67073.57809500216
+    ],
+    "perms": [
+      [
+        1,
+        4,
+        3,
+        2
+      ],
+      [
+        1,
+        4,
+        3,
+        2
+      ],
+      [
+        1,
+        4,
+        3,
+        2
+      ],
+      [
+        1,
+        4,
+        3,
+        2
+      ],
+      [
+        1,
+        4,
+        3,
+        2
+      ],
+      [
+        1,
+        4,
+        3,
+        2
+      ],
+      [
+        1,
+        4,
+        3,
+        2
+      ],
+      [
+        1,
+        4,
+        3,
+        2
+      ]
+    ],
+    "ordered": [
+      1.4142433102758698,
+      1.4142400246884714,
+      1.4142395073921659,
+      1.4142410759902513,
+      1.414241716597885,
+      1.4142416385145864,
+      1.4142424988689586,
+      1.4142419183613066
+    ],
+    "unordered": [
+      2.5013104040274042e-05,
+      2.117015315076039e-05,
+      1.8852632329492127e-05,
+      1.976004462735046e-05,
+      2.0203806601778746e-05,
+      2.4082433107039386e-05,
+      2.7346690468682472e-05,
+      2.1084933270716415e-05
+    ],
+    "clean_seeds": 8,
+    "same_perm": true,
+    "perm_recovered": [
+      1,
+      4,
+      3,
+      2
+    ],
+    "ratio_min": 51715.30721381273,
+    "ratio_max": 75015.49293887196,
+    "ratio_spread": 1.4505471780091435,
+    "v7_selfnull_gate_pass_count": 0,
+    "v7_selfnull_rows": [
+      [
+        0,
+        2.5e-05,
+        3e-06,
+        false
+      ],
+      [
+        1,
+        2.1e-05,
+        5e-06,
+        false
+      ],
+      [
+        2,
+        1.9e-05,
+        7e-06,
+        false
+      ],
+      [
+        3,
+        2e-05,
+        5e-06,
+        false
+      ],
+      [
+        4,
+        2e-05,
+        3e-06,
+        false
+      ],
+      [
+        5,
+        2.4e-05,
+        7e-06,
+        false
+      ],
+      [
+        6,
+        2.7e-05,
+        1.1e-05,
+        false
+      ],
+      [
+        7,
+        2.1e-05,
+        7e-06,
+        false
+      ]
+    ],
+    "pass": true,
+    "ratio_gate": 1000.0,
+    "n_seeds": 8
+  },
+  "claim2_v7_selfnull_gate_ill_posed": {
+    "deg1_v7_pass": 0,
+    "deg2_v7_pass": 1,
+    "deg1_v7_rows": [
+      [
+        0,
+        2.5e-05,
+        3e-06,
+        false
+      ],
+      [
+        1,
+        2.1e-05,
+        5e-06,
+        false
+      ],
+      [
+        2,
+        1.9e-05,
+        7e-06,
+        false
+      ],
+      [
+        3,
+        2e-05,
+        5e-06,
+        false
+      ],
+      [
+        4,
+        2e-05,
+        3e-06,
+        false
+      ],
+      [
+        5,
+        2.4e-05,
+        7e-06,
+        false
+      ],
+      [
+        6,
+        2.7e-05,
+        1.1e-05,
+        false
+      ],
+      [
+        7,
+        2.1e-05,
+        7e-06,
+        false
+      ]
+    ],
+    "deg2_v7_rows": [
+      [
+        0,
+        0.000544,
+        0.001019,
+        true
+      ],
+      [
+        1,
+        0.000409,
+        0.000162,
+        false
+      ],
+      [
+        2,
+        0.00035,
+        0.000184,
+        false
+      ],
+      [
+        3,
+        0.000368,
+        0.000151,
+        false
+      ],
+      [
+        4,
+        0.000327,
+        8.5e-05,
+        false
+      ],
+      [
+        5,
+        0.000399,
+        0.000125,
+        false
+      ],
+      [
+        6,
+        0.000412,
+        0.000119,
+        false
+      ],
+      [
+        7,
+        0.000349,
+        0.000214,
+        false
+      ]
+    ],
+    "n_seeds": 8,
+    "pass": true,
+    "note": "the original v7 gate unordered<=self_null passes <half the seeds at BOTH library degrees -> it is a MIS-SPECIFIED null (self-null < genuine cross-loop operator/identity residual), not a library bug. The repaired ordered/unordered RATIO gate is seed-robust where this is not."
+  },
+  "claim3_library_matches_generator": {
+    "deg1_heldout_r2": 0.9999999998361983,
+    "deg2_quadratic_coeff_mean": 0.0,
+    "deg2_linear_coeff_mean": 0.4916522468268912,
+    "quadratic_negligible_vs_linear": true,
+    "pass": true,
+    "note": "GKSL flow is affine in Bloch coords; degree-1 fits it exactly (R^2>=0.999); degree-2 quadratic terms are phantom noise"
+  },
+  "scope_boundary_do_not_overclaim": "This sim fits the per-segment TERRAIN FLOW only (operators set context but are not fit). It shows the two loops share the same TERRAIN SET in reversed order (unordered terrain-flow distance ~1e-5). It does NOT show full (terrain,operator) CONTENT equivalence -- the loops use DIFFERENT operators per terrain (inner Ti/Fe, outer Fi/Te), so the stronger 'two loops differ only by order' / same-content-after-permutation claim is NOT made here and remains FAILED per codex frontier (preserve that FAIL).",
+  "policy_eval": {
+    "loop_terrain_order_carry_is_real_when_measured_with_correct_library": true,
+    "v7_selfnull_gate_is_ill_posed_not_a_library_bug": true,
+    "T2_TWO_LOOPS_SHARE_SAME_TERRAIN_SET_IN_REVERSED_ORDER": true,
+    "T2_same_full_content_after_permutation_claim": "NOT MADE (different operators per terrain); stays FAILED per codex frontier"
+  }
+}

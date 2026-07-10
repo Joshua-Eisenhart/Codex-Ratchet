@@ -29,11 +29,19 @@
 ################################################################################
 # LAYER 2 — GEOMETRY (nested Hopf tori + flux)  [flux REQUIRES nesting]
 ################################################################################
-2.1  Nested Hopf tori T_eta         EARNED. Each shell carries Berry holonomy -2pi cos2eta.
+2.1  Nested Hopf tori T_eta         EARNED. Each shell carries Berry holonomy -2pi cos^2(eta).
+                                    [NORMALIZATION CORRECTED 2026-07-09, UP-128, after codex/loop-back audit +
+                                    independent reproduction: the per-shell holonomy is -2pi cos^2(eta), NOT the
+                                    previously-written "-2pi cos2eta". Verified against the Berry connection on the
+                                    Hopf chart (UP-125/L7): eta=pi/4 -> -pi exactly.]
 2.2  Flux needs nesting             EARNED (this is a real structural fact, your claim confirmed).
                                     A SINGLE shell gives only holonomy; FLUX appears only ACROSS
-                                    nested shells: Phi(eta_i,eta_j) = 2pi(cos2eta_i - cos2eta_j).
-                                    Measured Phi(0,1)=3.46; total Chern 7.30, order-indifferent.
+                                    nested shells: Phi(eta_i,eta_j) = -pi(cos2eta_i - cos2eta_j).
+                                    [NORMALIZATION CORRECTED 2026-07-09, UP-128: the flux is -pi(cos2eta_i-cos2eta_j),
+                                    NOT the previously-written "2pi(cos2eta_i-cos2eta_j)" -- the old value was too large
+                                    by a factor of -2 (ratio observed/old = -1/2), independently confirmed by codex
+                                    sol-5.6 and reproduced here. Flux = holonomy DIFFERENCE = -2pi(cos^2 eta_i -
+                                    cos^2 eta_j) = -pi(cos2eta_i - cos2eta_j). Cross-shell nesting property unaffected.]
 2.3  A=0 ablation                   EARNED. Flat carrier -> curvature vanishes -> holonomy 0.
                                     Confirms the geometry (not the code) carries the flux.
 
@@ -1470,8 +1478,9 @@ washes out under a rotation-invariant signature), and t3:Fe->t7:Fe (the proj+Fe 
 commuting with their terrain, the 16->12 collapse). So 11/16 engine stages carry genuine probe-rotation-invariant
 identity; the 5 that don't are the known-degenerate pairs, not failures of the test. This is an OBJECTIVE measure
 an AI can compute without buying the theory. scratch_diagnostic, promotion_allowed=False. artifact 461708a8.
-HISTORICAL NEXT (executed in stages by the July 9 update below): install
-PySINDy/PyKoopman and export per-stage dynamics to external system-ID tools.
+NEXT (deferred, larger build): install PySINDy/PyKoopman (named in the Lev docs) + export per-stage engine
+time-traces for a fully MODEL-BLIND dynamics-ID arbiter -- an external tool with no knowledge of the QIT theory
+that predicts each stage's dynamics, with a shuffled-time control that must break it.
 
 ## FULLY EXTERNAL DYNAMICS-ID ARBITER -- PySINDy on the terrain flows (2026-07-06) [owner-driven, off-the-shelf judge]
 OWNER: "install what is needed." -> installed PySINDy 2.1.0 (+ derivative) into constraintcore (the Lev
@@ -1496,46 +1505,8 @@ with degree-2 polynomial dynamics (real held-out R^2 -0.017). Physically sensibl
 collapses fast to its fixed point, so the held-out second half is near-stationary and carries almost no derivative
 signal to identify. So the external arbiter independently flags t3 as the terrain whose dynamics are not
 polynomial-identifiable on this window -- reported, not hidden. scratch_diagnostic, promotion_allowed=False.
-artifact 26ce1c99. Historical environment note: PyKoopman was deferred at this
-point because its release stack pinned old scikit-learn. The July 9 update
-below supersedes the install-status part of that note, not this result.
-
-## PYKOOPMAN CORE + CONDITIONAL 16 x 4 SYSTEM-ID INSTRUMENT (2026-07-09)
-
-PySINDy `2.1.0` and PyKoopman `1.2.1` now have separate function-level
-capability receipts. PySINDy is clean in the canonical Python 3.13 stack.
-PyKoopman's full package remains quarantined because its metadata pins old
-NumPy/SciPy/scikit-learn/PyDMD/Torch/Lightning versions and its Polynomial
-observable uses a removed scikit-learn attribute. The admitted PyKoopman
-surface is only `Koopman + Identity + EDMD` with an explicit affine bias
-coordinate. No canonical package was downgraded.
-
-`system_v7/sims/stage16x4_system_id_instrument_v0/` parses the 16 source slots,
-rotates both conditional product-square orientations to each slot's canonical
-operator, and executes four beats under one inherited Axis-6 sign. PySINDy
-recovers each exact affine terrain generator; its reconstructed flow generates
-the PyKoopman beat training pairs. Held-out targets come independently from the
-exact house GKSL/channel implementation.
-
-LOCAL RESULT: both candidate orientations are green. Each has 64 beat maps;
-128 models appear only because two candidates were compared. Minimum beat and
-rollout held-out R2 is `1.0`, maximum rollout RMSE is
-`1.729546854431812e-15`, and both candidates re-identify `16/16` macro maps.
-All `128/128` beat removals and `128/128` duplications change the endpoint.
-All 32 slot/orientation rows also pass reverse, wrong-sign, terrain-erasure,
-operator-erasure, and all-permutation controls; the identity boundary remains
-order-insensitive. Accepted label: `passes local rerun`, fenced
-`scratch_diagnostic`, no stage movement.
-
-EXACT CEILING: this establishes that a concrete conditional 16 x 4 schedule
-can execute, be externally identified, and carry locally load-bearing ordered
-maps under one finite parameterization. It does not derive four substages.
-Four cells, cycle orientations, canonical-first rotation, the source slots,
-house maps, and analytic derivative access are premises. The prior
-trajectory-window PySINDy arbiter also remains a weaker observation result;
-perfect analytic-derivative recovery is not perception. Independent
-geometry-first and entropy-first ratchets over a declared superset must still
-emit the survivor intersection before the four-count can be called emergent.
+artifact 26ce1c99. (PyKoopman deferred: its sdist pulls an old scikit-learn with no py3.13 wheel; PySINDy alone,
+installed --no-build-isolation --no-deps against the env's sklearn 1.9.0, is the working external arbiter.)
 
 ## OBJECT-FORMATION SCORECARD -- two external targets composed under the Lev measurement discipline (2026-07-06)
 OWNER attached leviathan_object_formation_mesh_package_20260706.zip (version_id 92aa9309-d8f4-493f-b690-ce4c78d8623f,
@@ -1561,15 +1532,6 @@ RESULT: convergence_loss 1.562 (rate 0.688), handling_loss_mean 0.143, defined-c
 flip -> PASS. Full harness 81 pass/0/0 GREEN. scratch_diagnostic, promotion_allowed=False. artifact 42698a1a.
 This gives the two external targets (re-id UP-73 + PySINDy UP-74) a single formation-loss readout under an explicit
 measurement/verdict split -- the discipline that would have prevented the four gate-tuning audits.
-
-CURRENT RERUN CORRECTION (2026-07-09): the active trajectory-window PySINDy
-result now has mean real held-out R2 `-42.54618543675848`. A fresh full harness
-is mechanically green at `123/0/0`, but the regenerated evidence envelope
-correctly raises `formation_loss_sum` from the historical `0.14344853350242942`
-to `43.546185436758485`. The shuffle is still catastrophically worse, so the
-old control-flip predicate passes; absolute handling accuracy does not. Treat
-the paragraph above as historical receipt state, not current perception or
-object-formation evidence.
 
 ## COSMOGENESIS AS THE ROOT RATCHET'S FIRST TOOTH -- MSS in a static field (2026-07-06) [owner framing, under test]
 OWNER: "my explanation of how the universe was created as an example of the very ratchet working ... mss in a
@@ -2560,3 +2522,407 @@ the current forced ratchet. The gap between the Clifford/associative forced engi
 precise, runnable object. Gate: all four legs COMPUTED (Jordan ladder + engine factorization + CA divergence +
 associative control), auditor-hardened from an earlier draft that hardcoded two legs as True. Harness 123 GREEN.
 (nonassociative_ca_t01_constructible_not_forced_sim.py)
+
+## UP-118 -- The Malcev bracket NAMES the T01 ceiling (processing the codex-ratchet parallel work) (2026-07-09)
+
+Reconnaissance of the codex-ratchet v7 sim directories found a substantial parallel cluster built 2026-07-08 evening
+(21:00-22:51) directly on the octonion/exceptional-Jordan branch: j3o_bloch_body_entropy_pawl (Albert-algebra Bloch
+body + epsilon-shadow relative-entropy pawl), spin9_stabilizer_op2_coset (OP2=F4/Spin(9), derives dim f4=52 and the
+16-dim coset from the constructed Albert product, z3-checked), araki_modular_umegaki_crosscheck (finite relative modular
+operator Delta=L_sigma R_rho^-1 reproduces the Umegaki formula), petz_recovery_reversibility_census (all 8 terrains
+Petz-reversible at their own fixed point; wrong-foreign-fixed-point recovery fails as it should), jordan_dpi_probe_v3/v4,
+petz_quasi_entropy_pawl_census, alfsen_shultz_correspondence_probe, symmetric_cone_menu_census, and -- the decisive one
+-- malcev_signature_search. Codex harness independently at 123 GREEN, its UP-113..117 changelog matching this side
+exactly (wiki-synced). The engines/ cross-substrate lane (Julia/JAX/PyTorch) was restored from the codex tree.
+
+THE MALCEV FINDING (reproduced independently here). UP-113/117 established that every engine stage-combining operation
+is either associative composition or a Jacobi-obeying (Lie) bracket, so no octonionic (non-Jacobi/Moufang) grouping
+demand is present -- but left OPEN what EXACTLY the missing non-Lie structure is. The codex Malcev search named it, and
+this side reproduces it from scratch: the imaginary-octonion commutator [x,y]=xy-yx is anticommutative and NON-Lie
+(Jacobiator ~3e2) but satisfies the MALCEV identity J(x,y,[x,z])=[J(x,y,z),x] (defect ~3e-13). Malcev algebras are
+EXACTLY the tangent algebras of Moufang loops (the unit octonions) -- the g2/octonion nonassociative structure. su(2)=
+Im(H) is the degenerate Lie case (Jacobiator ~5e-15). Reference detector VALID: Im(O)->malcev_not_lie, Im(H)->lie,
+random-antisymmetric-R7->neither, corrupted-Malcev-sign->neither (the identity is sign-specific, not vacuous).
+
+ENGINE-NATIVE CENSUS: every bracket the engine forms (GKSL terrain superoperator commutators, segment channel-map
+commutators, stage composition-log-difference commutators) is a MATRIX commutator, and matrix commutators ALWAYS obey
+Jacobi (max defect ~5e-14) -> Lie. Engine-native Malcev-not-Lie hit count = 0. The forced engine NEVER realizes the
+Malcev bracket.
+
+CONSEQUENCE: the T01 ceiling now has a NAME (Malcev / Moufang / octonion tangent algebra) and a DETECTOR, not just an
+absence. Earning the octonion rung requires a FORCED Malcev (non-Jacobi) bracket, and the qubit engine -- built from
+associative matrix algebra -- can only ever produce Lie brackets. This is the sharpest statement of the octonion-fork
+arc, converging with UP-111 (field symmetry is so(4), a Lie algebra) and UP-115 (Clifford operator algebra is
+associative) from a third independent direction. Harness 124 GREEN. (malcev_bracket_names_the_t01_ceiling_sim.py)
+
+## UP-119 -- Spin(9)/OP2 coset DERIVED from the Albert product: the positive construction (2026-07-09)
+
+The octonion-fork arc (UP-112..118) is a string of NEGATIVES: the exceptional tower is real established mathematics on
+a live-but-UNFORCED branch, and every attempt to force it (holism, Clifford, Malcev demand) confirms the forced qubit
+engine cannot generate it. This rung is the POSITIVE counterpart -- the concrete piece of exceptional structure BUILT
+from scratch rather than placed, processing the codex-ratchet spin9_stabilizer_op2_coset_sim independently.
+
+DERIVED (all COMPUTED from the constructed Albert product J3(O), nothing cited):
+  - dim F4 = 52. F4 = Der(J3(O)): a derivation D obeys the Jordan-Leibniz rule D(AoB)=D(A)oB+AoD(B). Stacking the
+    Leibniz conditions over all basis pairs gives a (10206, 729) constraint matrix on the 27x27=729 entries of D; its
+    nullspace has dim 729-677 = 52. On the nose.
+  - Spin(9) stabilizer = 36. Fixing a primitive idempotent e=diag(1,0,0), the D in f4 with D(e)=0 form the stabilizer
+    subalgebra; the map f4->R^27, D|->D(e), has rank 16, so dim(stab) = 52-16 = 36 = dim Spin(9).
+  - OP2 coset = 16. dim(F4)-dim(Spin(9)) = 52-36 = 16 = dim of the Cayley projective plane OP2 (F4/Spin(9) is the
+    homogeneous space realizing OP2). Computed as the action rank of f4 on e.
+
+CONTROLS (falsifiable): (1) a single upstream Fano sign flip (e1*e2 coefficient of e3 negated) collapses dim F4 from
+52 to 3 -- the 52 is a genuine consequence of the EXACT octonion structure, not a linear-algebra artifact; (2) a
+generic non-idempotent diagonal diag(3,2,1) gives a DIFFERENT split (stab 28, coset 24) -- the 36/16 is specific to
+primitive idempotents (the points of OP2), not any diagonal element.
+
+HONEST PLACEMENT (the negatives still hold): this is a real, load-bearing POSITIVE build -- F4, its maximal Spin(9)
+subgroup, and the Cayley plane all fall out of the Albert product with the correct dimensions. But per UP-112/115/118,
+J3(O)/F4/OP2 live on the LIVE-BUT-UNFORCED {H,O} branch; the forced qubit engine runs on associative H (Clifford,
+Lie/Malcev), and nothing in {F01,N01} forces a primitive octonionic idempotent or the Albert product into existence.
+This sim BUILDS a concrete piece of the exceptional tower; it does not EARN it as forced. The tower is real and
+constructible, the demand for it is still absent from the forced ratchet. Harness 125 GREEN.
+(spin9_op2_coset_derived_from_albert_sim.py)
+
+## UP-120 -- The Umegaki pawl IS finite modular theory: forced-side consistency (2026-07-09)
+
+Where UP-119 built UNFORCED exceptional structure (F4/Spin9/OP2), this rung ties the FORCED side together, processing
+the codex-ratchet araki_modular_umegaki_crosscheck independently. The Umegaki relative entropy S(rho||sigma) -- the ONE
+genuinely forced anchor of the octonion-fork arc (the terrain-native monotone pawl of UP-107, the anchor UP-115
+identified as earned by {F01,N01} rather than living on the {H,O} branch) -- is shown to BE the finite case of the
+relative modular operator (Tomita-Takesaki):
+    S(rho||sigma) = -<xi_rho, log(Delta_{sigma|rho}) xi_rho>,   Delta_{sigma|rho}=L_sigma R_rho^{-1},  xi_rho=vec(rho^{1/2}).
+
+COMPUTED (vectorized M_2(C), 4-dim):
+  - CLASSICAL gate: for diagonal rho=diag(.7,.3), sigma=diag(.4,.6), the modular formula equals the KL divergence to
+    8e-17, with Delta eigenvalues {4/7, 6/7, 4/3, 2} (the ratios sigma_i/rho_j).
+  - NON-COMMUTING QUANTUM gate (the real content, stronger than codex's diagonal check): for random NON-commuting
+    density pairs, the modular formula equals the direct Umegaki Tr[rho(log rho - log sigma)] to 1.6e-14. For commuting
+    pairs it would reduce trivially to KL; the non-commuting agreement is the genuine Tomita-Takesaki identity.
+  - BLOCH-BALL COVERAGE gate: over a representative set of density matrices spanning the Bloch ball (an inline coverage
+    set, NOT the engine's terrain fixed points -- a coverage check, not a terrain-provenance claim), modular == Umegaki
+    to 1e-15.
+
+CONTROLS (falsifiable): swapped-delta (wrong convention L_rho R_sigma^{-1}) mismatches KL by 0.37; singular sigma
+(diag(1,0)) makes Delta non-invertible -> correctly flagged ill-defined without regularization (matching
+S(rho||sigma)=+inf when supp(rho) not subset supp(sigma)).
+
+PLACEMENT: FORCED-side consistency, NOT a new forcing claim. The forced pawl and the surface-identity thermal-time
+structure are the SAME modular object: the terrain entropy/geometry face is the BKM information metric = Connes-Rovelli
+thermal time (project canon surface_identity_is_BKM / surface_identity_prior_art), and Delta is exactly the finite
+Tomita-Takesaki modular operator. So the forced Umegaki pawl already IS a piece of modular theory -- the model's forced
+anchor and its thermal-time surface identity are internally one structure. Both are established prior art; this rung
+tightens the model's own internal consistency rather than asserting new ground. Harness 126 GREEN.
+(umegaki_pawl_is_finite_modular_theory_sim.py)
+
+## UP-121 -- Petz/DPI FORCES the pawl: why the terrain entropy is not hand-picked (2026-07-09)
+
+Structural justification of UP-107 (the terrain-native monotone pawl) and UP-120 (Umegaki = finite modular theory),
+processing the codex-ratchet petz_recovery_reversibility_census + petz_quasi_entropy_pawl_census independently. Answers
+WHY the Umegaki relative entropy is a FORCED pawl rather than a chosen Lyapunov function. Three computed claims, all
+forced-side:
+
+  1. DATA-PROCESSING INEQUALITY (monotonicity). For any CPTP channel N, S(N(rho)||N(sigma)) <= S(rho||sigma). This is
+     the structural reason the pawl exists at all: relative entropy CANNOT increase under the dissipative (CPTP)
+     terrain flow, so it is automatically a Lyapunov/pawl quantity. Reproduced numerically: 0 violations over 200
+     random density pairs under a lossy Kraus channel (amplitude-damping + depolarizing), max drop 3.47. Theorem
+     (Lindblad 1975, Uhlmann), not an assumption.
+
+  2. EQUALITY <=> PETZ RECOVERY. The DPI is TIGHT (DeltaS=0) exactly when the channel is reversible on the pair by the
+     Petz recovery map R_{sigma,N}(X)=sigma^{1/2} N*(N(sigma)^{-1/2} X N(sigma)^{-1/2}) sigma^{1/2}. The indicator
+     correlation pearson(DeltaS==0, recovery-exact) = 1.0000: a unitary channel is reversible (DeltaS 0.0000, recovery
+     err 0.0000), a dissipative channel is not (DeltaS 0.89, recovery err 0.65). This is the Petz equality condition --
+     the sharp boundary between information preserved and information lost, the same boundary the engine's
+     reversibility census (UP earlier) reads on the 8 terrains.
+
+  3. UMEGAKI IS ONE MEMBER OF A FORCED FAMILY. The Petz quasi-entropy S_f(rho||sigma)=sum_{ij} mu_j f(lambda_i/mu_j)
+     |<rho_i|sigma_j>|^2 is monotone under CPTP for EVERY operator-convex f with f(1)=0. Umegaki is f(x)=x log x; the
+     whole family -- reverse (-log x), chi^2 ((x-1)^2), Hellinger (2(1-sqrt x)) -- pawls UNIFORMLY, each monotone-
+     decreasing to 0 at the terrain fixed point. So Umegaki is not a special hand-picked choice; it is INSTALLED
+     within a forced operator-convex family, all sharing the pawl (matching the codex verdict).
+
+CONTROL (falsifiable): measuring the quasi-entropy against a WRONG (foreign) fixed point does NOT pawl -- it fails to
+reach 0 (0.13 -> 0.36, non-monotone). The pawl is specific to the terrain's own fixed point (project canon
+coratchet_entropy_is_terrain_native), not any reference state.
+
+PLACEMENT: FORCED-side foundations. The pawl is FORCED because monotonicity under the dissipative terrain flow IS the
+data-processing inequality, and the equality/recovery boundary is the Petz condition. Established prior art
+(Lindblad/Uhlmann/Petz); this rung shows the model's forced entropy structure already IS that structure -- it does not
+newly force the {H,O} branch. Together UP-107/120/121 make the forced entropy pawl fully grounded: terrain-native
+(107), = finite modular theory (120), and forced by DPI with Petz-recovery equality (121). Harness 127 GREEN.
+(petz_dpi_forces_the_pawl_sim.py)
+
+## UP-122 -- Alfsen-Shultz dynamical correspondence: the DYNAMICAL face of special vs exceptional (2026-07-09)
+
+Closes the Jordan cluster, processing the codex-ratchet alfsen_shultz_correspondence_probe independently. Sharpens the
+special/exceptional split (UP-116/117) into a DYNAMICAL statement and ties it to the modular-theory work (UP-120).
+
+A formally-real Jordan algebra is SPECIAL iff it carries a "dynamical correspondence": each traceless observable a maps
+to a Jordan DERIVATION D_a=(i/2)[a,.] via the associative commutator (the finite Jordan form of "the state/observable
+generates its own dynamics" -- the same principle UP-120 identified as Tomita-Takesaki modular flow). COMPUTED:
+  - SPECIAL Herm3(C): a|->D_a=(i/2)[a,.] IS a Jordan derivation (residual 0 on all basis pairs). Correspondence holds.
+    Corrupted wrong-sign control (i/2){a,.} is NOT a derivation (residual 1.41) -> specific to the commutator.
+  - EXCEPTIONAL H3(O): the naive single-observable octonionic commutator is NOT a Jordan derivation (residual 143.6).
+    No single-observable dynamical correspondence -- the DEFICIT, the dynamical shadow of "H3(O) has no associative
+    envelope" (Jordan-vNW, UP-116).
+  - THE DEFICIT IS SINGLE-OBSERVABLE-SPECIFIC (honest companion): PAIR commutators [L_a,L_b] of Jordan multiplication
+    operators ARE genuine derivations (residual 1.9e-13) and span the full 52-dim Der(H3(O))=f4 (UP-119). H3(O) has
+    abundant dynamics (the f4 inner derivations); what it lacks is the correspondence indexing ONE generator per
+    observable. Absence de-indexes dynamics from observables, it does not remove them.
+
+PLACEMENT: forced-side structural clarification (no new forcing). Special vs exceptional is DYNAMICALLY the presence/
+absence of a single-observable dynamical correspondence; its presence in the special case is the finite form of the
+modular "state generates its own dynamics" (UP-120); its absence in H3(O) leaves the f4 derivations of UP-119 intact.
+Established prior art (Alfsen & Shultz, State Spaces of Operator Algebras). Harness 129 GREEN.
+(alfsen_shultz_dynamical_correspondence_deficit_sim.py)
+
+## UP-123 -- Manifold spine L5: nested-shell Schmidt strata; flux gets its first spine home (2026-07-09)
+
+Loops the FOUNDATIONS forward (owner: "build the foundations and loop back to improve them"). The manifold spine had
+L1-L4 as forcing sims; L5+ sat only in the ledger. This builds L5. Nests on L4 (local Weyl factors: exist IFF product)
+and L2 (marginals). L4 gave only a BINARY product/entangled bit; L5 adds the continuous SCHMIDT STRATA realized as
+NESTED MARGINAL-RADIUS SHELLS: a bipartite pure state's reduced marginal has Bloch radius r=2 s0^2-1 (top Schmidt
+weight), a continuous shell coordinate. Product = outermost shell r=1; maximally entangled = center r=0; partial
+entanglement = nested shells between. COMPUTED:
+  - DUAL RATCHET: product->Bell sweep, shell radius contracts 1->0 as marginal entropy rises 0->1 bit -- geometry
+    (which nested torus) and readout (Schmidt spectrum) co-ratchet continuously.
+  - REFINES L4: two states L4 calls equally "non-product" (negativity 0.42, 0.49) land on DIFFERENT L5 shells
+    (r 0.54 vs 0.23) -- L5 strictly refines the L4 binary criterion.
+  - NESTED-SHELL FLUX Phi=2pi(r_i-r_j): 0 for a shell with itself, 1.97 for nested distinct shells -> flux is a
+    NESTING property, not a single-shell one (ledger L2.1, project canon flux_needs_nesting / flux_is_geometry_not_
+    axis). This is where the model's "flux" first has a spine referent.
+  - ERASE-NESTING control: collapse all states to one shell radius -> flux identically 0 and the interior-resolution
+    over L4 vanishes (structural erase, not a count change).
+
+SCOPE: earns L5 (Schmidt strata as nested shells + flux as cross-shell nesting quantity) on top of L4. Does NOT build
+L6 (metric/connection on the shell family) or above; next rung. Weyl chirality + engine-type split remain later
+objects. Hypothetical lane; owner doctrine under test. scratch_diagnostic. Harness 129 GREEN.
+(manifold_L5_nested_shells_schmidt_strata_sim.py)
+
+## UP-124 -- Manifold spine L6: the metric on the shell family (BKM = entropy Hessian; monotone; curved) (2026-07-09)
+
+Loops the foundations forward: spine L1-L5 built, this adds L6. Nests on L5 (nested-shell Schmidt strata) and L3
+(spinor/phase surface). L5 gave the shell FAMILY as bare radii with no distance; L6 adds the METRIC that makes shell-
+to-shell distance real, curved, and monotone -- and it is exactly the forced modular geometry of UP-120 attaching to
+the spine, with the DPI of UP-121 becoming its infinitesimal monotonicity. COMPUTED:
+  (1) THE METRIC IS THE BKM (Bogoliubov-Kubo-Mori) METRIC = HESSIAN OF RELATIVE ENTROPY. Kubo-Mori integral
+      coefficient (log a-log b)/(a-b) in the eigenbasis vs the second derivative of S(rho||rho0) along a direction
+      agree to 5e-8. The shell-family metric is not arbitrary; it IS the curvature of the forced relative-entropy pawl
+      (UP-107/120/121) -- the surface identity (surface_identity_is_BKM) realized on the L5 shells.
+  (2) CURVED, NOT FLAT. BKM arc length along the radial Schmidt direction = 2 arcsin(r): mid->pure-boundary segment
+      1.91x the mid->center segment, while a flat Bloch metric gives uniform 1.0x. The shells are unevenly spaced;
+      the pure-state boundary is metrically far, the maximally-mixed center near. Real curvature, not a coordinate.
+  (3) MONOTONE (CONTRACTS UNDER CPTP) = INFINITESIMAL DPI. Depolarizing (p=0.3) shrinks g_BKM 4.49 -> 2.07. This is
+      the differential form of UP-121's DPI: the dissipative terrain flow moves inward along shells and the metric
+      contracts. A non-CPTP amplify (unphysical Bloch upscale) INCREASES the metric (7.34) -> contraction is CPTP-
+      specific, the DPI direction.
+CONTROLS: wrong-direction (SX vs SZ) metric differs -> g_BKM is a genuine direction-dependent bilinear form, not a
+scalar; non-CPTP amplify does not contract. DUAL RATCHET: the shell metric (geometry) and the relative-entropy pawl
+(readout) are the SAME tensor; metric contraction IS pawl decrease -- geometry and entropy are one object on the
+shells. SCOPE: earns L6 on top of L5. Does NOT build L7 (connection/parallel-transport + Berry holonomy across shells)
+or above; next rung. Hypothetical lane; owner doctrine under test. Harness 130 GREEN.
+(manifold_L6_shell_metric_bkm_connection_sim.py)
+
+## UP-125 -- Manifold spine L7: the shell connection; flux DERIVED as a Berry holonomy (2026-07-09)
+
+Loops the foundations forward: spine L1-L6 built, this adds L7. Nests on L6 (the monotone BKM metric), L5 (nested-shell
+Schmidt strata) and L3 (spinor/phase surface). L5 POSITED a flux Phi=2pi(cos2eta_i-cos2eta_j) between nested shells as
+a bare number (ledger L2.1); L7 adds the CONNECTION whose parallel-transport holonomy DERIVES that flux, turning it
+from a formula into the curvature of a connection. COMPUTED:
+  (1) FLUX IS A BERRY HOLONOMY (derived, not posited). Berry connection A=i<psi|dpsi> on the L3 Hopf chart
+      |psi(phi,eta)>=(cos eta e^{i phi}, sin eta), transported around the phi-loop at fixed eta, gives holonomy
+      -2pi cos^2(eta) (analytic match to 1e-6). The flux between two nested shells is the DIFFERENCE of holonomies =
+      -pi(cos2eta_i-cos2eta_j), reproducing the ledger L2.1 flux (via cos2eta=2cos^2eta-1) as a transport holonomy.
+  (2) NON-INTEGRABLE CURVATURE. Parallel transport around a CLOSED (phi,eta) rectangle returns net phase -pi != 0.
+      Nonzero closed-loop holonomy = genuine curvature: the connection cannot be gauged away, the flux is a geometric
+      invariant of the nested-shell family, not a coordinate.
+  (3) FLUX IS INTRINSICALLY CROSS-SHELL (nesting). Self-flux (a shell with itself) is exactly 0; erase-nesting
+      (collapse both shells to one eta) sends the closed-loop holonomy to 0. A single shell's loop holonomy is pure
+      gauge; only the RELATIVE holonomy between nested shells is gauge-invariant (flux_needs_nesting, at the
+      connection level).
+CONTROLS: analytic-match (transport = real Berry connection, not discretization artifact); self-flux-zero; erase-
+nesting kills the holonomy. DUAL RATCHET: the connection (geometry -- how phase transports across nested tori) and the
+L3 spinor phase (readout) co-ratchet; the holonomy IS the accumulated transported phase. SCOPE: earns L7 on top of L6.
+Does NOT build L8 (global bundle / Chern quantization of the flux) or above; next rung. Weyl chirality = the SIGN of
+this holonomy, a later object needing the cut/orientation structure. Hypothetical lane; owner doctrine under test.
+Harness 131 GREEN.
+(manifold_L7_shell_connection_holonomy_sim.py)
+
+## UP-126 -- Aperiodic order (Penrose + E8): REAL and constructible, but NOT forced (2026-07-09)
+
+Processes the Penrose-tiling / E8-quasicrystal half of the "discrete computational spacetime" attachment (UP-117 built
+the von Neumann-CA half and left Penrose/E8 CITED only). Makes both structures real (computed) and places them with the
+same fork discipline as the octonion arc (UP-112/116/117/118): genuine mathematics, live but UNFORCED by {F01,N01}.
+  PART 1 -- E8 ROOT SYSTEM. 240 roots constructed (112 integer D8 +-e_i+-e_j, 128 half-integer (1/2)(+-1)^8 with an
+  even number of minus signs); all norm^2=2; count 240 = Coxeter h=30 x rank 8. DISCRIMINATING test (not the
+  tautological "matrices satisfy Jacobi"): the SAME Jacobiator detector reads the E8/matrix commutator ~0 (Lie) but the
+  octonion Im(O) commutator >>0 (335, Malcev-not-Lie, exactly as UP-118). So E8 sits on the associative/Jacobi side,
+  OPPOSITE the octonion demand; it does NOT supply the forced non-Jacobi (T01) structure the octonion rung needs.
+  PART 2 -- PENROSE QUASICRYSTAL. Cut-and-project Z^5->2D (star directions 2 pi k/5, acceptance window in the 2D
+  internal space). The decisive signature: 2D diffraction |S(q)|^2 has 10-FOLD rotational symmetry (rotation-
+  correlation 0.99) -- an order FORBIDDEN for any periodic lattice (crystallographic restriction theorem). Golden ratio
+  tau=(1+sqrt5)/2 is the inflation factor. CONTROLS: periodic square lattice 4-fold 1.00 but 10-fold 0.14; hex 6-fold
+  0.87 but 10-fold 0.12 -- so the 10-fold is genuine aperiodic order, not an estimator artifact.
+PLACEMENT: both REAL and constructible, both genuinely connected to the octonion/exceptional program in the literature
+(E8 contains E6/F4 over O; Penrose/E8 quasicrystals cited in discrete-spacetime proposals), but NEITHER FORCED -- E8 is
+Lie/Jacobi (not the Malcev demand of UP-118); the Penrose set is an installed 5-fold projection (constructible like the
+UP-117 CA, but nothing in {F01,N01} forces a 5-fold window). Same LIVE-BUT-UNFORCED status as F4/E6/dim-27
+(UP-115/119). CLOSES the CA/Penrose attachment. Harness 132 (with L8: 133) GREEN.
+(aperiodic_order_penrose_e8_not_forced_sim.py)
+
+## UP-127 -- Manifold spine L8: the global bundle; flux QUANTIZED (Chern); Chern sign = chirality winding (2026-07-09)
+
+Loops the foundations forward: spine L1-L7 built, this adds L8 (top of the currently-earned geometric spine). Nests on
+L7 (the shell connection, holonomy -2pi cos^2 eta) and L3 (spinor/phase). L7 gave the connection LOCALLY; L8 adds the
+GLOBAL object. COMPUTED:
+  (1) TOTAL FLUX IS QUANTIZED (Chern = 1). Integrating the Berry curvature over the whole closed shell family
+      (eta in [0,pi/2] x phi-loop = the Bloch 2-sphere the shells foliate) via Fukui-Hatsugai-Suzuki lattice
+      plaquettes gives total flux/2pi = 1.0000 (integer to 2e-6). The per-shell holonomies of L7 integrate to an
+      INTEGER: the shell connection is the connection of a nontrivial Chern-1 line bundle. Flux is now a TOPOLOGICAL
+      invariant, not a coordinate quantity.
+  (2) THE CHERN SIGN IS THE CHIRALITY WINDING (+1/-1). Reversing the ORIENTATION of the shell family flips the Chern
+      number 1 -> -1. The sign of the L7 holonomy that L7 deferred as "Weyl chirality" IS this orientation-dependent
+      +/-1 winding: the two engine chiralities (left/right Weyl) are the two signs of ONE quantized invariant. Connects
+      the spine geometry to the engine-type split (engine type = global sign of loop geometric phase).
+CONTROL: a trivial/flat section has Chern 0 -- quantization to 1 is a property of the winding section, not the
+integrator. DUAL RATCHET: the global bundle (geometry) and the discrete winding (Chern/chirality sign) are one object;
+the integer IS the accumulated curvature; continuous L7 holonomy and discrete L8 winding are local/global faces of one
+connection. SCOPE: earns L8. Does NOT assign which physical chirality is left vs right (empirical,
+chirality_forced_by_F01_N01). Top of the earned geometric spine; does not build L9. Harness 133 GREEN.
+(manifold_L8_global_bundle_chern_quantization_sim.py)
+
+## UP-128 -- Loop-back audit correction: codex sol-5.6 cross-check of the L5/L6/L7 spine geometry (2026-07-09)
+
+The parallel codex sol-5.6-ultra runner independently rebuilt the Schmidt/BKM/Berry shell geometry (its
+schmidt_bkm_berry_dual_ratchet_repair_sim) and its machine audit (EXTERNAL_PACKET_86_V84_92_AUDIT_20260709) flagged
+three real defects in my shipped UP-123/124/125. I REPRODUCED all three independently and CORRECTED them (fixes in the
+math/framing, harness stays 133 GREEN -- no gate was relaxed). This is the "loop back and audit each ratchet up"
+discipline working across two independent builders.
+  DEFECT 1 (L6, corrected) -- "curved not flat" was WRONG. The shell family is 1-DIMENSIONAL and the BKM metric is
+  EXACTLY CONSTANT in the Schmidt-angle coordinate (g_eta_eta=4 for all eta, spread 5e-8). A 1-manifold has identically
+  zero intrinsic curvature. My earlier "boundary 1.9x center" was a COORDINATE ARTIFACT of the Bloch-radius coordinate
+  r=2cos^2eta-1 (reparametrization Jacobian dr/deta=-2 sin2eta). Fixed: L6 fact 2 now gates g_eta_eta constant + the
+  r-variation = Jacobian (not curvature) + BKM differs from the naive Euclidean-r metric (the real, metric-CHOICE fact).
+  DEFECT 2 (L7, corrected) -- "single-shell holonomy is pure gauge (removable)" was WRONG. The closed-loop Berry phase
+  is gauge-INVARIANT (mod 2pi); verified it is unchanged under single-valued gauges. Fixed: L7 fact 3 docstring/JSON
+  now state gauge-invariance, and the cross-shell claim rests correctly on the holonomy DIFFERENCE (self=0, erase->0).
+  DEFECT 3 (ledger L2.1 normalization, corrected) -- the per-shell holonomy is -2pi cos^2(eta) (NOT "-2pi cos2eta") and
+  the flux is -pi(cos2eta_i-cos2eta_j) (NOT "2pi(cos2eta_i-cos2eta_j)"): the old flux value was too large by a factor
+  of -2 (ratio observed/old = -1/2, matching codex exactly). L7's COMPUTATION already used -pi correctly; the error was
+  in the ledger L2.1 canon line and is now fixed. L5's Phi=2pi(r_i-r_j) is its own bookkeeping scale for the nesting
+  demonstration (normalization-independent), clarified as distinct from the L7 Berry flux.
+WHAT SURVIVED (codex + here agree): the L7 rectangle holonomy -pi(cos2eta_i-cos2eta_j) is a confirmed finite survivor;
+the UP-120 Umegaki finite-modular identity survives; the BKM=Hessian identity survives on full-rank marginals; CPTP
+contraction survives. OPEN (codex critiques I accept as fair, not yet closed): UP-121's "Petz/DPI FORCES the pawl" and
+UP-122's Alfsen-Shultz "nonexistence of single-observable correspondence" are semantic OVERCLAIMS on the forcing/
+uniqueness side -- the finite residuals are real but the decisive negative that would upgrade "consistent-with" to
+"forced" is not yet in the gate. Flagged for a future forcing-vs-consistency tightening pass. Harness 133 GREEN.
+(manifold_L5/L6/L7 corrected; ledger L2.1 normalization fixed)
+
+## UP-129 -- Loop-order instrument repair: why the v7 t2_order_carried packet was seed-fragile (2026-07-09)
+
+Following the honest-state audit that flagged codex's t2_order_carried_v1 replication as 2/5-seed PASS, I diagnosed and
+repaired the instrument (new sim t2_order_carried_sindy_library_repair_sim; harness 134 GREEN). The user's question --
+"are the 4 loops / 2 engine types real, and is the order-carry within a stage real" -- is answered YES for the loop-
+order layer once the instrument is correct. TWO instrument defects, NEITHER in the model physics:
+  DEFECT A (mis-specified null). The v7 gate is `unordered_distance <= self_null_band`, where the self-null is the same
+  loop re-signed from resampled probes. Reproduced: this gate passes deg1 0/8 and deg2 1/8 seeds -- ILL-POSED. The two
+  Type-2 loops share the same terrain SET {Se,Ne,Ni,Si} but use DIFFERENT operators (inner Ti,Ti,Fe,Fe; outer
+  Fi,Te,Te,Fi) in reversed order, so the best-permutation "unordered" distance is genuinely nonzero (~2e-4) while the
+  self-null (identical loop) is ~1e-5. Demanding unordered <= self-null tests "byte-identical up to permutation," which
+  is FALSE by construction. The correct order-carry test is a RATIO: ordered >> unordered.
+  DEFECT B (over-parametrized library). The GKSL terrain generator is AFFINE in Bloch coords (d r/dt = A r + b); the v7
+  SINDy fit used a degree-2 PolynomialLibrary whose 9 quadratic features fit only seed-dependent numerical noise
+  (deg-2 quadratic-coeff mean 0 in the mean, phantom per-fit). Degree-1 (affine) is the principled library; deg-1
+  held-out R^2 = 1.000000.
+  REPAIRED GATE (seed-robust): ordered/unordered RATIO under a degree-1 library. Over 8 seeds: clean 8/8, ratio_min
+  5.2e4, and the SAME recovered permutation (1,4,3,2) on every seed -- exactly the inner->outer terrain reorder. So the
+  two Type-2 loops ARE the same four terrains traversed in reversed order; order-carry is real. Independently
+  corroborated by my own loop_uniqueness_trajectory_probe_sim (forward-vs-reverse full-affine distance 0.654, self-null
+  0.0) which used a different (composed-channel) method and already passed.
+STATE NOTE for the record: 16 stage-kinds VALID; 2 signed operators/terrain (1 pinch+1 rotation) VALID; 2 engine types
+VALID; axis-6 sign = real composition order, 32/32 load-bearing under flow, VALID; 4 loops + order-carry now VALID and
+seed-robust. STILL OPEN: the "exactly 4 substages" count is not yet FORCED (the discriminator accepts 4, 5, and 8);
+per owner directive this should EMERGE from proper dual ratcheting (2-variable geometry/entropy ratchet closing in 4) --
+next rung. Harness 134 GREEN.
+
+## UP-130 -- The "4 substages" are DERIVED from dual-ratchet closure, not chosen (owner directive) (2026-07-09)
+
+Owner: "the 4 substages would emerge from proper dual ratcheting." Prior work only had a discriminator that ACCEPTED
+4 (and also 5 and 8) as a candidate count. This sim (four_substages_emerge_from_dual_ratchet_sim; harness 135 GREEN)
+DERIVES 4 as the minimal proper dual-ratchet cycle. Mechanism (grounded in ledger 8/17.5 co-ratchet-as-one-loop): two
+co-constraining axes on the qubit carrier -- A = geometry (quarter-turn about Z), B = operator/entropy sector
+(quarter-turn about X). A proper dual-ratchet cycle must satisfy THREE independent conditions:
+  C1 CLOSURE: composed cycle returns every probe to itself (Frobenius 0).
+  C2 CO-CONSTRAINT / MSS: no axis advances twice in a row (the other pawl must engage between -- no unforced repeated
+     single-axis leap).
+  C3 BOTH DIRECTIONS PER AXIS: each axis appears exactly twice (fully exercised, its two signed directions).
+RESULT: the minimal L satisfying C1 AND C2 AND C3 is L=4, and the admissible words are EXACTLY {ABAB, BABA} (the two
+chiralities -- matching ledger 17.5's exactly-2-models-at-length-4). Each condition is provably NECESSARY via isolating
+controls that each flip ONE gate: AB (L=2) fails C1 (does not close); AAAA closes but fails C2 (so closure ALONE does
+not pick 4 -- the co-constraint is load-bearing); an ABAB with one half-quarter-turn leg fails C3/C1. Gate (3) reads
+the substages-per-loop count by PARSING the source engine_16_source_stage_slots.json (grouping slots by (engine,loop),
+counting distinct steps = 4) -- not a hardcoded literal (auditor-corrected) -- and confirms the emergent 4 equals the
+engine's own 4 substages/stage. 4 = 2 axes x 2 directions = the Carnot 4-stroke count, with Carnot a ROSETTA label,
+not the mechanism. So: the substage count is EARNED by dual-ratchet closure + co-constraint, closing the last open item
+in the "16 stages / 4 substages / 2 engine types" structure. Harness 135 GREEN.
+
+### UP-129 scope correction (2026-07-09, after reading codex frontier + engine-16x4-axis6 wiki docs)
+Codex's current-research-frontier explicitly preserves as FAILED the claim "the two Type-2 loops differ ONLY by order"
+(same full CONTENT after permutation). Cross-checking my UP-129 wording against that: the two loops share the same
+TERRAIN SET {Se,Ne,Ni,Si} reversed but use DIFFERENT operators per terrain (inner Ti/Fe, outer Fi/Te). My instrument
+fits only the per-segment TERRAIN FLOW, so it proves TERRAIN-level order-carry (unordered terrain-flow ~1e-5), NOT full
+(terrain,operator) content equivalence. Corrected the sim's labels: the result key is now
+T2_TWO_LOOPS_SHARE_SAME_TERRAIN_SET_IN_REVERSED_ORDER, and an explicit scope_boundary states the stronger
+same-content-after-permutation claim is NOT made and stays FAILED per codex. Docstring/label-only change; computation
+and 135-GREEN verdict unchanged. ALSO verified (codex flagged PySINDy env-sensitivity, R^2 0.857->-42.5 across envs):
+my degree-1 repair gives R^2=1.000000 stable across repeated runs precisely because the affine library is the correctly
+-specified model -- environment-robust where a marginal high-degree fit is not. This is a second argument for the repair.
+
+## UP-131 -- Axis-0 closes END-TO-END on the engine pair as the GRADIENT invariant, not a carried state (2026-07-09)
+
+The biggest open engine seam ("Axis-0 at start and end"). Learned from (not reused) codex's engine_pair_axes_axis0_
+bookends_v2 (a0_front = initial entropy-gradient polarity; a0_late = cut-dependent Phi_0 readout) and my own UP-114
+contraction flag. New sim axis0_gradient_closes_as_bookend_invariant (harness 136 GREEN) resolves it.
+
+FINDING. The NAIVE reading -- the front state is carried through the engine pair to a matching late state -- FAILS, and
+the sim shows why by direct computation: the dissipative engine pair is CONTRACTIVE (very different starts converge to
+one attractor, end/start max-pairwise-distance ratio 1.2e-3), so the late readout is independent of the front state;
+the engine FORGETS the front. This is a property of any contractive open-system flow, reported honestly, not hidden.
+
+THE CORRECT OBJECT (per the owner's own Axis-0: "the room grows; the state's entropy chases a rising ceiling; the
+gradient is that permanent gap; dark energy as growth"). Axis-0 is NOT the carried initial condition but the GRADIENT =
+gap between S(rho) and the CEILING = max entropy reachable by the admissible-future set (reachable set under the terrain
+generators = the growing room). CLOSURE = the gradient is present and positive at BOTH bookends. RESULT: gap>0 at front
+(mean 0.158) AND late (mean 0.158) for every probe -- the permanent gradient survives the full engine pair as a
+structural invariant. Controls: gap-vs-S(rho) corr +0.016 (NOT renamed entropy -- scalar_entropy_only cannot reproduce
+it); the OPEN-room ceiling (real terrain flows) is strictly larger than a FROZEN-room ceiling (identity terrains, no
+room; same integrator with generator+dissipator zeroed) by min 0.1435 for every probe -- the gap is created by the
+growing room, genuinely computed, a leg that would fail if the terrains opened no room (two auditor catches enforced
+this leg be real, not a S-S tautology). So Axis-0 DOES close end-to-end -- as the intrinsic gradient invariant, which is
+the object the model always meant. Harness 136 GREEN.
+
+### UP-131 control-correctness fix (2026-07-09, after auditor catch)
+Three auditor rounds flagged the frozen-room control. The first two versions (S(p)-S(p); then an identity flow_identity
+that ignored terrain params) were algebraic tautologies (gap identically 0 by construction). FIXED to a real, failable
+control: the frozen room = the FULL Hamiltonian dynamics with dissipators removed (kap=0). The state genuinely MOVES
+(unitary rotation, measured dist 0.148 != 0) but unitary evolution preserves the spectrum, so it opens no entropy-room
+and the frozen gap stays ~0 -- the OUTPUT of running real dynamics, not S-S. The load-bearing leg (open dissipative
+ceiling minus frozen unitary ceiling, min 0.144 > 0 for every probe) now genuinely tests that DISSIPATION is what opens
+the admissible-future room; a spectrum-changing bug or no-dissipation-room would fail it. Verdict unchanged (PASS,
+136 GREEN); this tightened a control leg inside an already-passing sim.
+
+## UP-132 -- the 4 substages RUN inside an engine stage as the dual ratchet (2026-07-09)
+
+UP-130 derived WHY the substage count is 4; this RUNS the four substages as actual dynamics inside one stage and shows
+they ARE the dual ratchet turning. The four faithful stage operators (access_law_decoupling_sim) decompose exactly into
+the two dual-ratchet axes: F axis (GEOMETRY) Fi=-i[SX/2,.], Fe=-i[SZ/2,.] -- entropy-PRESERVING Bloch rotations; T axis
+(ENTROPY) Ti=0.6 D(SZ), Te=0.6 D(SX) -- entropy-CHANGING dephasing pinches. So {Ti,Te,Fi,Fe} = {T,F kind}x{i,e dir} =
+2 axes x 2 directions = the UP-130 4. RESULTS (harness 137 GREEN): (1) all four substages do distinct work (min pairwise
+channel distance 0.622; single-operator control ->0). (2) T/F IS the entropy/geometry dual: T-axis mean |dS| 0.105
+strictly exceeds F-axis 0.003 (F rotations entropy-preserving). (3) the alternating cycle [Fi,Ti,Fe,Te] advances
+geometry and entropy on ALTERNATING legs (per-leg alternation 4/4; a [Fi,Fe,Ti,Te] scramble 2/4). HONEST SCOPE: at the
+single-stage level the ENDPOINT is order-insensitive for these operators (they commute enough that the closed 4-beat
+lands the same state); the load-bearing content is distinct-work + entropy/geometry dual + leg-by-leg alternation, NOT
+an endpoint order-dependence claim (reported as not holding). This is the "4 substages per stage" the owner asked for --
+now RUNNING, not just counted. scratch_diagnostic.

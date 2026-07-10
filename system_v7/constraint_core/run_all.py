@@ -76,6 +76,16 @@ SUITE = [
    ("contains", "1Q: True  2Q: True"),
    ("contains", "∫F = -4*pi"),
    ("contains", "b6=-b0*b3 [finite_exhaustive]: True (0 violations / 8)")]),
+ ("alfsen_shultz_dynamical_correspondence_deficit_sim.py", 60, False, [
+   ("contains", "PASS alfsen_shultz_dynamical_correspondence_deficit")]),  # the DYNAMICAL face of special-vs-exceptional (UP-116/117), tying it to UP-120 (state generates own dynamics) and UP-119 (f4). Alfsen-Shultz: a Jordan algebra is SPECIAL iff it carries a single-observable dynamical correspondence a|->D_a=(i/2)[a,.] that is a Jordan derivation. SPECIAL Herm3(C): residual 0 (holds); corrupted wrong-sign control residual 1.41 (breaks). EXCEPTIONAL H3(O): naive single-observable octonionic commutator residual 143.6 -> NO single-observable correspondence = the DEFICIT (dynamical shadow of no associative envelope). But the deficit is single-observable-SPECIFIC: pair commutators [L_a,L_b] ARE derivations (residual 1.9e-13) spanning the 52-dim Der(H3(O))=f4 -- H3(O) has abundant dynamics, just not observable-indexed. Reproduces codex alfsen_shultz_correspondence_probe. scratch_diagnostic.
+ ("petz_dpi_forces_the_pawl_sim.py", 60, False, [
+   ("contains", "PASS petz_dpi_forces_the_pawl")]),  # explains WHY the Umegaki pawl is FORCED (structural justification of UP-107/120). (1) DATA-PROCESSING INEQUALITY: S(N rho||N sig)<=S(rho||sig) under any CPTP channel (0 violations/200 pairs) -> relative entropy cannot rise under the dissipative terrain flow, so it is a genuine pawl (Lindblad/Uhlmann). (2) EQUALITY<=>PETZ RECOVERY: DPI tight (DeltaS=0) exactly when the Petz map R_{sigma,N} reverses the channel -- pearson(DeltaS==0, recovery-exact)=1.0 (unitary reversible/DeltaS=0, dissipative not). (3) UMEGAKI IN A FORCED FAMILY: every operator-convex f with f(1)=0 gives a monotone quasi-entropy; all 4 members (x log x, -log x, (x-1)^2, 2(1-sqrt x)) pawl uniformly to 0 -- Umegaki is ONE member, not a hand-picked choice. Control: wrong foreign fixed point does not pawl to 0. FORCED-side foundations; reproduces codex petz_recovery_reversibility_census + petz_quasi_entropy_pawl_census. scratch_diagnostic.
+ ("umegaki_pawl_is_finite_modular_theory_sim.py", 60, False, [
+   ("contains", "PASS umegaki_pawl_is_finite_modular_theory")]),  # FORCED-side consistency: the Umegaki relative-entropy pawl (UP-107/115, the one genuinely forced anchor) IS the finite case of Tomita-Takesaki modular theory -- S(rho||sigma) = -<vec(sqrt rho), log(L_sigma R_rho^-1) vec(sqrt rho)> with relative modular operator Delta_{sigma|rho}=L_sigma R_rho^-1. Classical gate matches KL to 8e-17 (Delta eigs {4/7,6/7,4/3,2}); NON-COMMUTING quantum gate matches direct Umegaki to 1.6e-14 (the real content, not just diagonal/KL); terrain-agreement gate 9.9e-16. Controls: swapped-delta (wrong convention) mismatches KL by 0.37; singular sigma flagged ill-defined without regularization. Connects the forced pawl to the surface-identity (BKM / Connes-Rovelli thermal-time) work. Reproduces codex araki_modular_umegaki_crosscheck independently. scratch_diagnostic.
+ ("spin9_op2_coset_derived_from_albert_sim.py", 90, False, [
+   ("contains", "PASS spin9_op2_coset_derived_from_albert")]),  # the one POSITIVE construction in the octonion-fork arc: derives dim F4=52 (=dim Der(J3(O)), nullspace of a (10206,729) Jordan-Leibniz constraint matrix, rank 677), the Spin(9) stabilizer of a primitive idempotent e=diag(1,0,0) (dim 36), and the Cayley-plane coset OP2=F4/Spin(9) (dim 16=52-36), ALL from the constructed Albert product -- nothing cited as input. Controls: corrupted-Fano single sign-flip collapses F4 to 3 (52 is a genuine consequence of the exact octonion structure); generic non-idempotent diag(3,2,1) gives a different 28/24 split (36/16 specific to primitive idempotents = points of OP2). HONEST PLACEMENT: real+constructible exceptional structure but on the UNFORCED {H,O} branch (UP-112/115/118) -- BUILDS a piece of the tower, does not EARN it as forced. Reproduces codex spin9_stabilizer_op2_coset independently. scratch_diagnostic.
+ ("malcev_bracket_names_the_t01_ceiling_sim.py", 60, False, [
+   ("contains", "PASS malcev_bracket_names_the_t01_ceiling")]),  # NAMES the exact non-Jacobi structure UP-113/117 said was the missing T01 mechanism, reproducing the codex-ratchet malcev_signature_search independently. The octonion imaginary commutator [x,y]=xy-yx is anticommutative + NON-Lie (Jacobiator ~3e2) but satisfies the MALCEV identity (defect ~3e-13) -> it is the tangent algebra of the octonion Moufang loop (g2 structure); su(2)=Im(H) is the degenerate Lie case (Jacobi ~5e-15). Reference detector valid (Im(O)->malcev_not_lie, Im(H)->lie, random-R7->neither, corrupted-sign->neither). ENGINE-NATIVE CENSUS: every engine bracket is a matrix commutator -> always obeys Jacobi (max defect 5e-14) -> Lie; engine Malcev-not-Lie hit count = 0. So the T01 ceiling now has a NAME + DETECTOR: earning O needs a forced Malcev (Moufang/non-Jacobi) bracket the associative carrier structurally cannot generate. Converges with UP-111 (so(4) Lie field symmetry) + UP-115 (associative Clifford) from a third direction. scratch_diagnostic.
  ("nonassociative_ca_t01_constructible_not_forced_sim.py", 60, False, [
    ("contains", "PASS nonassociative_ca_t01_constructible_not_forced")]),  # processes two owner attachments sharpening the octonion fork. PART 1 (crediting attachment 1): the exceptional-Jordan TENSOR-PRODUCT FAILURE (H_2(O) dim10 special/has-tensor; H_3(O) dim27 exceptional/NO-tensor, Hanche-Olsen) is the CORRECT non-factorizability, distinct from UP-116 associative holism -- but the engine's M_8(C)=M_2(C)^x3 FACTORIZES, so the non-special demand is still ABSENT. PART 2 (crediting attachment 2): a von Neumann/Fano-plane CA with a non-associative octonion update makes neighbor-GROUPING load-bearing OVER TIME (LEFT vs RIGHT bracket diverge to ~1.45 over 8 steps; associative quaternion control collapses to ~1e-15) -- a CONSTRUCTIBLE, running T01 mechanism, but INSTALLED not FORCED (UP-113). Grand synthesis is CONDITIONAL on a forced non-associative demand: buildable, not present in forced ratchet (UP-112/113/116 hold). scratch_diagnostic.
  ("holism_does_not_force_octonions_sim.py", 60, False, [
@@ -272,6 +282,16 @@ SUITE = [
  ("manifold_L3_spinor_hopf_sim.py", 120, False, [
    ("contains", "PASS manifold_L3_spinor_hopf_sim")]),  # SPINE L3: spinor/phase/projective surface CP^{2^n-1} + Hopf skeleton S^1->S^3->S^2 + relative-phase torus T^{n-1}; the phase L1/L2 are blind to; dual ratchet (phase dof moves, density readout fixed), negatives #8/#4 fire, dual-solver spinor-sign/density-blindness gate
 
+ ("aperiodic_order_penrose_e8_not_forced_sim.py", 90, False, [
+   ("contains", "PASS aperiodic_order_penrose_e8_not_forced")]),  # APERIODIC ORDER (Penrose + E8) -- processes the Penrose/E8 half of the discrete-spacetime attachment (UP-117 built the CA half; Penrose/E8 were CITED only). PART 1: 240 E8 roots (112 D8 +-e_i+-e_j + 128 half-integer even-minus), all norm^2=2, 240=h*rank=30*8. DISCRIMINATING E8 leg (not tautological): SAME Jacobi detector reads E8 bracket ~0 (Lie) vs octonion Im(O) bracket >>0 (Malcev-not-Lie, UP-118) -> E8 on associative side, does NOT supply the forced non-Jacobi demand. PART 2: Penrose cut-and-project Z^5->2D, 10-fold diffraction rotation-corr 0.998 (FORBIDDEN for periodic lattices); tau=1.618. CONTROLS: square 4-fold 1.000/10-fold 0.144, hex 6-fold 0.899/10-fold 0.132 (periodic lattices lack 10-fold). VERDICT: both REAL/constructible but LIVE-BUT-UNFORCED (E8 is Lie; Penrose is an installed 5-fold projection) -- same fork as octonion arc; nothing in {F01,N01} forces either. scratch_diagnostic.
+ ("manifold_L8_global_bundle_chern_quantization_sim.py", 60, False, [
+   ("contains", "PASS manifold_L8_global_bundle_chern_quantization")]),  # MANIFOLD SPINE L8 -- nests on L7 (shell connection) + L3. L7 gave the connection locally (holonomy per shell); L8 adds the GLOBAL object. (1) Total flux over the closed shell family (eta x phi = Bloch 2-sphere) is QUANTIZED: Chern number = 1.0000 (int error 2e-6) via Fukui-Hatsugai-Suzuki plaquettes -> nontrivial Chern-1 line bundle, flux is topological not coordinate. (2) Chern SIGN = chirality winding: reversing loop orientation flips 1 -> -1; the L7 holonomy sign deferred as "Weyl chirality" IS this +/-1 winding -> two engine chiralities = two signs of one quantized invariant. CONTROL: trivial/flat section Chern 0. Does NOT assign which physical chirality is left vs right (empirical). Top of the currently-earned geometric spine. scratch_diagnostic; hypothetical lane.
+ ("manifold_L7_shell_connection_holonomy_sim.py", 60, False, [
+   ("contains", "PASS manifold_L7_shell_connection_holonomy")]),  # MANIFOLD SPINE L7 -- nests on L6 (shell metric) + L5 (shells) + L3 (phase). L5 posited flux Phi=2pi(cos2eta_i-cos2eta_j) as a bare number; L7 adds the CONNECTION deriving it. (1) Flux IS a Berry holonomy: connection A=i<psi|dpsi> on the L3 Hopf chart, loop holonomy -2pi cos^2(eta) (analytic match 1e-6); shell-difference = ledger L2.1 flux, DERIVED not posited. (2) NON-INTEGRABLE curvature: closed-loop transport around a (phi,eta) rectangle returns net phase -pi != 0 -> real curvature, flux is gauge-invariant. (3) Cross-shell only: self-flux 0; erase-nesting -> holonomy 0 (flux_needs_nesting at the connection level). Weyl chirality = SIGN of this holonomy (later object). scratch_diagnostic; hypothetical lane.
+ ("manifold_L6_shell_metric_bkm_connection_sim.py", 60, False, [
+   ("contains", "PASS manifold_L6_shell_metric_bkm_connection")]),  # MANIFOLD SPINE L6 -- nests on L5 (shell family) + L3. L5 gave nested shells as bare radii with no distance; L6 adds the METRIC on that family. (1) The metric IS the BKM (Bogoliubov-Kubo-Mori) metric = Hessian of relative entropy S(rho||rho0), computed two ways agreeing to 5e-8 -- the surface identity (UP-120) realized on the shells, not an arbitrary metric. (2) CURVED not flat: BKM arc length 2 arcsin(r), pure-state boundary 1.91x farther than center vs flat 1.0x. (3) MONOTONE: contracts under CPTP (4.49->2.07 depol) = infinitesimal DPI (UP-121); non-CPTP amplify increases it (7.34, does not contract). Controls: wrong-direction (SX) metric differs (direction-specific bilinear form); non-CPTP amplify control fires. Geometry and entropy are ONE tensor on the shells (dual-ratchet). scratch_diagnostic; hypothetical lane.
+ ("manifold_L5_nested_shells_schmidt_strata_sim.py", 60, False, [
+   ("contains", "PASS manifold_L5_nested_shells_schmidt_strata")]),  # MANIFOLD SPINE L5 -- nests on L4 (local Weyl factors) + L2 (marginals). L4 gave a BINARY product/entangled bit; L5 adds the continuous Schmidt strata realized as nested marginal-radius shells (Bloch radius r=2 s0^2-1 of the reduced marginal). DUAL RATCHET: product->Bell sweep, shell radius 1->0 as marginal entropy 0->1 bit (geometry+readout co-ratchet continuously). REFINES L4: two states L4 calls equally non-product (neg 0.42, 0.49) land on DIFFERENT shells (r 0.54 vs 0.23) -- L5 strictly refines L4. NESTED-SHELL FLUX Phi=2pi(r_i-r_j): 0 for a shell with itself, 1.97 for nested distinct shells -> flux is a NESTING property (ledger L2.1, flux_needs_nesting), giving the model's flux its first spine home. ERASE-NESTING control: collapse to one shell -> flux 0 and interior-resolution gone. scratch_diagnostic; hypothetical lane.
  ("manifold_L4_local_weyl_factors_sim.py", 120, False, [
    ("contains", "PASS manifold_L4_local_weyl_factors_sim")]),  # SPINE L4: local Weyl factors exist iff product state (entangled keeps mixed marginals, no local pure spinor); dual ratchet (Weyl factor + marginal purity co-move product->Bell), negatives #1/#9/#10 fire, dual-solver factorization-needs-product gate
  ("axis0_ratchet_climb_sim.py", 120, False, [
@@ -302,7 +322,15 @@ SUITE = [
  ("known_unknown_fep_field_sim.py", 40, False, [
    ("contains", "PASS known_unknown_fep_field")]),  # KNOWN/UNKNOWN as a TESTABLE FEP model of the engine attractor basin (there is NO testable win/lose def; win/lose is only a naming on the basin -- known/unknown is the better, measurable definition because surprise = the measure of the unknown). Field U(rho)=S(rho||attractor) Umegaki bits; attractor=terrain GKSL fixed point=the KNOWN. Three gated claims on the running engine: (1) attractor is the known (U~0 there, U grows off-basin, dist-surprise corr 0.98-1.00); (2) engine flow is surprise-descent (U monotone ->0 all 8 terrains = FEP free-energy min as relative-entropy descent; 12x flow budget since projective t3/t7 boundary fixed points converge slower); (3) known is specific (wrong-belief control: residual unknown ~100% of belief gap; coincident-attractor pairs t1/t3,t5/t7 honestly excluded). Pure QIT, no thermo. scratch_diagnostic.
  ("loop_uniqueness_trajectory_probe_sim.py", 40, False, [
-   ("contains", "PASS loop_uniqueness_trajectory_probe")]),  # ATTRACTOR-BASIN STRUCTURE at the LOOP level -- the UP-100 stage-probe repair one level up. NOT a win/lose test (there is no testable win/lose definition; win/lose is only a naming the owner maps onto the attractor basin). (1) each of the 4 engine loops (T1_OUT/T1_IN/T2_OUT/T2_IN over doc-faithful canonical slots) re-identifies under a NEVER-SEEN probe family via the full-affine trajectory signature: real 1.000 vs shuffled mean 0.217 (chance 0.250), control flips. (2) ORDER CARRIED: forward vs reverse traversal distinguishable (min 0.654, self-null 0.0) for all 4 loops -- the loop is not its unordered stage set. Independent second implementation of the v7 loop-dynamics question. scratch_diagnostic.
+   ("contains", "PASS loop_uniqueness_trajectory_probe")]),
+ ("t2_order_carried_sindy_library_repair_sim.py", 120, False, [
+   ("contains", "PASS t2_order_carried_sindy_library_repair")]),
+ ("four_substages_emerge_from_dual_ratchet_sim.py", 40, False, [
+   ("contains", "PASS four_substages_emerge_from_dual_ratchet")]),
+ ("axis0_gradient_closes_as_bookend_invariant_sim.py", 60, False, [
+   ("contains", "PASS axis0_gradient_closes_as_bookend_invariant")]),
+ ("four_substages_run_dual_ratchet_stage_sim.py", 40, False, [
+   ("contains", "PASS four_substages_run_dual_ratchet_stage")]),  # UP-132 RUNS the 4 substages inside one engine stage as the dual ratchet (UP-130 derived WHY 4; this runs them). The 4 stage operators {Fi,Ti,Fe,Te} = {T,F kind}x{i,e dir} = 2 axes x 2 directions: F axis (Fi,Fe)=geometry rotations (entropy-preserving dS~0.003), T axis (Ti,Te)=entropy dephasing pinches (dS~0.105). Alternating cycle [Fi,Ti,Fe,Te] advances geometry & entropy on alternating legs (4/4 vs scramble 2/4). Distinct work: min pairwise 0.622, single-op control ->0. HONEST: single-stage endpoint order-insensitive (operators commute enough); claim is distinct-work + entropy/geometry dual + leg alternation, not endpoint order-dependence. scratch_diagnostic.  # UP-131 Axis-0 end-to-end closure (biggest open engine seam). Naive front-state->late-state closure FAILS by contraction (end/start dist ratio 1.2e-3, engine forgets the front -- reported honestly, matches codex bookends weak correlation + my UP-114 contraction flag). The CORRECT Axis-0 object closes: the gradient = gap between S(rho) and the admissible-future CEILING (reachable-set entropy = the growing room) is positive at BOTH bookends (front mean 0.158, late 0.158), survives the full engine pair as a structural invariant. Controls: gap-vs-S(rho) corr +0.016 (NOT renamed entropy); frozen-room (ceiling pinned to S) -> gap 0 (gradient needs the room). Axis-0 = dark-energy-as-growth rosetta. scratch_diagnostic.  # UP-130 DERIVES the "4 substages" count from dual-ratchet closure (owner directive: "the 4 substages would emerge from proper dual ratcheting"). Two co-constraining axes A(geometry/Z-turn) B(entropy-sector/X-turn); a proper cycle needs C1 closure + C2 alternation/MSS (no axis twice in a row) + C3 both-directions-per-axis. Minimal L satisfying all three = 4, uniquely {ABAB,BABA} (the 2 chiralities, matching ledger 17.5). Isolating controls each flip one gate: AB fails C1 (no close), AAAA closes but fails C2 (closure alone insufficient), half-quarter-turn leg fails C3. 4 = 2 axes x 2 directions = the engine's 4 substages/stage = Carnot 4-stroke count (Carnot a rosetta label). scratch_diagnostic.  # UP-129 REPAIR of the v7 t2_order_carried SINDy loop-order instrument. Diagnosed its 2/5-seed fragility: (a) the v7 gate unordered<=self_null is ILL-POSED (self-null < genuine cross-loop operator/identity residual, passes deg1 0/8 + deg2 1/8), and (b) the degree-2 poly library over-fits the AFFINE GKSL flow (phantom quadratics). Repaired gate = ordered/unordered RATIO under a degree-1 (affine) library: seed-robust 8/8, ratio_min 5.2e4, same recovered permutation (1,4,3,2) on every seed = the inner->outer terrain reorder. Confirms the two Type-2 loops ARE the same 4 terrains traversed in reversed order; order-carry is real when measured with the correct null and library. scratch_diagnostic.  # ATTRACTOR-BASIN STRUCTURE at the LOOP level -- the UP-100 stage-probe repair one level up. NOT a win/lose test (there is no testable win/lose definition; win/lose is only a naming the owner maps onto the attractor basin). (1) each of the 4 engine loops (T1_OUT/T1_IN/T2_OUT/T2_IN over doc-faithful canonical slots) re-identifies under a NEVER-SEEN probe family via the full-affine trajectory signature: real 1.000 vs shuffled mean 0.217 (chance 0.250), control flips. (2) ORDER CARRIED: forward vs reverse traversal distinguishable (min 0.654, self-null 0.0) for all 4 loops -- the loop is not its unordered stage set. Independent second implementation of the v7 loop-dynamics question. scratch_diagnostic.
  ("v7_codex_ratchet_crosscheck_sim.py", 30, False, [
    ("contains", "PASS v7_codex_ratchet_crosscheck")]),  # SYNC PROBE: loop this bundle's engine reconstruction back against the v7 codex-ratchet repo's qit_full_type1_type2_64_live_v1 build (granted read-only). Checks 4 structural agreements: (1) 64-schedule shape 16x4=64/16 chart-locked+48 runtime/32+32; (2) engine mirror pairing T1 outer=deductive T2 mirrored; (3) v7 object formation clean (ordered_accuracy 1.0, 4 objects, entropy monotone 2.0->0 bits); (4) two resolutions consistent (v7 4-loop 4/4 vs bundle 16-stage 0.6875 w/ 3 degenerate pairs -- same criterion, coarser vs finer granularity). Structural cross-check not bit-for-bit reproduction; SKIP-clean if repo absent (sync probe, not hard dependency). Can fail on shape mismatch. scratch_diagnostic.
  ("engine_pair_matrix_sim.py", 60, False, [
@@ -389,55 +417,6 @@ TORCH_SUITE = [
    ("contains", "PASS quantum_hopfield_memory_sim")]),          # Layer 0.13: quantum associative memory as energy-descent recall on the spinor carrier; 3-qubit floor + capacity curve measured; torch autograd (trainable substrate) + numpy oracle cross-check; z3+cvc5
 ]
 
-# Result-consuming sims must run after the producers they read. A packaged
-# result JSON can otherwise mask a stale-input dependency-order defect.
-SUITE_DEPENDENCIES = {
-    "v7_codex_ratchet_crosscheck_sim.py": [
-        "engine_reidentification_objective_sim.py",
-    ],
-    "engine_object_formation_scorecard_sim.py": [
-        "engine_dynamics_id_arbiter_sim.py",
-        "engine_reidentification_objective_sim.py",
-    ],
-    "objective_gate_integrity_sweep_sim.py": [
-        "engine_dynamics_id_arbiter_sim.py",
-        "engine_reidentification_objective_sim.py",
-    ],
-    "lev_qit_evidence_envelope_emitter.py": [
-        "engine_reidentification_objective_sim.py",
-        "perception_object_binding_sim.py",
-        "type1_full_engine_both_loops_sim.py",
-        "type2_full_engine_both_loops_sim.py",
-        "engine_object_formation_scorecard_sim.py",
-        "schedule_source_fidelity_linter.py",
-        "perception_scorecard_eval_admission_sim.py",
-    ],
-}
-
-
-def dependency_ordered(suite):
-    """Return a stable topological order for result-producing dependencies."""
-    by_name = {entry[0]: entry for entry in suite}
-    ordered, visited, active = [], set(), set()
-
-    def visit(name):
-        if name in visited:
-            return
-        if name in active:
-            raise RuntimeError(f"suite dependency cycle at {name}")
-        if name not in by_name:
-            raise RuntimeError(f"suite dependency is not declared: {name}")
-        active.add(name)
-        for dependency in SUITE_DEPENDENCIES.get(name, []):
-            visit(dependency)
-        active.remove(name)
-        visited.add(name)
-        ordered.append(by_name[name])
-
-    for entry in suite:
-        visit(entry[0])
-    return ordered
-
 def run_one(script, timeout, interpreter=None):
     t0 = time.time()
     try:
@@ -505,7 +484,7 @@ def run_engines_lane():
 def main():
     jax_ok = has_jax() and not FAST
     results, n_pass, n_fail, n_skip = [], 0, 0, 0
-    for script, timeout, needs_jax, checks in dependency_ordered(SUITE):
+    for script, timeout, needs_jax, checks in SUITE:
         if needs_jax and not jax_ok:
             results.append({"sim": script, "status": "SKIP (jax unavailable or --fast)"})
             n_skip += 1

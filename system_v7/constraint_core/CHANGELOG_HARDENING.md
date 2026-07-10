@@ -1249,3 +1249,121 @@ UP-117 Non-associative CA as a CONSTRUCTIBLE (not forced) T01 mechanism + tensor
                associative quaternion control collapses to 5.6e-15) -> constructible+running T01 mechanism, INSTALLED
                not forced. Grand synthesis CONDITIONAL on a forced non-associative demand: buildable, absent in forced
                ratchet. Gate all four legs COMPUTED (auditor-hardened; earlier draft hardcoded two legs True). 123 GREEN.
+
+UP-118 The Malcev bracket NAMES the T01 ceiling -- processed the codex-ratchet parallel cluster (j3o Bloch body,
+               Spin(9)/OP2 coset, Araki-modular/Umegaki crosscheck, Petz recovery census, Jordan-DPI, Alfsen-Shultz,
+               symmetric-cone census, and the decisive Malcev search; codex at 123 GREEN, UP-113..117 matching). NAMED
+               the missing T01 structure: the octonion imaginary commutator is MALCEV-not-Lie (Jacobiator ~3e2, Malcev
+               defect ~3e-13) = the tangent algebra of the octonion Moufang loop (g2); su(2)=Im(H) is the degenerate
+               Lie case. Reference detector valid (Im(O)->malcev_not_lie, Im(H)->lie, random->neither, corrupted->
+               neither). Engine-native census: every engine bracket is a matrix commutator -> Jacobi-obeying -> Lie
+               (max defect 5e-14); Malcev-not-Lie hits = 0. The T01 ceiling now has a NAME + DETECTOR: earning O needs
+               a forced Malcev bracket the associative carrier cannot generate. Converges with UP-111 (so(4)) + UP-115
+               (Clifford). Reproduces codex malcev_signature_search independently. 124 GREEN.
+
+UP-119 Spin(9)/OP2 coset DERIVED from the Albert product -- the POSITIVE counterpart to the octonion-fork negatives,
+               processing codex spin9_stabilizer_op2_coset independently. Derives dim F4=52 (=Der(J3(O)), nullspace of
+               a (10206,729) Jordan-Leibniz constraint matrix, rank 677), the Spin(9) stabilizer of a primitive
+               idempotent e=diag(1,0,0) (dim 36), and the Cayley-plane coset OP2=F4/Spin(9) (dim 16=52-36) ALL from the
+               constructed Albert product, nothing cited. Controls: corrupted-Fano sign-flip collapses F4 52->3 (52 is
+               genuine octonion structure); generic non-idempotent diag(3,2,1) gives a different 28/24 split (36/16
+               specific to primitive idempotents = OP2 points). HONEST PLACEMENT: real+constructible exceptional
+               structure but on the UNFORCED {H,O} branch (UP-112/115/118) -- BUILDS a piece of the tower, does not
+               EARN it as forced. 125 GREEN.
+
+UP-120 The Umegaki pawl IS finite modular theory -- FORCED-side consistency, processing codex araki_modular_umegaki_
+               crosscheck independently. The forced Umegaki relative-entropy pawl (UP-107/115) IS the finite relative
+               modular operator: S(rho||sigma) = -<vec(sqrt rho), log(L_sigma R_rho^-1) vec(sqrt rho)> (Tomita-Takesaki).
+               Classical gate matches KL to 8e-17 (Delta eigs {4/7,6/7,4/3,2}); NON-COMMUTING quantum gate matches
+               direct Umegaki to 1.6e-14 (the real content, stronger than a diagonal/KL check); Bloch-ball coverage
+               1e-15. Controls: swapped-delta mismatches KL by 0.37; singular sigma flagged ill-defined. Connects the
+               forced pawl to the surface-identity (BKM / Connes-Rovelli thermal-time) work -- forced anchor and
+               thermal-time surface identity are one modular object. No new forcing; internal consistency tightened.
+               126 GREEN.
+
+UP-121 Petz/DPI FORCES the pawl -- structural justification of UP-107/120, processing codex petz_recovery_
+               reversibility_census + petz_quasi_entropy_pawl_census independently. (1) DATA-PROCESSING INEQUALITY:
+               S(N rho||N sig)<=S(rho||sig) under any CPTP channel (0 violations/200 pairs) -> relative entropy cannot
+               rise under the dissipative terrain flow, so it is automatically a pawl (Lindblad/Uhlmann). (2) EQUALITY
+               <=>PETZ RECOVERY: DPI tight (DeltaS=0) exactly when the Petz map reverses the channel -- pearson(DeltaS
+               ==0, recovery-exact)=1.0 (unitary reversible, dissipative not). (3) UMEGAKI IN A FORCED FAMILY: every
+               operator-convex f with f(1)=0 gives a monotone quasi-entropy; all 4 members pawl uniformly to 0 --
+               Umegaki is ONE member, not hand-picked. Control: wrong foreign fixed point does not pawl. FORCED-side
+               foundations; the pawl is forced by DPI, not chosen. 127 GREEN.
+
+UP-122 Alfsen-Shultz dynamical correspondence -- the DYNAMICAL face of special vs exceptional (UP-116/117), tying
+               it to UP-120 (state generates own dynamics) + UP-119 (f4). SPECIAL Herm3(C): single-observable D_a=
+               (i/2)[a,.] is a Jordan derivation (residual 0); corrupted sign breaks (1.41). EXCEPTIONAL H3(O): naive
+               single-observable commutator residual 143.6 -> DEFICIT (no associative envelope). Deficit is single-
+               observable-specific: pair [L_a,L_b] ARE derivations (1.9e-13) spanning the 52-dim f4 -- H3(O) has
+               dynamics, just not observable-indexed. Reproduces codex alfsen_shultz_correspondence_probe. 129 GREEN.
+UP-123 Manifold spine L5: nested-shell Schmidt strata -- loops the foundations forward (L1-L4 were sims, L5+ only
+               in ledger). Nests on L4+L2. L4 gave a binary product/entangled bit; L5 adds continuous Schmidt strata
+               as nested marginal-radius shells (r=2 s0^2-1). DUAL RATCHET: radius 1->0 as marginal entropy 0->1.
+               REFINES L4: two states L4 calls equally non-product on different shells (r 0.54 vs 0.23). NESTED-SHELL
+               FLUX Phi=2pi(r_i-r_j): 0 self, 1.97 nested -> flux is a nesting property (flux_needs_nesting), its
+               first spine home. Erase-nesting control fires. 129 GREEN.
+
+UP-124 Manifold spine L6: the metric on the shell family -- loops the foundations forward (L1-L5 built). Nests on
+               L5+L3. L5 gave bare shell radii with no distance; L6 adds the METRIC. (1) It IS the BKM metric = Hessian
+               of relative entropy (two computations agree 5e-8) -- surface identity (UP-120) on the shells, not
+               arbitrary. (2) CURVED not flat: BKM arc length 2 arcsin(r), pure boundary 1.91x farther than center vs
+               flat 1.0x. (3) MONOTONE: contracts under CPTP (4.49->2.07 depol) = infinitesimal DPI (UP-121); non-CPTP
+               amplify increases (7.34). Controls: wrong-direction metric differs (direction-specific bilinear form);
+               non-CPTP amplify fires. Geometry and entropy are ONE tensor on the shells. 130 GREEN.
+
+UP-125 Manifold spine L7: the shell connection -- loops the foundations forward (L1-L6 built). Nests on L6+L5+L3.
+               L5 posited flux Phi=2pi(cos2eta_i-cos2eta_j) as a bare number; L7 adds the CONNECTION deriving it.
+               (1) Flux IS a Berry holonomy: A=i<psi|dpsi> on the L3 Hopf chart, loop holonomy -2pi cos^2(eta)
+               (analytic 1e-6); shell-difference = ledger L2.1 flux, derived not posited. (2) NON-INTEGRABLE: closed
+               (phi,eta)-loop transport returns net -pi != 0 -> real curvature, gauge-invariant. (3) Cross-shell:
+               self-flux 0; erase-nesting -> holonomy 0. Weyl chirality = SIGN of this holonomy (later object). 131 GREEN.
+
+UP-126 Aperiodic order (Penrose + E8): REAL, constructible, NOT forced -- processes the Penrose/E8 half of the
+               discrete-spacetime attachment (UP-117 built the CA half). E8: 240 roots (=h*rank=30*8), all norm^2=2;
+               DISCRIMINATING leg -- same Jacobi detector reads E8 bracket ~0 (Lie) vs octonion Im(O) >>0 (Malcev,
+               UP-118), so E8 is on the associative side, not the forced non-Jacobi demand. Penrose: cut-and-project
+               Z^5->2D, 10-fold diffraction 0.99 (FORBIDDEN for periodic); controls square 4-fold 1.00/10-fold 0.14,
+               hex 6-fold 0.87/10-fold 0.12. Both LIVE-BUT-UNFORCED (E8 Lie; Penrose installed 5-fold). Closes attachment.
+UP-127 Manifold spine L8: the global bundle -- loops foundations forward (L1-L7 built). Nests on L7+L3. L7 gave the
+               connection locally; L8 adds the GLOBAL object. (1) Total flux over the closed shell family (Bloch
+               2-sphere) is QUANTIZED: Chern = 1.0000 (int err 2e-6) via Fukui-Hatsugai-Suzuki -> nontrivial Chern-1
+               line bundle, flux is topological. (2) Chern SIGN = chirality winding: orientation reversal flips 1 -> -1;
+               the L7 holonomy sign deferred as "Weyl chirality" IS this +/-1 winding -> two engine chiralities = two
+               signs of one invariant. Control: trivial section Chern 0. Top of the earned geometric spine. 133 GREEN.
+
+UP-128 Loop-back audit correction (codex sol-5.6 cross-check of L5/L6/L7). Reproduced + corrected 3 real defects,
+               harness stays 133 GREEN (no gate relaxed): (1) L6 "curved not flat" was a coordinate artifact -- BKM
+               metric is EXACTLY CONSTANT (g_eta_eta=4) in the Schmidt-angle coord; 1D family has no intrinsic
+               curvature; real fact is BKM != Euclidean-r (metric-choice). (2) L7 "single-shell holonomy pure gauge"
+               wrong -- closed-loop Berry phase is gauge-INVARIANT; cross-shell claim rests on holonomy DIFFERENCE.
+               (3) ledger L2.1 normalization: holonomy -2pi cos^2(eta), flux -pi(cos2eta_i-cos2eta_j) (was too large by
+               -2, ratio -1/2, matches codex). Survivors: L7 -pi rectangle holonomy, Umegaki modular identity, BKM=
+               Hessian, CPTP contraction. Open (accepted): UP-121/UP-122 forcing/uniqueness are semantic overclaims.
+
+UP-129 Loop-order instrument repair (v7 t2_order_carried seed-fragility). New sim t2_order_carried_sindy_library_
+               repair. Two instrument defects, neither in model physics: (A) v7 gate unordered<=self_null is ill-posed
+               (loops use different operators, so not byte-identical up to perm; passes deg1 0/8 deg2 1/8), (B) deg-2
+               poly library over-fits the affine GKSL flow (phantom quadratics). Repaired gate = ordered/unordered
+               RATIO under deg-1 library: seed-robust 8/8, ratio_min 5.2e4, same perm (1,4,3,2) every seed = inner->
+               outer terrain reorder. The two Type-2 loops ARE the same terrains reversed; order-carry real. 134 GREEN.
+
+UP-130 "4 substages" DERIVED from dual-ratchet closure (owner directive). New sim four_substages_emerge_from_
+               dual_ratchet. Two co-constraining axes A(geom/Z) B(entropy-sector/X); minimal cycle satisfying C1
+               closure + C2 alternation(MSS) + C3 both-directions = L4, uniquely {ABAB,BABA}. Isolating controls each
+               flip one gate (AB fails close; AAAA closes but non-alternating -> closure alone insufficient; half-leg
+               fails). Gate(3) PARSES engine_16_source_stage_slots.json (substages/loop=4), not hardcoded. 4 = 2 axes
+               x 2 directions = Carnot 4-stroke (rosetta). Closes the substage-count open item. 135 GREEN.
+
+UP-131 Axis-0 closes end-to-end on the engine pair as the GRADIENT invariant. New sim axis0_gradient_closes_as_
+               bookend_invariant. Naive carried-state closure FAILS by contraction (end/start dist ratio 1.2e-3, engine
+               forgets front). Correct object: gradient = gap S(rho) to admissible-future CEILING (growing room),
+               positive at BOTH bookends (front/late mean 0.158). Controls: gap-vs-S corr +0.016 (not renamed entropy);
+               open-room ceiling > frozen(no-room) ceiling by min 0.1435 (room genuinely opens, computed). Axis-0 =
+               dark-energy-as-growth rosetta. Closes the biggest engine seam. 136 GREEN.
+
+UP-132 4 substages RUN inside a stage as the dual ratchet. New sim four_substages_run_dual_ratchet_stage. The 4
+               stage operators {Fi,Ti,Fe,Te}={T,F kind}x{i,e dir}=2 axes x 2 dirs: F(Fi,Fe)=geometry rotations
+               (dS~0.003), T(Ti,Te)=entropy pinches (dS~0.105). Distinct work (min pairwise 0.622, single-op ctrl->0);
+               T/F=entropy/geometry dual; alternating cycle advances geom & entropy on alternating legs (4/4 vs
+               scramble 2/4). HONEST: single-stage endpoint order-insensitive (operators commute enough). 137 GREEN.

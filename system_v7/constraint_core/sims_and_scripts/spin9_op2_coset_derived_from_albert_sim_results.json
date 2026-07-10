@@ -1,0 +1,34 @@
+{
+ "classification": "scratch_diagnostic",
+ "promotion_allowed": false,
+ "branch": "unforced_H_O_branch",
+ "reproduces": "system_v7/constraint_core/sims_and_scripts/spin9_stabilizer_op2_coset_sim.py (codex-ratchet)",
+ "f4_from_albert": {
+  "constraint_matrix_shape": [
+   10206,
+   729
+  ],
+  "rank": 677,
+  "f4_dimension": 52,
+  "on_the_nose_52": true
+ },
+ "spin9_stabilizer": {
+  "primitive_idempotent": "e=diag(1,0,0)",
+  "stabilizer_dimension": 36,
+  "spin9_dim_36": true
+ },
+ "op2_coset": {
+  "formula": "dim(F4)-dim(stabilizer)",
+  "coset_dimension": 16,
+  "matches_dim_OP2_16": true
+ },
+ "controls": {
+  "corrupted_fano_f4_dim": 3,
+  "corrupted_breaks_52": true,
+  "generic_nonidempotent_coset_dim": 24,
+  "generic_nonidempotent_stab_dim": 28,
+  "generic_differs": true
+ },
+ "honest_placement": "POSITIVE construction: F4 (52), Spin(9) (36), and the Cayley plane OP2 (16) all fall out of the constructed Albert product with the correct dimensions. But J3(O)/F4/OP2 live on the LIVE-BUT-UNFORCED {H,O} branch (UP-112/115/118); the forced qubit engine runs on associative H. This BUILDS a concrete piece of the exceptional tower; it does not EARN it as forced. The positive counterpart to the negatives.",
+ "verdict": "PASS"
+}

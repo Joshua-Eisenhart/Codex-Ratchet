@@ -1,0 +1,84 @@
+{
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "framing": "the 4 substages EMERGE from dual-ratchet closure (C1 closure + C2 alternation/MSS + C3 both-directions), not from a chosen count; minimal admissible cycle = 4 = {ABAB,BABA}",
+  "claim1_minimal_length_is_4": {
+    "minimal_L": 4,
+    "words_at_L4": [
+      "ABAB",
+      "BABA"
+    ],
+    "scan": {
+      "1": {
+        "n_admissible": 0,
+        "distinct_cyclic": []
+      },
+      "2": {
+        "n_admissible": 0,
+        "distinct_cyclic": []
+      },
+      "3": {
+        "n_admissible": 0,
+        "distinct_cyclic": []
+      },
+      "4": {
+        "n_admissible": 2,
+        "distinct_cyclic": [
+          "ABAB"
+        ]
+      },
+      "5": {
+        "n_admissible": 0,
+        "distinct_cyclic": []
+      },
+      "6": {
+        "n_admissible": 0,
+        "distinct_cyclic": []
+      },
+      "7": {
+        "n_admissible": 0,
+        "distinct_cyclic": []
+      },
+      "8": {
+        "n_admissible": 0,
+        "distinct_cyclic": []
+      }
+    },
+    "pass": true
+  },
+  "claim2_each_condition_necessary": {
+    "C1_closure_needed_AB_fails": {
+      "word": "AB",
+      "closes": false,
+      "alternating": true,
+      "both_dir": false
+    },
+    "C2_alternation_needed_AAAA_closes_but_repeats": {
+      "word": "AAAA",
+      "closes": true,
+      "alternating": false,
+      "both_dir": false
+    },
+    "C3_both_directions_needed_half_leg_breaks_closure": {
+      "word": "ABAB(half A@0)",
+      "closes": false,
+      "return_dist": 0.6996997841348409
+    },
+    "pass": true,
+    "note": "closure ALONE does not pick 4 (AAAA also closes); it is C1 AND C2 AND C3 together that are uniquely satisfied at L=4 by {ABAB,BABA}"
+  },
+  "claim3_matches_engine_4beat": {
+    "minimal_L": 4,
+    "engine_substages_per_stage": 4,
+    "source_file": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/../reference_docs/engine_math/source_schedule_tables/engine_16_source_stage_slots.json",
+    "source_available": true,
+    "pass": true,
+    "note": "substages-per-loop COMPUTED by grouping the source engine_16_source_stage_slots.json slots by (engine,loop) and counting distinct steps; the emergent minimal 4 equals that read count (2 axes x 2 directions = 4 = Carnot-stroke count, Carnot a rosetta label not the mechanism)"
+  },
+  "policy_eval": {
+    "four_substages_emerge_not_chosen": true,
+    "conditions_each_necessary": true,
+    "emergent_count_equals_engine_count": true,
+    "FOUR_SUBSTAGES_DERIVED_FROM_DUAL_RATCHET": true
+  }
+}

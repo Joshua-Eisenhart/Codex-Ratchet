@@ -1,0 +1,66 @@
+{
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "framing": "Axis-0 closes on the engine pair as the GRADIENT (permanent gap to a rising admissible-future ceiling) present at BOTH bookends, NOT as a carried initial condition (which the contractive flow forgets)",
+  "claim1_naive_closure_fails_by_contraction": {
+    "start_maxdist": 1.0392304845413263,
+    "end_maxdist": 0.0012829687423117876,
+    "end_over_start_ratio": 0.0012345372478926437,
+    "pass": true,
+    "note": "the dissipative engine pair is contractive (forgets the front); a front-state->late-state readout cannot carry Axis-0 -- this is why naive closure fails, reported honestly"
+  },
+  "claim2_gradient_closes_as_bookend_invariant": {
+    "gaps_front": [
+      0.19029194970821328,
+      0.14354952032337964,
+      0.14737812105405945,
+      0.1689945508504095,
+      0.14406102358312045,
+      0.15358232726961996
+    ],
+    "gaps_late": [
+      0.15808504018254022,
+      0.15783220887071647,
+      0.15930380781155318,
+      0.15815856035862463,
+      0.15863741913076657,
+      0.15825650435294492
+    ],
+    "front_mean": 0.1579762487981337,
+    "late_mean": 0.158378923451191,
+    "positive_at_both_bookends": true,
+    "pass": true,
+    "note": "gap=ceiling(rho)-S(rho) positive at front AND late for every probe -> the permanent gradient survives the full engine pair as a structural invariant"
+  },
+  "claim3_controls": {
+    "gap_vs_entropy_corr": 0.01631936668307959,
+    "not_renamed_entropy": true,
+    "frozen_room_gaps": [
+      -0.0007128743243588476,
+      -0.0010179657754280091,
+      -0.0007580028827027796,
+      -0.00043799326858329213,
+      -0.0003234683559040219,
+      -9.505269420750917e-05
+    ],
+    "frozen_state_moved_dist": 0.1476354023413549,
+    "frozen_room_gap_zero_and_state_moved": true,
+    "open_minus_frozen_ceiling_gap": [
+      0.19100482403257213,
+      0.14456748609880765,
+      0.14813612393676223,
+      0.16943254411899278,
+      0.14438449193902447,
+      0.15367737996382747
+    ],
+    "room_strictly_opens": true,
+    "pass": true,
+    "note": "scalar_entropy_only cannot reproduce the gap (|corr(gap,S)| low/negative). FROZEN-ROOM control = full Hamiltonian dynamics with dissipators removed (kap=0): the state genuinely MOVES (dist 0.148 != 0) but unitary evolution preserves the spectrum so the ceiling stays ~S(rho) and the frozen gap ~0 -- a real failable test (a spectrum-changing bug would make it nonzero). LOAD-BEARING leg: the OPEN (dissipative) ceiling strictly exceeds the frozen (unitary) ceiling for every probe -> the gap is created by the DISSIPATIVE admissible-future room, computed not assumed"
+  },
+  "policy_eval": {
+    "naive_front_to_late_closure_fails_by_contraction": true,
+    "axis0_gradient_closes_as_bookend_invariant": true,
+    "gradient_is_gap_to_rising_ceiling_not_renamed_entropy": true,
+    "AXIS0_CLOSES_AS_GRADIENT_INVARIANT_NOT_CARRIED_STATE": true
+  }
+}

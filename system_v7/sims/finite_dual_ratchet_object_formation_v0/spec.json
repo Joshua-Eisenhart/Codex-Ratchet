@@ -33,9 +33,9 @@
   },
   "fixtures": {
     "target_depth4_non_discrete": [8565, 10288, 19937],
-    "depth1_controls": [1, 2, 3],
-    "depth2_controls": [4, 5, 6],
-    "depth3_controls": [58, 78, 99],
+    "depth1_controls": [4, 5, 8],
+    "depth2_controls": [1, 2, 3],
+    "depth3_controls": [11, 19, 37],
     "perspective_permutation_seeds": [901, 902, 903, 904],
     "include_action_swap_view": true
   },
@@ -94,5 +94,15 @@
     "learned perception",
     "general object perception",
     "MMMs and ontologies"
-  ]
+  ],
+  "preregistration_correction": {
+    "superseded_spec_sha256": "1fbe7dbad504981bc615d55eedb3f1f19ac41a6d90b1c34ef4c195a749543904",
+    "reason": "The first freeze copied control seeds from the 64-state scratch census while the frozen carrier generator uses 16 base states.",
+    "scope": "control seed labels only; target seeds, census, gates, thresholds, roles, and claim ceilings are unchanged",
+    "verified_depth_histories": {
+      "depth1": {"4": [4, 16, 16], "5": [4, 15, 15], "8": [4, 15, 15]},
+      "depth2": {"1": [4, 14, 16, 16], "2": [4, 11, 16, 16], "3": [4, 15, 16, 16]},
+      "depth3": {"11": [4, 12, 15, 16, 16], "19": [4, 13, 15, 16, 16], "37": [4, 12, 15, 16, 16]}
+    }
+  }
 }

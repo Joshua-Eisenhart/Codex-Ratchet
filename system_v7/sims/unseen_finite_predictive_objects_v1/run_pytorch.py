@@ -504,7 +504,9 @@ def object_batches(records: Sequence[ViewRecord], objects_per_batch: int = 32) -
 
 
 def deranged_indices(source_objects: Tensor, object_count: int) -> Tensor:
-    return (source_objects + 1) % object_count
+    if object_count % 2:
+        raise RunnerError("adjacent derangement requires an even object count")
+    return source_objects ^ 1
 
 
 def train_arm(
@@ -1097,7 +1099,7 @@ def run_sealed_test(spec: dict[str, Any], manifest: dict[str, Any], requested_de
             "checkpoint_policy": "epoch 16 only; no early stopping or test-aware selection",
             "arms": list(ARM_NAMES),
             "arm_seed_plan": {arm: list(seeds) for arm, seeds in seed_plan.items()},
-            "fixed_derangement": "(object_index + 1) modulo object count for targets and contrastive positives",
+            "fixed_derangement": "object_index XOR 1 within each even-sized object batch for targets and contrastive positives",
             "temporal_shuffle": "fixed joint token/mask permutation per trajectory; boundary remains first",
         },
         "module_contract": {

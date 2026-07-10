@@ -1,0 +1,32 @@
+{
+  "schema": "codex_ratchet.unseen_finite_predictive_objects_v0.preregistration.v1",
+  "sim_id": "unseen_finite_predictive_objects_v0",
+  "frozen_at": "2026-07-10T10:30:00-07:00",
+  "status": "frozen_before_engine_or_learner_source",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "spec_sha256": "b8660e4b05066a6dbb733e443989bbde50a74caa3145892d0baf0a740b89536f",
+  "readme_sha256": "17ac513d6faeb4e36fa4a8f7c7097f89870e5e1a0e6e4945d6d8b2e2b2c5af8f",
+  "manifest_generator_sha256": "fe9649ba5c64fd87d33b0c230f3b16695c10e120c22ea78499ec9500bd5dd2a2",
+  "object_manifest_sha256": "2894501dad5d689c00a2dd4ef7dc378803e5282f10f52122c064a6c028caa462",
+  "wizard_v4_3_object_card_sha256": "f3728aafc779570d9379aaa91e26a92b39fb59f0e6fdfa974fe330f89f66f790",
+  "accepted_candidate_count": 1254,
+  "selected_object_count": 192,
+  "split_counts": {"train": 128, "validation": 32, "test": 32},
+  "hard_negative_test_pair_count": 16,
+  "failed_generation_attempts_before_manifest": [
+    "serialization NameError true instead of True",
+    "serialization NameError false instead of False"
+  ],
+  "failure_scope": "both failed after deterministic computation and before manifest emission; no counter, object, split, threshold, or selection rule changed",
+  "test_seal": "no learner source exists and no test view, embedding, prediction, clustering metric, or control metric has been generated",
+  "anti_selection_rules": [
+    "all 32 test objects are scored",
+    "no test object or hard-negative pair may be replaced after any model result",
+    "epoch 32 is scored for all arms and seeds",
+    "a passing control invalidates positive interpretation",
+    "threshold changes require a new version and new sealed test objects",
+    "red results are retained"
+  ]
+}

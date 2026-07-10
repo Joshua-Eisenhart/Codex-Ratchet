@@ -25,6 +25,8 @@ from jax import lax, vmap
 SIM_ID = "finite_probe_behavioral_object_engine_v1"
 SCHEMA = "codex_ratchet.finite_probe_behavioral_object_engine_v1.jax_result.v1"
 CLASSIFICATION = "scratch_diagnostic"
+PROMOTION_ALLOWED = False
+FORMAL_ADMISSION_ALLOWED = False
 SOURCE_PATH = Path(__file__).resolve()
 SIM_DIR = SOURCE_PATH.parent
 REPO_ROOT = SIM_DIR.parents[2]

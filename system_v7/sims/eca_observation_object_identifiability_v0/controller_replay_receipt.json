@@ -1,0 +1,28 @@
+{
+  "schema": "codex_ratchet.eca_observation_object_identifiability_v0.controller_replay.v1",
+  "sim_id": "eca_observation_object_identifiability_v0",
+  "classification": "scratch_diagnostic",
+  "commands": {
+    "jax_failed_wrong_runtime": "python3 run_jax.py --output /tmp/eca_obs_id_v0_jax_controller_replay.json",
+    "jax_passed": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 run_jax.py --output /tmp/eca_obs_id_v0_jax_controller_replay.json",
+    "julia_passed": "julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier run_julia.jl --output /tmp/eca_obs_id_v0_julia_controller_replay.json",
+    "controller_passed": "python3 validate_identifiability.py"
+  },
+  "runtime_note": "System python3 lacks JAX; the declared sim-stack interpreter passed. The failed wrong-runtime attempt is retained as environment evidence.",
+  "source_sha256": {
+    "jax": "1fa6605e85401cbd1dd67899e48e92064463625222159c03253423539f0bbbd0",
+    "julia": "ea0b23bac7cf39fad4bd4e58958eb9fa4d78ade510bc20b07dc5820ecb3b5df1"
+  },
+  "stored_and_replay_ledger_sha256": {
+    "jax": "4ca51e158058737a30fd994943deb8cfff0bcd1b1b9c141639f34b985255b5cc",
+    "julia": "4ca51e158058737a30fd994943deb8cfff0bcd1b1b9c141639f34b985255b5cc"
+  },
+  "stored_vs_replay_fieldwise_match": {
+    "jax": true,
+    "julia": true
+  },
+  "controller_all_pass": true,
+  "perception_like_regime_admitted": false,
+  "promotion_allowed": false,
+  "formal_admission_allowed": false
+}

@@ -1,0 +1,157 @@
+{
+  "schema": "codex_ratchet.eca_relation_directed_observation_design_v1.spec.v1",
+  "sim_id": "eca_relation_directed_observation_design_v1",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "scientific_question": "Can one globally shared observation subset, chosen only on frozen design families, make probe-relative stable relations broadly identifiable while every primary confirmation family retains several compatible dynamics and several full stable object relations?",
+  "interpretation_lock": "This is an oracle experimental-design existence scout. The exact designer may use train-side stable relations. Success would not be spontaneous object discovery, learned perception, or semantic objecthood.",
+  "optimization_ceiling": "The winner is exact only within each preregistered 32-subset shortlist. The cheap screen is exhaustive over all 2500 frozen candidates, but the result is not a global optimum of relation identifiability over those candidates or over all 65536 trajectory subsets.",
+  "parent": {
+    "sim_id": "eca_observation_object_identifiability_v0",
+    "spec_path": "system_v7/sims/eca_observation_object_identifiability_v0/spec.json",
+    "spec_sha256": "909abe7eb98543329cf18e36343a03377bdea1453bd0cc807a43340b73cf95d9",
+    "result_path": "system_v7/sims/eca_observation_object_identifiability_v0/results/eca_observation_object_identifiability_v0_validation.json",
+    "result_sha256": "1fbbe420e9ed1dac84ec2ffad95f7c3f730e64eb282ede3fb85fd89e0370b948",
+    "accepted_fact": "The frozen cumulative hash-order packet has no admitted consensus-without-identification window.",
+    "forbidden_search_input": "No parent engine result or budget ledger may be read by a search or confirmation engine."
+  },
+  "engine_contract": {
+    "mode": "julia_canon_jax_workhorse_two_phase",
+    "search_phase": "JAX and Julia independently enumerate all cheap screens and exact-score the frozen shortlist using design fixtures only.",
+    "selection_controller": "Compares complete score receipts and freezes all three size winners before any confirmation source exists.",
+    "confirmation_phase": "New JAX and Julia sources may read only the frozen winner receipt, validation fixtures, and conditionally the reused test block.",
+    "pytorch": "excluded: no learner is admissible in this target-aware design scout",
+    "peer_result_reads_forbidden": true
+  },
+  "inherited_carrier": {
+    "ring_size": 9,
+    "state_count": 512,
+    "rules": 256,
+    "boundary": "periodic",
+    "probe": ["Hamming weight", "periodic domain-wall count"],
+    "actions": ["A", "B"],
+    "query_definition": "all 9636 unordered distinct state pairs with equal initial probe",
+    "query_manifest_sha256": "3aaa73c344abfd95ba3bcf04aaf51b9e65060980452bf4310e450848b742f335",
+    "stable_relation": "exact behavioral equivalence under both candidate actions and the fixed probe"
+  },
+  "rule_family_split": {
+    "tag": "ECA-OBS-ID-V0",
+    "rule_orbit_manifest_sha256": "de408663d1e6d27c2f7b3ccece74ef4bc8bad9c53e713005b51cc44d5c60f425",
+    "same_block_pair_orbit_manifest_sha256": "69c8624cbfa87e403ddbfd71822412a0ab5194f46fae580c44f2e84dc305bcd4",
+    "train_pair_orbits": 2880,
+    "validation_pair_orbits": 325,
+    "reused_test_pair_orbits": 531,
+    "design_fixture_selection": "Order the 2880 train pair-orbit representatives by SHA256('ECA-OBS-DESIGN-V1|design_fixture|a,b'), tie by pair, and take the first 128.",
+    "design_fixture_count": 128,
+    "design_fixture_manifest_sha256": "b3493bc4c66c35ffef4854cdb3713382940bf167b2a06097d41ef511e87fb017",
+    "primary_confirmation": "all 325 validation pair-orbit representatives",
+    "secondary_confirmation": "the 531 v0 test representatives are historically consumed and may be reported only when the validation robustness gate passes; they cannot authorize learning"
+  },
+  "candidate_pool": {
+    "unit": "all four action-labelled transitions from one frozen (word,initial_state) trajectory",
+    "globality": "the same unordered subset of candidate indices is used for every fixture and query",
+    "fixture_conditioning": "forbidden",
+    "adaptive_stopping": "forbidden",
+    "assignment_manifest_sha256": "4d4e299d765e27022bf86858eba57f1f5ed80dda9df655d0638b2b2a0cef7d07",
+    "ordered_assignments": [
+      ["BAAA", 507], ["AAAA", 313], ["BAAB", 81], ["BBBB", 99],
+      ["ABBA", 265], ["BABB", 3], ["AAAB", 196], ["AABB", 227],
+      ["BABA", 89], ["BBAB", 0], ["AABA", 339], ["BBAA", 268],
+      ["BBBA", 49], ["ABAA", 118], ["ABBB", 147], ["ABAB", 478]
+    ],
+    "subset_sizes": [2, 3, 4],
+    "candidate_counts": {"2": 120, "3": 560, "4": 1820, "total": 2500},
+    "all_sizes_remain_claim_bearing": true,
+    "posthoc_size_deletion_forbidden": true
+  },
+  "two_stage_search": {
+    "screen_every_subset": true,
+    "screen_metrics_per_design_fixture": [
+      "ordered_version_space_size",
+      "effective_unordered_hypothesis_count",
+      "distinct_partition_relation_count",
+      "system_identified"
+    ],
+    "diversity_fixture": "effective_unordered_hypothesis_count >= 8 and distinct_partition_relation_count >= 2",
+    "screen_objective_lexicographic_max": [
+      "diversity_fixture_count",
+      "negative_system_identified_fixture_count",
+      "sum min(effective_unordered_hypothesis_count,64)",
+      "sum min(distinct_partition_relation_count,64)"
+    ],
+    "screen_tie_break": "lexicographically smallest sorted candidate-index tuple",
+    "shortlist_per_size": 32,
+    "shortlist_completeness": "exactly 32 unique subsets per size, in screen rank order",
+    "exact_metrics": [
+      "three-valued relation vector over all 9636 queries",
+      "query-disjoint relation vector excluding states observed as predecessors or successors",
+      "per-fixture same/different balance"
+    ],
+    "robust_query_count": "identifiable_query_count when the fixture satisfies diversity_fixture, otherwise zero",
+    "exact_objective_lexicographic_max": [
+      "minimum robust_query_count over 128 design fixtures",
+      "sum robust_query_count over 128 design fixtures",
+      "count design fixtures with identifiable-same and identifiable-different each at least 10 percent of identifiable queries",
+      "minimum query-disjoint robust identifiable count",
+      "sum query-disjoint robust identifiable count",
+      "screen objective tuple"
+    ],
+    "exact_tie_break": "lexicographically smallest sorted candidate-index tuple",
+    "outputs": "one immutable screened-set winner S2, S3, and S4 plus hashes of all 2500 screen records and all 96 exact-score records"
+  },
+  "baselines": {
+    "hash_order": "first k candidate indices in the inherited candidate order",
+    "system_identification_maximizer": "same exhaustive subsets and design fixtures; lexicographically minimize total ordered version-space size, then maximize system-identified fixture count, tie by candidate-index tuple",
+    "required_comparison": "relation-directed winners, hash-order subsets, and system-identification winners are evaluated at identical sizes and on identical confirmation fixtures"
+  },
+  "primary_validation_gate": {
+    "construction": "every true pair remains in a nonempty version space",
+    "diversity": "every one of the 325 validation fixtures retains at least eight effective unordered hypotheses and at least two distinct full partition relations",
+    "system_identification": "zero validation fixtures have singleton ordered version spaces",
+    "global_relation_coverage": "at least 95 percent of all validation queries are identifiable",
+    "fixture_floor": "every validation fixture has at least 80 percent identifiable queries",
+    "query_disjoint_global_coverage": "at least 90 percent of query-disjoint validation queries are identifiable",
+    "query_disjoint_fixture_floor": "every validation fixture has at least 70 percent identifiable query-disjoint queries",
+    "pooled_target_balance": "identifiable-same and identifiable-different each comprise at least 20 percent of consensus queries",
+    "fixture_balance": "at least 80 percent of validation fixtures have identifiable-same and identifiable-different each at least 10 percent of their identifiable queries",
+    "baseline_separation": "the relation-directed winner must strictly exceed hash-order minimum robust coverage or sum robust coverage, and must retain more diversity than the system-identification winner",
+    "candidate_exists": "at least one of S2, S3, S4 passes every primary validation condition",
+    "robust_design_family": "at least two of S2, S3, S4 pass every primary validation condition"
+  },
+  "confirmation_policy": {
+    "validation_cannot_select": true,
+    "test_open_condition": "robust_design_family is true on validation",
+    "test_status": "reused confirmation only; never blind",
+    "test_gate": "same per-fixture conditions as primary validation across all 531 reused test fixtures",
+    "failure_behavior": "if fewer than two sizes pass validation, test remains unopened and the scout closes red"
+  },
+  "query_leakage_controls": {
+    "all_queries_always_reported": true,
+    "query_disjoint_definition": "neither query state appears as an observed predecessor or successor in the selected packet for that fixture",
+    "directly_exposed_queries_never_deleted": true,
+    "query_specific_rollouts": "forbidden"
+  },
+  "required_controls": [
+    "all 2500 subsets screened exactly once",
+    "all 96 shortlisted subsets exact-scored exactly once",
+    "pool-order permutation leaves winners unchanged",
+    "omitted subset changes completeness hash and fails",
+    "winner-index or winner-hash mutation fails selection controller",
+    "search engines read no validation, test, parent engine, or peer result",
+    "confirmation sources are historically absent when winner receipt freezes",
+    "factorized compatible-rule construction matches ordered brute force on boundary winners",
+    "action-token swap preserves unordered relation vectors",
+    "hash-order and system-identification baselines run at every size",
+    "all selected sizes remain visible even when one fails"
+  ],
+  "allowed_claim_label_if_search_controller_passes": "EXACT_CROSS_RUNTIME_TRAIN_ONLY_ECA_OBSERVATION_DESIGN_SEARCH",
+  "allowed_claim_label_if_validation_passes": "FINITE_TARGET_AWARE_ECA_RELATION_MEASUREMENT_DESIGN_CANDIDATE",
+  "blocked_consumers": [
+    "neural training or learned-perception language",
+    "spontaneous object discovery or object creation",
+    "probe-independent or semantic object authority",
+    "QIT stages, four substages, or the 16-by-4-by-2 schedule",
+    "MMMs, ontology admission, universal attractor, Axis0, physics, life, or consciousness"
+  ]
+}

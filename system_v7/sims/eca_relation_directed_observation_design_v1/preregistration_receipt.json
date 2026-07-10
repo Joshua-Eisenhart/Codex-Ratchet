@@ -1,0 +1,28 @@
+{
+  "schema": "codex_ratchet.preregistration_receipt.v1",
+  "sim_id": "eca_relation_directed_observation_design_v1",
+  "created_at": "2026-07-10T12:50:33Z",
+  "status": "frozen_before_search_or_confirmation_source",
+  "spec_path": "system_v7/sims/eca_relation_directed_observation_design_v1/spec.json",
+  "spec_sha256": "1e7334c8fee643966d827cbc582b1aa2917604cdf4462db0a83da4e17e8951cb",
+  "object_card_path": "system_v7/sims/eca_relation_directed_observation_design_v1/wizard_v4_3_object_card.json",
+  "object_card_sha256": "efd86270a4af5ffed86493bb6d747f76a1cff97a920c0902a44399351cd3c52a",
+  "search_sources_present_when_frozen": false,
+  "confirmation_sources_present_when_frozen": false,
+  "frozen_surfaces": [
+    "inherited carrier, probe, query, rule-orbit, and trajectory manifests",
+    "128 train-only design fixture manifest",
+    "all 2500 size-two through size-four subset candidates",
+    "exhaustive cheap screen and 32-per-size exact shortlist policy",
+    "screen and exact objective order plus deterministic tie-breaks",
+    "hash-order and system-identification baselines",
+    "primary validation diversity, coverage, query-disjoint, balance, and baseline gates",
+    "conditional reused-test opening rule",
+    "two historical phases and blocked consumers"
+  ],
+  "known_evidence_boundary": "The target-aware designer may optimize exact relations only on 128 frozen train representatives. Validation is reserved from computation but not historically unknowable, and the v0 test block is explicitly consumed. No later learner may call either surface blind.",
+  "optimization_boundary": "The cheap screen is exhaustive over 2500 frozen candidates; relation scoring is exact only for the frozen 96-candidate shortlist and does not establish a global relation optimum.",
+  "change_policy": "Changing any manifest, fixture selection, candidate size, shortlist width, objective order, tie-break, gate, phase boundary, or baseline requires a new sim version.",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false
+}

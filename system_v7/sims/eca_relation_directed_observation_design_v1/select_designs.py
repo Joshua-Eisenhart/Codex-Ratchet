@@ -185,6 +185,35 @@ def normalized_baselines(result: dict) -> dict:
     return output
 
 
+def derive_selections(result: dict) -> dict:
+    derived_shortlists = {}
+    derived_winners = {}
+    exact_lookup = {
+        (row["subset_size"], tuple(row.get("subset_indices", row.get("subset")))): row
+        for row in exact_records(result)
+    }
+    for size in (2, 3, 4):
+        ranked_screen = sorted(
+            (normalize_screen(row) for row in screen_records(result) if row["subset_size"] == size),
+            key=lambda row: (
+                tuple(-value for value in row["screen_objective"]),
+                tuple(row["subset_indices"]),
+            ),
+        )
+        selected = [row["subset_indices"] for row in ranked_screen[:32]]
+        derived_shortlists[str(size)] = selected
+        options = [exact_lookup[(size, tuple(subset))] for subset in selected]
+        winner = min(
+            options,
+            key=lambda row: (
+                tuple(-value for value in row["exact_objective"]),
+                tuple(row.get("subset_indices", row.get("subset"))),
+            ),
+        )
+        derived_winners[str(size)] = normalize_exact(winner)
+    return {"shortlists": derived_shortlists, "winners": derived_winners}
+
+
 def compare_records(left: list[dict], right: list[dict], key: str) -> dict:
     mismatch_count = 0
     first_mismatch = None
@@ -338,7 +367,7 @@ def mutation_attacks(jax: dict, julia: dict) -> dict:
 def build_winner_receipt(jax: dict, julia: dict, comparison: dict) -> dict:
     winners = normalized_winners(julia)
     return {
-        "schema": "codex_ratchet.eca_relation_directed_observation_design_v1.selected_design_receipt.v1",
+        "schema": "codex_ratchet.eca_relation_directed_observation_design_v1.selected_design_receipt.v2",
         "sim_id": SIM_ID,
         "classification": CLASSIFICATION,
         "status": "frozen_after_train_search_before_confirmation_source",
@@ -352,15 +381,18 @@ def build_winner_receipt(jax: dict, julia: dict, comparison: dict) -> dict:
             "jax": sha256_file(JAX_RESULT),
             "julia": sha256_file(JULIA_RESULT),
         },
-        "complete_screen_records_sha256": comparison["screen"]["jax_canonical_sha256"],
-        "complete_exact_score_records_sha256": comparison["exact"]["jax_canonical_sha256"],
+        "normalized_screen_projection_sha256": comparison["screen"]["jax_canonical_sha256"],
+        "normalized_exact_projection_sha256": comparison["exact"]["jax_canonical_sha256"],
         "shortlists_sha256": comparison["surfaces"]["shortlists"]["jax_sha256"],
         "winner_payload_sha256": canonical_hash(winners),
         "winners": winners,
         "baselines": normalized_baselines(julia),
-        "all_three_sizes_claim_bearing": True,
+        "all_three_sizes_frozen_for_confirmation": True,
+        "all_three_sizes_claim_bearing": False,
         "confirmation_sources_present_when_frozen": False,
         "optimization_boundary": "exact winners within preregistered screened shortlists; no global relation-optimum claim",
+        "cross_runtime_boundary": "normalized score projections agree; raw engine records use independent schemas and are bound only by full-file hashes",
+        "read_confinement_boundary": "prohibited-read receipts are source-declared and controller-checked, not OS-level filesystem traces",
         "validation_may_select_or_replace": False,
         "test_is_blind": False,
         "promotion_allowed": False,
@@ -375,22 +407,40 @@ def main() -> int:
     julia = json.loads(JULIA_RESULT.read_text())
     actual_sources = {"jax": sha256_file(JAX_SOURCE), "julia": sha256_file(JULIA_SOURCE)}
     comparison = compare_results(jax, julia)
+    derived = {"jax": derive_selections(jax), "julia": derive_selections(julia)}
+    declared = {
+        "jax": {"shortlists": shortlists(jax), "winners": normalized_winners(jax)},
+        "julia": {"shortlists": shortlists(julia), "winners": normalized_winners(julia)},
+    }
+    independent_selection = {
+        engine: {
+            "shortlists_match": derived[engine]["shortlists"] == declared[engine]["shortlists"],
+            "winners_match": derived[engine]["winners"] == declared[engine]["winners"],
+            "derived_shortlists_sha256": canonical_hash(derived[engine]["shortlists"]),
+            "derived_winners_sha256": canonical_hash(derived[engine]["winners"]),
+        }
+        for engine in ("jax", "julia")
+    }
     universes = {"jax": expected_universes(jax), "julia": expected_universes(julia)}
     attacks = mutation_attacks(jax, julia)
     confirmation_absent = not any((HERE / name).exists() for name in CONFIRMATION_SOURCES)
     tests = {
         "C1_jax_receipt_valid": engine_receipt_valid(jax, "jax", actual_sources["jax"]),
         "C2_julia_receipt_valid": engine_receipt_valid(julia, "julia", actual_sources["julia"]),
-        "C3_complete_cross_runtime_match": comparison["all_match"],
+        "C3_normalized_cross_runtime_projection_match": comparison["all_match"],
         "C4_jax_universes_exact": all(universes["jax"].values()),
         "C5_julia_universes_exact": all(universes["julia"].values()),
         "C6_all_mutations_detected": all(item["detected"] for item in attacks.values()),
         "C7_confirmation_sources_absent": confirmation_absent,
         "C8_all_sizes_visible": sorted(julia.get("winners", {})) == ["2", "3", "4"],
+        "C9_controller_derives_declared_shortlists_and_winners": all(
+            row["shortlists_match"] and row["winners_match"]
+            for row in independent_selection.values()
+        ),
     }
     all_pass = all(tests.values())
     result = {
-        "schema": "codex_ratchet.eca_relation_directed_observation_design_v1.selection_validation.v1",
+        "schema": "codex_ratchet.eca_relation_directed_observation_design_v1.selection_validation.v2",
         "sim_id": SIM_ID,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
@@ -410,6 +460,7 @@ def main() -> int:
             "search_result_sha256": {"jax": sha256_file(JAX_RESULT), "julia": sha256_file(JULIA_RESULT)},
         },
         "comparison": comparison,
+        "independent_selection_derivation": independent_selection,
         "universes": universes,
         "mutation_attacks": attacks,
         "tests": tests,
@@ -419,7 +470,7 @@ def main() -> int:
         "confirmation_opened": False,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "claim_ceiling": "exact train-only screened-set search and frozen winners only; no validation, measurement-design candidate, learner, or perception claim",
+        "claim_ceiling": "normalized cross-runtime train-score agreement and independently rederived shortlist-relative frozen winners only; no complete raw-record equivalence, OS-enforced read confinement, validation, measurement-design candidate, learner, or perception claim",
         "blocked_consumers": spec["blocked_consumers"],
     }
     OUTPUT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")

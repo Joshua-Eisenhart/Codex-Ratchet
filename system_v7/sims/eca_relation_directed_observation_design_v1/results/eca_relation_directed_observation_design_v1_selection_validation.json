@@ -7,7 +7,7 @@
     "QIT stages, four substages, or the 16-by-4-by-2 schedule",
     "MMMs, ontology admission, universal attractor, Axis0, physics, life, or consciousness"
   ],
-  "claim_ceiling": "exact train-only screened-set search and frozen winners only; no validation, measurement-design candidate, learner, or perception claim",
+  "claim_ceiling": "normalized cross-runtime train-score agreement and independently rederived shortlist-relative frozen winners only; no complete raw-record equivalence, OS-enforced read confinement, validation, measurement-design candidate, learner, or perception claim",
   "classification": "scratch_diagnostic",
   "comparison": {
     "all_match": true,
@@ -64,9 +64,23 @@
     "python_version": "3.13.6",
     "runner_identity": "Joshuas-MacBook-Pro.local",
     "validator_path": "system_v7/sims/eca_relation_directed_observation_design_v1/select_designs.py",
-    "validator_sha256": "2d1d5209aef75ba60fb63879ca550efd6346b60c9c3ac77b5b6e78363098b32a"
+    "validator_sha256": "b11532df63344f50b333fdbb2f71cd011e7ed28764b83f48aac3b9f1c7f9ec75"
   },
   "formal_admission_allowed": false,
+  "independent_selection_derivation": {
+    "jax": {
+      "derived_shortlists_sha256": "8975c73a0e3506eabd698d6a06a4af370d16b9631588fbe5dd2e6f24434b9706",
+      "derived_winners_sha256": "4671ef43ee1d4b686b2e9fcbca266824ac0eb5913d8c0dd7bbb07f61f2481b78",
+      "shortlists_match": true,
+      "winners_match": true
+    },
+    "julia": {
+      "derived_shortlists_sha256": "8975c73a0e3506eabd698d6a06a4af370d16b9631588fbe5dd2e6f24434b9706",
+      "derived_winners_sha256": "4671ef43ee1d4b686b2e9fcbca266824ac0eb5913d8c0dd7bbb07f61f2481b78",
+      "shortlists_match": true,
+      "winners_match": true
+    }
+  },
   "mutation_attacks": {
     "exact_row": {
       "detected": true,
@@ -92,7 +106,7 @@
   "phase": "train_only_selection_controller",
   "promotion_allowed": false,
   "result_label": "EXACT_CROSS_RUNTIME_TRAIN_ONLY_ECA_OBSERVATION_DESIGN_SEARCH",
-  "schema": "codex_ratchet.eca_relation_directed_observation_design_v1.selection_validation.v1",
+  "schema": "codex_ratchet.eca_relation_directed_observation_design_v1.selection_validation.v2",
   "scientific_interpretation_deferred": true,
   "sim_id": "eca_relation_directed_observation_design_v1",
   "source_and_result_receipts": {
@@ -109,12 +123,13 @@
   "tests": {
     "C1_jax_receipt_valid": true,
     "C2_julia_receipt_valid": true,
-    "C3_complete_cross_runtime_match": true,
+    "C3_normalized_cross_runtime_projection_match": true,
     "C4_jax_universes_exact": true,
     "C5_julia_universes_exact": true,
     "C6_all_mutations_detected": true,
     "C7_confirmation_sources_absent": true,
-    "C8_all_sizes_visible": true
+    "C8_all_sizes_visible": true,
+    "C9_controller_derives_declared_shortlists_and_winners": true
   },
   "tool_integration_depth": {
     "python_stdlib": "supportive"

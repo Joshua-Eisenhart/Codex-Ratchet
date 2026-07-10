@@ -31,6 +31,32 @@ import z3
 SIM_ID = "unseen_finite_predictive_objects_v0"
 SCHEMA = "codex_ratchet.unseen_finite_predictive_objects_v0.jax_result.v1"
 CLASSIFICATION = "scratch_diagnostic"
+classification = "scratch_diagnostic"
+promotion_allowed = False
+formal_admission_allowed = False
+sim_execution_kind = "nonclassical"
+TOOL_MANIFEST = {
+    "jax": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing x64 batched exact-numerator reconstruction and lossy-view census",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing split-disjointness proof with an injected-overlap control",
+    },
+    "cvc5": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing independent split-disjointness proof with the same control polarity",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "jax": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+}
 PREREGISTRATION_COMMIT = "44d733e484b8fd767c2ab40612f0cb8ba5b355ce"
 EXPECTED_PREREGISTRATION_SHA256 = (
     "5cacd6aeea11fc844449b4c48d2971d43f6307b31fda5248203a47548dd0682d"

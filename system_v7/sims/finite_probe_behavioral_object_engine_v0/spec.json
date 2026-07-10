@@ -1,0 +1,79 @@
+{
+  "schema": "codex_ratchet.finite_probe_behavioral_object_engine.spec.v1",
+  "sim_id": "finite_probe_behavioral_object_engine_v0",
+  "created_at": "2026-07-10",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "stage_movement_allowed": false,
+  "fixture": {
+    "carrier": "all 64 binary states on a periodic six-site ring",
+    "state_encoding": "integer 0..63, bit i is ring site i",
+    "actions": {
+      "A": "synchronous elementary cellular automaton rule 30",
+      "B": "synchronous elementary cellular automaton rule 110"
+    },
+    "probe_family": {
+      "weight": "number of one bits",
+      "domain_walls": "number of adjacent unequal bits including the periodic edge"
+    },
+    "behavioral_refinement": "start from equal probe outputs; repeatedly split classes when A or B successors enter different current classes",
+    "presentation_symmetry": "cyclic rotation of the six ring sites"
+  },
+  "engine_contract": {
+    "julia": {
+      "role": "semantic_owner",
+      "required_packages": ["Graphs", "JSON3"],
+      "required_work": "exact partition refinement, rotation orbits, quotient transition graph, SCCs, and exact functional-graph attractor basins for A_after_B and B_after_A"
+    },
+    "jax": {
+      "role": "batched_exhaustive_workhorse",
+      "required_packages": ["jax", "jax.numpy", "jax.lax", "jax.vmap"],
+      "required_work": "x64 exhaustive state/history fingerprints through depth six, probe-subset ablations, action-order comparison, relabel invariance, and false-quotient semiconjugacy mutations"
+    },
+    "pytorch": {
+      "role": "learned_perception_proxy",
+      "required_packages": ["torch", "torch.func", "torch_geometric"],
+      "required_work": "ring-graph object classifier trained on some cyclic presentations and tested on held-out rotations, plus shuffled-target and erased-edge controls"
+    }
+  },
+  "preregistered_tests": {
+    "T1_behavioral_objects": "the exact two-probe partition stabilizes at 14 classes and is unchanged by additional refinement through depth six",
+    "T2_rotation_identity": "the 14 behavioral classes equal the independently computed cyclic-rotation orbits",
+    "T3_semiconjugacy": "A and B induce well-defined maps on the stable quotient; the depth-zero 11-class probe quotient has successor conflicts under both actions",
+    "T4_order_teeth": "A_after_B differs from B_after_A on 56 of 64 states and their exact basin-size signatures differ",
+    "T5_attractor_structure": "both composite schedules have five exact functional-graph attractors; no clustering defines them",
+    "T6_probe_ablation": "weight-only refinement requires more depth and its depth-zero quotient is strictly coarser than the two-probe quotient",
+    "T7_relabel_control": "cyclic relabeling changes no quotient or basin invariant after canonicalization",
+    "T8_learned_reidentification": "PyG held-out-rotation object accuracy is at least 0.90 and exceeds shuffled-target and erased-ring-edge controls by at least 0.25",
+    "T9_engine_removal": "Julia exact receipts gate object/basin claims, JAX exhaustive receipts gate bounded-history/control claims, and removing PyTorch demotes only learned-perception claims"
+  },
+  "expected_controller_fixture_values": {
+    "behavioral_class_count_by_depth_two_probe": [11, 14, 14, 14, 14, 14, 14],
+    "behavioral_class_count_by_depth_weight_only": [7, 13, 14, 14, 14, 14, 14],
+    "action_noncommuting_state_count": 56,
+    "A_after_B_attractor_count": 5,
+    "B_after_A_attractor_count": 5,
+    "A_after_B_sorted_basin_sizes": [3, 7, 18, 18, 18],
+    "B_after_A_sorted_basin_sizes": [3, 13, 16, 16, 16]
+  },
+  "required_controls": [
+    "depth-zero false quotient",
+    "weight-only probe ablation",
+    "cyclic state relabeling",
+    "action reversal",
+    "shuffled PyTorch targets",
+    "erased ring edges for PyG",
+    "one mutated transition that must break the original quotient"
+  ],
+  "claim_ceiling": "finite behavioral-object and exact-attractor instrument capability only; no QIT engine, sixteen-stage, four-substage, Axis0, consciousness, physics, or cross-domain attractor claim",
+  "blocked_consumers": [
+    "QIT engine admission",
+    "sixteen unique engine intelligences",
+    "four substages or sixty-four stages",
+    "general AI perception",
+    "MMMs or ontology admission",
+    "cross-domain unification",
+    "physics or consciousness claims"
+  ]
+}

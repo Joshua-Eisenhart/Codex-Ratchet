@@ -11,6 +11,11 @@ from typing import Any
 
 
 HERE = Path(__file__).resolve().parent
+CLASSIFICATION = "scratch_diagnostic"
+TOOL_MANIFEST = {
+    "python_stdlib": {"tried": True, "used": True, "reason": "Strict JSON, SHA-256 binding, and fail-closed receipt validation."},
+}
+TOOL_INTEGRATION_DEPTH = {"python_stdlib": "supportive"}
 SPEC_PATH = HERE / "spec.json"
 PREREG_PATH = HERE / "preregistration_receipt.json"
 DEFAULT_OUTPUT = HERE / "results" / "preregistration_validation.json"

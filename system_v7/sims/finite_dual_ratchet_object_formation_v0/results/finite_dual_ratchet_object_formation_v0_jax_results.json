@@ -1,0 +1,502 @@
+{
+  "all_local_gates_pass": true,
+  "all_pass": false,
+  "all_scientific_gates_pass": false,
+  "claim_ceiling": "FOUR_ROLE_OBJECT_FORMATION_NOT_ESTABLISHED",
+  "classification": "scratch_diagnostic",
+  "compact_schema_receipt": {
+    "payload_sha256_excluding_self": "47c15c43731464f6349d78af913ca25eeb8cd4eed46e8245c9ebfd3e7a17f0ef",
+    "raw_4096_cell_arrays_emitted": false,
+    "raw_relation_arrays_emitted": false,
+    "relation_hash_algorithm": "sha256 over row-major 0/1 bytes"
+  },
+  "corrected_preregistration_commit": "aa287b2cf6a064c861a12a771540690ad35eabd3",
+  "correction_sha256": "a7fe1e1a0e394f40df49d1454449abc267da28b953fc482e3b67da7e231db126",
+  "depth_census": {
+    "exact": true,
+    "expected": {
+      "all": {
+        "1": 4636,
+        "2": 14656,
+        "3": 692,
+        "4": 16
+      },
+      "non_discrete": {
+        "1": 618,
+        "2": 1523,
+        "3": 75,
+        "4": 3
+      }
+    },
+    "observed": {
+      "all": {
+        "1": 4636,
+        "2": 14656,
+        "3": 692,
+        "4": 16
+      },
+      "non_discrete": {
+        "1": 618,
+        "2": 1523,
+        "3": 75,
+        "4": 3
+      }
+    },
+    "unexpected_depths": {}
+  },
+  "elapsed_seconds": 1.8573292499931995,
+  "engine": "jax",
+  "fixture_depth_controls": {
+    "1": {
+      "depth": 2,
+      "stable_base_class_count": 16
+    },
+    "10288": {
+      "depth": 4,
+      "stable_base_class_count": 15
+    },
+    "11": {
+      "depth": 3,
+      "stable_base_class_count": 16
+    },
+    "19": {
+      "depth": 3,
+      "stable_base_class_count": 16
+    },
+    "19937": {
+      "depth": 4,
+      "stable_base_class_count": 15
+    },
+    "2": {
+      "depth": 2,
+      "stable_base_class_count": 16
+    },
+    "3": {
+      "depth": 2,
+      "stable_base_class_count": 16
+    },
+    "37": {
+      "depth": 3,
+      "stable_base_class_count": 16
+    },
+    "4": {
+      "depth": 1,
+      "stable_base_class_count": 16
+    },
+    "5": {
+      "depth": 1,
+      "stable_base_class_count": 15
+    },
+    "8": {
+      "depth": 1,
+      "stable_base_class_count": 16
+    },
+    "8565": {
+      "depth": 4,
+      "stable_base_class_count": 15
+    }
+  },
+  "formal_admission_allowed": false,
+  "frozen_inputs_verified_before_computation": true,
+  "gates": {
+    "G1_census_exact": true,
+    "G2_target_depth_exactly_four": true,
+    "G3_cross_view_relation_exact": true,
+    "G4_unlabeled_quotient_isomorphic": true,
+    "G5_probe_erasure_changes_relation": true,
+    "G6_depth3_truncation_fails_all_targets": true,
+    "G7_quotient_congruent_and_at_most_15_classes": true,
+    "G8_all_corruptions_rejected": true,
+    "G9_julia_jax_exact_parity": null
+  },
+  "generator_contract": {
+    "automata": "random.Random(seed); action-major 2x16 calls to randrange(16)",
+    "perspectives": "random.Random(seed).shuffle(list(range(64)))"
+  },
+  "graph_isomorphism_receipt": {
+    "all_intact_views_pass": true,
+    "claim_path": false,
+    "corrupted_unlabeled_iso_count": 0,
+    "exact_finite_check": true,
+    "node_colors": "probe values on quotient classes and semantic action labels on expanded edge nodes",
+    "package": "networkx",
+    "qualified_api": "networkx.is_isomorphic"
+  },
+  "jax_enable_x64": true,
+  "jax_version": "0.10.1",
+  "local_evidence_ceiling": "BOUNDED_EXACT_FOUR_ROLE_OBJECT_FORMATION_ON_FROZEN_FINITE_AUTOMATA",
+  "networkx_version": "3.6.1",
+  "numpy_imported_by_source": false,
+  "original_preregistration_commit": "dbfe0bd0e0a0adb61d081961a0c5913340450031",
+  "preregistration_sha256": "d3f5896d0d98d75c47ea1de24e1b77d5b82b432be92519581b20c7b61d48c356",
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "role_controls": {
+    "distinguish_removed_depth3_truncation_detected": true,
+    "gate_corrupted_projection_rejected": true,
+    "measure_removed_probe_erasure_detected": true,
+    "quotient_removed_identity_noncompression_detected": true
+  },
+  "schema": "codex_ratchet.finite_dual_ratchet_object_formation_v0.jax_result.v1",
+  "scientific_gate_blocker": "G9 requires controller-side Julia/JAX exact parity",
+  "sim_id": "finite_dual_ratchet_object_formation_v0",
+  "source_path": "system_v7/sims/finite_dual_ratchet_object_formation_v0/run_jax.py",
+  "source_sha256": "48332d38a6605695996f073fce305cda056a79c49c2fdd2b2cfc405a89f2836b",
+  "spec_sha256": "110d4763c0d5173a378ebfc223848a63945cd1d5b50201051a39e00ebe00f088",
+  "superseded_spec_sha256": "1fbe7dbad504981bc615d55eedb3f1f19ac41a6d90b1c34ef4c195a749543904",
+  "target_fixtures": [
+    {
+      "depth3_truncation_fails_exact_recovery": true,
+      "identity_quotient_removal_detected": true,
+      "probe_erasure_changes_relation": true,
+      "quotient_congruent": true,
+      "seed": 8565,
+      "stable_lifted_class_count": 15,
+      "stable_relation_sha256": "671c5442f083d8091bdd3b4cde7bb2281e6785b5f277ce94283c62fbe57e0464",
+      "strict_refinement_depth": 4,
+      "views": [
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 13,
+            "replacement_destination": 14,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "671c5442f083d8091bdd3b4cde7bb2281e6785b5f277ce94283c62fbe57e0464",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_901"
+        },
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 5,
+            "replacement_destination": 6,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "671c5442f083d8091bdd3b4cde7bb2281e6785b5f277ce94283c62fbe57e0464",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_902"
+        },
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 12,
+            "replacement_destination": 13,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "671c5442f083d8091bdd3b4cde7bb2281e6785b5f277ce94283c62fbe57e0464",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_903"
+        },
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 13,
+            "replacement_destination": 14,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "671c5442f083d8091bdd3b4cde7bb2281e6785b5f277ce94283c62fbe57e0464",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_904"
+        },
+        {
+          "action_swap": true,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 14,
+            "replacement_destination": 0,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "671c5442f083d8091bdd3b4cde7bb2281e6785b5f277ce94283c62fbe57e0464",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "action_swap_perm_904"
+        }
+      ]
+    },
+    {
+      "depth3_truncation_fails_exact_recovery": true,
+      "identity_quotient_removal_detected": true,
+      "probe_erasure_changes_relation": true,
+      "quotient_congruent": true,
+      "seed": 10288,
+      "stable_lifted_class_count": 15,
+      "stable_relation_sha256": "fe13499f1e30df637b1631bf1832c058ed372cc3ecdcece4f0f50bbf49fd64ab",
+      "strict_refinement_depth": 4,
+      "views": [
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 5,
+            "replacement_destination": 6,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "fe13499f1e30df637b1631bf1832c058ed372cc3ecdcece4f0f50bbf49fd64ab",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_901"
+        },
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 3,
+            "replacement_destination": 4,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "fe13499f1e30df637b1631bf1832c058ed372cc3ecdcece4f0f50bbf49fd64ab",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_902"
+        },
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 0,
+            "replacement_destination": 1,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "fe13499f1e30df637b1631bf1832c058ed372cc3ecdcece4f0f50bbf49fd64ab",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_903"
+        },
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 14,
+            "replacement_destination": 0,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "fe13499f1e30df637b1631bf1832c058ed372cc3ecdcece4f0f50bbf49fd64ab",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_904"
+        },
+        {
+          "action_swap": true,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 7,
+            "replacement_destination": 8,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "fe13499f1e30df637b1631bf1832c058ed372cc3ecdcece4f0f50bbf49fd64ab",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "action_swap_perm_904"
+        }
+      ]
+    },
+    {
+      "depth3_truncation_fails_exact_recovery": true,
+      "identity_quotient_removal_detected": true,
+      "probe_erasure_changes_relation": true,
+      "quotient_congruent": true,
+      "seed": 19937,
+      "stable_lifted_class_count": 15,
+      "stable_relation_sha256": "f289c581e416d5cb832ed124adb44bab8d0de7fe8309ae35f45eddc7f8241e5e",
+      "strict_refinement_depth": 4,
+      "views": [
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 8,
+            "replacement_destination": 9,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "f289c581e416d5cb832ed124adb44bab8d0de7fe8309ae35f45eddc7f8241e5e",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_901"
+        },
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 0,
+            "replacement_destination": 1,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "f289c581e416d5cb832ed124adb44bab8d0de7fe8309ae35f45eddc7f8241e5e",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_902"
+        },
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 8,
+            "replacement_destination": 9,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "f289c581e416d5cb832ed124adb44bab8d0de7fe8309ae35f45eddc7f8241e5e",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_903"
+        },
+        {
+          "action_swap": false,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 0,
+            "replacement_destination": 1,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "f289c581e416d5cb832ed124adb44bab8d0de7fe8309ae35f45eddc7f8241e5e",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "perm_904"
+        },
+        {
+          "action_swap": true,
+          "color_preserving_directed_quotient_isomorphic": true,
+          "corrupted_graph_unlabeled_isomorphic": false,
+          "corruption": {
+            "action": 0,
+            "original_destination": 12,
+            "replacement_destination": 13,
+            "source_class": 0
+          },
+          "corruption_rejected_by_known_projection_gate": true,
+          "full_relation_pullback_exact": true,
+          "pulled_back_relation_sha256": "f289c581e416d5cb832ed124adb44bab8d0de7fe8309ae35f45eddc7f8241e5e",
+          "quotient_congruent": true,
+          "stable_class_count": 15,
+          "strict_refinement_depth": 4,
+          "view": "action_swap_perm_904"
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "boundary_case": "frozen depth-one, depth-two, and depth-three controls",
+      "demotion_condition": "any census mismatch, nonconvergence, or control silence",
+      "gates": [
+        "all_pass",
+        "quotient"
+      ],
+      "input_object": "20,000 exact Python random.Random transition tables",
+      "negative/erased_control": "probe erasure and depth-three truncation",
+      "output_object": "strict-depth census and stable probe-respecting congruences",
+      "positive_case": "frozen census and all target relations are recovered exactly",
+      "qualified_api/function": "jax.jit(jax.vmap(refinement_trace))",
+      "tool": "jax"
+    },
+    {
+      "boundary_case": "parallel action successors represented by distinct colored edge nodes",
+      "demotion_condition": "any intact perspective is non-isomorphic",
+      "gates": [
+        "quotient"
+      ],
+      "input_object": "finite colored directed expanded quotient graphs",
+      "negative/erased_control": "one-successor quotient corruption recorded separately",
+      "output_object": "bijection-free exact isomorphism booleans",
+      "positive_case": "all intact relabelings and action-swapped views are isomorphic",
+      "qualified_api/function": "networkx.is_isomorphic",
+      "tool": "networkx"
+    }
+  ],
+  "tool_manifest": {
+    "jax.jit": "load_bearing",
+    "jax.numpy": "load_bearing exact integer and boolean arrays",
+    "jax.vmap": "load_bearing",
+    "networkx.is_isomorphic": "exact external certification outside JAX claim path",
+    "numpy": null
+  },
+  "validation_or_test_fixture_files_read": [],
+  "workhorse": {
+    "batch_size": 512,
+    "jit": true,
+    "maximum_refinement_rounds": 6,
+    "seed_interval_inclusive": [
+      1,
+      20000
+    ],
+    "vmap": true
+  }
+}

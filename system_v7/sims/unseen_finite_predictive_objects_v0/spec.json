@@ -1,5 +1,5 @@
 {
-  "schema": "codex_ratchet.unseen_finite_predictive_objects_v0.spec.v1",
+  "schema": "codex_ratchet.unseen_finite_predictive_objects_v0.spec.v2",
   "sim_id": "unseen_finite_predictive_objects_v0",
   "classification": "scratch_diagnostic",
   "promotion_allowed": false,
@@ -36,7 +36,7 @@
     "substitution_probability_after_non_erasure": 0.10,
     "independence": "every view uses a disjoint SHA-256-derived PRNG subtree; no latent trajectory, initial-state draw, mask, or corruption draw is shared",
     "model_visible_fields": ["corrupted_binary_tokens", "erasure_mask", "trajectory_boundary"],
-    "model_forbidden_fields": ["machine_definition", "canonical_hash", "object_index", "state_index", "split", "view_seed", "hard_negative_partner"]
+    "model_forbidden_fields": ["machine_definition", "canonical_hash", "object_index", "state_index", "split", "view_seed", "short_horizon_matched_partner"]
   },
   "learner": {
     "token_embedding": 24,
@@ -58,13 +58,13 @@
     "fixed_deranged_object_targets_and_positive_pairs",
     "temporal_shuffle_preserving_token_and_mask_counts",
     "marginal_histogram_parameter_matched_mlp",
-    "hard_negative_pairs_selected_from_exact_short_horizon_similarity_before_training"
+    "short_horizon_matched_test_pairs_frozen_before_training"
   ],
   "metrics_and_gates": {
     "every_seed_test_ari_min": 0.35,
     "every_seed_test_bcubed_f1_min": 0.55,
     "every_seed_predictive_js_max": 0.14,
-    "hard_negative_own_target_preference_min": 0.75,
+    "short_horizon_matched_own_target_preference_min": 0.75,
     "median_ari_gain_over_each_control_min": 0.20,
     "median_predictive_js_improvement_over_each_control_min": 0.03,
     "every_control_must_fail_at_least_one_primary_threshold": true,
@@ -72,12 +72,16 @@
   },
   "engine_contract": {
     "mode": "all_three_full_sims",
-    "julia": "exact rational canonicalization, minimality, predictive signatures, Graphs strong connectivity, and hard-negative verification",
-    "jax": "independent manifest reconstruction, batched exact/empirical trajectory distributions, split controls, and finite leakage census",
+    "registry_proposal_owner": "Python stdlib Fraction generator froze candidate enumeration, canonical records, splits, and short-horizon-matched test pairs; it does not own predictive-object semantics",
+    "julia": "independently reconstruct every frozen machine using exact Rational arithmetic; verify canonicalization, minimality, predictive signatures, Graphs strong connectivity, and short-horizon-matched pair measurements",
+    "julia_disagreement_policy": "any Julia disagreement with the frozen Python registry blocks the packet and every learner interpretation; the registry is not repaired after test sealing",
+    "jax": "independently reconstruct the frozen registry, batch exact/empirical trajectory distributions, run split controls, and perform a finite leakage census",
     "pytorch": "GRU/DeepSets learning, predictive decoder, clustering, controls, and torch.func temporal-sensitivity receipt",
-    "semantic_owner": "Julia exact finite predictive equivalence",
+    "semantic_owner": "Julia independent exact finite predictive equivalence verification and arbitration",
     "peer_result_reads": false,
-    "numpy_on_claim_path": false
+    "numpy_on_claim_path": false,
+    "original_frozen_spec_sha256": "b8660e4b05066a6dbb733e443989bbde50a74caa3145892d0baf0a740b89536f",
+    "correction_path": "system_v7/sims/unseen_finite_predictive_objects_v0/PREREGISTRATION_CORRECTION.md"
   },
   "accepted_green_ceiling": "BOUNDED_LEARNED_RECOVERY_OF_UNSEEN_FOUR_STATE_PREDICTIVE_OBJECTS_UNDER_FROZEN_LOSSY_VIEWS",
   "accepted_red_ceiling": "UNSEEN_PREDICTIVE_OBJECT_LEARNING_NOT_ESTABLISHED",

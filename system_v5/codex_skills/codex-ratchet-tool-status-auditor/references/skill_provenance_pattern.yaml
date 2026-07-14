@@ -1,0 +1,13 @@
+source_path: system_v5/codex_skills/codex-ratchet-tool-status-auditor/SKILL.md
+family: repo-held Codex skill
+pattern_name: hash_bound_skill_provenance
+problem_solved: Skill names and prose were being treated as proof that a skill executed.
+mechanism: Bind each guidance or declared executable component to current bytes, exact command IDs, and hash-checked output artifacts; cap this self-reported sidecar at L2 and require an independent runner receipt for L3.
+port_as: script
+target_path: system_v5/codex_skills/codex-ratchet-tool-status-auditor/scripts/validate_skills_used.py
+authority_status: source candidate governed by AGENTS.md; Claude surfaces are reference only
+authority_reason: The controller contract requires result-file verification and forbids agent or narrative substitution for gates.
+risk: A receipt can still self-report a command; this validator checks internal consistency and local bytes, not an independently signed process trace.
+minimal_test: python3 -m pytest system_v5/tests/test_tool_status_skill_provenance.py
+promotion_boundary: A passing sidecar is at most L2. A declared bundled script-command-artifact chain is only L3-eligible until a separate hash-bound runner receipt verifies the exact command/case IDs; neither proves tool load-bearing status or scientific canon.
+status: accepted

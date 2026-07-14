@@ -3,11 +3,11 @@ name: codex-ratchet-tool-status-auditor
 description: Audit Codex Ratchet tool integration status across skills, agents, sources, and result JSONs so package names become real function/API receipts before any claim is strengthened.
 ---
 
-MIRROR: authoritative copy is .claude/skills/codex-ratchet-tool-status-auditor/SKILL.md; sync direction .claude -> codex_skills.
-
 # Codex Ratchet Tool Status Auditor
 
 Use this when the question is whether the new tool stack is actually integrated, not merely installed or mentioned.
+
+This repo-held Codex skill is the source candidate governed by `AGENTS.md`. Claude skill and agent surfaces are reference-only when they are audited; they are not the authority or sync source for this file.
 
 ## Core rule
 
@@ -27,6 +27,39 @@ demotion condition if the tool is removed or bypassed
 source_path + source_sha256
 result_path + result/schema/classification
 ```
+
+## Skill provenance receipt
+
+Tool execution and skill use are separate claims. If a run says a skill affected the work, attach a dedicated receipt with schema `codex-ratchet-skills-used-v1` and validate it with:
+
+```bash
+python3 system_v5/codex_skills/codex-ratchet-tool-status-auditor/scripts/validate_skills_used.py RECEIPT.json --repo-root "$PWD"
+```
+
+Add `--allow-root PATH` once for each active skill home outside the repo. Unlisted roots fail closed.
+
+Every `skills_used` entry has exactly these keys:
+
+```json
+{
+  "path": "system_v5/codex_skills/example/SKILL.md",
+  "sha256": "64 lowercase hex characters",
+  "role": "guidance",
+  "affected_commands": ["command-id"]
+}
+```
+
+Rules:
+
+- `path` resolves under the repo root or an explicit `--allow-root`, exists, and matches `sha256` byte for byte.
+- `affected_commands` contains unique IDs from the receipt's exact `commands` ledger; a free-form command string is not an ID.
+- `role: guidance` points to `SKILL.md`. It may name commands it constrained, but it is guidance evidence only and can reach at most skill-provenance L2.
+- `role: executable_validator` or `role: executable_runner` points to a real file under that skill's `scripts/` directory, has a matching `guidance` entry for the sibling `SKILL.md`, and names at least one declared-success command that invokes the exact script path and emits a hash-matched artifact.
+- The command ledger is self-reported. Even a valid executable entry is only `l3_eligible` and remains capped at skill-provenance L2. Actual L3 requires a separate, independently produced and hash-bound runner receipt, such as a Lev scorecard, that records the exact command/case IDs and passes its own validator.
+- No skill-provenance receipt proves that a downstream tool API was load-bearing, discharges a scientific claim, or grants L4.
+- Missing keys, extra keys, stale hashes, path escapes, unknown roles or commands, failed commands, decorative script mentions, or missing output artifacts block the receipt. Never infer skill use from package imports, prose, commit messages, or self-reported pass counts.
+
+The complete command/artifact schema and promotion boundary are exercised by the validator's focused tests. Keep informative red verdicts; do not rewrite them green.
 
 ## Audit surfaces
 

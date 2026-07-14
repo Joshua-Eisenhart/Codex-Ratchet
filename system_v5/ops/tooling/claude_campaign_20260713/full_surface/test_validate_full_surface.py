@@ -1,0 +1,206 @@
+#!/usr/bin/env python3
+"""Adversarial controls for the full-surface campaign validator."""
+
+from __future__ import annotations
+
+import argparse
+import copy
+import json
+import shutil
+import tempfile
+from pathlib import Path
+from typing import Any, Callable
+
+from validate_full_surface import sha256_file, validate
+
+
+def set_pointer(payload: Any, pointer: str, value: Any) -> None:
+    tokens = pointer.strip("/").split("/") if pointer != "/" else []
+    target = payload
+    for token in tokens[:-1]:
+        token = token.replace("~1", "/").replace("~0", "~")
+        target = target[int(token)] if isinstance(target, list) else target[token]
+    final = tokens[-1].replace("~1", "/").replace("~0", "~")
+    if isinstance(target, list):
+        target[int(final)] = value
+    else:
+        target[final] = value
+
+
+def recompute(payload: dict[str, Any]) -> None:
+    groups = payload["groups"]
+    by_id = {row["id"]: row for row in groups}
+    for row in payload["set_coverage"]:
+        selected = [by_id[group_id] for group_id in row["group_ids"]]
+        execution = all(group["execution_completed"] for group in selected)
+        values = [group["scientific_pass"] for group in selected]
+        row["status"] = (
+            "execution_blocked"
+            if not execution
+            else "partial"
+            if row["blockers"]
+            else "red"
+            if any(value is False for value in values)
+            else "bounded_green"
+            if values and all(value is True for value in values)
+            else "not_assessed"
+        )
+    scientific = [
+        row["scientific_pass"]
+        for row in groups
+        if row["scientific_pass"] is not None
+    ]
+    sets = payload["set_coverage"]
+    inventory = payload["blocked_inventory"]
+    summary = {
+        "group_count": len(groups),
+        "command_count": sum(len(row["commands"]) for row in groups),
+        "executed_command_count": sum(
+            1
+            for row in groups
+            for command in row["commands"]
+            if command["timed_out"] is False and command["exit_code"] is not None
+        ),
+        "execution_failed_count": sum(
+            row["execution_completed"] is not True for row in groups
+        ),
+        "scientific_green_count": sum(value is True for value in scientific),
+        "scientific_red_count": sum(value is False for value in scientific),
+        "scientific_not_assessed_count": sum(
+            row["scientific_pass"] is None for row in groups
+        ),
+        "blocked_inventory_count": len(inventory),
+        "set_count": len(sets),
+        "set_full_count": sum(
+            row["status"] in {"bounded_green", "red"} for row in sets
+        ),
+        "set_partial_count": sum(row["status"] == "partial" for row in sets),
+        "set_blocked_count": sum(
+            row["status"] == "execution_blocked" for row in sets
+        ),
+    }
+    payload["summary"] = summary
+    payload["runner_all_completed"] = (
+        summary["execution_failed_count"] == 0
+        and summary["executed_command_count"] == summary["command_count"]
+    )
+    payload["scientific_all_pass"] = (
+        bool(scientific)
+        and all(scientific)
+        and summary["set_partial_count"] == 0
+        and summary["set_blocked_count"] == 0
+    )
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("envelope", type=Path)
+    args = parser.parse_args()
+    baseline = json.loads(args.envelope.read_text(encoding="utf-8"))
+    baseline_errors = validate(baseline, envelope_path=args.envelope)
+    results: dict[str, Any] = {
+        "baseline_accepts": not baseline_errors,
+        "baseline_errors": baseline_errors,
+        "negative_controls": {},
+    }
+
+    controls: list[tuple[str, Callable[[dict[str, Any]], None]]] = [
+        ("promotion_flip", lambda row: row.__setitem__("promotion_allowed", True)),
+        ("partial_promotion_flip", lambda row: row.__setitem__("partial_promotion_allowed", True)),
+        ("partial_promotion_alias", lambda row: row.__setitem__("partial_promotion_status", "provisional")),
+        ("provider_as_evidence", lambda row: row.__setitem__("provider_advisory_is_evidence", True)),
+        ("projection_only", lambda row: row.__setitem__("projection_only", True)),
+        ("replayed_source_commit", lambda row: row["source"].__setitem__("git_commit", "0" * 40)),
+        ("source_hash_mismatch", lambda row: row["groups"][0]["sources"][0].__setitem__("sha256", "0" * 64)),
+        ("artifact_hash_mismatch", lambda row: row["groups"][0]["artifacts"][0].__setitem__("sha256", "0" * 64)),
+        ("evidence_observed_fabrication", lambda row: row["groups"][0]["science_evidence"].__setitem__("observed", "fabricated")),
+        ("evidence_pass_value_rewrite", lambda row: row["groups"][0]["science_evidence"].__setitem__("pass_value", row["groups"][0]["science_evidence"]["observed"])),
+        ("archive_member_hash_mismatch", lambda row: row["archive"]["members"][0].__setitem__("sha256", "0" * 64)),
+        ("required_artifact_erasure", lambda row: row["groups"][0].__setitem__("required_artifact_count", 0)),
+        ("set_blocker_erasure", lambda row: row["set_coverage"][1].__setitem__("blockers", [])),
+        ("unknown_top_level_field", lambda row: row.__setitem__("authority_override", True)),
+        ("zero_execution", lambda row: row.__setitem__("groups", [])),
+    ]
+    for name, mutate in controls:
+        candidate = copy.deepcopy(baseline)
+        mutate(candidate)
+        errors = validate(candidate)
+        results["negative_controls"][name] = {
+            "rejected": bool(errors),
+            "errors": errors[:8],
+        }
+
+    advisory = next(
+        (row for row in baseline["groups"] if row["kind"] == "provider_advisory_validation"),
+        None,
+    )
+    if advisory is not None:
+        candidate = copy.deepcopy(baseline)
+        target = next(
+            row for row in candidate["groups"] if row["id"] == advisory["id"]
+        )
+        target["provider_as_evidence"] = True
+        provider_errors = validate(candidate)
+        results["negative_controls"]["provider_group_alias"] = {
+            "rejected": bool(provider_errors),
+            "errors": provider_errors[:8],
+        }
+
+    green = next(
+        row
+        for row in baseline["groups"]
+        if row["scientific_pass"] is True
+        and row["science_evidence"]["kind"] == "artifact_json"
+    )
+    demoted = copy.deepcopy(baseline)
+    demoted_group = next(row for row in demoted["groups"] if row["id"] == green["id"])
+    original_path = Path(demoted_group["science_evidence"]["artifact_path"])
+    with tempfile.TemporaryDirectory(
+        prefix="honest-demotion-",
+        dir=Path(demoted["artifact_root"]),
+    ) as temp:
+        demoted_path = Path(temp) / original_path.name
+        shutil.copy2(original_path, demoted_path)
+        artifact_payload = json.loads(demoted_path.read_text(encoding="utf-8"))
+        pass_value = demoted_group["science_evidence"]["pass_value"]
+        alternate = not pass_value if isinstance(pass_value, bool) else pass_value + 1
+        set_pointer(
+            artifact_payload,
+            demoted_group["science_evidence"]["json_pointer"],
+            alternate,
+        )
+        demoted_path.write_text(
+            json.dumps(artifact_payload, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        old_path = demoted_group["science_evidence"]["artifact_path"]
+        for artifact in demoted_group["artifacts"]:
+            if artifact["path"] == old_path:
+                artifact["path"] = str(demoted_path.resolve())
+                artifact["sha256"] = sha256_file(demoted_path)
+        demoted_group["science_evidence"]["artifact_path"] = str(demoted_path.resolve())
+        demoted_group["science_evidence"]["observed"] = alternate
+        demoted_group["scientific_pass"] = False
+        demoted_group["status"] = "scientific_red"
+        recompute(demoted)
+        demotion_errors = validate(demoted)
+    results["honest_demotion"] = {
+        "group": green["id"],
+        "accepted": not demotion_errors,
+        "errors": demotion_errors,
+    }
+
+    all_negative_rejected = all(
+        row["rejected"] for row in results["negative_controls"].values()
+    )
+    results["all_pass"] = (
+        results["baseline_accepts"]
+        and all_negative_rejected
+        and results["honest_demotion"]["accepted"]
+    )
+    print(json.dumps(results, indent=2, sort_keys=True))
+    return 0 if results["all_pass"] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

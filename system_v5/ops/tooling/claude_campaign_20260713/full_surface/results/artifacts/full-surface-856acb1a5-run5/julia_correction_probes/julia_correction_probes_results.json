@@ -1,0 +1,84 @@
+{
+  "checks": {
+    "clifford_rotor_identity": {
+      "candidate_failure_reproduced": true,
+      "corrected_pass": true,
+      "observed": {
+        "one_gp": "+1 ∈ Cl(3, 0, 0)",
+        "e1_squared": "+1 ∈ Cl(3, 0, 0)",
+        "candidate_error": "MethodError: no method matching one(::CliffordAlgebra{3, 0, 0, (:e1, :e2, :e3), ((), (1,), (2,), (3,), (1, 2), (3, 1), (2, 3), (1, 2, 3))})\nThe function `one` exists, but no method is defined for this combination of argument types.\n\nClosest candidates are:\n  one(!Matched::Type{Union{}}, Any...)\n   @ Base number.jl:357\n  one(!Matched::Type{Missing})\n   @ Base missing.jl:104\n  one(!Matched::Missing)\n   @ Base missing.jl:101\n  ...\n",
+        "gp_squared": "-1 ∈ Cl(3, 0, 0)"
+      },
+      "must_fail_control_fired": true,
+      "tolerance": null
+    },
+    "enzyme_reverse_gradient": {
+      "candidate_failure_reproduced": true,
+      "corrected_pass": true,
+      "observed": {
+        "candidate_exit_code": 1,
+        "shifted_target_error": 0.0010000000000000009,
+        "candidate_julia_load_path": "@:@stdlib",
+        "candidate_julia_project": null,
+        "candidate_error": "ERROR: ArgumentError: Package Enzyme not found in current path.\n- Run `import Pkg; Pkg.add(\"Enzyme\")` to install the Enzyme package.\n",
+        "candidate_reproduction_scope": "exact imported child environment: no --project and JULIA_PROJECT unset",
+        "candidate_command": [
+          "/opt/homebrew/bin/julia",
+          "--startup-file=no",
+          "-e",
+          "using Enzyme; f(x)=sin(x)^2; autodiff(Reverse,f,Active,Active(0.3))"
+        ],
+        "gradient_error": 0.0
+      },
+      "must_fail_control_fired": true,
+      "tolerance": 1.0e-12
+    },
+    "albert_component_norm": {
+      "candidate_failure_reproduced": true,
+      "corrected_pass": true,
+      "observed": {
+        "candidate_error": "MethodError: no method matching isless(::Albert, ::Float64)\nThe function `isless` exists, but no method is defined for this combination of argument types.\n\nClosest candidates are:\n  isless(!Matched::Missing, ::Any)\n   @ Base missing.jl:87\n  isless(!Matched::T, ::T) where T<:Union{Float16, Float32, Float64}\n   @ Base float.jl:636\n  isless(!Matched::AbstractFloat, ::AbstractFloat)\n   @ Base operators.jl:222\n  ...\n",
+        "fixture_scope": "diagonal primitive-idempotent fixture; synthetic control perturbs one diagonal component only",
+        "component_norm": 0.0,
+        "synthetic_component_norm": 1.0e-6
+      },
+      "must_fail_control_fired": true,
+      "tolerance": 1.0e-12
+    }
+  },
+  "created_at": "2026-07-14T06:52:01.812Z",
+  "project": {
+    "project_toml_path": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+    "manifest_toml_sha256": "3aea8d29321024ed71d8de46b292a3ab03247214c40575ca8ca6ad9620aeff18",
+    "manifest_toml_path": "/Users/joshuaeisenhart/.julia/environments/v1.12/Manifest.toml",
+    "project_toml_sha256": "227ee35210c2aa0939f0d175a606279ab194a1a4835f30e3b0051188d79d50a6"
+  },
+  "all_pass": true,
+  "runtime": {
+    "enzyme_version": "0.13.154",
+    "julia_version": "1.12.6",
+    "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+    "julia_executable": "/opt/homebrew/bin/julia",
+    "enzyme_path": "/Users/joshuaeisenhart/.julia/packages/Enzyme/aDCNh/src/Enzyme.jl"
+  },
+  "command": [
+    "/opt/homebrew/bin/julia",
+    "--startup-file=no",
+    "--project=/Users/joshuaeisenhart/.julia/environments/v1.12",
+    "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-akzdexc0/julia_correction_probes/julia_correction_probes.jl"
+  ],
+  "claim_ceiling": "Machine-local Julia API/environment correction probes only; no scientific admission or portable/canonical environment claim.",
+  "promotion_allowed": false,
+  "sources": {
+    "correction_script": {
+      "sha256": "7c8a170d2d6500517bf15b5037771adb59dec54e76de2bf6d0900c482aacd822",
+      "path": "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-akzdexc0/julia_correction_probes/julia_correction_probes.jl"
+    },
+    "archive_canon": {
+      "sha256": "f48d5f8c9a1974ed1d0b8f619c0331cdbe7770d93997e1d32aaf4dbc32932902",
+      "path": "/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-akzdexc0/julia_correction_probes/ExceptionalAlgebraCanon.jl"
+    }
+  },
+  "schema": "codex-ratchet.julia-correction-probes.v1"
+}
+

@@ -58,3 +58,30 @@ source-manifest and predecessor files copied into place. The expected Lev result
 The bound Lev executor is commit
 `856acb1a5de42528a9a54272435d98a9fe226186` in
 `/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract`.
+
+## Canonical Run 5
+
+Run 5 is the compact canonical result for source commit
+`c64fa1c5b9cb420e909ae77ba6703d5c31f741bf`. Lev executed all five suite
+cases and projected `suite_status=passed`, while correctly retaining
+`projection_only=true` and `release_eligible=false`. The campaign producer
+completed 28/28 commands across 16 groups with no execution failure.
+
+The literal outcome is not an all-green science result: 13 groups are bounded
+pass, two are bounded red, and Grok 4.5 is advisory/not-assessed. Sets A, B, C,
+D, F, G, and K are bounded green; H is red for the native ledger cycle; E, I,
+J, and L remain partial. The frozen Julia battery stays 12/15 red even though
+the separate, machine-local correction probes pass. The zero-execution twin
+blocks with `suite.execution.none` as required.
+
+The canonical envelope is `results/full_surface_lev_envelope_run5.json`, and
+the exact compact file hashes, local artifact-tree digest, independent
+validation status, and preserved Run 4 timeout receipt are recorded in
+`results/full_surface_run5_manifest.json`. The 107-file, 26,288,787-byte Run 5
+artifact estate remains local; only the bound Julia correction receipt and its
+Project/Manifest snapshots join the compact result commit.
+
+The compact result also retains the Run 4 `run.json` and scorecard as an
+informative red: Lev's former 30-second global bound stopped the producer, and
+the absent envelope correctly caused the downstream validator/control cases to
+fail. Its bulky partial artifact tree is not committed.

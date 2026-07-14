@@ -1,0 +1,168 @@
+{
+  "schema": "codex-ratchet.full-surface-run-manifest.v1",
+  "run_id": "full-surface-final-856acb1a5-run5",
+  "created_at": "2026-07-14T06:53:16.399974+00:00",
+  "source_commit": "c64fa1c5b9cb420e909ae77ba6703d5c31f741bf",
+  "lev_executor": {
+    "git_commit": "856acb1a5de42528a9a54272435d98a9fe226186",
+    "git_tree": "3f3488781d48a64b22c43c08ccfaa2b503d49524"
+  },
+  "archive": {
+    "path": "/Users/joshuaeisenhart/Desktop/166_reconciled_ratchet_v0_11_7_cold_verified (1).zip",
+    "sha256": "42fc2629e076b4cd5b8015514fb1c9027aa7c751702ebc7a719a6b808141b9da"
+  },
+  "truth": {
+    "runner_all_completed": true,
+    "bounded_observations_all_pass": false,
+    "all_pass": false,
+    "projection_only": true,
+    "release_eligible": false,
+    "scientific_admission": false
+  },
+  "summary": {
+    "group_count": 16,
+    "command_count": 28,
+    "executed_command_count": 28,
+    "execution_failed_count": 0,
+    "bounded_pass_count": 13,
+    "bounded_red_count": 2,
+    "bounded_not_assessed_count": 1,
+    "set_count": 12,
+    "set_evidence_complete_count": 8,
+    "set_bounded_green_count": 7,
+    "set_red_count": 1,
+    "set_partial_count": 4,
+    "set_execution_blocked_count": 0,
+    "blocked_inventory_count": 3
+  },
+  "set_status": {
+    "bounded_green": ["A", "B", "C", "D", "F", "G", "K"],
+    "red": ["H"],
+    "partial": ["E", "I", "J", "L"],
+    "execution_blocked": []
+  },
+  "preserved_reds": [
+    {
+      "group_id": "hardened_d_f_j_k_h",
+      "bounded_status": "bounded_red",
+      "reason": "The native purgatory ledger accepts a cycle and no ancestry-DAG rule was found; D, F, J, and K observations remain separately visible."
+    },
+    {
+      "group_id": "imported_julia_battery",
+      "bounded_status": "bounded_red",
+      "pass_count": 12,
+      "fail_count": 3,
+      "reason": "Frozen candidate failures are preserved for Albert scalar comparison, CliffordAlgebras identity selection, and an Enzyme child with no active project. The separate machine-local correction receipt passes but does not rewrite this frozen result."
+    }
+  ],
+  "not_assessed": [
+    {
+      "group_id": "grok45_advisory_validation",
+      "reason": "Provider advice is validated as advisory and cannot become evidence."
+    }
+  ],
+  "lev_result": {
+    "status": "projected",
+    "suite_status": "passed",
+    "executed_count": 5,
+    "failed_count": 0,
+    "blocked_count": 0,
+    "artifact_ref_count": 10,
+    "artifact_hashes_rechecked": 10,
+    "artifact_hashes_match": true
+  },
+  "zero_execution_control": {
+    "run_id": "full-surface-zero-856acb1a5-run5",
+    "status": "blocked",
+    "suite_status": "blocked",
+    "executed_count": 0,
+    "diagnostic": "suite.execution.none",
+    "projection_only": true,
+    "release_eligible": false
+  },
+  "independent_post_run_validation": {
+    "authentic_envelope_validator_exit_code": 0,
+    "authentic_envelope_error_count": 0,
+    "fabrication_and_demotion_controls_exit_code": 0,
+    "baseline_accepted": true,
+    "honest_demotion_accepted": true,
+    "negative_control_count": 26,
+    "all_negative_controls_rejected": true
+  },
+  "canonical_receipts": [
+    {
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/full_surface_lev_envelope_run5.json",
+      "byte_count": 156509,
+      "sha256": "c9833c6cb7532a179af1b0e8de2c9c6ca26b2e6fda0ba051f43ea3eb8329d7ab"
+    },
+    {
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_eval_runs/full-surface-final-856acb1a5-run5/run.json",
+      "byte_count": 1342,
+      "sha256": "61ca352efa7e25eb78ddeb2a17b12d78e063df5c4e684bfd5f507f8aee550171"
+    },
+    {
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_eval_runs/full-surface-final-856acb1a5-run5/scorecards/codex-ratchet-full-surface-campaign.json",
+      "byte_count": 73652,
+      "sha256": "e5f7ba18ffc4b71ba5d8eb3e504ba212a918e0b4a6ee111c62b8bad64302b93a"
+    },
+    {
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_zero_runs/full-surface-zero-856acb1a5-run5/run.json",
+      "byte_count": 1491,
+      "sha256": "1f8be71b1cfe9bedf7f83ad88eaccd1fda6ae6be5e9b887969bd9440ca61bd87"
+    },
+    {
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_zero_runs/full-surface-zero-856acb1a5-run5/scorecards/codex-ratchet-zero-execution-control.json",
+      "byte_count": 1309,
+      "sha256": "92f6048195af1305a5e50a76b0b03bfedf411411252d7cf729f354abcd8a3be1"
+    },
+    {
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/artifacts/full-surface-856acb1a5-run5/julia_correction_probes/julia_correction_probes_results.json",
+      "byte_count": 4434,
+      "sha256": "7cfca1921c0e0614677372f6bfafb78e77a6e832c84cd5b5cf641f199e5c18c6"
+    },
+    {
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/artifacts/full-surface-856acb1a5-run5/julia_correction_probes/julia_correction_Project.toml",
+      "byte_count": 1725,
+      "sha256": "227ee35210c2aa0939f0d175a606279ab194a1a4835f30e3b0051188d79d50a6"
+    },
+    {
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/artifacts/full-surface-856acb1a5-run5/julia_correction_probes/julia_correction_Manifest.toml",
+      "byte_count": 194056,
+      "sha256": "3aea8d29321024ed71d8de46b292a3ab03247214c40575ca8ca6ad9620aeff18"
+    },
+    {
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_eval_runs/full-surface-final-856acb1a5-run4/run.json",
+      "byte_count": 3926,
+      "sha256": "dcd246a53229f0096b0d0641d62f889988de3da7e831b50d553cfd03daa5ce58"
+    },
+    {
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_eval_runs/full-surface-final-856acb1a5-run4/scorecards/codex-ratchet-full-surface-campaign.json",
+      "byte_count": 52814,
+      "sha256": "dbb8162852b363a6a0a609da590d69e0b0ed592c0dddf0868034461141213603"
+    }
+  ],
+  "local_full_artifact_estate": {
+    "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/artifacts/full-surface-856acb1a5-run5",
+    "file_count": 107,
+    "byte_count": 26288787,
+    "tree_sha256": "2ddff48d964cb2bb2c9bb872277506317337665f6b179a4be0b4ef4b861de6fc",
+    "tree_hash_algorithm": "sha256(sorted(relative_path NUL byte_count NUL file_sha256 newline))",
+    "commit_policy": "Local evidence estate; only the three Julia correction receipt files listed above are included in the compact result commit."
+  },
+  "preserved_run4_timeout_receipt": {
+    "commit_policy": "The Run 4 run and scorecard are included in the compact result commit; its partial artifact tree and command artifacts remain local.",
+    "run_path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_eval_runs/full-surface-final-856acb1a5-run4/run.json",
+    "run_sha256": "dcd246a53229f0096b0d0641d62f889988de3da7e831b50d553cfd03daa5ce58",
+    "scorecard_path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_eval_runs/full-surface-final-856acb1a5-run4/scorecards/codex-ratchet-full-surface-campaign.json",
+    "scorecard_sha256": "dbb8162852b363a6a0a609da590d69e0b0ed592c0dddf0868034461141213603",
+    "status": "blocked",
+    "executed_count": 4,
+    "blocked_count": 1,
+    "failed_count": 2,
+    "reason": "The producer exceeded Lev's former 30000 ms global timeout; downstream validation and control cases then failed because no Run 4 envelope existed."
+  },
+  "known_ceiling_notes": [
+    "The legacy observation id B_albert_identity is narrower than its name: the receipt and set finding bind it only to the diagonal primitive-idempotent fixture.",
+    "The Julia correction receipt binds the Project and Manifest bytes, package names and versions, and the loaded Enzyme path, but it does not hash the complete loaded package source trees; the result is machine-local and nonportable."
+  ]
+}

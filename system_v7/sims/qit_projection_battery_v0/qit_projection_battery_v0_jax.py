@@ -10,6 +10,8 @@ import cvc5
 from cvc5 import Kind
 import jax
 import jax.numpy as jnp
+import jaxlib
+from jaxlib import xla_client
 import z3
 
 from qit_projection_battery_v0_common import (
@@ -33,6 +35,19 @@ jax.config.update("jax_enable_x64", True)
 
 SOURCE_PATH = SIM_DIR / f"{SIM_ID}_jax.py"
 RESULT_PATH = RESULTS / f"{SIM_ID}_jax_results.json"
+
+
+def jaxlib_backend_receipt() -> dict[str, Any]:
+    client = xla_client.make_cpu_client()
+    devices = client.devices()
+    return {
+        "qualified_api": "jaxlib.xla_client.make_cpu_client",
+        "version": jaxlib.__version__,
+        "platform": client.platform,
+        "device_count": len(devices),
+        "device_kinds": [str(device.device_kind) for device in devices],
+        "pass": client.platform == "cpu" and len(devices) >= 1,
+    }
 
 
 def jax_projection_readout(control: str | None = None) -> dict[str, Any]:
@@ -164,6 +179,7 @@ def structural_proof(values: dict[str, Any]) -> dict[str, Any]:
 
 def build_result() -> dict[str, Any]:
     RESULTS.mkdir(parents=True, exist_ok=True)
+    jaxlib_backend = jaxlib_backend_receipt()
     nominal = jax_projection_readout()
     bag = jax_projection_readout(control="bag_erased")
     view_erased = jax_projection_readout(control="view_erased")
@@ -181,6 +197,7 @@ def build_result() -> dict[str, Any]:
         and bag["mean_heldout_accuracy"] <= 0.25
         and view_erased["mean_heldout_accuracy"] <= 0.25
         and core["all_pass"]
+        and jaxlib_backend["pass"]
         and proofs["z3"]["verdict"] == "unsat"
         and proofs["cvc5"]["verdict"] == "unsat"
     )
@@ -206,21 +223,29 @@ def build_result() -> dict[str, Any]:
             "view_erased_control": view_erased,
         },
         "solver_proofs": proofs,
-        "packages_used": ["jax", "jax.numpy", "z3", "cvc5"],
-        "aligned_packages_load_bearing": ["z3", "cvc5"],
+        "jaxlib_backend": jaxlib_backend,
+        "packages_used": ["jax", "jax.numpy", "jaxlib", "z3", "cvc5"],
+        "aligned_packages_load_bearing": ["jaxlib", "z3", "cvc5"],
         "package_observables": {
+            "jaxlib": "direct PJRT CPU client construction, platform readout, and concrete device enumeration",
             "z3": "UNSAT negation of nominal projection convergence gate with SAT erased controls",
             "cvc5": "independent cvc5 encoding agrees with z3 on projection battery polarity",
         },
         "TOOL_MANIFEST": {
             "jax": {"tried": True, "used": True, "reason": "supportive vectorized heldout-view centroid distance readout"},
             "jax.numpy": {"tried": True, "used": True, "reason": "supportive numeric projection matrices"},
+            "jaxlib": {
+                "tried": True,
+                "used": True,
+                "reason": "load-bearing direct PJRT CPU client and device enumeration",
+            },
             "z3": {"tried": True, "used": True, "reason": "load-bearing structural gate polarity"},
             "cvc5": {"tried": True, "used": True, "reason": "load-bearing independent structural gate polarity"},
         },
         "TOOL_INTEGRATION_DEPTH": {
             "jax": "supportive",
             "jax.numpy": "supportive",
+            "jaxlib": "load_bearing",
             "z3": "load_bearing",
             "cvc5": "load_bearing",
         },

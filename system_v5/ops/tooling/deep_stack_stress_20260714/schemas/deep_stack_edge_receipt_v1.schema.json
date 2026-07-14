@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex-ratchet.local/schemas/deep_stack_edge_receipt_v1.schema.json",
+  "title": "Codex Ratchet deep-stack adjacency-witness receipt v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "edge_id",
+    "family",
+    "case_id",
+    "members",
+    "declared_exchange",
+    "exchange",
+    "witness_mode",
+    "evidence_kind",
+    "exchange_claim_ceiling",
+    "classification",
+    "promotion_allowed",
+    "scientific_claim_proven",
+    "executed",
+    "source_path",
+    "source_sha256",
+    "qualified_api",
+    "input_objects",
+    "output_objects",
+    "gates",
+    "cases",
+    "demotion",
+    "verdict"
+  ],
+  "properties": {
+    "schema": {
+      "const": "codex-ratchet.deep-stack-edge-receipt.v1"
+    },
+    "edge_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "members": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "exchange": {
+      "type": "string",
+      "minLength": 1
+    },
+    "declared_exchange": {
+      "type": "string",
+      "minLength": 1
+    },
+    "witness_mode": {
+      "enum": [
+        "executed_member_case_conjunction",
+        "direct_value_handoff",
+        "independent_shared_obligation_crosscheck",
+        "independent_shared_fixture_crosscheck"
+      ]
+    },
+    "evidence_kind": {
+      "enum": [
+        "member_cohealth_compatibility_witness",
+        "independent_shared_crosscheck",
+        "direct_value_handoff"
+      ]
+    },
+    "exchange_claim_ceiling": {
+      "type": "string",
+      "minLength": 1
+    },
+    "classification": {
+      "const": "integration_diagnostic"
+    },
+    "promotion_allowed": {
+      "const": false
+    },
+    "scientific_claim_proven": {
+      "const": false
+    },
+    "executed": {
+      "const": true
+    },
+    "source_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "qualified_api": {
+      "$ref": "#/$defs/nonemptyStrings"
+    },
+    "input_objects": {
+      "$ref": "#/$defs/nonemptyStrings"
+    },
+    "output_objects": {
+      "$ref": "#/$defs/nonemptyStrings"
+    },
+    "gates": {
+      "$ref": "#/$defs/nonemptyStrings"
+    },
+    "cases": {
+      "type": "object",
+      "required": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress"
+      ],
+      "properties": {
+        "positive": {
+          "$ref": "#/$defs/case"
+        },
+        "negative": {
+          "$ref": "#/$defs/case"
+        },
+        "boundary": {
+          "$ref": "#/$defs/case"
+        },
+        "stress": {
+          "$ref": "#/$defs/case"
+        }
+      },
+      "additionalProperties": false
+    },
+    "demotion": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/passResult"
+        },
+        {
+          "required": [
+            "method"
+          ]
+        }
+      ]
+    },
+    "verdict": {
+      "type": "object",
+      "required": [
+        "receipt_valid",
+        "operational_status",
+        "operational_pass"
+      ],
+      "properties": {
+        "receipt_valid": {
+          "const": true
+        },
+        "operational_status": {
+          "enum": [
+            "passed",
+            "red"
+          ]
+        },
+        "operational_pass": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nonemptyStrings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "passResult": {
+      "type": "object",
+      "required": [
+        "passed"
+      ],
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "case": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/passResult"
+        },
+        {
+          "anyOf": [
+            {
+              "required": [
+                "observed"
+              ]
+            },
+            {
+              "required": [
+                "detail"
+              ]
+            },
+            {
+              "required": [
+                "results"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

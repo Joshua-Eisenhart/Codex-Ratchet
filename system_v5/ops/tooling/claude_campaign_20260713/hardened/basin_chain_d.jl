@@ -14,6 +14,7 @@ unique fixed point.
 """
 
 using Attractors
+using DynamicalSystems
 using StaticArrays
 
 const FLOOR = 3.0
@@ -35,8 +36,12 @@ end
 
 function basin_labels(drive::Float64; horizon_limit::Float64)
     parameters = SVector(drive, FLOOR)
-    system = DeterministicIteratedMap(shared_map, SVector(FLOOR), parameters)
-    attractors = Dict(1 => StateSpaceSet([SVector(FLOOR)]))
+    system = DynamicalSystems.DeterministicIteratedMap(
+        shared_map,
+        SVector(FLOOR),
+        parameters,
+    )
+    attractors = Dict(1 => DynamicalSystems.StateSpaceSet([SVector(FLOOR)]))
     mapper = AttractorsViaProximity(
         system,
         attractors;
@@ -92,6 +97,7 @@ function main()
     println("JULIA_ACTIVE_PROJECT=", Base.active_project())
     println("JULIA_VERSION=", VERSION)
     println("JULIA_ATTRACTORS_VERSION=", pkgversion(Attractors))
+    println("JULIA_DYNAMICALSYSTEMS_VERSION=", pkgversion(DynamicalSystems))
     println("JULIA_STATICARRAYS_VERSION=", pkgversion(StaticArrays))
     println("JULIA_START_COUNT=", length(START_GRID))
     println("JULIA_ACTIVE_BASIN_COUNT=", active_basin_count)

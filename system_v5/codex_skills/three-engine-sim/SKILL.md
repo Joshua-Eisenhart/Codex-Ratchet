@@ -3,9 +3,13 @@ name: three-engine-sim
 description: Use when authoring, auditing, or rebuilding Codex Ratchet cross-runtime sims so Julia Canon, JAX batched/exhaustive work, PyTorch graph/network/autograd machinery, and proof tools stay mode-declared and receipt-bound.
 ---
 
-MIRROR: authoritative copy is .claude/skills/three-engine-sim/SKILL.md; sync direction .claude -> codex_skills.
-
 # Three Engine Sim
+
+This is the repo-held Codex skill source governed by `AGENTS.md`.
+Claude-family skills and agents are reference-only, not authority or a sync
+source. Current tool membership comes from the runtime target map and
+`system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json`;
+do not duplicate membership or deprecation tables here.
 
 Use this before any new foundation, carrier, geometry, QIT, tensor, proof, or rebuild sim. The point is not three copies of one algorithm. The point is mode-declared cross-runtime evidence with different failure modes: Julia is Canon for algebra/order/finite carrier/proof semantics, JAX is the batched/exhaustive workhorse, and PyTorch is first-class for graph/network/autograd/existing torch machinery while never arbitrating over Julia Canon.
 
@@ -230,14 +234,3 @@ python3 scripts/validate_sim_agent_role_cards.py system_v5/codex_skills/three-en
 - If strict latest-dependency use is required, do not use `PEPSKit` while it requires an older TensorKit line; use latest `TensorKit` separately or mark the PEPSKit route blocked.
 
 For tested local package patterns, read `references/tested_package_patterns.md` only when implementing or debugging the first sim in a session.
-
-## DEPRECATED / DO-NOT-USE
-
-Deprecation authority: capability_matrix receipts + owner 2026-06-09; a deprecated tool needs a passing capability probe + owner sign-off to return.
-
-| Status | Tools / surfaces | Rule |
-| --- | --- | --- |
-| REPLACE | `torch_ga` (0.0.6 hobby-tier; `kingdon` under test as successor), `clifford` (design-frozen), `qutip-jax` (0.1.1 fragile), `jraph` (dev version) | Use `kingdon` only after probe/sign-off; `clifford` is legacy fallback only; use `dynamiqs` for the qutip-jax role; use PyG as the GNN engine. |
-| OUT OF SYSTEM | `qiskit`, `pennylane`, `cirq`, PEPS3D/CTMRG, Julia `PythonCall` (`CondaPkg` pollution), `ITensorNetworks`, `TensorOperations`, `Yao`, `QuantumToolbox` (installed-unused) | Do not use in three-engine claim paths or promise matrices. |
-| PRUNE FROM PROMISES | `cma`, `deap`, `evotorch`, `optuna`, `pymoo`, `ribs`, `datasketch`, `hdbscan`, `hypothesis`, `pynndescent`, `sklearn`, `umap`, `igraph`, `blackjax`, `jaxopt`, `lineax`, `optimistix`, `optax`, `flax`, `orbax`, `chex`, `jaxtyping`, `haiku`, `numpyro`, `flowMC`, `jax_dataclasses`, `jaxlie`, `ott-jax` | No matrix cell. `optax`/`jaxopt` are candidate-search only, never proof. |
-| UNCHANGED RULE | `numpy`, `scipy`, `mpmath` | Control-lane only; never claim-path or load-bearing. |

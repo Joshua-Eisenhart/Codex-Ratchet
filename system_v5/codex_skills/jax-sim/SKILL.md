@@ -3,9 +3,13 @@ name: jax-sim
 description: Use when writing or auditing the JAX side of a Codex Ratchet sim so JAX acts as the batched/exhaustive workhorse with rich packages and proof tools instead of bare jax.numpy.
 ---
 
-MIRROR: authoritative copy is .claude/skills/jax-sim/SKILL.md; sync direction .claude -> codex_skills.
-
 # JAX Sim
+
+This is the repo-held Codex skill source governed by `AGENTS.md`.
+Claude-family skills and agents are reference-only, not authority or a sync
+source. Current tool membership comes from the runtime target map and
+`system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json`;
+do not duplicate membership or deprecation tables here.
 
 JAX is the batched/exhaustive workhorse after Julia fixes the finite object and bracket/order semantics. Use it for `vmap`/`jit` sweeps, differentiable dynamics, scale searches, vectorized witness generation, and proof-shaped finite objects. `jax.numpy` is allowed as array support, but a JAX sim is invalid for rich-tool evidence if `jnp` is the only load-bearing surface.
 
@@ -123,14 +127,3 @@ Result fragment:
 Validation: no peer result file is read to fabricate parity.
 
 On failure: mark `reads_peer_result: true` and reject from evidence.
-
-## DEPRECATED / DO-NOT-USE
-
-Deprecation authority: capability_matrix receipts + owner 2026-06-09; a deprecated tool needs a passing capability probe + owner sign-off to return.
-
-| Status | Tools / surfaces | Rule |
-| --- | --- | --- |
-| REPLACE | `qutip-jax` (0.1.1 fragile), `jraph` (dev version) | Use `dynamiqs` for the qutip-jax role; use PyG as the GNN engine instead of `jraph`. |
-| OUT OF SYSTEM | `qiskit`, `pennylane`, `cirq` | Do not use in JAX sim claim paths or promise matrices. |
-| PRUNE FROM PROMISES | `blackjax`, `jaxopt`, `lineax`, `optimistix`, `optax`, `flax`, `orbax`, `chex`, `jaxtyping`, `haiku`, `numpyro`, `flowMC`, `jax_dataclasses`, `jaxlie`, `ott-jax` | No matrix cell. `optax`/`jaxopt` are candidate-search only, never proof. |
-| UNCHANGED RULE | `numpy`, `scipy`, `mpmath` | Control-lane only; never claim-path or load-bearing. |

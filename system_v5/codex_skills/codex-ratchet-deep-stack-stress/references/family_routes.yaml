@@ -1,0 +1,104 @@
+schema_version: codex_ratchet_deep_stack_family_routes_v1
+
+authority:
+  repo_contract: AGENTS.md
+  codex_overlay: CODEX.md
+  runtime_map: system_v5/docs/RUNTIME_LIBRARY_LOCATION_MAP_20260608.md
+  target_sets: system_v5/docs/SIM_STACK_FULL_TARGET_SETS_20260609.md
+  roster: system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json
+  integration_edges: system_v5/ops/tooling/deep_stack_stress_20260714/registry/integration_edges_v1.json
+
+execution_policy:
+  primary_object: finite_current_tool_and_library_roster
+  run_every_repo_surface: false
+  preexisting_sims: representative_consumers_and_regression_fixtures
+  import_only_is_operational: false
+  claim_ceiling: operational_integration_only
+  preserve_red_results: true
+  claude_bridge_allowed: false
+  claude_artifacts: untrusted_fixtures_only
+
+universal_obligations:
+  - positive
+  - negative_or_erased
+  - boundary
+  - bounded_stress
+  - demotion_or_bypass
+  - declared_adjacent_edges
+  - representative_preexisting_sim
+
+routes:
+  - route_id: environment_preflight
+    select_when: before_any_package_dependent_case
+    skills:
+      - codex-ratchet-env-agent-coordination
+      - sim-stack-maintenance
+    requires:
+      - canonical_runtime_identity
+      - runtime_doctor
+      - mapping_reference_audit
+      - active_installer_check
+      - repo_pollution_check
+
+  - route_id: jax_family
+    select_when: roster_row.runtime_family_is_jax
+    skills:
+      - jax-sim
+      - codex-ratchet-tool-status-auditor
+    requires:
+      - x64_when_numeric_parity_is_claimed
+      - real_qualified_api
+      - no_numpy_claim_path_substitution
+
+  - route_id: pytorch_family
+    select_when: roster_row.runtime_family_is_pytorch
+    skills:
+      - pytorch-sim
+      - codex-ratchet-tool-status-auditor
+    requires:
+      - declared_backend
+      - real_graph_autograd_or_torch_native_api
+      - no_numpy_backend_substitution
+
+  - route_id: julia_family
+    select_when: roster_row.runtime_family_is_julia
+    skills:
+      - julia-sim
+      - codex-ratchet-tool-status-auditor
+    requires:
+      - exact_active_project
+      - strict_load_path_or_declared_isolated_project
+      - qualified_package_api
+      - no_global_project_leakage
+
+  - route_id: cross_runtime_or_edge
+    select_when: roster_row_or_edge.crosses_runtime_or_engine_boundary
+    skills:
+      - three-engine-sim
+      - codex-ratchet-tool-status-auditor
+    requires:
+      - independently_computed_local_legs
+      - explicit_exchange_receipt
+      - peer_result_echo_rejected
+      - edge_failure_demotion
+
+  - route_id: representative_sim
+    select_when: roster_row.has_representative_consumer
+    skills:
+      - lego-sim-classifier
+      - codex-ratchet-tool-status-auditor
+    requires:
+      - consumer_source_and_command
+      - unchanged_science_classification
+      - tool_removal_or_bypass_demotion
+
+  - route_id: final_operational_classification
+    select_when: after_all_scoped_cases
+    skills:
+      - codex-ratchet-tool-status-auditor
+      - lego-sim-classifier
+    requires:
+      - validated_receipt
+      - per_obligation_verdicts
+      - informative_red_preserved
+      - no_science_promotion

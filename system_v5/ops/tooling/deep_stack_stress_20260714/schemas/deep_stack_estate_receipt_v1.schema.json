@@ -1,0 +1,329 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex-ratchet.local/schemas/deep_stack_estate_receipt_v1.schema.json",
+  "title": "Codex Ratchet deep-stack estate receipt v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "run_id",
+    "generated_at",
+    "classification",
+    "promotion_allowed",
+    "scientific_claim_proven",
+    "release_eligible",
+    "claude_bridge_used",
+    "install_attempted",
+    "raw_reuse_used",
+    "claim_ceiling",
+    "source_state",
+    "preflight",
+    "raw_receipts",
+    "raw_receipt_bindings",
+    "commands",
+    "representative_execution_receipts",
+    "tool_receipts",
+    "integration_edge_receipts",
+    "producer_summary"
+  ],
+  "properties": {
+    "schema": {
+      "const": "codex-ratchet.deep-stack-estate-receipt.v1"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "const": "integration_diagnostic"
+    },
+    "promotion_allowed": {
+      "const": false
+    },
+    "scientific_claim_proven": {
+      "const": false
+    },
+    "release_eligible": {
+      "const": false
+    },
+    "claude_bridge_used": {
+      "const": false
+    },
+    "install_attempted": {
+      "const": false
+    },
+    "raw_reuse_used": {
+      "type": "boolean"
+    },
+    "claim_ceiling": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_state": {
+      "type": "object",
+      "required": [
+        "ratchet_commit",
+        "ratchet_tree",
+        "runner_path",
+        "runner_sha256",
+        "registry_sha256",
+        "edges_sha256",
+        "julia_carrier_project_sha256",
+        "julia_carrier_manifest_sha256"
+      ],
+      "properties": {
+        "ratchet_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "ratchet_tree": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "runner_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runner_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "registry_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "edges_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "julia_carrier_project_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "julia_carrier_manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preflight": {
+      "type": "object"
+    },
+    "raw_receipts": {
+      "type": "object"
+    },
+    "raw_receipt_bindings": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "required": [
+          "role",
+          "path",
+          "exists",
+          "sha256",
+          "producer_command_count",
+          "producer_bound",
+          "producer_exit_code",
+          "producer_timed_out",
+          "producer_output_path",
+          "producer_output_sha256",
+          "producer_output_created_after_explicit_unlink",
+          "producer_output_boundary_cleared_before_execution",
+          "producer_invoked_source_path",
+          "producer_invoked_source_sha256",
+          "producer_invoked_source_argument_present"
+        ],
+        "properties": {
+          "role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "exists": {
+            "const": true
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "producer_command_count": {
+            "const": 1
+          },
+          "producer_bound": {
+            "const": true
+          },
+          "producer_exit_code": {
+            "const": 0
+          },
+          "producer_timed_out": {
+            "const": false
+          },
+          "producer_output_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "producer_output_sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "producer_output_created_after_explicit_unlink": {
+            "const": true
+          },
+          "producer_output_boundary_cleared_before_execution": {
+            "const": true
+          },
+          "producer_invoked_source_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "producer_invoked_source_sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "producer_invoked_source_argument_present": {
+            "const": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "commands": {
+      "type": "array",
+      "minItems": 7,
+      "contains": {
+        "type": "object",
+        "required": [
+          "role",
+          "raw_role",
+          "command",
+          "command_line",
+          "exit_code",
+          "timed_out",
+          "process_launcher_path",
+          "process_launcher_realpath",
+          "process_launcher_sha256",
+          "process_launcher_realpath_sha256",
+          "output_path",
+          "output_exists",
+          "output_sha256",
+          "output_created_after_explicit_unlink",
+          "output_boundary_cleared_before_execution",
+          "invoked_source_path",
+          "invoked_source_argument",
+          "invoked_source_sha256",
+          "invoked_source_argument_present"
+        ],
+        "properties": {
+          "role": {
+            "const": "raw_producer"
+          },
+          "exit_code": {
+            "const": 0
+          },
+          "timed_out": {
+            "const": false
+          },
+          "process_launcher_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "process_launcher_realpath": {
+            "type": "string",
+            "minLength": 1
+          },
+          "process_launcher_sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "process_launcher_realpath_sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "output_exists": {
+            "const": true
+          },
+          "output_sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "output_created_after_explicit_unlink": {
+            "const": true
+          },
+          "output_boundary_cleared_before_execution": {
+            "const": true
+          },
+          "invoked_source_sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "invoked_source_argument_present": {
+            "const": true
+          }
+        }
+      },
+      "minContains": 7,
+      "maxContains": 7
+    },
+    "representative_execution_receipts": {
+      "type": "array",
+      "minItems": 48,
+      "items": {
+        "type": "object",
+        "required": [
+          "source_path",
+          "executed",
+          "operational_execution_pass",
+          "scientific_status_preserved"
+        ]
+      }
+    },
+    "tool_receipts": {
+      "type": "array",
+      "minItems": 139,
+      "maxItems": 139,
+      "items": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "const": "codex-ratchet.deep-stack-tool-receipt.v1"
+          }
+        },
+        "required": [
+          "schema"
+        ]
+      }
+    },
+    "integration_edge_receipts": {
+      "type": "array",
+      "minItems": 29,
+      "maxItems": 29,
+      "items": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "const": "codex-ratchet.deep-stack-edge-receipt.v1"
+          }
+        },
+        "required": [
+          "schema"
+        ]
+      }
+    },
+    "producer_summary": {
+      "type": "object",
+      "required": [
+        "registry_tool_count",
+        "deep_stress_tool_count",
+        "operational_pass_count",
+        "operational_red_count",
+        "integration_edge_count",
+        "operational_red_edge_count",
+        "raw_reuse_used"
+      ]
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

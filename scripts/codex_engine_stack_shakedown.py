@@ -51,7 +51,7 @@ CODEX_EXPECTED_SKILLS = [
     "sim-stack-maintenance",
     *GATE_SKILLS,
 ]
-CLAUDE_EXPECTED_SKILLS = [
+REFERENCE_ONLY_CLAUDE_SKILLS = [
     *ENGINE_SKILLS,
     "sim-stack-maintenance",
     *GATE_SKILLS,
@@ -62,7 +62,7 @@ CODEX_SKILL_ROOTS = [
     Path("/Users/joshuaeisenhart/.codex-second/skills"),
 ]
 CLAUDE_SKILL_ROOT = REPO / ".claude/skills"
-CLAUDE_EXPECTED_AGENTS = [
+REFERENCE_ONLY_CLAUDE_AGENTS = [
     "fabrication-auditor",
     "fresh-audit-runner",
     "jax-audit-lane-runner",
@@ -161,7 +161,7 @@ TOOL_MANIFEST = {
     "skill_agent_inventory": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing Codex/Claude skill and agent wiring check for the sim-stack gate surfaces.",
+        "reason": "load-bearing Codex skill wiring check; Claude surfaces are reference-only and never gate the Codex runtime.",
     },
 }
 
@@ -953,10 +953,12 @@ def skill_agent_probe(checks: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
     claude_skills = {
-        name: (CLAUDE_SKILL_ROOT / name / "SKILL.md").exists() for name in CLAUDE_EXPECTED_SKILLS
+        name: (CLAUDE_SKILL_ROOT / name / "SKILL.md").exists()
+        for name in REFERENCE_ONLY_CLAUDE_SKILLS
     }
     claude_agents = {
-        name: (REPO / ".claude/agents" / f"{name}.md").exists() for name in CLAUDE_EXPECTED_AGENTS
+        name: (REPO / ".claude/agents" / f"{name}.md").exists()
+        for name in REFERENCE_ONLY_CLAUDE_AGENTS
     }
     payload = {
         "codex_skill_roots": codex_roots,
@@ -965,32 +967,6 @@ def skill_agent_probe(checks: list[dict[str, Any]]) -> dict[str, Any]:
         "claude_agents": claude_agents,
     }
     content_requirements = {
-        str(CLAUDE_SKILL_ROOT / "codex-ratchet-env-agent-coordination" / "SKILL.md"): [
-            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
-            "JULIA_LOAD_PATH=@:@stdlib",
-            "PythonCall",
-            "DLPack",
-            "CondaPkg",
-            "bayeux",
-            "dgl",
-            "Import success is not claim integration",
-        ],
-        str(CLAUDE_SKILL_ROOT / "lego-sim-classifier" / "SKILL.md"): [
-            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
-            "JULIA_LOAD_PATH=@:@stdlib",
-            "TOOL_MANIFEST",
-            "TOOL_INTEGRATION_DEPTH",
-            "No installs are allowed without install-intent",
-            "do not modify",
-        ],
-        str(CLAUDE_SKILL_ROOT / "codex-ratchet-tool-status-auditor" / "SKILL.md"): [
-            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
-            "JULIA_LOAD_PATH=@:@stdlib",
-            "TOOL_MANIFEST",
-            "TOOL_INTEGRATION_DEPTH",
-            "Import success",
-            "No installs are allowed without install-intent",
-        ],
         str(REPO / "system_v5/codex_skills" / "sim-stack-maintenance" / "SKILL.md"): [
             "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
             "JULIA_LOAD_PATH=@:@stdlib",
@@ -1018,8 +994,6 @@ def skill_agent_probe(checks: list[dict[str, Any]]) -> dict[str, Any]:
         for name, present in table.items()
         if not present
     ]
-    missing_claude_skills = [name for name, present in claude_skills.items() if not present]
-    missing_claude_agents = [name for name, present in claude_agents.items() if not present]
     missing_repo_openai_yaml = [name for name, present in repo_openai_yaml.items() if not present]
     content_guard_failures = {
         path: guard
@@ -1043,16 +1017,24 @@ def skill_agent_probe(checks: list[dict[str, Any]]) -> dict[str, Any]:
     check(
         checks,
         "claude_skill_gate_and_engine_skills",
-        "pass" if not missing_claude_skills else "fail",
-        {"missing": missing_claude_skills, "skills": claude_skills},
+        "skip",
+        {
+            "reason": "Claude skills are frozen reference fixtures, not Codex runtime dependencies.",
+            "skills": claude_skills,
+        },
         category="skill_agent_wiring",
+        severity="skip",
     )
     check(
         checks,
         "claude_sim_agent_role_cards",
-        "pass" if not missing_claude_agents else "fail",
-        {"missing": missing_claude_agents, "agents": claude_agents},
+        "skip",
+        {
+            "reason": "Claude agent cards are frozen reference fixtures, not Codex runtime dependencies.",
+            "agents": claude_agents,
+        },
         category="skill_agent_wiring",
+        severity="skip",
     )
     check(
         checks,

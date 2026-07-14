@@ -3,9 +3,13 @@ name: julia-sim
 description: Use when writing or auditing the Julia side of a Codex Ratchet sim so Julia uses the QIT-aligned Julia stack as load-bearing tools instead of a bare LinearAlgebra mirror.
 ---
 
-MIRROR: authoritative copy is .claude/skills/julia-sim/SKILL.md; sync direction .claude -> codex_skills.
-
 # Julia Sim
+
+This is the repo-held Codex skill source governed by `AGENTS.md`.
+Claude-family skills and agents are reference-only, not authority or a sync
+source. Current tool membership comes from the runtime target map and
+`system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json`;
+do not duplicate membership or deprecation tables here.
 
 Julia is the reference substrate when it can express the claim through aligned packages. It is not enough for code to be written in Julia.
 
@@ -170,11 +174,3 @@ Optional envs verified on 2026-06-07:
 Validation: optional packages are recorded with their project. They are blocked in the default env unless a fresh latest-compatible check says otherwise.
 
 On failure: do not pin stale dependencies or globally downgrade the default env to make an optional package work. Isolate it in a project or block it. If a strict latest-dependency requirement is in force, block PEPSKit until its compatibility line supports the needed latest dependency. Do not let a missing package become a fallback to bare `LinearAlgebra`.
-
-## DEPRECATED / DO-NOT-USE
-
-Deprecation authority: capability_matrix receipts + owner 2026-06-09; a deprecated tool needs a passing capability probe + owner sign-off to return.
-
-| Status | Tools / surfaces | Rule |
-| --- | --- | --- |
-| OUT OF SYSTEM | Julia `PythonCall` (`CondaPkg` pollution), `ITensorNetworks`, `TensorOperations`, `Yao`, `QuantumToolbox` (installed-unused), PEPS3D/CTMRG | Do not use in Julia sim claim paths or promise matrices. |

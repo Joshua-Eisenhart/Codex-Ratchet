@@ -41,7 +41,10 @@ CANONICAL_PYTHON_ALIAS = Path(
 )
 JULIA_BIN = Path("/opt/homebrew/bin/julia")
 JULIA_PROJECT = Path(
-    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier"
+    os.environ.get(
+        "CODEX_RATCHET_JULIA_PROJECT",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+    )
 )
 SOURCE_DIR = Path(__file__).resolve().parent
 JULIA_SOURCE = SOURCE_DIR / "gap_k_tensor_chain_v2.jl"
@@ -641,6 +644,7 @@ def main() -> int:
         "version": "2.0.0",
         "tier": "tool_stage_pre_lego",
         "purpose": "Test real quimb and ITensors/ITensorMPS MPS APIs on independently generated finite fixtures.",
+        "packages_used": ["quimb", "ITensors", "ITensorMPS"],
         "scientific_question": "Do the two concrete tensor-network API paths agree on one nontrivial fixed 6-qubit Schmidt spectrum while rejecting named convention, state, and dimension mistakes?",
         "sim_execution_kind": "classical",
         "sim_class": "tool_lego_fit_probe",

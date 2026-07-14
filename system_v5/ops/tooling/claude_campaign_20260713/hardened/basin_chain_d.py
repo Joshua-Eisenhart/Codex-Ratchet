@@ -40,9 +40,17 @@ import z3
 
 HERE = Path(__file__).resolve().parent
 JULIA_SOURCE = HERE / "basin_chain_d.jl"
-RESULT_PATH = HERE / "results" / "basin_chain_d_results.json"
+RESULT_PATH = Path(
+    os.environ.get(
+        "CODEX_RATCHET_BASIN_OUTPUT",
+        str(HERE / "results" / "basin_chain_d_results.json"),
+    )
+)
 JULIA = "/opt/homebrew/bin/julia"
-JULIA_PROJECT = "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier"
+JULIA_PROJECT = os.environ.get(
+    "CODEX_RATCHET_JULIA_PROJECT",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+)
 
 FLOOR = 3.0
 DRIVE = 0.5
@@ -59,6 +67,11 @@ TOOL_MANIFEST = {
         "tried": True,
         "used": True,
         "reason": "AttractorsViaProximity and basins_of_attraction gate active and erased basin labels.",
+    },
+    "DynamicalSystems": {
+        "tried": True,
+        "used": True,
+        "reason": "The basin mapper consumes a directly constructed DynamicalSystems.DeterministicIteratedMap and StateSpaceSet.",
     },
     "StaticArrays": {
         "tried": True,
@@ -89,6 +102,7 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "Attractors": "load_bearing",
+    "DynamicalSystems": "load_bearing",
     "StaticArrays": "supportive",
     "diffrax": "load_bearing",
     "optimistix": "load_bearing",
@@ -128,6 +142,7 @@ def run_julia_leg() -> dict[str, Any]:
     ]
     environment = dict(os.environ)
     environment["JULIA_LOAD_PATH"] = "@:@stdlib"
+    environment["JULIA_PKG_OFFLINE"] = "true"
     completed = subprocess.run(
         command,
         cwd=HERE,
@@ -143,6 +158,7 @@ def run_julia_leg() -> dict[str, Any]:
         "JULIA_ACTIVE_PROJECT",
         "JULIA_VERSION",
         "JULIA_ATTRACTORS_VERSION",
+        "JULIA_DYNAMICALSYSTEMS_VERSION",
         "JULIA_STATICARRAYS_VERSION",
         "JULIA_START_COUNT",
         "JULIA_ACTIVE_BASIN_COUNT",
@@ -187,10 +203,11 @@ def run_julia_leg() -> dict[str, Any]:
         "julia_version": fields.get("JULIA_VERSION"),
         "package_versions": {
             "Attractors": fields.get("JULIA_ATTRACTORS_VERSION"),
+            "DynamicalSystems": fields.get("JULIA_DYNAMICALSYSTEMS_VERSION"),
             "StaticArrays": fields.get("JULIA_STATICARRAYS_VERSION"),
         },
-        "packages_used": ["Attractors", "StaticArrays"],
-        "aligned_packages_load_bearing": ["Attractors"],
+        "packages_used": ["Attractors", "DynamicalSystems", "StaticArrays"],
+        "aligned_packages_load_bearing": ["Attractors", "DynamicalSystems"],
         "source_path": str(JULIA_SOURCE),
         "source_sha256": sha256_file(JULIA_SOURCE),
         "reads_peer_result": False,

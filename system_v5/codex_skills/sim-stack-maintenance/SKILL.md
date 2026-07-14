@@ -3,9 +3,13 @@ name: sim-stack-maintenance
 description: Use when stewarding Codex Ratchet Julia, JAX, PyTorch, SMT, topology, tensor, graph, or bridge packages across installs, upgrades, package audits, engine-skill drift, or worker confusion about which libraries are available.
 ---
 
-MIRROR: authoritative copy is .claude/skills/sim-stack-maintenance/SKILL.md; sync direction .claude -> codex_skills.
-
 # Sim Stack Maintenance
+
+This is the repo-held Codex skill source governed by `AGENTS.md`.
+Claude-family skills and agents are reference-only, not authority or a sync
+source. Current tool membership comes from the runtime target map and
+`system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json`;
+do not duplicate membership or deprecation tables here.
 
 Keep the Codex Ratchet runtime/tool layer healthy without turning package
 presence into a scientific claim. This is a stewardship skill for the transient
@@ -89,11 +93,13 @@ reachable; it does not admit a lego, bridge, manifold, Axis0, or physics claim.
 
 Keep these surfaces mutually consistent:
 
-- `system_v5/codex_skills/`
-- `/Users/joshuaeisenhart/.codex/skills/`
-- `/Users/joshuaeisenhart/.codex-second/skills/`
-- `.claude/skills/`
-- `.claude/agents/`
+- `system_v5/codex_skills/` as the repo-held source;
+- `/Users/joshuaeisenhart/.codex/skills/` and
+  `/Users/joshuaeisenhart/.codex-second/skills/` as active copies reconciled
+  only after repo validation.
+
+Claude-family surfaces may be inspected as untrusted fixtures for drift, but
+they are never the sync source for Codex skills.
 
 The engine skills are a package menu matched to claim shape:
 `julia-sim`, `jax-sim`, `pytorch-sim`, and `three-engine-sim`. Use

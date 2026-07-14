@@ -3,9 +3,13 @@ name: pytorch-sim
 description: Use when writing or auditing the PyTorch side of a Codex Ratchet sim so PyTorch graph/network/autograd/existing machinery can be first-class when scoped, while never replacing Julia Canon arbitration.
 ---
 
-MIRROR: authoritative copy is .claude/skills/pytorch-sim/SKILL.md; sync direction .claude -> codex_skills.
-
 # PyTorch Sim
+
+This is the repo-held Codex skill source governed by `AGENTS.md`.
+Claude-family skills and agents are reference-only, not authority or a sync
+source. Current tool membership comes from the runtime target map and
+`system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json`;
+do not duplicate membership or deprecation tables here.
 
 PyTorch is first-class when the claim path needs graph/network/autograd/existing torch machinery. Its strongest roles are `torch_geometric` message passing, `torch.func`/`functorch` transforms, differentiable geometric computation, torch-backed geometry/equivariance, ODE/candidate tools, and proof checks over torch-derived finite values. PyTorch is not the semantic arbiter for Julia Canon artifacts: bare array-value agreement is lower authority than Julia-arbitrated Canon evidence. For explicit all-three envelopes or user-directed all-three tasks, PyTorch is required; for other packets, scope it when a real torch-native role exists and mark it `not_scoped` when it does not.
 
@@ -109,13 +113,3 @@ Result fragment:
 Validation: PyTorch does not read Julia or JAX output as input for its own result.
 
 On failure: do not pass the result as a PyTorch-scoped or all-three envelope; use `--require-pytorch` only once the PyTorch leg is real and mode-declared.
-
-## DEPRECATED / DO-NOT-USE
-
-Deprecation authority: capability_matrix receipts + owner 2026-06-09; a deprecated tool needs a passing capability probe + owner sign-off to return.
-
-| Status | Tools / surfaces | Rule |
-| --- | --- | --- |
-| REPLACE | `torch_ga` (0.0.6 hobby-tier; `kingdon` under test as successor), `clifford` (design-frozen) | Do not use for new PyTorch sim claim paths. `clifford` is legacy fallback only. |
-| PRUNE FROM PROMISES | `cma`, `deap`, `evotorch`, `optuna`, `pymoo`, `ribs`, `datasketch`, `hdbscan`, `hypothesis`, `pynndescent`, `sklearn`, `umap`, `igraph` | No matrix cell. |
-| UNCHANGED RULE | `numpy`, `scipy`, `mpmath` | Control-lane only; never claim-path or load-bearing. |

@@ -1,0 +1,839 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex-ratchet.local/schemas/deep_stack_tool_receipt_v1.schema.json",
+  "title": "Codex Ratchet deep-stack tool receipt v1",
+  "description": "Structural schema for one fail-closed tool or library integration receipt. Cross-file hashes, roster membership, edge coverage, computed verdicts, and claim ceilings are enforced by validate_deep_stack_receipt.py.",
+  "type": "object",
+  "required": [
+    "schema",
+    "receipt_id",
+    "run_id",
+    "generated_at",
+    "tool_id",
+    "package",
+    "bucket",
+    "family",
+    "runtime_id",
+    "classification",
+    "promotion_allowed",
+    "scientific_claim_proven",
+    "source_binding",
+    "runtime_binding",
+    "verdict",
+    "evidence_boundary"
+  ],
+  "properties": {
+    "schema": {
+      "const": "codex-ratchet.deep-stack-tool-receipt.v1"
+    },
+    "receipt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tool_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "package": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bucket": {
+      "type": "string",
+      "minLength": 1
+    },
+    "family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "runtime_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "classification": {
+      "const": "integration_diagnostic"
+    },
+    "promotion_allowed": {
+      "const": false
+    },
+    "scientific_claim_proven": {
+      "const": false
+    },
+    "source_binding": {
+      "$ref": "#/$defs/sourceBinding"
+    },
+    "runtime_binding": {
+      "$ref": "#/$defs/runtimeBinding"
+    },
+    "cases": {
+      "type": "object",
+      "required": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress"
+      ],
+      "properties": {
+        "positive": {
+          "$ref": "#/$defs/caseResult"
+        },
+        "negative": {
+          "$ref": "#/$defs/caseResult"
+        },
+        "boundary": {
+          "$ref": "#/$defs/caseResult"
+        },
+        "stress": {
+          "$ref": "#/$defs/caseResult"
+        }
+      },
+      "additionalProperties": false
+    },
+    "demotion": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/passResult"
+        },
+        {
+          "type": "object",
+          "required": [
+            "method",
+            "raw_demotion_sha256"
+          ],
+          "properties": {
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "raw_demotion_sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        }
+      ]
+    },
+    "adjacent_integrations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/passResult"
+          },
+          {
+            "type": "object",
+            "required": [
+              "edge_id"
+            ],
+            "properties": {
+              "edge_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "representative_sim": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/passResult"
+        },
+        {
+          "type": "object",
+          "required": [
+            "source_path",
+            "source_sha256",
+            "execution_source_path",
+            "execution_source_sha256",
+            "invoked_source_path",
+            "invoked_source_sha256",
+            "invoked_source_argument",
+            "invoked_source_argument_present",
+            "source_rewrites",
+            "executed",
+            "execution_mode",
+            "command",
+            "command_line",
+            "exit_code",
+            "timed_out",
+            "stdout_nonempty",
+            "api_failure_signals",
+            "emitted_artifacts",
+            "output_contract_paths",
+            "emitted_output_contract_paths",
+            "output_contract_exact",
+            "reported_scientific_status",
+            "scientific_status_preserved",
+            "promotion_allowed",
+            "scientific_claim_proven",
+            "operational_execution_pass",
+            "fixture_credit",
+            "mapped_tool_evidence"
+          ],
+          "properties": {
+            "source_path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "execution_source_path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "execution_source_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "invoked_source_path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "invoked_source_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "invoked_source_argument": {
+              "type": "string",
+              "minLength": 1
+            },
+            "invoked_source_argument_present": {
+              "const": true
+            },
+            "source_rewrites": {
+              "type": "array"
+            },
+            "executed": {
+              "const": true
+            },
+            "execution_mode": {
+              "enum": [
+                "direct_current_probe",
+                "controller_invoked_nested_fixture",
+                "isolated_disposable_projection"
+              ]
+            },
+            "command": {
+              "type": "array",
+              "minItems": 1
+            },
+            "command_line": {
+              "type": "string",
+              "minLength": 1
+            },
+            "exit_code": {
+              "type": "integer"
+            },
+            "timed_out": {
+              "const": false
+            },
+            "stdout_nonempty": {
+              "type": "boolean"
+            },
+            "api_failure_signals": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "emitted_artifacts": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "exists",
+                  "changed_or_created",
+                  "created_after_explicit_unlink",
+                  "json_object_parsed",
+                  "sha256"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "exists": {
+                    "const": true
+                  },
+                  "changed_or_created": {
+                    "const": true
+                  },
+                  "created_after_explicit_unlink": {
+                    "const": true
+                  },
+                  "json_object_parsed": {
+                    "const": true
+                  },
+                  "sha256": {
+                    "$ref": "#/$defs/sha256"
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "output_contract_paths": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "emitted_output_contract_paths": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "output_contract_exact": {
+              "type": "boolean"
+            },
+            "reported_scientific_status": {
+              "type": "object",
+              "required": [
+                "state"
+              ],
+              "properties": {
+                "state": {
+                  "enum": [
+                    "green",
+                    "red",
+                    "unknown"
+                  ]
+                }
+              },
+              "additionalProperties": true
+            },
+            "scientific_status_preserved": {
+              "const": true
+            },
+            "promotion_allowed": {
+              "const": false
+            },
+            "scientific_claim_proven": {
+              "const": false
+            },
+            "operational_execution_pass": {
+              "type": "boolean"
+            },
+            "fixture_credit": {
+              "const": "representative_consumer_only_not_seven_case_replacement"
+            },
+            "mapped_tool_evidence": {
+              "type": "object",
+              "required": [
+                "mode",
+                "registry_tool_ids_for_source",
+                "registry_aliases",
+                "structured_artifact_identities",
+                "matched_structured_identities",
+                "passed",
+                "claim_ceiling"
+              ],
+              "properties": {
+                "mode": {
+                  "enum": [
+                    "registry_single_tool_source_contract",
+                    "structured_artifact_tool_identity"
+                  ]
+                },
+                "registry_tool_ids_for_source": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "registry_aliases": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "structured_artifact_identities": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "matched_structured_identities": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "passed": {
+                  "type": "boolean"
+                },
+                "claim_ceiling": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      ]
+    },
+    "tool_calls": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/toolCall"
+      }
+    },
+    "raw_tool_row_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "policy_check": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/passResult"
+        },
+        {
+          "type": "object",
+          "required": [
+            "policy"
+          ],
+          "properties": {
+            "policy": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "verdict": {
+      "type": "object",
+      "required": [
+        "receipt_valid",
+        "operational_status",
+        "operational_pass"
+      ],
+      "properties": {
+        "receipt_valid": {
+          "const": true
+        },
+        "operational_status": {
+          "enum": [
+            "passed",
+            "red",
+            "policy_passed",
+            "policy_red"
+          ]
+        },
+        "operational_pass": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "evidence_boundary": {
+      "type": "object",
+      "required": [
+        "skill_guidance_max",
+        "promotion_allowed",
+        "scientific_claim_proven",
+        "release_eligible",
+        "lev_projection_only",
+        "l4_earned"
+      ],
+      "properties": {
+        "skill_guidance_max": {
+          "const": "L2"
+        },
+        "promotion_allowed": {
+          "const": false
+        },
+        "scientific_claim_proven": {
+          "const": false
+        },
+        "release_eligible": {
+          "const": false
+        },
+        "lev_projection_only": {
+          "const": true
+        },
+        "l4_earned": {
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "cases",
+        "demotion",
+        "adjacent_integrations",
+        "representative_sim",
+        "tool_calls",
+        "raw_tool_row_sha256"
+      ],
+      "not": {
+        "required": [
+          "policy_check"
+        ]
+      }
+    },
+    {
+      "required": [
+        "policy_check"
+      ],
+      "not": {
+        "anyOf": [
+          {
+            "required": [
+              "cases"
+            ]
+          },
+          {
+            "required": [
+              "demotion"
+            ]
+          },
+          {
+            "required": [
+              "adjacent_integrations"
+            ]
+          },
+          {
+            "required": [
+              "representative_sim"
+            ]
+          },
+          {
+            "required": [
+              "tool_calls"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "additionalProperties": true,
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceBinding": {
+      "type": "object",
+      "required": [
+        "registry_path",
+        "registry_sha256",
+        "runner_path",
+        "runner_sha256",
+        "probe_path",
+        "probe_sha256",
+        "ratchet_commit",
+        "ratchet_tree"
+      ],
+      "properties": {
+        "registry_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "registry_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "runner_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runner_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "probe_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "probe_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "ratchet_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "ratchet_tree": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "support_sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256",
+              "probe_sha256",
+              "hash_matches_probe",
+              "role"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "probe_sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "hash_matches_probe": {
+                "const": true
+              },
+              "role": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "runtimeBinding": {
+      "type": "object",
+      "required": [
+        "runtime_id",
+        "executable",
+        "executable_realpath",
+        "executable_sha256",
+        "executable_realpath_sha256",
+        "probe_executable",
+        "probe_executable_realpath",
+        "probe_executable_sha256",
+        "probe_executable_realpath_sha256",
+        "executable_matches_probe",
+        "executable_hash_matches_probe",
+        "runtime_version",
+        "probe_runtime_version",
+        "runtime_version_matches_probe",
+        "environment_policy",
+        "install_allowed"
+      ],
+      "properties": {
+        "runtime_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executable": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executable_realpath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executable_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "executable_realpath_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "probe_executable": {
+          "type": "string",
+          "minLength": 1
+        },
+        "probe_executable_realpath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "probe_executable_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "probe_executable_realpath_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "executable_matches_probe": {
+          "const": true
+        },
+        "executable_hash_matches_probe": {
+          "const": true
+        },
+        "runtime_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "probe_runtime_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runtime_version_matches_probe": {
+          "const": true
+        },
+        "environment_policy": {
+          "type": "object"
+        },
+        "install_allowed": {
+          "const": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "passResult": {
+      "type": "object",
+      "required": [
+        "passed"
+      ],
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "caseResult": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/passResult"
+        },
+        {
+          "type": "object",
+          "required": [
+            "qualified_api",
+            "raw_case_sha256"
+          ],
+          "properties": {
+            "qualified_api": {
+              "type": "string",
+              "minLength": 1
+            },
+            "raw_case_sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          },
+          "anyOf": [
+            {
+              "required": [
+                "observed"
+              ]
+            },
+            {
+              "required": [
+                "detail"
+              ]
+            },
+            {
+              "required": [
+                "results"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "toolCall": {
+      "type": "object",
+      "required": [
+        "qualified_api",
+        "input_object",
+        "output_object",
+        "gates",
+        "executed",
+        "load_bearing",
+        "raw_probe_recorded",
+        "raw_call_sha256",
+        "probe_source_sha256",
+        "case_bindings"
+      ],
+      "properties": {
+        "qualified_api": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input_object": {
+          "$ref": "#/$defs/nonemptyValue"
+        },
+        "output_object": {
+          "$ref": "#/$defs/nonemptyValue"
+        },
+        "gates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "executed": {
+          "const": true
+        },
+        "load_bearing": {
+          "const": true
+        },
+        "raw_probe_recorded": {
+          "const": true
+        },
+        "raw_call_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "probe_source_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "case_bindings": {
+          "type": "object",
+          "required": [
+            "positive",
+            "negative",
+            "boundary",
+            "stress"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "nonemptyValue": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "minProperties": 1
+        },
+        {
+          "type": "array",
+          "minItems": 1
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    }
+  }
+}

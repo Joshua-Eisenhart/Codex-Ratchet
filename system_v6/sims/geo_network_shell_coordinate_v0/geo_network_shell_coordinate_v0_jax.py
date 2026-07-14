@@ -119,11 +119,17 @@ def degrees(site_ids: list[str], edges: list[dict[str, Any]]) -> jnp.ndarray:
         n_node=jnp.asarray([len(site_ids)], dtype=jnp.int32),
         n_edge=jnp.asarray([len(edges)], dtype=jnp.int32),
     )
-    del graph
-    deg = jnp.zeros((len(site_ids),), dtype=jnp.float64)
-    deg = deg.at[senders].add(1.0)
-    deg = deg.at[receivers].add(1.0)
-    return deg
+    sender_degree = jraph.segment_sum(
+        jnp.ones((graph.senders.shape[0],), dtype=jnp.float64),
+        graph.senders,
+        num_segments=graph.nodes.shape[0],
+    )
+    receiver_degree = jraph.segment_sum(
+        jnp.ones((graph.receivers.shape[0],), dtype=jnp.float64),
+        graph.receivers,
+        num_segments=graph.nodes.shape[0],
+    )
+    return sender_degree + receiver_degree
 
 
 def coordinate_values(z_values: list[float], deg_values: jnp.ndarray, edges: list[dict[str, Any]], site_ids: list[str]) -> dict[str, Any]:
@@ -323,11 +329,19 @@ def build_result() -> dict[str, Any]:
         "aligned_packages_load_bearing": ["jraph", "z3"],
         "claim_path_tools": ["jraph", "z3"],
         "tool_calls": [
-            tool_call("jraph", "jraph.GraphsTuple", ["degree_weighted_shell_centroid_spread_v0", "permuted_site_labels"]),
+            tool_call(
+                "jraph",
+                "jraph.GraphsTuple + jraph.segment_sum",
+                ["degree_weighted_shell_centroid_spread_v0", "permuted_site_labels"],
+            ),
             tool_call("z3", "z3.Solver.check", ["degenerate_unweighted_conflation"]),
         ],
         "capability_receipts": [
-            {"tool": "jraph", "function": "jraph.GraphsTuple", "status": "called_in_current_rerun"},
+            {
+                "tool": "jraph",
+                "function": "jraph.GraphsTuple + jraph.segment_sum",
+                "status": "called_in_current_rerun",
+            },
             {"tool": "z3", "function": "z3.Solver.check", "status": "called_in_current_rerun"},
         ],
     }

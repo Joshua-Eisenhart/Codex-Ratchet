@@ -46,6 +46,66 @@ def status_record(tool: str, seed_use: str, installed_where: str) -> dict[str, A
     }
 
 
+def probe_diffrax() -> dict[str, Any]:
+    import diffrax
+    import jax
+    import jax.numpy as jnp
+
+    jax.config.update("jax_enable_x64", True)
+    rec = status_record(
+        "diffrax",
+        "Direct finite ODE decay, erased-flow boundary, wrong-sign control, and batched-rate stress",
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    )
+
+    def solve(rate: float, y0: float = 1.0) -> float:
+        term = diffrax.ODETerm(lambda t, y, args: -args * y)
+        solution = diffrax.diffeqsolve(
+            term,
+            diffrax.Tsit5(),
+            t0=0.0,
+            t1=1.0,
+            dt0=0.05,
+            y0=jnp.asarray(y0, dtype=jnp.float64),
+            args=jnp.asarray(rate, dtype=jnp.float64),
+            saveat=diffrax.SaveAt(t1=True),
+        )
+        return float(solution.ys[-1])
+
+    decay = solve(1.0)
+    erased = solve(0.0)
+    wrong_sign = solve(-1.0)
+    rates = np.linspace(0.1, 2.0, 16)
+    stress = [solve(float(rate)) for rate in rates]
+    rec.update(
+        {
+            "packages_used": ["diffrax"],
+            "probe_result": {
+                "qualified_api": [
+                    "diffrax.ODETerm",
+                    "diffrax.Tsit5",
+                    "diffrax.diffeqsolve",
+                    "diffrax.SaveAt",
+                ],
+                "decay_endpoint": decay,
+                "decay_expected": math.exp(-1.0),
+                "decay_pass": abs(decay - math.exp(-1.0)) <= 1.0e-8,
+                "erased_endpoint": erased,
+                "erased_boundary_pass": abs(erased - 1.0) <= 1.0e-10,
+                "wrong_sign_endpoint": wrong_sign,
+                "wrong_sign_control_pass": wrong_sign > 1.0,
+                "stress_rate_count": len(stress),
+                "stress_all_finite_monotone": bool(
+                    np.all(np.isfinite(stress)) and all(a > b for a, b in zip(stress, stress[1:]))
+                ),
+            },
+            "verdict": "useful-now",
+            "layer_routed_to": "bounded continuous-flow integration and basin-relaxation cross-checks",
+        }
+    )
+    return rec
+
+
 def probe_quimb_cotengra() -> dict[str, Any]:
     import cotengra as ctg
     import quimb.tensor as qtn
@@ -119,6 +179,7 @@ def probe_quimb_cotengra() -> dict[str, Any]:
     tree = ctg.array_contract_tree(inputs, output=(), size_dict=size_dict, optimize="greedy")
     rec.update(
         {
+            "packages_used": ["quimb", "cotengra"],
             "probe_result": {
                 "rows": rows,
                 "cotengra_8q_norm_tree": {
@@ -265,6 +326,7 @@ def probe_jaxopt_lineax() -> dict[str, Any]:
         }
     rec.update(
         {
+            "packages_used": ["jaxopt", "lineax"],
             "probe_result": {"rows": rows},
             "verdict": "useful-now",
             "layer_routed_to": "S5 affine terrain fixed-point/basin solver sidecar",
@@ -306,6 +368,7 @@ def probe_e3nn_jax() -> dict[str, Any]:
     max_diff = float(jnp.max(jnp.abs(direct - rotated)))
     rec.update(
         {
+            "packages_used": ["e3nn-jax"],
             "probe_result": {
                 "irreps": "1o",
                 "theta": theta,
@@ -373,6 +436,7 @@ def probe_netket() -> dict[str, Any]:
     dense = np.asarray(op.to_dense())
     rec.update(
         {
+            "packages_used": ["netket"],
             "probe_result": {
                 "hilbert_size": int(hi.size),
                 "n_states": int(hi.n_states),
@@ -409,6 +473,7 @@ def probe_dynamiqs() -> dict[str, Any]:
     z_final = float(jnp.real(res.expects[1, -1]))
     rec.update(
         {
+            "packages_used": ["dynamiqs"],
             "probe_result": {
                 "api": "dynamiqs.mesolve",
                 "x_final": x_final,
@@ -483,6 +548,7 @@ def probe_galois() -> dict[str, Any]:
 
 def main() -> None:
     probes = [
+        probe_diffrax(),
         probe_quimb_cotengra(),
         probe_ott(),
         probe_jaxopt_lineax(),
@@ -497,7 +563,8 @@ def main() -> None:
         "promotion_allowed": False,
         "generated_at_unix": time.time(),
         "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
-        "installs_performed": [
+        "installs_performed": [],
+        "historical_environment_records_not_current_run": [
             {
                 "package": "galois",
                 "version": "0.4.11",

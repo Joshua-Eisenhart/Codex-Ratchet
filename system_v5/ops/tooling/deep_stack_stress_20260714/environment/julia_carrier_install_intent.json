@@ -1,0 +1,51 @@
+{
+  "schema": "codex-ratchet.install-intent.v1",
+  "created_at": "2026-07-14T08:41:52Z",
+  "campaign": "deep_stack_stress_20260714",
+  "reason": "The canonical strict Julia carrier Project.toml is present in the isolated campaign worktree, but its ignored Manifest.toml and resolved package state are absent, so every declared non-stdlib package fails to load.",
+  "target_environment": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/julia_carrier/Project.toml",
+  "runtime": {
+    "executable": "/opt/homebrew/bin/julia",
+    "load_path": "@:@stdlib",
+    "startup_file": false
+  },
+  "preflight_result": "missing_project_resolution",
+  "requested_action": "Pkg.instantiate() for the existing direct dependency set without editing Project.toml",
+  "direct_dependencies": [
+    "Attractors",
+    "ChaosTools",
+    "CliffordAlgebras",
+    "DifferentialEquations",
+    "DynamicalSystems",
+    "Graphs",
+    "Grassmann",
+    "ITensorMPS",
+    "ITensors",
+    "JSON",
+    "JSON3",
+    "Manifolds",
+    "Octonions",
+    "QuantumClifford",
+    "QuantumOptics",
+    "QuantumToolbox",
+    "Quaternions",
+    "StaticArrays",
+    "Symbolics",
+    "Yao",
+    "Z3"
+  ],
+  "explicit_exclusions": [
+    "PythonCall",
+    "DLPack",
+    "CondaPkg",
+    "Zygote",
+    "Basins"
+  ],
+  "mutation_boundary": {
+    "tracked_repo_files": "no tracked source or Project.toml edits",
+    "worktree_local": "ignored julia_carrier/Manifest.toml may be created",
+    "machine_local": "Julia depot packages, artifacts, and compiled caches may be populated"
+  },
+  "authorization_basis": "Owner requested that the system tools and libraries be integrated, run, stress tested, and made operational.",
+  "claim_ceiling": "Environment repair only; package resolution or import success is not tool integration or scientific evidence."
+}

@@ -1,0 +1,353 @@
+{
+  "schema": "codex-ratchet.deep-stack-integration-edges.v1",
+  "generated_on": "2026-07-14",
+  "claim_ceiling": "Operational edge-cover registry only; an edge pass does not prove Ratchet/QIT science.",
+  "coverage_policy": "Every current operational tool participates in at least one real API data-exchange or same-claim cross-check edge. Control/support tools may share provenance edges.",
+  "edges": [
+    {
+      "id": "py_jax_backend",
+      "family": "jax_core",
+      "members": [
+        "py_jax",
+        "py_jaxlib"
+      ],
+      "exchange": "JAX staged function compiled and executed by the jaxlib CPU backend",
+      "case_id": "jax_compiled_backend"
+    },
+    {
+      "id": "py_jax_module_train",
+      "family": "jax_ml",
+      "members": [
+        "py_equinox",
+        "py_optax",
+        "py_chex",
+        "py_jaxtyping",
+        "py_jax_dataclasses"
+      ],
+      "exchange": "typed Equinox parameters receive Optax updates and Chex checks under JAX",
+      "case_id": "equinox_optax_typed_update"
+    },
+    {
+      "id": "py_flax_orbax",
+      "family": "jax_ml",
+      "members": [
+        "py_flax",
+        "py_orbax"
+      ],
+      "exchange": "Flax parameter pytree is checkpointed and restored by Orbax",
+      "case_id": "flax_orbax_checkpoint"
+    },
+    {
+      "id": "py_probabilistic",
+      "family": "jax_probabilistic",
+      "members": [
+        "py_blackjax",
+        "py_numpyro",
+        "py_pymc"
+      ],
+      "exchange": "same bounded normal target is evaluated by JAX and independent PyMC distribution surfaces",
+      "case_id": "probabilistic_target_crosscheck"
+    },
+    {
+      "id": "py_jax_dynamics",
+      "family": "jax_dynamics",
+      "members": [
+        "py_diffrax",
+        "py_lineax",
+        "py_optimistix",
+        "py_jaxopt",
+        "py_dynamax"
+      ],
+      "exchange": "bounded linear dynamics use native integration, linear solve, fixed point and state-space surfaces",
+      "case_id": "jax_dynamics_solver_chain"
+    },
+    {
+      "id": "py_jax_quantum",
+      "family": "qit_tensor",
+      "members": [
+        "py_dynamiqs",
+        "py_qutip",
+        "py_qutip_jax",
+        "py_netket"
+      ],
+      "exchange": "same finite qubit fixture is represented through open-system and many-body APIs",
+      "case_id": "python_quantum_chain"
+    },
+    {
+      "id": "py_tensor_network",
+      "family": "qit_tensor",
+      "members": [
+        "py_quimb",
+        "py_cotengra",
+        "py_opt_einsum",
+        "py_autoray"
+      ],
+      "exchange": "tensor network is contracted with package-native path and backend dispatch",
+      "case_id": "python_tensor_contraction_chain"
+    },
+    {
+      "id": "py_equivariant_graph",
+      "family": "geometry_graph",
+      "members": [
+        "py_e3nn_jax",
+        "py_jraph",
+        "py_jaxlie",
+        "py_jaxga"
+      ],
+      "exchange": "rotation and graph carriers are transformed through JAX-native geometry/equivariance APIs",
+      "case_id": "jax_geometry_graph_chain"
+    },
+    {
+      "id": "py_transport",
+      "family": "optimization_transport",
+      "members": [
+        "py_ott",
+        "py_flowmc"
+      ],
+      "exchange": "bounded distributions are compared and sampled with package-native JAX surfaces",
+      "case_id": "jax_transport_sampling_chain"
+    },
+    {
+      "id": "py_haiku_flax",
+      "family": "jax_ml",
+      "members": [
+        "py_haiku",
+        "py_flax"
+      ],
+      "exchange": "same fixed affine network fixture is evaluated through two JAX module systems",
+      "case_id": "haiku_flax_affine_crosscheck"
+    },
+    {
+      "id": "py_torch_core",
+      "family": "pytorch_core",
+      "members": [
+        "py_torch",
+        "py_torchdiffeq",
+        "py_torchode",
+        "py_xitorch"
+      ],
+      "exchange": "same decay and derivative fixture is evaluated through torch-native solver/autograd surfaces",
+      "case_id": "torch_dynamics_chain"
+    },
+    {
+      "id": "py_torch_graph_geometry",
+      "family": "geometry_graph",
+      "members": [
+        "py_torch_geometric",
+        "py_e3nn",
+        "py_geomstats"
+      ],
+      "exchange": "graph and equivariant/manifold transformations share torch tensors",
+      "case_id": "torch_graph_geometry_chain"
+    },
+    {
+      "id": "py_torch_convex",
+      "family": "optimization_transport",
+      "members": [
+        "py_cvxpylayers",
+        "py_torch"
+      ],
+      "exchange": "differentiable convex solution is consumed by torch autograd",
+      "case_id": "torch_cvxpylayer_chain"
+    },
+    {
+      "id": "py_geometric_algebra",
+      "family": "algebra_geometry",
+      "members": [
+        "py_torch_ga",
+        "py_clifford"
+      ],
+      "exchange": "geometric-product identities are checked across torch-native and reference GA APIs",
+      "case_id": "python_ga_crosscheck"
+    },
+    {
+      "id": "py_proof_symbolic",
+      "family": "proof_symbolic",
+      "members": [
+        "py_z3",
+        "py_cvc5",
+        "py_sympy"
+      ],
+      "exchange": "same finite proposition is derived symbolically and checked by two solvers",
+      "case_id": "python_solver_triad"
+    },
+    {
+      "id": "py_system_id",
+      "family": "system_identification",
+      "members": [
+        "py_pysindy",
+        "py_pykoopman",
+        "py_sklearn",
+        "py_scipy",
+        "py_pandas",
+        "py_numpy"
+      ],
+      "exchange": "same affine trajectory/table moves through system-ID and numeric data surfaces",
+      "case_id": "python_system_id_chain"
+    },
+    {
+      "id": "py_graph_algorithms",
+      "family": "graph_topology",
+      "members": [
+        "py_networkx",
+        "py_igraph",
+        "py_rustworkx"
+      ],
+      "exchange": "same graph has shortest paths and cycle structure cross-checked",
+      "case_id": "graph_algorithm_crosscheck"
+    },
+    {
+      "id": "py_higher_order_topology",
+      "family": "graph_topology",
+      "members": [
+        "py_xgi",
+        "py_toponetx",
+        "py_gudhi",
+        "py_kahypar",
+        "py_kanren"
+      ],
+      "exchange": "same finite incidence fixture is represented as hypergraph, complex, partition, and relation",
+      "case_id": "higher_order_topology_chain"
+    },
+    {
+      "id": "jl_algebra",
+      "family": "julia_algebra",
+      "members": [
+        "jl_quaternions",
+        "jl_octonions",
+        "jl_cliffordalgebras",
+        "jl_grassmann",
+        "jl_symbolics",
+        "jl_z3"
+      ],
+      "exchange": "package-native algebra objects produce identities and solver-bound structure checks",
+      "case_id": "julia_algebra_chain"
+    },
+    {
+      "id": "jl_tensor",
+      "family": "julia_tensor",
+      "members": [
+        "jl_itensors",
+        "jl_itensormps",
+        "jl_linearalgebra"
+      ],
+      "exchange": "MPS construction, contraction and dense oracle share exact indices",
+      "case_id": "julia_tensor_chain"
+    },
+    {
+      "id": "jl_dynamics",
+      "family": "julia_dynamics",
+      "members": [
+        "jl_differentialequations",
+        "jl_dynamicalsystems",
+        "jl_attractors",
+        "jl_chaostools",
+        "jl_staticarrays",
+        "jl_manifolds"
+      ],
+      "exchange": "static states move through native dynamics, basin and geometry APIs",
+      "case_id": "julia_dynamics_basin_chain"
+    },
+    {
+      "id": "jl_qit",
+      "family": "julia_qit",
+      "members": [
+        "jl_quantumclifford",
+        "jl_quantumoptics",
+        "jl_quantumtoolbox",
+        "jl_yao",
+        "jl_graphs"
+      ],
+      "exchange": "same bounded qubit/control fixture is checked across stabilizer, circuit and open-system APIs",
+      "case_id": "julia_qit_chain"
+    },
+    {
+      "id": "jl_receipt",
+      "family": "provenance_support",
+      "members": [
+        "jl_json",
+        "jl_json3",
+        "jl_dates",
+        "jl_sha"
+      ],
+      "exchange": "typed receipt roundtrips and hash/timestamp bindings cross-check",
+      "case_id": "julia_receipt_chain"
+    },
+    {
+      "id": "jl_isolated_tensor",
+      "family": "julia_tensor",
+      "members": [
+        "jl_tensorkit",
+        "jl_pepskit",
+        "jl_intervalarithmetic"
+      ],
+      "exchange": "isolated tensor compatibility projects build bounded tensor spaces and interval controls",
+      "case_id": "julia_isolated_tensor_chain"
+    },
+    {
+      "id": "py_legacy_reconciliation",
+      "family": "legacy_reconciliation",
+      "members": [
+        "py_ribs",
+        "py_deap",
+        "py_evotorch",
+        "py_datasketch",
+        "py_pymoo",
+        "py_hypothesis",
+        "py_optuna",
+        "py_hdbscan",
+        "py_umap"
+      ],
+      "exchange": "historical roster tools consume bounded seeded fixtures so operational results can inform, but not silently decide, current membership",
+      "case_id": "legacy_python_membership_reconciliation"
+    },
+    {
+      "id": "cross_tensor",
+      "family": "cross_runtime",
+      "members": [
+        "py_quimb",
+        "py_cotengra",
+        "jl_itensors",
+        "jl_itensormps"
+      ],
+      "exchange": "GHZ/product/tampered-leg fixture is independently computed in Python and Julia",
+      "case_id": "gap_k_tensor_chain_v2"
+    },
+    {
+      "id": "cross_dynamics",
+      "family": "cross_runtime",
+      "members": [
+        "py_diffrax",
+        "py_optimistix",
+        "jl_attractors",
+        "jl_differentialequations"
+      ],
+      "exchange": "bounded dynamics and basin fixture is independently checked across runtimes",
+      "case_id": "basin_chain_d"
+    },
+    {
+      "id": "cross_proof",
+      "family": "cross_runtime",
+      "members": [
+        "py_z3",
+        "py_cvc5",
+        "py_sympy",
+        "jl_z3",
+        "jl_symbolics"
+      ],
+      "exchange": "same finite obligations use independent solver and symbolic implementations",
+      "case_id": "cross_runtime_proof_chain"
+    },
+    {
+      "id": "cross_jax_torch",
+      "family": "cross_runtime",
+      "members": [
+        "py_jax",
+        "py_jaxlib",
+        "py_torch"
+      ],
+      "exchange": "value tensor crosses JAX and PyTorch through their DLPack protocols without NumPy",
+      "case_id": "jax_torch_dlpack_value_bridge"
+    }
+  ]
+}

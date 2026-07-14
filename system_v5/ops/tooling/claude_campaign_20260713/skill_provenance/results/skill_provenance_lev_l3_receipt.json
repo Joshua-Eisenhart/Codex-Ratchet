@@ -1,0 +1,83 @@
+{
+  "schema": "codex-ratchet-skill-validator-lev-l3-receipt-v1",
+  "receipt_id": "skill-provenance-validator-856acb1a5-run1",
+  "all_pass": true,
+  "source_binding": {
+    "ratchet_commit": "b0b2e31eaa25e24433fced098a2aa05dd95b5e50",
+    "ratchet_tree": "aaa313b330f882222e23909e72ab75d1e6f421b9",
+    "suite_path": "system_v5/ops/tooling/claude_campaign_20260713/skill_provenance/lev/skill_provenance.eval.js",
+    "suite_sha256": "9a77098a9370c4265c03aa5323b4497e1c8a4f3e0746611e3da5049206f7bd75",
+    "authentic_sidecar_path": "system_v5/ops/tooling/claude_campaign_20260713/skill_provenance/fixtures/authentic_l3_eligible_sidecar.json",
+    "authentic_sidecar_sha256": "e80e3bf45f0d997567537ea9da92e014df9ba206334c695e27fbc20952637539",
+    "skill_guidance_path": "system_v5/codex_skills/codex-ratchet-tool-status-auditor/SKILL.md",
+    "skill_guidance_sha256": "6d3bfb65a837dc08fbe5491700339d0815ac32e423266d767b4c9c6e74402467",
+    "skill_validator_path": "system_v5/codex_skills/codex-ratchet-tool-status-auditor/scripts/validate_skills_used.py",
+    "skill_validator_sha256": "c6bfa0fab8412aa5d0d9d0110c990561a771919866cb14e7351b4c49f3c7f60a"
+  },
+  "executor_binding": {
+    "lev_commit": "856acb1a5de42528a9a54272435d98a9fe226186",
+    "lev_tree": "3f3488781d48a64b22c43c08ccfaa2b503d49524",
+    "lev_commit_case_id": "verify-bound-lev-executor-head",
+    "lev_commit_stdout_sha256": "5286942ee6684ada960e31591a6e017fb1929c2555d5fa9d628df5cf8295a44b"
+  },
+  "run_binding": {
+    "run_id": "skill-provenance-validator-856acb1a5-run1",
+    "run_path": "system_v5/ops/tooling/claude_campaign_20260713/skill_provenance/results/lev_eval_runs/skill-provenance-validator-856acb1a5-run1/run.json",
+    "run_sha256": "5b9af751a350af6aa9dbee3a332dcacc3114bac10bb9dffa75de4371a05eb30d",
+    "scorecard_path": "system_v5/ops/tooling/claude_campaign_20260713/skill_provenance/results/lev_eval_runs/skill-provenance-validator-856acb1a5-run1/scorecards/codex-ratchet-skill-validator-provenance.json",
+    "scorecard_sha256": "ec26e326e8a4b4ec3de252d060977ceffac15343cb6374fb9500cc6cbd502491",
+    "authentic_sidecar_verdict_path": "system_v5/ops/tooling/claude_campaign_20260713/skill_provenance/results/authentic_l3_eligible_verdict.json",
+    "authentic_sidecar_verdict_sha256": "d74f5323a6b522c3f7ff3faaabcc796cea5da6d21f40416a093675768a381964"
+  },
+  "observed": {
+    "run_status": "projected",
+    "suite_status": "passed",
+    "projection_only": true,
+    "release_eligible": false,
+    "executed_count": 6,
+    "failed_count": 0,
+    "blocked_count": 0,
+    "skipped_count": 0,
+    "unavailable_count": 0,
+    "artifact_ref_count": 12,
+    "artifact_hashes_verified": 12,
+    "artifact_hash_map_sha256": "b3d2c4ea84614dee9781210b578840ee8924742af1695fdf3698c3197be8f01b",
+    "artifact_hash_map_canonicalization": "JSON object sorted by key with compact separators",
+    "expectations_verified": 21,
+    "case_ids": [
+      "verify-bound-lev-executor-head",
+      "verify-committed-lane-source-bytes",
+      "validate-guidance-subject",
+      "confirm-authentic-sidecar-ceiling",
+      "run-12-focused-adversarial-tests",
+      "reject-stale-executable-validator-hash"
+    ],
+    "case_id_order_sha256": "607cfa34d9ed465fb0045a81a84ebea76332e031c4cf2495b7a36400339694ba",
+    "ratchet_commit_case_id": "verify-committed-lane-source-bytes",
+    "ratchet_commit_stdout_sha256": "5a12570cebf0da456dee596b352b91bb05d09ecd734ad0dcf5ca3f161ac7134c",
+    "validator_execution_case_id": "validate-guidance-subject",
+    "validator_execution_command_line_sha256": "3261606ff4e2132f9dafbf467c421b504b0959888180886db49bf64e0f523321",
+    "validator_execution_exit_code": 0,
+    "validator_execution_stdout_sha256": "2a7d8cfdefcc82f53eadfbd601f532793303b9fb8fb81552977f63fcf78409d6",
+    "authentic_sidecar_confirmation_case_id": "confirm-authentic-sidecar-ceiling",
+    "authentic_sidecar_confirmation_stdout_sha256": "d74f5323a6b522c3f7ff3faaabcc796cea5da6d21f40416a093675768a381964",
+    "focused_adversarial_tests_passed": 12,
+    "focused_adversarial_tests_stdout_sha256": "ec31313a81f41f024299ab216e2d5c54788e0e6020ca800fc302820676cfec19",
+    "stale_hash_control_case_id": "reject-stale-executable-validator-hash",
+    "stale_hash_control_exit_code": 1,
+    "stale_hash_control_expected_nonzero": true,
+    "stale_hash_control_blocked": true,
+    "stale_hash_control_stdout_sha256": "8af410cb7ec52be0e2d191590319fac29f34636249c1d3c886babca3b700dd16"
+  },
+  "evidence_boundary": {
+    "sidecar_max_skill_provenance_level": "L2",
+    "sidecar_l3_eligible": true,
+    "external_lev_validator_execution_level": "L3",
+    "skill_guidance_promoted": false,
+    "engine_skill_execution_proven": false,
+    "downstream_tool_api_load_bearing_proven": false,
+    "scientific_claim_proven": false,
+    "l4_verdict_earned": false,
+    "claim_ceiling": "L3 chain receipt for independent Lev execution of the exact repo-held validate_skills_used.py command case only; no promotion of skill guidance, engine-skill execution, downstream tool API load-bearing status, scientific evidence, L4 verdicts, or release eligibility"
+  }
+}

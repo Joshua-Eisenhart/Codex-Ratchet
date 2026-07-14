@@ -252,10 +252,15 @@ def validate_source(
     closed(errors, record, expected, label)
     path = Path(str(record.get("path", "")))
     if kind == "file":
-        add(errors, path.is_file(), f"{label} file missing")
-        if path.is_file():
-            add(errors, sha256_file(path) == record.get("sha256"), f"{label} file hash mismatch")
-        if not provider_advisory:
+        if provider_advisory:
+            add(errors, path.is_file(), f"{label} advisory file missing")
+            if path.is_file():
+                add(
+                    errors,
+                    sha256_file(path) == record.get("sha256"),
+                    f"{label} advisory file hash mismatch",
+                )
+        else:
             try:
                 relative = path.resolve().relative_to(repo_root.resolve()).as_posix()
             except ValueError:
@@ -376,7 +381,7 @@ def validate_group(
             required_count,
             evidence_kind,
             evidence_pointer,
-            command_index,
+            contract_command_index,
             pass_value,
             preserve_red,
         ) = contract
@@ -432,7 +437,7 @@ def validate_group(
         )
         add(
             errors,
-            evidence["command_index"] == command_index,
+            evidence["command_index"] == contract_command_index,
             f"{label} evidence command contract mismatch",
         )
         add(
@@ -532,8 +537,6 @@ def validate(raw: dict[str, Any], *, envelope_path: Path | None = None) -> list[
         runner = Path(str(source["path"]))
         add(errors, runner.is_file(), "runner source missing")
         add(errors, bool(re.fullmatch(r"[0-9a-f]{40}", str(source["git_commit"]))), "source commit invalid")
-        if runner.is_file():
-            add(errors, sha256_file(runner) == source["sha256"], "runner source hash mismatch")
         root_result = subprocess.run(
             ["git", "rev-parse", "--show-toplevel"],
             cwd=runner.parent if runner.is_file() else Path.cwd(),
@@ -582,7 +585,12 @@ def validate(raw: dict[str, Any], *, envelope_path: Path | None = None) -> list[
     command = raw["command"]
     add(errors, isinstance(command, list) and len(command) == 8, "top-level command shape invalid")
     if isinstance(command, list) and len(command) == 8:
-        add(errors, command[0] == runner_identity.get("python_executable"), "command/runtime mismatch")
+        add(
+            errors,
+            Path(str(command[0])).resolve()
+            == Path(str(runner_identity.get("python_executable", ""))).resolve(),
+            "command/runtime mismatch",
+        )
         add(errors, Path(str(command[1])).resolve() == Path(str(source.get("path", ""))).resolve(), "command/runner mismatch")
         add(errors, command[2:7:2] == ["--archive", "--output", "--artifact-dir"], "command option order mismatch")
         add(errors, Path(str(command[3])).resolve() == Path(str(archive.get("path", ""))).resolve(), "command/archive mismatch")

@@ -423,14 +423,28 @@ def run_foundation_scripts(ctx: RunContext, stage: Path) -> list[dict[str, Any]]
         )
         result = target.with_name(target.stem + "_results.json")
         parsed = load_json(result) if result.is_file() else {}
-        if parsed and pointer.strip("/") not in parsed:
-            for fallback in ("/all_pass", "/OVERALL_PASS", "/follows_ratchet_rules"):
-                if fallback.strip("/") in parsed:
-                    pointer = fallback
+        evidence_from_artifact = False
+        observed: Any = command["exit_code"] == 0
+        if parsed:
+            for candidate_pointer in (
+                pointer,
+                "/all_pass",
+                "/OVERALL_PASS",
+                "/follows_ratchet_rules",
+            ):
+                try:
+                    observed = json_pointer(parsed, candidate_pointer)
+                    pointer = candidate_pointer
+                    evidence_from_artifact = True
                     break
-        observed = json_pointer(parsed, pointer) if parsed and pointer.strip("/") in parsed else command["exit_code"] == 0
+                except (KeyError, IndexError, TypeError):
+                    continue
         artifact = ctx.persist(group_id, result) if result.is_file() else None
-        evidence = artifact_evidence(artifact, pointer, observed, True) if artifact and pointer.strip("/") in parsed else command_evidence(0, command["exit_code"], 0)
+        evidence = (
+            artifact_evidence(artifact, pointer, observed, True)
+            if artifact and evidence_from_artifact
+            else command_evidence(0, command["exit_code"], 0)
+        )
         rows.append(
             group(
                 group_id=group_id,

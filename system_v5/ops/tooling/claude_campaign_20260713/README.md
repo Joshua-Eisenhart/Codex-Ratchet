@@ -1,31 +1,45 @@
-# Claude campaign intake and hardening, 2026-07-13
+# Candidate campaign intake and hardening, 2026-07-13
 
 Status: source-backed bounded integration diagnostic. Not scientific canon.
 
-This directory takes the useful live work from Claude's uncommitted stress
-battery, reruns it in the intended runtimes, repairs the strongest methodology
-and provenance failures, and exposes it to Lev as an executable command suite.
-It does not promote the results into a Ratchet rung, living basin, MSS,
-manifold, ontology, or graph mutation.
+This directory treats the useful live work from an uncommitted stress battery
+as frozen candidate input, reruns it under Codex-owned scripts in the intended
+runtimes, repairs the strongest methodology and provenance failures, and
+exposes it to Lev as executable command suites. No Claude bridge is used. The
+results do not promote a Ratchet rung, living basin, MSS, manifold, ontology,
+or graph mutation.
 
 ## Outcome
 
 | Lane | Fresh state | Honest ceiling |
 |---|---|---|
-| D | Julia Attractors, JAX Diffrax/Optimistix, and Z3 rerun green | One supplied active-boundary fixture; no scientific basin admission |
-| F | Packet source/member hashes pinned; named endpoint selected without a target search; OTT agrees with an independent SciPy LP under a circular metric on two named pairs | Function-level structured-transport fit only |
-| J | auto_LiRPA CROWN/IBP checked against all 16 ReLU activation masks and SciPy LP extrema; forged inward bounds rejected | One frozen 2-4-1 network and three boxes, not general verifier soundness |
-| K | Durable Python and Julia producers; nontrivial dense six-qubit primary state; quimb and ITensors/ITensorMPS agree; unit, state, dimension, GHZ, and product controls gate the result | Fixed-fixture tensor-tool fit only |
-| H | The packet variation graph's two-cycle is reproduced | The packet's native verifier accepts it and defines no ancestry-DAG rule, so no integrity defect is admitted |
-| Lev | Three real command cases execute: campaign, envelope validation, and fabrication controls; six stdout/stderr artifacts are captured | Projection-only integration diagnostic; no Lev graph mutation or scientific blessing |
+| Full surface | Run 5 completed 28/28 commands across 16 groups with no execution failure | Thirteen bounded pass, two bounded red, one advisory/not assessed; not an all-green science result |
+| Sets A-L | A, B, C, D, F, G, K bounded green; H red; E, I, J, L partial | Bounded tool/fixture observations only; no scientific admission |
+| H | Run 5 executes the v2 lineage-semantics audit; the separate v3 differential receipt is freshly recomputed and its validator is defended by 18 adversarial tests | Contract-semantics finding only: the native verifier accepts the cycle and no ancestry-DAG rule was found, so no production integrity defect is admitted; v3 is not part of the Run 5 Lev artifact |
+| Julia corrections | Albert, CliffordAlgebras, and Enzyme candidate failures were diagnosed with corrected probes and controls | Machine-local correction evidence; the frozen 12/15 battery remains red and no library-wide or canonical claim is made |
+| Foundation chain | The shared-candidate audit stops at `trust_manifest` | Integrity/provenance diagnostic only; no Axis0, basin, MSS, tooth, manifold, physics, Lev, or canon admission |
+| Lev Run 5 | Five cases executed, ten stdout/stderr hashes rechecked, and the zero-execution twin blocked | `status=projected`, projection-only, release-ineligible; no graph mutation or scientific blessing |
+| Skill provenance | Hash-bound skill declarations plus a six-case Lev execution receipt | Lev independently executed the exact validator command, earning L3 only for validator execution; guidance remains L2 and engines/science are not promoted |
 
-The campaign envelope intentionally reports:
+The primary Run 5 host envelope intentionally reports:
 
 ```text
 runner_all_completed = true
-capability_fit_all_pass = true   # D, F, J, K only
-promotion_eligible = false
-all_pass = false                 # H ancestry claim is not admitted
+bounded_observations_all_pass = false
+all_pass = false
+truth_state = host_recomputed_blocked
+projection_only = false
+```
+
+Lev projects that host result without rewriting it. The separate Lev run and
+compact manifest report:
+
+```text
+Lev status = projected
+Lev suite_status = passed
+Lev projection_only = true
+Lev release_eligible = false
+manifest scientific_admission = false
 ```
 
 ## What changed from Claude's claims
@@ -44,7 +58,7 @@ all_pass = false                 # H ancestry claim is not admitted
 - H's cycle exists, but “append-only ancestry defect” was not found in the
   native contract. The native `PurgatoryPool.verify_integrity()` accepts the
   ledger and rejects an actually tampered edge hash.
-- Claude's Lev envelope copied child markers and was not a valid Ratchet
+- The imported Lev envelope copied child markers and was not a valid Ratchet
   three-engine result. The new Lev suite launches the producers and validates
   their fresh artifacts.
 - The saved external panel remains unauthenticated advisory material: no
@@ -86,18 +100,29 @@ authority. Important hashes from the intake are retained here:
 | Claude external-panel text | `e4281d975f3d0bb0923287daf0a1196af7c9fd88017abea6865fa64e7396497f` |
 | Workhorse v4.3 object card | `ebd667130dbbd727f18f62448dbf090adc6eeb09cff5f718c2788ba41a24e105` |
 
-## Skill intake decision
+## Skill intake and current truth
 
-Do not port Claude's `.claude/skills/toolchain-sets` as an active Codex skill.
-It still says D/K are unbuilt, F is pending, and J lacks a task receipt. The
-Claude-local, repo-held Codex, and active Codex skill copies have diverged, and
-repo-held mirrors incorrectly call `.claude` authoritative.
+Do not port `.claude/skills/toolchain-sets` as an active Codex skill. Its status
+claims are stale and it is not authority for Codex. The repo-held
+`codex-ratchet-tool-status-auditor` now requires exact skill/script hashes,
+command scope, and an independent external runner receipt before executable
+skill provenance can reach L3. A self-report remains capped at L2 even when it
+is structurally L3-eligible. The separate pinned Lev suite has now executed the
+exact repo-held validator command: six cases passed, twelve stdout/stderr
+artifacts were rehashed, and the stale-hash twin blocked. This earns L3 only
+for validator execution; the guidance itself remains L2.
 
-Keep using the active Codex engine, environment, audit-spine, maintenance, and
-role-card skills. The only novel reusable idea is the claim -> Set A-L -> chain
--> receipt router. Retain it as proposal-only routing data after every set has
-the metadata and demotion gates used here; do not embed transient green status
-in a durable skill.
+Two low-risk repo mirrors (`lego-sim-classifier` and
+`codex-ratchet-env-agent-coordination`) were restored to explicit Codex
+authority and synchronized byte-for-byte across both active Codex homes. Five
+other engine/sim mirrors remain deliberately unreconciled because their repo,
+primary-home, and secondary-home contents have substantive version/tooling
+drift. Therefore “all skills integrated” is false.
+
+Keep using active Codex engine, environment, audit-spine, maintenance, and
+role-card guidance at its recorded ceiling. The claim -> Set A-L -> chain ->
+receipt router remains proposal-only routing data; do not embed transient green
+status in a durable skill.
 
 ## Run
 
@@ -113,12 +138,22 @@ From the Ratchet repo root:
   system_v5/ops/tooling/claude_campaign_20260713/hardened/results/hardened_campaign_v2_envelope.json
 ```
 
-The Lev suite is:
+The bounded hardened suite is:
 
 ```text
 system_v5/ops/tooling/claude_campaign_20260713/lev/hardened_campaign.eval.js
 ```
 
-It must be run by a Lev build that contains the zero-execution fail-closed
-repair. The repaired branch used here is `codex/eval-execute-fail-closed`,
-commit `9d06b5260`.
+The broad primary integration suite and receipts are under `full_surface/`.
+Run 5 binds Ratchet source commit
+`c64fa1c5b9cb420e909ae77ba6703d5c31f741bf` to the Lev executor at commit
+`856acb1a5de42528a9a54272435d98a9fe226186`.
+Its compact manifest is
+`full_surface/results/full_surface_run5_manifest.json`; its primary envelope
+is `full_surface/results/full_surface_lev_envelope_run5.json`.
+
+The separate `skill_provenance/` suite tests the narrower proposition that Lev
+really executed the exact repo-held skill validator. That receipt is L3 only
+for validator execution, while the skill guidance, downstream engines, and
+scientific claims retain their own lower ceilings. The compact receipt is
+`skill_provenance/results/skill_provenance_lev_l3_receipt.json`.

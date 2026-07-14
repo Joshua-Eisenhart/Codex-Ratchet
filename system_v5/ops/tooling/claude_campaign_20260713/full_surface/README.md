@@ -59,9 +59,9 @@ The bound Lev executor is commit
 `856acb1a5de42528a9a54272435d98a9fe226186` in
 `/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract`.
 
-## Canonical Run 5
+## Primary Compact Run 5
 
-Run 5 is the compact canonical result for source commit
+Run 5 is the primary compact integration result for source commit
 `c64fa1c5b9cb420e909ae77ba6703d5c31f741bf`. Lev executed all five suite
 cases and projected `suite_status=passed`, while correctly retaining
 `projection_only=true` and `release_eligible=false`. The campaign producer
@@ -74,7 +74,7 @@ J, and L remain partial. The frozen Julia battery stays 12/15 red even though
 the separate, machine-local correction probes pass. The zero-execution twin
 blocks with `suite.execution.none` as required.
 
-The canonical envelope is `results/full_surface_lev_envelope_run5.json`, and
+The primary envelope is `results/full_surface_lev_envelope_run5.json`, and
 the exact compact file hashes, local artifact-tree digest, independent
 validation status, and preserved Run 4 timeout receipt are recorded in
 `results/full_surface_run5_manifest.json`. The 107-file, 26,288,787-byte Run 5

@@ -1,0 +1,44 @@
+{
+  "schema": "codex-ratchet-skills-used-v1",
+  "receipt_id": "tool-status-auditor-stale-hash-control-v1",
+  "commands": [
+    {
+      "id": "validate-guidance-subject",
+      "argv": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "system_v5/codex_skills/codex-ratchet-tool-status-auditor/scripts/validate_skills_used.py",
+        "system_v5/ops/tooling/claude_campaign_20260713/skill_provenance/fixtures/guidance_subject_sidecar.json",
+        "--repo-root",
+        ".",
+        "--out",
+        "system_v5/ops/tooling/claude_campaign_20260713/skill_provenance/fixtures/guidance_subject_verdict.json"
+      ],
+      "exit_code": 0,
+      "output_artifacts": [
+        {
+          "path": "system_v5/ops/tooling/claude_campaign_20260713/skill_provenance/fixtures/guidance_subject_verdict.json",
+          "sha256": "2a7d8cfdefcc82f53eadfbd601f532793303b9fb8fb81552977f63fcf78409d6"
+        }
+      ]
+    }
+  ],
+  "skills_used": [
+    {
+      "path": "system_v5/codex_skills/codex-ratchet-tool-status-auditor/SKILL.md",
+      "sha256": "6d3bfb65a837dc08fbe5491700339d0815ac32e423266d767b4c9c6e74402467",
+      "role": "guidance",
+      "affected_commands": [
+        "validate-guidance-subject"
+      ]
+    },
+    {
+      "path": "system_v5/codex_skills/codex-ratchet-tool-status-auditor/scripts/validate_skills_used.py",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "role": "executable_validator",
+      "affected_commands": [
+        "validate-guidance-subject"
+      ]
+    }
+  ]
+}

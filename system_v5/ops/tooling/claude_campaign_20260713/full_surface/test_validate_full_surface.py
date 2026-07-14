@@ -33,22 +33,25 @@ def recompute(payload: dict[str, Any]) -> None:
     for row in payload["set_coverage"]:
         selected = [by_id[group_id] for group_id in row["group_ids"]]
         execution = all(group["execution_completed"] for group in selected)
-        values = [group["scientific_pass"] for group in selected]
+        values = [
+            observation["observed"] == observation["pass_value"]
+            for observation in row["observations"]
+        ]
         row["status"] = (
             "execution_blocked"
             if not execution
-            else "partial"
-            if row["blockers"]
             else "red"
             if any(value is False for value in values)
+            else "partial"
+            if row["blockers"]
             else "bounded_green"
             if values and all(value is True for value in values)
             else "not_assessed"
         )
-    scientific = [
-        row["scientific_pass"]
+    bounded = [
+        row["bounded_pass"]
         for row in groups
-        if row["scientific_pass"] is not None
+        if row["bounded_pass"] is not None
     ]
     sets = payload["set_coverage"]
     inventory = payload["blocked_inventory"]
@@ -64,18 +67,22 @@ def recompute(payload: dict[str, Any]) -> None:
         "execution_failed_count": sum(
             row["execution_completed"] is not True for row in groups
         ),
-        "scientific_green_count": sum(value is True for value in scientific),
-        "scientific_red_count": sum(value is False for value in scientific),
-        "scientific_not_assessed_count": sum(
-            row["scientific_pass"] is None for row in groups
+        "bounded_pass_count": sum(value is True for value in bounded),
+        "bounded_red_count": sum(value is False for value in bounded),
+        "bounded_not_assessed_count": sum(
+            row["bounded_pass"] is None for row in groups
         ),
         "blocked_inventory_count": len(inventory),
         "set_count": len(sets),
-        "set_full_count": sum(
+        "set_evidence_complete_count": sum(
             row["status"] in {"bounded_green", "red"} for row in sets
         ),
+        "set_bounded_green_count": sum(
+            row["status"] == "bounded_green" for row in sets
+        ),
+        "set_red_count": sum(row["status"] == "red" for row in sets),
         "set_partial_count": sum(row["status"] == "partial" for row in sets),
-        "set_blocked_count": sum(
+        "set_execution_blocked_count": sum(
             row["status"] == "execution_blocked" for row in sets
         ),
     }
@@ -84,11 +91,12 @@ def recompute(payload: dict[str, Any]) -> None:
         summary["execution_failed_count"] == 0
         and summary["executed_command_count"] == summary["command_count"]
     )
-    payload["scientific_all_pass"] = (
-        bool(scientific)
-        and all(scientific)
+    payload["bounded_observations_all_pass"] = (
+        bool(bounded)
+        and all(bounded)
         and summary["set_partial_count"] == 0
-        and summary["set_blocked_count"] == 0
+        and summary["set_execution_blocked_count"] == 0
+        and summary["set_red_count"] == 0
     )
 
 
@@ -117,7 +125,9 @@ def main() -> int:
         ("evidence_pass_value_rewrite", lambda row: row["groups"][0]["science_evidence"].__setitem__("pass_value", row["groups"][0]["science_evidence"]["observed"])),
         ("archive_member_hash_mismatch", lambda row: row["archive"]["members"][0].__setitem__("sha256", "0" * 64)),
         ("required_artifact_erasure", lambda row: row["groups"][0].__setitem__("required_artifact_count", 0)),
-        ("set_blocker_erasure", lambda row: row["set_coverage"][1].__setitem__("blockers", [])),
+        ("set_blocker_erasure", lambda row: row["set_coverage"][4].__setitem__("blockers", [])),
+        ("set_lane_observation_fabrication", lambda row: row["set_coverage"][3]["observations"][0].__setitem__("observed", False)),
+        ("set_lane_pointer_rewrite", lambda row: row["set_coverage"][3]["observations"][0].__setitem__("json_pointer", "/all_pass")),
         ("unknown_top_level_field", lambda row: row.__setitem__("authority_override", True)),
         ("zero_execution", lambda row: row.__setitem__("groups", [])),
     ]
@@ -149,7 +159,7 @@ def main() -> int:
     green = next(
         row
         for row in baseline["groups"]
-        if row["scientific_pass"] is True
+        if row["bounded_pass"] is True
         and row["science_evidence"]["kind"] == "artifact_json"
     )
     demoted = copy.deepcopy(baseline)
@@ -180,8 +190,12 @@ def main() -> int:
                 artifact["sha256"] = sha256_file(demoted_path)
         demoted_group["science_evidence"]["artifact_path"] = str(demoted_path.resolve())
         demoted_group["science_evidence"]["observed"] = alternate
-        demoted_group["scientific_pass"] = False
-        demoted_group["status"] = "scientific_red"
+        for set_row in demoted["set_coverage"]:
+            for observation in set_row["observations"]:
+                if observation["artifact_path"] == old_path:
+                    observation["artifact_path"] = str(demoted_path.resolve())
+        demoted_group["bounded_pass"] = False
+        demoted_group["status"] = "bounded_red"
         recompute(demoted)
         demotion_errors = validate(demoted)
     results["honest_demotion"] = {

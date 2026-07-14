@@ -40,7 +40,7 @@ TOP_KEYS = {
     "provider_advisory_is_evidence",
     "projection_only",
     "runner_all_completed",
-    "scientific_all_pass",
+    "bounded_observations_all_pass",
     "all_pass",
     "truth_state",
     "summary",
@@ -60,7 +60,7 @@ GROUP_KEYS = {
     "artifacts",
     "required_artifact_count",
     "execution_completed",
-    "scientific_pass",
+    "bounded_pass",
     "science_evidence",
     "status",
     "claim_ceiling",
@@ -98,16 +98,35 @@ SUMMARY_KEYS = {
     "command_count",
     "executed_command_count",
     "execution_failed_count",
-    "scientific_green_count",
-    "scientific_red_count",
-    "scientific_not_assessed_count",
+    "bounded_pass_count",
+    "bounded_red_count",
+    "bounded_not_assessed_count",
     "blocked_inventory_count",
     "set_count",
-    "set_full_count",
+    "set_evidence_complete_count",
+    "set_bounded_green_count",
+    "set_red_count",
     "set_partial_count",
-    "set_blocked_count",
+    "set_execution_blocked_count",
 }
-SET_KEYS = {"set_id", "group_ids", "status", "blockers", "promotion_allowed"}
+SET_KEYS = {
+    "set_id",
+    "group_ids",
+    "status",
+    "blockers",
+    "findings",
+    "observations",
+    "promotion_allowed",
+}
+SET_OBSERVATION_KEYS = {
+    "observation_id",
+    "group_id",
+    "kind",
+    "artifact_path",
+    "json_pointer",
+    "observed",
+    "pass_value",
+}
 INVENTORY_KEYS = {"id", "status", "source_count", "sources", "reason"}
 INVENTORY_SOURCE_KEYS = {"path", "sha256", "reason"}
 TOOL_CALL_KEYS = {"tool", "function", "observable"}
@@ -159,18 +178,107 @@ GROUP_CONTRACTS = {
 }
 BASE_GROUP_IDS = set(GROUP_CONTRACTS) - {"grok45_advisory_validation"}
 SET_CONTRACTS = {
-    "A": (["imported_python_battery"], []),
-    "B": (["imported_julia_battery"], ["Julia battery result may remain red"]),
-    "C": (["imported_python_battery", "legacy_engine_1q", "legacy_engine_3q"], []),
-    "D": (["hardened_d_f_j_k_h"], []),
-    "E": (["imported_python_battery"], ["fixture-level Maude only"]),
-    "F": (["hardened_d_f_j_k_h"], []),
-    "G": (["imported_python_battery", "imported_julia_battery", "hardened_d_f_j_k_h"], []),
-    "H": (["hardened_d_f_j_k_h"], ["expected semantic red"]),
-    "I": (["imported_python_battery", "imported_julia_battery"], ["Flux/Lux consumer chain not executed"]),
-    "J": (["hardened_d_f_j_k_h", "imported_fit_sweep"], ["Julia IntervalArithmetic leg not executed"]),
-    "K": (["hardened_d_f_j_k_h", "imported_python_battery", "imported_julia_battery"], []),
-    "L": (["lean_formal_surface", "qics_entropy_dpi_oracle"], ["ALCO and physlib legs blocked"]),
+    "A": {
+        "group_ids": ["imported_python_battery"],
+        "blockers": [],
+        "findings": [],
+        "observations": {
+            "A_z3_flip": ("imported_python_battery", "artifact_json", "/results/z3_unsat_sat_flip/status", "PASS"),
+            "A_cvc5_flip": ("imported_python_battery", "artifact_json", "/results/cvc5_unsat_sat_flip/status", "PASS"),
+            "A_solver_agreement": ("imported_python_battery", "artifact_json", "/results/z3_cvc5_agreement/status", "PASS"),
+            "A_sympy_identity": ("imported_python_battery", "artifact_json", "/results/sympy_exact_identity/status", "PASS"),
+        },
+    },
+    "B": {
+        "group_ids": ["imported_julia_battery"],
+        "blockers": [],
+        "findings": ["Albert identity candidate API mismatch remains red"],
+        "observations": {
+            "B_albert_identity": ("imported_julia_battery", "artifact_json", "/results/canon_albert_jordan_identity/status", "PASS"),
+            "B_octonion_associator": ("imported_julia_battery", "artifact_json", "/results/canon_module_octonion_associator/status", "PASS"),
+        },
+    },
+    "C": {
+        "group_ids": ["imported_python_battery", "legacy_engine_1q", "legacy_engine_3q"],
+        "blockers": [],
+        "findings": [],
+        "observations": {
+            "C_jax_torch_agreement": ("imported_python_battery", "artifact_json", "/results/jax_torch_numerical_agreement/status", "PASS"),
+            "C_legacy_1q": ("legacy_engine_1q", "group_bounded_pass", None, True),
+            "C_legacy_3q": ("legacy_engine_3q", "group_bounded_pass", None, True),
+        },
+    },
+    "D": {
+        "group_ids": ["hardened_d_f_j_k_h"],
+        "blockers": [],
+        "findings": [],
+        "observations": {"D_basin_chain": ("hardened_d_f_j_k_h", "artifact_json", "/lanes/0/receipt_all_pass", True)},
+    },
+    "E": {
+        "group_ids": ["imported_python_battery"],
+        "blockers": ["fixture-level Maude only"],
+        "findings": [],
+        "observations": {"E_maude_bracketing": ("imported_python_battery", "artifact_json", "/results/maude_t01_bracketing_flip/status", "PASS")},
+    },
+    "F": {
+        "group_ids": ["hardened_d_f_j_k_h"],
+        "blockers": [],
+        "findings": [],
+        "observations": {"F_structured_transport": ("hardened_d_f_j_k_h", "artifact_json", "/lanes/1/receipt_all_pass", True)},
+    },
+    "G": {
+        "group_ids": ["imported_fit_sweep", "imported_julia_battery"],
+        "blockers": [],
+        "findings": [],
+        "observations": {
+            "G_dynamiqs_qutip": ("imported_fit_sweep", "artifact_json", "/results/dynamiqs_qutip_cross_agreement/status", "PASS"),
+            "G_quantumoptics_trace": ("imported_julia_battery", "artifact_json", "/results/quantumoptics_lindblad_trace/status", "PASS"),
+        },
+    },
+    "H": {
+        "group_ids": ["hardened_d_f_j_k_h"],
+        "blockers": [],
+        "findings": ["native ledger accepts a cycle and no ancestry-DAG rule was found"],
+        "observations": {"H_lineage_semantics": ("hardened_d_f_j_k_h", "artifact_json", "/lanes/4/receipt_all_pass", True)},
+    },
+    "I": {
+        "group_ids": ["imported_fit_sweep"],
+        "blockers": ["Flux/Lux consumer chain not executed"],
+        "findings": [],
+        "observations": {
+            "I_e3nn_equivariance": ("imported_fit_sweep", "artifact_json", "/results/e3nn_exact_equivariance/status", "PASS"),
+            "I_pyg_equivariance": ("imported_fit_sweep", "artifact_json", "/results/pyg_permutation_equivariance/status", "PASS"),
+            "I_learning_control": ("imported_fit_sweep", "artifact_json", "/results/torch_learning_with_shuffle_control/status", "PASS"),
+        },
+    },
+    "J": {
+        "group_ids": ["hardened_d_f_j_k_h", "imported_fit_sweep"],
+        "blockers": ["Julia IntervalArithmetic leg not executed"],
+        "findings": [],
+        "observations": {
+            "J_autolirpa": ("hardened_d_f_j_k_h", "artifact_json", "/lanes/2/receipt_all_pass", True),
+            "J_interval_fixture": ("imported_fit_sweep", "artifact_json", "/results/interval_certified_bound/status", "PASS"),
+        },
+    },
+    "K": {
+        "group_ids": ["hardened_d_f_j_k_h", "imported_fit_sweep", "imported_julia_battery"],
+        "blockers": [],
+        "findings": [],
+        "observations": {
+            "K_hardened_tensor_chain": ("hardened_d_f_j_k_h", "artifact_json", "/lanes/3/receipt_all_pass", True),
+            "K_quimb_entropy": ("imported_fit_sweep", "artifact_json", "/results/quimb_ghz_cut_entropy/status", "PASS"),
+            "K_itensors_norm": ("imported_julia_battery", "artifact_json", "/results/itensors_mps_norm/status", "PASS"),
+        },
+    },
+    "L": {
+        "group_ids": ["lean_formal_surface", "qics_entropy_dpi_oracle"],
+        "blockers": ["ALCO and physlib legs blocked"],
+        "findings": [],
+        "observations": {
+            "L_lean_build": ("lean_formal_surface", "group_bounded_pass", None, True),
+            "L_qics_oracle": ("qics_entropy_dpi_oracle", "group_bounded_pass", None, True),
+        },
+    },
 }
 
 
@@ -465,17 +573,17 @@ def validate_group(
         errors.append(f"{label} science evidence kind invalid")
     add(errors, observed == evidence["observed"], f"{label} evidence observed value mismatch")
     if provider_advisory:
-        add(errors, row["scientific_pass"] is None, f"{label} provider advisory cannot be a scientific pass")
-        expected_status = "scientific_not_assessed" if derived_execution else "execution_failed"
+        add(errors, row["bounded_pass"] is None, f"{label} provider advisory cannot be a bounded pass")
+        expected_status = "bounded_not_assessed" if derived_execution else "execution_failed"
     else:
-        derived_scientific = observed == evidence["pass_value"]
-        add(errors, row["scientific_pass"] is derived_scientific, f"{label} scientific pass mismatch")
+        derived_bounded = observed == evidence["pass_value"]
+        add(errors, row["bounded_pass"] is derived_bounded, f"{label} bounded pass mismatch")
         expected_status = (
             "execution_failed"
             if not derived_execution
-            else "scientific_green"
-            if derived_scientific
-            else "scientific_red"
+            else "bounded_pass"
+            if derived_bounded
+            else "bounded_red"
         )
     add(errors, row["status"] == expected_status, f"{label} status mismatch")
 
@@ -631,11 +739,14 @@ def validate(raw: dict[str, Any], *, envelope_path: Path | None = None) -> list[
             add(errors, isinstance(row["group_ids"], list) and all(group_id in group_ids for group_id in row["group_ids"]), f"set {row['set_id']} group ids invalid")
             add(errors, row["status"] in {"execution_blocked", "partial", "red", "bounded_green", "not_assessed"}, f"set {row['set_id']} status invalid")
             add(errors, isinstance(row["blockers"], list), f"set {row['set_id']} blockers invalid")
+            add(errors, isinstance(row["findings"], list), f"set {row['set_id']} findings invalid")
+            add(errors, isinstance(row["observations"], list) and bool(row["observations"]), f"set {row['set_id']} observations invalid")
             expected_set = SET_CONTRACTS.get(row["set_id"])
             add(errors, expected_set is not None, f"set {row['set_id']} is outside the contract")
             if expected_set is not None:
-                add(errors, row["group_ids"] == expected_set[0], f"set {row['set_id']} group contract mismatch")
-                add(errors, row["blockers"] == expected_set[1], f"set {row['set_id']} blocker contract mismatch")
+                add(errors, row["group_ids"] == expected_set["group_ids"], f"set {row['set_id']} group contract mismatch")
+                add(errors, row["blockers"] == expected_set["blockers"], f"set {row['set_id']} blocker contract mismatch")
+                add(errors, row["findings"] == expected_set["findings"], f"set {row['set_id']} finding contract mismatch")
             selected = [
                 group
                 for group in groups
@@ -645,16 +756,65 @@ def validate(raw: dict[str, Any], *, envelope_path: Path | None = None) -> list[
                 len(selected) == len(row["group_ids"])
                 and all(group.get("execution_completed") is True for group in selected)
             )
-            scientific_values = [group.get("scientific_pass") for group in selected]
+            observations_pass: list[bool] = []
+            observation_ids: list[str] = []
+            by_group_id = {group.get("id"): group for group in groups if isinstance(group, dict)}
+            for observation_index, observation in enumerate(row["observations"]):
+                observation_label = f"set_coverage[{index}].observations[{observation_index}]"
+                if not closed(errors, observation, SET_OBSERVATION_KEYS, observation_label):
+                    continue
+                observation_id = observation["observation_id"]
+                observation_ids.append(observation_id)
+                expected_observation = (
+                    expected_set["observations"].get(observation_id)
+                    if expected_set is not None
+                    else None
+                )
+                add(errors, expected_observation is not None, f"{observation_label} outside contract")
+                if expected_observation is not None:
+                    add(errors, observation["group_id"] == expected_observation[0], f"{observation_label} group mismatch")
+                    add(errors, observation["kind"] == expected_observation[1], f"{observation_label} kind mismatch")
+                    add(errors, observation["json_pointer"] == expected_observation[2], f"{observation_label} pointer mismatch")
+                    add(errors, observation["pass_value"] == expected_observation[3], f"{observation_label} pass value mismatch")
+                source_group = by_group_id.get(observation["group_id"])
+                add(errors, source_group is not None, f"{observation_label} source group missing")
+                observed = None
+                if source_group is not None and observation["kind"] == "artifact_json":
+                    artifact_paths = {
+                        artifact.get("path")
+                        for artifact in source_group.get("artifacts", [])
+                        if isinstance(artifact, dict)
+                    }
+                    add(errors, observation["artifact_path"] in artifact_paths, f"{observation_label} artifact undeclared")
+                    try:
+                        observed = pointer(
+                            json.loads(Path(observation["artifact_path"]).read_text(encoding="utf-8")),
+                            observation["json_pointer"],
+                        )
+                    except (OSError, json.JSONDecodeError, KeyError, IndexError, TypeError):
+                        errors.append(f"{observation_label} artifact evidence unreadable")
+                elif source_group is not None and observation["kind"] == "group_bounded_pass":
+                    add(errors, observation["artifact_path"] is None and observation["json_pointer"] is None, f"{observation_label} group evidence paths must be null")
+                    observed = source_group.get("bounded_pass")
+                else:
+                    errors.append(f"{observation_label} kind invalid")
+                add(errors, observed == observation["observed"], f"{observation_label} observed mismatch")
+                observations_pass.append(observed == observation["pass_value"])
+            if expected_set is not None:
+                add(
+                    errors,
+                    observation_ids == list(expected_set["observations"]),
+                    f"set {row['set_id']} observation inventory mismatch",
+                )
             expected_status = (
                 "execution_blocked"
                 if not execution
+                else "red"
+                if any(value is False for value in observations_pass)
                 else "partial"
                 if row["blockers"]
-                else "red"
-                if any(value is False for value in scientific_values)
                 else "bounded_green"
-                if scientific_values and all(value is True for value in scientific_values)
+                if observations_pass and all(observations_pass)
                 else "not_assessed"
             )
             add(errors, row["status"] == expected_status, f"set {row['set_id']} status mismatch")
@@ -697,7 +857,7 @@ def validate(raw: dict[str, Any], *, envelope_path: Path | None = None) -> list[
 
     summary = raw["summary"]
     if closed(errors, summary, SUMMARY_KEYS, "summary"):
-        scientific = [row["scientific_pass"] for row in groups if row.get("scientific_pass") is not None]
+        bounded = [row["bounded_pass"] for row in groups if row.get("bounded_pass") is not None]
         derived = {
             "group_count": len(groups),
             "command_count": sum(len(row["commands"]) for row in groups),
@@ -708,20 +868,32 @@ def validate(raw: dict[str, Any], *, envelope_path: Path | None = None) -> list[
                 if command["timed_out"] is False and command["exit_code"] is not None
             ),
             "execution_failed_count": sum(row["execution_completed"] is not True for row in groups),
-            "scientific_green_count": sum(value is True for value in scientific),
-            "scientific_red_count": sum(value is False for value in scientific),
-            "scientific_not_assessed_count": sum(row["scientific_pass"] is None for row in groups),
+            "bounded_pass_count": sum(value is True for value in bounded),
+            "bounded_red_count": sum(value is False for value in bounded),
+            "bounded_not_assessed_count": sum(row["bounded_pass"] is None for row in groups),
             "blocked_inventory_count": len(inventory),
             "set_count": len(sets),
-            "set_full_count": sum(row["status"] in {"bounded_green", "red"} for row in sets),
+            "set_evidence_complete_count": sum(row["status"] in {"bounded_green", "red"} for row in sets),
+            "set_bounded_green_count": sum(row["status"] == "bounded_green" for row in sets),
+            "set_red_count": sum(row["status"] == "red" for row in sets),
             "set_partial_count": sum(row["status"] == "partial" for row in sets),
-            "set_blocked_count": sum(row["status"] == "execution_blocked" for row in sets),
+            "set_execution_blocked_count": sum(row["status"] == "execution_blocked" for row in sets),
         }
         add(errors, summary == derived, "summary does not recompute from children")
         runner_completed = derived["execution_failed_count"] == 0 and derived["executed_command_count"] == derived["command_count"]
-        science_all = bool(scientific) and all(scientific) and derived["set_partial_count"] == 0 and derived["set_blocked_count"] == 0
+        bounded_all = (
+            bool(bounded)
+            and all(bounded)
+            and derived["set_partial_count"] == 0
+            and derived["set_execution_blocked_count"] == 0
+            and derived["set_red_count"] == 0
+        )
         add(errors, raw["runner_all_completed"] is runner_completed, "runner_all_completed mismatch")
-        add(errors, raw["scientific_all_pass"] is science_all, "scientific_all_pass mismatch")
+        add(
+            errors,
+            raw["bounded_observations_all_pass"] is bounded_all,
+            "bounded_observations_all_pass mismatch",
+        )
         add(errors, derived["executed_command_count"] > 0, "zero execution is not acceptable")
     if envelope_path is not None:
         add(errors, Path(raw["command"][raw["command"].index("--output") + 1]).resolve() == envelope_path.resolve(), "command/output envelope path mismatch")

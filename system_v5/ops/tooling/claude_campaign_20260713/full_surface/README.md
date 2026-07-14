@@ -8,7 +8,9 @@ Claude bridge.
 ## Claim ceiling
 
 The receipt can show that named source bytes ran under recorded Python, Julia,
-Lean, package, and Lev boundaries and produced hash-bound observations. It
+Lean, package, and Lev boundaries and produced hash-bound observations. Group
+polarity is named `bounded_pass` or `bounded_red`; it is never called
+scientific green. It
 cannot promote a lego, layer, bridge, Axis0, basin, flux, manifold, or formal
 scientific claim. Execution completion and scientific polarity are separate.
 Provider advice is advisory only. Lev output is projection-only and is never

@@ -18,7 +18,7 @@ export const fullSurfaceCampaignEval = {
   commandCases: [
     {
       id: 'execute-full-source-backed-surface',
-      commandLine: '/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B system_v5/ops/tooling/claude_campaign_20260713/full_surface/run_full_surface.py --archive "/Users/joshuaeisenhart/Desktop/166_reconciled_ratchet_v0_11_7_cold_verified (1).zip" --output system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/full_surface_lev_envelope_run2.json --artifact-dir system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/artifacts/full-surface-ab211e8c-run2',
+      commandLine: '/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B system_v5/ops/tooling/claude_campaign_20260713/full_surface/run_full_surface.py --archive "/Users/joshuaeisenhart/Desktop/166_reconciled_ratchet_v0_11_7_cold_verified (1).zip" --output system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/full_surface_lev_envelope_run3.json --artifact-dir system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/artifacts/full-surface-ab211e8c-run3',
       expectedExit: 'zero',
       stdoutContains: [
         '"runner_all_completed": true',
@@ -27,13 +27,13 @@ export const fullSurfaceCampaignEval = {
     },
     {
       id: 'validate-authentic-envelope',
-      commandLine: '/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B system_v5/ops/tooling/claude_campaign_20260713/full_surface/validate_full_surface.py system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/full_surface_lev_envelope_run2.json',
+      commandLine: '/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B system_v5/ops/tooling/claude_campaign_20260713/full_surface/validate_full_surface.py system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/full_surface_lev_envelope_run3.json',
       expectedExit: 'zero',
       stdoutContains: '"ok": true',
     },
     {
       id: 'run-fabrication-and-demotion-controls',
-      commandLine: '/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B system_v5/ops/tooling/claude_campaign_20260713/full_surface/test_validate_full_surface.py system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/full_surface_lev_envelope_run2.json',
+      commandLine: '/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B system_v5/ops/tooling/claude_campaign_20260713/full_surface/test_validate_full_surface.py system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/full_surface_lev_envelope_run3.json',
       expectedExit: 'zero',
       stdoutContains: [
         '"baseline_accepts": true',
@@ -43,7 +43,7 @@ export const fullSurfaceCampaignEval = {
     },
     {
       id: 'lev-zero-execution-blocks',
-      commandLine: 'bun /Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract/core/poly/bin/lev eval run system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/zero_execution.eval.js --execute --json --project-root /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713 --output-root system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_zero_runs --run-id full-surface-zero-ab211e8c-run2',
+      commandLine: 'bun /Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract/core/poly/bin/lev eval run system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/zero_execution.eval.js --execute --json --project-root /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713 --output-root system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_zero_runs --run-id full-surface-zero-ab211e8c-run3',
       expectedExit: 'nonzero',
       stdoutContains: [
         'suite.execution.none',

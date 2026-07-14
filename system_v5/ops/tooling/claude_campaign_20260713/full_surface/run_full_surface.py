@@ -188,7 +188,7 @@ def group(
     artifacts: list[dict[str, Any]],
     required_artifact_count: int,
     execution_completed: bool,
-    scientific_pass: bool | None,
+    bounded_pass: bool | None,
     science_evidence: dict[str, Any],
     claim_ceiling: str,
     blockers: list[str] | None = None,
@@ -197,11 +197,11 @@ def group(
     status = (
         "execution_failed"
         if not execution_completed
-        else "scientific_not_assessed"
-        if scientific_pass is None
-        else "scientific_green"
-        if scientific_pass
-        else "scientific_red"
+        else "bounded_not_assessed"
+        if bounded_pass is None
+        else "bounded_pass"
+        if bounded_pass
+        else "bounded_red"
     )
     return {
         "id": group_id,
@@ -212,7 +212,7 @@ def group(
         "artifacts": artifacts,
         "required_artifact_count": required_artifact_count,
         "execution_completed": execution_completed,
-        "scientific_pass": scientific_pass,
+        "bounded_pass": bounded_pass,
         "science_evidence": science_evidence,
         "status": status,
         "claim_ceiling": claim_ceiling,
@@ -297,7 +297,7 @@ def run_hardened(ctx: RunContext, stage: Path, archive: Path) -> dict[str, Any]:
         artifacts=artifacts,
         required_artifact_count=1,
         execution_completed=execution,
-        scientific_pass=observed is True,
+        bounded_pass=observed is True,
         science_evidence=evidence,
         claim_ceiling="Function-level D/F/J/K diagnostics plus H semantic red; no campaign promotion.",
         blockers=list(parsed.get("summary", {}).get("semantic_blockers", [])),
@@ -378,7 +378,7 @@ def run_imported_batteries(ctx: RunContext, stage: Path, archive: Path) -> list[
                 artifacts=artifacts,
                 required_artifact_count=1,
                 execution_completed=bool(not command["timed_out"] and artifact and parsed),
-                scientific_pass=observed == spec["pass"] if parsed else False,
+                bounded_pass=observed == spec["pass"] if parsed else False,
                 science_evidence=artifact_evidence(artifact, spec["pointer"], observed, spec["pass"]) if artifact else command_evidence(0, command["exit_code"], 0),
                 claim_ceiling=spec["ceiling"],
                 red_preservation_required=True,
@@ -454,7 +454,7 @@ def run_foundation_scripts(ctx: RunContext, stage: Path) -> list[dict[str, Any]]
                 artifacts=[artifact] if artifact else [],
                 required_artifact_count=1,
                 execution_completed=bool(not command["timed_out"] and artifact and parsed),
-                scientific_pass=observed is True,
+                bounded_pass=observed is True,
                 science_evidence=evidence,
                 claim_ceiling="Copied foundation-only scratch diagnostic; no Axis0, basin, bridge, or manifold admission.",
                 red_preservation_required=True,
@@ -511,7 +511,7 @@ def run_dual_suites(ctx: RunContext, stage: Path) -> list[dict[str, Any]]:
                 artifacts=artifact_rows,
                 required_artifact_count=1,
                 execution_completed=execution,
-                scientific_pass=observed is True,
+                bounded_pass=observed is True,
                 science_evidence=artifact_evidence(agreement_artifact, "/parity_passed", observed, True) if agreement_artifact else command_evidence(2, commands[2]["exit_code"], 0),
                 claim_ceiling="Quarantined NumPy/Julia foundations parity only; no scientific manifold admission.",
                 red_preservation_required=True,
@@ -563,7 +563,7 @@ def run_engine_suite(ctx: RunContext, stage: Path, three_qubit: bool) -> dict[st
         artifacts=artifacts,
         required_artifact_count=expected_artifacts,
         execution_completed=execution,
-        scientific_pass=commands[-1]["exit_code"] == 0,
+        bounded_pass=commands[-1]["exit_code"] == 0,
         science_evidence=command_evidence(4, commands[-1]["exit_code"], 0),
         claim_ceiling="Legacy source-token engine parity diagnostic; banned labels and scratch status prevent canon.",
         red_preservation_required=True,
@@ -595,7 +595,7 @@ def run_process_tests(ctx: RunContext, stage: Path) -> dict[str, Any]:
         artifacts=[],
         required_artifact_count=0,
         execution_completed=not command["timed_out"],
-        scientific_pass=command["exit_code"] == 0,
+        bounded_pass=command["exit_code"] == 0,
         science_evidence=command_evidence(0, command["exit_code"], 0),
         claim_ceiling="Process-card validator tests only; no scientific admission.",
         red_preservation_required=True,
@@ -641,7 +641,7 @@ def run_qics(ctx: RunContext, stage: Path) -> dict[str, Any]:
         artifacts=artifacts,
         required_artifact_count=1,
         execution_completed=bool(not command["timed_out"] and result.is_file()),
-        scientific_pass=command["exit_code"] == 0 and observed is True,
+        bounded_pass=command["exit_code"] == 0 and observed is True,
         science_evidence=evidence,
         claim_ceiling="Pinned QICS fixed-input numeric oracle only; no formal or engine authority.",
         red_preservation_required=True,
@@ -672,7 +672,7 @@ def run_lean(ctx: RunContext, stage: Path) -> dict[str, Any]:
         artifacts=[],
         required_artifact_count=0,
         execution_completed=not command["timed_out"],
-        scientific_pass=command["exit_code"] == 0,
+        bounded_pass=command["exit_code"] == 0,
         science_evidence=command_evidence(0, command["exit_code"], 0),
         claim_ceiling="Lean source build only; the current theorem library does not admit the Ratchet science.",
         red_preservation_required=True,
@@ -713,7 +713,7 @@ def run_grok_advisory_validation(ctx: RunContext) -> dict[str, Any] | None:
         artifacts=[],
         required_artifact_count=0,
         execution_completed=not command["timed_out"],
-        scientific_pass=None,
+        bounded_pass=None,
         science_evidence=command_evidence(0, command["exit_code"], 0),
         claim_ceiling="Advisory receipt integrity only; provider text is not scientific evidence or a pass.",
         red_preservation_required=False,
@@ -766,32 +766,142 @@ def blocked_inventory() -> list[dict[str, Any]]:
 
 def set_coverage(groups: list[dict[str, Any]]) -> list[dict[str, Any]]:
     by_id = {row["id"]: row for row in groups}
-    mapping = {
-        "A": (["imported_python_battery"], []),
-        "B": (["imported_julia_battery"], ["Julia battery result may remain red"]),
-        "C": (["imported_python_battery", "legacy_engine_1q", "legacy_engine_3q"], []),
-        "D": (["hardened_d_f_j_k_h"], []),
-        "E": (["imported_python_battery"], ["fixture-level Maude only"]),
-        "F": (["hardened_d_f_j_k_h"], []),
-        "G": (["imported_python_battery", "imported_julia_battery", "hardened_d_f_j_k_h"], []),
-        "H": (["hardened_d_f_j_k_h"], ["expected semantic red"]),
-        "I": (["imported_python_battery", "imported_julia_battery"], ["Flux/Lux consumer chain not executed"]),
-        "J": (["hardened_d_f_j_k_h", "imported_fit_sweep"], ["Julia IntervalArithmetic leg not executed"]),
-        "K": (["hardened_d_f_j_k_h", "imported_python_battery", "imported_julia_battery"], []),
-        "L": (["lean_formal_surface", "qics_entropy_dpi_oracle"], ["ALCO and physlib legs blocked"]),
+    mapping: dict[str, dict[str, Any]] = {
+        "A": {
+            "blockers": [],
+            "findings": [],
+            "observations": [
+                ("A_z3_flip", "imported_python_battery", "artifact_json", "/results/z3_unsat_sat_flip/status", "PASS", "py_battery_results.json"),
+                ("A_cvc5_flip", "imported_python_battery", "artifact_json", "/results/cvc5_unsat_sat_flip/status", "PASS", "py_battery_results.json"),
+                ("A_solver_agreement", "imported_python_battery", "artifact_json", "/results/z3_cvc5_agreement/status", "PASS", "py_battery_results.json"),
+                ("A_sympy_identity", "imported_python_battery", "artifact_json", "/results/sympy_exact_identity/status", "PASS", "py_battery_results.json"),
+            ],
+        },
+        "B": {
+            "blockers": [],
+            "findings": ["Albert identity candidate API mismatch remains red"],
+            "observations": [
+                ("B_albert_identity", "imported_julia_battery", "artifact_json", "/results/canon_albert_jordan_identity/status", "PASS", "jl_battery_results.json"),
+                ("B_octonion_associator", "imported_julia_battery", "artifact_json", "/results/canon_module_octonion_associator/status", "PASS", "jl_battery_results.json"),
+            ],
+        },
+        "C": {
+            "blockers": [],
+            "findings": [],
+            "observations": [
+                ("C_jax_torch_agreement", "imported_python_battery", "artifact_json", "/results/jax_torch_numerical_agreement/status", "PASS", "py_battery_results.json"),
+                ("C_legacy_1q", "legacy_engine_1q", "group_bounded_pass", None, True, None),
+                ("C_legacy_3q", "legacy_engine_3q", "group_bounded_pass", None, True, None),
+            ],
+        },
+        "D": {
+            "blockers": [],
+            "findings": [],
+            "observations": [
+                ("D_basin_chain", "hardened_d_f_j_k_h", "artifact_json", "/lanes/0/receipt_all_pass", True, "hardened_campaign_v2_envelope.json"),
+            ],
+        },
+        "E": {
+            "blockers": ["fixture-level Maude only"],
+            "findings": [],
+            "observations": [
+                ("E_maude_bracketing", "imported_python_battery", "artifact_json", "/results/maude_t01_bracketing_flip/status", "PASS", "py_battery_results.json"),
+            ],
+        },
+        "F": {
+            "blockers": [],
+            "findings": [],
+            "observations": [
+                ("F_structured_transport", "hardened_d_f_j_k_h", "artifact_json", "/lanes/1/receipt_all_pass", True, "hardened_campaign_v2_envelope.json"),
+            ],
+        },
+        "G": {
+            "blockers": [],
+            "findings": [],
+            "observations": [
+                ("G_dynamiqs_qutip", "imported_fit_sweep", "artifact_json", "/results/dynamiqs_qutip_cross_agreement/status", "PASS", "fit_sweep_results.json"),
+                ("G_quantumoptics_trace", "imported_julia_battery", "artifact_json", "/results/quantumoptics_lindblad_trace/status", "PASS", "jl_battery_results.json"),
+            ],
+        },
+        "H": {
+            "blockers": [],
+            "findings": ["native ledger accepts a cycle and no ancestry-DAG rule was found"],
+            "observations": [
+                ("H_lineage_semantics", "hardened_d_f_j_k_h", "artifact_json", "/lanes/4/receipt_all_pass", True, "hardened_campaign_v2_envelope.json"),
+            ],
+        },
+        "I": {
+            "blockers": ["Flux/Lux consumer chain not executed"],
+            "findings": [],
+            "observations": [
+                ("I_e3nn_equivariance", "imported_fit_sweep", "artifact_json", "/results/e3nn_exact_equivariance/status", "PASS", "fit_sweep_results.json"),
+                ("I_pyg_equivariance", "imported_fit_sweep", "artifact_json", "/results/pyg_permutation_equivariance/status", "PASS", "fit_sweep_results.json"),
+                ("I_learning_control", "imported_fit_sweep", "artifact_json", "/results/torch_learning_with_shuffle_control/status", "PASS", "fit_sweep_results.json"),
+            ],
+        },
+        "J": {
+            "blockers": ["Julia IntervalArithmetic leg not executed"],
+            "findings": [],
+            "observations": [
+                ("J_autolirpa", "hardened_d_f_j_k_h", "artifact_json", "/lanes/2/receipt_all_pass", True, "hardened_campaign_v2_envelope.json"),
+                ("J_interval_fixture", "imported_fit_sweep", "artifact_json", "/results/interval_certified_bound/status", "PASS", "fit_sweep_results.json"),
+            ],
+        },
+        "K": {
+            "blockers": [],
+            "findings": [],
+            "observations": [
+                ("K_hardened_tensor_chain", "hardened_d_f_j_k_h", "artifact_json", "/lanes/3/receipt_all_pass", True, "hardened_campaign_v2_envelope.json"),
+                ("K_quimb_entropy", "imported_fit_sweep", "artifact_json", "/results/quimb_ghz_cut_entropy/status", "PASS", "fit_sweep_results.json"),
+                ("K_itensors_norm", "imported_julia_battery", "artifact_json", "/results/itensors_mps_norm/status", "PASS", "jl_battery_results.json"),
+            ],
+        },
+        "L": {
+            "blockers": ["ALCO and physlib legs blocked"],
+            "findings": [],
+            "observations": [
+                ("L_lean_build", "lean_formal_surface", "group_bounded_pass", None, True, None),
+                ("L_qics_oracle", "qics_entropy_dpi_oracle", "group_bounded_pass", None, True, None),
+            ],
+        },
     }
     rows = []
-    for set_id, (group_ids, blockers) in mapping.items():
-        present = [group_id for group_id in group_ids if group_id in by_id]
-        execution = all(by_id[group_id]["execution_completed"] for group_id in present) and len(present) == len(group_ids)
-        scientific_values = [by_id[group_id]["scientific_pass"] for group_id in present]
+    for set_id, spec in mapping.items():
+        observations = []
+        group_ids: list[str] = []
+        for observation_id, group_id, kind, pointer, pass_value, suffix in spec["observations"]:
+            if group_id not in group_ids:
+                group_ids.append(group_id)
+            source_group = by_id[group_id]
+            if kind == "artifact_json":
+                artifact = next(
+                    row for row in source_group["artifacts"] if row["path"].endswith(str(suffix))
+                )
+                observed = json_pointer(load_json(Path(artifact["path"])), str(pointer))
+                artifact_path: str | None = artifact["path"]
+            else:
+                observed = source_group["bounded_pass"]
+                artifact_path = None
+            observations.append(
+                {
+                    "observation_id": observation_id,
+                    "group_id": group_id,
+                    "kind": kind,
+                    "artifact_path": artifact_path,
+                    "json_pointer": pointer,
+                    "observed": observed,
+                    "pass_value": pass_value,
+                }
+            )
+        execution = all(by_id[group_id]["execution_completed"] for group_id in group_ids)
+        observation_passes = [row["observed"] == row["pass_value"] for row in observations]
         if not execution:
             status = "execution_blocked"
-        elif blockers:
-            status = "partial"
-        elif any(value is False for value in scientific_values):
+        elif any(value is False for value in observation_passes):
             status = "red"
-        elif all(value is True for value in scientific_values):
+        elif spec["blockers"]:
+            status = "partial"
+        elif observation_passes and all(observation_passes):
             status = "bounded_green"
         else:
             status = "not_assessed"
@@ -800,7 +910,9 @@ def set_coverage(groups: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "set_id": set_id,
                 "group_ids": group_ids,
                 "status": status,
-                "blockers": blockers,
+                "blockers": spec["blockers"],
+                "findings": spec["findings"],
+                "observations": observations,
                 "promotion_allowed": False,
             }
         )
@@ -844,7 +956,7 @@ def main() -> int:
             groups.append(advisory)
     inventory = blocked_inventory()
     coverage = set_coverage(groups)
-    scientific = [row["scientific_pass"] for row in groups if row["scientific_pass"] is not None]
+    bounded = [row["bounded_pass"] for row in groups if row["bounded_pass"] is not None]
     summary = {
         "group_count": len(groups),
         "command_count": sum(len(row["commands"]) for row in groups),
@@ -855,17 +967,25 @@ def main() -> int:
             if not command["timed_out"] and command["exit_code"] is not None
         ),
         "execution_failed_count": sum(not row["execution_completed"] for row in groups),
-        "scientific_green_count": sum(value is True for value in scientific),
-        "scientific_red_count": sum(value is False for value in scientific),
-        "scientific_not_assessed_count": sum(row["scientific_pass"] is None for row in groups),
+        "bounded_pass_count": sum(value is True for value in bounded),
+        "bounded_red_count": sum(value is False for value in bounded),
+        "bounded_not_assessed_count": sum(row["bounded_pass"] is None for row in groups),
         "blocked_inventory_count": len(inventory),
         "set_count": len(coverage),
-        "set_full_count": sum(row["status"] in {"bounded_green", "red"} for row in coverage),
+        "set_evidence_complete_count": sum(row["status"] in {"bounded_green", "red"} for row in coverage),
+        "set_bounded_green_count": sum(row["status"] == "bounded_green" for row in coverage),
+        "set_red_count": sum(row["status"] == "red" for row in coverage),
         "set_partial_count": sum(row["status"] == "partial" for row in coverage),
-        "set_blocked_count": sum(row["status"] == "execution_blocked" for row in coverage),
+        "set_execution_blocked_count": sum(row["status"] == "execution_blocked" for row in coverage),
     }
     runner_all_completed = summary["execution_failed_count"] == 0 and summary["executed_command_count"] == summary["command_count"]
-    scientific_all_pass = bool(scientific) and all(scientific) and summary["set_partial_count"] == 0 and summary["set_blocked_count"] == 0
+    bounded_observations_all_pass = (
+        bool(bounded)
+        and all(bounded)
+        and summary["set_partial_count"] == 0
+        and summary["set_execution_blocked_count"] == 0
+        and summary["set_red_count"] == 0
+    )
     source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True).strip()
     source_path = Path(__file__).resolve()
     command = [
@@ -917,7 +1037,7 @@ def main() -> int:
         "provider_advisory_is_evidence": False,
         "projection_only": False,
         "runner_all_completed": runner_all_completed,
-        "scientific_all_pass": scientific_all_pass,
+        "bounded_observations_all_pass": bounded_observations_all_pass,
         "all_pass": False,
         "truth_state": "host_recomputed_blocked",
         "summary": summary,
@@ -947,7 +1067,7 @@ def main() -> int:
         json.dumps(
             {
                 "runner_all_completed": runner_all_completed,
-                "scientific_all_pass": scientific_all_pass,
+                "bounded_observations_all_pass": bounded_observations_all_pass,
                 "all_pass": False,
                 "summary": summary,
                 "output": str(output),

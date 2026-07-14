@@ -1,0 +1,185 @@
+{
+  "suite_id": "codex-ratchet-hardened-claude-campaign-v2",
+  "status": "passed",
+  "projection_only": true,
+  "executed_count": 3,
+  "skipped_count": 0,
+  "blocked_count": 0,
+  "unavailable_count": 0,
+  "failed_count": 0,
+  "artifact_ref_count": 6,
+  "artifact_refs": [
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/run-hardened-campaign/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/run-hardened-campaign/stderr.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/validate-hardened-envelope/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/validate-hardened-envelope/stderr.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/reject-fabricated-campaign-claims/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/reject-fabricated-campaign-claims/stderr.txt"
+  ],
+  "artifact_routes": [],
+  "checks": {
+    "green": [
+      "all five bounded producers execute and rewrite source-hashed receipts",
+      "the dedicated campaign envelope validates fail-closed",
+      "fabricated promotion, green, completion, and hash claims are rejected"
+    ],
+    "red": [
+      "campaign all_pass remains false",
+      "H remains a cycle observation with unresolved ancestry semantics, not an admitted integrity defect",
+      "no Lev graph mutation or scientific promotion is emitted"
+    ]
+  },
+  "trace_cases": [],
+  "command_cases": [
+    {
+      "id": "run-hardened-campaign",
+      "command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "argv": [
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/run_hardened_campaign_v2.py",
+        "--archive",
+        "/Users/joshuaeisenhart/Desktop/166_reconciled_ratchet_v0_11_7_cold_verified (1).zip",
+        "--output",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/hardened_campaign_v2_envelope.json"
+      ],
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713",
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/run-hardened-campaign/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/run-hardened-campaign/stderr.txt",
+      "timeout_ms": 900000,
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "{\"all_pass\": false, \"capability_fit_all_pass\": true, \"promotion_eligible\": false, \"receipt\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/hardened_campaign_v2_envelope.json\", \"receipt_sha256\": \"ea7e63777d67bdbc9c3a71adfbb5bc01b4c882441b515d7cc346ec51c0c8870e\", \"runner_all_completed\": true}\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"runner_all_completed\": true",
+          "actual": "{\"all_pass\": false, \"capability_fit_all_pass\": true, \"promotion_eligible\": false, \"receipt\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/hardened_campaign_v2_envelope.json\", \"receipt_sha256\": \"ea7e63777d67bdbc9c3a71adfbb5bc01b4c882441b515d7cc346ec51c0c8870e\", \"runner_all_completed\": true}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"all_pass\": false",
+          "actual": "{\"all_pass\": false, \"capability_fit_all_pass\": true, \"promotion_eligible\": false, \"receipt\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/hardened_campaign_v2_envelope.json\", \"receipt_sha256\": \"ea7e63777d67bdbc9c3a71adfbb5bc01b4c882441b515d7cc346ec51c0c8870e\", \"runner_all_completed\": true}\n",
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": "validate-hardened-envelope",
+      "command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "argv": [
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/validate_hardened_campaign_v2.py",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/hardened_campaign_v2_envelope.json"
+      ],
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713",
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/validate-hardened-envelope/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/validate-hardened-envelope/stderr.txt",
+      "timeout_ms": 900000,
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "{\"envelope\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/hardened_campaign_v2_envelope.json\", \"errors\": [], \"ok\": true}\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"ok\": true",
+          "actual": "{\"envelope\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/hardened_campaign_v2_envelope.json\", \"errors\": [], \"ok\": true}\n",
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": "reject-fabricated-campaign-claims",
+      "command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "argv": [
+        "-B",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/test_validate_hardened_campaign_v2.py"
+      ],
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713",
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/reject-fabricated-campaign-claims/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lev_eval_runs/claude-campaign-v2-final-20260713/command-artifacts/reject-fabricated-campaign-claims/stderr.txt",
+      "timeout_ms": 900000,
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "{\"all_pass\": true, \"controls\": {\"erased_runner_completion\": {\"errors\": [\"runner_all_completed must be true\"], \"rejected\": true}, \"forged_campaign_all_pass\": {\"errors\": [\"campaign all_pass must remain false\"], \"rejected\": true}, \"forged_h_green\": {\"errors\": [\"lane H must remain false\"], \"rejected\": true}, \"forged_k_result_hash\": {\"errors\": [\"lane K result hash mismatch\"], \"rejected\": true}, \"forged_promotion_eligibility\": {\"errors\": [\"promotion must remain blocked\"], \"rejected\": true}, \"forged_runtime_doctor\": {\"errors\": [\"runtime doctor gates must all pass\"], \"rejected\": true}}}\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"all_pass\": true",
+          "actual": "{\"all_pass\": true, \"controls\": {\"erased_runner_completion\": {\"errors\": [\"runner_all_completed must be true\"], \"rejected\": true}, \"forged_campaign_all_pass\": {\"errors\": [\"campaign all_pass must remain false\"], \"rejected\": true}, \"forged_h_green\": {\"errors\": [\"lane H must remain false\"], \"rejected\": true}, \"forged_k_result_hash\": {\"errors\": [\"lane K result hash mismatch\"], \"rejected\": true}, \"forged_promotion_eligibility\": {\"errors\": [\"promotion must remain blocked\"], \"rejected\": true}, \"forged_runtime_doctor\": {\"errors\": [\"runtime doctor gates must all pass\"], \"rejected\": true}}}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"forged_promotion_eligibility\"",
+          "actual": "{\"all_pass\": true, \"controls\": {\"erased_runner_completion\": {\"errors\": [\"runner_all_completed must be true\"], \"rejected\": true}, \"forged_campaign_all_pass\": {\"errors\": [\"campaign all_pass must remain false\"], \"rejected\": true}, \"forged_h_green\": {\"errors\": [\"lane H must remain false\"], \"rejected\": true}, \"forged_k_result_hash\": {\"errors\": [\"lane K result hash mismatch\"], \"rejected\": true}, \"forged_promotion_eligibility\": {\"errors\": [\"promotion must remain blocked\"], \"rejected\": true}, \"forged_runtime_doctor\": {\"errors\": [\"runtime doctor gates must all pass\"], \"rejected\": true}}}\n",
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "evidence_refs": [
+    {
+      "kind": "suite",
+      "label": "suite",
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/lev/hardened_campaign.eval.js",
+      "exists": true
+    },
+    {
+      "kind": "target",
+      "label": "target",
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/lev/hardened_campaign_target.md",
+      "exists": true
+    },
+    {
+      "kind": "flowmind",
+      "label": "flowmind",
+      "path": "system_v5/ops/tooling/claude_campaign_20260713/lev/hardened_campaign_flow.yaml",
+      "exists": true
+    }
+  ],
+  "diagnostics": []
+}

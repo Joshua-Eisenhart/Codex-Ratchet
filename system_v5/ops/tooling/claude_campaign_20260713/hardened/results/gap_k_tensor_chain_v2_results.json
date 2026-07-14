@@ -1,0 +1,1089 @@
+{
+  "all_pass": true,
+  "allowed_claims": [
+    "A fresh local rerun exercised the named quimb and ITensors/ITensorMPS functions.",
+    "For the fixed primary and boundary fixtures, the MPS-derived spectra and entropies met the recorded tolerances.",
+    "The named unit, state-tamper, and dimension controls demoted incorrect comparisons when all_pass is true."
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/gap_k_tensor_chain_v2_results.json"
+  ],
+  "blocked_consumers": [
+    "scientific-canon claims",
+    "Julia-Canon admission",
+    "general engine-equivalence claims",
+    "bridge or Axis claims",
+    "basin or manifold claims",
+    "ratchet/cosmogenesis/physics promotion"
+  ],
+  "boundary_controls": {
+    "ghz": "Exactly two Schmidt probabilities of 1/2 and entropy 1 bit.",
+    "product": "Exactly one Schmidt probability of 1 and entropy 0 bits."
+  },
+  "check_summary": {
+    "failed": 0,
+    "passed": 19,
+    "total": 19
+  },
+  "checks": {
+    "bit_vs_nat_convention_mismatch_is_detected_and_repaired": {
+      "converted_tolerance": 2e-12,
+      "direct_bits_vs_nats_abs_delta": 0.7244909119013976,
+      "mismatch_floor": 0.1,
+      "nats_div_log2_vs_bits_abs_delta": 2.6645352591003757e-15,
+      "pass": true
+    },
+    "canonical_python_runtime": {
+      "actual_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+      "actual_physical": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+      "expected_physical": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+      "pass": true,
+      "requested_alias": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
+    },
+    "ghz_control_boundary_control": {
+      "entropy_bits_abs_delta": 0.0,
+      "expected_entropy_max_abs_delta": 0.0,
+      "julia_expected_probability_delta": 1.1102230246251565e-16,
+      "pass": true,
+      "probability_max_abs_delta": 0.0,
+      "python_expected_probability_delta": 1.1102230246251565e-16,
+      "tolerance": 2e-12
+    },
+    "independent_primary_fixture_generation_matches": {
+      "observed": 7.105427357601002e-15,
+      "pass": true,
+      "tolerance": 2e-12
+    },
+    "julia_carrier_project_exact": {
+      "expected": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "observed": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "pass": true
+    },
+    "julia_itensors_primary_matches_dense_oracle": {
+      "observed": 5.551115123125783e-16,
+      "pass": true,
+      "tolerance": 2e-12
+    },
+    "julia_itensors_primary_reconstructs_state": {
+      "observed": 2.7548807028800633e-16,
+      "pass": true,
+      "tolerance": 2e-12
+    },
+    "julia_itensors_wrong_dimension_rejected": {
+      "pass": true,
+      "receipt": {
+        "exception_type": "DimensionMismatch",
+        "message": "DimensionMismatch: In ITensor(::AbstractArray, inds), length of AbstractArray (64) must match total dimension of IndexSet (32)",
+        "rejected": true
+      }
+    },
+    "julia_leg_returned_json": {
+      "pass": true
+    },
+    "julia_load_path_strict": {
+      "expected": [
+        "@",
+        "@stdlib"
+      ],
+      "observed": [
+        "@",
+        "@stdlib"
+      ],
+      "pass": true
+    },
+    "julia_source_hash_matches_runner": {
+      "julia_reported": "cc2d607dd4bd77633f4cd3bf9d9329310222fce8c77f06dc8a89b80b0348cca0",
+      "pass": true,
+      "runner_computed": "cc2d607dd4bd77633f4cd3bf9d9329310222fce8c77f06dc8a89b80b0348cca0"
+    },
+    "primary_cross_engine_spectrum_and_entropy_agree": {
+      "entropy_bits_abs_delta": 2.220446049250313e-15,
+      "pass": true,
+      "schmidt_probability_max_abs_delta": 9.992007221626409e-16,
+      "singular_spectrum_max_abs_delta": 9.992007221626409e-16,
+      "state_checksum_max_abs_delta": 7.105427357601002e-15,
+      "tolerance": 2e-12
+    },
+    "primary_is_full_support_unequal_magnitude_fixture": {
+      "expected_support": 64,
+      "magnitude_spread": 0.17161471316402685,
+      "min_magnitude": 0.0322435186787122,
+      "pass": true,
+      "rationale": "A full-support computational-basis stabilizer state must have equal nonzero magnitudes; the fixed fixture violates that necessary condition.",
+      "support": 64
+    },
+    "primary_nontrivial_schmidt_spectrum": {
+      "entropy_bits": 2.3610371683188287,
+      "nonzero_schmidt_rank": 8,
+      "pass": true
+    },
+    "product_control_boundary_control": {
+      "entropy_bits_abs_delta": 0.0,
+      "expected_entropy_max_abs_delta": 0.0,
+      "julia_expected_probability_delta": 0.0,
+      "pass": true,
+      "probability_max_abs_delta": 0.0,
+      "python_expected_probability_delta": 0.0,
+      "tolerance": 2e-12
+    },
+    "python_quimb_primary_matches_dense_oracle": {
+      "observed": 4.996003610813204e-16,
+      "pass": true,
+      "tolerance": 2e-12
+    },
+    "python_quimb_primary_reconstructs_state": {
+      "observed": 3.687419884875315e-16,
+      "pass": true,
+      "tolerance": 2e-12
+    },
+    "python_quimb_wrong_dimension_rejected": {
+      "pass": true,
+      "receipt": {
+        "exception_type": "ValueError",
+        "message": "cannot reshape array of size 64 into shape (2,2,2,2,2)",
+        "rejected": true
+      }
+    },
+    "tampered_state_wrong_pair_is_detected": {
+      "agreement_tolerance": 2e-12,
+      "detection_floor": 0.0001,
+      "pass": true,
+      "tampered_cross_engine_max_abs_delta": 1.1657341758564144e-15,
+      "untampered_vs_julia_tampered_max_abs_delta": 0.006517154282438653,
+      "untampered_vs_python_tampered_max_abs_delta": 0.006517154282437487
+    }
+  },
+  "claim_ceiling": "Fixed-fixture function-level tensor-tool fit diagnostic only. This result does not prove general quimb/ITensors equivalence, numerical soundness for arbitrary states, Julia Canon admission, tensor-network science, ratchet dynamics, cosmogenesis, a bridge, an Axis, a basin, a manifold, or any physics claim.",
+  "classification": "tool_lego_fit_probe",
+  "command": [
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.py",
+    "--output",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/gap_k_tensor_chain_v2_results.json"
+  ],
+  "commands": {
+    "julia_environment_overrides": {
+      "JULIA_LOAD_PATH": "@:@stdlib"
+    },
+    "julia_leg": "/opt/homebrew/bin/julia --startup-file=no --threads=1 --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.jl",
+    "python_controller": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.py --output /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/gap_k_tensor_chain_v2_results.json",
+    "python_observed": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.py --output /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/gap_k_tensor_chain_v2_results.json"
+  },
+  "comparison": {
+    "entropy_unit_negative": {
+      "direct_bits_vs_nats_abs_delta": 0.7244909119013976,
+      "nats_div_log2_vs_bits_abs_delta": 2.6645352591003757e-15
+    },
+    "ghz_control": {
+      "entropy_bits_abs_delta": 0.0,
+      "expected_entropy_max_abs_delta": 0.0,
+      "julia_expected_probability_delta": 1.1102230246251565e-16,
+      "probability_max_abs_delta": 0.0,
+      "python_expected_probability_delta": 1.1102230246251565e-16
+    },
+    "primary": {
+      "entropy_bits_abs_delta": 2.220446049250313e-15,
+      "schmidt_probability_max_abs_delta": 9.992007221626409e-16,
+      "singular_spectrum_max_abs_delta": 9.992007221626409e-16,
+      "state_checksum_max_abs_delta": 7.105427357601002e-15
+    },
+    "product_control": {
+      "entropy_bits_abs_delta": 0.0,
+      "expected_entropy_max_abs_delta": 0.0,
+      "julia_expected_probability_delta": 0.0,
+      "probability_max_abs_delta": 0.0,
+      "python_expected_probability_delta": 0.0
+    },
+    "tampered_state_negative": {
+      "tampered_cross_engine_max_abs_delta": 1.1657341758564144e-15,
+      "untampered_vs_julia_tampered_max_abs_delta": 0.006517154282438653,
+      "untampered_vs_python_tampered_max_abs_delta": 0.006517154282437487
+    }
+  },
+  "created_at": "2026-07-14T04:57:08.476392+00:00",
+  "eligible_consumers": [
+    "bounded tool-status audit",
+    "future preregistration design",
+    "negative-control regression suite"
+  ],
+  "formal_admission_allowed": false,
+  "julia_execution": {
+    "command": "/opt/homebrew/bin/julia --startup-file=no --threads=1 --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.jl",
+    "duration_seconds": 25.001812791015254,
+    "environment_overrides": {
+      "JULIA_LOAD_PATH": "@:@stdlib"
+    },
+    "exit_code": 0,
+    "stderr": "",
+    "stdout_sha256": "12e07e1de8141bded77024255b4543efe2f0e6fc0535598090fd210507b7dadb"
+  },
+  "julia_leg": {
+    "cases": {
+      "ghz_control": {
+        "dense_oracle_singular_values": [
+          0.7071067811865475,
+          0.7071067811865475,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "entropy_bits": 1.0,
+        "entropy_nats": 0.6931471805599454,
+        "mps_bond_dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "mps_norm_squared": 0.9999999999999998,
+        "mps_reconstruction_max_abs_error": 0.0,
+        "mps_singular_values": [
+          0.7071067811865475,
+          0.7071067811865475,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mps_vs_dense_spectrum_max_abs": 0.0,
+        "schmidt_probabilities": [
+          0.4999999999999999,
+          0.4999999999999999,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "state_checksum": {
+          "magnitude_spread": 0.7071067811865475,
+          "max_magnitude": 0.7071067811865475,
+          "min_magnitude": 0.0,
+          "selected_amplitudes": {
+            "0": {
+              "imag": 0.0,
+              "real": 0.7071067811865475
+            },
+            "37": {
+              "imag": 0.0,
+              "real": 0.0
+            },
+            "63": {
+              "imag": 0.0,
+              "real": 0.7071067811865475
+            }
+          },
+          "support": 2,
+          "weighted_imag": 0.0,
+          "weighted_real": 45.961940777125584
+        }
+      },
+      "primary": {
+        "dense_oracle_singular_values": [
+          0.598044204135971,
+          0.5093177458359369,
+          0.35113065378383357,
+          0.344142371610976,
+          0.2964183385480872,
+          0.19768216952071055,
+          0.10726627632160562,
+          0.05257119079265105
+        ],
+        "entropy_bits": 2.3610371683188265,
+        "entropy_nats": 1.6365462564174311,
+        "mps_bond_dimensions": [
+          2,
+          4,
+          8,
+          4,
+          2
+        ],
+        "mps_norm_squared": 0.9999999999999998,
+        "mps_reconstruction_max_abs_error": 2.7548807028800633e-16,
+        "mps_singular_values": [
+          0.5980442041359709,
+          0.5093177458359364,
+          0.35113065378383346,
+          0.34414237161097594,
+          0.2964183385480872,
+          0.19768216952071027,
+          0.1072662763216054,
+          0.05257119079265099
+        ],
+        "mps_vs_dense_spectrum_max_abs": 5.551115123125783e-16,
+        "schmidt_probabilities": [
+          0.35765687010062686,
+          0.25940456622339947,
+          0.12329273602666231,
+          0.11843397193802706,
+          0.08786383142760844,
+          0.03907824014641483,
+          0.011506054035903004,
+          0.002763730101357312
+        ],
+        "state_checksum": {
+          "magnitude_spread": 0.17161471316402682,
+          "max_magnitude": 0.20385823184273902,
+          "min_magnitude": 0.032243518678712196,
+          "selected_amplitudes": {
+            "0": {
+              "imag": 0.09402966776266072,
+              "real": 0.009099645267354264
+            },
+            "37": {
+              "imag": 0.14256110918855014,
+              "real": -0.006066430178236176
+            },
+            "63": {
+              "imag": -0.11829538847560543,
+              "real": -0.051564656515007495
+            }
+          },
+          "support": 64,
+          "weighted_imag": -13.243017079089569,
+          "weighted_real": 59.73917118018074
+        }
+      },
+      "product_control": {
+        "dense_oracle_singular_values": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "entropy_bits": -0.0,
+        "entropy_nats": -0.0,
+        "mps_bond_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mps_norm_squared": 1.0,
+        "mps_reconstruction_max_abs_error": 0.0,
+        "mps_singular_values": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mps_vs_dense_spectrum_max_abs": 0.0,
+        "schmidt_probabilities": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "state_checksum": {
+          "magnitude_spread": 1.0,
+          "max_magnitude": 1.0,
+          "min_magnitude": 0.0,
+          "selected_amplitudes": {
+            "0": {
+              "imag": 0.0,
+              "real": 1.0
+            },
+            "37": {
+              "imag": 0.0,
+              "real": 0.0
+            },
+            "63": {
+              "imag": 0.0,
+              "real": 0.0
+            }
+          },
+          "support": 1,
+          "weighted_imag": 0.0,
+          "weighted_real": 1.0
+        }
+      },
+      "tampered": {
+        "dense_oracle_singular_values": [
+          0.5973460989755776,
+          0.5075807878849007,
+          0.35764780806627133,
+          0.34074216981863986,
+          0.2964791118022805,
+          0.1980722384643919,
+          0.1081638111858818,
+          0.05186825103915168
+        ],
+        "entropy_bits": 2.3644417337523778,
+        "entropy_nats": 1.638906121348729,
+        "mps_bond_dimensions": [
+          2,
+          4,
+          8,
+          4,
+          2
+        ],
+        "mps_norm_squared": 1.0000000000000018,
+        "mps_reconstruction_max_abs_error": 4.906538933386797e-16,
+        "mps_singular_values": [
+          0.5973460989755776,
+          0.5075807878849011,
+          0.3576478080662723,
+          0.34074216981864053,
+          0.29647911180228065,
+          0.19807223846439234,
+          0.10816381118588178,
+          0.051868251039151686
+        ],
+        "mps_vs_dense_spectrum_max_abs": 9.43689570931383e-16,
+        "schmidt_probabilities": [
+          0.3568223619613405,
+          0.257638256229857,
+          0.12791195461460914,
+          0.11610522629271526,
+          0.08789986373506922,
+          0.0392326116502951,
+          0.011699410050255085,
+          0.00269031546586046
+        ],
+        "state_checksum": {
+          "magnitude_spread": 0.17111048878619162,
+          "max_magnitude": 0.2032592721834979,
+          "min_magnitude": 0.03214878339730628,
+          "selected_amplitudes": {
+            "0": {
+              "imag": 0.09375339744846943,
+              "real": 0.009072909430497041
+            },
+            "37": {
+              "imag": 0.14214224774445366,
+              "real": -0.0060486062869980275
+            },
+            "63": {
+              "imag": -0.11794782259646154,
+              "real": -0.05141315343948324
+            }
+          },
+          "support": 64,
+          "weighted_imag": -13.368275063527719,
+          "weighted_real": 60.83384982615546
+        }
+      }
+    },
+    "classification": "tool_lego_fit_probe",
+    "dimension_negative": {
+      "exception_type": "DimensionMismatch",
+      "message": "DimensionMismatch: In ITensor(::AbstractArray, inds), length of AbstractArray (64) must match total dimension of IndexSet (32)",
+      "rejected": true
+    },
+    "formal_admission_allowed": false,
+    "promotion_allowed": false,
+    "runtime": {
+      "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "depot_path": [
+        "/Users/joshuaeisenhart/.julia",
+        "/opt/homebrew/Cellar/julia/1.12.6/local/share/julia",
+        "/opt/homebrew/Cellar/julia/1.12.6/share/julia"
+      ],
+      "executable": "/opt/homebrew/Cellar/julia/1.12.6/bin/julia",
+      "julia_version": "1.12.6",
+      "load_path": [
+        "@",
+        "@stdlib"
+      ],
+      "packages": {
+        "ITensorMPS": {
+          "module_path": "/Users/joshuaeisenhart/.julia/packages/ITensorMPS/DiVzn/src/ITensorMPS.jl",
+          "version": "0.4.1"
+        },
+        "ITensors": {
+          "module_path": "/Users/joshuaeisenhart/.julia/packages/ITensors/1tkBX/src/ITensors.jl",
+          "version": "0.9.30"
+        },
+        "JSON3": {
+          "module_path": "/Users/joshuaeisenhart/.julia/packages/JSON3/rT1w2/src/JSON3.jl",
+          "version": "1.14.3"
+        }
+      }
+    },
+    "schema_version": "gap_k_tensor_chain_v2_julia_leg_v1",
+    "source_sha256": "cc2d607dd4bd77633f4cd3bf9d9329310222fce8c77f06dc8a89b80b0348cca0",
+    "state_generation": {
+      "independent_of_python_results": true,
+      "primary_formula": "a_k=((37(k+1)^2+11(w+1)+5) mod 101-50)+i*((29(k+3)^2+7(w+2)+13) mod 103-51), then L2 normalize",
+      "state_exchange": "none; both legs regenerate the declared fixture formula"
+    },
+    "tool_api_calls": [
+      "ITensorMPS.MPS(::AbstractArray, sites; cutoff=0.0, maxdim=8)",
+      "ITensorMPS.inner(::MPS, ::MPS)",
+      "ITensorMPS.contract(::MPS)",
+      "ITensorMPS.orthogonalize!(::MPS, 3)",
+      "ITensors.svd(::ITensor, left_indices; cutoff=0.0, maxdim=8)",
+      "ITensorMPS.MPS wrong-dimension rejection"
+    ]
+  },
+  "name": "Hardened cross-runtime MPS Schmidt-chain fit diagnostic",
+  "negative_controls": {
+    "entropy_units": "A direct bit-vs-nat comparison must fail; explicit division by ln(2) must recover agreement.",
+    "tampered_state": "Both engines agree on the tampered state, while an untampered-vs-tampered pairing must exceed the detection floor.",
+    "wrong_dimension": "Both MPS constructors must reject a six-qubit array paired with five site dimensions."
+  },
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "purpose": "Test real quimb and ITensors/ITensorMPS MPS APIs on independently generated finite fixtures.",
+  "python_cases": {
+    "ghz_control": {
+      "dense_oracle_singular_values": [
+        0.7071067811865475,
+        0.7071067811865475,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entropy_bits": 1.0,
+      "entropy_nats": 0.6931471805599454,
+      "mps_bond_dimensions": [
+        2,
+        4,
+        8,
+        4,
+        2
+      ],
+      "mps_norm_squared": {
+        "imag": 0.0,
+        "real": 0.9999999999999998
+      },
+      "mps_reconstruction_max_abs_error": 0.0,
+      "mps_singular_values": [
+        0.7071067811865475,
+        0.7071067811865475,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mps_vs_dense_spectrum_max_abs": 0.0,
+      "schmidt_probabilities": [
+        0.4999999999999999,
+        0.4999999999999999,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "state_checksum": {
+        "magnitude_spread": 0.7071067811865475,
+        "max_magnitude": 0.7071067811865475,
+        "min_magnitude": 0.0,
+        "selected_amplitudes": {
+          "0": {
+            "imag": 0.0,
+            "real": 0.7071067811865475
+          },
+          "37": {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          "63": {
+            "imag": 0.0,
+            "real": 0.7071067811865475
+          }
+        },
+        "support": 2,
+        "weighted_imag": 0.0,
+        "weighted_real": 45.961940777125584
+      }
+    },
+    "primary": {
+      "dense_oracle_singular_values": [
+        0.598044204135971,
+        0.5093177458359369,
+        0.3511306537838337,
+        0.344142371610976,
+        0.29641833854808736,
+        0.19768216952071058,
+        0.1072662763216057,
+        0.05257119079265104
+      ],
+      "entropy_bits": 2.3610371683188287,
+      "entropy_nats": 1.6365462564174331,
+      "mps_bond_dimensions": [
+        2,
+        4,
+        8,
+        4,
+        2
+      ],
+      "mps_norm_squared": {
+        "imag": 2.406862024269323e-18,
+        "real": 1.0000000000000004
+      },
+      "mps_reconstruction_max_abs_error": 3.687419884875315e-16,
+      "mps_singular_values": [
+        0.5980442041359706,
+        0.5093177458359374,
+        0.3511306537838336,
+        0.3441423716109762,
+        0.29641833854808786,
+        0.19768216952071063,
+        0.1072662763216056,
+        0.05257119079265107
+      ],
+      "mps_vs_dense_spectrum_max_abs": 4.996003610813204e-16,
+      "schmidt_probabilities": [
+        0.35765687010062647,
+        0.25940456622340047,
+        0.12329273602666244,
+        0.11843397193802725,
+        0.08786383142760883,
+        0.03907824014641498,
+        0.011506054035903046,
+        0.0027637301013573204
+      ],
+      "state_checksum": {
+        "magnitude_spread": 0.17161471316402685,
+        "max_magnitude": 0.20385823184273905,
+        "min_magnitude": 0.0322435186787122,
+        "selected_amplitudes": {
+          "0": {
+            "imag": 0.09402966776266072,
+            "real": 0.009099645267354264
+          },
+          "37": {
+            "imag": 0.14256110918855014,
+            "real": -0.006066430178236176
+          },
+          "63": {
+            "imag": -0.11829538847560543,
+            "real": -0.051564656515007495
+          }
+        },
+        "support": 64,
+        "weighted_imag": -13.243017079089574,
+        "weighted_real": 59.73917118018075
+      }
+    },
+    "product_control": {
+      "dense_oracle_singular_values": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entropy_bits": 0.0,
+      "entropy_nats": -0.0,
+      "mps_bond_dimensions": [
+        2,
+        4,
+        8,
+        4,
+        2
+      ],
+      "mps_norm_squared": {
+        "imag": 0.0,
+        "real": 1.0
+      },
+      "mps_reconstruction_max_abs_error": 0.0,
+      "mps_singular_values": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mps_vs_dense_spectrum_max_abs": 0.0,
+      "schmidt_probabilities": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "state_checksum": {
+        "magnitude_spread": 1.0,
+        "max_magnitude": 1.0,
+        "min_magnitude": 0.0,
+        "selected_amplitudes": {
+          "0": {
+            "imag": 0.0,
+            "real": 1.0
+          },
+          "37": {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          "63": {
+            "imag": 0.0,
+            "real": 0.0
+          }
+        },
+        "support": 1,
+        "weighted_imag": 0.0,
+        "weighted_real": 1.0
+      }
+    },
+    "tampered": {
+      "dense_oracle_singular_values": [
+        0.5973460989755776,
+        0.5075807878849009,
+        0.35764780806627144,
+        0.34074216981863986,
+        0.2964791118022805,
+        0.198072238464392,
+        0.1081638111858818,
+        0.05186825103915166
+      ],
+      "entropy_bits": 2.364441733752374,
+      "entropy_nats": 1.6389061213487273,
+      "mps_bond_dimensions": [
+        2,
+        4,
+        8,
+        4,
+        2
+      ],
+      "mps_norm_squared": {
+        "imag": 2.7755575615628895e-17,
+        "real": 0.9999999999999996
+      },
+      "mps_reconstruction_max_abs_error": 3.8659043403122315e-16,
+      "mps_singular_values": [
+        0.597346098975577,
+        0.5075807878849007,
+        0.3576478080662711,
+        0.34074216981864014,
+        0.2964791118022803,
+        0.19807223846439193,
+        0.10816381118588181,
+        0.05186825103915175
+      ],
+      "mps_vs_dense_spectrum_max_abs": 5.551115123125783e-16,
+      "schmidt_probabilities": [
+        0.3568223619613398,
+        0.25763825622985653,
+        0.1279119546146083,
+        0.116105226292715,
+        0.08789986373506903,
+        0.03923261165029494,
+        0.01169941005025509,
+        0.0026903154658604665
+      ],
+      "state_checksum": {
+        "magnitude_spread": 0.1711104887861917,
+        "max_magnitude": 0.20325927218349799,
+        "min_magnitude": 0.032148783397306285,
+        "selected_amplitudes": {
+          "0": {
+            "imag": 0.09375339744846943,
+            "real": 0.009072909430497041
+          },
+          "37": {
+            "imag": 0.14214224774445366,
+            "real": -0.006048606286998028
+          },
+          "63": {
+            "imag": -0.11794782259646154,
+            "real": -0.05141315343948324
+          }
+        },
+        "support": 64,
+        "weighted_imag": -13.36827506352772,
+        "weighted_real": 60.83384982615546
+      }
+    }
+  },
+  "python_dimension_negative": {
+    "exception_type": "ValueError",
+    "message": "cannot reshape array of size 64 into shape (2,2,2,2,2)",
+    "rejected": true
+  },
+  "runner": {
+    "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713",
+    "duration_seconds": 25.04111979098525,
+    "finished_at_utc": "2026-07-14T04:57:33.500177+00:00",
+    "host": "Joshuas-MacBook-Pro.local",
+    "observed_invocation": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.py --output /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/gap_k_tensor_chain_v2_results.json",
+    "reproduction_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.py --output /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/gap_k_tensor_chain_v2_results.json",
+    "started_at_utc": "2026-07-14T04:57:08.476392+00:00"
+  },
+  "runner_identity": {
+    "active_installer_state": "not_started_by_this_worker",
+    "julia": {
+      "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "depot_path": [
+        "/Users/joshuaeisenhart/.julia",
+        "/opt/homebrew/Cellar/julia/1.12.6/local/share/julia",
+        "/opt/homebrew/Cellar/julia/1.12.6/share/julia"
+      ],
+      "executable": "/opt/homebrew/Cellar/julia/1.12.6/bin/julia",
+      "julia_version": "1.12.6",
+      "load_path": [
+        "@",
+        "@stdlib"
+      ],
+      "packages": {
+        "ITensorMPS": {
+          "module_path": "/Users/joshuaeisenhart/.julia/packages/ITensorMPS/DiVzn/src/ITensorMPS.jl",
+          "version": "0.4.1"
+        },
+        "ITensors": {
+          "module_path": "/Users/joshuaeisenhart/.julia/packages/ITensors/1tkBX/src/ITensors.jl",
+          "version": "0.9.30"
+        },
+        "JSON3": {
+          "module_path": "/Users/joshuaeisenhart/.julia/packages/JSON3/rT1w2/src/JSON3.jl",
+          "version": "1.14.3"
+        }
+      }
+    },
+    "known_blocked_packages_skipped": [
+      "dgl",
+      "torch_scatter",
+      "torch_sparse",
+      "bayeux"
+    ],
+    "package_install_performed": false,
+    "python": {
+      "numba_cache_dir": "/private/tmp/codex_numba_cache",
+      "packages": {
+        "numpy": {
+          "module_path": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/numpy/__init__.py",
+          "role": "dense finite oracle and receipt arithmetic; not the tensor-network tool",
+          "version": "2.3.4"
+        },
+        "quimb": {
+          "module_path": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/quimb/__init__.py",
+          "tensor_module_path": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/quimb/tensor/__init__.py",
+          "version": "1.14.0"
+        }
+      },
+      "physical_executable": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+      "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+      "requested_alias": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+      "version": "3.13.6 (main, Aug  6 2025, 13:05:20) [Clang 17.0.0 (clang-1700.0.13.3)]"
+    },
+    "repo_pollution_added": false
+  },
+  "runtime_manifest": {
+    "active_installer_state": "not_started_by_this_worker",
+    "julia": {
+      "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "depot_path": [
+        "/Users/joshuaeisenhart/.julia",
+        "/opt/homebrew/Cellar/julia/1.12.6/local/share/julia",
+        "/opt/homebrew/Cellar/julia/1.12.6/share/julia"
+      ],
+      "executable": "/opt/homebrew/Cellar/julia/1.12.6/bin/julia",
+      "julia_version": "1.12.6",
+      "load_path": [
+        "@",
+        "@stdlib"
+      ],
+      "packages": {
+        "ITensorMPS": {
+          "module_path": "/Users/joshuaeisenhart/.julia/packages/ITensorMPS/DiVzn/src/ITensorMPS.jl",
+          "version": "0.4.1"
+        },
+        "ITensors": {
+          "module_path": "/Users/joshuaeisenhart/.julia/packages/ITensors/1tkBX/src/ITensors.jl",
+          "version": "0.9.30"
+        },
+        "JSON3": {
+          "module_path": "/Users/joshuaeisenhart/.julia/packages/JSON3/rT1w2/src/JSON3.jl",
+          "version": "1.14.3"
+        }
+      }
+    },
+    "known_blocked_packages_skipped": [
+      "dgl",
+      "torch_scatter",
+      "torch_sparse",
+      "bayeux"
+    ],
+    "package_install_performed": false,
+    "python": {
+      "numba_cache_dir": "/private/tmp/codex_numba_cache",
+      "packages": {
+        "numpy": {
+          "module_path": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/numpy/__init__.py",
+          "role": "dense finite oracle and receipt arithmetic; not the tensor-network tool",
+          "version": "2.3.4"
+        },
+        "quimb": {
+          "module_path": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/quimb/__init__.py",
+          "tensor_module_path": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/quimb/tensor/__init__.py",
+          "version": "1.14.0"
+        }
+      },
+      "physical_executable": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+      "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+      "requested_alias": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+      "version": "3.13.6 (main, Aug  6 2025, 13:05:20) [Clang 17.0.0 (clang-1700.0.13.3)]"
+    },
+    "repo_pollution_added": false
+  },
+  "schema": "codex-ratchet.gap-k-tensor-chain-result.v2",
+  "schema_version": "gap_k_tensor_chain_v2_result_v1",
+  "scientific_question": "Do the two concrete tensor-network API paths agree on one nontrivial fixed 6-qubit Schmidt spectrum while rejecting named convention, state, and dimension mistakes?",
+  "sim_class": "tool_lego_fit_probe",
+  "sim_execution_kind": "classical",
+  "sim_id": "gap_k_tensor_chain_v2",
+  "source": {
+    "julia_path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.jl",
+    "julia_sha256": "cc2d607dd4bd77633f4cd3bf9d9329310222fce8c77f06dc8a89b80b0348cca0",
+    "python_path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.py",
+    "python_sha256": "b9b5356786076273d04e6f206306b2ea3fa8660b3c7ebc554d33d0cc4c0376aa"
+  },
+  "source_files": {
+    "julia": {
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.jl",
+      "sha256": "cc2d607dd4bd77633f4cd3bf9d9329310222fce8c77f06dc8a89b80b0348cca0"
+    },
+    "python": {
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.py",
+      "sha256": "b9b5356786076273d04e6f206306b2ea3fa8660b3c7ebc554d33d0cc4c0376aa"
+    }
+  },
+  "state_generation": {
+    "cross_runtime_exchange": "Julia returns only versioned JSON diagnostics; no tensor is copied across runtimes",
+    "primary": {
+      "cut": "3|3",
+      "formula": "a_k=((37(k+1)^2+11(w+1)+5) mod 101-50)+i*((29(k+3)^2+7(w+2)+13) mod 103-51), then L2 normalize",
+      "non_stabilizer_necessary_condition_witness": "Full computational-basis support plus unequal nonzero magnitudes rules out a stabilizer state.",
+      "qubits": 6,
+      "why_not_textbook": "It is dense and uses a fixed nonuniform complex coefficient formula, not a named GHZ/product/stabilizer fixture."
+    },
+    "state_exchange": "none; Python and Julia independently regenerate every fixture"
+  },
+  "status_label": "passes local rerun",
+  "tier": "tool_stage_pre_lego",
+  "tool_calls": [
+    {
+      "boundary_case": "GHZ and product fixtures",
+      "demotion_condition": "dimension input accepted, reconstruction fails, or dense-oracle spectrum diverges",
+      "gates": [
+        "python_quimb_primary_reconstructs_state",
+        "python_quimb_primary_matches_dense_oracle",
+        "python_quimb_wrong_dimension_rejected",
+        "all_pass"
+      ],
+      "input_object": "independently generated complex128 2x2x2x2x2x2 state",
+      "load_bearing": true,
+      "negative_or_erased_control": "wrong five-site dims must raise ValueError",
+      "output_object": "six-site MatrixProductState with explicit bond dimensions",
+      "positive_case": "full-support unequal-magnitude deterministic primary fixture",
+      "qualified_api": "quimb.tensor.MatrixProductState.from_dense",
+      "tool": "quimb"
+    },
+    {
+      "boundary_case": "one-ebit GHZ and zero-ebit product",
+      "demotion_condition": "cross-engine or exact-boundary comparison exceeds tolerance",
+      "gates": [
+        "primary_cross_engine_spectrum_and_entropy_agree",
+        "tampered_state_wrong_pair_is_detected",
+        "ghz_control_boundary_control",
+        "product_control_boundary_control",
+        "all_pass"
+      ],
+      "input_object": "quimb MPS at the 3|3 cut",
+      "load_bearing": true,
+      "negative_or_erased_control": "untampered spectrum compared to independently regenerated tampered state",
+      "output_object": "Schmidt singular spectrum and base-2 entropy",
+      "positive_case": "rank-eight nontrivial primary spectrum",
+      "qualified_api": "MatrixProductState.singular_values and MatrixProductState.entropy",
+      "tool": "quimb"
+    },
+    {
+      "boundary_case": "GHZ and product fixtures",
+      "demotion_condition": "wrong-dimension input accepted or reconstruction exceeds tolerance",
+      "gates": [
+        "julia_itensors_primary_reconstructs_state",
+        "julia_itensors_wrong_dimension_rejected",
+        "all_pass"
+      ],
+      "input_object": "Julia-regenerated ComplexF64 2x2x2x2x2x2 state and Qubit site indices",
+      "load_bearing": true,
+      "negative_or_erased_control": "five-site Index set must raise DimensionMismatch",
+      "output_object": "six-site MPS, norm, reconstructed dense state, and orthogonality center",
+      "positive_case": "full-support unequal-magnitude deterministic primary fixture",
+      "qualified_api": "ITensorMPS.MPS(::AbstractArray, sites), inner, contract, orthogonalize!",
+      "tool": "ITensors/ITensorMPS"
+    },
+    {
+      "boundary_case": "exactly degenerate GHZ and rank-one product spectra",
+      "demotion_condition": "dense oracle, cross-engine, or control comparison exceeds tolerance",
+      "gates": [
+        "julia_itensors_primary_matches_dense_oracle",
+        "primary_cross_engine_spectrum_and_entropy_agree",
+        "tampered_state_wrong_pair_is_detected",
+        "all_pass"
+      ],
+      "input_object": "orthogonalized site-3 MPS tensor split by left-link plus physical index",
+      "load_bearing": true,
+      "negative_or_erased_control": "tampered-state wrong-pair comparison must exceed detection floor",
+      "output_object": "rank-at-most-eight Schmidt singular tensor",
+      "positive_case": "rank-eight nontrivial primary spectrum",
+      "qualified_api": "ITensors.svd(::ITensor, left_indices; cutoff=0.0, maxdim=8)",
+      "tool": "ITensors"
+    }
+  ],
+  "tool_integration_depth": {
+    "ITensors/ITensorMPS": "function-level with positive, negative, and boundary gates",
+    "quimb": "function-level with positive, negative, and boundary gates"
+  },
+  "tool_manifest": [
+    {
+      "reason": "MPS construction, reconstruction, Schmidt spectrum, entropy, and dimension rejection gate all_pass.",
+      "status": "claim_load_bearing",
+      "tool": "quimb"
+    },
+    {
+      "reason": "Julia MPS construction, contraction, canonicalization, SVD, and dimension rejection gate all_pass.",
+      "status": "claim_load_bearing",
+      "tool": "ITensors/ITensorMPS"
+    }
+  ],
+  "version": "2.0.0",
+  "witness_trace": [
+    "Python independently generated primary/tampered/GHZ/product dense states.",
+    "quimb converted each state to MPS and derived reconstruction, norm, Schmidt spectrum, and entropy.",
+    "A strict Julia carrier process independently regenerated the same fixtures.",
+    "ITensorMPS converted each Julia array to MPS; ITensors SVD derived the 3|3 Schmidt spectrum.",
+    "Each MPS spectrum was checked against a same-runtime dense finite SVD oracle.",
+    "Cross-runtime spectra, probabilities, and explicitly base-2 entropies were compared.",
+    "GHZ/product boundaries, state tamper, unit mismatch, and dimension rejection gated all_pass."
+  ]
+}

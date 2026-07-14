@@ -3,8 +3,6 @@ name: lego-sim-classifier
 description: Classify Codex Ratchet sims/legos by evidence level, tool integration, and claim ceiling so scratch diagnostics, formal scouts, capability anchors, and canonical-by-process packets do not collapse together.
 ---
 
-MIRROR: authoritative copy is .claude/skills/lego-sim-classifier/SKILL.md; sync direction .claude -> codex_skills.
-
 # Lego Sim Classifier
 
 Use this when a sim, lego, result JSON, or worker transcript needs an honest status label.

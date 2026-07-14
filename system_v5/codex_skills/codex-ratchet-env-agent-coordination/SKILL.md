@@ -3,8 +3,6 @@ name: codex-ratchet-env-agent-coordination
 description: Coordinate Codex Ratchet package installs and package-dependent workers so libraries are found in the intended Python, Julia, GitHub, and optional-project locations before any agent installs or claims tool evidence.
 ---
 
-MIRROR: authoritative copy is .claude/skills/codex-ratchet-env-agent-coordination/SKILL.md; sync direction .claude -> codex_skills.
-
 # Codex Ratchet Env Agent Coordination
 
 Use this whenever a Codex Ratchet task mentions broken installs, missing

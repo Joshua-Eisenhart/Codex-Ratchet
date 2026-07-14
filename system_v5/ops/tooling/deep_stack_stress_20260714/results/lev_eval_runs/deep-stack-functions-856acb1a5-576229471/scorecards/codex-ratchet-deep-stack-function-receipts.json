@@ -1,0 +1,816 @@
+{
+  "suite_id": "codex-ratchet-deep-stack-function-receipts",
+  "status": "passed",
+  "projection_only": true,
+  "release_eligible": false,
+  "executed_count": 9,
+  "skipped_count": 0,
+  "blocked_count": 0,
+  "unavailable_count": 0,
+  "failed_count": 0,
+  "artifact_ref_count": 18,
+  "artifact_refs": [
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-head/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-head/stderr.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-tree/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-tree/stderr.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-tracked-bytes-clean/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-tracked-bytes-clean/stderr.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executable-hash/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executable-hash/stderr.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/run-independent-validator-selftest/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/run-independent-validator-selftest/stderr.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/execute-deep-stack-parent-runner/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/execute-deep-stack-parent-runner/stderr.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/validate-deep-stack-estate-require-final-green/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/validate-deep-stack-estate-require-final-green/stderr.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-exact-roster-edge-and-bridge-coverage/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-exact-roster-edge-and-bridge-coverage/stderr.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/lev-zero-execution-control-blocks/stdout.txt",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/lev-zero-execution-control-blocks/stderr.txt"
+  ],
+  "artifact_hashes": {
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-head/stdout.txt": "5286942ee6684ada960e31591a6e017fb1929c2555d5fa9d628df5cf8295a44b",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-head/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-tree/stdout.txt": "1809fe720d7001f3a1d21e8f63518e2675db41cf1a326c704400b413169f948e",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-tree/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-tracked-bytes-clean/stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-tracked-bytes-clean/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executable-hash/stdout.txt": "9344f79d5b852454e50a8d720142bd187ce62fa9ea0e40907ca585259a789afa",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executable-hash/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/run-independent-validator-selftest/stdout.txt": "6d3202ad1fcaa88731dfabe56a5f353d7a420ed39e876be19bbb134d14a1347d",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/run-independent-validator-selftest/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/execute-deep-stack-parent-runner/stdout.txt": "d92d4d7a58b1674e0959992b54adfe8e7814c87c3241f647c4b8cc737762f542",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/execute-deep-stack-parent-runner/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/validate-deep-stack-estate-require-final-green/stdout.txt": "74a12fef90ea86ac80bb1389995bdf7281a7de2d3615a38d0b007d121845fb8f",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/validate-deep-stack-estate-require-final-green/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-exact-roster-edge-and-bridge-coverage/stdout.txt": "23c68388081c1c50d5bd045a63fd7bd0ee431039b29d8e3699a980811e91aedf",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-exact-roster-edge-and-bridge-coverage/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/lev-zero-execution-control-blocks/stdout.txt": "ad57778fad0d787593c31da0dbc872f479b3753887beea93f32392d230939986",
+    "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/lev-zero-execution-control-blocks/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "artifact_routes": [],
+  "checks": {
+    "green": [
+      "the Lev executor commit, tree, clean tracked bytes, and executable hash match the pinned non-model runtime",
+      "the independent receipt validator passes its full authentic-plus-mutation selftest",
+      "the parent runner processes every roster row and executes every required deep row under no-install and network-denied policy",
+      "the estate contains exactly all 139 registry tool receipts without duplicates",
+      "the fresh estate contains exactly 95 deep-stress tool receipts, all 95 pass operationally, and the required-bucket subset is exactly 86 of 86",
+      "the fresh estate has exactly 25 member co-health edges, three independent shared cross-checks, and one direct value handoff, all operationally green",
+      "all seven run-scoped raw roles have exactly one successful producer bound to the live path, hash, explicit output clearing, and invoked source",
+      "every parent and representative command exits zero without timeout or raw reuse",
+      "all 95 deep rows bind exact fresh output contracts and invoked sources across exactly 48 unique consumer sources",
+      "all 95 representative rows carry exact structured mapped-tool evidence with no free-text or partial-name matching",
+      "the independent schema-aware validator is finding-free and the final estate passes its strict operational gate",
+      "the nested zero-execution control blocks instead of projecting a false green"
+    ],
+    "red": [
+      "a scientific-red payload cannot excuse a nonzero exit, timeout, stale output, or API failure",
+      "a missing, duplicate, extra, stale-hash, import-only, or promotion-bearing receipt blocks validation",
+      "file existence or a deep-fixture pass without an exact representative command record, artifact-or-stdout receipt, API-failure scan, and source-hash binding cannot satisfy representative execution",
+      "Claude bridge use is forbidden and must remain false in the estate",
+      "package installation, model adapters, provider calls, and network access are outside this eval lane",
+      "integration diagnostics and Lev projection cannot prove a Ratchet or QIT scientific claim"
+    ]
+  },
+  "trace_cases": [],
+  "command_cases": [
+    {
+      "id": "verify-bound-lev-executor-head",
+      "command": "/usr/bin/git",
+      "argv": [
+        "-C",
+        "/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-head/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-head/stderr.txt",
+      "stdout_artifact_sha256": "5286942ee6684ada960e31591a6e017fb1929c2555d5fa9d628df5cf8295a44b",
+      "stderr_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout_ms": 1800000,
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "856acb1a5de42528a9a54272435d98a9fe226186\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": "zero",
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "856acb1a5de42528a9a54272435d98a9fe226186",
+          "actual": "856acb1a5de42528a9a54272435d98a9fe226186\n",
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": "verify-bound-lev-executor-tree",
+      "command": "/usr/bin/git",
+      "argv": [
+        "-C",
+        "/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-tree/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executor-tree/stderr.txt",
+      "stdout_artifact_sha256": "1809fe720d7001f3a1d21e8f63518e2675db41cf1a326c704400b413169f948e",
+      "stderr_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout_ms": 1800000,
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "3f3488781d48a64b22c43c08ccfaa2b503d49524\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": "zero",
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "3f3488781d48a64b22c43c08ccfaa2b503d49524",
+          "actual": "3f3488781d48a64b22c43c08ccfaa2b503d49524\n",
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": "verify-bound-lev-tracked-bytes-clean",
+      "command": "/usr/bin/git",
+      "argv": [
+        "-C",
+        "/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract",
+        "diff",
+        "--quiet",
+        "HEAD",
+        "--"
+      ],
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-tracked-bytes-clean/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-tracked-bytes-clean/stderr.txt",
+      "stdout_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout_ms": 1800000,
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": "zero",
+          "actual": 0,
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": "verify-bound-lev-executable-hash",
+      "command": "/usr/bin/shasum",
+      "argv": [
+        "-a",
+        "256",
+        "/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract/core/poly/bin/lev"
+      ],
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executable-hash/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-bound-lev-executable-hash/stderr.txt",
+      "stdout_artifact_sha256": "9344f79d5b852454e50a8d720142bd187ce62fa9ea0e40907ca585259a789afa",
+      "stderr_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout_ms": 1800000,
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "f258ae313d515cae4ff848a45df78cfcc6a2d48c9ce1ade9c316276b00ef0c61  /Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract/core/poly/bin/lev\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": "zero",
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "f258ae313d515cae4ff848a45df78cfcc6a2d48c9ce1ade9c316276b00ef0c61",
+          "actual": "f258ae313d515cae4ff848a45df78cfcc6a2d48c9ce1ade9c316276b00ef0c61  /Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract/core/poly/bin/lev\n",
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": "run-independent-validator-selftest",
+      "command": "/usr/bin/sandbox-exec",
+      "argv": [
+        "-p",
+        "(version 1) (allow default) (deny network*)",
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "system_v5/codex_skills/codex-ratchet-deep-stack-stress/scripts/validate_deep_stack_receipt.py",
+        "selftest",
+        "--out",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/results/validator_selftest_lev.json"
+      ],
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/run-independent-validator-selftest/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/run-independent-validator-selftest/stderr.txt",
+      "stdout_artifact_sha256": "6d3202ad1fcaa88731dfabe56a5f353d7a420ed39e876be19bbb134d14a1347d",
+      "stderr_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout_ms": 1800000,
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "{\n  \"all_pass\": true,\n  \"case_count\": 14,\n  \"cases\": [\n    {\n      \"id\": \"baseline_valid\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 4,\n      \"id\": \"missing_negative\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 3,\n      \"id\": \"import_only\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 2,\n      \"id\": \"false_demotion\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 5,\n      \"id\": \"unknown_edge\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 2,\n      \"id\": \"stale_hash\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"science_promotion\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"claude_bridge\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"duplicate_tool\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"missing_edge_receipt\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"invented_tool_call\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"hidden_raw_reuse\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 10,\n      \"id\": \"representative_without_execution_receipt\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"raw_tool_call_hash_missing\",\n      \"passed\": true\n    }\n  ],\n  \"passed_count\": 14,\n  \"schema\": \"codex-ratchet.deep-stack-validator-selftest.v1\"\n}\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": "zero",
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"case_count\": 14",
+          "actual": "{\n  \"all_pass\": true,\n  \"case_count\": 14,\n  \"cases\": [\n    {\n      \"id\": \"baseline_valid\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 4,\n      \"id\": \"missing_negative\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 3,\n      \"id\": \"import_only\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 2,\n      \"id\": \"false_demotion\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 5,\n      \"id\": \"unknown_edge\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 2,\n      \"id\": \"stale_hash\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"science_promotion\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"claude_bridge\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"duplicate_tool\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"missing_edge_receipt\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"invented_tool_call\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"hidden_raw_reuse\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 10,\n      \"id\": \"representative_without_execution_receipt\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"raw_tool_call_hash_missing\",\n      \"passed\": true\n    }\n  ],\n  \"passed_count\": 14,\n  \"schema\": \"codex-ratchet.deep-stack-validator-selftest.v1\"\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"passed_count\": 14",
+          "actual": "{\n  \"all_pass\": true,\n  \"case_count\": 14,\n  \"cases\": [\n    {\n      \"id\": \"baseline_valid\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 4,\n      \"id\": \"missing_negative\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 3,\n      \"id\": \"import_only\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 2,\n      \"id\": \"false_demotion\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 5,\n      \"id\": \"unknown_edge\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 2,\n      \"id\": \"stale_hash\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"science_promotion\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"claude_bridge\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"duplicate_tool\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"missing_edge_receipt\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"invented_tool_call\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"hidden_raw_reuse\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 10,\n      \"id\": \"representative_without_execution_receipt\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"raw_tool_call_hash_missing\",\n      \"passed\": true\n    }\n  ],\n  \"passed_count\": 14,\n  \"schema\": \"codex-ratchet.deep-stack-validator-selftest.v1\"\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"all_pass\": true",
+          "actual": "{\n  \"all_pass\": true,\n  \"case_count\": 14,\n  \"cases\": [\n    {\n      \"id\": \"baseline_valid\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 4,\n      \"id\": \"missing_negative\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 3,\n      \"id\": \"import_only\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 2,\n      \"id\": \"false_demotion\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 5,\n      \"id\": \"unknown_edge\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 2,\n      \"id\": \"stale_hash\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"science_promotion\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"claude_bridge\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"duplicate_tool\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"missing_edge_receipt\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"invented_tool_call\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"hidden_raw_reuse\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 10,\n      \"id\": \"representative_without_execution_receipt\",\n      \"passed\": true\n    },\n    {\n      \"finding_count\": 1,\n      \"id\": \"raw_tool_call_hash_missing\",\n      \"passed\": true\n    }\n  ],\n  \"passed_count\": 14,\n  \"schema\": \"codex-ratchet.deep-stack-validator-selftest.v1\"\n}\n",
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": "execute-deep-stack-parent-runner",
+      "command": "/usr/bin/sandbox-exec",
+      "argv": [
+        "-p",
+        "(version 1) (allow default) (deny network*)",
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "system_v5/codex_skills/codex-ratchet-deep-stack-stress/scripts/run_deep_stack_stress.py",
+        "--repo-root",
+        ".",
+        "--registry",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json",
+        "--edges",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/registry/integration_edges_v1.json",
+        "--run-id",
+        "deep-stack-lev-856acb1a5",
+        "--out",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev.json",
+        "--no-install"
+      ],
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/execute-deep-stack-parent-runner/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/execute-deep-stack-parent-runner/stderr.txt",
+      "stdout_artifact_sha256": "d92d4d7a58b1674e0959992b54adfe8e7814c87c3241f647c4b8cc737762f542",
+      "stderr_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout_ms": 1800000,
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "{\n  \"deep_stress_tool_count\": 95,\n  \"integration_edge_count\": 29,\n  \"operational_pass_count\": 95,\n  \"operational_red_count\": 0,\n  \"operational_red_edge_count\": 0,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"raw_reuse_used\": false,\n  \"registry_tool_count\": 139,\n  \"trustworthy_receipt_written_even_if_red\": true\n}\nreceipt=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev.json\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": "zero",
+          "actual": 0,
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": "validate-deep-stack-estate-require-final-green",
+      "command": "/usr/bin/sandbox-exec",
+      "argv": [
+        "-p",
+        "(version 1) (allow default) (deny network*)",
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "system_v5/codex_skills/codex-ratchet-deep-stack-stress/scripts/validate_deep_stack_receipt.py",
+        "estate",
+        "--receipt",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev.json",
+        "--registry",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json",
+        "--edges",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/registry/integration_edges_v1.json",
+        "--repo-root",
+        ".",
+        "--out",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev_verdict.json",
+        "--require-operational-pass"
+      ],
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/validate-deep-stack-estate-require-final-green/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/validate-deep-stack-estate-require-final-green/stderr.txt",
+      "stdout_artifact_sha256": "74a12fef90ea86ac80bb1389995bdf7281a7de2d3615a38d0b007d121845fb8f",
+      "stderr_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout_ms": 1800000,
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": "zero",
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"receipt_valid\": true",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"registry_tool_count\": 139",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"receipt_tool_count\": 139",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"required_operational_count\": 86",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"operational_pass\": true",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"operational_red_count\": 0",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"policy_red_count\": 0",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"integration_edge_red_count\": 0",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"raw_reuse_used\": false",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"reused_command_count\": 0",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"accepted_scientific_red_command_count\": 0",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"missing_raw_receipt_count\": 0",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"failed_command_count\": 0",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"release_eligible\": false",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"projection_only\": true",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"scientific_claim_proven\": false",
+          "actual": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": "verify-exact-roster-edge-and-bridge-coverage",
+      "command": "/usr/bin/sandbox-exec",
+      "argv": [
+        "-p",
+        "(version 1) (allow default) (deny network*)",
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "-c",
+        "\nimport hashlib\nimport json\nimport re\nimport shlex\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nSHA256 = re.compile(r\"^[0-9a-f]{64}$\")\nEXPECTED_RAW_ROLES = {\n    \"python_core\",\n    \"julia_core\",\n    \"jl_tensorkit\",\n    \"jl_pepskit\",\n    \"jl_intervalarithmetic\",\n    \"cross_tensor\",\n    \"cross_dynamics\",\n}\nREPRESENTATIVE_EXECUTION_MODES = {\n    \"direct_current_probe\",\n    \"controller_invoked_nested_fixture\",\n    \"isolated_disposable_projection\",\n}\nREPRESENTATIVE_FIXTURE_CREDIT = \"representative_consumer_only_not_seven_case_replacement\"\nMAPPED_TOOL_CLAIM_CEILING = (\n    \"One-to-one registry/source/output contract or exact structured artifact identity only; \"\n    \"direct load-bearing API evidence remains in the raw four-case probe.\"\n)\n\ndef sha256_file(path):\n    digest = hashlib.sha256()\n    with path.open(\"rb\") as handle:\n        for chunk in iter(lambda: handle.read(1024 * 1024), b\"\"):\n            digest.update(chunk)\n    return digest.hexdigest()\n\ndef command_signature(record):\n    return (\n        tuple(record[\"command\"]),\n        record[\"command_line\"],\n        record[\"exit_code\"],\n        record[\"timed_out\"],\n    )\n\ndef normalized_identity(value):\n    return \"\".join(character for character in str(value).lower() if character.isalnum())\n\ndef structured_tool_identities(value):\n    identities = set()\n    scalar_keys = {\"tool\", \"package\", \"target_tool\", \"tool_id\"}\n    list_keys = {\"packages_used\", \"aligned_packages_load_bearing\"}\n    map_keys = {\"TOOL_MANIFEST\", \"tool_manifest\", \"package_versions\"}\n    if isinstance(value, dict):\n        for key, item in value.items():\n            if key in scalar_keys and isinstance(item, str):\n                identities.add(item)\n            if key in list_keys and isinstance(item, list):\n                identities.update(entry for entry in item if isinstance(entry, str))\n            if key in map_keys and isinstance(item, dict):\n                identities.update(str(entry) for entry in item)\n            identities.update(structured_tool_identities(item))\n    elif isinstance(value, list):\n        for item in value:\n            identities.update(structured_tool_identities(item))\n    return sorted(identities)\n\ndef parsed_stdout_receipt(record):\n    stdout = str(record.get(\"stdout\") or \"\").strip()\n    if not stdout:\n        return None\n    for candidate in [stdout, *reversed(stdout.splitlines())]:\n        try:\n            return json.loads(candidate)\n        except (json.JSONDecodeError, TypeError):\n            continue\n    return None\n\ndef leaves(value):\n    if isinstance(value, dict):\n        for item in value.values():\n            yield from leaves(item)\n    elif isinstance(value, list):\n        for item in value:\n            yield from leaves(item)\n    else:\n        yield value\n\ndef named_values(value, name):\n    if isinstance(value, dict):\n        for key, item in value.items():\n            if key == name:\n                yield item\n            yield from named_values(item, name)\n    elif isinstance(value, list):\n        for item in value:\n            yield from named_values(item, name)\n\nestate = json.load(open(sys.argv[1], encoding=\"utf-8\"))\nregistry = json.load(open(sys.argv[2], encoding=\"utf-8\"))\nedges = json.load(open(sys.argv[3], encoding=\"utf-8\"))\nverdict = json.load(open(sys.argv[4], encoding=\"utf-8\"))\nregistry_ids = [row[\"tool_id\"] for row in registry[\"tools\"]]\nregistry_by_id = {row[\"tool_id\"]: row for row in registry[\"tools\"]}\nregistry_source_tool_ids = {}\nfor row in registry[\"tools\"]:\n    if row.get(\"requires_deep_stress\") is True:\n        registry_source_tool_ids.setdefault(row[\"representative_sim\"][\"path\"], []).append(row[\"tool_id\"])\nfor source_tool_ids in registry_source_tool_ids.values():\n    source_tool_ids.sort()\nreceipt_ids = [row[\"tool_id\"] for row in estate[\"tool_receipts\"]]\ndeep_stress_ids = [row[\"tool_id\"] for row in registry[\"tools\"] if row.get(\"requires_deep_stress\") is True]\ndeep_stress_id_set = set(deep_stress_ids)\ndeep_stress_receipts = [row for row in estate[\"tool_receipts\"] if row[\"tool_id\"] in deep_stress_id_set]\nrequired_buckets = set(registry[\"required_operational_buckets\"])\nrequired_operational_ids = [\n    row[\"tool_id\"]\n    for row in registry[\"tools\"]\n    if row.get(\"requires_deep_stress\") is True and row.get(\"bucket\") in required_buckets\n]\npolicy_receipts = [row for row in estate[\"tool_receipts\"] if row[\"tool_id\"] not in deep_stress_id_set]\nedge_ids = [row[\"id\"] for row in edges[\"edges\"]]\nedge_receipt_ids = [row[\"edge_id\"] for row in estate[\"integration_edge_receipts\"]]\nedge_receipts_by_id = {row[\"edge_id\"]: row for row in estate[\"integration_edge_receipts\"]}\nsummary = estate[\"producer_summary\"]\nraw_refs = [value for value in leaves(estate[\"raw_receipts\"]) if isinstance(value, str)]\nraw_bindings = estate[\"raw_receipt_bindings\"]\nraw_reuse_values = list(named_values(estate, \"raw_reuse_used\"))\ncommands = estate[\"commands\"]\nrepresentatives = [row[\"representative_sim\"] for row in deep_stress_receipts]\nregistry_representative_sources = {\n    row[\"representative_sim\"][\"path\"]\n    for row in registry[\"tools\"]\n    if row.get(\"requires_deep_stress\") is True\n}\nreceipt_representative_sources = {row[\"source_path\"] for row in representatives}\nassert estate[\"run_id\"] == \"deep-stack-lev-856acb1a5\"\nassert len(registry_ids) == 139\nassert len(registry_ids) == len(set(registry_ids))\nassert len(receipt_ids) == 139\nassert len(receipt_ids) == len(set(receipt_ids))\nassert set(receipt_ids) == set(registry_ids)\nassert len(deep_stress_ids) == 95\nassert len(deep_stress_id_set) == 95\nassert len(deep_stress_receipts) == 95\nassert all(row[\"verdict\"][\"operational_pass\"] is True for row in deep_stress_receipts)\nassert len(required_operational_ids) == 86\nassert len(set(required_operational_ids)) == 86\nassert len(policy_receipts) == 44\nassert all(row[\"policy_check\"][\"passed\"] is True for row in policy_receipts)\nassert all(row[\"verdict\"][\"operational_status\"] == \"policy_passed\" for row in policy_receipts)\nassert len(edge_ids) == 29\nassert len(edge_ids) == len(set(edge_ids))\nassert len(edge_receipt_ids) == 29\nassert len(edge_receipt_ids) == len(set(edge_receipt_ids))\nassert set(edge_receipt_ids) == set(edge_ids)\nassert all(row[\"verdict\"][\"operational_pass\"] is True for row in estate[\"integration_edge_receipts\"])\nassert Counter(row[\"evidence_kind\"] for row in estate[\"integration_edge_receipts\"]) == {\n    \"member_cohealth_compatibility_witness\": 25,\n    \"independent_shared_crosscheck\": 3,\n    \"direct_value_handoff\": 1,\n}\nindependent_edges = {\"cross_tensor\", \"cross_dynamics\", \"cross_proof\"}\ndirect_edges = {\"cross_jax_torch\"}\nfor edge_id, edge_receipt in edge_receipts_by_id.items():\n    if edge_id in independent_edges:\n        assert edge_receipt[\"evidence_kind\"] == \"independent_shared_crosscheck\"\n        assert edge_receipt[\"witness_mode\"] in {\n            \"independent_shared_obligation_crosscheck\",\n            \"independent_shared_fixture_crosscheck\",\n        }\n    elif edge_id in direct_edges:\n        assert edge_receipt[\"evidence_kind\"] == \"direct_value_handoff\"\n        assert edge_receipt[\"witness_mode\"] == \"direct_value_handoff\"\n    else:\n        assert edge_receipt[\"evidence_kind\"] == \"member_cohealth_compatibility_witness\"\n        assert edge_receipt[\"witness_mode\"] == \"executed_member_case_conjunction\"\n        assert \"does not assert a direct inter-member value handoff\" in edge_receipt[\"exchange_claim_ceiling\"]\nassert summary[\"deep_stress_tool_count\"] == 95\nassert summary[\"operational_pass_count\"] == 95\nassert summary[\"operational_red_count\"] == 0\nassert summary[\"operational_red_tools\"] == []\nassert summary[\"integration_edge_count\"] == 29\nassert summary[\"operational_red_edge_count\"] == 0\nassert summary[\"operational_red_edges\"] == []\nassert verdict[\"receipt_valid\"] is True\nassert verdict[\"operational_pass\"] is True\nassert verdict[\"release_eligible\"] is False\nassert verdict[\"projection_only\"] is True\nassert verdict[\"scientific_claim_proven\"] is False\nassert verdict[\"summary\"][\"registry_tool_count\"] == 139\nassert verdict[\"summary\"][\"receipt_tool_count\"] == 139\nassert verdict[\"summary\"][\"required_operational_count\"] == 86\nassert verdict[\"summary\"][\"operational_pass_count\"] == 86\nassert verdict[\"summary\"][\"operational_red_count\"] == 0\nassert verdict[\"summary\"][\"policy_red_count\"] == 0\nassert verdict[\"summary\"][\"integration_edge_count\"] == 29\nassert verdict[\"summary\"][\"integration_edge_red_count\"] == 0\nassert verdict[\"summary\"][\"raw_reuse_used\"] is False\nassert verdict[\"summary\"][\"reused_command_count\"] == 0\nassert verdict[\"summary\"][\"missing_raw_receipt_count\"] == 0\nassert verdict[\"summary\"][\"failed_command_count\"] == 0\nassert verdict[\"summary\"][\"accepted_scientific_red_command_count\"] == 0\nassert verdict[\"findings\"] == []\nassert verdict[\"per_tool_findings\"] == {}\nassert verdict[\"operational_red_tools\"] == []\nassert verdict[\"policy_red_tools\"] == []\nassert verdict[\"operational_red_edges\"] == []\nassert verdict[\"missing_raw_receipt_roles\"] == []\nassert len(raw_refs) == 7\nassert len(set(raw_refs)) == 7\nassert all(\"/raw/deep-stack-lev-856acb1a5/\" in \"/\" + value for value in raw_refs)\nassert len(raw_bindings) == 7\nassert {row[\"role\"] for row in raw_bindings} == EXPECTED_RAW_ROLES\nassert len({row[\"role\"] for row in raw_bindings}) == 7\nassert {row[\"path\"] for row in raw_bindings} == set(raw_refs)\nraw_producers_by_role = {\n    role: [\n        command\n        for command in commands\n        if command.get(\"role\") == \"raw_producer\" and command.get(\"raw_role\") == role\n    ]\n    for role in EXPECTED_RAW_ROLES\n}\nassert all(len(producers) == 1 for producers in raw_producers_by_role.values())\nassert sum(command.get(\"role\") == \"raw_producer\" for command in commands) == 7\nfor binding in raw_bindings:\n    assert binding[\"exists\"] is True\n    assert SHA256.fullmatch(binding[\"sha256\"])\n    path = Path(binding[\"path\"])\n    path = path if path.is_absolute() else Path.cwd() / path\n    assert path.is_file()\n    assert sha256_file(path) == binding[\"sha256\"]\n    producer = raw_producers_by_role[binding[\"role\"]][0]\n    assert binding[\"producer_command_count\"] == 1\n    assert binding[\"producer_bound\"] is True\n    assert binding[\"producer_exit_code\"] == 0\n    assert binding[\"producer_timed_out\"] is False\n    assert binding[\"producer_output_path\"] == binding[\"path\"] == producer[\"output_path\"]\n    assert binding[\"producer_output_sha256\"] == binding[\"sha256\"] == producer[\"output_sha256\"]\n    assert binding[\"producer_output_created_after_explicit_unlink\"] is True\n    assert producer[\"output_created_after_explicit_unlink\"] is True\n    assert binding[\"producer_output_boundary_cleared_before_execution\"] is True\n    assert producer[\"output_boundary_cleared_before_execution\"] is True\n    assert \"preexisting_output_removed\" in producer\n    assert producer[\"output_exists\"] is True\n    assert binding[\"producer_invoked_source_path\"] == producer[\"invoked_source_path\"]\n    assert binding[\"producer_invoked_source_sha256\"] == producer[\"invoked_source_sha256\"]\n    assert binding[\"producer_invoked_source_argument_present\"] is True\n    assert producer[\"invoked_source_argument_present\"] is True\n    assert producer[\"invoked_source_argument\"] in producer[\"command\"]\n    invoked_source = Path(producer[\"invoked_source_path\"])\n    invoked_source = invoked_source if invoked_source.is_absolute() else Path.cwd() / invoked_source\n    assert invoked_source.is_file()\n    assert sha256_file(invoked_source) == producer[\"invoked_source_sha256\"]\nassert estate[\"raw_reuse_used\"] is False\nassert summary[\"raw_reuse_used\"] is False\nassert raw_reuse_values\nassert all(value is False for value in raw_reuse_values)\nassert len(commands) >= 10\nfor command in commands:\n    assert isinstance(command, dict)\n    assert \"reused_raw\" not in command\n    assert isinstance(command.get(\"command\"), list) and command[\"command\"]\n    assert all(isinstance(part, str) and part for part in command[\"command\"])\n    assert command.get(\"command_line\") == shlex.join(command[\"command\"])\n    assert \"--reuse-raw\" not in command[\"command\"]\n    assert \"--reuse-raw\" not in command[\"command_line\"]\n    assert command.get(\"exit_code\") == 0\n    assert command.get(\"timed_out\") is False\n    launcher = Path(command[\"process_launcher_path\"])\n    assert launcher.is_file()\n    assert command[\"process_launcher_realpath\"] == str(launcher.resolve())\n    assert command[\"process_launcher_sha256\"] == sha256_file(launcher)\n    assert command[\"process_launcher_realpath_sha256\"] == sha256_file(launcher.resolve())\nassert len(representatives) == 95\nassert len(registry_representative_sources) == 48\nassert receipt_representative_sources == registry_representative_sources\nrepresentative_command_signatures = set()\nmapped_tool_evidence_pass_count = 0\nfor receipt in deep_stress_receipts:\n    representative = receipt[\"representative_sim\"]\n    assert representative[\"source_path\"] == registry_by_id[receipt[\"tool_id\"]][\"representative_sim\"][\"path\"]\n    assert representative[\"source_path\"] in registry_representative_sources\n    assert SHA256.fullmatch(representative[\"source_sha256\"])\n    source_path = Path(representative[\"source_path\"])\n    source_path = source_path if source_path.is_absolute() else Path.cwd() / source_path\n    assert source_path.is_file()\n    assert sha256_file(source_path) == representative[\"source_sha256\"]\n    assert isinstance(representative[\"execution_source_path\"], str) and representative[\"execution_source_path\"]\n    assert SHA256.fullmatch(representative[\"execution_source_sha256\"])\n    execution_source_path = Path(representative[\"execution_source_path\"])\n    execution_source_path = (\n        execution_source_path\n        if execution_source_path.is_absolute()\n        else Path.cwd() / execution_source_path\n    )\n    assert execution_source_path.is_file()\n    assert sha256_file(execution_source_path) == representative[\"execution_source_sha256\"]\n    assert isinstance(representative[\"source_rewrites\"], list)\n    if representative[\"source_rewrites\"]:\n        assert representative[\"execution_mode\"] == \"isolated_disposable_projection\"\n        assert representative[\"execution_source_sha256\"] != representative[\"source_sha256\"]\n        for rewrite in representative[\"source_rewrites\"]:\n            assert rewrite[\"kind\"] == \"disposable_projection_root_rewrite\"\n            assert rewrite[\"original\"] == \"/Users/joshuaeisenhart/Codex-Ratchet\"\n            assert isinstance(rewrite[\"replacement\"], str) and rewrite[\"replacement\"]\n            assert rewrite[\"scope\"] == \"temporary execution copy only\"\n    else:\n        assert representative[\"execution_source_sha256\"] == representative[\"source_sha256\"]\n    assert representative[\"executed\"] is True\n    assert representative[\"execution_mode\"] in REPRESENTATIVE_EXECUTION_MODES\n    assert isinstance(representative[\"command\"], list) and representative[\"command\"]\n    assert all(isinstance(part, str) and part for part in representative[\"command\"])\n    assert representative[\"command_line\"] == shlex.join(representative[\"command\"])\n    assert \"--reuse-raw\" not in representative[\"command\"]\n    assert \"--reuse-raw\" not in representative[\"command_line\"]\n    assert representative[\"exit_code\"] == 0\n    assert representative[\"timed_out\"] is False\n    signature = command_signature(representative)\n    matches = [command for command in commands if command_signature(command) == signature]\n    assert matches\n    representative_command_signatures.add(signature)\n    if representative[\"execution_mode\"] == \"isolated_disposable_projection\":\n        assert any(command.get(\"role\") == \"representative_sim\" for command in matches)\n    assert isinstance(representative[\"invoked_source_path\"], str) and representative[\"invoked_source_path\"]\n    assert representative[\"invoked_source_argument\"] in representative[\"command\"]\n    assert representative[\"invoked_source_argument_present\"] is True\n    assert SHA256.fullmatch(representative[\"invoked_source_sha256\"])\n    for match in matches:\n        assert match[\"invoked_source_path\"] == representative[\"invoked_source_path\"]\n        assert match[\"invoked_source_argument\"] == representative[\"invoked_source_argument\"]\n        assert match[\"invoked_source_sha256\"] == representative[\"invoked_source_sha256\"]\n        assert match[\"invoked_source_argument_present\"] is True\n    assert representative[\"operational_execution_pass\"] is True\n    assert representative[\"passed\"] is representative[\"operational_execution_pass\"]\n    assert representative[\"api_failure_signals\"] == []\n    assert isinstance(representative[\"stdout_nonempty\"], bool)\n    assert all(\n        representative[\"stdout_nonempty\"] is bool(str(command.get(\"stdout\") or \"\").strip())\n        for command in matches\n    )\n    assert all(representative[\"stdout_receipt\"] == parsed_stdout_receipt(command) for command in matches)\n    assert isinstance(representative[\"emitted_artifacts\"], list)\n    assert representative[\"emitted_artifacts\"]\n    artifact_payloads = []\n    artifact_paths = []\n    for artifact in representative[\"emitted_artifacts\"]:\n        assert isinstance(artifact.get(\"path\"), str) and artifact[\"path\"]\n        assert SHA256.fullmatch(artifact[\"sha256\"])\n        assert artifact[\"exists\"] is True\n        assert artifact[\"changed_or_created\"] is True\n        assert artifact[\"created_after_explicit_unlink\"] is True\n        artifact_path = Path(artifact[\"path\"])\n        artifact_paths.append(artifact[\"path\"])\n        artifact_path = artifact_path if artifact_path.is_absolute() else Path.cwd() / artifact_path\n        assert artifact_path.is_file()\n        assert sha256_file(artifact_path) == artifact[\"sha256\"]\n        assert isinstance(artifact[\"size\"], int) and artifact[\"size\"] == artifact_path.stat().st_size\n        if artifact_path.suffix.lower() in {\".json\", \".jsonl\"}:\n            assert artifact[\"json_object_parsed\"] is True\n            try:\n                artifact_payload = json.loads(artifact_path.read_text(encoding=\"utf-8\"))\n            except (json.JSONDecodeError, UnicodeDecodeError):\n                artifact_payload = None\n            if isinstance(artifact_payload, dict):\n                artifact_payloads.append(artifact_payload)\n    output_contracts = representative[\"output_contract_paths\"]\n    assert isinstance(output_contracts, list) and output_contracts\n    assert len(output_contracts) == len(set(output_contracts))\n    assert representative[\"emitted_output_contract_paths\"] == sorted(output_contracts)\n    assert representative[\"output_contract_exact\"] is True\n    assert len(representative[\"emitted_artifacts\"]) == len(output_contracts)\n    if representative[\"execution_mode\"] == \"isolated_disposable_projection\":\n        assert sorted(artifact[\"projection_path\"] for artifact in representative[\"emitted_artifacts\"]) == sorted(output_contracts)\n        assert representative[\"invoked_source_sha256\"] == representative[\"execution_source_sha256\"]\n        assert representative[\"invoked_source_matches_preserved\"] is True\n        assert representative[\"output_contract_boundary_cleared_before_execution\"] is True\n        for match in matches:\n            assert match[\"output_contract_paths\"] == output_contracts\n            assert match[\"emitted_output_contract_paths\"] == sorted(output_contracts)\n            assert match[\"output_contract_exact\"] is True\n            assert match[\"outputs_created_after_explicit_unlink\"] is True\n            assert match[\"invoked_source_matches_preserved\"] is True\n    else:\n        assert artifact_paths == output_contracts\n        assert set(artifact_paths).issubset(set(raw_refs))\n        assert any(\n            match.get(\"output_path\") in artifact_paths\n            and match.get(\"output_created_after_explicit_unlink\") is True\n            and match.get(\"output_boundary_cleared_before_execution\") is True\n            for match in matches\n        )\n    assert isinstance(representative[\"reported_scientific_status\"], dict)\n    assert representative[\"reported_scientific_status\"].get(\"state\") in {\"green\", \"red\", \"unknown\"}\n    assert representative[\"scientific_status_preserved\"] is True\n    assert representative[\"promotion_allowed\"] is False\n    assert representative[\"scientific_claim_proven\"] is False\n    assert isinstance(representative[\"mapped_tool_ids\"], list) and receipt[\"tool_id\"] in representative[\"mapped_tool_ids\"]\n    assert representative[\"mapped_tool_ids\"] == sorted(set(representative[\"mapped_tool_ids\"]))\n    assert representative[\"tool_id\"] == receipt[\"tool_id\"]\n    mapping = representative[\"mapped_tool_evidence\"]\n    expected_aliases = sorted({\n        str(value)\n        for value in (\n            registry_by_id[receipt[\"tool_id\"]].get(\"package\"),\n            registry_by_id[receipt[\"tool_id\"]].get(\"import_name\"),\n            receipt[\"tool_id\"].removeprefix(\"py_\").removeprefix(\"jl_\"),\n        )\n        if isinstance(value, str) and value\n    })\n    structured_identities = structured_tool_identities(artifact_payloads)\n    if representative[\"stdout_receipt\"] is not None:\n        structured_identities = sorted(\n            set(structured_identities) | set(structured_tool_identities(representative[\"stdout_receipt\"]))\n        )\n    normalized_aliases = {normalized_identity(alias) for alias in expected_aliases}\n    matched_identities = [\n        identity\n        for identity in structured_identities\n        if normalized_identity(identity) in normalized_aliases\n    ]\n    expected_source_tool_ids = registry_source_tool_ids[representative[\"source_path\"]]\n    single_tool_source_contract = len(expected_source_tool_ids) == 1\n    expected_mode = (\n        \"registry_single_tool_source_contract\"\n        if single_tool_source_contract\n        else \"structured_artifact_tool_identity\"\n    )\n    expected_mapping_pass = single_tool_source_contract or bool(matched_identities)\n    assert mapping == {\n        \"mode\": expected_mode,\n        \"registry_tool_ids_for_source\": expected_source_tool_ids,\n        \"registry_aliases\": expected_aliases,\n        \"structured_artifact_identities\": structured_identities,\n        \"matched_structured_identities\": matched_identities,\n        \"passed\": expected_mapping_pass,\n        \"claim_ceiling\": MAPPED_TOOL_CLAIM_CEILING,\n    }\n    assert expected_mapping_pass is True\n    mapped_tool_evidence_pass_count += 1\n    assert representative[\"source_family\"] in {\n        \"ratchet_repo_current_probe\",\n        \"ratchet_repo_representative_consumer\",\n        \"frozen_claude_fixture_untrusted\",\n    }\n    if \"claude_campaign_20260713\" in representative[\"source_path\"]:\n        assert representative[\"source_family\"] == \"frozen_claude_fixture_untrusted\"\n    if representative[\"execution_mode\"] == \"controller_invoked_nested_fixture\":\n        assert isinstance(representative.get(\"nested_controller_path\"), str)\n        nested_controller_path = Path(representative[\"nested_controller_path\"])\n        nested_controller_path = (\n            nested_controller_path\n            if nested_controller_path.is_absolute()\n            else Path.cwd() / nested_controller_path\n        )\n        assert nested_controller_path.is_file()\n    assert representative[\"fixture_credit\"] == REPRESENTATIVE_FIXTURE_CREDIT\nfor command in commands:\n    signature = command_signature(command)\n    if command.get(\"role\") == \"representative_sim\":\n        assert signature in representative_command_signatures\nassert estate.get(\"claude_bridge_used\") is False\nassert estate.get(\"install_attempted\") is False\nassert estate.get(\"promotion_allowed\") is False\nassert estate.get(\"scientific_claim_proven\") is False\nassert estate.get(\"release_eligible\") is False\nprint(json.dumps({\n    \"registry_tool_count\": len(registry_ids),\n    \"receipt_tool_count\": len(receipt_ids),\n    \"deep_stress_tool_count\": len(deep_stress_receipts),\n    \"deep_stress_operational_pass_count\": sum(row[\"verdict\"][\"operational_pass\"] is True for row in deep_stress_receipts),\n    \"required_operational_count\": len(required_operational_ids),\n    \"required_operational_pass_count\": verdict[\"summary\"][\"operational_pass_count\"],\n    \"policy_receipt_count\": len(policy_receipts),\n    \"policy_red_count\": verdict[\"summary\"][\"policy_red_count\"],\n    \"operational_red_count\": summary[\"operational_red_count\"],\n    \"integration_edge_count\": len(edge_ids),\n    \"integration_edge_operational_pass_count\": sum(row[\"verdict\"][\"operational_pass\"] is True for row in estate[\"integration_edge_receipts\"]),\n    \"operational_red_edge_count\": summary[\"operational_red_edge_count\"],\n    \"edge_coverage_exact\": True,\n    \"member_cohealth_edge_count\": 25,\n    \"independent_crosscheck_edge_count\": 3,\n    \"direct_handoff_edge_count\": 1,\n    \"raw_receipt_binding_count\": len(raw_bindings),\n    \"raw_producer_binding_exact\": True,\n    \"reused_command_count\": verdict[\"summary\"][\"reused_command_count\"],\n    \"accepted_scientific_red_command_count\": verdict[\"summary\"][\"accepted_scientific_red_command_count\"],\n    \"all_command_exit_zero\": True,\n    \"representative_receipt_count\": len(representatives),\n    \"representative_unique_source_count\": len(receipt_representative_sources),\n    \"mapped_tool_evidence_pass_count\": mapped_tool_evidence_pass_count,\n    \"representative_execution_exact\": True,\n    \"fresh_run_id\": estate[\"run_id\"],\n    \"raw_reuse_used\": False,\n    \"claude_bridge_used\": False,\n    \"install_attempted\": False,\n    \"promotion_allowed\": False,\n    \"scientific_claim_proven\": False,\n}, sort_keys=True))\n",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev.json",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/registry/integration_edges_v1.json",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev_verdict.json"
+      ],
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 0,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-exact-roster-edge-and-bridge-coverage/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/verify-exact-roster-edge-and-bridge-coverage/stderr.txt",
+      "stdout_artifact_sha256": "23c68388081c1c50d5bd045a63fd7bd0ee431039b29d8e3699a980811e91aedf",
+      "stderr_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout_ms": 1800000,
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": "zero",
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"registry_tool_count\": 139",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"receipt_tool_count\": 139",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"deep_stress_tool_count\": 95",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"deep_stress_operational_pass_count\": 95",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"required_operational_count\": 86",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"required_operational_pass_count\": 86",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"policy_receipt_count\": 44",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"policy_red_count\": 0",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"operational_red_count\": 0",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"integration_edge_count\": 29",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"integration_edge_operational_pass_count\": 29",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"operational_red_edge_count\": 0",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"edge_coverage_exact\": true",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"member_cohealth_edge_count\": 25",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"independent_crosscheck_edge_count\": 3",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"direct_handoff_edge_count\": 1",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"raw_receipt_binding_count\": 7",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"raw_producer_binding_exact\": true",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"reused_command_count\": 0",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"accepted_scientific_red_command_count\": 0",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"all_command_exit_zero\": true",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"representative_receipt_count\": 95",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"representative_unique_source_count\": 48",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"mapped_tool_evidence_pass_count\": 95",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"representative_execution_exact\": true",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"fresh_run_id\": \"deep-stack-lev-856acb1a5\"",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"raw_reuse_used\": false",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"claude_bridge_used\": false",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"install_attempted\": false",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"promotion_allowed\": false",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"scientific_claim_proven\": false",
+          "actual": "{\"accepted_scientific_red_command_count\": 0, \"all_command_exit_zero\": true, \"claude_bridge_used\": false, \"deep_stress_operational_pass_count\": 95, \"deep_stress_tool_count\": 95, \"direct_handoff_edge_count\": 1, \"edge_coverage_exact\": true, \"fresh_run_id\": \"deep-stack-lev-856acb1a5\", \"independent_crosscheck_edge_count\": 3, \"install_attempted\": false, \"integration_edge_count\": 29, \"integration_edge_operational_pass_count\": 29, \"mapped_tool_evidence_pass_count\": 95, \"member_cohealth_edge_count\": 25, \"operational_red_count\": 0, \"operational_red_edge_count\": 0, \"policy_receipt_count\": 44, \"policy_red_count\": 0, \"promotion_allowed\": false, \"raw_producer_binding_exact\": true, \"raw_receipt_binding_count\": 7, \"raw_reuse_used\": false, \"receipt_tool_count\": 139, \"registry_tool_count\": 139, \"representative_execution_exact\": true, \"representative_receipt_count\": 95, \"representative_unique_source_count\": 48, \"required_operational_count\": 86, \"required_operational_pass_count\": 86, \"reused_command_count\": 0, \"scientific_claim_proven\": false}\n",
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": "lev-zero-execution-control-blocks",
+      "command": "/usr/bin/sandbox-exec",
+      "argv": [
+        "-p",
+        "(version 1) (allow default) (deny network*)",
+        "/opt/homebrew/bin/bun",
+        "/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract/core/poly/bin/lev",
+        "eval",
+        "run",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js",
+        "--execute",
+        "--json",
+        "--project-root",
+        ".",
+        "--output-root",
+        "system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs",
+        "--run-id",
+        "deep-stack-zero-856acb1a5",
+        "--timeout-ms",
+        "60000"
+      ],
+      "status": "passed",
+      "runner_status": "completed",
+      "executed": true,
+      "exit_code": 1,
+      "stdout_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/lev-zero-execution-control-blocks/stdout.txt",
+      "stderr_artifact_ref": "file:///Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/command-artifacts/lev-zero-execution-control-blocks/stderr.txt",
+      "stdout_artifact_sha256": "ad57778fad0d787593c31da0dbc872f479b3753887beea93f32392d230939986",
+      "stderr_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout_ms": 1800000,
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "env_policy": {
+        "inherit": true,
+        "required": [],
+        "optional": []
+      },
+      "stdout": "{\n  \"version\": 1,\n  \"operation\": {\n    \"id\": \"exec.eval\",\n    \"service\": \"exec\",\n    \"method\": \"eval\",\n    \"surface\": \"cli\",\n    \"request_id\": \"cli:exec:eval\"\n  },\n  \"side_effect\": {\n    \"class\": \"read\",\n    \"dry_run\": false\n  },\n  \"policy\": {\n    \"decision\": \"allow\"\n  },\n  \"result\": {\n    \"status\": \"failed\",\n    \"data\": {\n      \"run\": {\n        \"run_id\": \"deep-stack-zero-856acb1a5\",\n        \"status\": \"blocked\",\n        \"suite_status\": \"blocked\",\n        \"projection_only\": true,\n        \"release_eligible\": false,\n        \"suite_id\": \"codex-ratchet-deep-stack-zero-execution-control\",\n        \"suite_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n        \"output_root\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs\",\n        \"run_dir\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5\",\n        \"scorecard_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json\",\n        \"diagnostics\": [\n          {\n            \"code\": \"suite.execution.none\",\n            \"field\": \"commandCases\",\n            \"message\": \"Command execution was required, but no command case executed.\"\n          }\n        ],\n        \"evidence_refs\": [\n          {\n            \"kind\": \"suite\",\n            \"label\": \"suite\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"target\",\n            \"label\": \"target\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"flowmind\",\n            \"label\": \"flowmind\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml\",\n            \"exists\": true\n          }\n        ]\n      },\n      \"scorecard\": {\n        \"suite_id\": \"codex-ratchet-deep-stack-zero-execution-control\",\n        \"status\": \"blocked\",\n        \"projection_only\": true,\n        \"release_eligible\": false,\n        \"executed_count\": 0,\n        \"skipped_count\": 0,\n        \"blocked_count\": 0,\n        \"unavailable_count\": 0,\n        \"failed_count\": 0,\n        \"artifact_ref_count\": 0,\n        \"artifact_refs\": [],\n        \"artifact_hashes\": {},\n        \"artifact_routes\": [],\n        \"checks\": {\n          \"green\": [\n            \"projection without an executed command case is explicitly blocked\"\n          ],\n          \"red\": [\n            \"zero executed command cases cannot validate tool integration or earn a green projection\"\n          ]\n        },\n        \"trace_cases\": [],\n        \"command_cases\": [],\n        \"evidence_refs\": [\n          {\n            \"kind\": \"suite\",\n            \"label\": \"suite\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"target\",\n            \"label\": \"target\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"flowmind\",\n            \"label\": \"flowmind\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml\",\n            \"exists\": true\n          }\n        ],\n        \"diagnostics\": [\n          {\n            \"code\": \"suite.execution.none\",\n            \"field\": \"commandCases\",\n            \"message\": \"Command execution was required, but no command case executed.\"\n          }\n        ]\n      },\n      \"suite_status\": \"blocked\",\n      \"status\": \"blocked\",\n      \"projection_only\": true,\n      \"release_eligible\": false,\n      \"scorecard_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json\",\n      \"run_dir\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5\",\n      \"executed_count\": 0,\n      \"skipped_count\": 0,\n      \"blocked_count\": 0,\n      \"unavailable_count\": 0,\n      \"failed_count\": 0,\n      \"artifact_ref_count\": 0,\n      \"artifact_refs\": [],\n      \"artifact_hashes\": {}\n    },\n    \"error\": {\n      \"code\": \"EVAL_RUN_BLOCKED\",\n      \"message\": \"Command failed\"\n    },\n    \"exit_code\": 1\n  },\n  \"evidence\": {\n    \"receipt_refs\": [],\n    \"event_refs\": [],\n    \"artifact_refs\": [],\n    \"proof_refs\": []\n  }\n}\n",
+      "stderr": "",
+      "expectations": [
+        {
+          "kind": "exit",
+          "expected": "nonzero",
+          "actual": 1,
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "suite.execution.none",
+          "actual": "{\n  \"version\": 1,\n  \"operation\": {\n    \"id\": \"exec.eval\",\n    \"service\": \"exec\",\n    \"method\": \"eval\",\n    \"surface\": \"cli\",\n    \"request_id\": \"cli:exec:eval\"\n  },\n  \"side_effect\": {\n    \"class\": \"read\",\n    \"dry_run\": false\n  },\n  \"policy\": {\n    \"decision\": \"allow\"\n  },\n  \"result\": {\n    \"status\": \"failed\",\n    \"data\": {\n      \"run\": {\n        \"run_id\": \"deep-stack-zero-856acb1a5\",\n        \"status\": \"blocked\",\n        \"suite_status\": \"blocked\",\n        \"projection_only\": true,\n        \"release_eligible\": false,\n        \"suite_id\": \"codex-ratchet-deep-stack-zero-execution-control\",\n        \"suite_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n        \"output_root\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs\",\n        \"run_dir\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5\",\n        \"scorecard_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json\",\n        \"diagnostics\": [\n          {\n            \"code\": \"suite.execution.none\",\n            \"field\": \"commandCases\",\n            \"message\": \"Command execution was required, but no command case executed.\"\n          }\n        ],\n        \"evidence_refs\": [\n          {\n            \"kind\": \"suite\",\n            \"label\": \"suite\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"target\",\n            \"label\": \"target\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"flowmind\",\n            \"label\": \"flowmind\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml\",\n            \"exists\": true\n          }\n        ]\n      },\n      \"scorecard\": {\n        \"suite_id\": \"codex-ratchet-deep-stack-zero-execution-control\",\n        \"status\": \"blocked\",\n        \"projection_only\": true,\n        \"release_eligible\": false,\n        \"executed_count\": 0,\n        \"skipped_count\": 0,\n        \"blocked_count\": 0,\n        \"unavailable_count\": 0,\n        \"failed_count\": 0,\n        \"artifact_ref_count\": 0,\n        \"artifact_refs\": [],\n        \"artifact_hashes\": {},\n        \"artifact_routes\": [],\n        \"checks\": {\n          \"green\": [\n            \"projection without an executed command case is explicitly blocked\"\n          ],\n          \"red\": [\n            \"zero executed command cases cannot validate tool integration or earn a green projection\"\n          ]\n        },\n        \"trace_cases\": [],\n        \"command_cases\": [],\n        \"evidence_refs\": [\n          {\n            \"kind\": \"suite\",\n            \"label\": \"suite\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"target\",\n            \"label\": \"target\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"flowmind\",\n            \"label\": \"flowmind\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml\",\n            \"exists\": true\n          }\n        ],\n        \"diagnostics\": [\n          {\n            \"code\": \"suite.execution.none\",\n            \"field\": \"commandCases\",\n            \"message\": \"Command execution was required, but no command case executed.\"\n          }\n        ]\n      },\n      \"suite_status\": \"blocked\",\n      \"status\": \"blocked\",\n      \"projection_only\": true,\n      \"release_eligible\": false,\n      \"scorecard_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json\",\n      \"run_dir\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5\",\n      \"executed_count\": 0,\n      \"skipped_count\": 0,\n      \"blocked_count\": 0,\n      \"unavailable_count\": 0,\n      \"failed_count\": 0,\n      \"artifact_ref_count\": 0,\n      \"artifact_refs\": [],\n      \"artifact_hashes\": {}\n    },\n    \"error\": {\n      \"code\": \"EVAL_RUN_BLOCKED\",\n      \"message\": \"Command failed\"\n    },\n    \"exit_code\": 1\n  },\n  \"evidence\": {\n    \"receipt_refs\": [],\n    \"event_refs\": [],\n    \"artifact_refs\": [],\n    \"proof_refs\": []\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"status\": \"blocked\"",
+          "actual": "{\n  \"version\": 1,\n  \"operation\": {\n    \"id\": \"exec.eval\",\n    \"service\": \"exec\",\n    \"method\": \"eval\",\n    \"surface\": \"cli\",\n    \"request_id\": \"cli:exec:eval\"\n  },\n  \"side_effect\": {\n    \"class\": \"read\",\n    \"dry_run\": false\n  },\n  \"policy\": {\n    \"decision\": \"allow\"\n  },\n  \"result\": {\n    \"status\": \"failed\",\n    \"data\": {\n      \"run\": {\n        \"run_id\": \"deep-stack-zero-856acb1a5\",\n        \"status\": \"blocked\",\n        \"suite_status\": \"blocked\",\n        \"projection_only\": true,\n        \"release_eligible\": false,\n        \"suite_id\": \"codex-ratchet-deep-stack-zero-execution-control\",\n        \"suite_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n        \"output_root\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs\",\n        \"run_dir\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5\",\n        \"scorecard_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json\",\n        \"diagnostics\": [\n          {\n            \"code\": \"suite.execution.none\",\n            \"field\": \"commandCases\",\n            \"message\": \"Command execution was required, but no command case executed.\"\n          }\n        ],\n        \"evidence_refs\": [\n          {\n            \"kind\": \"suite\",\n            \"label\": \"suite\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"target\",\n            \"label\": \"target\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"flowmind\",\n            \"label\": \"flowmind\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml\",\n            \"exists\": true\n          }\n        ]\n      },\n      \"scorecard\": {\n        \"suite_id\": \"codex-ratchet-deep-stack-zero-execution-control\",\n        \"status\": \"blocked\",\n        \"projection_only\": true,\n        \"release_eligible\": false,\n        \"executed_count\": 0,\n        \"skipped_count\": 0,\n        \"blocked_count\": 0,\n        \"unavailable_count\": 0,\n        \"failed_count\": 0,\n        \"artifact_ref_count\": 0,\n        \"artifact_refs\": [],\n        \"artifact_hashes\": {},\n        \"artifact_routes\": [],\n        \"checks\": {\n          \"green\": [\n            \"projection without an executed command case is explicitly blocked\"\n          ],\n          \"red\": [\n            \"zero executed command cases cannot validate tool integration or earn a green projection\"\n          ]\n        },\n        \"trace_cases\": [],\n        \"command_cases\": [],\n        \"evidence_refs\": [\n          {\n            \"kind\": \"suite\",\n            \"label\": \"suite\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"target\",\n            \"label\": \"target\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"flowmind\",\n            \"label\": \"flowmind\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml\",\n            \"exists\": true\n          }\n        ],\n        \"diagnostics\": [\n          {\n            \"code\": \"suite.execution.none\",\n            \"field\": \"commandCases\",\n            \"message\": \"Command execution was required, but no command case executed.\"\n          }\n        ]\n      },\n      \"suite_status\": \"blocked\",\n      \"status\": \"blocked\",\n      \"projection_only\": true,\n      \"release_eligible\": false,\n      \"scorecard_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json\",\n      \"run_dir\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5\",\n      \"executed_count\": 0,\n      \"skipped_count\": 0,\n      \"blocked_count\": 0,\n      \"unavailable_count\": 0,\n      \"failed_count\": 0,\n      \"artifact_ref_count\": 0,\n      \"artifact_refs\": [],\n      \"artifact_hashes\": {}\n    },\n    \"error\": {\n      \"code\": \"EVAL_RUN_BLOCKED\",\n      \"message\": \"Command failed\"\n    },\n    \"exit_code\": 1\n  },\n  \"evidence\": {\n    \"receipt_refs\": [],\n    \"event_refs\": [],\n    \"artifact_refs\": [],\n    \"proof_refs\": []\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"projection_only\": true",
+          "actual": "{\n  \"version\": 1,\n  \"operation\": {\n    \"id\": \"exec.eval\",\n    \"service\": \"exec\",\n    \"method\": \"eval\",\n    \"surface\": \"cli\",\n    \"request_id\": \"cli:exec:eval\"\n  },\n  \"side_effect\": {\n    \"class\": \"read\",\n    \"dry_run\": false\n  },\n  \"policy\": {\n    \"decision\": \"allow\"\n  },\n  \"result\": {\n    \"status\": \"failed\",\n    \"data\": {\n      \"run\": {\n        \"run_id\": \"deep-stack-zero-856acb1a5\",\n        \"status\": \"blocked\",\n        \"suite_status\": \"blocked\",\n        \"projection_only\": true,\n        \"release_eligible\": false,\n        \"suite_id\": \"codex-ratchet-deep-stack-zero-execution-control\",\n        \"suite_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n        \"output_root\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs\",\n        \"run_dir\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5\",\n        \"scorecard_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json\",\n        \"diagnostics\": [\n          {\n            \"code\": \"suite.execution.none\",\n            \"field\": \"commandCases\",\n            \"message\": \"Command execution was required, but no command case executed.\"\n          }\n        ],\n        \"evidence_refs\": [\n          {\n            \"kind\": \"suite\",\n            \"label\": \"suite\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"target\",\n            \"label\": \"target\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"flowmind\",\n            \"label\": \"flowmind\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml\",\n            \"exists\": true\n          }\n        ]\n      },\n      \"scorecard\": {\n        \"suite_id\": \"codex-ratchet-deep-stack-zero-execution-control\",\n        \"status\": \"blocked\",\n        \"projection_only\": true,\n        \"release_eligible\": false,\n        \"executed_count\": 0,\n        \"skipped_count\": 0,\n        \"blocked_count\": 0,\n        \"unavailable_count\": 0,\n        \"failed_count\": 0,\n        \"artifact_ref_count\": 0,\n        \"artifact_refs\": [],\n        \"artifact_hashes\": {},\n        \"artifact_routes\": [],\n        \"checks\": {\n          \"green\": [\n            \"projection without an executed command case is explicitly blocked\"\n          ],\n          \"red\": [\n            \"zero executed command cases cannot validate tool integration or earn a green projection\"\n          ]\n        },\n        \"trace_cases\": [],\n        \"command_cases\": [],\n        \"evidence_refs\": [\n          {\n            \"kind\": \"suite\",\n            \"label\": \"suite\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"target\",\n            \"label\": \"target\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"flowmind\",\n            \"label\": \"flowmind\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml\",\n            \"exists\": true\n          }\n        ],\n        \"diagnostics\": [\n          {\n            \"code\": \"suite.execution.none\",\n            \"field\": \"commandCases\",\n            \"message\": \"Command execution was required, but no command case executed.\"\n          }\n        ]\n      },\n      \"suite_status\": \"blocked\",\n      \"status\": \"blocked\",\n      \"projection_only\": true,\n      \"release_eligible\": false,\n      \"scorecard_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json\",\n      \"run_dir\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5\",\n      \"executed_count\": 0,\n      \"skipped_count\": 0,\n      \"blocked_count\": 0,\n      \"unavailable_count\": 0,\n      \"failed_count\": 0,\n      \"artifact_ref_count\": 0,\n      \"artifact_refs\": [],\n      \"artifact_hashes\": {}\n    },\n    \"error\": {\n      \"code\": \"EVAL_RUN_BLOCKED\",\n      \"message\": \"Command failed\"\n    },\n    \"exit_code\": 1\n  },\n  \"evidence\": {\n    \"receipt_refs\": [],\n    \"event_refs\": [],\n    \"artifact_refs\": [],\n    \"proof_refs\": []\n  }\n}\n",
+          "passed": true
+        },
+        {
+          "kind": "stdout_contains",
+          "expected": "\"release_eligible\": false",
+          "actual": "{\n  \"version\": 1,\n  \"operation\": {\n    \"id\": \"exec.eval\",\n    \"service\": \"exec\",\n    \"method\": \"eval\",\n    \"surface\": \"cli\",\n    \"request_id\": \"cli:exec:eval\"\n  },\n  \"side_effect\": {\n    \"class\": \"read\",\n    \"dry_run\": false\n  },\n  \"policy\": {\n    \"decision\": \"allow\"\n  },\n  \"result\": {\n    \"status\": \"failed\",\n    \"data\": {\n      \"run\": {\n        \"run_id\": \"deep-stack-zero-856acb1a5\",\n        \"status\": \"blocked\",\n        \"suite_status\": \"blocked\",\n        \"projection_only\": true,\n        \"release_eligible\": false,\n        \"suite_id\": \"codex-ratchet-deep-stack-zero-execution-control\",\n        \"suite_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n        \"output_root\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs\",\n        \"run_dir\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5\",\n        \"scorecard_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json\",\n        \"diagnostics\": [\n          {\n            \"code\": \"suite.execution.none\",\n            \"field\": \"commandCases\",\n            \"message\": \"Command execution was required, but no command case executed.\"\n          }\n        ],\n        \"evidence_refs\": [\n          {\n            \"kind\": \"suite\",\n            \"label\": \"suite\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"target\",\n            \"label\": \"target\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"flowmind\",\n            \"label\": \"flowmind\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml\",\n            \"exists\": true\n          }\n        ]\n      },\n      \"scorecard\": {\n        \"suite_id\": \"codex-ratchet-deep-stack-zero-execution-control\",\n        \"status\": \"blocked\",\n        \"projection_only\": true,\n        \"release_eligible\": false,\n        \"executed_count\": 0,\n        \"skipped_count\": 0,\n        \"blocked_count\": 0,\n        \"unavailable_count\": 0,\n        \"failed_count\": 0,\n        \"artifact_ref_count\": 0,\n        \"artifact_refs\": [],\n        \"artifact_hashes\": {},\n        \"artifact_routes\": [],\n        \"checks\": {\n          \"green\": [\n            \"projection without an executed command case is explicitly blocked\"\n          ],\n          \"red\": [\n            \"zero executed command cases cannot validate tool integration or earn a green projection\"\n          ]\n        },\n        \"trace_cases\": [],\n        \"command_cases\": [],\n        \"evidence_refs\": [\n          {\n            \"kind\": \"suite\",\n            \"label\": \"suite\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"target\",\n            \"label\": \"target\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md\",\n            \"exists\": true\n          },\n          {\n            \"kind\": \"flowmind\",\n            \"label\": \"flowmind\",\n            \"path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml\",\n            \"exists\": true\n          }\n        ],\n        \"diagnostics\": [\n          {\n            \"code\": \"suite.execution.none\",\n            \"field\": \"commandCases\",\n            \"message\": \"Command execution was required, but no command case executed.\"\n          }\n        ]\n      },\n      \"suite_status\": \"blocked\",\n      \"status\": \"blocked\",\n      \"projection_only\": true,\n      \"release_eligible\": false,\n      \"scorecard_path\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json\",\n      \"run_dir\": \"system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5\",\n      \"executed_count\": 0,\n      \"skipped_count\": 0,\n      \"blocked_count\": 0,\n      \"unavailable_count\": 0,\n      \"failed_count\": 0,\n      \"artifact_ref_count\": 0,\n      \"artifact_refs\": [],\n      \"artifact_hashes\": {}\n    },\n    \"error\": {\n      \"code\": \"EVAL_RUN_BLOCKED\",\n      \"message\": \"Command failed\"\n    },\n    \"exit_code\": 1\n  },\n  \"evidence\": {\n    \"receipt_refs\": [],\n    \"event_refs\": [],\n    \"artifact_refs\": [],\n    \"proof_refs\": []\n  }\n}\n",
+          "passed": true
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "evidence_refs": [
+    {
+      "kind": "suite",
+      "label": "suite",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/lev/deep_stack_function_receipts.eval.js",
+      "exists": true
+    },
+    {
+      "kind": "target",
+      "label": "target",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md",
+      "exists": true
+    },
+    {
+      "kind": "flowmind",
+      "label": "flowmind",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml",
+      "exists": true
+    }
+  ],
+  "diagnostics": []
+}

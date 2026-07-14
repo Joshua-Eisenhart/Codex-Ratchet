@@ -1,0 +1,52 @@
+{
+  "schema": "codex-ratchet.independent-validator-replay.v1",
+  "observed_at": "2026-07-14T22:52:07Z",
+  "source_state": {
+    "commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+    "tree": "c249f58d144f49bfc73150e4bfc84539723ee904"
+  },
+  "validator": {
+    "path": "system_v5/codex_skills/codex-ratchet-deep-stack-stress/scripts/validate_deep_stack_receipt.py",
+    "sha256": "1491da631751f27ff997fbfba4379d875d23944aefffc7a3db1e7959055e90af"
+  },
+  "inputs": {
+    "estate": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev.json",
+      "sha256": "12056f0e204fa7424cb66f80e23145490cd61d438ef19bb564c13c9de7b79dc2"
+    },
+    "registry": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json",
+      "sha256": "f22763d2bd808750e64b1992a01bad09298c30256ca8573704c2e536d887de97"
+    },
+    "edges": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/registry/integration_edges_v1.json",
+      "sha256": "fe05a9c397c9af38b2b46bc7d25898e5ef18a066c2d59b5f996b19806fc21f71"
+    }
+  },
+  "command": [
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "system_v5/codex_skills/codex-ratchet-deep-stack-stress/scripts/validate_deep_stack_receipt.py",
+    "estate",
+    "--receipt",
+    "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev.json",
+    "--registry",
+    "system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json",
+    "--edges",
+    "system_v5/ops/tooling/deep_stack_stress_20260714/registry/integration_edges_v1.json",
+    "--repo-root",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+    "--out",
+    "/tmp/deep_stack_estate_lev_revalidated.json",
+    "--require-operational-pass"
+  ],
+  "exit_code": 0,
+  "result": {
+    "receipt_valid": true,
+    "operational_pass": true,
+    "finding_count": 0,
+    "output_sha256": "74a12fef90ea86ac80bb1389995bdf7281a7de2d3615a38d0b007d121845fb8f",
+    "saved_verdict_sha256": "74a12fef90ea86ac80bb1389995bdf7281a7de2d3615a38d0b007d121845fb8f",
+    "byte_identical_to_saved_verdict": true
+  },
+  "claim_ceiling": "independent local replay transcript over the pinned operational estate; not external validation and not scientific evidence"
+}

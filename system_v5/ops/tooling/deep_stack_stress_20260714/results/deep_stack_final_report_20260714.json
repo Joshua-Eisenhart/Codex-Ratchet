@@ -1,0 +1,120 @@
+{
+  "schema": "codex-ratchet.deep-stack-final-report.v1",
+  "generated_at": "2026-07-14T22:52:07Z",
+  "status": "final_operational_nonpromoting",
+  "title": "Finite-roster deep-stack stress final report",
+  "implementation_source": {
+    "commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+    "tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+    "runner_sha256": "a5999141db0139228e6a4f2003f10cb518d81cad0994963e7cc3fe864447d2f0",
+    "registry_sha256": "f22763d2bd808750e64b1992a01bad09298c30256ca8573704c2e536d887de97",
+    "edges_sha256": "fe05a9c397c9af38b2b46bc7d25898e5ef18a066c2d59b5f996b19806fc21f71"
+  },
+  "lev_executor": {
+    "commit": "856acb1a5de42528a9a54272435d98a9fe226186",
+    "tree": "3f3488781d48a64b22c43c08ccfaa2b503d49524",
+    "binary_sha256": "f258ae313d515cae4ff848a45df78cfcc6a2d48c9ce1ade9c316276b00ef0c61",
+    "model_route_used": false
+  },
+  "counts": {
+    "roster_total": 139,
+    "deep_stress_operational_green": 95,
+    "current_required_operational_green": 86,
+    "legacy_unclassified_operational_green": 9,
+    "policy_only_green": 44,
+    "adjacency_witnesses_green": 29,
+    "member_cohealth_compatibility_witnesses": 25,
+    "independent_shared_crosschecks": 3,
+    "direct_value_handoffs": 1,
+    "raw_producer_roles_green": 7,
+    "representative_execution_receipts_green": 86,
+    "unique_representative_sources": 48,
+    "disposable_projection_sources": 42,
+    "direct_or_controller_sources": 6,
+    "recorded_commands": 52,
+    "recorded_command_failures": 0,
+    "nested_skills": 6,
+    "skill_copies_validated": 18,
+    "lev_command_cases_green": 9,
+    "validator_focused_tests_green": 19,
+    "validator_selftest_mutations_green": 14
+  },
+  "guards": {
+    "install_attempted": false,
+    "network_dependency_used_by_stress_runner": false,
+    "raw_reuse_used": false,
+    "claude_bridge_used": false,
+    "promotion_allowed": false,
+    "release_eligible": false,
+    "scientific_claim_proven": false
+  },
+  "authoritative_receipts": {
+    "estate": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev.json",
+      "sha256": "12056f0e204fa7424cb66f80e23145490cd61d438ef19bb564c13c9de7b79dc2"
+    },
+    "validator_verdict": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev_verdict.json",
+      "sha256": "74a12fef90ea86ac80bb1389995bdf7281a7de2d3615a38d0b007d121845fb8f",
+      "fresh_replay_byte_identical": true,
+      "finding_count": 0,
+      "receipt_valid": true,
+      "operational_pass": true
+    },
+    "independent_validator_replay": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/independent_validator_replay_20260714.json",
+      "sha256": "d693e288f98636753f77833617e8d746ce1e454f6213be0e522558effdbe8290",
+      "exit_code": 0,
+      "byte_identical_to_saved_verdict": true
+    },
+    "lev_scorecard": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/scorecards/codex-ratchet-deep-stack-function-receipts.json",
+      "sha256": "cd8532bacb5e802259f56e1ffd5caf8e0e8ae35819b4c7ef039c49111707ff42",
+      "status": "passed"
+    },
+    "lev_zero_execution_control": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/scorecards/codex-ratchet-deep-stack-zero-execution-control.json",
+      "sha256": "fc04fa4da7d60aaf6de6e00b872429299bb4e8a6866bf0e7ffeea7cba3ee8720",
+      "status": "blocked",
+      "diagnostic": "suite.execution.none"
+    },
+    "skill_home_reconciliation": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/skill_home_reconciliation.json",
+      "sha256": "0a36d54e3749c54ff4662ab19a38e60a11d754d65ce6a2d61339569a043ea68e"
+    },
+    "runtime_shakedown": {
+      "path": "system_v5/ops/tooling/codex_runtime_capability_shakedown_results.json",
+      "sha256": "3489540e6e5dc1da8021d8c77b5952b6301e498c6857636c9e9bfca64141547f",
+      "pass": 29,
+      "fail": 0,
+      "warning_status_checks": 0,
+      "skip": 3,
+      "mapping_audit_nonblocking_warnings": 62,
+      "installer_process_scan": "unavailable_ps_permission_denied_nonblocking"
+    },
+    "qit_pack_intake": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/qit_pack_intake_boundary_20260714.json",
+      "sha256": "ac881c641026cd1ba6d8c9fb0db2d761dd505eb72df1289bc6351ea0fee44968",
+      "status": "context_only_no_execution"
+    }
+  },
+  "qit_and_ratchet_boundary": {
+    "qit_engine_status": "not_executed_not_proven",
+    "ratchet_engine_status": "not_executed_not_proven",
+    "knowledge_pack_experiment_status": "proposed_not_executed",
+    "schedule_conflict_status": "unresolved",
+    "reason": "the tool/library estate is operational, while the engine definitions, cycle authority, pinned Ratchet runtime manifest, and adjudication semantics are not complete enough to claim a running scientific Ratchet"
+  },
+  "external_advisory": {
+    "status": "returned_serious_advisory_adjudicated_no_operational_blocker",
+    "provider": "xai",
+    "model": "grok-4.5",
+    "receipt": "system_v5/ops/tooling/deep_stack_stress_20260714/results/grok45_final_advisory.json",
+    "receipt_sha256": "94e3ebe44ab52f7c0cc1c28bcb3294ecc59facd071d1e46df144f1e2921ed6e7",
+    "review_scope": "compact summary only; full estate intentionally omitted from model context",
+    "evidence_allowed": false,
+    "promotion_allowed": false
+  },
+  "level_definition_note": "L4 is this report's verdict-bearing operational rung; Lev projection_only still records nine executed cases but forbids release and scientific promotion",
+  "claim_ceiling": "L3 operational tool/library chain receipts plus adjacency witnesses, with an L4 Lev verdict over that bounded operational evidence only; no release, Ratchet, QIT-engine, terrain, flux, cosmogenesis, or scientific claim is promoted"
+}

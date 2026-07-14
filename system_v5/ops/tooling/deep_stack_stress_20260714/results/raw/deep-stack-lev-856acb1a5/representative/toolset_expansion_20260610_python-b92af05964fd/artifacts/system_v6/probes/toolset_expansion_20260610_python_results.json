@@ -1,0 +1,403 @@
+{
+  "classification": "tool_lego_fit_probe",
+  "generated_at_unix": 1784069268.072978,
+  "historical_environment_records_not_current_run": [
+    {
+      "package": "galois",
+      "reason": "PG(3,3) exact finite-field incidence fit probe",
+      "target": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "version": "0.4.11"
+    }
+  ],
+  "installs_performed": [],
+  "probes": [
+    {
+      "classification": "tool_lego_fit_probe",
+      "installed_where": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "layer_routed_to": "bounded continuous-flow integration and basin-relaxation cross-checks",
+      "packages_used": [
+        "diffrax"
+      ],
+      "probe_result": {
+        "decay_endpoint": 0.36787944117786975,
+        "decay_expected": 0.36787944117144233,
+        "decay_pass": true,
+        "erased_boundary_pass": true,
+        "erased_endpoint": 1.0,
+        "qualified_api": [
+          "diffrax.ODETerm",
+          "diffrax.Tsit5",
+          "diffrax.diffeqsolve",
+          "diffrax.SaveAt"
+        ],
+        "stress_all_finite_monotone": true,
+        "stress_rate_count": 16,
+        "wrong_sign_control_pass": true,
+        "wrong_sign_endpoint": 2.7182818284859813
+      },
+      "promotion_allowed": false,
+      "seed_use": "Direct finite ODE decay, erased-flow boundary, wrong-sign control, and batched-rate stress",
+      "started_at_unix": 1784069248.934145,
+      "tool": "diffrax",
+      "verdict": "useful-now"
+    },
+    {
+      "classification": "tool_lego_fit_probe",
+      "installed_where": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "layer_routed_to": "S1 tensor-network mirror for finite named-state receipts",
+      "packages_used": [
+        "quimb",
+        "cotengra"
+      ],
+      "probe_result": {
+        "cotengra_8q_norm_tree": {
+          "contraction_cost": 220,
+          "contraction_width": 3.0,
+          "path_len": 15,
+          "total_flops": 220
+        },
+        "rows": {
+          "6": {
+            "committed_ghz_pair_entropy": "log(2)",
+            "committed_ghz_single_entropy": "log(2)",
+            "ghz_entropy_matches_committed": true,
+            "ghz_linkdims": [
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "ghz_max_bond": 2,
+            "ghz_pair_entropy": 0.6931471805599452,
+            "ghz_single_entropy": 0.6931471805599452,
+            "w_expected_pair_entropy": 0.6365141682948128,
+            "w_expected_single_entropy": 0.45056120886630463,
+            "w_linkdims": [
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "w_max_bond": 2,
+            "w_pair_entropy": 0.6365141682948128,
+            "w_single_entropy": 0.4505612088663045
+          },
+          "7": {
+            "committed_ghz_pair_entropy": "log(2)",
+            "committed_ghz_single_entropy": "log(2)",
+            "ghz_entropy_matches_committed": true,
+            "ghz_linkdims": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "ghz_max_bond": 2,
+            "ghz_pair_entropy": 0.6931471805599454,
+            "ghz_single_entropy": 0.6931471805599454,
+            "w_expected_pair_entropy": 0.5982695885852573,
+            "w_expected_single_entropy": 0.410116318288409,
+            "w_linkdims": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "w_max_bond": 2,
+            "w_pair_entropy": 0.5982695885852574,
+            "w_single_entropy": 0.41011631828840917
+          },
+          "8": {
+            "committed_ghz_pair_entropy": "log(2)",
+            "committed_ghz_single_entropy": "log(2)",
+            "ghz_entropy_matches_committed": true,
+            "ghz_linkdims": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "ghz_max_bond": 2,
+            "ghz_pair_entropy": 0.6931471805599456,
+            "ghz_single_entropy": 0.6931471805599456,
+            "w_expected_pair_entropy": 0.5623351446188083,
+            "w_expected_single_entropy": 0.37677016125643675,
+            "w_linkdims": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "w_max_bond": 2,
+            "w_pair_entropy": 0.5623351446188084,
+            "w_single_entropy": 0.37677016125643686
+          }
+        }
+      },
+      "promotion_allowed": false,
+      "seed_use": "GHZ_n/W_n bond-2 MPS for n=6..8 plus one 8Q contraction tree",
+      "started_at_unix": 1784069258.030436,
+      "tool": "quimb(+cotengra)",
+      "verdict": "useful-now"
+    },
+    {
+      "classification": "tool_lego_fit_probe",
+      "installed_where": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "layer_routed_to": "S1 statistical cross-check if Haar receipt is strengthened beyond scratch",
+      "probe_result": {
+        "chi_square_power_ratio": 112.94117647058823,
+        "clustered_chi_square": 1920.0,
+        "clustered_ott_reg_cost": 1.297166392180396,
+        "committed_route_note": "S1 committed route uses marginal z/azimuth chi-square; this probe adds an OT marginal distance only.",
+        "haar_chi_square": 17.0,
+        "haar_ott_reg_cost": 0.08922576431500372,
+        "ott_power_ratio": 14.538024999156791
+      },
+      "promotion_allowed": false,
+      "seed_use": "Wasserstein distance-to-uniform for S1 Haar pushforward receipts",
+      "started_at_unix": 1784069258.036608,
+      "tool": "ott",
+      "verdict": "useful-later"
+    },
+    {
+      "classification": "tool_lego_fit_probe",
+      "installed_where": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "layer_routed_to": "S5 affine terrain fixed-point/basin solver sidecar",
+      "packages_used": [
+        "jaxopt",
+        "lineax"
+      ],
+      "probe_result": {
+        "rows": {
+          "Ni_Source_R": {
+            "committed_basin_limit": {
+              "basin": "whole Bloch ball converges to r_star because pinned A has negative real-part spectrum",
+              "computed_from": "exported A,b",
+              "gamma_positive_limit": [
+                "4*epsilon_Ni_R*(4*epsilon_Ni_R - sqrt(3)*gamma_Ni_R)/(32*epsilon_Ni_R**2 + 3*gamma_Ni_R**2)",
+                "4*epsilon_Ni_R*(4*epsilon_Ni_R + sqrt(3)*gamma_Ni_R)/(32*epsilon_Ni_R**2 + 3*gamma_Ni_R**2)",
+                "(16*epsilon_Ni_R**2 + 3*gamma_Ni_R**2)/(32*epsilon_Ni_R**2 + 3*gamma_Ni_R**2)"
+              ],
+              "kernel_basis": [],
+              "pass": true,
+              "pinned_eigenvalues": [
+                "-(-167 + (125 + 24*sqrt(8113))**(2/3) + 20*(125 + 24*sqrt(8113))**(1/3))/(60*(125 + 24*sqrt(8113))**(1/3))",
+                "(-20*sqrt(3)*(125 + 24*sqrt(8113))**(1/3) + sqrt(3)*(125 + 24*sqrt(8113))**(2/3) - 334*I - 20*I*(125 + 24*sqrt(8113))**(1/3) - I*(125 + 24*sqrt(8113))**(2/3))/(60*(125 + 24*sqrt(8113))**(1/3)*(sqrt(3) + I))",
+                "(-20*sqrt(3)*(125 + 24*sqrt(8113))**(1/3) + sqrt(3)*(125 + 24*sqrt(8113))**(2/3) + I*(125 + 24*sqrt(8113))**(2/3) + 20*I*(125 + 24*sqrt(8113))**(1/3) + 334*I)/(60*(125 + 24*sqrt(8113))**(1/3)*(sqrt(3) - I))"
+              ],
+              "pinned_limit": [
+                "-8*(-8 + 5*sqrt(3))/203",
+                "8*(8 + 5*sqrt(3))/203",
+                "139/203"
+              ],
+              "pinned_max_real_part": -0.3291770470407825,
+              "rank": 3
+            },
+            "committed_pinned_fixed_point": [
+              "-8*(-8 + 5*sqrt(3))/203",
+              "8*(8 + 5*sqrt(3))/203",
+              "139/203"
+            ],
+            "jaxopt_iterations": 322,
+            "jaxopt_solution": [
+              -0.026019862959630352,
+              0.6565617347059608,
+              0.6847290644802794
+            ],
+            "lineax_solution": [
+              -0.02601986356036997,
+              0.6565617354815522,
+              0.6847290640394089
+            ],
+            "max_abs_jaxopt_vs_committed": 7.755913689067029e-10,
+            "max_abs_lineax_vs_committed": 1.1102230246251565e-16
+          },
+          "Se_Cannon_R": {
+            "committed_basin_limit": {
+              "basin": "whole Bloch ball contracts to the exported fixed point by pinned eigenvalues with negative real part",
+              "computed_from": "exported A,b",
+              "kernel_basis": [],
+              "lambda_or_rate_positive_limit": [
+                "0",
+                "0",
+                "0"
+              ],
+              "pass": true,
+              "pinned_eigenvalues": [
+                "-4/5",
+                "-4/5 - 2*I/5",
+                "-4/5 + 2*I/5"
+              ],
+              "pinned_max_real_part": -0.8,
+              "rank": 3
+            },
+            "committed_pinned_fixed_point": [
+              "0",
+              "0",
+              "0"
+            ],
+            "jaxopt_iterations": 122,
+            "jaxopt_solution": [
+              3.957939041593333e-10,
+              -9.089327148498228e-11,
+              -1.719162212247347e-10
+            ],
+            "lineax_solution": [
+              -0.0,
+              -0.0,
+              0.0
+            ],
+            "max_abs_jaxopt_vs_committed": 3.957939041593333e-10,
+            "max_abs_lineax_vs_committed": 0.0
+          }
+        }
+      },
+      "promotion_allowed": false,
+      "seed_use": "fixed-point solve for two S5 terrain flows against committed basin limits",
+      "started_at_unix": 1784069260.631961,
+      "tool": "jaxopt(+lineax)",
+      "verdict": "useful-now"
+    },
+    {
+      "classification": "tool_lego_fit_probe",
+      "installed_where": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "layer_routed_to": "S1 equivariance/commuting-square cross-check",
+      "packages_used": [
+        "e3nn-jax"
+      ],
+      "probe_result": {
+        "e3nn_so3_rotated_hopf": [
+          0.895034251781793,
+          0.34715081468636333,
+          0.28000000000000036
+        ],
+        "hopf_after_su2": [
+          0.895034251781793,
+          0.3471508146863635,
+          0.2800000000000001
+        ],
+        "irreps": "1o",
+        "max_abs_diff": 2.7755575615628914e-16,
+        "pass": true,
+        "theta": 0.37
+      },
+      "promotion_allowed": false,
+      "seed_use": "SU(2)-equivariance receipt for the S1 Hopf commuting square via vector irreps",
+      "started_at_unix": 1784069261.39211,
+      "tool": "e3nn_jax",
+      "verdict": "useful-now"
+    },
+    {
+      "classification": "tool_lego_fit_probe",
+      "installed_where": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "layer_routed_to": "S1/S2/S3 geometry cross-checks when manifold API is needed",
+      "probe_result": {
+        "analytic_volume_S2": 12.566370614359172,
+        "analytic_volume_S3": 19.739208802178716,
+        "committed_lens_audit_note": "geo_s1_finite_phase_lens_v0 audit reports N=4 target 4.934802200544679.",
+        "geodesics": {
+          "S^2": {
+            "expected_geodesic_angle": 0.7,
+            "geomstats_dist": 0.7,
+            "max_abs_diff": 0.0
+          },
+          "S^3": {
+            "expected_geodesic_angle": 0.7,
+            "geomstats_dist": 0.7,
+            "max_abs_diff": 0.0
+          }
+        },
+        "lens_volume_N4": 4.934802200544679
+      },
+      "promotion_allowed": false,
+      "seed_use": "S3/S2 geodesics and analytic volume comparison against committed Hopf/lens values",
+      "started_at_unix": 1784069262.524082,
+      "tool": "geomstats",
+      "verdict": "useful-later"
+    },
+    {
+      "classification": "tool_lego_fit_probe",
+      "installed_where": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "layer_routed_to": "not routed for S5 basin/fixed-point work; possible later QMB variational layer only",
+      "packages_used": [
+        "netket"
+      ],
+      "probe_result": {
+        "graph_edges": 1,
+        "graph_nodes": 2,
+        "hilbert_size": 2,
+        "ising_dense_shape": [
+          4,
+          4
+        ],
+        "n_states": 4,
+        "seed_fit_limit": "NetKet naturally targets quantum many-body Hilbert/operator work, not the committed continuous Bloch affine basin rows."
+      },
+      "promotion_allowed": false,
+      "seed_use": "honest fit attempt against basin/fixed-point work",
+      "started_at_unix": 1784069262.894576,
+      "tool": "netket",
+      "verdict": "not-useful"
+    },
+    {
+      "classification": "tool_lego_fit_probe",
+      "installed_where": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 (already present before this card)",
+      "layer_routed_to": "S3/S4 channel evolution sidecar, not a carrier replacement by itself",
+      "packages_used": [
+        "dynamiqs"
+      ],
+      "probe_result": {
+        "api": "dynamiqs.mesolve",
+        "expected_x_exp_minus_gamma": 0.6703200460356393,
+        "max_abs_x_diff": 3.763114819754776e-08,
+        "s4_D_z_committed_behavior": "M=diag(1-q_z,1-q_z,1), c=0; transverse contraction with z fixed",
+        "x_final": 0.6703200836667875,
+        "z_final": 0.0
+      },
+      "promotion_allowed": false,
+      "seed_use": "qutip-jax replacement candidate: one dephasing channel evolution vs S4 D_z behavior",
+      "started_at_unix": 1784069265.1233668,
+      "tool": "dynamiqs",
+      "verdict": "useful-now"
+    },
+    {
+      "classification": "tool_lego_fit_probe",
+      "installed_where": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 (installed by this card)",
+      "layer_routed_to": "q=3 twistor/lens finite-incidence follow-up",
+      "probe_result": {
+        "committed_q3_next_discriminator": {
+          "field": "F_3",
+          "line_count": 130,
+          "lines_through_point": 13,
+          "point_count": 40,
+          "reason": "q=2 scalar quotient is identity, so quotient behavior needs q=3 to discriminate"
+        },
+        "line_count": 130,
+        "matches_committed_40_130": true,
+        "point_count": 40,
+        "points_per_line": [
+          4
+        ]
+      },
+      "promotion_allowed": false,
+      "seed_use": "PG(3,3) point/line counts exact for q=3 twistor/lens follow-up",
+      "started_at_unix": 1784069266.8570728,
+      "tool": "galois",
+      "verdict": "useful-now"
+    }
+  ],
+  "promotion_allowed": false,
+  "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
+}

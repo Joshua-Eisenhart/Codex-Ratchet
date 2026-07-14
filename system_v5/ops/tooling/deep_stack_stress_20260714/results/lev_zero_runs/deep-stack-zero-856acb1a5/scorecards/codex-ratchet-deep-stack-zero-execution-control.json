@@ -1,0 +1,52 @@
+{
+  "suite_id": "codex-ratchet-deep-stack-zero-execution-control",
+  "status": "blocked",
+  "projection_only": true,
+  "release_eligible": false,
+  "executed_count": 0,
+  "skipped_count": 0,
+  "blocked_count": 0,
+  "unavailable_count": 0,
+  "failed_count": 0,
+  "artifact_ref_count": 0,
+  "artifact_refs": [],
+  "artifact_hashes": {},
+  "artifact_routes": [],
+  "checks": {
+    "green": [
+      "projection without an executed command case is explicitly blocked"
+    ],
+    "red": [
+      "zero executed command cases cannot validate tool integration or earn a green projection"
+    ]
+  },
+  "trace_cases": [],
+  "command_cases": [],
+  "evidence_refs": [
+    {
+      "kind": "suite",
+      "label": "suite",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/lev/zero_execution.eval.js",
+      "exists": true
+    },
+    {
+      "kind": "target",
+      "label": "target",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/lev/target.md",
+      "exists": true
+    },
+    {
+      "kind": "flowmind",
+      "label": "flowmind",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/lev/flow.yaml",
+      "exists": true
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "suite.execution.none",
+      "field": "commandCases",
+      "message": "Command execution was required, but no command case executed."
+    }
+  ]
+}

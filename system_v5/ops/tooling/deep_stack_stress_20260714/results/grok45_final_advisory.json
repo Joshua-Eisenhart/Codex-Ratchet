@@ -1,0 +1,133 @@
+{
+  "schema": "codex-ratchet.external-advisory.v1",
+  "generated_at": "2026-07-14T22:55:07Z",
+  "provider": "xai",
+  "requested_model": "grok-4.5",
+  "returned_model": "grok-4.5",
+  "response_id": "a11d84aa-230f-9114-b5de-b009ad79f699",
+  "advisory_only": true,
+  "evidence_allowed": false,
+  "promotion_allowed": false,
+  "claude_bridge_used": false,
+  "inputs": [
+    {
+      "label": "draft_final_report",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_final_report_20260714.json",
+      "sha256_at_review": "b300f5ae0da9e7a29e5f84fa83c1ed2e88bb91574eaa75288ef4a3f8d0cde5d3",
+      "size": 4704
+    },
+    {
+      "label": "validator_verdict",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev_verdict.json",
+      "sha256": "74a12fef90ea86ac80bb1389995bdf7281a7de2d3615a38d0b007d121845fb8f",
+      "size": 861
+    },
+    {
+      "label": "lev_run",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_eval_runs/deep-stack-functions-856acb1a5-576229471/run.json",
+      "sha256": "2cd7c0694dc046af5e59ca277ca311f792094113c1d705ad7e2c4e77811cac09",
+      "size": 1314
+    },
+    {
+      "label": "lev_zero_run",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_zero_runs/deep-stack-zero-856acb1a5/run.json",
+      "sha256": "03d9d0b98b9f7c1be138b295d0f113dcafd773ebe880b3e245a9e8da8b2637d8",
+      "size": 1415
+    },
+    {
+      "label": "qit_boundary",
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/qit_pack_intake_boundary_20260714.json",
+      "sha256": "ac881c641026cd1ba6d8c9fb0db2d761dd505eb72df1289bc6351ea0fee44968",
+      "size": 2693
+    }
+  ],
+  "review": {
+    "overall_severity": "serious",
+    "blockers": [
+      "claim_ceiling asserts L4 Lev verdict while lev_run is projection_only/status projected; compact layer cannot elevate projected scorecards to L4",
+      "operational_pass and fresh_replay_byte_identical are self-attested; omitted estate receipts/hashes are not independently verifiable here",
+      "integration language is bound to adjacency_witnesses_green/integration_edge_count=29 without compact-layer multi-system integration proof"
+    ],
+    "claim_ceiling_assessment": "Compact layer supports at most a draft L2–L3 self-reported operational/diagnostic inventory with a blocked zero-execution control and explicit non-execution of QIT/Ratchet engines. It does not independently support L4 Lev verdict language, true integration promotion, release eligibility, or any scientific/QIT/Ratchet/terrain/flux/cosmogenesis claim. All estate-backed receipts, mutation tests, stress case bodies, and byte-identical replay proofs require the omitted ~2.5 MB estate and are not independently verifiable from this compact evidence alone.",
+    "findings": [
+      {
+        "severity": "serious",
+        "json_paths": ["final_report.claim_ceiling", "lev_run.projection_only", "lev_run.status", "lev_run.suite_status", "final_report.authoritative_receipts.lev_scorecard.status"],
+        "issue": "Receipt/claim mismatch: claim_ceiling promotes an L4 Lev verdict over evidence that is explicitly projection_only with status projected; scorecard status passed is decorative relative to non-executed projection.",
+        "required_change": "Lower claim_ceiling to at most L3 projected/diagnostic; forbid L4 wording unless non-projection execution receipts are present and independently checkable."
+      },
+      {
+        "severity": "serious",
+        "json_paths": ["final_report.authoritative_receipts.validator_verdict", "validator_verdict.findings", "validator_verdict.summary", "final_report.counts"],
+        "issue": "Decorative/self-reported checks: validator findings=[], operational_pass=true, and all green counts are self-asserted in-compact; estate sha256 objects are cited but not openable here.",
+        "required_change": "Mark all operational_pass/count claims as not independently verifiable from compact layer; do not treat empty findings as external validation."
+      },
+      {
+        "severity": "serious",
+        "json_paths": ["final_report.authoritative_receipts.validator_verdict.fresh_replay_byte_identical", "final_report.authoritative_receipts.runtime_shakedown.path", "final_report.generated_at"],
+        "issue": "Replay/freshness gaps: fresh_replay_byte_identical=true has no compact replay transcript; runtime_shakedown path sits outside deep_stack_stress_20260714 tree (possible stale reuse); freshness not independently verifiable without omitted estate.",
+        "required_change": "Qualify replay as self-reported; isolate or re-pin shakedown under campaign root with campaign-scoped digest evidence before any freshness claim."
+      },
+      {
+        "severity": "minor",
+        "json_paths": ["final_report.counts.deep_stress_operational_green", "final_report.counts.adjacency_witnesses_green", "final_report.counts.direct_value_handoffs", "final_report.counts.independent_shared_crosschecks", "lev_zero_run.status"],
+        "issue": "Missing positive/negative/boundary/stress/demotion detail in compact layer: only aggregate greens and one blocked zero-execution control; stress/boundary/adjacency case bodies omitted (2.5 MB estate not independently verifiable). Negative control lev_zero blocked is present and consistent.",
+        "required_change": "State that stress/adjacency/boundary case-level evidence is not independently verifiable here; keep demotion of release/scientific claims."
+      },
+      {
+        "severity": "serious",
+        "json_paths": ["final_report.claim_ceiling", "validator_verdict.summary.integration_edge_count", "validator_verdict.summary.integration_edge_red_count", "final_report.counts.adjacency_witnesses_green"],
+        "issue": "Misleading use of integration: L3 operational integration diagnostics and integration_edge_count=29 alias adjacency_witnesses_green=29; no compact proof of end-to-end multi-component integration beyond co-counted adjacency edges.",
+        "required_change": "Replace integration with adjacency/diagnostic edge wording unless true cross-runtime integration receipts are shown."
+      },
+      {
+        "severity": "minor",
+        "json_paths": ["final_report.schema", "lev_run.suite_id", "final_report.authoritative_receipts.lev_scorecard.path", "final_report.qit_and_ratchet_boundary", "qit_boundary.claim_ceiling", "final_report.guards.scientific_claim_proven"],
+        "issue": "QIT/Ratchet scientific overpromotion risk via branding: schemas/suite ids use codex-ratchet-* while engines are not_executed_not_proven and scientific_claim_proven=false. Substantive demotion text is present and mostly adequate.",
+        "required_change": "Keep engine statuses demoted; avoid ratchet-named suite/scorecard titles implying executed Ratchet/QIT science."
+      },
+      {
+        "severity": "none",
+        "json_paths": ["final_report.counts.roster_total", "final_report.counts.current_required_operational_green", "final_report.counts.policy_only_green", "final_report.counts.legacy_unclassified_operational_green", "validator_verdict.summary.receipt_tool_count", "validator_verdict.summary.required_operational_count"],
+        "issue": "Final-report arithmetic on core partitions is consistent in-compact: 86+44+9=139; roster_total=receipt_tool_count=registry_tool_count=139; adjacency 29 matches integration_edge_count and runtime_shakedown.pass. deep_stress 95 vs required 86 is unexplained but numerically compatible with +legacy 9.",
+        "required_change": "Optionally document deep_stress_operational_green composition (required+legacy) to remove ambiguity; no arithmetic blocker found."
+      },
+      {
+        "severity": "minor",
+        "json_paths": ["final_report.status", "final_report.external_advisory", "final_report.guards.release_eligible", "validator_verdict.release_eligible"],
+        "issue": "Status draft_pending_external_advisory with evidence_allowed=false/promotion_allowed=false correctly demotes promotion, but operational_pass=true can still be read as release-ready if claim_ceiling is not read strictly.",
+        "required_change": "Keep release_eligible false and bind pass language to non-promotable scope only."
+      }
+    ]
+  },
+  "provider_return_review_sha256": "c2fb06646773915123ec6adc9b313b4f7594aacd822e14522d2d0b3fa5a4cea6",
+  "review_sha256": "209ded527992d18d98d585e581a1a720b4054726ad5a54bb7cdfe71c97bf4d46",
+  "review_storage_note": "the complete structured review is retained; JSON presentation was normalized when written into the durable campaign receipt",
+  "usage": {
+    "prompt_tokens": 3727,
+    "completion_tokens": 1680,
+    "reasoning_tokens": 2415,
+    "total_tokens": 7822,
+    "num_sources_used": 0
+  },
+  "adjudication": {
+    "operational_blocker_found": false,
+    "accepted_hardening": [
+      "replace broad integration wording with tool-library chain and adjacency-witness wording",
+      "add a compact independent-validator replay transcript",
+      "state that Grok reviewed only the compact layer and could not inspect the full estate",
+      "keep release eligibility and every scientific promotion false"
+    ],
+    "not_accepted_as_factual": [
+      {
+        "claim": "projection_only means the Lev suite did not execute",
+        "reason": "the pinned Lev scorecard records executed_count=9, failed_count=0, status=passed; projection_only is the no-release/no-promotion boundary, while the separate zero-execution twin records executed_count=0 and blocks"
+      },
+      {
+        "claim": "omission from the compact prompt means the full estate evidence is absent",
+        "reason": "the prompt deliberately bounded context; the 2.5 MB estate and raw artifacts remain local authoritative receipts and passed exact schema-aware replay"
+      }
+    ],
+    "claim_ceiling_after_adjudication": "operational tool/library chains and adjacency witnesses only; no release, engine, or scientific promotion"
+  }
+}

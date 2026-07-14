@@ -51,7 +51,7 @@
       "used": true
     },
     "skill_agent_inventory": {
-      "reason": "load-bearing Codex/Claude skill and agent wiring check for the sim-stack gate surfaces.",
+      "reason": "load-bearing Codex skill wiring check; Claude surfaces are reference-only and never gate the Codex runtime.",
       "tried": true,
       "used": true
     },
@@ -104,7 +104,7 @@
         "expected": {
           "julia": "/opt/homebrew/bin/julia",
           "julia_load_path": "@:@stdlib",
-          "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+          "julia_project": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/julia_carrier",
           "physical_python_env": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main",
           "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
           "sim_stack_alias": "/Users/joshuaeisenhart/.local/share/sim-stack"
@@ -129,7 +129,7 @@
         "failures": [],
         "summary": {
           "failure_count": 0,
-          "file_count": 969,
+          "file_count": 954,
           "ok": true,
           "warning_count": 62
         },
@@ -143,7 +143,7 @@
     {
       "category": "julia",
       "detail": {
-        "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+        "active_project": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/julia_carrier/Project.toml",
         "graphs_edge_count": 1,
         "load_path": "@:@stdlib",
         "octonion_first_nonzero_associator": {
@@ -628,7 +628,7 @@
             "sim-stack-maintenance": true,
             "three-engine-sim": true
           },
-          "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/codex_skills": {
+          "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/codex_skills": {
             "codex-ratchet-env-agent-coordination": true,
             "codex-ratchet-tool-status-auditor": true,
             "jax-sim": true,
@@ -668,64 +668,52 @@
     {
       "category": "skill_agent_wiring",
       "detail": {
-        "missing": [],
+        "reason": "Claude skills are frozen reference fixtures, not Codex runtime dependencies.",
         "skills": {
-          "codex-ratchet-env-agent-coordination": true,
-          "codex-ratchet-tool-status-auditor": true,
-          "jax-sim": true,
-          "julia-sim": true,
-          "lego-sim-classifier": true,
-          "pytorch-sim": true,
-          "sim-stack-maintenance": true,
-          "three-engine-sim": true
+          "codex-ratchet-env-agent-coordination": false,
+          "codex-ratchet-tool-status-auditor": false,
+          "jax-sim": false,
+          "julia-sim": false,
+          "lego-sim-classifier": false,
+          "pytorch-sim": false,
+          "sim-stack-maintenance": false,
+          "three-engine-sim": false
         }
       },
       "name": "claude_skill_gate_and_engine_skills",
       "note": null,
-      "severity": "fail",
-      "status": "pass"
+      "severity": "skip",
+      "status": "skip"
     },
     {
       "category": "skill_agent_wiring",
       "detail": {
         "agents": {
-          "fabrication-auditor": true,
-          "fresh-audit-runner": true,
-          "jax-audit-lane-runner": true,
-          "jax-sim-runner": true,
-          "julia-carrier-builder": true,
-          "julia-sim-runner": true,
-          "process-stage-gate-steward": true,
-          "pytorch-sim-runner": true,
-          "repo-doc-archaeologist": true,
-          "sim-contract-gatekeeper": true,
-          "smt-proof-engineer": true
+          "fabrication-auditor": false,
+          "fresh-audit-runner": false,
+          "jax-audit-lane-runner": false,
+          "jax-sim-runner": false,
+          "julia-carrier-builder": false,
+          "julia-sim-runner": false,
+          "process-stage-gate-steward": false,
+          "pytorch-sim-runner": false,
+          "repo-doc-archaeologist": false,
+          "sim-contract-gatekeeper": false,
+          "smt-proof-engineer": false
         },
-        "missing": []
+        "reason": "Claude agent cards are frozen reference fixtures, not Codex runtime dependencies."
       },
       "name": "claude_sim_agent_role_cards",
       "note": null,
-      "severity": "fail",
-      "status": "pass"
+      "severity": "skip",
+      "status": "skip"
     },
     {
       "category": "skill_agent_wiring",
       "detail": {
         "failures": {},
         "guards": {
-          "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/codex-ratchet-env-agent-coordination/SKILL.md": {
-            "exists": true,
-            "missing": []
-          },
-          "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/codex-ratchet-tool-status-auditor/SKILL.md": {
-            "exists": true,
-            "missing": []
-          },
-          "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/lego-sim-classifier/SKILL.md": {
-            "exists": true,
-            "missing": []
-          },
-          "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/codex_skills/sim-stack-maintenance/SKILL.md": {
+          "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/codex_skills/sim-stack-maintenance/SKILL.md": {
             "exists": true,
             "missing": []
           }
@@ -777,13 +765,13 @@
   "expected_runtime": {
     "julia": "/opt/homebrew/bin/julia",
     "julia_load_path": "@:@stdlib",
-    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+    "julia_project": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/julia_carrier",
     "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
   },
   "formal_admission_allowed": false,
-  "generated_at": "2026-07-10T09:50:04.530547Z",
+  "generated_at": "2026-07-14T22:34:55.775388Z",
   "julia_probe": {
-    "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "active_project": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/julia_carrier/Project.toml",
     "graphs_edge_count": 1,
     "load_path": "@:@stdlib",
     "octonion_first_nonzero_associator": {
@@ -1500,7 +1488,7 @@
   ],
   "mapping_audit_summary": {
     "failure_count": 0,
-    "file_count": 969,
+    "file_count": 954,
     "ok": true,
     "warning_count": 62
   },
@@ -1631,32 +1619,32 @@
     "xgi_hyperedge_count": 1,
     "z3_unsat": "unsat"
   },
-  "repo": "/Users/joshuaeisenhart/Codex-Ratchet",
-  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/tooling/codex_runtime_capability_shakedown_results.json",
+  "repo": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+  "result_path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/codex_runtime_capability_shakedown_results.json",
   "schema": "codex_runtime_capability_shakedown.v1",
   "skill_agent_probe": {
     "claude_agents": {
-      "fabrication-auditor": true,
-      "fresh-audit-runner": true,
-      "jax-audit-lane-runner": true,
-      "jax-sim-runner": true,
-      "julia-carrier-builder": true,
-      "julia-sim-runner": true,
-      "process-stage-gate-steward": true,
-      "pytorch-sim-runner": true,
-      "repo-doc-archaeologist": true,
-      "sim-contract-gatekeeper": true,
-      "smt-proof-engineer": true
+      "fabrication-auditor": false,
+      "fresh-audit-runner": false,
+      "jax-audit-lane-runner": false,
+      "jax-sim-runner": false,
+      "julia-carrier-builder": false,
+      "julia-sim-runner": false,
+      "process-stage-gate-steward": false,
+      "pytorch-sim-runner": false,
+      "repo-doc-archaeologist": false,
+      "sim-contract-gatekeeper": false,
+      "smt-proof-engineer": false
     },
     "claude_skills": {
-      "codex-ratchet-env-agent-coordination": true,
-      "codex-ratchet-tool-status-auditor": true,
-      "jax-sim": true,
-      "julia-sim": true,
-      "lego-sim-classifier": true,
-      "pytorch-sim": true,
-      "sim-stack-maintenance": true,
-      "three-engine-sim": true
+      "codex-ratchet-env-agent-coordination": false,
+      "codex-ratchet-tool-status-auditor": false,
+      "jax-sim": false,
+      "julia-sim": false,
+      "lego-sim-classifier": false,
+      "pytorch-sim": false,
+      "sim-stack-maintenance": false,
+      "three-engine-sim": false
     },
     "codex_skill_roots": {
       "/Users/joshuaeisenhart/.codex-second/skills": {
@@ -1679,7 +1667,7 @@
         "sim-stack-maintenance": true,
         "three-engine-sim": true
       },
-      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/codex_skills": {
+      "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/codex_skills": {
         "codex-ratchet-env-agent-coordination": true,
         "codex-ratchet-tool-status-auditor": true,
         "jax-sim": true,
@@ -1701,37 +1689,27 @@
       "three-engine-sim": true
     },
     "skill_content_guard": {
-      "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/codex-ratchet-env-agent-coordination/SKILL.md": {
-        "exists": true,
-        "missing": []
-      },
-      "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/codex-ratchet-tool-status-auditor/SKILL.md": {
-        "exists": true,
-        "missing": []
-      },
-      "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/lego-sim-classifier/SKILL.md": {
-        "exists": true,
-        "missing": []
-      },
-      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/codex_skills/sim-stack-maintenance/SKILL.md": {
+      "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/codex_skills/sim-stack-maintenance/SKILL.md": {
         "exists": true,
         "missing": []
       }
     }
   },
-  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/scripts/codex_engine_stack_shakedown.py",
-  "source_sha256": "c6457efbbf97a4cdca656f474475491eee13a3fd0fba163d9c55f76a5987fded",
+  "source_path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/scripts/codex_engine_stack_shakedown.py",
+  "source_sha256": "73c91003632e417ef888ed9204272223f0d6364524d3fc308e00f445a9331479",
   "summary": {
     "counts": {
       "fail": 0,
-      "pass": 31,
-      "skip": 1,
+      "pass": 29,
+      "skip": 3,
       "warn": 0
     },
     "failed_checks": [],
     "ok": true,
     "skip_checks": [
-      "julia_python_dlpack_bridge"
+      "julia_python_dlpack_bridge",
+      "claude_skill_gate_and_engine_skills",
+      "claude_sim_agent_role_cards"
     ],
     "warn_checks": []
   },

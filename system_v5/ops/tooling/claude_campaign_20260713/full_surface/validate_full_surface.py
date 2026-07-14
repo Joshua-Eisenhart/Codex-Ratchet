@@ -24,7 +24,6 @@ EXPECTED_JULIA_CORRECTION_PROJECT = Path(
 )
 EXPECTED_JULIA_CORRECTION_PROJECT_SHA256 = "227ee35210c2aa0939f0d175a606279ab194a1a4835f30e3b0051188d79d50a6"
 EXPECTED_JULIA_CORRECTION_MANIFEST_SHA256 = "3aea8d29321024ed71d8de46b292a3ab03247214c40575ca8ca6ad9620aeff18"
-EXPECTED_JULIA_CANDIDATE_PROJECT = "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier"
 EXPECTED_ENZYME_VERSION = "0.13.154"
 EXPECTED_ENZYME_CANDIDATE_CODE = (
     "using Enzyme; f(x)=sin(x)^2; autodiff(Reverse,f,Active,Active(0.3))"
@@ -211,6 +210,7 @@ CORRECTION_OBSERVED_KEYS = {
     "albert_component_norm": {
         "component_norm",
         "candidate_error",
+        "fixture_scope",
         "synthetic_component_norm",
     },
     "clifford_rotor_identity": {
@@ -224,7 +224,10 @@ CORRECTION_OBSERVED_KEYS = {
         "shifted_target_error",
         "candidate_command",
         "candidate_julia_project",
+        "candidate_julia_load_path",
+        "candidate_reproduction_scope",
         "candidate_exit_code",
+        "candidate_error",
     },
 }
 FORBIDDEN_AUTHORITY_KEYS = {
@@ -277,7 +280,7 @@ SET_CONTRACTS = {
         "group_ids": ["julia_correction_probes", "imported_julia_battery"],
         "blockers": [],
         "findings": [
-            "frozen imported Julia battery remains 12/15 red; corrected Albert, Clifford, and Enzyme probes show candidate API/environment defects"
+            "frozen imported Julia battery remains 12/15 red; the Albert correction is limited to the diagonal primitive-idempotent fixture, while corrected Clifford and machine-local Enzyme probes show candidate API/environment defects"
         ],
         "observations": {
             "B_albert_identity": ("julia_correction_probes", "artifact_json", "/checks/albert_component_norm/corrected_pass", True),
@@ -409,6 +412,17 @@ def validate_julia_correction_receipt(
         f"{receipt_label} schema mismatch",
     )
     add(errors, timestamp_ok(payload["created_at"]), f"{receipt_label} timestamp invalid")
+    try:
+        receipt_time = datetime.fromisoformat(payload["created_at"].replace("Z", "+00:00"))
+        command_started = datetime.fromisoformat(row["commands"][0]["started_at"].replace("Z", "+00:00"))
+        command_finished = datetime.fromisoformat(row["commands"][0]["finished_at"].replace("Z", "+00:00"))
+        add(
+            errors,
+            command_started <= receipt_time <= command_finished,
+            f"{receipt_label} timestamp outside command interval",
+        )
+    except (KeyError, TypeError, ValueError):
+        errors.append(f"{receipt_label} timestamp interval invalid")
     add(errors, payload["command"] == row["commands"][0]["command"], f"{receipt_label} command mismatch")
     add(errors, payload["promotion_allowed"] is False, f"{receipt_label} promotion must remain false")
     add(
@@ -573,6 +587,8 @@ def validate_julia_correction_receipt(
         )
         albert_corrected = (
             albert["tolerance"] == 1.0e-12
+            and albert_observed["fixture_scope"]
+            == "diagonal primitive-idempotent fixture; synthetic control perturbs one diagonal component only"
             and finite_number(albert_observed["component_norm"])
             and 0.0 <= float(albert_observed["component_norm"]) < 1.0e-12
         )
@@ -615,10 +631,15 @@ def validate_julia_correction_receipt(
         ]
         enzyme_candidate = (
             enzyme_observed["candidate_command"] == expected_candidate_command
-            and enzyme_observed["candidate_julia_project"] == EXPECTED_JULIA_CANDIDATE_PROJECT
+            and enzyme_observed["candidate_julia_project"] is None
+            and enzyme_observed["candidate_julia_load_path"] == "@:@stdlib"
+            and enzyme_observed["candidate_reproduction_scope"]
+            == "exact imported child environment: no --project and JULIA_PROJECT unset"
             and isinstance(enzyme_observed["candidate_exit_code"], int)
             and not isinstance(enzyme_observed["candidate_exit_code"], bool)
             and enzyme_observed["candidate_exit_code"] != 0
+            and isinstance(enzyme_observed["candidate_error"], str)
+            and "Package Enzyme not found in current path" in enzyme_observed["candidate_error"]
         )
         enzyme_corrected = (
             enzyme["tolerance"] == 1.0e-12

@@ -362,10 +362,6 @@ def run_imported_batteries(ctx: RunContext, stage: Path, archive: Path) -> list[
         canon_bytes = bundle.read(ARCHIVE_MEMBERS[0])
     canon = staged / "ExceptionalAlgebraCanon.jl"
     canon.write_bytes(canon_bytes)
-    project_snapshot = staged / "julia_correction_Project.toml"
-    manifest_snapshot = staged / "julia_correction_Manifest.toml"
-    shutil.copy2(JULIA_CORRECTION_PROJECT / "Project.toml", project_snapshot)
-    shutil.copy2(JULIA_CORRECTION_PROJECT / "Manifest.toml", manifest_snapshot)
     specs = [
         {
             "id": "imported_python_battery",
@@ -451,6 +447,10 @@ def run_julia_corrections(ctx: RunContext, stage: Path, archive: Path) -> dict[s
         canon_bytes = bundle.read(ARCHIVE_MEMBERS[0])
     canon = staged / "ExceptionalAlgebraCanon.jl"
     canon.write_bytes(canon_bytes)
+    project_snapshot = staged / "julia_correction_Project.toml"
+    manifest_snapshot = staged / "julia_correction_Manifest.toml"
+    shutil.copy2(JULIA_CORRECTION_PROJECT / "Project.toml", project_snapshot)
+    shutil.copy2(JULIA_CORRECTION_PROJECT / "Manifest.toml", manifest_snapshot)
     output = staged / "julia_correction_probes_results.json"
     command = ctx.command(
         group_id,
@@ -466,7 +466,6 @@ def run_julia_corrections(ctx: RunContext, stage: Path, archive: Path) -> dict[s
             "OUTPUT_PATH": str(output),
             "CORRECTION_JULIA_EXECUTABLE": str(JULIA),
             "CORRECTION_JULIA_PROJECT": str(JULIA_CORRECTION_PROJECT),
-            "CORRECTION_CANDIDATE_PROJECT": str(JULIA_PROJECT),
             "JULIA_LOAD_PATH": "@:@stdlib",
         },
         timeout=1200,
@@ -937,7 +936,7 @@ def set_coverage(groups: list[dict[str, Any]]) -> list[dict[str, Any]]:
         "B": {
             "blockers": [],
             "findings": [
-                "frozen imported Julia battery remains 12/15 red; corrected Albert, Clifford, and Enzyme probes show candidate API/environment defects"
+                "frozen imported Julia battery remains 12/15 red; the Albert correction is limited to the diagonal primitive-idempotent fixture, while corrected Clifford and machine-local Enzyme probes show candidate API/environment defects"
             ],
             "observations": [
                 ("B_albert_identity", "julia_correction_probes", "artifact_json", "/checks/albert_component_norm/corrected_pass", True, "julia_correction_probes_results.json"),

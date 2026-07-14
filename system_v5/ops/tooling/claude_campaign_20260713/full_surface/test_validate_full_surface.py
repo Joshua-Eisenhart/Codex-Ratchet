@@ -205,6 +205,11 @@ def main() -> int:
         ),
     )
 
+    correction_artifact_control(
+        "correction_timestamp_backdating",
+        lambda receipt: receipt.__setitem__("created_at", "2000-01-01T00:00:00.000Z"),
+    )
+
     def substitute_correction_project(receipt: dict[str, Any]) -> None:
         project = Path(
             "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml"

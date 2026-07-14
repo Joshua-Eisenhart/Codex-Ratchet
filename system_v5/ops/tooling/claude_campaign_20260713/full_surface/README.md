@@ -21,9 +21,11 @@ release-eligible.
 - hardened D/F/J/K/H chains and semantic H finding;
 - recovered Python, Julia, and tool-fit candidate batteries;
 - machine-local, source-backed Julia correction probes that freeze the exact
-  Project/Manifest bytes and distinguish three frozen candidate defects from
-  Albert, CliffordAlgebras, or Enzyme library failures without claiming a
-  portable or canonical environment;
+  Project/Manifest bytes, reproduce the imported Enzyme child with no project,
+  and distinguish three frozen candidate defects from library failures. The
+  Albert correction covers only the diagonal primitive-idempotent fixture and
+  its synthetic control perturbs only a diagonal component; the Enzyme result
+  remains machine-local and nonportable;
 - three foundation scratch diagnostics;
 - two NumPy/Julia dual-foundation suites;
 - legacy 1-qubit and 3-qubit NumPy/JAX/Julia/PyTorch engine chains;

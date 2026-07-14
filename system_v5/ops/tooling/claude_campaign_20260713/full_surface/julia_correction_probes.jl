@@ -10,7 +10,6 @@ const CANON_PATH = abspath(ENV["CANON_PATH"])
 const OUTPUT_PATH = abspath(ENV["OUTPUT_PATH"])
 const JULIA_EXECUTABLE = ENV["CORRECTION_JULIA_EXECUTABLE"]
 const JULIA_PROJECT = abspath(ENV["CORRECTION_JULIA_PROJECT"])
-const CANDIDATE_PROJECT = abspath(ENV["CORRECTION_CANDIDATE_PROJECT"])
 
 Base.active_project() == joinpath(JULIA_PROJECT, "Project.toml") ||
     error("active Julia project does not match the correction project")
@@ -54,6 +53,7 @@ function albert_probe()
         "observed" => Dict(
             "component_norm" => corrected_error,
             "candidate_error" => candidate_error,
+            "fixture_scope" => "diagonal primitive-idempotent fixture; synthetic control perturbs one diagonal component only",
             "synthetic_component_norm" => synthetic_error,
         ),
         "tolerance" => TOLERANCE,
@@ -90,9 +90,9 @@ function clifford_probe()
 end
 
 function enzyme_probe()
-    # Reproduce the candidate child with no --project while its inherited
-    # project points at the carrier that does not declare Enzyme. Then execute
-    # the derivative in the explicitly bound v1.12 project.
+    # Reproduce the imported child exactly: no --project, JULIA_PROJECT unset,
+    # and JULIA_LOAD_PATH=@:@stdlib. Then execute the derivative in the
+    # explicitly bound v1.12 project.
     candidate_code = "using Enzyme; f(x)=sin(x)^2; autodiff(Reverse,f,Active,Active(0.3))"
     candidate_command = Cmd([
         JULIA_EXECUTABLE,
@@ -102,15 +102,17 @@ function enzyme_probe()
     ])
     candidate_process = addenv(
         candidate_command,
-        "JULIA_PROJECT" => CANDIDATE_PROJECT,
+        "JULIA_PROJECT" => nothing,
         "JULIA_LOAD_PATH" => "@:@stdlib",
     )
+    candidate_stderr = IOBuffer()
     process = run(
-        pipeline(candidate_process, stdout=devnull, stderr=devnull);
+        pipeline(candidate_process, stdout=devnull, stderr=candidate_stderr);
         wait=false,
     )
     wait(process)
     candidate_exit_code = process.exitcode
+    candidate_error = String(take!(candidate_stderr))
     candidate_failure = candidate_exit_code != 0
     f(x) = sin(x)^2
     gradient = autodiff(Reverse, f, Active, Active(0.3))[1][1]
@@ -123,8 +125,11 @@ function enzyme_probe()
             "gradient_error" => corrected_error,
             "shifted_target_error" => shifted_error,
             "candidate_command" => collect(candidate_command.exec),
-            "candidate_julia_project" => CANDIDATE_PROJECT,
+            "candidate_julia_project" => nothing,
+            "candidate_julia_load_path" => "@:@stdlib",
+            "candidate_reproduction_scope" => "exact imported child environment: no --project and JULIA_PROJECT unset",
             "candidate_exit_code" => candidate_exit_code,
+            "candidate_error" => candidate_error,
         ),
         "tolerance" => TOLERANCE,
         "corrected_pass" => corrected_error < TOLERANCE,

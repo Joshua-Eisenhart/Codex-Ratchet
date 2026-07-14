@@ -20,6 +20,10 @@ release-eligible.
 
 - hardened D/F/J/K/H chains and semantic H finding;
 - recovered Python, Julia, and tool-fit candidate batteries;
+- machine-local, source-backed Julia correction probes that freeze the exact
+  Project/Manifest bytes and distinguish three frozen candidate defects from
+  Albert, CliffordAlgebras, or Enzyme library failures without claiming a
+  portable or canonical environment;
 - three foundation scratch diagnostics;
 - two NumPy/Julia dual-foundation suites;
 - legacy 1-qubit and 3-qubit NumPy/JAX/Julia/PyTorch engine chains;
@@ -38,13 +42,17 @@ release-eligible.
 
 ## Verification shape
 
-The Lev suite executes the campaign, validates the authentic envelope, attacks
+The Lev suite first records the exact live executor commit, executes the
+campaign, validates the authentic envelope, attacks
 promotion/provider/projection/replay/hash/evidence aliases, accepts an honest
 green-to-red demotion, and proves that an `--execute` run with zero command
-cases blocks. The expected Lev result is `status=projected`,
+cases blocks. The envelope pins the historical Lev commit tree and the exact
+suite/validator bytes instead of depending on a mutable worktree HEAD. The
+process-card tests run under a disposable repo-shaped root with their declared
+source-manifest and predecessor files copied into place. The expected Lev result is `status=projected`,
 `suite_status=passed`, `projection_only=true`, and
 `release_eligible=false`.
 
 The bound Lev executor is commit
-`ab211e8c83bd323b8eb2f4dabf1d80bb27a5ebcd` in
+`856acb1a5de42528a9a54272435d98a9fe226186` in
 `/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract`.

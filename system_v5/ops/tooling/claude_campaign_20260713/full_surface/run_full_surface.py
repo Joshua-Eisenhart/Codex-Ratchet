@@ -33,9 +33,19 @@ HARDENED = HERE.parent / "hardened"
 PYTHON = Path("/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3")
 JULIA = Path("/opt/homebrew/bin/julia")
 JULIA_PROJECT = Path("/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier")
+JULIA_CORRECTION_PROJECT = Path("/Users/joshuaeisenhart/.julia/environments/v1.12")
 LAKE = Path("/Users/joshuaeisenhart/.elan/bin/lake")
 LEV_WORKTREE = Path("/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract")
-LEV_COMMIT = "ab211e8c83bd323b8eb2f4dabf1d80bb27a5ebcd"
+LEV_COMMIT = "856acb1a5de42528a9a54272435d98a9fe226186"
+JULIA_CORRECTIONS = HERE / "julia_correction_probes.jl"
+SUITE_BINDING_PATHS = (
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/flow.yaml",
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/full_surface_campaign.eval.js",
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/target.md",
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/zero_execution.eval.js",
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/test_validate_full_surface.py",
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/validate_full_surface.py",
+)
 DEFAULT_ARCHIVE = Path(
     "/Users/joshuaeisenhart/Desktop/"
     "166_reconciled_ratchet_v0_11_7_cold_verified (1).zip"
@@ -87,6 +97,46 @@ def repo_source(relative: str, provenance: str = "committed_repo_source") -> dic
         "sha256": sha256_file(path),
         "provenance": provenance,
     }
+
+
+def committed_suite_binding(relative: str, source_commit: str) -> dict[str, str]:
+    path = REPO_ROOT / relative
+    live_hash = sha256_file(path)
+    committed = subprocess.run(
+        ["git", "show", f"{source_commit}:{relative}"],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        check=False,
+    )
+    if committed.returncode != 0:
+        raise RuntimeError(f"suite source absent from commit {source_commit}: {relative}")
+    committed_hash = sha256_bytes(committed.stdout)
+    if committed_hash != live_hash:
+        raise RuntimeError(f"suite source differs from commit {source_commit}: {relative}")
+    return {"path": relative, "sha256": live_hash}
+
+
+def lev_commit_tree() -> str:
+    current = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"],
+        cwd=LEV_WORKTREE,
+        text=True,
+    ).strip()
+    if current != LEV_COMMIT:
+        raise RuntimeError(f"live Lev executor is {current}, expected {LEV_COMMIT}")
+    exists = subprocess.run(
+        ["git", "cat-file", "-e", f"{LEV_COMMIT}^{{commit}}"],
+        cwd=LEV_WORKTREE,
+        capture_output=True,
+        check=False,
+    )
+    if exists.returncode != 0:
+        raise RuntimeError(f"Lev executor commit is unavailable: {LEV_COMMIT}")
+    return subprocess.check_output(
+        ["git", "rev-parse", f"{LEV_COMMIT}^{{tree}}"],
+        cwd=LEV_WORKTREE,
+        text=True,
+    ).strip()
 
 
 def archive_source(archive: Path, member: str) -> dict[str, Any]:
@@ -312,6 +362,10 @@ def run_imported_batteries(ctx: RunContext, stage: Path, archive: Path) -> list[
         canon_bytes = bundle.read(ARCHIVE_MEMBERS[0])
     canon = staged / "ExceptionalAlgebraCanon.jl"
     canon.write_bytes(canon_bytes)
+    project_snapshot = staged / "julia_correction_Project.toml"
+    manifest_snapshot = staged / "julia_correction_Manifest.toml"
+    shutil.copy2(JULIA_CORRECTION_PROJECT / "Project.toml", project_snapshot)
+    shutil.copy2(JULIA_CORRECTION_PROJECT / "Manifest.toml", manifest_snapshot)
     specs = [
         {
             "id": "imported_python_battery",
@@ -385,6 +439,70 @@ def run_imported_batteries(ctx: RunContext, stage: Path, archive: Path) -> list[
             )
         )
     return rows
+
+
+def run_julia_corrections(ctx: RunContext, stage: Path, archive: Path) -> dict[str, Any]:
+    group_id = "julia_correction_probes"
+    staged = stage / group_id
+    staged.mkdir(parents=True)
+    script = staged / JULIA_CORRECTIONS.name
+    shutil.copy2(JULIA_CORRECTIONS, script)
+    with zipfile.ZipFile(archive) as bundle:
+        canon_bytes = bundle.read(ARCHIVE_MEMBERS[0])
+    canon = staged / "ExceptionalAlgebraCanon.jl"
+    canon.write_bytes(canon_bytes)
+    output = staged / "julia_correction_probes_results.json"
+    command = ctx.command(
+        group_id,
+        [
+            str(JULIA),
+            "--startup-file=no",
+            f"--project={JULIA_CORRECTION_PROJECT}",
+            str(script),
+        ],
+        cwd=staged,
+        env_overrides={
+            "CANON_PATH": str(canon),
+            "OUTPUT_PATH": str(output),
+            "CORRECTION_JULIA_EXECUTABLE": str(JULIA),
+            "CORRECTION_JULIA_PROJECT": str(JULIA_CORRECTION_PROJECT),
+            "CORRECTION_CANDIDATE_PROJECT": str(JULIA_PROJECT),
+            "JULIA_LOAD_PATH": "@:@stdlib",
+        },
+        timeout=1200,
+    )
+    parsed = load_json(output) if output.is_file() else {}
+    artifact = ctx.persist(group_id, output) if output.is_file() else None
+    artifacts = [artifact] if artifact else []
+    artifacts.extend(
+        [
+            ctx.persist(group_id, project_snapshot),
+            ctx.persist(group_id, manifest_snapshot),
+        ]
+    )
+    observed = parsed.get("all_pass")
+    evidence = (
+        artifact_evidence(artifact, "/all_pass", observed, True)
+        if artifact
+        else command_evidence(0, command["exit_code"], 0)
+    )
+    return group(
+        group_id=group_id,
+        kind="source_backed_correction_probe",
+        sources=[
+            repo_source(str(JULIA_CORRECTIONS.relative_to(REPO_ROOT))),
+            archive_source(archive, ARCHIVE_MEMBERS[0]),
+        ],
+        commands=[command],
+        artifacts=artifacts,
+        required_artifact_count=3,
+        execution_completed=bool(not command["timed_out"] and artifact),
+        bounded_pass=command["exit_code"] == 0 and observed is True,
+        science_evidence=evidence,
+        claim_ceiling="Machine-local Julia API/environment correction probes only; no scientific admission or portable/canonical environment claim.",
+        blockers=[],
+        red_preservation_required=True,
+    )
 
 
 FOUNDATION_SCRIPTS = [
@@ -570,11 +688,51 @@ def run_engine_suite(ctx: RunContext, stage: Path, three_qubit: bool) -> dict[st
     )
 
 
-def run_process_tests(ctx: RunContext, stage: Path) -> dict[str, Any]:
+def stage_process_test_tree(stage: Path) -> tuple[Path, list[Path]]:
+    """Stage the process tests under a disposable repo-shaped root.
+
+    The validator resolves card paths from ``Path(__file__).parents[3]``. A
+    flat copy therefore turns every repo-relative manifest entry into a false
+    file-not-found red. Preserve the repository layout and copy only the
+    dependencies explicitly declared by the frozen proposal card.
+    """
+
     relative = "system_v7/control/ratchet_process_v1"
     source_dir = REPO_ROOT / relative
-    staged = stage / "ratchet_process_v1"
+    staged_repo = stage / "process_repo"
+    staged = staged_repo / relative
     copytree(source_dir, staged, ignore_results=False)
+
+    card_path = source_dir / "examples/coratchet_recursive_foundations_v1.card.json"
+    card = load_json(card_path)
+    declared_paths: list[Path] = []
+    for field in ("source_manifest", "predecessor_receipts"):
+        for index, entry in enumerate(card.get(field, [])):
+            value = entry.get("path") if isinstance(entry, dict) else None
+            if not isinstance(value, str) or not value:
+                raise ValueError(f"{field}[{index}].path must be a non-empty string")
+            relative_path = Path(value)
+            if relative_path.is_absolute() or ".." in relative_path.parts:
+                raise ValueError(f"{field}[{index}].path escapes the staged repository")
+            source = REPO_ROOT / relative_path
+            if not source.is_file():
+                raise FileNotFoundError(source)
+            destination = staged_repo / relative_path
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, destination)
+            declared_paths.append(source)
+
+    staged_sources = {
+        path
+        for path in source_dir.rglob("*")
+        if path.is_file()
+    }
+    staged_sources.update(declared_paths)
+    return staged, sorted(staged_sources)
+
+
+def run_process_tests(ctx: RunContext, stage: Path) -> dict[str, Any]:
+    staged, staged_sources = stage_process_test_tree(stage)
     command = ctx.command(
         "ratchet_process_v1_tests",
         [str(PYTHON), "-B", "-m", "unittest", "discover", "-s", "tests", "-p", "test*.py", "-v"],
@@ -584,8 +742,7 @@ def run_process_tests(ctx: RunContext, stage: Path) -> dict[str, Any]:
     )
     sources = [
         repo_source(str(path.relative_to(REPO_ROOT)))
-        for path in sorted(source_dir.rglob("*"))
-        if path.is_file() and path.suffix == ".py"
+        for path in staged_sources
     ]
     return group(
         group_id="ratchet_process_v1_tests",
@@ -779,9 +936,11 @@ def set_coverage(groups: list[dict[str, Any]]) -> list[dict[str, Any]]:
         },
         "B": {
             "blockers": [],
-            "findings": ["Albert identity candidate API mismatch remains red"],
+            "findings": [
+                "frozen imported Julia battery remains 12/15 red; corrected Albert, Clifford, and Enzyme probes show candidate API/environment defects"
+            ],
             "observations": [
-                ("B_albert_identity", "imported_julia_battery", "artifact_json", "/results/canon_albert_jordan_identity/status", "PASS", "jl_battery_results.json"),
+                ("B_albert_identity", "julia_correction_probes", "artifact_json", "/checks/albert_component_norm/corrected_pass", True, "julia_correction_probes_results.json"),
                 ("B_octonion_associator", "imported_julia_battery", "artifact_json", "/results/canon_module_octonion_associator/status", "PASS", "jl_battery_results.json"),
             ],
         },
@@ -927,6 +1086,7 @@ def main() -> int:
     args = parser.parse_args()
     if Path(sys.executable).resolve() != PYTHON.resolve():
         raise RuntimeError(f"wrong Python runtime: {sys.executable}")
+    lev_tree = lev_commit_tree()
     archive = args.archive.resolve()
     if not archive.is_file():
         raise FileNotFoundError(archive)
@@ -944,6 +1104,7 @@ def main() -> int:
         groups: list[dict[str, Any]] = []
         groups.append(run_hardened(ctx, stage, archive))
         groups.extend(run_imported_batteries(ctx, stage, archive))
+        groups.append(run_julia_corrections(ctx, stage, archive))
         groups.extend(run_foundation_scripts(ctx, stage))
         groups.extend(run_dual_suites(ctx, stage))
         groups.append(run_engine_suite(ctx, stage, three_qubit=False))
@@ -987,6 +1148,10 @@ def main() -> int:
         and summary["set_red_count"] == 0
     )
     source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True).strip()
+    suite_bindings = [
+        committed_suite_binding(relative, source_commit)
+        for relative in SUITE_BINDING_PATHS
+    ]
     source_path = Path(__file__).resolve()
     command = [
         str(PYTHON),
@@ -1014,6 +1179,8 @@ def main() -> int:
         "lev_executor": {
             "worktree": str(LEV_WORKTREE),
             "git_commit": LEV_COMMIT,
+            "git_tree": lev_tree,
+            "suite_bindings": suite_bindings,
             "expected_status": "projected",
             "expected_suite_status": "passed",
             "projection_only": True,

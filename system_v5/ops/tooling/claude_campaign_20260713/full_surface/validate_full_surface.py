@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import re
 import subprocess
 import sys
@@ -16,6 +17,26 @@ from typing import Any
 
 
 EXPECTED_SCHEMA = "codex-ratchet.full-surface-campaign-envelope.v1"
+EXPECTED_LEV_COMMIT = "856acb1a5de42528a9a54272435d98a9fe226186"
+EXPECTED_JULIA_EXECUTABLE = "/opt/homebrew/bin/julia"
+EXPECTED_JULIA_CORRECTION_PROJECT = Path(
+    "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml"
+)
+EXPECTED_JULIA_CORRECTION_PROJECT_SHA256 = "227ee35210c2aa0939f0d175a606279ab194a1a4835f30e3b0051188d79d50a6"
+EXPECTED_JULIA_CORRECTION_MANIFEST_SHA256 = "3aea8d29321024ed71d8de46b292a3ab03247214c40575ca8ca6ad9620aeff18"
+EXPECTED_JULIA_CANDIDATE_PROJECT = "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier"
+EXPECTED_ENZYME_VERSION = "0.13.154"
+EXPECTED_ENZYME_CANDIDATE_CODE = (
+    "using Enzyme; f(x)=sin(x)^2; autodiff(Reverse,f,Active,Active(0.3))"
+)
+EXPECTED_SUITE_BINDING_PATHS = [
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/flow.yaml",
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/full_surface_campaign.eval.js",
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/target.md",
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/zero_execution.eval.js",
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/test_validate_full_surface.py",
+    "system_v5/ops/tooling/claude_campaign_20260713/full_surface/validate_full_surface.py",
+]
 EXPECTED_ARCHIVE_MEMBERS = {
     "julia_canon/src/ExceptionalAlgebraCanon.jl",
     "sims_and_scripts/living_purgatory_ledger_r2_results.json",
@@ -139,10 +160,72 @@ RUNNER_IDENTITY_KEYS = {
 LEV_EXECUTOR_KEYS = {
     "worktree",
     "git_commit",
+    "git_tree",
+    "suite_bindings",
     "expected_status",
     "expected_suite_status",
     "projection_only",
     "release_eligible",
+}
+BINDING_KEYS = {"path", "sha256"}
+CORRECTION_RECEIPT_KEYS = {
+    "schema",
+    "created_at",
+    "command",
+    "runtime",
+    "project",
+    "sources",
+    "checks",
+    "all_pass",
+    "claim_ceiling",
+    "promotion_allowed",
+}
+CORRECTION_RUNTIME_KEYS = {
+    "julia_executable",
+    "julia_version",
+    "active_project",
+    "enzyme_path",
+    "enzyme_version",
+}
+CORRECTION_PROJECT_KEYS = {
+    "project_toml_path",
+    "project_toml_sha256",
+    "manifest_toml_path",
+    "manifest_toml_sha256",
+}
+CORRECTION_SOURCES_KEYS = {"correction_script", "archive_canon"}
+CORRECTION_SOURCE_KEYS = {"path", "sha256"}
+CORRECTION_CHECK_KEYS = {
+    "candidate_failure_reproduced",
+    "observed",
+    "tolerance",
+    "corrected_pass",
+    "must_fail_control_fired",
+}
+CORRECTION_CHECK_IDS = {
+    "albert_component_norm",
+    "clifford_rotor_identity",
+    "enzyme_reverse_gradient",
+}
+CORRECTION_OBSERVED_KEYS = {
+    "albert_component_norm": {
+        "component_norm",
+        "candidate_error",
+        "synthetic_component_norm",
+    },
+    "clifford_rotor_identity": {
+        "gp_squared",
+        "one_gp",
+        "e1_squared",
+        "candidate_error",
+    },
+    "enzyme_reverse_gradient": {
+        "gradient_error",
+        "shifted_target_error",
+        "candidate_command",
+        "candidate_julia_project",
+        "candidate_exit_code",
+    },
 }
 FORBIDDEN_AUTHORITY_KEYS = {
     "provider_as_evidence",
@@ -164,6 +247,7 @@ GROUP_CONTRACTS = {
     "imported_python_battery": ("imported_candidate_battery", 1, "artifact_json", "/fail", None, 0, True),
     "imported_fit_sweep": ("imported_candidate_battery", 1, "artifact_json", "/fail", None, 0, True),
     "imported_julia_battery": ("imported_candidate_battery", 1, "artifact_json", "/fail", None, 0, True),
+    "julia_correction_probes": ("source_backed_correction_probe", 3, "artifact_json", "/all_pass", None, True, True),
     "foundation_entropy_gradient": ("foundation_scratch_diagnostic", 1, "artifact_json", "/FOLLOWS_RATCHET_RULES", None, True, True),
     "foundation_forcing_robustness": ("foundation_scratch_diagnostic", 1, "artifact_json", "/policy_eval/FOUNDATIONS_EARNED_FORCED_ROBUST_LOADBEARING", None, True, True),
     "foundation_drive_mss_tiebreak": ("foundation_scratch_diagnostic", 1, "artifact_json", "/policy_eval/ROOT_DRIVE_AND_TIEBREAK_AUDITED", None, True, True),
@@ -190,11 +274,13 @@ SET_CONTRACTS = {
         },
     },
     "B": {
-        "group_ids": ["imported_julia_battery"],
+        "group_ids": ["julia_correction_probes", "imported_julia_battery"],
         "blockers": [],
-        "findings": ["Albert identity candidate API mismatch remains red"],
+        "findings": [
+            "frozen imported Julia battery remains 12/15 red; corrected Albert, Clifford, and Enzyme probes show candidate API/environment defects"
+        ],
         "observations": {
-            "B_albert_identity": ("imported_julia_battery", "artifact_json", "/results/canon_albert_jordan_identity/status", "PASS"),
+            "B_albert_identity": ("julia_correction_probes", "artifact_json", "/checks/albert_component_norm/corrected_pass", True),
             "B_octonion_associator": ("imported_julia_battery", "artifact_json", "/results/canon_module_octonion_associator/status", "PASS"),
         },
     },
@@ -306,6 +392,271 @@ def closed(errors: list[str], value: Any, keys: set[str], label: str) -> bool:
     if missing:
         errors.append(f"{label} missing fields: {', '.join(missing)}")
     return not extra and not missing
+
+
+def validate_julia_correction_receipt(
+    payload: Any,
+    row: dict[str, Any],
+    errors: list[str],
+    label: str,
+) -> None:
+    receipt_label = f"{label}.correction_receipt"
+    if not closed(errors, payload, CORRECTION_RECEIPT_KEYS, receipt_label):
+        return
+    add(
+        errors,
+        payload["schema"] == "codex-ratchet.julia-correction-probes.v1",
+        f"{receipt_label} schema mismatch",
+    )
+    add(errors, timestamp_ok(payload["created_at"]), f"{receipt_label} timestamp invalid")
+    add(errors, payload["command"] == row["commands"][0]["command"], f"{receipt_label} command mismatch")
+    add(errors, payload["promotion_allowed"] is False, f"{receipt_label} promotion must remain false")
+    add(
+        errors,
+        payload["claim_ceiling"]
+        == "Machine-local Julia API/environment correction probes only; no scientific admission or portable/canonical environment claim.",
+        f"{receipt_label} claim ceiling mismatch",
+    )
+
+    runtime = payload["runtime"]
+    if closed(errors, runtime, CORRECTION_RUNTIME_KEYS, f"{receipt_label}.runtime"):
+        add(
+            errors,
+            runtime["julia_executable"] == EXPECTED_JULIA_EXECUTABLE
+            == row["commands"][0]["command"][0],
+            f"{receipt_label} Julia executable mismatch",
+        )
+        add(errors, runtime["julia_version"] == "1.12.6", f"{receipt_label} Julia version mismatch")
+        add(
+            errors,
+            runtime["active_project"] == str(EXPECTED_JULIA_CORRECTION_PROJECT),
+            f"{receipt_label} active project mismatch",
+        )
+        enzyme_path = Path(str(runtime["enzyme_path"]))
+        add(
+            errors,
+            bool(
+                re.fullmatch(
+                    r"/Users/joshuaeisenhart/\.julia/packages/Enzyme/[^/]+/src/Enzyme\.jl",
+                    str(enzyme_path),
+                )
+            ),
+            f"{receipt_label} Enzyme package path mismatch",
+        )
+        add(errors, runtime["enzyme_version"] == EXPECTED_ENZYME_VERSION, f"{receipt_label} Enzyme version mismatch")
+
+    project = payload["project"]
+    if closed(errors, project, CORRECTION_PROJECT_KEYS, f"{receipt_label}.project"):
+        project_path = Path(str(project["project_toml_path"]))
+        manifest_path = Path(str(project["manifest_toml_path"]))
+        add(errors, project_path == EXPECTED_JULIA_CORRECTION_PROJECT, f"{receipt_label} Project.toml path mismatch")
+        add(
+            errors,
+            manifest_path == EXPECTED_JULIA_CORRECTION_PROJECT.with_name("Manifest.toml"),
+            f"{receipt_label} Manifest.toml path mismatch",
+        )
+        add(
+            errors,
+            project["project_toml_sha256"] == EXPECTED_JULIA_CORRECTION_PROJECT_SHA256,
+            f"{receipt_label} pinned Project.toml hash mismatch",
+        )
+        add(
+            errors,
+            project["manifest_toml_sha256"] == EXPECTED_JULIA_CORRECTION_MANIFEST_SHA256,
+            f"{receipt_label} pinned Manifest.toml hash mismatch",
+        )
+        add(
+            errors,
+            isinstance(runtime, dict) and runtime.get("active_project") == str(project_path),
+            f"{receipt_label} active project mismatch",
+        )
+        add(
+            errors,
+            row["commands"][0]["command"][2] == f"--project={project_path.parent}",
+            f"{receipt_label} project command mismatch",
+        )
+        project_artifact = next(
+            (
+                artifact
+                for artifact in row["artifacts"]
+                if artifact.get("path", "").endswith("julia_correction_Project.toml")
+            ),
+            None,
+        )
+        manifest_artifact = next(
+            (
+                artifact
+                for artifact in row["artifacts"]
+                if artifact.get("path", "").endswith("julia_correction_Manifest.toml")
+            ),
+            None,
+        )
+        add(errors, project_artifact is not None, f"{receipt_label} Project.toml snapshot missing")
+        add(errors, manifest_artifact is not None, f"{receipt_label} Manifest.toml snapshot missing")
+        if project_artifact is not None:
+            add(
+                errors,
+                project_artifact.get("sha256") == project["project_toml_sha256"],
+                f"{receipt_label} Project.toml snapshot hash mismatch",
+            )
+        if manifest_artifact is not None:
+            add(
+                errors,
+                manifest_artifact.get("sha256") == project["manifest_toml_sha256"],
+                f"{receipt_label} Manifest.toml snapshot hash mismatch",
+            )
+
+    sources = payload["sources"]
+    if closed(errors, sources, CORRECTION_SOURCES_KEYS, f"{receipt_label}.sources"):
+        for source_id in sorted(CORRECTION_SOURCES_KEYS):
+            closed(errors, sources[source_id], CORRECTION_SOURCE_KEYS, f"{receipt_label}.sources.{source_id}")
+        file_source = next(
+            (source for source in row["sources"] if source.get("kind") == "file"),
+            None,
+        )
+        archive_source_record = next(
+            (source for source in row["sources"] if source.get("kind") == "archive_member"),
+            None,
+        )
+        if file_source is not None:
+            add(
+                errors,
+                sources["correction_script"].get("sha256") == file_source.get("sha256"),
+                f"{receipt_label} correction source hash mismatch",
+            )
+        else:
+            errors.append(f"{receipt_label} correction source missing")
+        if archive_source_record is not None:
+            add(
+                errors,
+                sources["archive_canon"].get("sha256") == archive_source_record.get("sha256"),
+                f"{receipt_label} archive canon hash mismatch",
+            )
+        else:
+            errors.append(f"{receipt_label} archive canon source missing")
+
+    checks = payload["checks"]
+    add(errors, isinstance(checks, dict) and set(checks) == CORRECTION_CHECK_IDS, f"{receipt_label} check inventory mismatch")
+    structurally_valid = isinstance(checks, dict)
+    if isinstance(checks, dict):
+        for check_id in sorted(CORRECTION_CHECK_IDS):
+            check = checks.get(check_id)
+            check_label = f"{receipt_label}.checks.{check_id}"
+            if not closed(errors, check, CORRECTION_CHECK_KEYS, check_label):
+                structurally_valid = False
+                continue
+            observed = check["observed"]
+            if not closed(errors, observed, CORRECTION_OBSERVED_KEYS[check_id], f"{check_label}.observed"):
+                structurally_valid = False
+            for field in (
+                "candidate_failure_reproduced",
+                "corrected_pass",
+                "must_fail_control_fired",
+            ):
+                add(errors, isinstance(check[field], bool), f"{check_label}.{field} invalid")
+
+    def finite_number(value: Any) -> bool:
+        return (
+            isinstance(value, (int, float))
+            and not isinstance(value, bool)
+            and math.isfinite(float(value))
+        )
+
+    derived_flags: dict[str, tuple[bool, bool, bool]] = {}
+    if structurally_valid and isinstance(checks, dict):
+        albert = checks["albert_component_norm"]
+        albert_observed = albert["observed"]
+        albert_candidate = (
+            isinstance(albert_observed["candidate_error"], str)
+            and "MethodError" in albert_observed["candidate_error"]
+            and "isless(::Albert" in albert_observed["candidate_error"]
+        )
+        albert_corrected = (
+            albert["tolerance"] == 1.0e-12
+            and finite_number(albert_observed["component_norm"])
+            and 0.0 <= float(albert_observed["component_norm"]) < 1.0e-12
+        )
+        albert_control = (
+            finite_number(albert_observed["synthetic_component_norm"])
+            and float(albert_observed["synthetic_component_norm"]) >= 1.0e-12
+        )
+        derived_flags["albert_component_norm"] = (
+            albert_candidate,
+            albert_corrected,
+            albert_control,
+        )
+
+        clifford = checks["clifford_rotor_identity"]
+        clifford_observed = clifford["observed"]
+        clifford_candidate = (
+            isinstance(clifford_observed["candidate_error"], str)
+            and "MethodError" in clifford_observed["candidate_error"]
+            and "one(::CliffordAlgebra" in clifford_observed["candidate_error"]
+        )
+        clifford_corrected = (
+            clifford["tolerance"] is None
+            and clifford_observed["gp_squared"] == "-1 ∈ Cl(3, 0, 0)"
+            and clifford_observed["one_gp"] == "+1 ∈ Cl(3, 0, 0)"
+        )
+        clifford_control = clifford_observed["e1_squared"] == "+1 ∈ Cl(3, 0, 0)"
+        derived_flags["clifford_rotor_identity"] = (
+            clifford_candidate,
+            clifford_corrected,
+            clifford_control,
+        )
+
+        enzyme = checks["enzyme_reverse_gradient"]
+        enzyme_observed = enzyme["observed"]
+        expected_candidate_command = [
+            EXPECTED_JULIA_EXECUTABLE,
+            "--startup-file=no",
+            "-e",
+            EXPECTED_ENZYME_CANDIDATE_CODE,
+        ]
+        enzyme_candidate = (
+            enzyme_observed["candidate_command"] == expected_candidate_command
+            and enzyme_observed["candidate_julia_project"] == EXPECTED_JULIA_CANDIDATE_PROJECT
+            and isinstance(enzyme_observed["candidate_exit_code"], int)
+            and not isinstance(enzyme_observed["candidate_exit_code"], bool)
+            and enzyme_observed["candidate_exit_code"] != 0
+        )
+        enzyme_corrected = (
+            enzyme["tolerance"] == 1.0e-12
+            and finite_number(enzyme_observed["gradient_error"])
+            and 0.0 <= float(enzyme_observed["gradient_error"]) < 1.0e-12
+        )
+        enzyme_control = (
+            finite_number(enzyme_observed["shifted_target_error"])
+            and float(enzyme_observed["shifted_target_error"]) >= 1.0e-12
+        )
+        derived_flags["enzyme_reverse_gradient"] = (
+            enzyme_candidate,
+            enzyme_corrected,
+            enzyme_control,
+        )
+
+        for check_id, expected in derived_flags.items():
+            check = checks[check_id]
+            for field, derived in zip(
+                (
+                    "candidate_failure_reproduced",
+                    "corrected_pass",
+                    "must_fail_control_fired",
+                ),
+                expected,
+                strict=True,
+            ):
+                add(
+                    errors,
+                    check[field] is derived,
+                    f"{receipt_label}.checks.{check_id}.{field} observation mismatch",
+                )
+    derived_pass = (
+        structurally_valid
+        and set(derived_flags) == CORRECTION_CHECK_IDS
+        and all(all(flags) for flags in derived_flags.values())
+    )
+    add(errors, payload["all_pass"] is derived_pass, f"{receipt_label} all_pass mismatch")
 
 
 def timestamp_ok(value: Any) -> bool:
@@ -554,6 +905,7 @@ def validate_group(
             f"{label} evidence pass value contract mismatch",
         )
     observed = None
+    payload: Any = None
     if evidence["kind"] == "artifact_json":
         artifact_paths = {artifact["path"] for artifact in row["artifacts"] if isinstance(artifact, dict)}
         add(errors, evidence["artifact_path"] in artifact_paths, f"{label} evidence artifact not declared")
@@ -572,6 +924,8 @@ def validate_group(
     else:
         errors.append(f"{label} science evidence kind invalid")
     add(errors, observed == evidence["observed"], f"{label} evidence observed value mismatch")
+    if row["id"] == "julia_correction_probes":
+        validate_julia_correction_receipt(payload, row, errors, label)
     if provider_advisory:
         add(errors, row["bounded_pass"] is None, f"{label} provider advisory cannot be a bounded pass")
         expected_status = "bounded_not_assessed" if derived_execution else "execution_failed"
@@ -622,16 +976,38 @@ def validate(raw: dict[str, Any], *, envelope_path: Path | None = None) -> list[
     if closed(errors, lev_executor, LEV_EXECUTOR_KEYS, "lev_executor"):
         lev_worktree = Path(str(lev_executor["worktree"]))
         add(errors, lev_worktree.is_dir(), "Lev executor worktree missing")
-        lev_head = subprocess.run(
-            ["git", "rev-parse", "HEAD"],
+        lev_commit = str(lev_executor["git_commit"])
+        add(errors, bool(re.fullmatch(r"[0-9a-f]{40}", lev_commit)), "Lev executor commit invalid")
+        add(errors, lev_commit == EXPECTED_LEV_COMMIT, "Lev executor pinned commit mismatch")
+        lev_object = subprocess.run(
+            ["git", "cat-file", "-e", f"{lev_commit}^{{commit}}"],
             cwd=lev_worktree if lev_worktree.is_dir() else Path.cwd(),
             capture_output=True,
             text=True,
             check=False,
         )
-        add(errors, lev_head.returncode == 0, "Lev executor commit unreadable")
-        if lev_head.returncode == 0:
-            add(errors, lev_head.stdout.strip() == lev_executor["git_commit"], "Lev executor commit mismatch")
+        add(errors, lev_object.returncode == 0, "Lev executor historical commit missing")
+        lev_tree = subprocess.run(
+            ["git", "rev-parse", f"{lev_commit}^{{tree}}"],
+            cwd=lev_worktree if lev_worktree.is_dir() else Path.cwd(),
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        add(errors, lev_tree.returncode == 0, "Lev executor tree unreadable")
+        if lev_tree.returncode == 0:
+            add(errors, lev_tree.stdout.strip() == lev_executor["git_tree"], "Lev executor tree hash mismatch")
+        suite_bindings = lev_executor["suite_bindings"]
+        add(errors, isinstance(suite_bindings, list), "Lev suite bindings invalid")
+        if isinstance(suite_bindings, list):
+            for index, binding in enumerate(suite_bindings):
+                closed(errors, binding, BINDING_KEYS, f"lev_executor.suite_bindings[{index}]")
+            add(
+                errors,
+                [binding.get("path") for binding in suite_bindings if isinstance(binding, dict)]
+                == EXPECTED_SUITE_BINDING_PATHS,
+                "Lev suite binding inventory mismatch",
+            )
         add(errors, lev_executor["expected_status"] == "projected", "Lev expected status mismatch")
         add(errors, lev_executor["expected_suite_status"] == "passed", "Lev expected suite status mismatch")
         add(errors, lev_executor["projection_only"] is True, "Lev projection fence missing")
@@ -669,6 +1045,27 @@ def validate(raw: dict[str, Any], *, envelope_path: Path | None = None) -> list[
             add(errors, hashlib.sha256(result.stdout).hexdigest() == source["sha256"], "runner/source commit hash mismatch")
     else:
         repo_root = Path.cwd()
+
+    if isinstance(lev_executor, dict) and isinstance(lev_executor.get("suite_bindings"), list):
+        for index, binding in enumerate(lev_executor["suite_bindings"]):
+            if not isinstance(binding, dict):
+                continue
+            path_value = binding.get("path")
+            if not isinstance(path_value, str) or not path_value:
+                continue
+            committed_suite = subprocess.run(
+                ["git", "show", f"{source.get('git_commit', '')}:{path_value}"],
+                cwd=repo_root,
+                capture_output=True,
+                check=False,
+            )
+            add(errors, committed_suite.returncode == 0, f"Lev suite binding[{index}] absent from source commit")
+            if committed_suite.returncode == 0:
+                add(
+                    errors,
+                    hashlib.sha256(committed_suite.stdout).hexdigest() == binding.get("sha256"),
+                    f"Lev suite binding[{index}] source hash mismatch",
+                )
 
     archive = raw["archive"]
     if closed(errors, archive, {"path", "sha256", "members"}, "archive"):

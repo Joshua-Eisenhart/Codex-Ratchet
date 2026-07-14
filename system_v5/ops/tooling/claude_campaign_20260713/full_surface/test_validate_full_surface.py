@@ -118,6 +118,10 @@ def main() -> int:
         ("partial_promotion_alias", lambda row: row.__setitem__("partial_promotion_status", "provisional")),
         ("provider_as_evidence", lambda row: row.__setitem__("provider_advisory_is_evidence", True)),
         ("projection_only", lambda row: row.__setitem__("projection_only", True)),
+        ("lev_commit_field_substitution", lambda row: row["lev_executor"].__setitem__("git_commit", "ab211e8c83bd323b8eb2f4dabf1d80bb27a5ebcd")),
+        ("lev_nonexistent_commit", lambda row: row["lev_executor"].__setitem__("git_commit", "0" * 40)),
+        ("lev_executor_tree_hash_mismatch", lambda row: row["lev_executor"].__setitem__("git_tree", "0" * 40)),
+        ("lev_suite_source_hash_mismatch", lambda row: row["lev_executor"]["suite_bindings"][0].__setitem__("sha256", "0" * 64)),
         ("replayed_source_commit", lambda row: row["source"].__setitem__("git_commit", "0" * 40)),
         ("source_hash_mismatch", lambda row: row["groups"][0]["sources"][0].__setitem__("sha256", "0" * 64)),
         ("artifact_hash_mismatch", lambda row: row["groups"][0]["artifacts"][0].__setitem__("sha256", "0" * 64)),
@@ -155,6 +159,83 @@ def main() -> int:
             "rejected": bool(provider_errors),
             "errors": provider_errors[:8],
         }
+
+    def correction_artifact_control(
+        name: str,
+        mutate: Callable[[dict[str, Any]], None],
+    ) -> None:
+        candidate = copy.deepcopy(baseline)
+        target = next(
+            row for row in candidate["groups"]
+            if row["id"] == "julia_correction_probes"
+        )
+        original_path = Path(target["science_evidence"]["artifact_path"])
+        with tempfile.TemporaryDirectory(
+            prefix=f"{name}-",
+            dir=Path(candidate["artifact_root"]),
+        ) as temp:
+            mutated_path = Path(temp) / original_path.name
+            shutil.copy2(original_path, mutated_path)
+            receipt = json.loads(mutated_path.read_text(encoding="utf-8"))
+            mutate(receipt)
+            mutated_path.write_text(
+                json.dumps(receipt, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            old_path = target["science_evidence"]["artifact_path"]
+            for artifact in target["artifacts"]:
+                if artifact["path"] == old_path:
+                    artifact["path"] = str(mutated_path.resolve())
+                    artifact["sha256"] = sha256_file(mutated_path)
+            target["science_evidence"]["artifact_path"] = str(mutated_path.resolve())
+            for set_row in candidate["set_coverage"]:
+                for observation in set_row["observations"]:
+                    if observation["artifact_path"] == old_path:
+                        observation["artifact_path"] = str(mutated_path.resolve())
+            mutation_errors = validate(candidate)
+        results["negative_controls"][name] = {
+            "rejected": bool(mutation_errors),
+            "errors": mutation_errors[:8],
+        }
+
+    correction_artifact_control(
+        "correction_observation_fabrication",
+        lambda receipt: receipt["checks"]["albert_component_norm"]["observed"].__setitem__(
+            "component_norm", -1.0
+        ),
+    )
+
+    def substitute_correction_project(receipt: dict[str, Any]) -> None:
+        project = Path(
+            "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml"
+        )
+        manifest = project.with_name("Manifest.toml")
+        receipt["project"]["project_toml_path"] = str(project)
+        receipt["project"]["project_toml_sha256"] = sha256_file(project)
+        receipt["project"]["manifest_toml_path"] = str(manifest)
+        receipt["project"]["manifest_toml_sha256"] = sha256_file(manifest)
+        receipt["runtime"]["active_project"] = str(project)
+        receipt["command"][2] = f"--project={project.parent}"
+
+    correction_artifact_control(
+        "correction_project_substitution",
+        substitute_correction_project,
+    )
+
+    def realign_correction_booleans(receipt: dict[str, Any]) -> None:
+        check = receipt["checks"]["albert_component_norm"]
+        check["observed"]["component_norm"] = 1.0
+        check["observed"]["synthetic_component_norm"] = 0.0
+        check["observed"]["candidate_error"] = ""
+        check["candidate_failure_reproduced"] = True
+        check["corrected_pass"] = True
+        check["must_fail_control_fired"] = True
+        receipt["all_pass"] = True
+
+    correction_artifact_control(
+        "correction_boolean_realignment",
+        realign_correction_booleans,
+    )
 
     green = next(
         row

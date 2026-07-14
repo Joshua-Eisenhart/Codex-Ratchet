@@ -7,7 +7,12 @@ import argparse
 import copy
 import hashlib
 import json
+import os
+import subprocess
+import sys
+import tempfile
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -15,16 +20,20 @@ from typing import Any, Mapping
 HERE = Path(__file__).resolve().parent
 DEFAULT_RECEIPT = HERE / "results" / "lineage_contract_differential_v3_results.json"
 DEFAULT_SOURCE = HERE / "lineage_contract_differential_v3.py"
+DEFAULT_VALIDATOR = Path(__file__).resolve()
 DEFAULT_VALIDATION_OUTPUT = HERE / "results" / "lineage_contract_differential_v3_validation.json"
 DEFAULT_ARCHIVE = Path(
     "/Users/joshuaeisenhart/Desktop/166_reconciled_ratchet_v0_11_7_cold_verified (1).zip"
 )
+EXPECTED_PYTHON = Path("/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3")
 
 EXPECTED_SCHEMA = "codex-ratchet.lineage-contract-differential-result.v3"
 EXPECTED_ARCHIVE_SHA256 = "42fc2629e076b4cd5b8015514fb1c9027aa7c751702ebc7a719a6b808141b9da"
 EXPECTED_POOL_SHA256 = "73f152e646e6cd9e0e989c4b0f7ce1f6ca2c39359c951f40648b0a3909a954e8"
 EXPECTED_LEDGER_SHA256 = "850e975c1d3e7aee2a78d5614a4d64e21bd0309ef61683ed150c77c209870553"
 EXPECTED_CLAIM_CEILING = "contract semantics only; no production integrity defect"
+EXPECTED_POOL_MEMBER = "ratchet/purgatory_pool.py"
+EXPECTED_LEDGER_MEMBER = "sims_and_scripts/living_purgatory_ledger_r2_results.json"
 NATIVE_MODE = "packet_native_integrity_v3"
 STRICT_MODE = "audit_only_strict_ancestry_dag_v1"
 
@@ -77,6 +86,81 @@ def receipt_content_sha256(receipt: Mapping[str, Any]) -> str:
     return sha256_bytes(canonical_json(core).encode("utf-8"))
 
 
+def semantic_snapshot(receipt: Mapping[str, Any]) -> dict[str, Any]:
+    """Return every deterministic producer field.
+
+    ``created_at`` is historical receipt metadata, ``command`` contains the
+    caller-selected output path, and ``receipt_content_sha256`` seals those two
+    fields.  Everything else must equal a fresh producer rerun.
+    """
+    snapshot = copy.deepcopy(dict(receipt))
+    snapshot.pop("created_at", None)
+    snapshot.pop("command", None)
+    snapshot.pop("receipt_content_sha256", None)
+    return snapshot
+
+
+def differing_paths(expected: Any, actual: Any, prefix: str = "") -> list[str]:
+    """Name bounded semantic differences without trusting receipt summaries."""
+    if type(expected) is not type(actual):
+        return [prefix or "<root>"]
+    if isinstance(expected, Mapping):
+        paths: list[str] = []
+        keys = set(expected) | set(actual)
+        for key in sorted(keys):
+            child = f"{prefix}.{key}" if prefix else str(key)
+            if key not in expected or key not in actual:
+                paths.append(child)
+            else:
+                paths.extend(differing_paths(expected[key], actual[key], child))
+        return paths
+    if isinstance(expected, list):
+        paths = []
+        if len(expected) != len(actual):
+            paths.append(f"{prefix}.length")
+        for index, (expected_item, actual_item) in enumerate(zip(expected, actual)):
+            paths.extend(differing_paths(expected_item, actual_item, f"{prefix}[{index}]"))
+        return paths
+    return [] if expected == actual else [prefix or "<root>"]
+
+
+@lru_cache(maxsize=1)
+def recompute_expected_receipt() -> dict[str, Any]:
+    """Rerun the pinned producer into temporary storage.
+
+    This is the validator's independent execution boundary.  The candidate
+    receipt cannot supply the source, archive, validator, runtime, or output
+    path used for this recomputation.
+    """
+    with tempfile.TemporaryDirectory(prefix="ratchet-h-validator-v3-") as directory_name:
+        output = Path(directory_name) / "fresh-lineage-contract-differential-v3.json"
+        command = [
+            str(EXPECTED_PYTHON),
+            "-B",
+            str(DEFAULT_SOURCE.resolve()),
+            "--archive",
+            str(DEFAULT_ARCHIVE.resolve()),
+            "--output",
+            str(output),
+            "--validator",
+            str(DEFAULT_VALIDATOR),
+        ]
+        environment = os.environ.copy()
+        environment.pop("PYTHONPATH", None)
+        environment["PYTHONDONTWRITEBYTECODE"] = "1"
+        environment["PYTHONNOUSERSITE"] = "1"
+        subprocess.run(
+            command,
+            cwd=HERE.parents[4],
+            env=environment,
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        return json.loads(output.read_text(encoding="utf-8"))
+
+
 def require_boolean(errors: list[str], raw: Mapping[str, Any], key: str, expected: bool) -> None:
     if raw.get(key) is not expected:
         errors.append(f"{key} must be {expected}")
@@ -116,14 +200,30 @@ def require_scenario(
 def validate(
     receipt: Mapping[str, Any],
     *,
+    receipt_path: Path = DEFAULT_RECEIPT,
     source_path: Path = DEFAULT_SOURCE,
     archive_path: Path = DEFAULT_ARCHIVE,
     validator_path: Path | None = None,
 ) -> list[str]:
     errors: list[str] = []
-    validator_path = Path(__file__).resolve() if validator_path is None else validator_path.resolve()
+    validator_path = DEFAULT_VALIDATOR if validator_path is None else validator_path.resolve()
+    receipt_path = receipt_path.resolve()
     source_path = source_path.resolve()
     archive_path = archive_path.resolve()
+
+    pinned_paths_ok = True
+    if source_path != DEFAULT_SOURCE.resolve():
+        errors.append("source path must be the pinned H differential producer")
+        pinned_paths_ok = False
+    if archive_path != DEFAULT_ARCHIVE.resolve():
+        errors.append("archive path must be the pinned packet archive")
+        pinned_paths_ok = False
+    if validator_path != DEFAULT_VALIDATOR:
+        errors.append("validator path must be this pinned validator")
+        pinned_paths_ok = False
+    if Path(sys.executable).resolve() != EXPECTED_PYTHON.resolve():
+        errors.append("validator Python runtime mismatch")
+        pinned_paths_ok = False
 
     if set(receipt) != EXPECTED_TOP_LEVEL_KEYS:
         errors.append("top-level receipt keys mismatch")
@@ -143,11 +243,40 @@ def validate(
     if receipt.get("h_lane_status") != "red_unadmitted_contract_difference":
         errors.append("H lane must remain red and unadmitted")
 
+    expected_command = [
+        str(EXPECTED_PYTHON),
+        str(DEFAULT_SOURCE.resolve()),
+        "--archive",
+        str(DEFAULT_ARCHIVE.resolve()),
+        "--output",
+        str(receipt_path),
+        "--validator",
+        str(DEFAULT_VALIDATOR),
+    ]
+    if receipt.get("command") != expected_command:
+        errors.append("producer command mismatch")
+    try:
+        created_at = datetime.fromisoformat(str(receipt.get("created_at")))
+        if created_at.tzinfo is None:
+            errors.append("created_at must be timezone-aware")
+    except ValueError:
+        errors.append("created_at must be ISO-8601")
+
     expected_content_hash = receipt_content_sha256(receipt)
     if receipt.get("receipt_content_sha256") != expected_content_hash:
         errors.append("receipt_content_sha256 mismatch")
 
     sources = receipt.get("sources", {})
+    expected_source_paths = {
+        "archive_path": str(DEFAULT_ARCHIVE.resolve()),
+        "native_verifier_member": EXPECTED_POOL_MEMBER,
+        "ledger_member": EXPECTED_LEDGER_MEMBER,
+        "audit_source_path": str(DEFAULT_SOURCE.resolve()),
+        "validator_source_path": str(DEFAULT_VALIDATOR),
+    }
+    for key, expected in expected_source_paths.items():
+        if sources.get(key) != expected:
+            errors.append(f"sources.{key} mismatch")
     if sources.get("archive_sha256") != EXPECTED_ARCHIVE_SHA256:
         errors.append("pinned archive sha256 mismatch in receipt")
     if sources.get("native_verifier_sha256") != EXPECTED_POOL_SHA256:
@@ -270,6 +399,26 @@ def validate(
     }
     if not required_blocked.issubset(blocked):
         errors.append("blocked consumers are incomplete")
+
+    if pinned_paths_ok:
+        try:
+            fresh_receipt = recompute_expected_receipt()
+        except (
+            OSError,
+            subprocess.CalledProcessError,
+            subprocess.TimeoutExpired,
+            json.JSONDecodeError,
+        ) as error:
+            errors.append(f"fresh producer recomputation failed: {type(error).__name__}")
+        else:
+            differences = differing_paths(
+                semantic_snapshot(fresh_receipt),
+                semantic_snapshot(receipt),
+            )
+            if differences:
+                errors.append(
+                    "fresh producer semantic mismatch: " + ", ".join(differences[:20])
+                )
     return errors
 
 
@@ -284,10 +433,25 @@ def main() -> int:
     receipt = json.loads(args.receipt.read_text(encoding="utf-8"))
     errors = validate(
         receipt,
+        receipt_path=args.receipt,
         source_path=args.source,
         archive_path=args.archive,
-        validator_path=Path(__file__),
+        validator_path=DEFAULT_VALIDATOR,
     )
+    try:
+        fresh_receipt = recompute_expected_receipt()
+        fresh_semantic_sha256 = sha256_bytes(
+            canonical_json(semantic_snapshot(fresh_receipt)).encode("utf-8")
+        )
+        fresh_recompute_performed = True
+    except (
+        OSError,
+        subprocess.CalledProcessError,
+        subprocess.TimeoutExpired,
+        json.JSONDecodeError,
+    ):
+        fresh_semantic_sha256 = None
+        fresh_recompute_performed = False
     validation = {
         "schema": "codex-ratchet.lineage-contract-differential-validation.v1",
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -304,6 +468,8 @@ def main() -> int:
         ],
         "receipt_path": str(args.receipt.resolve()),
         "receipt_file_sha256": sha256_file(args.receipt.resolve()),
+        "fresh_recompute_performed": fresh_recompute_performed,
+        "fresh_semantic_sha256": fresh_semantic_sha256,
         "validated": not errors,
         "error_count": len(errors),
         "errors": errors,

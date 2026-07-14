@@ -1,0 +1,241 @@
+{
+  "all_pass": false,
+  "auditor": {
+    "runner_identity": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "source_path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/claude-integration-hardening-20260713/scripts/audit_foundation_chain_bindings.py",
+    "source_sha256": "3b89a319c29ce53168b86840a5ea1b6d1a876eb8f9cd6750cf388c163fed4894"
+  },
+  "authority_pins": {
+    "basin_receipt": {
+      "code": "receipt_hash_not_authorized",
+      "expected_receipt_sha256": null,
+      "observed_receipt_sha256": "1c940e75a669ae1a6313435f7c08ed8c855467912c72af663798e35de91fd402",
+      "pass": false
+    },
+    "candidate": {
+      "code": "candidate_hash_not_authorized",
+      "expected_candidate_content_sha256": null,
+      "observed_candidate_content_sha256": null,
+      "pass": false
+    },
+    "mss_receipt": {
+      "code": "receipt_hash_not_authorized",
+      "expected_receipt_sha256": null,
+      "observed_receipt_sha256": "388d9cb448378315cbee1d7c15dfb6ee42760f5ded1dc5611aab2769eec0c746",
+      "pass": false
+    },
+    "root_receipt": {
+      "code": "receipt_hash_not_authorized",
+      "expected_receipt_sha256": null,
+      "observed_receipt_sha256": "c2ca85404495e013100e7c7920295ff98372263967658e2eaedc6926b4e53872",
+      "pass": false
+    }
+  },
+  "bindings": {
+    "basin_to_mss": {
+      "code": "missing_input_binding",
+      "expected_candidate_content_sha256": null,
+      "expected_chain_id": null,
+      "expected_parent_receipt_sha256": "1c940e75a669ae1a6313435f7c08ed8c855467912c72af663798e35de91fd402",
+      "expected_run_nonce": null,
+      "observed": null,
+      "pass": false
+    },
+    "root_to_basin": {
+      "code": "missing_input_binding",
+      "expected_candidate_content_sha256": null,
+      "expected_chain_id": null,
+      "expected_parent_receipt_sha256": "c2ca85404495e013100e7c7920295ff98372263967658e2eaedc6926b4e53872",
+      "expected_run_nonce": null,
+      "observed": null,
+      "pass": false
+    }
+  },
+  "blocked_consumers": [
+    "paired_engine_e2e",
+    "full_ratchet_e2e",
+    "scientific_manifold_admission",
+    "lev_promotion"
+  ],
+  "break_stage": "trust_manifest",
+  "checks": [
+    {
+      "id": "trust_manifest",
+      "pass": false
+    },
+    {
+      "id": "root_identity",
+      "pass": false
+    },
+    {
+      "id": "root_candidate_extraction",
+      "pass": false
+    },
+    {
+      "id": "root_constraint_binding",
+      "pass": false
+    },
+    {
+      "id": "root_authority_pin",
+      "pass": false
+    },
+    {
+      "id": "basin_identity",
+      "pass": false
+    },
+    {
+      "id": "basin_execution",
+      "pass": true
+    },
+    {
+      "id": "root_to_basin_binding",
+      "pass": false
+    },
+    {
+      "id": "basin_authority_pin",
+      "pass": false
+    },
+    {
+      "id": "mss_identity",
+      "pass": false
+    },
+    {
+      "id": "mss_execution",
+      "pass": false
+    },
+    {
+      "id": "basin_to_mss_binding",
+      "pass": false
+    },
+    {
+      "id": "mss_authority_pin",
+      "pass": false
+    }
+  ],
+  "claim_ceiling": "Integrity/provenance binding audit only. The audit cannot authenticate an unanchored triplet: green requires an externally supplied trust-manifest SHA-256. Even green does not admit Axis0, a basin, MSS, a Ratchet tooth, a manifold layer, physics, Lev promotion, or canon.",
+  "classification": "scratch_diagnostic",
+  "command": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "scripts/audit_foundation_chain_bindings.py",
+    "--root-run",
+    "/tmp/codex-ratchet-foundation-chain.qqB3kH/root_order_open_replay.json",
+    "--basin-result",
+    "/tmp/codex-ratchet-foundation-chain.qqB3kH/system_v7_sims/attractors_basin_native_schedule_v0/results_v4.json",
+    "--mss-result",
+    "/tmp/codex-ratchet-foundation-chain.qqB3kH/system_v7_sims/mss_minimal_survivor_census_v0/results_v1.json",
+    "--output",
+    "system_v5/ops/tooling/claude_campaign_20260713/foundation_binding/results/foundation_chain_binding_audit_v02_final.json"
+  ],
+  "constraint_binding": {
+    "checks": {
+      "F01": false,
+      "N01": false
+    },
+    "code": "missing_or_noncanonical_constraint_bindings",
+    "observed": null,
+    "pass": false
+  },
+  "execution_shapes": {
+    "basin": {
+      "declared_all_pass": true,
+      "identity": "attractors_basin_native_schedule_v0",
+      "ran": true,
+      "schema": "attractors_basin_native_schedule_result_v1"
+    },
+    "mss": {
+      "declared_all_pass": null,
+      "identity": "mss_minimal_survivor_census_v0",
+      "ran": false,
+      "schema": "mss_minimal_survivor_census_result_v1"
+    }
+  },
+  "identity_checks": {
+    "basin": {
+      "checks": {
+        "identity": true,
+        "producer_matches_manifest": false,
+        "producer_shape": false,
+        "schema": true
+      },
+      "code": "schema_sim_or_producer_identity_mismatch",
+      "expected_identity": "attractors_basin_native_schedule_v0",
+      "expected_schema": "attractors_basin_native_schedule_result_v1",
+      "observed_identity": "attractors_basin_native_schedule_v0",
+      "observed_producer": null,
+      "observed_schema": "attractors_basin_native_schedule_result_v1",
+      "pass": false
+    },
+    "mss": {
+      "checks": {
+        "identity": true,
+        "producer_matches_manifest": false,
+        "producer_shape": false,
+        "schema": true
+      },
+      "code": "schema_sim_or_producer_identity_mismatch",
+      "expected_identity": "mss_minimal_survivor_census_v0",
+      "expected_schema": "mss_minimal_survivor_census_result_v1",
+      "observed_identity": "mss_minimal_survivor_census_v0",
+      "observed_producer": null,
+      "observed_schema": "mss_minimal_survivor_census_result_v1",
+      "pass": false
+    },
+    "root": {
+      "checks": {
+        "identity": true,
+        "producer_matches_manifest": false,
+        "producer_shape": false,
+        "schema": true
+      },
+      "code": "schema_sim_or_producer_identity_mismatch",
+      "expected_identity": "root-order-open-process-packet-v0.5",
+      "expected_schema": "ratchet-order-open-run/0.5",
+      "observed_identity": "root-order-open-process-packet-v0.5",
+      "observed_producer": null,
+      "observed_schema": "ratchet-order-open-run/0.5",
+      "pass": false
+    }
+  },
+  "input_receipts": {
+    "basin": {
+      "path": "/tmp/codex-ratchet-foundation-chain.qqB3kH/system_v7_sims/attractors_basin_native_schedule_v0/results_v4.json",
+      "sha256": "1c940e75a669ae1a6313435f7c08ed8c855467912c72af663798e35de91fd402"
+    },
+    "mss": {
+      "path": "/tmp/codex-ratchet-foundation-chain.qqB3kH/system_v7_sims/mss_minimal_survivor_census_v0/results_v1.json",
+      "sha256": "388d9cb448378315cbee1d7c15dfb6ee42760f5ded1dc5611aab2769eec0c746"
+    },
+    "root": {
+      "path": "/tmp/codex-ratchet-foundation-chain.qqB3kH/root_order_open_replay.json",
+      "sha256": "c2ca85404495e013100e7c7920295ff98372263967658e2eaedc6926b4e53872"
+    }
+  },
+  "promotion_allowed": false,
+  "required_constraint_ids": [
+    "F01",
+    "N01"
+  ],
+  "root_candidate": {
+    "code": "missing_or_unsupported_fingerprint_algorithm",
+    "content_sha256": null,
+    "declared_fingerprint": null,
+    "fingerprint_algorithm": null,
+    "kind": "missing",
+    "members": [],
+    "partition_digests": [],
+    "pass": false,
+    "recomputed_fingerprint": null
+  },
+  "root_receipt_count": 1,
+  "schema": "foundation-chain-binding-audit/0.2",
+  "scientific_status": "blocked_unbound_or_unauthenticated",
+  "trust_manifest": {
+    "chain_id": null,
+    "code": "missing_trust_manifest",
+    "externally_pinned_sha256": null,
+    "observed_sha256": null,
+    "pass": false,
+    "path": null,
+    "run_nonce": null
+  }
+}

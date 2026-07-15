@@ -8,27 +8,27 @@
     },
     {
       "path": "system_v5/ops/tooling/codex_runtime_capability_shakedown_results.json",
-      "sha256": "7b2bf2ff4ca801033c01ec4fe451da6fb7d8856d656569b0d91b26b10d5c22a4"
+      "sha256": "c132267e0e8556bb38a87c27f693e7157283c8d2d208d2d9cba95df5e1d7786d"
     },
     {
       "path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_results.json",
-      "sha256": "2bec2c80c1c99f1371b6787df76d83633cf9a8aa11d40044ca96b5c25dcd277b"
+      "sha256": "67c3e8b6bbd28cd252a7cd42a12ca29e6d114de251f18a0e4f5e927c90d0387d"
     },
     {
       "path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_jax_results.json",
-      "sha256": "cc875c0bc7f0ea2a707f9657e7951cf348d0b37cbee658e615965c1bf4560d07"
+      "sha256": "3b93e84f6a8f33c98d8a870373719e9f8dbc156e07222bcb21371bea3d2b1255"
     },
     {
       "path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_pytorch_results.json",
-      "sha256": "194c037205cb25a4044eb01ab76e7adb426867b879fe4b7041c2c118bd44f8ad"
+      "sha256": "511dc84d2ee99c182cfb5c40192364829348a62510cea45af4a3bf792f8a00e2"
     },
     {
       "path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_julia_results.json",
-      "sha256": "8dab8d32db8f247c4c222263b766d4d3ec09f15955f9744d96f203919984f6cd"
+      "sha256": "275eb142ef71c9ef55ea2186a65dfe5e520b62883f0b935ba55f371ce212d111"
     },
     {
       "path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json",
-      "sha256": "0c77f365cb9af66ec48ed02809e25f798aee7c6526acd73bd45d4220d4c6cc80"
+      "sha256": "47db93b680558b236d2fdb77822659a6b30190ceb3db3b1b8d9e8a1295838dc7"
     }
   ],
   "claim_ceiling": "isolated source/runtime integration repair only; QIT remains scratch diagnostic, the frozen V8 campaign remains red, and Ratchet tooth promotion remains blocked",
@@ -45,7 +45,7 @@
   },
   "formal_admission_allowed": false,
   "frozen_campaign_rewritten": false,
-  "generated_at": "2026-07-15T23:14:55.055612+00:00",
+  "generated_at": "2026-07-15T23:55:18.100389+00:00",
   "install_attempted": false,
   "integration_gate_pass": true,
   "llm_gate_used": false,
@@ -57,7 +57,7 @@
   "source_bindings": [
     {
       "path": ".gitignore",
-      "sha256": "8460afbb84e3411de07193cc60fca3bc7b69f1bd6725f47b50256f06c87181da"
+      "sha256": "0444b2e72c42aba8ccd3c0be926b02a18d1df92031cb6116c7e1098e4c1fb67e"
     },
     {
       "path": "scripts/audit_three_engine_source_claims.py",
@@ -108,8 +108,8 @@
       "sha256": "bf470f8fa3753d1ca907e747a509986c4281df7d46aac6ab09090ccce33deb74"
     }
   ],
-  "source_head": "7fefe57d45b433173c02a0192ba014c0b64dee00",
-  "source_tree": "cf9b3c3dafa6a332e5353bfe704d853ee5b5c423",
+  "source_head": "5cb231cd23ad3b442c40c468291bd1ce19918271",
+  "source_tree": "51ab82a28b27733fc9f670266a96e15e2244b847",
   "steps": [
     {
       "command": [
@@ -118,7 +118,7 @@
         "scripts/codex_runtime_env_doctor.py",
         "--json"
       ],
-      "duration_seconds": 40.007349,
+      "duration_seconds": 30.510937,
       "pass": true,
       "returncode": 0,
       "stderr": "",
@@ -132,7 +132,7 @@
         "-B",
         "scripts/codex_engine_stack_shakedown.py"
       ],
-      "duration_seconds": 49.052945,
+      "duration_seconds": 46.73048,
       "pass": true,
       "returncode": 0,
       "stderr": "INFO: Found 'auto' as default backend, checking available backends\nINFO: Matplotlib is available, defining as default backend\nINFO: arviz_base 1.1.0 available, exposing its functions as part of the `arviz` namespace\nINFO: arviz_stats 1.1.0 available, exposing its functions as part of the `arviz` namespace\nINFO: arviz_plots 1.1.0 available, exposing its functions as part of the `arviz` namespace\n",
@@ -147,7 +147,7 @@
         "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0.py",
         "--fresh"
       ],
-      "duration_seconds": 0.141944,
+      "duration_seconds": 0.151843,
       "pass": true,
       "returncode": 0,
       "stderr": "",
@@ -161,7 +161,7 @@
         "-B",
         "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_jax.py"
       ],
-      "duration_seconds": 1.296305,
+      "duration_seconds": 1.335117,
       "pass": true,
       "returncode": 0,
       "stderr": "",
@@ -175,7 +175,7 @@
         "-B",
         "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_pytorch.py"
       ],
-      "duration_seconds": 2.715763,
+      "duration_seconds": 2.68285,
       "pass": true,
       "returncode": 0,
       "stderr": "",
@@ -190,7 +190,7 @@
         "--project=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier",
         "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_julia.jl"
       ],
-      "duration_seconds": 4.098457,
+      "duration_seconds": 3.720126,
       "pass": true,
       "returncode": 0,
       "stderr": "",
@@ -204,7 +204,7 @@
         "-B",
         "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_envelope.py"
       ],
-      "duration_seconds": 0.047072,
+      "duration_seconds": 0.048209,
       "pass": true,
       "returncode": 0,
       "stderr": "",
@@ -218,7 +218,7 @@
         "-B",
         "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/qit_projection_battery_v0/validate_qit_projection_battery_v0.py"
       ],
-      "duration_seconds": 0.041487,
+      "duration_seconds": 0.043606,
       "pass": true,
       "returncode": 0,
       "stderr": "",
@@ -236,7 +236,7 @@
         "--strict-source-backed",
         "--require-tool-intent"
       ],
-      "duration_seconds": 0.061823,
+      "duration_seconds": 0.060537,
       "pass": true,
       "returncode": 0,
       "stderr": "",
@@ -256,11 +256,11 @@
         "system_v5/tests/test_three_engine_sim_result_validator.py",
         "system_v7/sims/qit_projection_battery_v0/tests"
       ],
-      "duration_seconds": 2.454849,
+      "duration_seconds": 2.492288,
       "pass": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "============================= test session starts ==============================\nplatform darwin -- Python 3.13.6, pytest-9.0.3, pluggy-1.6.0\nrootdir: /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715\nconfigfile: pyproject.toml\nplugins: jaxtyping-0.3.10, mock-3.15.1, zarr-3.2.1, torchtyping-0.1.5, order-1.4.0, hypothesis-6.151.12, typeguard-2.13.3, anyio-4.13.0\ncollected 20 items\n\nsystem_v5/tests/test_codex_runtime_env_doctor.py ...                     [ 15%]\nsystem_v5/tests/test_three_engine_sim_result_validator.py .............. [ 85%]\n                                                                         [ 85%]\nsystem_v7/sims/qit_projection_battery_v0/tests/test_qit_projection_battery_v0.py . [ 90%]\n..                                                                       [100%]\n\n============================== 20 passed in 0.75s ==============================\n",
+      "stdout": "============================= test session starts ==============================\nplatform darwin -- Python 3.13.6, pytest-9.0.3, pluggy-1.6.0\nrootdir: /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715\nconfigfile: pyproject.toml\nplugins: jaxtyping-0.3.10, mock-3.15.1, zarr-3.2.1, torchtyping-0.1.5, order-1.4.0, hypothesis-6.151.12, typeguard-2.13.3, anyio-4.13.0\ncollected 20 items\n\nsystem_v5/tests/test_codex_runtime_env_doctor.py ...                     [ 15%]\nsystem_v5/tests/test_three_engine_sim_result_validator.py .............. [ 85%]\n                                                                         [ 85%]\nsystem_v7/sims/qit_projection_battery_v0/tests/test_qit_projection_battery_v0.py . [ 90%]\n..                                                                       [100%]\n\n============================== 20 passed in 0.76s ==============================\n",
       "step_id": "focused_tests",
       "timed_out": false
     },
@@ -272,7 +272,7 @@
         "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0.py",
         "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_envelope.py"
       ],
-      "duration_seconds": 0.054975,
+      "duration_seconds": 0.058015,
       "pass": true,
       "returncode": 0,
       "stderr": "",

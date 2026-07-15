@@ -1,0 +1,127 @@
+{
+  "schema": "codex_ratchet.tolerance_to_equivalence_ratchet_rung_v0.spec.v1",
+  "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
+  "campaign": "v8_prelaunch",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "llm_verdict_allowed": false,
+  "claim": "A finite contextual tolerance may be tested rather than assumed to be an equivalence; an executable controller may authorize one bounded tooth only when an earned equivalence proposal lowers frozen coface loss and every independent proof, engine, and negative-control gate passes.",
+  "root_contract": {
+    "carrier": "finite labeled addresses X_n for n=1..5",
+    "raw_relation": "every reflexive symmetric relation T on X_n; transitivity is a measured property, never an input axiom",
+    "earned_equivalence": "the least equivalence relation containing T, computed as undirected connected-component closure",
+    "identity_ceiling": "an earned equivalence is a provisional quotient relation only; it is not primitive identity, ontology admission, or a physical carrier",
+    "equivalence_laws": ["reflexive", "symmetric", "transitive"],
+    "expected_census": {
+      "1": {"tolerances": 1, "equivalences": 1, "nontransitive": 0},
+      "2": {"tolerances": 2, "equivalences": 2, "nontransitive": 0},
+      "3": {"tolerances": 8, "equivalences": 5, "nontransitive": 3},
+      "4": {"tolerances": 64, "equivalences": 15, "nontransitive": 49},
+      "5": {"tolerances": 1024, "equivalences": 52, "nontransitive": 972}
+    }
+  },
+  "fixtures": {
+    "transitivity_witness": {
+      "n": 3,
+      "raw_undirected_edges": [[0, 1], [1, 2]],
+      "forced_by_equivalence": [0, 2],
+      "expected_raw_transitive": false,
+      "expected_closure_class_labels": [0, 0, 0]
+    },
+    "positive_drive": {
+      "n": 4,
+      "raw_undirected_edges": [[0, 1], [2, 3]],
+      "initial_class_labels": [0, 0, 0, 0],
+      "proposal_class_labels": [0, 0, 1, 1],
+      "demand_edges": [[1, 2]],
+      "scrambled_count_preserving_demand_edges": [[0, 1]],
+      "expected_initial_coface_loss": 1,
+      "expected_proposal_coface_loss": 0,
+      "expected_drive": 1,
+      "expected_decision": "COMMIT_TOOTH"
+    },
+    "flat_hold": {
+      "n": 4,
+      "raw_undirected_edges": [[0, 1], [2, 3]],
+      "initial_class_labels": [0, 0, 1, 1],
+      "proposal_class_labels": [0, 0, 1, 1],
+      "demand_edges": [[1, 2]],
+      "expected_drive": 0,
+      "expected_decision": "HOLD"
+    }
+  },
+  "drive_contract": {
+    "loss": "L_D(pi)=the number of frozen demanded address pairs collapsed by equivalence presentation pi",
+    "drive": "g_D(pi->rho)=L_D(pi)-L_D(rho)",
+    "positive_rule": "authorize a tooth only when g_D>0",
+    "flat_rule": "g_D=0 is HOLD, never narrative progress",
+    "negative_rule": "g_D<0 is HOLD",
+    "entropy_wording": "coface-loss gradient is the bounded drive observable; no Shannon, von Neumann, or thermodynamic entropy claim is made"
+  },
+  "mss_contract": {
+    "candidate_set": "all labeled equivalence relations containing the raw tolerance",
+    "presumption_axes": {
+      "relation_distortion": "minimize added unordered related pairs",
+      "quotient_fragmentation": "minimize number of quotient classes"
+    },
+    "selection": "return the full nondominated antichain under the two explicit axes",
+    "single_winner_forbidden": true,
+    "scalarization_forbidden": true
+  },
+  "proof_contract": {
+    "solvers": ["z3", "cvc5"],
+    "required_queries": [
+      "SAT(C): an equivalence containing the chain tolerance exists",
+      "UNSAT(C and not phi): transitivity forces the missing endpoint pair",
+      "UNSAT: a strict sub-equivalence of the proposed component closure can still contain the raw tolerance",
+      "SAT control: removing transitivity permits the endpoint pair to remain absent"
+    ],
+    "ground_literal_only_proofs_forbidden": true,
+    "both_solvers_required": true
+  },
+  "engine_contract": {
+    "mode": "julia_canon_jax_exhaustive_pytorch_graph_with_dual_smt",
+    "julia": "Graphs.jl exact connected-component closure plus independent n=1..5 census",
+    "jax": "x64 batched exhaustive relation census and fixed-point closure",
+    "pytorch": "PyTorch Geometric message-passing reachability closure plus independent drive/HOLD evaluation",
+    "z3_cvc5": "independent symbolic equivalence, implication, minimality, and erased-transitivity queries",
+    "controller": "closed-receipt comparison, source binding, mutation tests, and final code-only decision",
+    "peer_result_reads_forbidden_in_engine_lanes": true,
+    "numpy_on_claim_path": false,
+    "model_training_on_claim_path": false
+  },
+  "negative_controls": {
+    "drop_transitivity": "must change the endpoint implication from UNSAT to SAT",
+    "reverse_drive": "must HOLD",
+    "null_drive": "must HOLD",
+    "force_universal_proposal": "must HOLD on the positive-drive fixture",
+    "count_preserving_demand_scramble": "must HOLD on the within-component demand",
+    "source_hash_mutation": "independent validator must reject",
+    "proof_verdict_mutation": "independent validator must reject",
+    "drive_mutation": "independent validator must reject"
+  },
+  "code_gates": [
+    "G0 object card and preregistration validate before builders",
+    "G1 exact tolerance/equivalence census matches the frozen Bell-number boundary",
+    "G2 Julia, JAX, and PyTorch independently recover the same two fixture closures",
+    "G3 z3 and cvc5 both pass the four symbolic proof/control queries",
+    "G4 coface drive is reconstructed from frozen demand edges",
+    "G5 positive fixture commits exactly one tooth; flat/reverse/null/universal/scrambled controls HOLD",
+    "G6 MSS returns an explicit antichain and no hidden scalar winner",
+    "G7 no engine lane reads a peer result",
+    "G8 source hashes, runtime identity, classification, and claim ceiling are bound",
+    "G9 independent mutations are rejected",
+    "G10 Lev executes only deterministic commands/evals; no model verdict can open the gate"
+  ],
+  "accepted_green_ceiling": "ONE_BOUNDED_TOLERANCE_TO_EQUIVALENCE_RATCHET_TOOTH_ON_FROZEN_FINITE_FIXTURES",
+  "accepted_red_ceiling": "FIRST_RATCHET_TOOTH_NOT_AUTHORIZED",
+  "blocked_consumers": [
+    "primitive identity or object ontology",
+    "canonical Ratchet launch",
+    "QIT engine derivation",
+    "Axis or terrain/operator promotion",
+    "physics, cosmology, biology, cognition, or consciousness claims",
+    "LLM or council verdict as a gate"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "codex_ratchet.tolerance_to_equivalence_v1.spec.v1",
+  "sim_id": "tolerance_to_equivalence_ratchet_rung_v1_semantic_forcing",
+  "status": "PREREGISTRATION_ONLY_BUILDERS_ABSENT",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "official_launch_allowed": false,
+  "llm_verdict_allowed": false,
+  "claim": "A finite distinguishability-loss surrogate may authorize one transition only when facts are generated independently of proposals, every admissible equivalence is enumerated, the complete MSS Pareto front is unique, held-out and mutation gates pass, and an append-only pawl is valid.",
+  "math": {
+    "input": "I=(X,T,E0,D,w), with T reflexive and symmetric, E0 an equivalence, and T subseteq E0",
+    "candidate": "E is an equivalence satisfying T subseteq E subseteq E0",
+    "loss": "L_D(E)=sum_{i<j} w_ij * 1[(i,j) in D and E(i,j)]",
+    "drive": "g(E0->E)=L_D(E0)-L_D(E)",
+    "admissible": "g>0 and T subseteq E subseteq E0 and E is an equivalence",
+    "mss_cost_vector": [
+      "removed_pair_count",
+      "nondemand_collateral_split_count",
+      "new_class_count"
+    ],
+    "commit_rule": "COMMIT only when the complete nondominated admissible set contains exactly one relation",
+    "plural_rule": "A plural nondominated set returns HOLD_MSS_AMBIGUOUS",
+    "flat_rule": "g<=0 returns HOLD_NONPOSITIVE"
+  },
+  "builder_paths": [
+    "run_julia.jl",
+    "run_jax.py",
+    "run_pytorch.py"
+  ],
+  "preregistration_inputs": [
+    "spec.json",
+    "generate_facts.py",
+    "oracle.py",
+    "mutations.json",
+    "validate_preregistration.py"
+  ],
+  "code_gates": [
+    "P0 freeze spec, fact generator, oracle, mutation list, validator, and absent builder paths",
+    "P1 facts contain no expected decision, target rung, preferred proposal, or proposal-derived demand",
+    "P2 enumerate every equivalence between T and E0 and independently check completeness",
+    "P3 Julia, JAX, and PyTorch lanes receive only the frozen instance and write into isolated empty result roots",
+    "P4 every control traverses the same loss and decision implementation; literal control outcomes are forbidden",
+    "P5 return the complete MSS Pareto front; hidden scalarization and index tie-breaks are forbidden",
+    "P6 simultaneously permute T, E0, D, and w and require decision invariance plus relation equivariance",
+    "P7 demand perturbations are recomputed and the held-out estate contains genuine flips and no-flips",
+    "P8 after engine source freeze generate at least 256 held-out n=4..8 cases with zero oracle mismatches",
+    "P9 z3 and cvc5 bind measured instance facts and reject erased transitivity or erased demand facts",
+    "P10 coherent source-level semantic mutations regenerate receipts and must be rejected",
+    "P11 append-only pawl binds before, facts, candidate evidence, and after hashes; red is byte-identical and replay idempotent",
+    "P12 all promotion, launch, QIT, entropy, Axis, and terrain/operator consumers remain blocked"
+  ],
+  "held_out_contract": {
+    "minimum_case_count": 256,
+    "n_min": 4,
+    "n_max": 8,
+    "required_outcomes": [
+      "COMMIT",
+      "HOLD_NONPOSITIVE",
+      "HOLD_MSS_AMBIGUOUS",
+      "INVALID"
+    ],
+    "generated_after_engine_source_freeze": true
+  },
+  "accepted_green_ceiling": "one finite distinguishability-loss surrogate transition generalized on post-seal held-out cases",
+  "blocked_consumers": [
+    "official Ratchet launch",
+    "canonical or scientific promotion",
+    "entropy or QIT claims",
+    "Axis or terrain/operator claims",
+    "physics or cross-domain claims",
+    "LLM or provider verdict as a gate"
+  ]
+}

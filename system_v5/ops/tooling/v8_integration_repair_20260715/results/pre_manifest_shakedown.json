@@ -81,9 +81,71 @@
       "used": true
     }
   },
-  "all_pass": true,
+  "all_pass": false,
   "blocked_until": "permanently blocked from scientific promotion by diagnostic scope",
-  "blockers": [],
+  "blockers": [
+    {
+      "category": "environment",
+      "detail": {
+        "expected": null,
+        "raw": {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "scripts/codex_runtime_env_doctor.py",
+            "--json"
+          ],
+          "returncode": 1,
+          "stderr_tail": "",
+          "stdout_tail": "l/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torch_geometric/__init__.py\\\", \\\"ok\\\": true, \\\"version\\\": \\\"2.7.0\\\"}, \\\"torch_scatter\\\": {\\\"error\\\": \\\"No module named 'torch_scatter'\\\", \\\"error_type\\\": \\\"ModuleNotFoundError\\\", \\\"ok\\\": false}, \\\"torch_sparse\\\": {\\\"error\\\": \\\"No module named 'torch_sparse'\\\", \\\"error_type\\\": \\\"ModuleNotFoundError\\\", \\\"ok\\\": false}, \\\"torchdiffeq\\\": {\\\"file\\\": \\\"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torchdiffeq/__init__.py\\\", \\\"ok\\\": true, \\\"version\\\": \\\"0.2.5\\\"}, \\\"torchode\\\": {\\\"file\\\": \\\"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torchode/__init__.py\\\", \\\"ok\\\": true, \\\"version\\\": \\\"1.0.1\\\"}, \\\"xitorch\\\": {\\\"file\\\": \\\"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/xitorch/__init__.py\\\", \\\"ok\\\": true, \\\"version\\\": \\\"0.3.0\\\"}, \\\"z3\\\": {\\\"file\\\": \\\"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/z3/__init__.py\\\", \\\"ok\\\": true, \\\"version\\\": null}}, \\\"prefix\\\": \\\"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main\\\", \\\"user_site\\\": \\\"/Users/joshuaeisenhart/Library/Python/3.13/lib/python/site-packages\\\", \\\"version\\\": \\\"3.13.6 (main, Aug  6 2025, 13:05:20) [Clang 17.0.0 (clang-1700.0.13.3)]\\\"}\\n\",\n      \"timed_out\": false\n    },\n    \"user_site\": \"/Users/joshuaeisenhart/Library/Python/3.13/lib/python/site-packages\",\n    \"version\": \"3.13.6 (main, Aug  6 2025, 13:05:20) [Clang 17.0.0 (clang-1700.0.13.3)]\"\n  },\n  \"repo\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715\",\n  \"repo_pollution\": [],\n  \"repo_project\": {\n    \"forbidden_deps_expected_absent\": [\n      \"CondaPkg\",\n      \"DLPack\",\n      \"PythonCall\"\n    ],\n    \"forbidden_deps_present\": [],\n    \"manifest_present_local_ignored\": false,\n    \"project\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier/Project.toml\"\n  },\n  \"schema\": \"codex_runtime_env_doctor.v1\",\n  \"sim_stack_alias\": {\n    \"exists\": true,\n    \"expected_target\": \"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main\",\n    \"is_symlink\": true,\n    \"ok\": true,\n    \"path\": \"/Users/joshuaeisenhart/.local/share/sim-stack\",\n    \"physical_env_exists\": true,\n    \"physical_python\": \"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3\",\n    \"preferred_python\": \"/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3\",\n    \"target\": \"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main\"\n  },\n  \"summary\": {\n    \"failures\": [\n      \"julia module failed in carrier project: JSON3\",\n      \"julia module failed in carrier project: JSON\",\n      \"julia module failed in carrier project: CliffordAlgebras\",\n      \"julia module failed in carrier project: Grassmann\",\n      \"julia module failed in carrier project: Z3\",\n      \"julia module failed in carrier project: Quaternions\",\n      \"julia module failed in carrier project: Octonions\",\n      \"julia module failed in carrier project: Graphs\",\n      \"julia module failed in carrier project: ITensors\",\n      \"julia module failed in carrier project: ITensorMPS\",\n      \"julia module failed in carrier project: QuantumClifford\",\n      \"julia module failed in carrier project: QuantumOptics\",\n      \"julia module failed in carrier project: QuantumToolbox\",\n      \"julia module failed in carrier project: Manifolds\",\n      \"julia module failed in carrier project: Yao\",\n      \"julia module failed in carrier project: DifferentialEquations\",\n      \"julia module failed in carrier project: Attractors\",\n      \"julia module failed in carrier project: DynamicalSystems\",\n      \"julia module failed in carrier project: ChaosTools\",\n      \"julia module failed in carrier project: StaticArrays\",\n      \"julia module failed in carrier project: Symbolics\"\n    ],\n    \"install_state\": \"stable_observed\",\n    \"ok\": false,\n    \"warnings\": []\n  }\n}\n",
+          "timed_out": false
+        },
+        "summary": null
+      },
+      "name": "codex_runtime_env_doctor",
+      "note": null,
+      "severity": "fail",
+      "status": "fail"
+    },
+    {
+      "category": "julia",
+      "detail": {
+        "active_project": null,
+        "graphs_edge_count": null,
+        "load_path": null,
+        "octonion_first_nonzero_associator": null,
+        "quaternion_assoc_i_j_k": null,
+        "raw": {
+          "cmd": [
+            "/opt/homebrew/bin/julia",
+            "--startup-file=no",
+            "--project=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier",
+            "-e",
+            "\nusing JSON3, JSON, Quaternions, Octonions, Z3, Graphs\n\ncomponents(x, props::Vector{Symbol}) = [Int(getproperty(x, prop)) for prop in props]\n\nfunction table_from_library(basis::Vector, props::Vector{Symbol})\n    dim = length(basis)\n    table = zeros(Int, dim, dim, dim)\n    for i in 1:dim, j in 1:dim\n        table[:, i, j] .= components(basis[i] * basis[j], props)\n    end\n    table\nend\n\nfunction nested_C(table::Array{Int,3})\n    dim = size(table, 1)\n    [[[table[k, i, j] for j in 1:dim] for i in 1:dim] for k in 1:dim]\nend\n\nfunction concrete_mul(table::Array{Int,3}, x::Vector{Int}, y::Vector{Int})\n    dim = size(table, 1)\n    out = zeros(Int, dim)\n    for k in 1:dim, i in 1:dim, j in 1:dim\n        out[k] += table[k, i, j] * x[i] * y[j]\n    end\n    out\nend\n\nfunction basisv(dim::Int, idx::Int)\n    v = zeros(Int, dim)\n    v[idx] = 1\n    v\nend\n\nfunction concrete_assoc(table::Array{Int,3}, a::Int, b::Int, c::Int)\n    dim = size(table, 1)\n    ea = basisv(dim, a)\n    eb = basisv(dim, b)\n    ec = basisv(dim, c)\n    concrete_mul(table, concrete_mul(table, ea, eb), ec) -\n        concrete_mul(table, ea, concrete_mul(table, eb, ec))\nend\n\nfunction first_nonzero_associator(table::Array{Int,3})\n    for a in 1:size(table, 1), b in 1:size(table, 1), c in 1:size(table, 1)\n        assoc = concrete_assoc(table, a, b, c)\n        if any(!=(0), assoc)\n            return Dict(\n                \"indices_one_based\" => [a, b, c],\n                \"indices_zero_based\" => [a - 1, b - 1, c - 1],\n                \"associator_components\" => assoc,\n            )\n        end\n    end\n    nothing\nend\n\nfunction import_status(name::String)\n    try\n        @eval using $(Symbol(name))\n        return Dict(\"ok\" => true, \"error\" => \"\")\n    catch e\n        return Dict(\"ok\" => false, \"error\" => first(split(string(e), \"\\n\")))\n    end\nend\n\nq_basis = [\n    Quaternion(1, 0, 0, 0),\n    Quaternion(0, 1, 0, 0),\n    Quaternion(0, 0, 1, 0),\n    Quaternion(0, 0, 0, 1),\n]\no_basis = [\n    Octonion(1, 0, 0, 0, 0, 0, 0, 0),\n    Octonion(0, 1, 0, 0, 0, 0, 0, 0),\n    Octonion(0, 0, 1, 0, 0, 0, 0, 0),\n    Octonion(0, 0, 0, 1, 0, 0, 0, 0),\n    Octonion(0, 0, 0, 0, 1, 0, 0, 0),\n    Octonion(0, 0, 0, 0, 0, 1, 0, 0),\n    Octonion(0, 0, 0, 0, 0, 0, 1, 0),\n    Octonion(0, 0, 0, 0, 0, 0, 0, 1),\n]\nq_table = table_from_library(q_basis, [:s, :v1, :v2, :v3])\no_table = table_from_library(o_basis, [:s, :v1, :v2, :v3, :v4, :v5, :v6, :v7])\n\nctx = Context()\nsolver = Solver(ctx)\nx = IntVar(\"x\", ctx)\nadd(solver, x == IntVal(1, ctx))\nadd(solver, Not(x == IntVal(1, ctx)))\n\ng = SimpleGraph(3)\nadd_edge!(g, 1, 2)\n\nblocked = Dict(\n    \"PythonCall\" => import_status(\"PythonCall\"),\n    \"DLPack\" => import_status(\"DLPack\"),\n    \"CondaPkg\" => import_status(\"CondaPkg\"),\n    \"Zygote\" => import_status(\"Zygote\"),\n)\n\npayload = Dict(\n    \"active_project\" => string(Base.active_project()),\n    \"load_path\" => join(Base.LOAD_PATH, \":\"),\n    \"quaternion_assoc_i_j_k\" => concrete_assoc(q_table, 2, 3, 4),\n    \"octonion_first_nonzero_associator\" => first_nonzero_associator(o_table),\n    \"octonion_structure_constants\" => nested_C(o_table),\n    \"z3_unsat\" => string(check(solver)),\n    \"graphs_edge_count\" => ne(g),\n    \"strict_blocked_imports\" => blocked,\n)\n\nprintln(\"JSON_BEGIN\")\nprintln(JSON3.write(payload))\nprintln(\"JSON_END\")\n"
+          ],
+          "returncode": 1,
+          "stderr_tail": "ERROR: ArgumentError: Package JSON3 [0f8b85d8-7281-11e9-16c2-39a750bddbf1] is required but does not seem to be installed:\n - Run `Pkg.instantiate()` to install all recorded dependencies.\n\n",
+          "stdout_tail": "",
+          "timed_out": false
+        },
+        "z3_unsat": null
+      },
+      "name": "strict_julia_carrier_api_probe",
+      "note": null,
+      "severity": "fail",
+      "status": "fail"
+    },
+    {
+      "category": "cross_runtime",
+      "detail": {
+        "claim_ceiling": "Julia package produced table; JAX and PyTorch execute the finite tensor kernel.",
+        "julia_witness": {}
+      },
+      "name": "julia_jax_torch_octonion_associator_agreement",
+      "note": null,
+      "severity": "fail",
+      "status": "fail"
+    }
+  ],
   "checks": [
     {
       "category": "environment",
@@ -101,26 +163,24 @@
     {
       "category": "environment",
       "detail": {
-        "expected": {
-          "julia": "/opt/homebrew/bin/julia",
-          "julia_load_path": "@:@stdlib",
-          "julia_project": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier",
-          "physical_python_env": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main",
-          "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
-          "sim_stack_alias": "/Users/joshuaeisenhart/.local/share/sim-stack"
+        "expected": null,
+        "raw": {
+          "cmd": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "scripts/codex_runtime_env_doctor.py",
+            "--json"
+          ],
+          "returncode": 1,
+          "stderr_tail": "",
+          "stdout_tail": "l/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torch_geometric/__init__.py\\\", \\\"ok\\\": true, \\\"version\\\": \\\"2.7.0\\\"}, \\\"torch_scatter\\\": {\\\"error\\\": \\\"No module named 'torch_scatter'\\\", \\\"error_type\\\": \\\"ModuleNotFoundError\\\", \\\"ok\\\": false}, \\\"torch_sparse\\\": {\\\"error\\\": \\\"No module named 'torch_sparse'\\\", \\\"error_type\\\": \\\"ModuleNotFoundError\\\", \\\"ok\\\": false}, \\\"torchdiffeq\\\": {\\\"file\\\": \\\"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torchdiffeq/__init__.py\\\", \\\"ok\\\": true, \\\"version\\\": \\\"0.2.5\\\"}, \\\"torchode\\\": {\\\"file\\\": \\\"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torchode/__init__.py\\\", \\\"ok\\\": true, \\\"version\\\": \\\"1.0.1\\\"}, \\\"xitorch\\\": {\\\"file\\\": \\\"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/xitorch/__init__.py\\\", \\\"ok\\\": true, \\\"version\\\": \\\"0.3.0\\\"}, \\\"z3\\\": {\\\"file\\\": \\\"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/z3/__init__.py\\\", \\\"ok\\\": true, \\\"version\\\": null}}, \\\"prefix\\\": \\\"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main\\\", \\\"user_site\\\": \\\"/Users/joshuaeisenhart/Library/Python/3.13/lib/python/site-packages\\\", \\\"version\\\": \\\"3.13.6 (main, Aug  6 2025, 13:05:20) [Clang 17.0.0 (clang-1700.0.13.3)]\\\"}\\n\",\n      \"timed_out\": false\n    },\n    \"user_site\": \"/Users/joshuaeisenhart/Library/Python/3.13/lib/python/site-packages\",\n    \"version\": \"3.13.6 (main, Aug  6 2025, 13:05:20) [Clang 17.0.0 (clang-1700.0.13.3)]\"\n  },\n  \"repo\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715\",\n  \"repo_pollution\": [],\n  \"repo_project\": {\n    \"forbidden_deps_expected_absent\": [\n      \"CondaPkg\",\n      \"DLPack\",\n      \"PythonCall\"\n    ],\n    \"forbidden_deps_present\": [],\n    \"manifest_present_local_ignored\": false,\n    \"project\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier/Project.toml\"\n  },\n  \"schema\": \"codex_runtime_env_doctor.v1\",\n  \"sim_stack_alias\": {\n    \"exists\": true,\n    \"expected_target\": \"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main\",\n    \"is_symlink\": true,\n    \"ok\": true,\n    \"path\": \"/Users/joshuaeisenhart/.local/share/sim-stack\",\n    \"physical_env_exists\": true,\n    \"physical_python\": \"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3\",\n    \"preferred_python\": \"/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3\",\n    \"target\": \"/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main\"\n  },\n  \"summary\": {\n    \"failures\": [\n      \"julia module failed in carrier project: JSON3\",\n      \"julia module failed in carrier project: JSON\",\n      \"julia module failed in carrier project: CliffordAlgebras\",\n      \"julia module failed in carrier project: Grassmann\",\n      \"julia module failed in carrier project: Z3\",\n      \"julia module failed in carrier project: Quaternions\",\n      \"julia module failed in carrier project: Octonions\",\n      \"julia module failed in carrier project: Graphs\",\n      \"julia module failed in carrier project: ITensors\",\n      \"julia module failed in carrier project: ITensorMPS\",\n      \"julia module failed in carrier project: QuantumClifford\",\n      \"julia module failed in carrier project: QuantumOptics\",\n      \"julia module failed in carrier project: QuantumToolbox\",\n      \"julia module failed in carrier project: Manifolds\",\n      \"julia module failed in carrier project: Yao\",\n      \"julia module failed in carrier project: DifferentialEquations\",\n      \"julia module failed in carrier project: Attractors\",\n      \"julia module failed in carrier project: DynamicalSystems\",\n      \"julia module failed in carrier project: ChaosTools\",\n      \"julia module failed in carrier project: StaticArrays\",\n      \"julia module failed in carrier project: Symbolics\"\n    ],\n    \"install_state\": \"stable_observed\",\n    \"ok\": false,\n    \"warnings\": []\n  }\n}\n",
+          "timed_out": false
         },
-        "raw": null,
-        "summary": {
-          "failures": [],
-          "install_state": "stable_observed",
-          "ok": true,
-          "warnings": []
-        }
+        "summary": null
       },
       "name": "codex_runtime_env_doctor",
       "note": null,
       "severity": "fail",
-      "status": "pass"
+      "status": "fail"
     },
     {
       "category": "environment",
@@ -143,65 +203,34 @@
     {
       "category": "julia",
       "detail": {
-        "active_project": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier/Project.toml",
-        "graphs_edge_count": 1,
-        "load_path": "@:@stdlib",
-        "octonion_first_nonzero_associator": {
-          "associator_components": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            -2,
-            0,
-            0
+        "active_project": null,
+        "graphs_edge_count": null,
+        "load_path": null,
+        "octonion_first_nonzero_associator": null,
+        "quaternion_assoc_i_j_k": null,
+        "raw": {
+          "cmd": [
+            "/opt/homebrew/bin/julia",
+            "--startup-file=no",
+            "--project=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier",
+            "-e",
+            "\nusing JSON3, JSON, Quaternions, Octonions, Z3, Graphs\n\ncomponents(x, props::Vector{Symbol}) = [Int(getproperty(x, prop)) for prop in props]\n\nfunction table_from_library(basis::Vector, props::Vector{Symbol})\n    dim = length(basis)\n    table = zeros(Int, dim, dim, dim)\n    for i in 1:dim, j in 1:dim\n        table[:, i, j] .= components(basis[i] * basis[j], props)\n    end\n    table\nend\n\nfunction nested_C(table::Array{Int,3})\n    dim = size(table, 1)\n    [[[table[k, i, j] for j in 1:dim] for i in 1:dim] for k in 1:dim]\nend\n\nfunction concrete_mul(table::Array{Int,3}, x::Vector{Int}, y::Vector{Int})\n    dim = size(table, 1)\n    out = zeros(Int, dim)\n    for k in 1:dim, i in 1:dim, j in 1:dim\n        out[k] += table[k, i, j] * x[i] * y[j]\n    end\n    out\nend\n\nfunction basisv(dim::Int, idx::Int)\n    v = zeros(Int, dim)\n    v[idx] = 1\n    v\nend\n\nfunction concrete_assoc(table::Array{Int,3}, a::Int, b::Int, c::Int)\n    dim = size(table, 1)\n    ea = basisv(dim, a)\n    eb = basisv(dim, b)\n    ec = basisv(dim, c)\n    concrete_mul(table, concrete_mul(table, ea, eb), ec) -\n        concrete_mul(table, ea, concrete_mul(table, eb, ec))\nend\n\nfunction first_nonzero_associator(table::Array{Int,3})\n    for a in 1:size(table, 1), b in 1:size(table, 1), c in 1:size(table, 1)\n        assoc = concrete_assoc(table, a, b, c)\n        if any(!=(0), assoc)\n            return Dict(\n                \"indices_one_based\" => [a, b, c],\n                \"indices_zero_based\" => [a - 1, b - 1, c - 1],\n                \"associator_components\" => assoc,\n            )\n        end\n    end\n    nothing\nend\n\nfunction import_status(name::String)\n    try\n        @eval using $(Symbol(name))\n        return Dict(\"ok\" => true, \"error\" => \"\")\n    catch e\n        return Dict(\"ok\" => false, \"error\" => first(split(string(e), \"\\n\")))\n    end\nend\n\nq_basis = [\n    Quaternion(1, 0, 0, 0),\n    Quaternion(0, 1, 0, 0),\n    Quaternion(0, 0, 1, 0),\n    Quaternion(0, 0, 0, 1),\n]\no_basis = [\n    Octonion(1, 0, 0, 0, 0, 0, 0, 0),\n    Octonion(0, 1, 0, 0, 0, 0, 0, 0),\n    Octonion(0, 0, 1, 0, 0, 0, 0, 0),\n    Octonion(0, 0, 0, 1, 0, 0, 0, 0),\n    Octonion(0, 0, 0, 0, 1, 0, 0, 0),\n    Octonion(0, 0, 0, 0, 0, 1, 0, 0),\n    Octonion(0, 0, 0, 0, 0, 0, 1, 0),\n    Octonion(0, 0, 0, 0, 0, 0, 0, 1),\n]\nq_table = table_from_library(q_basis, [:s, :v1, :v2, :v3])\no_table = table_from_library(o_basis, [:s, :v1, :v2, :v3, :v4, :v5, :v6, :v7])\n\nctx = Context()\nsolver = Solver(ctx)\nx = IntVar(\"x\", ctx)\nadd(solver, x == IntVal(1, ctx))\nadd(solver, Not(x == IntVal(1, ctx)))\n\ng = SimpleGraph(3)\nadd_edge!(g, 1, 2)\n\nblocked = Dict(\n    \"PythonCall\" => import_status(\"PythonCall\"),\n    \"DLPack\" => import_status(\"DLPack\"),\n    \"CondaPkg\" => import_status(\"CondaPkg\"),\n    \"Zygote\" => import_status(\"Zygote\"),\n)\n\npayload = Dict(\n    \"active_project\" => string(Base.active_project()),\n    \"load_path\" => join(Base.LOAD_PATH, \":\"),\n    \"quaternion_assoc_i_j_k\" => concrete_assoc(q_table, 2, 3, 4),\n    \"octonion_first_nonzero_associator\" => first_nonzero_associator(o_table),\n    \"octonion_structure_constants\" => nested_C(o_table),\n    \"z3_unsat\" => string(check(solver)),\n    \"graphs_edge_count\" => ne(g),\n    \"strict_blocked_imports\" => blocked,\n)\n\nprintln(\"JSON_BEGIN\")\nprintln(JSON3.write(payload))\nprintln(\"JSON_END\")\n"
           ],
-          "indices_one_based": [
-            2,
-            3,
-            5
-          ],
-          "indices_zero_based": [
-            1,
-            2,
-            4
-          ]
+          "returncode": 1,
+          "stderr_tail": "ERROR: ArgumentError: Package JSON3 [0f8b85d8-7281-11e9-16c2-39a750bddbf1] is required but does not seem to be installed:\n - Run `Pkg.instantiate()` to install all recorded dependencies.\n\n",
+          "stdout_tail": "",
+          "timed_out": false
         },
-        "quaternion_assoc_i_j_k": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "raw": null,
-        "z3_unsat": "unsat"
+        "z3_unsat": null
       },
       "name": "strict_julia_carrier_api_probe",
       "note": null,
       "severity": "fail",
-      "status": "pass"
+      "status": "fail"
     },
     {
       "category": "julia",
-      "detail": {
-        "CondaPkg": {
-          "error": "ArgumentError(\"Package CondaPkg not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"CondaPkg\\\")` to install the CondaPkg package.\")",
-          "ok": false
-        },
-        "DLPack": {
-          "error": "ArgumentError(\"Package DLPack not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"DLPack\\\")` to install the DLPack package.\")",
-          "ok": false
-        },
-        "PythonCall": {
-          "error": "ArgumentError(\"Package PythonCall not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"PythonCall\\\")` to install the PythonCall package.\")",
-          "ok": false
-        },
-        "Zygote": {
-          "error": "ArgumentError(\"Package Zygote not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"Zygote\\\")` to install the Zygote package.\")",
-          "ok": false
-        }
-      },
+      "detail": {},
       "name": "strict_julia_bridge_quarantine",
       "note": "PythonCall/DLPack/CondaPkg should not be available in the strict carrier by default.",
       "severity": "fail",
@@ -543,65 +572,12 @@
       "category": "cross_runtime",
       "detail": {
         "claim_ceiling": "Julia package produced table; JAX and PyTorch execute the finite tensor kernel.",
-        "jax_associator": [
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          -2.0,
-          0.0,
-          0.0
-        ],
-        "julia_associator": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          -2,
-          0,
-          0
-        ],
-        "julia_witness": {
-          "associator_components": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            -2,
-            0,
-            0
-          ],
-          "indices_one_based": [
-            2,
-            3,
-            5
-          ],
-          "indices_zero_based": [
-            1,
-            2,
-            4
-          ]
-        },
-        "max_abs_diff_julia_jax": 0.0,
-        "max_abs_diff_julia_torch": 0.0,
-        "torch_associator": [
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0,
-          -2.0,
-          0.0,
-          0.0
-        ]
+        "julia_witness": {}
       },
       "name": "julia_jax_torch_octonion_associator_agreement",
       "note": null,
       "severity": "fail",
-      "status": "pass"
+      "status": "fail"
     },
     {
       "category": "skill_agent_wiring",
@@ -756,12 +732,7 @@
       ]
     }
   },
-  "doctor_summary": {
-    "failures": [],
-    "install_state": "stable_observed",
-    "ok": true,
-    "warnings": []
-  },
+  "doctor_summary": null,
   "expected_runtime": {
     "julia": "/opt/homebrew/bin/julia",
     "julia_load_path": "@:@stdlib",
@@ -769,716 +740,21 @@
     "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
   },
   "formal_admission_allowed": false,
-  "generated_at": "2026-07-15T23:04:19.730482Z",
+  "generated_at": "2026-07-15T23:01:25.695036Z",
   "julia_probe": {
-    "active_project": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier/Project.toml",
-    "graphs_edge_count": 1,
-    "load_path": "@:@stdlib",
-    "octonion_first_nonzero_associator": {
-      "associator_components": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        -2,
-        0,
-        0
+    "raw": {
+      "cmd": [
+        "/opt/homebrew/bin/julia",
+        "--startup-file=no",
+        "--project=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier",
+        "-e",
+        "\nusing JSON3, JSON, Quaternions, Octonions, Z3, Graphs\n\ncomponents(x, props::Vector{Symbol}) = [Int(getproperty(x, prop)) for prop in props]\n\nfunction table_from_library(basis::Vector, props::Vector{Symbol})\n    dim = length(basis)\n    table = zeros(Int, dim, dim, dim)\n    for i in 1:dim, j in 1:dim\n        table[:, i, j] .= components(basis[i] * basis[j], props)\n    end\n    table\nend\n\nfunction nested_C(table::Array{Int,3})\n    dim = size(table, 1)\n    [[[table[k, i, j] for j in 1:dim] for i in 1:dim] for k in 1:dim]\nend\n\nfunction concrete_mul(table::Array{Int,3}, x::Vector{Int}, y::Vector{Int})\n    dim = size(table, 1)\n    out = zeros(Int, dim)\n    for k in 1:dim, i in 1:dim, j in 1:dim\n        out[k] += table[k, i, j] * x[i] * y[j]\n    end\n    out\nend\n\nfunction basisv(dim::Int, idx::Int)\n    v = zeros(Int, dim)\n    v[idx] = 1\n    v\nend\n\nfunction concrete_assoc(table::Array{Int,3}, a::Int, b::Int, c::Int)\n    dim = size(table, 1)\n    ea = basisv(dim, a)\n    eb = basisv(dim, b)\n    ec = basisv(dim, c)\n    concrete_mul(table, concrete_mul(table, ea, eb), ec) -\n        concrete_mul(table, ea, concrete_mul(table, eb, ec))\nend\n\nfunction first_nonzero_associator(table::Array{Int,3})\n    for a in 1:size(table, 1), b in 1:size(table, 1), c in 1:size(table, 1)\n        assoc = concrete_assoc(table, a, b, c)\n        if any(!=(0), assoc)\n            return Dict(\n                \"indices_one_based\" => [a, b, c],\n                \"indices_zero_based\" => [a - 1, b - 1, c - 1],\n                \"associator_components\" => assoc,\n            )\n        end\n    end\n    nothing\nend\n\nfunction import_status(name::String)\n    try\n        @eval using $(Symbol(name))\n        return Dict(\"ok\" => true, \"error\" => \"\")\n    catch e\n        return Dict(\"ok\" => false, \"error\" => first(split(string(e), \"\\n\")))\n    end\nend\n\nq_basis = [\n    Quaternion(1, 0, 0, 0),\n    Quaternion(0, 1, 0, 0),\n    Quaternion(0, 0, 1, 0),\n    Quaternion(0, 0, 0, 1),\n]\no_basis = [\n    Octonion(1, 0, 0, 0, 0, 0, 0, 0),\n    Octonion(0, 1, 0, 0, 0, 0, 0, 0),\n    Octonion(0, 0, 1, 0, 0, 0, 0, 0),\n    Octonion(0, 0, 0, 1, 0, 0, 0, 0),\n    Octonion(0, 0, 0, 0, 1, 0, 0, 0),\n    Octonion(0, 0, 0, 0, 0, 1, 0, 0),\n    Octonion(0, 0, 0, 0, 0, 0, 1, 0),\n    Octonion(0, 0, 0, 0, 0, 0, 0, 1),\n]\nq_table = table_from_library(q_basis, [:s, :v1, :v2, :v3])\no_table = table_from_library(o_basis, [:s, :v1, :v2, :v3, :v4, :v5, :v6, :v7])\n\nctx = Context()\nsolver = Solver(ctx)\nx = IntVar(\"x\", ctx)\nadd(solver, x == IntVal(1, ctx))\nadd(solver, Not(x == IntVal(1, ctx)))\n\ng = SimpleGraph(3)\nadd_edge!(g, 1, 2)\n\nblocked = Dict(\n    \"PythonCall\" => import_status(\"PythonCall\"),\n    \"DLPack\" => import_status(\"DLPack\"),\n    \"CondaPkg\" => import_status(\"CondaPkg\"),\n    \"Zygote\" => import_status(\"Zygote\"),\n)\n\npayload = Dict(\n    \"active_project\" => string(Base.active_project()),\n    \"load_path\" => join(Base.LOAD_PATH, \":\"),\n    \"quaternion_assoc_i_j_k\" => concrete_assoc(q_table, 2, 3, 4),\n    \"octonion_first_nonzero_associator\" => first_nonzero_associator(o_table),\n    \"octonion_structure_constants\" => nested_C(o_table),\n    \"z3_unsat\" => string(check(solver)),\n    \"graphs_edge_count\" => ne(g),\n    \"strict_blocked_imports\" => blocked,\n)\n\nprintln(\"JSON_BEGIN\")\nprintln(JSON3.write(payload))\nprintln(\"JSON_END\")\n"
       ],
-      "indices_one_based": [
-        2,
-        3,
-        5
-      ],
-      "indices_zero_based": [
-        1,
-        2,
-        4
-      ]
-    },
-    "octonion_structure_constants": [
-      [
-        [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1
-        ]
-      ],
-      [
-        [
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0
-        ]
-      ],
-      [
-        [
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0
-        ]
-      ],
-      [
-        [
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0
-        ]
-      ],
-      [
-        [
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0
-        ],
-        [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ]
-      ],
-      [
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0,
-          0
-        ]
-      ],
-      [
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1
-        ],
-        [
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0
-        ]
-      ],
-      [
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          -1,
-          0
-        ],
-        [
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ]
-      ]
-    ],
-    "quaternion_assoc_i_j_k": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "strict_blocked_imports": {
-      "CondaPkg": {
-        "error": "ArgumentError(\"Package CondaPkg not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"CondaPkg\\\")` to install the CondaPkg package.\")",
-        "ok": false
-      },
-      "DLPack": {
-        "error": "ArgumentError(\"Package DLPack not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"DLPack\\\")` to install the DLPack package.\")",
-        "ok": false
-      },
-      "PythonCall": {
-        "error": "ArgumentError(\"Package PythonCall not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"PythonCall\\\")` to install the PythonCall package.\")",
-        "ok": false
-      },
-      "Zygote": {
-        "error": "ArgumentError(\"Package Zygote not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"Zygote\\\")` to install the Zygote package.\")",
-        "ok": false
-      }
-    },
-    "z3_unsat": "unsat"
+      "returncode": 1,
+      "stderr_tail": "ERROR: ArgumentError: Package JSON3 [0f8b85d8-7281-11e9-16c2-39a750bddbf1] is required but does not seem to be installed:\n - Run `Pkg.instantiate()` to install all recorded dependencies.\n\n",
+      "stdout_tail": "",
+      "timed_out": false
+    }
   },
   "limitations": [
     "Support imports are capability checks, not load-bearing scientific evidence.",
@@ -1494,7 +770,7 @@
   },
   "name": "codex_runtime_capability_shakedown",
   "next_lego_target": "none; this audit only identifies runtime and skill wiring readiness",
-  "ok": true,
+  "ok": false,
   "out_of_scope": [
     "science admission",
     "canonical sim promotion",
@@ -1699,13 +975,17 @@
   "source_sha256": "73c91003632e417ef888ed9204272223f0d6364524d3fc308e00f445a9331479",
   "summary": {
     "counts": {
-      "fail": 0,
-      "pass": 29,
+      "fail": 3,
+      "pass": 26,
       "skip": 3,
       "warn": 0
     },
-    "failed_checks": [],
-    "ok": true,
+    "failed_checks": [
+      "codex_runtime_env_doctor",
+      "strict_julia_carrier_api_probe",
+      "julia_jax_torch_octonion_associator_agreement"
+    ],
+    "ok": false,
     "skip_checks": [
       "julia_python_dlpack_bridge",
       "claude_skill_gate_and_engine_skills",
@@ -1715,59 +995,6 @@
   },
   "tri_engine_table_probe": {
     "claim_ceiling": "Julia package produced table; JAX and PyTorch execute the finite tensor kernel.",
-    "jax_associator": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      -2.0,
-      0.0,
-      0.0
-    ],
-    "julia_associator": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      -2,
-      0,
-      0
-    ],
-    "julia_witness": {
-      "associator_components": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        -2,
-        0,
-        0
-      ],
-      "indices_one_based": [
-        2,
-        3,
-        5
-      ],
-      "indices_zero_based": [
-        1,
-        2,
-        4
-      ]
-    },
-    "max_abs_diff_julia_jax": 0.0,
-    "max_abs_diff_julia_torch": 0.0,
-    "torch_associator": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      -2.0,
-      0.0,
-      0.0
-    ]
+    "julia_witness": {}
   }
 }

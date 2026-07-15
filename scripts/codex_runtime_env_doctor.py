@@ -10,10 +10,13 @@ to create local CondaPkg environments.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
+import tomllib
 from pathlib import Path
 from typing import Any
 
@@ -285,19 +288,62 @@ println("JSON_END")
     return parsed
 
 
-def project_dep_scan() -> dict[str, Any]:
-    project = REPO / "system_v5/julia_carrier/Project.toml"
+def sha256_file(path: Path) -> str | None:
+    if not path.is_file():
+        return None
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def project_dep_scan(repo: Path = REPO) -> dict[str, Any]:
+    carrier = repo / "system_v5/julia_carrier"
+    project = carrier / "Project.toml"
+    manifest = carrier / "Manifest.toml"
     present: list[str] = []
     if project.exists():
         text = project.read_text()
         for dep in sorted(FORBIDDEN_REPO_PROJECT_DEPS):
             if f"{dep} =" in text:
                 present.append(dep)
+    rel_manifest = "system_v5/julia_carrier/Manifest.toml"
+    tracked = run(["git", "-C", str(repo), "ls-files", "--error-unmatch", "--", rel_manifest])
+    ignored = run(["git", "-C", str(repo), "check-ignore", "--quiet", "--", rel_manifest])
+    manifest_metadata: dict[str, Any] = {}
+    manifest_parse_error: str | None = None
+    absolute_path_entries: list[str] = []
+    if manifest.is_file():
+        manifest_text = manifest.read_text(encoding="utf-8")
+        try:
+            parsed = tomllib.loads(manifest_text)
+            manifest_metadata = {
+                "julia_version": parsed.get("julia_version"),
+                "manifest_format": parsed.get("manifest_format"),
+                "project_hash": parsed.get("project_hash"),
+            }
+        except tomllib.TOMLDecodeError as exc:
+            manifest_parse_error = str(exc)
+        for line in manifest_text.splitlines():
+            match = re.match(r"\s*path\s*=\s*[\"']([^\"']+)[\"']", line)
+            if match and Path(match.group(1)).is_absolute():
+                absolute_path_entries.append(match.group(1))
+    manifest_present = manifest.is_file()
+    manifest_ignored = ignored.get("returncode") == 0
     return {
         "project": str(project),
         "forbidden_deps_present": present,
         "forbidden_deps_expected_absent": sorted(FORBIDDEN_REPO_PROJECT_DEPS),
-        "manifest_present_local_ignored": (REPO / "system_v5/julia_carrier/Manifest.toml").exists(),
+        "manifest": str(manifest),
+        "manifest_present": manifest_present,
+        "manifest_tracked": tracked.get("returncode") == 0,
+        "manifest_ignored": manifest_ignored,
+        "manifest_present_local_ignored": manifest_present and manifest_ignored,
+        "manifest_sha256": sha256_file(manifest),
+        "manifest_metadata": manifest_metadata,
+        "manifest_parse_error": manifest_parse_error,
+        "manifest_absolute_path_entries": absolute_path_entries,
     }
 
 
@@ -388,11 +434,26 @@ def summarize(report: dict[str, Any]) -> dict[str, Any]:
                 if not modules.get(name, {}).get("ok"):
                     failures.append(f"julia module failed in carrier project: {name}")
 
-    if report["repo_project"]["forbidden_deps_present"]:
+    repo_project = report["repo_project"]
+    if repo_project["forbidden_deps_present"]:
         failures.append(
             "repo Julia Project.toml contains forbidden bridge deps: "
-            + ",".join(report["repo_project"]["forbidden_deps_present"])
+            + ",".join(repo_project["forbidden_deps_present"])
         )
+    if not repo_project.get("manifest_present"):
+        failures.append("strict Julia carrier Manifest.toml is missing")
+    if repo_project.get("manifest_ignored"):
+        failures.append("strict Julia carrier Manifest.toml is ignored")
+    if not repo_project.get("manifest_tracked"):
+        failures.append("strict Julia carrier Manifest.toml is not tracked by git")
+    if repo_project.get("manifest_parse_error"):
+        failures.append("strict Julia carrier Manifest.toml does not parse")
+    metadata = repo_project.get("manifest_metadata", {})
+    for field in ("julia_version", "manifest_format", "project_hash"):
+        if not metadata.get(field):
+            failures.append(f"strict Julia carrier Manifest.toml missing {field}")
+    if repo_project.get("manifest_absolute_path_entries"):
+        failures.append("strict Julia carrier Manifest.toml contains absolute path dependencies")
     if report["repo_pollution"]:
         failures.append("repo-local environment pollution found")
     active = report["active_installers"]

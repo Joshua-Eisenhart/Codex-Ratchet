@@ -153,7 +153,8 @@ wiki/
 .CondaPkg/
 **/.CondaPkg/
 *.pyc
-system_v5/julia_carrier/Manifest.toml
+# The strict carrier manifest is tracked so clean worktrees resolve the same Julia graph.
+# Runtime depots remain excluded below; updating this lock requires an explicit env-change lane.
 .CondaPkg
 *.CondaPkg
 

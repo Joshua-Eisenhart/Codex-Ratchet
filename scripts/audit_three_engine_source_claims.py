@@ -50,6 +50,7 @@ PACKAGE_TOKENS: dict[str, list[str]] = {
     # Python/JAX rich packages
     "jax": [r"jax\.config", r"jax\.device_get", r"jax\.vmap", r"jax\.jit", r"jax\.jac", r"jax\.grad", r"jax\.random", r"jax\.lax"],
     "jax.numpy": [r"\bjnp\.", r"import\s+jax\.numpy"],
+    "jaxlib": [r"\bxla_client\.make_cpu_client\s*\(", r"\bclient\.devices\s*\(", r"\bclient\.platform\b"],
     "jax.scipy.linalg": [r"\bjsp_linalg\.expm\s*\(", r"\bjax\.scipy\.linalg\.\w+\s*\("],
     "diffrax": [r"diffrax\.", r"\bODETerm\s*\(", r"\bdiffeqsolve\s*\(", r"\bTsit5\s*\("],
     "jaxopt": [r"jaxopt\.", r"\bGradientDescent\s*\(", r"\bLBFGS\s*\("],
@@ -88,7 +89,7 @@ PACKAGE_TOKENS: dict[str, list[str]] = {
 # For a stricter "claim-rich" bar, at least one package in these sets must be source-backed.
 ENGINE_RICH_PACKAGES = {
     "julia": {"QuantumOptics", "CliffordAlgebras", "Grassmann", "QuantumClifford", "Manifolds", "Z3", "ITensors", "ITensorMPS", "ITensorNetworks", "DifferentialEquations", "Graphs", "Attractors", "DynamicalSystems", "TensorOperations", "Symbolics", "julia_gf4_stdlib"},
-    "jax": {"diffrax", "jaxopt", "lineax", "jraph", "ott", "galois", "e3nn_jax", "netket", "qutip", "quimb", "quimb.tensor", "cotengra", "toponetx", "gudhi", "rustworkx", "networkx", "xgi", "z3", "cvc5", "sympy"},
+    "jax": {"jaxlib", "diffrax", "jaxopt", "lineax", "jraph", "ott", "galois", "e3nn_jax", "netket", "qutip", "quimb", "quimb.tensor", "cotengra", "toponetx", "gudhi", "rustworkx", "networkx", "xgi", "z3", "cvc5", "sympy"},
     "pytorch": {"torch_ga", "kingdon", "torch_geometric", "clifford", "geomstats", "e3nn", "torch.func", "functorch", "z3", "cvc5", "sympy"},
 }
 

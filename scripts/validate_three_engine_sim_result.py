@@ -36,6 +36,7 @@ JULIA_ALIGNED = {
     "julia_gf4_stdlib",
 }
 JAX_ALIGNED = {
+    "jaxlib",
     "diffrax",
     "netket",
     "quimb",

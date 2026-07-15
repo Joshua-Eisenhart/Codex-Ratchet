@@ -4,6 +4,7 @@
     "Z3": "load_bearing",
     "cvc5": "load_bearing",
     "jax": "supportive",
+    "jaxlib": "load_bearing",
     "python_stdlib": "supportive",
     "torch.func": "load_bearing",
     "z3": "load_bearing"
@@ -26,6 +27,11 @@
     },
     "jax": {
       "reason": "supportive vectorized heldout-view centroid distance readout",
+      "tried": true,
+      "used": true
+    },
+    "jaxlib": {
+      "reason": "load-bearing direct PJRT CPU client and device enumeration",
       "tried": true,
       "used": true
     },
@@ -64,6 +70,7 @@
     "Graphs",
     "Z3",
     "jax",
+    "jaxlib",
     "z3",
     "cvc5",
     "torch.func"
@@ -71,7 +78,7 @@
   "classification": "scratch_diagnostic",
   "control_only_tools": [],
   "controller_source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_envelope.py",
-  "controller_source_sha256": "c7c6a4587e399f2448347a08671ae68bfd96fcc577f50e17fd4bbba254817fef",
+  "controller_source_sha256": "700d7d9d64472a4d2cf26664d63645242bc3d94873ce1697d21b2719bb242005",
   "crossover_proofs": {
     "cvc5": {
       "claim": "independent cvc5 encoding agrees with z3 on projection battery polarity",
@@ -134,6 +141,7 @@
   "engines": {
     "jax": {
       "aligned_packages_load_bearing": [
+        "jaxlib",
         "z3",
         "cvc5"
       ],
@@ -142,11 +150,13 @@
       "formal_admission_allowed": false,
       "package_observables": {
         "cvc5": "independent cvc5 encoding agrees with z3 on projection battery polarity",
+        "jaxlib": "direct PJRT CPU client construction, platform readout, and concrete device enumeration",
         "z3": "UNSAT negation of nominal projection convergence gate with SAT erased controls"
       },
       "packages_used": [
         "jax",
         "jax.numpy",
+        "jaxlib",
         "z3",
         "cvc5"
       ],
@@ -154,9 +164,9 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_jax_results.json",
-      "result_sha256": "578911f479105d5fa074682069b4e7205e3886897f4c851b5506c92d4e577fdd",
+      "result_sha256": "bf00632aeb57568bbfad08b0d334e586040d7587c35937013c662ac142d740a7",
       "source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_jax.py",
-      "source_sha256": "881f301a071dc75967c1ead7b83202bc85b241a4919f38c7364c69cda2b0efff"
+      "source_sha256": "af6d25698b6366533ed7ddac34478aa65d24531e4a5cdac2795f896246957f9f"
     },
     "julia": {
       "aligned_packages_load_bearing": [
@@ -181,8 +191,8 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_julia_results.json",
-      "result_sha256": "21741a685dc663f34b9b6a3182d9e7e4e58ef84e811247d5152513bbaea702d0",
-      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_julia.jl",
+      "result_sha256": "415aced46521aff8eae15c958bddca89a52f32c7b77492003bff98dc5ac2704e",
+      "source_path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_julia.jl",
       "source_sha256": "bf7059412a61f3a9f6be2696ac034f9a48cbaecd6a8a29e2b800f8c9fd2d0e2e"
     },
     "pytorch": {
@@ -203,7 +213,7 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_pytorch_results.json",
-      "result_sha256": "52807b6af35d8909f7a87039af20ae229241de5bcacb46c06157d72d30f5486e",
+      "result_sha256": "483293a029af75315de576a84c69ee3a1b356e130e694d1707585c4b1ae45be9",
       "source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_pytorch.py",
       "source_sha256": "f3232ab5832cb246a1725a8b3569a4294580ab99d66ae563c13d9a96082faf63"
     }
@@ -241,9 +251,9 @@
     "common_source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_common.py",
     "common_source_sha256": "3410928bf00123eab6c7f2f426e0116ef1f087000128a6ff84d7ff4ccf3673f4",
     "controller_result": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_results.json",
-    "controller_result_sha256": "6c786637981540836eefec1d04fcc5c8ca1721bcfa5f2b29865f41880e9152dd",
+    "controller_result_sha256": "85b9a253ed6f061c974e0db823246010ff20e79c5d9857eac7dcb727cdbbab4d",
     "parent_envelope": "system_v7/sims/qit_full_type1_type2_64_live_v1/results/qit_full_type1_type2_64_live_v1_envelope_results.json",
-    "parent_envelope_sha256": "1ad747e8334f2d44f42665b31f9414bf1d98818c70197b6c6154d62ea5a2a930",
+    "parent_envelope_sha256": "10f3a0cb28fdbd525733cbb581fff7f16a75c78c0ea8116e08fac7a499dcd033",
     "parent_sim_id": "qit_full_type1_type2_64_live_v1"
   },
   "promotion_allowed": false,
@@ -252,8 +262,8 @@
   "sim_id": "qit_projection_battery_v0",
   "source_file_hashes": {
     "common_source": "3410928bf00123eab6c7f2f426e0116ef1f087000128a6ff84d7ff4ccf3673f4",
-    "envelope_source": "c7c6a4587e399f2448347a08671ae68bfd96fcc577f50e17fd4bbba254817fef",
-    "jax_source": "881f301a071dc75967c1ead7b83202bc85b241a4919f38c7364c69cda2b0efff",
+    "envelope_source": "700d7d9d64472a4d2cf26664d63645242bc3d94873ce1697d21b2719bb242005",
+    "jax_source": "af6d25698b6366533ed7ddac34478aa65d24531e4a5cdac2795f896246957f9f",
     "julia_source": "bf7059412a61f3a9f6be2696ac034f9a48cbaecd6a8a29e2b800f8c9fd2d0e2e",
     "main_source": "3a73ba6f3f6201fc45dd4ad4cf99dbd8aa61e04ed4e19a68f7a8591f344cbbf7",
     "pytorch_source": "f3232ab5832cb246a1725a8b3569a4294580ab99d66ae563c13d9a96082faf63"
@@ -287,6 +297,7 @@
     "engine_tool_intent": {
       "jax": {
         "cvc5": "independent cvc5 gate must agree with z3 on the same measured values",
+        "jaxlib": "direct PJRT CPU client must report the CPU platform and enumerate at least one concrete device",
         "z3": "projection-convergence gate negation must be UNSAT with SAT erased controls"
       },
       "julia": {
@@ -298,5 +309,5 @@
       }
     }
   },
-  "written_at": "2026-07-07T20:04:58Z"
+  "written_at": "2026-07-15T23:08:56Z"
 }

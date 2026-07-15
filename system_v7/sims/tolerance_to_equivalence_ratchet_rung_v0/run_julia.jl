@@ -140,7 +140,10 @@ function mss_antichain(raw)
 end
 
 function coface_loss(labels, demand_edges)
-    sum(labels[edge[1] + 1] == labels[edge[2] + 1] ? 1 : 0 for edge in demand_edges)
+    sum(
+        (labels[edge[1] + 1] == labels[edge[2] + 1] ? 1 : 0 for edge in demand_edges);
+        init=0,
+    )
 end
 
 function nested_bool(matrix)
@@ -156,6 +159,12 @@ function drive_record()
     initial_loss = coface_loss(initial, demand)
     proposal_loss = coface_loss(proposal, demand)
     drive = initial_loss - proposal_loss
+    reverse_drive = proposal_loss - initial_loss
+    null_drive = coface_loss(initial, []) - coface_loss(proposal, [])
+    universal = fill(0, length(initial))
+    universal_drive = initial_loss - coface_loss(universal, demand)
+    scrambled_drive = coface_loss(initial, scrambled) - coface_loss(proposal, scrambled)
+    flat_drive = coface_loss(proposal, demand) - coface_loss(proposal, demand)
     _, survivors = mss_antichain(raw)
     Dict(
         "raw_closure" => nested_bool(closure),
@@ -166,16 +175,16 @@ function drive_record()
         "drive" => drive,
         "decision" => drive > 0 ? "COMMIT_TOOTH" : "HOLD",
         "controls" => Dict(
-            "reverse_drive" => -drive,
-            "reverse_decision" => "HOLD",
-            "null_drive" => 0,
-            "null_decision" => "HOLD",
-            "universal_proposal_drive" => 0,
-            "universal_proposal_decision" => "HOLD",
-            "scrambled_drive" => coface_loss(initial, scrambled) - coface_loss(proposal, scrambled),
-            "scrambled_decision" => "HOLD",
-            "flat_drive" => 0,
-            "flat_decision" => "HOLD",
+            "reverse_drive" => reverse_drive,
+            "reverse_decision" => reverse_drive > 0 ? "COMMIT_TOOTH" : "HOLD",
+            "null_drive" => null_drive,
+            "null_decision" => null_drive > 0 ? "COMMIT_TOOTH" : "HOLD",
+            "universal_proposal_drive" => universal_drive,
+            "universal_proposal_decision" => universal_drive > 0 ? "COMMIT_TOOTH" : "HOLD",
+            "scrambled_drive" => scrambled_drive,
+            "scrambled_decision" => scrambled_drive > 0 ? "COMMIT_TOOTH" : "HOLD",
+            "flat_drive" => flat_drive,
+            "flat_decision" => flat_drive > 0 ? "COMMIT_TOOTH" : "HOLD",
         ),
         "mss_antichain" => survivors,
     )
@@ -208,6 +217,17 @@ function main()
         "classification" => "scratch_diagnostic",
         "promotion_allowed" => false,
         "formal_admission_allowed" => false,
+        "TOOL_MANIFEST" => Dict(
+            "Graphs" => Dict(
+                "used" => true,
+                "reason" => "Graphs.jl connected components execute the independent Julia closure lane",
+            ),
+            "JSON3" => Dict(
+                "used" => true,
+                "reason" => "JSON3 emits the source-bound engine receipt",
+            ),
+        ),
+        "TOOL_INTEGRATION_DEPTH" => Dict("Graphs" => "load_bearing", "JSON3" => "supportive"),
         "reads_peer_result" => false,
         "source_path" => relpath(SOURCE_PATH, dirname(dirname(dirname(SIM_DIR)))),
         "source_sha256" => bytes2hex(sha256(read(SOURCE_PATH))),

@@ -12,6 +12,17 @@ import jax
 import jax.numpy as jnp
 
 
+CLASSIFICATION = "scratch_diagnostic"
+PROMOTION_ALLOWED = False
+FORMAL_ADMISSION_ALLOWED = False
+TOOL_MANIFEST = {
+    "jax": {
+        "used": True,
+        "reason": "JAX arrays, vmap, and lax fixed-point updates execute the exhaustive closure and census lane.",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"jax": "load_bearing"}
+
 jax.config.update("jax_enable_x64", True)
 SIM_DIR = Path(__file__).resolve().parent
 SOURCE_PATH = Path(__file__).resolve()
@@ -137,6 +148,12 @@ def drive_record() -> dict[str, object]:
     initial_loss = coface_loss(initial, demand)
     proposal_loss = coface_loss(proposal, demand)
     drive = initial_loss - proposal_loss
+    reverse_drive = proposal_loss - initial_loss
+    null_drive = coface_loss(initial, []) - coface_loss(proposal, [])
+    universal = [0] * len(initial)
+    universal_drive = initial_loss - coface_loss(universal, demand)
+    scrambled_drive = coface_loss(initial, scrambled) - coface_loss(proposal, scrambled)
+    flat_drive = coface_loss(proposal, demand) - coface_loss(proposal, demand)
     return {
         "raw_closure": closed_list,
         "initial_labels": initial,
@@ -146,16 +163,16 @@ def drive_record() -> dict[str, object]:
         "drive": drive,
         "decision": "COMMIT_TOOTH" if drive > 0 else "HOLD",
         "controls": {
-            "reverse_drive": -drive,
-            "reverse_decision": "HOLD",
-            "null_drive": 0,
-            "null_decision": "HOLD",
-            "universal_proposal_drive": 0,
-            "universal_proposal_decision": "HOLD",
-            "scrambled_drive": coface_loss(initial, scrambled) - coface_loss(proposal, scrambled),
-            "scrambled_decision": "HOLD",
-            "flat_drive": 0,
-            "flat_decision": "HOLD",
+            "reverse_drive": reverse_drive,
+            "reverse_decision": "COMMIT_TOOTH" if reverse_drive > 0 else "HOLD",
+            "null_drive": null_drive,
+            "null_decision": "COMMIT_TOOTH" if null_drive > 0 else "HOLD",
+            "universal_proposal_drive": universal_drive,
+            "universal_proposal_decision": "COMMIT_TOOTH" if universal_drive > 0 else "HOLD",
+            "scrambled_drive": scrambled_drive,
+            "scrambled_decision": "COMMIT_TOOTH" if scrambled_drive > 0 else "HOLD",
+            "flat_drive": flat_drive,
+            "flat_decision": "COMMIT_TOOTH" if flat_drive > 0 else "HOLD",
         },
         "mss_antichain": mss_antichain(raw),
     }
@@ -188,9 +205,11 @@ def main() -> int:
         "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
         "engine": "jax",
         "generated_at": dt.datetime.now(dt.UTC).isoformat(),
-        "classification": "scratch_diagnostic",
-        "promotion_allowed": False,
-        "formal_admission_allowed": False,
+        "classification": CLASSIFICATION,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "formal_admission_allowed": FORMAL_ADMISSION_ALLOWED,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "reads_peer_result": False,
         "source_path": str(SOURCE_PATH.relative_to(SIM_DIR.parents[2])),
         "source_sha256": hashlib.sha256(SOURCE_PATH.read_bytes()).hexdigest(),

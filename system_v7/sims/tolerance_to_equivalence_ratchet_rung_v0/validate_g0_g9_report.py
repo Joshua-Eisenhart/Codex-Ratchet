@@ -40,9 +40,22 @@ def main() -> int:
                 (9, "independent_validator_and_mutations"),
             ]),
             gates["G10_deterministic_lev_replay"] is False,
-            report["candidate_pass"] is True,
-            report["candidate_decision"] == "COMMIT_TOOTH_CANDIDATE",
-            report["final_decision"] == "HOLD_PENDING_LEV",
+            report["mechanical_pass"] is True,
+            report["sim_contract_lint_pass"] is True,
+            any(
+                command.get("label") == "sim_contract_lint"
+                and command.get("pass") is True
+                and '"violation_total": 0' in command.get("stdout", "")
+                for command in report.get("commands", [])
+            ),
+            report["semantic_forcing_pass"] is False,
+            report["candidate_pass"] is False,
+            report["candidate_decision"] == "HOLD_DESIGNED_SURROGATE",
+            report["final_decision"] == "HOLD_SEMANTIC_FORCING",
+            report["ratchet_state"] == "OPEN",
+            report["semantic_gates"]["S1_controls_same_code_path"] is True,
+            report["semantic_gates"]["S2_independent_drive_mss_reconstruction"] is True,
+            not all(report["semantic_gates"].values()),
             report["llm_verdict_used"] is False,
             report["promotion_allowed"] is False,
             report["formal_admission_allowed"] is False,

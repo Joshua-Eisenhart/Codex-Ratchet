@@ -89,7 +89,8 @@ def main() -> int:
     require(not git("status", "--short"), "Lev worktree dirty")
     require(G0_G9.is_file(), "G0-G9 report missing")
     g0_g9 = json.loads(G0_G9.read_text(encoding="utf-8")) if G0_G9.is_file() else {}
-    require(g0_g9.get("candidate_pass") is True and g0_g9.get("final_decision") == "HOLD_PENDING_LEV", "G0-G9 candidate boundary invalid")
+    require(g0_g9.get("mechanical_pass") is True, "G0-G9 mechanical boundary invalid")
+    require(g0_g9.get("semantic_forcing_pass") is True, "semantic forcing gate is red; Lev cannot authorize a v0 tooth")
     evidence = []
     for event in gate_events:
         data = event["data"]
@@ -127,9 +128,14 @@ def main() -> int:
     LEV_RECEIPT.write_text(json.dumps(lev_receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     gates = dict(g0_g9.get("gates", {}))
     gates["G10_deterministic_lev_replay"] = g10_pass
-    all_pass = bool(g0_g9.get("candidate_pass") and all(gates.values()) and g10_pass)
+    all_pass = bool(
+        g0_g9.get("candidate_pass")
+        and g0_g9.get("semantic_forcing_pass")
+        and all(gates.values())
+        and g10_pass
+    )
     final_report = {
-        "schema": "codex_ratchet.tolerance_to_equivalence.final_report.v1",
+        "schema": "codex_ratchet.tolerance_to_equivalence.final_report.v2",
         "generated_at": dt.datetime.now(dt.UTC).isoformat(),
         "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
         "classification": "scratch_diagnostic",
@@ -143,14 +149,14 @@ def main() -> int:
         "all_code_gates_pass": all_pass,
         "decision": "COMMIT_ONE_BOUNDED_SCRATCH_TOOTH" if all_pass else "HOLD",
         "ratchet_state_before": "OPEN",
-        "ratchet_state_after": "TOOTH_1_COMMITTED_SCRATCH" if all_pass else "HOLD",
+        "ratchet_state_after": "TOOTH_1_COMMITTED_SCRATCH" if all_pass else "OPEN",
         "drive": g0_g9.get("candidate_decision"),
         "artifacts": {
             "g0_g9_report": {"path": str(G0_G9.relative_to(ROOT)), "sha256": sha256(G0_G9)},
             "lev_replay_receipt": {"path": str(LEV_RECEIPT.relative_to(ROOT)), "sha256": sha256(LEV_RECEIPT)},
         },
         "lev_boundary": {"proof_backed_execution": proof_backed, "evaluator_advisory_red": evaluator_advisory_red, "proof_bundle_written": False},
-        "claim_ceiling": "one bounded finite tolerance-to-equivalence scratch tooth on frozen fixtures; no canonical, formal, release, or scientific promotion",
+        "claim_ceiling": "Lev replay cannot repair the red v0 semantic-forcing gate; no Ratchet tooth",
         "blocked_consumers": [
             "official V8 launch until a runtime caller assembles and independently validates a Lev ProofBundle",
             "canonical Ratchet definition",

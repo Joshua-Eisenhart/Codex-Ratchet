@@ -1,4 +1,18 @@
 {
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "cvc5 independently checks the same bounded obligations in a separate solver runtime.",
+      "used": true
+    },
+    "z3": {
+      "reason": "Z3 independently checks the free-Boolean bounded relation obligations and erased-transitivity control.",
+      "used": true
+    }
+  },
   "all_pass": true,
   "claim_ceiling": "two bounded finite relation encodings only; not a general theorem prover admission",
   "classification": "scratch_diagnostic",
@@ -19,14 +33,14 @@
   },
   "formal_admission_allowed": false,
   "free_boolean_relation_variables": true,
-  "generated_at": "2026-07-15T22:13:34.954446+00:00",
+  "generated_at": "2026-07-15T23:53:07.398209+00:00",
   "ground_literal_only": false,
   "promotion_allowed": false,
   "reads_peer_result": false,
   "schema": "codex_ratchet.tolerance_to_equivalence.proof_result.v1",
   "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
   "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py",
-  "source_sha256": "62beee46877ab6c7b870e8f03eccbd7792ce5550c382d4a57c608e30411078d0",
+  "source_sha256": "8a96a1f20fa6cb275d9c3973bd78cda72e554c03b81526cf8222a500df95af1f",
   "z3": {
     "queries": {
       "drop_transitivity_endpoint_absent": "sat",

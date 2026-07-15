@@ -1,4 +1,13 @@
 {
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_stdlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "The controller uses only standard-library process isolation, hashing, and JSON assembly.",
+      "used": true
+    }
+  },
   "all_pass": true,
   "blocked_consumers": [
     "primitive identity or object ontology",
@@ -26,7 +35,7 @@
       "command": [
         "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
         "-B",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/validate_preregistration.py"
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/validate_preregistration.py"
       ],
       "label": "preregistration",
       "pass": true,
@@ -38,20 +47,20 @@
       "command": [
         "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
         "-B",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/scripts/codex_runtime_env_doctor.py"
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/scripts/codex_runtime_env_doctor.py"
       ],
       "label": "runtime_doctor",
       "pass": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "ok=True install_state=stable_observed\nrepo=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715\nsim_stack_alias=/Users/joshuaeisenhart/.local/share/sim-stack\nphysical_python_env=/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main\npython=/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3\njulia=/opt/homebrew/bin/julia\njulia_project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier\njulia_load_path=@:@stdlib\nNo repo-local env pollution, missing expected modules, or active installers observed.\n"
+      "stdout": "ok=True install_state=stable_observed\nrepo=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715\nsim_stack_alias=/Users/joshuaeisenhart/.local/share/sim-stack\nphysical_python_env=/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main\npython=/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3\njulia=/opt/homebrew/bin/julia\njulia_project=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier\njulia_load_path=@:@stdlib\nNo repo-local env pollution, missing expected modules, or active installers observed.\n"
     },
     {
       "command": [
         "/opt/homebrew/bin/julia",
         "--startup-file=no",
-        "--project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_julia.jl"
+        "--project=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_julia.jl"
       ],
       "label": "julia",
       "pass": true,
@@ -63,7 +72,7 @@
       "command": [
         "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
         "-B",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_jax.py"
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_jax.py"
       ],
       "label": "jax",
       "pass": true,
@@ -75,7 +84,7 @@
       "command": [
         "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
         "-B",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pytorch.py"
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pytorch.py"
       ],
       "label": "pytorch",
       "pass": true,
@@ -87,7 +96,7 @@
       "command": [
         "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
         "-B",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py"
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py"
       ],
       "label": "dual_smt",
       "pass": true,
@@ -97,7 +106,7 @@
     }
   ],
   "controller_source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_controller.py",
-  "controller_source_sha256": "75cf29cba162610eef356a8082f9ccfc078cfb785e53e0daecbffd6e5cc30be7",
+  "controller_source_sha256": "88d6cc018657d5a629e1c67119e30718ca1b122e5f57dcd5d29e5575dac25671",
   "decision": "COMMIT_TOOTH_CANDIDATE",
   "divergence": {
     "census_match": true,
@@ -186,6 +195,15 @@
   "engines": {
     "jax": {
       "payload": {
+        "TOOL_INTEGRATION_DEPTH": {
+          "jax": "load_bearing"
+        },
+        "TOOL_MANIFEST": {
+          "jax": {
+            "reason": "JAX arrays, vmap, and lax fixed-point updates execute the exhaustive closure and census lane.",
+            "used": true
+          }
+        },
         "aligned_packages_load_bearing": [
           "jax",
           "jax.numpy",
@@ -302,7 +320,7 @@
         },
         "engine": "jax",
         "formal_admission_allowed": false,
-        "generated_at": "2026-07-15T22:13:30.986016+00:00",
+        "generated_at": "2026-07-15T23:53:03.502741+00:00",
         "packages_used": [
           "jax",
           "jax.numpy"
@@ -317,7 +335,7 @@
         "schema": "codex_ratchet.tolerance_to_equivalence.engine_result.v1",
         "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
         "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_jax.py",
-        "source_sha256": "b7a3a2105ad2390e5598167ae7585f38aff4d0d00821ed74dd90d3c5a5746f9b",
+        "source_sha256": "9dc2d39e4e00f48a3edcf87cd632388cee1d6ddacc9f61deb0dd7f4c7f98220e",
         "transitivity_witness": {
           "closure_labels": [
             0,
@@ -346,14 +364,28 @@
         }
       },
       "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/jax_results.json",
-      "result_sha256": "3b3109de4d782e4a30f0c82a1425a61fc87703484c039b1517531827eb1625ff",
+      "result_sha256": "dfd213a11a7901ca40c8036a52949331fd2d0ab02066671cd2f56b617ba5e446",
       "source_exists": true,
       "source_hash_match": true,
       "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_jax.py",
-      "source_sha256": "b7a3a2105ad2390e5598167ae7585f38aff4d0d00821ed74dd90d3c5a5746f9b"
+      "source_sha256": "9dc2d39e4e00f48a3edcf87cd632388cee1d6ddacc9f61deb0dd7f4c7f98220e"
     },
     "julia": {
       "payload": {
+        "TOOL_INTEGRATION_DEPTH": {
+          "Graphs": "load_bearing",
+          "JSON3": "supportive"
+        },
+        "TOOL_MANIFEST": {
+          "Graphs": {
+            "reason": "Graphs.jl connected components execute the independent Julia closure lane",
+            "used": true
+          },
+          "JSON3": {
+            "reason": "JSON3 emits the source-bound engine receipt",
+            "used": true
+          }
+        },
         "aligned_packages_load_bearing": [
           "Graphs"
         ],
@@ -467,7 +499,7 @@
         },
         "engine": "julia",
         "formal_admission_allowed": false,
-        "generated_at": "2026-07-15T22:13:27.441",
+        "generated_at": "2026-07-15T23:52:59.957",
         "packages_used": [
           "Graphs",
           "JSON3",
@@ -477,13 +509,13 @@
         "promotion_allowed": false,
         "reads_peer_result": false,
         "runtime": {
-          "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+          "active_project": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier/Project.toml",
           "julia_version": "1.12.6"
         },
         "schema": "codex_ratchet.tolerance_to_equivalence.engine_result.v1",
         "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
         "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_julia.jl",
-        "source_sha256": "76f5658f68ede0765d302304fd62c2d234ec9d16ff26925a820456136bf119ce",
+        "source_sha256": "33b43f6c1bda5a851e24da09881178ad407366b3fcec94d948947ba7baf2528e",
         "transitivity_witness": {
           "closure_labels": [
             0,
@@ -512,14 +544,28 @@
         }
       },
       "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/julia_results.json",
-      "result_sha256": "5bd25f0558069d37d2dcd0e672d9b5741c6d3238304793132f017a68571be642",
+      "result_sha256": "dd744c3141ecd495649fcb94398f825657985655f13dc6e2c09bdac1bf3d9538",
       "source_exists": true,
       "source_hash_match": true,
       "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_julia.jl",
-      "source_sha256": "76f5658f68ede0765d302304fd62c2d234ec9d16ff26925a820456136bf119ce"
+      "source_sha256": "33b43f6c1bda5a851e24da09881178ad407366b3fcec94d948947ba7baf2528e"
     },
     "proof": {
       "payload": {
+        "TOOL_INTEGRATION_DEPTH": {
+          "cvc5": "load_bearing",
+          "z3": "load_bearing"
+        },
+        "TOOL_MANIFEST": {
+          "cvc5": {
+            "reason": "cvc5 independently checks the same bounded obligations in a separate solver runtime.",
+            "used": true
+          },
+          "z3": {
+            "reason": "Z3 independently checks the free-Boolean bounded relation obligations and erased-transitivity control.",
+            "used": true
+          }
+        },
         "all_pass": true,
         "claim_ceiling": "two bounded finite relation encodings only; not a general theorem prover admission",
         "classification": "scratch_diagnostic",
@@ -540,14 +586,14 @@
         },
         "formal_admission_allowed": false,
         "free_boolean_relation_variables": true,
-        "generated_at": "2026-07-15T22:13:34.954446+00:00",
+        "generated_at": "2026-07-15T23:53:07.398209+00:00",
         "ground_literal_only": false,
         "promotion_allowed": false,
         "reads_peer_result": false,
         "schema": "codex_ratchet.tolerance_to_equivalence.proof_result.v1",
         "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
         "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py",
-        "source_sha256": "62beee46877ab6c7b870e8f03eccbd7792ce5550c382d4a57c608e30411078d0",
+        "source_sha256": "8a96a1f20fa6cb275d9c3973bd78cda72e554c03b81526cf8222a500df95af1f",
         "z3": {
           "queries": {
             "drop_transitivity_endpoint_absent": "sat",
@@ -559,14 +605,28 @@
         }
       },
       "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/proof_results.json",
-      "result_sha256": "ea094610e178516a97b1072f57dc1432a6743e81e98d682ac41d9732e310f0c8",
+      "result_sha256": "edde40152774d7ddf714d76d05ba26cec957b89b138c2ff05ec43c5a07e43fb7",
       "source_exists": true,
       "source_hash_match": true,
       "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py",
-      "source_sha256": "62beee46877ab6c7b870e8f03eccbd7792ce5550c382d4a57c608e30411078d0"
+      "source_sha256": "8a96a1f20fa6cb275d9c3973bd78cda72e554c03b81526cf8222a500df95af1f"
     },
     "pytorch": {
       "payload": {
+        "TOOL_INTEGRATION_DEPTH": {
+          "pyg": "load_bearing",
+          "pytorch": "load_bearing"
+        },
+        "TOOL_MANIFEST": {
+          "pyg": {
+            "reason": "PyG MessagePassing executes the independent reachability closure lane.",
+            "used": true
+          },
+          "pytorch": {
+            "reason": "PyTorch tensors execute the exhaustive relation and closure calculations.",
+            "used": true
+          }
+        },
         "aligned_packages_load_bearing": [
           "torch",
           "torch.matmul",
@@ -682,7 +742,7 @@
         },
         "engine": "pytorch",
         "formal_admission_allowed": false,
-        "generated_at": "2026-07-15T22:13:34.325978+00:00",
+        "generated_at": "2026-07-15T23:53:06.708818+00:00",
         "packages_used": [
           "torch",
           "torch_geometric"
@@ -696,7 +756,7 @@
         "schema": "codex_ratchet.tolerance_to_equivalence.engine_result.v1",
         "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
         "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pytorch.py",
-        "source_sha256": "ebedb13bfae878b46bad4d0dea82ae5e95c7b59691417d83fea31492cbc946c2",
+        "source_sha256": "37f2e34a7a1d41aec6dd6e98c3e053e0876070cd86a53da9652d55820de52b40",
         "transitivity_witness": {
           "closure_labels": [
             0,
@@ -725,17 +785,17 @@
         }
       },
       "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/pytorch_results.json",
-      "result_sha256": "2934cca4c13050b9473fb04f5eb7fa861f534b69407588df9002d216b1eb8037",
+      "result_sha256": "0434c8c527b30cd69971a48afdd1a8512e02cd9096402f95639c65fda2e41315",
       "source_exists": true,
       "source_hash_match": true,
       "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pytorch.py",
-      "source_sha256": "ebedb13bfae878b46bad4d0dea82ae5e95c7b59691417d83fea31492cbc946c2"
+      "source_sha256": "37f2e34a7a1d41aec6dd6e98c3e053e0876070cd86a53da9652d55820de52b40"
     }
   },
   "formal_admission_allowed": false,
-  "generated_at": "2026-07-15T22:13:34.967410+00:00",
+  "generated_at": "2026-07-15T23:53:07.412846+00:00",
   "julia_executable": "/opt/homebrew/bin/julia",
-  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+  "julia_project": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/julia_carrier",
   "llm_verdict_used": false,
   "mss_antichain": [
     {
@@ -781,35 +841,35 @@
   "source_bindings": {
     "jax": {
       "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/jax_results.json",
-      "result_sha256": "3b3109de4d782e4a30f0c82a1425a61fc87703484c039b1517531827eb1625ff",
+      "result_sha256": "dfd213a11a7901ca40c8036a52949331fd2d0ab02066671cd2f56b617ba5e446",
       "source_exists": true,
       "source_hash_match": true,
       "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_jax.py",
-      "source_sha256": "b7a3a2105ad2390e5598167ae7585f38aff4d0d00821ed74dd90d3c5a5746f9b"
+      "source_sha256": "9dc2d39e4e00f48a3edcf87cd632388cee1d6ddacc9f61deb0dd7f4c7f98220e"
     },
     "julia": {
       "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/julia_results.json",
-      "result_sha256": "5bd25f0558069d37d2dcd0e672d9b5741c6d3238304793132f017a68571be642",
+      "result_sha256": "dd744c3141ecd495649fcb94398f825657985655f13dc6e2c09bdac1bf3d9538",
       "source_exists": true,
       "source_hash_match": true,
       "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_julia.jl",
-      "source_sha256": "76f5658f68ede0765d302304fd62c2d234ec9d16ff26925a820456136bf119ce"
+      "source_sha256": "33b43f6c1bda5a851e24da09881178ad407366b3fcec94d948947ba7baf2528e"
     },
     "proof": {
       "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/proof_results.json",
-      "result_sha256": "ea094610e178516a97b1072f57dc1432a6743e81e98d682ac41d9732e310f0c8",
+      "result_sha256": "edde40152774d7ddf714d76d05ba26cec957b89b138c2ff05ec43c5a07e43fb7",
       "source_exists": true,
       "source_hash_match": true,
       "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py",
-      "source_sha256": "62beee46877ab6c7b870e8f03eccbd7792ce5550c382d4a57c608e30411078d0"
+      "source_sha256": "8a96a1f20fa6cb275d9c3973bd78cda72e554c03b81526cf8222a500df95af1f"
     },
     "pytorch": {
       "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/pytorch_results.json",
-      "result_sha256": "2934cca4c13050b9473fb04f5eb7fa861f534b69407588df9002d216b1eb8037",
+      "result_sha256": "0434c8c527b30cd69971a48afdd1a8512e02cd9096402f95639c65fda2e41315",
       "source_exists": true,
       "source_hash_match": true,
       "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pytorch.py",
-      "source_sha256": "ebedb13bfae878b46bad4d0dea82ae5e95c7b59691417d83fea31492cbc946c2"
+      "source_sha256": "37f2e34a7a1d41aec6dd6e98c3e053e0876070cd86a53da9652d55820de52b40"
     }
   }
 }

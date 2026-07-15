@@ -6,8 +6,9 @@ Generated in an isolated worktree based on commit `fe6487de5136d18e7471952a2aa70
 
 - Finite roster: **139** rows across **10** buckets.
 - Historical estate: **95** operational passes and **29** integration edges, but bound to `576229471147` / tree `c249f58d144f` and stale to V8.
-- Fresh first tooth: **COMMIT_ONE_BOUNDED_SCRATCH_TOOTH**, with all G0-G10 code gates green.
-- Official launch: **BLOCKED**. `proof_backed_execution=false`, the Lev evaluator advisory red is preserved, and no ProofBundle was written.
+- Fresh v0 mechanics: G0-G9 rerun locally, but the semantic-forcing audit is red.
+- Ratchet tooth: **NOT EARNED**. Current decision is HOLD_DESIGNED_SURROGATE; state remains OPEN.
+- Official launch: **BLOCKED**. A Lev replay or ProofBundle cannot override the semantic red.
 
 ## Bucket Counts
 

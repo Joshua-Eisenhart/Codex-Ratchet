@@ -13,6 +13,21 @@ import z3
 from cvc5 import Kind
 
 
+CLASSIFICATION = "scratch_diagnostic"
+PROMOTION_ALLOWED = False
+FORMAL_ADMISSION_ALLOWED = False
+TOOL_MANIFEST = {
+    "z3": {
+        "used": True,
+        "reason": "Z3 independently checks the free-Boolean bounded relation obligations and erased-transitivity control.",
+    },
+    "cvc5": {
+        "used": True,
+        "reason": "cvc5 independently checks the same bounded obligations in a separate solver runtime.",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing", "cvc5": "load_bearing"}
+
 SIM_DIR = Path(__file__).resolve().parent
 SOURCE_PATH = Path(__file__).resolve()
 RESULT_PATH = SIM_DIR / "results" / "proof_results.json"
@@ -128,9 +143,11 @@ def main() -> int:
         "schema": "codex_ratchet.tolerance_to_equivalence.proof_result.v1",
         "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
         "generated_at": dt.datetime.now(dt.UTC).isoformat(),
-        "classification": "scratch_diagnostic",
-        "promotion_allowed": False,
-        "formal_admission_allowed": False,
+        "classification": CLASSIFICATION,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "formal_admission_allowed": FORMAL_ADMISSION_ALLOWED,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "reads_peer_result": False,
         "source_path": str(SOURCE_PATH.relative_to(SIM_DIR.parents[2])),
         "source_sha256": hashlib.sha256(SOURCE_PATH.read_bytes()).hexdigest(),

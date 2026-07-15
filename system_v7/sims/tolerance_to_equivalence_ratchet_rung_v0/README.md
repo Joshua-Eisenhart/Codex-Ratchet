@@ -1,6 +1,10 @@
 # Tolerance-to-Equivalence Ratchet Rung v0
 
-This packet is the smallest executable definition of a Codex Ratchet rung that this audit could justify. It earns one **bounded scratch tooth** on frozen finite fixtures. It does not launch V8, define primitive identity, prove the QIT engine, or admit terrain/operator, Axis, physics, cosmology, biology, cognition, or consciousness claims.
+This packet is a mechanically tested finite tolerance-to-equivalence surrogate.
+The deeper semantic audit demotes its former scratch-tooth wording: it does not
+earn a Ratchet tooth. Its current state is OPEN with
+HOLD_DESIGNED_SURROGATE. See SEMANTIC_AUDIT.md and the v1 semantic-forcing
+preregistration.
 
 ## Packet map
 
@@ -13,7 +17,8 @@ This packet is the smallest executable definition of a Codex Ratchet rung that t
 
 ## Definition
 
-The state starts `OPEN` and may end `TOOTH_1_COMMITTED_SCRATCH` only through code gates G0-G10.
+The state starts and remains OPEN. G0-G9 measure finite mechanics; G10 cannot
+override a red semantic-forcing gate.
 
 1. **R0 — tolerance substrate.** On finite labeled addresses `X_n`, enumerate every reflexive symmetric relation `T`. Transitivity is measured and may fail; `T` is not identity.
 2. **R1 — earned equivalence.** Compute the least equivalence containing `T`, here the connected-component closure. A three-address chain `0~1~2` with `0!~2` is the frozen witness that tolerance need not already be transitive.
@@ -59,17 +64,19 @@ All three engines independently reproduced this census and the two frozen closur
 - G7 proves engine-lane closure from peer result files.
 - G8 binds sources, runtimes, classification, and claim ceiling.
 - G9 requires coherent-envelope mutations to be rejected.
-- G10 replays the validators through a pinned clean no-model Lev executor.
+- G10 may replay deterministic validators, but cannot authorize v0 while the
+  semantic-forcing gate is red.
 
-The run result is recorded in `results/final_report.json`. `all_code_gates_pass=true` and the scratch state advances, while `release_eligible=false`, `scientific_claim_proven=false`, `official_launch_allowed=false`, and `proof_backed_execution=false` remain mandatory reds.
+The current result is recorded in results/final_report.json.
+mechanical_code_gates_pass is true, semantic_forcing_pass is false, and
+all_code_gates_pass is false. No Ratchet state advances.
 
 ## Run
 
 From the isolated worktree root, with the documented Python runtime and Julia carrier available:
 
 ```sh
-CODEX_RATCHET_JULIA_PROJECT=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier \
-  /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B \
+/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B \
   system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pipeline.py
 ```
 
@@ -77,4 +84,7 @@ The no-model Lev replay is defined in `lev/flow.yaml`; its pinned executable ide
 
 ## What must happen before an official launch
 
-The packet must be committed and rerun from that exact clean tree; the full 139-tool estate must be refreshed rather than inherited from the older tree; Lev must actually assemble and independently validate a ProofBundle; every gate must survive isolated failure injection; and the fixture must generalize to preregistered held-out relation families before any higher Ratchet claim is considered.
+Do not finish this fixture into a tooth. Build the sealed v1 preregistration,
+then add its closed Julia/JAX/PyTorch lanes, post-seal held-out estate, semantic
+mutations, and append-only pawl. Lev proof work remains necessary process
+infrastructure but is not a substitute for those semantic gates.

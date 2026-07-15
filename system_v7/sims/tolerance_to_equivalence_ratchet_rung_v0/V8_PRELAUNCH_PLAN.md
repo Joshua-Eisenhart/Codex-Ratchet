@@ -2,7 +2,11 @@
 
 ## Current decision
 
-Keep the earned state `TOOTH_1_COMMITTED_SCRATCH` and the launch state `BLOCKED`. G0-G10 show that a finite tolerance-to-equivalence tooth can be defined and code-gated. They do not establish that the tolerance comes from the intended Ratchet root, that the tooth generalizes, or that the execution is release-reconstructable.
+Keep the Ratchet state OPEN and launch state BLOCKED. V0 demonstrates finite
+closure, solver, and receipt mechanics, but its drive is fixture-designed, MSS
+does not select the proposal, and no held-out estate or persistent pawl exists.
+Proceed through the sealed v1 semantic-forcing preregistration; do not repair
+v0 into a tooth by finishing G10.
 
 ## Phase 1 — seal the existing scratch tooth
 

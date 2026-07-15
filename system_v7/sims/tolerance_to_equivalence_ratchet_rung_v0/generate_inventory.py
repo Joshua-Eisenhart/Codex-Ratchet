@@ -96,7 +96,7 @@ def main() -> int:
             "historical_source_tree": receipt.get("source_binding", {}).get("ratchet_tree") if receipt else None,
             "stale_to_v8_tree": stale,
             "first_rung": first_rung_role(row["tool_id"]),
-            "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth"
+            "claim_ceiling": "L2 historical integration diagnostic; fresh v0 roles support finite mechanics only, not a Ratchet tooth"
         }
         tools.append(tool)
     bucket_counts = dict(sorted(collections.Counter(row["bucket"] for row in roster["tools"]).items()))
@@ -122,7 +122,7 @@ def main() -> int:
             "roster": {"path": str(ROSTER_PATH.relative_to(ROOT)), "sha256": sha256(ROSTER_PATH), "tool_count": len(tools)},
             "edges": {"path": str(EDGES_PATH.relative_to(ROOT)), "sha256": sha256(EDGES_PATH), "edge_count": len(edge_ids)},
             "historical_estate": {"path": str(ESTATE_PATH.relative_to(ROOT)), "sha256": sha256(ESTATE_PATH), "source_commit": estate["source_state"]["ratchet_commit"], "source_tree": estate["source_state"]["ratchet_tree"], "projection_only": True, "release_eligible": estate.get("release_eligible"), "scientific_claim_proven": estate.get("scientific_claim_proven"), "stale_to_v8_tree": estate["source_state"]["ratchet_tree"] != current_tree},
-            "first_tooth": {"path": str(FINAL_PATH.relative_to(ROOT)), "sha256": sha256(FINAL_PATH), "all_code_gates_pass": final["all_code_gates_pass"], "decision": final["decision"], "official_launch_allowed": final["official_launch_allowed"]}
+            "first_rung_v0": {"path": str(FINAL_PATH.relative_to(ROOT)), "sha256": sha256(FINAL_PATH), "mechanical_code_gates_pass": final["mechanical_code_gates_pass"], "semantic_forcing_pass": final["semantic_forcing_pass"], "all_code_gates_pass": final["all_code_gates_pass"], "decision": final["decision"], "official_launch_allowed": final["official_launch_allowed"]}
         },
         "summary": {"tool_count": len(tools), "bucket_counts": bucket_counts, "historical_operational_pass_count": operational_count, "integration_edge_count": len(edge_ids), "fresh_first_rung_tool_count": sum(row["first_rung"] is not None for row in tools)},
         "integration_edges": {"ids": edge_ids, "compatibility_or_cohealth_count": 25, "independent_cross_runtime_recomputation_ids": ["cross_tensor", "cross_dynamics", "cross_proof"], "direct_value_handoff_ids": ["cross_jax_torch"], "claim_boundary": "29 green edge receipts do not mean 29 shared-value pipelines"},
@@ -130,7 +130,7 @@ def main() -> int:
         "repositories": repositories,
         "extra_tools_outside_139": sources["extra_tools_outside_139"],
         "code_surfaces": sources["code_surfaces"],
-        "launch_boundary": {"first_bounded_scratch_tooth": "committed", "official_launch": "blocked", "lev_proof_backed_execution": final["lev_boundary"]["proof_backed_execution"], "lev_evaluator_advisory_red": final["lev_boundary"]["evaluator_advisory_red"], "proof_bundle_written": final["lev_boundary"]["proof_bundle_written"]}
+        "launch_boundary": {"first_bounded_scratch_tooth": "not_earned", "v0_mechanical_pass": final["mechanical_code_gates_pass"], "v0_semantic_forcing_pass": final["semantic_forcing_pass"], "official_launch": "blocked", "lev_proof_backed_execution": final["lev_boundary"]["proof_backed_execution"], "proof_bundle_written": final["lev_boundary"]["proof_bundle_written"]}
     }
     JSON_OUT.write_text(json.dumps(inventory, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     lines = [
@@ -142,8 +142,9 @@ def main() -> int:
         "",
         f"- Finite roster: **{len(tools)}** rows across **{len(bucket_counts)}** buckets.",
         f"- Historical estate: **{operational_count}** operational passes and **{len(edge_ids)}** integration edges, but bound to `{estate['source_state']['ratchet_commit'][:12]}` / tree `{estate['source_state']['ratchet_tree'][:12]}` and stale to V8.",
-        f"- Fresh first tooth: **{final['decision']}**, with all G0-G10 code gates green.",
-        "- Official launch: **BLOCKED**. `proof_backed_execution=false`, the Lev evaluator advisory red is preserved, and no ProofBundle was written.",
+        f"- Fresh v0 mechanics: **{final['decision']}**; mechanical gates green, semantic forcing red.",
+        "- Ratchet tooth: **NOT EARNED**. G10 or a ProofBundle cannot override the semantic red.",
+        "- Official launch: **BLOCKED**.",
         "",
         "## Bucket Counts",
         "",
@@ -183,7 +184,7 @@ def main() -> int:
     lines.extend(["", "## Tools Outside the Frozen 139", "", "| Tool | State | Evidence | Blocker |", "|---|---|---|---|"])
     for row in sources["extra_tools_outside_139"]:
         lines.append(f"| {row['tool']} | {row['state']} | {row['evidence']} | {row['blocker']} |")
-    lines.extend(["", "## Launch Boundary", "", "The code has earned exactly one bounded scratch tooth. It has not earned official launch, canonical status, a QIT derivation, terrain/operator promotion, or any cross-domain scientific claim. The next infrastructure blocker is a real runtime caller for `assembleProofBundle()` plus independent bundle validation; the next scientific rung is a broader tolerance/context tournament, not a prose promotion of this fixture.", ""])
+    lines.extend(["", "## Launch Boundary", "", "V0 has not earned a Ratchet tooth. Its finite mechanics are useful, but semantic forcing, held-out generalization, and a persistent pawl are red. Build the sealed v1 semantic-forcing preregistration before any G10, QIT, Axis, terrain/operator, or launch claim.", ""])
     MD_OUT.write_text("\n".join(lines), encoding="utf-8")
     print(f"V8_INVENTORY_DONE tools={len(tools)} edges={len(edge_ids)} repos={len(repositories)} json={JSON_OUT} md={MD_OUT}")
     return 0

@@ -1,30 +1,37 @@
 {
-  "all_code_gates_pass": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_stdlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "The pipeline uses standard-library subprocess, hashing, and JSON to compose code-gate receipts.",
+      "used": true
+    }
+  },
+  "all_code_gates_pass": false,
   "artifacts": {
     "g0_g9_report": {
       "path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/g0_g9_report.json",
-      "sha256": "7177c57d12cad94a7b7b254f00d3e7ea8e83218e5d6397531325cfbf0ca4d74e"
+      "sha256": "94cf5dbbd5f827ffadf7c32e17a822d8c3adcba8478a36a8773d64afa2e78ceb"
     },
-    "lev_replay_receipt": {
-      "path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/lev_replay_receipt.json",
-      "sha256": "349104e0a72dabaef97f7435f3e54a167a5a3a7f71cb7b4d570a580c5c2c8b76"
+    "semantic_audit": {
+      "path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/semantic_audit.json",
+      "sha256": "1b5afc4b97937ad4f1505e6df75d3249cecbcda99fe00322d0455779b94aa6b6"
     }
   },
   "blocked_consumers": [
-    "official V8 launch until a runtime caller assembles and independently validates a Lev ProofBundle",
-    "canonical Ratchet definition",
-    "QIT engine derivation",
-    "terrain/operator and Axis promotion",
-    "physics, cosmology, biology, cognition, or consciousness claims"
+    "official Ratchet launch",
+    "canonical/scientific promotion",
+    "terrain/operator layers",
+    "cross-domain claims"
   ],
-  "claim_ceiling": "one bounded finite tolerance-to-equivalence scratch tooth on frozen fixtures; no canonical, formal, release, or scientific promotion",
+  "claim_ceiling": "G0-G9 mechanically green finite pair-collapse-loss surrogate; semantic forcing, persistent pawl, and G10 are absent",
   "classification": "scratch_diagnostic",
-  "decision": "COMMIT_ONE_BOUNDED_SCRATCH_TOOTH",
-  "drive": "COMMIT_TOOTH_CANDIDATE",
+  "decision": "HOLD_DESIGNED_SURROGATE",
   "formal_admission_allowed": false,
   "gates": {
     "G0_preregistered_object": true,
-    "G10_deterministic_lev_replay": true,
+    "G10_deterministic_lev_replay": false,
     "G1_exact_census": true,
     "G2_three_engine_closure_parity": true,
     "G3_dual_smt": true,
@@ -35,19 +42,34 @@
     "G8_source_runtime_ceiling_binding": true,
     "G9_independent_validator_and_mutations": true
   },
-  "generated_at": "2026-07-15T20:39:20.406380+00:00",
+  "generated_at": "2026-07-15T23:53:07.808075+00:00",
   "lev_boundary": {
-    "evaluator_advisory_red": true,
+    "g10_run_for_current_report": false,
     "proof_backed_execution": false,
     "proof_bundle_written": false
   },
   "llm_verdict_used": false,
+  "mechanical_code_gates_pass": true,
   "official_launch_allowed": false,
   "promotion_allowed": false,
-  "ratchet_state_after": "TOOTH_1_COMMITTED_SCRATCH",
+  "ratchet_state_after": "OPEN",
   "ratchet_state_before": "OPEN",
   "release_eligible": false,
-  "schema": "codex_ratchet.tolerance_to_equivalence.final_report.v1",
+  "replacement_preregistration": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v1_semantic_forcing/preregistration_receipt.json",
+  "schema": "codex_ratchet.tolerance_to_equivalence.final_report.v2",
   "scientific_claim_proven": false,
+  "semantic_forcing_pass": false,
+  "semantic_gates": {
+    "S0_fact_only_generation": false,
+    "S1_controls_same_code_path": true,
+    "S2_independent_drive_mss_reconstruction": true,
+    "S3_mss_selects_proposal": false,
+    "S4_label_equivariance": false,
+    "S5_post_seal_held_out_estate": false,
+    "S6_persistent_append_only_pawl": false,
+    "S7_source_level_coherent_mutations": false,
+    "S8_independently_measured_drive_facts": false
+  },
+  "sim_contract_lint_pass": true,
   "sim_id": "tolerance_to_equivalence_ratchet_rung_v0"
 }

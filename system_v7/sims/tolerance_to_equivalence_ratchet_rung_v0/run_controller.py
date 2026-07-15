@@ -13,6 +13,17 @@ import sys
 from typing import Any
 
 
+CLASSIFICATION = "scratch_diagnostic"
+PROMOTION_ALLOWED = False
+FORMAL_ADMISSION_ALLOWED = False
+TOOL_MANIFEST = {
+    "python_stdlib": {
+        "used": True,
+        "reason": "The controller uses only standard-library process isolation, hashing, and JSON assembly.",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"python_stdlib": "supportive"}
+
 SIM_DIR = Path(__file__).resolve().parent
 ROOT = SIM_DIR.parents[2]
 RESULT_DIR = SIM_DIR / "results"
@@ -20,7 +31,7 @@ SOURCE_PATH = Path(__file__).resolve()
 PYTHON = Path(os.environ.get("CODEX_RATCHET_PYTHON", "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"))
 JULIA = Path(os.environ.get("CODEX_RATCHET_JULIA", "/opt/homebrew/bin/julia"))
 JULIA_PROJECT = Path(
-    os.environ.get("CODEX_RATCHET_JULIA_PROJECT", "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier")
+    os.environ.get("CODEX_RATCHET_JULIA_PROJECT", str(ROOT / "system_v5/julia_carrier"))
 )
 
 
@@ -135,9 +146,11 @@ def main() -> int:
         "schema": "codex_ratchet.tolerance_to_equivalence.controller_envelope.v1",
         "sim_id": spec["sim_id"],
         "generated_at": dt.datetime.now(dt.UTC).isoformat(),
-        "classification": "scratch_diagnostic",
-        "promotion_allowed": False,
-        "formal_admission_allowed": False,
+        "classification": CLASSIFICATION,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "formal_admission_allowed": FORMAL_ADMISSION_ALLOWED,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "llm_verdict_used": False,
         "controller_source_path": str(SOURCE_PATH.relative_to(ROOT)),
         "controller_source_sha256": sha256(SOURCE_PATH),

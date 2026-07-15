@@ -51,44 +51,158 @@ def census() -> dict[str, dict[str, int]]:
 
 
 def expected_witness() -> dict[str, Any]:
+    fixture = load(SIM_DIR / "spec.json")["fixtures"]["transitivity_witness"]
+    raw = relation_from_edges(fixture["n"], fixture["raw_undirected_edges"])
+    closure = transitive_closure(raw)
     return {
-        "raw_transitive": False,
-        "closure_labels": [0, 0, 0],
-        "forced_endpoint_related": True,
-        "closure_matrix": [[True, True, True], [True, True, True], [True, True, True]],
+        "raw_transitive": transitive(raw),
+        "closure_labels": labels_from_relation(closure),
+        "forced_endpoint_related": closure[fixture["forced_by_equivalence"][0]][fixture["forced_by_equivalence"][1]],
+        "closure_matrix": closure,
     }
 
 
+def relation_from_edges(n: int, edges: list[list[int]]) -> list[list[bool]]:
+    relation = [[left == right for right in range(n)] for left in range(n)]
+    for left, right in edges:
+        relation[left][right] = True
+        relation[right][left] = True
+    return relation
+
+
+def transitive_closure(relation: list[list[bool]]) -> list[list[bool]]:
+    closed = [row[:] for row in relation]
+    for middle in range(len(closed)):
+        for left in range(len(closed)):
+            for right in range(len(closed)):
+                closed[left][right] = closed[left][right] or (
+                    closed[left][middle] and closed[middle][right]
+                )
+    return closed
+
+
+def labels_from_relation(relation: list[list[bool]]) -> list[int]:
+    labels: list[int] = []
+    roots: dict[int, int] = {}
+    for index, row in enumerate(relation):
+        root = next(position for position, value in enumerate(row) if value)
+        if root not in roots:
+            roots[root] = len(roots)
+        labels.append(roots[root])
+    return labels
+
+
+def coface_loss(labels: list[int], demand: list[list[int]]) -> int:
+    return sum(labels[left] == labels[right] for left, right in demand)
+
+
+def partitions(n: int) -> list[list[int]]:
+    labels = [0] * n
+    observed: list[list[int]] = []
+
+    def visit(index: int, maximum: int) -> None:
+        if index == n:
+            observed.append(labels[:])
+            return
+        for value in range(maximum + 2):
+            labels[index] = value
+            visit(index + 1, max(maximum, value))
+
+    visit(1, 0)
+    return observed
+
+
+def relation_from_labels(labels: list[int]) -> list[list[bool]]:
+    return [
+        [labels[left] == labels[right] for right in range(len(labels))]
+        for left in range(len(labels))
+    ]
+
+
+def mss_antichain(raw: list[list[bool]]) -> list[dict[str, Any]]:
+    n = len(raw)
+    candidates: list[dict[str, Any]] = []
+    for labels in partitions(n):
+        candidate = relation_from_labels(labels)
+        if any(raw[left][right] and not candidate[left][right] for left in range(n) for right in range(n)):
+            continue
+        added = sum(
+            candidate[left][right] and not raw[left][right]
+            for left in range(n - 1)
+            for right in range(left + 1, n)
+        )
+        candidates.append(
+            {
+                "labels": labels,
+                "added_pair_count": added,
+                "quotient_class_count": len(set(labels)),
+            }
+        )
+    survivors = []
+    for candidate in candidates:
+        dominated = any(
+            other["added_pair_count"] <= candidate["added_pair_count"]
+            and other["quotient_class_count"] <= candidate["quotient_class_count"]
+            and (
+                other["added_pair_count"] < candidate["added_pair_count"]
+                or other["quotient_class_count"] < candidate["quotient_class_count"]
+            )
+            for other in candidates
+        )
+        if not dominated:
+            survivors.append(candidate)
+    return sorted(
+        survivors,
+        key=lambda row: (
+            row["added_pair_count"],
+            row["quotient_class_count"],
+            row["labels"],
+        ),
+    )
+
+
+def decision(drive: int) -> str:
+    return "COMMIT_TOOTH" if drive > 0 else "HOLD"
+
+
 def expected_drive() -> dict[str, Any]:
+    fixture = load(SIM_DIR / "spec.json")["fixtures"]["positive_drive"]
+    raw = relation_from_edges(fixture["n"], fixture["raw_undirected_edges"])
+    closure = transitive_closure(raw)
+    initial = fixture["initial_class_labels"]
+    proposal = labels_from_relation(closure)
+    demand = fixture["demand_edges"]
+    scrambled = fixture["scrambled_count_preserving_demand_edges"]
+    initial_loss = coface_loss(initial, demand)
+    proposal_loss = coface_loss(proposal, demand)
+    drive = initial_loss - proposal_loss
+    reverse_drive = proposal_loss - initial_loss
+    null_drive = coface_loss(initial, []) - coface_loss(proposal, [])
+    universal = [0] * fixture["n"]
+    universal_drive = initial_loss - coface_loss(universal, demand)
+    scrambled_drive = coface_loss(initial, scrambled) - coface_loss(proposal, scrambled)
+    flat_drive = coface_loss(proposal, demand) - coface_loss(proposal, demand)
     return {
-        "raw_closure": [
-            [True, True, False, False],
-            [True, True, False, False],
-            [False, False, True, True],
-            [False, False, True, True],
-        ],
-        "initial_labels": [0, 0, 0, 0],
-        "proposal_labels": [0, 0, 1, 1],
-        "initial_coface_loss": 1,
-        "proposal_coface_loss": 0,
-        "drive": 1,
-        "decision": "COMMIT_TOOTH",
+        "raw_closure": closure,
+        "initial_labels": initial,
+        "proposal_labels": proposal,
+        "initial_coface_loss": initial_loss,
+        "proposal_coface_loss": proposal_loss,
+        "drive": drive,
+        "decision": decision(drive),
         "controls": {
-            "reverse_drive": -1,
-            "reverse_decision": "HOLD",
-            "null_drive": 0,
-            "null_decision": "HOLD",
-            "universal_proposal_drive": 0,
-            "universal_proposal_decision": "HOLD",
-            "scrambled_drive": 0,
-            "scrambled_decision": "HOLD",
-            "flat_drive": 0,
-            "flat_decision": "HOLD",
+            "reverse_drive": reverse_drive,
+            "reverse_decision": decision(reverse_drive),
+            "null_drive": null_drive,
+            "null_decision": decision(null_drive),
+            "universal_proposal_drive": universal_drive,
+            "universal_proposal_decision": decision(universal_drive),
+            "scrambled_drive": scrambled_drive,
+            "scrambled_decision": decision(scrambled_drive),
+            "flat_drive": flat_drive,
+            "flat_decision": decision(flat_drive),
         },
-        "mss_antichain": [
-            {"labels": [0, 0, 1, 1], "added_pair_count": 0, "quotient_class_count": 2},
-            {"labels": [0, 0, 0, 0], "added_pair_count": 4, "quotient_class_count": 1},
-        ],
+        "mss_antichain": mss_antichain(raw),
     }
 
 

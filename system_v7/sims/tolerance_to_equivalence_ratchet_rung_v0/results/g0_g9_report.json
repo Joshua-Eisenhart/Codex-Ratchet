@@ -1,16 +1,29 @@
 {
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_stdlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "The pipeline uses standard-library subprocess, hashing, and JSON to compose code-gate receipts.",
+      "used": true
+    }
+  },
   "artifacts": {
     "controller_envelope": {
       "path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/controller_envelope.json",
-      "sha256": "0ef00deb292e0442f0ae896027b53de514ce92b1106ba55597c8acfce9ef03ea"
+      "sha256": "1de4e42562170da5cf2f1de8ad9a1f5eb09750ee6846ae46b947816e295b28ae"
     },
     "mutations": {
       "path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/mutation_tests.json",
-      "sha256": "5bc5b932214199d6b5515c4f5f21624b1b7fffe7a88f11f80df1743424dc1061"
+      "sha256": "d2ca0283624667e8f60c13c4fbcd97331b917d5cd40cb1d37836f22895f9031d"
+    },
+    "semantic_audit": {
+      "path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/semantic_audit.json",
+      "sha256": "1b5afc4b97937ad4f1505e6df75d3249cecbcda99fe00322d0455779b94aa6b6"
     },
     "validation": {
       "path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/validation.json",
-      "sha256": "38dcf031e1702304f4f7d56f84298aa645637e60c84bf68244a78e075b2f4fb5"
+      "sha256": "0b86591460aad10b6045ea0cc5a46853abf95b0611edf07d24bb4e8760a4ff04"
     }
   },
   "blocked_consumers": [
@@ -19,51 +32,96 @@
     "terrain/operator layers",
     "cross-domain claims"
   ],
-  "candidate_decision": "COMMIT_TOOTH_CANDIDATE",
-  "candidate_pass": true,
-  "claim_ceiling": "G0-G9 code-green candidate only; no official tooth or launch until G10 Lev replay is validated",
+  "candidate_decision": "HOLD_DESIGNED_SURROGATE",
+  "candidate_pass": false,
+  "claim_ceiling": "G0-G9 mechanically green finite pair-collapse-loss surrogate; semantic forcing, persistent pawl, and G10 are absent",
   "classification": "scratch_diagnostic",
   "commands": [
     {
       "command": [
         "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
         "-B",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_controller.py"
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/scripts/lint_sim_contract.py",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_jax.py",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pytorch.py",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_controller.py",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pipeline.py",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/semantic_audit.py"
+      ],
+      "expected_returncodes": [
+        0
+      ],
+      "label": "sim_contract_lint",
+      "pass": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\n  \"checked\": 6,\n  \"violation_total\": 0,\n  \"sims_with_violations\": 0,\n  \"violations_by_type\": {},\n  \"top_offenders\": [],\n  \"violations\": []\n}\n"
+    },
+    {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+        "-B",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_controller.py"
+      ],
+      "expected_returncodes": [
+        0
       ],
       "label": "controller",
       "pass": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "TOLERANCE_RUNG_CONTROLLER_DONE all_pass=true decision=COMMIT_TOOTH_CANDIDATE envelope=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/controller_envelope.json\n"
+      "stdout": "TOLERANCE_RUNG_CONTROLLER_DONE all_pass=true decision=COMMIT_TOOTH_CANDIDATE envelope=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/controller_envelope.json\n"
     },
     {
       "command": [
         "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
         "-B",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/validate_controller_envelope.py",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/validate_controller_envelope.py",
         "--receipt",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/validation.json"
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/validation.json"
+      ],
+      "expected_returncodes": [
+        0
       ],
       "label": "independent_validator",
       "pass": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "{\"claim_ceiling\": \"artifact-valid bounded scratch rung only; G9 and G10 remain separate\", \"envelope_path\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/controller_envelope.json\", \"envelope_sha256\": \"0ef00deb292e0442f0ae896027b53de514ce92b1106ba55597c8acfce9ef03ea\", \"finding_count\": 0, \"findings\": [], \"generated_at\": \"2026-07-15T22:13:35.016211+00:00\", \"ok\": true, \"schema\": \"codex_ratchet.tolerance_to_equivalence.validation.v1\", \"summary\": {\"checked_engine_count\": 4, \"expected_drive\": {\"controls\": {\"flat_decision\": \"HOLD\", \"flat_drive\": 0, \"null_decision\": \"HOLD\", \"null_drive\": 0, \"reverse_decision\": \"HOLD\", \"reverse_drive\": -1, \"scrambled_decision\": \"HOLD\", \"scrambled_drive\": 0, \"universal_proposal_decision\": \"HOLD\", \"universal_proposal_drive\": 0}, \"decision\": \"COMMIT_TOOTH\", \"drive\": 1, \"initial_coface_loss\": 1, \"initial_labels\": [0, 0, 0, 0], \"mss_antichain\": [{\"added_pair_count\": 0, \"labels\": [0, 0, 1, 1], \"quotient_class_count\": 2}, {\"added_pair_count\": 4, \"labels\": [0, 0, 0, 0], \"quotient_class_count\": 1}], \"proposal_coface_loss\": 0, \"proposal_labels\": [0, 0, 1, 1], \"raw_closure\": [[true, true, false, false], [true, true, false, false], [false, false, true, true], [false, false, true, true]]}, \"expected_witness\": {\"closure_labels\": [0, 0, 0], \"closure_matrix\": [[true, true, true], [true, true, true], [true, true, true]], \"forced_endpoint_related\": true, \"raw_transitive\": false}, \"independent_census\": {\"1\": {\"equivalences\": 1, \"nontransitive\": 0, \"tolerances\": 1}, \"2\": {\"equivalences\": 2, \"nontransitive\": 0, \"tolerances\": 2}, \"3\": {\"equivalences\": 5, \"nontransitive\": 3, \"tolerances\": 8}, \"4\": {\"equivalences\": 15, \"nontransitive\": 49, \"tolerances\": 64}, \"5\": {\"equivalences\": 52, \"nontransitive\": 972, \"tolerances\": 1024}}}}\n"
+      "stdout": "{\"claim_ceiling\": \"artifact-valid bounded scratch rung only; G9 and G10 remain separate\", \"envelope_path\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/controller_envelope.json\", \"envelope_sha256\": \"1de4e42562170da5cf2f1de8ad9a1f5eb09750ee6846ae46b947816e295b28ae\", \"finding_count\": 0, \"findings\": [], \"generated_at\": \"2026-07-15T23:53:07.464856+00:00\", \"ok\": true, \"schema\": \"codex_ratchet.tolerance_to_equivalence.validation.v1\", \"summary\": {\"checked_engine_count\": 4, \"expected_drive\": {\"controls\": {\"flat_decision\": \"HOLD\", \"flat_drive\": 0, \"null_decision\": \"HOLD\", \"null_drive\": 0, \"reverse_decision\": \"HOLD\", \"reverse_drive\": -1, \"scrambled_decision\": \"HOLD\", \"scrambled_drive\": 0, \"universal_proposal_decision\": \"HOLD\", \"universal_proposal_drive\": 0}, \"decision\": \"COMMIT_TOOTH\", \"drive\": 1, \"initial_coface_loss\": 1, \"initial_labels\": [0, 0, 0, 0], \"mss_antichain\": [{\"added_pair_count\": 0, \"labels\": [0, 0, 1, 1], \"quotient_class_count\": 2}, {\"added_pair_count\": 4, \"labels\": [0, 0, 0, 0], \"quotient_class_count\": 1}], \"proposal_coface_loss\": 0, \"proposal_labels\": [0, 0, 1, 1], \"raw_closure\": [[true, true, false, false], [true, true, false, false], [false, false, true, true], [false, false, true, true]]}, \"expected_witness\": {\"closure_labels\": [0, 0, 0], \"closure_matrix\": [[true, true, true], [true, true, true], [true, true, true]], \"forced_endpoint_related\": true, \"raw_transitive\": false}, \"independent_census\": {\"1\": {\"equivalences\": 1, \"nontransitive\": 0, \"tolerances\": 1}, \"2\": {\"equivalences\": 2, \"nontransitive\": 0, \"tolerances\": 2}, \"3\": {\"equivalences\": 5, \"nontransitive\": 3, \"tolerances\": 8}, \"4\": {\"equivalences\": 15, \"nontransitive\": 49, \"tolerances\": 64}, \"5\": {\"equivalences\": 52, \"nontransitive\": 972, \"tolerances\": 1024}}}}\n"
     },
     {
       "command": [
         "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
         "-B",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_mutation_tests.py"
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_mutation_tests.py"
+      ],
+      "expected_returncodes": [
+        0
       ],
       "label": "mutation_tests",
       "pass": true,
       "returncode": 0,
       "stderr": "",
       "stdout": "TOLERANCE_RUNG_MUTATIONS_DONE all_pass=true rejected=5/5\n"
+    },
+    {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+        "-B",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/semantic_audit.py"
+      ],
+      "expected_returncodes": [
+        2
+      ],
+      "label": "semantic_audit_expected_hold",
+      "pass": true,
+      "returncode": 2,
+      "stderr": "",
+      "stdout": "{\"decision\": \"HOLD_DESIGNED_SURROGATE\", \"finding_count\": 6, \"out\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/semantic_audit.json\", \"semantic_forcing_pass\": false}\n"
     }
   ],
-  "final_decision": "HOLD_PENDING_LEV",
+  "final_decision": "HOLD_SEMANTIC_FORCING",
   "formal_admission_allowed": false,
   "gates": {
     "G0_preregistered_object": true,
@@ -78,10 +136,24 @@
     "G8_source_runtime_ceiling_binding": true,
     "G9_independent_validator_and_mutations": true
   },
-  "generated_at": "2026-07-15T22:13:35.301525+00:00",
+  "generated_at": "2026-07-15T23:53:07.807187+00:00",
   "llm_verdict_used": false,
+  "mechanical_pass": true,
   "promotion_allowed": false,
-  "ratchet_state": "TOOTH_1_CANDIDATE",
+  "ratchet_state": "OPEN",
   "schema": "codex_ratchet.tolerance_to_equivalence.g0_g9_report.v1",
+  "semantic_forcing_pass": false,
+  "semantic_gates": {
+    "S0_fact_only_generation": false,
+    "S1_controls_same_code_path": true,
+    "S2_independent_drive_mss_reconstruction": true,
+    "S3_mss_selects_proposal": false,
+    "S4_label_equivariance": false,
+    "S5_post_seal_held_out_estate": false,
+    "S6_persistent_append_only_pawl": false,
+    "S7_source_level_coherent_mutations": false,
+    "S8_independently_measured_drive_facts": false
+  },
+  "sim_contract_lint_pass": true,
   "sim_id": "tolerance_to_equivalence_ratchet_rung_v0"
 }

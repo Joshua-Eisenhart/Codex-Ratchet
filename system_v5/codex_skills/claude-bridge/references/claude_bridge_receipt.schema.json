@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex-ratchet.local/schemas/claude-bridge-receipt-v1.json",
+  "title": "Codex Ratchet Claude Bridge Receipt v1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema",
+    "generated_at",
+    "execution_mode",
+    "provider",
+    "provider_invoked",
+    "advisory_only",
+    "gate_authority",
+    "evidence_allowed",
+    "promotion_allowed",
+    "formal_admission_allowed",
+    "release_eligible",
+    "official_launch_allowed",
+    "scientific_claim_proven",
+    "gate_decision",
+    "route",
+    "backend_models",
+    "backend_model_truth_source",
+    "budget",
+    "command",
+    "cwd",
+    "requested_cwd",
+    "prompt_path",
+    "prompt_sha256",
+    "output_path",
+    "output_sha256",
+    "receipt_path",
+    "stream",
+    "timed_out",
+    "timeout_sec",
+    "provider_returncode",
+    "wrapper_returncode",
+    "parsed"
+  ],
+  "properties": {
+    "schema": {
+      "const": "codex-ratchet.claude-bridge-receipt.v1"
+    },
+    "execution_mode": {
+      "enum": ["dry_run", "live"]
+    },
+    "provider": {
+      "const": "claude-code-cli"
+    },
+    "provider_invoked": {
+      "type": "boolean"
+    },
+    "advisory_only": {
+      "const": true
+    },
+    "gate_authority": {
+      "const": false
+    },
+    "evidence_allowed": {
+      "const": false
+    },
+    "promotion_allowed": {
+      "const": false
+    },
+    "formal_admission_allowed": {
+      "const": false
+    },
+    "release_eligible": {
+      "const": false
+    },
+    "official_launch_allowed": {
+      "const": false
+    },
+    "scientific_claim_proven": {
+      "const": false
+    },
+    "gate_decision": {
+      "const": "not_applicable"
+    },
+    "route": {
+      "type": "object",
+      "required": ["requested_model", "routed_model", "resolution_kind"],
+      "properties": {
+        "requested_model": {"type": "string", "minLength": 1},
+        "routed_model": {"type": "string", "minLength": 1},
+        "resolution_kind": {"enum": ["moving_alias", "configured_default", "explicit_passthrough"]}
+      }
+    },
+    "backend_models": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "backend_model_truth_source": {
+      "const": "output.modelUsage"
+    },
+    "budget": {
+      "type": "object",
+      "required": ["requested_usd", "observed_usd", "exceeded", "provider_stop_is_preflight_guarantee"],
+      "properties": {
+        "requested_usd": {"type": "number", "exclusiveMinimum": 0},
+        "observed_usd": {"type": ["number", "null"], "minimum": 0},
+        "exceeded": {"type": ["boolean", "null"]},
+        "provider_stop_is_preflight_guarantee": {"const": false}
+      }
+    },
+    "command": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 2
+    },
+    "prompt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "output_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "provider_returncode": {"type": ["integer", "null"]},
+    "wrapper_returncode": {"type": "integer"}
+  }
+}

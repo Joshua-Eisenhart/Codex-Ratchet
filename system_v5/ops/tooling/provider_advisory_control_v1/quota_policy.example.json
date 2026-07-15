@@ -1,0 +1,21 @@
+{
+  "schema": "codex_ratchet.provider_quota_policy.v1",
+  "policies": [
+    {
+      "provider": "nvidia",
+      "model": "*",
+      "max_requests": null,
+      "window_seconds": null,
+      "authority": "owner account console or observed response headers",
+      "note": "Populate exact account/model limits before autonomous advisory dispatch. Unknown quota must HOLD."
+    },
+    {
+      "provider": "xai",
+      "model": "*",
+      "max_requests": null,
+      "window_seconds": null,
+      "authority": "owner team console or observed response headers",
+      "note": "Populate exact account/model limits before autonomous advisory dispatch. Unknown quota must HOLD."
+    }
+  ]
+}

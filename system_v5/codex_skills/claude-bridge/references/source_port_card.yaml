@@ -1,0 +1,13 @@
+source_path: /Users/joshuaeisenhart/.codex/skills/claude-bridge
+family: installed Codex skill
+authority_status: reference implementation only for this repo-held candidate
+pattern_name: bounded Claude CLI bridge with moving aliases and receipts
+problem_solved: expose Claude Code as an external worker without confusing alias routing, backend identity, or worker output with repo gate authority
+mechanism: pure route and command construction, explicit budget and timeout, hashed prompt and output artifacts, stream event summary, deterministic receipt validation
+port_as: skill
+target_surface: system_v5/codex_skills/claude-bridge
+authority_reason: current user request plus AGENTS.md worker-pool and authority boundaries
+risk: provider output or a structurally valid receipt could be misreported as a binding gate
+minimal_test: python3 -m unittest discover -s system_v5/codex_skills/claude-bridge/tests -p 'test_*.py'
+promotion_boundary: repo-held candidate only; do not install, call a provider, or treat validation as correctness proof in this pass
+status: accepted_bounded_port

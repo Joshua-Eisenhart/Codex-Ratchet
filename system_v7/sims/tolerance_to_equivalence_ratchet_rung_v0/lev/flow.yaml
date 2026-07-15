@@ -1,0 +1,71 @@
+name: tolerance-to-equivalence-ratchet-rung-v0
+entry: flow_contract_gate
+
+policy:
+  determinism: true
+
+nodes:
+  flow_contract_gate:
+    type: action
+    op: lev.validate
+    inputs:
+      command: >-
+        /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B
+        /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/validate_lev_flow.py
+        --flow
+        /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/lev/flow.yaml
+      fail_closed: "true"
+    output: flow_contract_result
+    branches:
+      pass: preregistration_gate
+      fail: blocked_flow_contract
+
+  preregistration_gate:
+    type: action
+    op: lev.validate
+    inputs:
+      command: >-
+        /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B
+        /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/validate_preregistration.py
+      fail_closed: "true"
+    output: preregistration_result
+    branches:
+      pass: g0_g9_pipeline_gate
+      fail: blocked_preregistration
+
+  g0_g9_pipeline_gate:
+    type: action
+    op: lev.validate
+    inputs:
+      command: >-
+        /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B
+        /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pipeline.py
+      fail_closed: "true"
+    output: g0_g9_pipeline_result
+    branches:
+      pass: g0_g9_report_gate
+      fail: blocked_g0_g9_pipeline
+
+  g0_g9_report_gate:
+    type: action
+    op: lev.validate
+    inputs:
+      command: >-
+        /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -B
+        /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/validate_g0_g9_report.py
+      fail_closed: "true"
+    output: g0_g9_report_result
+    branches:
+      pass: done
+      fail: blocked_g0_g9_report
+
+  done:
+    terminal: true
+  blocked_flow_contract:
+    terminal: true
+  blocked_preregistration:
+    terminal: true
+  blocked_g0_g9_pipeline:
+    terminal: true
+  blocked_g0_g9_report:
+    terminal: true

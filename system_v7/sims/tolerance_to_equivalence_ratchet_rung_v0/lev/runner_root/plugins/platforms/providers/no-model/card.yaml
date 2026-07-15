@@ -1,0 +1,48 @@
+provider_id: local.no-model
+adapter_id: no-model
+model_catalog_adapter: no-command
+title: No-model deterministic Ratchet gate harness
+binary: /usr/bin/true
+model_discovery:
+  source: provider-cli
+  row_id_format: model-id
+  cache:
+    scope: none
+  validation:
+    allow_patterns: ["*"]
+    aliases: {}
+    unknown_model: typed-diagnostic
+  stale_behavior:
+    unavailable: typed-blocked-json
+    offline: typed-blocked-json
+argv_template:
+  - "{prompt}"
+prompt_injection_mode: argv-prompt
+submit_plan:
+  strategy: argv-prompt
+  payload_delivery: argv
+  description: This adapter is never dispatched; it only initializes a gate-only graph.
+conversation:
+  transport: none
+  transcript_source: none
+  turn_capture: pane_delta
+  completion_event: none
+  correlation: none
+  tailable: false
+env_policy:
+  inherit: false
+  required: []
+  optional: []
+capabilities:
+  tmux_required: false
+  send_now: false
+  queue_message: false
+  interrupt: false
+  stream_events: false
+  token_usage: false
+  context_cost_class: none
+unsupported:
+  queue_message: typed-error:no-model
+  interrupt: typed-error:no-model
+  stream_events: typed-error:no-model
+  token_usage: typed-error:no-model

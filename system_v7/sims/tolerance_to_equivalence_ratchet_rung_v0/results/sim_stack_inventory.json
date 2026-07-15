@@ -1,0 +1,5132 @@
+{
+  "authority": {
+    "edges": {
+      "edge_count": 29,
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/registry/integration_edges_v1.json",
+      "sha256": "fe05a9c397c9af38b2b46bc7d25898e5ef18a066c2d59b5f996b19806fc21f71"
+    },
+    "first_tooth": {
+      "all_code_gates_pass": true,
+      "decision": "COMMIT_ONE_BOUNDED_SCRATCH_TOOTH",
+      "official_launch_allowed": false,
+      "path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/final_report.json",
+      "sha256": "4cd411839700388c569387b8f9501a9e54decb262173bf2323d6c9474440eb9b"
+    },
+    "historical_estate": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev.json",
+      "projection_only": true,
+      "release_eligible": false,
+      "scientific_claim_proven": false,
+      "sha256": "12056f0e204fa7424cb66f80e23145490cd61d438ef19bb564c13c9de7b79dc2",
+      "source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "stale_to_v8_tree": true
+    },
+    "roster": {
+      "path": "system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json",
+      "sha256": "f22763d2bd808750e64b1992a01bad09298c30256ca8573704c2e536d887de97",
+      "tool_count": 139
+    }
+  },
+  "code_surfaces": [
+    {
+      "boundary": "Graphs connected-component closure and n=1..5 census; scratch only",
+      "evidence": "run_julia.jl plus results/julia_results.json",
+      "state": "fresh bounded claim-load-bearing",
+      "surface": "V8 tolerance-to-equivalence Julia"
+    },
+    {
+      "boundary": "x64 vmap census and lax fixed-point closure; scratch only",
+      "evidence": "run_jax.py plus results/jax_results.json",
+      "state": "fresh bounded claim-load-bearing",
+      "surface": "V8 tolerance-to-equivalence JAX"
+    },
+    {
+      "boundary": "MessagePassing reachability and torch census; scratch only",
+      "evidence": "run_pytorch.py plus results/pytorch_results.json",
+      "state": "fresh bounded claim-load-bearing",
+      "surface": "V8 tolerance-to-equivalence PyTorch/PyG"
+    },
+    {
+      "boundary": "free Boolean relation variables for four frozen SAT/UNSAT queries only",
+      "evidence": "run_proofs.py plus results/proof_results.json",
+      "state": "fresh bounded proof discharge",
+      "surface": "V8 z3/cvc5 proof pair"
+    },
+    {
+      "boundary": "four blocking GateProofs pass; ProofBundle absent, evaluator advisory red retained",
+      "evidence": "results/lev_replay_receipt.json",
+      "state": "fresh orchestration receipt",
+      "surface": "V8 Lev deterministic gate"
+    },
+    {
+      "boundary": "95 operational, 44 policy, 29 edges historically green; projection-only and source-bound to an older commit/tree",
+      "evidence": "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev.json",
+      "state": "historical function-level estate stale to V8 tree",
+      "surface": "deep-stack 139-tool estate"
+    },
+    {
+      "boundary": "green scratch result lacks source hash",
+      "evidence": "system_v5/julia_carrier/foundation_r0_distinguishability_julia.jl",
+      "state": "stored unbound function receipt",
+      "surface": "Julia R0 distinguishability"
+    },
+    {
+      "boundary": "result absent in inspected V8 tree",
+      "evidence": "system_v5/ops/formal_scouts/foundation_r0_distinguishability_jax_smt.py",
+      "state": "imported in source",
+      "surface": "JAX R0 SMT scout"
+    },
+    {
+      "boundary": "result absent in inspected V8 tree",
+      "evidence": "system_v5/ops/formal_scouts/foundation_r0_distinguishability_pytorch_grad.py",
+      "state": "imported in source",
+      "surface": "PyTorch R0 gradient scout"
+    },
+    {
+      "boundary": "source/result match and all_pass, but scratch and non-promotable",
+      "evidence": "system_v5/julia_carrier/foundation_foundation_r2_admissibility_mc_julia_leg.jl",
+      "state": "matching bounded function receipt",
+      "surface": "Julia R2 admissibility"
+    },
+    {
+      "boundary": "not generally claim-bearing",
+      "evidence": "native SINDy, PolynomialLibrary, and STLSQ probe",
+      "state": "historical function receipt",
+      "surface": "PySINDy"
+    },
+    {
+      "boundary": "full distribution quarantined",
+      "evidence": "Identity plus EDMD",
+      "state": "narrow historical function receipt",
+      "surface": "PyKoopman"
+    },
+    {
+      "boundary": "API smoke, not proof discharge",
+      "evidence": "solver asserts free g>0 or g==0 rather than binding computed gradient",
+      "state": "decorative and must be demoted",
+      "surface": "coherent-information gradient z3"
+    },
+    {
+      "boundary": "climb steps/target rungs are hardcoded rather than forced",
+      "evidence": "existing climb source",
+      "state": "not launch evidence",
+      "surface": "ratchet_climb_engine_v1_drive"
+    },
+    {
+      "boundary": "Xi representative-independence failure must remain red",
+      "evidence": "existing formal gate results",
+      "state": "informative red",
+      "surface": "ratchet_formal_gates_v1"
+    }
+  ],
+  "current_v8_source": {
+    "base_commit": "fe6487de5136d18e7471952a2aa70595cc0f5cf7",
+    "base_tree": "fabe95166383646b1f721b783e8b5f23e54da473",
+    "new_packet_is_source_hash_bound_not_yet_commit_bound": true,
+    "root": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715",
+    "worktree_clean": false,
+    "worktree_status_row_count": 1
+  },
+  "extra_tools_outside_139": [
+    {
+      "blocker": "not connected to the 139-row Lev estate by a repo-local producer",
+      "evidence": "external physlib lake build; 8617 jobs and no sorry/admit for finite-dimensional associative DPI only",
+      "state": "bounded proof discharge",
+      "tool": "Lean4/mathlib"
+    },
+    {
+      "blocker": "requires explicit V8 roster admission",
+      "evidence": "outside the frozen 139-row registry",
+      "state": "later bounded tool surface",
+      "tool": "Maude Python"
+    },
+    {
+      "blocker": "not a general Ratchet proof",
+      "evidence": "fixed 2-4-1 ReLU CROWN/IBP region oracle",
+      "state": "bounded claim-load-bearing",
+      "tool": "auto_LiRPA"
+    },
+    {
+      "blocker": "currently duplicates a spectral oracle and lacks a unique bypass-demotion gate",
+      "evidence": "native QuantRelEntr, Model, and Solver",
+      "state": "function receipt/supportive",
+      "tool": "QICS"
+    },
+    {
+      "blocker": "no general algebraic claim",
+      "evidence": "five frozen J3(O) exact cases",
+      "state": "bounded claim-load-bearing",
+      "tool": "ALCO/GAP"
+    },
+    {
+      "blocker": "external proof is not a Ratchet launch receipt",
+      "evidence": "Lean finite-dimensional associative DPI theorem",
+      "state": "bounded proof discharge",
+      "tool": "physlib"
+    },
+    {
+      "blocker": "local fixture only",
+      "evidence": "VAMP stage-interior discriminator",
+      "state": "bounded claim-load-bearing",
+      "tool": "deeptime"
+    },
+    {
+      "blocker": "local fixture only",
+      "evidence": "BOPDMD/HankelDMD stage-interior discriminator",
+      "state": "bounded claim-load-bearing",
+      "tool": "PyDMD"
+    },
+    {
+      "blocker": "requires explicit V8 roster admission",
+      "evidence": "outside the frozen 139-row registry",
+      "state": "later algebra surface",
+      "tool": "kingdon"
+    }
+  ],
+  "generated_at": "2026-07-15T20:45:37.757830+00:00",
+  "integration_edges": {
+    "claim_boundary": "29 green edge receipts do not mean 29 shared-value pipelines",
+    "compatibility_or_cohealth_count": 25,
+    "direct_value_handoff_ids": [
+      "cross_jax_torch"
+    ],
+    "ids": [
+      "py_jax_backend",
+      "py_jax_module_train",
+      "py_flax_orbax",
+      "py_probabilistic",
+      "py_jax_dynamics",
+      "py_jax_quantum",
+      "py_tensor_network",
+      "py_equivariant_graph",
+      "py_transport",
+      "py_haiku_flax",
+      "py_torch_core",
+      "py_torch_graph_geometry",
+      "py_torch_convex",
+      "py_geometric_algebra",
+      "py_proof_symbolic",
+      "py_system_id",
+      "py_graph_algorithms",
+      "py_higher_order_topology",
+      "jl_algebra",
+      "jl_tensor",
+      "jl_dynamics",
+      "jl_qit",
+      "jl_receipt",
+      "jl_isolated_tensor",
+      "py_legacy_reconciliation",
+      "cross_tensor",
+      "cross_dynamics",
+      "cross_proof",
+      "cross_jax_torch"
+    ],
+    "independent_cross_runtime_recomputation_ids": [
+      "cross_tensor",
+      "cross_dynamics",
+      "cross_proof"
+    ]
+  },
+  "launch_boundary": {
+    "first_bounded_scratch_tooth": "committed",
+    "lev_evaluator_advisory_red": true,
+    "lev_proof_backed_execution": false,
+    "official_launch": "blocked",
+    "proof_bundle_written": false
+  },
+  "repositories": [
+    {
+      "authority": "live_repo_dirty",
+      "connection": "source repo and parallel R0 work; not the V8 execution tree",
+      "live_state": {
+        "branch": "session/r0-three-engine-probes",
+        "clean": false,
+        "exists": true,
+        "head": "4f3fb20ac839cc9917b84d15cf4142bd09e5a9d3",
+        "is_git": true,
+        "tracked_dirty_count": 48,
+        "tree": "5c52aaebbb32dfdf8acfd157e87d1d45e906f51b",
+        "untracked_count": 87
+      },
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet",
+      "role": "active dirty owner checkout"
+    },
+    {
+      "authority": "v8_execution_tree",
+      "connection": "current inventory and first-tooth execution",
+      "live_state": {
+        "branch": "codex/v8-first-rungs-20260715",
+        "clean": false,
+        "exists": true,
+        "head": "fe6487de5136d18e7471952a2aa70595cc0f5cf7",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "fabe95166383646b1f721b783e8b5f23e54da473",
+        "untracked_count": 1
+      },
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715",
+      "role": "V8 isolated worktree"
+    },
+    {
+      "authority": "live_repo_dirty",
+      "connection": "current process archaeology only; dirty and not the pinned gate runner",
+      "live_state": {
+        "branch": "fable/cr-sim-eval-pack",
+        "clean": false,
+        "exists": true,
+        "head": "5f844cb9580e8c121a0d14c9c1d4d5ce87993a2a",
+        "is_git": true,
+        "tracked_dirty_count": 1,
+        "tree": "6b59c781282d83432e7080ea436dfead4602e7c5",
+        "untracked_count": 1
+      },
+      "path": "/Users/joshuaeisenhart/lev-main",
+      "role": "active Lev development checkout"
+    },
+    {
+      "authority": "pinned_clean_runtime",
+      "connection": "deterministic no-model FlowMind G10 replay",
+      "live_state": {
+        "branch": "codex/eval-projection-contract",
+        "clean": true,
+        "exists": true,
+        "head": "856acb1a5de42528a9a54272435d98a9fe226186",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "3f3488781d48a64b22c43c08ccfaa2b503d49524",
+        "untracked_count": 0
+      },
+      "path": "/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract",
+      "role": "pinned Lev gate executor"
+    },
+    {
+      "authority": "research_context",
+      "connection": "context/provenance only; not executable canon",
+      "live_state": {
+        "branch": "main",
+        "clean": false,
+        "exists": true,
+        "head": "db038242238aa7b9ef54fd8e36756ce2535a074f",
+        "is_git": true,
+        "tracked_dirty_count": 6,
+        "tree": "f9f75faab3749790431fcd51be7c6ee23c4f66e7",
+        "untracked_count": 0
+      },
+      "path": "/Users/joshuaeisenhart/wiki",
+      "role": "research and Wizard context"
+    },
+    {
+      "authority": "external_bounded_oracle",
+      "connection": "bounded CROWN/IBP gap-J fixture",
+      "live_state": {
+        "branch": "master",
+        "clean": true,
+        "exists": true,
+        "head": "ca767f1d8c0a6b125a292ba165adb2319bbaf615",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "2ffec4e5255933180b1d71d6ca9e48fc3743baa7",
+        "untracked_count": 0
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/auto_LiRPA",
+      "role": "neural bound oracle"
+    },
+    {
+      "authority": "external_supportive_oracle",
+      "connection": "isolated QuantRelEntr/Model/Solver receipt",
+      "live_state": {
+        "branch": "DETACHED",
+        "clean": true,
+        "exists": true,
+        "head": "be18e5ef07258dec9e5db6bb18c1ee9b2003d545",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "84d77a4a74af48a011594baed338b2b5fd68181d",
+        "untracked_count": 0
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/qics",
+      "role": "convex/QIT numerical oracle"
+    },
+    {
+      "authority": "external_bounded_proof",
+      "connection": "finite-dimensional associative DPI proof build",
+      "live_state": {
+        "branch": "master",
+        "clean": true,
+        "exists": true,
+        "head": "a19625088528708ba0fee92b206f6b788324a002",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "2ecd4a632068d0c7ea68e57665be1d297487492c",
+        "untracked_count": 0
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/physlib",
+      "role": "Lean proof repo"
+    },
+    {
+      "authority": "external_runtime_support",
+      "connection": "SINDy/PolynomialLibrary/STLSQ function receipt",
+      "live_state": {
+        "branch": "DETACHED",
+        "clean": true,
+        "exists": true,
+        "head": "1edf31260fc000692776b1f4259877e8b85e56e5",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "aa56fabff0035841bdb8c0e84b125a9c2705ef7e",
+        "untracked_count": 0
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/pysindy",
+      "role": "system-identification upstream"
+    },
+    {
+      "authority": "external_quarantined_support",
+      "connection": "narrow Identity plus EDMD surface only",
+      "live_state": {
+        "branch": "DETACHED",
+        "clean": true,
+        "exists": true,
+        "head": "61d24f765cd4799a3c84413950f43282977fa0e2",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "f8d7d3d894d8c5ff934894299ec4e7177e9c9107",
+        "untracked_count": 0
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/pykoopman",
+      "role": "Koopman upstream"
+    },
+    {
+      "authority": "external_bounded_oracle",
+      "connection": "bounded stage-interior discriminator receipt",
+      "live_state": {
+        "branch": "DETACHED",
+        "clean": true,
+        "exists": true,
+        "head": "79837fdc7f91c021d0bf95d2d84e5e17724412bf",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "bfd0153174ff2af2efa99892d0e27800b0acc131",
+        "untracked_count": 0
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/deeptime",
+      "role": "VAMP runtime"
+    },
+    {
+      "authority": "external_bounded_oracle",
+      "connection": "five frozen J3(O) cases",
+      "live_state": {
+        "branch": "DETACHED",
+        "clean": false,
+        "exists": true,
+        "head": "e10ec05acbdf6e7d312d3d35d757771b9fdbc7ec",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "e7967c31beb6dc691d22c5aa3e2fdfb24dd020ca",
+        "untracked_count": 1
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/alco",
+      "role": "GAP/ALCO exact oracle"
+    },
+    {
+      "authority": "source_only",
+      "connection": "source import and inlining; current result artifacts absent",
+      "live_state": {
+        "branch": "main",
+        "clean": false,
+        "exists": true,
+        "head": "bf04d3e8c3752ac24f3692fbc5f4cf50209fa765",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "94e788a51010bb85dcc1f40fb09df57bd30606ce",
+        "untracked_count": 2
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/le-wm",
+      "role": "world-model source"
+    },
+    {
+      "authority": "source_only",
+      "connection": "source-only/deferred",
+      "live_state": {
+        "branch": "main",
+        "clean": false,
+        "exists": true,
+        "head": "4cf53c403433e64c01652ac2adbec66231a46dea",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "a595b1e8be54cc1fae7bff471a7a1a28785db371",
+        "untracked_count": 1
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/lpwm",
+      "role": "world-model source"
+    },
+    {
+      "authority": "source_only",
+      "connection": "source-only/deferred",
+      "live_state": {
+        "branch": "main",
+        "clean": false,
+        "exists": true,
+        "head": "b6fa31beba9bfa8d896a4f858d3768ba56dad04d",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "f6283a57d8802d008b0c6ab165c1231640f62846",
+        "untracked_count": 1
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/flowm",
+      "role": "world-model source"
+    },
+    {
+      "authority": "source_only",
+      "connection": "source-only/deferred",
+      "live_state": {
+        "branch": "main",
+        "clean": true,
+        "exists": true,
+        "head": "549236a9d9b154105e52bc1914fafc2a96e8771d",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "793f771eb2436f7394aeb568d2970b66c896f768",
+        "untracked_count": 0
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/AnyFlow",
+      "role": "flow-model source"
+    },
+    {
+      "authority": "checkout_not_consumed",
+      "connection": "API/model-load smoke targets installed package, not checkout",
+      "live_state": {
+        "branch": "main",
+        "clean": true,
+        "exists": true,
+        "head": "6554c8d90d46f3336ec911f3b46dc88ad3a292a0",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "c827f6bb21d9b8a45c8aa01d9cd1a1408aba14d9",
+        "untracked_count": 0
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/Sana",
+      "role": "diffusion source"
+    },
+    {
+      "authority": "deferred",
+      "connection": "deferred/rejected for current lane",
+      "live_state": {
+        "branch": "main",
+        "clean": false,
+        "exists": true,
+        "head": "c233a919a6faee6e36a316ddd4eddababad1adf9",
+        "is_git": true,
+        "tracked_dirty_count": 0,
+        "tree": "b9f51a8b12f278699324688c4c57ec1c46b49011",
+        "untracked_count": 4
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/stylegan3",
+      "role": "generative-model source"
+    },
+    {
+      "authority": "quarantined_reference",
+      "connection": "non-Git quarantine/reference only",
+      "live_state": {
+        "exists": true,
+        "is_git": false
+      },
+      "path": "/Users/joshuaeisenhart/GitHub/LevRatchet",
+      "role": "flat reference folder"
+    }
+  ],
+  "schema": "codex_ratchet.v8_sim_stack_inventory.v1",
+  "summary": {
+    "bucket_counts": {
+      "admitted_quarantined_surface": 1,
+      "blocked_or_avoid": 9,
+      "candidate_available_unisolated": 7,
+      "candidate_missing": 25,
+      "current_core": 71,
+      "current_isolated": 3,
+      "current_optional_available": 8,
+      "current_support": 3,
+      "legacy_unclassified": 9,
+      "quarantined": 3
+    },
+    "fresh_first_rung_tool_count": 9,
+    "historical_operational_pass_count": 95,
+    "integration_edge_count": 29,
+    "tool_count": 139
+  },
+  "tools": [
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_core",
+      "first_rung": {
+        "role": "batched census and fixed-point closure",
+        "state": "fresh_bounded_claim_load_bearing"
+      },
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "jax",
+      "integration_edge_ids": [
+        "py_jax_backend"
+      ],
+      "package": "jax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_jax.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_jax"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_core",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "jaxlib",
+      "integration_edge_ids": [
+        "py_jax_backend"
+      ],
+      "package": "jaxlib",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_jax.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_jaxlib"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_ml",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "equinox",
+      "integration_edge_ids": [
+        "py_jax_module_train"
+      ],
+      "package": "equinox",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_equinox"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "diffrax",
+      "integration_edge_ids": [
+        "py_jax_dynamics"
+      ],
+      "package": "diffrax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/probes/toolset_expansion_20260610_python.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_diffrax"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "lineax",
+      "integration_edge_ids": [
+        "py_jax_dynamics"
+      ],
+      "package": "lineax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/probes/toolset_expansion_20260610_python.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_lineax"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "optimistix",
+      "integration_edge_ids": [
+        "py_jax_dynamics"
+      ],
+      "package": "optimistix",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/claude_campaign_20260713/hardened/basin_chain_d.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_optimistix"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_probabilistic",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "blackjax",
+      "integration_edge_ids": [
+        "py_probabilistic"
+      ],
+      "package": "blackjax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_blackjax"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "jaxopt",
+      "integration_edge_ids": [
+        "py_jax_dynamics"
+      ],
+      "package": "jaxopt",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/probes/toolset_expansion_20260610_python.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_jaxopt"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_ml",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "optax",
+      "integration_edge_ids": [
+        "py_jax_module_train"
+      ],
+      "package": "optax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_optax"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_ml",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "flax",
+      "integration_edge_ids": [
+        "py_flax_orbax"
+      ],
+      "package": "flax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_flax"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_ml",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "orbax.checkpoint",
+      "integration_edge_ids": [
+        "py_flax_orbax"
+      ],
+      "package": "orbax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_orbax"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "supportive",
+      "family": "jax_ml",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "chex",
+      "integration_edge_ids": [
+        "py_jax_module_train"
+      ],
+      "package": "chex",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_chex"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "supportive",
+      "family": "jax_ml",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "jaxtyping",
+      "integration_edge_ids": [
+        "py_jax_module_train"
+      ],
+      "package": "jaxtyping",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_jaxtyping"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "qit_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "dynamiqs",
+      "integration_edge_ids": [
+        "py_jax_quantum"
+      ],
+      "package": "dynamiqs",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/probes/toolset_expansion_20260610_python.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_dynamiqs"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "qit_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "netket",
+      "integration_edge_ids": [
+        "py_jax_quantum"
+      ],
+      "package": "netket",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/probes/toolset_expansion_20260610_python.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_netket"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "qit_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "quimb",
+      "integration_edge_ids": [
+        "py_tensor_network"
+      ],
+      "package": "quimb",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/probes/toolset_expansion_20260610_python.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_quimb"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "qit_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "cotengra",
+      "integration_edge_ids": [
+        "py_tensor_network"
+      ],
+      "package": "cotengra",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/probes/toolset_expansion_20260610_python.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_cotengra"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "geometry_graph",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "e3nn_jax",
+      "integration_edge_ids": [
+        "py_equivariant_graph"
+      ],
+      "package": "e3nn_jax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/probes/toolset_expansion_20260610_python.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_e3nn_jax"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "geometry_graph",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "jraph",
+      "integration_edge_ids": [
+        "py_equivariant_graph"
+      ],
+      "package": "jraph",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/sims/geo_network_shell_coordinate_v0/geo_network_shell_coordinate_v0_jax.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_jraph"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_ml",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "haiku",
+      "integration_edge_ids": [
+        "py_haiku_flax"
+      ],
+      "package": "dm-haiku",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_haiku"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_probabilistic",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "numpyro",
+      "integration_edge_ids": [
+        "py_probabilistic"
+      ],
+      "package": "numpyro",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_numpyro"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "optimization_transport",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "ott",
+      "integration_edge_ids": [
+        "py_transport"
+      ],
+      "package": "ott-jax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_f_ott_structured_v2.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_ott"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "qit_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "qutip",
+      "integration_edge_ids": [
+        "py_jax_quantum"
+      ],
+      "package": "qutip",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/qutip_mesolve_amplitude_damping_channel_fit_probe.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_qutip"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "qit_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "qutip_jax",
+      "integration_edge_ids": [
+        "py_jax_quantum"
+      ],
+      "package": "qutip-jax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_qutip_jax"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "proof_discharge",
+      "family": "proof_symbolic",
+      "first_rung": {
+        "role": "free-variable equivalence SAT/UNSAT encoding",
+        "state": "fresh_bounded_proof_discharge"
+      },
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "z3",
+      "integration_edge_ids": [
+        "py_proof_symbolic"
+      ],
+      "package": "z3-solver",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_z3_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_z3"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "proof_discharge",
+      "family": "proof_symbolic",
+      "first_rung": {
+        "role": "independent free-variable equivalence SAT/UNSAT encoding",
+        "state": "fresh_bounded_proof_discharge"
+      },
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "cvc5",
+      "integration_edge_ids": [
+        "py_proof_symbolic"
+      ],
+      "package": "cvc5",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_cvc5_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_cvc5"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "proof_symbolic",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "sympy",
+      "integration_edge_ids": [
+        "py_proof_symbolic"
+      ],
+      "package": "sympy",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_sympy_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_sympy"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "pytorch_core",
+      "first_rung": {
+        "role": "tensor census and graph closure support",
+        "state": "fresh_bounded_claim_load_bearing"
+      },
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "torch",
+      "integration_edge_ids": [
+        "py_torch_core"
+      ],
+      "package": "torch",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_pytorch.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_torch"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "geometry_graph",
+      "first_rung": {
+        "role": "MessagePassing reachability closure",
+        "state": "fresh_bounded_claim_load_bearing"
+      },
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "torch_geometric",
+      "integration_edge_ids": [
+        "py_torch_graph_geometry"
+      ],
+      "package": "torch-geometric",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_pyg_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_torch_geometric"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "pytorch_core",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "torchdiffeq",
+      "integration_edge_ids": [
+        "py_torch_core"
+      ],
+      "package": "torchdiffeq",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_torchdiffeq"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "pytorch_core",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "torchode",
+      "integration_edge_ids": [
+        "py_torch_core"
+      ],
+      "package": "torchode",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_torchode"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "pytorch_core",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "xitorch",
+      "integration_edge_ids": [
+        "py_torch_core"
+      ],
+      "package": "xitorch",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_xitorch"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "optimization_transport",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "cvxpylayers",
+      "integration_edge_ids": [
+        "py_torch_convex"
+      ],
+      "package": "cvxpylayers",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_cvxpylayers"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "geometry_graph",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "geomstats",
+      "integration_edge_ids": [
+        "py_torch_graph_geometry"
+      ],
+      "package": "geomstats",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_geomstats_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_geomstats"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "geometry_graph",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "e3nn",
+      "integration_edge_ids": [
+        "py_torch_graph_geometry"
+      ],
+      "package": "e3nn",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_e3nn_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_e3nn"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "algebra_geometry",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "torch_ga",
+      "integration_edge_ids": [
+        "py_geometric_algebra"
+      ],
+      "package": "torch-ga",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_torch_ga_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_torch_ga"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "algebra_geometry",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "clifford",
+      "integration_edge_ids": [
+        "py_geometric_algebra"
+      ],
+      "package": "clifford",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_clifford_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_clifford"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "system_identification",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pysindy",
+      "integration_edge_ids": [
+        "py_system_id"
+      ],
+      "package": "pysindy",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_pysindy_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_pysindy"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "graph_topology",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "networkx",
+      "integration_edge_ids": [
+        "py_graph_algorithms"
+      ],
+      "package": "networkx",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_networkx_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_networkx"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "graph_topology",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "igraph",
+      "integration_edge_ids": [
+        "py_graph_algorithms"
+      ],
+      "package": "igraph",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_igraph_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_igraph"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "graph_topology",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "rustworkx",
+      "integration_edge_ids": [
+        "py_graph_algorithms"
+      ],
+      "package": "rustworkx",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_integration_networkx_rustworkx_crosscheck.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_rustworkx"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "graph_topology",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "xgi",
+      "integration_edge_ids": [
+        "py_higher_order_topology"
+      ],
+      "package": "xgi",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_xgi_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_xgi"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "graph_topology",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "toponetx",
+      "integration_edge_ids": [
+        "py_higher_order_topology"
+      ],
+      "package": "toponetx",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_toponetx_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_toponetx"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "graph_topology",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "gudhi",
+      "integration_edge_ids": [
+        "py_higher_order_topology"
+      ],
+      "package": "gudhi",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_gudhi_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_gudhi"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "graph_topology",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "kanren",
+      "integration_edge_ids": [
+        "py_higher_order_topology"
+      ],
+      "package": "kanren",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_kanren"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "graph_topology",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "kahypar",
+      "integration_edge_ids": [
+        "py_higher_order_topology"
+      ],
+      "package": "kahypar",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_kahypar"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "qit_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "opt_einsum",
+      "integration_edge_ids": [
+        "py_tensor_network"
+      ],
+      "package": "opt_einsum",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_opt_einsum"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "control_only",
+      "family": "control_support",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "numpy",
+      "integration_edge_ids": [
+        "py_system_id"
+      ],
+      "package": "numpy",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_numpy"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "control_only",
+      "family": "control_support",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "scipy",
+      "integration_edge_ids": [
+        "py_system_id"
+      ],
+      "package": "scipy",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_scipy_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_scipy"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "supportive",
+      "family": "control_support",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pandas",
+      "integration_edge_ids": [
+        "py_system_id"
+      ],
+      "package": "pandas",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_pandas"
+    },
+    {
+      "bucket": "current_optional_available",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "dynamax",
+      "integration_edge_ids": [
+        "py_jax_dynamics"
+      ],
+      "package": "dynamax",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_dynamax"
+    },
+    {
+      "bucket": "current_optional_available",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "optimization_transport",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "flowMC",
+      "integration_edge_ids": [
+        "py_transport"
+      ],
+      "package": "flowMC",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_flowmc"
+    },
+    {
+      "bucket": "current_optional_available",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_ml",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "jax_dataclasses",
+      "integration_edge_ids": [
+        "py_jax_module_train"
+      ],
+      "package": "jax-dataclasses",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_jax_dataclasses"
+    },
+    {
+      "bucket": "current_optional_available",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "geometry_graph",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "jaxlie",
+      "integration_edge_ids": [
+        "py_equivariant_graph"
+      ],
+      "package": "jaxlie",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_jaxlie"
+    },
+    {
+      "bucket": "current_optional_available",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "algebra_geometry",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "jaxga",
+      "integration_edge_ids": [
+        "py_equivariant_graph"
+      ],
+      "package": "jaxga",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_jaxga"
+    },
+    {
+      "bucket": "current_optional_available",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "qit_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "autoray",
+      "integration_edge_ids": [
+        "py_tensor_network"
+      ],
+      "package": "autoray",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_autoray"
+    },
+    {
+      "bucket": "current_optional_available",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "jax_probabilistic",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pymc",
+      "integration_edge_ids": [
+        "py_probabilistic"
+      ],
+      "package": "pymc",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_pymc"
+    },
+    {
+      "bucket": "current_optional_available",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "system_identification",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "sklearn",
+      "integration_edge_ids": [
+        "py_system_id"
+      ],
+      "package": "scikit-learn",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/python_core_deep_stress.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_sklearn"
+    },
+    {
+      "bucket": "admitted_quarantined_surface",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "quarantined",
+      "family": "system_identification",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pykoopman",
+      "integration_edge_ids": [
+        "py_system_id"
+      ],
+      "package": "pykoopman",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_pykoopman_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_pykoopman"
+    },
+    {
+      "bucket": "legacy_unclassified",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "optimization_search",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "ribs",
+      "integration_edge_ids": [],
+      "package": "ribs",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_ribs_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_ribs"
+    },
+    {
+      "bucket": "legacy_unclassified",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "optimization_search",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "deap",
+      "integration_edge_ids": [],
+      "package": "deap",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_deap_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_deap"
+    },
+    {
+      "bucket": "legacy_unclassified",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "optimization_search",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "evotorch",
+      "integration_edge_ids": [],
+      "package": "evotorch",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_evotorch_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_evotorch"
+    },
+    {
+      "bucket": "legacy_unclassified",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "data_index",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "datasketch",
+      "integration_edge_ids": [],
+      "package": "datasketch",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_datasketch_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_datasketch"
+    },
+    {
+      "bucket": "legacy_unclassified",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "optimization_search",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pymoo",
+      "integration_edge_ids": [],
+      "package": "pymoo",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_pymoo_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_pymoo"
+    },
+    {
+      "bucket": "legacy_unclassified",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "property_testing",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "hypothesis",
+      "integration_edge_ids": [],
+      "package": "hypothesis",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_hypothesis_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_hypothesis"
+    },
+    {
+      "bucket": "legacy_unclassified",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "optimization_search",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "optuna",
+      "integration_edge_ids": [],
+      "package": "optuna",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_optuna_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_optuna"
+    },
+    {
+      "bucket": "legacy_unclassified",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "clustering",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "hdbscan",
+      "integration_edge_ids": [],
+      "package": "hdbscan",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_hdbscan_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_hdbscan"
+    },
+    {
+      "bucket": "legacy_unclassified",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "clustering",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "umap",
+      "integration_edge_ids": [],
+      "package": "umap-learn",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_capability_umap_isolated.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_umap"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Attractors",
+      "integration_edge_ids": [
+        "jl_dynamics"
+      ],
+      "package": "Attractors",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/claude_campaign_20260713/hardened/basin_chain_d.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_attractors"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "ChaosTools",
+      "integration_edge_ids": [
+        "jl_dynamics"
+      ],
+      "package": "ChaosTools",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_core_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_chaostools"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_algebra",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "CliffordAlgebras",
+      "integration_edge_ids": [
+        "jl_algebra"
+      ],
+      "package": "CliffordAlgebras",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_cliffordalgebras_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_cliffordalgebras"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "DifferentialEquations",
+      "integration_edge_ids": [
+        "jl_dynamics"
+      ],
+      "package": "DifferentialEquations",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_differentialequations_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_differentialequations"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "DynamicalSystems",
+      "integration_edge_ids": [
+        "jl_dynamics"
+      ],
+      "package": "DynamicalSystems",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/claude_campaign_20260713/hardened/basin_chain_d.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_dynamicalsystems"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_qit",
+      "first_rung": {
+        "role": "connected-component equivalence closure",
+        "state": "fresh_bounded_claim_load_bearing"
+      },
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Graphs",
+      "integration_edge_ids": [
+        "jl_qit"
+      ],
+      "package": "Graphs",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_graphs_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_graphs"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_algebra",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Grassmann",
+      "integration_edge_ids": [
+        "jl_algebra"
+      ],
+      "package": "Grassmann",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_grassmann_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_grassmann"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "ITensorMPS",
+      "integration_edge_ids": [
+        "jl_tensor"
+      ],
+      "package": "ITensorMPS",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_itensormps"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "ITensors",
+      "integration_edge_ids": [
+        "jl_tensor"
+      ],
+      "package": "ITensors",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_itensors"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "supportive",
+      "family": "provenance_support",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "JSON",
+      "integration_edge_ids": [
+        "jl_receipt"
+      ],
+      "package": "JSON",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_core_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_json"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "supportive",
+      "family": "provenance_support",
+      "first_rung": {
+        "role": "structured engine receipt serialization",
+        "state": "fresh_support"
+      },
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "JSON3",
+      "integration_edge_ids": [
+        "jl_receipt"
+      ],
+      "package": "JSON3",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_core_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_json3"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Manifolds",
+      "integration_edge_ids": [
+        "jl_dynamics"
+      ],
+      "package": "Manifolds",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_manifolds_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_manifolds"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_algebra",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Octonions",
+      "integration_edge_ids": [
+        "jl_algebra"
+      ],
+      "package": "Octonions",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/julia_carrier/canon_algebra_artifact_v1.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_octonions"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_qit",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "QuantumClifford",
+      "integration_edge_ids": [
+        "jl_qit"
+      ],
+      "package": "QuantumClifford",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_quantumclifford_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_quantumclifford"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_qit",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "QuantumOptics",
+      "integration_edge_ids": [
+        "jl_qit"
+      ],
+      "package": "QuantumOptics",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_quantumoptics_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_quantumoptics"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_qit",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "QuantumToolbox",
+      "integration_edge_ids": [
+        "jl_qit"
+      ],
+      "package": "QuantumToolbox",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_core_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_quantumtoolbox"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_algebra",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Quaternions",
+      "integration_edge_ids": [
+        "jl_algebra"
+      ],
+      "package": "Quaternions",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/probes/julia/julia_load_bearing_capability_probes.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_quaternions"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "supportive",
+      "family": "julia_dynamics",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "StaticArrays",
+      "integration_edge_ids": [
+        "jl_dynamics"
+      ],
+      "package": "StaticArrays",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/claude_campaign_20260713/hardened/basin_chain_d.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_staticarrays"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_algebra",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Symbolics",
+      "integration_edge_ids": [
+        "jl_algebra"
+      ],
+      "package": "Symbolics",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v4/probes/sim_symbolics_capability.py"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_symbolics"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_qit",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Yao",
+      "integration_edge_ids": [
+        "jl_qit"
+      ],
+      "package": "Yao",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_core_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_yao"
+    },
+    {
+      "bucket": "current_core",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "proof_discharge",
+      "family": "julia_algebra",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Z3",
+      "integration_edge_ids": [
+        "jl_algebra"
+      ],
+      "package": "Z3",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v6/probes/julia/julia_load_bearing_capability_probes.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_z3"
+    },
+    {
+      "bucket": "current_support",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "supportive",
+      "family": "provenance_support",
+      "first_rung": {
+        "role": "receipt timestamp",
+        "state": "fresh_support"
+      },
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Dates",
+      "integration_edge_ids": [
+        "jl_receipt"
+      ],
+      "package": "Dates",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_core_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_dates"
+    },
+    {
+      "bucket": "current_support",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "supportive",
+      "family": "provenance_support",
+      "first_rung": {
+        "role": "source hash binding",
+        "state": "fresh_support"
+      },
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "SHA",
+      "integration_edge_ids": [
+        "jl_receipt"
+      ],
+      "package": "SHA",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_core_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_sha"
+    },
+    {
+      "bucket": "current_support",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "control_only",
+      "family": "julia_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "LinearAlgebra",
+      "integration_edge_ids": [
+        "jl_tensor"
+      ],
+      "package": "LinearAlgebra",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_core_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_linearalgebra"
+    },
+    {
+      "bucket": "current_isolated",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "TensorKit",
+      "integration_edge_ids": [
+        "jl_isolated_tensor"
+      ],
+      "package": "TensorKit",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_isolated_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_tensorkit",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_tensorkit"
+    },
+    {
+      "bucket": "current_isolated",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "julia_tensor",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "PEPSKit",
+      "integration_edge_ids": [
+        "jl_isolated_tensor"
+      ],
+      "package": "PEPSKit",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_isolated_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_peps",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_pepskit"
+    },
+    {
+      "bucket": "current_isolated",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "function_level_receipt",
+      "family": "certified_bounds",
+      "first_rung": null,
+      "historical_operational_pass": true,
+      "historical_operational_status": "passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "IntervalArithmetic",
+      "integration_edge_ids": [
+        "jl_isolated_tensor"
+      ],
+      "package": "IntervalArithmetic",
+      "policy": null,
+      "representative_sim": {
+        "kind": "existing_or_new_integration_fixture",
+        "path": "system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_isolated_deep_stress.jl"
+      },
+      "required_case_types": [
+        "positive",
+        "negative",
+        "boundary",
+        "stress",
+        "demotion",
+        "adjacent_integration",
+        "representative_sim"
+      ],
+      "requires_deep_stress": true,
+      "runtime_id": "julia_attractors",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_intervalarithmetic"
+    },
+    {
+      "bucket": "blocked_or_avoid",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "blocked_compatibility",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "bayeux",
+      "integration_edge_ids": [],
+      "package": "bayeux",
+      "policy": "imports_against_removed_jax_api",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_bayeux"
+    },
+    {
+      "bucket": "blocked_or_avoid",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "blocked_compatibility",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "oryx",
+      "integration_edge_ids": [],
+      "package": "oryx",
+      "policy": "imports_against_removed_jax_internals",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_oryx"
+    },
+    {
+      "bucket": "blocked_or_avoid",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "blocked_compatibility",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "jax_verify",
+      "integration_edge_ids": [],
+      "package": "jax-verify",
+      "policy": "imports_against_removed_jax_internals",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_jax_verify"
+    },
+    {
+      "bucket": "blocked_or_avoid",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "blocked_compatibility",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "dgl",
+      "integration_edge_ids": [],
+      "package": "dgl",
+      "policy": "must_remain_absent_without_pinned_platform_receipt",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_dgl"
+    },
+    {
+      "bucket": "blocked_or_avoid",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "blocked_compatibility",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "torch_scatter",
+      "integration_edge_ids": [],
+      "package": "torch-scatter",
+      "policy": "must_remain_absent_without_pinned_wheel_receipt",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_torch_scatter"
+    },
+    {
+      "bucket": "blocked_or_avoid",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "blocked_compatibility",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "torch_sparse",
+      "integration_edge_ids": [],
+      "package": "torch-sparse",
+      "policy": "must_remain_absent_without_pinned_wheel_receipt",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_torch_sparse"
+    },
+    {
+      "bucket": "blocked_or_avoid",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "blocked_compatibility",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pyg_lib",
+      "integration_edge_ids": [],
+      "package": "pyg-lib",
+      "policy": "must_remain_absent_without_pinned_wheel_receipt",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_pyg_lib"
+    },
+    {
+      "bucket": "blocked_or_avoid",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "blocked_compatibility",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "torch_cluster",
+      "integration_edge_ids": [],
+      "package": "torch-cluster",
+      "policy": "must_remain_absent_without_pinned_wheel_receipt",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_torch_cluster"
+    },
+    {
+      "bucket": "blocked_or_avoid",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "blocked_compatibility",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "torch_spline_conv",
+      "integration_edge_ids": [],
+      "package": "torch-spline-conv",
+      "policy": "must_remain_absent_without_pinned_wheel_receipt",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "py_torch_spline_conv"
+    },
+    {
+      "bucket": "quarantined",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "quarantined",
+      "family": "julia_bridge",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "PythonCall",
+      "integration_edge_ids": [],
+      "package": "PythonCall",
+      "policy": "must_be_absent_from_strict_carrier",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_pythoncall"
+    },
+    {
+      "bucket": "quarantined",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "quarantined",
+      "family": "julia_bridge",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "DLPack",
+      "integration_edge_ids": [],
+      "package": "DLPack",
+      "policy": "must_be_absent_from_strict_carrier",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_dlpack"
+    },
+    {
+      "bucket": "quarantined",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "quarantined",
+      "family": "julia_bridge",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "CondaPkg",
+      "integration_edge_ids": [],
+      "package": "CondaPkg",
+      "policy": "must_be_absent_from_strict_carrier",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_strict_carrier",
+      "stale_to_v8_tree": true,
+      "tool_id": "jl_condapkg"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "hypernetx",
+      "integration_edge_ids": [],
+      "package": "hypernetx",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_hypernetx"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "hypergraphx",
+      "integration_edge_ids": [],
+      "package": "hypergraphx",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_hypergraphx"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "ripser",
+      "integration_edge_ids": [],
+      "package": "ripser",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_ripser"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "persim",
+      "integration_edge_ids": [],
+      "package": "persim",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_persim"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pyflagser",
+      "integration_edge_ids": [],
+      "package": "pyflagser",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_pyflagser"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pygsp",
+      "integration_edge_ids": [],
+      "package": "pygsp",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_pygsp"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "egglog",
+      "integration_edge_ids": [],
+      "package": "egglog",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_egglog"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "matchpy",
+      "integration_edge_ids": [],
+      "package": "matchpy",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_matchpy"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "distrax",
+      "integration_edge_ids": [],
+      "package": "distrax",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_distrax"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pycauset",
+      "integration_edge_ids": [],
+      "package": "pycauset",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_pycauset"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "dowhy",
+      "integration_edge_ids": [],
+      "package": "dowhy",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_dowhy"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "causal_learn",
+      "integration_edge_ids": [],
+      "package": "causal_learn",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_causal_learn"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pgmpy",
+      "integration_edge_ids": [],
+      "package": "pgmpy",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_pgmpy"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "pomegranate",
+      "integration_edge_ids": [],
+      "package": "pomegranate",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_pomegranate"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "graph_tool",
+      "integration_edge_ids": [],
+      "package": "graph_tool",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_graph_tool"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "causalai",
+      "integration_edge_ids": [],
+      "package": "causalai",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "python_canonical",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_py_causalai"
+    },
+    {
+      "bucket": "candidate_available_unisolated",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "CombinatorialSpaces",
+      "integration_edge_ids": [],
+      "package": "CombinatorialSpaces",
+      "policy": "must_move_to_exact_isolated_project_before_operational_claim",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_default_project",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_combinatorialspaces"
+    },
+    {
+      "bucket": "candidate_available_unisolated",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Enzyme",
+      "integration_edge_ids": [],
+      "package": "Enzyme",
+      "policy": "must_move_to_exact_isolated_project_before_operational_claim",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_default_project",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_enzyme"
+    },
+    {
+      "bucket": "candidate_available_unisolated",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Flux",
+      "integration_edge_ids": [],
+      "package": "Flux",
+      "policy": "must_move_to_exact_isolated_project_before_operational_claim",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_default_project",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_flux"
+    },
+    {
+      "bucket": "candidate_available_unisolated",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "ITensorNetworks",
+      "integration_edge_ids": [],
+      "package": "ITensorNetworks",
+      "policy": "must_move_to_exact_isolated_project_before_operational_claim",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_default_project",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_itensornetworks"
+    },
+    {
+      "bucket": "candidate_available_unisolated",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Lux",
+      "integration_edge_ids": [],
+      "package": "Lux",
+      "policy": "must_move_to_exact_isolated_project_before_operational_claim",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_default_project",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_lux"
+    },
+    {
+      "bucket": "candidate_available_unisolated",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "TensorOperations",
+      "integration_edge_ids": [],
+      "package": "TensorOperations",
+      "policy": "must_move_to_exact_isolated_project_before_operational_claim",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_default_project",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_tensoroperations"
+    },
+    {
+      "bucket": "candidate_available_unisolated",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Zygote",
+      "integration_edge_ids": [],
+      "package": "Zygote",
+      "policy": "must_move_to_exact_isolated_project_before_operational_claim",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_default_project",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_zygote"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "GraphNeuralNetworks",
+      "integration_edge_ids": [],
+      "package": "GraphNeuralNetworks",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_isolated_required",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_graphneuralnetworks"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "GeometricFlux",
+      "integration_edge_ids": [],
+      "package": "GeometricFlux",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_isolated_required",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_geometricflux"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "CVC5",
+      "integration_edge_ids": [],
+      "package": "CVC5",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_isolated_required",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_cvc5"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "Catlab",
+      "integration_edge_ids": [],
+      "package": "Catlab",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_isolated_required",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_catlab"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "AlgebraicRewriting",
+      "integration_edge_ids": [],
+      "package": "AlgebraicRewriting",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_isolated_required",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_algebraicrewriting"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "JuMP",
+      "integration_edge_ids": [],
+      "package": "JuMP",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_isolated_required",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_jump"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "SumOfSquares",
+      "integration_edge_ids": [],
+      "package": "SumOfSquares",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_isolated_required",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_sumofsquares"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "ReachabilityAnalysis",
+      "integration_edge_ids": [],
+      "package": "ReachabilityAnalysis",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_isolated_required",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_reachabilityanalysis"
+    },
+    {
+      "bucket": "candidate_missing",
+      "claim_ceiling": "L2 historical integration diagnostic; fresh role, where present, is only the frozen scratch tooth",
+      "expected_operational_role": "installed_only",
+      "family": "candidate_extension",
+      "first_rung": null,
+      "historical_operational_pass": false,
+      "historical_operational_status": "policy_passed",
+      "historical_receipt_present": true,
+      "historical_receipt_valid": true,
+      "historical_source_commit": "576229471147f038696b1e6c109be31ce28aa9d1",
+      "historical_source_tree": "c249f58d144f49bfc73150e4bfc84539723ee904",
+      "import_name": "TaylorModels",
+      "integration_edge_ids": [],
+      "package": "TaylorModels",
+      "policy": "not_an_install_target_without_bounded_install_intent",
+      "representative_sim": {
+        "kind": "policy_check",
+        "path": ""
+      },
+      "required_case_types": [],
+      "requires_deep_stress": false,
+      "runtime_id": "julia_isolated_required",
+      "stale_to_v8_tree": true,
+      "tool_id": "candidate_jl_taylormodels"
+    }
+  ]
+}

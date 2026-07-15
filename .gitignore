@@ -111,6 +111,12 @@ a2_state/
 codex-ratchet-architecture.html
 /summary.json
 
+# The V8 first-rung packet carries one deterministic no-model Lev config as
+# source. Keep all other runner-root .lev state (events, ledgers, caches) local.
+!system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/lev/runner_root/.lev/
+system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/lev/runner_root/.lev/*
+!system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/lev/runner_root/.lev/config.yaml
+
 # Generated Wizard packet exports and local checksums
 MMM_WIZARD_CLEAN_SYSTEM_PACKET_v3_3/
 MMM_WIZARD_CLEAN_SYSTEM_PACKET_v3_4/

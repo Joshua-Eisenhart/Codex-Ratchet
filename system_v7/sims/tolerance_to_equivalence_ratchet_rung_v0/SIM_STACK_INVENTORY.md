@@ -1,6 +1,6 @@
 # V8 Sim Engine, Library, Tool, Repo, and Code State
 
-Generated from the isolated integration-repair branch at source head `f45dfe38aa2a8995ccf775aa417a521e15134e43`. The inventory binds its named sources but does not claim a self-referential final commit. It is status evidence, not launch authority.
+Generated from the isolated integration-repair branch at source head `f019c0f4588d7e3e69fb871b6ea83b75697360e2`. The inventory binds its named sources but does not claim a self-referential final commit. It is status evidence, not launch authority.
 
 ## Outcome
 
@@ -229,7 +229,7 @@ Exact IDs: `py_jax_backend`, `py_jax_module_train`, `py_flax_orbax`, `py_probabi
 | Path | Role | Live state | Connection / boundary |
 |---|---|---|---|
 | `/Users/joshuaeisenhart/Codex-Ratchet` | active dirty owner checkout | `session/r0-three-engine-probes` `4f3fb20ac839`; dirty 48 tracked + 87 untracked | source repo and parallel R0 work; not the V8 execution tree (live_repo_dirty) |
-| `/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715` | current isolated V8 integration-repair worktree | `codex/v8-integration-repair-20260715` `f45dfe38aa2a`; dirty 5 tracked + 1 untracked | QIT integration repair, honest v0 HOLD, sealed v1 preregistration, provider controls, and repo-held skill candidate (current_v8_repair_tree) |
+| `/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715` | current isolated V8 integration-repair worktree | `codex/v8-integration-repair-20260715` `f019c0f4588d`; clean | QIT integration repair, honest v0 HOLD, sealed v1 preregistration, provider controls, and repo-held skill candidate (current_v8_repair_tree) |
 | `/Users/joshuaeisenhart/lev-main` | active Lev development checkout | `fable/cr-sim-eval-pack` `5f844cb9580e`; dirty 1 tracked + 1 untracked | current process archaeology only; dirty and not the pinned gate runner (live_repo_dirty) |
 | `/Users/joshuaeisenhart/.config/superpowers/worktrees/lev-main/v8-monitor-proof-evidence-repair-20260715` | isolated Lev XDG evidence repair | `codex/v8-monitor-proof-evidence-repair-20260715` `a8fe68e6943d`; clean | narrow monitor and legacy proof-bundle evidence repair; transitional because EvalDecision is current authority (transitional_lev_repair) |
 | `/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract` | historical pinned Lev replay executor | `codex/eval-projection-contract` `856acb1a5de4`; clean | old GateProof/G10 replay only; not current EvalDecision authority and cannot override the v0 semantic HOLD (historical_noncurrent_runtime) |

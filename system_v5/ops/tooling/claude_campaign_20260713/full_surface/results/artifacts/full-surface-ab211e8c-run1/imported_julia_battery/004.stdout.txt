@@ -1,0 +1,22 @@
+PASS canon_module_octonion_associator (0.1s) associator(e1,e2,e4) = 2e7 EXACT
+FAIL canon_albert_jordan_identity: MethodError: no method matching isless(::Main.ExceptionalAlgebraCanon.Albert, ::Float64)
+The function `isless` exists, but no method is defi
+PASS quantumoptics_lindblad_trace (4.0s) Lindblad trace preserved: 0.9999999999999996
+PASS quantumclifford_stabilizer (0.2s) Bell stabilizer canonicalized: + XX
++ ZZ
+FAIL cliffordalgebras_rotor: MethodError: no method matching one(::CliffordAlgebra{3, 0, 0, (:e1, :e2, :e3), ((), (1,), (2,), (3,), (1, 2), (3, 1), (2, 3), (1, 2, 3))})
+
+PASS octonions_nonassociativity (0.0s) octonion associator nonzero: |assoc|=2.0
+PASS quaternions_unit_rotation (0.0s) unit quaternion verified
+PASS differentialequations_ode (0.5s) dy/dt=-y: |err|=1.4e-12
+PASS itensors_mps_norm (4.3s) 6-site MPS norm = 1
+PASS manifolds_sphere_geodesic (0.1s) S2 great-circle distance = pi/2
+PASS symbolics_identity (10.4s) sin^2+cos^2 -> 1
+PASS graphs_toposort (0.1s) DAG toposort ok
+PASS attractors_basin_fractions_isolated (5.0s) Henon basins in isolated env: 1 attractor(s)
+PASS tensorkit_symmetric_tensor_isolated (1.6s) TensorKit tensor built in isolated env
+FAIL enzyme_autodiff_isolated: failed process: Process(`julia --startup-file=no -e 'using Enzyme
+f(x) = sin(x)^2
+g = autodiff(Reverse, f, Active, Active(0.3))[1][1]
+printl
+=== 12/15 PASS

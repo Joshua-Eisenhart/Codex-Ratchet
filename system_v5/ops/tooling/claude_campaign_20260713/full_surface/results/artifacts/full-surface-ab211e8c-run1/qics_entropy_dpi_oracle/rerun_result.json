@@ -1,0 +1,913 @@
+{
+  "all_tests_pass": true,
+  "blocked_consumers": [
+    "canonical_sim_registry",
+    "formal_claim_surfaces",
+    "higher_stage_integration",
+    "production_runners",
+    "cross_packet_scientific_inference"
+  ],
+  "claim_ceiling": "Bounded deterministic numerical evidence for the named QICS API on the fixed matrices and maps in this packet only.",
+  "classification": "scratch_diagnostic",
+  "divergence_log": [
+    "QICS cone values are compared case-by-case with a separate spectral implementation.",
+    "Accepted-map contraction is checked independently for the two value streams.",
+    "Rejected controls are diagnostic only and are never included in the accepted DPI count."
+  ],
+  "eligible_consumers": [
+    "local_tool_function_audit"
+  ],
+  "environment": {
+    "all_checks_pass": true,
+    "checks": {
+      "python_path_exact": true,
+      "qics_checkout_clean": true,
+      "qics_commit_exact": true,
+      "qics_import_from_checkout": true,
+      "qics_version_exact": true
+    },
+    "numpy_version": "2.4.6",
+    "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/qics-1.1.3-py311/bin/python",
+    "python_version": "3.11.13",
+    "qics_git_commit": "be18e5ef07258dec9e5db6bb18c1ee9b2003d545",
+    "qics_git_status_porcelain": "",
+    "qics_git_tree": "84d77a4a74af48a011594baed338b2b5fd68181d",
+    "qics_module": "/Users/joshuaeisenhart/GitHub/qics/qics/__init__.py",
+    "qics_version": "1.1.3",
+    "scipy_version": "1.17.1"
+  },
+  "errors": [],
+  "formal_admission_allowed": false,
+  "map_certificates_by_dimension": {
+    "2": {
+      "computational_pinching": {
+        "accepted_as_cptp": true,
+        "choi_hermitian_residual": 0.0,
+        "complete_positivity_pass": true,
+        "dimension": 2,
+        "minimum_choi_eigenvalue": 0.0,
+        "trace_preservation_pass": true,
+        "trace_preserving_residual": 0.0
+      },
+      "depolarizing_alpha_0p65": {
+        "accepted_as_cptp": true,
+        "choi_hermitian_residual": 0.0,
+        "complete_positivity_pass": true,
+        "dimension": 2,
+        "minimum_choi_eigenvalue": 0.175,
+        "trace_preservation_pass": true,
+        "trace_preserving_residual": 0.0
+      },
+      "trace_scale_1p10": {
+        "accepted_as_cptp": false,
+        "choi_hermitian_residual": 0.0,
+        "complete_positivity_pass": true,
+        "dimension": 2,
+        "minimum_choi_eigenvalue": 0.0,
+        "trace_preservation_pass": false,
+        "trace_preserving_residual": 0.1
+      },
+      "transpose_not_cp": {
+        "accepted_as_cptp": false,
+        "choi_hermitian_residual": 0.0,
+        "complete_positivity_pass": false,
+        "dimension": 2,
+        "minimum_choi_eigenvalue": -1.0,
+        "trace_preservation_pass": true,
+        "trace_preserving_residual": 0.0
+      }
+    },
+    "3": {
+      "computational_pinching": {
+        "accepted_as_cptp": true,
+        "choi_hermitian_residual": 0.0,
+        "complete_positivity_pass": true,
+        "dimension": 3,
+        "minimum_choi_eigenvalue": 0.0,
+        "trace_preservation_pass": true,
+        "trace_preserving_residual": 0.0
+      },
+      "depolarizing_alpha_0p65": {
+        "accepted_as_cptp": true,
+        "choi_hermitian_residual": 0.0,
+        "complete_positivity_pass": true,
+        "dimension": 3,
+        "minimum_choi_eigenvalue": 0.116666666666666,
+        "trace_preservation_pass": true,
+        "trace_preserving_residual": 0.0
+      },
+      "trace_scale_1p10": {
+        "accepted_as_cptp": false,
+        "choi_hermitian_residual": 0.0,
+        "complete_positivity_pass": true,
+        "dimension": 3,
+        "minimum_choi_eigenvalue": -6.36151401123625e-16,
+        "trace_preservation_pass": false,
+        "trace_preserving_residual": 0.1
+      },
+      "transpose_not_cp": {
+        "accepted_as_cptp": false,
+        "choi_hermitian_residual": 0.0,
+        "complete_positivity_pass": false,
+        "dimension": 3,
+        "minimum_choi_eigenvalue": -1.0,
+        "trace_preservation_pass": true,
+        "trace_preserving_residual": 0.0
+      }
+    }
+  },
+  "metrics": {
+    "accepted_maps": 2,
+    "dpi_cases": 6,
+    "input_pairs": 3,
+    "invalid_controls_rejected": 6,
+    "invalid_controls_total": 6,
+    "max_fixed_input_abs_residual": 1.10977171896565e-09,
+    "max_qics_spectral_abs_error": 8.16396894531835e-10,
+    "minimum_direct_contraction_margin": 0.071557723709512,
+    "minimum_qics_contraction_margin": 0.0715577238213695,
+    "qics_solves": 9
+  },
+  "pairs": [
+    {
+      "accepted_maps": [
+        {
+          "case_pass": true,
+          "counted_as_dpi_evidence": true,
+          "direct_contraction_margin": 0.17650849855512,
+          "direct_dpi_pass": true,
+          "map_certificate": {
+            "accepted_as_cptp": true,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": true,
+            "dimension": 2,
+            "minimum_choi_eigenvalue": 0.0,
+            "trace_preservation_pass": true,
+            "trace_preserving_residual": 0.0
+          },
+          "map_id": "computational_pinching",
+          "mapped_case": {
+            "fixed_input_pass": true,
+            "oracle_agreement_pass": true,
+            "qics": {
+              "cone_t": 0.0453036192139808,
+              "dual_feasibility": 1.17171865446563e-13,
+              "dual_value": 0.0453036192137947,
+              "exit_status": "solved",
+              "fixed_input_max_abs_residual": 1.46382905796827e-13,
+              "iterations": 8,
+              "optimality_gap": 5.39668563137824e-14,
+              "primal_feasibility": 2.34343730893126e-13,
+              "solver_status": "optimal",
+              "value": 0.0453036192138487
+            },
+            "qics_spectral_abs_error": 9.20999387865606e-14,
+            "solver_pass": true,
+            "spectral_umegaki": 0.0453036192139408
+          },
+          "mapped_rho_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.62,
+            "minimum_eigenvalue": 0.38,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_sigma_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.53,
+            "minimum_eigenvalue": 0.47,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_states_valid": true,
+          "qics_contraction_margin": 0.176508498341756,
+          "qics_dpi_pass": true
+        },
+        {
+          "case_pass": true,
+          "counted_as_dpi_evidence": true,
+          "direct_contraction_margin": 0.130060911856519,
+          "direct_dpi_pass": true,
+          "map_certificate": {
+            "accepted_as_cptp": true,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": true,
+            "dimension": 2,
+            "minimum_choi_eigenvalue": 0.175,
+            "trace_preservation_pass": true,
+            "trace_preserving_residual": 0.0
+          },
+          "map_id": "depolarizing_alpha_0p65",
+          "mapped_case": {
+            "fixed_input_pass": true,
+            "oracle_agreement_pass": true,
+            "qics": {
+              "cone_t": 0.0917512051784002,
+              "dual_feasibility": 7.29475022419024e-11,
+              "dual_value": 0.0917512052140897,
+              "exit_status": "solved",
+              "fixed_input_max_abs_residual": 1.10977171896565e-09,
+              "iterations": 9,
+              "optimality_gap": 1.17944456352003e-10,
+              "primal_feasibility": 7.6345535730876e-10,
+              "solver_status": "optimal",
+              "value": 0.0917512050961452
+            },
+            "qics_spectral_abs_error": 8.16396894531835e-10,
+            "solver_pass": true,
+            "spectral_umegaki": 0.0917512059125421
+          },
+          "mapped_rho_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.647794621011727,
+            "minimum_eigenvalue": 0.352205378988273,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_sigma_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.594417953801171,
+            "minimum_eigenvalue": 0.405582046198829,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_states_valid": true,
+          "qics_contraction_margin": 0.13006091245946,
+          "qics_dpi_pass": true
+        }
+      ],
+      "dimension": 2,
+      "input_pair_valid": true,
+      "invalid_controls": [
+        {
+          "counted_as_dpi_evidence": false,
+          "map_certificate": {
+            "accepted_as_cptp": false,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": false,
+            "dimension": 2,
+            "minimum_choi_eigenvalue": -1.0,
+            "trace_preservation_pass": true,
+            "trace_preserving_residual": 0.0
+          },
+          "map_id": "transpose_not_cp",
+          "qics_invoked": false,
+          "rejected": true,
+          "rejection_reasons": [
+            "complete_positivity_failed"
+          ],
+          "rho_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.727376340018041,
+            "minimum_eigenvalue": 0.272623659981958,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "sigma_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.64525839046334,
+            "minimum_eigenvalue": 0.354741609536661,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "spectral_change_from_input": 0.0,
+          "spectral_value_diagnostic_only": 0.221812117769061
+        },
+        {
+          "counted_as_dpi_evidence": false,
+          "map_certificate": {
+            "accepted_as_cptp": false,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": true,
+            "dimension": 2,
+            "minimum_choi_eigenvalue": 0.0,
+            "trace_preservation_pass": false,
+            "trace_preserving_residual": 0.1
+          },
+          "map_id": "trace_scale_1p10",
+          "qics_invoked": false,
+          "rejected": true,
+          "rejection_reasons": [
+            "trace_preservation_failed",
+            "density_output_validation_failed"
+          ],
+          "rho_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.800113974019846,
+            "minimum_eigenvalue": 0.299886025980154,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.1,
+            "trace_real": 1.1
+          },
+          "sigma_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.709784229509673,
+            "minimum_eigenvalue": 0.390215770490327,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.1,
+            "trace_real": 1.1
+          },
+          "spectral_change_from_input": 0.022181211776907,
+          "spectral_value_diagnostic_only": 0.243993329545968
+        }
+      ],
+      "original": {
+        "fixed_input_pass": true,
+        "oracle_agreement_pass": true,
+        "qics": {
+          "cone_t": 0.221812117684255,
+          "dual_feasibility": 1.14092105024105e-10,
+          "dual_value": 0.221812117525987,
+          "exit_status": "solved",
+          "fixed_input_max_abs_residual": 1.22051202477991e-10,
+          "iterations": 6,
+          "optimality_gap": 2.96180636714159e-11,
+          "primal_feasibility": 2.28184310829345e-10,
+          "solver_status": "optimal",
+          "value": 0.221812117555605
+        },
+        "qics_spectral_abs_error": 2.13456002873258e-10,
+        "solver_pass": true,
+        "spectral_umegaki": 0.221812117769061
+      },
+      "pair_id": "qubit_complex_a",
+      "pair_pass": true,
+      "rho_diagnostics": {
+        "dimension": 2,
+        "hermitian_residual": 0.0,
+        "maximum_eigenvalue": 0.727376340018041,
+        "minimum_eigenvalue": 0.272623659981958,
+        "trace_imag_abs": 0.0,
+        "trace_one_residual": 0.0,
+        "trace_real": 1.0
+      },
+      "sigma_diagnostics": {
+        "dimension": 2,
+        "hermitian_residual": 0.0,
+        "maximum_eigenvalue": 0.64525839046334,
+        "minimum_eigenvalue": 0.354741609536661,
+        "trace_imag_abs": 0.0,
+        "trace_one_residual": 0.0,
+        "trace_real": 1.0
+      }
+    },
+    {
+      "accepted_maps": [
+        {
+          "case_pass": true,
+          "counted_as_dpi_evidence": true,
+          "direct_contraction_margin": 0.104482505018509,
+          "direct_dpi_pass": true,
+          "map_certificate": {
+            "accepted_as_cptp": true,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": true,
+            "dimension": 2,
+            "minimum_choi_eigenvalue": 0.0,
+            "trace_preservation_pass": true,
+            "trace_preserving_residual": 0.0
+          },
+          "map_id": "computational_pinching",
+          "mapped_case": {
+            "fixed_input_pass": true,
+            "oracle_agreement_pass": true,
+            "qics": {
+              "cone_t": 0.267595969500103,
+              "dual_feasibility": 1.19797173271573e-11,
+              "dual_value": 0.267595969483937,
+              "exit_status": "solved",
+              "fixed_input_max_abs_residual": 1.72682979027172e-11,
+              "iterations": 6,
+              "optimality_gap": 2.65773258541992e-12,
+              "primal_feasibility": 2.39594346543145e-11,
+              "solver_status": "optimal",
+              "value": 0.267595969486595
+            },
+            "qics_spectral_abs_error": 2.49150144959742e-11,
+            "solver_pass": true,
+            "spectral_umegaki": 0.26759596951151
+          },
+          "mapped_rho_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.72,
+            "minimum_eigenvalue": 0.28,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_sigma_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.64,
+            "minimum_eigenvalue": 0.36,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_states_valid": true,
+          "qics_contraction_margin": 0.104482504673105,
+          "qics_dpi_pass": true
+        },
+        {
+          "case_pass": true,
+          "counted_as_dpi_evidence": true,
+          "direct_contraction_margin": 0.218948754711122,
+          "direct_dpi_pass": true,
+          "map_certificate": {
+            "accepted_as_cptp": true,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": true,
+            "dimension": 2,
+            "minimum_choi_eigenvalue": 0.175,
+            "trace_preservation_pass": true,
+            "trace_preserving_residual": 0.0
+          },
+          "map_id": "depolarizing_alpha_0p65",
+          "mapped_case": {
+            "fixed_input_pass": true,
+            "oracle_agreement_pass": true,
+            "qics": {
+              "cone_t": 0.153129719718907,
+              "dual_feasibility": 1.21500262163651e-10,
+              "dual_value": 0.153129719553175,
+              "exit_status": "solved",
+              "fixed_input_max_abs_residual": 1.63924540608207e-10,
+              "iterations": 6,
+              "optimality_gap": 2.87296124278216e-11,
+              "primal_feasibility": 2.43000524327302e-10,
+              "solver_status": "optimal",
+              "value": 0.153129719581904
+            },
+            "qics_spectral_abs_error": 2.36993008551067e-10,
+            "solver_pass": true,
+            "spectral_umegaki": 0.153129719818897
+          },
+          "mapped_rho_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.669499262535269,
+            "minimum_eigenvalue": 0.330500737464731,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_sigma_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.604809350727881,
+            "minimum_eigenvalue": 0.395190649272119,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_states_valid": true,
+          "qics_contraction_margin": 0.218948754577796,
+          "qics_dpi_pass": true
+        }
+      ],
+      "dimension": 2,
+      "input_pair_valid": true,
+      "invalid_controls": [
+        {
+          "counted_as_dpi_evidence": false,
+          "map_certificate": {
+            "accepted_as_cptp": false,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": false,
+            "dimension": 2,
+            "minimum_choi_eigenvalue": -1.0,
+            "trace_preservation_pass": true,
+            "trace_preserving_residual": 0.0
+          },
+          "map_id": "transpose_not_cp",
+          "qics_invoked": false,
+          "rejected": true,
+          "rejection_reasons": [
+            "complete_positivity_failed"
+          ],
+          "rho_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.760768096208106,
+            "minimum_eigenvalue": 0.239231903791894,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "sigma_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.661245154965971,
+            "minimum_eigenvalue": 0.338754845034029,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "spectral_change_from_input": 0.0,
+          "spectral_value_diagnostic_only": 0.372078474530019
+        },
+        {
+          "counted_as_dpi_evidence": false,
+          "map_certificate": {
+            "accepted_as_cptp": false,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": true,
+            "dimension": 2,
+            "minimum_choi_eigenvalue": 0.0,
+            "trace_preservation_pass": false,
+            "trace_preserving_residual": 0.1
+          },
+          "map_id": "trace_scale_1p10",
+          "qics_invoked": false,
+          "rejected": true,
+          "rejection_reasons": [
+            "trace_preservation_failed",
+            "density_output_validation_failed"
+          ],
+          "rho_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.836844905828917,
+            "minimum_eigenvalue": 0.263155094171084,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.1,
+            "trace_real": 1.1
+          },
+          "sigma_diagnostics": {
+            "dimension": 2,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.727369670462568,
+            "minimum_eigenvalue": 0.372630329537432,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.1,
+            "trace_real": 1.1
+          },
+          "spectral_change_from_input": 0.037207847453002,
+          "spectral_value_diagnostic_only": 0.409286321983021
+        }
+      ],
+      "original": {
+        "fixed_input_pass": true,
+        "oracle_agreement_pass": true,
+        "qics": {
+          "cone_t": 0.372078474313351,
+          "dual_feasibility": 1.36264581989745e-10,
+          "dual_value": 0.372078474145526,
+          "exit_status": "solved",
+          "fixed_input_max_abs_residual": 1.93662419434304e-10,
+          "iterations": 7,
+          "optimality_gap": 1.41739103814264e-11,
+          "primal_feasibility": 2.7252916397949e-10,
+          "solver_status": "optimal",
+          "value": 0.3720784741597
+        },
+        "qics_spectral_abs_error": 3.70318997688912e-10,
+        "solver_pass": true,
+        "spectral_umegaki": 0.372078474530019
+      },
+      "pair_id": "qubit_real_b",
+      "pair_pass": true,
+      "rho_diagnostics": {
+        "dimension": 2,
+        "hermitian_residual": 0.0,
+        "maximum_eigenvalue": 0.760768096208106,
+        "minimum_eigenvalue": 0.239231903791894,
+        "trace_imag_abs": 0.0,
+        "trace_one_residual": 0.0,
+        "trace_real": 1.0
+      },
+      "sigma_diagnostics": {
+        "dimension": 2,
+        "hermitian_residual": 0.0,
+        "maximum_eigenvalue": 0.661245154965971,
+        "minimum_eigenvalue": 0.338754845034029,
+        "trace_imag_abs": 0.0,
+        "trace_one_residual": 0.0,
+        "trace_real": 1.0
+      }
+    },
+    {
+      "accepted_maps": [
+        {
+          "case_pass": true,
+          "counted_as_dpi_evidence": true,
+          "direct_contraction_margin": 0.101685955537486,
+          "direct_dpi_pass": true,
+          "map_certificate": {
+            "accepted_as_cptp": true,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": true,
+            "dimension": 3,
+            "minimum_choi_eigenvalue": 0.0,
+            "trace_preservation_pass": true,
+            "trace_preserving_residual": 0.0
+          },
+          "map_id": "computational_pinching",
+          "mapped_case": {
+            "fixed_input_pass": true,
+            "oracle_agreement_pass": true,
+            "qics": {
+              "cone_t": 0.0215389168466833,
+              "dual_feasibility": 5.52856734468914e-12,
+              "dual_value": 0.0215389168372667,
+              "exit_status": "solved",
+              "fixed_input_max_abs_residual": 8.99069707571698e-12,
+              "iterations": 9,
+              "optimality_gap": 3.82598133718397e-12,
+              "primal_feasibility": 1.10571346893783e-11,
+              "solver_status": "optimal",
+              "value": 0.0215389168410927
+            },
+            "qics_spectral_abs_error": 8.6723996040039e-12,
+            "solver_pass": true,
+            "spectral_umegaki": 0.0215389168497651
+          },
+          "mapped_rho_diagnostics": {
+            "dimension": 3,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.515713134568896,
+            "minimum_eigenvalue": 0.177437550362611,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_sigma_diagnostics": {
+            "dimension": 3,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.413257991060133,
+            "minimum_eigenvalue": 0.224255713924264,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_states_valid": true,
+          "qics_contraction_margin": 0.101685955468237,
+          "qics_dpi_pass": true
+        },
+        {
+          "case_pass": true,
+          "counted_as_dpi_evidence": true,
+          "direct_contraction_margin": 0.071557723709512,
+          "direct_dpi_pass": true,
+          "map_certificate": {
+            "accepted_as_cptp": true,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": true,
+            "dimension": 3,
+            "minimum_choi_eigenvalue": 0.116666666666666,
+            "trace_preservation_pass": true,
+            "trace_preserving_residual": 0.0
+          },
+          "map_id": "depolarizing_alpha_0p65",
+          "mapped_case": {
+            "fixed_input_pass": true,
+            "oracle_agreement_pass": true,
+            "qics": {
+              "cone_t": 0.0516671486053165,
+              "dual_feasibility": 1.1605206011069e-10,
+              "dual_value": 0.0516671484085927,
+              "exit_status": "solved",
+              "fixed_input_max_abs_residual": 1.8150375646897e-10,
+              "iterations": 6,
+              "optimality_gap": 7.93678224922536e-11,
+              "primal_feasibility": 2.32104050466901e-10,
+              "solver_status": "optimal",
+              "value": 0.0516671484879605
+            },
+            "qics_spectral_abs_error": 1.89778498471682e-10,
+            "solver_pass": true,
+            "spectral_umegaki": 0.051667148677739
+          },
+          "mapped_rho_diagnostics": {
+            "dimension": 3,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.476421014306259,
+            "minimum_eigenvalue": 0.212537357223525,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_sigma_diagnostics": {
+            "dimension": 3,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.416947939164442,
+            "minimum_eigenvalue": 0.244832830060911,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "mapped_states_valid": true,
+          "qics_contraction_margin": 0.0715577238213695,
+          "qics_dpi_pass": true
+        }
+      ],
+      "dimension": 3,
+      "input_pair_valid": true,
+      "invalid_controls": [
+        {
+          "counted_as_dpi_evidence": false,
+          "map_certificate": {
+            "accepted_as_cptp": false,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": false,
+            "dimension": 3,
+            "minimum_choi_eigenvalue": -1.0,
+            "trace_preservation_pass": true,
+            "trace_preserving_residual": 0.0
+          },
+          "map_id": "transpose_not_cp",
+          "qics_invoked": false,
+          "rejected": true,
+          "rejection_reasons": [
+            "complete_positivity_failed"
+          ],
+          "rho_diagnostics": {
+            "dimension": 3,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.553468227137835,
+            "minimum_eigenvalue": 0.147493370087475,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "sigma_diagnostics": {
+            "dimension": 3,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.461971188458116,
+            "minimum_eigenvalue": 0.197178712914223,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.0,
+            "trace_real": 1.0
+          },
+          "spectral_change_from_input": 0.0,
+          "spectral_value_diagnostic_only": 0.123224872387251
+        },
+        {
+          "counted_as_dpi_evidence": false,
+          "map_certificate": {
+            "accepted_as_cptp": false,
+            "choi_hermitian_residual": 0.0,
+            "complete_positivity_pass": true,
+            "dimension": 3,
+            "minimum_choi_eigenvalue": -6.36151401123625e-16,
+            "trace_preservation_pass": false,
+            "trace_preserving_residual": 0.1
+          },
+          "map_id": "trace_scale_1p10",
+          "qics_invoked": false,
+          "rejected": true,
+          "rejection_reasons": [
+            "trace_preservation_failed",
+            "density_output_validation_failed"
+          ],
+          "rho_diagnostics": {
+            "dimension": 3,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.608815049851618,
+            "minimum_eigenvalue": 0.162242707096222,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.1,
+            "trace_real": 1.1
+          },
+          "sigma_diagnostics": {
+            "dimension": 3,
+            "hermitian_residual": 0.0,
+            "maximum_eigenvalue": 0.508168307303928,
+            "minimum_eigenvalue": 0.216896584205645,
+            "trace_imag_abs": 0.0,
+            "trace_one_residual": 0.1,
+            "trace_real": 1.1
+          },
+          "spectral_change_from_input": 0.012322487238725,
+          "spectral_value_diagnostic_only": 0.135547359625976
+        }
+      ],
+      "original": {
+        "fixed_input_pass": true,
+        "oracle_agreement_pass": true,
+        "qics": {
+          "cone_t": 0.123224872309332,
+          "dual_feasibility": 1.92247758169833e-15,
+          "dual_value": 0.123224872320446,
+          "exit_status": "solved",
+          "fixed_input_max_abs_residual": 6.03983529856578e-11,
+          "iterations": 10,
+          "optimality_gap": 1.11160501888733e-11,
+          "primal_feasibility": 3.9849804160014e-11,
+          "solver_status": "optimal",
+          "value": 0.12322487230933
+        },
+        "qics_spectral_abs_error": 7.79209891055288e-11,
+        "solver_pass": true,
+        "spectral_umegaki": 0.123224872387251
+      },
+      "pair_id": "qutrit_complex_c",
+      "pair_pass": true,
+      "rho_diagnostics": {
+        "dimension": 3,
+        "hermitian_residual": 0.0,
+        "maximum_eigenvalue": 0.553468227137835,
+        "minimum_eigenvalue": 0.147493370087475,
+        "trace_imag_abs": 0.0,
+        "trace_one_residual": 0.0,
+        "trace_real": 1.0
+      },
+      "sigma_diagnostics": {
+        "dimension": 3,
+        "hermitian_residual": 0.0,
+        "maximum_eigenvalue": 0.461971188458116,
+        "minimum_eigenvalue": 0.197178712914223,
+        "trace_imag_abs": 0.0,
+        "trace_one_residual": 0.0,
+        "trace_real": 1.0
+      }
+    }
+  ],
+  "producer_status_label": "runs",
+  "promotion_allowed": false,
+  "schema": "codex_ratchet.qics_entropy_dpi_numeric_oracle_result.v0",
+  "sim_id": "qics_entropy_dpi_numeric_oracle_v0",
+  "source_and_dependency_hashes": {
+    "algorithm": "sha256",
+    "distribution_metadata": {
+      "numpy": "b082c52ccbe3b880bae177c35171b52ed6c947f3ad71e3762f2723f60a411de0",
+      "scipy": "b1cd2c784f6e003c6c71af4c5ee57f6370ee467d17b656250d9fd38cf579d7d0"
+    },
+    "packet_sources": {
+      "qics_entropy_dpi_numeric_oracle_v0.py": "27c17439afbde76e13395b7675174f1127def071b5c05bf8bfd8f6d14bfe1f8b",
+      "run_all.sh": "7f8e3b567d48587b816cfc56a658e679b00aaa59729840af95bbee6633e0acaa",
+      "spec.json": "fbf670517cdb9772977f48936a8752dd229231efb2e79f8aa51a6f6f8d415302",
+      "validate_qics_entropy_dpi_numeric_oracle_v0.py": "b28ed9ccc5bb810df535a7309ec754a8500f39e4df85a2397fe6bba5d52acc35"
+    },
+    "python_executable_resolved": {
+      "path": "/Users/joshuaeisenhart/.local/share/uv/python/cpython-3.11.13-macos-aarch64-none/bin/python3.11",
+      "sha256": "26ea714a88872c5c389fadf88b8c28bf47f7b9c2c035fe568801f61dad87e2f9"
+    },
+    "qics_sources": {
+      "qics/cones/entropy/quantrelentr.py": "7cf0e3fc46e5687ba61bfa0b8968da8e9a6af44583564403c9eae3f3307bc25b",
+      "qics/model.py": "49d4181a2cf49766624ca73423aaf8717ca6247b330f61fb4ff08fad661123c3",
+      "qics/solver.py": "9eac436d35721d709dcaddc090eafa8e9c937f07e53fdb3cef390397e4adc75a",
+      "qics/vectorize.py": "14858a08ec721234077c922e2fca54de3618adabd7b1f10fb5c2bfb8942f132e"
+    }
+  },
+  "stage_movement_allowed": false,
+  "test_count": 11,
+  "tests": {
+    "accepted_maps_certified": true,
+    "all_direct_dpi_checks": true,
+    "all_fixed_input_residuals": true,
+    "all_oracle_agreements": true,
+    "all_qics_dpi_checks": true,
+    "all_qics_solver_runs": true,
+    "expected_counts": true,
+    "fixed_inputs_valid": true,
+    "invalid_controls_rejected_and_excluded": true,
+    "pinned_environment": true,
+    "qics_load_bearing": true
+  },
+  "tests_passed": 11,
+  "tolerances": {
+    "direct_dpi_slack": 1e-12,
+    "fixed_input_abs": 2e-07,
+    "hermitian_abs": 1e-12,
+    "map_certificate_abs": 1e-10,
+    "positive_eigenvalue_floor": 1e-10,
+    "qics_dpi_slack": 4e-07,
+    "qics_spectral_abs": 2e-07,
+    "trace_abs": 1e-12
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive_independent_comparator",
+    "qics": "load_bearing",
+    "scipy": "supportive_runtime_dependency"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "function": "spectral Umegaki comparator and map diagnostics",
+      "reason": "Supplies an implementation independent of the QICS cone oracle."
+    },
+    "qics": {
+      "function": "QuantRelEntr fixed-input epigraph minimization",
+      "reason": "Produces every accepted oracle value; failures are fatal."
+    },
+    "scipy": {
+      "function": "QICS runtime dependency",
+      "reason": "Supports the pinned QICS model and solver."
+    }
+  }
+}

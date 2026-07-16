@@ -1,0 +1,346 @@
+{
+  "all_pass": true,
+  "auto_lirpa": {
+    "crown_primary": {
+      "lower": -0.02380327880382538,
+      "upper": 0.3421570658683777
+    },
+    "crown_shrunk": {
+      "lower": 0.0677991509437561,
+      "upper": 0.25031885504722595
+    },
+    "crown_zero_box": {
+      "lower": 0.15905900299549103,
+      "upper": 0.15905900299549103
+    },
+    "ibp_primary": {
+      "lower": -0.04834949970245361,
+      "upper": 0.19826041162014008
+    }
+  },
+  "blocked_consumers": [
+    "general verifier soundness",
+    "scientific canon",
+    "Ratchet rung promotion",
+    "Lev graph mutation"
+  ],
+  "checks": {
+    "all_relu_patterns_enumerated": true,
+    "auto_lirpa_source_is_clean_pinned_commit": true,
+    "canonical_runtime_imports_editable_auto_lirpa": true,
+    "crown_encloses_exhaustive_region_lp_extrema": true,
+    "forged_inward_lower_bound_is_rejected": true,
+    "forged_inward_upper_bound_is_rejected": true,
+    "ibp_encloses_exhaustive_region_lp_extrema": true,
+    "oracle_extrema_match_direct_network_evaluation": true,
+    "shrink_is_nested_and_strict": true,
+    "shrunk_crown_encloses_shrunk_oracle": true,
+    "zero_box_crown_matches_direct_center": true,
+    "zero_box_oracle_matches_direct_center": true
+  },
+  "claim_ceiling": "Finite numerical containment evidence for CROWN and IBP on one pinned, fixed-seed 2-4-1 ReLU network and three nested boxes, checked by exhaustive activation-region LP. This is not a general auto_LiRPA soundness proof and admits no scientific Ratchet claim.",
+  "classification": "tool_lego_fit_probe",
+  "command": [
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-dqw_zcb4/repo/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_j_autolirpa_region_oracle_v2.py",
+    "--output",
+    "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-dqw_zcb4/repo/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/gap_j_autolirpa_region_oracle_v2_results.json"
+  ],
+  "controls": {
+    "forged_inward_lower": {
+      "accepted": false,
+      "bounds": [
+        -0.023360686391504588,
+        0.3421570658683777
+      ]
+    },
+    "forged_inward_upper": {
+      "accepted": false,
+      "bounds": [
+        -0.02380327880382538,
+        0.19756759872436525
+      ]
+    },
+    "shrunken_box": {
+      "epsilon": 0.25
+    },
+    "zero_width_box": {
+      "epsilon": 0.0
+    }
+  },
+  "created_at": "2026-07-14T05:59:49.075515+00:00",
+  "fixed_object": {
+    "center": [
+      0.30000001192092896,
+      -0.20000000298023224
+    ],
+    "network": "2-4-1 ReLU",
+    "primary_epsilon_linf": 0.5
+  },
+  "formal_admission_allowed": false,
+  "independent_region_lp_oracle": {
+    "description": "all 16 ReLU activation masks; affine extrema per feasible polytope via scipy.optimize.linprog(method=highs)",
+    "direct_extrema_values": {
+      "center": 0.15905900299549103,
+      "maximum": 0.19766759872436523,
+      "minimum": -0.023460686206817627
+    },
+    "primary": {
+      "epsilon": 0.5,
+      "feasible_pattern_count": 6,
+      "maximum": 0.19766759872436523,
+      "maximum_mask": "0000",
+      "maximum_point": [
+        0.800000011920929,
+        0.17659546547410038
+      ],
+      "minimum": -0.023460686391504587,
+      "minimum_mask": "0100",
+      "minimum_point": [
+        -0.19999998807907104,
+        -0.7000000029802322
+      ],
+      "patterns_enumerated": 16,
+      "regions": [
+        {
+          "mask": "0000",
+          "maximum": 0.19766759872436523,
+          "maximum_point": [
+            0.800000011920929,
+            0.17659546547410038
+          ],
+          "minimum": 0.19766759872436523,
+          "minimum_point": [
+            0.800000011920929,
+            0.17659546547410038
+          ]
+        },
+        {
+          "mask": "0100",
+          "maximum": 0.19766759872436523,
+          "maximum_point": [
+            0.17144263200081802,
+            0.1678230685172425
+          ],
+          "minimum": -0.023460686391504587,
+          "minimum_point": [
+            -0.19999998807907104,
+            -0.7000000029802322
+          ]
+        },
+        {
+          "mask": "1000",
+          "maximum": 0.19766759872436523,
+          "maximum_point": [
+            0.800000011920929,
+            0.17659546547410038
+          ],
+          "minimum": 0.18112368477954408,
+          "minimum_point": [
+            0.800000011920929,
+            0.2679010600907572
+          ]
+        },
+        {
+          "mask": "1001",
+          "maximum": 0.1825276490949313,
+          "maximum_point": [
+            0.09764956032627818,
+            0.2503503212109901
+          ],
+          "minimum": 0.17394632158611917,
+          "minimum_point": [
+            0.05325450334830158,
+            0.29999999701976776
+          ]
+        },
+        {
+          "mask": "1100",
+          "maximum": 0.19766759872436523,
+          "maximum_point": [
+            0.17144263200081802,
+            0.1678230685172425
+          ],
+          "minimum": 0.12447859172609226,
+          "minimum_point": [
+            -0.19999998807907104,
+            0.24291248232317827
+          ]
+        },
+        {
+          "mask": "1101",
+          "maximum": 0.1825276490949313,
+          "maximum_point": [
+            0.09764956032627818,
+            0.2503503212109901
+          ],
+          "minimum": 0.12447859172609227,
+          "minimum_point": [
+            -0.19999998807907104,
+            0.24291248232317827
+          ]
+        }
+      ]
+    },
+    "shrunk": {
+      "epsilon": 0.25,
+      "feasible_pattern_count": 2,
+      "maximum": 0.19766759872436523,
+      "maximum_mask": "0000",
+      "maximum_point": [
+        0.550000011920929,
+        0.04999999701976776
+      ],
+      "minimum": 0.06779915863938422,
+      "minimum_mask": "0100",
+      "minimum_point": [
+        0.050000011920928955,
+        -0.45000000298023224
+      ],
+      "patterns_enumerated": 16,
+      "regions": [
+        {
+          "mask": "0000",
+          "maximum": 0.19766759872436523,
+          "maximum_point": [
+            0.550000011920929,
+            0.04999999701976776
+          ],
+          "minimum": 0.19766759872436523,
+          "minimum_point": [
+            0.550000011920929,
+            0.04999999701976776
+          ]
+        },
+        {
+          "mask": "0100",
+          "maximum": 0.19766759872436523,
+          "maximum_point": [
+            0.2767960283169697,
+            0.04999999701976776
+          ],
+          "minimum": 0.06779915863938422,
+          "minimum_point": [
+            0.050000011920928955,
+            -0.45000000298023224
+          ]
+        }
+      ]
+    },
+    "zero_box": {
+      "epsilon": 0.0,
+      "feasible_pattern_count": 1,
+      "maximum": 0.159059003670273,
+      "maximum_mask": "0100",
+      "maximum_point": [
+        0.30000001192092896,
+        -0.20000000298023224
+      ],
+      "minimum": 0.159059003670273,
+      "minimum_mask": "0100",
+      "minimum_point": [
+        0.30000001192092896,
+        -0.20000000298023224
+      ],
+      "patterns_enumerated": 16,
+      "regions": [
+        {
+          "mask": "0100",
+          "maximum": 0.159059003670273,
+          "maximum_point": [
+            0.30000001192092896,
+            -0.20000000298023224
+          ],
+          "minimum": 0.159059003670273,
+          "minimum_point": [
+            0.30000001192092896,
+            -0.20000000298023224
+          ]
+        }
+      ]
+    }
+  },
+  "promotion_allowed": false,
+  "runner_identity": {
+    "auto_lirpa_module_file": "/Users/joshuaeisenhart/GitHub/auto_LiRPA/auto_LiRPA/__init__.py",
+    "auto_lirpa_repo_clean": true,
+    "auto_lirpa_repo_head": "ca767f1d8c0a6b125a292ba165adb2319bbaf615",
+    "auto_lirpa_version": "0.7.0",
+    "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "python_version": "3.13.6 (main, Aug  6 2025, 13:05:20) [Clang 17.0.0 (clang-1700.0.13.3)]",
+    "scipy_version": "1.17.1",
+    "torch_version": "2.11.0"
+  },
+  "schema": "codex-ratchet.gap-j-autolirpa-region-oracle-result.v2",
+  "sim_id": "gap_j_fixed_relu_crown_region_oracle",
+  "source": {
+    "network_constructor": "torch.manual_seed(0); Linear(2,4)-ReLU-Linear(4,1)",
+    "network_state": {
+      "0.bias": [
+        -0.06275151669979095,
+        0.1871093362569809,
+        -0.2136969119310379,
+        -0.13899271190166473
+      ],
+      "0.weight": [
+        [
+          -0.005293981172144413,
+          0.37932288646698
+        ],
+        [
+          -0.5819807648658752,
+          -0.5203874707221985
+        ],
+        [
+          -0.27234524488449097,
+          0.1896158903837204
+        ],
+        [
+          -0.014010033570230007,
+          0.5606575012207031
+        ]
+      ],
+      "2.bias": [
+        0.19766759872436523
+      ],
+      "2.weight": [
+        [
+          -0.4776742458343506,
+          -0.33114105463027954,
+          -0.20611155033111572,
+          0.018521785736083984
+        ]
+      ]
+    },
+    "network_state_sha256": "49023d94d7d953ac6a4e423558fa6257029aae57d9c887f06ad5c6e928c7a687",
+    "probe_path": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-dqw_zcb4/repo/system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_j_autolirpa_region_oracle_v2.py",
+    "probe_sha256": "10cfde65104f0a9eef6d4192b87f19a13f428567918e1cc3e94a1e73c96366fb"
+  },
+  "tool_calls": [
+    {
+      "api": "BoundedModule.compute_bounds with CROWN and IBP",
+      "gates": [
+        "all_pass"
+      ],
+      "input": "frozen 2-4-1 ReLU network and L_inf box",
+      "negative_control": "forged inward lower and upper intervals must be rejected by the independent oracle",
+      "output": "candidate output intervals",
+      "tool": "auto_LiRPA"
+    },
+    {
+      "api": "scipy.optimize.linprog(method=highs)",
+      "boundary_control": "zero-width box agrees with direct center evaluation",
+      "gates": [
+        "all_pass"
+      ],
+      "input": "all 16 activation-region affine programs",
+      "output": "global finite-box extrema and witnesses",
+      "tool": "scipy"
+    }
+  ],
+  "tool_manifest": {
+    "auto_LiRPA": "claim_load_bearing for CROWN and IBP candidate outer bounds on this fixed object",
+    "scipy.optimize.linprog": "independent exhaustive activation-region numerical oracle",
+    "torch": "fixed network definition and direct evaluation"
+  }
+}

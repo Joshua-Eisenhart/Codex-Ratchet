@@ -1,0 +1,140 @@
+{
+  "all_pass": false,
+  "ancestry_dag_claim_pass": false,
+  "audit_checks": {
+    "archive_and_members_match_pinned_hashes": true,
+    "cycle_is_reproducibly_observed": true,
+    "native_packet_integrity_verifier_accepts_ledger": true,
+    "native_verifier_accepts_the_observed_cycle": true,
+    "rustworkx_controls_pass": true,
+    "rustworkx_graph_counts_match_native_namespaces": true,
+    "tampered_variation_hash_is_rejected_by_native_verifier": true
+  },
+  "audit_completed": true,
+  "blocked_consumers": [
+    "packet integrity defect escalation",
+    "scientific memory-layer crack claim",
+    "Ratchet promotion",
+    "Lev graph mutation"
+  ],
+  "claim_ceiling": "Packet-local observation that the variation transition graph contains a cycle while the packet's native integrity verifier accepts it. No ledger defect is admitted without an authoritative ancestry-DAG rule.",
+  "classification": "contract_semantics_audit",
+  "command": [
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-dqw_zcb4/repo/system_v5/ops/tooling/claude_campaign_20260713/hardened/lineage_semantics_audit_v2.py",
+    "--archive",
+    "/Users/joshuaeisenhart/Desktop/166_reconciled_ratchet_v0_11_7_cold_verified (1).zip",
+    "--output",
+    "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-dqw_zcb4/repo/system_v5/ops/tooling/claude_campaign_20260713/hardened/results/lineage_semantics_audit_v2_results.json"
+  ],
+  "controls": {
+    "cycle_fixture_is_named": true,
+    "cycle_fixture_is_not_dag": true,
+    "dag_fixture_is_dag": true,
+    "isolated_fixture_is_dag": true
+  },
+  "created_at": "2026-07-14T06:00:19.183532+00:00",
+  "formal_admission_allowed": false,
+  "native_integrity_contract": {
+    "accepted": true,
+    "api": "PurgatoryPool.load(verify=True) + PurgatoryPool.verify_integrity()",
+    "dag_requirement_observed": false,
+    "reason": "ok",
+    "tamper_error": "invalid purgatory ledger: variation edge hash mismatch",
+    "tampered_variation_hash_rejected": true,
+    "variation_checks_observed": "endpoint existence, edge schema/id hash, parent/child content hashes, duplicate edge ids, rung variation-id membership"
+  },
+  "process_exit_semantics": "exit 0 means the semantics audit completed; top-level all_pass remains false because no ancestry-DAG claim is admitted",
+  "promotion_allowed": false,
+  "runner_identity": {
+    "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "python_version": "3.13.6 (main, Aug  6 2025, 13:05:20) [Clang 17.0.0 (clang-1700.0.13.3)]",
+    "rustworkx_version": "0.17.1"
+  },
+  "schema": "codex-ratchet.lineage-semantics-audit-result.v2",
+  "semantic_verdict": {
+    "append_only_ancestry_contract_found": false,
+    "cycle_observed": true,
+    "integrity_defect_admitted": false,
+    "native_integrity_pass": true,
+    "required_decision": "Either retain mutation-transition semantics with cycles allowed, or explicitly add ancestry-DAG semantics to the authoritative contract and native verifier tests.",
+    "status": "cycle_observed_but_native_contract_does_not_forbid_it"
+  },
+  "sim_id": "packet166_variation_graph_semantics",
+  "source": {
+    "archive_path": "/Users/joshuaeisenhart/Desktop/166_reconciled_ratchet_v0_11_7_cold_verified (1).zip",
+    "archive_sha256": "42fc2629e076b4cd5b8015514fb1c9027aa7c751702ebc7a719a6b808141b9da",
+    "audit_path": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-dqw_zcb4/repo/system_v5/ops/tooling/claude_campaign_20260713/hardened/lineage_semantics_audit_v2.py",
+    "audit_sha256": "013af879e3ac41d6b3045be348a4812152b2750c37eb258eeb39fa276884102c",
+    "ledger_member": "sims_and_scripts/living_purgatory_ledger_r2_results.json",
+    "ledger_sha256": "850e975c1d3e7aee2a78d5614a4d64e21bd0309ef61683ed150c77c209870553",
+    "native_verifier_member": "ratchet/purgatory_pool.py",
+    "native_verifier_sha256": "73f152e646e6cd9e0e989c4b0f7ce1f6ca2c39359c951f40648b0a3909a954e8"
+  },
+  "tool_calls": [
+    {
+      "api": "load(verify=True) and verify_integrity",
+      "gates": [
+        "audit_completed"
+      ],
+      "input": "archive-pinned r2 ledger",
+      "negative_control": "tampered variation child hash is rejected",
+      "output": "native integrity verdict",
+      "tool": "packet PurgatoryPool"
+    },
+    {
+      "api": "PyDiGraph + is_directed_acyclic_graph + digraph_find_cycle",
+      "boundary_control": "isolated-node graph is a DAG",
+      "gates": [
+        "audit_completed"
+      ],
+      "input": "variation_log parent_id to child_id transitions",
+      "negative_control": "three-node injected cycle is detected",
+      "output": "cycle observation and named cycle",
+      "tool": "rustworkx"
+    }
+  ],
+  "tool_manifest": {
+    "native PurgatoryPool verifier": "claim_load_bearing for packet-defined ledger integrity",
+    "rustworkx": "claim_load_bearing for the bounded graph-cycle observation only"
+  },
+  "variation_graph": {
+    "edge_count": 312,
+    "interpretation_in_native_source": "mutation lineage / variation transitions",
+    "is_dag": false,
+    "node_count": 261,
+    "one_cycle": {
+      "edges": [
+        {
+          "child_id": "spec_67ac0d1d3cfb205fd8664f3e0c2bf056",
+          "parent_id": "spec_1d6979ff6324ec7786de3cb207a6244d"
+        },
+        {
+          "child_id": "spec_1d6979ff6324ec7786de3cb207a6244d",
+          "parent_id": "spec_67ac0d1d3cfb205fd8664f3e0c2bf056"
+        }
+      ],
+      "nodes": [
+        "spec_1d6979ff6324ec7786de3cb207a6244d",
+        "spec_67ac0d1d3cfb205fd8664f3e0c2bf056",
+        "spec_1d6979ff6324ec7786de3cb207a6244d"
+      ]
+    },
+    "one_cycle_edge_records": [
+      {
+        "child_id": "spec_67ac0d1d3cfb205fd8664f3e0c2bf056",
+        "operator": "vary_memory_depth",
+        "parent_id": "spec_1d6979ff6324ec7786de3cb207a6244d",
+        "proposed_at_rung": 1,
+        "variation_id": "variation_b49875758a06ee0914f1e9f4"
+      },
+      {
+        "child_id": "spec_1d6979ff6324ec7786de3cb207a6244d",
+        "operator": "vary_memory_depth",
+        "parent_id": "spec_67ac0d1d3cfb205fd8664f3e0c2bf056",
+        "proposed_at_rung": 1,
+        "variation_id": "variation_a8278dffa7de984a51300bb9"
+      }
+    ]
+  }
+}

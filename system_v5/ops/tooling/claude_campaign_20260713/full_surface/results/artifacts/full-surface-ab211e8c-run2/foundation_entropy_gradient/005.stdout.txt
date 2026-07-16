@@ -1,0 +1,44 @@
+THE RATCHET BY ITS OWN RULES -- constraint on distinguishability generates DEMANDS; MSS is the
+admissibility CONSTRAINT (admit only forced structure); a PAWL rejects the unforced. No bits, no vectors.
+
+  primitive = constraint on distinguishability (a=a iff a~b). F01 finite noncommuting bases + N01.
+  DEMAND = a pair the room says is distinguishable (trace dist > theta) that acquired bases don't resolve.
+  AVAILABLE (opening/+) minus RESOLVED (binding/-) = Axis-0 gap. All quantities are trace distances.
+
+  r | avail  resolved   gap  | demands  admit  closed  rejected(pawl)   [LIVE: room grows]
+  0 |  0.61    0.47   0.60 |    1     T     1        3
+  1 |  1.58    1.32   0.62 |    1     T     1        2
+  2 |  4.78    4.18   0.60 |    0     F     0        4
+  3 |  7.30    5.90   1.40 |    0     F     0        4
+  4 |  9.45    7.86   1.59 |    0     F     0        4
+  5 | 15.43   12.77   2.66 |    0     F     0        4
+  6 | 18.22   15.38   2.84 |    0     F     0        4
+  7 | 23.61   19.53   4.07 |    0     F     0        4
+
+  LIVE climbs (read out, not required): 2; GATE = climb IFF a forced step is available: True
+  every climb forced by a demand (MSS as constraint): True
+  co-ratchet one-for-one (demand closed <-> resolving power gained): True
+  Axis-0 worked EARLY (demands open + climbs in first 3 shells): True
+
+  FEYNMAN CONTROL -- freeze growth at r=1 (room stops asserting new differences; demands must die):
+  r | avail  resolved   gap  | demands  admit  closed  rejected(pawl)   [FROZEN after r=1]
+  0 |  0.61    0.47   0.60 |    1     T     1        3
+  1 |  1.58    1.32   0.62 |    1     T     1        2
+  2 |  1.58    1.32   0.26 |    0     F     0        4
+  3 |  1.58    1.32   0.26 |    0     F     0        4
+  4 |  1.58    1.32   0.26 |    0     F     0        4
+  5 |  1.58    1.32   0.26 |    0     F     0        4
+  6 |  1.58    1.32   0.26 |    0     F     0        4
+  7 |  1.58    1.32   0.26 |    0     F     0        4
+
+  FROZEN climbs after freeze: 0; demands die after freeze (room stops asserting): True
+  PAWL holds (every non-climb is a demonstrated rejected-unforced, not an empty ladder): True
+
+  HONEST REMAINDER: carrier SATURATES at dim 2 (gap widens but no NEW demand opens): True
+    -> a 2-dim carrier with 3 noncommuting bases resolves every new pair the room makes; the gap grows
+       but generates no demand. The gap widening is NOT a demand. This is the F01 3-qubit-floor point:
+       demands run out because the carrier is too small to stay confused, not because the ratchet stops.
+
+  FOLLOWS THE RATCHET'S OWN RULES (forced climbs + pawl + co-ratchet + Axis-0 early + Feynman): True
+PASS foundational_ratchet_entropy_gradient
+ALL_GATES: PASS -> /var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-964l3svc/foundation_scripts/foundational_ratchet_entropy_gradient_sim_results.json

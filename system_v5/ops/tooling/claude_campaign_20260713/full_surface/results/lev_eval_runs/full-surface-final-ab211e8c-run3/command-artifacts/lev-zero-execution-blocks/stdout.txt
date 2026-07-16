@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "operation": {
+    "id": "exec.eval",
+    "service": "exec",
+    "method": "eval",
+    "surface": "cli",
+    "request_id": "cli:exec:eval"
+  },
+  "side_effect": {
+    "class": "read",
+    "dry_run": false
+  },
+  "policy": {
+    "decision": "allow"
+  },
+  "result": {
+    "status": "failed",
+    "data": {
+      "run": {
+        "run_id": "full-surface-zero-ab211e8c-run3",
+        "status": "blocked",
+        "suite_status": "blocked",
+        "projection_only": true,
+        "release_eligible": false,
+        "suite_id": "codex-ratchet-zero-execution-control",
+        "suite_path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/zero_execution.eval.js",
+        "output_root": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_zero_runs",
+        "run_dir": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_zero_runs/full-surface-zero-ab211e8c-run3",
+        "scorecard_path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_zero_runs/full-surface-zero-ab211e8c-run3/scorecards/codex-ratchet-zero-execution-control.json",
+        "diagnostics": [
+          {
+            "code": "suite.execution.none",
+            "field": "commandCases",
+            "message": "Command execution was required, but no command case executed."
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "suite",
+            "label": "suite",
+            "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/zero_execution.eval.js",
+            "exists": true
+          },
+          {
+            "kind": "target",
+            "label": "target",
+            "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/target.md",
+            "exists": true
+          },
+          {
+            "kind": "flowmind",
+            "label": "flowmind",
+            "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/flow.yaml",
+            "exists": true
+          }
+        ]
+      },
+      "scorecard": {
+        "suite_id": "codex-ratchet-zero-execution-control",
+        "status": "blocked",
+        "projection_only": true,
+        "release_eligible": false,
+        "executed_count": 0,
+        "skipped_count": 0,
+        "blocked_count": 0,
+        "unavailable_count": 0,
+        "failed_count": 0,
+        "artifact_ref_count": 0,
+        "artifact_refs": [],
+        "artifact_hashes": {},
+        "artifact_routes": [],
+        "checks": {
+          "green": [
+            "projection without execution is explicitly blocked"
+          ],
+          "red": [
+            "zero executed command cases cannot pass"
+          ]
+        },
+        "trace_cases": [],
+        "command_cases": [],
+        "evidence_refs": [
+          {
+            "kind": "suite",
+            "label": "suite",
+            "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/zero_execution.eval.js",
+            "exists": true
+          },
+          {
+            "kind": "target",
+            "label": "target",
+            "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/target.md",
+            "exists": true
+          },
+          {
+            "kind": "flowmind",
+            "label": "flowmind",
+            "path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/lev/flow.yaml",
+            "exists": true
+          }
+        ],
+        "diagnostics": [
+          {
+            "code": "suite.execution.none",
+            "field": "commandCases",
+            "message": "Command execution was required, but no command case executed."
+          }
+        ]
+      },
+      "suite_status": "blocked",
+      "status": "blocked",
+      "projection_only": true,
+      "release_eligible": false,
+      "scorecard_path": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_zero_runs/full-surface-zero-ab211e8c-run3/scorecards/codex-ratchet-zero-execution-control.json",
+      "run_dir": "system_v5/ops/tooling/claude_campaign_20260713/full_surface/results/lev_zero_runs/full-surface-zero-ab211e8c-run3",
+      "executed_count": 0,
+      "skipped_count": 0,
+      "blocked_count": 0,
+      "unavailable_count": 0,
+      "failed_count": 0,
+      "artifact_ref_count": 0,
+      "artifact_refs": [],
+      "artifact_hashes": {}
+    },
+    "error": {
+      "code": "EVAL_RUN_BLOCKED",
+      "message": "Command failed"
+    },
+    "exit_code": 1
+  },
+  "evidence": {
+    "receipt_refs": [],
+    "event_refs": [],
+    "artifact_refs": [],
+    "proof_refs": []
+  }
+}

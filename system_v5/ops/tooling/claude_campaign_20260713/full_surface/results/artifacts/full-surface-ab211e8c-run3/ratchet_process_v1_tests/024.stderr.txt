@@ -1,0 +1,50 @@
+test_acceptance_without_controls_fails (test_validate_ratchet_card.RatchetCardValidationTests.test_acceptance_without_controls_fails) ... ok
+test_acceptance_without_earned_dependencies_fails (test_validate_ratchet_card.RatchetCardValidationTests.test_acceptance_without_earned_dependencies_fails) ... ok
+test_ca_cannot_self_promote (test_validate_ratchet_card.RatchetCardValidationTests.test_ca_cannot_self_promote) ... ok
+test_empty_required_lanes_fails (test_validate_ratchet_card.RatchetCardValidationTests.test_empty_required_lanes_fails) ... ok
+test_fake_mss_frontier_hash_fails (test_validate_ratchet_card.RatchetCardValidationTests.test_fake_mss_frontier_hash_fails) ... ok
+test_mutation_battery_rejects_every_corruption (test_validate_ratchet_card.RatchetCardValidationTests.test_mutation_battery_rejects_every_corruption) ... ok
+test_narrow_candidate_search_fails (test_validate_ratchet_card.RatchetCardValidationTests.test_narrow_candidate_search_fails) ... ok
+test_pass_control_needs_structured_flip_receipt (test_validate_ratchet_card.RatchetCardValidationTests.test_pass_control_needs_structured_flip_receipt) ... ok
+test_probe_earned_without_evidence_fails (test_validate_ratchet_card.RatchetCardValidationTests.test_probe_earned_without_evidence_fails) ... ok
+test_proposal_card_passes (test_validate_ratchet_card.RatchetCardValidationTests.test_proposal_card_passes) ... FAIL
+test_source_hash_substitution_fails (test_validate_ratchet_card.RatchetCardValidationTests.test_source_hash_substitution_fails) ... FAIL
+test_unresolved_is_not_removed_from_delta (test_validate_ratchet_card.RatchetCardValidationTests.test_unresolved_is_not_removed_from_delta) ... ok
+test_zero_recursive_passes_cannot_accept (test_validate_ratchet_card.RatchetCardValidationTests.test_zero_recursive_passes_cannot_accept) ... ok
+
+======================================================================
+FAIL: test_proposal_card_passes (test_validate_ratchet_card.RatchetCardValidationTests.test_proposal_card_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-dqw_zcb4/ratchet_process_v1/tests/test_validate_ratchet_card.py", line 24, in test_proposal_card_passes
+    self.assertEqual(MODULE.validate_card(copy.deepcopy(self.card)), [])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['source_manifest[0].path: file not found'[307 chars]und'] != []
+
+First list contains 8 additional elements.
+First extra element 0:
+'source_manifest[0].path: file not found'
+
++ []
+- ['source_manifest[0].path: file not found',
+-  'source_manifest[1].path: file not found',
+-  'source_manifest[2].path: file not found',
+-  'source_manifest[3].path: file not found',
+-  'source_manifest[4].path: file not found',
+-  'source_manifest[5].path: file not found',
+-  'predecessor_receipts[0].path: file not found',
+-  'predecessor_receipts[1].path: file not found']
+
+======================================================================
+FAIL: test_source_hash_substitution_fails (test_validate_ratchet_card.RatchetCardValidationTests.test_source_hash_substitution_fails)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-full-surface-dqw_zcb4/ratchet_process_v1/tests/test_validate_ratchet_card.py", line 101, in test_source_hash_substitution_fails
+    self.assertTrue(any("source hash mismatch" in error for error in errors), errors)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : ['source_manifest[0].path: file not found', 'source_manifest[1].path: file not found', 'source_manifest[2].path: file not found', 'source_manifest[3].path: file not found', 'source_manifest[4].path: file not found', 'source_manifest[5].path: file not found', 'predecessor_receipts[0].path: file not found', 'predecessor_receipts[1].path: file not found']
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.007s
+
+FAILED (failures=2)

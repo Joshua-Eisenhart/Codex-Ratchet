@@ -1,0 +1,202 @@
+{
+  "all_pass": true,
+  "baseline_accepts": true,
+  "baseline_errors": [],
+  "honest_demotion": {
+    "accepted": true,
+    "errors": [],
+    "group": "imported_python_battery"
+  },
+  "negative_controls": {
+    "archive_member_hash_mismatch": {
+      "errors": [
+        "archive.members[0] archive member hash mismatch"
+      ],
+      "rejected": true
+    },
+    "artifact_hash_mismatch": {
+      "errors": [
+        "groups[0].artifacts[0] hash mismatch"
+      ],
+      "rejected": true
+    },
+    "correction_boolean_realignment": {
+      "errors": [
+        "groups[4].correction_receipt.checks.albert_component_norm.candidate_failure_reproduced observation mismatch",
+        "groups[4].correction_receipt.checks.albert_component_norm.corrected_pass observation mismatch",
+        "groups[4].correction_receipt.checks.albert_component_norm.must_fail_control_fired observation mismatch",
+        "groups[4].correction_receipt all_pass mismatch"
+      ],
+      "rejected": true
+    },
+    "correction_observation_fabrication": {
+      "errors": [
+        "groups[4].correction_receipt.checks.albert_component_norm.corrected_pass observation mismatch",
+        "groups[4].correction_receipt all_pass mismatch"
+      ],
+      "rejected": true
+    },
+    "correction_project_substitution": {
+      "errors": [
+        "groups[4].correction_receipt command mismatch",
+        "groups[4].correction_receipt active project mismatch",
+        "groups[4].correction_receipt Project.toml path mismatch",
+        "groups[4].correction_receipt Manifest.toml path mismatch",
+        "groups[4].correction_receipt pinned Project.toml hash mismatch",
+        "groups[4].correction_receipt pinned Manifest.toml hash mismatch",
+        "groups[4].correction_receipt project command mismatch",
+        "groups[4].correction_receipt Project.toml snapshot hash mismatch"
+      ],
+      "rejected": true
+    },
+    "correction_timestamp_backdating": {
+      "errors": [
+        "groups[4].correction_receipt timestamp outside command interval"
+      ],
+      "rejected": true
+    },
+    "evidence_observed_fabrication": {
+      "errors": [
+        "groups[0] evidence observed value mismatch"
+      ],
+      "rejected": true
+    },
+    "evidence_pass_value_rewrite": {
+      "errors": [
+        "groups[0] evidence pass value contract mismatch",
+        "groups[0] bounded pass mismatch",
+        "groups[0] status mismatch"
+      ],
+      "rejected": true
+    },
+    "lev_commit_field_substitution": {
+      "errors": [
+        "Lev executor pinned commit mismatch",
+        "Lev executor tree hash mismatch"
+      ],
+      "rejected": true
+    },
+    "lev_executor_tree_hash_mismatch": {
+      "errors": [
+        "Lev executor tree hash mismatch"
+      ],
+      "rejected": true
+    },
+    "lev_nonexistent_commit": {
+      "errors": [
+        "Lev executor pinned commit mismatch",
+        "Lev executor historical commit missing",
+        "Lev executor tree unreadable"
+      ],
+      "rejected": true
+    },
+    "lev_suite_source_hash_mismatch": {
+      "errors": [
+        "Lev suite binding[0] source hash mismatch"
+      ],
+      "rejected": true
+    },
+    "partial_promotion_alias": {
+      "errors": [
+        "$ unknown fields: partial_promotion_status"
+      ],
+      "rejected": true
+    },
+    "partial_promotion_flip": {
+      "errors": [
+        "partial promotion must remain false"
+      ],
+      "rejected": true
+    },
+    "projection_only": {
+      "errors": [
+        "projection-only state cannot satisfy execution"
+      ],
+      "rejected": true
+    },
+    "promotion_flip": {
+      "errors": [
+        "promotion must remain false"
+      ],
+      "rejected": true
+    },
+    "provider_as_evidence": {
+      "errors": [
+        "provider advice must not be evidence"
+      ],
+      "rejected": true
+    },
+    "provider_group_alias": {
+      "errors": [
+        "forbidden authority alias at $.groups[15].provider_as_evidence",
+        "groups[15] unknown fields: provider_as_evidence"
+      ],
+      "rejected": true
+    },
+    "replayed_source_commit": {
+      "errors": [
+        "runner absent from source commit",
+        "Lev suite binding[0] absent from source commit",
+        "Lev suite binding[1] absent from source commit",
+        "Lev suite binding[2] absent from source commit",
+        "Lev suite binding[3] absent from source commit",
+        "Lev suite binding[4] absent from source commit",
+        "Lev suite binding[5] absent from source commit",
+        "groups[0].sources[0] absent from source commit"
+      ],
+      "rejected": true
+    },
+    "required_artifact_erasure": {
+      "errors": [
+        "groups[0].required_artifact_count contract mismatch"
+      ],
+      "rejected": true
+    },
+    "set_blocker_erasure": {
+      "errors": [
+        "set E blocker contract mismatch",
+        "set E status mismatch"
+      ],
+      "rejected": true
+    },
+    "set_lane_observation_fabrication": {
+      "errors": [
+        "set_coverage[3].observations[0] observed mismatch"
+      ],
+      "rejected": true
+    },
+    "set_lane_pointer_rewrite": {
+      "errors": [
+        "set_coverage[3].observations[0] pointer mismatch",
+        "set_coverage[3].observations[0] observed mismatch",
+        "set D status mismatch"
+      ],
+      "rejected": true
+    },
+    "source_hash_mismatch": {
+      "errors": [
+        "groups[0].sources[0] commit hash mismatch or replayed source"
+      ],
+      "rejected": true
+    },
+    "unknown_top_level_field": {
+      "errors": [
+        "$ unknown fields: authority_override"
+      ],
+      "rejected": true
+    },
+    "zero_execution": {
+      "errors": [
+        "groups missing",
+        "group inventory does not match the bounded campaign contract",
+        "set A group ids invalid",
+        "set_coverage[0].observations[0] source group missing",
+        "set_coverage[0].observations[0] kind invalid",
+        "set_coverage[0].observations[0] observed mismatch",
+        "set_coverage[0].observations[1] source group missing",
+        "set_coverage[0].observations[1] kind invalid"
+      ],
+      "rejected": true
+    }
+  }
+}

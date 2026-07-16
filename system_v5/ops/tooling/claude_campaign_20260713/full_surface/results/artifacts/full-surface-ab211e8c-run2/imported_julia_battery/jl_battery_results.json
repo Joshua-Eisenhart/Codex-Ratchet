@@ -1,0 +1,82 @@
+{
+ "battery": "julia",
+ "fail": 3,
+ "pass": 12,
+ "results": {
+  "attractors_basin_fractions_isolated": {
+   "detail": "Henon basins in isolated env: 1 attractor(s)",
+   "sec": 5.78,
+   "status": "PASS"
+  },
+  "canon_albert_jordan_identity": {
+   "error": "MethodError: no method matching isless(::Main.ExceptionalAlgebraCanon.Albert, ::Float64)\nThe function `isless` exists, but no method is defined for this combination of argument types.\n\nClosest candida",
+   "sec": 0.4,
+   "status": "FAIL"
+  },
+  "canon_module_octonion_associator": {
+   "detail": "associator(e1,e2,e4) = 2e7 EXACT",
+   "sec": 0.08,
+   "status": "PASS"
+  },
+  "cliffordalgebras_rotor": {
+   "error": "MethodError: no method matching one(::CliffordAlgebra{3, 0, 0, (:e1, :e2, :e3), ((), (1,), (2,), (3,), (1, 2), (3, 1), (2, 3), (1, 2, 3))})\nThe function `one` exists, but no method is defined for this",
+   "sec": 0.69,
+   "status": "FAIL"
+  },
+  "differentialequations_ode": {
+   "detail": "dy/dt=-y: |err|=1.4e-12",
+   "sec": 0.55,
+   "status": "PASS"
+  },
+  "enzyme_autodiff_isolated": {
+   "error": "failed process: Process(`julia --startup-file=no -e 'using Enzyme\nf(x) = sin(x)^2\ng = autodiff(Reverse, f, Active, Active(0.3))[1][1]\nprintln(\"GRAD_ERR=\", abs(g - 2*sin(0.3)*cos(0.3)))\n'`, ProcessExit",
+   "sec": 1.07,
+   "status": "FAIL"
+  },
+  "graphs_toposort": {
+   "detail": "DAG toposort ok",
+   "sec": 0.07,
+   "status": "PASS"
+  },
+  "itensors_mps_norm": {
+   "detail": "6-site MPS norm = 1",
+   "sec": 4.93,
+   "status": "PASS"
+  },
+  "manifolds_sphere_geodesic": {
+   "detail": "S2 great-circle distance = pi/2",
+   "sec": 0.07,
+   "status": "PASS"
+  },
+  "octonions_nonassociativity": {
+   "detail": "octonion associator nonzero: |assoc|=2.0",
+   "sec": 0.04,
+   "status": "PASS"
+  },
+  "quantumclifford_stabilizer": {
+   "detail": "Bell stabilizer canonicalized: + XX\n+ ZZ",
+   "sec": 0.21,
+   "status": "PASS"
+  },
+  "quantumoptics_lindblad_trace": {
+   "detail": "Lindblad trace preserved: 0.9999999999999996",
+   "sec": 3.94,
+   "status": "PASS"
+  },
+  "quaternions_unit_rotation": {
+   "detail": "unit quaternion verified",
+   "sec": 0.01,
+   "status": "PASS"
+  },
+  "symbolics_identity": {
+   "detail": "sin^2+cos^2 -> 1",
+   "sec": 11.44,
+   "status": "PASS"
+  },
+  "tensorkit_symmetric_tensor_isolated": {
+   "detail": "TensorKit tensor built in isolated env",
+   "sec": 1.58,
+   "status": "PASS"
+  }
+ }
+}

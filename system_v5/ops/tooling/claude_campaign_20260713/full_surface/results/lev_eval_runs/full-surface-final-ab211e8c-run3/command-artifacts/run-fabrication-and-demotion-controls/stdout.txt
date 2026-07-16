@@ -1,0 +1,140 @@
+{
+  "all_pass": true,
+  "baseline_accepts": true,
+  "baseline_errors": [],
+  "honest_demotion": {
+    "accepted": true,
+    "errors": [],
+    "group": "imported_python_battery"
+  },
+  "negative_controls": {
+    "archive_member_hash_mismatch": {
+      "errors": [
+        "archive.members[0] archive member hash mismatch"
+      ],
+      "rejected": true
+    },
+    "artifact_hash_mismatch": {
+      "errors": [
+        "groups[0].artifacts[0] hash mismatch"
+      ],
+      "rejected": true
+    },
+    "evidence_observed_fabrication": {
+      "errors": [
+        "groups[0] evidence observed value mismatch"
+      ],
+      "rejected": true
+    },
+    "evidence_pass_value_rewrite": {
+      "errors": [
+        "groups[0] evidence pass value contract mismatch",
+        "groups[0] bounded pass mismatch",
+        "groups[0] status mismatch"
+      ],
+      "rejected": true
+    },
+    "partial_promotion_alias": {
+      "errors": [
+        "$ unknown fields: partial_promotion_status"
+      ],
+      "rejected": true
+    },
+    "partial_promotion_flip": {
+      "errors": [
+        "partial promotion must remain false"
+      ],
+      "rejected": true
+    },
+    "projection_only": {
+      "errors": [
+        "projection-only state cannot satisfy execution"
+      ],
+      "rejected": true
+    },
+    "promotion_flip": {
+      "errors": [
+        "promotion must remain false"
+      ],
+      "rejected": true
+    },
+    "provider_as_evidence": {
+      "errors": [
+        "provider advice must not be evidence"
+      ],
+      "rejected": true
+    },
+    "provider_group_alias": {
+      "errors": [
+        "forbidden authority alias at $.groups[14].provider_as_evidence",
+        "groups[14] unknown fields: provider_as_evidence"
+      ],
+      "rejected": true
+    },
+    "replayed_source_commit": {
+      "errors": [
+        "runner absent from source commit",
+        "groups[0].sources[0] absent from source commit",
+        "groups[0].sources[1] absent from source commit",
+        "groups[0].sources[2] absent from source commit",
+        "groups[0].sources[3] absent from source commit",
+        "groups[0].sources[4] absent from source commit",
+        "groups[0].sources[5] absent from source commit",
+        "groups[0].sources[6] absent from source commit"
+      ],
+      "rejected": true
+    },
+    "required_artifact_erasure": {
+      "errors": [
+        "groups[0].required_artifact_count contract mismatch"
+      ],
+      "rejected": true
+    },
+    "set_blocker_erasure": {
+      "errors": [
+        "set E blocker contract mismatch",
+        "set E status mismatch"
+      ],
+      "rejected": true
+    },
+    "set_lane_observation_fabrication": {
+      "errors": [
+        "set_coverage[3].observations[0] observed mismatch"
+      ],
+      "rejected": true
+    },
+    "set_lane_pointer_rewrite": {
+      "errors": [
+        "set_coverage[3].observations[0] pointer mismatch",
+        "set_coverage[3].observations[0] observed mismatch",
+        "set D status mismatch"
+      ],
+      "rejected": true
+    },
+    "source_hash_mismatch": {
+      "errors": [
+        "groups[0].sources[0] commit hash mismatch or replayed source"
+      ],
+      "rejected": true
+    },
+    "unknown_top_level_field": {
+      "errors": [
+        "$ unknown fields: authority_override"
+      ],
+      "rejected": true
+    },
+    "zero_execution": {
+      "errors": [
+        "groups missing",
+        "group inventory does not match the bounded campaign contract",
+        "set A group ids invalid",
+        "set_coverage[0].observations[0] source group missing",
+        "set_coverage[0].observations[0] kind invalid",
+        "set_coverage[0].observations[0] observed mismatch",
+        "set_coverage[0].observations[1] source group missing",
+        "set_coverage[0].observations[1] kind invalid"
+      ],
+      "rejected": true
+    }
+  }
+}

@@ -2,7 +2,7 @@
 """lev_qit_bridge_stream_host_adapter -- lift engines/lev_bridge_stream.json
 (the per-tick {tick, belief_bloch, surprise_bits, fe_gradient} signal stream
 from lev_bridge_sim.py) into the document shape the live Lev ingester requires
-(core/eval/src/qit-bridge-stream.ts: schema_version
+(plugins/sim-witness/src/qit-bridge-stream.ts: schema_version
 constraint_core.lev_bridge_stream.v1 + classification + promotion_allowed +
 claim_ceiling + contiguous ticks). Additive; the producer sim and the Lev
 ingester are both left untouched.
@@ -13,9 +13,12 @@ stream_schema_mismatch.
 
 classification="scratch_diagnostic". promotion_allowed=False.
 """
+import argparse
 import json
+import math
 import os
 import sys
+from pathlib import Path
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SOURCE = os.path.join(HERE, "..", "engines", "lev_bridge_stream.json")
@@ -29,8 +32,17 @@ def contiguous_from_zero(stream):
     return ticks == list(range(len(ticks)))
 
 
-def main():
-    source = json.load(open(SOURCE))
+def finite_number(value):
+    return (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and math.isfinite(float(value))
+    )
+
+
+def adapt(source_path, out_path):
+    with open(source_path, encoding="utf-8") as handle:
+        source = json.load(handle)
     stream = source["stream"]
 
     ok_shape = (
@@ -38,10 +50,11 @@ def main():
         and contiguous_from_zero(stream)
         and all(
             isinstance(t["tick"], int)
+            and not isinstance(t["tick"], bool)
             and len(t["belief_bloch"]) == 3
-            and all(isinstance(v, (int, float)) for v in t["belief_bloch"])
-            and isinstance(t["surprise_bits"], (int, float))
-            and isinstance(t["fe_gradient"], (int, float))
+            and all(finite_number(v) for v in t["belief_bloch"])
+            and finite_number(t["surprise_bits"])
+            and finite_number(t["fe_gradient"])
             for t in stream
         )
     )
@@ -64,12 +77,26 @@ def main():
         "source_schema_note": source.get("schema"),
         "stream": stream,
     }
-    with open(OUT, "w") as fh:
+    target = Path(out_path).resolve()
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with target.open("w", encoding="utf-8") as fh:
         json.dump(adapted, fh, indent=1, sort_keys=True)
         fh.write("\n")
     print("PASS lev_qit_bridge_stream_host_adapter")
-    print(f"ALL_GATES: PASS -> {os.path.normpath(OUT)}")
+    print(f"ALL_GATES: PASS -> {target}")
     return 0
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Adapt a Codex QIT stream for the Lev sim-witness ingester")
+    parser.add_argument("--source", default=SOURCE, help="Raw Codex bridge-stream JSON")
+    parser.add_argument("--out", default=OUT, help="Adapted Lev bridge-stream JSON")
+    return parser.parse_args()
+
+
+def main():
+    args = parse_args()
+    return adapt(args.source, args.out)
 
 
 if __name__ == "__main__":

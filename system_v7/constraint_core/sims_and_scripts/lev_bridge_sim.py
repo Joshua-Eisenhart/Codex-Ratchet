@@ -15,6 +15,10 @@ the hook for Lev attention/action allocation. PURE QIT (Umegaki relative entropy
 ADAPTER (LevBridge) exposes .tick(observation)->record and .subscribe(callback), the minimal
 surface a graph edge needs. scratch_diagnostic; promotion_allowed=false.
 """
+import argparse
+import json
+from pathlib import Path
+
 import numpy as np
 from scipy.linalg import expm, logm
 I2=np.eye(2,dtype=complex); sx=np.array([[0,1],[1,0]],complex)
@@ -49,19 +53,56 @@ class LevBridge:
         for cb in self._subs: cb(rec)
         return rec
 
-def _demo():
-    def world(t): return 0.5*(I2+0.7*sz) if t<6 else 0.5*(I2-0.6*sz+0.3*sx)
+def demo_world(t):
+    return 0.5*(I2+0.7*sz) if t<6 else 0.5*(I2-0.6*sz+0.3*sx)
+
+
+def build_demo_document():
     br=LevBridge(); events=[]; br.subscribe(events.append)
-    stream=[br.tick(world(t)) for t in range(14)]
+    stream=[br.tick(demo_world(t)) for t in range(14)]
     sp=[r["surprise_bits"] for r in stream]
-    print("tick surprise fe_grad belief_z")
-    for r in stream: print(f"  {r['tick']:>2d}  {r['surprise_bits']:>7.4f} {r['fe_gradient']:>7.4f}  {r['belief_bloch'][2]:>+.3f}")
-    print(f"\nsettled(pre)={sp[5]:.4f}  spike(shift)={sp[6]:.4f}  relearned={sp[13]:.4f}")
     assert len(events)==14, "subscriber must receive every tick"
     assert sp[5]<0.05, "surprise must settle on a stable world"
     assert sp[6]>1.0, "surprise must spike on regime shift (novelty signal)"
     assert sp[13]<0.1, "surprise must decay as the engine relearns"
     assert all(set(r)=={"tick","belief_bloch","surprise_bits","fe_gradient"} for r in stream), "stream schema fixed"
+    return {
+        "schema": {
+            "tick": "int",
+            "belief_bloch": "[x,y,z]",
+            "surprise_bits": "S(obs||belief)",
+            "fe_gradient": "free-energy reduction per tick = learning drive",
+        },
+        "demo_world": "stable then regime shift at tick 6",
+        "stream": stream,
+    }
+
+
+def _demo(out_path=None):
+    document = build_demo_document()
+    stream = document["stream"]
+    sp = [record["surprise_bits"] for record in stream]
+    print("tick surprise fe_grad belief_z")
+    for record in stream:
+        print(
+            f"  {record['tick']:>2d}  {record['surprise_bits']:>7.4f} "
+            f"{record['fe_gradient']:>7.4f}  {record['belief_bloch'][2]:>+.3f}"
+        )
+    print(f"\nsettled(pre)={sp[5]:.4f}  spike(shift)={sp[6]:.4f}  relearned={sp[13]:.4f}")
+    if out_path is not None:
+        target = Path(out_path).resolve()
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(f"{json.dumps(document, indent=1, sort_keys=True)}\n", encoding="utf-8")
+        print(f"ALL_GATES: PASS -> {target}")
     print("PASS lev_bridge_sim")
 
-if __name__=="__main__": _demo()
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Run the deterministic Lev bridge demo stream")
+    parser.add_argument("--out", help="Optional JSON output path for the exact emitted stream")
+    return parser.parse_args()
+
+
+if __name__=="__main__":
+    args = parse_args()
+    _demo(args.out)

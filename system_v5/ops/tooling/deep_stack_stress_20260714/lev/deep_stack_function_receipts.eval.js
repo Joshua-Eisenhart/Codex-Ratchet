@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+
 const lane = 'system_v5/ops/tooling/deep_stack_stress_20260714';
 const registry = `${lane}/registry/tool_roster_v1.json`;
 const edges = `${lane}/registry/integration_edges_v1.json`;
@@ -9,14 +11,27 @@ const validator =
 const python = '/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3';
 const sandbox = '/usr/bin/sandbox-exec';
 const offlineProfile = '(version 1) (allow default) (deny network*)';
-const levRoot = '/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract';
-const levBin = `${levRoot}/core/poly/bin/lev`;
-const levCommit = '856acb1a5de42528a9a54272435d98a9fe226186';
-const levTree = '3f3488781d48a64b22c43c08ccfaa2b503d49524';
-const levBinSha256 = 'f258ae313d515cae4ff848a45df78cfcc6a2d48c9ce1ade9c316276b00ef0c61';
+const levRuntime = JSON.parse(readFileSync(new URL('./current_lev_runtime.json', import.meta.url), 'utf8'));
+const runtimeString = (field) => {
+  const value = levRuntime[field];
+  if (typeof value !== 'string' || value.trim() === '') {
+    throw new Error(`Lev runtime binding field ${field} must be a non-empty string.`);
+  }
+  return value;
+};
+const levRoot = runtimeString('root');
+const levLauncher = runtimeString('launcher');
+const levBranch = runtimeString('branch');
+const levBin = runtimeString('executable');
+const levCommit = runtimeString('commit');
+const levTree = runtimeString('tree');
+const levBinSha256 = runtimeString('executable_sha256');
 const estate = `${results}/deep_stack_estate_lev.json`;
 const verdict = `${results}/deep_stack_estate_lev_verdict.json`;
-const finalRunId = 'deep-stack-lev-856acb1a5';
+const levShortCommit = levCommit.slice(0, 9);
+const finalRunId = `deep-stack-lev-${levShortCommit}`;
+const seamReceipt = `${results}/lev_qit_bridge_seam_${levShortCommit}/receipt.json`;
+const seamRequestedAt = '2026-07-16T00:00:00.000Z';
 
 const exactCoverageProgram = `
 import hashlib
@@ -524,9 +539,14 @@ export const deepStackFunctionReceiptsEval = {
   id: 'codex-ratchet-deep-stack-function-receipts',
   target: './target.md',
   flowmind: './flow.yaml',
-  fixtures: {},
+  fixtures: {
+    lev_runtime: './current_lev_runtime.json',
+    qit_bridge_seam_contract: './qit_bridge_seam_contract.json',
+    qit_bridge_seam_runner: './qit_bridge_seam_runner.mjs',
+  },
   greenChecks: [
-    'the Lev executor commit, tree, clean tracked bytes, and executable hash match the pinned non-model runtime',
+    'the current Lev launcher, branch, commit, tree, clean tracked bytes, and executable hash match the tracked non-model runtime binding',
+    'a fresh Codex QIT stream crosses the bound Lev sim-witness ingester and deterministic sensor with a complete non-promotional seam receipt',
     'the independent receipt validator passes its full authentic-plus-mutation selftest',
     'the parent runner processes every roster row and executes every required deep row under no-install and network-denied policy',
     'the estate contains exactly all 139 registry tool receipts without duplicates',
@@ -548,6 +568,26 @@ export const deepStackFunctionReceiptsEval = {
     'integration diagnostics and Lev projection cannot prove a Ratchet or QIT scientific claim',
   ],
   commandCases: [
+    {
+      id: 'verify-codex-ratchet-tracked-bytes-clean',
+      command: '/usr/bin/git',
+      argv: ['diff', '--quiet', 'HEAD', '--'],
+      expectedExit: 'zero',
+    },
+    {
+      id: 'verify-bound-global-lev-launcher',
+      command: '/usr/bin/readlink',
+      argv: [levLauncher],
+      expectedExit: 'zero',
+      stdoutContains: levBin,
+    },
+    {
+      id: 'verify-bound-lev-executor-branch',
+      command: '/usr/bin/git',
+      argv: ['-C', levRoot, 'rev-parse', '--abbrev-ref', 'HEAD'],
+      expectedExit: 'zero',
+      stdoutContains: levBranch,
+    },
     {
       id: 'verify-bound-lev-executor-head',
       command: '/usr/bin/git',
@@ -574,6 +614,38 @@ export const deepStackFunctionReceiptsEval = {
       argv: ['-a', '256', levBin],
       expectedExit: 'zero',
       stdoutContains: levBinSha256,
+    },
+    {
+      id: 'execute-codex-to-lev-qit-bridge-seam',
+      command: sandbox,
+      argv: [
+        '-p',
+        offlineProfile,
+        '/opt/homebrew/bin/bun',
+        `${lane}/lev/qit_bridge_seam_runner.mjs`,
+        '--repo-root',
+        '.',
+        '--lev-root',
+        levRoot,
+        '--python',
+        python,
+        '--out',
+        seamReceipt,
+        '--requested-at',
+        seamRequestedAt,
+      ],
+      expectedExit: 'zero',
+      stdoutContains: [
+        '"schema": "codex_ratchet.lev_qit_bridge_seam_receipt.v1"',
+        '"status": "pass"',
+        '"all_pass": true',
+        '"provider_tick_count": 14',
+        '"sensor_decision": "pass"',
+        '"negative_control": "stream_schema_mismatch"',
+        '"promotion_allowed": false',
+        '"release_eligible": false',
+        '"scientific_claim_proven": false',
+      ],
     },
     {
       id: 'run-independent-validator-selftest',
@@ -702,7 +774,7 @@ export const deepStackFunctionReceiptsEval = {
         '"representative_unique_source_count": 48',
         '"mapped_tool_evidence_pass_count": 95',
         '"representative_execution_exact": true',
-        '"fresh_run_id": "deep-stack-lev-856acb1a5"',
+        `"fresh_run_id": "${finalRunId}"`,
         '"raw_reuse_used": false',
         '"claude_bridge_used": false',
         '"install_attempted": false',
@@ -728,7 +800,7 @@ export const deepStackFunctionReceiptsEval = {
         '--output-root',
         `${results}/lev_zero_runs`,
         '--run-id',
-        'deep-stack-zero-856acb1a5',
+        `deep-stack-zero-${levShortCommit}`,
         '--timeout-ms',
         '60000',
       ],
@@ -736,8 +808,9 @@ export const deepStackFunctionReceiptsEval = {
       stdoutContains: [
         'suite.execution.none',
         '"status": "blocked"',
-        '"projection_only": true',
-        '"release_eligible": false',
+        '"decision_verdict": "fail"',
+        '"executed_count": 0',
+        '"code": "EVAL_RUN_BLOCKED"',
       ],
     },
   ],

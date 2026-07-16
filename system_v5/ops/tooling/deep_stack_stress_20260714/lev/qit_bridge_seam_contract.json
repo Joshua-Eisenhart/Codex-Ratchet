@@ -1,0 +1,35 @@
+{
+  "schema": "codex_ratchet.qit_bridge_seam_contract.v1",
+  "subject_ref": "codex-ratchet:cc_laptop_v3/qit_lev_bridge_stream",
+  "generation": 0,
+  "shape_contract": {
+    "baseline_ticks": [
+      3,
+      4,
+      5
+    ],
+    "spike_ticks": [
+      6
+    ],
+    "tail_ticks": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "baseline_mean_lt": 0.05,
+    "spike_max_gt": 1.0,
+    "tail_mean_lt": 0.05,
+    "tail_max_lt": 0.05
+  },
+  "expected": {
+    "classification": "scratch_diagnostic",
+    "promotion_allowed": false,
+    "tick_count": 14,
+    "sensor_decision": "pass",
+    "sensor_action": "keep",
+    "negative_control_reason": "stream_schema_mismatch"
+  },
+  "source_claim_ceiling": "per-tick signal stream measurement from the QIT bridge demo world; evidence for Lev attention/novelty wiring only -- no graph, mesh, runtime, Axis0, or FEP admission",
+  "receipt_claim_ceiling": "Operational seam evidence only: a fresh Codex QIT demo stream was adapted, ingested by the bound Lev sim-witness code, and scored by its deterministic sensor. This does not prove Ratchet mechanics, QIT theory, FEP, Axis0, graph admission, or scientific canon."
+}

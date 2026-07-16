@@ -1,0 +1,51 @@
+{
+  "claim_ceiling": "independent validation of a deterministic HOLD receipt only",
+  "decision": "HOLD_NOT_READY",
+  "failures": [],
+  "formal_admission_allowed": false,
+  "launch_ready": false,
+  "llm_gate_used": false,
+  "mutation_selftest": {
+    "all_rejected": true,
+    "cases": [
+      {
+        "case": "open_launch_ready",
+        "rejected": true
+      },
+      {
+        "case": "open_official_launch",
+        "rejected": true
+      },
+      {
+        "case": "allow_llm_gate",
+        "rejected": true
+      },
+      {
+        "case": "erase_hold_reason",
+        "rejected": true
+      },
+      {
+        "case": "flip_semantic_hold_check",
+        "rejected": true
+      },
+      {
+        "case": "erase_input_hash",
+        "rejected": true
+      },
+      {
+        "case": "rewrite_lev_commit",
+        "rejected": true
+      },
+      {
+        "case": "provider_call_claim",
+        "rejected": true
+      }
+    ]
+  },
+  "official_launch_allowed": false,
+  "ok": true,
+  "promotion_allowed": false,
+  "release_eligible": false,
+  "schema": "codex_ratchet.v8_launch_readiness.validation.v1",
+  "scientific_claim_proven": false
+}

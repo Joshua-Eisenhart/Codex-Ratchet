@@ -49,6 +49,7 @@ EXPECTED_CHECKS = {
     "frozen_campaign_red_nonofficial",
     "frozen_postrun_diagnostic_preserves_red",
     "lev_repair_branch_identity_bound",
+    "lev_narrow_evidence_valid_but_transitional",
     "lev_process_admission_remains_unproven",
     "all_runtime_steps_green",
 }
@@ -88,6 +89,8 @@ REQUIRED_INPUTS = {
     "frozen_execution",
     "frozen_validation",
     "frozen_diagnostics",
+    "lev_evidence",
+    "lev_evidence_validation",
     "claude_dry_receipt",
 }
 
@@ -542,6 +545,133 @@ def validate_lev(receipt: dict[str, Any], errors: list[str]) -> None:
             )
 
 
+def validate_lev_evidence(
+    payloads: dict[str, dict[str, Any]],
+    receipt: dict[str, Any],
+    errors: list[str],
+) -> None:
+    evidence = payloads.get("lev_evidence", {})
+    validation = payloads.get("lev_evidence_validation", {})
+    lev = receipt.get("lev", {})
+    expected_commit = lev.get("expected_commit")
+    lev_path = Path(str(lev.get("path", "")))
+    repository = evidence.get("repository", {})
+    commands = {
+        row.get("id"): row
+        for row in evidence.get("commands", [])
+        if isinstance(row, dict)
+    }
+    require(
+        errors,
+        evidence.get("schema") == "lev.v8_monitor_proof_evidence_repair_receipt.v1",
+        "Lev evidence snapshot schema drift",
+    )
+    require(
+        errors,
+        evidence.get("gate_implementation") == "python_stdlib_deterministic"
+        and evidence.get("llm_gate_authority") is False,
+        "Lev evidence gate authority drift",
+    )
+    require(errors, repository.get("commit") == expected_commit, "Lev evidence commit drift")
+    require(
+        errors,
+        Path(str(repository.get("cwd", ""))).resolve() == lev_path.resolve(),
+        "Lev evidence cwd drift",
+    )
+    expected_ids = {
+        "exec_monitor_heartbeat_evidence_test",
+        "eval_proof_bundle_test",
+        "eval_typecheck",
+        "exec_typecheck",
+    }
+    require(errors, set(commands) == expected_ids, "Lev evidence command set drift")
+    monitor = commands.get("exec_monitor_heartbeat_evidence_test", {})
+    proof = commands.get("eval_proof_bundle_test", {})
+    eval_typecheck = commands.get("eval_typecheck", {})
+    exec_typecheck = commands.get("exec_typecheck", {})
+    require(
+        errors,
+        monitor.get("exit_code") == 0
+        and monitor.get("result", {}).get("tests_passed") == 4
+        and monitor.get("result", {}).get("tests_total") == 4,
+        "Lev monitor narrow result drift",
+    )
+    require(
+        errors,
+        proof.get("exit_code") == 0
+        and proof.get("result", {}).get("tests_passed") == 6
+        and proof.get("result", {}).get("tests_total") == 6,
+        "Lev legacy proof-bundle narrow result drift",
+    )
+    require(
+        errors,
+        eval_typecheck.get("exit_code") == 0
+        and eval_typecheck.get("result", {}).get("typecheck_passed") is True,
+        "Lev eval typecheck result drift",
+    )
+    require(
+        errors,
+        exec_typecheck.get("exit_code") == 2
+        and exec_typecheck.get("result", {}).get("typecheck_passed") is False
+        and exec_typecheck.get("result", {}).get("expected_red_preserved") is True,
+        "Lev exec typecheck expected red drift",
+    )
+    require(
+        errors,
+        evidence.get("full_suites", {}).get("core_exec")
+        == {"run_in_this_receipt": False, "current_counts": None}
+        and evidence.get("full_suites", {}).get("core_eval")
+        == {"run_in_this_receipt": False, "current_counts": None},
+        "Lev evidence invented full-suite counts",
+    )
+    authority = evidence.get("authority", {})
+    readiness = evidence.get("readiness", {})
+    require(
+        errors,
+        authority.get("canonical_promotion_verdict") == "EvalDecision"
+        and authority.get("legacy_objects_have_active_promotion_authority") is False
+        and authority.get("transitional_repair") is True
+        and authority.get("final_proof_readiness") is False,
+        "Lev evidence authority ceiling drift",
+    )
+    require(
+        errors,
+        readiness.get("state") == "HOLD_TRANSITIONAL"
+        and readiness.get("final_proof_readiness") is False
+        and readiness.get("exec_typecheck_passed") is False,
+        "Lev evidence HOLD state drift",
+    )
+    source_hashes = evidence.get("source_hashes_sha256", {})
+    require(errors, isinstance(source_hashes, dict) and len(source_hashes) == 3, "Lev evidence source hash set drift")
+    if isinstance(source_hashes, dict):
+        for relative, expected_hash in source_hashes.items():
+            path = lev_path / str(relative)
+            require(
+                errors,
+                path.is_file() and sha256_file(path) == expected_hash,
+                f"Lev evidence source hash drift: {relative}",
+            )
+    require(
+        errors,
+        validation.get("schema")
+        == "lev.v8_monitor_proof_evidence_repair_validation.v1"
+        and validation.get("ok") is True
+        and validation.get("checks_total") == 30
+        and validation.get("checks_passed") == 30
+        and validation.get("failed") == []
+        and validation.get("rerun_exit_codes")
+        == {
+            "eval_proof_bundle_test": 0,
+            "eval_typecheck": 0,
+            "exec_monitor_heartbeat_evidence_test": 0,
+            "exec_typecheck": 2,
+        }
+        and validation.get("decision") == "HOLD_TRANSITIONAL"
+        and validation.get("final_proof_readiness") is False,
+        "Lev evidence independent validation drift",
+    )
+
+
 def validate_source_bindings(receipt: dict[str, Any], errors: list[str]) -> None:
     records = receipt.get("source_bindings")
     require(errors, isinstance(records, list) and len(records) >= 9, "source bindings incomplete")
@@ -690,6 +820,7 @@ def validate(
         validate_claude(payloads, errors)
         validate_frozen(payloads, errors)
         validate_lev(receipt, errors)
+        validate_lev_evidence(payloads, receipt, errors)
         validate_source_bindings(receipt, errors)
     validate_steps(receipt, errors)
     return errors

@@ -1,0 +1,120 @@
+{
+  "schema": "lev.v8_monitor_proof_evidence_repair_receipt.v1",
+  "generated_at_utc": "2026-07-15T23:52:28Z",
+  "gate_implementation": "python_stdlib_deterministic",
+  "llm_gate_authority": false,
+  "repository": {
+    "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/lev-main/v8-monitor-proof-evidence-repair-20260715",
+    "isolated_worktree": true,
+    "branch": "codex/v8-monitor-proof-evidence-repair-20260715",
+    "commit": "a8fe68e6943da9fd02ba7b45ec7715161f8bbfa8",
+    "commit_subject": "fix: bind monitor proof evidence to XDG routes",
+    "clean_before": true,
+    "clean_after": true
+  },
+  "source_hashes_sha256": {
+    "core/exec/src/run/evidence.ts": "5bce30177b3dd0126ee2496fbe6af4e58c0938457f5038b451635f72f52ae22e",
+    "core/eval/src/proof-bundle.ts": "21f86f4f831c3ee10aa2f26f437574c5a9912e9a532fff4efb46cefd88e73347",
+    "core/exec/src/run/monitor-heartbeat-evidence.test.ts": "e8bf78460635990416754c04cdb99e5d8efd351a57656251506b9fc8c27e635a"
+  },
+  "commands": [
+    {
+      "id": "exec_monitor_heartbeat_evidence_test",
+      "command": "pnpm --filter @lev-os/exec exec vitest run src/run/monitor-heartbeat-evidence.test.ts",
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/lev-main/v8-monitor-proof-evidence-repair-20260715",
+      "started_at_utc": "2026-07-15T23:51:09Z",
+      "ended_at_utc": "2026-07-15T23:51:11Z",
+      "exit_code": 0,
+      "result": {
+        "test_files_passed": 1,
+        "test_files_total": 1,
+        "tests_passed": 4,
+        "tests_total": 4
+      }
+    },
+    {
+      "id": "eval_proof_bundle_test",
+      "command": "pnpm --filter @lev-os/eval exec vitest run src/proof-bundle.test.ts",
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/lev-main/v8-monitor-proof-evidence-repair-20260715",
+      "started_at_utc": "2026-07-15T23:51:25Z",
+      "ended_at_utc": "2026-07-15T23:51:27Z",
+      "exit_code": 0,
+      "result": {
+        "test_files_passed": 1,
+        "test_files_total": 1,
+        "tests_passed": 6,
+        "tests_total": 6
+      }
+    },
+    {
+      "id": "eval_typecheck",
+      "command": "pnpm --filter @lev-os/eval typecheck",
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/lev-main/v8-monitor-proof-evidence-repair-20260715",
+      "started_at_utc": "2026-07-15T23:51:37Z",
+      "ended_at_utc": "2026-07-15T23:51:39Z",
+      "exit_code": 0,
+      "result": {
+        "typecheck_passed": true
+      }
+    },
+    {
+      "id": "exec_typecheck",
+      "command": "pnpm --filter @lev-os/exec typecheck",
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/lev-main/v8-monitor-proof-evidence-repair-20260715",
+      "started_at_utc": "2026-07-15T23:51:47Z",
+      "ended_at_utc": "2026-07-15T23:51:51Z",
+      "exit_code": 2,
+      "result": {
+        "typecheck_passed": false,
+        "expected_red_preserved": true,
+        "errors": [
+          "core/exec/src/exec-command/evidence.ts: Cannot find module @lev-os/flowmind/exec-flow-validation",
+          "core/exec/src/execution/flow-validation.ts: Cannot find module @lev-os/flowmind/exec-flow-validation"
+        ]
+      }
+    }
+  ],
+  "full_suites": {
+    "core_exec": {
+      "run_in_this_receipt": false,
+      "current_counts": null
+    },
+    "core_eval": {
+      "run_in_this_receipt": false,
+      "current_counts": null
+    },
+    "claim": "No current full-suite counts are claimed by this receipt."
+  },
+  "authority": {
+    "canonical_promotion_verdict": "EvalDecision",
+    "legacy_objects": [
+      "GateProof",
+      "ProofBundle",
+      "proof.yaml"
+    ],
+    "legacy_object_status": "historical_migration_inputs_only",
+    "legacy_objects_have_active_promotion_authority": false,
+    "source_refs": [
+      "dna/core/eval.dna.yaml:5",
+      "dna/core/eval.dna.yaml:12",
+      "dna/core/eval.dna.yaml:114",
+      "dna/core/eval.dna.yaml:150",
+      "docs/specs/spec-eval.md:85",
+      "docs/specs/spec-eval.md:88",
+      "docs/specs/spec-eval.md:406",
+      "docs/specs/spec-eval.md:408"
+    ],
+    "repair_scope": "XDG-bound migration-substrate evidence and legacy proof-bundle hashing",
+    "transitional_repair": true,
+    "final_proof_readiness": false,
+    "reason": "The changed legacy ProofBundle path can be regression-tested, but current Eval DNA and spec reserve promotion authority for EvalDecision and explicitly demote GateProof, ProofBundle, and proof.yaml to migration residue."
+  },
+  "readiness": {
+    "narrow_monitor_test_passed": true,
+    "narrow_eval_test_passed": true,
+    "eval_typecheck_passed": true,
+    "exec_typecheck_passed": false,
+    "final_proof_readiness": false,
+    "state": "HOLD_TRANSITIONAL"
+  }
+}

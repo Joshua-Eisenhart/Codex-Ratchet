@@ -24,8 +24,12 @@ non-gating.
 - the supplied frozen campaign remains nonofficial and red, with the diagnostic
   preserving its unexpected QIT red;
 - the supplied Lev worktree is clean, exactly at the caller-supplied commit,
-  and contains the three expected evidence-repair paths. This is source-branch
-  identity only and is not treated as Lev process admission.
+  and contains the three expected evidence-repair paths;
+- the bound Lev evidence snapshot preserves monitor 4/4, legacy proof-bundle
+  6/6, and eval-typecheck green, plus the exec-typecheck red on unresolved
+  FlowMind imports. It records `EvalDecision` as current authority and
+  `HOLD_TRANSITIONAL`; neither the snapshot nor source identity is process
+  admission.
 
 All inputs and relevant validator sources are SHA-256 bound into the readiness
 receipt. The independent validator reopens those paths, checks their current
@@ -58,6 +62,7 @@ red disappearing, or Lev Git drift fails closed.
 - `results/readiness_receipt.json`
 - `results/readiness_validation.json`
 - `results/claude_dry_run/` prompt, dry output, and non-gating bridge receipt
+- `results/lev_evidence/` bounded receipt and independent validation snapshot
 
 These artifacts support only a bounded readiness diagnosis. They cannot admit
 a Ratchet tooth or authorize an official V8 launch.

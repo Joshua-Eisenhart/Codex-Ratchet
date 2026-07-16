@@ -348,6 +348,87 @@ def git_metadata(lev_worktree: Path, expected_commit: str) -> dict[str, Any]:
     }
 
 
+def lev_evidence_snapshot_valid(
+    receipt: dict[str, Any],
+    validation: dict[str, Any],
+    lev_worktree: Path,
+    expected_commit: str,
+) -> bool:
+    repository = receipt.get("repository", {})
+    commands = {
+        row.get("id"): row
+        for row in receipt.get("commands", [])
+        if isinstance(row, dict)
+    }
+    expected_ids = {
+        "exec_monitor_heartbeat_evidence_test",
+        "eval_proof_bundle_test",
+        "eval_typecheck",
+        "exec_typecheck",
+    }
+    source_hashes = receipt.get("source_hashes_sha256", {})
+    sources_current = isinstance(source_hashes, dict) and bool(source_hashes)
+    if sources_current:
+        for relative, expected_hash in source_hashes.items():
+            path = lev_worktree / str(relative)
+            if not path.is_file() or sha256_file(path) != expected_hash:
+                sources_current = False
+                break
+    monitor = commands.get("exec_monitor_heartbeat_evidence_test", {})
+    proof = commands.get("eval_proof_bundle_test", {})
+    eval_typecheck = commands.get("eval_typecheck", {})
+    exec_typecheck = commands.get("exec_typecheck", {})
+    authority = receipt.get("authority", {})
+    readiness = receipt.get("readiness", {})
+    return (
+        receipt.get("schema") == "lev.v8_monitor_proof_evidence_repair_receipt.v1"
+        and receipt.get("gate_implementation") == "python_stdlib_deterministic"
+        and receipt.get("llm_gate_authority") is False
+        and repository.get("commit") == expected_commit
+        and Path(str(repository.get("cwd", ""))).resolve() == lev_worktree.resolve()
+        and repository.get("clean_before") is True
+        and repository.get("clean_after") is True
+        and set(commands) == expected_ids
+        and monitor.get("exit_code") == 0
+        and monitor.get("result", {}).get("tests_passed") == 4
+        and monitor.get("result", {}).get("tests_total") == 4
+        and proof.get("exit_code") == 0
+        and proof.get("result", {}).get("tests_passed") == 6
+        and proof.get("result", {}).get("tests_total") == 6
+        and eval_typecheck.get("exit_code") == 0
+        and eval_typecheck.get("result", {}).get("typecheck_passed") is True
+        and exec_typecheck.get("exit_code") == 2
+        and exec_typecheck.get("result", {}).get("typecheck_passed") is False
+        and exec_typecheck.get("result", {}).get("expected_red_preserved") is True
+        and receipt.get("full_suites", {}).get("core_exec")
+        == {"run_in_this_receipt": False, "current_counts": None}
+        and receipt.get("full_suites", {}).get("core_eval")
+        == {"run_in_this_receipt": False, "current_counts": None}
+        and authority.get("canonical_promotion_verdict") == "EvalDecision"
+        and authority.get("legacy_objects_have_active_promotion_authority") is False
+        and authority.get("transitional_repair") is True
+        and authority.get("final_proof_readiness") is False
+        and readiness.get("state") == "HOLD_TRANSITIONAL"
+        and readiness.get("final_proof_readiness") is False
+        and sources_current
+        and validation.get("schema")
+        == "lev.v8_monitor_proof_evidence_repair_validation.v1"
+        and validation.get("ok") is True
+        and validation.get("checks_total") == 30
+        and validation.get("checks_passed") == 30
+        and validation.get("failed") == []
+        and validation.get("rerun_exit_codes")
+        == {
+            "eval_proof_bundle_test": 0,
+            "eval_typecheck": 0,
+            "exec_monitor_heartbeat_evidence_test": 0,
+            "exec_typecheck": 2,
+        }
+        and validation.get("decision") == "HOLD_TRANSITIONAL"
+        and validation.get("final_proof_readiness") is False
+    )
+
+
 def build_paths(root: Path, frozen_campaign_root: Path) -> dict[str, Path]:
     return {
         "qit_receipt": root
@@ -375,6 +456,8 @@ def build_paths(root: Path, frozen_campaign_root: Path) -> dict[str, Path]:
         "frozen_execution": frozen_campaign_root / "results/campaign_execution.json",
         "frozen_validation": frozen_campaign_root / "results/campaign_validation.json",
         "frozen_diagnostics": frozen_campaign_root / "results/postrun_diagnostics.json",
+        "lev_evidence": HERE / "results/lev_evidence/receipt.json",
+        "lev_evidence_validation": HERE / "results/lev_evidence/validation.json",
     }
 
 
@@ -526,6 +609,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     frozen_execution = payloads.get("frozen_execution", {})
     frozen_validation = payloads.get("frozen_validation", {})
     frozen_diagnostics = payloads.get("frozen_diagnostics", {})
+    lev_evidence = payloads.get("lev_evidence", {})
+    lev_evidence_validation = payloads.get("lev_evidence_validation", {})
 
     v1_builder_paths = v1_spec.get("builder_paths", [])
     v1_builders_absent = (
@@ -660,6 +745,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             and is_closed(frozen_diagnostics)
         ),
         "lev_repair_branch_identity_bound": lev["identity_bound"],
+        "lev_narrow_evidence_valid_but_transitional": lev_evidence_snapshot_valid(
+            lev_evidence,
+            lev_evidence_validation,
+            lev_worktree,
+            args.expected_lev_commit,
+        ),
         "lev_process_admission_remains_unproven": (
             lev["process_admission_proven"] is False and lev["gate_authority"] is False
         ),

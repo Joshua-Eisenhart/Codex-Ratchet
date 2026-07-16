@@ -27,6 +27,7 @@
     "claude_fable5_dry_receipt_valid_nongating": true,
     "frozen_campaign_red_nonofficial": true,
     "frozen_postrun_diagnostic_preserves_red": true,
+    "lev_narrow_evidence_valid_but_transitional": true,
     "lev_process_admission_remains_unproven": true,
     "lev_repair_branch_identity_bound": true,
     "provider_catalogs_valid_nongating": true,
@@ -45,7 +46,7 @@
   "decision": "HOLD_NOT_READY",
   "errors": [],
   "formal_admission_allowed": false,
-  "generated_at": "2026-07-16T00:01:19.462072+00:00",
+  "generated_at": "2026-07-16T00:05:06.188441+00:00",
   "hold_reasons": [
     "V0_SEMANTIC_FORCING_FAILED",
     "V1_BUILDERS_ABSENT",
@@ -57,8 +58,8 @@
   ],
   "inputs": {
     "claude_dry_receipt": {
-      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000118Z-v8-readiness-audit-85be319b37b8.receipt.json",
-      "sha256": "9aa3eacbfabec22b8398270908f49222d64ea3f2067d59421fb0df5e52090103",
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000504Z-v8-readiness-audit-85be319b37b8.receipt.json",
+      "sha256": "e0aec45537e51548b06efd38adcf15ad46d6e45b0698c387b99c4e16e64e4332",
       "size_bytes": 2303
     },
     "frozen_diagnostics": {
@@ -75,6 +76,16 @@
       "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/campaign_validation.json",
       "sha256": "045e6fe45a3a3ab2231d658234bdddc204eb134715789ca616078903a8db056d",
       "size_bytes": 6679
+    },
+    "lev_evidence": {
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/lev_evidence/receipt.json",
+      "sha256": "78efbec3eaf2c5835e826c4ed96d77431b87c458d52c446c27772f0d65cb8b50",
+      "size_bytes": 4674
+    },
+    "lev_evidence_validation": {
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/lev_evidence/validation.json",
+      "sha256": "074fee9fe3a2958c31e8f3a0a8a6ecc3191b07b9ab0774635c2970ca78617248",
+      "size_bytes": 462
     },
     "nvidia_catalog": {
       "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/provider_advisory_control_v1/results/nvidia_catalog_20260715.json",
@@ -186,13 +197,13 @@
   "source_bindings": [
     {
       "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/run_readiness_audit.py",
-      "sha256": "7c49b5e61d949e1098516a091557788fd49f44df5e8490aa62cff51d72e4118b",
-      "size_bytes": 29685
+      "sha256": "b50bc7d9efefa5f963677a7601a8a2ac5f7a1aaaebdda066af1a982d131fe2f6",
+      "size_bytes": 33911
     },
     {
       "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/validate_readiness_receipt.py",
-      "sha256": "1a4d373ee4b8fc711be3076904dd0f311ad3f9f41f1556344acc5a0644c2696f",
-      "size_bytes": 32814
+      "sha256": "da08a3010f79d17c33a40d538d24b4cb9eba3cdb0a0392e7a7518f096056addc",
+      "size_bytes": 37888
     },
     {
       "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/validate_g0_g9_report.py",
@@ -355,8 +366,8 @@
       ],
       "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715",
       "returncode": 0,
-      "stderr": "test_budget_logic_handles_unknown_equal_and_exceeded (test_claude_bridge.BudgetAndCommandTests.test_budget_logic_handles_unknown_equal_and_exceeded) ... ok\ntest_command_construction_routes_alias_and_disables_tools_by_default (test_claude_bridge.BudgetAndCommandTests.test_command_construction_routes_alias_and_disables_tools_by_default) ... ok\ntest_invalid_budgets_fail (test_claude_bridge.BudgetAndCommandTests.test_invalid_budgets_fail) ... ok\ntest_stream_command_uses_explicit_tools_and_full_model (test_claude_bridge.BudgetAndCommandTests.test_stream_command_uses_explicit_tools_and_full_model) ... ok\ntest_json_parser_fails_closed_on_non_object (test_claude_bridge.ParsingTests.test_json_parser_fails_closed_on_non_object) ... ok\ntest_json_parser_uses_model_usage_as_backend_truth (test_claude_bridge.ParsingTests.test_json_parser_uses_model_usage_as_backend_truth) ... ok\ntest_stream_parser_counts_completion_not_just_start (test_claude_bridge.ParsingTests.test_stream_parser_counts_completion_not_just_start) ... ok\ntest_stream_without_result_fails_parse_contract (test_claude_bridge.ParsingTests.test_stream_without_result_fails_parse_contract) ... ok\ntest_dry_run_never_spawns_claude_and_receipt_validates (test_claude_bridge.ReceiptTests.test_dry_run_never_spawns_claude_and_receipt_validates) ... ok\ntest_live_invalid_json_returns_wrapper_failure_without_retry (test_claude_bridge.ReceiptTests.test_live_invalid_json_returns_wrapper_failure_without_retry) ... ok\ntest_receipt_hashes_cover_prompt_and_output (test_claude_bridge.ReceiptTests.test_receipt_hashes_cover_prompt_and_output) ... ok\ntest_route_inspection_does_not_load_prompt_or_spawn (test_claude_bridge.ReceiptTests.test_route_inspection_does_not_load_prompt_or_spawn) ... ok\ntest_validator_fails_closed_on_authority_mutations (test_claude_bridge.ReceiptTests.test_validator_fails_closed_on_authority_mutations) ... ok\ntest_validator_rejects_hash_and_command_mutation (test_claude_bridge.ReceiptTests.test_validator_rejects_hash_and_command_mutation) ... ok\ntest_validator_rejects_model_usage_and_returncode_drift (test_claude_bridge.ReceiptTests.test_validator_rejects_model_usage_and_returncode_drift) ... ok\ntest_default_remains_distinct_from_fable (test_claude_bridge.RoutingTests.test_default_remains_distinct_from_fable) ... ok\ntest_empty_model_fails (test_claude_bridge.RoutingTests.test_empty_model_fails) ... ok\ntest_explicit_full_identifier_passes_through_unchanged (test_claude_bridge.RoutingTests.test_explicit_full_identifier_passes_through_unchanged) ... ok\ntest_fable_spellings_use_live_fable_alias (test_claude_bridge.RoutingTests.test_fable_spellings_use_live_fable_alias) ... ok\ntest_other_moving_aliases_remain_live (test_claude_bridge.RoutingTests.test_other_moving_aliases_remain_live) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 0.012s\n\nOK\n",
-      "stderr_sha256": "777a55a6887c9552538c65b26b131b4f3c3804f9056db499f06256c527885d28",
+      "stderr": "test_budget_logic_handles_unknown_equal_and_exceeded (test_claude_bridge.BudgetAndCommandTests.test_budget_logic_handles_unknown_equal_and_exceeded) ... ok\ntest_command_construction_routes_alias_and_disables_tools_by_default (test_claude_bridge.BudgetAndCommandTests.test_command_construction_routes_alias_and_disables_tools_by_default) ... ok\ntest_invalid_budgets_fail (test_claude_bridge.BudgetAndCommandTests.test_invalid_budgets_fail) ... ok\ntest_stream_command_uses_explicit_tools_and_full_model (test_claude_bridge.BudgetAndCommandTests.test_stream_command_uses_explicit_tools_and_full_model) ... ok\ntest_json_parser_fails_closed_on_non_object (test_claude_bridge.ParsingTests.test_json_parser_fails_closed_on_non_object) ... ok\ntest_json_parser_uses_model_usage_as_backend_truth (test_claude_bridge.ParsingTests.test_json_parser_uses_model_usage_as_backend_truth) ... ok\ntest_stream_parser_counts_completion_not_just_start (test_claude_bridge.ParsingTests.test_stream_parser_counts_completion_not_just_start) ... ok\ntest_stream_without_result_fails_parse_contract (test_claude_bridge.ParsingTests.test_stream_without_result_fails_parse_contract) ... ok\ntest_dry_run_never_spawns_claude_and_receipt_validates (test_claude_bridge.ReceiptTests.test_dry_run_never_spawns_claude_and_receipt_validates) ... ok\ntest_live_invalid_json_returns_wrapper_failure_without_retry (test_claude_bridge.ReceiptTests.test_live_invalid_json_returns_wrapper_failure_without_retry) ... ok\ntest_receipt_hashes_cover_prompt_and_output (test_claude_bridge.ReceiptTests.test_receipt_hashes_cover_prompt_and_output) ... ok\ntest_route_inspection_does_not_load_prompt_or_spawn (test_claude_bridge.ReceiptTests.test_route_inspection_does_not_load_prompt_or_spawn) ... ok\ntest_validator_fails_closed_on_authority_mutations (test_claude_bridge.ReceiptTests.test_validator_fails_closed_on_authority_mutations) ... ok\ntest_validator_rejects_hash_and_command_mutation (test_claude_bridge.ReceiptTests.test_validator_rejects_hash_and_command_mutation) ... ok\ntest_validator_rejects_model_usage_and_returncode_drift (test_claude_bridge.ReceiptTests.test_validator_rejects_model_usage_and_returncode_drift) ... ok\ntest_default_remains_distinct_from_fable (test_claude_bridge.RoutingTests.test_default_remains_distinct_from_fable) ... ok\ntest_empty_model_fails (test_claude_bridge.RoutingTests.test_empty_model_fails) ... ok\ntest_explicit_full_identifier_passes_through_unchanged (test_claude_bridge.RoutingTests.test_explicit_full_identifier_passes_through_unchanged) ... ok\ntest_fable_spellings_use_live_fable_alias (test_claude_bridge.RoutingTests.test_fable_spellings_use_live_fable_alias) ... ok\ntest_other_moving_aliases_remain_live (test_claude_bridge.RoutingTests.test_other_moving_aliases_remain_live) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 0.015s\n\nOK\n",
+      "stderr_sha256": "c2c02ea14dc8dbcb82a59a74d888251f0b20a51e007bee641a3c666629d4dae5",
       "stdout": "",
       "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "step_id": "claude_bridge_unit_tests",
@@ -385,8 +396,8 @@
       "returncode": 0,
       "stderr": "",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout": "{\n  \"advisory_only\": true,\n  \"backend_model_truth_source\": \"output.modelUsage\",\n  \"backend_models\": [],\n  \"budget\": {\n    \"exceeded\": null,\n    \"observed_usd\": null,\n    \"provider_stop_is_preflight_guarantee\": false,\n    \"requested_usd\": 1.0\n  },\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"fable\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"effort\": \"\",\n  \"evidence_allowed\": false,\n  \"execution_mode\": \"dry_run\",\n  \"fallback_route\": null,\n  \"formal_admission_allowed\": false,\n  \"gate_authority\": false,\n  \"gate_decision\": \"not_applicable\",\n  \"generated_at\": \"2026-07-16T00:01:18.478060+00:00\",\n  \"official_launch_allowed\": false,\n  \"output_path\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000118Z-v8-readiness-audit-85be319b37b8.json\",\n  \"output_sha256\": \"62b3e28a2dd873ec0641863355f39f763ee00388e0f1ea473d9e1178fa814d07\",\n  \"parsed\": {\n    \"dry_run\": true,\n    \"model_usage\": {},\n    \"models\": [],\n    \"parse_ok\": true,\n    \"total_cost_usd\": null\n  },\n  \"promotion_allowed\": false,\n  \"prompt_path\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000118Z-v8-readiness-audit-85be319b37b8.prompt.txt\",\n  \"prompt_sha256\": \"4b17f05f4c94bbdfdd7e8f37c6754fb803c597036001780b20de7feee496a6a2\",\n  \"provider\": \"claude-code-cli\",\n  \"provider_invoked\": false,\n  \"provider_returncode\": null,\n  \"receipt_path\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000118Z-v8-readiness-audit-85be319b37b8.receipt.json\",\n  \"release_eligible\": false,\n  \"requested_cwd\": \"/tmp\",\n  \"route\": {\n    \"requested_model\": \"fable5\",\n    \"resolution_kind\": \"moving_alias\",\n    \"routed_model\": \"fable\"\n  },\n  \"schema\": \"codex-ratchet.claude-bridge-receipt.v1\",\n  \"scientific_claim_proven\": false,\n  \"stream\": false,\n  \"timed_out\": false,\n  \"timeout_sec\": 0.0,\n  \"tools\": \"\",\n  \"wrapper_returncode\": 0\n}\n",
-      "stdout_sha256": "9aa3eacbfabec22b8398270908f49222d64ea3f2067d59421fb0df5e52090103",
+      "stdout": "{\n  \"advisory_only\": true,\n  \"backend_model_truth_source\": \"output.modelUsage\",\n  \"backend_models\": [],\n  \"budget\": {\n    \"exceeded\": null,\n    \"observed_usd\": null,\n    \"provider_stop_is_preflight_guarantee\": false,\n    \"requested_usd\": 1.0\n  },\n  \"command\": [\n    \"claude\",\n    \"-p\",\n    \"--model\",\n    \"fable\",\n    \"--output-format\",\n    \"json\",\n    \"--no-session-persistence\",\n    \"--max-budget-usd\",\n    \"1.0\",\n    \"--tools\",\n    \"\"\n  ],\n  \"cwd\": \"/tmp\",\n  \"effort\": \"\",\n  \"evidence_allowed\": false,\n  \"execution_mode\": \"dry_run\",\n  \"fallback_route\": null,\n  \"formal_admission_allowed\": false,\n  \"gate_authority\": false,\n  \"gate_decision\": \"not_applicable\",\n  \"generated_at\": \"2026-07-16T00:05:04.853606+00:00\",\n  \"official_launch_allowed\": false,\n  \"output_path\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000504Z-v8-readiness-audit-85be319b37b8.json\",\n  \"output_sha256\": \"62b3e28a2dd873ec0641863355f39f763ee00388e0f1ea473d9e1178fa814d07\",\n  \"parsed\": {\n    \"dry_run\": true,\n    \"model_usage\": {},\n    \"models\": [],\n    \"parse_ok\": true,\n    \"total_cost_usd\": null\n  },\n  \"promotion_allowed\": false,\n  \"prompt_path\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000504Z-v8-readiness-audit-85be319b37b8.prompt.txt\",\n  \"prompt_sha256\": \"4b17f05f4c94bbdfdd7e8f37c6754fb803c597036001780b20de7feee496a6a2\",\n  \"provider\": \"claude-code-cli\",\n  \"provider_invoked\": false,\n  \"provider_returncode\": null,\n  \"receipt_path\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000504Z-v8-readiness-audit-85be319b37b8.receipt.json\",\n  \"release_eligible\": false,\n  \"requested_cwd\": \"/tmp\",\n  \"route\": {\n    \"requested_model\": \"fable5\",\n    \"resolution_kind\": \"moving_alias\",\n    \"routed_model\": \"fable\"\n  },\n  \"schema\": \"codex-ratchet.claude-bridge-receipt.v1\",\n  \"scientific_claim_proven\": false,\n  \"stream\": false,\n  \"timed_out\": false,\n  \"timeout_sec\": 0.0,\n  \"tools\": \"\",\n  \"wrapper_returncode\": 0\n}\n",
+      "stdout_sha256": "e0aec45537e51548b06efd38adcf15ad46d6e45b0698c387b99c4e16e64e4332",
       "step_id": "claude_bridge_fable5_dry_run",
       "timed_out": false
     },
@@ -395,14 +406,14 @@
         "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
         "-B",
         "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/claude-bridge/scripts/validate_receipt.py",
-        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000118Z-v8-readiness-audit-85be319b37b8.receipt.json"
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000504Z-v8-readiness-audit-85be319b37b8.receipt.json"
       ],
       "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715",
       "returncode": 0,
       "stderr": "",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout": "{\n  \"claim_ceiling\": \"receipt integrity and non-gating scope only\",\n  \"errors\": [],\n  \"ok\": true,\n  \"receipt\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000118Z-v8-readiness-audit-85be319b37b8.receipt.json\"\n}\n",
-      "stdout_sha256": "cb3ca4bb7402f18df5ace9bf9a99d19b68b1a74845a22a55ef123326d29baa35",
+      "stdout": "{\n  \"claim_ceiling\": \"receipt integrity and non-gating scope only\",\n  \"errors\": [],\n  \"ok\": true,\n  \"receipt\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_launch_readiness_20260715/results/claude_dry_run/20260716T000504Z-v8-readiness-audit-85be319b37b8.receipt.json\"\n}\n",
+      "stdout_sha256": "f0125df6e281ae9135b8b0dbd0aba34f243ea1f5ffea4ae93fa204348565c7ca",
       "step_id": "claude_bridge_dry_receipt_validator",
       "timed_out": false
     }

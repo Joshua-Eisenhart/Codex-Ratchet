@@ -1,0 +1,147 @@
+{
+  "all_systems_green": false,
+  "bound_inputs": {
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_v8_nonofficial_regression_20260715.json": "68ee4eaaeb83c77e7d51df054e9b91a97f76f03dadbbd99dfe1ee74127cc4e94",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_v8_nonofficial_regression_20260715.json": "74a12fef90ea86ac80bb1389995bdf7281a7de2d3615a38d0b007d121845fb8f",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/final_report.json": "4cd411839700388c569387b8f9501a9e54decb262173bf2323d6c9474440eb9b",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/g0_g9_report.json": "451b09c3980edd8a26a6398593a41a21b5e73c52b0ce6dd820943d15941c6c02",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/campaign_spec.json": "8226aaf71b61ae7ce7f0adc685142452061b49e812f8971be282c6dad0478951",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/preregistration.json": "29c65ea339a5dd93525889560973dba76824e3b229f0643f76c476454dd4d1be",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/campaign_execution.json": "15ce9f37bda1d2eca0d734bb07139bffc7143c9017b69bfa673aa5359dc0b801",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/campaign_validation.json": "045e6fe45a3a3ab2231d658234bdddc204eb134715789ca616078903a8db056d"
+  },
+  "campaign_integrity_pass": false,
+  "checks": {
+    "deep_edge_evidence_kinds_are_bounded": true,
+    "deep_estate_95_tool_rows_green": true,
+    "deep_estate_hash_matches_frozen_campaign_snapshot": true,
+    "deep_validation_hash_matches_frozen_campaign_snapshot": true,
+    "deep_validator_86_operational_receipts_green": true,
+    "frozen_campaign_is_red": true,
+    "frozen_meta_validator_selftest_green": true,
+    "frozen_spec_hash_still_matches_preregistration": true,
+    "historical_first_tooth_final_is_stale_after_fresh_g0_g9": true,
+    "official_launch_remains_closed": true,
+    "only_qit_case_unexpected": true,
+    "qit_downstream_steps_were_blocked_not_timed_out": true,
+    "qit_followup_lint_green": true,
+    "qit_followup_strict_red_same_reason": true,
+    "qit_followup_tests_green": true,
+    "qit_packet_validator_green": true,
+    "qit_shared_strict_gate_red": true
+  },
+  "claim_ceiling": "post-run diagnosis of a frozen nonofficial campaign; cannot promote, admit, release, or authorize launch",
+  "classification": "postrun_diagnostic_not_preregistered_not_a_gate_rewrite",
+  "deep_edge_evidence_kinds": {
+    "direct_value_handoff": 1,
+    "independent_shared_crosscheck": 3,
+    "member_cohealth_compatibility_witness": 25
+  },
+  "diagnostic_integrity_pass": true,
+  "followup_commands": {
+    "lint": {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "scripts/lint_sim_contract.py",
+        "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0.py",
+        "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_envelope.py"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\n  \"checked\": 2,\n  \"violation_total\": 0,\n  \"sims_with_violations\": 0,\n  \"violations_by_type\": {},\n  \"top_offenders\": [],\n  \"violations\": []\n}\n"
+    },
+    "strict": {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "scripts/validate_three_engine_sim_result.py",
+        "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json",
+        "--require-pytorch",
+        "--strict-source-backed",
+        "--require-tool-intent"
+      ],
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\n  \"ok\": false,\n  \"errors\": [\n    \"jax: strict source-backed audit requires no thin declared claims: declared load-bearing packages imported but source-token-thin: jaxlib\",\n    \"tool_intent.engine_tool_intent.jax.jaxlib must name the exact observable/proof\",\n    \"jax.jaxlib tool_intent declared but source-token-thin/not-backed: declared load-bearing packages imported but source-token-thin: jaxlib\"\n  ]\n}\n"
+    },
+    "tests": {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "system_v7/sims/qit_projection_battery_v0/tests"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "============================= test session starts ==============================\nplatform darwin -- Python 3.13.6, pytest-9.0.3, pluggy-1.6.0\nrootdir: /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715\nconfigfile: pyproject.toml\nplugins: jaxtyping-0.3.10, mock-3.15.1, zarr-3.2.1, torchtyping-0.1.5, order-1.4.0, hypothesis-6.151.12, typeguard-2.13.3, anyio-4.13.0\ncollected 3 items\n\nsystem_v7/sims/qit_projection_battery_v0/tests/test_qit_projection_battery_v0.py . [ 33%]\n..                                                                       [100%]\n\n============================== 3 passed in 0.14s ===============================\n"
+    }
+  },
+  "formal_admission_allowed": false,
+  "frozen_meta_validator_findings": {
+    "diagnosed_false_secondary_findings": [
+      "skipped QIT lint/tests were reported as timeouts because skipped rows omit timed_out",
+      "deep-stack producer counts 95 stress-required tool rows while the strict validator counts 86 operational receipt obligations; both layers are green",
+      "frozen rung summary must not mark R3 reproduced while its QIT strict gate is unexpected red"
+    ],
+    "finding_count": 19
+  },
+  "generated_at": "2026-07-15T22:27:46.457429+00:00",
+  "install_attempted": false,
+  "llm_gate_used": false,
+  "official_launch_allowed": false,
+  "promotion_allowed": false,
+  "release_eligible": false,
+  "rung_states": [
+    {
+      "rung_id": "R0_FROZEN_BOUNDARY",
+      "state": "GREEN_NONOFFICIAL"
+    },
+    {
+      "rung_id": "R1_RUNTIME_CARRIER",
+      "state": "CANONICAL_GREEN_PORTABILITY_RED"
+    },
+    {
+      "rung_id": "R2_FINITE_STACK",
+      "state": "GREEN_95_OF_95_TOOL_ROWS_29_OF_29_EDGES"
+    },
+    {
+      "rung_id": "R3_OLD_SIM_REGRESSION",
+      "state": "HOLD_QIT_SHARED_STRICT_GATE_RED"
+    },
+    {
+      "rung_id": "R4_FIRST_TOOTH_CANDIDATE",
+      "state": "GREEN_G0_G9_HOLD_PENDING_LEV"
+    },
+    {
+      "rung_id": "R5_LATER_RUNG_SCRATCH",
+      "state": "MECHANICAL_GREENS_STRICT_REDS_PRESERVED"
+    },
+    {
+      "rung_id": "R6_PROCESS_ADMISSION",
+      "state": "HOLD_LEV_MONITOR_TO_PROOF_RED"
+    }
+  ],
+  "schema": "codex_ratchet.v8_nonofficial_stress_campaign.postrun_diagnostics.v1",
+  "scientific_claim_proven": false,
+  "source_path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/postrun_diagnostics.py",
+  "source_sha256": "9e817c4f4632704c7e9cf4e036b2f83deab7e012d67fc90a00952285c4ec3b90",
+  "stale_historical_artifact": {
+    "fresh_authority": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/g0_g9_report.json",
+    "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/final_report.json",
+    "reason": "fresh G0-G9 replay changed the bound report while no fresh G10 was run; the historical final report fails its own hash validator"
+  },
+  "unexpected_red": {
+    "case_id": "OLD_QIT_PROJECTION_BATTERY",
+    "downstream_in_frozen_run": "blocked fail-closed",
+    "followup_lint_returncode": 0,
+    "followup_strict_returncode": 1,
+    "followup_tests_returncode": 0,
+    "reason": "shared strict validator rejects declared JAX jaxlib evidence as source-token-thin and tool-intent-inexact",
+    "returncode": 1,
+    "step_id": "generic_validator"
+  }
+}

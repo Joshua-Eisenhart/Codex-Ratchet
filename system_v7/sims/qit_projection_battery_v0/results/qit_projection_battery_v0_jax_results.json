@@ -3,6 +3,7 @@
     "cvc5": "load_bearing",
     "jax": "supportive",
     "jax.numpy": "supportive",
+    "jaxlib": "load_bearing",
     "z3": "load_bearing"
   },
   "TOOL_MANIFEST": {
@@ -21,6 +22,11 @@
       "tried": true,
       "used": true
     },
+    "jaxlib": {
+      "reason": "load-bearing direct PJRT CPU client and device enumeration",
+      "tried": true,
+      "used": true
+    },
     "z3": {
       "reason": "load-bearing structural gate polarity",
       "tried": true,
@@ -28,6 +34,7 @@
     }
   },
   "aligned_packages_load_bearing": [
+    "jaxlib",
     "z3",
     "cvc5"
   ],
@@ -35,7 +42,7 @@
   "classification": "scratch_diagnostic",
   "engine": "jax",
   "formal_admission_allowed": false,
-  "generated_at": "2026-07-07T20:03:57Z",
+  "generated_at": "2026-07-15T22:12:29Z",
   "jax_projection_readouts": {
     "bag_erased_control": {
       "control": "bag_erased",
@@ -695,14 +702,26 @@
       ]
     }
   },
+  "jaxlib_backend": {
+    "device_count": 1,
+    "device_kinds": [
+      "cpu"
+    ],
+    "pass": true,
+    "platform": "cpu",
+    "qualified_api": "jaxlib.xla_client.make_cpu_client",
+    "version": "0.10.1"
+  },
   "object_count": 4,
   "package_observables": {
     "cvc5": "independent cvc5 encoding agrees with z3 on projection battery polarity",
+    "jaxlib": "direct PJRT CPU client construction, platform readout, and concrete device enumeration",
     "z3": "UNSAT negation of nominal projection convergence gate with SAT erased controls"
   },
   "packages_used": [
     "jax",
     "jax.numpy",
+    "jaxlib",
     "z3",
     "cvc5"
   ],
@@ -727,6 +746,6 @@
     }
   },
   "source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_jax.py",
-  "source_sha256": "881f301a071dc75967c1ead7b83202bc85b241a4919f38c7364c69cda2b0efff",
+  "source_sha256": "af6d25698b6366533ed7ddac34478aa65d24531e4a5cdac2795f896246957f9f",
   "view_count": 5
 }

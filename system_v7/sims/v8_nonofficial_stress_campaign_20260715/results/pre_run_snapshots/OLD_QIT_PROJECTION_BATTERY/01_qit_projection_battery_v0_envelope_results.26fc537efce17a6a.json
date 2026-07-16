@@ -134,7 +134,6 @@
   "engines": {
     "jax": {
       "aligned_packages_load_bearing": [
-        "jaxlib",
         "z3",
         "cvc5"
       ],
@@ -143,13 +142,11 @@
       "formal_admission_allowed": false,
       "package_observables": {
         "cvc5": "independent cvc5 encoding agrees with z3 on projection battery polarity",
-        "jaxlib": "direct PJRT CPU client construction, platform readout, and concrete device enumeration",
         "z3": "UNSAT negation of nominal projection convergence gate with SAT erased controls"
       },
       "packages_used": [
         "jax",
         "jax.numpy",
-        "jaxlib",
         "z3",
         "cvc5"
       ],
@@ -157,9 +154,9 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_jax_results.json",
-      "result_sha256": "9e30e268e5de64f338d751da3e4860bff8268743ddc604b1fbf03fa26629fbc9",
+      "result_sha256": "578911f479105d5fa074682069b4e7205e3886897f4c851b5506c92d4e577fdd",
       "source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_jax.py",
-      "source_sha256": "af6d25698b6366533ed7ddac34478aa65d24531e4a5cdac2795f896246957f9f"
+      "source_sha256": "881f301a071dc75967c1ead7b83202bc85b241a4919f38c7364c69cda2b0efff"
     },
     "julia": {
       "aligned_packages_load_bearing": [
@@ -184,8 +181,8 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_julia_results.json",
-      "result_sha256": "b1f424bee2312457c3b5b8125f788a824987ca7c86a16691fac6820e3ad75abb",
-      "source_path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_julia.jl",
+      "result_sha256": "21741a685dc663f34b9b6a3182d9e7e4e58ef84e811247d5152513bbaea702d0",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_julia.jl",
       "source_sha256": "bf7059412a61f3a9f6be2696ac034f9a48cbaecd6a8a29e2b800f8c9fd2d0e2e"
     },
     "pytorch": {
@@ -206,7 +203,7 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_pytorch_results.json",
-      "result_sha256": "e6a8ab1e44f9ba7327cecf7a20908e5417213ef8ac8f222efacea4d764998c6d",
+      "result_sha256": "52807b6af35d8909f7a87039af20ae229241de5bcacb46c06157d72d30f5486e",
       "source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_pytorch.py",
       "source_sha256": "f3232ab5832cb246a1725a8b3569a4294580ab99d66ae563c13d9a96082faf63"
     }
@@ -244,9 +241,9 @@
     "common_source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_common.py",
     "common_source_sha256": "3410928bf00123eab6c7f2f426e0116ef1f087000128a6ff84d7ff4ccf3673f4",
     "controller_result": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_results.json",
-    "controller_result_sha256": "66256bde3ce02d16c02ba005b5e718f3d591c238851fb6aa0d9f8fb74abd8852",
+    "controller_result_sha256": "6c786637981540836eefec1d04fcc5c8ca1721bcfa5f2b29865f41880e9152dd",
     "parent_envelope": "system_v7/sims/qit_full_type1_type2_64_live_v1/results/qit_full_type1_type2_64_live_v1_envelope_results.json",
-    "parent_envelope_sha256": "10f3a0cb28fdbd525733cbb581fff7f16a75c78c0ea8116e08fac7a499dcd033",
+    "parent_envelope_sha256": "1ad747e8334f2d44f42665b31f9414bf1d98818c70197b6c6154d62ea5a2a930",
     "parent_sim_id": "qit_full_type1_type2_64_live_v1"
   },
   "promotion_allowed": false,
@@ -256,7 +253,7 @@
   "source_file_hashes": {
     "common_source": "3410928bf00123eab6c7f2f426e0116ef1f087000128a6ff84d7ff4ccf3673f4",
     "envelope_source": "c7c6a4587e399f2448347a08671ae68bfd96fcc577f50e17fd4bbba254817fef",
-    "jax_source": "af6d25698b6366533ed7ddac34478aa65d24531e4a5cdac2795f896246957f9f",
+    "jax_source": "881f301a071dc75967c1ead7b83202bc85b241a4919f38c7364c69cda2b0efff",
     "julia_source": "bf7059412a61f3a9f6be2696ac034f9a48cbaecd6a8a29e2b800f8c9fd2d0e2e",
     "main_source": "3a73ba6f3f6201fc45dd4ad4cf99dbd8aa61e04ed4e19a68f7a8591f344cbbf7",
     "pytorch_source": "f3232ab5832cb246a1725a8b3569a4294580ab99d66ae563c13d9a96082faf63"
@@ -301,5 +298,5 @@
       }
     }
   },
-  "written_at": "2026-07-15T22:12:40Z"
+  "written_at": "2026-07-07T20:04:58Z"
 }

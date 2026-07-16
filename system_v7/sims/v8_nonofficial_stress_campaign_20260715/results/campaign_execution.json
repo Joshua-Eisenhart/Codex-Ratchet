@@ -1,0 +1,1980 @@
+{
+  "all_expected_outcomes_observed": false,
+  "all_required_artifacts_present": true,
+  "all_systems_green": false,
+  "blocked_cases": [
+    {
+      "case_id": "BLOCKED_CORATCHET_BASIN_DEPTH_MULTIVIEW",
+      "reason": "source hard-codes the dirty owner repository root; isolated execution is unsafe without a source repair"
+    },
+    {
+      "case_id": "BLOCKED_GEO_S5_TERRAIN_FLOWS",
+      "reason": "source hard-codes the dirty owner repository root; isolated execution is unsafe without a source repair"
+    }
+  ],
+  "campaign_id": "v8_nonofficial_stress_campaign_20260715",
+  "cases": [
+    {
+      "all_expected_outcomes_observed": true,
+      "all_required_artifacts_present": true,
+      "artifacts_after": [
+        {
+          "exists": true,
+          "mtime_ns": 1784152590106983206,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_v8_nonofficial_regression_20260715.json",
+          "sha256": "68ee4eaaeb83c77e7d51df054e9b91a97f76f03dadbbd99dfe1ee74127cc4e94",
+          "size_bytes": 2503748
+        },
+        {
+          "exists": true,
+          "mtime_ns": 1784153548568688189,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_v8_nonofficial_regression_20260715.json",
+          "sha256": "74a12fef90ea86ac80bb1389995bdf7281a7de2d3615a38d0b007d121845fb8f",
+          "size_bytes": 861
+        }
+      ],
+      "case_execution_pass": true,
+      "case_id": "DS_ALL_FINITE_ROSTER",
+      "claim_ceiling": "95 operational rows and 29 declared edges only",
+      "cohort": "system",
+      "finished_at": "2026-07-15T22:12:28.585480+00:00",
+      "pre_run_artifacts": [
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784152590106983206,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/DS_ALL_FINITE_ROSTER/01_deep_stack_estate_v8_nonofficial_regression_20260715.68ee4eaaeb83c77e.json",
+            "sha256": "68ee4eaaeb83c77e7d51df054e9b91a97f76f03dadbbd99dfe1ee74127cc4e94",
+            "size_bytes": 2503748
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784152590106983206,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_v8_nonofficial_regression_20260715.json",
+            "sha256": "68ee4eaaeb83c77e7d51df054e9b91a97f76f03dadbbd99dfe1ee74127cc4e94",
+            "size_bytes": 2503748
+          }
+        },
+        {
+          "snapshot": null,
+          "source": {
+            "exists": false,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_v8_nonofficial_regression_20260715.json"
+          }
+        }
+      ],
+      "started_at": "2026-07-15T22:12:27.680682+00:00",
+      "steps": [
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v5/codex_skills/codex-ratchet-deep-stack-stress/scripts/validate_deep_stack_receipt.py",
+            "estate",
+            "--receipt",
+            "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_v8_nonofficial_regression_20260715.json",
+            "--registry",
+            "system_v5/ops/tooling/deep_stack_stress_20260714/registry/tool_roster_v1.json",
+            "--edges",
+            "system_v5/ops/tooling/deep_stack_stress_20260714/registry/integration_edges_v1.json",
+            "--repo-root",
+            "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+            "--out",
+            "system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_v8_nonofficial_regression_20260715.json",
+            "--require-operational-pass"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+          "duration_seconds": 0.902238,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:28.583569+00:00",
+          "receipt_role": "deterministic_gate",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:27.680709+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153548583500884,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/DS_ALL_FINITE_ROSTER/validate_fresh_estate.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153548583440134,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/DS_ALL_FINITE_ROSTER/validate_fresh_estate.stdout.txt",
+            "sha256": "74a12fef90ea86ac80bb1389995bdf7281a7de2d3615a38d0b007d121845fb8f",
+            "size_bytes": 861
+          },
+          "stdout_tail": "{\n  \"findings\": [],\n  \"missing_raw_receipt_roles\": [],\n  \"operational_pass\": true,\n  \"operational_red_edges\": [],\n  \"operational_red_tools\": [],\n  \"per_tool_findings\": {},\n  \"policy_red_tools\": [],\n  \"projection_only\": true,\n  \"receipt_valid\": true,\n  \"release_eligible\": false,\n  \"schema\": \"codex-ratchet.deep-stack-validation-verdict.v1\",\n  \"scientific_claim_proven\": false,\n  \"summary\": {\n    \"accepted_scientific_red_command_count\": 0,\n    \"failed_command_count\": 0,\n    \"finding_count\": 0,\n    \"integration_edge_count\": 29,\n    \"integration_edge_red_count\": 0,\n    \"missing_raw_receipt_count\": 0,\n    \"operational_pass_count\": 86,\n    \"operational_red_count\": 0,\n    \"policy_red_count\": 0,\n    \"raw_reuse_used\": false,\n    \"receipt_tool_count\": 139,\n    \"registry_tool_count\": 139,\n    \"required_operational_count\": 86,\n    \"reused_command_count\": 0\n  }\n}\n",
+          "step_id": "validate_fresh_estate",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        }
+      ]
+    },
+    {
+      "all_expected_outcomes_observed": false,
+      "all_required_artifacts_present": true,
+      "artifacts_after": [
+        {
+          "exists": true,
+          "mtime_ns": 1784153560753551871,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json",
+          "sha256": "db40eecb573b11a28a4a50270544ea518f4b5d33a7a959919cb40f4c59d803a7",
+          "size_bytes": 11229
+        }
+      ],
+      "case_execution_pass": false,
+      "case_id": "OLD_QIT_PROJECTION_BATTERY",
+      "claim_ceiling": "frozen finite partial-view projection battery only",
+      "cohort": "old_sim_regression",
+      "finished_at": "2026-07-15T22:12:40.864242+00:00",
+      "pre_run_artifacts": [
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784151673693945651,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/OLD_QIT_PROJECTION_BATTERY/01_qit_projection_battery_v0_envelope_results.26fc537efce17a6a.json",
+            "sha256": "26fc537efce17a6afff7c31fc9e36f1dbf7db64d30d4a3a85f9927c16b8ac726",
+            "size_bytes": 11024
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784151673693945651,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json",
+            "sha256": "26fc537efce17a6afff7c31fc9e36f1dbf7db64d30d4a3a85f9927c16b8ac726",
+            "size_bytes": 11024
+          }
+        }
+      ],
+      "started_at": "2026-07-15T22:12:27.680826+00:00",
+      "steps": [
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0.py",
+            "--fresh"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.237357,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:27.918662+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:27.680837+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153547918610363,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/main.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153547918555279,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/main.stdout.txt",
+            "sha256": "54bca36691b432ede639b32b5d09763a083c14115e8093509943aa2f4b7455bb",
+            "size_bytes": 229
+          },
+          "stdout_tail": "{\"all_pass\": true, \"bag_mean\": 0.25, \"nominal_mean\": 0.9, \"result_path\": \"system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_results.json\", \"sim_id\": \"qit_projection_battery_v0\", \"view_erased_mean\": 0.25}\n",
+          "step_id": "main",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_jax.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 2.077876,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:29.997215+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:27.918817+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153549997156130,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/jax.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153549997095505,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/jax.stdout.txt",
+            "sha256": "6fb973d3c5ba8d58d93f956414bab37431b327b3451efb52d61a7f35fdb631d8",
+            "size_bytes": 177
+          },
+          "stdout_tail": "{\"all_pass\": true, \"bag_mean\": 0.25, \"engine\": \"jax\", \"nominal_mean\": 0.9, \"out\": \"system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_jax_results.json\"}\n",
+          "step_id": "jax",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_pytorch.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 6.251302,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:36.250276+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:29.997375+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153556250136216,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/pytorch.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153556249992424,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/pytorch.stdout.txt",
+            "sha256": "6b4cf770108fe4e23260ddfbe4ce8dc45f2fdedcc09d601e3cc754bfd3faf35f",
+            "size_bytes": 185
+          },
+          "stdout_tail": "{\"all_pass\": true, \"bag_mean\": 0.25, \"engine\": \"pytorch\", \"nominal_mean\": 0.9, \"out\": \"system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_pytorch_results.json\"}\n",
+          "step_id": "pytorch",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/opt/homebrew/bin/julia",
+            "--startup-file=no",
+            "--project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+            "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_julia.jl"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 4.44573,
+          "env_overrides": {
+            "JULIA_LOAD_PATH": "@:@stdlib"
+          },
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:40.700768+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:36.254140+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153560700681978,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/julia.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153560700592186,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/julia.stdout.txt",
+            "sha256": "e3f4486259a057edbbd0e2ef5cb0826b6cc1e3fb14b656b7fc585f8556e7969f",
+            "size_bytes": 235
+          },
+          "stdout_tail": "{\"all_pass\":true,\"engine\":\"julia\",\"out\":\"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_julia_results.json\"}\n",
+          "step_id": "julia",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_envelope.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.05647,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:40.757990+00:00",
+          "receipt_role": "controller",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:40.700995+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153560757937504,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/envelope.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153560757848921,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/envelope.stdout.txt",
+            "sha256": "cbbaa0d38c63c17d45eddfc7f96e201b9565c11ba62e39ed75bfafa9e5e6767a",
+            "size_bytes": 165
+          },
+          "stdout_tail": "{\"all_pass\": true, \"failures\": [], \"max_divergence\": 0.0, \"out\": \"system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json\"}\n",
+          "step_id": "envelope",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/qit_projection_battery_v0/validate_qit_projection_battery_v0.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.042972,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:40.801587+00:00",
+          "receipt_role": "deterministic_gate",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:40.758138+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153560801532755,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/packet_validator.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153560801448046,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/packet_validator.stdout.txt",
+            "sha256": "1074acb917e03baff451b04f4ad8e55c210c6317e88ae7fcf70fb5fcb984b570",
+            "size_bytes": 248
+          },
+          "stdout_tail": "{\n  \"envelope\": \"system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json\",\n  \"errors\": [],\n  \"main\": \"system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_results.json\",\n  \"ok\": true\n}\n",
+          "step_id": "packet_validator",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "scripts/validate_three_engine_sim_result.py",
+            "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json",
+            "--require-pytorch",
+            "--strict-source-backed",
+            "--require-tool-intent"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.061793,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": false,
+          "finished_at": "2026-07-15T22:12:40.864015+00:00",
+          "receipt_role": "deterministic_gate",
+          "returncode": 1,
+          "started_at": "2026-07-15T22:12:40.801722+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153560863962457,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/generic_validator.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153560863877707,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_QIT_PROJECTION_BATTERY/generic_validator.stdout.txt",
+            "sha256": "a7582ff4355db6e61db77f0bb75f871dd039b79ad61c7cf9b339ad5e7023b9fa",
+            "size_bytes": 408
+          },
+          "stdout_tail": "{\n  \"ok\": false,\n  \"errors\": [\n    \"jax: strict source-backed audit requires no thin declared claims: declared load-bearing packages imported but source-token-thin: jaxlib\",\n    \"tool_intent.engine_tool_intent.jax.jaxlib must name the exact observable/proof\",\n    \"jax.jaxlib tool_intent declared but source-token-thin/not-backed: declared load-bearing packages imported but source-token-thin: jaxlib\"\n  ]\n}\n",
+          "step_id": "generic_validator",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "blocked_by": "generic_validator",
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "scripts/lint_sim_contract.py",
+            "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0.py",
+            "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_envelope.py"
+          ],
+          "executed": false,
+          "expected_exit": "zero",
+          "expected_exit_observed": false,
+          "receipt_role": "deterministic_gate",
+          "step_id": "lint"
+        },
+        {
+          "blocked_by": "generic_validator",
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "-m",
+            "pytest",
+            "system_v7/sims/qit_projection_battery_v0/tests"
+          ],
+          "executed": false,
+          "expected_exit": "zero",
+          "expected_exit_observed": false,
+          "receipt_role": "deterministic_gate",
+          "step_id": "tests"
+        }
+      ]
+    },
+    {
+      "all_expected_outcomes_observed": true,
+      "all_required_artifacts_present": true,
+      "artifacts_after": [
+        {
+          "exists": true,
+          "mtime_ns": 1784153549198457727,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_integration_networkx_rustworkx_crosscheck_results.json",
+          "sha256": "3b53fba991f7f6a22e181ae5538b8062cf5ec953667aa29c0e8dacb4e145c4d1",
+          "size_bytes": 5323
+        },
+        {
+          "exists": true,
+          "mtime_ns": 1784153570723411566,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_capability_xgi_isolated_results.json",
+          "sha256": "178b108a73325e2ea8a5cddde8ecae01e2e4eac3cf41a429beee2504af6b4d76",
+          "size_bytes": 6039
+        },
+        {
+          "exists": true,
+          "mtime_ns": 1784153572428671662,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_capability_toponetx_isolated_results.json",
+          "sha256": "cd3cd4abe9ac6b9a8325515d369dc2d45e94560482233d60182c9af7494a2d53",
+          "size_bytes": 6243
+        },
+        {
+          "exists": true,
+          "mtime_ns": 1784153572638114145,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_capability_gudhi_isolated_results.json",
+          "sha256": "9b08d72baee72219597f2f615ce6303100c59b40044fb46f86949acd9e9befba",
+          "size_bytes": 6126
+        }
+      ],
+      "case_execution_pass": true,
+      "case_id": "OLD_GRAPH_TOPOLOGY_PACK",
+      "claim_ceiling": "classical graph and topology capability/regression evidence only",
+      "cohort": "old_sim_regression",
+      "finished_at": "2026-07-15T22:12:52.706053+00:00",
+      "pre_run_artifacts": [
+        {
+          "snapshot": null,
+          "source": {
+            "exists": false,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_integration_networkx_rustworkx_crosscheck_results.json"
+          }
+        },
+        {
+          "snapshot": null,
+          "source": {
+            "exists": false,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_capability_xgi_isolated_results.json"
+          }
+        },
+        {
+          "snapshot": null,
+          "source": {
+            "exists": false,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_capability_toponetx_isolated_results.json"
+          }
+        },
+        {
+          "snapshot": null,
+          "source": {
+            "exists": false,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_capability_gudhi_isolated_results.json"
+          }
+        }
+      ],
+      "started_at": "2026-07-15T22:12:27.682042+00:00",
+      "steps": [
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v4/probes/sim_integration_networkx_rustworkx_crosscheck.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 1.84355,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:29.526333+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:27.682077+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153549526254145,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_GRAPH_TOPOLOGY_PACK/networkx_rustworkx.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153549526175437,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_GRAPH_TOPOLOGY_PACK/networkx_rustworkx.stdout.txt",
+            "sha256": "112c1607856b5a93f8b757a99cc50d480ae2608787d4bf2cc4c3ec0168d3b95a",
+            "size_bytes": 233
+          },
+          "stdout_tail": "Results written to /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_integration_networkx_rustworkx_crosscheck_results.json\noverall_pass: True\n",
+          "step_id": "networkx_rustworkx",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v4/probes/sim_capability_xgi_isolated.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 21.419477,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:50.946907+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:29.526555+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153570946841286,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_GRAPH_TOPOLOGY_PACK/xgi.stderr.txt",
+            "sha256": "cace1071573ef725e762e8856427937617c8c67e5d0784c45c0e854e56a803a8",
+            "size_bytes": 63
+          },
+          "stderr_tail": "Matplotlib is building the font cache; this may take a moment.\n",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153570946683285,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_GRAPH_TOPOLOGY_PACK/xgi.stdout.txt",
+            "sha256": "89d2e15d4300ba0717cf0c7781eae85cbb75f470980c5922a16f6c628deea16a",
+            "size_bytes": 215
+          },
+          "stdout_tail": "Results written to /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_capability_xgi_isolated_results.json\noverall_pass: True\n",
+          "step_id": "xgi",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v4/probes/sim_capability_toponetx_isolated.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 1.608139,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:52.555777+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:50.947157+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153572555709279,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_GRAPH_TOPOLOGY_PACK/toponetx.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153572555602279,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_GRAPH_TOPOLOGY_PACK/toponetx.stdout.txt",
+            "sha256": "f87e2bfe75a62c08423d6393e51db29462eb3d8202ce7c1e7ef9fdede82e8110",
+            "size_bytes": 220
+          },
+          "stdout_tail": "Results written to /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_capability_toponetx_isolated_results.json\noverall_pass: True\n",
+          "step_id": "toponetx",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v4/probes/sim_capability_gudhi_isolated.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.091059,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:52.647423+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:52.555914+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153572647368163,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_GRAPH_TOPOLOGY_PACK/gudhi.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153572647304704,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_GRAPH_TOPOLOGY_PACK/gudhi.stdout.txt",
+            "sha256": "bbf324548f904ef1a9836d52cc622f137c4a39e63c4f7ce4a60fd028b02d2636",
+            "size_bytes": 217
+          },
+          "stdout_tail": "Results written to /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v4/probes/a2_state/sim_results/sim_capability_gudhi_isolated_results.json\noverall_pass: True\n",
+          "step_id": "gudhi",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "scripts/lint_sim_contract.py",
+            "system_v4/probes/sim_integration_networkx_rustworkx_crosscheck.py",
+            "system_v4/probes/sim_capability_xgi_isolated.py",
+            "system_v4/probes/sim_capability_toponetx_isolated.py",
+            "system_v4/probes/sim_capability_gudhi_isolated.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.057456,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:52.705512+00:00",
+          "receipt_role": "deterministic_gate",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:52.647564+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153572705461191,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_GRAPH_TOPOLOGY_PACK/lint.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153572705392899,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_GRAPH_TOPOLOGY_PACK/lint.stdout.txt",
+            "sha256": "bda87298f3f2c609ddffa0c139b311caf1a307308914094a1a3956dc2582b3e6",
+            "size_bytes": 143
+          },
+          "stdout_tail": "{\n  \"checked\": 4,\n  \"violation_total\": 0,\n  \"sims_with_violations\": 0,\n  \"violations_by_type\": {},\n  \"top_offenders\": [],\n  \"violations\": []\n}\n",
+          "step_id": "lint",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        }
+      ]
+    },
+    {
+      "all_expected_outcomes_observed": true,
+      "all_required_artifacts_present": true,
+      "artifacts_after": [
+        {
+          "exists": true,
+          "mtime_ns": 1784153585498496578,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/gap_k_tensor_chain_v2.json",
+          "sha256": "efebd2d07eb07bf8c49b8cd1a9e5ad8249ff075aa7e1dc31ea944306fd678a05",
+          "size_bytes": 39426
+        }
+      ],
+      "case_execution_pass": true,
+      "case_id": "OLD_CROSS_TENSOR",
+      "claim_ceiling": "one finite cross-runtime tensor-chain fixture only",
+      "cohort": "old_sim_regression",
+      "finished_at": "2026-07-15T22:13:05.702313+00:00",
+      "pre_run_artifacts": [
+        {
+          "snapshot": null,
+          "source": {
+            "exists": false,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/gap_k_tensor_chain_v2.json"
+          }
+        }
+      ],
+      "started_at": "2026-07-15T22:12:28.585567+00:00",
+      "steps": [
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v5/ops/tooling/claude_campaign_20260713/hardened/gap_k_tensor_chain_v2.py",
+            "--output",
+            "system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/gap_k_tensor_chain_v2.json"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 37.11579,
+          "env_overrides": {
+            "CODEX_RATCHET_JULIA_PROJECT": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+            "JULIA_LOAD_PATH": "@:@stdlib"
+          },
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:05.702021+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:28.585578+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153585701966675,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_CROSS_TENSOR/run.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153585701882675,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_CROSS_TENSOR/run.stdout.txt",
+            "sha256": "e7ac95009b6ca90e43bce380d8cf2bc27e72a0538faa0ea5e86bdb9b1a3224e0",
+            "size_bytes": 361
+          },
+          "stdout_tail": "{\"all_pass\": true, \"failed\": 0, \"passed\": 19, \"primary_entropy_bits\": 2.3610371683188287, \"primary_spectrum_max_abs_delta\": 9.992007221626409e-16, \"result\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/gap_k_tensor_chain_v2.json\", \"total\": 19}\n",
+          "step_id": "run",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        }
+      ]
+    },
+    {
+      "all_expected_outcomes_observed": true,
+      "all_required_artifacts_present": true,
+      "artifacts_after": [
+        {
+          "exists": true,
+          "mtime_ns": 1784153571826931302,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/basin_chain_d.json",
+          "sha256": "cb44cffee6e95f8c538dbb22cedb2cd7e15c75dd553ab70cf91dce6f0e1648b1",
+          "size_bytes": 16852
+        }
+      ],
+      "case_execution_pass": true,
+      "case_id": "OLD_CROSS_DYNAMICS",
+      "claim_ceiling": "one supplied active-boundary basin and its controls only",
+      "cohort": "old_sim_regression",
+      "finished_at": "2026-07-15T22:12:51.987730+00:00",
+      "pre_run_artifacts": [
+        {
+          "snapshot": null,
+          "source": {
+            "exists": false,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/basin_chain_d.json"
+          }
+        }
+      ],
+      "started_at": "2026-07-15T22:12:40.864345+00:00",
+      "steps": [
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v5/ops/tooling/claude_campaign_20260713/hardened/basin_chain_d.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 11.12258,
+          "env_overrides": {
+            "CODEX_RATCHET_BASIN_OUTPUT": "system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/basin_chain_d.json",
+            "CODEX_RATCHET_JULIA_PROJECT": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+            "JAX_ENABLE_X64": "1",
+            "JULIA_LOAD_PATH": "@:@stdlib"
+          },
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:51.987468+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:40.864357+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153571987417943,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_CROSS_DYNAMICS/run.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153571987355109,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/OLD_CROSS_DYNAMICS/run.stdout.txt",
+            "sha256": "afdef7be9feb5ccd9134a1ed7ba7fd859e42e670125ed9fd086bc33fde87f9aa",
+            "size_bytes": 243
+          },
+          "stdout_tail": "PASS julia_attractors\nPASS jax_diffrax\nPASS jax_optimistix\nPASS z3_active_floor\nPASS cross_engine_agreement\nPASS erased_drive_control\nPASS basin_chain_d\nRECEIPT system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/basin_chain_d.json\n",
+          "step_id": "run",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        }
+      ]
+    },
+    {
+      "all_expected_outcomes_observed": true,
+      "all_required_artifacts_present": true,
+      "artifacts_after": [
+        {
+          "exists": true,
+          "mtime_ns": 1784153614968339198,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/controller_envelope.json",
+          "sha256": "0ef00deb292e0442f0ae896027b53de514ce92b1106ba55597c8acfce9ef03ea",
+          "size_bytes": 25031
+        },
+        {
+          "exists": true,
+          "mtime_ns": 1784153615016932040,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/validation.json",
+          "sha256": "38dcf031e1702304f4f7d56f84298aa645637e60c84bf68244a78e075b2f4fb5",
+          "size_bytes": 3009
+        },
+        {
+          "exists": true,
+          "mtime_ns": 1784153615296342408,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/mutation_tests.json",
+          "sha256": "5bc5b932214199d6b5515c4f5f21624b1b7fffe7a88f11f80df1743424dc1061",
+          "size_bytes": 1503
+        },
+        {
+          "exists": true,
+          "mtime_ns": 1784153615302456962,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/g0_g9_report.json",
+          "sha256": "451b09c3980edd8a26a6398593a41a21b5e73c52b0ce6dd820943d15941c6c02",
+          "size_bytes": 5706
+        }
+      ],
+      "case_execution_pass": true,
+      "case_id": "FIRST_RUNG_TOLERANCE_EQUIVALENCE",
+      "claim_ceiling": "one bounded finite tolerance-to-equivalence scratch candidate through G0-G9 only",
+      "cohort": "first_rung_candidate",
+      "finished_at": "2026-07-15T22:13:35.339414+00:00",
+      "pre_run_artifacts": [
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784147774734292276,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/FIRST_RUNG_TOLERANCE_EQUIVALENCE/01_controller_envelope.f6b68ebbb0ca62c6.json",
+            "sha256": "f6b68ebbb0ca62c65f67b9094322a6159f90aef52b12f61a6c00ff895cc07bd5",
+            "size_bytes": 25031
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784147774734292276,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/controller_envelope.json",
+            "sha256": "f6b68ebbb0ca62c65f67b9094322a6159f90aef52b12f61a6c00ff895cc07bd5",
+            "size_bytes": 25031
+          }
+        },
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784147774783630382,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/FIRST_RUNG_TOLERANCE_EQUIVALENCE/02_validation.c80d03a9dc7c6faf.json",
+            "sha256": "c80d03a9dc7c6faf047ccc30a6fda7132eea7b6f6c1f3909de456467e8acae29",
+            "size_bytes": 3009
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784147774783630382,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/validation.json",
+            "sha256": "c80d03a9dc7c6faf047ccc30a6fda7132eea7b6f6c1f3909de456467e8acae29",
+            "size_bytes": 3009
+          }
+        },
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784147775063888902,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/FIRST_RUNG_TOLERANCE_EQUIVALENCE/03_mutation_tests.eae724a0e36a7141.json",
+            "sha256": "eae724a0e36a7141329c60b153932c241873d52cc69070f07c01ccb01e2e3d68",
+            "size_bytes": 1503
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784147775063888902,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/mutation_tests.json",
+            "sha256": "eae724a0e36a7141329c60b153932c241873d52cc69070f07c01ccb01e2e3d68",
+            "size_bytes": 1503
+          }
+        },
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784147775069735832,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/FIRST_RUNG_TOLERANCE_EQUIVALENCE/04_g0_g9_report.7177c57d12cad94a.json",
+            "sha256": "7177c57d12cad94a7b7b254f00d3e7ea8e83218e5d6397531325cfbf0ca4d74e",
+            "size_bytes": 5706
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784147775069735832,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/g0_g9_report.json",
+            "sha256": "7177c57d12cad94a7b7b254f00d3e7ea8e83218e5d6397531325cfbf0ca4d74e",
+            "size_bytes": 5706
+          }
+        }
+      ],
+      "started_at": "2026-07-15T22:12:51.987826+00:00",
+      "steps": [
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "-B",
+            "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pipeline.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715",
+          "duration_seconds": 43.318421,
+          "env_overrides": {
+            "CODEX_RATCHET_JULIA_PROJECT": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+            "JULIA_LOAD_PATH": "@:@stdlib"
+          },
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:35.306685+00:00",
+          "receipt_role": "controller",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:51.987836+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153615306639887,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/FIRST_RUNG_TOLERANCE_EQUIVALENCE/g0_g9_pipeline.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153615306584428,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/FIRST_RUNG_TOLERANCE_EQUIVALENCE/g0_g9_pipeline.stdout.txt",
+            "sha256": "ffa81e97a87857c3f3ab67785445d3f22137e4ce811687933789ef832e871741",
+            "size_bytes": 78
+          },
+          "stdout_tail": "TOLERANCE_RUNG_G0_G9_DONE candidate_pass=true final_decision=HOLD_PENDING_LEV\n",
+          "step_id": "g0_g9_pipeline",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "-B",
+            "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/validate_g0_g9_report.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715",
+          "duration_seconds": 0.031819,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:35.339086+00:00",
+          "receipt_role": "deterministic_gate",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:35.306791+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153615339032824,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/FIRST_RUNG_TOLERANCE_EQUIVALENCE/g0_g9_validator.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153615338955532,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/FIRST_RUNG_TOLERANCE_EQUIVALENCE/g0_g9_validator.stdout.txt",
+            "sha256": "ae2bf3047228e27f49e50ecaa8d75f86df47043bccf8c2a75dabd738d4c926cb",
+            "size_bytes": 79
+          },
+          "stdout_tail": "{\"check_count\": 12, \"ok\": true, \"schema\": \"codex_ratchet.g0_g9_validation.v1\"}\n",
+          "step_id": "g0_g9_validator",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        }
+      ]
+    },
+    {
+      "all_expected_outcomes_observed": true,
+      "all_required_artifacts_present": true,
+      "artifacts_after": [
+        {
+          "exists": true,
+          "mtime_ns": 1784153573447314277,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_numpy_results.json",
+          "sha256": "6e115e004d258782edf111bbc144b3315145dc08bad902341f308675583f4082",
+          "size_bytes": 225402
+        },
+        {
+          "exists": true,
+          "mtime_ns": 1784153583935712130,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_julia_results.json",
+          "sha256": "21cbb1b0544d0c30afdee391f1eaf5173aef07bb8a0ca191371ecbf5a1ba5b9b",
+          "size_bytes": 216349
+        },
+        {
+          "exists": true,
+          "mtime_ns": 1784153584168673118,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_parity_results.json",
+          "sha256": "7aaa4a31ce130aaee667d6f9b46326796dce563f8e3f5bae0db51c1d21090f6e",
+          "size_bytes": 762
+        }
+      ],
+      "case_execution_pass": true,
+      "case_id": "LATER_L8_CUT_LATTICE",
+      "claim_ceiling": "L8 finite cut-lattice reconstruction only",
+      "cohort": "later_rung_scratch",
+      "finished_at": "2026-07-15T22:13:04.172830+00:00",
+      "pre_run_artifacts": [
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784151673580812563,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/LATER_L8_CUT_LATTICE/01_manifold_L8_cut_lattice_gate2_b_numpy_results.76eebe36f7a97982.json",
+            "sha256": "76eebe36f7a979820948a79ba4d2983e848fd1496e0e87d7e265d464548c0dc0",
+            "size_bytes": 225385
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784151673580812563,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_numpy_results.json",
+            "sha256": "76eebe36f7a979820948a79ba4d2983e848fd1496e0e87d7e265d464548c0dc0",
+            "size_bytes": 225385
+          }
+        },
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784151673580317103,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/LATER_L8_CUT_LATTICE/02_manifold_L8_cut_lattice_gate2_b_julia_results.29840aab6cb335f5.json",
+            "sha256": "29840aab6cb335f5741c1ce790e8ef8cb12a1c5c166b2ace3243e15dce3048a8",
+            "size_bytes": 216338
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784151673580317103,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_julia_results.json",
+            "sha256": "29840aab6cb335f5741c1ce790e8ef8cb12a1c5c166b2ace3243e15dce3048a8",
+            "size_bytes": 216338
+          }
+        },
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784151673581212647,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/LATER_L8_CUT_LATTICE/03_manifold_L8_cut_lattice_gate2_b_parity_results.90d0a133e07ab0ed.json",
+            "sha256": "90d0a133e07ab0ed4c82424ecf7963c7e6e9168c50261e834400fe9d956baff4",
+            "size_bytes": 640
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784151673581212647,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_parity_results.json",
+            "sha256": "90d0a133e07ab0ed4c82424ecf7963c7e6e9168c50261e834400fe9d956baff4",
+            "size_bytes": 640
+          }
+        }
+      ],
+      "started_at": "2026-07-15T22:12:52.706098+00:00",
+      "steps": [
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/manifold_L8_cut_lattice_gate2_b/manifold_L8_cut_lattice_gate2_b_numpy.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.751026,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:12:53.457608+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:52.706103+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153573457554589,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_L8_CUT_LATTICE/numpy.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153573457470130,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_L8_CUT_LATTICE/numpy.stdout.txt",
+            "sha256": "5cf56a323db1f4c15fc5daebac032ec520774344b4ad1354544545c1da06dcc9",
+            "size_bytes": 313
+          },
+          "stdout_tail": "WROTE /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_numpy_results.json\n{\"all_pass\": true, \"controls_passed\": 8, \"controls_total\": 8, \"max_roster_negativity\": 0.175843565302}\n",
+          "step_id": "numpy",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/opt/homebrew/bin/julia",
+            "--startup-file=no",
+            "--project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+            "system_v7/sims/manifold_L8_cut_lattice_gate2_b/manifold_L8_cut_lattice_gate2_b_julia.jl"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 10.662416,
+          "env_overrides": {
+            "JULIA_LOAD_PATH": "@:@stdlib"
+          },
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:04.121120+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:12:53.457763+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153584121019277,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_L8_CUT_LATTICE/julia.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153584120941110,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_L8_CUT_LATTICE/julia.stdout.txt",
+            "sha256": "a74077bba3b0c05f729b48ff3cb956c1b5719a5d672ea8e18c79cb6ffd9931e7",
+            "size_bytes": 306
+          },
+          "stdout_tail": "WROTE /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_julia_results.json\n{\"all_pass\":true,\"controls_passed\":8,\"controls_total\":8,\"max_roster_negativity\":0.175843565302}\n",
+          "step_id": "julia",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/manifold_L8_cut_lattice_gate2_b/check_parity.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.050398,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:04.172299+00:00",
+          "receipt_role": "deterministic_gate",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:04.121405+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153584172246958,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_L8_CUT_LATTICE/parity.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153584172170166,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_L8_CUT_LATTICE/parity.stdout.txt",
+            "sha256": "b4f11b5ff9e72ab0a37007b99b142137941a567fdab1130ff2f28b63ac1c93c5",
+            "size_bytes": 304
+          },
+          "stdout_tail": "WROTE /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_parity_results.json\n{\"all_pass\": true, \"failure_count\": 0, \"max_abs_delta\": 0.0, \"numeric_fields_compared\": 720}\n",
+          "step_id": "parity",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        }
+      ]
+    },
+    {
+      "all_expected_outcomes_observed": true,
+      "all_required_artifacts_present": true,
+      "artifacts_after": [
+        {
+          "exists": true,
+          "mtime_ns": 1784153589841613302,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_three_engine_results.json",
+          "sha256": "ce4c11fd60e62645c1758b5ce019b1643ecf390a2b27a816820d675b4bee96b1",
+          "size_bytes": 6388
+        }
+      ],
+      "case_execution_pass": true,
+      "case_id": "LATER_G6G7_SPINOR_HOPF",
+      "claim_ceiling": "finite G6/G7 density-floor, spinor-sign, and Hopf-connection diagnostic only",
+      "cohort": "later_rung_scratch",
+      "finished_at": "2026-07-15T22:13:09.897942+00:00",
+      "pre_run_artifacts": [
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784151673773548276,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/LATER_G6G7_SPINOR_HOPF/01_tower_g6g7_spinor_hopf_v0_three_engine_results.81706b189117de45.json",
+            "sha256": "81706b189117de455900854b7701e15912826438712f2d3f5bda4a2b526d0edb",
+            "size_bytes": 5778
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784151673773548276,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_three_engine_results.json",
+            "sha256": "81706b189117de455900854b7701e15912826438712f2d3f5bda4a2b526d0edb",
+            "size_bytes": 5778
+          }
+        }
+      ],
+      "started_at": "2026-07-15T22:13:04.172928+00:00",
+      "steps": [
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/tower_g6g7_spinor_hopf_v0/tower_g6g7_spinor_hopf_v0_jax.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 1.500454,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:05.673912+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:04.172937+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153585673859871,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_G6G7_SPINOR_HOPF/jax.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153585673791288,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_G6G7_SPINOR_HOPF/jax.stdout.txt",
+            "sha256": "e89cae6d3b80ff8fd4eb9b556eade34b79671d196b527c9bc5314336d05be387",
+            "size_bytes": 236
+          },
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"jax\", \"out\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_jax_results.json\"}\n",
+          "step_id": "jax",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/tower_g6g7_spinor_hopf_v0/tower_g6g7_spinor_hopf_v0_pytorch.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 1.015215,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:06.689790+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:05.674078+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153586689737648,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_G6G7_SPINOR_HOPF/pytorch.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153586689654356,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_G6G7_SPINOR_HOPF/pytorch.stdout.txt",
+            "sha256": "a3324cfaaf882102fe1bd1edb53289e82b51d7d1e380599135a33b9d0b39e6cc",
+            "size_bytes": 244
+          },
+          "stdout_tail": "{\"all_pass\": true, \"engine\": \"pytorch\", \"out\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_pytorch_results.json\"}\n",
+          "step_id": "pytorch",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/opt/homebrew/bin/julia",
+            "--startup-file=no",
+            "--project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+            "system_v7/sims/tower_g6g7_spinor_hopf_v0/tower_g6g7_spinor_hopf_v0_julia.jl"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 3.115495,
+          "env_overrides": {
+            "JULIA_LOAD_PATH": "@:@stdlib"
+          },
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:09.805928+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:06.689944+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153589805878650,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_G6G7_SPINOR_HOPF/julia.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153589805803025,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_G6G7_SPINOR_HOPF/julia.stdout.txt",
+            "sha256": "3454cb1d91e553d3bd524733719889726fdae46cd2dfc074f663a7802171f1b6",
+            "size_bytes": 235
+          },
+          "stdout_tail": "{\"all_pass\":true,\"engine\":\"julia\",\"out\":\"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_julia_results.json\"}\n",
+          "step_id": "julia",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/tower_g6g7_spinor_hopf_v0/check_agreement.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.038896,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:09.845507+00:00",
+          "receipt_role": "controller",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:09.806073+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153589845450893,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_G6G7_SPINOR_HOPF/agreement.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153589845367434,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_G6G7_SPINOR_HOPF/agreement.stdout.txt",
+            "sha256": "dfac339bf227c6866fb7fdf82aa700470a1c9ed34547fd3087759fb8c72bd031",
+            "size_bytes": 290
+          },
+          "stdout_tail": "{\"all_pass\": true, \"lint_failures\": 0, \"out\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_three_engine_results.json\", \"parity_max_diff\": 2.220446049250313e-16}\n",
+          "step_id": "agreement",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "scripts/validate_three_engine_sim_result.py",
+            "system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_three_engine_results.json",
+            "--require-pytorch",
+            "--strict-source-backed",
+            "--require-tool-intent"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.05155,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "nonzero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:09.897718+00:00",
+          "receipt_role": "preserved_red",
+          "returncode": 1,
+          "started_at": "2026-07-15T22:13:09.845658+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153589897656118,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_G6G7_SPINOR_HOPF/strict_generic_validator.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153589897578534,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_G6G7_SPINOR_HOPF/strict_generic_validator.stdout.txt",
+            "sha256": "a16667c7ba9a1ae908d40954029dddef0b0486610ac8161a4084029cf0b06874",
+            "size_bytes": 669
+          },
+          "stdout_tail": "{\n  \"ok\": false,\n  \"errors\": [\n    \"julia.reads_peer_result must be false\",\n    \"jax: source-backed audit failed (no_load_bearing_claim): no declared load-bearing packages; no source-backed rich package evidence for this engine; reads_peer_result not explicitly false\",\n    \"julia: source-backed audit failed (no_load_bearing_claim): no declared load-bearing packages; no source-backed rich package evidence for this engine; reads_peer_result not explicitly false\",\n    \"pytorch: source-backed audit failed (no_load_bearing_claim): no declared load-bearing packages; no source-backed rich package evidence for this engine; reads_peer_result not explicitly false\"\n  ]\n}\n",
+          "step_id": "strict_generic_validator",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        }
+      ]
+    },
+    {
+      "all_expected_outcomes_observed": true,
+      "all_required_artifacts_present": true,
+      "artifacts_after": [
+        {
+          "exists": true,
+          "mtime_ns": 1784153596522707415,
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_three_engine_results.json",
+          "sha256": "5cf4b95903ae44a41c6fab70613791c6695b08f15e31dc04d7fc94532df76bab",
+          "size_bytes": 11725
+        }
+      ],
+      "case_execution_pass": true,
+      "case_id": "LATER_RATCHET_DRIVE_V1",
+      "claim_ceiling": "historical v1 drive construction and capstone audit only",
+      "cohort": "later_rung_scratch",
+      "finished_at": "2026-07-15T22:13:16.676921+00:00",
+      "pre_run_artifacts": [
+        {
+          "snapshot": {
+            "exists": true,
+            "mtime_ns": 1784151673708115521,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/pre_run_snapshots/LATER_RATCHET_DRIVE_V1/01_ratchet_climb_engine_v1_drive_three_engine_results.cc969de58f694f1f.json",
+            "sha256": "cc969de58f694f1ff99bb43c9b9561aac2e2694e6e6909e15ee6dd8e6d75a7a4",
+            "size_bytes": 11664
+          },
+          "source": {
+            "exists": true,
+            "mtime_ns": 1784151673708115521,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_three_engine_results.json",
+            "sha256": "cc969de58f694f1ff99bb43c9b9561aac2e2694e6e6909e15ee6dd8e6d75a7a4",
+            "size_bytes": 11664
+          }
+        }
+      ],
+      "started_at": "2026-07-15T22:13:05.702365+00:00",
+      "steps": [
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/ratchet_climb_engine_v1_drive/ratchet_climb_engine_v1_drive_jax.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 1.029257,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:06.732171+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:05.702375+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153586732119687,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/jax.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153586732052979,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/jax.stdout.txt",
+            "sha256": "7b2e480c2ed10f31b05e4d22e3909099840db1453f012863d5cd7991b64e1f51",
+            "size_bytes": 258
+          },
+          "stdout_tail": "{\n  \"result_path\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_jax_results.json\",\n  \"all_pass\": true,\n  \"frontier\": 6\n}\n",
+          "step_id": "jax",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/opt/homebrew/bin/julia",
+            "--startup-file=no",
+            "--project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+            "system_v7/sims/ratchet_climb_engine_v1_drive/ratchet_climb_engine_v1_drive_julia.jl"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 9.451986,
+          "env_overrides": {
+            "JULIA_LOAD_PATH": "@:@stdlib"
+          },
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:16.184757+00:00",
+          "receipt_role": "runner",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:06.732337+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153596184714269,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/julia.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153596184635394,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/julia.stdout.txt",
+            "sha256": "581c4b946451e833d1d96a2edf64b48bd1f6d11003214c98288e2c6fb339ae2b",
+            "size_bytes": 247
+          },
+          "stdout_tail": "{\"all_pass\":true,\"frontier\":6,\"result_path\":\"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_julia_results.json\"}\n",
+          "step_id": "julia",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/ratchet_climb_engine_v1_drive/ratchet_climb_engine_v1_drive_numpy.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.298336,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:16.483785+00:00",
+          "receipt_role": "control",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:16.184882+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153596483725507,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/numpy.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153596483631215,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/numpy.stdout.txt",
+            "sha256": "3b9a8ff606c2ee7854ab0e647da53781e1df60b2c8ad26ce9084d42ac6568575",
+            "size_bytes": 260
+          },
+          "stdout_tail": "{\n  \"result_path\": \"/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_numpy_results.json\",\n  \"all_pass\": true,\n  \"frontier\": 6\n}\n",
+          "step_id": "numpy",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "system_v7/sims/ratchet_climb_engine_v1_drive/check_agreement.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.04278,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:16.527246+00:00",
+          "receipt_role": "controller",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:16.483953+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153596527181506,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/agreement.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153596527122673,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/agreement.stdout.txt",
+            "sha256": "6fc616dbcbb2ee13f382f5a28d521944a96679b904ad517feaf11ebe08acb470",
+            "size_bytes": 263
+          },
+          "stdout_tail": "{\n  \"all_pass\": true,\n  \"climbed_ladder\": [\n    1,\n    2,\n    3,\n    4,\n    5,\n    6\n  ],\n  \"failures\": [],\n  \"frontier_reached\": 6,\n  \"result_path\": \"system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_three_engine_results.json\"\n}\n",
+          "step_id": "agreement",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "scripts/validate_three_engine_sim_result.py",
+            "system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_three_engine_results.json"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.042274,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:16.570351+00:00",
+          "receipt_role": "deterministic_gate",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:16.527552+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153596570282506,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/basic_validator.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153596570212797,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/basic_validator.stdout.txt",
+            "sha256": "c1536e92f593f66ab5b1b3d649ec45e5f2feea87b45c241904d5a13f1fa95eec",
+            "size_bytes": 146
+          },
+          "stdout_tail": "{\n  \"ok\": true,\n  \"result_json\": \"system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_three_engine_results.json\"\n}\n",
+          "step_id": "basic_validator",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "scripts/validate_three_engine_sim_result.py",
+            "system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_three_engine_results.json",
+            "--require-pytorch",
+            "--strict-source-backed",
+            "--require-tool-intent"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.048321,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "nonzero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:16.619359+00:00",
+          "receipt_role": "preserved_red",
+          "returncode": 1,
+          "started_at": "2026-07-15T22:13:16.570523+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153596619299891,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/strict_validator.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153596619211808,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/strict_validator.stdout.txt",
+            "sha256": "7703ae8e7214e8ab15b5e08b2d6cd63e97f722bc98d34603429e25a91a6051ee",
+            "size_bytes": 324
+          },
+          "stdout_tail": "{\n  \"ok\": false,\n  \"errors\": [\n    \"engines.pytorch must be an object\",\n    \"jax: source-backed audit failed (declared_rich_but_source_thin_or_baseline): no source-backed rich package evidence for this engine; declared load-bearing packages not imported in source: z3, cvc5; load-bearing set is baseline/support-only\"\n  ]\n}\n",
+          "step_id": "strict_validator",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+            "scripts/lint_sim_contract.py",
+            "system_v7/sims/ratchet_climb_engine_v1_drive/ratchet_climb_core.py",
+            "system_v7/sims/ratchet_climb_engine_v1_drive/ratchet_climb_engine_v1_drive_jax.py",
+            "system_v7/sims/ratchet_climb_engine_v1_drive/ratchet_climb_engine_v1_drive_numpy.py",
+            "system_v7/sims/ratchet_climb_engine_v1_drive/check_agreement.py"
+          ],
+          "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+          "duration_seconds": 0.056748,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:16.676715+00:00",
+          "receipt_role": "deterministic_gate",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:16.619516+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153596676653292,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/lint.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153596676594251,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LATER_RATCHET_DRIVE_V1/lint.stdout.txt",
+            "sha256": "bda87298f3f2c609ddffa0c139b311caf1a307308914094a1a3956dc2582b3e6",
+            "size_bytes": 143
+          },
+          "stdout_tail": "{\n  \"checked\": 4,\n  \"violation_total\": 0,\n  \"sims_with_violations\": 0,\n  \"violations_by_type\": {},\n  \"top_offenders\": [],\n  \"violations\": []\n}\n",
+          "step_id": "lint",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        }
+      ]
+    },
+    {
+      "all_expected_outcomes_observed": true,
+      "all_required_artifacts_present": true,
+      "artifacts_after": [],
+      "case_execution_pass": true,
+      "case_id": "LEV_PROOF_BOUNDARY",
+      "claim_ceiling": "Leviathan proof-bundle and monitor evidence process behavior only",
+      "cohort": "process_gate",
+      "finished_at": "2026-07-15T22:13:13.633887+00:00",
+      "pre_run_artifacts": [],
+      "started_at": "2026-07-15T22:13:09.897988+00:00",
+      "steps": [
+        {
+          "command": [
+            "pnpm",
+            "--dir",
+            "core/eval",
+            "test"
+          ],
+          "cwd": "/Users/joshuaeisenhart/lev-main",
+          "duration_seconds": 2.370954,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "zero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:12.269644+00:00",
+          "receipt_role": "deterministic_gate",
+          "returncode": 0,
+          "started_at": "2026-07-15T22:13:09.897996+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153592269561280,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LEV_PROOF_BOUNDARY/eval_suite.stderr.txt",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          "stderr_tail": "",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153592269486696,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LEV_PROOF_BOUNDARY/eval_suite.stdout.txt",
+            "sha256": "7dbf218004def5599f85f991390c3f000bec4e1d875a72c8453b5d12fab84a15",
+            "size_bytes": 314
+          },
+          "stdout_tail": "\n> @lev-os/eval@0.1.0 test /Users/joshuaeisenhart/lev-main/core/eval\n> vitest run\n\n\n RUN  v4.1.5 /Users/joshuaeisenhart/lev-main/core/eval\n\n\n Test Files  27 passed (27)\n      Tests  175 passed (175)\n   Start at  15:13:10\n   Duration  1.52s (transform 5.33s, setup 0ms, import 8.16s, tests 1.66s, environment 2ms)\n\n",
+          "step_id": "eval_suite",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        },
+        {
+          "command": [
+            "pnpm",
+            "--dir",
+            "core/exec",
+            "exec",
+            "vitest",
+            "run",
+            "src/proof-boundary.test.ts",
+            "src/run/monitor-heartbeat-evidence.test.ts"
+          ],
+          "cwd": "/Users/joshuaeisenhart/lev-main",
+          "duration_seconds": 1.363319,
+          "env_overrides": {},
+          "executed": true,
+          "expected_exit": "nonzero",
+          "expected_exit_observed": true,
+          "finished_at": "2026-07-15T22:13:13.633729+00:00",
+          "receipt_role": "preserved_red",
+          "returncode": 1,
+          "started_at": "2026-07-15T22:13:12.269887+00:00",
+          "stderr": {
+            "exists": true,
+            "mtime_ns": 1784153593633700597,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LEV_PROOF_BOUNDARY/proof_monitor_suite.stderr.txt",
+            "sha256": "91d6574350481a4380eac4b5dfc46fac9dd33845d242064842987477cb9ba087",
+            "size_bytes": 1735
+          },
+          "stderr_tail": "\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  src/run/monitor-heartbeat-evidence.test.ts > monitor heartbeat evidence chain > exposes monitor trace, receipt, GateProof, verifier, branch, and artifact refs\nAssertionError: expected undefined to be 'monitor-api-heartbeat' // Object.is equality\n\n- Expected:\n\"monitor-api-heartbeat\"\n\n+ Received:\nundefined\n\n \u276f src/run/monitor-heartbeat-evidence.test.ts:102:33\n    100|     const evidence = buildRunEvidence(root, { exec_id: execId });\n    101|\n    102|     expect(evidence.monitor_id).toBe('monitor-api-heartbeat');\n       |                                 ^\n    103|     expect(evidence.receipt_ref?.receipt_id).toBe(receiptId);\n    104|     expect(evidence.trace_ref?.exec_id).toBe(execId);\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  src/run/monitor-heartbeat-evidence.test.ts > monitor heartbeat evidence chain > preserves advisory not-evaluated configured evaluator gate refs\nAssertionError: expected [] to deeply equal [ ObjectContaining{\u2026} ]\n\n- Expected\n+ Received\n\n- [\n-   ObjectContaining {\n-     \"advisory\": true,\n-     \"blocking\": false,\n-     \"driver\": \"example_evaluator\",\n-     \"gate_id\": \"example_evaluator\",\n-     \"production_promotion\": false,\n-     \"verdict\": \"fail\",\n-   },\n- ]\n+ []\n\n \u276f src/run/monitor-heartbeat-evidence.test.ts:185:38\n    183|     const evidence = buildRunEvidence(root, { exec_id: execId });\n    184|\n    185|     expect(evidence.gate_proof_refs).toEqual([\n       |                                      ^\n    186|       expect.objectContaining({\n    187|         gate_id: 'example_evaluator',\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n",
+          "stdout": {
+            "exists": true,
+            "mtime_ns": 1784153593633556680,
+            "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715/system_v7/sims/v8_nonofficial_stress_campaign_20260715/results/logs/LEV_PROOF_BOUNDARY/proof_monitor_suite.stdout.txt",
+            "sha256": "305a741dfff1e07a3b00f0d27c6821aae3b881f03c4056c1c8e641e182aab77d",
+            "size_bytes": 488
+          },
+          "stdout_tail": "\n RUN  v4.1.5 /Users/joshuaeisenhart/lev-main/core/exec\n\n \u276f src/run/monitor-heartbeat-evidence.test.ts (3 tests | 2 failed) 17ms\n     \u00d7 exposes monitor trace, receipt, GateProof, verifier, branch, and artifact refs 10ms\n     \u00d7 preserves advisory not-evaluated configured evaluator gate refs 5ms\n\n Test Files  1 failed | 1 passed (2)\n      Tests  2 failed | 6 passed (8)\n   Start at  15:13:12\n   Duration  778ms (transform 984ms, setup 0ms, import 1.26s, tests 22ms, environment 0ms)\n\n",
+          "step_id": "proof_monitor_suite",
+          "timed_out": false,
+          "timeout_seconds": 1200
+        }
+      ]
+    }
+  ],
+  "classification": "nonofficial_regression_and_scratch_campaign",
+  "execution_integrity_pass": false,
+  "finished_at": "2026-07-15T22:13:35.340304+00:00",
+  "formal_admission_allowed": false,
+  "git_state_after": [
+    {
+      "porcelain": [
+        " M system_v5/ops/tooling/claude_campaign_20260713/hardened/results/basin_chain_d_results.json",
+        " M system_v5/ops/tooling/codex_runtime_capability_shakedown_results.json",
+        " M system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_julia_results.json",
+        " M system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_numpy_results.json",
+        " M system_v7/sims/manifold_L8_cut_lattice_gate2_b/results/manifold_L8_cut_lattice_gate2_b_parity_results.json",
+        " M system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_envelope_results.json",
+        " M system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_jax_results.json",
+        " M system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_julia_results.json",
+        " M system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_pytorch_results.json",
+        " M system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_results.json",
+        " M system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_jax_results.json",
+        " M system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_julia_results.json",
+        " M system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_numpy_results.json",
+        " M system_v7/sims/ratchet_climb_engine_v1_drive/results/ratchet_climb_engine_v1_drive_three_engine_results.json",
+        " M system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_jax_results.json",
+        " M system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_julia_results.json",
+        " M system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_pytorch_results.json",
+        " M system_v7/sims/tower_g6g7_spinor_hopf_v0/results/tower_g6g7_spinor_hopf_v0_three_engine_results.json",
+        "?? system_v7/sims/v8_nonofficial_stress_campaign_20260715/"
+      ],
+      "returncode": 0,
+      "root": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+      "stderr": ""
+    },
+    {
+      "porcelain": [
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/basin_chain_direct_check.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev1.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev10_hardened.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev2.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev3.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev4.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev6.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev7_reuse.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev8_reuse.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev9_hardened.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_v8_nonofficial_regression_20260715.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_v8_prelaunch_20260715.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev10_hardened.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev2.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev3.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev4.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev6.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev9_hardened.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_v8_nonofficial_regression_20260715.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/julia_core_dev5.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/python_core_dev5.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/deep-stack-dev1/",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/deep-stack-dev10-hardening/",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/deep-stack-dev6/",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/deep-stack-dev9-hardening/",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/v8-nonofficial-regression-20260715/",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/v8-prelaunch-20260715/"
+      ],
+      "returncode": 0,
+      "root": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "stderr": ""
+    },
+    {
+      "porcelain": [
+        " M .gitignore",
+        "?? system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/"
+      ],
+      "returncode": 0,
+      "root": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715",
+      "stderr": ""
+    },
+    {
+      "porcelain": [
+        " M core/eval/src/proof-bundle.ts",
+        "?? scratch/live_receipts/ratchet_policy_session_20260704/"
+      ],
+      "returncode": 0,
+      "root": "/Users/joshuaeisenhart/lev-main",
+      "stderr": ""
+    }
+  ],
+  "git_state_before": [
+    {
+      "porcelain": [
+        " M system_v5/ops/tooling/claude_campaign_20260713/hardened/results/basin_chain_d_results.json",
+        " M system_v5/ops/tooling/codex_runtime_capability_shakedown_results.json",
+        "?? system_v7/sims/v8_nonofficial_stress_campaign_20260715/"
+      ],
+      "returncode": 0,
+      "root": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-nonofficial-stress-20260715",
+      "stderr": ""
+    },
+    {
+      "porcelain": [
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/basin_chain_direct_check.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev1.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev10_hardened.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev2.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev3.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev4.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev6.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev7_reuse.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev8_reuse.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_dev9_hardened.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_v8_nonofficial_regression_20260715.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_v8_prelaunch_20260715.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev10_hardened.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev2.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev3.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev4.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev6.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_validation_dev9_hardened.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/julia_core_dev5.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/python_core_dev5.json",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/deep-stack-dev1/",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/deep-stack-dev10-hardening/",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/deep-stack-dev6/",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/deep-stack-dev9-hardening/",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/v8-nonofficial-regression-20260715/",
+        "?? system_v5/ops/tooling/deep_stack_stress_20260714/results/raw/v8-prelaunch-20260715/"
+      ],
+      "returncode": 0,
+      "root": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714",
+      "stderr": ""
+    },
+    {
+      "porcelain": [
+        " M .gitignore",
+        "?? system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/"
+      ],
+      "returncode": 0,
+      "root": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715",
+      "stderr": ""
+    },
+    {
+      "porcelain": [
+        " M core/eval/src/proof-bundle.ts",
+        "?? scratch/live_receipts/ratchet_policy_session_20260704/"
+      ],
+      "returncode": 0,
+      "root": "/Users/joshuaeisenhart/lev-main",
+      "stderr": ""
+    }
+  ],
+  "install_attempted": false,
+  "llm_gate_used": false,
+  "official_launch_allowed": false,
+  "preregistration_sha256": "29c65ea339a5dd93525889560973dba76824e3b229f0643f76c476454dd4d1be",
+  "preregistration_validator": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": "{\n  \"blocked_case_count\": 2,\n  \"case_count\": 10,\n  \"claim_ceiling\": \"operational integration, historical regression, and bounded later-rung scratch evidence only\",\n  \"failures\": [],\n  \"official_launch_allowed\": false,\n  \"ok\": true,\n  \"schema\": \"codex_ratchet.v8_nonofficial_stress_campaign.preregistration_validation.v1\",\n  \"scientific_claim_proven\": false,\n  \"source_binding_count\": 55,\n  \"wizard_v4_3_guard_passed\": true\n}\n"
+  },
+  "promotion_allowed": false,
+  "release_eligible": false,
+  "schema": "codex_ratchet.v8_nonofficial_stress_campaign.execution.v1",
+  "scientific_claim_proven": false,
+  "spec_sha256": "8226aaf71b61ae7ce7f0adc685142452061b49e812f8971be282c6dad0478951",
+  "started_at": "2026-07-15T22:12:25.938391+00:00"
+}

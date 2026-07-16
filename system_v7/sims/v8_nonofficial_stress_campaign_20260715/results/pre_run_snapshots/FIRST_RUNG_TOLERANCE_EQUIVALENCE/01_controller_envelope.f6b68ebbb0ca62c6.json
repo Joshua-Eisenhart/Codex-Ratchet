@@ -1,0 +1,815 @@
+{
+  "all_pass": true,
+  "blocked_consumers": [
+    "primitive identity or object ontology",
+    "canonical Ratchet launch",
+    "QIT engine derivation",
+    "Axis or terrain/operator promotion",
+    "physics, cosmology, biology, cognition, or consciousness claims",
+    "LLM or council verdict as a gate"
+  ],
+  "checks": {
+    "G0_preregistered_object": true,
+    "G1_exact_census": true,
+    "G2_three_engine_closure_parity": true,
+    "G3_dual_smt": true,
+    "G4_coface_drive": true,
+    "G5_tooth_and_hold_controls": true,
+    "G6_plural_mss": true,
+    "G7_closed_engine_lanes": true,
+    "G8_source_runtime_ceiling_binding": true
+  },
+  "claim_ceiling": "ONE_BOUNDED_TOLERANCE_TO_EQUIVALENCE_RATCHET_TOOTH_ON_FROZEN_FINITE_FIXTURES",
+  "classification": "scratch_diagnostic",
+  "commands": [
+    {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/validate_preregistration.py"
+      ],
+      "label": "preregistration",
+      "pass": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"checks\": {\"builders_absent_at_freeze\": true, \"no_llm_gate\": true, \"no_promotion\": true, \"object_card_hash\": true, \"object_card_validation\": true, \"scratch_only\": true, \"spec_hash\": true}, \"ok\": true, \"schema\": \"codex_ratchet.preregistration_validation.v1\"}\n"
+    },
+    {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/scripts/codex_runtime_env_doctor.py"
+      ],
+      "label": "runtime_doctor",
+      "pass": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "ok=True install_state=stable_observed\nrepo=/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715\nsim_stack_alias=/Users/joshuaeisenhart/.local/share/sim-stack\nphysical_python_env=/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main\npython=/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3\njulia=/opt/homebrew/bin/julia\njulia_project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier\njulia_load_path=@:@stdlib\nNo repo-local env pollution, missing expected modules, or active installers observed.\n"
+    },
+    {
+      "command": [
+        "/opt/homebrew/bin/julia",
+        "--startup-file=no",
+        "--project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_julia.jl"
+      ],
+      "label": "julia",
+      "pass": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "JULIA_TOLERANCE_RUNG_DONE all_pass=true drive=1 mss=2\n"
+    },
+    {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_jax.py"
+      ],
+      "label": "jax",
+      "pass": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "JAX_TOLERANCE_RUNG_DONE all_pass=true drive=1 mss=2\n"
+    },
+    {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pytorch.py"
+      ],
+      "label": "pytorch",
+      "pass": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "PYTORCH_TOLERANCE_RUNG_DONE all_pass=true drive=1 mss=2\n"
+    },
+    {
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715/system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py"
+      ],
+      "label": "dual_smt",
+      "pass": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "DUAL_SMT_TOLERANCE_RUNG_DONE all_pass=true z3={'sat_equivalence_containing_chain': 'sat', 'endpoint_negation_under_transitivity': 'unsat', 'strict_subclosure_containing_raw': 'unsat', 'drop_transitivity_endpoint_absent': 'sat'} cvc5={'sat_equivalence_containing_chain': 'sat', 'endpoint_negation_under_transitivity': 'unsat', 'strict_subclosure_containing_raw': 'unsat', 'drop_transitivity_endpoint_absent': 'sat'}\n"
+    }
+  ],
+  "controller_source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_controller.py",
+  "controller_source_sha256": "75cf29cba162610eef356a8082f9ccfc078cfb785e53e0daecbffd6e5cc30be7",
+  "decision": "COMMIT_TOOTH_CANDIDATE",
+  "divergence": {
+    "census_match": true,
+    "drive_match": true,
+    "max_numeric_divergence": 0,
+    "witness_match": true
+  },
+  "drive": {
+    "controls": {
+      "flat_decision": "HOLD",
+      "flat_drive": 0,
+      "null_decision": "HOLD",
+      "null_drive": 0,
+      "reverse_decision": "HOLD",
+      "reverse_drive": -1,
+      "scrambled_decision": "HOLD",
+      "scrambled_drive": 0,
+      "universal_proposal_decision": "HOLD",
+      "universal_proposal_drive": 0
+    },
+    "decision": "COMMIT_TOOTH",
+    "drive": 1,
+    "initial_coface_loss": 1,
+    "initial_labels": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "mss_antichain": [
+      {
+        "added_pair_count": 0,
+        "labels": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "quotient_class_count": 2
+      },
+      {
+        "added_pair_count": 4,
+        "labels": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "quotient_class_count": 1
+      }
+    ],
+    "proposal_coface_loss": 0,
+    "proposal_labels": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "raw_closure": [
+      [
+        true,
+        true,
+        false,
+        false
+      ],
+      [
+        true,
+        true,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        true,
+        true
+      ],
+      [
+        false,
+        false,
+        true,
+        true
+      ]
+    ]
+  },
+  "engines": {
+    "jax": {
+      "payload": {
+        "aligned_packages_load_bearing": [
+          "jax",
+          "jax.numpy",
+          "jax.vmap",
+          "jax.lax.fori_loop"
+        ],
+        "all_pass": true,
+        "census": {
+          "1": {
+            "equivalences": 1,
+            "nontransitive": 0,
+            "tolerances": 1
+          },
+          "2": {
+            "equivalences": 2,
+            "nontransitive": 0,
+            "tolerances": 2
+          },
+          "3": {
+            "equivalences": 5,
+            "nontransitive": 3,
+            "tolerances": 8
+          },
+          "4": {
+            "equivalences": 15,
+            "nontransitive": 49,
+            "tolerances": 64
+          },
+          "5": {
+            "equivalences": 52,
+            "nontransitive": 972,
+            "tolerances": 1024
+          }
+        },
+        "claim_ceiling": "one frozen finite tolerance-to-equivalence scratch rung only",
+        "classification": "scratch_diagnostic",
+        "drive_fixture": {
+          "controls": {
+            "flat_decision": "HOLD",
+            "flat_drive": 0,
+            "null_decision": "HOLD",
+            "null_drive": 0,
+            "reverse_decision": "HOLD",
+            "reverse_drive": -1,
+            "scrambled_decision": "HOLD",
+            "scrambled_drive": 0,
+            "universal_proposal_decision": "HOLD",
+            "universal_proposal_drive": 0
+          },
+          "decision": "COMMIT_TOOTH",
+          "drive": 1,
+          "initial_coface_loss": 1,
+          "initial_labels": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mss_antichain": [
+            {
+              "added_pair_count": 0,
+              "labels": [
+                0,
+                0,
+                1,
+                1
+              ],
+              "quotient_class_count": 2
+            },
+            {
+              "added_pair_count": 4,
+              "labels": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "quotient_class_count": 1
+            }
+          ],
+          "proposal_coface_loss": 0,
+          "proposal_labels": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "raw_closure": [
+            [
+              true,
+              true,
+              false,
+              false
+            ],
+            [
+              true,
+              true,
+              false,
+              false
+            ],
+            [
+              false,
+              false,
+              true,
+              true
+            ],
+            [
+              false,
+              false,
+              true,
+              true
+            ]
+          ]
+        },
+        "engine": "jax",
+        "formal_admission_allowed": false,
+        "generated_at": "2026-07-15T20:36:10.711103+00:00",
+        "packages_used": [
+          "jax",
+          "jax.numpy"
+        ],
+        "promotion_allowed": false,
+        "reads_peer_result": false,
+        "runtime": {
+          "backend": "cpu",
+          "jax_version": "0.10.1",
+          "x64": true
+        },
+        "schema": "codex_ratchet.tolerance_to_equivalence.engine_result.v1",
+        "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
+        "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_jax.py",
+        "source_sha256": "b7a3a2105ad2390e5598167ae7585f38aff4d0d00821ed74dd90d3c5a5746f9b",
+        "transitivity_witness": {
+          "closure_labels": [
+            0,
+            0,
+            0
+          ],
+          "closure_matrix": [
+            [
+              true,
+              true,
+              true
+            ],
+            [
+              true,
+              true,
+              true
+            ],
+            [
+              true,
+              true,
+              true
+            ]
+          ],
+          "forced_endpoint_related": true,
+          "raw_transitive": false
+        }
+      },
+      "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/jax_results.json",
+      "result_sha256": "c3342983f6c0c2dd74a09c69664c60c9caa064f364f6071029c5d9ce3b3c55cc",
+      "source_exists": true,
+      "source_hash_match": true,
+      "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_jax.py",
+      "source_sha256": "b7a3a2105ad2390e5598167ae7585f38aff4d0d00821ed74dd90d3c5a5746f9b"
+    },
+    "julia": {
+      "payload": {
+        "aligned_packages_load_bearing": [
+          "Graphs"
+        ],
+        "all_pass": true,
+        "census": {
+          "1": {
+            "equivalences": 1,
+            "nontransitive": 0,
+            "tolerances": 1
+          },
+          "2": {
+            "equivalences": 2,
+            "nontransitive": 0,
+            "tolerances": 2
+          },
+          "3": {
+            "equivalences": 5,
+            "nontransitive": 3,
+            "tolerances": 8
+          },
+          "4": {
+            "equivalences": 15,
+            "nontransitive": 49,
+            "tolerances": 64
+          },
+          "5": {
+            "equivalences": 52,
+            "nontransitive": 972,
+            "tolerances": 1024
+          }
+        },
+        "claim_ceiling": "one frozen finite tolerance-to-equivalence scratch rung only",
+        "classification": "scratch_diagnostic",
+        "drive_fixture": {
+          "controls": {
+            "flat_decision": "HOLD",
+            "flat_drive": 0,
+            "null_decision": "HOLD",
+            "null_drive": 0,
+            "reverse_decision": "HOLD",
+            "reverse_drive": -1,
+            "scrambled_decision": "HOLD",
+            "scrambled_drive": 0,
+            "universal_proposal_decision": "HOLD",
+            "universal_proposal_drive": 0
+          },
+          "decision": "COMMIT_TOOTH",
+          "drive": 1,
+          "initial_coface_loss": 1,
+          "initial_labels": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mss_antichain": [
+            {
+              "added_pair_count": 0,
+              "labels": [
+                0,
+                0,
+                1,
+                1
+              ],
+              "quotient_class_count": 2
+            },
+            {
+              "added_pair_count": 4,
+              "labels": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "quotient_class_count": 1
+            }
+          ],
+          "proposal_coface_loss": 0,
+          "proposal_labels": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "raw_closure": [
+            [
+              true,
+              true,
+              false,
+              false
+            ],
+            [
+              true,
+              true,
+              false,
+              false
+            ],
+            [
+              false,
+              false,
+              true,
+              true
+            ],
+            [
+              false,
+              false,
+              true,
+              true
+            ]
+          ]
+        },
+        "engine": "julia",
+        "formal_admission_allowed": false,
+        "generated_at": "2026-07-15T20:36:07.213",
+        "packages_used": [
+          "Graphs",
+          "JSON3",
+          "SHA",
+          "Dates"
+        ],
+        "promotion_allowed": false,
+        "reads_peer_result": false,
+        "runtime": {
+          "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+          "julia_version": "1.12.6"
+        },
+        "schema": "codex_ratchet.tolerance_to_equivalence.engine_result.v1",
+        "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
+        "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_julia.jl",
+        "source_sha256": "76f5658f68ede0765d302304fd62c2d234ec9d16ff26925a820456136bf119ce",
+        "transitivity_witness": {
+          "closure_labels": [
+            0,
+            0,
+            0
+          ],
+          "closure_matrix": [
+            [
+              true,
+              true,
+              true
+            ],
+            [
+              true,
+              true,
+              true
+            ],
+            [
+              true,
+              true,
+              true
+            ]
+          ],
+          "forced_endpoint_related": true,
+          "raw_transitive": false
+        }
+      },
+      "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/julia_results.json",
+      "result_sha256": "ae51df1b0bc1a80a15e32d07d81b990d4128a44b10bc5a8bfed6b34da06e1da4",
+      "source_exists": true,
+      "source_hash_match": true,
+      "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_julia.jl",
+      "source_sha256": "76f5658f68ede0765d302304fd62c2d234ec9d16ff26925a820456136bf119ce"
+    },
+    "proof": {
+      "payload": {
+        "all_pass": true,
+        "claim_ceiling": "two bounded finite relation encodings only; not a general theorem prover admission",
+        "classification": "scratch_diagnostic",
+        "cvc5": {
+          "queries": {
+            "drop_transitivity_endpoint_absent": "sat",
+            "endpoint_negation_under_transitivity": "unsat",
+            "sat_equivalence_containing_chain": "sat",
+            "strict_subclosure_containing_raw": "unsat"
+          },
+          "version": "1.3.3"
+        },
+        "expected": {
+          "drop_transitivity_endpoint_absent": "sat",
+          "endpoint_negation_under_transitivity": "unsat",
+          "sat_equivalence_containing_chain": "sat",
+          "strict_subclosure_containing_raw": "unsat"
+        },
+        "formal_admission_allowed": false,
+        "free_boolean_relation_variables": true,
+        "generated_at": "2026-07-15T20:36:14.718573+00:00",
+        "ground_literal_only": false,
+        "promotion_allowed": false,
+        "reads_peer_result": false,
+        "schema": "codex_ratchet.tolerance_to_equivalence.proof_result.v1",
+        "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
+        "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py",
+        "source_sha256": "62beee46877ab6c7b870e8f03eccbd7792ce5550c382d4a57c608e30411078d0",
+        "z3": {
+          "queries": {
+            "drop_transitivity_endpoint_absent": "sat",
+            "endpoint_negation_under_transitivity": "unsat",
+            "sat_equivalence_containing_chain": "sat",
+            "strict_subclosure_containing_raw": "unsat"
+          },
+          "version": "4.16.0"
+        }
+      },
+      "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/proof_results.json",
+      "result_sha256": "903fb6cbcbb661513d5c78c408ecc34bfb634a6dfe4d4068f035167519fe3639",
+      "source_exists": true,
+      "source_hash_match": true,
+      "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py",
+      "source_sha256": "62beee46877ab6c7b870e8f03eccbd7792ce5550c382d4a57c608e30411078d0"
+    },
+    "pytorch": {
+      "payload": {
+        "aligned_packages_load_bearing": [
+          "torch",
+          "torch.matmul",
+          "torch_geometric.nn.MessagePassing"
+        ],
+        "all_pass": true,
+        "census": {
+          "1": {
+            "equivalences": 1,
+            "nontransitive": 0,
+            "tolerances": 1
+          },
+          "2": {
+            "equivalences": 2,
+            "nontransitive": 0,
+            "tolerances": 2
+          },
+          "3": {
+            "equivalences": 5,
+            "nontransitive": 3,
+            "tolerances": 8
+          },
+          "4": {
+            "equivalences": 15,
+            "nontransitive": 49,
+            "tolerances": 64
+          },
+          "5": {
+            "equivalences": 52,
+            "nontransitive": 972,
+            "tolerances": 1024
+          }
+        },
+        "claim_ceiling": "one frozen finite tolerance-to-equivalence scratch rung only",
+        "classification": "scratch_diagnostic",
+        "drive_fixture": {
+          "controls": {
+            "flat_decision": "HOLD",
+            "flat_drive": 0,
+            "null_decision": "HOLD",
+            "null_drive": 0,
+            "reverse_decision": "HOLD",
+            "reverse_drive": -1,
+            "scrambled_decision": "HOLD",
+            "scrambled_drive": 0,
+            "universal_proposal_decision": "HOLD",
+            "universal_proposal_drive": 0
+          },
+          "decision": "COMMIT_TOOTH",
+          "drive": 1,
+          "initial_coface_loss": 1,
+          "initial_labels": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mss_antichain": [
+            {
+              "added_pair_count": 0,
+              "labels": [
+                0,
+                0,
+                1,
+                1
+              ],
+              "quotient_class_count": 2
+            },
+            {
+              "added_pair_count": 4,
+              "labels": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "quotient_class_count": 1
+            }
+          ],
+          "proposal_coface_loss": 0,
+          "proposal_labels": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "raw_closure": [
+            [
+              true,
+              true,
+              false,
+              false
+            ],
+            [
+              true,
+              true,
+              false,
+              false
+            ],
+            [
+              false,
+              false,
+              true,
+              true
+            ],
+            [
+              false,
+              false,
+              true,
+              true
+            ]
+          ]
+        },
+        "engine": "pytorch",
+        "formal_admission_allowed": false,
+        "generated_at": "2026-07-15T20:36:14.051657+00:00",
+        "packages_used": [
+          "torch",
+          "torch_geometric"
+        ],
+        "promotion_allowed": false,
+        "reads_peer_result": false,
+        "runtime": {
+          "torch_geometric_version": "2.7.0",
+          "torch_version": "2.11.0"
+        },
+        "schema": "codex_ratchet.tolerance_to_equivalence.engine_result.v1",
+        "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
+        "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pytorch.py",
+        "source_sha256": "ebedb13bfae878b46bad4d0dea82ae5e95c7b59691417d83fea31492cbc946c2",
+        "transitivity_witness": {
+          "closure_labels": [
+            0,
+            0,
+            0
+          ],
+          "closure_matrix": [
+            [
+              true,
+              true,
+              true
+            ],
+            [
+              true,
+              true,
+              true
+            ],
+            [
+              true,
+              true,
+              true
+            ]
+          ],
+          "forced_endpoint_related": true,
+          "raw_transitive": false
+        }
+      },
+      "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/pytorch_results.json",
+      "result_sha256": "4e3561aed983d75bb05b04560e575ef9f75cd778f8235f02e4726a7198e58680",
+      "source_exists": true,
+      "source_hash_match": true,
+      "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pytorch.py",
+      "source_sha256": "ebedb13bfae878b46bad4d0dea82ae5e95c7b59691417d83fea31492cbc946c2"
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-15T20:36:14.733402+00:00",
+  "julia_executable": "/opt/homebrew/bin/julia",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+  "llm_verdict_used": false,
+  "mss_antichain": [
+    {
+      "added_pair_count": 0,
+      "labels": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "quotient_class_count": 2
+    },
+    {
+      "added_pair_count": 4,
+      "labels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "quotient_class_count": 1
+    }
+  ],
+  "pending_gates": [
+    "G9 independent mutation rejection",
+    "G10 deterministic Lev replay"
+  ],
+  "promotion_allowed": false,
+  "proof_contract": {
+    "expected": {
+      "drop_transitivity_endpoint_absent": "sat",
+      "endpoint_negation_under_transitivity": "unsat",
+      "sat_equivalence_containing_chain": "sat",
+      "strict_subclosure_containing_raw": "unsat"
+    },
+    "pass": true
+  },
+  "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "ratchet_state_after": "TOOTH_1_CANDIDATE",
+  "ratchet_state_before": "OPEN",
+  "schema": "codex_ratchet.tolerance_to_equivalence.controller_envelope.v1",
+  "sim_id": "tolerance_to_equivalence_ratchet_rung_v0",
+  "source_bindings": {
+    "jax": {
+      "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/jax_results.json",
+      "result_sha256": "c3342983f6c0c2dd74a09c69664c60c9caa064f364f6071029c5d9ce3b3c55cc",
+      "source_exists": true,
+      "source_hash_match": true,
+      "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_jax.py",
+      "source_sha256": "b7a3a2105ad2390e5598167ae7585f38aff4d0d00821ed74dd90d3c5a5746f9b"
+    },
+    "julia": {
+      "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/julia_results.json",
+      "result_sha256": "ae51df1b0bc1a80a15e32d07d81b990d4128a44b10bc5a8bfed6b34da06e1da4",
+      "source_exists": true,
+      "source_hash_match": true,
+      "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_julia.jl",
+      "source_sha256": "76f5658f68ede0765d302304fd62c2d234ec9d16ff26925a820456136bf119ce"
+    },
+    "proof": {
+      "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/proof_results.json",
+      "result_sha256": "903fb6cbcbb661513d5c78c408ecc34bfb634a6dfe4d4068f035167519fe3639",
+      "source_exists": true,
+      "source_hash_match": true,
+      "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_proofs.py",
+      "source_sha256": "62beee46877ab6c7b870e8f03eccbd7792ce5550c382d4a57c608e30411078d0"
+    },
+    "pytorch": {
+      "result_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/results/pytorch_results.json",
+      "result_sha256": "4e3561aed983d75bb05b04560e575ef9f75cd778f8235f02e4726a7198e58680",
+      "source_exists": true,
+      "source_hash_match": true,
+      "source_path": "system_v7/sims/tolerance_to_equivalence_ratchet_rung_v0/run_pytorch.py",
+      "source_sha256": "ebedb13bfae878b46bad4d0dea82ae5e95c7b59691417d83fea31492cbc946c2"
+    }
+  }
+}

@@ -22,6 +22,7 @@ def lane_spec(engine: str) -> dict[str, Any]:
     return {
         "source_path": result["source_path"],
         "result_path": result["result_path"],
+        "reads_peer_result": False,
         "packages_used": result["packages_used"],
         "aligned_packages_load_bearing": result["aligned_packages_load_bearing"],
         "package_observables": result["package_observables"],

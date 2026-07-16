@@ -211,7 +211,6 @@
       "no_builder_audit_verdict": true
     },
     "claim_ceiling": "S8-local scratch diagnostic information table only; no formal admission or physics promotion",
-    "classification": "scratch_diagnostic",
     "continuity_anchors": {
       "dual_stack": {
         "Phi0_Ic_S_to_M": {
@@ -328,20 +327,6 @@
       }
     },
     "controls_hash": "1c535856986af55f711219ff0df83140fb03e9d6e33b8deb80c184430b16d290",
-    "engine_contract": {
-      "lanes": [
-        "julia",
-        "jax",
-        "pytorch"
-      ],
-      "mode": "all_three_full_sims",
-      "reads_peer_result": {
-        "jax": false,
-        "julia": false,
-        "pytorch": false
-      }
-    },
-    "formal_admission_allowed": false,
     "local_information_table": {
       "bipartitions_declared": [
         "q0__q1q2",
@@ -5248,8 +5233,20 @@
     "no_builder_audit_verdict": true,
     "no_builder_audit_verdict_envelope_gate": true,
     "object_quote": "three-spinor/Clifford floor: (C^2)^x3 with dimension 8",
-    "promotion_allowed": false,
     "result_path": "system_v6/sims/s8_local_information_table_v0/results/s8_local_information_table_v0_envelope_results.json",
+    "s8_engine_contract_details": {
+      "lanes": [
+        "julia",
+        "jax",
+        "pytorch"
+      ],
+      "mode": "all_three_full_sims",
+      "reads_peer_result": {
+        "jax": false,
+        "julia": false,
+        "pytorch": false
+      }
+    },
     "schema": "s8_local_information_table_v0_envelope_v1",
     "shared_engine_scalar_keys": [
       "Bell_q0q1_spectator_q2.q0__q1q2.I_A_colon_B",
@@ -5272,7 +5269,7 @@
       "nested_r3_theta_0_70.q0__q1q2.S_A_given_B"
     ],
     "source_path": "system_v6/sims/s8_local_information_table_v0/s8_local_information_table_v0_envelope.py",
-    "source_sha256": "889bca894087a794ceb9394867ea6bedd3ab6c916846cfd95142a45521a03a14",
+    "source_sha256": "01d6737edb4a25c1309b73d3362c3ff6d0cdce071080d36e9a4f7b2b3ba2232b",
     "spec_path": "system_v6/sims/s8_local_information_table_v0/s8_local_information_table_v0_envelope_spec.json",
     "table_hash": "3542607f16423347e1ec3db55898dd41e0114b70f72c4fa85fbe177cd64fb956",
     "tool_calls": [
@@ -5397,6 +5394,7 @@
         "math",
         "pathlib"
       ],
+      "reads_peer_result": false,
       "result_path": "system_v6/sims/s8_local_information_table_v0/results/s8_local_information_table_v0_jax_results.json",
       "role_id": "jax",
       "source_path": "system_v6/sims/s8_local_information_table_v0/s8_local_information_table_v0_jax.py",
@@ -5445,6 +5443,7 @@
         "Dates",
         "LinearAlgebra"
       ],
+      "reads_peer_result": false,
       "result_path": "system_v6/sims/s8_local_information_table_v0/results/s8_local_information_table_v0_julia_results.json",
       "role_id": "julia",
       "source_path": "system_v6/sims/s8_local_information_table_v0/s8_local_information_table_v0_julia.jl",
@@ -5491,6 +5490,7 @@
         "math",
         "pathlib"
       ],
+      "reads_peer_result": false,
       "result_path": "system_v6/sims/s8_local_information_table_v0/results/s8_local_information_table_v0_pytorch_results.json",
       "role_id": "pytorch",
       "source_path": "system_v6/sims/s8_local_information_table_v0/s8_local_information_table_v0_pytorch.py",

@@ -37,6 +37,7 @@ def build_spec() -> dict[str, object]:
         "julia": {
             "source_path": rel(SIM_DIR / f"{SIM_ID}_julia.jl"),
             "result_path": rel(RESULT_DIR / f"{SIM_ID}_julia_results.json"),
+            "reads_peer_result": False,
             "packages_used": ["Dates", "JSON3", "SHA", "Graphs"],
             "aligned_packages_load_bearing": ["Graphs"],
             "package_observables": {"Graphs": "Graphs.SimpleGraph/add_edge!/connected_components over 5Q quotient-class matrix adjacency"},
@@ -44,6 +45,7 @@ def build_spec() -> dict[str, object]:
         "jax": {
             "source_path": rel(SIM_DIR / f"{SIM_ID}_jax.py"),
             "result_path": rel(RESULT_DIR / f"{SIM_ID}_jax_results.json"),
+            "reads_peer_result": False,
             "packages_used": ["networkx", "sympy", "z3", "cvc5"],
             "aligned_packages_load_bearing": ["networkx", "sympy", "z3", "cvc5"],
             "package_observables": {
@@ -56,6 +58,7 @@ def build_spec() -> dict[str, object]:
         "pytorch": {
             "source_path": rel(SIM_DIR / f"{SIM_ID}_pytorch.py"),
             "result_path": rel(RESULT_DIR / f"{SIM_ID}_pytorch_results.json"),
+            "reads_peer_result": False,
             "packages_used": ["torch", "torch.func", "sympy"],
             "aligned_packages_load_bearing": ["torch.func", "sympy"],
             "package_observables": {

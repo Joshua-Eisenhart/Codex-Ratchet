@@ -37,21 +37,6 @@
       "tool": "cvc5",
       "verdict": "unsat"
     },
-    "julia_z3": {
-      "asserted_precomputed_boolean": false,
-      "erased_flip_verdict": "sat",
-      "load_bearing": true,
-      "proof_row": {
-        "axis3_not_recoverable": 1,
-        "axis6_not_recoverable": 1,
-        "changed_edge_count": 35,
-        "edge_count": 198,
-        "nonzero_gradient_edges": 90,
-        "stable_edge_count": 163
-      },
-      "ran": true,
-      "verdict": "unsat"
-    },
     "z3": {
       "asserted_precomputed_boolean": false,
       "bound_values": {
@@ -3015,7 +3000,6 @@
         "nonvacuous polarity stability and computed A0/A3/A6 independence witnesses"
       ]
     },
-    "classification": "scratch_diagnostic",
     "controls": {
       "constant_field": {
         "all_degenerate_no_polarity": true,
@@ -3105,58 +3089,6 @@
         "fired": true
       }
     },
-    "crossover_proofs": {
-      "cvc5": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "axis3_not_recoverable": 1,
-          "axis6_not_recoverable": 1,
-          "changed_edge_count": 35,
-          "edge_count": 198,
-          "nonzero_gradient_edges": 90,
-          "stable_edge_count": 163
-        },
-        "erased_flip_bindings": {
-          "axis3_not_recoverable": 0,
-          "axis6_not_recoverable": 0,
-          "changed_edge_count": 198,
-          "edge_count": 198,
-          "nonzero_gradient_edges": 0,
-          "stable_edge_count": 0
-        },
-        "erased_flip_verdict": "sat",
-        "identity": "stable>0 and changed>0 and nonzero_gradients>0 and stable+changed=edge_count and A0 not recoverable from A3/A6",
-        "load_bearing": true,
-        "ran": true,
-        "tool": "cvc5",
-        "verdict": "unsat"
-      },
-      "z3": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "axis3_not_recoverable": 1,
-          "axis6_not_recoverable": 1,
-          "changed_edge_count": 35,
-          "edge_count": 198,
-          "nonzero_gradient_edges": 90,
-          "stable_edge_count": 163
-        },
-        "erased_flip_bindings": {
-          "axis3_not_recoverable": 0,
-          "axis6_not_recoverable": 0,
-          "changed_edge_count": 198,
-          "edge_count": 198,
-          "nonzero_gradient_edges": 0,
-          "stable_edge_count": 0
-        },
-        "erased_flip_verdict": "sat",
-        "identity": "stable>0 and changed>0 and nonzero_gradients>0 and stable+changed=edge_count and A0 not recoverable from A3/A6",
-        "load_bearing": true,
-        "ran": true,
-        "tool": "z3",
-        "verdict": "unsat"
-      }
-    },
     "disallowed_claims": [
       "axis admission",
       "bridge admission",
@@ -3197,7 +3129,6 @@
       "domain": "committed Family A 33-cell Adm_C carrier rebuilt from pinned S4/S5 generator rows",
       "formula": "phi(v)=(2*x_scaled - 5*y_scaled + 7*z_scaled + 3*x_scaled*y_scaled - z_scaled^2 + 4*r2_scaled + 11*conditioned_shell_member)/97"
     },
-    "formal_admission_allowed": false,
     "gradient_summary": {
       "edge_count": 198,
       "gradient_signature_sha256": "5035880ae9c17a768b0568b8cbb0f22800d9ee7a5cc454ea529c2df3ef10d391",
@@ -8449,7 +8380,6 @@
         "zero_gradient_edges": 3
       }
     ],
-    "promotion_allowed": false,
     "readout_table": [
       {
         "Adm_C": true,
@@ -9576,7 +9506,6 @@
     ],
     "result_path": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_envelope_results.json",
     "schema": "discrete_axis0_field_v0.envelope.v1",
-    "sim_id": "discrete_axis0_field_v0",
     "smt_rows": {
       "cvc5": {
         "asserted_precomputed_boolean": false,
@@ -9705,7 +9634,7 @@
       }
     },
     "source_path": "system_v6/sims/discrete_axis0_field_v0/write_envelope_spec.py",
-    "source_sha256": "be80781167a0d394350107088cd35555ab99c780a0feca5587609669a191e17d",
+    "source_sha256": "db3a3046e9d06f3d5a32a8b5df371fcb227e64cf0c9901ccdb2b82a18b81dd05",
     "stability_under_committed_dynamics": {
       "all_changed_every_step": false,
       "all_stable_every_step": false,
@@ -11672,6 +11601,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_jax_results.json",
       "source_path": "system_v6/sims/discrete_axis0_field_v0/discrete_axis0_field_v0_jax.py",
@@ -11735,6 +11665,7 @@
         "Dates",
         "SHA"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_julia_results.json",
       "source_path": "system_v6/sims/discrete_axis0_field_v0/discrete_axis0_field_v0_julia.jl",
@@ -11810,6 +11741,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_pytorch_results.json",
       "source_path": "system_v6/sims/discrete_axis0_field_v0/discrete_axis0_field_v0_pytorch.py",

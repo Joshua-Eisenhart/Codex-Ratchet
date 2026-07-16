@@ -42,22 +42,6 @@
       "tool": "cvc5",
       "verdict": "unsat"
     },
-    "julia_z3": {
-      "asserted_precomputed_boolean": false,
-      "erased_flip_verdict": "sat",
-      "load_bearing": true,
-      "proof_row": {
-        "changed_edge_count": 24,
-        "edge_count": 198,
-        "negative": 14,
-        "neutral": 5,
-        "positive": 14,
-        "stable_edge_count": 174,
-        "state_count": 33
-      },
-      "ran": true,
-      "verdict": "unsat"
-    },
     "z3": {
       "asserted_precomputed_boolean": false,
       "bound_values": {
@@ -4482,7 +4466,6 @@
         "b0*b6 prediction table staged for a later same-carrier Axis-3 follow-on"
       ]
     },
-    "classification": "scratch_diagnostic",
     "controls": {
       "commuting_control": {
         "all_cells_neutral": true,
@@ -4518,68 +4501,6 @@
         "operation": "swap declared difference from Phi_T(O(rho))-O(Phi_T(rho)) to its negative"
       }
     },
-    "crossover_proofs": {
-      "cvc5": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "axis0_not_from_axis6": 1,
-          "axis6_not_from_axis0_response": 1,
-          "changed_edges": 24,
-          "commuting_neutral_count": 33,
-          "edge_count": 198,
-          "negative": 14,
-          "neutral": 5,
-          "positive": 14,
-          "stable_edges": 174,
-          "total": 33
-        },
-        "erased_flip_bindings": {
-          "axis0_not_from_axis6": 0,
-          "axis6_not_from_axis0_response": 0,
-          "changed_edges": 198,
-          "commuting_neutral_count": 0,
-          "negative": 0,
-          "positive": 0,
-          "stable_edges": 0
-        },
-        "erased_flip_verdict": "sat",
-        "identity": "positive>0 and negative>0 and stable>0 and changed>0 and two-way A0/A6 non-recovery and commuting control all-neutral",
-        "load_bearing": true,
-        "ran": true,
-        "tool": "cvc5",
-        "verdict": "unsat"
-      },
-      "z3": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "axis0_not_from_axis6": 1,
-          "axis6_not_from_axis0_response": 1,
-          "changed_edges": 24,
-          "commuting_neutral_count": 33,
-          "edge_count": 198,
-          "negative": 14,
-          "neutral": 5,
-          "positive": 14,
-          "stable_edges": 174,
-          "total": 33
-        },
-        "erased_flip_bindings": {
-          "axis0_not_from_axis6": 0,
-          "axis6_not_from_axis0_response": 0,
-          "changed_edges": 198,
-          "commuting_neutral_count": 0,
-          "negative": 0,
-          "positive": 0,
-          "stable_edges": 0
-        },
-        "erased_flip_verdict": "sat",
-        "identity": "positive>0 and negative>0 and stable>0 and changed>0 and two-way A0/A6 non-recovery and commuting control all-neutral",
-        "load_bearing": true,
-        "ran": true,
-        "tool": "z3",
-        "verdict": "unsat"
-      }
-    },
     "disallowed_claims": [
       "axis admission",
       "Axis-4 composition order claim",
@@ -4606,7 +4527,6 @@
         "shuffled_order_n01"
       ]
     },
-    "formal_admission_allowed": false,
     "independence_rows_vs_axis0": [
       {
         "ambiguous_keys": {
@@ -7602,10 +7522,8 @@
         "z_component_difference": -0.191716819291416
       }
     ],
-    "promotion_allowed": false,
     "result_path": "system_v6/sims/discrete_axis6_precedence_v0/results/discrete_axis6_precedence_v0_envelope_results.json",
     "schema": "discrete_axis6_precedence_v0.envelope.v1",
-    "sim_id": "discrete_axis6_precedence_v0",
     "smt_rows": {
       "cvc5": {
         "asserted_precomputed_boolean": false,
@@ -7743,7 +7661,7 @@
       "raw_parent_classification_imported": false
     },
     "source_path": "system_v6/sims/discrete_axis6_precedence_v0/write_envelope_spec.py",
-    "source_sha256": "0ee6d9bb7b1d112050d948590128fc82b6d32ecc9d865baf5425d7c84062662f",
+    "source_sha256": "fc014918abdf70f0f21cd3bfe97e3c472c83141b75715ce17b471d1b4c41fcd1",
     "stability_under_committed_dynamics": {
       "neither_trivial_nor_frozen": true,
       "one_step": {
@@ -10432,6 +10350,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis6_precedence_v0/results/discrete_axis6_precedence_v0_jax_results.json",
       "source_path": "system_v6/sims/discrete_axis6_precedence_v0/discrete_axis6_precedence_v0_jax.py",
@@ -10495,6 +10414,7 @@
         "Dates",
         "SHA"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis6_precedence_v0/results/discrete_axis6_precedence_v0_julia_results.json",
       "source_path": "system_v6/sims/discrete_axis6_precedence_v0/discrete_axis6_precedence_v0_julia.jl",
@@ -10570,6 +10490,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis6_precedence_v0/results/discrete_axis6_precedence_v0_pytorch_results.json",
       "source_path": "system_v6/sims/discrete_axis6_precedence_v0/discrete_axis6_precedence_v0_pytorch.py",

@@ -253,6 +253,18 @@
     }
   },
   "divergence": {
+    "engine_independence": {
+      "independent_recompute_lanes": [],
+      "independent_signal": false,
+      "max_divergence_meaning": "independence-unverified: one or more lanes did not declare whether they independently recompute or only verify a shared payload; treat max_divergence as a SHAPE/agreement check, not an independence signal.",
+      "note": "Lanes that call a shared core-compute and only verify its payload cannot diverge on that payload; their agreement is structural. See system_v6/receipts/engine_consensus_relabel_20260613.md.",
+      "unspecified_lanes": [
+        "jax",
+        "julia",
+        "pytorch"
+      ],
+      "verify_payload_lanes": []
+    },
     "engine_values": {
       "jax": {
         "Bell_q0q1_spectator_q2.q0__q1q2.I_A_colon_B": 1.3862943611198904,
@@ -316,23 +328,27 @@
       }
     },
     "julia_authoritative": true,
+    "lane_evidence": {
+      "jax": "unspecified",
+      "julia": "unspecified",
+      "pytorch": "unspecified"
+    },
     "max_divergence": 2.220446049250313e-16,
     "observable": "shared q0|q1q2 S(A|B), I(A:B), and I_c scalar vector",
     "tolerance": 1e-10,
     "within_tolerance": true
   },
   "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
     "lanes": [
-      "julia",
       "jax",
+      "julia",
       "pytorch"
     ],
     "mode": "all_three_full_sims",
-    "reads_peer_result": {
-      "jax": false,
-      "julia": false,
-      "pytorch": false
-    }
+    "omitted_lanes": {},
+    "promotion_allowed": false
   },
   "engines": {
     "jax": {
@@ -509,7 +525,7 @@
     }
   },
   "formal_admission_allowed": false,
-  "generated_at": "2026-06-12T04:26:23Z",
+  "generated_at": "2026-07-15T08:12:07Z",
   "local_information_table": {
     "bipartitions_declared": [
       "q0__q1q2",
@@ -5427,6 +5443,19 @@
   },
   "promotion_allowed": false,
   "result_path": "system_v6/sims/s8_local_information_table_v0/results/s8_local_information_table_v0_envelope_results.json",
+  "s8_engine_contract_details": {
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims",
+    "reads_peer_result": {
+      "jax": false,
+      "julia": false,
+      "pytorch": false
+    }
+  },
   "schema": "s8_local_information_table_v0_envelope_v1",
   "schema_version": "three_engine_sim_result_v1",
   "shared_engine_scalar_keys": [
@@ -5451,7 +5480,7 @@
   ],
   "sim_id": "s8_local_information_table_v0",
   "source_path": "system_v6/sims/s8_local_information_table_v0/s8_local_information_table_v0_envelope.py",
-  "source_sha256": "889bca894087a794ceb9394867ea6bedd3ab6c916846cfd95142a45521a03a14",
+  "source_sha256": "01d6737edb4a25c1309b73d3362c3ff6d0cdce071080d36e9a4f7b2b3ba2232b",
   "spec_path": "system_v6/sims/s8_local_information_table_v0/s8_local_information_table_v0_envelope_spec.json",
   "stability_pairs": [
     {

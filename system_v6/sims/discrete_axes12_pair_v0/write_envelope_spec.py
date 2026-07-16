@@ -22,6 +22,7 @@ def lane_spec(engine: str) -> dict[str, Any]:
     return {
         "source_path": result["source_path"],
         "result_path": result["result_path"],
+        "reads_peer_result": False,
         "packages_used": result["packages_used"],
         "aligned_packages_load_bearing": result["aligned_packages_load_bearing"],
         "package_observables": result["package_observables"],
@@ -63,6 +64,20 @@ def build_spec() -> dict[str, Any]:
         },
         "capability_receipts": {name: lane.get("capability_receipts", []) for name, lane in lanes.items()},
     }
+    rehomed_builder_fields = {
+        key: extra_fields.pop(key)
+        for key in (
+            "classification",
+            "crossover_proofs",
+            "formal_admission_allowed",
+            "generated_at",
+            "promotion_allowed",
+            "sim_id",
+            "stability_pairs",
+        )
+        if key in extra_fields
+    }
+    extra_fields.pop("object_id", None)
     return {
         "sim_id": common.SIM_ID,
         "mode": common.ENGINE_MODE,
@@ -92,6 +107,7 @@ def build_spec() -> dict[str, Any]:
         },
         "parent_lineage": {key: row["path"] for key, row in obj["source_import_audit"]["parent_hash_pins"].items()},
         "stability_pairs": obj["stability_pairs"],
+        **rehomed_builder_fields,
         "extra_fields": extra_fields,
     }
 

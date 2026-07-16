@@ -24,12 +24,6 @@
       "ran": true,
       "verdict": "unsat"
     },
-    "julia_z3": {
-      "claim": "Julia Z3 product-count erasure agrees with Python SMT rows",
-      "load_bearing": true,
-      "ran": true,
-      "verdict": "unsat"
-    },
     "z3": {
       "asserted_precomputed_boolean": false,
       "bound_values": {
@@ -1107,7 +1101,6 @@
     },
     "circularity_species": [],
     "claim_ceiling": "axis_readout_candidate_only",
-    "classification": "scratch_diagnostic",
     "controls": {
       "falsifier_reachability": {
         "branches": [
@@ -1139,36 +1132,6 @@
         "row_id": "Vortex:pure_hamiltonian"
       }
     },
-    "crossover_proofs": {
-      "cvc5": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "Ne": 7,
-          "Ni": 9,
-          "Se": 11,
-          "Si": 6,
-          "total": 33
-        },
-        "erased_flip_verdict": "sat",
-        "load_bearing": true,
-        "ran": true,
-        "verdict": "unsat"
-      },
-      "z3": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "Ne": 7,
-          "Ni": 9,
-          "Se": 11,
-          "Si": 6,
-          "total": 33
-        },
-        "erased_flip_verdict": "sat",
-        "load_bearing": true,
-        "ran": true,
-        "verdict": "unsat"
-      }
-    },
     "disallowed_claims": [
       "axis admission",
       "formal terrain admission",
@@ -1182,9 +1145,7 @@
       "fresh independent audit",
       "future axes12 hardening packet"
     ],
-    "formal_admission_allowed": false,
     "freshness_tier": "TIER-2",
-    "generated_at": "2026-06-12T09:00:42Z",
     "independence_rows_vs_axes0_4_5_6": [
       {
         "feature": "axis0_response",
@@ -1305,7 +1266,6 @@
     },
     "no_builder_audit_verdict": true,
     "no_builder_audit_verdict_envelope_gate": true,
-    "object_id": "discrete_axes12_pair_v0",
     "positive_boundary_result": "computed_legality_frame_product_candidate_only",
     "pre_registration_sources": [
       "system_v6/receipts/axes12_deep_vein_20260612.md"
@@ -1316,10 +1276,8 @@
       "Se": 11,
       "Si": 6
     },
-    "promotion_allowed": false,
     "result_path": "system_v6/sims/discrete_axes12_pair_v0/results/discrete_axes12_pair_v0_envelope_results.json",
     "schema": "discrete_axes12_pair_v0.envelope.v1",
-    "sim_id": "discrete_axes12_pair_v0",
     "smt_rows": {
       "cvc5": {
         "asserted_precomputed_boolean": false,
@@ -1423,25 +1381,7 @@
       }
     },
     "source_path": "system_v6/sims/discrete_axes12_pair_v0/write_envelope_spec.py",
-    "source_sha256": "46a3b6d12bc0991f4bd9a3ffc3bfd551f791d2f6f4c194c13a12f85f4a800ca5",
-    "stability_pairs": [
-      {
-        "hash": "ada19b6be0341f882aaa0946453c930ab6873598bcb818b8080a2f6c815b6e47",
-        "subtree": "axis12_row_table"
-      },
-      {
-        "hash": "9c31fc3dc419187092521f7bfd395e3c7c5fb0bd91c89184aa5c661b58089403",
-        "subtree": "axis12_cell_product_table"
-      },
-      {
-        "hash": "071818bd535455bdbdd157427188686e608b01451243e900837f7578e6205a34",
-        "subtree": "independence_rows_vs_axes0_4_5_6"
-      },
-      {
-        "hash": "441ad922f97a07b9f5d98f6114163d26cfa3014576169c0f9afe4dd9ad5568d9",
-        "subtree": "controls"
-      }
-    ],
+    "source_sha256": "dcd2b0737a16da6b79aadc301df5126ad74b772e4a6ff0933f877d10444b54df",
     "stability_under_axis0_standard": {
       "neither_trivial_nor_frozen": true,
       "one_step": {
@@ -1493,6 +1433,7 @@
     "write_scope": "system_v6/sims/discrete_axes12_pair_v0/ only; no git add/commit; no builder audit_verdict.md"
   },
   "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T09:00:42Z",
   "lanes": {
     "jax": {
       "aligned_packages_load_bearing": [
@@ -1514,6 +1455,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axes12_pair_v0/results/discrete_axes12_pair_v0_jax_results.json",
       "source_path": "system_v6/sims/discrete_axes12_pair_v0/discrete_axes12_pair_v0_jax.py",
@@ -1537,6 +1479,7 @@
         "JSON",
         "SHA"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axes12_pair_v0/results/discrete_axes12_pair_v0_julia_results.json",
       "source_path": "system_v6/sims/discrete_axes12_pair_v0/discrete_axes12_pair_v0_julia.jl",
@@ -1565,6 +1508,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axes12_pair_v0/results/discrete_axes12_pair_v0_pytorch_results.json",
       "source_path": "system_v6/sims/discrete_axes12_pair_v0/discrete_axes12_pair_v0_pytorch.py",

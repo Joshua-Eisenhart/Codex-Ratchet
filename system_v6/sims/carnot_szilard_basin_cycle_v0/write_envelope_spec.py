@@ -22,6 +22,7 @@ def lane_spec(engine: str) -> dict[str, Any]:
     return {
         "source_path": result["source_path"],
         "result_path": result["result_path"],
+        "reads_peer_result": False,
         "packages_used": result["packages_used"],
         "aligned_packages_load_bearing": result["aligned_packages_load_bearing"],
         "package_observables": result["package_observables"],
@@ -88,6 +89,18 @@ def build_spec() -> dict[str, Any]:
             ),
         },
     }
+    rehomed_builder_fields = {
+        key: extra_fields.pop(key)
+        for key in (
+            "classification",
+            "crossover_proofs",
+            "formal_admission_allowed",
+            "promotion_allowed",
+            "sim_id",
+        )
+        if key in extra_fields
+    }
+    extra_fields.pop("object_id", None)
     return {
         "sim_id": common.SIM_ID,
         "mode": common.ENGINE_MODE,
@@ -130,6 +143,7 @@ def build_spec() -> dict[str, Any]:
             {"subtree": "alternation_rows", "hash": common.stable_sha256(obj["alternation_rows"])},
             {"subtree": "structure_map_table", "hash": common.stable_sha256(obj["structure_map_table"])},
         ],
+        **rehomed_builder_fields,
         "extra_fields": extra_fields,
     }
 

@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -27,6 +28,9 @@ FORMAL_ADMISSION_ALLOWED = False
 OBJECT_QUOTE = "three-spinor/Clifford floor: (C^2)^x3 with dimension 8"
 LOG_BASE = "e"
 TOL = 1.0e-12
+
+sys.path.insert(0, str(ROOT / "scripts"))
+from builder_audit_boundary import builder_audit_boundary_ok  # noqa: E402
 
 NESTED_TARGETS = {
     "nested_r1_theta_0": 0.0,
@@ -487,7 +491,7 @@ def build_packet_payload(engine: str | None = None) -> dict[str, Any]:
     rows = local_rows(states, bips, channels)
     anchor_payload = continuity_anchors(rows)
     control_payload = controls(rows, states, bips, channels)
-    no_audit = not (PACKET / "audit_verdict.md").exists()
+    boundary_ok = builder_audit_boundary_ok(PACKET / "audit_verdict.md")
     packet = {
         "schema": f"{SIM_ID}_payload_v1",
         "sim_id": SIM_ID,
@@ -508,14 +512,14 @@ def build_packet_payload(engine: str | None = None) -> dict[str, Any]:
         "continuity_anchors": anchor_payload,
         "controls": control_payload,
         "builder_gates": {
-            "no_builder_audit_verdict": no_audit,
+            "no_builder_audit_verdict": boundary_ok,
             "file_disjoint_under_packet": rel(PACKET),
             "classification_scratch_diagnostic": CLASSIFICATION == "scratch_diagnostic",
         },
     }
     packet["scalar_vector"] = scalar_vector(packet)
     packet["all_pass"] = bool(
-        no_audit
+        boundary_ok
         and anchor_payload["nested_ratchet"]["all_match"]
         and anchor_payload["dual_stack"]["Phi0_Ic_S_to_M"]["all_match"]
         and all_controls_pass(control_payload)

@@ -41,200 +41,6 @@
       "tool": "cvc5",
       "verdict": "unsat"
     },
-    "julia_z3": {
-      "asserted_precomputed_boolean": false,
-      "erased_flip_verdict": "sat",
-      "load_bearing": true,
-      "proof_row": {
-        "boundary_dof_count": 6,
-        "dof_classification_summary": [
-          {
-            "classification": "RETURN",
-            "dof_id": "G0",
-            "terminal_class_cells": [
-              [
-                16
-              ]
-            ],
-            "terminal_class_count": 1
-          },
-          {
-            "classification": "BOUNDARY",
-            "dof_id": "G1",
-            "terminal_class_cells": [
-              [
-                0,
-                1,
-                3,
-                7,
-                9,
-                10,
-                14,
-                18,
-                22,
-                23,
-                25,
-                29,
-                31,
-                32
-              ],
-              [
-                2,
-                4,
-                5,
-                6,
-                8,
-                11,
-                12,
-                13,
-                15,
-                17,
-                19,
-                20,
-                21,
-                24,
-                26,
-                27,
-                28,
-                30
-              ],
-              [
-                16
-              ]
-            ],
-            "terminal_class_count": 3
-          },
-          {
-            "classification": "RETURN",
-            "dof_id": "G2",
-            "terminal_class_cells": [
-              [
-                16
-              ]
-            ],
-            "terminal_class_count": 1
-          },
-          {
-            "classification": "BOUNDARY",
-            "dof_id": "G3L",
-            "terminal_class_cells": [
-              [
-                1
-              ],
-              [
-                2,
-                4,
-                5,
-                11,
-                12,
-                15
-              ],
-              [
-                16
-              ]
-            ],
-            "terminal_class_count": 3
-          },
-          {
-            "classification": "BOUNDARY",
-            "dof_id": "G3R",
-            "terminal_class_cells": [
-              [
-                16
-              ],
-              [
-                17,
-                20,
-                21,
-                27,
-                28,
-                30
-              ],
-              [
-                31
-              ]
-            ],
-            "terminal_class_count": 3
-          },
-          {
-            "classification": "BOUNDARY",
-            "dof_id": "G4",
-            "terminal_class_cells": [
-              [
-                3,
-                9
-              ]
-            ],
-            "terminal_class_count": 1
-          },
-          {
-            "classification": "BOUNDARY",
-            "dof_id": "G5",
-            "terminal_class_cells": [
-              [
-                0
-              ],
-              [
-                5
-              ],
-              [
-                16
-              ],
-              [
-                27,
-                28,
-                30
-              ],
-              [
-                32
-              ]
-            ],
-            "terminal_class_count": 5
-          },
-          {
-            "classification": "RETURN",
-            "dof_id": "stage_shift_Rx_to_Rz",
-            "terminal_class_cells": [
-              [
-                16
-              ]
-            ],
-            "terminal_class_count": 1
-          },
-          {
-            "classification": "BOUNDARY",
-            "dof_id": "loop_reverse_G5",
-            "terminal_class_cells": [
-              [
-                0
-              ],
-              [
-                5
-              ],
-              [
-                16
-              ],
-              [
-                26,
-                27,
-                30
-              ],
-              [
-                32
-              ]
-            ],
-            "terminal_class_count": 5
-          }
-        ],
-        "dof_signature_sha256": "f83d6b919789987b0faefd00a1b9babec158404a697f492b6f8302b2d5918239",
-        "dof_total": 9,
-        "pre_registered_expectation_2_pass": true,
-        "return_dof_count": 3,
-        "scrambling_dof_count": 0
-      },
-      "ran": true,
-      "verdict": "unsat"
-    },
     "z3": {
       "asserted_precomputed_boolean": false,
       "bound_values": {
@@ -483,7 +289,6 @@
         "at least one return row and at least one boundary row"
       ]
     },
-    "classification": "scratch_diagnostic",
     "controls": {
       "over_perturbation": {
         "absent_exit_checked": true,
@@ -1064,66 +869,6 @@
         ],
         "sample_count": 6,
         "trivial_return_calibration": true
-      }
-    },
-    "crossover_proofs": {
-      "cvc5": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "boundary_dof_count": 6,
-          "dof_total": 9,
-          "n01_fired": 1,
-          "over_boundary": 1,
-          "probe_degraded": 1,
-          "return_dof_count": 3,
-          "scrambling_dof_count": 0,
-          "zero_return": 1
-        },
-        "erased_flip_bindings": {
-          "boundary_dof_count": 0,
-          "dof_total": 9,
-          "n01_fired": 0,
-          "over_boundary": 1,
-          "probe_degraded": 0,
-          "return_dof_count": 3,
-          "scrambling_dof_count": 0,
-          "zero_return": 1
-        },
-        "erased_flip_verdict": "sat",
-        "identity": "return>=1 and boundary>=1 and return+boundary+scrambling=dof_total with mandatory controls firing",
-        "load_bearing": true,
-        "ran": true,
-        "tool": "cvc5",
-        "verdict": "unsat"
-      },
-      "z3": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "boundary_dof_count": 6,
-          "dof_total": 9,
-          "n01_fired": 1,
-          "over_boundary": 1,
-          "probe_degraded": 1,
-          "return_dof_count": 3,
-          "scrambling_dof_count": 0,
-          "zero_return": 1
-        },
-        "erased_flip_bindings": {
-          "boundary_dof_count": 0,
-          "dof_total": 9,
-          "n01_fired": 0,
-          "over_boundary": 1,
-          "probe_degraded": 0,
-          "return_dof_count": 3,
-          "scrambling_dof_count": 0,
-          "zero_return": 1
-        },
-        "erased_flip_verdict": "sat",
-        "identity": "return>=1 and boundary>=1 and return+boundary+scrambling=dof_total with mandatory controls firing",
-        "load_bearing": true,
-        "ran": true,
-        "tool": "z3",
-        "verdict": "unsat"
       }
     },
     "disallowed_claims": [
@@ -4770,7 +4515,6 @@
       }
     ],
     "envelope_built_with_helper": true,
-    "formal_admission_allowed": false,
     "lane_comparison": {
       "all_lanes_same_classification_counts": true,
       "classification_count_values": {
@@ -4796,7 +4540,6 @@
         }
       }
     },
-    "mode": "all_three_full_sims_basin_dof_axis0_readout_rows",
     "no_builder_audit_verdict": true,
     "no_builder_audit_verdict_envelope_gate": true,
     "one_to_one_tool_calls": {
@@ -4813,10 +4556,9 @@
       },
       "pass": true
     },
-    "promotion_allowed": false,
     "result_integrity": {
       "build_helper_path": "scripts/build_three_engine_envelope.py",
-      "build_helper_sha256": "199dae118fd09dec2150d7f65e388221bf4e4e3bdcd9feac0d3fbcc99ecc98dd",
+      "build_helper_sha256": "d81a072b03f633f2cef2261bec7704799437b223d8002248b1c7b0a892adad55",
       "envelope_content_without_result_hash_sha256": "c0dec1bf8b0ed18cbc914d1be4a81a3e1002a80c5e137bbd4c7903b539afaa29",
       "leg_result_sha256": {
         "jax": "0fda89e076ab7b97b8452e2446749d404671efb4788cbedff30116fc5d88607d",
@@ -4839,7 +4581,6 @@
       "scrambling_dof_count": 0
     },
     "schema": "basin_dof_perturb_and_read_v0.envelope.v1",
-    "sim_id": "basin_dof_perturb_and_read_v0",
     "smt_rows": {
       "cvc5": {
         "asserted_precomputed_boolean": false,
@@ -4986,7 +4727,7 @@
       }
     },
     "source_path": "system_v6/sims/basin_dof_perturb_and_read_v0/write_envelope_spec.py",
-    "source_sha256": "b83b6f623617cbfa376660727b4a7857d59312252ff2d3e5c54a240930a78d2a",
+    "source_sha256": "045ce99e342862ed37ca4772a5bbca10e7e4ce7338f066584da35dece7420276",
     "tool_calls": {
       "jax": [
         {
@@ -5260,6 +5001,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_jax_results.json",
       "source_path": "system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_jax.py",
@@ -5369,6 +5111,7 @@
         "Dates",
         "SHA"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_julia_results.json",
       "source_path": "system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_julia.jl",
@@ -5446,6 +5189,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_pytorch_results.json",
       "source_path": "system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_pytorch.py",

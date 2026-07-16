@@ -36,27 +36,6 @@
       "verdict": "unsat",
       "violation_assertion": "any floor/record/reset/closure invariant fails"
     },
-    "julia_z3": {
-      "asserted_precomputed_boolean": false,
-      "erased_flip_verdict": "sat",
-      "load_bearing": true,
-      "misledger_flip_verdict": "sat",
-      "proof_row": {
-        "closure_defect_scaled": 0,
-        "full_floor_scaled": 3496508,
-        "full_graph_m": 33,
-        "full_paid_scaled": 3496508,
-        "full_reset_scaled": 3496508,
-        "misledger_caught": 1,
-        "return_row_count": 3,
-        "sample_floor_scaled": 2197225,
-        "sample_m": 9,
-        "sample_paid_scaled": 2197225,
-        "sample_reset_scaled": 2197225
-      },
-      "ran": true,
-      "verdict": "unsat"
-    },
     "z3": {
       "asserted_precomputed_boolean": false,
       "bound_values": {
@@ -3144,7 +3123,6 @@
       ]
     },
     "claim_ceiling": "basin_cycle_typed_counting_connection_packet_only",
-    "classification": "scratch_diagnostic",
     "computed_values": {
       "closure_defect_scaled": 0,
       "full_floor_scaled": 3496508,
@@ -3192,56 +3170,6 @@
         "status": "fail"
       }
     },
-    "crossover_proofs": {
-      "cvc5": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "closure_defect_scaled": 0,
-          "full_floor_scaled": 3496508,
-          "full_graph_m": 33,
-          "full_paid_scaled": 3496508,
-          "full_reset_scaled": 3496508,
-          "misledger_caught": 1,
-          "return_row_count": 3,
-          "sample_floor_scaled": 2197225,
-          "sample_m": 9,
-          "sample_paid_scaled": 2197225,
-          "sample_reset_scaled": 2197225
-        },
-        "erased_flip_verdict": "sat",
-        "load_bearing": true,
-        "misledger_flip_verdict": "sat",
-        "polarity": "violation assertion; real rows UNSAT, erased or misledgered controls SAT",
-        "ran": true,
-        "tool": "cvc5",
-        "verdict": "unsat",
-        "violation_assertion": "any floor/record/reset/closure invariant fails"
-      },
-      "z3": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "closure_defect_scaled": 0,
-          "full_floor_scaled": 3496508,
-          "full_graph_m": 33,
-          "full_paid_scaled": 3496508,
-          "full_reset_scaled": 3496508,
-          "misledger_caught": 1,
-          "return_row_count": 3,
-          "sample_floor_scaled": 2197225,
-          "sample_m": 9,
-          "sample_paid_scaled": 2197225,
-          "sample_reset_scaled": 2197225
-        },
-        "erased_flip_verdict": "sat",
-        "load_bearing": true,
-        "misledger_flip_verdict": "sat",
-        "polarity": "violation assertion; real rows UNSAT, erased or misledgered controls SAT",
-        "ran": true,
-        "tool": "z3",
-        "verdict": "unsat",
-        "violation_assertion": "any floor/record/reset/closure invariant fails"
-      }
-    },
     "disallowed_claims": [
       "physics",
       "bridge admission",
@@ -3256,7 +3184,6 @@
       "classical baseline rows remain legality anchors only; no heat/work or physics novelty claim"
     ],
     "envelope_built_with_helper": true,
-    "formal_admission_allowed": false,
     "honest_boundaries": [
       "heat/work variables on the basin carrier remain open; no q_hot/q_cold/work_out is faked",
       "basin record object is packet-local; z4 is convention only",
@@ -3304,7 +3231,6 @@
     },
     "no_builder_audit_verdict": true,
     "no_builder_audit_verdict_envelope_gate": true,
-    "object_id": "carnot_szilard_basin_cycle_v0",
     "one_to_one_tool_calls": {
       "by_engine": {
         "jax": {
@@ -3322,10 +3248,9 @@
       },
       "pass": true
     },
-    "promotion_allowed": false,
     "result_integrity": {
       "build_helper_path": "scripts/build_three_engine_envelope.py",
-      "build_helper_sha256": "199dae118fd09dec2150d7f65e388221bf4e4e3bdcd9feac0d3fbcc99ecc98dd",
+      "build_helper_sha256": "d81a072b03f633f2cef2261bec7704799437b223d8002248b1c7b0a892adad55",
       "envelope_content_without_result_hash_sha256": "048d78adaaff93eb305622b90c62a69792a890fb2a39bea8f2f9578c66ba6903",
       "leg_result_sha256": {
         "jax": "0d968a4d4f64cde9492ab3a100551aa5b27f0ad3dc39e066e3b8c0e0c468a3cb",
@@ -3336,7 +3261,6 @@
     "result_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/results/carnot_szilard_basin_cycle_v0_envelope_results.json",
     "row_classification": "classical_baseline",
     "schema": "carnot_szilard_basin_cycle_v0.envelope.v1",
-    "sim_id": "carnot_szilard_basin_cycle_v0",
     "source_import_audit": {
       "basin_dof_common": {
         "exists": true,
@@ -3423,7 +3347,7 @@
       }
     },
     "source_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/write_envelope_spec.py",
-    "source_sha256": "70391a857989c7cebd0a17345c7906ed1ad5dc56a084864acc580b0ac123802e",
+    "source_sha256": "036c19d832be808932c6b2742b445773b8750e9388c1c8418bfb63db84692d79",
     "structure_map_table": [
       {
         "basin_phase": "perturb/readout",
@@ -3738,6 +3662,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/results/carnot_szilard_basin_cycle_v0_jax_results.json",
       "source_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/carnot_szilard_basin_cycle_v0_jax.py",
@@ -3844,6 +3769,7 @@
         "Dates",
         "SHA"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/results/carnot_szilard_basin_cycle_v0_julia_results.json",
       "source_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/carnot_szilard_basin_cycle_v0_julia.jl",
@@ -3922,6 +3848,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/results/carnot_szilard_basin_cycle_v0_pytorch_results.json",
       "source_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/carnot_szilard_basin_cycle_v0_pytorch.py",

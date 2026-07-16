@@ -250,7 +250,6 @@
         "nontrivial loop dynamics, controls, and Axis-0 independence rows emitted"
       ]
     },
-    "classification": "scratch_diagnostic",
     "controls": {
       "falsifier_reachability": {
         "branch": "wrong_sign_base_phi=phi0+cos(2eta)u",
@@ -863,72 +862,6 @@
         "fired": true
       }
     },
-    "crossover_proofs": {
-      "cvc5": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "axis0_not_from_placement": 1,
-          "base_count": 24,
-          "changed_edge_count": 192,
-          "edge_count": 384,
-          "falsifier_reachable": 1,
-          "fiber_count": 24,
-          "neutral_control_count": 8,
-          "placement_not_from_axis0": 1,
-          "shuffled_connection_changed_count": 24,
-          "stable_edge_count": 192
-        },
-        "erased_flip_bindings": {
-          "axis0_not_from_placement": 0,
-          "base_count": 0,
-          "changed_edge_count": 384,
-          "falsifier_reachable": 0,
-          "fiber_count": 0,
-          "neutral_control_count": 0,
-          "placement_not_from_axis0": 0,
-          "shuffled_connection_changed_count": 0,
-          "stable_edge_count": 0
-        },
-        "erased_flip_verdict": "sat",
-        "identity": "fiber>0 and base>0 and neutral control>0 and stable>0 and changed>0 and A0/A3 identity recoveries blocked",
-        "load_bearing": true,
-        "ran": true,
-        "tool": "cvc5",
-        "verdict": "unsat"
-      },
-      "z3": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "axis0_not_from_placement": 1,
-          "base_count": 24,
-          "changed_edge_count": 192,
-          "edge_count": 384,
-          "falsifier_reachable": 1,
-          "fiber_count": 24,
-          "neutral_control_count": 8,
-          "placement_not_from_axis0": 1,
-          "shuffled_connection_changed_count": 24,
-          "stable_edge_count": 192
-        },
-        "erased_flip_bindings": {
-          "axis0_not_from_placement": 0,
-          "base_count": 0,
-          "changed_edge_count": 384,
-          "falsifier_reachable": 0,
-          "fiber_count": 0,
-          "neutral_control_count": 0,
-          "placement_not_from_axis0": 0,
-          "shuffled_connection_changed_count": 0,
-          "stable_edge_count": 0
-        },
-        "erased_flip_verdict": "sat",
-        "identity": "fiber>0 and base>0 and neutral control>0 and stable>0 and changed>0 and A0/A3 identity recoveries blocked",
-        "load_bearing": true,
-        "ran": true,
-        "tool": "z3",
-        "verdict": "unsat"
-      }
-    },
     "degenerate_control_table": [
       {
         "chi0": 0.0,
@@ -1227,7 +1160,6 @@
       ],
       "reachable": true
     },
-    "formal_admission_allowed": false,
     "independence_rows_vs_axis0": {
       "axis0_ambiguous_groups": {
         "axis0_minus_homeostatic_response": {
@@ -1393,7 +1325,6 @@
       },
       "shared_rows_scope": "finite projection from pinned Hopf loop anchors into committed Axis-0 response rows; computable rows exclude neutral pole controls"
     },
-    "mode": "all_three_full_sims",
     "no_builder_audit_verdict": true,
     "no_builder_audit_verdict_envelope_gate": true,
     "overlay_discriminator_registry": [
@@ -4438,9 +4369,7 @@
         "surface": "committed_hopf_carrier_rebuild"
       }
     ],
-    "promotion_allowed": false,
     "schema": "discrete_axis3_placement_v0.object.v1",
-    "sim_id": "discrete_axis3_placement_v0",
     "smt_rows": {
       "cvc5": {
         "asserted_precomputed_boolean": false,
@@ -7743,6 +7672,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis3_placement_v0/results/discrete_axis3_placement_v0_jax_results.json",
       "source_path": "system_v6/sims/discrete_axis3_placement_v0/discrete_axis3_placement_v0_jax.py"
@@ -7773,6 +7703,7 @@
         "JSON",
         "SHA"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis3_placement_v0/results/discrete_axis3_placement_v0_julia_results.json",
       "source_path": "system_v6/sims/discrete_axis3_placement_v0/discrete_axis3_placement_v0_julia.jl"
@@ -7811,6 +7742,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis3_placement_v0/results/discrete_axis3_placement_v0_pytorch_results.json",
       "source_path": "system_v6/sims/discrete_axis3_placement_v0/discrete_axis3_placement_v0_pytorch.py"

@@ -39,25 +39,6 @@
       "tool": "cvc5",
       "verdict": "unsat"
     },
-    "julia_z3": {
-      "bound_values": {
-        "changed_edge_count": 76,
-        "commuting_neutral_count": 33,
-        "edge_count": 198,
-        "graph_edges_collapsed": 119,
-        "graph_nodes": 33,
-        "negative": 14,
-        "neutral": 5,
-        "nonneutral": 28,
-        "positive": 14,
-        "stable_edge_count": 122,
-        "state_count": 33
-      },
-      "erased_flip_verdict": "sat",
-      "load_bearing": true,
-      "ran": true,
-      "verdict": "unsat"
-    },
     "z3": {
       "asserted_precomputed_boolean": false,
       "bound_values": {
@@ -5862,7 +5843,6 @@
         "panel-7 leading-order 2ue[A,B] control computed separately from the finite two-factor readout"
       ]
     },
-    "classification": "scratch_diagnostic",
     "controls": {
       "axis4_vs_axis6_discriminator": {
         "axis6_commit": "b6fafc67f",
@@ -5948,62 +5928,6 @@
         "shuffled_signature_sha256": "ee1c19d70d325f50508e0e176101c110df23bbcf199bb00dac32934ed48be154"
       }
     },
-    "crossover_proofs": {
-      "cvc5": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "axis6_not_predict_axis4": 1,
-          "commuting_neutral_count": 33,
-          "leading_order_pass": 1,
-          "negative": 14,
-          "neutral": 5,
-          "positive": 14,
-          "shuffled_changed_count": 14,
-          "total": 33
-        },
-        "erased_flip_bindings": {
-          "axis6_not_predict_axis4": 0,
-          "commuting_neutral_count": 0,
-          "leading_order_pass": 0,
-          "negative": 0,
-          "positive": 0,
-          "shuffled_changed_count": 0
-        },
-        "erased_flip_verdict": "sat",
-        "identity": "positive>0 and negative>0 and total accounted and commuting all-neutral and panel leading-order pass and shuffled differs and axis6 does not predict axis4",
-        "load_bearing": true,
-        "ran": true,
-        "tool": "cvc5",
-        "verdict": "unsat"
-      },
-      "z3": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "axis6_not_predict_axis4": 1,
-          "commuting_neutral_count": 33,
-          "leading_order_pass": 1,
-          "negative": 14,
-          "neutral": 5,
-          "positive": 14,
-          "shuffled_changed_count": 14,
-          "total": 33
-        },
-        "erased_flip_bindings": {
-          "axis6_not_predict_axis4": 0,
-          "commuting_neutral_count": 0,
-          "leading_order_pass": 0,
-          "negative": 0,
-          "positive": 0,
-          "shuffled_changed_count": 0
-        },
-        "erased_flip_verdict": "sat",
-        "identity": "positive>0 and negative>0 and total accounted and commuting all-neutral and panel leading-order pass and shuffled differs and axis6 does not predict axis4",
-        "load_bearing": true,
-        "ran": true,
-        "tool": "z3",
-        "verdict": "unsat"
-      }
-    },
     "disallowed_claims": [
       "axis admission",
       "Axis-6 precedence claim",
@@ -6028,7 +5952,6 @@
         "shuffled_order_not_primary"
       ]
     },
-    "formal_admission_allowed": false,
     "independence_auxiliary": {
       "best_non_identity": {
         "ambiguous_key_count": 4,
@@ -6266,10 +6189,8 @@
         "sha256": "e93d2d7e3cd49eb2d4d80d2665c0bed6acc73334e85379bac8100316a4f2c661"
       }
     },
-    "promotion_allowed": false,
     "result_path": "system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_envelope_results.json",
     "schema": "discrete_axis4_composition_v0.envelope.v1",
-    "sim_id": "discrete_axis4_composition_v0",
     "smt_rows": {
       "cvc5": {
         "asserted_precomputed_boolean": false,
@@ -6412,7 +6333,7 @@
       "raw_parent_classification_imported": false
     },
     "source_path": "system_v6/sims/discrete_axis4_composition_v0/write_envelope_spec.py",
-    "source_sha256": "5196b8dd3acbb705f78c50af9953dc75890b8dc992b36dfa5b3c3d439d3a0156",
+    "source_sha256": "1bca865bdae645b3c600f73495f134682076faed64d3838bff686f4624360cee",
     "stability_under_committed_dynamics": {
       "by_generator": {
         "D_z": {
@@ -7116,6 +7037,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_jax_results.json",
       "source_path": "system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_jax.py",
@@ -7178,6 +7100,7 @@
         "SHA",
         "Z3"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_julia_results.json",
       "source_path": "system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_julia.jl",
@@ -7253,6 +7176,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_pytorch_results.json",
       "source_path": "system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_pytorch.py",

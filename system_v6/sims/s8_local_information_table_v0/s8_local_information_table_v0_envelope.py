@@ -52,6 +52,7 @@ def lane_record(leg: dict[str, Any]) -> dict[str, Any]:
         "all_pass": leg["all_pass"],
         "claim_path_tools": leg["claim_path_tools"],
         "tool_calls": leg["tool_calls"],
+        "reads_peer_result": leg["reads_peer_result"],
     }
 
 
@@ -114,9 +115,6 @@ def build_spec() -> dict[str, Any]:
         "result_path": rel(RESULT),
         "spec_path": rel(SPEC),
         "all_pass": all_pass,
-        "classification": CLASSIFICATION,
-        "promotion_allowed": PROMOTION_ALLOWED,
-        "formal_admission_allowed": FORMAL_ADMISSION_ALLOWED,
         "object_quote": packet["object_quote"],
         "claim_ceiling": packet["claim_ceiling"],
         "local_information_table": packet["local_information_table"],
@@ -138,7 +136,7 @@ def build_spec() -> dict[str, Any]:
         },
         "TOOL_MANIFEST": combine_tool_manifest(legs),
         "TOOL_INTEGRATION_DEPTH": combine_tool_depth(legs),
-        "engine_contract": {
+        "s8_engine_contract_details": {
             "mode": "all_three_full_sims",
             "lanes": list(ENGINES),
             "reads_peer_result": {engine: legs[engine]["reads_peer_result"] for engine in ENGINES},

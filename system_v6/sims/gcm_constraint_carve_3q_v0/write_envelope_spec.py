@@ -22,6 +22,7 @@ def build_spec() -> dict:
         lanes[engine] = {
             "source_path": lane["source_path"],
             "result_path": lane["result_path"],
+            "reads_peer_result": False,
             "packages_used": lane["packages_used"],
             "aligned_packages_load_bearing": lane["aligned_packages_load_bearing"],
             "package_observables": lane["package_observables"],

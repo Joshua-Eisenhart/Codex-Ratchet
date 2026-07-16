@@ -1,64 +1,62 @@
 {
-  "sim_id": "gcm_constraint_carve_2q_v0",
-  "engine": "julia",
-  "status": "success",
-  "inputs": {
-    "n_qubits": 2,
-    "hilbert_dim": 4,
-    "n_assignment_vectors": 81,
-    "n_bloch_samples": 25,
-    "weight_budget": 4,
-    "area_epsilon": 1.0e-9,
-    "probe_angles": [
-      0.0,
-      1.5707963267948966,
-      3.141592653589793,
-      4.71238898038469
-    ]
-  },
-  "witnesses": {
-    "best_constraints": [
-      0,
-      0,
-      0,
-      0
-    ],
-    "region_count": 4,
-    "active_cell_ids": [
-      1,
-      2,
-      3,
-      4
-    ],
-    "total_area": 12.566370614359172,
-    "total_area_div_4pi": 1.0,
-    "max_area_error": 8.881784197001e-16,
-    "sigma_eigenvalues": [
-      -1.9999999999999998,
-      0.0,
-      0.0,
-      1.9999999999999998
-    ],
-    "hadamard_gram_eigenvalues": [
-      0.0,
-      0.0,
-      16.0,
-      16.0
-    ],
-    "hadamard_gram_rank": 2
-  },
-  "controls": {
-    "trivial_all_zero_assignment_rejected": true,
-    "missing_orthogonal_family_rank_lt4": true
-  },
-  "classification": "scratch_diagnostic",
-  "promotion_allowed": false,
-  "formal_admission_allowed": false,
   "TOOL_INTEGRATION_DEPTH": {
     "Graphs": "load_bearing",
     "JSON/Dates/SHA": "supportive"
   },
-  "schema": "codex_ratchet.engine_leg_result.v1",
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite graph components",
+      "tried": true,
+      "used": true
+    },
+    "JSON/Dates/SHA": {
+      "reason": "supportive serialization and hashing",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs"
+  ],
+  "all_pass": true,
+  "candidate_count": 15783,
+  "classification": "scratch_diagnostic",
+  "component_count": 204,
+  "component_receipt": {
+    "component_count": 204,
+    "edge_count": 408,
+    "node_count": 544,
+    "quotient_component_count": 6
+  },
+  "density_count": 1167,
+  "embedded_1q_count": 16,
   "engine": "julia",
-  "source_path": "system_v6/sims/gcm_constraint_carve_2q_v0/gcm_constraint_carve_2q_v0_julia.jl"
+  "entangled_survivor_count": 16,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-15T08:55:39Z",
+  "kill_counts_by_constraint": {
+    "C1_finite_2q_density_carrier": 14616,
+    "C2_probe_distinguishability_xz_local_adapter_pin": 215,
+    "C3_persistence_n01_order_gap": 408
+  },
+  "mct_survivor_count": 272,
+  "package_observables": {
+    "Graphs": "SimpleGraph/add_edge!/connected_components over 2Q survivor and quotient adjacency"
+  },
+  "packages_used": [
+    "Graphs",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "quotient_class_count": 8,
+  "quotient_component_count": 6,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_constraint_carve_2q_v0/results/gcm_constraint_carve_2q_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "gcm_constraint_carve_2q_v0",
+  "source_path": "system_v6/sims/gcm_constraint_carve_2q_v0/gcm_constraint_carve_2q_v0_julia.jl",
+  "source_sha256": "d31724f92d93d1e0546daec0e19d067db220d6bf186f16b9452d17db80e91b92",
+  "survivor_count": 544
 }

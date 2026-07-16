@@ -50,6 +50,7 @@ def build_spec(packet: dict) -> dict:
             "julia": {
                 "source_path": common.rel(common.SIM_DIR / f"{common.SIM_ID}_julia.jl"),
                 "result_path": common.rel(common.JULIA_RESULT_PATH),
+                "reads_peer_result": False,
                 "packages_used": ["JSON", "SHA", "julia_gf4_stdlib"],
                 "aligned_packages_load_bearing": ["julia_gf4_stdlib"],
                 "package_observables": {
@@ -59,6 +60,7 @@ def build_spec(packet: dict) -> dict:
             "jax": {
                 "source_path": common.rel(common.SIM_DIR / f"{common.SIM_ID}_jax.py"),
                 "result_path": common.rel(common.JAX_RESULT_PATH),
+                "reads_peer_result": False,
                 "packages_used": ["jax", "jax.numpy", "sympy"],
                 "aligned_packages_load_bearing": ["sympy"],
                 "package_observables": {
@@ -68,6 +70,7 @@ def build_spec(packet: dict) -> dict:
             "pytorch": {
                 "source_path": common.rel(common.SIM_DIR / f"{common.SIM_ID}_pytorch.py"),
                 "result_path": common.rel(common.PYTORCH_RESULT_PATH),
+                "reads_peer_result": False,
                 "packages_used": ["torch", "torch.func", "sympy"],
                 "aligned_packages_load_bearing": ["sympy"],
                 "package_observables": {

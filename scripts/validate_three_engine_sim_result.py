@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 from pathlib import Path
 from typing import Any
@@ -95,6 +96,27 @@ def _tool_set(record: dict[str, Any], key: str) -> set[str]:
 
 def _non_empty_string(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip())
+
+
+def _reject_duplicate_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
+def _reject_non_finite_constant(value: str) -> None:
+    raise ValueError(f"non-finite JSON constant is not permitted: {value}")
+
+
+def _load_json_strict(path: Path) -> Any:
+    return json.loads(
+        path.read_text(encoding="utf-8"),
+        object_pairs_hook=_reject_duplicate_object,
+        parse_constant=_reject_non_finite_constant,
+    )
 
 
 def _validate_engine(name: str, record: dict[str, Any], aligned: set[str]) -> None:
@@ -242,6 +264,16 @@ def validate(
         _require(divergence.get("julia_authoritative") is True, "divergence.julia_authoritative must be true")
         _require("julia" in engine_values and "jax" in engine_values, "engine_values must include julia and jax")
         _require("max_divergence" in divergence, "divergence.max_divergence is required")
+        max_divergence = divergence.get("max_divergence")
+        _require(
+            type(max_divergence) is int
+            or (type(max_divergence) is float and math.isfinite(max_divergence)),
+            "divergence.max_divergence must be a finite number",
+        )
+        _require(
+            max_divergence >= 0,
+            "divergence.max_divergence must be nonnegative",
+        )
     except ValidationError as exc:
         errors.append(str(exc))
     if require_source_backed or strict_source_backed:
@@ -276,7 +308,9 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    payload = json.loads(args.result_json.read_text(encoding="utf-8"))
+    payload = _load_json_strict(args.result_json)
+    if not isinstance(payload, dict):
+        raise ValueError("result_json must contain a JSON object")
     errors = validate(
         payload,
         require_pytorch=args.require_pytorch,

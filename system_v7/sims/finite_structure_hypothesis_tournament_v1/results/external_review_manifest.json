@@ -1,0 +1,114 @@
+{
+  "schema_version": "finite_structure_hypothesis_tournament.external_review_manifest.v1",
+  "classification": "advisory_only",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-15T08:54:21Z",
+  "controller_schema_reviewed_after_hardening": "finite_structure_hypothesis_tournament.controller.v4",
+  "controller_sha256_after_hardening": "aab844321d9994c80e5f3b032504327544dfad33caaa0d8d12119b1bc5d14dce",
+  "reviews": [
+    {
+      "id": "fable5_default_architecture",
+      "requested_route": "fable5",
+      "live_cli_route": "default",
+      "provider_backend_reported": "claude-opus-4-8[1m]",
+      "status": "completed",
+      "verdict": "survives_as_bounded_census_only",
+      "cost_usd": 0.19946400000000003,
+      "receipt_path": "/tmp/codex_claude_bridge/20260715T071507Z-fable5-ratchet-tournament-architecture-ea646d6780a3.receipt.json",
+      "receipt_sha256": "d60d751c36c64d4a08c4ca85f9a97f7009e63a7cc65212a43ffc34f0f024a8f6"
+    },
+    {
+      "id": "fable5_default_route_smoke",
+      "requested_route": "fable5",
+      "live_cli_route": "default",
+      "provider_backend_reported": "claude-opus-4-8[1m]",
+      "status": "completed",
+      "exact_response": "fable5-default-route-ok",
+      "cost_usd": 0.052464000000000004,
+      "receipt_path": "/tmp/codex_claude_bridge/20260715T073751Z-fable5-default-route-smoke-2d53b087be67.receipt.json",
+      "receipt_sha256": "659464a02bd186fbed0309456a5c476bae533c0adfaaf9e51458768aae46329c"
+    },
+    {
+      "id": "fable5_large_final_code_audit",
+      "requested_route": "fable5",
+      "live_cli_route": "default",
+      "status": "timed_out",
+      "timeout_seconds": 240,
+      "returncode": 124,
+      "receipt_path": "/tmp/codex_claude_bridge/20260715T080001Z-fable5-final-tournament-audit-a7448c60658f.receipt.json",
+      "receipt_sha256": "f21b0f521c1cb6d4fb2186b613cf947aae70cc2a398f67e79cf27d21d813744c",
+      "preservation_note": "Informative red; no critique or green status inferred."
+    },
+    {
+      "id": "fable5_final_philosophical_audit",
+      "requested_route": "fable5",
+      "live_cli_route": "default",
+      "provider_backend_reported": "claude-opus-4-8[1m]",
+      "status": "completed",
+      "verdict": "REPAIRABLE",
+      "cost_usd": 0.171039,
+      "required_repairs": [
+        "Pre-register Gamma, the present property p, and any arm exclusion independently of the observed survivor.",
+        "Say the experiment illustrates a static non-teleological mechanism; it does not support a cosmological conclusion and is neutral on teleology."
+      ],
+      "receipt_path": "/tmp/codex_claude_bridge/20260715T083233Z-fable5-final-philosophical-audit-f2745929056e.receipt.json",
+      "receipt_sha256": "c115a7fd8125ac001bb0d28f9bf704244e3ec79bfa50edd57eebbd87108810be",
+      "output_path": "/tmp/codex_claude_bridge/20260715T083233Z-fable5-final-philosophical-audit-f2745929056e.json",
+      "output_sha256": "d94423ee274a5a4c142ca216e594fc0ad9cf0c41aaa539b834a63aa5d1fc92e6"
+    },
+    {
+      "id": "fable5_july15_pack_full_read",
+      "requested_route": "fable5",
+      "live_cli_route": "default",
+      "provider_backend_reported": "claude-opus-4-8[1m]",
+      "status": "error_max_budget_usd",
+      "requested_budget_usd": 0.35,
+      "reported_cost_usd": 0.545518,
+      "analysis_returned": false,
+      "receipt_path": "/tmp/codex_claude_bridge/20260715T085113Z-july15-pack-anti-teleology-audit-6be14c8d771a.receipt.json",
+      "receipt_sha256": "7a7b292fccd4d60bcc417f2f000576f506e4c1c24368df5c9afd46ae412c6db8",
+      "preservation_note": "Informative red. The provider CLI stopped with a max-budget error only after reporting cost above the requested budget; no critique or green status is inferred."
+    },
+    {
+      "id": "fable5_july15_anti_teleology_bounded_reroute",
+      "requested_route": "fable5",
+      "live_cli_route": "default",
+      "provider_backend_reported": "claude-opus-4-8[1m]",
+      "status": "completed",
+      "verdict": "REPAIRABLE",
+      "cost_usd": 0.133835,
+      "reviewed_source_pack_sha256": "20ee6472542485197a5693e39275a46db7ea5fd0fb23e8a55ce473de5480fa7f",
+      "advisory_finding": "Compatible futures may constitute a modal description of a present but do not cause it merely by being possible; a static fiber is not an attractor basin.",
+      "receipt_path": "/tmp/codex_claude_bridge/20260715T085334Z-july15-anti-teleology-bounded-reroute-8c8f397dc88c.receipt.json",
+      "receipt_sha256": "de7cee13d34b7d43a6d46aa1a6152d5d6ce4776c246b486aa98ffbc47dfa0970",
+      "output_path": "/tmp/codex_claude_bridge/20260715T085334Z-july15-anti-teleology-bounded-reroute-8c8f397dc88c.json",
+      "output_sha256": "10a41e5d262b8451dc9eb5765d5c4be033461ae968f04e419cb6497aab9c30db"
+    },
+    {
+      "id": "sonnet_six_role_fanout",
+      "requested_model": "sonnet",
+      "resolved_model_for_completed_workers": "claude-sonnet-4-6",
+      "status": "partial_then_fully_rerouted",
+      "first_pass_counts": {"total": 6, "completed": 4, "timed_out": 2},
+      "reroute_counts": {"total": 2, "completed": 2, "timed_out": 0},
+      "first_receipt_path": "/tmp/codex_claude_child_fanout/20260715T071306Z-ratchet-tournament-design-sonnet/fanout_receipt.json",
+      "first_receipt_sha256": "e0b98267f051fd569e977355cfecb88aae5d657a4bced6606e27f477ce4e7335",
+      "reroute_receipt_path": "/tmp/codex_claude_child_fanout/20260715T071749Z-ratchet-tournament-sonnet-reroute/fanout_receipt.json",
+      "reroute_receipt_sha256": "2fa04f193573cf3e46160fcc2faef4dae12f1fe5816b3ba1bb7d8a00f873331a"
+    },
+    {
+      "id": "grok45_code_audit",
+      "requested_model": "grok-4.5",
+      "resolved_model": "grok-4.5",
+      "status": "completed",
+      "provider_verdict": "SERIOUS",
+      "http_status": 200,
+      "reviewed_controller_sha256": "b98972d15b593637378c7aa789213c5dc6689120b342373d51b4b91bf92d39f7",
+      "disposition": "All three principal findings were folded into later source and controller hardening; this review is not a review of controller v3.",
+      "receipt_path": "/tmp/codex_ratchet_grok45_tournament_audit_20260715/grok45_audit_receipt.json",
+      "receipt_sha256": "75e96080022d67ea528cae9f12e7abf1c87864bbd0d28a5501f2c935081cdcd5"
+    }
+  ],
+  "authority_note": "External model reviews are advisory. Local exact runtimes, independent reconstruction, corruption controls, tests, and Lev receipts determine execution status."
+}

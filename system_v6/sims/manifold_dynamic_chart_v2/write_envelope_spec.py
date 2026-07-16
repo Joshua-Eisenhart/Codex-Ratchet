@@ -22,6 +22,7 @@ def lane_spec(engine: str) -> dict[str, Any]:
     return {
         "source_path": result["source_path"],
         "result_path": result["result_path"],
+        "reads_peer_result": False,
         "packages_used": result["packages_used"],
         "aligned_packages_load_bearing": result["aligned_packages_load_bearing"],
         "package_observables": result["package_observables"],
@@ -81,6 +82,17 @@ def build_spec() -> dict[str, Any]:
             "PYTHONDONTWRITEBYTECODE=1 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q -p no:cacheprovider system_v6/sims/manifold_dynamic_chart_v2/tests",
         ],
     }
+    rehomed_builder_fields = {
+        key: extra_fields.pop(key)
+        for key in (
+            "classification",
+            "formal_admission_allowed",
+            "generated_at",
+            "promotion_allowed",
+            "sim_id",
+        )
+        if key in extra_fields
+    }
     return {
         "sim_id": common.SIM_ID,
         "mode": common.ENGINE_MODE,
@@ -133,6 +145,7 @@ def build_spec() -> dict[str, Any]:
             {"subtree": "axis0_experiment_v2.v1_anchor_disagreement", "hash": common.stable_sha256(packet["axis0_experiment_v2"]["v1_anchor_disagreement"])},
             {"subtree": "v0_regression", "hash": common.stable_sha256(packet["v0_regression"])},
         ],
+        **rehomed_builder_fields,
         "extra_fields": extra_fields,
     }
 

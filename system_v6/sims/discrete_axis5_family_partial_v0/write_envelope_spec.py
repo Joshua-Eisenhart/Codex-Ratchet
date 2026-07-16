@@ -22,6 +22,7 @@ def lane_spec(engine: str) -> dict[str, Any]:
     return {
         "source_path": result["source_path"],
         "result_path": result["result_path"],
+        "reads_peer_result": False,
         "packages_used": result["packages_used"],
         "aligned_packages_load_bearing": result["aligned_packages_load_bearing"],
         "package_observables": result["package_observables"],
@@ -71,6 +72,17 @@ def build_spec() -> dict[str, Any]:
             "pytorch": pytorch.get("capability_receipts", []),
         },
     }
+    rehomed_builder_fields = {
+        key: extra_fields.pop(key)
+        for key in (
+            "classification",
+            "crossover_proofs",
+            "formal_admission_allowed",
+            "promotion_allowed",
+            "sim_id",
+        )
+        if key in extra_fields
+    }
     return {
         "sim_id": common.SIM_ID,
         "mode": common.ENGINE_MODE,
@@ -115,6 +127,7 @@ def build_spec() -> dict[str, Any]:
             {"subtree": "substage_product_rows", "hash": common.stable_sha256(axis5_object["substage_product_rows"])},
             {"subtree": "controls", "hash": common.stable_sha256(axis5_object["controls"])},
         ],
+        **rehomed_builder_fields,
         "extra_fields": extra_fields,
     }
 

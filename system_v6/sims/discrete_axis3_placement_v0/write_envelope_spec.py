@@ -17,6 +17,7 @@ def lane_spec(engine: str, lane: dict) -> dict:
     return {
         "source_path": lane["source_path"],
         "result_path": lane["result_path"],
+        "reads_peer_result": False,
         "packages_used": lane["packages_used"],
         "aligned_packages_load_bearing": lane["aligned_packages_load_bearing"],
         "package_observables": lane["package_observables"],
@@ -51,6 +52,18 @@ def build_spec() -> dict:
     extra_fields = dict(axis3)
     extra_fields["all_pass"] = axis3["all_pass"] and all(load_lane(engine)["all_pass"] for engine in ["julia", "jax", "pytorch"])
     extra_fields["mode"] = common.ENGINE_MODE
+    rehomed_builder_fields = {
+        key: extra_fields.pop(key)
+        for key in (
+            "classification",
+            "crossover_proofs",
+            "formal_admission_allowed",
+            "mode",
+            "promotion_allowed",
+            "sim_id",
+        )
+        if key in extra_fields
+    }
     return {
         "sim_id": common.SIM_ID,
         "lanes": lanes,
@@ -79,6 +92,7 @@ def build_spec() -> dict:
                 "hash": common.stable_sha256(axis3["independence_rows_vs_axis0"]),
             },
         ],
+        **rehomed_builder_fields,
         "extra_fields": extra_fields,
     }
 

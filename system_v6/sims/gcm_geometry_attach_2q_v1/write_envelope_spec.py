@@ -30,6 +30,7 @@ def lane_spec(result: dict[str, Any]) -> dict[str, Any]:
     return {
         "source_path": result["source_path"],
         "result_path": result["result_path"],
+        "reads_peer_result": False,
         "packages_used": result["packages_used"],
         "aligned_packages_load_bearing": result["aligned_packages_load_bearing"],
         "package_observables": result["package_observables"],
@@ -96,6 +97,15 @@ def build_spec() -> dict[str, Any]:
         "all_pass": all_pass,
         "disallowed_claims": packet["disallowed_claims"],
     }
+    rehomed_builder_fields = {
+        key: extra_fields.pop(key)
+        for key in (
+            "classification",
+            "formal_admission_allowed",
+            "promotion_allowed",
+        )
+        if key in extra_fields
+    }
     return {
         "sim_id": common.SIM_ID,
         "lanes": {name: lane_spec(result) for name, result in engine_results.items()},
@@ -133,6 +143,7 @@ def build_spec() -> dict[str, Any]:
                 ),
             },
         ],
+        **rehomed_builder_fields,
         "extra_fields": extra_fields,
     }
 

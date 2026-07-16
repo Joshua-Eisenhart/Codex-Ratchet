@@ -23,6 +23,7 @@ def lane_spec(engine: str, source: str, packages: list[str], load_bearing: list[
     return {
         "source_path": f"system_v6/sims/{common.SIM_ID}/{source}",
         "result_path": result["result_path"],
+        "reads_peer_result": False,
         "packages_used": packages,
         "aligned_packages_load_bearing": load_bearing,
         "package_observables": observables,
@@ -79,6 +80,13 @@ def build_spec() -> dict[str, Any]:
             "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/manifold_super_sim_v0/results/manifold_super_sim_v0_envelope_results.json",
             "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q system_v6/sims/manifold_super_sim_v0/tests",
         ],
+    }
+    rehomed_builder_fields = {
+        key: extra.pop(key)
+        for key in (
+            "parent_lineage",
+        )
+        if key in extra
     }
     return {
         "sim_id": common.SIM_ID,
@@ -147,6 +155,7 @@ def build_spec() -> dict[str, Any]:
             for row in super_object["parent_lineage"]["consumed_inputs"].values()
             if row.get("sha256")
         ],
+        **rehomed_builder_fields,
         "extra_fields": extra,
     }
 

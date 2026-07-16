@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from audit_three_engine_source_claims import audit_engine
+from validate_three_engine_sim_result import validate
 
 
 def good_payload() -> dict:
@@ -127,6 +128,51 @@ def test_rejects_numpy_claim_path(tmp_path: Path) -> None:
 
     assert result.returncode == 1
     assert "control-only tools may not appear" in result.stdout
+
+
+def test_rejects_non_numeric_or_non_finite_max_divergence() -> None:
+    invalid_values = ["0.0", None, True, float("nan"), float("inf"), float("-inf")]
+    for invalid_value in invalid_values:
+        payload = good_payload()
+        payload["divergence"]["max_divergence"] = invalid_value
+
+        errors = validate(payload)
+
+        assert "divergence.max_divergence must be a finite number" in errors
+
+
+def test_rejects_negative_max_divergence() -> None:
+    payload = good_payload()
+    payload["divergence"]["max_divergence"] = -1.0
+
+    errors = validate(payload)
+
+    assert "divergence.max_divergence must be nonnegative" in errors
+
+
+def test_validator_cli_rejects_duplicate_json_keys(tmp_path: Path) -> None:
+    encoded = json.dumps(good_payload())
+    path = tmp_path / "duplicate.json"
+    path.write_text('{"schema_version":"tampered",' + encoded[1:], encoding="utf-8")
+
+    result = run_validator(path)
+
+    assert result.returncode != 0
+    assert "duplicate JSON key: schema_version" in result.stderr
+
+
+def test_validator_cli_rejects_non_finite_json_constants(tmp_path: Path) -> None:
+    encoded = json.dumps(good_payload())
+    marker = '"max_divergence": 0.0'
+    assert marker in encoded
+    for index, constant in enumerate(("NaN", "Infinity", "-Infinity")):
+        path = tmp_path / f"non_finite_{index}.json"
+        path.write_text(encoded.replace(marker, f'"max_divergence": {constant}'), encoding="utf-8")
+
+        result = run_validator(path)
+
+        assert result.returncode != 0
+        assert f"non-finite JSON constant is not permitted: {constant}" in result.stderr
 
 
 def finite_field_payload(jax_source: Path, julia_source: Path) -> dict:

@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import gzip
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -23,13 +25,28 @@ from build_three_engine_envelope import build_envelope  # noqa: E402
 
 
 def load(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(read_bytes(path).decode("utf-8"))
+
+
+def read_bytes(path: Path) -> bytes:
+    if path.is_file():
+        return path.read_bytes()
+    compressed = Path(f"{path}.gz")
+    if compressed.is_file():
+        with gzip.open(compressed, "rb") as handle:
+            return handle.read()
+    raise FileNotFoundError(path)
+
+
+def logical_sha256(path: Path) -> str:
+    return hashlib.sha256(read_bytes(path)).hexdigest()
 
 
 def lane_spec(result: dict[str, Any]) -> dict[str, Any]:
     return {
         "source_path": result["source_path"],
         "result_path": result["result_path"],
+        "reads_peer_result": result["reads_peer_result"],
         "packages_used": result["packages_used"],
         "aligned_packages_load_bearing": result["aligned_packages_load_bearing"],
         "package_observables": result["package_observables"],
@@ -121,6 +138,15 @@ def build_spec() -> dict[str, Any]:
         "all_pass": all_pass,
         "disallowed_claims": packet["disallowed_claims"],
     }
+    rehomed_builder_fields = {
+        key: extra_fields.pop(key)
+        for key in (
+            "classification",
+            "formal_admission_allowed",
+            "promotion_allowed",
+        )
+        if key in extra_fields
+    }
     return {
         "sim_id": common.SIM_ID,
         "lanes": {name: lane_spec(result) for name, result in engine_results.items()},
@@ -147,7 +173,7 @@ def build_spec() -> dict[str, Any]:
         },
         "expected_lanes": ["julia", "jax", "pytorch"],
         "stability_pairs": [
-            {"subtree": common.rel(common.RESULT_PATH), "hash": common.sha256_file(common.RESULT_PATH)},
+            {"subtree": common.rel(common.RESULT_PATH), "hash": logical_sha256(common.RESULT_PATH)},
             {
                 "subtree": "M_C_2Q_survivor_quotient_cross_rung_payload",
                 "hash": common.stable_sha256(
@@ -160,6 +186,7 @@ def build_spec() -> dict[str, Any]:
                 ),
             },
         ],
+        **rehomed_builder_fields,
         "extra_fields": extra_fields,
     }
 

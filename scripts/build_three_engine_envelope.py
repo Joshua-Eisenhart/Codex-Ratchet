@@ -10,6 +10,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
@@ -18,6 +19,25 @@ from typing import Any, Iterable, Mapping, Sequence
 SCHEMA_VERSION = "three_engine_sim_result_v1"
 DEFAULT_EXPECTED_LANES = ("julia", "jax", "pytorch")
 DEFAULT_CLASSIFICATION = "scratch_diagnostic"
+BUILDER_OWNED_FIELDS = frozenset(
+    {
+        "schema_version",
+        "sim_id",
+        "object_id",
+        "generated_at",
+        "mode",
+        "classification",
+        "promotion_allowed",
+        "formal_admission_allowed",
+        "claim_path_tools",
+        "engine_contract",
+        "engines",
+        "crossover_proofs",
+        "divergence",
+        "parent_lineage",
+        "stability_pairs",
+    }
+)
 
 # Per-lane evidence kinds for the engine-independence annotation.
 # See system_v6/receipts/engine_consensus_relabel_20260613.md for the motivation:
@@ -61,6 +81,27 @@ def _path_for_hash(path: str | Path, repo_root: Path) -> Path:
 
 def _non_empty_string(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip())
+
+
+def _reject_duplicate_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
+def _reject_non_finite_constant(value: str) -> None:
+    raise ValueError(f"non-finite JSON constant is not permitted: {value}")
+
+
+def _load_json_strict(path: Path) -> Any:
+    return json.loads(
+        path.read_text(encoding="utf-8"),
+        object_pairs_hook=_reject_duplicate_object,
+        parse_constant=_reject_non_finite_constant,
+    )
 
 
 def _normalize_stability_pairs(stability_pairs: Iterable[Any] | None) -> list[dict[str, str]]:
@@ -123,6 +164,8 @@ def _build_lane_record(
 ) -> dict[str, Any]:
     if not isinstance(lane, Mapping):
         raise ValueError(f"lanes.{name} must be an object")
+    if lane.get("reads_peer_result") is not False:
+        raise ValueError(f"lanes.{name}.reads_peer_result must be explicitly false")
     source_path = lane.get("source_path")
     result_path = lane.get("result_path")
     if not _non_empty_string(source_path):
@@ -171,14 +214,35 @@ def _validate_omissions(
     expected_lanes: Sequence[str],
     omitted_lanes: Mapping[str, str] | None,
 ) -> dict[str, str]:
-    omitted = {str(key): str(value) for key, value in (omitted_lanes or {}).items()}
-    for lane_name in expected_lanes:
-        if lane_name in lanes:
-            continue
+    expected = [str(lane_name) for lane_name in expected_lanes]
+    if len(set(expected)) != len(expected):
+        raise ValueError("expected_lanes must not contain duplicates")
+    present = {str(lane_name) for lane_name in lanes}
+    absent = set(expected) - present
+
+    raw_omitted = {} if omitted_lanes is None else omitted_lanes
+    if not isinstance(raw_omitted, Mapping):
+        raise ValueError("omitted_lanes must be an object")
+    omitted = {str(key): value for key, value in raw_omitted.items()}
+    for lane_name in sorted(absent):
         omission = omitted.get(lane_name)
         if not _non_empty_string(omission):
             raise ValueError(f"omitted_lanes.{lane_name} requires honest omission text")
-    return omitted
+
+    omitted_names = set(omitted)
+    if omitted_names != absent:
+        contradictory = sorted(omitted_names & present)
+        unexpected = sorted(omitted_names - absent - present)
+        details: list[str] = []
+        if contradictory:
+            details.append(f"contradicts present lanes {contradictory}")
+        if unexpected:
+            details.append(f"contains non-absent lanes {unexpected}")
+        raise ValueError(
+            "omitted_lanes keys must exactly match absent expected lanes"
+            + (f"; {'; '.join(details)}" if details else "")
+        )
+    return {key: str(value) for key, value in omitted.items()}
 
 
 def _normalize_lane_evidence(
@@ -279,6 +343,18 @@ def _guard_extra_fields_independence(
         )
 
 
+def _guard_extra_field_collisions(extra_fields: Mapping[str, Any] | None) -> None:
+    if extra_fields is None:
+        return
+    if not isinstance(extra_fields, Mapping):
+        raise ValueError("extra_fields must be an object")
+    collisions = sorted(BUILDER_OWNED_FIELDS & {str(key) for key in extra_fields})
+    if collisions:
+        raise ValueError(
+            "extra_fields may not override builder-owned fields: " + ", ".join(collisions)
+        )
+
+
 def build_envelope(
     *,
     sim_id: str,
@@ -318,6 +394,7 @@ def build_envelope(
         raise ValueError("mode is required")
     if not isinstance(lanes, Mapping) or not lanes:
         raise ValueError("lanes must be a non-empty object")
+    _guard_extra_field_collisions(extra_fields)
     repo_root = _repo_root()
     omissions = _validate_omissions(lanes, expected_lanes=expected_lanes, omitted_lanes=omitted_lanes)
 
@@ -338,8 +415,15 @@ def build_envelope(
 
     normalized_lane_evidence = _normalize_lane_evidence(lane_evidence, lane_names)
     divergence_record = copy.deepcopy(dict(divergence))
+    max_divergence = divergence_record.get("max_divergence")
+    if (
+        type(max_divergence) not in (int, float)
+        or not math.isfinite(max_divergence)
+        or max_divergence < 0
+    ):
+        raise ValueError("divergence.max_divergence must be a finite nonnegative number")
     independence_annotation = _engine_independence_annotation(
-        normalized_lane_evidence, divergence_record.get("max_divergence")
+        normalized_lane_evidence, max_divergence
     )
     divergence_record["lane_evidence"] = normalized_lane_evidence
     divergence_record["engine_independence"] = independence_annotation
@@ -371,8 +455,6 @@ def build_envelope(
     }
     if extra_fields:
         for key, value in extra_fields.items():
-            if key == "schema_version":
-                continue
             envelope[str(key)] = copy.deepcopy(value)
     return envelope
 
@@ -383,7 +465,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("spec_json", type=Path, help="JSON object containing build_envelope keyword arguments")
     args = parser.parse_args()
-    spec = json.loads(args.spec_json.read_text(encoding="utf-8"))
+    spec = _load_json_strict(args.spec_json)
+    if not isinstance(spec, dict):
+        raise ValueError("spec_json must contain a JSON object")
     print(json.dumps(build_envelope(**spec), indent=2, sort_keys=True))
     return 0
 

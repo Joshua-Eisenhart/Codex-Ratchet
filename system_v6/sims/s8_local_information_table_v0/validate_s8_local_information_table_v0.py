@@ -88,6 +88,18 @@ def validate_packet(phase: str) -> dict[str, Any]:
         require(errors, envelope.get("no_builder_audit_verdict") is True, "envelope no_builder_audit_verdict gate missing")
         require(errors, envelope.get("builder_gates", {}).get("no_builder_audit_verdict") is True, "builder gate missing")
         require(errors, set(envelope.get("engines", {})) == {"julia", "jax", "pytorch"}, "envelope must have all three engines")
+        engine_contract = envelope.get("engine_contract", {})
+        require(errors, engine_contract.get("mode") == "all_three_full_sims", "standard engine contract mode mismatch")
+        require(errors, engine_contract.get("lanes") == ["jax", "julia", "pytorch"], "standard engine contract lanes mismatch")
+        require(errors, engine_contract.get("omitted_lanes") == {}, "standard engine contract must have no omissions")
+        s8_contract = envelope.get("s8_engine_contract_details", {})
+        require(errors, s8_contract.get("mode") == "all_three_full_sims", "S8 contract detail mode mismatch")
+        require(errors, s8_contract.get("lanes") == ["julia", "jax", "pytorch"], "S8 declared lane order mismatch")
+        require(
+            errors,
+            s8_contract.get("reads_peer_result") == {"julia": False, "jax": False, "pytorch": False},
+            "S8 peer-read declarations mismatch",
+        )
         require(errors, envelope.get("table_hash") == stable_hash(packet["local_information_table"]), "table hash drift")
         require(errors, envelope.get("controls_hash") == stable_hash(packet["controls"]), "controls hash drift")
     else:

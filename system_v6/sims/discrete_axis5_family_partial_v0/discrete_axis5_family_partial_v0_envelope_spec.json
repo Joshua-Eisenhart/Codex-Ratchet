@@ -20,12 +20,6 @@
       "ran": true,
       "verdict": "unsat"
     },
-    "julia_z3": {
-      "claim": "Julia Z3 family-count erasure agrees with Python SMT rows",
-      "load_bearing": true,
-      "ran": true,
-      "verdict": "unsat"
-    },
     "z3": {
       "asserted_precomputed_boolean": false,
       "bound_values": {
@@ -4593,7 +4587,6 @@
       "state_count": 33
     },
     "claim_ceiling": "axis_readout_candidate_only",
-    "classification": "scratch_diagnostic",
     "controls": {
       "commuting_controls": {
         "Te_Fi_commutator_neutral": true,
@@ -4629,32 +4622,6 @@
         "reason": "near-identity weak dephasing is deliberately flagged boundary under witness tolerance"
       }
     },
-    "crossover_proofs": {
-      "cvc5": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "dephasing_gradient_side": 66,
-          "unitary_hamiltonian_side": 66
-        },
-        "claim": "independent cvc5 binding of computed family row counts with erased SAT control",
-        "erased_flip_verdict": "sat",
-        "load_bearing": true,
-        "ran": true,
-        "verdict": "unsat"
-      },
-      "z3": {
-        "asserted_precomputed_boolean": false,
-        "bound_values": {
-          "dephasing_gradient_side": 66,
-          "unitary_hamiltonian_side": 66
-        },
-        "claim": "bind computed family row counts; asserting either side erased is UNSAT while erased binding is SAT",
-        "erased_flip_verdict": "sat",
-        "load_bearing": true,
-        "ran": true,
-        "verdict": "unsat"
-      }
-    },
     "disallowed_claims": [
       "axis admission",
       "Axis-5 completion",
@@ -4670,7 +4637,6 @@
       "dephasing_gradient_side": 66,
       "unitary_hamiltonian_side": 66
     },
-    "formal_admission_allowed": false,
     "independence_rows_vs_axes0_6": [
       {
         "identity_leak_excluded": true,
@@ -4858,10 +4824,8 @@
       }
     },
     "partial_scope": "axis5_operator_family_half_only",
-    "promotion_allowed": false,
     "result_path": "system_v6/sims/discrete_axis5_family_partial_v0/results/discrete_axis5_family_partial_v0_envelope_results.json",
     "schema": "discrete_axis5_family_partial_v0.envelope.v1",
-    "sim_id": "discrete_axis5_family_partial_v0",
     "smt_rows": {
       "cvc5": {
         "asserted_precomputed_boolean": false,
@@ -4948,7 +4912,7 @@
       }
     },
     "source_path": "system_v6/sims/discrete_axis5_family_partial_v0/write_envelope_spec.py",
-    "source_sha256": "ef2c8f9d04ffbe1833ebeb472ef852bea82704d29daceefba49d4087f6785a59",
+    "source_sha256": "eb0b07b4d20050f486c973c8c11e78a0ceeffc25c660d3b6304c8b5d245f7c6a",
     "stability": {
       "boundary_rows": 0,
       "note": "family is a source-locked operator-row readout; carrier dynamics do not promote the substage product",
@@ -5062,6 +5026,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis5_family_partial_v0/results/discrete_axis5_family_partial_v0_jax_results.json",
       "source_path": "system_v6/sims/discrete_axis5_family_partial_v0/discrete_axis5_family_partial_v0_jax.py",
@@ -5106,6 +5071,7 @@
         "SHA",
         "Z3"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis5_family_partial_v0/results/discrete_axis5_family_partial_v0_julia_results.json",
       "source_path": "system_v6/sims/discrete_axis5_family_partial_v0/discrete_axis5_family_partial_v0_julia.jl",
@@ -5157,6 +5123,7 @@
         "z3",
         "cvc5"
       ],
+      "reads_peer_result": false,
       "result_all_pass": true,
       "result_path": "system_v6/sims/discrete_axis5_family_partial_v0/results/discrete_axis5_family_partial_v0_pytorch_results.json",
       "source_path": "system_v6/sims/discrete_axis5_family_partial_v0/discrete_axis5_family_partial_v0_pytorch.py",

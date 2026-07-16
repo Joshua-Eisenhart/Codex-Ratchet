@@ -1,0 +1,380 @@
+{
+  "schema_version": "finite_structure_hypothesis_tournament.v1",
+  "spec_status": "frozen_before_implementation",
+  "frozen_local_date": "2026-07-14",
+  "classification": "scratch_diagnostic",
+  "sim_execution_kind": "classical",
+  "promotion_candidate": false,
+  "formal_admission_candidate": false,
+  "primary_claim": "Within the frozen finite grammar and bounds, independently enumerate typed structure candidates up to isomorphism, evaluate separately declared viability predicates and presumption preorders, quotient mutual preorder equivalence before reporting each plural MSS frontier, compare separately typed distinction partitions, and verify fixed-carrier internal append and external-gate controls. The run does not select an ontological root or establish Ratchet, basin, QIT, cosmological, or physics claims.",
+  "execution_bounds": {
+    "exhaustive_carrier_sizes": [1, 2, 3],
+    "named_boundary_carrier_sizes": [4],
+    "binary_relation_count_by_exhaustive_size": {
+      "1": 2,
+      "2": 16,
+      "3": 512
+    },
+    "internal_path_horizon": 3,
+    "ratchet_epochs_run": 0,
+    "search_steps_run": 0,
+    "random_seeds": [],
+    "stop_rule": "finish every declared finite candidate, arm, partition, solver query, replay, and corruption control exactly once"
+  },
+  "engine_mode": {
+    "name": "julia_canon_jax_workhorse_smt_crossover",
+    "julia": "exact candidate generation, isomorphism canonicalization, automorphism orbits, Graphs.jl SCC viability, exact rational kernel readouts, and result emission",
+    "jax": "independent candidate generation from this spec, x64 batched permutation tests, partition and frontier recomputation",
+    "z3": "independent finite encoding of fixed-carrier append-chain subgroup, strictness, and replacement witnesses",
+    "cvc5": "separate finite encoding of the same bounded witness obligations",
+    "pytorch": "not_scoped_by_mode: no learning, autograd, or graph-network claim; inclusion would be decorative",
+    "lev": "execution and zero-execution verification only; no scientific semantics",
+    "cross_runtime_rule": "Each engine constructs candidates and permutations from spec.json rather than consuming another engine result. Shared spec semantics are expected; shared generated manifests are forbidden before comparison."
+  },
+  "clock_separation": {
+    "candidate_internal": {
+      "index": "t",
+      "state": "x_t in the carrier of one transition or kernel candidate",
+      "installed_for": ["transition_relation", "markov_kernel"],
+      "not_installed_for": ["empty_signature", "static_relation"]
+    },
+    "frozen_search": {
+      "index": "s",
+      "state": "candidate-registry search state",
+      "status": "not_installed_in_v1",
+      "consequence": "no search recurrence, search attractor, or search-gradient claim"
+    },
+    "ratchet_context": {
+      "index": "r",
+      "state": "append-only context and receipt ledger",
+      "status": "not_run_in_v1",
+      "consequence": "no epoch recurrence, Purgatory reoffer, or Ratchet-tooth claim"
+    }
+  },
+  "candidate_grammar": {
+    "root_presentations": [
+      {
+        "id": "U_n",
+        "semantic_type": "empty_signature",
+        "data": "carrier X_n with no nonlogical symbol",
+        "internal_dynamics": false
+      },
+      {
+        "id": "J_n",
+        "semantic_type": "static_relation",
+        "data": "R_top = X_n x X_n",
+        "internal_dynamics": false
+      },
+      {
+        "id": "C_n",
+        "semantic_type": "transition_relation",
+        "data": "c_top(x) = X_n, represented by the same support matrix as J_n",
+        "internal_dynamics": true,
+        "scheduler": "nondeterministic support only; no path-selection scheduler installed"
+      },
+      {
+        "id": "K0_n",
+        "semantic_type": "markov_kernel",
+        "data": "K(y|x) = 1/n exactly",
+        "internal_dynamics": true
+      }
+    ],
+    "exhaustive_families": [
+      {
+        "id": "all_static_binary_relations",
+        "semantic_type": "static_relation",
+        "sizes": [1, 2, 3],
+        "labelled_count": "2^(n^2)",
+        "deduplication": "lexicographically minimal adjacency bitstring over every carrier permutation"
+      },
+      {
+        "id": "all_binary_transition_supports",
+        "semantic_type": "transition_relation",
+        "sizes": [1, 2, 3],
+        "labelled_count": "2^(n^2)",
+        "deduplication": "lexicographically minimal adjacency bitstring over every carrier permutation"
+      }
+    ],
+    "named_kernel_family": [
+      {
+        "id": "K0_n",
+        "definition": "uniform independent kernel"
+      },
+      {
+        "id": "Klazy_n",
+        "definition": "for n>1, probability 1/2 on y=x and 1/(2(n-1)) otherwise; K0_1 at n=1"
+      },
+      {
+        "id": "Kbiased_n",
+        "definition": "source-independent row with exact destination weights 2(y+1)/(n(n+1))"
+      },
+      {
+        "id": "Kidentity_n",
+        "definition": "probability 1 on y=x"
+      }
+    ],
+    "named_relation_controls_at_n4": [
+      "empty relation",
+      "universal relation",
+      "identity loops",
+      "directed four-cycle",
+      "terminal path 0->1->2->3 with 3->3",
+      "universal relation with named constant c0=0",
+      "universal relation with named constants c0=0 and c1=1"
+    ],
+    "proposal_generator": "deterministic exhaustive enumeration for declared exhaustive families plus exact named construction for boundary controls",
+    "proposal_randomness": "none",
+    "coverage_claim": "complete only for the declared labelled relation families through n=3 and the named kernel and n=4 controls"
+  },
+  "typed_maps": [
+    {
+      "id": "relation_successor_encoding",
+      "from": "static_relation",
+      "to": "transition_support_data",
+      "definition": "c_R(x)={y:(x,y) in R}",
+      "status": "lossless data encoding but semantic type changes",
+      "required_control": "J_n and C_n support matrices and label-blind support paths agree; this is one encoding check, not independent evidence"
+    },
+    {
+      "id": "kernel_support_forgetting",
+      "from": "markov_kernel",
+      "to": "transition_support_data",
+      "definition": "R_K(x,y) iff K(y|x)>0",
+      "status": "lossy forgetting map"
+    },
+    {
+      "id": "structure_forgetting",
+      "from": "any structured candidate",
+      "to": "empty_signature",
+      "definition": "forget every nonlogical symbol while retaining carrier size",
+      "status": "lossy forgetting map; never equates different carrier sizes"
+    }
+  ],
+  "presumption_preorders": [
+    {
+      "id": "signature_commitment",
+      "domain": "all registered candidates at fixed n",
+      "weakness_key": ["has_relation_symbol", "has_transition_semantics", "has_probability_semantics", "named_constant_count"],
+      "weak_or_equal": "componentwise less than or equal",
+      "orientation": "fewer installed typed primitives is weaker",
+      "warning": "logical axiom strength is not inferred from this structural key"
+    },
+    {
+      "id": "support_freedom",
+      "domain": "candidates with a declared static relation, transition support, or kernel support at fixed n",
+      "weak_or_equal": "A is weaker than or equal to B when support(A) contains support(B)",
+      "orientation": "more permitted ordered pairs is less restrictive",
+      "quotient_effect": "J_n, C_n, and K0_n are mutually equivalent under this deliberately lossy support view"
+    },
+    {
+      "id": "automorphism_freedom",
+      "domain": "all registered candidates at fixed n",
+      "weak_or_equal": "A is weaker than or equal to B when Aut(A) contains Aut(B) as enumerated permutations",
+      "orientation": "more relabeling freedom is structurally less committal",
+      "warning": "U_n, J_n, C_n, K0_n, and other controls can tie; symmetry alone does not imply white noise or variation"
+    },
+    {
+      "id": "stochastic_neutrality",
+      "domain": "markov_kernel only",
+      "weakness_key": ["exact source-dependence distance", "exact destination-bias distance from uniform"],
+      "weak_or_equal": "componentwise less than or equal",
+      "orientation": "less source memory and less destination preference is more neutral",
+      "warning": "this is an installed stochastic criterion, not a universal simplicity order"
+    }
+  ],
+  "viability_predicates": [
+    {
+      "id": "V_registered",
+      "domain": "all registered candidates",
+      "definition": "true",
+      "premises": ["candidate is in the frozen registry"]
+    },
+    {
+      "id": "V_serial",
+      "domain": ["transition_relation", "markov_kernel"],
+      "definition": "every state has at least one positive-support successor",
+      "premises": ["transition semantics", "support observation"]
+    },
+    {
+      "id": "V_persistent_support",
+      "domain": ["transition_relation", "markov_kernel"],
+      "definition": "every state belongs to a directed cycle in the positive-support graph",
+      "premises": ["transition semantics", "positive-support graph", "cycle persistence criterion"]
+    },
+    {
+      "id": "V_branching",
+      "domain": ["transition_relation", "markov_kernel"],
+      "definition": "n>1 and every state has at least two positive-support successors",
+      "premises": ["transition semantics", "support observation", "branch count as installed variation criterion"]
+    },
+    {
+      "id": "V_exploratory_support",
+      "domain": ["transition_relation", "markov_kernel"],
+      "definition": "V_persistent_support and V_branching",
+      "premises": ["all premises of both component predicates"],
+      "warning": "permitted branching is not an executed exploration scheduler"
+    },
+    {
+      "id": "V_unbiased_stochastic",
+      "domain": ["markov_kernel"],
+      "definition": "all rows are identical and every exact entry equals 1/n",
+      "premises": ["probability semantics", "source-independence criterion", "destination-permutation neutrality criterion"]
+    }
+  ],
+  "mss_arms": [
+    {
+      "id": "signature_registered",
+      "preorder": "signature_commitment",
+      "viability": "V_registered"
+    },
+    {
+      "id": "symmetry_registered",
+      "preorder": "automorphism_freedom",
+      "viability": "V_registered"
+    },
+    {
+      "id": "support_exploratory",
+      "preorder": "support_freedom",
+      "viability": "V_exploratory_support"
+    },
+    {
+      "id": "symmetry_persistent",
+      "preorder": "automorphism_freedom",
+      "viability": "V_persistent_support"
+    },
+    {
+      "id": "stochastic_unbiased",
+      "preorder": "stochastic_neutrality",
+      "viability": "V_unbiased_stochastic"
+    }
+  ],
+  "mss_rule": {
+    "equivalence": "A approximately_i B iff A weak_or_equal_i B and B weak_or_equal_i A",
+    "strict": "A strictly_weaker_i B iff A weak_or_equal_i B and not B weak_or_equal_i A",
+    "frontier": "the equivalence classes of applicable viable candidates for which no applicable viable candidate is strictly weaker",
+    "empty_result": "NO_SURVIVOR",
+    "singleton_result": "allowed but scoped to the arm; never an ontological winner",
+    "plural_result": "retain every incomparable class without a scalar tie-break",
+    "cross_arm_policy": "report sensitivity; do not rank or MSS-select the constitutions themselves"
+  },
+  "distinction_relations": [
+    {
+      "id": "automorphism_orbits",
+      "domain": "all candidates",
+      "definition": "states share a class iff some enumerated automorphism maps one to the other"
+    },
+    {
+      "id": "strong_bisimulation",
+      "domain": "transition_relation only",
+      "definition": "greatest unlabelled strong bisimulation over the declared transition support"
+    },
+    {
+      "id": "local_probe_equivalence",
+      "domain": ["static_relation", "transition_relation", "markov_kernel support"],
+      "definition": "equality of the frozen label-blind local fingerprint: self-loop, in-degree, out-degree, sorted successor out-degrees, and sorted predecessor in-degrees",
+      "parameter_policy": "no named state parameter and no raw state label"
+    },
+    {
+      "id": "kernel_row_equivalence",
+      "domain": "markov_kernel only",
+      "definition": "exact equality of rational transition rows"
+    }
+  ],
+  "distinction_comparison": {
+    "outputs": ["partition per applicable relation", "pairwise equality", "pairwise refinement", "witness pair for every disagreement"],
+    "nonconvergence_policy": "disagreement is retained as sensitivity and never merged post hoc",
+    "tautology_policy": "agreement forced by a homogeneous candidate such as C_n or K0_n is labelled by_construction, not earned convergence"
+  },
+  "fixed_carrier_internal_append_chain": {
+    "carrier_size": 4,
+    "steps": [
+      {"id": "A0", "structure": "empty signature on X_4", "expected_aut_order": 24},
+      {"id": "A1", "structure": "A0 plus named universal relation R", "expected_aut_order": 24},
+      {"id": "A2", "structure": "A1 plus named constant c0=0", "expected_aut_order": 6},
+      {"id": "A3", "structure": "A2 plus distinct named constant c1=1", "expected_aut_order": 2}
+    ],
+    "required_property": "old symbols and interpretations are unchanged, so Aut(A_(k+1)) is a subset of Aut(A_k) as literal permutation sets",
+    "strictness_expectation": "A0 to A1 is equality; A1 to A2 and A2 to A3 are strict",
+    "replacement_control": "B2 replaces c0=0 with c0=1 instead of appending; Aut(B2) is not a subset of Aut(A2)",
+    "carrier_growth_refusal": "no raw subgroup comparison is made between different carrier sizes"
+  },
+  "external_constraint_controls": {
+    "candidate_set_chain_at_n3": [
+      {"gate": "none", "expected_static_relation_models": 512},
+      {"gate": "reflexive", "expected_static_relation_models": 64},
+      {"gate": "reflexive_and_symmetric", "expected_static_relation_models": 8},
+      {"gate": "universal", "expected_static_relation_models": 1}
+    ],
+    "required_property": "the admitted candidate set shrinks monotonically, while each surviving candidate's internal structure and automorphism set remain byte-identical",
+    "forbidden_inference": "external filtering is not within-candidate symmetry breaking"
+  },
+  "entropy_capacity_readouts": {
+    "K0_fixed_n_state_entropy_change": "exactly zero",
+    "K0_one_step_conditional_entropy": "log2(n)",
+    "K0_path_entropy_at_horizon_H": "H*log2(n)",
+    "C_support_path_capacity_at_horizon_H": "H*log2(n)",
+    "cross_size_total_capacity_change": "log2(n+1)-log2(n), reported only with the explicit inclusion X_n -> X_(n+1)",
+    "uniform_inclusion_total_variation": "1/(n+1)",
+    "external_model_set_compression": "log2(|M_after|)-log2(|M_before|), nonpositive",
+    "causal_status": "all are readouts; none is a drive because v1 installs no search adjacency, mobility rule, acceptance policy, or coupling"
+  },
+  "solver_obligations": [
+    {
+      "id": "append_subgroup",
+      "query": "exists a permutation in Aut(A_(k+1)) but not Aut(A_k)",
+      "expected": "unsat for every adjacent append step"
+    },
+    {
+      "id": "append_strictness",
+      "query": "exists a permutation in Aut(A_k) but not Aut(A_(k+1))",
+      "expected": ["unsat for A0/A1", "sat for A1/A2", "sat for A2/A3"]
+    },
+    {
+      "id": "replacement_nonmonotone",
+      "query": "exists a permutation in Aut(B2) but not Aut(A2)",
+      "expected": "sat"
+    }
+  ],
+  "negative_controls": [
+    "independent carrier relabeling preserves isomorphism class, viability status, partition shape, and frontier equivalence class",
+    "n=0 refuses K0 construction and n=1 reports zero state entropy and no V_branching pass",
+    "J_n and C_n support encodings agree but remain different semantic presentations outside an explicit forgetting preorder",
+    "K0_n and Klazy_n have full support and full simultaneous relabeling symmetry but different source memory and conditional entropy",
+    "fixed-n K0 state entropy change is exactly zero",
+    "cross-size uniform inclusion reports nonzero total variation rather than exact retention",
+    "named-constant replacement fails append-only reduct equality and subgroup monotonicity",
+    "external gates shrink candidate sets without changing survivor automorphism sets",
+    "every SAT witness is replayed by direct permutation substitution outside both solvers",
+    "every solver unknown, timeout, disagreement, or replay failure forces the controller red",
+    "mutating one engine metric or source hash forces the controller red",
+    "a zero-execution Lev receipt is rejected",
+    "QIT, Axis, cosmology, physics, basin, and engine-match tokens are absent from generation, viability, preorder, and stopping logic"
+  ],
+  "required_result_fields": [
+    "schema_version",
+    "all_pass",
+    "classification",
+    "claim_ceiling",
+    "command",
+    "cwd",
+    "runner_identity",
+    "runtime",
+    "source_sha256",
+    "spec_sha256",
+    "candidate_counts",
+    "tool_receipts",
+    "controls",
+    "blocked_consumers"
+  ],
+  "claim_ceiling": "A bounded classical finite-structure tournament and invariant census for the exact declared grammar and sizes only. Green receipts may establish local execution, exhaustive coverage within the declared relation families, exact fixed-carrier invariants, arm-specific MSS frontiers, solver witness replay, and Julia/JAX agreement. They do not establish an anti-thing, ontological root, derived distinguishability, positive drive, search dynamics, Ratchet tooth, Purgatory process, recurrence, attractor basin, QIT engine, Axis, cosmological conclusion, physics, theorem beyond the bounds, or formal admission.",
+  "blocked_consumers": [
+    "Ratchet root or process-spec replacement",
+    "anti-thing or least-positive-possibility selection",
+    "claim that distinguishability was derived from nothing",
+    "search or outer-context recurrence",
+    "attractor or basin language",
+    "QIT engine or two-engine comparison",
+    "Axis, ontology, cosmology, physics, life, or consciousness",
+    "formal proof or canon admission"
+  ]
+}

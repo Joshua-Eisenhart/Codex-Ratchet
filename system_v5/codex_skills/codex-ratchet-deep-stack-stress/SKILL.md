@@ -97,10 +97,14 @@ Use the canonical Python:
 
     /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3
 
-The repo-held runner and validator are:
+Resolve the current Codex-Ratchet checkout first. The authoritative runner and
+validator are inside that checkout at:
 
-    scripts/run_deep_stack_stress.py
-    scripts/validate_deep_stack_receipt.py
+    system_v5/codex_skills/codex-ratchet-deep-stack-stress/scripts/run_deep_stack_stress.py
+    system_v5/codex_skills/codex-ratchet-deep-stack-stress/scripts/validate_deep_stack_receipt.py
+
+Do not execute the home-installed script projection as though the skill home
+were a repo root; execute and hash-bind the files in the selected checkout.
 
 Read each script's current help before constructing a run. The runner command,
 registry hashes, runtime identity, case IDs, outputs, and exit status must be

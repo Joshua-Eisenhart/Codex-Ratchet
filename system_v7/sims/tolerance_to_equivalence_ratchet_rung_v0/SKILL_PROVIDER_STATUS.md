@@ -5,13 +5,28 @@ only and is structurally forbidden from opening a Ratchet gate.
 
 ## Engine skills
 
-The repo-held JAX, Julia, PyTorch, three-engine, and sim-stack skill bodies
-match their installed Codex copies. The only observed difference is the
-expected source-family preamble: installed copy versus repo-held source. The
-environment-coordination copy is byte-identical.
+The code-only ten-skill audit is at
+`system_v5/ops/tooling/v8_skill_surface_audit_20260715/`. Its current validator
+is green and all seven negative mutations are rejected.
 
-This does not prove every installed skill behavior. The finite code/runtime
-roster and its receipts remain the authority for sim integration.
+- Repo-held sources: 10/10; active Codex copies: 10/10; Agents copies: 1/10.
+- Exact repo/Codex bodies: sim-audit spine, deep-stack stress, environment
+  coordination, and tool-status auditor.
+- Narrow source-family-preamble parity: JAX, Julia, PyTorch, three-engine, and
+  sim-stack maintenance.
+- Remaining operational-body drift: Claude bridge only.
+- Implementation levels: seven guidance-only, one validator-backed, one
+  runner-and-validator, and one tested candidate.
+- Nineteen nested routes are source-hash and line bound.
+
+Two bounded live repairs were made: sim-audit-spine now has a repo source and
+resolves the active checkout instead of hardcoding the dirty owner checkout;
+deep-stack stress now uses the same adjacency-witness language and checkout
+runner path in repo and active Codex copies.
+
+This is not an all-skills-updated claim. Agents-home mirroring is not assumed,
+repo-only validator payloads remain checkout-routed, and the finite
+code/runtime roster plus receipts remain the authority for sim integration.
 
 ## Claude bridge candidate
 

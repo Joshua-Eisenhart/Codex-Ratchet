@@ -1,0 +1,1939 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_stdlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "Standard-library path, hash, and text inspection builds the read-only skill inventory.",
+      "used": true
+    }
+  },
+  "_index": {
+    "claude-bridge": {
+      "level": "tested_candidate",
+      "state": "repo_candidate_not_installed"
+    },
+    "codex-ratchet-deep-stack-stress": {
+      "level": "runner_and_validator",
+      "state": "repo_source_present"
+    },
+    "codex-ratchet-env-agent-coordination": {
+      "level": "guidance_only",
+      "state": "repo_source_present"
+    },
+    "codex-ratchet-sim-audit-spine": {
+      "level": "guidance_only",
+      "state": "repo_source_present"
+    },
+    "codex-ratchet-tool-status-auditor": {
+      "level": "validator_backed",
+      "state": "repo_source_present"
+    },
+    "jax-sim": {
+      "level": "guidance_only",
+      "state": "repo_source_present"
+    },
+    "julia-sim": {
+      "level": "guidance_only",
+      "state": "repo_source_present"
+    },
+    "pytorch-sim": {
+      "level": "guidance_only",
+      "state": "repo_source_present"
+    },
+    "sim-stack-maintenance": {
+      "level": "guidance_only",
+      "state": "repo_source_present"
+    },
+    "three-engine-sim": {
+      "level": "guidance_only",
+      "state": "repo_source_present"
+    }
+  },
+  "_selected_sources": {
+    "claude-bridge": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/claude-bridge/SKILL.md",
+    "codex-ratchet-deep-stack-stress": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/codex-ratchet-deep-stack-stress/SKILL.md",
+    "codex-ratchet-env-agent-coordination": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/codex-ratchet-env-agent-coordination/SKILL.md",
+    "codex-ratchet-sim-audit-spine": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/codex-ratchet-sim-audit-spine/SKILL.md",
+    "codex-ratchet-tool-status-auditor": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/codex-ratchet-tool-status-auditor/SKILL.md",
+    "jax-sim": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/jax-sim/SKILL.md",
+    "julia-sim": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/julia-sim/SKILL.md",
+    "pytorch-sim": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/pytorch-sim/SKILL.md",
+    "sim-stack-maintenance": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/sim-stack-maintenance/SKILL.md",
+    "three-engine-sim": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/three-engine-sim/SKILL.md"
+  },
+  "audit_kind": "v8_skill_surface",
+  "claim_boundaries": {
+    "all_operational_body_parity_green": false,
+    "all_skills_updated": false,
+    "candidate_installed": false,
+    "formal_admission_allowed": false,
+    "llm_gate_authority": false,
+    "official_launch_allowed": false,
+    "promotion_allowed": false,
+    "provider_calls_made": false,
+    "release_allowed": false,
+    "scientific_claim_allowed": false,
+    "skill_sync_authorized": false
+  },
+  "classification": "audit",
+  "normalization_policy": {
+    "allowed_skills": [
+      "jax-sim",
+      "julia-sim",
+      "pytorch-sim",
+      "sim-stack-maintenance",
+      "three-engine-sim"
+    ],
+    "boundary": "only the exact repo-held versus active-Codex source-family preamble literals",
+    "rule_id": "source-family-preamble-v1",
+    "semantic_or_operational_drift_normalized": false
+  },
+  "observed_at_utc": "2026-07-16T00:11:20.957315Z",
+  "roots": {
+    "agents_installed": "/Users/joshuaeisenhart/.agents/skills",
+    "codex_installed": "/Users/joshuaeisenhart/.codex/skills",
+    "repo_held": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills"
+  },
+  "schema": "codex-ratchet-skill-surface-audit-v1",
+  "scope": [
+    "codex-ratchet-sim-audit-spine",
+    "codex-ratchet-deep-stack-stress",
+    "codex-ratchet-env-agent-coordination",
+    "codex-ratchet-tool-status-auditor",
+    "jax-sim",
+    "julia-sim",
+    "pytorch-sim",
+    "three-engine-sim",
+    "sim-stack-maintenance",
+    "claude-bridge"
+  ],
+  "skills": [
+    {
+      "findings": [
+        "agents_surface_absent",
+        "no_local_runner_or_validator"
+      ],
+      "locations": {
+        "agents_installed": {
+          "agents_count": 0,
+          "implementation": {
+            "gaps": [
+              "surface_missing"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.agents/skills/codex-ratchet-sim-audit-spine",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": null,
+          "source_file_count": 0,
+          "source_files": [],
+          "source_tree_sha256": null,
+          "state": "missing",
+          "surface": "agents_installed",
+          "tests_count": 0
+        },
+        "codex_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.codex/skills/codex-ratchet-sim-audit-spine",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "c3ae5830bfb57e6df45a769e5280d069d720b8c16d7e8497f1b9fa43be542e55",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "c3ae5830bfb57e6df45a769e5280d069d720b8c16d7e8497f1b9fa43be542e55"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "b9c8e19b22509a4ae26e332fb453413cb815d9c50c144841ead2cff72ab40487"
+            }
+          ],
+          "source_tree_sha256": "8a34e9c03e46a4df68dff08eef388b46da5eb6bc79f896fa88bda78f02c40933",
+          "state": "present",
+          "surface": "codex_installed",
+          "tests_count": 0
+        },
+        "repo_held": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/codex-ratchet-sim-audit-spine",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "c3ae5830bfb57e6df45a769e5280d069d720b8c16d7e8497f1b9fa43be542e55",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "c3ae5830bfb57e6df45a769e5280d069d720b8c16d7e8497f1b9fa43be542e55"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "b9c8e19b22509a4ae26e332fb453413cb815d9c50c144841ead2cff72ab40487"
+            }
+          ],
+          "source_tree_sha256": "8a34e9c03e46a4df68dff08eef388b46da5eb6bc79f896fa88bda78f02c40933",
+          "state": "present",
+          "surface": "repo_held",
+          "tests_count": 0
+        }
+      },
+      "name": "codex-ratchet-sim-audit-spine",
+      "nested_skill_routes": [],
+      "operational_body_parity": {
+        "codex_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": true,
+          "raw_equal": true,
+          "status": "exact"
+        }
+      },
+      "selected_audit_surface": "repo_held",
+      "selected_implementation_level": "guidance_only",
+      "source_payload_parity": {
+        "codex_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "exact": true,
+          "status": "exact"
+        }
+      },
+      "source_state": "repo_source_present"
+    },
+    {
+      "findings": [
+        "agents_surface_absent"
+      ],
+      "locations": {
+        "agents_installed": {
+          "agents_count": 0,
+          "implementation": {
+            "gaps": [
+              "surface_missing"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.agents/skills/codex-ratchet-deep-stack-stress",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": null,
+          "source_file_count": 0,
+          "source_files": [],
+          "source_tree_sha256": null,
+          "state": "missing",
+          "surface": "agents_installed",
+          "tests_count": 0
+        },
+        "codex_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [],
+            "level": "runner_and_validator",
+            "runner_files": [
+              "scripts/run_deep_stack_stress.py"
+            ],
+            "test_files": [],
+            "validator_files": [
+              "scripts/validate_deep_stack_receipt.py"
+            ]
+          },
+          "path": "/Users/joshuaeisenhart/.codex/skills/codex-ratchet-deep-stack-stress",
+          "references_count": 2,
+          "scripts_count": 2,
+          "skill_sha256": "999ef66db8d02432f10b2d7b538f425c62788a55f4f1b90aaf2757d551f359db",
+          "source_file_count": 6,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "999ef66db8d02432f10b2d7b538f425c62788a55f4f1b90aaf2757d551f359db"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "21652c045b92f36bf9e9536879783218808f4f624468263228ec81b6bdf062b3"
+            },
+            {
+              "path": "references/family_routes.yaml",
+              "sha256": "d362b80518579e03f5c7d9720b22a020f86fd040863c3dcf4496f94cc1525a33"
+            },
+            {
+              "path": "references/source_family_cards.yaml",
+              "sha256": "5ce33ff652c6a18806fd69f945881425670968fa2482490df1d91fe5fc85fe4e"
+            },
+            {
+              "path": "scripts/run_deep_stack_stress.py",
+              "sha256": "a5999141db0139228e6a4f2003f10cb518d81cad0994963e7cc3fe864447d2f0"
+            },
+            {
+              "path": "scripts/validate_deep_stack_receipt.py",
+              "sha256": "1491da631751f27ff997fbfba4379d875d23944aefffc7a3db1e7959055e90af"
+            }
+          ],
+          "source_tree_sha256": "ad9cda9d48d5510bf9e1a7aca1af24d854eaa04d885561c0467057c5480d6e5c",
+          "state": "present",
+          "surface": "codex_installed",
+          "tests_count": 0
+        },
+        "repo_held": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [],
+            "level": "runner_and_validator",
+            "runner_files": [
+              "scripts/run_deep_stack_stress.py"
+            ],
+            "test_files": [],
+            "validator_files": [
+              "scripts/validate_deep_stack_receipt.py"
+            ]
+          },
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/codex-ratchet-deep-stack-stress",
+          "references_count": 2,
+          "scripts_count": 2,
+          "skill_sha256": "999ef66db8d02432f10b2d7b538f425c62788a55f4f1b90aaf2757d551f359db",
+          "source_file_count": 6,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "999ef66db8d02432f10b2d7b538f425c62788a55f4f1b90aaf2757d551f359db"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "21652c045b92f36bf9e9536879783218808f4f624468263228ec81b6bdf062b3"
+            },
+            {
+              "path": "references/family_routes.yaml",
+              "sha256": "d362b80518579e03f5c7d9720b22a020f86fd040863c3dcf4496f94cc1525a33"
+            },
+            {
+              "path": "references/source_family_cards.yaml",
+              "sha256": "5ce33ff652c6a18806fd69f945881425670968fa2482490df1d91fe5fc85fe4e"
+            },
+            {
+              "path": "scripts/run_deep_stack_stress.py",
+              "sha256": "a5999141db0139228e6a4f2003f10cb518d81cad0994963e7cc3fe864447d2f0"
+            },
+            {
+              "path": "scripts/validate_deep_stack_receipt.py",
+              "sha256": "1491da631751f27ff997fbfba4379d875d23944aefffc7a3db1e7959055e90af"
+            }
+          ],
+          "source_tree_sha256": "ad9cda9d48d5510bf9e1a7aca1af24d854eaa04d885561c0467057c5480d6e5c",
+          "state": "present",
+          "surface": "repo_held",
+          "tests_count": 0
+        }
+      },
+      "name": "codex-ratchet-deep-stack-stress",
+      "nested_skill_routes": [
+        {
+          "evidence": [
+            {
+              "line": 45,
+              "text": "Then route through codex-ratchet-env-agent-coordination and"
+            },
+            {
+              "line": 82,
+              "text": "- environment and installation truth: codex-ratchet-env-agent-coordination;"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "codex-ratchet-env-agent-coordination"
+        },
+        {
+          "evidence": [
+            {
+              "line": 88,
+              "text": "- receipt depth and load-bearing status: codex-ratchet-tool-status-auditor;"
+            },
+            {
+              "line": 136,
+              "text": "not_scoped. Use codex-ratchet-tool-status-auditor for final depth and"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "codex-ratchet-tool-status-auditor"
+        },
+        {
+          "evidence": [
+            {
+              "line": 84,
+              "text": "- JAX APIs: jax-sim;"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "jax-sim"
+        },
+        {
+          "evidence": [
+            {
+              "line": 86,
+              "text": "- Julia carrier or isolated-project APIs: julia-sim;"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "julia-sim"
+        },
+        {
+          "evidence": [
+            {
+              "line": 85,
+              "text": "- PyTorch/graph/autograd APIs: pytorch-sim;"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "pytorch-sim"
+        },
+        {
+          "evidence": [
+            {
+              "line": 87,
+              "text": "- cross-runtime and declared adjacency witnesses: three-engine-sim;"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "three-engine-sim"
+        },
+        {
+          "evidence": [
+            {
+              "line": 46,
+              "text": "sim-stack-maintenance. Run the read-only doctor and mapping audit before any"
+            },
+            {
+              "line": 83,
+              "text": "- runtime stewardship: sim-stack-maintenance;"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "sim-stack-maintenance"
+        },
+        {
+          "evidence": [
+            {
+              "line": 89,
+              "text": "- representative-sim evidence ceiling: lego-sim-classifier."
+            },
+            {
+              "line": 137,
+              "text": "lego-sim-classifier for the sim's unchanged evidence ceiling."
+            }
+          ],
+          "in_scope": false,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "lego-sim-classifier"
+        }
+      ],
+      "operational_body_parity": {
+        "codex_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": true,
+          "raw_equal": true,
+          "status": "exact"
+        }
+      },
+      "selected_audit_surface": "repo_held",
+      "selected_implementation_level": "runner_and_validator",
+      "source_payload_parity": {
+        "codex_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "exact": true,
+          "status": "exact"
+        }
+      },
+      "source_state": "repo_source_present"
+    },
+    {
+      "findings": [
+        "agents_surface_absent",
+        "no_local_runner_or_validator"
+      ],
+      "locations": {
+        "agents_installed": {
+          "agents_count": 0,
+          "implementation": {
+            "gaps": [
+              "surface_missing"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.agents/skills/codex-ratchet-env-agent-coordination",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": null,
+          "source_file_count": 0,
+          "source_files": [],
+          "source_tree_sha256": null,
+          "state": "missing",
+          "surface": "agents_installed",
+          "tests_count": 0
+        },
+        "codex_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.codex/skills/codex-ratchet-env-agent-coordination",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "5ef14638c42b4961d754f359ad5fac3a1d590d0ae7f518e4941ac0e00cd5acd2",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "5ef14638c42b4961d754f359ad5fac3a1d590d0ae7f518e4941ac0e00cd5acd2"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "7cdb70bdcddb3b6bb8bfca0e958b2b721f49a23ac271fd8ef10c77b0e0f25c5d"
+            }
+          ],
+          "source_tree_sha256": "19c279c1624eca6322c8402d2892bee4b1e3f2551fdd0e467a66055e274ee6ce",
+          "state": "present",
+          "surface": "codex_installed",
+          "tests_count": 0
+        },
+        "repo_held": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/codex-ratchet-env-agent-coordination",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "5ef14638c42b4961d754f359ad5fac3a1d590d0ae7f518e4941ac0e00cd5acd2",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "5ef14638c42b4961d754f359ad5fac3a1d590d0ae7f518e4941ac0e00cd5acd2"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "7cdb70bdcddb3b6bb8bfca0e958b2b721f49a23ac271fd8ef10c77b0e0f25c5d"
+            }
+          ],
+          "source_tree_sha256": "19c279c1624eca6322c8402d2892bee4b1e3f2551fdd0e467a66055e274ee6ce",
+          "state": "present",
+          "surface": "repo_held",
+          "tests_count": 0
+        }
+      },
+      "name": "codex-ratchet-env-agent-coordination",
+      "nested_skill_routes": [],
+      "operational_body_parity": {
+        "codex_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": true,
+          "raw_equal": true,
+          "status": "exact"
+        }
+      },
+      "selected_audit_surface": "repo_held",
+      "selected_implementation_level": "guidance_only",
+      "source_payload_parity": {
+        "codex_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "exact": true,
+          "status": "exact"
+        }
+      },
+      "source_state": "repo_source_present"
+    },
+    {
+      "findings": [
+        "agents_surface_absent",
+        "repo_codex_payload_drift"
+      ],
+      "locations": {
+        "agents_installed": {
+          "agents_count": 0,
+          "implementation": {
+            "gaps": [
+              "surface_missing"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.agents/skills/codex-ratchet-tool-status-auditor",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": null,
+          "source_file_count": 0,
+          "source_files": [],
+          "source_tree_sha256": null,
+          "state": "missing",
+          "surface": "agents_installed",
+          "tests_count": 0
+        },
+        "codex_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.codex/skills/codex-ratchet-tool-status-auditor",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "6d3bfb65a837dc08fbe5491700339d0815ac32e423266d767b4c9c6e74402467",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "6d3bfb65a837dc08fbe5491700339d0815ac32e423266d767b4c9c6e74402467"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "b50097fb1e0fff2bc7f52aa2061f2537840e35415f5bb0e3932d3bfc9947207b"
+            }
+          ],
+          "source_tree_sha256": "266962b2ace76f8216ac16d4ea0b01ac246929cacbe08065adbd014a4c42e4b0",
+          "state": "present",
+          "surface": "codex_installed",
+          "tests_count": 0
+        },
+        "repo_held": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [],
+            "level": "validator_backed",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": [
+              "scripts/validate_skills_used.py"
+            ]
+          },
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/codex-ratchet-tool-status-auditor",
+          "references_count": 1,
+          "scripts_count": 1,
+          "skill_sha256": "6d3bfb65a837dc08fbe5491700339d0815ac32e423266d767b4c9c6e74402467",
+          "source_file_count": 4,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "6d3bfb65a837dc08fbe5491700339d0815ac32e423266d767b4c9c6e74402467"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "b50097fb1e0fff2bc7f52aa2061f2537840e35415f5bb0e3932d3bfc9947207b"
+            },
+            {
+              "path": "references/skill_provenance_pattern.yaml",
+              "sha256": "d9e2a00447717e16580e07ca56b88608ddcc2e459975b1094d6f8811f04a5315"
+            },
+            {
+              "path": "scripts/validate_skills_used.py",
+              "sha256": "c6bfa0fab8412aa5d0d9d0110c990561a771919866cb14e7351b4c49f3c7f60a"
+            }
+          ],
+          "source_tree_sha256": "01f40afaa76fcb7524af5d48709c8242f397bf94e7b5e58d84a4de0dcdce38d3",
+          "state": "present",
+          "surface": "repo_held",
+          "tests_count": 0
+        }
+      },
+      "name": "codex-ratchet-tool-status-auditor",
+      "nested_skill_routes": [],
+      "operational_body_parity": {
+        "codex_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": true,
+          "raw_equal": true,
+          "status": "exact"
+        }
+      },
+      "selected_audit_surface": "repo_held",
+      "selected_implementation_level": "validator_backed",
+      "source_payload_parity": {
+        "codex_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "exact": false,
+          "status": "drift"
+        }
+      },
+      "source_state": "repo_source_present"
+    },
+    {
+      "findings": [
+        "agents_surface_absent",
+        "no_local_runner_or_validator",
+        "repo_codex_payload_drift"
+      ],
+      "locations": {
+        "agents_installed": {
+          "agents_count": 0,
+          "implementation": {
+            "gaps": [
+              "surface_missing"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.agents/skills/jax-sim",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": null,
+          "source_file_count": 0,
+          "source_files": [],
+          "source_tree_sha256": null,
+          "state": "missing",
+          "surface": "agents_installed",
+          "tests_count": 0
+        },
+        "codex_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.codex/skills/jax-sim",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "c9e276d0343682f3c76f8aa62eb55e8394404794d31bf2632a753d20c6f0adfb",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "c9e276d0343682f3c76f8aa62eb55e8394404794d31bf2632a753d20c6f0adfb"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "9a49da91248c013c094685453d71bdae8043b05c2e3ff844cc79022190134d07"
+            }
+          ],
+          "source_tree_sha256": "2b1b1f28533b6ca24ce5f75e718f50f464f6c315bba80308adfd9c5fe141d351",
+          "state": "present",
+          "surface": "codex_installed",
+          "tests_count": 0
+        },
+        "repo_held": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/jax-sim",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "308a7f80ac759831d979e651933b61d6f968d109f50e4819fb80062a881dbbb3",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "308a7f80ac759831d979e651933b61d6f968d109f50e4819fb80062a881dbbb3"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "9a49da91248c013c094685453d71bdae8043b05c2e3ff844cc79022190134d07"
+            }
+          ],
+          "source_tree_sha256": "2645a45a621208dcdace25af2c42ef6e000e4b86387296d3a054c5f69ea04834",
+          "state": "present",
+          "surface": "repo_held",
+          "tests_count": 0
+        }
+      },
+      "name": "jax-sim",
+      "nested_skill_routes": [],
+      "operational_body_parity": {
+        "codex_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "normalization_applied": true,
+          "normalization_rule": "source-family-preamble-v1",
+          "normalized_equal": true,
+          "raw_equal": false,
+          "status": "normalized_source_family_preamble"
+        }
+      },
+      "selected_audit_surface": "repo_held",
+      "selected_implementation_level": "guidance_only",
+      "source_payload_parity": {
+        "codex_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "exact": false,
+          "status": "drift"
+        }
+      },
+      "source_state": "repo_source_present"
+    },
+    {
+      "findings": [
+        "agents_surface_absent",
+        "no_local_runner_or_validator",
+        "repo_codex_payload_drift"
+      ],
+      "locations": {
+        "agents_installed": {
+          "agents_count": 0,
+          "implementation": {
+            "gaps": [
+              "surface_missing"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.agents/skills/julia-sim",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": null,
+          "source_file_count": 0,
+          "source_files": [],
+          "source_tree_sha256": null,
+          "state": "missing",
+          "surface": "agents_installed",
+          "tests_count": 0
+        },
+        "codex_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.codex/skills/julia-sim",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "dcb575995522df7b02595f610e8f94eac9b03c66ec358afd2a1098da64c8d656",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "dcb575995522df7b02595f610e8f94eac9b03c66ec358afd2a1098da64c8d656"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "fa0591134ee1d3faa54d1a085814c6fdb2f649433d91abd5a568218c1a9da885"
+            }
+          ],
+          "source_tree_sha256": "bb09092dbb0724f072b75cf4d9ddef5fe85c694b4d107a6085a2c1a27085fff0",
+          "state": "present",
+          "surface": "codex_installed",
+          "tests_count": 0
+        },
+        "repo_held": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/julia-sim",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "6a4979350615af1c91b9ad8dba1b9c49bc5f94aca291ae01e24363bb70bb8f5d",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "6a4979350615af1c91b9ad8dba1b9c49bc5f94aca291ae01e24363bb70bb8f5d"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "fa0591134ee1d3faa54d1a085814c6fdb2f649433d91abd5a568218c1a9da885"
+            }
+          ],
+          "source_tree_sha256": "04d73a994c7ecd82219d6aea6b36be771f922d224dd3fb77b883a6ebe15d4538",
+          "state": "present",
+          "surface": "repo_held",
+          "tests_count": 0
+        }
+      },
+      "name": "julia-sim",
+      "nested_skill_routes": [
+        {
+          "evidence": [
+            {
+              "line": 26,
+              "text": "installers, hold and route through `codex-ratchet-env-agent-coordination`."
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "codex-ratchet-env-agent-coordination"
+        }
+      ],
+      "operational_body_parity": {
+        "codex_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "normalization_applied": true,
+          "normalization_rule": "source-family-preamble-v1",
+          "normalized_equal": true,
+          "raw_equal": false,
+          "status": "normalized_source_family_preamble"
+        }
+      },
+      "selected_audit_surface": "repo_held",
+      "selected_implementation_level": "guidance_only",
+      "source_payload_parity": {
+        "codex_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "exact": false,
+          "status": "drift"
+        }
+      },
+      "source_state": "repo_source_present"
+    },
+    {
+      "findings": [
+        "agents_surface_absent",
+        "no_local_runner_or_validator",
+        "repo_codex_payload_drift"
+      ],
+      "locations": {
+        "agents_installed": {
+          "agents_count": 0,
+          "implementation": {
+            "gaps": [
+              "surface_missing"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.agents/skills/pytorch-sim",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": null,
+          "source_file_count": 0,
+          "source_files": [],
+          "source_tree_sha256": null,
+          "state": "missing",
+          "surface": "agents_installed",
+          "tests_count": 0
+        },
+        "codex_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.codex/skills/pytorch-sim",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "ffa53c96fe7ef39937a1aea9b8369bfc1c545b9858ee71b78e242ad38de5fefa",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "ffa53c96fe7ef39937a1aea9b8369bfc1c545b9858ee71b78e242ad38de5fefa"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "351cfc3961887273c858205382a7b2caf2c8122c536905514d5a8f8a095909d3"
+            }
+          ],
+          "source_tree_sha256": "11ae8d613bb847d35b57176b2c75e0a4cff1155d8509c8c1c60ae07200e4f40a",
+          "state": "present",
+          "surface": "codex_installed",
+          "tests_count": 0
+        },
+        "repo_held": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/pytorch-sim",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "536b8058803fd75e62a1477a2f4e40752fc511dcf134a8843878b2db2863c729",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "536b8058803fd75e62a1477a2f4e40752fc511dcf134a8843878b2db2863c729"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "351cfc3961887273c858205382a7b2caf2c8122c536905514d5a8f8a095909d3"
+            }
+          ],
+          "source_tree_sha256": "007e5a13387bb5469e34aba816e025fef0aeab34c8ff8ebb749dd08766ba04df",
+          "state": "present",
+          "surface": "repo_held",
+          "tests_count": 0
+        }
+      },
+      "name": "pytorch-sim",
+      "nested_skill_routes": [],
+      "operational_body_parity": {
+        "codex_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "normalization_applied": true,
+          "normalization_rule": "source-family-preamble-v1",
+          "normalized_equal": true,
+          "raw_equal": false,
+          "status": "normalized_source_family_preamble"
+        }
+      },
+      "selected_audit_surface": "repo_held",
+      "selected_implementation_level": "guidance_only",
+      "source_payload_parity": {
+        "codex_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "exact": false,
+          "status": "drift"
+        }
+      },
+      "source_state": "repo_source_present"
+    },
+    {
+      "findings": [
+        "agents_surface_absent",
+        "no_local_runner_or_validator",
+        "repo_codex_payload_drift"
+      ],
+      "locations": {
+        "agents_installed": {
+          "agents_count": 0,
+          "implementation": {
+            "gaps": [
+              "surface_missing"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.agents/skills/three-engine-sim",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": null,
+          "source_file_count": 0,
+          "source_files": [],
+          "source_tree_sha256": null,
+          "state": "missing",
+          "surface": "agents_installed",
+          "tests_count": 0
+        },
+        "codex_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.codex/skills/three-engine-sim",
+          "references_count": 2,
+          "scripts_count": 0,
+          "skill_sha256": "3da42e70b55eb8a4b1109909d29556925eb4f70278add8445f6e5a84699ca1fb",
+          "source_file_count": 4,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "3da42e70b55eb8a4b1109909d29556925eb4f70278add8445f6e5a84699ca1fb"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "9e3bae86d50281242ec2f8223b5f8ae1fdf96059531ea5050f84d61af10481b2"
+            },
+            {
+              "path": "references/sim_agent_role_cards.md",
+              "sha256": "4691386a0658441475eb71881305956c8560ca95e7166b5e6fa84d81975cee2b"
+            },
+            {
+              "path": "references/tested_package_patterns.md",
+              "sha256": "a958a59ef0f81631013a058eb3365b533108729fc38bf03ccf8385820df7cf56"
+            }
+          ],
+          "source_tree_sha256": "90ad88e7891aa9e233657101778c1e0fe5edfb724cd6c139129c7ad78cb4dee9",
+          "state": "present",
+          "surface": "codex_installed",
+          "tests_count": 0
+        },
+        "repo_held": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/three-engine-sim",
+          "references_count": 2,
+          "scripts_count": 0,
+          "skill_sha256": "0ba1ca9bcf2867135fde0ddc807267d740fd3006602008af145298774f8ef5a5",
+          "source_file_count": 4,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "0ba1ca9bcf2867135fde0ddc807267d740fd3006602008af145298774f8ef5a5"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "9e3bae86d50281242ec2f8223b5f8ae1fdf96059531ea5050f84d61af10481b2"
+            },
+            {
+              "path": "references/sim_agent_role_cards.md",
+              "sha256": "4691386a0658441475eb71881305956c8560ca95e7166b5e6fa84d81975cee2b"
+            },
+            {
+              "path": "references/tested_package_patterns.md",
+              "sha256": "a958a59ef0f81631013a058eb3365b533108729fc38bf03ccf8385820df7cf56"
+            }
+          ],
+          "source_tree_sha256": "06fcca44d5e7de93f36dac8b49ac839e97be0cacf65a6f4b9925f7555a927194",
+          "state": "present",
+          "surface": "repo_held",
+          "tests_count": 0
+        }
+      },
+      "name": "three-engine-sim",
+      "nested_skill_routes": [
+        {
+          "evidence": [
+            {
+              "line": 18,
+              "text": "Environment coordination is mandatory before installs or package-dependent sim work. Read `system_v5/docs/RUNTIME_LIBRARY_LOCATION_MAP_20260608.md` and `system_v5/docs/SIM_STACK_FULL_TARGET_SETS_20260609.md`, then run `/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/codex_runtime_env_doctor.py` from the repo. If the doctor reports repo-local env pollution, wrong-env packages, missing expected scoped packages, or active installers, hold installs/sims and route through `codex-ratchet-env-agent-coordination`."
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "codex-ratchet-env-agent-coordination"
+        },
+        {
+          "evidence": [
+            {
+              "line": 92,
+              "text": "- `jax-sim`: batched/exhaustive workhorse for vectorized sweeps, dynamics, scale searches, and high-volume witness generation after Julia fixes the finite object. `jax.numpy` can support arrays but cannot be the only load-bearing tool for rich evidence."
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "jax-sim"
+        },
+        {
+          "evidence": [
+            {
+              "line": 91,
+              "text": "- `julia-sim`: Canon substrate for algebra/order/finite carrier/proof semantics. `LinearAlgebra` can support local numerics but cannot be the only load-bearing tool."
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "julia-sim"
+        },
+        {
+          "evidence": [
+            {
+              "line": 93,
+              "text": "- `pytorch-sim`: first-class graph/network/autograd/existing torch machinery lane. Use when its tools add a claim-bearing check, especially `torch_geometric`, differentiable geometric algebra with `torch_ga`, torch-side manifold/equivariant checks, `torch.func`/`functorch`, dynamics/proof tools, or all-three declared mode."
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "pytorch-sim"
+        }
+      ],
+      "operational_body_parity": {
+        "codex_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "normalization_applied": true,
+          "normalization_rule": "source-family-preamble-v1",
+          "normalized_equal": true,
+          "raw_equal": false,
+          "status": "normalized_source_family_preamble"
+        }
+      },
+      "selected_audit_surface": "repo_held",
+      "selected_implementation_level": "guidance_only",
+      "source_payload_parity": {
+        "codex_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "exact": false,
+          "status": "drift"
+        }
+      },
+      "source_state": "repo_source_present"
+    },
+    {
+      "findings": [
+        "agents_surface_absent",
+        "no_local_runner_or_validator",
+        "repo_codex_payload_drift"
+      ],
+      "locations": {
+        "agents_installed": {
+          "agents_count": 0,
+          "implementation": {
+            "gaps": [
+              "surface_missing"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.agents/skills/sim-stack-maintenance",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": null,
+          "source_file_count": 0,
+          "source_files": [],
+          "source_tree_sha256": null,
+          "state": "missing",
+          "surface": "agents_installed",
+          "tests_count": 0
+        },
+        "codex_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.codex/skills/sim-stack-maintenance",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "80c10e069af0722a966827ef13acc09985ca966440a85dead16f4726962d8d28",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "80c10e069af0722a966827ef13acc09985ca966440a85dead16f4726962d8d28"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "b69007a904f99eaa8fc450e391c1a1537e914834240f5a316e2bb94e680a8d6d"
+            }
+          ],
+          "source_tree_sha256": "e595851ead1b46d06c23f9aa1ce004a84aff7f66a167faf3eace6aa1900f144c",
+          "state": "present",
+          "surface": "codex_installed",
+          "tests_count": 0
+        },
+        "repo_held": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "no_local_runner_or_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/sim-stack-maintenance",
+          "references_count": 0,
+          "scripts_count": 0,
+          "skill_sha256": "34873683b875a8628841484c8468c6df26146417853dcb8981c5d3582b8688d3",
+          "source_file_count": 2,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "34873683b875a8628841484c8468c6df26146417853dcb8981c5d3582b8688d3"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "b69007a904f99eaa8fc450e391c1a1537e914834240f5a316e2bb94e680a8d6d"
+            }
+          ],
+          "source_tree_sha256": "35e504462cca7c155d26c390d43bf00ee81a92bbc2b835c80ec00d9c2602c916",
+          "state": "present",
+          "surface": "repo_held",
+          "tests_count": 0
+        }
+      },
+      "name": "sim-stack-maintenance",
+      "nested_skill_routes": [
+        {
+          "evidence": [
+            {
+              "line": 45,
+              "text": "Use `$codex-ratchet-env-agent-coordination` for install intent and active"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "codex-ratchet-env-agent-coordination"
+        },
+        {
+          "evidence": [
+            {
+              "line": 106,
+              "text": "`codex-ratchet-tool-status-auditor` to distinguish import reachability from"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "codex-ratchet-tool-status-auditor"
+        },
+        {
+          "evidence": [
+            {
+              "line": 105,
+              "text": "`julia-sim`, `jax-sim`, `pytorch-sim`, and `three-engine-sim`. Use"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "jax-sim"
+        },
+        {
+          "evidence": [
+            {
+              "line": 105,
+              "text": "`julia-sim`, `jax-sim`, `pytorch-sim`, and `three-engine-sim`. Use"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "julia-sim"
+        },
+        {
+          "evidence": [
+            {
+              "line": 105,
+              "text": "`julia-sim`, `jax-sim`, `pytorch-sim`, and `three-engine-sim`. Use"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "pytorch-sim"
+        },
+        {
+          "evidence": [
+            {
+              "line": 105,
+              "text": "`julia-sim`, `jax-sim`, `pytorch-sim`, and `three-engine-sim`. Use"
+            }
+          ],
+          "in_scope": true,
+          "resolution": {
+            "agents_installed": "missing",
+            "codex_installed": "present",
+            "repo_held": "present"
+          },
+          "target": "three-engine-sim"
+        }
+      ],
+      "operational_body_parity": {
+        "codex_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "normalization_applied": true,
+          "normalization_rule": "source-family-preamble-v1",
+          "normalized_equal": true,
+          "raw_equal": false,
+          "status": "normalized_source_family_preamble"
+        }
+      },
+      "selected_audit_surface": "repo_held",
+      "selected_implementation_level": "guidance_only",
+      "source_payload_parity": {
+        "codex_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_agents": {
+          "exact": false,
+          "status": "missing_surface"
+        },
+        "repo_vs_codex": {
+          "exact": false,
+          "status": "drift"
+        }
+      },
+      "source_state": "repo_source_present"
+    },
+    {
+      "findings": [
+        "candidate_not_installed",
+        "repo_codex_operational_body_drift",
+        "repo_codex_payload_drift"
+      ],
+      "locations": {
+        "agents_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "runner_without_local_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [
+              "scripts/claude_bridge.py"
+            ],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.agents/skills/claude-bridge",
+          "references_count": 0,
+          "scripts_count": 1,
+          "skill_sha256": "fa48d9890e293eabd6a480a7abe3c8a2f1d8f6cd5fb9986e26226983fd745387",
+          "source_file_count": 3,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "fa48d9890e293eabd6a480a7abe3c8a2f1d8f6cd5fb9986e26226983fd745387"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "725ceceba2f8b1a41edcf7839575c7a2310371b25b38a06691708973726aec33"
+            },
+            {
+              "path": "scripts/claude_bridge.py",
+              "sha256": "c3e5e2891e04aad3b02beab04521ae72e6874a3fce126932f1b08efec06f7a18"
+            }
+          ],
+          "source_tree_sha256": "3e9c373d8cbff7ef618dbfad7bfd2029213fa81bd257fcd4324ea413fc363a5a",
+          "state": "present",
+          "surface": "agents_installed",
+          "tests_count": 0
+        },
+        "codex_installed": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [
+              "runner_without_local_validator"
+            ],
+            "level": "guidance_only",
+            "runner_files": [
+              "scripts/claude_bridge.py",
+              "scripts/claude_child_fanout.py",
+              "scripts/fanout_receipt_summary.py",
+              "scripts/gemini_child_fanout.py"
+            ],
+            "test_files": [],
+            "validator_files": []
+          },
+          "path": "/Users/joshuaeisenhart/.codex/skills/claude-bridge",
+          "references_count": 0,
+          "scripts_count": 4,
+          "skill_sha256": "58c5fec93be8d54a5ea2b24710d7c903cdd4f8c94cd891b9e393cd87ebba565b",
+          "source_file_count": 6,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "58c5fec93be8d54a5ea2b24710d7c903cdd4f8c94cd891b9e393cd87ebba565b"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "725ceceba2f8b1a41edcf7839575c7a2310371b25b38a06691708973726aec33"
+            },
+            {
+              "path": "scripts/claude_bridge.py",
+              "sha256": "e538038d8efa51864e6bd5c8f2392b9bab3aa52bb31fa9a4f79bee823bde4f07"
+            },
+            {
+              "path": "scripts/claude_child_fanout.py",
+              "sha256": "04c9172923f645331d34cf20e6288c628612859ec5c0029503570e5f51b9c4a3"
+            },
+            {
+              "path": "scripts/fanout_receipt_summary.py",
+              "sha256": "911709152026a51c5f1f926f29ebbc421dcac61f400ff6a3a7b05950c82861ef"
+            },
+            {
+              "path": "scripts/gemini_child_fanout.py",
+              "sha256": "52b8fdc333709afe21975daaf0947ac37d1b55b885c4e6cee73e4f202b71ca27"
+            }
+          ],
+          "source_tree_sha256": "5c2a19f8739e2d3e003bda72ae33091e89e9762324d4ad4f7c5cf04031ee3aa8",
+          "state": "present",
+          "surface": "codex_installed",
+          "tests_count": 0
+        },
+        "repo_held": {
+          "agents_count": 1,
+          "implementation": {
+            "gaps": [],
+            "level": "tested_candidate",
+            "runner_files": [
+              "scripts/claude_bridge.py"
+            ],
+            "test_files": [
+              "tests/test_claude_bridge.py"
+            ],
+            "validator_files": [
+              "scripts/validate_receipt.py"
+            ]
+          },
+          "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/codex_skills/claude-bridge",
+          "references_count": 2,
+          "scripts_count": 2,
+          "skill_sha256": "401b26e99340e9dc340aee74717859b76048d315b03a45237fea7145d50641be",
+          "source_file_count": 7,
+          "source_files": [
+            {
+              "path": "SKILL.md",
+              "sha256": "401b26e99340e9dc340aee74717859b76048d315b03a45237fea7145d50641be"
+            },
+            {
+              "path": "agents/openai.yaml",
+              "sha256": "315c54240deaac3cef28a82869629e46aa4ece0052f69fe72d6592b51527ec3d"
+            },
+            {
+              "path": "references/claude_bridge_receipt.schema.json",
+              "sha256": "92b1321a7f13578e9291938659f061924625a31fa986481fb53bde661fdd018e"
+            },
+            {
+              "path": "references/source_port_card.yaml",
+              "sha256": "5b386f9512c98030431af00879431007343c2584135094994bae41e167007060"
+            },
+            {
+              "path": "scripts/claude_bridge.py",
+              "sha256": "8dd8a94c57fb1e9fe2085aaaea813a3b938696307e51a71c04c045c9a35c02f8"
+            },
+            {
+              "path": "scripts/validate_receipt.py",
+              "sha256": "c8a43fc31894baec7d0030a5d9b28daff39a3e1dda5f7f4fe7d4b94081652385"
+            },
+            {
+              "path": "tests/test_claude_bridge.py",
+              "sha256": "c63d3c1ec042b72d45ea478c6453e12ad0fae3639b4ec7f62a0726238a0c9d37"
+            }
+          ],
+          "source_tree_sha256": "efa77e6ee300b222219e4c6de1bcc41a082f46452035d24ec6ad1ef4f63e7dd6",
+          "state": "present",
+          "surface": "repo_held",
+          "tests_count": 1
+        }
+      },
+      "name": "claude-bridge",
+      "nested_skill_routes": [],
+      "operational_body_parity": {
+        "codex_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "drift"
+        },
+        "repo_vs_agents": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "drift"
+        },
+        "repo_vs_codex": {
+          "normalization_applied": false,
+          "normalization_rule": null,
+          "normalized_equal": false,
+          "raw_equal": false,
+          "status": "drift"
+        }
+      },
+      "selected_audit_surface": "repo_held",
+      "selected_implementation_level": "tested_candidate",
+      "source_payload_parity": {
+        "codex_vs_agents": {
+          "exact": false,
+          "status": "drift"
+        },
+        "repo_vs_agents": {
+          "exact": false,
+          "status": "drift"
+        },
+        "repo_vs_codex": {
+          "exact": false,
+          "status": "drift"
+        }
+      },
+      "source_state": "repo_candidate_not_installed"
+    }
+  ],
+  "summary": {
+    "candidate_not_installed": [
+      "claude-bridge"
+    ],
+    "exact_repo_codex_body_parity": [
+      "codex-ratchet-deep-stack-stress",
+      "codex-ratchet-env-agent-coordination",
+      "codex-ratchet-sim-audit-spine",
+      "codex-ratchet-tool-status-auditor"
+    ],
+    "missing_repo_source": [],
+    "nested_route_count": 19,
+    "normalized_repo_codex_body_parity": [
+      "jax-sim",
+      "julia-sim",
+      "pytorch-sim",
+      "sim-stack-maintenance",
+      "three-engine-sim"
+    ],
+    "repo_codex_body_drift": [
+      "claude-bridge"
+    ],
+    "repo_payload_not_mirrored": [
+      "claude-bridge",
+      "codex-ratchet-tool-status-auditor",
+      "jax-sim",
+      "julia-sim",
+      "pytorch-sim",
+      "sim-stack-maintenance",
+      "three-engine-sim"
+    ],
+    "scope_count": 10,
+    "selected_implementation_levels": {
+      "guidance_only": 7,
+      "runner_and_validator": 1,
+      "tested_candidate": 1,
+      "validator_backed": 1
+    },
+    "surface_presence": {
+      "agents_installed": 1,
+      "codex_installed": 10,
+      "repo_held": 10
+    }
+  },
+  "verdict": {
+    "audit_status": "valid_with_blocking_gaps",
+    "blocking_gaps": [
+      "candidate not installed: claude-bridge",
+      "repo/Codex operational-body drift: claude-bridge"
+    ],
+    "next_smallest_repairs": [
+      "review and explicitly install the tested claude-bridge candidate only after owner approval",
+      "decide whether repo-only validator payloads are intentionally checkout-routed or should be installed"
+    ],
+    "operational_surface_ready": false
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_stdlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "Standard-library deep copies and JSON emission exercise negative inventory mutations.",
+      "used": true
+    }
+  },
+  "all_mutations_rejected": true,
+  "audit_kind": "v8_skill_surface_mutation_test",
+  "audit_path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/v8_skill_surface_audit_20260715/results/skill_surface_audit.json",
+  "audit_sha256": "5616fec5decbf261a274b8e6d53745ab456b86cecf36c2445c915411caf2a315",
+  "baseline_errors": [],
+  "baseline_valid": true,
+  "case_count": 7,
+  "cases": [
+    {
+      "case_id": "false_update_claim",
+      "errors": [
+        "claim boundary all_skills_updated must be false",
+        "claim_boundaries does not match live deterministic recomputation"
+      ],
+      "rejected": true
+    },
+    {
+      "case_id": "reintroduce_repaired_missing_source",
+      "errors": [
+        "sim-audit-spine repo-source repair regressed",
+        "summary does not match live deterministic recomputation"
+      ],
+      "rejected": true
+    },
+    {
+      "case_id": "erase_candidate_not_installed",
+      "errors": [
+        "claude-bridge candidate-not-installed state must remain explicit",
+        "summary does not match live deterministic recomputation"
+      ],
+      "rejected": true
+    },
+    {
+      "case_id": "corrupt_source_hash",
+      "errors": [
+        "skills does not match live deterministic recomputation"
+      ],
+      "rejected": true
+    },
+    {
+      "case_id": "launder_claude_drift",
+      "errors": [
+        "skills does not match live deterministic recomputation"
+      ],
+      "rejected": true
+    },
+    {
+      "case_id": "erase_nested_routes",
+      "errors": [
+        "skills does not match live deterministic recomputation"
+      ],
+      "rejected": true
+    },
+    {
+      "case_id": "demote_tested_candidate_metadata",
+      "errors": [
+        "skills does not match live deterministic recomputation"
+      ],
+      "rejected": true
+    }
+  ],
+  "classification": "audit",
+  "formal_admission_allowed": false,
+  "official_launch_allowed": false,
+  "promotion_allowed": false,
+  "rejected_count": 7,
+  "schema": "codex-ratchet-skill-surface-mutation-tests-v1",
+  "scientific_claim_allowed": false
+}

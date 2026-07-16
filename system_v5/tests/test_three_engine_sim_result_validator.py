@@ -300,6 +300,37 @@ solver.check()
     assert "jax.scipy.linalg" in fake["source_thin_load_bearing"]
 
 
+def test_source_audit_accepts_jaxlib_client_observable_but_rejects_import_only(tmp_path: Path) -> None:
+    rich_source = tmp_path / "rich_jaxlib.py"
+    rich_source.write_text(
+        """
+import jaxlib
+from jaxlib import xla_client
+
+client = xla_client.make_cpu_client()
+devices = client.devices()
+receipt = {"version": jaxlib.__version__, "platform": client.platform, "device_count": len(devices)}
+""",
+        encoding="utf-8",
+    )
+    fake_source = tmp_path / "fake_jaxlib.py"
+    fake_source.write_text("import jaxlib\nfrom jaxlib import xla_client\n", encoding="utf-8")
+    record = {
+        "source_path": str(rich_source),
+        "packages_used": ["jaxlib"],
+        "aligned_packages_load_bearing": ["jaxlib"],
+        "reads_peer_result": False,
+    }
+
+    rich = audit_engine("jax", record, ROOT)
+    fake = audit_engine("jax", {**record, "source_path": str(fake_source)}, ROOT)
+
+    assert rich["classification"] == "source_backed_rich_tool_claim"
+    assert "jaxlib" in rich["source_backed_load_bearing"]
+    assert fake["classification"] == "declared_rich_but_source_thin_or_baseline"
+    assert "jaxlib" in fake["source_thin_load_bearing"]
+
+
 def test_source_audit_accepts_grassmann_basis_macro_but_rejects_import_only(tmp_path: Path) -> None:
     rich_source = tmp_path / "rich_grassmann.jl"
     rich_source.write_text(

@@ -1,0 +1,158 @@
+{
+  "name": "sim_capability_gudhi_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "capability_summary": {
+    "CAN": [
+      "compute persistent homology (Rips, alpha, \u010cech complexes)",
+      "produce persistence barcodes and diagrams",
+      "compute Betti numbers (H0=components, H1=loops, H2=voids)",
+      "build simplex trees manually with custom filtrations",
+      "detect topological features: connected components, loops, voids",
+      "distinguish topologically different point clouds"
+    ],
+    "CANNOT": [
+      "handle topological signal processing on complexes (use toponetx)",
+      "learn from topology with gradients (use pytorch + differentiable TDA)",
+      "represent hyperedges (use xgi for hypergraphs)",
+      "prove topological claims formally (use z3 for logical proofs)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates gudhi persistent homology capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates gudhi persistent homology capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates gudhi persistent homology capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates gudhi persistent homology capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates gudhi persistent homology capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates gudhi persistent homology capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates gudhi persistent homology capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates gudhi persistent homology capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates gudhi persistent homology capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates gudhi persistent homology capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx handles topological signal processing on complexes; gudhi handles persistent homology barcodes; complementary but not needed for this isolated probe."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: gudhi RipsComplex, SimplexTree, persistence barcodes, and Betti numbers are the sole subject of this capability probe."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "gudhi_available": {
+      "pass": true,
+      "version": "3.12.0"
+    },
+    "rips_circle_topology": {
+      "pass": true,
+      "h0_infinite_bars": 1,
+      "h1_bars": 1,
+      "detail": "Circle: H0=1 infinite component, H1>=1 finite loop bar"
+    },
+    "persistence_diagram_nonempty": {
+      "pass": true,
+      "num_pairs": 9,
+      "detail": "Persistence diagram must have at least one (birth, death) pair"
+    },
+    "h0_infinite_bar": {
+      "pass": true,
+      "h0_inf_count": 1,
+      "detail": "Connected point cloud: at least 1 H0 bar lives forever"
+    },
+    "alpha_complex_square": {
+      "pass": true,
+      "betti": [
+        1,
+        0
+      ],
+      "detail": "Square point cloud: H0=1 (one connected component)"
+    },
+    "simplex_tree_manual": {
+      "pass": true,
+      "num_pairs": 1,
+      "detail": "Manually built simplex tree with persistence"
+    }
+  },
+  "negative": {
+    "two_clusters_h0_equals_2": {
+      "pass": true,
+      "betti_h0": 2,
+      "detail": "Two separate clusters: H0 >= 2 (at least 2 connected components)"
+    },
+    "line_no_h1_loop": {
+      "pass": true,
+      "betti_h1": 0,
+      "detail": "Collinear points: no H1 loop (Betti_1 = 0)"
+    }
+  },
+  "boundary": {
+    "two_nearby_points_one_component": {
+      "pass": true,
+      "h0_inf_bars": 1,
+      "detail": "Two close points: 1 infinite H0 bar (merged into one component)"
+    },
+    "two_identical_points": {
+      "pass": true,
+      "betti": [
+        1
+      ],
+      "detail": "Two identical points: merged into H0=1 immediately"
+    }
+  }
+}

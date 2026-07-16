@@ -1,0 +1,44 @@
+{
+  "name": "sim_grassmann_capability",
+  "schema_version": "capability_probe_v1",
+  "classification": "canonical",
+  "promotion_allowed": false,
+  "tool_manifest": {
+    "Grassmann": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing Julia Grassmann basis and wedge products decide all checks"
+    }
+  },
+  "TOOL_MANIFEST": {
+    "Grassmann": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing Julia Grassmann basis and wedge products decide all checks"
+    }
+  },
+  "tool_integration_depth": {
+    "Grassmann": "load_bearing"
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "Grassmann": "load_bearing"
+  },
+  "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "julia_command": [
+    "/opt/homebrew/bin/julia",
+    "--startup-file=no",
+    "--project=system_v5/julia_carrier",
+    "-e",
+    "\nusing Grassmann\n@basis S\"++\"\npositive = Grassmann.wedge(v1, v2) == v12\nnegative = iszero(Grassmann.wedge(v1, v1))\nboundary = Grassmann.wedge(2v1, 3v2) == 6v12\nprintln(\"{\\\"positive\\\":\" * string(positive) * \",\\\"negative\\\":\" * string(negative) * \",\\\"boundary\\\":\" * string(boundary) * \"}\")\n"
+  ],
+  "julia_exit": 0,
+  "observed": {
+    "positive": true,
+    "negative": true,
+    "boundary": true
+  },
+  "summary": {
+    "all_pass": true
+  },
+  "overall_pass": true
+}

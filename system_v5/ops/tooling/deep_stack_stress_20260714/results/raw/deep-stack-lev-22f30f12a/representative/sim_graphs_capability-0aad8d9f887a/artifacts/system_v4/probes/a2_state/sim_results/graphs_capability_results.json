@@ -1,0 +1,46 @@
+{
+  "name": "sim_graphs_capability",
+  "schema_version": "capability_probe_v1",
+  "classification": "canonical",
+  "promotion_allowed": false,
+  "tool_manifest": {
+    "Graphs": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing Julia SimpleDiGraph, add_edge!, outdegree, ne, nv, and connectivity checks decide all checks"
+    }
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing Julia SimpleDiGraph, add_edge!, outdegree, ne, nv, and connectivity checks decide all checks"
+    }
+  },
+  "tool_integration_depth": {
+    "Graphs": "load_bearing"
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing"
+  },
+  "python_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "julia_command": [
+    "/opt/homebrew/bin/julia",
+    "--startup-file=no",
+    "--project=system_v5/julia_carrier",
+    "-e",
+    "\nusing Graphs\ng = SimpleDiGraph(4)\nadd_edge!(g, 1, 2)\nadd_edge!(g, 2, 3)\nadd_edge!(g, 3, 1)\npositive = nv(g) == 4 && ne(g) == 3 && outdegree(g, 1) == 1 && indegree(g, 1) == 1\nnegative = !is_connected(g)\nadd_edge!(g, 3, 4)\nboundary = is_connected(g) && outdegree(g, 4) == 0\nprintln(\"{\\\"positive\\\":\" * string(positive) * \",\\\"negative\\\":\" * string(negative) * \",\\\"boundary\\\":\" * string(boundary) * \",\\\"nv\\\":\" * string(nv(g)) * \",\\\"ne\\\":\" * string(ne(g)) * \"}\")\n"
+  ],
+  "julia_exit": 0,
+  "observed": {
+    "positive": true,
+    "negative": true,
+    "boundary": true,
+    "nv": 4,
+    "ne": 4
+  },
+  "summary": {
+    "all_pass": true
+  },
+  "overall_pass": true
+}

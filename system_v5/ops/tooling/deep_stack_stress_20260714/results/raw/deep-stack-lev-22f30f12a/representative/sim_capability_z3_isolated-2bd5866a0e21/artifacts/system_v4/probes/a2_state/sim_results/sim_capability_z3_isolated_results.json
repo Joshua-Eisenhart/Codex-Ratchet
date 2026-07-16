@@ -1,0 +1,165 @@
+{
+  "name": "sim_capability_z3_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "capability_summary": {
+    "CAN": [
+      "check satisfiability of QF_LRA (quantifier-free linear real arithmetic)",
+      "detect UNSAT via contradiction",
+      "handle boolean formulas with quantifiers (ForAll/Exists)",
+      "work with bitvectors (fixed-width arithmetic)",
+      "extract satisfying models from SAT results",
+      "handle arbitrary precision integers"
+    ],
+    "CANNOT": [
+      "decide all non-linear real arithmetic (may return unknown)",
+      "enumerate all solutions (only finds one witness)",
+      "replace symbolic differentiation (use sympy for that)",
+      "verify probabilistic properties (use hypothesis/PRISM for that)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 SMT solver is the sole subject; SAT/UNSAT queries, QF_LRA arithmetic, and bitvector checks are all computed by z3 directly."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates z3 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "z3_available": {
+      "pass": true,
+      "version": "4.16.0"
+    },
+    "sat_linear_arithmetic": {
+      "pass": true,
+      "result": "sat",
+      "detail": "x+y=10, x>3, y>3 must be SAT",
+      "model_x": "6",
+      "model_y": "4"
+    },
+    "unsat_detection": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "a>5 AND a<3 must be UNSAT"
+    },
+    "bool_sat": {
+      "pass": true,
+      "result": "sat",
+      "detail": "(p OR q) AND NOT p forces q=True"
+    },
+    "forall_quantifier": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "negation of forall(i>0 => i>=1) must be UNSAT (trivially true over ints)"
+    },
+    "bitvector_arith": {
+      "pass": true,
+      "result": "sat",
+      "detail": "8-bit bitvector = 255 must be SAT"
+    }
+  },
+  "negative": {
+    "real_sqrt_neg1_unsat": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "x^2 = -1 over reals must be UNSAT"
+    },
+    "contradictory_equations": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "a+b=1 AND a+b=2 must be UNSAT"
+    },
+    "no_false_sat": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "c>10 AND c<5: z3 must not return sat"
+    }
+  },
+  "boundary": {
+    "tight_equality": {
+      "pass": true,
+      "result": "sat",
+      "detail": "x>=0 AND x<=0 forces x=0, must be SAT",
+      "model_x": "0"
+    },
+    "large_integer": {
+      "pass": true,
+      "result": "sat",
+      "detail": "n = 10^18 must be SAT (z3 handles arbitrary precision ints)"
+    },
+    "empty_solver": {
+      "pass": true,
+      "result": "sat",
+      "detail": "empty constraint set must be SAT"
+    }
+  }
+}

@@ -1,0 +1,323 @@
+{
+  "schema": "codex_ratchet.lev_qit_bridge_seam_receipt.v1",
+  "status": "pass",
+  "all_pass": true,
+  "command": [
+    "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+    "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/lev/qit_bridge_seam_runner.mjs",
+    "--repo-root",
+    ".",
+    "--lev-root",
+    "/Users/joshuaeisenhart/lev-main/.worktrees/current-main-20260715",
+    "--python",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "--out",
+    "system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_qit_bridge_seam_22f30f12a/receipt.json",
+    "--requested-at",
+    "2026-07-16T00:00:00.000Z"
+  ],
+  "requested_at": "2026-07-16T00:00:00.000Z",
+  "runner": {
+    "script": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/lev/qit_bridge_seam_runner.mjs",
+    "script_sha256": "31e489af5a4fc647c4ef4d0a749fa34cb61b00b095edc34ec99022023eb823c8",
+    "bun_executable": "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+    "bun_version": "1.3.14",
+    "python_executable": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "python_version": "Python 3.13.6",
+    "codex_repo": {
+      "root": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715",
+      "commit": "aea5c48dd8e6481f15f29da76dd41ad2cacc8e3a",
+      "tree": "07c29259fe47c080a6258c3ae2f0a67c79fd5c22",
+      "branch": "codex/v8-integration-repair-20260715",
+      "tracked_bytes_clean": true
+    },
+    "lev_repo": {
+      "root": "/Users/joshuaeisenhart/lev-main/.worktrees/current-main-20260715",
+      "commit": "22f30f12a7dc3a1f567ad1ccc88b4a3e63b94647",
+      "tree": "f02c2faaf8e55a953f8029342c7400d7307eaa43",
+      "branch": "codex/current-main-20260715",
+      "tracked_bytes_clean": true
+    },
+    "lev_executable": "/Users/joshuaeisenhart/lev-main/.worktrees/current-main-20260715/core/poly/bin/lev",
+    "lev_executable_sha256": "f258ae313d515cae4ff848a45df78cfcc6a2d48c9ce1ade9c316276b00ef0c61",
+    "global_launcher": "/Users/joshuaeisenhart/.local/bin/lev",
+    "global_launcher_target": "/Users/joshuaeisenhart/lev-main/.worktrees/current-main-20260715/core/poly/bin/lev"
+  },
+  "source_material": [
+    {
+      "role": "codex_qit_producer",
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/constraint_core/sims_and_scripts/lev_bridge_sim.py",
+      "sha256": "ae88857ea497e6e40416ad2abf74c9a767af06ccd803f83458fcbf83b4c2b804"
+    },
+    {
+      "role": "codex_host_adapter",
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v7/constraint_core/sims_and_scripts/lev_qit_bridge_stream_host_adapter.py",
+      "sha256": "38cc313ada7051a98d877bb9043648ebb38a475c35ea15e29dfa0deca55bb45a"
+    },
+    {
+      "role": "seam_contract",
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/lev/qit_bridge_seam_contract.json",
+      "sha256": "58651d96833451c6c154adfab3ab7b4e7ec36e41422dccb5997802483b50fb06"
+    },
+    {
+      "role": "lev_runtime_binding",
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/lev/current_lev_runtime.json",
+      "sha256": "e7248f141bebb0c1bbdb4244259ca99c5183f72779c0fe323fe69ce8328d1b81"
+    },
+    {
+      "role": "lev_ingester",
+      "path": "/Users/joshuaeisenhart/lev-main/.worktrees/current-main-20260715/plugins/sim-witness/src/qit-bridge-stream.ts",
+      "sha256": "963e809e522c0610ad97a3d36dcfc021811610d2fd4b1ca8ebb926bc4e2e7304"
+    },
+    {
+      "role": "lev_sensor",
+      "path": "/Users/joshuaeisenhart/lev-main/.worktrees/current-main-20260715/plugins/sim-witness/evals/cr_qit_bridge_stream_v0/companions/sensor.mjs",
+      "sha256": "75e596ded83603c6aa0f11157a0effa794096d70ddaa934947bae1d8fe420b56"
+    },
+    {
+      "role": "lev_gate_policy",
+      "path": "/Users/joshuaeisenhart/lev-main/.worktrees/current-main-20260715/plugins/sim-witness/evals/cr_qit_bridge_stream_v0/policies/gate-policy.yaml",
+      "sha256": "429ee97ad20e9b5c4edde7ba7b393c1d4419eab068051bc13fc3ccbc93027074"
+    },
+    {
+      "role": "lev_routing_policy",
+      "path": "/Users/joshuaeisenhart/lev-main/.worktrees/current-main-20260715/plugins/sim-witness/evals/cr_qit_bridge_stream_v0/policies/routing-policy.yaml",
+      "sha256": "d825047681e133d75e7da03aaa1cd876dd82abf58ff2c6f9d7d696ef4c7ff4fd"
+    }
+  ],
+  "outputs": {
+    "preexisting_outputs_removed": {
+      "raw": true,
+      "adapted": true,
+      "receipt": true
+    },
+    "raw_stream": {
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_qit_bridge_seam_22f30f12a/codex_qit_bridge_raw.json",
+      "sha256": "308d7acac0ace9dbae2533571c4d7401d3f91504a387776f39829acb8142e9e6"
+    },
+    "adapted_stream": {
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_qit_bridge_seam_22f30f12a/codex_qit_bridge_lev_v1.json",
+      "sha256": "ee6b9a112c59c9790c5b795d272af0d33287d8084ff539f6d97032d578d034ee"
+    },
+    "receipt": {
+      "path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_qit_bridge_seam_22f30f12a/receipt.json"
+    }
+  },
+  "hops": [
+    {
+      "id": "codex_qit_producer",
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "system_v7/constraint_core/sims_and_scripts/lev_bridge_sim.py",
+        "--out",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_qit_bridge_seam_22f30f12a/codex_qit_bridge_raw.json"
+      ],
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715",
+      "exit_code": 0,
+      "signal": null,
+      "timed_out": false,
+      "stdout": "tick surprise fe_grad belief_z\n   0   0.3902  0.2748  +0.349\n   1   0.1165  0.0824  +0.522\n   2   0.0366  0.0264  +0.607\n   3   0.0137  0.0100  +0.649\n   4   0.0076  0.0057  +0.670\n   5   0.0062  0.0046  +0.680\n   6   1.4990  1.1625  +0.029\n   7   0.3353  0.2382  -0.296\n   8   0.1066  0.0759  -0.457\n   9   0.0464  0.0336  -0.537\n  10   0.0322  0.0235  -0.576\n  11   0.0299  0.0220  -0.595\n  12   0.0301  0.0223  -0.605\n  13   0.0306  0.0227  -0.610\n\nsettled(pre)=0.0062  spike(shift)=1.4990  relearned=0.0306\nALL_GATES: PASS -> /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_qit_bridge_seam_22f30f12a/codex_qit_bridge_raw.json\nPASS lev_bridge_sim\n",
+      "stderr": "",
+      "executed": true
+    },
+    {
+      "id": "codex_stream_adapter",
+      "command": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "-B",
+        "system_v7/constraint_core/sims_and_scripts/lev_qit_bridge_stream_host_adapter.py",
+        "--source",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_qit_bridge_seam_22f30f12a/codex_qit_bridge_raw.json",
+        "--out",
+        "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_qit_bridge_seam_22f30f12a/codex_qit_bridge_lev_v1.json"
+      ],
+      "cwd": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715",
+      "exit_code": 0,
+      "signal": null,
+      "timed_out": false,
+      "stdout": "  source ticks: 14, contiguous-from-zero + finite fields: True\nPASS lev_qit_bridge_stream_host_adapter\nALL_GATES: PASS -> /Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715/system_v5/ops/tooling/deep_stack_stress_20260714/results/lev_qit_bridge_seam_22f30f12a/codex_qit_bridge_lev_v1.json\n",
+      "stderr": "",
+      "executed": true
+    },
+    {
+      "id": "lev_sim_witness_ingest",
+      "ok": true,
+      "provider_evidence_count": 14,
+      "reason": null
+    },
+    {
+      "id": "lev_deterministic_sensor",
+      "result": {
+        "schema": "lev.evaluator.result.v1",
+        "evaluator_id": "cr_qit_bridge_stream_v0",
+        "passed": true,
+        "decision": "pass",
+        "action": "keep",
+        "reason": "QIT provider stream surprise profile is regime-shift responsive",
+        "measurements": {
+          "schema": "lev.measurement.v1",
+          "variables": {
+            "baseline_surprise_mean": {
+              "value": 0.009166666667,
+              "confidence": 1,
+              "evidence_count": 14
+            },
+            "spike_surprise_max": {
+              "value": 1.499,
+              "confidence": 1,
+              "evidence_count": 14
+            },
+            "relearn_tail_mean": {
+              "value": 0.0307,
+              "confidence": 1,
+              "evidence_count": 14
+            },
+            "relearn_tail_max": {
+              "value": 0.0322,
+              "confidence": 1,
+              "evidence_count": 14
+            },
+            "provider_ticks_present": {
+              "value": true,
+              "confidence": 1,
+              "evidence_count": 14
+            },
+            "content_addresses_valid": {
+              "value": true,
+              "confidence": 1,
+              "evidence_count": 14
+            },
+            "regime_shift_responsive": {
+              "value": true,
+              "confidence": 1,
+              "evidence_count": 14
+            },
+            "provider_tick_count": {
+              "value": 14,
+              "confidence": 1,
+              "evidence_count": 14
+            }
+          }
+        },
+        "evidence_refs": [
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:878a785c",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:e07cd1fe",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:db238f65",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:6cf0ed5b",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:ab739b00",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:5c95f1be",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:85821240",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:57c7095e",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:f6230233",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:52b5ddee",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:d9791436",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:e820d848",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:a2a87737",
+            "exists": true
+          },
+          {
+            "kind": "sim_witness_provider_evidence",
+            "ref": "sim-witness:fnv1a32:ac569af3",
+            "exists": true
+          }
+        ],
+        "required_repairs": []
+      }
+    },
+    {
+      "id": "schema_negative_control",
+      "result": {
+        "ok": false,
+        "reason": "stream_schema_mismatch"
+      }
+    }
+  ],
+  "gates": {
+    "seam_contract_schema_exact": true,
+    "lev_runtime_schema_exact": true,
+    "codex_tracked_bytes_clean": true,
+    "lev_tracked_bytes_clean": true,
+    "lev_runtime_root_match": true,
+    "lev_runtime_branch_match": true,
+    "lev_runtime_commit_match": true,
+    "lev_runtime_tree_match": true,
+    "lev_global_launcher_match": true,
+    "lev_executable_hash_match": true,
+    "producer_exit_zero": true,
+    "adapter_exit_zero": true,
+    "raw_to_adapted_ticks_exact": true,
+    "source_classification_exact": true,
+    "source_promotion_blocked": true,
+    "source_claim_ceiling_exact": true,
+    "lev_ingest_pass": true,
+    "provider_tick_count_exact": true,
+    "provider_addresses_unique": true,
+    "provider_addresses_typed": true,
+    "gate_threshold_policy_exact": true,
+    "routing_policy_exact": true,
+    "sensor_decision_pass": true,
+    "sensor_action_exact": true,
+    "schema_negative_control_blocks": true
+  },
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "release_eligible": false,
+  "projection_only": true,
+  "llm_used": false,
+  "model_adapter_used": false,
+  "provider_call_used": false,
+  "install_attempted": false,
+  "scientific_claim_proven": false,
+  "claim_ceiling": "Operational seam evidence only: a fresh Codex QIT demo stream was adapted, ingested by the bound Lev sim-witness code, and scored by its deterministic sensor. This does not prove Ratchet mechanics, QIT theory, FEP, Axis0, graph admission, or scientific canon."
+}

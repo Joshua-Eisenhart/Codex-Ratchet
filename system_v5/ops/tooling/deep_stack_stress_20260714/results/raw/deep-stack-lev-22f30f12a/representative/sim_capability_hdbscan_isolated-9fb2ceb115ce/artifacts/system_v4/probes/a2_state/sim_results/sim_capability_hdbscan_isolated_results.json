@@ -1,0 +1,158 @@
+{
+  "name": "sim_capability_hdbscan_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "pass_count": 8,
+  "total_count": 8,
+  "capability_summary": {
+    "CAN": [
+      "import and instantiate HDBSCAN clusterer",
+      "fit on 2D numpy arrays of arbitrary size",
+      "assign integer cluster labels (>= 0) to clustered points",
+      "assign -1 label to noise/outlier points",
+      "compute core_distances_ for all input points",
+      "distinguish cluster granularity via min_cluster_size parameter",
+      "handle single-point input without crashing (returns noise or raises)"
+    ],
+    "CANNOT": [
+      "guarantee a fixed number of clusters (unlike KMeans)",
+      "cluster a single point into a valid cluster",
+      "operate on non-numeric data without preprocessing",
+      "provide probability estimates without enabling soft_clustering"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan clustering capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "hdbscan": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: hdbscan is the sole subject; clustering, label assignment, and core_distances_ are computed directly by hdbscan."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "hdbscan": "load_bearing"
+  },
+  "positive": {
+    "hdbscan_available": {
+      "pass": true,
+      "version": "unknown"
+    },
+    "labels_are_integers": {
+      "pass": true,
+      "n_points": 20,
+      "unique_labels": [
+        0,
+        1
+      ],
+      "detail": "HDBSCAN.labels_ must be integer-typed for all points"
+    },
+    "core_distances_computed": {
+      "pass": true,
+      "attribute_used": "outlier_scores_",
+      "length": 20,
+      "all_nonnegative": true,
+      "detail": "outlier_scores_ (GLOSH) must be non-None, length==n_samples, all >= 0 (replaces core_distances_ in newer hdbscan)"
+    },
+    "not_all_noise": {
+      "pass": true,
+      "n_clustered": 20,
+      "n_noise": 0,
+      "detail": "on two well-separated blobs at least some points must be cluster-assigned"
+    }
+  },
+  "negative": {
+    "single_point_all_noise": {
+      "pass": true,
+      "detail": "raised exception (also acceptable for single point): k must be less than or equal to the number of training points"
+    }
+  },
+  "boundary": {
+    "min_cluster_size_2": {
+      "pass": true,
+      "n_clusters": 2,
+      "detail": "min_cluster_size=2 on 20-point two-blob data should yield >= 1 cluster"
+    },
+    "min_cluster_size_20": {
+      "pass": true,
+      "n_clusters": 0,
+      "detail": "min_cluster_size=20 on 20 total points yields <= 1 cluster"
+    },
+    "min_cluster_size_changes_result": {
+      "pass": true,
+      "n_clusters_size2": 2,
+      "n_clusters_size20": 0,
+      "detail": "min_cluster_size=2 vs min_cluster_size=20 must differ in cluster count"
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "name": "sim_pysindy_capability",
+  "classification": "tool_lego_fit_probe",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "sim_execution_kind": "classical",
+  "package": {
+    "name": "pysindy",
+    "version": "2.1.0",
+    "functions_exercised": [
+      "pysindy.SINDy.fit",
+      "pysindy.SINDy.predict",
+      "pysindy.SINDy.score",
+      "pysindy.SINDy.coefficients",
+      "pysindy.PolynomialLibrary(degree=1, include_bias=True)",
+      "pysindy.STLSQ"
+    ]
+  },
+  "fixture": {
+    "generator_matrix": [
+      [
+        -0.24,
+        0.11,
+        0.0
+      ],
+      [
+        0.0,
+        -0.31,
+        0.17
+      ],
+      [
+        0.06,
+        0.0,
+        -0.43
+      ]
+    ],
+    "generator_offset": [
+      0.12,
+      -0.07,
+      0.03
+    ],
+    "train_rows": 512,
+    "heldout_rows": 192,
+    "feature_names": [
+      "1",
+      "x0",
+      "x1",
+      "x2"
+    ]
+  },
+  "measurements": {
+    "heldout_r2": 1.0,
+    "heldout_rmse": 1.627634592206492e-16,
+    "coefficient_max_abs_error": 3.608224830031759e-16,
+    "shuffled_derivative_r2": 0.05480229429223612,
+    "zero_generator_max_abs_prediction": 0.0,
+    "coefficients": [
+      [
+        0.12000000000000013,
+        -0.23999999999999963,
+        0.11000000000000025,
+        0.0
+      ],
+      [
+        -0.07000000000000005,
+        0.0,
+        -0.30999999999999994,
+        0.17000000000000015
+      ],
+      [
+        0.03,
+        0.060000000000000026,
+        0.0,
+        -0.4300000000000001
+      ]
+    ]
+  },
+  "positive": {
+    "feature_order_is_affine": true,
+    "heldout_r2_at_least_0_999999": true,
+    "heldout_rmse_below_1e_10": true,
+    "coefficients_match_generator_below_1e_10": true
+  },
+  "negative": {
+    "shuffled_derivative_r2_below_0_25": true,
+    "real_fit_beats_shuffle_by_0_70": true
+  },
+  "boundary": {
+    "zero_generator_stays_zero_below_1e_12": true
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "TOOL_MANIFEST": {
+    "pysindy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing PolynomialLibrary and STLSQ recovery of an affine vector field with a shuffled-derivative falsifier"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive deterministic fixtures, coefficient comparison, and held-out error calculation"
+    },
+    "python_json": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive result serialization"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pysindy": "load_bearing",
+    "numpy": "supportive",
+    "python_json": "supportive"
+  },
+  "claim_ceiling": "Function-level PySINDy affine-generator receipt only. It does not identify a QIT engine, derive four substages, establish perception or object formation, or admit Axis0, manifold, entropy, or physics claims.",
+  "demotion_condition": "Demote if exact affine recovery fails, held-out prediction fails, or shuffled derivatives are not rejected."
+}

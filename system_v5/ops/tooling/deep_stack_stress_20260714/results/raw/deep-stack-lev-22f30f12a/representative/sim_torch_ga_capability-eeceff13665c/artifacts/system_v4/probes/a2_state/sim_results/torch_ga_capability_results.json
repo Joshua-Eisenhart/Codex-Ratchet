@@ -1,0 +1,301 @@
+{
+  "name": "sim_torch_ga_capability",
+  "purpose": "Tool-capability isolation probe for torch_ga Cl(3) operations and torch autograd through geometric product.",
+  "classification": "canonical",
+  "torch_ga_version": "0.0.6",
+  "torch_ga_origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torch_ga/__init__.py",
+  "torch_available": true,
+  "torch_ga_importable": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive backend for torch tensors and autograd; not the package under test"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "under test: GeometricAlgebra, geom_prod, reversion, from_tensor, blade metadata, and autograd through GA product"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded torch_ga capability receipt isolates torch_ga GeometricAlgebra operations; other tool families require separate receipts."
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "supportive",
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "torch_ga": "load_bearing",
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "cl3_basis_blade_count": {
+      "pass": true,
+      "metric": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "blade_names": [
+        "",
+        "0",
+        "1",
+        "2",
+        "01",
+        "02",
+        "12",
+        "012"
+      ],
+      "blade_count": 8
+    },
+    "e1_e2_anticommutation": {
+      "pass": true,
+      "blade_names_used": {
+        "e1": "0",
+        "e2": "1",
+        "e1e2_blade": "01"
+      },
+      "anticommutator_norm": 0.0,
+      "commutator_norm": 2.0
+    },
+    "rotor_sandwich_matches_torch_reference": {
+      "pass": true,
+      "angle_radians": 0.73,
+      "rotated_vector_coefficients": [
+        0.7451744023448705,
+        0.6668696350036979,
+        0.0
+      ],
+      "torch_reference_coefficients": [
+        0.7451744023448704,
+        0.6668696350036979,
+        0.0
+      ],
+      "residual_l2": 1.1102230246251565e-16
+    },
+    "pseudoscalar_square_minus_one": {
+      "pass": true,
+      "pseudoscalar_blade_name": "012",
+      "square_coefficients": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "residual_vs_negative_scalar_one": 0.0
+    },
+    "autograd_through_ga_product_norm": {
+      "pass": true,
+      "loss": 3.782200000000001,
+      "gradient_norm": 7.030962949696152,
+      "gradient_finite": true
+    }
+  },
+  "negative": {
+    "same_blade_commuting_control_zero_gap": {
+      "pass": true,
+      "gap_norm": 0.0,
+      "control": "identical same-blade product must not create a noncommutation gap"
+    },
+    "wrong_signature_changes_pseudoscalar_square": {
+      "pass": true,
+      "wrong_metric": [
+        1.0,
+        1.0,
+        -1.0
+      ],
+      "wrong_square_coefficients": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "residual_vs_cl3_square": 2.0,
+      "residual_vs_positive_scalar_one": 0.0
+    }
+  },
+  "boundary": {
+    "scalar_grade0_left_multiplies_vector": {
+      "pass": true,
+      "scalar_coefficients": [
+        2.5,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "target_vector_blade": "2",
+      "residual_l2": 0.0
+    },
+    "high_grade_pseudoscalar_boundary": {
+      "pass": true,
+      "blade_name": "012",
+      "grade3_residual_l2": 0.0,
+      "blade_degree": 3
+    },
+    "from_tensor_scalar_boundary": {
+      "pass": true,
+      "blade_indices": [
+        0
+      ],
+      "coefficients": [
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "residual_l2": 0.0
+    }
+  },
+  "adequacy": {
+    "version": "0.0.6",
+    "origin": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torch_ga/__init__.py",
+    "importable": true,
+    "api_friction": [
+      "basis vectors are zero-named ('0','1','2'), so local e1/e2/e3 labels map to blade indices 1/2/3 rather than literal blade names",
+      "sandwich helper is exposed as misspelled sandwitch_prod; probe uses explicit R*v*~R geom_prod calls",
+      "from_tensor uses an internal float32 destination in torch_ga 0.0.6; float64 coefficient input can raise a dtype mismatch"
+    ],
+    "ops_that_error": [
+      {
+        "operation": "GeometricAlgebra.sandwich_prod",
+        "error_type": "AttributeError",
+        "detail": "correctly spelled sandwich_prod helper is absent"
+      },
+      {
+        "operation": "GeometricAlgebra.geom_prod(wrong_shape, vector)",
+        "error_type": "ValueError",
+        "detail": "Size of label 'i' for operand 2 (7) does not match previous terms (8)."
+      },
+      {
+        "operation": "GeometricAlgebra.from_tensor(coeff_count_2, blade_indices_len_1)",
+        "error_type": "RuntimeError",
+        "detail": "shape mismatch: value tensor of shape [2] cannot be broadcast to indexing result of shape [1, 1]"
+      }
+    ],
+    "not_pass_fail": true
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "importable": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "operation_sequence": [
+    "instantiate torch_ga.GeometricAlgebra([1,1,1]) and check Cl(3) blade metadata",
+    "measure e1/e2 anticommutation using GeometricAlgebra.geom_prod",
+    "rotate a basis vector by explicit rotor sandwich R*v*~R and compare against a torch trigonometric reference",
+    "check Cl(3) pseudoscalar square equals -1",
+    "differentiate a geometric-product norm with torch.autograd",
+    "run negative controls for same-blade zero gap and wrong-signature pseudoscalar square",
+    "run scalar and high-grade blade boundary fixtures",
+    "report non-gating API adequacy findings for replacement decisions"
+  ],
+  "carrier_topology": "finite Cl(3) torch_ga GeometricAlgebra tensor fixtures only; no spinor geometry, bridge, axis, GStack, or nonclassical admission is claimed",
+  "observable": {
+    "blade_count": "GeometricAlgebra([1,1,1]).num_blades",
+    "anticommutation_gap": "norm((e1*e2) - (e2*e1)) and zero anticommutator residual",
+    "rotor_residual": "L2 residual between R*v*~R vector coefficients and torch reference rotation",
+    "pseudoscalar_square": "Cl(3) pseudoscalar product coefficients",
+    "autograd_gradient": "finite nonzero gradient of product norm with respect to multivector coefficients",
+    "controls": "same-blade zero gap, wrong-signature pseudoscalar square, scalar grade-0, and grade-3 pseudoscalar boundaries"
+  },
+  "pass_fail_predicate": "torch and torch_ga must import; every positive, negative, and boundary fixture must pass. Adequacy is reported for replacement decisions but does not gate all_pass.",
+  "graveyards": [
+    "torch_ga as a mere import/symbol alias without direct geom_prod witness",
+    "same-blade product falsely reported as a noncommuting gap",
+    "wrong metric silently producing the same pseudoscalar square as Cl(3,0)",
+    "rotor sandwich accepted without comparison to a torch reference rotation",
+    "torch_ga geometric product not differentiable through torch.autograd"
+  ],
+  "out_of_scope": [
+    "no lego promotion",
+    "no broad sim queue launch",
+    "no bridge claim",
+    "no axis claim",
+    "no GStack claim",
+    "no nonclassical admission"
+  ],
+  "claim_ceiling": "finite sim_torch_ga_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+  "next_lego_target": "Use as bounded torch_ga capability evidence before torch_ga load-bearing labels or replacement decisions.",
+  "promotion_condition": "Requires separate coupling/coexistence receipts and explicit stage-gate approval.",
+  "blocked_until": "explicit coupling-stage admission and companion receipts",
+  "demotion_condition": "Demote if rerun fails, tool-depth evidence disappears, or boundary controls fail."
+}

@@ -1,0 +1,160 @@
+{
+  "name": "sim_capability_umap_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "pass_count": 7,
+  "total_count": 7,
+  "capability_summary": {
+    "CAN": [
+      "reduce high-dimensional data to 2D (or any target n_components < n_samples)",
+      "produce finite, non-zero embeddings from arbitrary numpy arrays",
+      "respect random_state for reproducibility",
+      "adjust local vs global structure via n_neighbors parameter",
+      "embed 5D data into 2D preserving neighborhood relationships"
+    ],
+    "CANNOT": [
+      "handle n_components >= n_samples without raising or producing degenerate output",
+      "guarantee exact reproducibility across different hardware/library versions",
+      "replace persistent homology tools (use gudhi for TDA)",
+      "provide formal proofs of topology preservation (use z3 for proofs)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap dimensionality reduction capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "umap": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: umap-learn is the sole subject; dimensionality reduction, output shape verification, and embedding variance are all computed directly by umap.UMAP."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "umap": "load_bearing"
+  },
+  "positive": {
+    "umap_available": {
+      "pass": true,
+      "version": "0.5.12"
+    },
+    "output_shape_30x2": {
+      "pass": true,
+      "shape": [
+        30,
+        2
+      ],
+      "detail": "UMAP on 30x5 input must produce (30,2) output"
+    },
+    "all_values_finite": {
+      "pass": true,
+      "n_nonfinite": 0,
+      "detail": "embedding must contain no NaN or Inf values"
+    },
+    "not_all_zero": {
+      "pass": true,
+      "max_abs_value": 9.119068145751953,
+      "detail": "embedding must not be identically zero"
+    }
+  },
+  "negative": {
+    "n_components_exceeds_n_samples": {
+      "pass": true,
+      "error_caught": true,
+      "error_msg": "Cannot use scipy.linalg.eigh for sparse A with k >= N. Use scipy.linalg.eigh(A.toarray()) or reduce k.",
+      "degenerate_output": false,
+      "detail": "n_components > n_samples must raise or produce degenerate output"
+    }
+  },
+  "boundary": {
+    "n_neighbors_2_vs_15_both_valid": {
+      "pass": true,
+      "shape_tight": [
+        30,
+        2
+      ],
+      "shape_broad": [
+        30,
+        2
+      ],
+      "var_tight": 96.2491226196289,
+      "var_broad": 10.748198509216309,
+      "detail": "n_neighbors=2 and n_neighbors=15 both produce valid (30,2) finite embeddings"
+    },
+    "n_neighbors_changes_embedding_variance": {
+      "pass": true,
+      "var_n2": 96.2491226196289,
+      "var_n15": 10.748198509216309,
+      "abs_diff": 85.5009241104126,
+      "detail": "different n_neighbors values should produce embeddings with different variance"
+    }
+  }
+}

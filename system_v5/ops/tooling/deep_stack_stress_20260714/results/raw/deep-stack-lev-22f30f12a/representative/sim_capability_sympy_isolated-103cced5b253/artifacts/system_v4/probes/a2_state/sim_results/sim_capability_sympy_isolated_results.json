@@ -1,0 +1,174 @@
+{
+  "name": "sim_capability_sympy_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "capability_summary": {
+    "CAN": [
+      "compute exact symbolic derivatives and integrals",
+      "factor polynomials and solve algebraic equations exactly",
+      "compute matrix operations (det, inverse, eigenvalues) symbolically",
+      "evaluate limits and series expansions",
+      "handle arbitrary precision rational arithmetic",
+      "simplify trigonometric, exponential, and logarithmic expressions"
+    ],
+    "CANNOT": [
+      "guarantee finite computation for all integrals (non-elementary integrals may stall)",
+      "replace numerical solvers for transcendental equations with no closed form",
+      "perform fast numerical computation (use pytorch/numpy for that)",
+      "decide validity of logical formulas (use z3/cvc5 for that)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy symbolic engine is the sole subject; differentiation, integration, matrix algebra, and polynomial operations are all computed by sympy directly."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sympy symbolic computation capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_available": {
+      "pass": true,
+      "version": "1.14.0"
+    },
+    "differentiation": {
+      "pass": true,
+      "detail": "d/dx[sin(x)*exp(x)] = exp(x)*sin(x) + exp(x)*cos(x)"
+    },
+    "integration": {
+      "pass": true,
+      "detail": "integral(x^2) = x**3/3"
+    },
+    "definite_integral": {
+      "pass": true,
+      "result": "1/3",
+      "detail": "integral(x^2, 0, 1) = 1/3"
+    },
+    "polynomial_factor": {
+      "pass": true,
+      "result": "(x - 3)*(x - 2)",
+      "detail": "x^2 - 5x + 6 = (x-2)(x-3)"
+    },
+    "equation_solve": {
+      "pass": true,
+      "result": "[-2, 2]",
+      "detail": "x^2 = 4 has solutions x = \u00b12"
+    },
+    "matrix_determinant": {
+      "pass": true,
+      "result": "-2",
+      "detail": "det([[1,2],[3,4]]) = -2"
+    },
+    "limit": {
+      "pass": true,
+      "result": "1",
+      "detail": "lim(sin(x)/x, x->0) = 1"
+    },
+    "series_expansion": {
+      "pass": true,
+      "detail": "exp(x) around 0 to order 4: 1 + x + x**2/2 + x**3/6 + O(x**4)"
+    }
+  },
+  "negative": {
+    "non_elementary_integral_not_polynomial": {
+      "pass": true,
+      "result": "sqrt(pi)*erf(x)/2",
+      "detail": "integral(exp(-x^2)) is not a polynomial; sympy returns erf-based form"
+    },
+    "overdetermined_no_solution": {
+      "pass": true,
+      "result": "[]",
+      "detail": "x=1 AND x=2 has no solution"
+    },
+    "division_by_zero_handled": {
+      "pass": true,
+      "result": "oo",
+      "detail": "lim(1/x, x->0) is \u00b1oo or zoo, not a finite number"
+    }
+  },
+  "boundary": {
+    "derivative_of_zero": {
+      "pass": true,
+      "result": "0",
+      "detail": "d/dx[0] = 0"
+    },
+    "identity_determinant": {
+      "pass": true,
+      "result": "1",
+      "detail": "det(I_3) = 1"
+    },
+    "large_power_expand": {
+      "pass": true,
+      "result": "leading coeff: 1",
+      "detail": "(x+1)^10 leading coefficient is 1"
+    }
+  }
+}

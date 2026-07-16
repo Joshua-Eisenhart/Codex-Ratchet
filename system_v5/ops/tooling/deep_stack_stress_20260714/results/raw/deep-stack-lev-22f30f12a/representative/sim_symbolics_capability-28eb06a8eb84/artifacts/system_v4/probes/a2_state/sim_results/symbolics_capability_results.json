@@ -1,0 +1,38 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Symbolics": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Symbolics": {
+      "reason": "load-bearing capability under test: symbolic variables, differentiation, derivative expansion, and substitution decide all_pass",
+      "tried": true,
+      "used": true
+    }
+  },
+  "classification": "scratch_diagnostic",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-16T02:03:51.765908+00:00",
+  "julia_project": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-representative-grdkqpeb/repo/system_v5/julia_carrier",
+  "positive_symbolic_derivative_fixture": {
+    "api": "Symbolics.@variables + Differential + expand_derivatives + substitute",
+    "dx_at_x2_y5": 17.0,
+    "dx_expr": "y + 3(x^2)",
+    "dy_at_x2_y5": 2.0,
+    "dy_expr": "x",
+    "pass": true
+  },
+  "probe": "symbolics",
+  "promotion_allowed": false,
+  "returncode": 0,
+  "schema_version": "capability_probe_result_v1",
+  "stderr": "",
+  "summary": {
+    "all_pass": true
+  },
+  "wrong_derivative_control": {
+    "dx_at_x2_y5": 17.0,
+    "dy_at_x2_y5": 2.0,
+    "mutation": "confuse d/dx with d/dy",
+    "pass": true
+  }
+}

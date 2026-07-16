@@ -1,0 +1,52 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "DifferentialEquations": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "DifferentialEquations": {
+      "reason": "load-bearing capability under test: ODEProblem plus solve(Tsit5) decides all_pass against analytic ODE fixtures",
+      "tried": true,
+      "used": true
+    }
+  },
+  "affine_fixture": {
+    "abs_error": 1.308397834520747e-12,
+    "api": "DifferentialEquations.ODEProblem + solve(Tsit5)",
+    "expected": 0.43393972058572117,
+    "got": 0.43393972058702956,
+    "pass": true
+  },
+  "boundary_fixture": {
+    "abs_error": 0.0,
+    "api": "DifferentialEquations.ODEProblem + solve(Tsit5)",
+    "expected": 1.0,
+    "got": 1.0,
+    "pass": true
+  },
+  "classification": "scratch_diagnostic",
+  "decay_fixture": {
+    "abs_error": 1.9685086893872494e-12,
+    "api": "DifferentialEquations.ODEProblem + solve(Tsit5)",
+    "expected": 0.1353352832366127,
+    "got": 0.1353352832385812,
+    "pass": true
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-16T02:03:20.908648+00:00",
+  "julia_project": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-representative-grdkqpeb/repo/system_v5/julia_carrier",
+  "probe": "differentialequations",
+  "promotion_allowed": false,
+  "returncode": 0,
+  "schema_version": "capability_probe_result_v1",
+  "stderr": "",
+  "summary": {
+    "all_pass": true
+  },
+  "wrong_sign_control": {
+    "abs_difference": 7.25372081572027,
+    "api": "DifferentialEquations.ODEProblem + solve(Tsit5)",
+    "expected_decay": 0.1353352832366127,
+    "got_wrong_sign": 7.389056098956883,
+    "pass": true
+  }
+}

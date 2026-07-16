@@ -1,0 +1,171 @@
+{
+  "name": "sim_capability_xgi_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "capability_summary": {
+    "CAN": [
+      "construct hypergraphs with arbitrary-arity hyperedges",
+      "query hyperedge membership and node degree in hypergraph",
+      "compute node memberships (which hyperedges contain a node)",
+      "convert hypergraphs to line graphs and clique expansions",
+      "handle hyperedges of mixed sizes in a single hypergraph",
+      "represent multi-way interactions beyond pairwise graph edges"
+    ],
+    "CANNOT": [
+      "compute boundary operators or chain complexes (use toponetx for that)",
+      "perform message passing with learned weights (use PyG for that)",
+      "compute persistent homology (use gudhi for that)",
+      "prove hypergraph properties formally (use z3 for that)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates xgi hypergraph capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG handles standard graph message passing; xgi handles hyperedges with arbitrary arity; separate capabilities."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates xgi hypergraph capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates xgi hypergraph capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates xgi hypergraph capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates xgi hypergraph capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates xgi hypergraph capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates xgi hypergraph capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx is for standard graphs; xgi is for hypergraphs with higher-arity edges; separate tools for separate structures."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: xgi Hypergraph construction, hyperedge membership, node statistics, and clique expansion are the sole subjects of this capability probe."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx handles simplicial/cell complexes with boundary operators; xgi handles general hypergraphs without chain map structure; separate tools."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates xgi hypergraph capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "xgi_available": {
+      "pass": true,
+      "version": "0.10.1"
+    },
+    "hypergraph_construction": {
+      "pass": true,
+      "num_nodes": 5,
+      "num_edges": 3,
+      "detail": "Hypergraph: 5 nodes, 3 hyperedges (including a 2-edge)"
+    },
+    "hyperedge_membership": {
+      "pass": true,
+      "members": [
+        0,
+        1,
+        2
+      ],
+      "detail": "First hyperedge contains nodes {0, 1, 2}"
+    },
+    "node_degree": {
+      "pass": true,
+      "degree_1": 2,
+      "detail": "Node 1 appears in 2 hyperedges"
+    },
+    "hyperedge_size": {
+      "pass": true,
+      "size": 3,
+      "detail": "Hyperedge 0 has size 3 (contains 3 nodes)"
+    },
+    "line_graph_conversion": {
+      "pass": true,
+      "line_graph_nodes": 3,
+      "detail": "Line graph of 3-edge hypergraph has 3 nodes (one per hyperedge)"
+    },
+    "node_memberships": {
+      "pass": true,
+      "memberships": [
+        0,
+        1
+      ],
+      "detail": "Node 1 is member of 2 hyperedges"
+    }
+  },
+  "negative": {
+    "isolated_node_degree_zero": {
+      "pass": true,
+      "degree": 0,
+      "detail": "Node 2 in no hyperedges: degree = 0"
+    },
+    "empty_hypergraph": {
+      "pass": true,
+      "num_edges": 0,
+      "num_nodes": 0,
+      "detail": "Empty hypergraph has 0 nodes and 0 edges"
+    }
+  },
+  "boundary": {
+    "singleton_hyperedge": {
+      "pass": true,
+      "size": 1,
+      "detail": "1-node hyperedge has size 1"
+    },
+    "all_nodes_hyperedge": {
+      "pass": true,
+      "size": 5,
+      "detail": "5-node hyperedge containing all nodes"
+    },
+    "duplicate_node_deduplicated": {
+      "pass": true,
+      "size": 2,
+      "detail": "Duplicate node in hyperedge deduplicated to {0,1}: size <= 2"
+    }
+  }
+}

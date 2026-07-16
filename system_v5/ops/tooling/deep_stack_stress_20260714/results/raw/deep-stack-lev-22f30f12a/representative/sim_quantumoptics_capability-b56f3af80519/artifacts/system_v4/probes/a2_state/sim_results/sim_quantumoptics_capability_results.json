@@ -1,0 +1,203 @@
+{
+  "all_pass": true,
+  "blocked_until": "explicit coupling-stage admission and companion receipts",
+  "boundary": {
+    "fidelity_self_boundary": {
+      "fidelity": {
+        "im": 0.0,
+        "re": 1.0
+      },
+      "pass": true
+    },
+    "identity_superoperator_preserves_state": {
+      "pass": true,
+      "trace_distance": 0.0
+    }
+  },
+  "carrier_topology": "finite two-level Hilbert-space carrier represented by QuantumOptics SpinBasis kets, density operators, and superoperators",
+  "claim_ceiling": "finite sim_quantumoptics_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+  "classification": "canonical",
+  "demotion_condition": "Demote QuantumOptics load-bearing claims if strict-carrier state, density, expectation, superoperator, trace-distance, or fidelity rows fail on rerun.",
+  "divergence_log": "Capability isolation witness for QuantumOptics.jl: one-qubit states, density operators, observables, trace distance, fidelity, and superoperator channels are exercised here so S3/S4 packet routes can treat QuantumOptics as an admitted Julia QIT tool rather than a decorative import.",
+  "julia": {
+    "active_project": "/private/var/folders/59/jd7hbp413gn509q_fz_k6wgr0000gn/T/codex-ratchet-representative-grdkqpeb/repo/system_v5/julia_carrier/Project.toml",
+    "aligned_packages_load_bearing": [
+      "QuantumOptics"
+    ],
+    "load_path": "@:@stdlib",
+    "packages_used": [
+      "QuantumOptics",
+      "JSON",
+      "LinearAlgebra"
+    ],
+    "ran": true,
+    "reads_peer_result": false,
+    "source_path": "system_v4/probes/sim_quantumoptics_capability.py"
+  },
+  "name": "sim_quantumoptics_capability",
+  "negative": {
+    "ket_one_z_not_plus_one": {
+      "pass": true,
+      "value": -1.0
+    },
+    "pinching_not_identity_on_plus_state": {
+      "pass": true,
+      "trace_distance": 0.4999999999999999
+    }
+  },
+  "next_lego_target": "Use as bounded QuantumOptics capability evidence before exact QuantumOptics state/channel packet routes.",
+  "operation_sequence": [
+    "construct SpinBasis(1//2), basisstate kets, and density operators with QuantumOptics.dm",
+    "compute sigmax/sigmaz expectations with QuantumOptics.expect",
+    "construct a z-pinching superoperator with QuantumOptics.sprepost",
+    "apply the superoperator to a density operator and check trace/expectation rows",
+    "check trace-distance and fidelity boundary controls"
+  ],
+  "out_of_scope": [
+    "QIT engine admission",
+    "GStack promotion",
+    "axis promotion",
+    "nonclassical admission",
+    "bridge admission"
+  ],
+  "package_versions": {
+    "QuantumOptics": "1.2.6"
+  },
+  "pass_fail_predicate": "positive_all_pass, negative_all_pass, and boundary_all_pass must all be true; Julia subprocess must exit 0",
+  "positive": {
+    "density_trace": {
+      "api": "QuantumOptics.dm + QuantumOptics.tr",
+      "pass": true,
+      "value": 1.0
+    },
+    "x_expectation_plus": {
+      "api": "QuantumOptics.expect(sigmax, rho_plus)",
+      "pass": true,
+      "value": 0.9999999999999998
+    },
+    "z_expectation_zero": {
+      "api": "QuantumOptics.expect(sigmaz, rho)",
+      "pass": true,
+      "value": 1.0
+    },
+    "z_pinching_channel": {
+      "api": "QuantumOptics.sprepost superoperator applied to density operator",
+      "pass": true,
+      "trace_after_pinching": 0.9999999999999998,
+      "x_after_pinching": 0.0
+    }
+  },
+  "promotion_condition": "Requires separate coupling/coexistence receipts and explicit stage-gate approval.",
+  "subprocess": {
+    "returncode": 0,
+    "stderr_tail": "",
+    "stdout_line_count": 1
+  },
+  "summary": {
+    "all_pass": true,
+    "boundary_all_pass": true,
+    "negative_all_pass": true,
+    "positive_all_pass": true
+  },
+  "tool_function_needs": [
+    "QuantumOptics.SpinBasis",
+    "QuantumOptics.basisstate",
+    "QuantumOptics.dm",
+    "QuantumOptics.sigmax",
+    "QuantumOptics.sigmay",
+    "QuantumOptics.sigmaz",
+    "QuantumOptics.expect",
+    "QuantumOptics.tr",
+    "QuantumOptics.sprepost",
+    "QuantumOptics.tracedistance",
+    "QuantumOptics.fidelity"
+  ],
+  "tool_integration_depth": {
+    "QuantumOptics": "load_bearing",
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
+    "qutip": null,
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "tool_manifest": {
+    "QuantumOptics": {
+      "reason": "load-bearing capability under test: strict-carrier Julia QuantumOptics APIs decide every pass/fail verdict",
+      "tried": true,
+      "used": true
+    },
+    "clifford": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "cvc5": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "e3nn": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "geomstats": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "gudhi": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "pyg": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "pytorch": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "qutip": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "rustworkx": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "sympy": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "toponetx": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "xgi": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    },
+    "z3": {
+      "reason": "not used: this bounded QuantumOptics capability receipt isolates QuantumOptics.jl one-qubit state, density, observable, fidelity, trace-distance, and superoperator APIs; other tool families require separate receipts.",
+      "tried": false,
+      "used": false
+    }
+  }
+}

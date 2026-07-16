@@ -1,0 +1,12 @@
+Gate V2 source is ready for the owner-invoked run after all candidate families land.
+
+Do not treat this marker as a gate result. No rung_receipt_v2.json was produced
+while candidate families were incomplete.
+
+Owner run command (from repository root):
+/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v7/constraint_core/sims_and_scripts/l6_phase_entropy_rung_v0/gate/gate_runner_v2.py
+
+The runner discovers every candidates/*/behavior_v1.json at process start,
+records present and absent families, performs two byte-identity-checked in-memory
+builds, writes or requires an identical rung_receipt_v2.json, and prints the
+frontier, LUCK verdicts, and headline table.

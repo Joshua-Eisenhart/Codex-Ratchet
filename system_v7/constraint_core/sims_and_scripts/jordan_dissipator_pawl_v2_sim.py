@@ -26,8 +26,7 @@ import numpy as np
 from scipy.linalg import expm
 
 
-ROOT = Path(__file__).resolve().parents[3]
-SIM_DIR = ROOT / "system_v7/constraint_core/sims_and_scripts"
+SIM_DIR = Path(__file__).resolve().parent
 SOURCE_PATH = SIM_DIR / "jordan_dissipator_pawl_v2_sim.py"
 RESULT_PATH = SIM_DIR / "jordan_dissipator_pawl_v2_sim_results.json"
 J2_SOURCE_PATH = SIM_DIR / "jordan_octonion_entropy_pawl_sim.py"

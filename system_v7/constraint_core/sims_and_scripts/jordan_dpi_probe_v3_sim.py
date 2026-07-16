@@ -30,8 +30,7 @@ import numpy as np
 from scipy.linalg import expm
 
 
-ROOT = Path(__file__).resolve().parents[3]
-SIM_DIR = ROOT / "system_v7/constraint_core/sims_and_scripts"
+SIM_DIR = Path(__file__).resolve().parent
 SOURCE_PATH = SIM_DIR / "jordan_dpi_probe_v3_sim.py"
 RESULT_PATH = SIM_DIR / "jordan_dpi_probe_v3_sim_results.json"
 J3_SOURCE_PATH = SIM_DIR / "j3o_bloch_body_entropy_pawl_sim.py"

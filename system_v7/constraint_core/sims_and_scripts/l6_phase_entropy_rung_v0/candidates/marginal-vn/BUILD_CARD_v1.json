@@ -1,0 +1,45 @@
+{
+  "card_id": "l6_phase_entropy_rung_v0/candidates/marginal-vn/BUILD_CARD_v1",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "lane": "candidate family marginal-vn (incumbent: marginal von Neumann entropy per shell)",
+  "rung_obligation": "Compute the incumbent's behavior on the distinction surface, including its induced sign predictions on every demanded edge family. NO gate logic, NO survival verdicts: values and predictions only. The gate runner (separate lane) adjudicates.",
+  "doc_basis": [
+    "system_v7/constraint_core/ratchet/manifold_evidence/MANIFOLD_RATCHET_STATE_REPORT.md (v0.6 executed audit: L6 marginal-entropy object erases the phase direction L7 holonomy needs)",
+    "system_v7/constraint_core/sims_and_scripts/l6_phase_entropy_rung_v0/surface/surface_v1.json (S6 fixture observation rows; C2 cross-check: entropy_bits = H2((1+shell_radius)/2) within 4e-11)",
+    "system_v7/constraint_core/sims_and_scripts/l6_phase_entropy_rung_v0/surface/demand_families_v1.json (4 demanded edge families: factorization_boundary 16, marginal_entropy_level 72, orientation_winding 9, shell_position 72)"
+  ],
+  "inputs": {
+    "surface": "system_v7/constraint_core/sims_and_scripts/l6_phase_entropy_rung_v0/surface/surface_v1.json",
+    "demands": "system_v7/constraint_core/sims_and_scripts/l6_phase_entropy_rung_v0/surface/demand_families_v1.json",
+    "rows_used": "row_blocks.fixture_observations (18 rows; fields: row_id, a, orientation, shell_radius, purity, negativity, entropy_bits, chern_signed, radial_index)"
+  },
+  "variant_grid": {
+    "reconstruction_routes": {
+      "from_radius": "p = (1 + shell_radius)/2; rho = diag(p, 1-p)",
+      "from_purity": "p = (1 + sqrt(max(0, 2*purity - 1)))/2; rho = diag(p, 1-p)",
+      "from_negativity": "p = (1 + sqrt(max(0, 1 - 4*negativity^2)))/2; rho = diag(p, 1-p)",
+      "from_state": "|psi> = cos(a)|00> + orientation*sin(a)|11> in C^4; rho_A = Tr_B |psi><psi| (orientation enters the INPUT on this route; whether the marginal carries it is computed, not assumed)"
+    },
+    "log_bases": ["bits (log2)", "nats (ln)"],
+    "variant_count": 8,
+    "functional": "S(rho_A) = -sum_k lambda_k log lambda_k over eigenvalues from a Hermitian eigensolver on the reconstructed marginal. Eigensolver mandatory: the closed-form binary entropy is NOT an admissible implementation for the legs."
+  },
+  "engines": {
+    "julia": "/opt/homebrew/bin/julia with JULIA_PROJECT=/Users/joshuaeisenhart/.julia/environments/v1.12; from_state route MUST go through QuantumOptics (Ket/dm/ptrace/entropy_vn); diag routes via LinearAlgebra Hermitian eigen; JSON via JSON.jl",
+    "jax": "sim-stack python3 with JAX_ENABLE_X64=1; jnp.linalg.eigvalsh; float64",
+    "torch": "sim-stack python3; torch float64 tensors; torch.linalg.eigvalsh",
+    "numpy_control": "comparison-only leg inside compiler.py; role=comparison_only_control; never part of the three-engine validity delta"
+  },
+  "sign_prediction_rule": "For each edge (row_i,row_j) in each demanded family: sign(F(row_j) - F(row_i)) with zero_tol 1e-12 (|diff| <= zero_tol -> 0). Computed per engine leg; cross-leg agreement reported as data.",
+  "outputs": [
+    "rows_v1.json", "julia_out_v1.json", "jax_out_v1.json", "torch_out_v1.json", "behavior_v1.json"
+  ],
+  "constraints": [
+    "gates are code: no survivor/frontier/verdict logic anywhere in this lane",
+    "deterministic, seed 0 where any RNG appears",
+    "append-only versioned outputs",
+    "ceiling scratch_diagnostic, promotion_allowed=false in every emitted JSON",
+    "never delete or move existing files; write only under candidates/marginal-vn/"
+  ]
+}

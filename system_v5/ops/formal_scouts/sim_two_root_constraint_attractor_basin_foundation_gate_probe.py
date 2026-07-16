@@ -178,7 +178,32 @@ def doc_root_constraint_report() -> dict[str, Any]:
 
 def receipt_report() -> dict[str, Any]:
     rows = {}
+    missing_receipts = []
     for name, path in RECEIPTS.items():
+        if not path.exists():
+            missing_receipts.append(name)
+            rows[name] = {
+                "path": str(path.relative_to(REPO)),
+                "exists": False,
+                "sha256": None,
+                "classification": None,
+                "all_pass": False,
+                "promotion_allowed": False,
+                "claim_ceiling_blocks_real_basin": False,
+                "axis0_not_pass_condition": False,
+                "real_convergence_claim_status": "not_evaluated_missing_receipt",
+                "basin_admission_status": "blocked",
+                "mentions_f01": False,
+                "mentions_n01": False,
+                "has_executable_root_constraint_section": False,
+                "root_executability": {
+                    "result_all_pass": False,
+                    "f01_executable": False,
+                    "n01_executable": False,
+                    "joint_f01_n01_executable": False,
+                },
+            }
+            continue
         data = read_json(path)
         text = json.dumps(data, sort_keys=True)
         summary = data.get("summary", {}) if isinstance(data.get("summary"), dict) else {}
@@ -186,6 +211,7 @@ def receipt_report() -> dict[str, Any]:
         root_executability = explicit_root_executability(data)
         rows[name] = {
             "path": str(path.relative_to(REPO)),
+            "exists": True,
             "sha256": sha256_file(path),
             "classification": data.get("classification"),
             "all_pass": root_executability["result_all_pass"],
@@ -222,11 +248,13 @@ def receipt_report() -> dict[str, Any]:
     ]
     return {
         "rows": rows,
+        "missing_receipts": missing_receipts,
         "executable_root_receipt_count": executable_root_receipt_count,
         "f01_executable_receipt_count": f01_executable_receipt_count,
         "n01_executable_receipt_count": n01_executable_receipt_count,
         "killed_or_blocked_basin_rows": killed_rows,
-        "pass": executable_root_receipt_count > 0
+        "pass": not missing_receipts
+        and executable_root_receipt_count > 0
         and f01_executable_receipt_count > 0
         and n01_executable_receipt_count > 0
         and len(killed_rows) >= 2,
@@ -372,7 +400,9 @@ def main() -> int:
         "summary": {
             "all_pass": all_pass,
             "root_constraints": ["F01_finitude", "N01_noncommutation"],
-            "foundation_status": "root_layer_receipt_present_basin_still_blocked",
+            "foundation_status": "root_layer_receipt_present_basin_still_blocked"
+            if all_pass
+            else "foundation_gate_executed_dependencies_or_checks_blocked",
             "root_basin_admission_status": "blocked",
             "current_real_attractor_basin_convergence_claim_status": "killed_or_unproven",
             "executable_root_receipt_count": receipts["executable_root_receipt_count"],
@@ -402,7 +432,10 @@ def main() -> int:
                 "treat local dynamic Clifford-flow survival as full basin admission: blocked by consumed falsifier claim ceiling",
             ],
         },
-        "blockers": [],
+        "blockers": [
+            *[f"missing_receipt:{name}" for name in receipts["missing_receipts"]],
+            *([] if receipts["pass"] else ["foundation_receipt_chain_not_executable"]),
+        ],
         "all_pass": all_pass,
         "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }

@@ -31,9 +31,9 @@ from typing import Any
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[3]
-SOURCE_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/engine_field_choi_jordan_albert_probe_sim.py"
-RESULT_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/engine_field_choi_jordan_albert_probe_sim_results.json"
+SIM_DIR = Path(__file__).resolve().parent
+SOURCE_PATH = Path(__file__).resolve()
+RESULT_PATH = SIM_DIR / "engine_field_choi_jordan_albert_probe_sim_results.json"
 
 SIM_ID = "engine_field_choi_jordan_albert_probe"
 SEED = 7
@@ -478,7 +478,7 @@ def build_result() -> dict[str, Any]:
             "Fano octonion convention from local Jordan/octonion sims",
         ],
         "data_or_artifact_dependencies": [
-            "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/sims_and_scripts/grok45_engine_field_jordan_design_pressure_20260708.json"
+            str(SIM_DIR / "grok45_engine_field_jordan_design_pressure_20260708.json")
         ],
         "required_negatives": [
             "H4(O) Jordan failure despite dimension 52",

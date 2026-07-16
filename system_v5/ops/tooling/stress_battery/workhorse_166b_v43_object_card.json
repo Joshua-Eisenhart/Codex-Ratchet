@@ -1,0 +1,179 @@
+{
+  "schema_version": "wizard_v4_3_primary_object_card_v1",
+  "primary_object_card": {
+    "object_name": "Packet166bLineageAndBasinWorkhorse",
+    "object_type": "bounded_tool_lego_fit_probe_pair",
+    "object_statement": "The bounded packet-166b workhorse task resolves the living-purgatory lineage graph using the ledger native candidate and variation-edge namespaces, then tests one shared one-dimensional basin map independently with Julia Attractors, JAX Diffrax and Optimistix, and a Z3 lower-floor certificate, preserving erased-drive failure and no-promotion boundaries.",
+    "object_statement_sha256": "5dad972b72b8aed8095547e95e10d9dffabae0428aa0c72256dc5ebc9a70e385",
+    "source_anchors": [
+      {
+        "surface": "user_task",
+        "reference": "packet166b workhorse request",
+        "quote_or_summary": "Resolve finding H with the native lineage schema and build gap-D with one shared map across Julia, JAX, Optimistix, and Z3."
+      },
+      {
+        "surface": "packet_copy",
+        "reference": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/ae78ff9c-0704-43c0-81b3-af566c1b5861/scratchpad/packet166b",
+        "quote_or_summary": "Packet truth supplies the ledger, living-purgatory sim source, purgatory pool implementation, and gap list."
+      },
+      {
+        "surface": "repo_contract",
+        "reference": "system_v5/docs/LEGO_SIM_CONTRACT.md",
+        "quote_or_summary": "Tool-lego fit probes require promotion_allowed false and cannot promote a lego or downstream scientific claim."
+      }
+    ],
+    "plain_language_definition": "This task has exactly two objects: the lineage graph encoded by the packet ledger, and the fixed-point basin of x mapped to x minus one half of the excess above three. The tools may diagnose these objects but may not replace them with field-name guesses, copied peer results, or broader attractor/manifold claims.",
+    "native_terms": {
+      "lineage node": "A candidate identifier from the ledger's candidate namespace.",
+      "lineage edge": "A directed parent-to-child relationship from the ledger's variation-edge namespace.",
+      "shared basin map": "The exact map x -> x - 0.5*max(x-3,0), evaluated independently by Julia and JAX.",
+      "erased drive": "The control map obtained by setting the drive coefficient to zero; it must not satisfy the active convergence/certificate bundle."
+    },
+    "weirdness_signature": [
+      "lineage identifiers and relationship records live in different namespaces",
+      "the map has a continuum of fixed points at and below the floor while starts above the floor relax toward the boundary point three",
+      "Z3 certifies minimality of the above-floor attractor boundary, not uniqueness over the whole real line"
+    ],
+    "first_class_fields": [
+      "candidate_id_namespace",
+      "variation_edge_namespace",
+      "parent_id_field",
+      "child_id_field",
+      "rustworkx_is_dag",
+      "lineage_verdict",
+      "shared_map",
+      "julia_attractor_location",
+      "jax_diffrax_endpoint",
+      "optimistix_fixed_point",
+      "z3_below_floor_verdict",
+      "erased_drive_flip",
+      "cross_engine_tolerance",
+      "classification",
+      "promotion_allowed"
+    ],
+    "domain": "one packet-local purgatory ledger and source pair plus a finite grid of one-dimensional starts above the floor",
+    "codomain_or_output": "two repo-local executable probes and JSON receipts with PASS/FAIL legs and literal claim ceilings",
+    "allowed_operations": [
+      "parse candidate identifiers and variation edges from their native namespaces",
+      "construct a directed rustworkx graph and test acyclicity",
+      "run the shared map independently in Julia and JAX",
+      "use Attractors for Julia basin labeling",
+      "use Diffrax for continuous relaxation and Optimistix for fixed-point solving",
+      "bind the Julia-measured floor and exact map parameters into a Z3 lower-floor UNSAT check while keeping the Optimistix candidate in the independent cross-engine agreement check",
+      "run an erased-drive control"
+    ],
+    "required_invariants": [
+      "edges are parent to child and endpoints are candidate identifiers",
+      "packet inputs are read-only",
+      "Julia and JAX do not read each other's result files",
+      "cross-engine location agreement is checked to 1e-8",
+      "classification is tool_lego_fit_probe and promotion_allowed is false",
+      "erased-drive control changes the combined verdict"
+    ],
+    "forbidden_substitutions": [
+      "ledger list position as a candidate identifier",
+      "candidate payload fields as relationship endpoints",
+      "cross-engine agreement as proof",
+      "Attractors package import as basin evidence without a function call",
+      "precomputed scalar assertion as Z3 minimality proof",
+      "tool-lego fit result as manifold or scientific admission"
+    ],
+    "negative_controls": [
+      "inject or detect a self-edge/cycle in a bounded graph fixture",
+      "set the drive coefficient to zero and require the active convergence/certificate bundle to fail",
+      "query Z3 for a fixed point strictly below the declared active floor under the above-floor branch and require UNSAT"
+    ],
+    "adapter_policy": "Rustworkx, Attractors, Diffrax, Optimistix, and Z3 are probes or adapters only. Each must name its exact API, preservation, loss, and kill control before it is load-bearing.",
+    "promotion_locks": [
+      "no canonical or scientific promotion",
+      "no whole-packet integrity claim beyond the parsed lineage surface",
+      "no global uniqueness claim for the fixed point",
+      "no peer-result exchange on the claim path"
+    ],
+    "blocked_downstream_consumers": [
+      "lego promotion",
+      "basin or manifold admission",
+      "bridge or axis claims",
+      "whole-packet canonical integrity"
+    ],
+    "artifact_surface": "system_v5/ops/tooling/stress_battery/{lineage_dag_check_results.json,basin_chain_d_results.json}"
+  },
+  "lateral_mappings": [
+    {
+      "label": "rustworkx lineage DAG probe",
+      "use_type": "probe",
+      "target": "PyDiGraph plus is_directed_acyclic_graph over native candidate ids and variation edges",
+      "preserves": ["parent-to-child direction", "candidate identity", "finite edge multiplicity"],
+      "loses": ["candidate payload semantics", "append-only temporal ordering beyond the recorded edges"],
+      "preconditions": ["candidate and variation-edge namespaces are identified from source", "every edge endpoint resolves to a candidate id"],
+      "kill_control": "a bounded injected cycle must be reported as cyclic with one named cycle",
+      "promotion_allowed": false
+    },
+    {
+      "label": "Julia Attractors basin probe",
+      "use_type": "probe",
+      "target": "Attractors.jl basin assignment for the exact shared one-dimensional map",
+      "preserves": ["map equation", "grid of starts", "attractor boundary location"],
+      "loses": ["continuous-time relaxation path", "global proof of uniqueness"],
+      "preconditions": ["isolated codex-ratchet-attractors-v1.12 project", "standalone Julia execution"],
+      "kill_control": "erasing the drive must prevent the active starts from reaching the boundary attractor",
+      "promotion_allowed": false
+    },
+    {
+      "label": "JAX dynamics and fixed-point adapter",
+      "use_type": "adapter",
+      "target": "Diffrax relaxation endpoints and Optimistix fixed-point candidate for the same map",
+      "preserves": ["float64 map parameters", "start grid", "boundary fixed point"],
+      "loses": ["formal minimality", "Julia basin labels"],
+      "preconditions": ["JAX x64 enabled before array work", "standalone sim-stack execution"],
+      "kill_control": "erased drive must keep at least one above-floor start away from the boundary",
+      "promotion_allowed": false
+    },
+    {
+      "label": "Z3 lower-floor certificate",
+      "use_type": "probe",
+      "target": "UNSAT query for a fixed point below the active branch floor with the floor bound from the Julia-measured finite receipt",
+      "preserves": ["floor ordering", "fixed-point equation on the active branch"],
+      "loses": ["numeric convergence", "basin measure"],
+      "preconditions": ["polarity is named", "erased control is checked separately"],
+      "kill_control": "if the solver query does not depend on the Julia-measured floor and exact map parameters, demote it to decorative; do not pretend the independent Optimistix approximation is a formal premise",
+      "promotion_allowed": false
+    }
+  ],
+  "constraint_bands": {
+    "root_constraints": ["finite bounded carrier or start grid", "order-sensitive parent-child or active-drive operation"],
+    "extended_constraints": ["packet-native schema", "rustworkx DAG API", "Julia Attractors isolated project", "JAX x64 Diffrax and Optimistix", "Z3 lower-floor UNSAT", "erased-drive flip"]
+  },
+  "exploration_contract": {
+    "wildcard_lanes_min": 1,
+    "lateral_lane_types": ["adapter", "probe", "analogy", "proxy"],
+    "fixation_breakers": ["treat a cyclic result as an integrity finding instead of repairing history", "state the continuum of below-floor fixed points instead of claiming global uniqueness"]
+  },
+  "loop_contract": {
+    "phases": ["build", "premortem", "repair", "selftest"],
+    "max_loops": 3,
+    "repair_rule": "repair the first schema, runtime, or control failure without widening beyond the two requested probes",
+    "stop_condition": "both probes have fresh receipts, or an exact runtime/source blocker is recorded"
+  },
+  "method_contracts": {
+    "question_is_not_authorization": "A question asks for an answer; it is not authorization to implement unless the user explicitly says to do it.",
+    "order_check_separate": "Parent-to-child direction and active-map iteration order must be checked separately from field and formula correctness, with each order witness named.",
+    "baseline_preservation": "When debugging runtime behavior, preserve the exact shared map, grid, and packet source baseline and debug the execution path underneath.",
+    "falsifier_first": "A Popper pass names the target claim, strongest live falsifier, decisive check, and killed/open/survived classification before agreement.",
+    "feynman_testability": "A Feynman pass names the operation, the observable measured, and the pass/fail condition.",
+    "synthesis_refusal": "Synthesis must name the lineage and basin receipts separately and explicitly refuse to merge them into a broader packet-integrity or scientific-admission claim.",
+    "human_offload": "Resolve with tools before asking; ask the human only for private, preference-bound, or unrecoverable information."
+  },
+  "evidence_spine": {
+    "wizard_runtime": "Wizard v4.3 object-preservation guard; v4.2 surfaces are legacy/provenance only.",
+    "source_math_locks": [
+      {"path": "AGENTS.md", "preserves": "sim-mode Max Assembly, receipt truth, and stage gates", "status": "repo authority"},
+      {"path": "system_v5/docs/LEGO_SIM_CONTRACT.md", "preserves": "tool_lego_fit_probe and no-promotion ceiling", "status": "process authority"},
+      {"path": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/ae78ff9c-0704-43c0-81b3-af566c1b5861/scratchpad/packet166b", "preserves": "packet-local ledger, lineage source, and audit gap", "status": "external packet truth"}
+    ],
+    "sim_audit_receipts": [],
+    "claude_pattern_cards": [],
+    "claim_ceiling": "two local tool-lego fit probes that pass local rerun; no promotion, formal admission, basin/manifold admission, bridge, axis, or whole-packet integrity claim",
+    "blocked_consumers": ["lego promotion", "manifold completion", "bridge or axis claims", "whole-packet canonical integrity"]
+  }
+}

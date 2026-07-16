@@ -1,0 +1,57 @@
+{
+ "gap_j_autolirpa": {
+  "tool": "auto_LiRPA",
+  "tool_path": "/Users/joshuaeisenhart/GitHub/auto_LiRPA",
+  "net": "Linear(2,4)-ReLU-Linear(4,1), torch.manual_seed(0)",
+  "box": {
+   "center": [
+    0.30000001192092896,
+    -0.20000000298023224
+   ],
+   "eps": 0.5
+  },
+  "method": "CROWN (IBP recorded for reference)",
+  "bounds_crown": {
+   "lb": -0.02380327880382538,
+   "ub": 0.3421570658683777
+  },
+  "bounds_ibp": {
+   "lb": -0.04834949970245361,
+   "ub": 0.19826041162014008
+  },
+  "soundness": {
+   "n_samples": 20,
+   "n_inside_bounds": 20,
+   "sample_output_min": 0.025882050395011902,
+   "sample_output_max": 0.19766759872436523,
+   "pass": true
+  },
+  "control_outside_point": {
+   "violator": {
+    "point": [
+     -0.699999988079071,
+     -0.20000000298023224
+    ],
+    "output": -0.033658742904663086,
+    "scale_over_eps": 2.0,
+    "side": "below_lb"
+   },
+   "pass": true,
+   "can_fail": "fails if no searched outside point exits [lb,ub] (vacuous bounds)"
+  },
+  "control_shrink_tightens": {
+   "eps2": 0.25,
+   "bounds_crown_eps2": {
+    "lb": 0.0677991509437561,
+    "ub": 0.25031885504722595
+   },
+   "nonstrict_containment": true,
+   "strict_on_one_side": true,
+   "pass": true,
+   "can_fail": "fails if lb2<lb or ub2>ub, or neither side strictly improves"
+  },
+  "pass": true
+ },
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false
+}

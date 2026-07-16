@@ -111,7 +111,6 @@ def main():
     candidates=[
         os.path.join(here,"..","reference_docs","engine_math","source_schedule_tables","engine_16_source_stage_slots.json"),
         os.path.join(here,"..","..","reference_docs","engine_math","source_schedule_tables","engine_16_source_stage_slots.json"),
-        "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/constraint_core/reference_docs/engine_math/source_schedule_tables/engine_16_source_stage_slots.json",
     ]
     for c in candidates:
         if os.path.exists(c): src_path=c; break

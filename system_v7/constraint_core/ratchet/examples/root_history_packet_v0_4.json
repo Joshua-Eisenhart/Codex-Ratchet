@@ -1,0 +1,100 @@
+{
+  "schema_version": "ratchet-search-packet/0.4",
+  "packet_id": "root-history-depth-packet-v0.4",
+  "run_id": "root-history-ratchet-run-2026-07-10-v0.4",
+  "root_primitive": "constrained_distinguishability",
+  "budget": {
+    "gate_limit": 2,
+    "candidate_limit_per_gate": 48,
+    "gradient_hypothesis_limit_per_gate": 12,
+    "global_completeness_claimed": false
+  },
+  "exploration": {
+    "probe_symbols": ["p", "q", "r"],
+    "candidate_axes": {
+      "memory_depth": [0, 1, 2],
+      "outcome_mode": ["binary2", "partial4"],
+      "carrier": [
+        "partial_relation",
+        "finite_transducer",
+        "directed_graph",
+        "asynchronous_rewrite",
+        "ring_checkerboard",
+        "complex_density"
+      ]
+    },
+    "implemented_carriers": [
+      "partial_relation",
+      "finite_transducer",
+      "directed_graph",
+      "asynchronous_rewrite",
+      "ring_checkerboard",
+      "complex_density"
+    ],
+    "gradient_tolerance": 1e-12,
+    "gradient_hypotheses": [
+      {
+        "id": "g_partition_conflict",
+        "kind": "partition_conflict_mass",
+        "origin": "endogenous",
+        "interpretation": "distinction demand left merged by the current presentation"
+      },
+      {
+        "id": "g_merged_pairs",
+        "kind": "merged_distinction_pairs",
+        "origin": "endogenous",
+        "interpretation": "pairwise distinctions erased by the current presentation"
+      },
+      {
+        "id": "g_outcome_entropy",
+        "kind": "outcome_shannon_entropy",
+        "origin": "endogenous",
+        "interpretation": "outcome-distribution entropy, tested rather than presumed as the drive"
+      },
+      {
+        "id": "g_representation_cells",
+        "kind": "representation_cells",
+        "origin": "endogenous",
+        "interpretation": "model size, tested as a possible gradient rather than conflated with MSS"
+      },
+      {
+        "id": "g_injected_constant",
+        "kind": "injected_constant",
+        "origin": "injected",
+        "interpretation": "external score control"
+      },
+      {
+        "id": "g_label_code",
+        "kind": "label_code_score",
+        "origin": "endogenous",
+        "interpretation": "deliberately label-sensitive negative"
+      }
+    ]
+  },
+  "gates": [
+    {
+      "id": "G0_one_step_order",
+      "question": "Does the finite distinction surface require one step of history rather than a context-free relation?",
+      "history_length": 2,
+      "dependency_depth": 1,
+      "outcomes": ["distinguished", "not_distinguished", "unresolved", "inadmissible"]
+    },
+    {
+      "id": "G1_two_step_order",
+      "question": "When new ordered observations arrive, is one-step history still sufficient or is a second step load-bearing?",
+      "history_length": 3,
+      "dependency_depth": 2,
+      "outcomes": ["distinguished", "not_distinguished", "unresolved", "inadmissible"]
+    }
+  ],
+  "open_dig_queue": [
+    "replace generated finite observation surfaces with external or lower-level empirical distinction records",
+    "replace the finite asynchronous-rewrite encoding with rival local-rule families and test whether locality compresses held-out observations",
+    "derive or kill ring-checkerboard dynamics from homogeneous local rules rather than the shipped encoding compiler",
+    "challenge the diagonal complex-density embedding with a distinction that genuinely requires coherence",
+    "generate non-scalar and order-valued gradient hypotheses",
+    "search alternative weakness preorders rather than treating assumption inclusion as final",
+    "run object/equivalence/quotient digging on the surviving partial history relation",
+    "run entropy-geometry co-view digging without preselecting Shannon, von Neumann, or BKM"
+  ]
+}

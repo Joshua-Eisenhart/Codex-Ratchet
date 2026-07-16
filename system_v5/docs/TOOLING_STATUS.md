@@ -1,5 +1,19 @@
 # Tooling Status
 
+## 2026-07-13 stress-battery snapshot (machine: owner Mac, sim-stack + Julia 1.12.6)
+
+Rerunnable battery: `system_v5/ops/tooling/stress_battery/` (README has commands). Result: **30/30 PASS**
+(python lane) — every probe a real operation, receipts in `py_battery_results.json`. Verified live: z3+cvc5
+UNSAT/SAT flips + cross-solver agreement + solver-bound-to-computed-value; DLPack torch<->jax zero-copy f64;
+jax/torch eigenvalue agreement 0.0; diffrax/optimistix/lineax/ott/quimb/cotengra/netket/dynamiqs;
+PyG/e3nn/geomstats (geomstats 2.8.0 WORKS on this numpy-2.3.4 stack — sandbox reports of trapz breakage do
+not reproduce here); pysindy recovery; gudhi/rustworkx/xgi; qutip Lindblad; kingdon GA (NEW — installed
+2026-07-13, Cl(3) exact); maude (NEW — installed 2026-07-13, T01 bracketing flip native). Julia lane battery
+in `jl_battery.jl` (canon module associator 2e7 exact + global env + isolated attractors/tensorkit envs).
+Ceiling: capability/integration evidence; promotes nothing. Every install/support claim must carry a machine
+stamp — sandbox-vs-Mac conflation produced six false rows in the 2026-07-13 roster exercise.
+
+
 Date: 2026-04-08
 Supersedes: all prior tooling status docs
 Status: dated tooling audit snapshot, not a live current-count surface.

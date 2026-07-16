@@ -24,17 +24,18 @@ fi
 source .venv/bin/activate
 python -m pip install --quiet --upgrade pip
 
-# 2. dependencies. numpy/scipy/sympy are REQUIRED; jax/torch enable the
-#    substrate engines. matplotlib is intentionally NOT required (harness is headless).
-echo "== installing deps (numpy scipy sympy) =="
-pip install --quiet numpy scipy sympy
+# 2. dependencies. requirements.txt is the REQUIRED registered-harness set;
+#    jax/qutip/torch enable optional lanes. matplotlib is intentionally absent.
+echo "== installing required registered-harness dependencies =="
+pip install --quiet -r requirements.txt
 if [ "$FAST" != "--fast" ]; then
-  echo "== installing substrate engines (jax, torch) -- optional, may take a few min =="
+  echo "== installing optional QIT/substrate lanes (jax, qutip, torch) =="
   pip install --quiet "jax[cpu]" || echo "   (jax install skipped/failed -- engines jax route will SKIP)"
+  pip install --quiet qutip || echo "   (qutip install skipped/failed -- qutip lanes will SKIP)"
   pip install --quiet torch || echo "   (torch install skipped/failed -- engines torch route will SKIP)"
 fi
 
-# 3. the sim harness (23 sims + engines cross-substrate lane)
+# 3. Ratchet process check + registered sim harness + engines lane
 echo "== run_all.py $FAST =="
 python run_all.py $FAST
 

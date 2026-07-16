@@ -25,13 +25,14 @@ from typing import Any
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[3]
-SOURCE_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/choi_field_multiaxis_null_albert_stress_sim.py"
-RESULT_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/choi_field_multiaxis_null_albert_stress_sim_results.json"
-ALBERT_RESULT_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/engine_field_choi_jordan_albert_probe_sim_results.json"
-GROK_PRESSURE_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/grok45_up110_upper_manifold_pressure_20260708.json"
-EXTERNAL_ZIP_PATH = Path("/Users/joshuaeisenhart/Desktop/77.zip")
-EXTERNAL_NOTE_PATH = Path("/Users/joshuaeisenhart/.codex/attachments/4ccdf7d8-7d28-4d25-8b18-01328bc9dd16/pasted-text.txt")
+BUNDLE_ROOT = Path(__file__).resolve().parents[1]
+SIM_DIR = Path(__file__).resolve().parent
+SOURCE_PATH = Path(__file__).resolve()
+RESULT_PATH = SIM_DIR / "choi_field_multiaxis_null_albert_stress_sim_results.json"
+ALBERT_RESULT_PATH = SIM_DIR / "engine_field_choi_jordan_albert_probe_sim_results.json"
+GROK_PRESSURE_PATH = SIM_DIR / "grok45_up110_upper_manifold_pressure_20260708.json"
+EXTERNAL_ZIP_PATH = BUNDLE_ROOT / "external_inputs" / "77.zip"
+EXTERNAL_NOTE_PATH = BUNDLE_ROOT / "external_inputs" / "pasted-text.txt"
 
 SIM_ID = "choi_field_multiaxis_null_albert_stress"
 SEED = 110

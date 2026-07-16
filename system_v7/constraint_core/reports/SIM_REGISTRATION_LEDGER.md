@@ -1,0 +1,215 @@
+# Complete simulation registration ledger
+
+Generated `2026-07-12 04:44 UTC` by scanning **all 196** top-level Python files in `sims_and_scripts/`.
+
+- Registered in `run_all.py`: **150**
+- Unregistered but preserved and surfaced: **46**
+- Unregistered with a conventional result receipt: **38**
+
+Registration means aggregate execution coverage. It is not canon. Nonregistration is not deletion, rejection, or permission to omit a result from project memory.
+
+## Unregistered scripts (the former dark set)
+
+- `admissibility_census_general_d_sim.py` — formal_solver_control; receipt `sims_and_scripts/admissibility_census_general_d_sim_results.json`; classification=scratch_diagnostic; promotion_allowed=False
+- `alfsen_shultz_correspondence_probe_sim.py` — uncategorized; receipt `sims_and_scripts/alfsen_shultz_correspondence_probe_sim_results.json`; classification=scratch_diagnostic; verdict=deficit_demonstrated; promotion_allowed=False
+- `araki_modular_umegaki_crosscheck_sim.py` — entropy_geometry; receipt `sims_and_scripts/araki_modular_umegaki_crosscheck_sim_results.json`; classification=scratch_diagnostic; verdict=modular_face_earned; promotion_allowed=False
+- `belief_space_basin_map_sim.py` — attractor_basin; receipt `sims_and_scripts/belief_space_basin_map_sim_results.json`; classification=scratch_diagnostic; overall={'belief_attractor_baseline': 'baseline_holds', 'hysteresis': 'path_dependent', 'occupancy_transit_partition': 'partition_holds', 'fast_switching': 'transit_dominated', 'exit_policy': 'exit 0 for honest verdict mix; exceptions only for broken computation/control invariants'}; promotion_status=scratch_diagnostic; promotion_allowed=False
+- `choi_field_multiaxis_null_albert_stress_sim.py` — engine_axes_terrain, exceptional_nonassociative; receipt `sims_and_scripts/choi_field_multiaxis_null_albert_stress_sim_results.json`; classification=scratch_diagnostic; verdict=scratch_field_seed_survives_with_low_ceiling; promotion_allowed=False
+- `engine_field_choi_jordan_albert_probe_sim.py` — engine_axes_terrain, exceptional_nonassociative; receipt `sims_and_scripts/engine_field_choi_jordan_albert_probe_sim_results.json`; classification=scratch_diagnostic; verdict=bounded_albert_field_candidate_survives; promotion_status=diagnostic_only; promotion_allowed=False
+- `engine_pair_axes_axis0_bookends_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/engine_pair_axes_axis0_bookends_sim_results.json`; classification=scratch_diagnostic; promotion_status=scratch_diagnostic; promotion_allowed=False
+- `engine_pair_axes_axis0_bookends_v2_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/engine_pair_axes_axis0_bookends_v2_sim_results.json`; classification=scratch_diagnostic; promotion_status=scratch_diagnostic; promotion_allowed=False
+- `engine_pair_basin_map_sim.py` — attractor_basin, engine_axes_terrain; receipt `sims_and_scripts/engine_pair_basin_map_sim_results.json`; classification=scratch_diagnostic; promotion_status=scratch_diagnostic; promotion_allowed=False
+- `engine_reaction_semiconjugacy_closure_sim.py` — engine_axes_terrain; receipt `no conventional `_results.json` receipt`; status must be read from source/receipt
+- `fep_known_unknown_basin_sim.py` — attractor_basin, fep_active_inference; receipt `sims_and_scripts/fep_known_unknown_basin_sim_results.json`; classification=scratch_diagnostic; overall={'claim_1': 'basin-partition-holds', 'claim_2': 'allocation-split-holds', 'claim_2_control_collapsed': True, 'claim_3': 'no-measured-shift', 'exit_policy': 'exit 0 for honest verdict mix; exceptions only for broken computation/control invariants'}; promotion_status=scratch_diagnostic; promotion_allowed=False
+- `fep_known_unknown_basin_v2_sim.py` — attractor_basin, fep_active_inference; receipt `sims_and_scripts/fep_known_unknown_basin_v2_sim_results.json`; classification=scratch_diagnostic; overall={'claim_1': 'basin-partition-holds', 'claim_2': 'no-split', 'claim_2_control_collapsed': True, 'claim_2_shuffled_control': 'no-split', 'claim_3': 'no-measured-shift', 'exit_policy': 'exit 0 for honest verdict mix; exceptions only for broken computation/control invariants'}; promotion_status=scratch_diagnostic; promotion_allowed=False
+- `field_pair_of_engines_weakest_rung_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/field_pair_of_engines_weakest_rung_sim_results.json`; classification=scratch_diagnostic; promotion_allowed=False
+- `four_substages_up130_fabrication_audit_sim.py` — engine_axes_terrain, formal_solver_control; receipt `sims_and_scripts/four_substages_up130_fabrication_audit_sim_results.json`; classification=scratch_diagnostic; verdict=UP130_OVERCLAIM_CAUGHT; promotion_allowed=False
+- `hott_braid_topology_placed_vs_forced_spinor_sim.py` — topology_spinor; receipt `no conventional `_results.json` receipt`; status must be read from source/receipt
+- `igt_quadrant_loadbearing_probe_sim.py` — cellular_automata_finitude; receipt `sims_and_scripts/igt_quadrant_loadbearing_probe_sim_results.json`; classification=scratch_diagnostic; verdict=decorative_at_this_probe; promotion_allowed=False
+- `igt_quadrant_signed_feature_probe_sim.py` — uncategorized; receipt `sims_and_scripts/igt_quadrant_signed_feature_probe_sim_results.json`; classification=scratch_diagnostic; verdict=decorative_at_this_probe; promotion_allowed=False
+- `j3o_bloch_body_entropy_pawl_sim.py` — entropy_geometry; receipt `sims_and_scripts/j3o_bloch_body_entropy_pawl_sim_results.json`; classification=scratch_diagnostic; verdict=pawl_lifts_to_J3O; promotion_status=diagnostic_only; promotion_allowed=False
+- `jordan_dissipator_pawl_v2_sim.py` — exceptional_nonassociative; receipt `sims_and_scripts/jordan_dissipator_pawl_v2_sim_results.json`; classification=scratch_diagnostic; verdict=diagnostic_pass; promotion_status=diagnostic_only; promotion_allowed=False
+- `jordan_dpi_probe_v3_sim.py` — exceptional_nonassociative; receipt `sims_and_scripts/jordan_dpi_probe_v3_sim_results.json`; classification=scratch_diagnostic; verdict=dpi_holds_on_grid; promotion_status=diagnostic_only; promotion_allowed=False
+- `jordan_dpi_probe_v4_sim.py` — exceptional_nonassociative; receipt `sims_and_scripts/jordan_dpi_probe_v4_sim_results.json`; classification=scratch_diagnostic; verdict=dpi_holds_on_valid_instrument; promotion_status=diagnostic_only; promotion_allowed=False
+- `jordan_octonion_entropy_pawl_sim.py` — entropy_geometry, exceptional_nonassociative; receipt `sims_and_scripts/jordan_octonion_entropy_pawl_sim_results.json`; classification=scratch_diagnostic; verdict=pawl_lifts; promotion_status=diagnostic_only; promotion_allowed=False
+- `lev_qit_bridge_stream_host_adapter.py` — uncategorized; receipt `no conventional `_results.json` receipt`; status must be read from source/receipt
+- `lev_qit_evidence_envelope_host_adapter.py` — uncategorized; receipt `no conventional `_results.json` receipt`; status must be read from source/receipt
+- `loop_switched_sindy_probe_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/loop_switched_sindy_probe_sim_results.json`; classification=scratch_diagnostic; promotion_allowed=False
+- `loop_unique_computing_dynamics_probe_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/loop_unique_computing_dynamics_probe_sim_results.json`; classification=scratch_diagnostic; promotion_allowed=False
+- `malcev_signature_search_sim.py` — exceptional_nonassociative; receipt `sims_and_scripts/malcev_signature_search_sim_results.json`; classification=scratch_diagnostic; verdict=PASS; promotion_allowed=False
+- `manifold_ratchet_depth_sim.py` — entropy_geometry; receipt `sims_and_scripts/manifold_ratchet_depth_sim_results.json`; classification=scratch_diagnostic; promotion_status=diagnostic_only; promotion_allowed=False
+- `memory_carrier_belief_basin_sim.py` — attractor_basin; receipt `sims_and_scripts/memory_carrier_belief_basin_sim_results.json`; classification=scratch_diagnostic; overall={'verdict': 'multi_stable', 'allowed_verdict_tokens': ['multi_stable', 'single_basin', 'capacity_exceeded'], 'exit_policy': 'exit 0 for honest verdict mix; exceptions only for broken computation/control invariants'}; promotion_status=scratch_diagnostic; promotion_allowed=False
+- `nonassociativity_not_needed_for_halo_profiles_sim.py` — exceptional_nonassociative; receipt `no conventional `_results.json` receipt`; status must be read from source/receipt
+- `petz_quasi_entropy_pawl_census_sim.py` — entropy_geometry, formal_solver_control; receipt `sims_and_scripts/petz_quasi_entropy_pawl_census_sim_results.json`; classification=scratch_diagnostic; verdict={'exit_policy': 'always_exit_0_for_honest_verdict_mix', 'family_verdict': 'family_pawls_uniformly', 'formal_admission_allowed': False, 'impostor_controls': {'impostor_petz_alpha_3_centered': {'failed_terrains': [0, 2, 4, 6], 'fails_monotonicity_somewhere': True, 'loud_if_pawls_everywhere': None}, 'impostor_wavy_nonconvex': {'failed_terrains': [0, 1, 2, 3, 4, 5, 6, 7], 'fails_monotonicity_somewhere': True, 'loud_if_pawls_everywhere': None}}, 'impostors_all_flip_somewhere': True, 'interpretation': 'Umegaki is installed within a forced Petz operator-convex family on this grid', 'operator_convex_failures': {}, 'promotion_allowed': False, 'wrong_fixed_point_breaks_every_family_member': True}; promotion_allowed=False
+- `petz_recovery_reversibility_census_sim.py` — entropy_geometry, formal_solver_control; receipt `sims_and_scripts/petz_recovery_reversibility_census_sim_results.json`; classification=scratch_diagnostic; verdict={'anomaly_count': 0, 'controls_pass': True, 'dpi_equality_matches_petz_recovery_on_grid': True, 'exit_policy': 'always_exit_0_for_honest_verdict_mix', 'fixed_point_probe_passes': True, 'formal_admission_allowed': False, 'measured_pattern': 'On the seeded grid, reversible terrain steps are exactly the DeltaU≈0 and Petz-exact steps. They occur only at duplicated maximally mixed fixed-point grid states for unital depol/proj terrains; nonunital damping terrain fixed points are recovered in the explicit fixed-point probe but are not sampled by the grid. No nontrivial unitary-direction reversible face was observed inside the dissipative exact terrain segments.', 'promotion_allowed': False, 'reversible_step_counts_by_terrain': {'0': 0, '1': 288, '2': 0, '3': 288, '4': 0, '5': 288, '6': 0, '7': 288}, 'strictly_contractive_control_passes': True, 'unitary_flow_control_passes': True, 'wrong_recovery_control_passes': True}; promotion_allowed=False
+- `qit_fep_surprise_stream_lev_emitter.py` — fep_active_inference; receipt `no conventional `_results.json` receipt`; status must be read from source/receipt
+- `schmidt_bkm_berry_dual_ratchet_repair_sim.py` — entropy_geometry; receipt `sims_and_scripts/schmidt_bkm_berry_dual_ratchet_repair_sim_results.json`; classification=scratch_diagnostic; verdict=PASS_BOUNDED_REPAIR; promotion_allowed=False
+- `sixteen_stages_protect_distinct_invariants_sim.py` — engine_axes_terrain; receipt `no conventional `_results.json` receipt`; status must be read from source/receipt
+- `slot64_unique_computing_probe_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/slot64_unique_computing_probe_sim_results.json`; classification=scratch_diagnostic; promotion_allowed=False
+- `slot64_unique_computing_probe_v2_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/slot64_unique_computing_probe_v2_sim_results.json`; classification=scratch_diagnostic; promotion_allowed=False
+- `spin9_stabilizer_op2_coset_sim.py` — exceptional_nonassociative; receipt `sims_and_scripts/spin9_stabilizer_op2_coset_sim_results.json`; classification=scratch_diagnostic; verdict=rung_derived; promotion_status=diagnostic_only; promotion_allowed=False
+- `stage_interior_architecture_tournament_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/stage_interior_architecture_tournament_sim_results.json`; classification=scratch_diagnostic; promotion_status=scratch_diagnostic; promotion_allowed=False
+- `stage_task_family_battery_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/stage_task_family_battery_sim_results.json`; classification=scratch_diagnostic; promotion_status=scratch_diagnostic; promotion_allowed=False
+- `stage_task_family_battery_v2_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/stage_task_family_battery_v2_sim_results.json`; classification=scratch_diagnostic; promotion_status=scratch_diagnostic; promotion_allowed=False
+- `symmetric_cone_menu_census_sim.py` — entropy_geometry, formal_solver_control; receipt `sims_and_scripts/symmetric_cone_menu_census_sim_results.json`; classification=scratch_diagnostic; promotion_status=diagnostic_only; promotion_allowed=False
+- `terrain_entropy_kind_ratchet_sim.py` — engine_axes_terrain, entropy_geometry; receipt `sims_and_scripts/terrain_entropy_kind_ratchet_sim_results.json`; classification=scratch_diagnostic; verdict={'L1_rows': 8, 'L2_cells': 32, 'L2_signed_rows': 64, 'L3_composition_micro_budgets': 'unmeasured_in_this_run', 'all_S_radius_checks_pass': True, 'exit_policy': 'always_exit_0_for_honest_verdict_mix', 'promotion_allowed': False}; promotion_allowed=False
+- `terrain_lyapunov_pawl_census_sim.py` — engine_axes_terrain, formal_solver_control; receipt `sims_and_scripts/terrain_lyapunov_pawl_census_sim_results.json`; classification=scratch_diagnostic; verdict={'L3_summary': {'0': 'BREAKS_all_pairs', '1': 'INSTALLED_multiple_pairs_preserve', '2': 'BREAKS_all_pairs', '3': 'INSTALLED_multiple_pairs_preserve', '4': 'BREAKS_all_pairs', '5': 'INSTALLED_multiple_pairs_preserve', '6': 'BREAKS_all_pairs', '7': 'INSTALLED_multiple_pairs_preserve'}, 'U_unique_universal_pawl': True, 'all_U_monotone_decreasing': True, 'exit_policy': 'always_exit_0_for_honest_verdict_mix', 'formal_admission_allowed': False, 'noise_threshold': 1e-07, 'promotion_allowed': False, 'shuffled_pointer_basis_control_passes': True, 'state_grid_size': 256, 'unitary_flow_control_passes': True, 'wrong_fixed_point_control_passes': True}; promotion_allowed=False
+- `terrain_unique_computing_dynamics_probe_sim.py` — engine_axes_terrain; receipt `sims_and_scripts/terrain_unique_computing_dynamics_probe_sim_results.json`; classification=scratch_diagnostic; promotion_allowed=False
+- `three_view_semiconjugacy_gate_sim.py` — uncategorized; receipt `no conventional `_results.json` receipt`; status must be read from source/receipt
+
+## Registered scripts
+
+- `access_law_decoupling_sim.py` — uncategorized
+- `admissibility_two_operator_sim.py` — uncategorized
+- `agent_loop_sim.py` — engine_axes_terrain
+- `alfsen_shultz_dynamical_correspondence_deficit_sim.py` — uncategorized
+- `aperiodic_order_penrose_e8_not_forced_sim.py` — uncategorized
+- `audit_response_w_covariance_sim.py` — formal_solver_control
+- `axis0_drive_fair_n01_test_sim.py` — engine_axes_terrain
+- `axis0_entropy_gradient_engine_pair_endtoend_sim.py` — engine_axes_terrain, entropy_geometry
+- `axis0_gauge_breaking_sim.py` — engine_axes_terrain
+- `axis0_gradient_closes_as_bookend_invariant_sim.py` — engine_axes_terrain
+- `axis0_ratchet_climb_sim.py` — engine_axes_terrain
+- `axis0_sector_sim.py` — engine_axes_terrain
+- `axis0_shell_polarity_docfaithful_sim.py` — engine_axes_terrain
+- `axis0_spinor_720_sim.py` — engine_axes_terrain, topology_spinor
+- `axis0_xor_sim.py` — engine_axes_terrain
+- `axis2_two_layer_sim.py` — engine_axes_terrain
+- `axis_laws_dual_proof.py` — engine_axes_terrain, formal_solver_control
+- `axis_loadbearing_n01_sim.py` — cellular_automata_finitude, engine_axes_terrain
+- `biochem_bridge_sim.py` — physics_biochemistry
+- `bridge_tooth_carrier_to_terrains_sim.py` — engine_axes_terrain
+- `carrier_field_stays_complex_two_negatives_sim.py` — uncategorized
+- `carrier_forced_vs_installed_bakeoff_sim.py` — uncategorized
+- `carrier_phase_closure_forces_complex_sim.py` — uncategorized
+- `chemistry_bridge_sim.py` — physics_biochemistry
+- `chi2_decisive_test_sim.py` — uncategorized
+- `chi2_openpath_readout_sim.py` — uncategorized
+- `clifford_hopf_weyl_ratchet_placement_sim.py` — topology_spinor
+- `constraint_core_audit.py` — formal_solver_control
+- `constraint_core_symbolic.py` — formal_solver_control
+- `coratchet_axis_orthogonality_sim.py` — engine_axes_terrain
+- `coratchet_depth_ladder_from_foundations_sim.py` — uncategorized
+- `cosmogenesis_persistence_sim.py` — physics_biochemistry
+- `cosmogenesis_ratchet_first_tooth_sim.py` — physics_biochemistry
+- `coupled_coratchet_dualloop_sim.py` — engine_axes_terrain
+- `data_processing_sim.py` — uncategorized
+- `decoherence_scaling_sim.py` — uncategorized
+- `distinguishability_engine_core_sim.py` — engine_axes_terrain
+- `division_algebra_ratchet_sim.py` — uncategorized
+- `downstream_dominance_window_discriminator_sim.py` — uncategorized
+- `dynamics_su2_forced_quaternion_not_carrier_sim.py` — uncategorized
+- `engine_64_schedule_definition_sim.py` — engine_axes_terrain
+- `engine_64_schedule_sim.py` — engine_axes_terrain
+- `engine_division_algebra_rung_sim.py` — engine_axes_terrain
+- `engine_dynamics_id_arbiter_sim.py` — engine_axes_terrain
+- `engine_object_formation_scorecard_sim.py` — engine_axes_terrain
+- `engine_pair_matrix_sim.py` — engine_axes_terrain
+- `engine_reaction_semiconjugacy_qutrit_floor_sim.py` — engine_axes_terrain
+- `engine_reidentification_objective_sim.py` — engine_axes_terrain
+- `engine_type_access_sim.py` — engine_axes_terrain
+- `entropic_gravity_axis0_sim.py` — engine_axes_terrain, physics_biochemistry
+- `entropic_newton_limit_sim.py` — uncategorized
+- `eps_even_a2_dissipation_foothold_sim.py` — uncategorized
+- `eps_even_a2_specificity_sim.py` — uncategorized
+- `evolution_chirality_bridge_sim.py` — uncategorized
+- `exceptional_lie_ratchet_sim.py` — exceptional_nonassociative
+- `field_symmetry_is_classical_not_exceptional_sim.py` — exceptional_nonassociative
+- `fluctuation_theorem_sim.py` — uncategorized
+- `flux_nesting_ablation_jax.py` — uncategorized
+- `foundational_ratchet_entropy_gradient_sim.py` — entropy_geometry
+- `foundations_reaudit_drive_and_mss_tiebreak_sim.py` — formal_solver_control
+- `foundations_reaudit_forcing_robustness_sim.py` — formal_solver_control
+- `four_substages_emerge_from_dual_ratchet_sim.py` — engine_axes_terrain
+- `four_substages_run_dual_ratchet_stage_sim.py` — engine_axes_terrain
+- `four_substrate_agreement_harness_sim.py` — uncategorized
+- `holevo_bound_sim.py` — uncategorized
+- `holism_does_not_force_octonions_sim.py` — exceptional_nonassociative
+- `holodeck_sim.py` — uncategorized
+- `holographic_bound_sim.py` — uncategorized
+- `info_processing_sim.py` — uncategorized
+- `instrument_class_split_sim.py` — uncategorized
+- `jordan_octonion_observable_rung_sim.py` — exceptional_nonassociative
+- `known_unknown_fep_field_sim.py` — fep_active_inference
+- `lev_bridge_sim.py` — uncategorized
+- `lev_qit_evidence_envelope_emitter.py` — uncategorized
+- `loop_uniqueness_trajectory_probe_sim.py` — engine_axes_terrain
+- `malcev_bracket_names_the_t01_ceiling_sim.py` — exceptional_nonassociative
+- `manifold_L1_probe_quotient_sim.py` — entropy_geometry
+- `manifold_L2_rank_strata_marginals_sim.py` — entropy_geometry
+- `manifold_L3_spinor_hopf_sim.py` — entropy_geometry, topology_spinor
+- `manifold_L4_local_weyl_factors_sim.py` — entropy_geometry, topology_spinor
+- `manifold_L5_binding_discriminator_sim.py` — entropy_geometry
+- `manifold_L5_nested_shells_schmidt_strata_sim.py` — entropy_geometry
+- `manifold_L6_shell_metric_bkm_connection_sim.py` — entropy_geometry
+- `manifold_L7_shell_connection_holonomy_sim.py` — entropy_geometry, topology_spinor
+- `manifold_L8_global_bundle_chern_quantization_sim.py` — entropy_geometry
+- `manifold_build_ladder.py` — entropy_geometry
+- `manifold_laws_smt_proof.py` — entropy_geometry, formal_solver_control
+- `maxplus_tropical_is_classical_limit_not_foundation_sim.py` — uncategorized
+- `memory_sim.py` — uncategorized
+- `nested_basin_sim.py` — attractor_basin
+- `next_tooth_720_double_loop_and_lift_audit_sim.py` — engine_axes_terrain, formal_solver_control
+- `next_tooth_engine_stages_to_360_loop_sim.py` — engine_axes_terrain
+- `next_tooth_terrains_to_engine_stages_sim.py` — engine_axes_terrain
+- `no_cloning_sim.py` — uncategorized
+- `nonassociative_ca_t01_constructible_not_forced_sim.py` — cellular_automata_finitude, exceptional_nonassociative
+- `noncommutation_bounds_sim.py` — uncategorized
+- `nonunitality_theorem_sim.py` — uncategorized
+- `objective_gate_integrity_sweep_sim.py` — uncategorized
+- `octonion_fork_not_forced_sim.py` — exceptional_nonassociative
+- `octonion_spinor_network_sim.py` — exceptional_nonassociative, topology_spinor
+- `operator_geometry_fusion_sim.py` — entropy_geometry
+- `pawl_witness_identity_memory_sim.py` — uncategorized
+- `per_terrain_entropy_forcing_sim.py` — engine_axes_terrain, entropy_geometry
+- `perception_object_binding_sim.py` — uncategorized
+- `perception_scorecard_eval_admission_sim.py` — uncategorized
+- `perspective_convergence_sim.py` — uncategorized
+- `petz_dpi_forces_the_pawl_sim.py` — entropy_geometry
+- `physics_a0_redshift_fork_selected_by_data_sim.py` — physics_biochemistry
+- `physics_bridge_sim.py` — physics_biochemistry
+- `physics_loops_back_into_core_axis0_rate_sim.py` — engine_axes_terrain, physics_biochemistry
+- `physics_prediction_mond_scale_from_expansion_sim.py` — physics_biochemistry
+- `qfi_fubini_study_placed_vs_forced_bkm_sim.py` — entropy_geometry
+- `qit_active_inference_planning_sim.py` — fep_active_inference
+- `qit_epistemic_active_inference_sim.py` — fep_active_inference
+- `qit_fep_ratchet_sim.py` — fep_active_inference
+- `qit_fep_surprise_stream_sim.py` — fep_active_inference
+- `quantum_hopfield_memory_sim.py` — topology_spinor
+- `quantum_speed_limit_sim.py` — uncategorized
+- `ratchet_climb_engine_v0.py` — engine_axes_terrain
+- `ratchet_mechanism_and_depth_sim.py` — uncategorized
+- `ratchet_three_qubit_floor_sim.py` — uncategorized
+- `root_axiom_sim.py` — uncategorized
+- `schedule_source_fidelity_linter.py` — uncategorized
+- `signed_axis0_primitive_sim.py` — engine_axes_terrain
+- `sixteen_intelligences_substages_terrain_ratchet_sim.py` — engine_axes_terrain
+- `sixteen_stage_engine_schedule_sim.py` — engine_axes_terrain
+- `sixteen_stage_engine_sim.py` — engine_axes_terrain
+- `spin9_op2_coset_derived_from_albert_sim.py` — exceptional_nonassociative
+- `spinor_memory_sim.py` — topology_spinor
+- `stage_necessity_ablation_sim.py` — engine_axes_terrain
+- `substage_architecture_discriminator_sim.py` — engine_axes_terrain
+- `surface_identity_sim.py` — uncategorized
+- `t01_grouping_demand_search_sim.py` — uncategorized
+- `t2_order_carried_sindy_library_repair_sim.py` — uncategorized
+- `terrain_8way_separation_sim.py` — engine_axes_terrain
+- `terrain_differentiation_sim.py` — engine_axes_terrain
+- `terrain_information_signature_sim.py` — engine_axes_terrain
+- `terrain_qutip_crosscheck.py` — engine_axes_terrain
+- `terrain_sourcelock_axis0_sim.py` — engine_axes_terrain
+- `three_qubit_octonion_fep.py` — exceptional_nonassociative, fep_active_inference
+- `type1_engine_igt_sim.py` — engine_axes_terrain
+- `type1_full_engine_both_loops_sim.py` — engine_axes_terrain
+- `type1_single_loop_axis0_sim.py` — engine_axes_terrain
+- `type2_full_engine_both_loops_sim.py` — engine_axes_terrain
+- `umegaki_pawl_is_finite_modular_theory_sim.py` — cellular_automata_finitude, entropy_geometry
+- `unified_attractor_basin_seven_axes_sim.py` — attractor_basin
+- `unified_ratchet_witness_memory_3q_sim.py` — uncategorized
+- `upper_manifold_mirror_axes_field_sim.py` — entropy_geometry
+- `v7_codex_ratchet_crosscheck_sim.py` — uncategorized
+- `weak_force_chirality_bridge_sim.py` — uncategorized
+
+## Claude Code failure repaired
+
+The v0.6 documentation generator classified only registered scripts and truncated category displays. That made physically present Jordan, Albert, Fano, octonion, Malcev, and attractor-basin work effectively invisible. This ledger is complete and machine-checked; bundle lint fails if its 196/150/46 partition drifts without regeneration.

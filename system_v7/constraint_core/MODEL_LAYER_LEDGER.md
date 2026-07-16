@@ -6,17 +6,36 @@
 #              OPEN = not yet derived/built
 # Build order the owner specified: axes run 6.5.3.4.1.2.0 (Axis-0 is the gate).
 
+# RATCHET_V0_5_ORDER_OPEN_PROCESS
+# This is a LEGACY COMPONENT/RESULT LEDGER, not an MSS admission ledger. `EARNED` below means the named
+# equation, computation, or fixture behavior was reproduced at its stated installed scope. It does NOT mean globally
+# forced from constrained distinguishability, globally weakest, or permanently canonical. RATCHET_SPEC.md v0.5 is the
+# process authority. The ordering and layer boundaries below are proposals, not a canonical ladder. Every structural
+# claim must be reprocessed across candidate, gate-boundary, decomposition, order, weakness, gradient, and control
+# populations before packet-relative admission. A missing current gradient witness means DIG, not terminal HOLD.
+
+# RATCHET_V0_6_EXECUTED_MANIFOLD_AUDIT
+# This legacy ledger is not the current layer state. The binding evidence report is
+# ratchet/manifold_evidence/MANIFOLD_RATCHET_STATE_REPORT.md. L1--L8 pass local rerun, but zero scientific manifold
+# layers are admitted. In particular: L5 named-shell MSS is unsupported; radial data cannot select BKM uniquely;
+# the L6 marginal entropy object erases L7's phase direction; Chern orientation has no implemented physical-chirality
+# bridge. Treat every conflicting EARNED row below as fixture-local historical prose.
+
 ################################################################################
-# LAYER 0 — FOUNDATIONS (the root axiom and the three base constraints)
+# LAYER 0 — LEGACY FOUNDATION REALIZATIONS (not the primitive root)
 ################################################################################
-0.1  Root axiom  a=a iff a~b        EARNED (symbolic). Identity is probe-relative:
-     (distinguishability)           two objects are equal iff no probe distinguishes them.
-0.2  C1 Finitude                    EARNED. Finite-dimensional throughout (no limits smuggled).
-0.3  C2 Non-commutation             EARNED. [A,B]!=0 is load-bearing; the whole order-
-                                    sensitivity (N01) rests on it. Commuting control -> gap ~2e-17.
-0.4  C3 Emergent identity           EARNED. First object = finite non-commutative refinement
-                                    category; identity emerges, not assumed.
-     --> forces H = C^2, D(C^2), Pauli basis (machine-checked realization, 1e-16).
+0.0  Primitive                      OWNER CONSTRAINT: constrained distinguishability. No object, equivalence,
+                                    quotient, finite support, entropy, geometry, or carrier is primitive.
+0.1  Probe quotient a~b             REALIZED LATER FIXTURE. Under an installed finite state/probe table,
+                                    erased probes change quotient classes. This does not place `~` at root;
+                                    reflexive/symmetric/transitive closure and object persistence must be earned.
+0.2  C1 Finitude                    ACTIVE SCOPE + REALIZED. Shipped computations are finite. This does not
+                                    prove a globally smallest grain or select a unique finite carrier.
+0.3  C2 Non-commutation             REALIZED IN FIXTURES. [A,B]!=0 is load-bearing in named tests;
+                                    commuting controls close their measured order gaps.
+0.4  Emergent identity/object       CANDIDATE. A stable probe-relative quotient is one object-forming route;
+                                    partial/contextual distinction presentations remain weaker challengers.
+     --> C^2, D(C^2), and the Pauli basis are an installed machine-checked realization, not globally forced by F01/N01.
 
 ################################################################################
 # LAYER 1 — THE CARRIER (Hilbert space + Hopf fibration)
@@ -146,11 +165,12 @@
                               orthogonal; entropy is blind to the frame at 2e-15.
 
 ################################################################################
-# LAYER 8 — THE CO-RATCHET (entropy and operators both run on the manifold)
+# LAYER 8 — INSTALLED CO-VIEW REALIZATION (entropy/geometry from one distinction surface)
 ################################################################################
 8.1  Entropy IS a Hamiltonian EARNED. S(rho) = <K_rho> (modular/GNS). S(rho||sigma) =
                               <K_sigma - K_rho> >= 0; GNS inner product PSD; DPI monotone
-                              (0.340 -> 0.235 under a channel). Entropy and operators co-ratchet.
+                              (0.340 -> 0.235 under a channel). This is a later QIT co-view;
+                              entropy does not run on a prior manifold and is not root structure.
 8.2  Parity tied to co-ratchet EARNED. The frame bit becomes physically readable only once the
                               entropy (dissipative) sector is switched on — ties Axis-0's
                               readability to the co-ratchet (see 9.4).
@@ -624,7 +644,7 @@
                                 not a derivation. evolution_chirality_bridge_sim.py;
                                 figures/evolution_chirality_bridge.png. numpy+scipy+z3+cvc5.
 
- 0.1 Root axiom + entropic     EARNED (as runnable rendering of owner doctrine). THE FOUNDATION
+ 0.1 Legacy root-axiom +       HISTORICAL RUNNABLE FIXTURE, NOT THE PRIMITIVE FOUNDATION under Ratchet v0.2.
      monism + S-knots           beneath the whole bridge ladder. Grounded in ROOT_CONSTRAINT_
                                 EXTENDED_FOUNDATIONS.md (EC-1/EC-2/EC-3), ENTROPIC_MONISM_ORIGIN_
                                 AND_COSMOLOGY.md, A2_HOPF_FIBRATION_ENTROPY. The chain (entailed by
@@ -1192,8 +1212,8 @@ TWO MEASURED CONSEQUENCES:
    ladder computation is the real confirmation.) The spine must NOT presume T01 before the octonion rung -- it
    must be shown to EMERGE there. (Consistent with nonassoc_is_grouping_N01 + octonions_g2_ratcheted.)
 
-CONSEQUENCE FOR NEXT RUNG: the weakest structure F01+N01 admit next on the L2 branch is the SCHMIDT
-decomposition (correlation-rank across a cut) -- confirmed weakest by the earlier binding test (metric and
+CONSEQUENCE FOR THIS INSTALLED BRANCH: the current tested grammar's minimal next survivor on the L2 branch is the SCHMIDT
+decomposition (correlation-rank across a cut)—locally minimal under the earlier binding test (metric and
 shells both presuppose it). It stays a CANDIDATE placement; the constraints, tested, determine whether it is
 canon, and the math/params remain revisable.
 
@@ -1209,7 +1229,8 @@ A. MY CAYLEY-DICKSON "T01 EMERGES/FORCED AT OCTONIONS" CLAIM WAS STILL AN OVERCL
    withdrawn; the CD result is the INSTALLED-upward reading, not a forcing.
 
 B. UNDER THE MSS LENS THE POLARITY FLIPS, and this IS a contingent measurement (magma discriminator, ran):
-   MSS = "presume the LEAST; admit only the weakest structure that survives and still evolves" (recorded
+   MSS = "presume the LEAST; retain the finite-run frontier of currently minimal structures that survive under supplied
+   updates" (Ratchet v0.2 correction; globally weaker candidates remain open; originally recorded
    2026-06-15 as a META-GATE above the roots F01/N01/T01/identity, not a 4th root beside them). Associativity
    is a COHERENCE LAW not in the bare root, so MSS asks: may the weakest seed PRESUME associativity? MEASURED
    on random finite magmas (finite set + arbitrary binary op, no laws): fully-associative fraction = 0.512
@@ -1261,18 +1282,24 @@ and pointed the ratchet DOWN. The dig-to-roots only RESEMBLES a ratchet (one-dir
 real ratchet runs UP. The constraints still determine canon -- but by governing what each UPWARD step is
 FORCED to install, not by the downward dig.
 
-NONASSOCIATIVITY POLARITY DISSOLVED (not a two-reading argument): floor = weakest = NONASSOCIATIVE/magmoid/
-below-category (measured: assoc fraction vanishes with magma size). Ratchet then INSTALLS ASSOCIATIVITY going
-UP where forced. The r4 scout's "nonassociativity is installed not root-forced" was reading DOWN the ratchet
-and calling the floor "installed" -- but the floor is where you START; associativity is what gets installed as
-you climb OFF it. Same picture, opposite reading directions. So "start nonassoc, install assoc upward" is not a
-competing reading -- it IS the ratchet direction.
+ASSOCIATION FLOOR CORRECTION (not a two-reading argument): floor = weakest = ASSOCIATION-UNSPECIFIED partial
+bracketed composition. Associativity is not assumed there, and nonassociativity is not asserted until a nonzero
+associator is required and witnessed. The ratchet may install associativity upward where forced or earn genuine
+nonassociativity later where witnessed; neither result is built into the floor. This binding correction supersedes
+the older "start nonassoc" wording; see `corrections/OWNER_NONASSOCIATIVITY_FLOOR_CORRECTION_20260711.md`.
 
 CONSEQUENCE FOR THE SPINE: the spine IS the ratchet = the upward climb. Its bottom rung must be the MSS-picked
-weakest seed (nonassociative magmoid floor), and each rung up records what that level FORCES it to install
+weakest seed (association-unspecified magmoid floor; associativity is not assumed, while nonassociativity remains
+unearned until a nonzero associator is required and witnessed; see
+`corrections/OWNER_NONASSOCIATIVITY_FLOOR_CORRECTION_20260711.md`), and each rung up records what that level FORCES it to install
 (the forced-vs-installed field). The open build is no longer "which polarity" -- it is the upward-install
 discriminator: does structure get ADDED going up from the magmoid floor, and is each addition FORCED or merely
 installed. MSS-as-gate + upward-install discriminator are the two follow-through builds, awaiting owner word.
+
+OWNER HYPOTHESIS (tentative, owner-flagged could be wrong): the root drive is a recorded asymmetry between a
+distinction-opening tendency (growth/expansion) and a distinction-locking tendency (records/locks); each tendency
+is its own gradient, and Axis 0 is the gradient between them. This hypothesis does not override the
+association-unspecified floor correction cited above.
 
 ## THE RATCHET, DEFINED AS RUNNING MATH (2026-07-03) [answers "make something with teeth that can actually run"]
 OWNER: "we have a ratchet named. but it seems not an actual ratchet process that has the real ratcheting thing.
@@ -1547,7 +1574,8 @@ entropy-gradient-intrinsic shift.
 cosmogenesis_ratchet_first_tooth_sim.py -- the ratchet's rules at the beginning:
   - DEMAND: a difference between static frames that nothing carries (time = a carried difference). Static field
     carries 0.011 (no time); a persistent carrier carries 0.939.
-  - MSS AS CONSTRAINT: admit the WEAKEST structure that closes the demand = a norm-preserving (division) carrier =
+  - HISTORICAL MSS RESULT: within that sim's candidate grammar, the minimal tested structure closing the demand was a
+    norm-preserving (division) carrier =
     a finite spinor. Lossy (non-division) map annihilates the difference to 1e-9 (back to static); norm-preserving
     persists at 1.0.
   - CARRIER expansion is ENTANGLED (dark-energy-first: concurrence 0 -> 1.0 from product |00>) and CHIRAL (mirror
@@ -1629,7 +1657,8 @@ pole, G=0.35 KAP=1.0, H=eps(sx+sy+sz)/sqrt3).
   - DEMAND the bare carrier cannot close: a state and a PERTURBED copy must converge (an attractor/pointer demand).
     Bare unitary carrier preserves trace distance (td 0.224 -> 0.261, demand OPEN); a terrain dissipator closes it
     (td -> 0.002, converged to fixed point).
-  - MSS NEXT TOOTH = the weakest structure that supplies persistence-under-perturbation = a single GKSL dissipator
+  - MSS NEXT TOOTH (candidate-grammar-relative) = the minimal tested structure supplying persistence-under-perturbation:
+    a single GKSL dissipator
     with a fixed point = a terrain generator. Not a bigger algebra, not a full engine.
   - WHY EIGHT: the 8 terrains are pairwise-distinct CHANNELS (min channel-fingerprint distance 0.195), each a
     separately forced tooth. Fixed points CAN coincide (depol -> I/2) -- which is exactly why the project
@@ -1649,7 +1678,7 @@ J(flow(X,probe)) terrain-first, up=flow(X,J(probe)) operator-first, order_gap=||
   - DEMAND a terrain alone cannot close: order must matter (N01). A bare terrain composed with itself is order-
     invariant (order gap 0.00e+00 -- one channel has no order). The room asserts A-then-B differs from B-then-A;
     a single terrain resolves no such distinguishability.
-  - MSS NEXT TOOTH = the weakest structure that makes order matter = ONE native operator (not commuting with the
+  - MSS NEXT TOOTH (candidate-grammar-relative) = the minimal tested structure making order matter: ONE native operator (not commuting with the
     terrain) composed in the two orders = an engine STAGE. Native = the terrain's own axis family (NATIVE table;
     operator_geometry_fusion -- the terrain's surface IS the operator).
   - WHY SIXTEEN: 8 terrains x 2 native operators = 16 stages; the 16 (down,up) signatures pairwise-distinct (min
@@ -1668,10 +1697,12 @@ foundations_reaudit_forcing_robustness_sim.py (artifact 2485bb44): a loop-back a
 further -- "passes GREEN" is not "forced rather than assumed." Three root claims stress-tested, each with a control
 that can genuinely FAIL (and two DID on first run, both fixed by correcting the MEASUREMENT after understanding the
 failure, never by relaxing a gate):
-  LANE 1 -- COMPLEX SPINOR FORCED, not merely sufficient: N01 alone does NOT force C (SO(3) is nonabelian too).
+  LANE 1 -- COMPLEX SPINOR MINIMAL IN THE TESTED CANDIDATE GRAMMAR, not globally forced: N01 alone does NOT force C
+    (SO(3) is nonabelian too).
     But on the SMALLEST carrier (F01+MSS): real dim-2 = SO(2) ABELIAN -> N01 FAILS (max commutator 0.00e+00);
     complex dim-2 = SU(2) NONABELIAN -> N01 HOLDS (commutator 2.828); real needs dim>=3 (SO(3), more presumption).
-    So the complex qubit is the UNIQUE smallest carrier satisfying F01 AND N01. (strongest result of the audit.)
+    So the complex qubit was the unique smallest survivor AMONG THOSE TESTED. Ratchet v0.2 withdraws the global wording:
+    the candidate grammar omitted partial distinction tables and other non-group/non-carrier presentations.
   LANE 2 -- ROBUST, not tuned to THETA=0.25/RESOLVE_FRAC=0.6: dim-2 saturates AND dim-8 keeps forcing on 100% of
     the admissible regime (rf<=0.6, all theta in [0.15,0.35]). The rf>=0.7 boundary where saturation gives way is a
     real property of single-basis resolution (no single projective basis resolves >=70% of a generic pair's full
@@ -1683,7 +1714,8 @@ failure, never by relaxing a gate):
 Two first-run failures were findings, not bugs: (a) Lane 2's naive 70%-of-grid gate mistook the rf>=0.7 single-
 basis-resolution boundary for tuning -- corrected to test the admissible regime + identify the boundary; (b) Lane 3
 was invisible at dim-2 -- moved to dim-8 where "admit only forced" can differ from "admit everything." All three
-lanes now earned. Verdict: FOUNDATIONS EARNED (forced, robust, load-bearing) = True. scratch_diagnostic,
+lanes reproduced their gates. Historical verdict field: FOUNDATIONS EARNED = True inside that sim; Ratchet v0.2 ceiling:
+fixture-local robustness, not global forcing or final MSS. scratch_diagnostic,
 promotion_allowed=False. Full harness 88 pass/0/0 GREEN.
 
 ## SECOND ROOT AUDIT -- is the DRIVE forced, and is MSS's tie-break load-bearing? (2026-07-06)
@@ -2926,3 +2958,350 @@ single-stage level the ENDPOINT is order-insensitive for these operators (they c
 lands the same state); the load-bearing content is distinct-work + entropy/geometry dual + leg-by-leg alternation, NOT
 an endpoint order-dependence claim (reported as not holding). This is the "4 substages per stage" the owner asked for --
 now RUNNING, not just counted. scratch_diagnostic.
+
+## UP-133 -- the co-ratchet run from FOUNDATIONS, ratcheted as deep as it can, all earned (2026-07-09)
+
+Owner directive: "the coratchet has to be run from its foundations and ratchet as deep as it can. all earned. then get
+actually engine mechanics running in that." This runs the co-ratchet (geometry+entropy as one) from the carrier
+DOWNWARD as a depth ladder, testing at each rung whether the refinement is FORCED (a control loses a real distinction)
+or FREE (arbitrary). Harness 138 GREEN. Rungs:
+  R1 8 terrains distinct as CHANNELS -- FORCED (min channel dist 0.40; single-channel control -> 0).
+  R2 per-terrain NATIVE entropy -- FORCED: repeated own-pinch drives pointer-basis coherence monotone to 0.
+  R3 exactly 2 native operators = 1 PINCH (entropy dS 0.13) + 1 ROTATION (geometry dS 0.02, entropy-preserving) -- the
+     co-ratchet's two axes appear here.
+  R4 substage cell = the 2x2 DUAL RATCHET -- FORCED: a genuine minimality search over closure+alternation (NO 2A2B
+     prefilter, auditor-corrected) finds the minimal alternating closing cycle length = 4, words exactly {ABAB,BABA}
+     (matches UP-130).
+  R5 BELOW the substage = the FREE FLOOR: the substage net map is fixed but its micro-realization is gauge -- the same
+     net leg-map from different sub-step paths is byte-identical (~1e-16), while a different net map is a real forced
+     difference (0.13). Forced structure BOTTOMS OUT at the substage cell.
+CONCLUSION: the co-ratchet ratchets as deep as R4 (the substage 2x2 dual-ratchet cell), all earned; R5 is the free
+floor. This is the earned foundation the engine mechanics (UP-130 count, UP-132 running) sit on. Timeout note: the
+t2_order_carried SINDy sim runs ~124s so its harness timeout was raised 120->240s (it is genuinely slow, not a hang;
+a spurious RED from a 120s trip under memory/CPU contention confirmed this). scratch_diagnostic.
+
+## UP-134 -- FIRST falsifiable quantitative physics prediction: dark-sector acceleration scale from the expansion rate (2026-07-09)
+
+Every prior physics bridge REPRODUCED established physics (Layer 0.4 entropic-Newton via Verlinde premises) or ADMITTED
+a forced structure with empirical inputs (20.1 weak-force chirality). NONE made a falsifiable quantitative PREDICTION.
+Layer 0.4 explicitly fenced its dark-sector strength a0 as "phenomenological, NOT derived" (hand-set a0=0.20). UP-134
+removes that free parameter and makes the prediction. Harness 139 GREEN.
+
+PREDICTION (no free parameter): the model's cosmogenesis (Layer 0.6 / Axis-0, now shown UP-131 to close as the intrinsic
+gradient to a RISING ceiling) ties the entropy-gradient acceleration scale to the cosmic expansion rate H0; the entropic-
+gravity substrate (Layer 0.4) already carries Unruh kT=hbar*a/(2*pi*c), whose 2*pi is the only numerical factor. Hence
+      a0_pred = c * H0 / (2*pi).
+RESULTS (external data): (1) a0_pred matches the observed MOND scale a0_obs=1.2e-10 m/s^2 to ratio 0.86/0.90/0.94 for
+H0=67/70/73 km/s/Mpc; a wrong-scale control (Planck acceleration) misses by 4.6e61 -> the prediction genuinely selects the
+EXPANSION scale. (2) ZERO-PARAMETER baryonic Tully-Fisher v=(G*Mb*a0)^(1/4) with a0=c*H0/2pi matches 4 canonical galaxies
+spanning ~200x in baryonic mass (DDO154 dwarf 0.97, NGC3198 0.96, NGC2403 0.82, Milky Way 0.78); wrong-a0(x1e4) control
+breaks all by >5x. (3) BTFR slope M~v^3.5 (~4, the deep-MOND law), not a free exponent.
+HONEST SCOPE: a0~c*H0/2pi is Milgrom's established empirical coincidence; the model's contribution is to DERIVE the scale
+(dark-energy-first cosmogenesis forces the acceleration scale = expansion rate; 2pi from the model's own Unruh substrate),
+removing Layer 0.4's hand-set a0, and to show the resulting zero-parameter BTFR matches real galaxies. It does NOT derive
+the MOND interpolating function, G, or claim to replace GR/LambdaCDM; galaxy values are canonical BTFR anchors, not a full
+SPARC fit. Owner doctrine under test. This is the step that earns "physics prediction" language for the model.
+scratch_diagnostic.
+
+## UP-135 -- a0(z) fork FORCED by the model, one branch KILLED by external data (2026-07-09)
+
+UP-134's a0=c*H0/(2pi) has a distinctive NEW consequence plain constant-a0 MOND does not make: whether a0 evolves with
+redshift depends on WHICH rate the "growing room" is. The model forces a fork:
+  Branch A: growing-room rate = TOTAL expansion H(z)=H0*sqrt(Om(1+z)^3+OL) -> a0(z)=c*H(z)/2pi RUNS as (1+z)^1.5 at high z.
+  Branch B: growing-room rate = DARK-ENERGY / de Sitter horizon (the "dark energy came first" reading) -> a0 CONSTANT.
+Both agree at z=0 (ratio 0.902 to observed a0=1.2e-10), diverge by factor 2.97 at z=2. EXTERNAL DATA (Genzel et al.
+2017, Nature/arXiv:1703.04310, baryon-dominated falling high-z rotation curves; Milgrom 2017 arXiv:1703.06110 MOND
+analysis) as reported (attribution, not a re-verified verbatim quote -- titles/URLs confirmed via search, exact page
+wording not in this environment's transcript) disfavours a ~4a0 rise by z~2 and specifically a0~(1+z)^1.5, with the data
+consistent with CONSTANT a0. Taking that at face value: Branch A (a0~(1+z)^1.5, ~2.97a0 at z=2) FALSIFIED; Branch B
+(constant a0) survives + keeps the z=0 match. No-expansion control collapses the discriminator to 1.0 (the discriminator
+genuinely comes from cosmic evolution). Harness 140 GREEN.
+REFINEMENT of UP-134: external data selects the DARK-ENERGY-horizon reading -- the growing-room rate is the (asympt.
+constant) de Sitter rate, not the total expansion. The gate tests the MODEL-side numbers (Branch A lands in the
+disfavoured region, Branch B does not); the external exclusion itself is cited, not re-derived. This is the constraint
+doing real work: the model made a distinguishing prediction and observation adjudicated its internal fork. Owner
+doctrine under test. Also raised known_unknown_fep_field harness timeout 40->90s (genuinely ~30s, spurious RED under
+contention). scratch_diagnostic.
+
+## UP-136 -- the physics result LOOPS BACK and deepens the core (2026-07-09)
+
+Answering the owner's question ("are the physics sims looping back to make the model better?"): until now, NO -- the
+physics bridges (UP-134/135) grounded the model in real data but had not fed back into the foundation (verified: the
+core cosmogenesis sims did not carry the UP-135 refinement). UP-136 closes that loop. Harness 141 GREEN.
+
+WHAT LOOPS BACK. UP-135 (data-selected) established a0 is CONSTANT in cosmic time; that pins the previously-unpinned
+"growing-room rate" invoked by three loosely-coupled layers -- physics a0=c*H_room/2pi (134/5), the Axis-0 rising-ceiling
+asymptote (131), and the cosmogenesis dark-energy-first term (0.6) -- as ONE constant de Sitter/Lambda rate. Cross-layer
+consistency verified: H_dS=H0*sqrt(OL) is the far-future asymptote of H(z) (H(z)/H_dS -> 1 as z -> -1), while the matter
+term Om(1+z)^3 -> 0, so only Lambda can be the shared constant (exactly why UP-135's data killed the matter-driven
+Branch A).
+
+THE DEEPENING (a NEW open fork, not a clean win). The loop-back exposes a sharp falsifiable question the core did not
+have: TWO readings of the constant rate, related by the exact algebraic identity b2 = b1*sqrt(OL) (gap = b1*(1-sqrt(OL))):
+  b1 FROZEN-AT-TODAY  a0=c*H0/(2pi)            = 0.90*observed (matches, but phenomenological -- does not explain WHY constant)
+  b2 FUNDAMENTAL de SITTER a0=c*H0*sqrt(OL)/(2pi)= 0.76*observed (explains WHY constant -- Lambda is the time-independent
+     rate -- but sits ~15-25% low; sensitive to H0 67-73 and a0_obs 1.0-1.2e-10).
+The reading that PHYSICALLY explains constancy (b2) is the one in mild tension with data; the matching reading (b1) is
+phenomenological. RECORDED, not resolved. The b2<b1 tension is the ALGEBRAIC factor sqrt(OL)<1 (structural, not a
+hand-picked bound -- gate checks the exact identity), and the fork is falsifiable in the dark-energy fraction OL (OL=1
+-> b1, OL=0 -> 0), decidable by better joint a0/H0/OL measurement. This is the deepening: the core now owns a sharp
+falsifiable question instead of an unpinned "growing room."
+
+Also this window: cross-checked the sims' hand-rolled octonion table (used across UP-116/117/118/122) against three
+BASIS-INDEPENDENT oracles -- Hurwitz |ab|=|a||b| (3.6e-15), alternativity x(xy)=(xx)y (3.1e-14), genuine
+nonassociativity (47) -- all PASS -> the octonion arithmetic is a valid octonion algebra, oracle-verified in-house (the
+scientific role codex's ALCO/GAP install would play, done here without the heavyweight CAS). scratch_diagnostic, owner
+doctrine under test.
+
+### UP-136 gate correction (auditor-driven)
+The claim-(2) gate was initially the algebraic identity b2=b1*sqrt(OL) -- a TAUTOLOGY (b2 is DEFINED as
+c*H0*sqrt(OL)/2pi, so it holds for any inputs; a rubber stamp per project doctrine objective_gates_proven_real).
+REPLACED with a genuinely failable geometric test: the 2pi in a0=c*H/(2pi) is the engine's OWN phase-circle 2pi. The
+sim now COMPUTES the Berry holonomy of the spinor phase around the Hopf phi-loop (integrating A=i<psi|d_phi psi> from
+the chart, UP-125) and checks it equals a0's thermal/Unruh 2pi; a half-loop CONTROL gives ~-pi and BREAKS the gate.
+Result: engine holonomy at pole = -6.2832 = -2pi (matches a0's 2pi), half-loop -3.1416 (breaks). This is a real
+unification -- the physics acceleration scale's 2pi and the engine's own geometry are one object (the U(1) phase circle
+= the KMS/modular circle, thermal-time UP-124 cited). b1/b2 are now RECORDED measurements (not gate legs); the
+horizon/thermal reasoning TILTS toward b2 (a horizon temperature is set by the Lambda rate) but this is reasoning, not
+a gated resolution. Still 141 GREEN.
+
+## UP-137 -- FIELD OF ENGINES, weakest rung: a pair of engines is one object (MSS) (2026-07-09)
+
+First rung above the single engine, into the owner's axes-7-12 "field of engines" level (each node of a space is
+itself an engine). Built strictly under MSS -- admit ONLY the structure the constraints FORCE. Harness 142 GREEN.
+
+MSS DERIVATION. The two engines are already forced (the two Weyl chiralities, Type-1 eps=+1 / Type-2 eps=-1). "Two
+engines together are a new kind of intelligence" (owner) is non-trivial ONLY if the PAIR carries a DOF neither engine
+has alone. A pure PRODUCT of two engines has none -- every observable is fixed by its two marginals, so a product pair
+is not a new object, just two engines side by side. Within that finite candidate grammar, the minimal tested structure
+making the pair an object was ONE
+relational (entangling) generator (entanglement is core-forced) -- the smallest admissible leap, MSS: one Z(x)Z, no
+interaction Hamiltonian beyond it, no shared internal structure.
+
+RESULTS (failable, controls flip):
+  (1) PAIR IS A NEW OBJECT: relational content R = max_probes trace_dist(joint channel, product of its own marginals)
+      = 0.46 with the relational generator on; product control (g=0) gives R = 0 EXACTLY -> the pair reduces to its
+      parts iff there is no relation.
+  (2) SURVIVES PROBE ROTATION (identity a=a iff a~b): R recovered from a DISJOINT novel probe family matches the seen
+      family (0.46 vs 0.46) -> R is a channel property not a probe artifact; and a DIFFERENT object (coupling g'=0.25)
+      is told apart on those same probes (R'=0.23) -> re-identification is non-vacuous. (Earlier shuffle control was
+      ill-posed for a max-over-probes statistic; replaced with same-matches/different-separates, auditor-discipline.)
+  (3) MSS MINIMAL & NECESSARY: one relational DOF is SUFFICIENT (R>0) and NECESSARY (g=0 -> 0); irreducible to the
+      marginals by construction. The minimal forced pair-structure is exactly one relational DOF -- the operational
+      meaning of "a new kind of intelligence at the two-engine layer": a DOF that lives in the pair, invisible to
+      either engine alone.
+
+HONEST SCOPE: earns ONLY the weakest field rung. Does NOT build the field metric (flat vs curved -- next rung, where
+the owner conjectures the exceptional algebras may finally become load-bearing), does NOT claim the exceptional
+algebras appear here, does NOT presume the axes-7-12 layout -- the pair-object emerges from the distinguishability
+constraint. scratch_diagnostic, owner doctrine under test.
+
+## UP-137 WITHDRAWN -- "field of engines weakest rung" does NOT earn a rung (2026-07-09)
+
+UP-137 was shipped (bundle v108, harness 142) claiming the first field-of-engines rung: two Weyl engines become one
+object via one relational DOF. A cross-family LLM adversarial panel (Gemini-3.1-pro, Grok-4.5, Qwen-3.5, GLM-5.2 --
+the newly-added inference keys) then reviewed it and 3 of 4 (Qwen rated it sound) caught the central control as a
+TAUTOLOGY: relational content R was DEFINED as deviation-from-product, so the g=0 control gave R=0 by linear algebra,
+not physics -- a gate that cannot fail.
+
+Rebuilt around entanglement negativity + a classical-correlation control (a real failable test). But the panel's
+deeper objection held, and a direct test confirmed it: opposite-Weyl-chirality and same-chirality pairs give IDENTICAL
+negativity (0.4660) -- the model's own structure is NOT load-bearing; the result is generic 2-qubit QM. A
+chirality-sensitive relational phase looked promising but a parameter sweep showed its sign-flip is an angle artifact
+(holds only at th=1.2), not a robust invariant.
+
+DECISION: de-registered from the harness (back to 141 GREEN). The sim file is retained as a scaffold documenting what
+failed. The genuine field-of-engines rung remains OPEN: it needs a pair observable that is (a) relational, (b)
+load-bearing on this model's chirality/Weyl structure, and (c) robust -- none held together here. This is the
+climb-and-audit discipline: an overclaimed rung caught and withdrawn rather than banked. The adversarial panel is now
+a standing review tool (advisory only; never gates a verdict).
+
+## UP-138 -- PLACING new math: max-plus / tropical / idempotent algebra is a CLASSICAL LIMIT, not the foundation (2026-07-10)
+
+New math arrived (attachments: Max-Plus/tropical geometry, Tropical Attention NeurIPS-2025, idempotent analysis / HJB,
+framed as "the arithmetic of the Bellman equation / credit assignment"). Per discipline it is PLACED by the
+constraints, not admitted by assertion. Harness 142 GREEN. This sim was rebuilt after a cross-family LLM panel audit.
+
+THE ONE EARNED, FAILABLE RESULT (interference vs monotonicity). Max-plus tropical-add is MONOTONE (max(a,b) >= a,b).
+Coherent quantum interference is NOT: destructive interference drives the combined outcome BELOW the strongest single
+contribution (|a1+a2|^2 min 0.0002 < strongest 1.0) with visibility 0.9999 across a phase sweep. A max-plus arithmetic
+structurally cannot reproduce this -> max-plus is excluded from the nonclassical foundation. CONTROL (flips): a
+DECOHERED (incoherent-sum) process restores monotonicity (violation -1.0) and has zero visibility -> the exclusion is
+specifically coherent interference, not a generic two-number fact.
+
+CONTEXT (stated, NOT gated -- a cross-family panel [Gemini-3.1-pro, Grok-4.5, Qwen-3.5, GLM-5.2] caught the prior
+versions of these as a tautological gate and textbook calculus, so they are demoted to context):
+  - max-plus tropical-add is commutative; N01 (noncommutation) independently disfavours any commutative foundation.
+  - max-plus = the T->0 limit of the classical log-sum-exp (idempotent-analysis fact) -> it is the arithmetic of the
+    DEDUCTIVE / Bellman / single-optimal-path limit, reached from the coherent core by decohere-then-T->0. This is the
+    deductive/oracle face of the model's oracle duality; genuinely useful downstream (RL credit assignment), a LIMIT
+    not a root.
+
+HONEST SCOPE: one clean NEGATIVE placement (interference excludes max-plus from the foundation, decohered control
+flips). Does NOT prove the N01/T->0 exclusions as forced steps (context), does NOT claim max-plus is wrong/useless
+(correct arithmetic of the deductive limit), does NOT build a tropical engine layer. The E6/E8/Albert-algebra/27-cell/
+3-generations material in the same attachment batch is already placed as live-but-UNFORCED {H,O}-branch math (prior
+ledger); not re-derived as forced here. scratch_diagnostic.
+
+## UP-139 -- PLACING new math: Quantum Information Geometry (Fubini-Study / QFI) vs the model's BKM metric (2026-07-10)
+
+The attachments propose Quantum Information Geometry (Fubini-Study metric / Quantum Fisher Information) as "the natural
+metric for the spectral triple." The model already uses a metric: the BKM metric (surface_identity_is_BKM = Hessian of
+the forced Umegaki relative-entropy pawl, pawl_forced_by_DPI). These are DIFFERENT monotone metrics -- a genuine fork.
+Harness 143 GREEN. Rebuilt after a cross-family LLM panel audit (Gemini-3.1-pro, Grok-4.5, Qwen-3.5, GLM-5.2).
+
+VERDICT GATES ON TWO FAILABLE RESULTS TOGETHER: (g2) SLD/QFI != BKM on a NONCOMMUTING mixed direction (g_SLD=1.000 !=
+g_BKM=1.076, differ 0.076; would be ~0 if they were the same metric), AND (g3, COMPUTED) SLD/QFI = curvature of the
+Bures/fidelity distance^2 (0.5 = g_SLD/2 to 2e-7) while != the rel-entropy Hessian -- i.e. two divergences (fidelity vs
+relative entropy) give two metrics (QFI vs BKM). CORRECTION (round-2 panel, Qwen-3.5 [warn], ADOPTED): the coincidence
+on the commuting/classical submanifold (both = classical Fisher 1.190476) is GUARANTEED by the Morozova-Chentsov
+theorem (every monotone metric reduces to classical Fisher on commuting states) -- so agree_commuting is a CONSISTENCY
+CHECK, NOT a flipping control, and the verdict does NOT gate on it. (An earlier report of this sim overstated round-2
+as "all three responding models agree claim2 is well-posed"; corrected here -- Grok+GLM [ok], Qwen [warn]/adopted,
+Gemini 503'd.)
+
+COMPUTED SUPPORTING IDENTITY (reported, NON-gating -- a non-failable identity must not rubber-stamp a verdict):
+BKM = Hessian of the Umegaki relative entropy to 4e-8 (BKM's definition, a self-consistency check).
+
+PLACEMENT (conditional, honestly scoped): Fubini-Study/QFI = the fidelity/Bures-family metric (useful: state estimation,
+quantum speed limit). The model's metric follows BKM CONDITIONAL on the prior-forced relative-entropy pawl (NOT
+re-derived here). QFI coincides with BKM only on the classical submanifold -- it does NOT coincide at pure states
+(near-pure SLD=1.0 vs BKM=4.6, a panel-corrected error from the first draft). So QIG is placed as the fidelity-family
+alternative / classical face of the already-used BKM surface, not a new foundation.
+
+HONEST SCOPE: earns the metric-family distinction (QFI=fidelity curvature, BKM=rel-entropy curvature, coinciding only
+on the classical face); the model-metric link is conditional on the prior-forced pawl. Does NOT re-derive the pawl,
+does NOT claim pure-state coincidence, does NOT claim QFI useless, does NOT build a QIG layer. scratch_diagnostic.
+
+## UP-140 -- WITHDRAWN (retained as scaffold): HoTT/braid-group trajectory topology -- placement real, but no failable gate (2026-07-10)
+
+The attachments proposed Homotopy Type Theory / braid-group topology for trajectories (trajectory=braid, deadlock=knot,
+resolution=homotopy jump). I built hott_braid_topology_placed_vs_forced_spinor_sim.py to place it against the forced Z2
+spinor double cover. It ran PASS standalone, but the cross-family panel (Gemini-3.1-pro, Grok-4.5, GLM-5.2; Qwen
+parse-errored) UNANIMOUSLY flagged the gate as a RUBBER STAMP: the "control" `abs(a1*a2-a2*a1)<1e-12` merely checks that
+two hardcoded complex SCALARS commute -- true by the definition of C, computing nothing about the carrier -- and the
+nonabelian B_3->SL(2,Z) generators are hand-picked textbook matrices, not forced from {F01,N01}.
+
+They were right. Stripped of the tautology, the placement is: the forced carrier path-topology is Z2 (already shipped:
+spinor_lift_is_forced / double_720_loop_closes_360), and nonabelian braid groups are a richer structure requiring a
+>=2-dim anyonic fusion space the single carrier lacks -- so braid/HoTT topology is CONSTRUCTIBLE-NOT-FORCED, the same
+live-but-unforced status already recorded for octonions/T01 (t01_constructible_not_forced), E8, and Penrose
+(aperiodic_order_not_forced). That verdict is TRUE and worth recording, but it does NOT earn a NEW failable running gate
+(a gate that cannot fail must not ship green -- cf. the UP-137 withdrawal). DECISION: sim RETAINED AS A SCAFFOLD
+documenting the finding; NOT registered in run_all.py; harness stays 143 GREEN. The braid/anyon layer, if it ever
+becomes load-bearing, belongs in the field-of-engines / many-carrier regime (axes 7-12), not at the single-carrier
+foundation.
+
+## UP-141 -- WITHDRAWN (retained as scaffold): "each stage protects a distinct invariant" -- composite-key not a forced invariant (2026-07-10)
+
+Attempted to deepen the engine interior by sharpening "each of the 16 stages is its own kind of intelligence" from the
+prior rung's distinct-processing-FINGERPRINT (sixteen_intelligences_substages_terrain_ratchet) to the stronger notion
+"each stage PROTECTS A DISTINCT INVARIANT" -- a conserved structure it holds while transforming the rest. Built
+sixteen_stages_protect_distinct_invariants_sim.py; ran PASS standalone (12 density-distinct + 4 chirality-mirror pairs
+completing at the spinor level). The cross-family panel (Gemini-3.1-pro, Grok-4.5, GLM-5.2; Qwen timed out)
+UNANIMOUSLY killed the invariant framing, correctly:
+
+  - The "invariant" was a HAND-CONCATENATED FEATURE VECTOR [operator preserved axis, terrain contraction spectrum,
+    terrain fixed point, det], NOT the protected eigenspace of the composed stage channel. Distinctness was a composite
+    key installed by the source TERR/NATIVE tables, not a forced dynamical invariant.
+  - The spinor gate was a TAUTOLOGY: the holonomy reads eps out of H=eps*(sx+sy+sz)/sqrt(3), flipping by construction.
+  - The 12+4 density split was pre-installed by which terrains TERR marks center-fixed and which operators NATIVE assigns.
+  - genuine_preservation (|lambda|=1) is true by the op() definitions, not a failable test.
+
+THE REAL FINDING (a genuine negative, kept): the COMPOSED stage channel has NO genuine protected invariant at the
+DENSITY level -- the terrain GKSL flow contracts every axis to its fixed point. That is precisely why the sim retreated
+to concatenating operator-level and terrain-level pieces (the composite-key move the panel caught). So "each stage
+protects a distinct invariant" does NOT hold as a density-level dynamical claim. The honest standing result for "16
+distinct kinds" remains the PRIOR rung (distinct processing fingerprint, min pairwise 0.36, shuffle->0), which this does
+not supersede. DECISION: sim RETAINED AS A SCAFFOLD documenting the negative; NOT registered; harness stays 143 GREEN.
+
+LESSON FOR FUTURE ENGINE-DEEPENING: a genuine "each stage conserves something distinct" claim must read the protected
+structure of the COMPOSED stage channel itself (e.g. its Choi fixed points / conserved observables under the full flow),
+not concatenate separate operator and terrain features. The density-level flow being strongly contractive is the
+obstacle; a real invariant claim likely needs the spinor/Choi level or a non-contractive (measurement-conditioned)
+dynamics, which is the open direction.
+
+CONFIRMING PROBE (UP-141 negative, strengthened): built the composed stage channel's Liouville (4x4 Pauli-basis)
+representation and computed the fixed points of the dual map E^dagger (the conserved observables). RESULT (checked on
+ALL 16 stages, not a subset): every one of the 16 stages has EXACTLY ONE conserved observable -- the trivial identity I
+(eigenvalue 1 = trace preservation); every other Liouville eigenvalue has |lambda|<1 (counts [1]*16). NO stage has a
+nontrivial protected observable at the density level. This directly confirms the panel and the withdrawal: "each stage
+protects a distinct invariant" is FALSE as a density-level dynamical claim; the only invariant is the trivial one. The
+genuine per-stage distinction is the FULL Liouville spectrum (e.g. t0_Ti |.|=[1,0.266,0.262,0.262] vs t0_Fi
+[1,0.58,0.483,0.483]) -- the channel-as-object, which is precisely what the prior processing-fingerprint rung measures.
+So the honest "16 distinct kinds" result is the channel FINGERPRINT (already shipped), not a protected invariant.
+(NOTE: the first write of this probe had only executed STAGES[:4]; an auditor caught the universal claim outrunning the
+4-of-16 evidence, so the probe was re-run on all 16 and confirmed [1]*16 before this text was finalized.)
+
+## UP-142 -- Four-substrate port-fidelity certification (harness 144 GREEN)
+DOCTRINE TRIGGER: external review found ~136/145 sims numpy-ONLY, violating the substrate doctrine (julia arbiter;
+jax+julia standing pair; torch when learning; all four when a result is stamped; numpy alone carries classical
+presumption). RESPONSE (not a cosmetic file-by-file rewrite -- the KERNELS are the load-bearing content):
+- Installed Julia 1.10.5 arm64 (binary reachable; package registry still TLS-blocked -> LinearAlgebra stdlib only, the
+  dependency-free arbiter; tarball saved as artifact so it survives the workspace sweep) + torch 2.13.0.
+- substrate_kernels/{kernels_np.py, julia_kernels.jl}: the load-bearing QIT primitives (8-terrain GKSL flow fixed
+  points, von Neumann entropy, Liouville spectra) as numpy + Julia implementations.
+- four_substrate_agreement_harness_sim.py: numpy == JAX(x64) == Torch(f64) == Julia to <1e-9 on all 8 terrains.
+  RESULT: JAX 3.11e-15, Torch 1.11e-15, Julia 4.48e-11. CONTROL: JAX float32 (complex64) 2.20e-6 >> x64 -> the float32
+  truncation the doctrine warns about is caught, and the tolerance is a real (non-vacuous) gate.
+- 3-qubit floor also cross-substrate certified via existing engines/validate_engines_3q.py: jax/torch/julia vs the
+  numpy oracle, worst pvec deviation 9.89e-13 across 16 stages (63-dim Pauli), min pairwise 0.1742.
+HONEST CEILING (unanimous adversarial panel catch, ADOPTED): this is PORT-FIDELITY / reproducibility engineering, NOT a
+forced-physics rung -- agreement of correctly-ported float64 linear algebra is near-automatic; it certifies no core
+result rests on ONE library's numerics and catches the float32 artifact, but it does not independently re-derive the
+model per substrate. classification=port_fidelity_certification, promotion_allowed=false. Registered because the gate is
+genuinely failable (mis-port, missing Julia, or float32 fails it) and the doctrine requires standing substrate
+certification. Panel also caught + FIXED a numpy-constant leak in the torch port (np.sqrt->math.sqrt).
+JAX GOTCHA recorded: JAX defaults to complex64 and silently truncates complex128 unless JAX_ENABLE_X64=1.
+
+## UP-143 -- "Process all the proposed math" (brave-thread disposition) + two withdrawn discriminators (harness stays 144)
+USER: "go on and process all the proposed math" + attachment of the full brave-thread of math objects (1883-line
+research thread) + a ChatGPT/Mannheim review thread. WHAT WAS DONE:
+- BRAVE_THREAD_MATH_DISPOSITION.md: every one of the 19 distinct math objects in the thread mapped to the REGISTERED
+  sim that processes it + that sim's verdict, grounded by grepping the actual estate (NOT memory). Result: 17/19 already
+  processed across UP-115..UP-141 as either the ONE shipped classical-limit (max-plus, UP-138) or the recurring
+  live-but-UNFORCED {H,O}-branch verdict (octonions, Jordan, Albert, Malcev, Fano, exceptional-Lie G2->F4->E6->E7->E8,
+  27-cell, E8/Penrose, and the whole Atiyah-Singer/3-generations/spectral-geometry cluster via UP-115 grand-synthesis =
+  "entropy=index is an ANSATZ, not forced"). TWO not cleanly closed: flag-manifolds->generations (line 652, no dedicated
+  sim -- honest low-priority gap) and non-associativity->halos (line 1045, disposed by structural argument only).
+- TWO discriminator sims BUILT then WITHDRAWN after unanimous adversarial panels (negatives first-class):
+  (a) nonassociativity_not_needed_for_halo_profiles_sim -- its "associator" was a hand-installed mass fudge with NO
+      actual non-associative algebra, and its leave-one-out gate was statistically broken on N=4 (dropping the MW
+      leverage point forces collapse regardless of physics). Structural disposition stands: the model has no forced
+      non-assoc gravity sector and the halos it reproduces use the associative a0=c*H0/2pi scale, so non-associativity
+      is unforced for halos -- but that is an argument, not a passing rung.
+  (b) three_view_semiconjugacy_gate_sim -- attempted the reviews' highest-value "one basin, many probes" level-4 test
+      (Q_d(Tx)=T^(d)(Q_d x) across QIT/reaction/agent views). CIRCULAR by construction: each T^(d) was defined FROM the
+      same core P, so the intertwining is a definitional identity, not a discovery. A real test needs each domain step
+      defined from its OWN rules and only the projection fit -- e.g. the actual 16-stage engine Liouvillian vs a
+      Catalyst reaction network matched only at the fixed point then tested off it. Documented as the honest frontier.
+HONEST NET: the proposed-math estate is essentially complete on the live-but-unforced verdict; the genuinely open work
+is not more object-placement but (i) a forced Malcev bracket (the named T01 ceiling) to EARN any octonionic rung, and
+(ii) a non-circular semiconjugacy build to earn "one basin" at level 4. Both are research programs, flagged not faked.
+
+## UP-144 -- Basis-invariant QIT<->reaction-network semiconjugacy + the THREE-LEVEL floor (harness 144->145 GREEN)
+The reviews' highest-value "one basin, many probes" recommendation (level-4 dynamical semiconjugacy) built NON-circularly
+after two withdrawn attempts (three_view = circular; qubit-closure = basis artifact). engine_reaction_semiconjugacy_qutrit_floor_sim.py.
+DESIGN: a reaction network's "species" ARE a basis choice, so the test is coordinate-free -- does there exist ANY basis
+(any species labelling) in which an engine's open-system population dynamics CLOSE into a valid classical master
+equation? closure_defect(V) = population-readout of the Liouvillian applied to V-coherences; minimized over ALL bases
+(polished Nelder-Mead over U(3)/SU(2), SYMMETRIC start budget). Q is domain-forced (populations), K is discovered from
+the REAL generator and validated, never installed -- the non-circularity fix.
+CENTRAL RESULT (Gemini panel: "brilliantly derived and earned via parameter counting"): closure-in-some-basis is
+  * d=2 (qubit): AUTOMATIC (min-defect ~1e-13; ~linear-algebra fact -- a real 3x3 Bloch generator always has a real
+    eigenvector). Reported, NOT gated (an unfailable leg cannot gate).
+  * d=3 (qutrit): NON-GENERIC (random Lindbladians min-defect ~1.0-1.2 under the same search) -> the QIT<->reaction
+    unification is VACUOUS at 2 levels and only a genuine falsifiable claim at d>=3. An INDEPENDENT dimensional
+    threshold from the one-basin direction -- the THREE-LEVEL (single-system Hilbert dim) floor. NB: distinct from the
+    multi-qubit tomography "three-qubit" (8-dim) floor; NOT to be conflated.
+GATES (verdict on the 3 failable legs; gate1 report-only): (2) qutrit non-vacuity all>0.1; (3) classical-recovery
+positive control -- a lifted CTMC closes exactly in its natural basis AND the blind optimizer FINDS that basis to 11.9
+decades below the random-qutrit floor (control-relative, no tuned constant; natural-basis K-match is an intentional
+wiring tautology); (4) coherent-obstruction AMPLITUDE SWEEP -- min-defect grows monotonically with drive strength
+(0->0.093->0.182->0.229), a continuous trend not a hand-picked amplitude.
+CERTIFICATION LIMIT (honest): "closes in no basis" = no basis FOUND under polished multi-start search; a local optimizer
+cannot certify a global minimum. The d=2 vs d=3 gap (~1e-13 vs ~1.0, SAME budget) is 13 orders -- far beyond plausible
+optimizer failure. Superseded qubit-closure sim retained as scaffold. Panel iterations fixed: circular->non-circular,
+basis-artifact->basis-invariant, fitted-search->symmetric budget, absolute-threshold->control-relative ratio,
+binary-obstruction->monotone sweep, "three-qubit"->"three-level". CONJECTURE (not computed): the dissipative/coherent
+boundary may relate to the FEP-IGT detailed-balance boundary -- a lead, not a corroboration.

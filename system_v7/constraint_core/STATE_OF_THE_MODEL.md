@@ -2,10 +2,25 @@
 2026-07-02 · seventh audit pass · supersedes nothing, indexes everything
 claim_ceiling: status snapshot; the ratchet earns canon, this document does not
 
+> **RATCHET_V0_5_ORDER_OPEN_PROCESS:** This 2026-07-02 snapshot predates the order-open executable Ratchet.
+> Preserve its numerical and audit history, but reinterpret all `EARNED`/`FORCED` language as fixture- and
+> grammar-relative until reprocessed by `RATCHET_SPEC.md`. The root is constrained distinguishability; probe equivalence,
+> finite QIT carriers, named entropy types, geometry, and the layer tower are later hypotheses/realizations. A
+> gate-surviving coface gradient is required to drive a tooth. Gate order, decomposition, and substeps are hypotheses;
+> a missing witness expands the unordered dig pool rather than freezing exploration. The v0.5 process run admits zero
+> scientific manifold layers.
+
+> **RATCHET_V0_6_EXECUTED_MANIFOLD_AUDIT:** This snapshot is also superseded for manifold admission by
+> `ratchet/manifold_evidence/MANIFOLD_RATCHET_STATE_REPORT.md`. Eight L1–L8 scripts reproduce locally; none is admitted.
+> The fresh finite manifold Ratchet earns only a fixture-relative orientation bit beyond the radial scalar. The audit
+> kills L5 named-shell minimality, L6 BKM uniqueness on the radial tangent, the claimed full L6→L7 entropy/phase
+> coidentity, and the unimplemented identification of Chern orientation with physical chirality.
+
 ## I. What this is, in three sentences
-A constraint-first foundation (finitude F01, noncommutation N01, bracketing
-T01, identity-as-indistinguishability) realized on a finite QIT carrier
-(ℂ²→ℂ⁸), formalized as a layered spec with ~30 machine-checked sims, reproduced
+A gradient-driven constrained-distinguishability research program, governed by F01 finitude and N01 noncommutation,
+with bracketing
+T01 conditional on a later grouping demand, currently realized on an installed finite QIT carrier
+(ℂ²→ℂ⁸). It is formalized as a layered hypothesis set with machine-checked simulations, reproduced
 across four independent numerical substrates, and governed by a claim-ceiling
 discipline that has now survived seven adversarial audits without a silent
 overclaim standing. Its interpretive ambitions (engine stages, Axis-0,
@@ -14,8 +29,9 @@ candidate / installed / open. Owner framing, verbatim: hypothetical path to
 explore, NOT canon.
 
 ## II. The tower, compressed (grade in caps)
-- **L0 axioms** — F01/N01/T01 + a=a⟺a∼b: EARNED as runnable renderings
-  (root_axiom_sim; SMT gates in z3+cvc5 agree).
+- **L0 legacy foundation fixtures** — finite constrained-distinction/probe tables, F01/N01 tests, and
+  `a∼b` quotient candidates are RUNNABLE RENDERINGS. They do not make equivalence or objects primitive, and they do not
+  prove global MSS minimality.
 - **L1–4 carrier & geometry** — ℂ², Hopf/Bloch, Weyl sheets, holonomy
   ∮A=−2πcos2η, ∫F=−4π: EARNED (symbolic/closed-form). Carrier choice itself:
   INSTALLED under U-1 (candidate, not forced).

@@ -1,0 +1,97 @@
+{
+ "gap": "K_cross_engine_tensor_chain",
+ "date_utc": "2026-07-14T02:16:21Z",
+ "state": "6-site GHZ as MPS; control: |000000> product state as MPS",
+ "observable": "entanglement entropy across the 3|3 cut",
+ "units": "primary comparison unit: nats (natural log). Expected GHZ value: ln2 nats = 0.6931471805599453 = exactly 1 bit. quimb .entropy natively returns bits (log2), converted via nats = bits*ln2; ITensors leg computes nats directly from singular values.",
+ "engines": {
+  "python_quimb": {
+   "interpreter_invoked": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+   "interpreter_resolved": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+   "env": "JAX_ENABLE_X64=1",
+   "quimb_version": "1.14.0",
+   "state_construction": "qtn.MPS_ghz_state(6) / qtn.MPS_computational_state('000000')",
+   "entropy_api": "MatrixProductState.entropy(3) cross-checked against schmidt_values(3)"
+  },
+  "julia_itensors": {
+   "interpreter": "/opt/homebrew/bin/julia (global env), julia 1.12.6",
+   "packages": {
+    "ITensors": "0.9.30",
+    "ITensorMPS": "0.4.1"
+   },
+   "state_construction": "MPS(siteinds('Qubit',6),'0') + MPS(s,'1'), normalized (GHZ); MPS(s,'0') (control)",
+   "entropy_api": "orthogonalize(psi,3); svd(psi[3],(linkind,siteind)); -sum p*log(p)"
+  }
+ },
+ "results": {
+  "ghz_entropy_nats": {
+   "python_quimb": 0.6931471805599452,
+   "julia_itensors": 0.6931471805599454
+  },
+  "ghz_entropy_bits": {
+   "python_quimb": 0.9999999999999998,
+   "julia_itensors": 1.0000000000000002
+  },
+  "product_entropy_nats": {
+   "python_quimb": 0.0,
+   "julia_itensors": 0.0
+  },
+  "ghz_schmidt_values": {
+   "python_quimb": [
+    0.5000000000000002,
+    0.5000000000000002
+   ],
+   "julia_itensors": [
+    0.4999999999999999,
+    0.4999999999999999
+   ]
+  }
+ },
+ "checks": {
+  "ghz_cross_engine_agreement_nats": {
+   "delta": 2.220446049250313e-16,
+   "tol": 1e-10,
+   "pass": true
+  },
+  "ghz_py_vs_exact_ln2_nats": {
+   "delta": 1.1102230246251565e-16,
+   "tol": 1e-10,
+   "pass": true
+  },
+  "ghz_jl_vs_exact_ln2_nats": {
+   "delta": 1.1102230246251565e-16,
+   "tol": 1e-10,
+   "pass": true
+  },
+  "control_product_py_zero_nats": {
+   "value": 0.0,
+   "tol": 1e-12,
+   "pass": true
+  },
+  "control_product_jl_zero_nats": {
+   "value": 0.0,
+   "tol": 1e-12,
+   "pass": true
+  },
+  "control_product_cross_engine_agreement_nats": {
+   "delta": 0.0,
+   "tol": 1e-10,
+   "pass": true
+  },
+  "discrimination_ghz_above_product_both_engines": {
+   "ghz_minus_prod_py": 0.6931471805599452,
+   "ghz_minus_prod_jl": 0.6931471805599454,
+   "min_required": 0.34657359027997264,
+   "pass": true
+  },
+  "py_internal_entropy_vs_schmidt_consistency": {
+   "delta": 0.0,
+   "tol": 1e-12,
+   "pass": true
+  }
+ },
+ "controls_note": "controls can fail: the product-state entropy runs through the same schmidt/svd entropy path as GHZ in both engines (nothing hard-coded), and the discrimination check fails if either engine's entropy is state-independent",
+ "pass": true,
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false
+}

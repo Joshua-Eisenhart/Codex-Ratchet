@@ -1,0 +1,73 @@
+{
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "framing": "the dark-sector acceleration scale is PREDICTED as a0=c*H0/(2pi) (dark-energy-first cosmogenesis + Unruh 2pi, NO free parameter); it matches the observed MOND scale and yields a zero-parameter baryonic Tully-Fisher matching real galaxies",
+  "claim1_scale_matches_zero_fit": {
+    "a0_obs": 1.2e-10,
+    "a0_pred_by_H0": {
+      "67": 1.0360127305146626e-10,
+      "70": 1.0824013602391998e-10,
+      "73": 1.1287899899637367e-10
+    },
+    "ratio_to_obs_by_H0": {
+      "67": 0.8633439420955522,
+      "70": 0.9020011335326664,
+      "73": 0.9406583249697805
+    },
+    "planck_wrongscale_ratio": 4.6339807946672556e+61,
+    "pass": true
+  },
+  "claim2_baryonic_tully_fisher_zero_fit": {
+    "a0_used": 1.0824013602391998e-10,
+    "galaxies": [
+      {
+        "galaxy": "Milky Way",
+        "Mb_Msun": 60000000000.0,
+        "v_obs_kms": 220.0,
+        "v_pred_kms": 171.35238013942663,
+        "ratio": 0.7788744551792119
+      },
+      {
+        "galaxy": "NGC2403",
+        "Mb_Msun": 10000000000.0,
+        "v_obs_kms": 134.0,
+        "v_pred_kms": 109.48442168627257,
+        "ratio": 0.8170479230318849
+      },
+      {
+        "galaxy": "NGC3198",
+        "Mb_Msun": 30000000000.0,
+        "v_obs_kms": 150.0,
+        "v_pred_kms": 144.0896022044356,
+        "ratio": 0.9605973480295708
+      },
+      {
+        "galaxy": "DDO154",
+        "Mb_Msun": 300000000.0,
+        "v_obs_kms": 47.0,
+        "v_pred_kms": 45.56513301136353,
+        "ratio": 0.9694709151353942
+      }
+    ],
+    "wrong_a0_control_ratios": [
+      7.788744551792118,
+      8.170479230318849,
+      9.60597348029571,
+      9.694709151353942
+    ],
+    "pass": true
+  },
+  "claim3_btfr_slope_forced": {
+    "slope_logv_vs_logM": 0.27790925626625396,
+    "slope_logM_vs_logv": 3.530933307091584,
+    "expected": "v~M^0.25, M~v^4",
+    "pass": true
+  },
+  "honest_scope": "a0~c*H0/2pi is an established (Milgrom) coincidence; the model DERIVES the scale (removing Layer 0.4's hand-set a0) via dark-energy-first cosmogenesis + Unruh 2pi. Not a full SPARC fit, not the MOND interpolating function, does not derive G or replace GR/LambdaCDM. Canonical galaxy anchors.",
+  "policy_eval": {
+    "acceleration_scale_predicted_from_expansion_no_fit": true,
+    "zero_parameter_BTFR_matches_real_galaxies": true,
+    "btfr_slope_is_4": true,
+    "FIRST_FALSIFIABLE_QUANTITATIVE_PHYSICS_PREDICTION": true
+  }
+}

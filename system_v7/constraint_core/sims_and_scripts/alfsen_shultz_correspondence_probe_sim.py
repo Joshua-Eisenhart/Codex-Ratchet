@@ -29,10 +29,10 @@ from typing import Any
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[3]
-SOURCE_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/alfsen_shultz_correspondence_probe_sim.py"
-RESULT_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/alfsen_shultz_correspondence_probe_sim_results.json"
-SPIN9_SOURCE = ROOT / "system_v7/constraint_core/sims_and_scripts/spin9_stabilizer_op2_coset_sim.py"
+SIM_DIR = Path(__file__).resolve().parent
+SOURCE_PATH = Path(__file__).resolve()
+RESULT_PATH = SIM_DIR / "alfsen_shultz_correspondence_probe_sim_results.json"
+SPIN9_SOURCE = SIM_DIR / "spin9_stabilizer_op2_coset_sim.py"
 
 SIM_ID = "alfsen_shultz_correspondence_probe"
 CLASSIFICATION = "scratch_diagnostic"

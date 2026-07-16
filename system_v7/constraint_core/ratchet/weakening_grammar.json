@@ -1,0 +1,53 @@
+{
+  "schema_version": "ratchet-weakening-grammar/0.4",
+  "status": "installed_open_grammar",
+  "globally_complete": false,
+  "description": "Open proposal library for weakening generation. A finite run executes a bounded subset but does not freeze the global grammar; generated future operators may reopen any tooth.",
+  "operators": [
+    {
+      "id": "erase_primitive",
+      "description": "Remove a primitive symbol, relation, carrier feature, or law and retest the obligation."
+    },
+    {
+      "id": "forget_structure",
+      "description": "Apply a forgetful map from a richer presentation to a poorer presentation."
+    },
+    {
+      "id": "quotient_marks",
+      "description": "Merge presentation marks that current admissible tests do not distinguish."
+    },
+    {
+      "id": "restrict_operations",
+      "description": "Remove update operations, generators, or compositions not needed by the current obligation."
+    },
+    {
+      "id": "reduce_history",
+      "description": "Shorten or erase stored history and test whether persistence or N01 remains load-bearing."
+    },
+    {
+      "id": "coarsen_resolution",
+      "description": "Use a coarser finite distinction partition or smaller finite capacity."
+    },
+    {
+      "id": "reduce_locality",
+      "description": "Remove sites, adjacency, locality radius, homogeneity, or clock structure where the obligation survives."
+    },
+    {
+      "id": "carrier_substitution",
+      "description": "Replace the carrier with a non-isomorphic finite presentation reproducing the same tested distinction behavior."
+    },
+    {
+      "id": "algebra_restriction",
+      "description": "Replace an algebra by a proper subalgebra, real form, semigroup, partial algebra, or non-algebraic table."
+    },
+    {
+      "id": "remove_equivalence_closure",
+      "description": "Replace a quotient/equivalence object with the underlying partial, contextual distinction relation."
+    },
+    {
+      "id": "remove_independent_entropy_geometry_fields",
+      "description": "Replace separate entropy and geometry states with one constrained-distinguishability surface when possible."
+    }
+  ],
+  "reopen_rule": "Adding an operator or rival family invalidates any claim of exhaustive minimality outside the earlier frozen grammar."
+}

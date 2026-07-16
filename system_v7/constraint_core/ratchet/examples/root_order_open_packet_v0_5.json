@@ -1,0 +1,72 @@
+{
+  "schema_version": "ratchet-order-open-packet/0.5",
+  "packet_id": "root-order-open-process-packet-v0.5",
+  "run_id": "root-order-open-ratchet-run-2026-07-10-v0.5",
+  "root_primitive": "constrained_distinguishability",
+  "observation_surface": {
+    "source_kind": "generated_process_fixture",
+    "probe_symbols": ["p", "q", "r"],
+    "history_length": 3,
+    "dependency_depth": 2,
+    "outcomes": [
+      "distinguished",
+      "not_distinguished",
+      "unresolved",
+      "inadmissible"
+    ],
+    "claim_ceiling": "definition_and_evaluator_test_only"
+  },
+  "candidate_grammar": {
+    "memory_depth": [0, 1, 2, 3],
+    "history_summary": [
+      "ordered_suffix",
+      "unordered_bag",
+      "set_only",
+      "last_only",
+      "first_only",
+      "endpoints",
+      "parity_counts",
+      "transition_counts",
+      "rolling_hash"
+    ],
+    "phase_mod": [2, 3, 4, 5],
+    "bucket_mod": [0, 2, 3, 4, 5, 7, 11, 16, 32],
+    "token_and_probe_partitions": "all_set_partitions_of_three_marks"
+  },
+  "gate_hypothesis_space": {
+    "demand_families": [
+      "probe_contrast",
+      "recent_history_contrast",
+      "deep_history_contrast",
+      "partial_outcome_contrast"
+    ],
+    "gate_boundaries": "all_set_partitions",
+    "gate_orders": "all_permutations_of_every_partition",
+    "dependencies": [],
+    "canonical_order_claimed": false,
+    "canonical_decomposition_claimed": false
+  },
+  "budget": {
+    "max_candidate_proposals": 50000,
+    "candidate_batch_size": 512,
+    "max_schedule_hypotheses": 1000,
+    "global_completeness_claimed": false
+  },
+  "authored_seed_proposals": [
+    {
+      "seed_id": "external_contact",
+      "proposal": "replace the generated process fixture with independent mathematical, physical, and Lev distinction records",
+      "derived_by_this_run": false
+    },
+    {
+      "seed_id": "carrier_compilers",
+      "proposal": "supply behaviorally distinct CA, QCA, transducer, graph, operator, and nonassociative compilers",
+      "derived_by_this_run": false
+    },
+    {
+      "seed_id": "rival_weakness_orders",
+      "proposal": "challenge finite partition refinement with explicit alternative weakness relations",
+      "derived_by_this_run": false
+    }
+  ]
+}

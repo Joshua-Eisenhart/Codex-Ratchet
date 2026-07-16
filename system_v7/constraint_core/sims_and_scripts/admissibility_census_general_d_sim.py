@@ -26,9 +26,9 @@ import sympy as sp
 import z3
 
 
-ROOT = Path(__file__).resolve().parents[3]
-SOURCE_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/admissibility_census_general_d_sim.py"
-RESULT_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/admissibility_census_general_d_sim_results.json"
+SIM_DIR = Path(__file__).resolve().parent
+SOURCE_PATH = Path(__file__).resolve()
+RESULT_PATH = SIM_DIR / "admissibility_census_general_d_sim_results.json"
 
 CLASSIFICATION = "scratch_diagnostic"
 PROMOTION_ALLOWED = False

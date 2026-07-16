@@ -1,0 +1,36 @@
+{
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "framing": "the model forces a fork on a0(z) [total-H vs dark-energy-horizon]; external Genzel 2017 / Milgrom 2017 high-z rotation-curve data (as reported, not re-verified verbatim) disfavours the total-H branch (a0~(1+z)^1.5, ~3a0 at z=2) and selects the constant dark-energy-horizon branch -- refining UP-134",
+  "z0_anchor": {
+    "a0_local": 1.0824013602391998e-10,
+    "ratio_to_observed": 0.9020011335326664,
+    "note": "both branches agree at z=0 (established a0~c*H0/2pi coincidence)"
+  },
+  "claim1_fork_real_and_forced": {
+    "ratio_branchA_z0": 0.9020011335326664,
+    "ratio_branchB_z0": 0.9020011335326664,
+    "discriminator_factor_at_z2": 2.966479394838265,
+    "pass": true
+  },
+  "claim2_data_kills_branch_A": {
+    "branchA_a0z2_over_a0z0": 2.966479394838265,
+    "branchA_highz_loglog_slope": 1.4740259298299851,
+    "excluded_by": "Milgrom 2017 arXiv:1703.06110 (Genzel 2017 arXiv:1703.04310), as reported (attribution, not a re-verified verbatim quote): disfavours ~4a0 at z~2 and a0~(1+z)^1.5, data consistent with constant a0",
+    "no_expansion_control_discriminator": 1.0,
+    "pass": true
+  },
+  "claim3_branchB_survives_is_refinement": {
+    "branchB_constant_in_z": true,
+    "ratio_to_observed": 0.9020011335326664,
+    "note": "constant a0 consistent with observed lack of evolution; refines UP-134 -> growing-room rate = dark-energy/de Sitter horizon",
+    "pass": true
+  },
+  "honest_scope": "does NOT confirm the model; shows the model makes a distinguishing a0(z) prediction and external data adjudicates the internal fork -- excluding the total-expansion reading, selecting the dark-energy-horizon (constant-a0) reading (also Milgrom's preferred). Exclusion values attributed to cited papers (as reported, not re-verified verbatim in this environment).",
+  "policy_eval": {
+    "model_forces_a0z_fork": true,
+    "external_data_disfavours_total_expansion_branch_as_reported": true,
+    "dark_energy_horizon_branch_survives_and_refines_UP134": true,
+    "DATA_SELECTS_DARK_ENERGY_HORIZON_READING_OF_COSMOGENESIS": true
+  }
+}

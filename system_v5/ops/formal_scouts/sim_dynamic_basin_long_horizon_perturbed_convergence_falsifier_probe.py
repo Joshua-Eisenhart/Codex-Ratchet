@@ -524,9 +524,59 @@ def proof_report(grid: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def write_upstream_blocked_receipt(started: float, dynamic: dict[str, Any] | None) -> int:
+    blocker = {
+        "code": "dynamic_cross_track_parent_not_green",
+        "claim": "The long-horizon falsifier is blocked because the required dynamic cross-track parent did not complete green.",
+        "parent_exists": dynamic is not None,
+        "parent_all_pass": bool(dynamic and dynamic.get("all_pass") is True),
+        "parent_status": (dynamic or {}).get("summary", {}).get("finite_fixture_status"),
+    }
+    receipt = {
+        "schema": "FORMAL_SCOUT_RESULT_v1",
+        "name": NAME,
+        "classification": CLASSIFICATION,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
+        "claim_ceiling": CLAIM_CEILING,
+        "source_path": str(pathlib.Path(__file__)),
+        "result_path": str(OUT_PATH),
+        "all_pass": False,
+        "summary": {
+            "all_pass": False,
+            "current_real_convergence_claim_status": "not_evaluated_upstream_dynamic_blocked",
+            "finite_fixture_status": "blocked",
+            "basin_admission_status": "blocked",
+            "axis0_pass_condition": False,
+            "elapsed_seconds": round(time.time() - started, 6),
+        },
+        "positive": {},
+        "graveyard_companions": {},
+        "boundary": {
+            "fail_closed_before_long_horizon_execution": {
+                "pass": True,
+                "rule": "A red dynamic parent cannot seed a long-horizon evidence claim.",
+            }
+        },
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "EXTERNAL_MODULE_MANIFEST": EXTERNAL_MODULE_MANIFEST,
+        "EXTERNAL_MODULE_INTEGRATION_DEPTH": EXTERNAL_MODULE_INTEGRATION_DEPTH,
+        "blockers": [blocker],
+    }
+    RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    OUT_PATH.write_text(json.dumps(receipt, indent=2, default=str) + "\n", encoding="utf-8")
+    print(json.dumps({"name": NAME, "all_pass": False, "status": "blocked", "out_path": str(OUT_PATH)}, indent=2))
+    return 1
+
+
 def main() -> int:
     started = time.time()
     torch.manual_seed(2026051805)
+    dynamic = read_json(DYNAMIC_FALSIFIER_RESULT) if DYNAMIC_FALSIFIER_RESULT.exists() else None
+    if dynamic is None or dynamic.get("all_pass") is not True:
+        return write_upstream_blocked_receipt(started, dynamic)
     consumed = consumed_receipt_report()
     parent = parent_receipt_report()
     axis0 = load_axis0_bundle()

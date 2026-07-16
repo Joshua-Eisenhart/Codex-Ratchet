@@ -1,0 +1,232 @@
+{
+  "schema_version": "wizard_v4_3_primary_object_card_v1",
+  "primary_object_card": {
+    "object_name": "FiniteResponseMatrixKernel",
+    "object_type": "finite_pre_categorical_response_table",
+    "object_statement": "A finite response matrix R: S x P -> O, with explicitly enumerated states, probes, outcomes, response quotients, refinement partitions, typed sequential extensions, transpose dualization, and exact finite probe-subset search; it installs no Chu-category objects, morphisms, tensor, adjunction, or categorical laws.",
+    "object_statement_sha256": "8212fc5eccad71591d8b92a2e7fb0b3107bf9ba7d80af1aa3dfca018d690a2e0",
+    "plain_language_definition": "This kernel records exactly what each finite state returns under each declared finite probe. It derives state equivalence only from matching response vectors, records how adding probes can split but never merge those classes, and permits a typed outcome-adaptive query transcript without pretending that the source table contains a state update law or a category.",
+    "source_anchors": [
+      {
+        "surface": "repo_source",
+        "reference": "system_v7/constraint_core/ratchet/ratchet_engine.py",
+        "quote_or_summary": "generate_observations creates the ordered finite G1 surface and is imported read-only to regenerate the real carrier."
+      },
+      {
+        "surface": "repo_packet",
+        "reference": "system_v7/constraint_core/ratchet/examples/root_history_packet_v0_4.json",
+        "quote_or_summary": "G1 declares three direct probe symbols, four outcome labels, history length three, and dependency depth two."
+      },
+      {
+        "surface": "repo_card",
+        "reference": "system_v7/sims/finite_chu_probe_kernel_v0/CARD.md",
+        "quote_or_summary": "The card fixes the literal matrix carrier and excludes Chu-category laws and online update semantics."
+      }
+    ],
+    "native_terms": {
+      "response matrix": "A total finite table assigning one declared outcome to every declared state and probe pair.",
+      "row quotient": "The partition of states whose selected-probe response vectors are exactly equal under the current finite table.",
+      "probe power": "The equality partition of states induced by one probe, distinct from literal equality of its response column.",
+      "sequential extension": "A deterministic second probe selected from the first outcome, recorded as an ordered finite transcript without a hidden transition law.",
+      "source row": "One regenerated ratchet observation record containing a history, recorded current probe, and recorded source outcome."
+    },
+    "weirdness_signature": [
+      "state identity is relative to the declared probe family",
+      "the real carrier preserves duplicate source records even when static requery merges them",
+      "sequential transcripts add ordered query syntax without importing source state transitions"
+    ],
+    "first_class_fields": [
+      "finite state set S",
+      "finite probe family P",
+      "outcome set O",
+      "all response matrix cells",
+      "source-row identity convention",
+      "row quotient partitions",
+      "strict and power-based column partitions",
+      "probe-subset search results",
+      "sequential policy and transcript table",
+      "transpose dual table",
+      "canonical payload hash",
+      "append-only frozen run records"
+    ],
+    "domain": "finite synthetic response tables and the regenerated 81-record G1 ratchet observation surface",
+    "codomain_or_output": "finite quotient partitions, probe-subset certificates, sequential transcript partitions, transpose checks, and deterministic JSON Lines receipts",
+    "allowed_operations": [
+      "compute row quotients from selected response columns",
+      "compute strict and power-based column quotients",
+      "exhaustively check monotone refinement over finite probe subsets",
+      "extend a probe by an outcome-indexed second probe",
+      "transpose the table and verify involution",
+      "enumerate minimal separating finite probe subsets"
+    ],
+    "required_invariants": [
+      "all response cells are total and use declared outcome labels",
+      "a larger probe subset only refines a selected row quotient",
+      "the source-row recorded outcome agrees with its regenerated matrix cell",
+      "two sequentially extended rows cannot split a pair already equal under every static probe",
+      "double transpose returns the literal original table",
+      "all emitted payload bytes are deterministic before append metadata"
+    ],
+    "forbidden_substitutions": [
+      "a proxy or learned label replacing the literal response table",
+      "four outcome labels treated as four native ratchet probe columns",
+      "the ratchet minimal survivor frontier treated as a minimal separating probe family",
+      "a static-table quotient treated as an online update or history law",
+      "Chu-category objects, morphisms, tensor, adjunction, or categorical laws",
+      "finite generated observations treated as scientific or physical evidence"
+    ],
+    "negative_controls": [
+      "synthetic exhaustive subset-refinement check",
+      "source recorded-cell reconstruction check",
+      "source one-step versus two-step memory-error boundary",
+      "commuting-order source control cited as upstream-only evidence",
+      "four-outcome one-hot membership view kept separate from direct probes",
+      "static-full-table versus sequential-extension non-splitting check"
+    ],
+    "adapter_policy": "The ratchet generator is a read-only adapter that supplies finite records. The derived 81-by-3 matrix, the outcome-membership view, and rustworkx component check are typed probes or supportive checks; none replaces the literal table.",
+    "promotion_locks": [
+      "no Chu-category or categorical claim",
+      "no online state-transition claim",
+      "no claim that G1 memory depth is universally necessary",
+      "no physical, entropy, geometry, manifold, Axis0, or ontology promotion",
+      "no ratchet-frontier or stage-admission promotion"
+    ],
+    "blocked_downstream_consumers": [
+      "ratchet frontier admission",
+      "scientific manifold migration",
+      "entropy or physics claims",
+      "Axis0 or ontology claims",
+      "Chu-category formalization",
+      "online control-policy claims"
+    ],
+    "artifact_surface": "system_v7/sims/finite_chu_probe_kernel_v0/CARD.md, run.py, results_v1.json, and this validated object card"
+  },
+  "constraint_bands": {
+    "root_constraints": [
+      "finite explicitly enumerated response carrier",
+      "probe-relative distinguishability by exact equality",
+      "no hidden categorical or transition structure"
+    ],
+    "extended_constraints": [
+      "read-only ratchet G1 source regeneration",
+      "three direct source probes and four outcome labels",
+      "append-only deterministic receipt format",
+      "supportive rustworkx connected-component cross-check"
+    ]
+  },
+  "lateral_mappings": [
+    {
+      "label": "ratchet G1 generator",
+      "use_type": "adapter",
+      "target": "read-only finite source-record adapter",
+      "preserves": [
+        "exact generated histories",
+        "direct probe labels",
+        "four source outcome labels"
+      ],
+      "loses": [
+        "online state update semantics",
+        "external empirical interpretation",
+        "global ratchet search coverage"
+      ],
+      "preconditions": [
+        "import is read-only",
+        "G1 gate is selected explicitly",
+        "recorded source cells are cross-checked"
+      ],
+      "kill_control": "If the regenerated source cell disagrees with the recorded row outcome, the real-table receipt fails.",
+      "promotion_allowed": false
+    },
+    {
+      "label": "outcome-adaptive second probe",
+      "use_type": "probe",
+      "target": "finite ordered transcript over a static response table",
+      "preserves": [
+        "first outcome",
+        "deterministic branch choice",
+        "second direct response"
+      ],
+      "loses": [
+        "state update",
+        "source transition semantics",
+        "physical temporal interpretation"
+      ],
+      "preconditions": [
+        "policy is total on declared outcomes",
+        "transcript order is explicit",
+        "static non-splitting is checked"
+      ],
+      "kill_control": "Any claim that the static transcript imports a source state update or splits a full-static-equivalent pair fails the lane.",
+      "promotion_allowed": false
+    },
+    {
+      "label": "four-outcome membership rendering",
+      "use_type": "proxy",
+      "target": "derived one-hot view of each recorded source outcome",
+      "preserves": [
+        "source outcome label",
+        "finite membership indicator"
+      ],
+      "loses": [
+        "three direct probe responses",
+        "cross-query semantics",
+        "native source-column status"
+      ],
+      "preconditions": [
+        "the direct 81-by-3 table remains primary",
+        "membership view is labelled derived",
+        "no pair-family structure is asserted without source evidence"
+      ],
+      "kill_control": "If the rendering is called four native demand-family probes, its interpretation is rejected.",
+      "promotion_allowed": false
+    }
+  ],
+  "exploration_contract": {
+    "lateral_lane_types": ["adapter", "probe", "proxy", "analogy"],
+    "wildcard_lanes_min": 1,
+    "fixation_breakers": [
+      "test every probe subset rather than privileging a named probe",
+      "separate literal column equality from identical distinguishing power",
+      "allow static sufficiency to falsify the anticipated sequential-necessity reading"
+    ]
+  },
+  "loop_contract": {
+    "max_loops": 2,
+    "phases": ["build", "premortem", "repair", "selftest"],
+    "repair_rule": "Repair the first literal-table, source-regeneration, or append-only failure before expanding any interpretation.",
+    "stop_condition": "Two identical deterministic payloads are appended, a freeze record verifies them, and no promotion beyond the finite-kernel ceiling is claimed."
+  },
+  "method_contracts": {
+    "question_is_not_authorization": "A question does not grant authorization to introduce category laws, source mutation, or a new online semantics beyond the requested finite table.",
+    "order_check_separate": "Order is checked separately from content by explicit sequential transcripts and is never inferred from a static quotient alone.",
+    "baseline_preservation": "The baseline source records and visible outcome labels are preserved while the derived response table is checked.",
+    "falsifier_first": "The target is sequential necessity; the falsifier is a static probe subset matching the full quotient; the check enumerates subsets and policies, then marks the claim killed, open, or survived.",
+    "feynman_testability": "The operation is finite response comparison, the observable is the quotient partition, and the pass/fail condition is exact partition equality or a witnessed split.",
+    "synthesis_refusal": "Synthesis must refuse any merge of a static response receipt with a Chu-category, online-update, scientific, or ratchet-admission claim.",
+    "human_offload": "Resolve source shape and finite checks with local tools before asking the human for an unrecoverable semantic choice."
+  },
+  "evidence_spine": {
+    "wizard_runtime": "Wizard v4.3 object-preservation guard is current; legacy v4.2 surfaces are not this task's runtime.",
+    "source_math_locks": [
+      {
+        "path": "system_v7/constraint_core/ratchet/ratchet_engine.py",
+        "preserves": "The exact generate_observations rule and finite G1 source-row ordering.",
+        "status": "read-only source adapter"
+      },
+      {
+        "path": "system_v7/constraint_core/ratchet/examples/root_history_packet_v0_4.json",
+        "preserves": "The G1 gate's declared probes, outcomes, history length, and dependency depth.",
+        "status": "read-only bounded packet"
+      }
+    ],
+    "sim_audit_receipts": [],
+    "claude_pattern_cards": [],
+    "claim_ceiling": "Deterministic finite response-table kernel receipt only; no category, scientific, online-update, or ratchet-frontier promotion.",
+    "blocked_consumers": [
+      "Chu-category law installation",
+      "ratchet admission",
+      "scientific or physical interpretation",
+      "online adaptive-control semantics"
+    ]
+  }
+}

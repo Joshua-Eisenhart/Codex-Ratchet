@@ -30,8 +30,7 @@ from scipy.linalg import expm
 
 sys.dont_write_bytecode = True
 
-ROOT = Path(__file__).resolve().parents[3]
-SIM_DIR = ROOT / "system_v7/constraint_core/sims_and_scripts"
+SIM_DIR = Path(__file__).resolve().parent
 SOURCE_PATH = SIM_DIR / "jordan_dpi_probe_v4_sim.py"
 RESULT_PATH = SIM_DIR / "jordan_dpi_probe_v4_sim_results.json"
 J3_SOURCE_PATH = SIM_DIR / "j3o_bloch_body_entropy_pawl_sim.py"

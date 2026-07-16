@@ -1,0 +1,82 @@
+{
+ "fail": 2,
+ "battery": "julia",
+ "pass": 13,
+ "results": {
+  "canon_albert_jordan_identity": {
+   "sec": 0.82,
+   "status": "FAIL",
+   "error": "MethodError: no method matching isless(::Main.ExceptionalAlgebraCanon.Albert, ::Float64)\nThe function `isless` exists, but no method is defined for this combination of argument types.\n\nClosest candida"
+  },
+  "itensors_mps_norm": {
+   "sec": 8.5,
+   "status": "PASS",
+   "detail": "6-site MPS norm = 1"
+  },
+  "quaternions_unit_rotation": {
+   "sec": 0.01,
+   "status": "PASS",
+   "detail": "unit quaternion verified"
+  },
+  "symbolics_identity": {
+   "sec": 3.85,
+   "status": "PASS",
+   "detail": "sin^2+cos^2 -> 1"
+  },
+  "manifolds_sphere_geodesic": {
+   "sec": 0.04,
+   "status": "PASS",
+   "detail": "S2 great-circle distance = pi/2"
+  },
+  "quantumclifford_stabilizer": {
+   "sec": 0.35,
+   "status": "PASS",
+   "detail": "Bell stabilizer canonicalized: + XX\n+ ZZ"
+  },
+  "attractors_basin_fractions_isolated": {
+   "sec": 5.44,
+   "status": "PASS",
+   "detail": "Henon basins in isolated env: 1 attractor(s)"
+  },
+  "octonions_nonassociativity": {
+   "sec": 0.07,
+   "status": "PASS",
+   "detail": "octonion associator nonzero: |assoc|=2.0"
+  },
+  "quantumoptics_lindblad_trace": {
+   "sec": 6.24,
+   "status": "PASS",
+   "detail": "Lindblad trace preserved: 0.9999999999999996"
+  },
+  "differentialequations_ode": {
+   "sec": 1.14,
+   "status": "PASS",
+   "detail": "dy/dt=-y: |err|=1.4e-12"
+  },
+  "canon_module_octonion_associator": {
+   "sec": 0.15,
+   "status": "PASS",
+   "detail": "associator(e1,e2,e4) = 2e7 EXACT"
+  },
+  "enzyme_autodiff_isolated": {
+   "sec": 87.24,
+   "status": "PASS",
+   "detail": "Enzyme reverse-mode grad exact"
+  },
+  "cliffordalgebras_rotor": {
+   "sec": 1.93,
+   "status": "FAIL",
+   "error": "MethodError: no method matching one(::CliffordAlgebra{3, 0, 0, (:e1, :e2, :e3), ((), (1,), (2,), (3,), (1, 2), (3, 1), (2, 3), (1, 2, 3))})\nThe function `one` exists, but no method is defined for this"
+  },
+  "graphs_toposort": {
+   "sec": 0.08,
+   "status": "PASS",
+   "detail": "DAG toposort ok"
+  },
+  "tensorkit_symmetric_tensor_isolated": {
+   "sec": 27.18,
+   "status": "PASS",
+   "detail": "TensorKit tensor built in isolated env"
+  }
+ }
+}

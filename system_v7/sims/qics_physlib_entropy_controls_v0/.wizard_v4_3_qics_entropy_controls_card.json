@@ -1,0 +1,175 @@
+{
+  "schema_version": "wizard_v4_3_primary_object_card_v1",
+  "primary_object_card": {
+    "object_name": "QICSPhyslibAssociativeEntropyControlBattery",
+    "object_type": "associative_entropy_control_battery",
+    "object_statement": "This lane is a deterministic finite associative-matrix control battery: QICS QuantRelEntr measures Umegaki relative-entropy contraction for the copied 16-stage CPTP channel contract, while a non-CP Bloch expansion must trigger both Choi negativity and a numerical DPI violation.",
+    "object_statement_sha256": "0615902c8cc2b1554e88cc506c3610ce1673563d28993af4b8572ad35e5d3b92",
+    "source_anchors": [
+      {
+        "surface": "lane_card",
+        "reference": "system_v7/sims/qics_physlib_entropy_controls_v0/card.md",
+        "quote_or_summary": "Defines 28 associative qubit channels, six seeded state pairs, QICS and spectral DPI checks, and the mandatory non-CP expansion kill control."
+      },
+      {
+        "surface": "repo_contract",
+        "reference": "system_v7/constraint_core/engines/targets.json",
+        "quote_or_summary": "Read-only source of model constants and the sixteen down-composition Bloch targets copied into the standalone battery."
+      }
+    ],
+    "plain_language_definition": "The primary object is the finite numeric control instrument itself: a standalone deterministic program that reconstructs the repository's eight terrain flows, four native operator channels, and sixteen terrain-first composed stages, certifies their Choi and trace-preserving structure, asks QICS for every relative-entropy value, cross-checks those values spectrally, and proves the instrument can fail by detecting both structural and numeric defects in one deliberately non-CP map.",
+    "native_terms": {
+      "contract channel": "One locally reconstructed qubit map whose constants and sixteen standard-probe outputs are locked to the read-only targets contract.",
+      "false variant": "The trace-preserving unital Bloch expansion with scale one point five that must expose Choi negativity and relative-entropy expansion.",
+      "associative entropy control": "A finite complex matrix-algebra check of Umegaki relative entropy that carries no exceptional or Jordan-algebra inference."
+    },
+    "weirdness_signature": [
+      "The sixteen composed channels must reproduce copied standard-probe targets before any entropy result counts.",
+      "QICS QuantRelEntr is load-bearing while an independently implemented eigendecomposition remains a mandatory comparator.",
+      "The false map must fail twice through a negative Choi eigenvalue and a DPI violation larger than one e minus six."
+    ],
+    "first_class_fields": [
+      "copied_contract_constants",
+      "copied_stage_targets",
+      "channel_choi_certificates",
+      "seeded_state_pairs",
+      "qics_relative_entropy_values",
+      "spectral_relative_entropy_values",
+      "dpi_margins",
+      "false_variant_evidence"
+    ],
+    "domain": "Finite full-rank two-by-two complex density matrices and twenty-eight explicitly reconstructed linear qubit maps.",
+    "codomain_or_output": "Append-only JSON evidence containing anchor residuals, CPTP certificates, QICS and spectral DPI margins, false-control detections, and a bounded claim ceiling.",
+    "allowed_operations": [
+      "reconstruct the copied terrain generators and native operator maps",
+      "integrate the linear GKSL flow with deterministic float64 RK4",
+      "construct Choi matrices from matrix-unit actions",
+      "evaluate fixed-input quantum relative entropy through QICS QuantRelEntr",
+      "cross-check with a local spectral Umegaki calculation",
+      "version result paths without replacing prior artifacts"
+    ],
+    "required_invariants": [
+      "all sixteen stage anchors remain within one e minus six of copied contract targets",
+      "all accepted channels are trace preserving and have no Choi eigenvalue below minus one e minus nine",
+      "all seeded accepted-channel QICS DPI margins are at least minus one e minus nine",
+      "all QICS values agree with the independent spectral values within one e minus eight",
+      "the false variant has both a negative Choi eigenvalue and a DPI violation above one e minus six",
+      "existing artifacts are never deleted moved or overwritten"
+    ],
+    "forbidden_substitutions": [
+      "QICS solver success used as a proxy for the copied channel-anchor check",
+      "spectral-only values substituted for the load-bearing QICS values",
+      "the existing Physlib GREEN receipt replaced by a new Lean run",
+      "associative matrix controls relabeled as exceptional or Jordan DPI evidence"
+    ],
+    "negative_controls": [
+      "non-CP Bloch expansion c equals one point five must have a negative Choi eigenvalue",
+      "the same expansion must increase QICS relative entropy by more than one e minus six"
+    ],
+    "adapter_policy": "QICS is a numeric probe and Physlib is a separate existing theorem receipt; neither may be promoted beyond associative finite-matrix entropy controls, and the Physlib leg is not rerun.",
+    "promotion_locks": [
+      "classification remains scratch_diagnostic",
+      "promotion_allowed remains false",
+      "no exceptional or Jordan-algebra DPI inference is licensed"
+    ],
+    "blocked_downstream_consumers": [
+      "exceptional Jordan DPI claims",
+      "axis or bridge admission",
+      "canonical scientific promotion",
+      "modification of constraint_core targets"
+    ],
+    "artifact_surface": "This lane's persistent qics_battery.py, run_all.sh, result JSON family, and unchanged physlib_dpi_axiom_check.txt receipt."
+  },
+  "lateral_mappings": [
+    {
+      "label": "QICS QuantRelEntr numeric oracle",
+      "use_type": "probe",
+      "target": "fixed-input Umegaki relative entropy values for finite complex matrices",
+      "preserves": [
+        "the exact input and output density matrices",
+        "the direction and numeric size of each DPI margin"
+      ],
+      "loses": [
+        "symbolic theorem generality",
+        "any nonassociative algebra interpretation"
+      ],
+      "preconditions": [
+        "the copied channels pass their contract anchors and CPTP certificates",
+        "the pinned interpreter imports QICS from the requested checkout"
+      ],
+      "kill_control": "If the c equals one point five non-CP map is not structurally rejected and numerically expansive, abort the whole instrument as broken.",
+      "promotion_allowed": false
+    }
+  ],
+  "constraint_bands": {
+    "root_constraints": [
+      "finite seeded matrix inputs and finite channel family",
+      "separate structural and numeric falsifiers"
+    ],
+    "extended_constraints": [
+      "copied sixteen-stage Bloch anchors",
+      "QICS and spectral agreement tolerance",
+      "append-only deterministic artifacts"
+    ]
+  },
+  "exploration_contract": {
+    "wildcard_lanes_min": 1,
+    "fixation_breakers": [
+      "Demote every green DPI value if the false-control two-part kill test does not pass."
+    ],
+    "lateral_lane_types": [
+      "probe",
+      "adapter",
+      "analogy",
+      "proxy"
+    ]
+  },
+  "loop_contract": {
+    "max_loops": 3,
+    "phases": [
+      "build",
+      "premortem",
+      "repair",
+      "selftest"
+    ],
+    "repair_rule": "Repair the first contract-anchor, CPTP, QICS-comparator, false-control, or persistence failure without weakening its threshold.",
+    "stop_condition": "Stop when two fresh runner invocations are deterministic and green, or when a named hard gate remains red and the lane is reported broken."
+  },
+  "method_contracts": {
+    "question_is_not_authorization": "A question is not authorization; this task is implementation-authorized only by the user's explicit build request.",
+    "order_check_separate": "Check channel content separately from composition order, with the sixteen copied terrain-first Bloch targets serving as the order witness.",
+    "baseline_preservation": "Preserve every existing artifact and visible output baseline while debugging the new runner underneath it.",
+    "falsifier_first": "For the target associative DPI instrument, the strongest falsifier is a false-green non-CP expansion; the decisive check is joint Choi negativity and QICS violation, classified killed, open, or survived before agreement.",
+    "feynman_testability": "The operation applies each channel to seeded states, the observable is the input-minus-output relative-entropy margin, and the pass/fail threshold is explicit for every accepted and false channel.",
+    "synthesis_refusal": "Synthesis must refuse to merge associative matrix controls with exceptional or Jordan-algebra DPI claims.",
+    "human_offload": "Resolve all locally recoverable code, contract, and QICS questions with tools before asking the human for anything unrecoverable."
+  },
+  "evidence_spine": {
+    "wizard_runtime": "Current Wizard v4.3 object-preservation guard; legacy Wizard surfaces are not the run target.",
+    "source_math_locks": [
+      {
+        "path": "system_v7/sims/qics_physlib_entropy_controls_v0/card.md",
+        "preserves": "The exact channel, state-pair, false-control, artifact-persistence, and ceiling obligations.",
+        "status": "current lane authority"
+      },
+      {
+        "path": "system_v7/constraint_core/engines/targets.json",
+        "preserves": "The read-only constants and sixteen stage target values copied into the standalone battery.",
+        "status": "read-only contract source"
+      },
+      {
+        "path": "system_v7/sims/qics_physlib_entropy_controls_v0/physlib_dpi_axiom_check.txt",
+        "preserves": "The already-GREEN separate Physlib theorem and axiom-footprint receipt without rerunning Lean.",
+        "status": "existing GREEN receipt"
+      }
+    ],
+    "sim_audit_receipts": [],
+    "claude_pattern_cards": [],
+    "claim_ceiling": "Associative-entropy controls only; no exceptional/Jordan DPI inference licensed.",
+    "blocked_consumers": [
+      "exceptional or Jordan DPI claims",
+      "formal admission",
+      "axis bridge or physics promotion"
+    ]
+  }
+}

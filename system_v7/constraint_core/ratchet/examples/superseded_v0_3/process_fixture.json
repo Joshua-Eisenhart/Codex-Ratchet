@@ -1,0 +1,362 @@
+{
+  "schema_version": "ratchet-run/0.3",
+  "receipt": {
+    "id": "synthetic.process.fixture.receipt.001",
+    "generated_at": "2026-07-10T00:00:00Z",
+    "append_only": true,
+    "self_adjudicating": false
+  },
+  "lineage": {
+    "predecessor_receipts": [],
+    "constraint_hash": "fixture:constraints-v1",
+    "obligation_hash": "fixture:obligation-v1",
+    "code_hash": "fixture:ratchet-kernel-v0.3",
+    "data_hash": "fixture:synthetic-data-v1",
+    "test_battery_hash": "fixture:test-battery-v1",
+    "independent_audit": {
+      "performed": false,
+      "auditor": "",
+      "freshness": "synthetic same-run self-test; not an independent scientific audit"
+    }
+  },
+  "claim": {
+    "id": "synthetic.process.fixture.001",
+    "text": "Within this synthetic finite grammar, a contextual partial distinction table is a minimal survivor for retaining one ordered distinction.",
+    "obligation": "Retain the distinction between marks a and b after ordered attempts pq while allowing qp to differ.",
+    "claim_ceiling": "scratch_diagnostic"
+  },
+  "root": {
+    "primitive": "constrained_distinguishability",
+    "presumes_objects": false,
+    "presumes_equivalence": false,
+    "relation_total": false,
+    "presentation_marks_are_ontology": false
+  },
+  "finite_scope": {
+    "candidate_limit": 8,
+    "test_limit": 24,
+    "history_limit": 4,
+    "resolution_limit": 8,
+    "budget_label": "synthetic-self-test-budget"
+  },
+  "candidate_grammar": {
+    "id": "synthetic-candidate-grammar-v1",
+    "hash": "fixture:candidate-grammar-v1",
+    "families": [
+      "partial_relation",
+      "equivalence_quotient",
+      "metric_space"
+    ],
+    "globally_complete": false
+  },
+  "weakening_grammar": {
+    "id": "synthetic-weakening-grammar-v1",
+    "hash": "fixture:weakening-grammar-v1",
+    "operators": [
+      "remove_equivalence_closure",
+      "forget_structure"
+    ],
+    "globally_complete": false
+  },
+  "candidates": [
+    {
+      "id": "partial_distinction_table",
+      "family": "partial_relation",
+      "survived": true,
+      "assumptions": [
+        "finite marks used only as presentation syntax",
+        "history-indexed partial distinction outcomes"
+      ]
+    },
+    {
+      "id": "equivalence_quotient",
+      "family": "equivalence_quotient",
+      "survived": true,
+      "assumptions": [
+        "finite marks used only as presentation syntax",
+        "history-indexed distinction outcomes",
+        "reflexive symmetric transitive closure",
+        "quotient classes treated as functional objects"
+      ]
+    },
+    {
+      "id": "metric_state_space",
+      "family": "metric_space",
+      "survived": true,
+      "assumptions": [
+        "finite quotient objects",
+        "real-valued metric",
+        "triangle inequality",
+        "distance represents every tested distinction"
+      ]
+    }
+  ],
+  "weakness_edges": [
+    {
+      "weaker": "partial_distinction_table",
+      "stronger": "equivalence_quotient",
+      "operator": "remove_equivalence_closure",
+      "witness": "Forget quotient classes and retain only the tested contextual distinction table; the frozen ordered distinction remains.",
+      "preserves_obligation": true
+    },
+    {
+      "weaker": "equivalence_quotient",
+      "stronger": "metric_state_space",
+      "operator": "forget_structure",
+      "witness": "Forget metric values and retain the zero-distance quotient; the frozen ordered distinction remains.",
+      "preserves_obligation": true
+    }
+  ],
+  "weakening_coverage": [
+    {
+      "candidate": "equivalence_quotient",
+      "operator": "remove_equivalence_closure",
+      "status": "tested_survivor",
+      "detail": "The partial distinction table survived after equivalence closure and quotient objects were removed."
+    },
+    {
+      "candidate": "metric_state_space",
+      "operator": "forget_structure",
+      "status": "tested_survivor",
+      "detail": "The equivalence quotient survived after metric values and triangle structure were forgotten."
+    }
+  ],
+  "tests": [
+    {
+      "id": "finite_record",
+      "kind": "F01",
+      "result": "pass"
+    },
+    {
+      "id": "ordered_distinction",
+      "kind": "N01",
+      "result": "pass"
+    },
+    {
+      "id": "obligation_retained",
+      "kind": "adequacy",
+      "result": "pass"
+    },
+    {
+      "id": "weaker_map_preserves_obligation",
+      "kind": "weakness_witness",
+      "result": "pass"
+    },
+    {
+      "id": "frontier_recomputed",
+      "kind": "minimal_frontier",
+      "result": "pass"
+    },
+    {
+      "id": "gradient_drive_witness",
+      "kind": "drive",
+      "result": "pass"
+    }
+  ],
+  "controls": [
+    {
+      "family": "root_smuggling",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "Removing object and equivalence assumptions leaves the root obligation expressible.",
+      "observed_effect": "The partial relation retained the distinction and the stronger object presentations were not needed."
+    },
+    {
+      "family": "lower_structure",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "The partial relation should survive if quotient and metric structure are ornamental.",
+      "observed_effect": "The partial relation survived and strictly dominated both stronger tested presentations."
+    },
+    {
+      "family": "label_metadata_erasure",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "Renaming candidate and outcome labels must not change the computed frontier.",
+      "observed_effect": "The frontier was unchanged after label erasure."
+    },
+    {
+      "family": "anti_by_construction",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "A fixture with a declared but graph-inconsistent frontier must be rejected.",
+      "observed_effect": "The validator rejected the inconsistent frontier mutation."
+    },
+    {
+      "family": "probe_quotient",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "Removing the distinction attempt that separates a and b must erase the frozen obligation.",
+      "observed_effect": "The erased-attempt mutation failed the obligation test."
+    },
+    {
+      "family": "order_commutation",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "Forcing pq and qp to agree must remove the registered N01 witness.",
+      "observed_effect": "The commuting mutation failed the ordered-distinction test."
+    },
+    {
+      "family": "history_memory",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "Erasing the finite history must remove the persistence claim while leaving static marks intact.",
+      "observed_effect": "The history-erased mutation lost the persistence witness."
+    },
+    {
+      "family": "resolution",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "Coarsening below the separating resolution must merge a and b.",
+      "observed_effect": "The coarsened finite table no longer retained the obligation."
+    },
+    {
+      "family": "carrier_family",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "A non-metric partial-relation family should reproduce the tested behavior.",
+      "observed_effect": "The rival family reproduced the behavior with fewer assumptions."
+    },
+    {
+      "family": "topology_locality",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "No ring, lattice, or locality claim may be inferred from this distinction table.",
+      "observed_effect": "The scope guard rejected a synthetic ring-topology promotion."
+    },
+    {
+      "family": "entropy_geometry_split",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "An independent entropy state must be rejected when a one-surface claim is made.",
+      "observed_effect": "The validator rejected the independent-entropy mutation."
+    },
+    {
+      "family": "field_vs_token",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "A single-record fixture must not promote itself to full field dynamics.",
+      "observed_effect": "The claim ceiling remained synthetic scratch process data."
+    },
+    {
+      "family": "lineage_freshness",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "Changing the frozen grammar identifier must invalidate a cached frontier receipt.",
+      "observed_effect": "The altered grammar required recomputation and did not inherit the receipt."
+    },
+    {
+      "family": "held_out_contact",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "A held-out distinction order must be evaluated rather than copied from the construction table.",
+      "observed_effect": "The held-out order was evaluated independently and remained explicitly fixture-scoped."
+    },
+    {
+      "family": "gradient_freeze",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "Freezing admissible distinction-changing updates must eliminate the drive and prevent a tooth.",
+      "observed_effect": "The frozen mutation produced zero gradient and the process emitted HOLD_NO_GRADIENT."
+    },
+    {
+      "family": "gradient_closure",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "Closing the frozen obligation must collapse its distinction potential.",
+      "observed_effect": "After obligation closure the measured potential difference vanished."
+    },
+    {
+      "family": "gradient_injection",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "An externally injected numerical slope must not count as intrinsic drive.",
+      "observed_effect": "The injected-slope mutation was classified as extrinsic and could not authorize CLIMB."
+    },
+    {
+      "family": "gradient_obligation_coupling",
+      "result": "pass",
+      "fired": true,
+      "expected_effect": "At least one candidate response must change the frozen obligation-relative potential.",
+      "observed_effect": "The partial distinction candidate reduced the unresolved potential by two finite units."
+    }
+  ],
+  "survivors": [
+    "partial_distinction_table",
+    "equivalence_quotient",
+    "metric_state_space"
+  ],
+  "declared_frontier": [
+    "partial_distinction_table"
+  ],
+  "open_world": {
+    "global_minimum_claimed": false,
+    "defeated_weaker_candidates": [],
+    "open_weaker_attacks": [
+      "A presentation with fewer marks may retain the ordered distinction.",
+      "An event-only syntax may avoid even the partial table carrier.",
+      "A weakening operator absent from this finite grammar may reopen the frontier."
+    ]
+  },
+  "drive": {
+    "kind": "distinction_gradient",
+    "entropy_type": "untyped_root_precursor",
+    "licensed": true,
+    "functional": "finite count of unresolved frozen ordered distinctions",
+    "orientation": "positive magnitude points toward reducing the frozen obligation-relative distinction potential",
+    "potential_before": 3.0,
+    "potential_after": 1.0,
+    "magnitude": 2.0,
+    "tolerance": 0.0,
+    "gradient_witnessed": true,
+    "intrinsic": true,
+    "obligation_coupled": true,
+    "witness": "The candidate update closes two of three frozen finite distinction obligations without an injected slope.",
+    "candidate_responses": [
+      {
+        "candidate": "partial_distinction_table",
+        "delta": 2.0,
+        "coupled": true
+      },
+      {
+        "candidate": "equivalence_quotient",
+        "delta": 2.0,
+        "coupled": true
+      },
+      {
+        "candidate": "metric_state_space",
+        "delta": 2.0,
+        "coupled": true
+      }
+    ]
+  },
+  "entropy_geometry": {
+    "applicable": true,
+    "single_surface": true,
+    "independent_entropy_state": false,
+    "independent_geometry_state": false,
+    "scope_note": "Only the process invariant is exercised; no scientific entropy formula or geometry is admitted."
+  },
+  "transition": {
+    "decision": "CLIMB",
+    "reason": "A licensed, intrinsic, obligation-coupled finite distinction gradient exists and all controls pass.",
+    "selected_frontier_members": [
+      "partial_distinction_table"
+    ],
+    "evidence_tooth_recorded": true
+  },
+  "status": {
+    "lifecycle_status": "PROVISIONAL_MSS",
+    "evidence_grade": "executable_diagnostic",
+    "claim_ceiling": "scratch_diagnostic",
+    "self_promotes": false
+  },
+  "next_rung": null,
+  "reopen_triggers": [
+    "A new weaker candidate survives the same obligation.",
+    "A new weakening operator is registered.",
+    "The licensed gradient changes, vanishes, becomes extrinsic, or decouples from the frozen obligation.",
+    "The distinction, history, resolution, or test battery changes.",
+    "An audit finds label leakage or a definitionally fixed result."
+  ]
+}

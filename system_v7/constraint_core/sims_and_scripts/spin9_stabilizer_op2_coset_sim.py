@@ -27,11 +27,11 @@ from typing import Any
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[3]
-SOURCE_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/spin9_stabilizer_op2_coset_sim.py"
-RESULT_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/spin9_stabilizer_op2_coset_sim_results.json"
-UPSTREAM_SOURCE = ROOT / "system_v7/constraint_core/sims_and_scripts/exceptional_lie_ratchet_sim.py"
-J3O_GATE_SOURCE = ROOT / "system_v7/constraint_core/sims_and_scripts/j3o_bloch_body_entropy_pawl_sim.py"
+SIM_DIR = Path(__file__).resolve().parent
+SOURCE_PATH = Path(__file__).resolve()
+RESULT_PATH = SIM_DIR / "spin9_stabilizer_op2_coset_sim_results.json"
+UPSTREAM_SOURCE = SIM_DIR / "exceptional_lie_ratchet_sim.py"
+J3O_GATE_SOURCE = SIM_DIR / "j3o_bloch_body_entropy_pawl_sim.py"
 
 SIM_ID = "spin9_stabilizer_op2_coset"
 CLASSIFICATION = "scratch_diagnostic"
@@ -521,6 +521,13 @@ def build_result() -> dict[str, Any]:
         condition_matrix_from_vectors(space["nullspace"], [primitive]),
         primitive_stabilizer["action_rank_on_f4"],
     )
+    tool_manifest = {name: dict(details) for name, details in TOOL_MANIFEST.items()}
+    tool_manifest["z3"]["used"] = bool(primitive_stabilizer["z3_certificate"].get("available"))
+    tool_manifest["z3"]["execution_status"] = (
+        "USED_FOR_SUPPORTIVE_CERTIFICATE"
+        if tool_manifest["z3"]["used"]
+        else "ATTEMPTED__RUNTIME_MODULE_ABSENT"
+    )
 
     return {
         "schema": "codex_ratchet.spin9_stabilizer_op2_coset_result.v1",
@@ -538,9 +545,9 @@ def build_result() -> dict[str, Any]:
         "sim_class": "exceptional_jordan_stabilizer_rank_probe",
         "seed": SEED,
         "svd_threshold": SVD_THRESHOLD,
-        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_MANIFEST": tool_manifest,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
-        "tool_manifest": TOOL_MANIFEST,
+        "tool_manifest": tool_manifest,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "source_conventions_reused": {
             "FANO": [list(x) for x in FANO],

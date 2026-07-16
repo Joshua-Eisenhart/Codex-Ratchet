@@ -1,0 +1,27 @@
+{
+  "classification": "port_fidelity_certification",
+  "promotion_allowed": false,
+  "framing": "PORT-FIDELITY certification (NOT a forced-physics claim -- an adversarial panel correctly noted that agreement of correctly-ported identical float64 GKSL linear algebra is near-automatic and certifies software-port fidelity, not physically forced structure). What is earned: the four independent implementations (numpy, JAX(x64), Torch(f64), Julia LinearAlgebra) agree to <1e-9 on all 8 terrains (fixed point, vN entropy, Liouville spectrum), so no core result is an artifact of ONE library's numerics, AND the float32 truncation the doctrine warns about is caught. The physics MODEL is defined once (kernels_np) and ported; this certifies the PORTS agree, it does NOT independently re-derive the model in each substrate. Doctrine served: jax+julia standing pair + torch, all four cross-checked when a result is stamped.",
+  "max_abs_diff_vs_numpy": {
+    "jax_x64": 0.0,
+    "torch_f64": 1.1102230246251565e-15,
+    "julia": 4.477351822629316e-11
+  },
+  "gate_A_jax_agrees": true,
+  "gate_B_torch_agrees": true,
+  "gate_C_julia_agrees": true,
+  "control_float32_materially_worse": {
+    "jax_float32_maxdiff": 2.1822353536149475e-06,
+    "jax_x64_maxdiff": 0.0,
+    "ratio_gt_1e3": true,
+    "note": "JAX complex64 (float32) silently truncates; must be >>1e-9 while x64 is <1e-9 -- proves the tolerance is a real gate, not vacuous."
+  },
+  "tolerance": 1e-09,
+  "pass": true,
+  "honest_scope": "PORT-FIDELITY only: identical numbers ARE the deliverable (the four ports of the same model agree + the float32 artifact is caught). This is reproducibility engineering, NOT a forced structural rung -- agreement of correctly-ported float64 linear algebra is near-automatic and certifies port fidelity, not physics. The model is defined once and ported, so this does NOT prove each substrate independently re-derived the physics. Not a file-by-file rewrite of all 145 sims -- the kernels are the load-bearing content and are now cross-substrate certified.",
+  "panel_accepted": "Fixed a numpy-constant leak in the torch port (np.sqrt->math.sqrt); reclassified from 'substrate_independence of physics' to 'port_fidelity_certification' per unanimous panel catch that identical-code agreement is not forced structure.",
+  "policy_eval": {
+    "kernel_ports_agree_to_1e-9": true,
+    "float32_artifact_caught": true
+  }
+}

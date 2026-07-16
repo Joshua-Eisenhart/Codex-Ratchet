@@ -199,7 +199,7 @@ def load_axis0_bundle() -> dict[str, Any]:
     admitted = list(guard.get("admitted_candidate_names") or [])
     blocked = list(guard.get("blocked_candidate_names") or [])
     columns = [resample_vector(vectors.get(name, [])) for name in admitted]
-    shell_vectors = torch.stack(columns, dim=1)
+    shell_vectors = torch.stack(columns, dim=1) if columns else torch.zeros((len(LAYERS), 0), dtype=torch.float32)
     return {
         "drive": drive,
         "subdense": subdense,
@@ -223,6 +223,80 @@ def load_axis0_bundle() -> dict[str, Any]:
             and (subdense_axis0.get("primary_axis0_drive_mode") == "full_vector")
         ),
     }
+
+
+def write_upstream_blocked_receipt(started: float, axis0: dict[str, Any]) -> int:
+    guard = axis0["guard"]
+    blocker = {
+        "code": "no_admitted_axis0_vector_bundle",
+        "claim": "The current Axis0 guard has no admitted candidate vectors, so no 13-shell vector actuator can be constructed.",
+        "admitted_candidate_names": axis0["admitted"],
+        "blocked_candidate_names": axis0["blocked"],
+        "unclassified_candidate_names": guard.get("unclassified_candidate_names", []),
+        "guard_pass": guard.get("pass") is True,
+        "drive_all_pass": axis0["drive"].get("all_pass") is True,
+        "subdense_all_pass": axis0["subdense"].get("all_pass") is True,
+    }
+    scalar_blocker = guard.get("scalar_weighted_drive_blocker") or {
+        "admitted": False,
+        "claim": "No admitted Axis0 vector bundle exists at this run boundary.",
+    }
+    receipt = {
+        "schema": "formal_scout_result_v1",
+        "name": NAME,
+        "classification": CLASSIFICATION,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
+        "claim_ceiling": CLAIM_CEILING,
+        "source_path": str(pathlib.Path(__file__)),
+        "source_sha256": sha256_file(pathlib.Path(__file__)),
+        "result_path": str(OUT_PATH),
+        "all_pass": False,
+        "summary": {
+            "all_pass": False,
+            "shell_count": len(LAYERS),
+            "axis0_dimension": 0,
+            "status": "blocked_upstream_no_admitted_axis0_candidates",
+            "elapsed_seconds": round(time.time() - started, 6),
+        },
+        "positive": {
+            "axis0_guard_and_subdense_full_vector_consumed": {
+                "pass": False,
+                "admitted_candidate_names": axis0["admitted"],
+                "blocked_candidate_names": axis0["blocked"],
+                "guard_scalar_weighted_drive_blocker": scalar_blocker,
+            },
+            "pytorch_vector_bundle_drives_all_13_shells": {
+                "pass": False,
+                "axis_vector_shape": list(axis0["shell_vectors"].shape),
+                "blocker": blocker,
+            },
+        },
+        "graveyard_companions": {},
+        "boundary": {
+            "fail_closed_on_empty_survivor_set": {
+                "pass": True,
+                "rule": "An empty admitted set writes a blocked receipt and never enters tensor, LiRPA, graph, or solver work.",
+            }
+        },
+        "axis0_outputs_or_blockers": {
+            "primary_axis0_drive_mode": "blocked_no_admitted_vector_bundle",
+            "admitted_candidate_names": axis0["admitted"],
+            "blocked_candidate_names": axis0["blocked"],
+            "axis0_vector_shape": list(axis0["shell_vectors"].shape),
+            "upstream_scalar_weighted_drive_blocker": scalar_blocker,
+        },
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "EXTERNAL_MODULE_MANIFEST": EXTERNAL_MODULE_MANIFEST,
+        "EXTERNAL_MODULE_INTEGRATION_DEPTH": EXTERNAL_MODULE_INTEGRATION_DEPTH,
+        "blockers": [blocker],
+    }
+    RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    OUT_PATH.write_text(json.dumps(as_jsonable(receipt), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(json.dumps({"name": NAME, "all_pass": False, "status": receipt["summary"]["status"], "out_path": str(OUT_PATH)}, indent=2))
+    return 1
 
 
 def axis_basis() -> torch.Tensor:
@@ -617,6 +691,8 @@ def main() -> int:
     started = time.time()
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     axis0 = load_axis0_bundle()
+    if axis0["pass"] is not True:
+        return write_upstream_blocked_receipt(started, axis0)
     shells = run_shells(axis0["shell_vectors"])
     lirpa = lirpa_report(shells)
     graph = graph_report(shells)

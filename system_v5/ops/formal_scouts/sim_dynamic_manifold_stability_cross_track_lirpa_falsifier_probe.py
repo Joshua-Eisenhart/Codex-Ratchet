@@ -652,10 +652,61 @@ def cvc5_report(actuals: dict[str, bool]) -> dict[str, Any]:
     }
 
 
+def write_upstream_blocked_receipt(started: float, parent: dict[str, Any]) -> int:
+    blocker = {
+        "code": "axis0_vector_or_assembly_parent_blocked",
+        "claim": "The dynamic stability falsifier cannot run because its admitted Axis0 vector/assembly parent chain is red.",
+        "parent_facts": parent.get("facts", {}),
+    }
+    result = {
+        "schema": "FORMAL_SCOUT_RESULT_v1",
+        "name": NAME,
+        "classification": CLASSIFICATION,
+        "SIM_EXECUTION_KIND": SIM_EXECUTION_KIND,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "SOURCE_ALIGNMENT_CATEGORY": SOURCE_ALIGNMENT_CATEGORY,
+        "claim_ceiling": CLAIM_CEILING,
+        "source_path": str(pathlib.Path(__file__)),
+        "source_sha256": sha256_file(pathlib.Path(__file__)),
+        "result_path": str(OUT_PATH),
+        "all_pass": False,
+        "positive": {
+            "parent_receipts_kill_real_convergence_claim": parent,
+        },
+        "graveyard_companions": {},
+        "boundary": {
+            "fail_closed_before_dynamic_execution": {
+                "pass": True,
+                "rule": "A red parent chain cannot be converted into dynamic evidence by running downstream fixtures.",
+            }
+        },
+        "summary": {
+            "all_pass": False,
+            "current_real_convergence_claim_status": "not_evaluated_upstream_axis0_blocked",
+            "finite_fixture_status": "blocked",
+            "basin_admission_status": "blocked",
+            "cross_track_divergence": None,
+            "track_a_vs_b_max_coh_gap": None,
+            "elapsed_seconds": round(time.time() - started, 6),
+        },
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "EXTERNAL_MODULE_MANIFEST": EXTERNAL_MODULE_MANIFEST,
+        "EXTERNAL_MODULE_INTEGRATION_DEPTH": EXTERNAL_MODULE_INTEGRATION_DEPTH,
+        "blockers": [blocker],
+    }
+    RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    OUT_PATH.write_text(json.dumps(as_jsonable(result), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(json.dumps({"name": NAME, "all_pass": False, "status": result["summary"]["finite_fixture_status"], "out_path": str(OUT_PATH)}, indent=2))
+    return 1
+
+
 def main() -> int:
     started = time.time()
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     parent = parent_receipt_report()
+    if parent["pass"] is not True:
+        return write_upstream_blocked_receipt(started, parent)
     axis0 = load_axis0_bundle()
     dynamic = dynamic_report(axis0, parent)
     lirpa = lirpa_report(dynamic, parent)

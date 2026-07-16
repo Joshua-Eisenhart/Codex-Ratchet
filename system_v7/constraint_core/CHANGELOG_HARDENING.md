@@ -1,3 +1,45 @@
+# Ratchet v0.4 working-process correction — 2026-07-10
+
+R4-1  WITHDREW   v0.3 as the current process. It validated prewritten receipts but did not generate candidates,
+                 gradients, controls, discriminators, or next searches, so it had not actually run the Ratchet.
+R4-2  CORRECTED  process temperatures: exploration at strict gates is deliberately expansive; admission remains strict.
+                 Gate severity may never be reused to suppress proposal generation.
+R4-3  REMOVED    terminal `HOLD_NO_GRADIENT` semantics. A missing current drive witness blocks that tooth but emits
+                 `UNRESOLVED_GATE__DIG_CONTINUES` and expands the gradient/probe/carrier queue.
+R4-4  REMOVED    universal closure-collapse/injection/control rules. Drive types now declare their own source,
+                 coupling, orientation, and controls; permanent, local, endogenous, and exogenous gradients may differ.
+R4-5  REMOVED    the requirement to close every registered weakening before provisional admission. MSS remains
+                 finite-packet provisional; open attacks continue rather than freezing the frontier.
+R4-6  ADDED      `ratchet/ratchet_engine.py`: candidate generator, six carrier compilers, gradient digger, gate-specific
+                 control generator, bias-flip tests, MSS frontier computation, receipt emitter, validator, and self-test.
+R4-7  EXECUTED   two finite gates. Each ran 36 candidates, six gradients, and five controls. G0 earned one-step and G1
+                 two-step history-sensitive four-status partial relations at formal finite-packet ceiling.
+R4-8  KILLED     four proposed drives at both gates: raw outcome Shannon entropy, representation size, injected constant,
+                 and label-code score. Retained partition-conflict and merged-distinction-pair drives.
+R4-9  PRESERVED  the scientific boundary: zero physical entropy types and zero scientific manifold layers admitted.
+                 The run ends at a finite budget with an eight-item open dig queue, not a scientific halt.
+R4-10 RE-RATCHETED actual L5/L7/L8 evidence. Binary and finite lookup failed held-out prediction; a one-dimensional
+                 scalar stratum equivalence class survived. Nested-shell geometry survived but was nonminimal. The
+                 actual `+1/-1` orientation surface flips the gate in favor of path/bundle structure when required.
+
+# Ratchet v0.3 gradient-drive correction — 2026-07-10
+
+R3-1  CORRECTED  The process causal order: constrained distinguishability remains the root; a licensed finite intrinsic
+                obligation-relative gradient is the drive. No gradient means no Ratchet tooth.
+R3-2  ADDED      `ratchet/GRADIENT_DRIVE.md`: separates root, drive, MSS selector, hostile permission gate, and evidence
+                pawl; defines a finite difference before continuum calculus or a named entropy formula is licensed.
+R3-3  UPGRADED   receipt schema/kernel to `ratchet-run/0.3`, with drive typing, orientation, magnitude/tolerance,
+                intrinsicness, obligation coupling, candidate response, and explicit transition decision.
+R3-4  ADDED      four typed HOLD states and mandatory no-next-rung/no-tooth behavior for flat, unlicensed, extrinsic, or
+                uncoupled gradients.
+R3-5  ADDED      gradient freeze, obligation closure, injection, and coupling controls to the universal hostile roster.
+R3-6  ADDED      paired synthetic examples: one admissible `CLIMB`, one `HOLD_NO_GRADIENT`; self-tests reject attempted
+                climbing on zero, extrinsic, uncoupled, missing, or numerically false drive records.
+R3-7  PROPAGATED v0.3 through start/agent/state/ledger/formal/lens/laptop/generator/CA/frontier front doors. Historical
+                v0.2 documents remain labeled provenance rather than silently rewritten canon.
+R3-8  PRESERVED  Existing science simulations and numerical expected values. Historical gradient simulations are proposal
+                evidence awaiting v0.3 receipt migration, not retroactive admissions.
+
 # Hardening changelog — 2026-07-01 (external audit pass, claude.ai session)
 All changes below are audit-inserted; sync knowingly. Sims' mathematical
 content untouched except H-3 (path containment only).
@@ -1367,3 +1409,125 @@ UP-132 4 substages RUN inside a stage as the dual ratchet. New sim four_substage
                (dS~0.003), T(Ti,Te)=entropy pinches (dS~0.105). Distinct work (min pairwise 0.622, single-op ctrl->0);
                T/F=entropy/geometry dual; alternating cycle advances geom & entropy on alternating legs (4/4 vs
                scramble 2/4). HONEST: single-stage endpoint order-insensitive (operators commute enough). 137 GREEN.
+
+UP-133 co-ratchet run from foundations, ratcheted as deep as it can, all earned. New sim coratchet_depth_ladder_
+               from_foundations. Depth ladder R1 terrains-distinct-channels / R2 native-entropy-monotone / R3 2-ops-
+               pinch+rotation / R4 substage-2x2-dual-ratchet (genuine minimality search, minimal alternating closing
+               cycle=4={ABAB,BABA}) / R5 below-substage FREE floor (micro-realization gauge ~1e-16, net-map forced
+               0.13). Forced depth bottoms out at the substage cell = earned floor engines run on. Also raised
+               t2_order_carried harness timeout 120->240s (genuinely ~124s, not a hang). 138 GREEN.
+
+UP-134 first falsifiable quantitative physics prediction. New sim physics_prediction_mond_scale_from_expansion.
+               Dark-sector acceleration scale PREDICTED a0=c*H0/(2pi) (dark-energy-first cosmogenesis + Unruh 2pi, no
+               free param), removing Layer 0.4 hand-set a0. Matches observed MOND a0=1.2e-10 to 0.86-0.94 (Planck
+               wrong-scale ctl off 4.6e61); zero-param baryonic Tully-Fisher matches 4 galaxies (DDO154..Milky Way,
+               ~200x mass) 0.78-0.97; BTFR slope M~v^3.5. HONEST: a0~cH0/2pi is Milgrom's coincidence, model derives
+               the scale, no interpolating fn/G/GR-replacement claim. 139 GREEN.
+
+UP-135 a0(z) fork forced by model, external data kills one branch. New sim physics_a0_redshift_fork_selected_by_
+               data. Branch A (a0~c*H(z)/2pi, runs (1+z)^1.5, ~2.97a0@z2) vs Branch B (dark-energy horizon, constant).
+               Agree z=0 (0.902), diverge 2.97x z=2. Genzel 2017/Milgrom 2017 (attributed) disfavour ~4a0@z2 &
+               (1+z)^1.5 -> Branch A falsified, Branch B survives. Refines UP-134: growing-room rate = de Sitter
+               horizon. No-expansion control -> disc 1.0. Also known_unknown_fep_field timeout 40->90s. 140 GREEN.
+
+UP-136 physics loops back into the core. New sim physics_loops_back_into_core_axis0_rate. UP-135's constant-a0
+               pins the growing-room rate as ONE de Sitter/Lambda constant across physics(a0)+Axis-0(ceiling)+
+               cosmogenesis(dark-energy-first); H_dS=H0*sqrt(OL) is the far-future asymptote of H(z) (matter ->0).
+               Exposes open fork b1 frozen-today (0.90, matches, phenomenological) vs b2 de Sitter (0.76, explains
+               constancy, low), related by exact b2=b1*sqrt(OL); recorded not resolved, falsifiable in OL. Also:
+               octonion table oracle-verified basis-independently (Hurwitz/alternative/nonassoc). 141 GREEN.
+
+UP-137 field of engines weakest rung. New sim field_pair_of_engines_weakest_rung. MSS: two forced Weyl engines
+               become ONE distinguishable object via a single forced relational (entangling) DOF; product pair carries
+               no DOF beyond its marginals (not a new object). R=0.46 coupled, 0 product (failable); survives probe
+               rotation (same matches 0.46/0.46, different g'=0.25 told apart 0.23); one DOF sufficient AND necessary.
+               Earns only the weakest field rung; field metric + exceptional-algebra question is the next rung. 142 GREEN.
+
+UP-137 WITHDRAWN. field_pair_of_engines_weakest_rung de-registered from harness (142->141 GREEN). Cross-family
+               LLM panel (Gemini-3.1-pro/Grok-4.5/Qwen-3.5/GLM-5.2) caught the rung's core gate as tautological (3 of
+               4); rebuild showed opposite vs same Weyl chirality give identical negativity -> generic 2-qubit QM, not
+               a theory-specific field rung. Overclaimed rung withdrawn, not banked. Field-of-engines rung stays OPEN.
+
+UP-138 PLACE max-plus/tropical/idempotent algebra (new math from attachments). ONE failable gate: coherent
+               interference violates max-plus monotonicity (combined 0.0002 < strongest 1.0, visibility 0.9999);
+               decohered control restores monotonicity (-1.0) and kills visibility. -> max-plus is NOT the nonclassical
+               foundation; it is the T->0 deductive/Bellman-limit arithmetic (context, not gated). Cross-family panel
+               stripped two tautological/textbook gates + smuggled oracle prose before shipping. 142 GREEN.
+
+UP-139 PLACE Quantum Information Geometry (Fubini-Study/QFI) vs the model's BKM metric. Verdict gates on ONE failable
+               result: SLD/QFI != BKM on a noncommuting mixed direction (1.0 vs 1.076) but = on the commuting/classical
+               submanifold (both classical Fisher 1.190476) -> a genuinely quantum distinction. Computed supporting
+               identities (non-gating): BKM=Hessian(rel-entropy) 4e-8; QFI=Bures dist^2 curvature (g_SLD/2) 2e-7. QFI is
+               the fidelity-family metric; model's metric = BKM conditional on the prior-forced rel-entropy pawl. Panel
+               fixed smuggled 'forced' language, an uncomputed fidelity claim, a false pure-state claim, and a
+               tautological gate. 143 GREEN.
+
+UP-140 WITHDRAWN (retained as scaffold): HoTT/braid-group trajectory topology. Built + ran PASS standalone, but the
+               cross-family panel unanimously caught the gate as a rubber stamp (a hardcoded-scalar commutativity check,
+               true by definition of C; hand-picked B_3->SL(2,Z) generators not forced from {F01,N01}). Stripped of the
+               tautology the placement is the SAME live-but-unforced verdict as octonions/T01, E8, Penrose (braids
+               constructible-not-forced; forced carrier topology = Z2 spinor double cover) -- real, but no new failable
+               gate. NOT registered; harness stays 143 GREEN.
+
+UP-141 WITHDRAWN (retained as scaffold): "each stage protects a distinct invariant". Ran PASS standalone but the panel
+               unanimously caught the "invariant" as a hand-concatenated feature vector (op axis + terrain spectrum +
+               fixed point + det), not the protected eigenspace of the composed stage channel; the spinor gate a
+               tautology (holonomy reads eps out of H by construction); the 12+4 split pre-installed by TERR/NATIVE.
+               Real finding kept: the composed stage channel has NO genuine density-level protected invariant (terrain
+               flow contracts everything). Prior processing-fingerprint rung remains the honest "16 distinct kinds".
+               NOT registered; harness stays 143 GREEN.
+
+## UP-142 (harness 143->144 GREEN): four-substrate port-fidelity certification
+- Substrate doctrine acted on (review found ~136/145 sims numpy-only). Installed Julia 1.10.5 arm64 (stdlib
+  LinearAlgebra; registry TLS-blocked) + torch 2.13.0.
+- NEW substrate_kernels/{kernels_np.py, julia_kernels.jl} + four_substrate_agreement_harness_sim.py: numpy/JAX(x64)/
+  Torch(f64)/Julia agree <1e-9 on 8-terrain fixed points, vN entropy, Liouville spectra (JAX 3e-15, Torch 1e-15,
+  Julia 4e-11); float32 control 2.2e-6 caught. 3q floor also certified (9.89e-13, validate_engines_3q).
+- Honest ceiling: PORT-FIDELITY / reproducibility engineering, not forced physics (unanimous panel; adopted). Fixed a
+  numpy-constant leak in the torch port.
+- Also this session: external-review distillation saved to reference_docs_external_reviews/; UNIFIED_LENS_MAP.md
+  (one-basin probe map); UP-141 unanimity-scope + all-16 Liouville corrections (auditor); FEP-IGT Carlen-Maas
+  instrument-verification built (DB terrains = exact rel-entropy gradient flow, asym 0; engine H splits it) but a
+  first confounded version withdrawn and the Carlen-Maas version left as a documented instrument-check, not a rung.
+
+## UP-143 (harness stays 144): brave-thread math disposition + 2 withdrawn discriminators
+- BRAVE_THREAD_MATH_DISPOSITION.md: all 19 math objects from the user's research thread mapped to registered sims +
+  verdicts, grounded in the actual estate. 17/19 already processed (max-plus shipped; the rest live-but-unforced {H,O}).
+  2 not cleanly closed: flag-manifolds->generations (no sim, gap); non-associativity->halos (structural argument only).
+- WITHDRAWN nonassociativity_not_needed_for_halo_profiles_sim (panel: hand-installed mass fudge = no real non-assoc
+  algebra; LOO gate broken on N=4). WITHDRAWN three_view_semiconjugacy_gate_sim (panel: circular -- each domain step
+  defined FROM the same core P, so intertwining is definitional not discovered). Both retained as documented scaffolds.
+- Saved the two source threads to reference_docs_external_reviews/. Honest frontier recorded: forced Malcev bracket to
+  earn an octonionic rung; non-circular semiconjugacy (independent domain dynamics) to earn "one basin" at level 4.
+
+## UP-144 (harness 144->145 GREEN): basis-invariant semiconjugacy + three-level floor
+- engine_reaction_semiconjugacy_qutrit_floor_sim.py REGISTERED (145 GREEN). Non-circular level-4 "one basin, many
+  probes" test: search ALL bases for closure of population dynamics into a classical master equation; Q domain-forced,
+  K discovered+validated never installed. Result: vacuous at d=2 (auto-closes, ~linear-algebra fact, reported-not-gated),
+  non-generic at d=3 (random Lindbladians close in no found basis, ~1.0 vs classical ~1e-13 same budget) -> the
+  QIT<->reaction unification only becomes falsifiable at a >=3-LEVEL carrier. Independent three-LEVEL floor (distinct
+  from multi-qubit tomography floor). Gemini panel: "brilliantly derived and earned via parameter counting."
+- Two withdrawn scaffolds retained: three_view_semiconjugacy_gate (circular -- installed core matrix in every view);
+  engine_reaction_semiconjugacy_closure (qubit, basis artifact -- superseded by the basis-invariant version).
+- Panel-driven iteration (all fixed in math/measurement, never by relaxing a gate): circular->non-circular,
+  basis-artifact->basis-invariant, fitted-search->symmetric optimizer budget, absolute-threshold->control-relative
+  ratio, binary-obstruction->monotone amplitude sweep, "three-qubit"->"three-level", global-proof->stated cert limit.
+
+## PROCESS HARDENING — Ratchet specification v0.2 (2026-07-10; no scientific rung promoted)
+
+- Corrected the primitive root to **constrained distinguishability**. Objects, equivalence relations, quotients, finite
+  supports, density states, entropy, geometry, Hilbert space, CA, and ring topology are later candidates—not root data.
+- Replaced unscoped “the weakest structure” with an anytime, finite-run **provisional MSS frontier** indexed by candidate
+  grammar, weakening grammar, tests, resolution, code/data hashes, and budget. Incomparable survivors remain live.
+- Separated monotonic evidence history from the defeasible model frontier: receipts are append-only; a new weaker
+  survivor demotes an older rung and reopens descendants without deleting history.
+- Replaced separate `G_t`/`E_t` process state with one later organized constrained-distinguishability surface. Entropy,
+  geometry, and operators are typed co-views; neither entropy-on-geometry nor geometry-on-entropy is allowed.
+- Formalized finite open-ended refinement without a completed infinite carrier or a claimed global smallest grain.
+- Added `ratchet/ratchet_kernel.py`, JSON schema, installed/open weakening grammar, synthetic receipt, eleven negative
+  self-tests, bundle front-door lint, and the bounded CA/ring-checkerboard MSS research program.
+- Re-scoped legacy `EARNED`/`FORCED` ledgers as fixture- and grammar-relative. Existing numerical receipts were not
+  promoted, deleted, or rewritten into global conclusions.
+- Packaging hardening only: declared `sympy`, `pysindy`, `z3-solver`, and `cvc5` dependencies already required by
+  registered jobs; raised two pre-existing insufficient time budgets after both jobs passed unchanged when allowed to
+  finish. No expected scientific value or simulation gate was relaxed.

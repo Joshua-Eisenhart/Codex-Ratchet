@@ -378,6 +378,76 @@ def static_source_guard() -> dict[str, Any]:
     }
 
 
+def write_upstream_blocked_receipt(
+    started: float,
+    receipt_report: dict[str, Any],
+    guard_signal: dict[str, Any],
+    axis0_report: dict[str, Any],
+    context_report: dict[str, Any],
+) -> int:
+    blocker = {
+        "code": "guarded_axis0_has_no_admitted_adapter_rows",
+        "claim": "The current Axis0 guard does not expose an admissible nonempty feature matrix, so the PyTorch/LiRPA assembly is blocked.",
+        "admitted_candidate_names": axis0_report.get("admitted_candidate_names", []),
+        "blocked_candidate_names": axis0_report.get("blocked_candidate_names", []),
+        "axis0_guard_pass": guard_signal.get("pass") is True,
+        "source_context_pass": context_report.get("pass") is True,
+    }
+    result = {
+        "schema": "formal_scout_result_v1",
+        "name": NAME,
+        "classification": CLASSIFICATION,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
+        "claim_ceiling": CLAIM_CEILING,
+        "source_path": str(pathlib.Path(__file__)),
+        "source_sha256": sha256_file(pathlib.Path(__file__)),
+        "result_path": str(OUT_PATH),
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "all_pass": False,
+        "summary": {
+            "all_pass": False,
+            "status": "blocked_upstream_axis0_guard",
+            "elapsed_seconds": round(time.time() - started, 6),
+        },
+        "positive": {
+            "required_receipts_are_present_green_and_nonpromotional": {
+                "pass": all(row["gate"] for row in receipt_report.values()),
+                "receipts": receipt_report,
+            },
+            "guarded_axis0_excludes_blocked_branches_before_adapter": axis0_report,
+            "fep_holodeck_and_lewm_context_builds_finite_tensor": context_report,
+        },
+        "graveyard_companions": {},
+        "boundary": {
+            "fail_closed_before_empty_tensor_reductions": {
+                "pass": True,
+                "rule": "Zero adapter rows never enter carrier reductions or LiRPA bounds.",
+            }
+        },
+        "axis0_outputs_or_blockers": {
+            "admitted_candidate_names": axis0_report.get("admitted_candidate_names", []),
+            "blocked_candidate_names": axis0_report.get("blocked_candidate_names", []),
+            "blocked_axis0_feature_names_excluded": axis0_report.get("blocked_axis0_feature_names_excluded", []),
+            "axis0_ready": guard_signal.get("pass") is True,
+            "assembly_scope": "blocked_before_finite_pytorch_adapter",
+        },
+        "root_constraints": {
+            "F01": False,
+            "N01": False,
+            "finite_carrier_root": False,
+            "noncommutation_or_order_root": False,
+            "blocker": "No nonempty admitted carrier reached executable root-constraint tests.",
+        },
+        "blockers": [blocker],
+    }
+    RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    OUT_PATH.write_text(json.dumps(as_jsonable(result), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(f"RESULT {NAME}: all_pass=False status=blocked_upstream_axis0_guard -> {OUT_PATH}")
+    return 1
+
+
 def main() -> int:
     started = time.time()
     receipts = {key: load_result(name) for key, name in REQUIRED_RECEIPTS.items()}
@@ -395,6 +465,14 @@ def main() -> int:
     guard_signal = axis0_guard.axis0_guard_signal(receipts["axis0_guard"])
     axis0_matrix, axis0_report = axis0_feature_matrix(guard_signal)
     context, context_report = source_context(receipts)
+    if axis0_report["pass"] is not True or axis0_matrix.shape[0] == 0:
+        return write_upstream_blocked_receipt(
+            started,
+            receipt_report,
+            guard_signal,
+            axis0_report,
+            context_report,
+        )
     x, carrier_weights, target = build_adapter_inputs(axis0_matrix, context)
     model, carrier_report = carrier_response_report(x, carrier_weights, target)
     bound_report = lirpa_bound_report(model, x)

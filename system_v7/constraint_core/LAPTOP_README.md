@@ -15,19 +15,23 @@ Exit code 0 = GREEN (every check passed). Exit 1 = a finding — report the
 numbers, do NOT edit an expected value to force green (several checks are
 HONEST FAILURES that must stay failing; a flipped one is a regression).
 
+Before numerical lanes, the harness runs the Ratchet v0.4 integrity check: actual candidate/gradient generation,
+strict bias-flipped gates, provisional MSS frontier computation, nonterminal DIG behavior, executed-run validation, and
+claim-front-door lint.
+A green process check is reproducibility/anti-drift evidence, not scientific admission.
+
 Machine-readable result is written to `run_all_report.json`.
 
 ## What it runs
 
-1. **23 pure-math sims** (`sims_and_scripts/`) via `run_all.py` — each asserts its
+1. **The registered pure-math suite** (`sims_and_scripts/`) via `run_all.py`—each asserts its
    headline invariants with explicit tolerances. Includes the newly derived
    `admissibility_two_operator_sim.py` (why exactly 2 operators per terrain).
 2. **engines/ cross-substrate lane** — the 16-stage engine contract computed by
    the numpy RK4 oracle, then by the JAX exact-superoperator kernel (and PyTorch
    if installed), cross-checked by `validate_engines.py`. Agreement to 1e-6 by
    two independent methods (integration vs matrix-exp) is the validity mechanism.
-3. **Julia route** (if `julia` is on PATH) — the 3rd independent substrate. This
-   is the one route not yet run in-house; if it disagrees, that is a finding.
+3. **Julia route** (if `julia` is on PATH)—an independent substrate. If it disagrees, that is a finding.
 
 ## Your sim runner
 
@@ -46,13 +50,16 @@ Model constants are the single source of truth in `targets.json`
 
 ## Requirements
 
-- Python 3.9+ (`numpy`, `scipy`, `sympy` required; `jax[cpu]`, `torch` optional).
+- Python 3.9+; install the complete required set from `requirements.txt`. In particular, registered lanes require
+  `sympy`, `pysindy`, `z3-solver`, and `cvc5`; JAX, QuTiP, and PyTorch lanes remain optional as documented.
 - Julia (optional, for the 3rd substrate): install from julialang.org, then the
   runner adds the JSON package automatically.
 
 ## Where the model is written down
 
-- `ORIENTATION.md` — start here.
+- `00_START_HERE.md` then `RATCHET_SPEC.md`—start here; process authority and scope correction.
+- `ratchet/`—working engine, executed runs, packets, gradient law, schema, CA research program, and bundle lint.
+- `archive/ORIENTATION.md`—the installed QIT branch orientation, read as superseded historical provenance.
 - `MODEL_LAYER_LEDGER.md` — the model, layer by layer, each component's math +
   earned/candidate/open status + computed value.
 - `spec_and_reports/CONSTRAINT_CORE_FORMAL_SPEC.md` — the full formal spec.

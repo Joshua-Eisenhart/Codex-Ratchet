@@ -7,6 +7,11 @@ model-dependent · [open] not earned
 status: scratch_diagnostic; promotion_allowed=false
 ---
 
+> **RATCHET v0.4 working-process correction (2026-07-10):** These propositions describe mathematics realized inside the installed
+> constraint-core/QIT fixture. They do not establish the globally weakest carrier or place objects/equivalence at the root.
+> They also do not establish a surviving drive between rungs. Use `../RATCHET_SPEC.md` for gradient digging, continuing
+> DIG, provisional MSS, and admission semantics.
+
 # A. Objects (no labels)
 
 - **A1.** State space: density matrices on ℂ², ρ = ½(I + xσx + yσy + zσz),

@@ -1,5 +1,11 @@
 # The Constraint-Based Core — Formal Specification
 
+> **RATCHET v0.4 working-process correction (2026-07-10):** This document formalizes an installed QIT candidate branch. It is not
+> the primitive root or an MSS admission ledger. Constrained distinguishability precedes its objects, quotients, carriers,
+> entropy types, and geometry. A gate-surviving distinction/entropy gradient must drive each tooth; without one the
+> engine continues gradient/probe/carrier digging rather than asserting global absence. Read `../RATCHET_SPEC.md`; all forcing language below is fixture/grammar-relative until
+> reprocessed by that executable Ratchet. This correction supersedes any stronger monotone-canon wording below.
+
 **A math-first formalization of the constraint foundation, its forced first
 construction, and its concrete finite realization.**
 
@@ -20,8 +26,9 @@ consequence that can be derived or numerically checked.
 > **Framing (important).** The core is **not** a prohibition that declares most
 > mathematics "illegal." It is a **monotone generative ratchet** on a
 > *nominalist* foundation: all of mathematics can eventually be earned, but each
-> structure must be *paid for* — admitted one minimal step at a time, and never
-> un-admitted once earned. Legitimacy = *what a Turing machine can run* (finite,
+> structure must be *paid for* — admitted one provisional minimal step at a time. Evidence receipts are never erased,
+> but model structure can be demoted or reopened when a weaker survivor or failed gradient license appears.
+> Legitimacy = *what a Turing machine can run* (finite,
 > mechanical, concrete inscriptions), extended upward only when an **oracle**
 > (the perceptual/inductive side, §3b) supplies a distinction the current
 > machine cannot decide. "Constraints" are therefore the *cost function* of the

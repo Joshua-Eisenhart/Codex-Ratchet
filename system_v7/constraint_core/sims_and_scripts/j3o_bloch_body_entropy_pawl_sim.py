@@ -27,11 +27,11 @@ from typing import Any
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[3]
-SOURCE_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/j3o_bloch_body_entropy_pawl_sim.py"
-RESULT_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/j3o_bloch_body_entropy_pawl_sim_results.json"
-J2_SOURCE_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/jordan_octonion_entropy_pawl_sim.py"
-J2_RESULT_PATH = ROOT / "system_v7/constraint_core/sims_and_scripts/jordan_octonion_entropy_pawl_sim_results.json"
+SIM_DIR = Path(__file__).resolve().parent
+SOURCE_PATH = Path(__file__).resolve()
+RESULT_PATH = SIM_DIR / "j3o_bloch_body_entropy_pawl_sim_results.json"
+J2_SOURCE_PATH = SIM_DIR / "jordan_octonion_entropy_pawl_sim.py"
+J2_RESULT_PATH = SIM_DIR / "jordan_octonion_entropy_pawl_sim_results.json"
 
 SIM_ID = "j3o_bloch_body_entropy_pawl"
 CLASSIFICATION = "scratch_diagnostic"

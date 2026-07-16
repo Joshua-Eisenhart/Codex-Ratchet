@@ -1,0 +1,44 @@
+{
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "framing": "PLACES the attachments' QIG (Fubini-Study/QFI) vs the model's BKM metric. QFI is COMPUTED to be the fidelity/Bures curvature; BKM is the relative-entropy curvature; they are different monotone metrics coinciding only on the classical submanifold. The model's metric follows BKM CONDITIONAL on the prior-forced relative-entropy pawl (not re-derived here). Rebuilt after a panel caught smuggled 'forced' language, an uncomputed fidelity claim, and a false pure-state-coincidence claim.",
+  "claim1_bkm_is_relentropy_hessian_selfconsistency": {
+    "g_BKM": 1.0760223524100097,
+    "relentropy_Hessian": 1.0760223339874717,
+    "abs_diff": 1.8422537939599692e-08,
+    "pass": true,
+    "is_physics_test": false,
+    "note": "SELF-CONSISTENCY identity (labeled): BKM is DEFINED as the Hessian of relative entropy; matching the Morozova-Chentsov kernel to the finite-difference Hessian verifies the code, it is NOT a forced physics result (panel catch)."
+  },
+  "claim2_qfi_is_different_metric": {
+    "g_SLD_QFI": 0.9999999999999997,
+    "g_BKM": 1.0760223524100097,
+    "differ_on_noncommuting": 0.07602235241000999,
+    "g_SLD_commuting": 1.1904761904761905,
+    "g_BKM_commuting": 1.1904761904761905,
+    "agree_on_commuting": 0.0,
+    "pass": true,
+    "note": "SLD/QFI != BKM on a noncommuting mixed direction (~0.076). The commuting-submanifold coincidence (both = classical Fisher) is GUARANTEED by the Morozova-Chentsov theorem -> agree_commuting is a CONSISTENCY CHECK, NOT a flipping control (Qwen-3.5 round-2 [warn], adopted). The earned distinction is the noncommuting difference TOGETHER WITH claim3 (SLD=fidelity curvature vs BKM=rel-entropy curvature), not the definitional commuting agreement."
+  },
+  "claim3_qfi_is_fidelity_curvature_computed": {
+    "bures_dist2_Hessian": 0.5000001885857586,
+    "g_SLD_over_2": 0.49999999999999983,
+    "abs_diff": 1.885857587313744e-07,
+    "g_SLD_vs_relentropy_Hessian": 0.07602233398747205,
+    "pass": true,
+    "note": "NOW COMPUTED (panel catch: was asserted): the Hessian of the Bures distance^2 [2(1-sqrt F)] equals g_SLD/2, so SLD/QFI IS the fidelity curvature; and SLD != the relative-entropy Hessian. Two divergences (fidelity vs relative entropy) -> two metrics (QFI vs BKM)."
+  },
+  "placement": "Fubini-Study/QFI = the fidelity/Bures-family metric (COMPUTED here as the Bures dist^2 curvature). The model's metric is BKM CONDITIONAL on the prior-forced relative-entropy pawl (pawl_forced_by_DPI, surface_identity_is_BKM -- not re-gated here). QFI coincides with BKM only on the classical submanifold; it does NOT coincide at pure states (near-pure SLD=1.0 vs BKM=4.6). So QIG is placed as the fidelity-family alternative, not the model's foundation.",
+  "audit_provenance": "cross-family panel over TWO rounds (Gemini-3.1-pro, Grok-4.5, Qwen-3.5, GLM-5.2). Round-1 flagged smuggled 'forced-BKM' language (now conditional on cited prior), an uncomputed fidelity-curvature assertion (now computed: Bures dist^2 Hessian = g_SLD/2), claim1 as a self-consistency identity (now labeled), and a FALSE pure-state coincidence claim (removed; near-pure SLD=1.0 != BKM=4.6). Round-2: Qwen-3.5 [warn] that agree_commuting is Morozova-Chentsov-GUARANTEED (every monotone metric = classical Fisher on commuting states), so it is a consistency check NOT a flipping control -- ADOPTED: the verdict no longer gates on agree_commuting; it gates on the noncommuting difference (g2) AND the computed fidelity-vs-rel-entropy curvature distinction (g3). An earlier report of this sim OVERSTATED round-2 as 'all three responding models agree claim2 is well-posed' -- corrected: Grok+GLM [ok], Qwen [warn] (adopted), Gemini 503'd. Fixed in the claims/measurement, not by relaxing gates.",
+  "honest_scope": "Earns: QFI and BKM are different monotone metrics -- QFI=fidelity (Bures) curvature (computed), BKM=rel-entropy curvature -- differing on a noncommuting direction; they coincide on the commuting submanifold by the Morozova-Chentsov theorem (definitional, not a control). The model's metric follows BKM CONDITIONAL on the prior-forced relative-entropy pawl. Does NOT re-derive the pawl, does NOT claim pure-state coincidence, does NOT claim QFI useless, does NOT build a QIG layer.",
+  "gating": "VERDICT gates on g2 AND g3: the noncommuting DIFFERENCE (SLD!=BKM, ~0.076; would vanish if they were the same metric) TOGETHER WITH the COMPUTED two-divergence identification (g3: SLD=Bures/fidelity curvature AND != rel-entropy Hessian). agree_commuting is REPORTED as a Morozova-Chentsov consistency check but does NOT gate (Qwen round-2 [warn], adopted). g1 (BKM=Hessian(rel-entropy)) is a definitional self-consistency identity and does NOT gate.",
+  "supporting_identities_nongating": {
+    "g1_bkm_is_relentropy_curvature": true,
+    "agree_commuting_morozova_chentsov_consistency": 0.0
+  },
+  "policy_eval": {
+    "qfi_differs_on_noncommuting_FAILABLE": true,
+    "qfi_is_fidelity_not_relentropy_curvature_FAILABLE": true,
+    "QIG_PLACED_AS_FIDELITY_FAMILY_CONDITIONAL_ON_PRIOR_PAWL": true
+  }
+}

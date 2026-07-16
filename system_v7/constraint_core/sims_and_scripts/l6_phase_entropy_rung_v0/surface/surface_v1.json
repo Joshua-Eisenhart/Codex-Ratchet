@@ -1,0 +1,633 @@
+{
+  "classification": "scratch_diagnostic",
+  "counts": {
+    "fixture_observation_rows": 18,
+    "l7_holonomy_rows": 5,
+    "scalar_fact_rows": 28
+  },
+  "cross_checks": [
+    {
+      "description": "Exact parsed-value comparison of four S6 observation fields with the S1 sweep row selected by radial_index.",
+      "exact": true,
+      "name": "C1_fixture_observation_exact_join",
+      "result_data": {
+        "n_mismatch": 0,
+        "n_rows_checked": 18
+      }
+    },
+    {
+      "description": "Comparison-only binary-entropy check using p=(1+shell_radius)/2.",
+      "exact": false,
+      "name": "C2_entropy_consistency_probe",
+      "result_data": {
+        "max_abs_deviation": 3.986313713864835e-11,
+        "n_rows_checked": 18,
+        "tolerance": 1e-09,
+        "within_tolerance": true
+      }
+    },
+    {
+      "description": "Regex extraction of the three S5 orientation-tooth counts and exact comparison with the named S6 fields.",
+      "exact": true,
+      "name": "C3_tooth_count_exact_check",
+      "result_data": {
+        "equal": true,
+        "s5_triple": [
+          9,
+          0,
+          9
+        ],
+        "s6_reproduction_file_named_in_s5": true,
+        "s6_triple": [
+          9,
+          0,
+          9
+        ]
+      }
+    },
+    {
+      "description": "Exact parsed-float negation check for the two S4 orientation values.",
+      "exact": true,
+      "name": "C4_chern_sign_exact_check",
+      "result_data": {
+        "chern_plus_orientation": 0.9999980036540367,
+        "chern_reversed_orientation": -0.9999980036540367,
+        "exact_negation": true
+      }
+    }
+  ],
+  "field_provenance": {
+    "fixture_observations.a": {
+      "key_path_template": "dual_ratchet_sweep[{radial_index}].a",
+      "source": "S1"
+    },
+    "fixture_observations.chern_signed": {
+      "key_path_template": "fact2_chern_sign_is_chirality.{orientation-selected Chern key}",
+      "source": "S4"
+    },
+    "fixture_observations.entropy_bits": {
+      "key_path_template": "observations[{row_id}].entropy_bits",
+      "source": "S6"
+    },
+    "fixture_observations.negativity": {
+      "key_path_template": "observations[{row_id}].negativity",
+      "source": "S6"
+    },
+    "fixture_observations.orientation": {
+      "key_path_template": "observations[{row_id}].orientation",
+      "source": "S6"
+    },
+    "fixture_observations.provenance.fixture_row": {
+      "key_path_template": "observations[{row_id}]",
+      "source": "S6"
+    },
+    "fixture_observations.provenance.l5_sweep_index": {
+      "key_path_template": "observations[{row_id}].radial_index",
+      "source": "S6"
+    },
+    "fixture_observations.purity": {
+      "key_path_template": "observations[{row_id}].purity",
+      "source": "S6"
+    },
+    "fixture_observations.radial_index": {
+      "key_path_template": "observations[{row_id}].radial_index",
+      "source": "S6"
+    },
+    "fixture_observations.row_id": {
+      "key_path_template": "observations[{row_id}].row_id",
+      "source": "S6"
+    },
+    "fixture_observations.shell_radius": {
+      "key_path_template": "observations[{row_id}].shell_radius",
+      "source": "S6"
+    },
+    "l7_holonomy_shells.abs_err": {
+      "key_path_template": "fact1_flux_is_berry_holonomy.per_shell[{i}].abs_err",
+      "source": "S3"
+    },
+    "l7_holonomy_shells.analytic": {
+      "key_path_template": "fact1_flux_is_berry_holonomy.per_shell[{i}].analytic",
+      "source": "S3"
+    },
+    "l7_holonomy_shells.eta": {
+      "key_path_template": "fact1_flux_is_berry_holonomy.per_shell[{i}].eta",
+      "source": "S3"
+    },
+    "l7_holonomy_shells.holonomy": {
+      "key_path_template": "fact1_flux_is_berry_holonomy.per_shell[{i}].holonomy",
+      "source": "S3"
+    },
+    "l7_holonomy_shells.holonomy_sign": {
+      "key_path_template": "sign(fact1_flux_is_berry_holonomy.per_shell[{i}].holonomy)",
+      "source": "S3"
+    },
+    "l7_holonomy_shells.provenance": {
+      "key_path_template": "fact1_flux_is_berry_holonomy.per_shell[{i}]",
+      "source": "S3"
+    },
+    "scalar_facts.name": {
+      "key_path_template": "final component of the row provenance key path",
+      "source": "S1|S2|S3|S4"
+    },
+    "scalar_facts.provenance": {
+      "key_path_template": "{source}:{full key path}",
+      "source": "S1|S2|S3|S4"
+    },
+    "scalar_facts.value": {
+      "key_path_template": "the full key path recorded by the same row provenance",
+      "source": "S1|S2|S3|S4"
+    }
+  },
+  "promotion_allowed": false,
+  "row_blocks": {
+    "fixture_observations": [
+      {
+        "a": 0.0,
+        "chern_signed": -0.9999980036540367,
+        "entropy_bits": 3.986313713864835e-11,
+        "negativity": 0.0,
+        "orientation": -1,
+        "provenance": {
+          "fixture_row": "S6:observations[0]",
+          "l5_sweep_index": 0
+        },
+        "purity": 1.0,
+        "radial_index": 0,
+        "row_id": 0,
+        "shell_radius": 1.0
+      },
+      {
+        "a": 0.0,
+        "chern_signed": 0.9999980036540367,
+        "entropy_bits": 3.986313713864835e-11,
+        "negativity": 0.0,
+        "orientation": 1,
+        "provenance": {
+          "fixture_row": "S6:observations[1]",
+          "l5_sweep_index": 0
+        },
+        "purity": 1.0,
+        "radial_index": 0,
+        "row_id": 1,
+        "shell_radius": 1.0
+      },
+      {
+        "a": 0.09817477042468103,
+        "chern_signed": -0.9999980036540367,
+        "entropy_bits": 0.07817880243524006,
+        "negativity": 0.09754516100806414,
+        "orientation": -1,
+        "provenance": {
+          "fixture_row": "S6:observations[2]",
+          "l5_sweep_index": 1
+        },
+        "purity": 0.980969883127822,
+        "radial_index": 1,
+        "row_id": 2,
+        "shell_radius": 0.9807852804032307
+      },
+      {
+        "a": 0.09817477042468103,
+        "chern_signed": 0.9999980036540367,
+        "entropy_bits": 0.07817880243524006,
+        "negativity": 0.09754516100806414,
+        "orientation": 1,
+        "provenance": {
+          "fixture_row": "S6:observations[3]",
+          "l5_sweep_index": 1
+        },
+        "purity": 0.980969883127822,
+        "radial_index": 1,
+        "row_id": 3,
+        "shell_radius": 0.9807852804032307
+      },
+      {
+        "a": 0.19634954084936207,
+        "chern_signed": -0.9999980036540367,
+        "entropy_bits": 0.233326628650935,
+        "negativity": 0.19134171618254486,
+        "orientation": -1,
+        "provenance": {
+          "fixture_row": "S6:observations[4]",
+          "l5_sweep_index": 2
+        },
+        "purity": 0.9267766952966368,
+        "radial_index": 2,
+        "row_id": 4,
+        "shell_radius": 0.9238795325112867
+      },
+      {
+        "a": 0.19634954084936207,
+        "chern_signed": 0.9999980036540367,
+        "entropy_bits": 0.233326628650935,
+        "negativity": 0.19134171618254486,
+        "orientation": 1,
+        "provenance": {
+          "fixture_row": "S6:observations[5]",
+          "l5_sweep_index": 2
+        },
+        "purity": 0.9267766952966368,
+        "radial_index": 2,
+        "row_id": 5,
+        "shell_radius": 0.9238795325112867
+      },
+      {
+        "a": 0.2945243112740431,
+        "chern_signed": -0.9999980036540367,
+        "entropy_bits": 0.4170323856217794,
+        "negativity": 0.2777851165098011,
+        "orientation": -1,
+        "provenance": {
+          "fixture_row": "S6:observations[6]",
+          "l5_sweep_index": 3
+        },
+        "purity": 0.8456708580912724,
+        "radial_index": 3,
+        "row_id": 6,
+        "shell_radius": 0.8314696123025451
+      },
+      {
+        "a": 0.2945243112740431,
+        "chern_signed": 0.9999980036540367,
+        "entropy_bits": 0.4170323856217794,
+        "negativity": 0.2777851165098011,
+        "orientation": 1,
+        "provenance": {
+          "fixture_row": "S6:observations[7]",
+          "l5_sweep_index": 3
+        },
+        "purity": 0.8456708580912724,
+        "radial_index": 3,
+        "row_id": 7,
+        "shell_radius": 0.8314696123025451
+      },
+      {
+        "a": 0.39269908169872414,
+        "chern_signed": -0.9999980036540367,
+        "entropy_bits": 0.6008760366928562,
+        "negativity": 0.3535533905932738,
+        "orientation": -1,
+        "provenance": {
+          "fixture_row": "S6:observations[8]",
+          "l5_sweep_index": 4
+        },
+        "purity": 0.75,
+        "radial_index": 4,
+        "row_id": 8,
+        "shell_radius": 0.7071067811865475
+      },
+      {
+        "a": 0.39269908169872414,
+        "chern_signed": 0.9999980036540367,
+        "entropy_bits": 0.6008760366928562,
+        "negativity": 0.3535533905932738,
+        "orientation": 1,
+        "provenance": {
+          "fixture_row": "S6:observations[9]",
+          "l5_sweep_index": 4
+        },
+        "purity": 0.75,
+        "radial_index": 4,
+        "row_id": 9,
+        "shell_radius": 0.7071067811865475
+      },
+      {
+        "a": 0.4908738521234052,
+        "chern_signed": -0.9999980036540367,
+        "entropy_bits": 0.7641912425904016,
+        "negativity": 0.4157348061512726,
+        "orientation": -1,
+        "provenance": {
+          "fixture_row": "S6:observations[10]",
+          "l5_sweep_index": 5
+        },
+        "purity": 0.6543291419087277,
+        "radial_index": 5,
+        "row_id": 10,
+        "shell_radius": 0.5555702330196024
+      },
+      {
+        "a": 0.4908738521234052,
+        "chern_signed": 0.9999980036540367,
+        "entropy_bits": 0.7641912425904016,
+        "negativity": 0.4157348061512726,
+        "orientation": 1,
+        "provenance": {
+          "fixture_row": "S6:observations[11]",
+          "l5_sweep_index": 5
+        },
+        "purity": 0.6543291419087277,
+        "radial_index": 5,
+        "row_id": 11,
+        "shell_radius": 0.5555702330196024
+      },
+      {
+        "a": 0.5890486225480862,
+        "chern_signed": -0.9999980036540367,
+        "entropy_bits": 0.8916186018581329,
+        "negativity": 0.4619397662556433,
+        "orientation": -1,
+        "provenance": {
+          "fixture_row": "S6:observations[12]",
+          "l5_sweep_index": 6
+        },
+        "purity": 0.5732233047033631,
+        "radial_index": 6,
+        "row_id": 12,
+        "shell_radius": 0.38268343236508984
+      },
+      {
+        "a": 0.5890486225480862,
+        "chern_signed": 0.9999980036540367,
+        "entropy_bits": 0.8916186018581329,
+        "negativity": 0.4619397662556433,
+        "orientation": 1,
+        "provenance": {
+          "fixture_row": "S6:observations[13]",
+          "l5_sweep_index": 6
+        },
+        "purity": 0.5732233047033631,
+        "radial_index": 6,
+        "row_id": 13,
+        "shell_radius": 0.38268343236508984
+      },
+      {
+        "a": 0.6872233929727672,
+        "chern_signed": -0.9999980036540367,
+        "entropy_bits": 0.9723684829342247,
+        "negativity": 0.4903926402016152,
+        "orientation": -1,
+        "provenance": {
+          "fixture_row": "S6:observations[14]",
+          "l5_sweep_index": 7
+        },
+        "purity": 0.5190301168721784,
+        "radial_index": 7,
+        "row_id": 14,
+        "shell_radius": 0.19509032201612841
+      },
+      {
+        "a": 0.6872233929727672,
+        "chern_signed": 0.9999980036540367,
+        "entropy_bits": 0.9723684829342247,
+        "negativity": 0.4903926402016152,
+        "orientation": 1,
+        "provenance": {
+          "fixture_row": "S6:observations[15]",
+          "l5_sweep_index": 7
+        },
+        "purity": 0.5190301168721784,
+        "radial_index": 7,
+        "row_id": 15,
+        "shell_radius": 0.19509032201612841
+      },
+      {
+        "a": 0.7853981633974483,
+        "chern_signed": -0.9999980036540367,
+        "entropy_bits": 1.0,
+        "negativity": 0.5,
+        "orientation": -1,
+        "provenance": {
+          "fixture_row": "S6:observations[16]",
+          "l5_sweep_index": 8
+        },
+        "purity": 0.5,
+        "radial_index": 8,
+        "row_id": 16,
+        "shell_radius": 2.220446049250313e-16
+      },
+      {
+        "a": 0.7853981633974483,
+        "chern_signed": 0.9999980036540367,
+        "entropy_bits": 1.0,
+        "negativity": 0.5,
+        "orientation": 1,
+        "provenance": {
+          "fixture_row": "S6:observations[17]",
+          "l5_sweep_index": 8
+        },
+        "purity": 0.5,
+        "radial_index": 8,
+        "row_id": 17,
+        "shell_radius": 2.220446049250313e-16
+      }
+    ],
+    "l7_holonomy_shells": [
+      {
+        "abs_err": 3.552713678800501e-15,
+        "analytic": -6.283185307179586,
+        "eta": 0.0,
+        "holonomy": -6.283185307179583,
+        "holonomy_sign": -1,
+        "provenance": "S3:fact1_flux_is_berry_holonomy.per_shell[0]"
+      },
+      {
+        "abs_err": 9.699164378318414e-07,
+        "analytic": -4.712388980384691,
+        "eta": 0.5235987755982988,
+        "holonomy": -4.712389950301128,
+        "holonomy_sign": -1,
+        "provenance": "S3:fact1_flux_is_berry_holonomy.per_shell[1]"
+      },
+      {
+        "abs_err": 3.1086244689504383e-15,
+        "analytic": -3.141592653589794,
+        "eta": 0.7853981633974483,
+        "holonomy": -3.141592653589791,
+        "holonomy_sign": -1,
+        "provenance": "S3:fact1_flux_is_berry_holonomy.per_shell[2]"
+      },
+      {
+        "abs_err": 9.699163805443334e-07,
+        "analytic": -1.5707963267948972,
+        "eta": 1.0471975511965976,
+        "holonomy": -1.5707953568785167,
+        "holonomy_sign": -1,
+        "provenance": "S3:fact1_flux_is_berry_holonomy.per_shell[3]"
+      },
+      {
+        "abs_err": 3.8790400798684937e-38,
+        "analytic": -2.3558171576799582e-32,
+        "eta": 1.5707963267948966,
+        "holonomy": -2.3558132786398783e-32,
+        "holonomy_sign": -1,
+        "provenance": "S3:fact1_flux_is_berry_holonomy.per_shell[4]"
+      }
+    ],
+    "scalar_facts": [
+      {
+        "name": "flux_nested",
+        "provenance": "S3:fact1_flux_is_berry_holonomy.flux_nested",
+        "value": -3.141594593422612
+      },
+      {
+        "name": "max_analytic_err",
+        "provenance": "S3:fact1_flux_is_berry_holonomy.max_analytic_err",
+        "value": 9.699164378318414e-07
+      },
+      {
+        "name": "ledger_form_-pi(cos2eta_i-cos2eta_j)",
+        "provenance": "S3:fact1_flux_is_berry_holonomy.ledger_form_-pi(cos2eta_i-cos2eta_j)",
+        "value": -3.141592653589793
+      },
+      {
+        "name": "closed_loop_holonomy",
+        "provenance": "S3:fact2_nonintegrable_curvature.closed_loop_holonomy",
+        "value": -3.141596098735476
+      },
+      {
+        "name": "analytic",
+        "provenance": "S3:fact2_nonintegrable_curvature.analytic",
+        "value": -3.141592653589793
+      },
+      {
+        "name": "flux_self",
+        "provenance": "S3:fact3_flux_is_cross_shell.flux_self",
+        "value": 0.0
+      },
+      {
+        "name": "erased_nesting_holonomy",
+        "provenance": "S3:fact3_flux_is_cross_shell.erased_nesting_holonomy",
+        "value": -5.421010862427522e-17
+      },
+      {
+        "name": "bkm",
+        "provenance": "S2:fact1_metric_is_bkm_hessian.bkm",
+        "value": 4.491500222330558
+      },
+      {
+        "name": "rel_entropy_hessian",
+        "provenance": "S2:fact1_metric_is_bkm_hessian.rel_entropy_hessian",
+        "value": 4.491500282074632
+      },
+      {
+        "name": "abs_diff",
+        "provenance": "S2:fact1_metric_is_bkm_hessian.abs_diff",
+        "value": 5.974407457642883e-08
+      },
+      {
+        "name": "wrong_direction_metric",
+        "provenance": "S2:fact1_metric_is_bkm_hessian.wrong_direction_metric",
+        "value": 4.33183765396344
+      },
+      {
+        "name": "g_eta_eta_values",
+        "provenance": "S2:fact2_metric_flat_in_eta_choice_vs_euclidean.g_eta_eta_values",
+        "value": [
+          3.999999907351498,
+          3.999999948934717,
+          3.9999999457674913,
+          3.9999999588687194,
+          3.99999995957074
+        ]
+      },
+      {
+        "name": "g_rr_reparam",
+        "provenance": "S2:fact2_metric_flat_in_eta_choice_vs_euclidean.g_rr_reparam",
+        "value": 1.3333333152558309
+      },
+      {
+        "name": "before",
+        "provenance": "S2:fact3_monotone_cptp_contraction.before",
+        "value": 4.491500222330558
+      },
+      {
+        "name": "after_depol",
+        "provenance": "S2:fact3_monotone_cptp_contraction.after_depol",
+        "value": 2.0695018422654354
+      },
+      {
+        "name": "after_amplify_noncptp",
+        "provenance": "S2:fact3_monotone_cptp_contraction.after_amplify_noncptp",
+        "value": 7.335778037166637
+      },
+      {
+        "name": "chern_number",
+        "provenance": "S4:fact1_flux_quantized_chern.chern_number",
+        "value": 0.9999980036540367
+      },
+      {
+        "name": "int_error",
+        "provenance": "S4:fact1_flux_quantized_chern.int_error",
+        "value": 1.9963459633176583e-06
+      },
+      {
+        "name": "chern_plus_orientation",
+        "provenance": "S4:fact2_chern_sign_is_chirality.chern_plus_orientation",
+        "value": 0.9999980036540367
+      },
+      {
+        "name": "chern_reversed_orientation",
+        "provenance": "S4:fact2_chern_sign_is_chirality.chern_reversed_orientation",
+        "value": -0.9999980036540367
+      },
+      {
+        "name": "chern_trivial",
+        "provenance": "S4:control_trivial_bundle.chern_trivial",
+        "value": 0.0
+      },
+      {
+        "name": "flux_self",
+        "provenance": "S1:nested_shell_flux.flux_self",
+        "value": 0.0
+      },
+      {
+        "name": "flux_nested",
+        "provenance": "S1:nested_shell_flux.flux_nested",
+        "value": 1.967266646529917
+      },
+      {
+        "name": "shell_radius_v1",
+        "provenance": "S1:refines_L4.shell_radius_v1",
+        "value": 0.5403023058681398
+      },
+      {
+        "name": "shell_radius_v2",
+        "provenance": "S1:refines_L4.shell_radius_v2",
+        "value": 0.22720209469308705
+      },
+      {
+        "name": "radii_differ",
+        "provenance": "S1:refines_L4.radii_differ",
+        "value": 0.3131002111750527
+      },
+      {
+        "name": "erased_flux",
+        "provenance": "S1:erase_nesting_control.erased_flux",
+        "value": 0.0
+      },
+      {
+        "name": "erased_refine",
+        "provenance": "S1:erase_nesting_control.erased_refine",
+        "value": 0.0
+      }
+    ]
+  },
+  "schema_version": "l6_phase_entropy_surface/1.0",
+  "sources": {
+    "S1": {
+      "path": "../../manifold_L5_nested_shells_schmidt_strata_sim_results.json",
+      "sha256": "ba96e5888e42851798925572b238d564ca0c1797b07362c4c876a97e4af04116"
+    },
+    "S2": {
+      "path": "../../manifold_L6_shell_metric_bkm_connection_sim_results.json",
+      "sha256": "957204e0ef0f8ad1706a0498b8ff833b23ab2958e6a1b97d2c076fc353afe0c8"
+    },
+    "S3": {
+      "path": "../../manifold_L7_shell_connection_holonomy_sim_results.json",
+      "sha256": "5c113441efb8d075d21551f56de02febeba9aaea851e8ecc1ffbbf44a22f4720"
+    },
+    "S4": {
+      "path": "../../manifold_L8_global_bundle_chern_quantization_sim_results.json",
+      "sha256": "e16b2dfd0970c24984087c4df1cd8287b9122162d8f4d11efe5f1d068908309f"
+    },
+    "S5": {
+      "path": "../../../ratchet/manifold_evidence/MANIFOLD_RATCHET_STATE_REPORT.md",
+      "sha256": "047a62b1b1c098f1168047ee7f5cffc59d1d119431949f07f8a2662627663f40"
+    },
+    "S6": {
+      "path": "../../../ratchet/manifold_evidence/manifold_fixture_ratchet_results.json",
+      "sha256": "e98c3f4e1f59f7876f7c08235b657ffdbf188987f52f962a7f14f2e08ff5ea26"
+    }
+  }
+}

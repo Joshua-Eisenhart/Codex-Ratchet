@@ -1,0 +1,375 @@
+{
+  "schema": "stress_battery.gap_f_ott_real_pair.v1",
+  "gap": "F",
+  "gap_statement": "transport (ott Sinkhorn) exercised on REAL sim data: the exact shipped permutation-control pair of ontological_finitude_cosmogenesis_ratchet_sim, recomputed from the sim's own update() dynamics, not synthetic vectors. Prior probe (real_data_integration_results.json) used a wrong pair (tv 59/160) and had nonzero self-cost.",
+  "classification": "tool_lego_fit_probe",
+  "promotion_allowed": false,
+  "claim_ceiling": "tool-lego fit evidence only: ott Sinkhorn under a 0/1 ground metric independently recovers the exact shipped total variation on the real pair; no canonical, bridge, QIT, GStack, axis, or nonclassical admission",
+  "all_pass": true,
+  "checks": {
+    "pair_recomputed_from_sim_update_dynamics": true,
+    "tv_exact_equals_137_160": true,
+    "tv_matches_shipped_receipt_string": true,
+    "endpoint_matches_shipped_receipt": true,
+    "scan_hits_confined_to_joint_context_rot1_controls": true,
+    "shipped_pair_selected_by_endpoint_identity_not_tv_alone": true,
+    "entropy_diff_float_exactly_zero": true,
+    "entropy_exactly_equal_by_multiset": true,
+    "sinkhorn_cross_cost_matches_tv_1e9": true,
+    "sinkhorn_self_cost_zero_1e12": true,
+    "sinkhorn_separates_pair_entropy_cannot": true,
+    "control_wrong_round_tv_differs": true,
+    "control_wrong_pair_tv_differs": true,
+    "control_perturbed_tv_differs": true,
+    "control_perturbed_entropy_diff_nonzero": true,
+    "control_perturbed_sinkhorn_cost_misses_target": true,
+    "control_nonpermutation_entropy_diff_nonzero": true,
+    "julia_ran": true,
+    "julia_tv_confirms_137_160": true,
+    "julia_endpoint_matches_python": true,
+    "julia_fixed_point": true,
+    "julia_control_wrong_pair_differs": true
+  },
+  "source": {
+    "sim_path": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/ae78ff9c-0704-43c0-81b3-af566c1b5861/scratchpad/packet166b/sims_and_scripts/ontological_finitude_cosmogenesis_ratchet_sim.py",
+    "sim_sha256": "2c9c4ebea4fac081ed4ef0485a121dca1d69a618c2b77a3137cda21500f94762",
+    "shipped_receipt_path": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/ae78ff9c-0704-43c0-81b3-af566c1b5861/scratchpad/packet166b/sims_and_scripts/ontological_finitude_cosmogenesis_ratchet_sim_results.json",
+    "shipped_total_variation_fraction": "137/160",
+    "shipped_absolute_entropy_difference": 0.0,
+    "pair_definition": "entropy_controls() permutation control: P = joint_order_bracket orbit endpoint from INITIAL (uniform 10 x 16, budget 160); Q = P[1:] + P[:1]"
+  },
+  "pair_search": {
+    "context": "joint_order_bracket",
+    "round_trace_tv_profile_vs_rot1": [
+      {
+        "round": 0,
+        "tv_profile_vs_rot1": "0/1",
+        "hits_target": false
+      },
+      {
+        "round": 1,
+        "tv_profile_vs_rot1": "59/160",
+        "hits_target": false
+      },
+      {
+        "round": 2,
+        "tv_profile_vs_rot1": "97/160",
+        "hits_target": false
+      },
+      {
+        "round": 3,
+        "tv_profile_vs_rot1": "117/160",
+        "hits_target": false
+      },
+      {
+        "round": 4,
+        "tv_profile_vs_rot1": "127/160",
+        "hits_target": false
+      },
+      {
+        "round": 5,
+        "tv_profile_vs_rot1": "133/160",
+        "hits_target": false
+      },
+      {
+        "round": 6,
+        "tv_profile_vs_rot1": "137/160",
+        "hits_target": true
+      },
+      {
+        "round": 7,
+        "tv_profile_vs_rot1": "137/160",
+        "hits_target": true
+      },
+      {
+        "round": 8,
+        "tv_profile_vs_rot1": "137/160",
+        "hits_target": true
+      }
+    ],
+    "rounds_where_tv_equals_137_160": [
+      6,
+      7,
+      8
+    ],
+    "shipped_pair_round": 7,
+    "endpoint_is_fixed_point_of_update": true,
+    "profile_P": [
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      1,
+      1,
+      2,
+      1,
+      69,
+      2,
+      69,
+      2,
+      2,
+      1
+    ],
+    "profile_Q_rot1": [
+      1,
+      2,
+      2,
+      2,
+      2,
+      1,
+      1,
+      2,
+      1,
+      69,
+      2,
+      69,
+      2,
+      2,
+      1,
+      1
+    ],
+    "tv_exact": "137/160",
+    "pairs_scanned": 31,
+    "scan_hits_137_160": [
+      {
+        "kind": "rot1_control",
+        "context": "joint_order_bracket",
+        "round": 6
+      },
+      {
+        "kind": "rot1_control",
+        "context": "joint_order_bracket",
+        "round": 7
+      },
+      {
+        "kind": "rot1_control",
+        "context": "joint_order_bracket",
+        "round": 8
+      }
+    ],
+    "scan_hits_prior_failed_value_59_160": [
+      {
+        "kind": "rot1_control",
+        "context": "joint_order_bracket",
+        "round": 1
+      }
+    ],
+    "nonuniqueness_finding": {
+      "tv_value_unique_to_one_profile": false,
+      "distinct_profiles_hitting_137_160": [
+        [
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          2,
+          1,
+          69,
+          2,
+          69,
+          2,
+          2,
+          1
+        ],
+        [
+          1,
+          1,
+          3,
+          2,
+          3,
+          2,
+          1,
+          1,
+          2,
+          1,
+          68,
+          2,
+          68,
+          2,
+          2,
+          1
+        ]
+      ],
+      "note": "TV 137/160 alone does NOT uniquely identify the shipped pair: the round-6 pre-convergence profile's rot1 pair also has TV exactly 137/160. The shipped control is computed on the orbit ENDPOINT (constraint_orbits.joint_order_bracket.endpoint, a fixed point), so the pair is pinned by endpoint identity plus the TV value."
+    }
+  },
+  "entropy_identity": {
+    "shannon_P_nats": 1.353942236962696,
+    "shannon_Q_nats": 1.353942236962696,
+    "difference_float": 0.0,
+    "difference_exactly_zero_float": true,
+    "multisets_equal_hence_exact_real_equality": true
+  },
+  "ott_sinkhorn": {
+    "ott_version": "0.6.0",
+    "jax_version": "0.10.1",
+    "jax_enable_x64": true,
+    "ground_cost": "0/1 discrete metric on the 16 law indices (cost_matrix = 1 - I); under this metric exact OT cost equals total variation distance, so the transport cost is value-coupled to the exact fraction 137/160",
+    "solver": "ott.solvers.linear.sinkhorn.Sinkhorn(threshold=1e-9, lse_mode=True)",
+    "epsilon_sweep": [
+      {
+        "epsilon": 0.1,
+        "cross_transport_cost": 0.8605841562084132,
+        "cross_converged": true,
+        "cross_reg_ot_cost": 0.9109961859077316,
+        "self_transport_cost": 0.000280997213643594,
+        "self_converged": true,
+        "self_reg_ot_cost": 0.13536611350339056,
+        "abs_error_cross_vs_tv": 0.0043341562084132645
+      },
+      {
+        "epsilon": 0.03,
+        "cross_transport_cost": 0.8562501298544108,
+        "cross_converged": false,
+        "cross_reg_ot_cost": 0.8729318930427212,
+        "self_transport_cost": 5.007356693032204e-14,
+        "self_converged": true,
+        "self_reg_ot_cost": 0.04061826710887939,
+        "abs_error_cross_vs_tv": 1.2985441089075067e-07
+      },
+      {
+        "epsilon": 0.01,
+        "cross_transport_cost": 0.8562499999340774,
+        "cross_converged": true,
+        "cross_reg_ot_cost": 0.8618106324705999,
+        "self_transport_cost": 5.580113964031216e-43,
+        "self_converged": true,
+        "self_reg_ot_cost": 0.013539422369626962,
+        "abs_error_cross_vs_tv": 6.592260071158762e-11
+      },
+      {
+        "epsilon": 0.003,
+        "cross_transport_cost": 0.8562499999527179,
+        "cross_converged": true,
+        "cross_reg_ot_cost": 0.85791818974118,
+        "self_transport_cost": 2.577887484084397e-144,
+        "self_converged": true,
+        "self_reg_ot_cost": 0.004061826710888086,
+        "abs_error_cross_vs_tv": 4.7282067150433704e-11
+      },
+      {
+        "epsilon": 0.001,
+        "cross_transport_cost": 0.8562499999997297,
+        "cross_converged": true,
+        "cross_reg_ot_cost": 0.85680606324706,
+        "self_transport_cost": 0.0,
+        "self_converged": true,
+        "self_reg_ot_cost": 0.0013539422369626957,
+        "abs_error_cross_vs_tv": 2.702282841937631e-13
+      }
+    ],
+    "final_epsilon": 0.001,
+    "cross_transport_cost": 0.8562499999997297,
+    "self_transport_cost": 0.0,
+    "tv_target_float": 0.85625,
+    "abs_error_cross_vs_tv": 2.702282841937631e-13
+  },
+  "controls_must_be_able_to_fail": {
+    "wrong_round_pair": {
+      "description": "round-1 profile vs its rot1 (pre-convergence)",
+      "tv": "59/160",
+      "differs_from_target": true
+    },
+    "wrong_pair": {
+      "description": "endpoint P vs uniform INITIAL",
+      "tv": "59/80",
+      "differs_from_target": true
+    },
+    "perturbed_pair": {
+      "description": "Q with one unit of mass moved (index 9 -> index 10)",
+      "profile": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        68,
+        3,
+        69,
+        2,
+        2,
+        1,
+        1
+      ],
+      "tv": "17/20",
+      "entropy_difference_float": -0.020733014752195134,
+      "sinkhorn_cost_eps_0_001": 0.8499999999988137,
+      "sinkhorn_converged": true,
+      "abs_error_vs_137_160": 0.006250000001186251
+    },
+    "nonpermutation_entropy": {
+      "description": "|H(P) - H(uniform INITIAL)| must be nonzero",
+      "value_nats": 1.418646485277085
+    }
+  },
+  "julia_cross_engine": {
+    "julia_bin": "/opt/homebrew/bin/julia",
+    "script": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/tooling/stress_battery/gap_f_exact_pair_check.jl",
+    "arithmetic": "Rational{BigInt}, independent re-implementation of update()",
+    "report": {
+      "engine": "julia",
+      "julia_version": "1.12.6",
+      "endpoint": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        69,
+        2,
+        69,
+        2,
+        2,
+        1
+      ],
+      "transient_length": 7,
+      "period": 1,
+      "fixed_point": true,
+      "tv_exact": "137/160",
+      "tv_equals_137_160": true,
+      "control_wrong_pair_tv": "59/80",
+      "control_wrong_pair_differs": true
+    }
+  },
+  "tool_manifest": {
+    "ott": {
+      "used": true,
+      "depth": "load_bearing",
+      "reason": "Sinkhorn transport cost under the 0/1 metric independently recomputes the exact shipped TV 137/160 to <1e-9 and separates the pair (0.85625 vs 0.0) that scalar entropy cannot (diff 0.0); gate checks fail if it drifts"
+    },
+    "jax": {
+      "used": true,
+      "depth": "supportive",
+      "reason": "x64 substrate for ott; not itself a verdict source"
+    },
+    "julia": {
+      "used": true,
+      "depth": "load_bearing",
+      "reason": "exact Rational{BigInt} re-derivation of the orbit and TV in a second engine; python/julia disagreement fails the gate"
+    },
+    "python_fractions": {
+      "used": true,
+      "depth": "load_bearing",
+      "reason": "exact rational TV; equality to 137/160 is exact, not approximate"
+    }
+  },
+  "interpreters": {
+    "python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "julia": "1.12.6"
+  }
+}

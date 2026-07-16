@@ -1,0 +1,2851 @@
+{
+  "schema_version": "ratchet-search-run/0.4",
+  "run_id": "root-history-ratchet-run-2026-07-10-v0.4",
+  "v0_5_audit_disposition": "LIMITED_PROCESS_PREDECESSOR__FIXED_GATE_ORDER_AND_ALIAS_INFLATION_NOT_CURRENT",
+  "current_process_import_allowed": false,
+  "root_primitive": "constrained_distinguishability",
+  "process_law": "EXPLORE_WIDE__GATE_STRICT__RECEIPT_ALWAYS__DIG_CONTINUES",
+  "source_packet": "root-history-depth-packet-v0.4",
+  "budget": {
+    "gate_limit": 2,
+    "candidate_limit_per_gate": 48,
+    "gradient_hypothesis_limit_per_gate": 12,
+    "global_completeness_claimed": false
+  },
+  "gates": [
+    {
+      "gate_id": "G0_one_step_order",
+      "question": "Does the finite distinction surface require one step of history rather than a context-free relation?",
+      "finite_observation_count": 27,
+      "observation_generator": {
+        "history_length": 2,
+        "hidden_dependency_depth": 1,
+        "note": "dependency used only to make the finite test surface; candidate fitters do not receive it"
+      },
+      "order_witness_matrix": {
+        "rows": [
+          {
+            "left": "p",
+            "right": "p",
+            "forward": "distinguished",
+            "reverse": "distinguished",
+            "differs": false
+          },
+          {
+            "left": "p",
+            "right": "q",
+            "forward": "not_distinguished",
+            "reverse": "unresolved",
+            "differs": true
+          },
+          {
+            "left": "p",
+            "right": "r",
+            "forward": "unresolved",
+            "reverse": "distinguished",
+            "differs": true
+          },
+          {
+            "left": "q",
+            "right": "p",
+            "forward": "unresolved",
+            "reverse": "not_distinguished",
+            "differs": true
+          },
+          {
+            "left": "q",
+            "right": "q",
+            "forward": "inadmissible",
+            "reverse": "inadmissible",
+            "differs": false
+          },
+          {
+            "left": "q",
+            "right": "r",
+            "forward": "distinguished",
+            "reverse": "not_distinguished",
+            "differs": true
+          },
+          {
+            "left": "r",
+            "right": "p",
+            "forward": "distinguished",
+            "reverse": "unresolved",
+            "differs": true
+          },
+          {
+            "left": "r",
+            "right": "q",
+            "forward": "not_distinguished",
+            "reverse": "distinguished",
+            "differs": true
+          },
+          {
+            "left": "r",
+            "right": "r",
+            "forward": "unresolved",
+            "reverse": "unresolved",
+            "differs": false
+          }
+        ],
+        "directional_ordered_pairs": 6
+      },
+      "exploration": {
+        "candidate_count": 36,
+        "implemented_count": 36,
+        "parked_unimplemented_count": 0,
+        "candidate_results": [
+          {
+            "id": "partial_relation__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 3
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "finite_transducer__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 1,
+              "transitions": 3,
+              "roundtrip_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "directed_graph__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "graph_vertices",
+              "labeled_edges",
+              "persistent_state_identity",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 1,
+              "labeled_edges": 3,
+              "path_readout_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "local_rewrite_rules",
+              "rewrite_sites",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 1,
+              "ordered_rewrite_rules": 3,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "ring_checkerboard__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 2,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 3,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "complex_density__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "measurement_rule",
+              "normalization",
+              "operator_algebra",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 3,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 2,
+                "not_distinguished": 1
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "partial_relation__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 9,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 3
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "finite_transducer__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 9,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 1,
+              "transitions": 3,
+              "roundtrip_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "directed_graph__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "graph_vertices",
+              "labeled_edges",
+              "persistent_state_identity",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 9,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 1,
+              "labeled_edges": 3,
+              "path_readout_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "local_rewrite_rules",
+              "rewrite_sites",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 9,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 1,
+              "ordered_rewrite_rules": 3,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "ring_checkerboard__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 9,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 2,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 3,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "complex_density__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "measurement_rule",
+              "normalization",
+              "operator_algebra",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 9,
+            "merged_distinction_pairs": 54,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 3,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 1,
+                "not_distinguished": 1,
+                "unresolved": 1,
+                "inadmissible": 0
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "partial_relation__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "one_step_history",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 9
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "finite_transducer__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 3,
+              "transitions": 9,
+              "roundtrip_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "directed_graph__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "graph_vertices",
+              "labeled_edges",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 3,
+              "labeled_edges": 9,
+              "path_readout_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "local_rewrite_rules",
+              "one_step_history",
+              "rewrite_sites",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 3,
+              "ordered_rewrite_rules": 9,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "ring_checkerboard__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "one_step_history",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 6,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 9,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "complex_density__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "measurement_rule",
+              "normalization",
+              "one_step_history",
+              "operator_algebra",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 9,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 7,
+                "not_distinguished": 2
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "partial_relation__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "supplied_ordered_update"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 9
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "finite_transducer__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 3,
+              "transitions": 9,
+              "roundtrip_checked": true
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "directed_graph__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "graph_vertices",
+              "labeled_edges",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 3,
+              "labeled_edges": 9,
+              "path_readout_checked": true
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "local_rewrite_rules",
+              "one_step_history",
+              "rewrite_sites",
+              "supplied_ordered_update"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 3,
+              "ordered_rewrite_rules": 9,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "ring_checkerboard__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 6,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 9,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "complex_density__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "measurement_rule",
+              "normalization",
+              "one_step_history",
+              "operator_algebra",
+              "supplied_ordered_update"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 9,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 3,
+                "not_distinguished": 2,
+                "unresolved": 3,
+                "inadmissible": 1
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "partial_relation__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "one_step_history",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 27
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "finite_transducer__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 9,
+              "transitions": 27,
+              "roundtrip_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "directed_graph__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "graph_vertices",
+              "labeled_edges",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 9,
+              "labeled_edges": 27,
+              "path_readout_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "local_rewrite_rules",
+              "one_step_history",
+              "rewrite_sites",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 9,
+              "ordered_rewrite_rules": 27,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "ring_checkerboard__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "one_step_history",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 18,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 27,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "complex_density__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "measurement_rule",
+              "normalization",
+              "one_step_history",
+              "operator_algebra",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 12,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 27,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 21,
+                "not_distinguished": 6
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "partial_relation__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 27
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "finite_transducer__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 9,
+              "transitions": 27,
+              "roundtrip_checked": true
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "directed_graph__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "graph_vertices",
+              "labeled_edges",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 9,
+              "labeled_edges": 27,
+              "path_readout_checked": true
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "local_rewrite_rules",
+              "one_step_history",
+              "rewrite_sites",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 9,
+              "ordered_rewrite_rules": 27,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "ring_checkerboard__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 18,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 27,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "complex_density__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "measurement_rule",
+              "normalization",
+              "one_step_history",
+              "operator_algebra",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 27,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 9,
+                "not_distinguished": 6,
+                "unresolved": 9,
+                "inadmissible": 3
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "preserves every finite observation"
+          }
+        ],
+        "gradient_hypotheses": [
+          {
+            "id": "g_partition_conflict",
+            "kind": "partition_conflict_mass",
+            "origin": "endogenous",
+            "interpretation": "distinction demand left merged by the current presentation",
+            "before": 9.0,
+            "after": 0.0,
+            "directed_delta": 9.0,
+            "commuting_control_delta": 0.0,
+            "relabel_delta": 9.0,
+            "status": "DRIVE_SURVIVOR",
+            "kill_reasons": []
+          },
+          {
+            "id": "g_merged_pairs",
+            "kind": "merged_distinction_pairs",
+            "origin": "endogenous",
+            "interpretation": "pairwise distinctions erased by the current presentation",
+            "before": 54.0,
+            "after": 0.0,
+            "directed_delta": 54.0,
+            "commuting_control_delta": 0.0,
+            "relabel_delta": 54.0,
+            "status": "DRIVE_SURVIVOR",
+            "kill_reasons": []
+          },
+          {
+            "id": "g_outcome_entropy",
+            "kind": "outcome_shannon_entropy",
+            "origin": "endogenous",
+            "interpretation": "outcome-distribution entropy, tested rather than presumed as the drive",
+            "before": 1.310783678099714,
+            "after": 1.310783678099714,
+            "directed_delta": 0.0,
+            "commuting_control_delta": 0.0,
+            "relabel_delta": 0.0,
+            "status": "KILLED_AS_DRIVE",
+            "kill_reasons": [
+              "no positive coupling to the active lost distinction"
+            ]
+          },
+          {
+            "id": "g_representation_cells",
+            "kind": "representation_cells",
+            "origin": "endogenous",
+            "interpretation": "model size, tested as a possible gradient rather than conflated with MSS",
+            "before": 3.0,
+            "after": 9.0,
+            "directed_delta": -6.0,
+            "commuting_control_delta": -6.0,
+            "relabel_delta": -6.0,
+            "status": "KILLED_AS_DRIVE",
+            "kill_reasons": [
+              "no positive coupling to the active lost distinction",
+              "persists when the order-dependence source is erased"
+            ]
+          },
+          {
+            "id": "g_injected_constant",
+            "kind": "injected_constant",
+            "origin": "injected",
+            "interpretation": "external score control",
+            "before": 1.0,
+            "after": 1.0,
+            "directed_delta": 0.0,
+            "commuting_control_delta": 0.0,
+            "relabel_delta": 0.0,
+            "status": "KILLED_AS_DRIVE",
+            "kill_reasons": [
+              "no positive coupling to the active lost distinction",
+              "declared external score rather than an observed surface contrast"
+            ]
+          },
+          {
+            "id": "g_label_code",
+            "kind": "label_code_score",
+            "origin": "endogenous",
+            "interpretation": "deliberately label-sensitive negative",
+            "before": 1017.0,
+            "after": 3051.0,
+            "directed_delta": -2034.0,
+            "commuting_control_delta": -2034.0,
+            "relabel_delta": -10278.0,
+            "status": "KILLED_AS_DRIVE",
+            "kill_reasons": [
+              "no positive coupling to the active lost distinction",
+              "changes under admissible probe relabeling",
+              "persists when the order-dependence source is erased"
+            ]
+          }
+        ],
+        "probe_relabel_map": {
+          "p": "mark_2",
+          "q": "mark_1",
+          "r": "mark_0"
+        },
+        "search_globally_exhausted": false
+      },
+      "gate": {
+        "baseline_candidate": "partial_relation__memory_0__partial4",
+        "baseline_errors": 9,
+        "target_candidate": "partial_relation__memory_1__partial4",
+        "target_errors": 0,
+        "survivors": [
+          "asynchronous_rewrite__memory_1__partial4",
+          "asynchronous_rewrite__memory_2__partial4",
+          "complex_density__memory_1__partial4",
+          "complex_density__memory_2__partial4",
+          "directed_graph__memory_1__partial4",
+          "directed_graph__memory_2__partial4",
+          "finite_transducer__memory_1__partial4",
+          "finite_transducer__memory_2__partial4",
+          "partial_relation__memory_1__partial4",
+          "partial_relation__memory_2__partial4",
+          "ring_checkerboard__memory_1__partial4",
+          "ring_checkerboard__memory_2__partial4"
+        ],
+        "minimal_survivor_frontier": [
+          "partial_relation__memory_1__partial4"
+        ],
+        "weakness_edges": [
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "finite_transducer__memory_1__partial4",
+            "witness": [
+              "persistent_state_identity",
+              "transition_machine"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "directed_graph__memory_1__partial4",
+            "witness": [
+              "graph_vertices",
+              "labeled_edges",
+              "persistent_state_identity"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "asynchronous_rewrite__memory_1__partial4",
+            "witness": [
+              "local_rewrite_rules",
+              "rewrite_sites"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "ring_checkerboard__memory_1__partial4",
+            "witness": [
+              "cell_identity",
+              "cyclic_adjacency",
+              "parity_partition",
+              "synchronous_schedule"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "complex_density__memory_1__partial4",
+            "witness": [
+              "complex_vector_space",
+              "density_representation",
+              "measurement_rule",
+              "normalization",
+              "operator_algebra"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "partial_relation__memory_2__partial4",
+            "witness": [
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "finite_transducer__memory_2__partial4",
+            "witness": [
+              "persistent_state_identity",
+              "transition_machine",
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "directed_graph__memory_2__partial4",
+            "witness": [
+              "graph_vertices",
+              "labeled_edges",
+              "persistent_state_identity",
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "asynchronous_rewrite__memory_2__partial4",
+            "witness": [
+              "local_rewrite_rules",
+              "rewrite_sites",
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "ring_checkerboard__memory_2__partial4",
+            "witness": [
+              "cell_identity",
+              "cyclic_adjacency",
+              "parity_partition",
+              "synchronous_schedule",
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_1__partial4",
+            "stronger": "complex_density__memory_2__partial4",
+            "witness": [
+              "complex_vector_space",
+              "density_representation",
+              "measurement_rule",
+              "normalization",
+              "operator_algebra",
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "finite_transducer__memory_1__partial4",
+            "stronger": "finite_transducer__memory_2__partial4",
+            "witness": [
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "directed_graph__memory_1__partial4",
+            "stronger": "directed_graph__memory_2__partial4",
+            "witness": [
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "asynchronous_rewrite__memory_1__partial4",
+            "stronger": "asynchronous_rewrite__memory_2__partial4",
+            "witness": [
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "ring_checkerboard__memory_1__partial4",
+            "stronger": "ring_checkerboard__memory_2__partial4",
+            "witness": [
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "complex_density__memory_1__partial4",
+            "stronger": "complex_density__memory_2__partial4",
+            "witness": [
+              "two_step_history"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_2__partial4",
+            "stronger": "finite_transducer__memory_2__partial4",
+            "witness": [
+              "persistent_state_identity",
+              "transition_machine"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_2__partial4",
+            "stronger": "directed_graph__memory_2__partial4",
+            "witness": [
+              "graph_vertices",
+              "labeled_edges",
+              "persistent_state_identity"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_2__partial4",
+            "stronger": "asynchronous_rewrite__memory_2__partial4",
+            "witness": [
+              "local_rewrite_rules",
+              "rewrite_sites"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_2__partial4",
+            "stronger": "ring_checkerboard__memory_2__partial4",
+            "witness": [
+              "cell_identity",
+              "cyclic_adjacency",
+              "parity_partition",
+              "synchronous_schedule"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_2__partial4",
+            "stronger": "complex_density__memory_2__partial4",
+            "witness": [
+              "complex_vector_space",
+              "density_representation",
+              "measurement_rule",
+              "normalization",
+              "operator_algebra"
+            ]
+          }
+        ],
+        "drive_survivors": [
+          "g_partition_conflict",
+          "g_merged_pairs"
+        ],
+        "controls": [
+          {
+            "id": "lower_structure_active_failure",
+            "predicted": "the immediately weaker history depth loses at least one active distinction",
+            "observed": 9,
+            "passed": true
+          },
+          {
+            "id": "anti_by_construction_commuting_flip",
+            "predicted": "after erasing order dependence, the weaker structure becomes adequate",
+            "observed": 0,
+            "passed": true
+          },
+          {
+            "id": "probe_relabel_invariance",
+            "predicted": "renaming presentation marks leaves target adequacy unchanged",
+            "observed": 0,
+            "passed": true
+          },
+          {
+            "id": "partiality_flip",
+            "predicted": "if four-status observations are actually collapsed, the binary candidate becomes adequate",
+            "observed": 0,
+            "passed": true
+          },
+          {
+            "id": "carrier_ornament_control",
+            "predicted": "a carrier-free partial relation remains adequate, so richer carriers are not required",
+            "observed": 0,
+            "passed": true
+          }
+        ],
+        "status": "PROVISIONAL_TOOTH_WITHIN_PACKET"
+      },
+      "receipt": {
+        "what_was_provisionally_earned": [
+          "history depth 1 is load-bearing for this finite distinction surface",
+          "four-status partial outcomes remain load-bearing on the active surface"
+        ],
+        "what_was_killed": [
+          "partial_relation__memory_0__binary2",
+          "finite_transducer__memory_0__binary2",
+          "directed_graph__memory_0__binary2",
+          "asynchronous_rewrite__memory_0__binary2",
+          "ring_checkerboard__memory_0__binary2",
+          "complex_density__memory_0__binary2",
+          "partial_relation__memory_0__partial4",
+          "finite_transducer__memory_0__partial4",
+          "directed_graph__memory_0__partial4",
+          "asynchronous_rewrite__memory_0__partial4",
+          "ring_checkerboard__memory_0__partial4",
+          "complex_density__memory_0__partial4",
+          "partial_relation__memory_1__binary2",
+          "finite_transducer__memory_1__binary2",
+          "directed_graph__memory_1__binary2",
+          "asynchronous_rewrite__memory_1__binary2",
+          "ring_checkerboard__memory_1__binary2",
+          "complex_density__memory_1__binary2",
+          "partial_relation__memory_2__binary2",
+          "finite_transducer__memory_2__binary2",
+          "directed_graph__memory_2__binary2",
+          "asynchronous_rewrite__memory_2__binary2",
+          "ring_checkerboard__memory_2__binary2",
+          "complex_density__memory_2__binary2"
+        ],
+        "what_was_parked": [],
+        "projection_back_down": "erase the oldest load-bearing history coordinate",
+        "residual_exposed_by_projection": "previously distinct ordered observations merge",
+        "claim_ceiling": "formal_finite_packet_provisional",
+        "self_promotes_to_physical_model": false
+      }
+    },
+    {
+      "gate_id": "G1_two_step_order",
+      "question": "When new ordered observations arrive, is one-step history still sufficient or is a second step load-bearing?",
+      "finite_observation_count": 81,
+      "observation_generator": {
+        "history_length": 3,
+        "hidden_dependency_depth": 2,
+        "note": "dependency used only to make the finite test surface; candidate fitters do not receive it"
+      },
+      "order_witness_matrix": {
+        "rows": [
+          {
+            "left": "p",
+            "right": "p",
+            "forward": "distinguished",
+            "reverse": "distinguished",
+            "differs": false
+          },
+          {
+            "left": "p",
+            "right": "q",
+            "forward": "not_distinguished",
+            "reverse": "unresolved",
+            "differs": true
+          },
+          {
+            "left": "p",
+            "right": "r",
+            "forward": "unresolved",
+            "reverse": "distinguished",
+            "differs": true
+          },
+          {
+            "left": "q",
+            "right": "p",
+            "forward": "unresolved",
+            "reverse": "not_distinguished",
+            "differs": true
+          },
+          {
+            "left": "q",
+            "right": "q",
+            "forward": "inadmissible",
+            "reverse": "inadmissible",
+            "differs": false
+          },
+          {
+            "left": "q",
+            "right": "r",
+            "forward": "distinguished",
+            "reverse": "not_distinguished",
+            "differs": true
+          },
+          {
+            "left": "r",
+            "right": "p",
+            "forward": "distinguished",
+            "reverse": "unresolved",
+            "differs": true
+          },
+          {
+            "left": "r",
+            "right": "q",
+            "forward": "not_distinguished",
+            "reverse": "distinguished",
+            "differs": true
+          },
+          {
+            "left": "r",
+            "right": "r",
+            "forward": "unresolved",
+            "reverse": "unresolved",
+            "differs": false
+          }
+        ],
+        "directional_ordered_pairs": 6
+      },
+      "exploration": {
+        "candidate_count": 36,
+        "implemented_count": 36,
+        "parked_unimplemented_count": 0,
+        "candidate_results": [
+          {
+            "id": "partial_relation__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 3
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "finite_transducer__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 1,
+              "transitions": 3,
+              "roundtrip_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "directed_graph__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "graph_vertices",
+              "labeled_edges",
+              "persistent_state_identity",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 1,
+              "labeled_edges": 3,
+              "path_readout_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "local_rewrite_rules",
+              "rewrite_sites",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 1,
+              "ordered_rewrite_rules": 3,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "ring_checkerboard__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 2,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 3,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "complex_density__memory_0__binary2",
+            "memory_depth": 0,
+            "outcome_mode": "binary2",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "measurement_rule",
+              "normalization",
+              "operator_algebra",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 3,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 2,
+                "not_distinguished": 1
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "partial_relation__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 3
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "finite_transducer__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 1,
+              "transitions": 3,
+              "roundtrip_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "directed_graph__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "graph_vertices",
+              "labeled_edges",
+              "persistent_state_identity",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 1,
+              "labeled_edges": 3,
+              "path_readout_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "local_rewrite_rules",
+              "rewrite_sites",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 1,
+              "ordered_rewrite_rules": 3,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "ring_checkerboard__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 2,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 3,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "complex_density__memory_0__partial4",
+            "memory_depth": 0,
+            "outcome_mode": "partial4",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "measurement_rule",
+              "normalization",
+              "operator_algebra",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 783,
+            "representation_cells": 3,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 3,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 2,
+                "not_distinguished": 1,
+                "unresolved": 0,
+                "inadmissible": 0
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "partial_relation__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "one_step_history",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 9
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "finite_transducer__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 3,
+              "transitions": 9,
+              "roundtrip_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "directed_graph__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "graph_vertices",
+              "labeled_edges",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 3,
+              "labeled_edges": 9,
+              "path_readout_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "local_rewrite_rules",
+              "one_step_history",
+              "rewrite_sites",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 3,
+              "ordered_rewrite_rules": 9,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "ring_checkerboard__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "one_step_history",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 6,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 9,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "complex_density__memory_1__binary2",
+            "memory_depth": 1,
+            "outcome_mode": "binary2",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "measurement_rule",
+              "normalization",
+              "one_step_history",
+              "operator_algebra",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 9,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 8,
+                "not_distinguished": 1
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "partial_relation__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 9
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "finite_transducer__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 3,
+              "transitions": 9,
+              "roundtrip_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "directed_graph__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "graph_vertices",
+              "labeled_edges",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 3,
+              "labeled_edges": 9,
+              "path_readout_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "local_rewrite_rules",
+              "one_step_history",
+              "rewrite_sites",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 3,
+              "ordered_rewrite_rules": 9,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "ring_checkerboard__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 6,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 9,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "complex_density__memory_1__partial4",
+            "memory_depth": 1,
+            "outcome_mode": "partial4",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "measurement_rule",
+              "normalization",
+              "one_step_history",
+              "operator_algebra",
+              "supplied_ordered_update"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 54,
+            "merged_distinction_pairs": 243,
+            "representation_cells": 9,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 9,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 8,
+                "not_distinguished": 1,
+                "unresolved": 0,
+                "inadmissible": 0
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "partial_relation__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "one_step_history",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 39,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 27
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "finite_transducer__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 39,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 9,
+              "transitions": 27,
+              "roundtrip_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "directed_graph__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "graph_vertices",
+              "labeled_edges",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 39,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 9,
+              "labeled_edges": 27,
+              "path_readout_checked": true
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "finite_event_syntax",
+              "local_rewrite_rules",
+              "one_step_history",
+              "rewrite_sites",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 39,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 9,
+              "ordered_rewrite_rules": 27,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "ring_checkerboard__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "one_step_history",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 39,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 18,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 27,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "complex_density__memory_2__binary2",
+            "memory_depth": 2,
+            "outcome_mode": "binary2",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "binary_totalization",
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "measurement_rule",
+              "normalization",
+              "one_step_history",
+              "operator_algebra",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "KILLED_INADEQUATE",
+            "fit_errors": 39,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 27,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 21,
+                "not_distinguished": 6
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "merges or mis-types observed distinctions"
+          },
+          {
+            "id": "partial_relation__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "partial_relation",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "partial_relation",
+              "table_cells": 27
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "finite_transducer__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "finite_transducer",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "transition_machine",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "finite_transducer",
+              "states": 9,
+              "transitions": 27,
+              "roundtrip_checked": true
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "directed_graph__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "directed_graph",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "graph_vertices",
+              "labeled_edges",
+              "one_step_history",
+              "persistent_state_identity",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "directed_graph",
+              "nodes": 9,
+              "labeled_edges": 27,
+              "path_readout_checked": true
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "asynchronous_rewrite__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "asynchronous_rewrite",
+            "implemented": true,
+            "assumptions": [
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "local_rewrite_rules",
+              "one_step_history",
+              "rewrite_sites",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "asynchronous_rewrite",
+              "finite_local_states": 9,
+              "ordered_rewrite_rules": 27,
+              "asynchronous_step_roundtrip_checked": true,
+              "ceiling": "finite encoding; no claim that locality is forced"
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "ring_checkerboard__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "ring_checkerboard",
+            "implemented": true,
+            "assumptions": [
+              "cell_identity",
+              "cyclic_adjacency",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "one_step_history",
+              "parity_partition",
+              "supplied_ordered_update",
+              "synchronous_schedule",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "ring_checkerboard",
+              "ring_sites": 18,
+              "checkerboard_phases": 2,
+              "encoded_transition_rules": 27,
+              "finite_schedule_roundtrip_checked": true,
+              "ceiling": "encoding witness only; lower-level emergence from homogeneous local rules remains open"
+            },
+            "reason": "preserves every finite observation"
+          },
+          {
+            "id": "complex_density__memory_2__partial4",
+            "memory_depth": 2,
+            "outcome_mode": "partial4",
+            "carrier": "complex_density",
+            "implemented": true,
+            "assumptions": [
+              "complex_vector_space",
+              "density_representation",
+              "finite_event_syntax",
+              "four_status_partial_outcome",
+              "measurement_rule",
+              "normalization",
+              "one_step_history",
+              "operator_algebra",
+              "supplied_ordered_update",
+              "two_step_history"
+            ],
+            "status": "SURVIVOR",
+            "fit_errors": 0,
+            "merged_distinction_pairs": 0,
+            "representation_cells": 27,
+            "representation": {
+              "kind": "complex_density",
+              "hilbert_dimension": 27,
+              "diagonal_density_embedding": true,
+              "diagonal_effect_support": {
+                "distinguished": 8,
+                "not_distinguished": 6,
+                "unresolved": 7,
+                "inadmissible": 6
+              },
+              "born_readout_exact_on_all_keys": true,
+              "coherence_used": false,
+              "ceiling": "classical diagonal encoding; no quantum necessity or advantage"
+            },
+            "reason": "preserves every finite observation"
+          }
+        ],
+        "gradient_hypotheses": [
+          {
+            "id": "g_partition_conflict",
+            "kind": "partition_conflict_mass",
+            "origin": "endogenous",
+            "interpretation": "distinction demand left merged by the current presentation",
+            "before": 54.0,
+            "after": 0.0,
+            "directed_delta": 54.0,
+            "commuting_control_delta": 0.0,
+            "relabel_delta": 54.0,
+            "status": "DRIVE_SURVIVOR",
+            "kill_reasons": []
+          },
+          {
+            "id": "g_merged_pairs",
+            "kind": "merged_distinction_pairs",
+            "origin": "endogenous",
+            "interpretation": "pairwise distinctions erased by the current presentation",
+            "before": 243.0,
+            "after": 0.0,
+            "directed_delta": 243.0,
+            "commuting_control_delta": 0.0,
+            "relabel_delta": 243.0,
+            "status": "DRIVE_SURVIVOR",
+            "kill_reasons": []
+          },
+          {
+            "id": "g_outcome_entropy",
+            "kind": "outcome_shannon_entropy",
+            "origin": "endogenous",
+            "interpretation": "outcome-distribution entropy, tested rather than presumed as the drive",
+            "before": 1.3788732731316424,
+            "after": 1.3788732731316424,
+            "directed_delta": 0.0,
+            "commuting_control_delta": 0.0,
+            "relabel_delta": 0.0,
+            "status": "KILLED_AS_DRIVE",
+            "kill_reasons": [
+              "no positive coupling to the active lost distinction"
+            ]
+          },
+          {
+            "id": "g_representation_cells",
+            "kind": "representation_cells",
+            "origin": "endogenous",
+            "interpretation": "model size, tested as a possible gradient rather than conflated with MSS",
+            "before": 9.0,
+            "after": 27.0,
+            "directed_delta": -18.0,
+            "commuting_control_delta": -18.0,
+            "relabel_delta": -18.0,
+            "status": "KILLED_AS_DRIVE",
+            "kill_reasons": [
+              "no positive coupling to the active lost distinction",
+              "persists when the order-dependence source is erased"
+            ]
+          },
+          {
+            "id": "g_injected_constant",
+            "kind": "injected_constant",
+            "origin": "injected",
+            "interpretation": "external score control",
+            "before": 1.0,
+            "after": 1.0,
+            "directed_delta": 0.0,
+            "commuting_control_delta": 0.0,
+            "relabel_delta": 0.0,
+            "status": "KILLED_AS_DRIVE",
+            "kill_reasons": [
+              "no positive coupling to the active lost distinction",
+              "declared external score rather than an observed surface contrast"
+            ]
+          },
+          {
+            "id": "g_label_code",
+            "kind": "label_code_score",
+            "origin": "endogenous",
+            "interpretation": "deliberately label-sensitive negative",
+            "before": 3051.0,
+            "after": 9153.0,
+            "directed_delta": -6102.0,
+            "commuting_control_delta": -6102.0,
+            "relabel_delta": -30834.0,
+            "status": "KILLED_AS_DRIVE",
+            "kill_reasons": [
+              "no positive coupling to the active lost distinction",
+              "changes under admissible probe relabeling",
+              "persists when the order-dependence source is erased"
+            ]
+          }
+        ],
+        "probe_relabel_map": {
+          "p": "mark_2",
+          "q": "mark_1",
+          "r": "mark_0"
+        },
+        "search_globally_exhausted": false
+      },
+      "gate": {
+        "baseline_candidate": "partial_relation__memory_1__partial4",
+        "baseline_errors": 54,
+        "target_candidate": "partial_relation__memory_2__partial4",
+        "target_errors": 0,
+        "survivors": [
+          "asynchronous_rewrite__memory_2__partial4",
+          "complex_density__memory_2__partial4",
+          "directed_graph__memory_2__partial4",
+          "finite_transducer__memory_2__partial4",
+          "partial_relation__memory_2__partial4",
+          "ring_checkerboard__memory_2__partial4"
+        ],
+        "minimal_survivor_frontier": [
+          "partial_relation__memory_2__partial4"
+        ],
+        "weakness_edges": [
+          {
+            "weaker": "partial_relation__memory_2__partial4",
+            "stronger": "finite_transducer__memory_2__partial4",
+            "witness": [
+              "persistent_state_identity",
+              "transition_machine"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_2__partial4",
+            "stronger": "directed_graph__memory_2__partial4",
+            "witness": [
+              "graph_vertices",
+              "labeled_edges",
+              "persistent_state_identity"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_2__partial4",
+            "stronger": "asynchronous_rewrite__memory_2__partial4",
+            "witness": [
+              "local_rewrite_rules",
+              "rewrite_sites"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_2__partial4",
+            "stronger": "ring_checkerboard__memory_2__partial4",
+            "witness": [
+              "cell_identity",
+              "cyclic_adjacency",
+              "parity_partition",
+              "synchronous_schedule"
+            ]
+          },
+          {
+            "weaker": "partial_relation__memory_2__partial4",
+            "stronger": "complex_density__memory_2__partial4",
+            "witness": [
+              "complex_vector_space",
+              "density_representation",
+              "measurement_rule",
+              "normalization",
+              "operator_algebra"
+            ]
+          }
+        ],
+        "drive_survivors": [
+          "g_partition_conflict",
+          "g_merged_pairs"
+        ],
+        "controls": [
+          {
+            "id": "lower_structure_active_failure",
+            "predicted": "the immediately weaker history depth loses at least one active distinction",
+            "observed": 54,
+            "passed": true
+          },
+          {
+            "id": "anti_by_construction_commuting_flip",
+            "predicted": "after erasing order dependence, the weaker structure becomes adequate",
+            "observed": 0,
+            "passed": true
+          },
+          {
+            "id": "probe_relabel_invariance",
+            "predicted": "renaming presentation marks leaves target adequacy unchanged",
+            "observed": 0,
+            "passed": true
+          },
+          {
+            "id": "partiality_flip",
+            "predicted": "if four-status observations are actually collapsed, the binary candidate becomes adequate",
+            "observed": 0,
+            "passed": true
+          },
+          {
+            "id": "carrier_ornament_control",
+            "predicted": "a carrier-free partial relation remains adequate, so richer carriers are not required",
+            "observed": 0,
+            "passed": true
+          }
+        ],
+        "status": "PROVISIONAL_TOOTH_WITHIN_PACKET"
+      },
+      "receipt": {
+        "what_was_provisionally_earned": [
+          "history depth 2 is load-bearing for this finite distinction surface",
+          "four-status partial outcomes remain load-bearing on the active surface"
+        ],
+        "what_was_killed": [
+          "partial_relation__memory_0__binary2",
+          "finite_transducer__memory_0__binary2",
+          "directed_graph__memory_0__binary2",
+          "asynchronous_rewrite__memory_0__binary2",
+          "ring_checkerboard__memory_0__binary2",
+          "complex_density__memory_0__binary2",
+          "partial_relation__memory_0__partial4",
+          "finite_transducer__memory_0__partial4",
+          "directed_graph__memory_0__partial4",
+          "asynchronous_rewrite__memory_0__partial4",
+          "ring_checkerboard__memory_0__partial4",
+          "complex_density__memory_0__partial4",
+          "partial_relation__memory_1__binary2",
+          "finite_transducer__memory_1__binary2",
+          "directed_graph__memory_1__binary2",
+          "asynchronous_rewrite__memory_1__binary2",
+          "ring_checkerboard__memory_1__binary2",
+          "complex_density__memory_1__binary2",
+          "partial_relation__memory_1__partial4",
+          "finite_transducer__memory_1__partial4",
+          "directed_graph__memory_1__partial4",
+          "asynchronous_rewrite__memory_1__partial4",
+          "ring_checkerboard__memory_1__partial4",
+          "complex_density__memory_1__partial4",
+          "partial_relation__memory_2__binary2",
+          "finite_transducer__memory_2__binary2",
+          "directed_graph__memory_2__binary2",
+          "asynchronous_rewrite__memory_2__binary2",
+          "ring_checkerboard__memory_2__binary2",
+          "complex_density__memory_2__binary2"
+        ],
+        "what_was_parked": [],
+        "projection_back_down": "erase the oldest load-bearing history coordinate",
+        "residual_exposed_by_projection": "previously distinct ordered observations merge",
+        "claim_ceiling": "formal_finite_packet_provisional",
+        "self_promotes_to_physical_model": false
+      }
+    }
+  ],
+  "summary": {
+    "gates_run": 2,
+    "provisional_teeth": 2,
+    "teeth": [
+      "G0_one_step_order",
+      "G1_two_step_order"
+    ],
+    "scientific_manifold_layers_admitted": 0,
+    "global_search_exhausted": false,
+    "run_boundary": "FINITE_BUDGET_REACHED__SEARCH_AND_REOPENING_REMAIN_ACTIVE",
+    "terminal_hold_asserted": false
+  },
+  "open_dig_queue": [
+    "challenge the diagonal complex-density embedding with a distinction that genuinely requires coherence",
+    "derive or kill ring-checkerboard dynamics from homogeneous local rules rather than the shipped encoding compiler",
+    "generate non-scalar and order-valued gradient hypotheses",
+    "replace generated finite observation surfaces with external or lower-level empirical distinction records",
+    "replace the finite asynchronous-rewrite encoding with rival local-rule families and test whether locality compresses held-out observations",
+    "run entropy-geometry co-view digging without preselecting Shannon, von Neumann, or BKM",
+    "run object/equivalence/quotient digging on the surviving partial history relation",
+    "search alternative weakness preorders rather than treating assumption inclusion as final"
+  ],
+  "status": "RUN_COMPLETE_WITH_OPEN_DIG_QUEUE"
+}

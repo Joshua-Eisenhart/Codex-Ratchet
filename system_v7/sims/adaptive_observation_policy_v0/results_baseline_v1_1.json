@@ -1,0 +1,1174 @@
+{
+  "TOOL_INTEGRATION_DEPTH": null,
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "This is a finite pure-Python scratch control; standard-library random, JSON, hashing, and enumeration implement the declared deterministic search receipt.",
+      "used": true
+    }
+  },
+  "arena": {
+    "candidate_count": 40,
+    "description": "Seed-0 sample of 40 distinct ECA rule numbers; periodic width-8 states and structural observation triples.",
+    "name": "eca_seeded_k40",
+    "query_budget": 5,
+    "query_pool_count": 128,
+    "rng_seed": 0,
+    "unidentified_query_value": 6
+  },
+  "claim_ceiling": {
+    "allowed": "same-seeded-arena baseline comparison only",
+    "blocked_consumers": [
+      "global fixed-schedule optimality claims",
+      "promotion or admission claims",
+      "cross-seed or cross-arena generalization claims"
+    ]
+  },
+  "classification": "scratch_diagnostic",
+  "comparison": {
+    "A_star_minus_B_mean_queries": -0.025000000000000355,
+    "B_minus_A_star_ident_rate": 0.07499999999999996,
+    "honest_verdict": "On this single seeded ECA arena and bounded non-exhaustive search, B has higher identification rate (B=0.600000, A*=0.525000) but A* has lower mean queries; this is an identification/query tradeoff, not an unqualified adaptive advantage.",
+    "primary_comparison_metric": "ident_rate",
+    "verdict_code": "identification_query_tradeoff_no_unqualified_advantage"
+  },
+  "determinism_hash": "6d6b42255d70ec2ade7a43bef30a637cdbc2f5b305580591587a7c4f7864a89c",
+  "divergence_log": [
+    "The former greedy A baseline is retained for provenance only; A* is the control used in the adaptive comparison."
+  ],
+  "policies": {
+    "adaptive_B": {
+      "metrics": {
+        "ident_rate": 0.6,
+        "identified_count": 24,
+        "max_queries": 6,
+        "mean_queries": 5.4,
+        "query_total": 216,
+        "unidentified_query_value": 6
+      }
+    },
+    "best_found_fixed_A_star": {
+      "fixed_queries": [
+        {
+          "cell_index": 4,
+          "initial_config_index": 1,
+          "time_step": 4
+        },
+        {
+          "cell_index": 6,
+          "initial_config_index": 2,
+          "time_step": 1
+        },
+        {
+          "cell_index": 7,
+          "initial_config_index": 1,
+          "time_step": 3
+        },
+        {
+          "cell_index": 4,
+          "initial_config_index": 3,
+          "time_step": 2
+        },
+        {
+          "cell_index": 1,
+          "initial_config_index": 2,
+          "time_step": 1
+        }
+      ],
+      "fixed_query_indices": [
+        51,
+        88,
+        62,
+        113,
+        68
+      ],
+      "metrics": {
+        "ident_rate": 0.525,
+        "identified_count": 21,
+        "max_queries": 6,
+        "mean_queries": 5.375,
+        "query_total": 215,
+        "unidentified_query_value": 6
+      }
+    },
+    "old_A_provenance": {
+      "fixed_queries": [
+        {
+          "cell_index": 1,
+          "initial_config_index": 3,
+          "time_step": 2
+        },
+        {
+          "cell_index": 3,
+          "initial_config_index": 3,
+          "time_step": 2
+        },
+        {
+          "cell_index": 0,
+          "initial_config_index": 3,
+          "time_step": 1
+        },
+        {
+          "cell_index": 0,
+          "initial_config_index": 0,
+          "time_step": 1
+        },
+        {
+          "cell_index": 0,
+          "initial_config_index": 0,
+          "time_step": 2
+        }
+      ],
+      "fixed_query_indices": [
+        101,
+        109,
+        96,
+        0,
+        1
+      ],
+      "metrics": {
+        "ident_rate": 0.1,
+        "identified_count": 4,
+        "max_queries": 6,
+        "mean_queries": 5.85,
+        "query_total": 234,
+        "unidentified_query_value": 6
+      }
+    }
+  },
+  "policy_definitions": {
+    "A_old": "run.py's shipped greedy fixed schedule; provenance only, not treated as the best fixed baseline",
+    "A_star": "best-found fixed ordered distinct schedule from the declared same-arena search",
+    "B": "run.py's adaptive current-version-space greedy policy"
+  },
+  "promotion_allowed": false,
+  "schema": "adaptive_observation_policy_baseline_v1",
+  "search": {
+    "best_fixed_status": "best_found_not_proven_global",
+    "best_random_schedule_before_local_search": {
+      "fixed_queries": [
+        {
+          "cell_index": 6,
+          "initial_config_index": 2,
+          "time_step": 1
+        },
+        {
+          "cell_index": 5,
+          "initial_config_index": 3,
+          "time_step": 1
+        },
+        {
+          "cell_index": 1,
+          "initial_config_index": 1,
+          "time_step": 1
+        },
+        {
+          "cell_index": 0,
+          "initial_config_index": 3,
+          "time_step": 1
+        },
+        {
+          "cell_index": 3,
+          "initial_config_index": 3,
+          "time_step": 1
+        }
+      ],
+      "fixed_query_indices": [
+        88,
+        116,
+        36,
+        96,
+        108
+      ],
+      "metrics": {
+        "ident_rate": 0.5,
+        "identified_count": 20,
+        "max_queries": 6,
+        "mean_queries": 5.4,
+        "query_total": 216,
+        "unidentified_query_value": 6
+      }
+    },
+    "evaluated_schedule_digest": "1e7d97ebf9053556a94443b28689bc9262a31fce839139af83e8c8c8aafd89fa",
+    "exhaustive": false,
+    "exhaustive_threshold": 1000000,
+    "local_max_passes_per_seed": 3,
+    "local_neighbor_definition": "one query replacement plus one schedule-order swap",
+    "local_neighbor_lookups": 22500,
+    "local_search_trace_digest": "1f962791b156bea6c7eea492216b5f5f0ebf72282c0796879c26b43a2405f25e",
+    "local_search_traces": [
+      {
+        "final_schedule": [
+          36,
+          64,
+          116,
+          96,
+          108
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.4,
+              "query_total": 216,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              36,
+              116,
+              88,
+              96,
+              108
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.4,
+              "query_total": 216,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              36,
+              88,
+              116,
+              96,
+              108
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 624
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.4,
+              "query_total": 216,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              36,
+              64,
+              116,
+              96,
+              108
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 622
+          }
+        ],
+        "seed_schedule": [
+          88,
+          116,
+          36,
+          96,
+          108
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          32,
+          41,
+          122,
+          80,
+          48
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.4,
+              "query_total": 216,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              48,
+              41,
+              122,
+              80,
+              76
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              76,
+              41,
+              122,
+              80,
+              48
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 502
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              32,
+              41,
+              122,
+              80,
+              48
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 623
+          }
+        ],
+        "seed_schedule": [
+          48,
+          104,
+          122,
+          80,
+          76
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          0,
+          66,
+          98,
+          36,
+          124
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.425,
+              "query_total": 217,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              0,
+              90,
+              98,
+              120,
+              124
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.425,
+              "query_total": 217,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              0,
+              66,
+              98,
+              120,
+              124
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 502
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.425,
+              "query_total": 217,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              0,
+              66,
+              98,
+              36,
+              124
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 501
+          }
+        ],
+        "seed_schedule": [
+          50,
+          90,
+          98,
+          120,
+          124
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          64,
+          84,
+          122,
+          50,
+          41
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.4,
+              "query_total": 216,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              80,
+              84,
+              50,
+              122,
+              41
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              80,
+              84,
+              122,
+              50,
+              41
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 502
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              64,
+              84,
+              122,
+              50,
+              41
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 623
+          }
+        ],
+        "seed_schedule": [
+          80,
+          84,
+          50,
+          122,
+          36
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          57,
+          32,
+          96,
+          121,
+          62
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              121,
+              92,
+              96,
+              57,
+              62
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              57,
+              92,
+              96,
+              121,
+              62
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 624
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              57,
+              32,
+              96,
+              121,
+              62
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 622
+          }
+        ],
+        "seed_schedule": [
+          121,
+          92,
+          96,
+          62,
+          57
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          51,
+          88,
+          62,
+          113,
+          68
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.525,
+              "identified_count": 21,
+              "max_queries": 6,
+              "mean_queries": 5.425,
+              "query_total": 217,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              62,
+              88,
+              68,
+              113,
+              51
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.525,
+              "identified_count": 21,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              62,
+              88,
+              51,
+              113,
+              68
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 502
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.525,
+              "identified_count": 21,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              51,
+              88,
+              62,
+              113,
+              68
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 623
+          }
+        ],
+        "seed_schedule": [
+          24,
+          88,
+          68,
+          113,
+          51
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          51,
+          97,
+          64,
+          62,
+          84
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.525,
+              "identified_count": 21,
+              "max_queries": 6,
+              "mean_queries": 5.425,
+              "query_total": 217,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              64,
+              97,
+              84,
+              62,
+              51
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.525,
+              "identified_count": 21,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              64,
+              97,
+              51,
+              62,
+              84
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 502
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.525,
+              "identified_count": 21,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              51,
+              97,
+              64,
+              62,
+              84
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 623
+          }
+        ],
+        "seed_schedule": [
+          64,
+          97,
+          84,
+          6,
+          51
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          32,
+          72,
+          122,
+          16,
+          41
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.4,
+              "query_total": 216,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              41,
+              72,
+              32,
+              16,
+              122
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              122,
+              72,
+              32,
+              16,
+              41
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 502
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.5,
+              "identified_count": 20,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              32,
+              72,
+              122,
+              16,
+              41
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 622
+          }
+        ],
+        "seed_schedule": [
+          120,
+          72,
+          32,
+          16,
+          122
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          62,
+          68,
+          72,
+          105,
+          59
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              72,
+              105,
+              62,
+              68,
+              59
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              62,
+              105,
+              72,
+              68,
+              59
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 502
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              62,
+              68,
+              72,
+              105,
+              59
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 623
+          }
+        ],
+        "seed_schedule": [
+          72,
+          105,
+          62,
+          68,
+          49
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          32,
+          97,
+          100,
+          36,
+          82
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.45,
+              "identified_count": 18,
+              "max_queries": 6,
+              "mean_queries": 5.4,
+              "query_total": 216,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              32,
+              97,
+              116,
+              120,
+              82
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.45,
+              "identified_count": 18,
+              "max_queries": 6,
+              "mean_queries": 5.4,
+              "query_total": 216,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              32,
+              97,
+              100,
+              120,
+              82
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 624
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.45,
+              "identified_count": 18,
+              "max_queries": 6,
+              "mean_queries": 5.4,
+              "query_total": 216,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              32,
+              97,
+              100,
+              36,
+              82
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 501
+          }
+        ],
+        "seed_schedule": [
+          120,
+          97,
+          116,
+          32,
+          82
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          0,
+          119,
+          100,
+          121,
+          46
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.45,
+              "identified_count": 18,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              119,
+              28,
+              100,
+              121,
+              46
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.45,
+              "identified_count": 18,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              28,
+              119,
+              100,
+              121,
+              46
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 624
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.45,
+              "identified_count": 18,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              0,
+              119,
+              100,
+              121,
+              46
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 622
+          }
+        ],
+        "seed_schedule": [
+          46,
+          28,
+          100,
+          121,
+          119
+        ],
+        "termination": "local_pass_cap_reached"
+      },
+      {
+        "final_schedule": [
+          33,
+          34,
+          101,
+          62,
+          98
+        ],
+        "passes": [
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.4,
+              "query_total": 216,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              62,
+              34,
+              101,
+              98,
+              33
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 625
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              62,
+              34,
+              101,
+              33,
+              98
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 502
+          },
+          {
+            "best_metrics_after_pass": {
+              "ident_rate": 0.475,
+              "identified_count": 19,
+              "max_queries": 6,
+              "mean_queries": 5.375,
+              "query_total": 215,
+              "unidentified_query_value": 6
+            },
+            "best_schedule_after_pass": [
+              33,
+              34,
+              101,
+              62,
+              98
+            ],
+            "improved": true,
+            "neighbor_lookups": 625,
+            "new_unique_evaluations": 623
+          }
+        ],
+        "seed_schedule": [
+          62,
+          90,
+          101,
+          98,
+          33
+        ],
+        "termination": "local_pass_cap_reached"
+      }
+    ],
+    "local_seed_count": 12,
+    "local_unique_evaluations": 21240,
+    "method": "seeded_random_plus_best_improvement_local_search",
+    "minimum_random_unique_schedules_required": 100000,
+    "objective": [
+      "maximize identified_count",
+      "minimize total_queries_to_identification",
+      "minimize max_queries",
+      "lexicographically minimize ordered schedule"
+    ],
+    "random_unique_schedules": 100000,
+    "rng_seed": 0,
+    "schedule_definition": "ordered distinct fixed five-query schedule; order affects mean_queries and repeated queries are weakly dominated",
+    "schedule_space_size": 31747968000,
+    "unique_schedules_evaluated": 121240
+  },
+  "sim_id": "adaptive_observation_policy_v0",
+  "source": {
+    "imported_execution_functions": [
+      "run_fixed_policy",
+      "run_adaptive_policy",
+      "choose_fixed_prior_queries",
+      "make_eca_arena"
+    ],
+    "run_py_sha256": "7f8984c75898ed1de2c5ee12621ea1526a1e663e6f8daaec84bb96c51e7aaf67"
+  }
+}

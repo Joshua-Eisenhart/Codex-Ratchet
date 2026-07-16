@@ -112,11 +112,11 @@ def main() -> int:
         "generated_at": dt.datetime.now(dt.UTC).isoformat(),
         "current_v8_source": {
             "root": str(ROOT),
-            "base_commit": current_head,
-            "base_tree": current_tree,
+            "source_head": current_head,
+            "source_tree": current_tree,
             "worktree_clean": not worktree_status,
             "worktree_status_row_count": len(worktree_status),
-            "new_packet_is_source_hash_bound_not_yet_commit_bound": True
+            "inventory_self_commit_binding": "not_claimed"
         },
         "authority": {
             "roster": {"path": str(ROSTER_PATH.relative_to(ROOT)), "sha256": sha256(ROSTER_PATH), "tool_count": len(tools)},
@@ -136,7 +136,7 @@ def main() -> int:
     lines = [
         "# V8 Sim Engine, Library, Tool, Repo, and Code State",
         "",
-        f"Generated in an isolated worktree based on commit `{current_head}`. The new packet is bound by per-source hashes and is not yet commit-bound. This is an inventory and scratch-tooth report, not launch authority.",
+        f"Generated from the isolated integration-repair branch at source head `{current_head}`. The inventory binds its named sources but does not claim a self-referential final commit. It is status evidence, not launch authority.",
         "",
         "## Outcome",
         "",

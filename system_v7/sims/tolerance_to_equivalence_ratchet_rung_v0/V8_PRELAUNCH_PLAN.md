@@ -2,74 +2,139 @@
 
 ## Current decision
 
-Keep the Ratchet state OPEN and launch state BLOCKED. V0 demonstrates finite
-closure, solver, and receipt mechanics, but its drive is fixture-designed, MSS
-does not select the proposal, and no held-out estate or persistent pawl exists.
-Proceed through the sealed v1 semantic-forcing preregistration; do not repair
-v0 into a tooth by finishing G10.
+Keep the Ratchet state `OPEN` and official launch `BLOCKED`. V0 is a useful
+finite pair-collapse-loss harness, but the positive case is fixture-designed,
+MSS does not choose the proposal, and held-out semantic forcing plus a
+persistent pawl are absent. A Lev replay, legacy GateProof, ProofBundle, model,
+council, or prose report cannot change that result.
 
-## Phase 1 — seal the existing scratch tooth
+## Phase 0 — preserve the v0 red
 
-1. Review this isolated packet and commit it without mixing the dirty owner checkout.
-2. Rerun from the exact clean commit/tree with checked-in dependency locks.
-3. Bind Git commit/tree, remote identity, cwd, absolute executables, executable hashes, platform, runtime flags, package/Manifest fingerprints, inputs, commands, outputs, and event ledger.
-4. Add the missing production call to Lev `assembleProofBundle()` and an independent ProofBundle validator/replayer.
-5. Repeat every existing coherent-envelope mutation and independently force each Lev node to fail. No later node may execute after a failure.
+1. Keep the fresh v0 mechanical receipts and semantic audit together.
+2. Require the repo sim-contract linter, independent reconstruction, and
+   mutation checks on every replay.
+3. Keep `semantic_forcing_pass=false`, `decision=HOLD_DESIGNED_SURROGATE`, and
+   the before/after Ratchet state `OPEN`.
+4. Reject any G10 or orchestration artifact that tries to commit v0 after the
+   semantic gate is red.
 
-Exit criterion: one atomic ProofBundle reconstructs G0-G10 from a clean committed tree. Until then, launch stays blocked.
+Exit criterion: the red is reproducible from a clean source commit and every
+launch, admission, promotion, release, and science field remains false.
 
-## Phase 2 — G11 generalization, not fixture theatre
+## Phase 1 — implement the sealed v1 semantic-forcing rung
 
-1. Define a code-level derivation from frozen constrained-distinguishability observations to tolerance edges. Hand-authored edges remain scratch-only.
-2. Preregister multiple relation-generating families, held-out seeds, and both synthetic and real candidate substrates.
-3. Add an independently authored semantic oracle that cannot import production controller/closure code or expected-result fixtures.
-4. Add metamorphic tests: label permutation, duplicate nodes, disjoint unions, edge addition/removal, threshold perturbation, erasure, universal/empty collapse, and adversarial nontransitivity.
-5. Freeze acceptable PASS/HOLD/REJECT rates, non-degeneracy bounds, stability intervals, and failure ceilings before running.
+1. Preserve the P0 seal before adding Julia, JAX, or PyTorch builders.
+2. Generate fact-only instances without decisions, preferred proposals, or
+   proposal-derived demand.
+3. Enumerate every equivalence between the raw tolerance and current
+   equivalence; independently detect an omitted candidate.
+4. Run closed Julia, JAX, and PyTorch/PyG lanes that receive only the frozen
+   instance and cannot read peer results.
+5. Run reverse, null, flat, coarsening, erased-transitivity, demand
+   perturbation, and simultaneous label-permutation controls through the same
+   decision path.
+6. Return the complete Pareto front. Commit only a unique nondominated
+   admissible candidate; a plural front must `HOLD_MSS_AMBIGUOUS`.
+7. After builder hashes freeze, run at least 256 held-out cases over `n=4..8`
+   with commit, flat, counterdirection, invalid, and plural-front outcomes.
+8. Bind measured facts into z3 and cvc5, then require coherent source-level
+   mutations to change or invalidate the corresponding result.
+9. Append a persistent pawl receipt binding before-state, facts, evidence, and
+   after-state hashes. Red leaves the before-state byte-identical; replay is
+   idempotent; rollback and tamper are rejected.
 
-Exit criterion: `G11_GENERALIZATION=true` on held-out inputs, with informative HOLD/red cases preserved. This still does not establish QIT or physics canon.
+Exit criterion: all P0-P12 code gates pass from one clean commit. The ceiling
+is still one finite distinguishability-loss surrogate transition generalized
+over the sealed held-out estate—not QIT, entropy, Axis, terrain, or operators.
 
-## Phase 3 — G12 sealed runtime and finite estate refresh
+## Phase 2 — move Lev gating onto current authority
 
-1. Reconcile the 139-row roster with later unregistered surfaces: Lean4/mathlib, Maude, auto_LiRPA, QICS, ALCO/GAP, physlib, deeptime, PyDMD, and kingdon.
-2. Rerun all 95 operational tool probes and all 29 registered edges against the same launch commit/tree.
-3. Preserve edge semantics: 25 compatibility/co-health witnesses, three independent recomputations, and only one direct value handoff. Do not market 29 integrated pipelines.
-4. Reclassify every tool as import-only, API smoke, function receipt, integrated dataflow, proof discharge, quarantined, missing, or blocked.
-5. Demote decorative solver use, including free-variable contradictions that are not bound to the computed observable.
+1. Treat `EvalDecision` as the only current promotion-facing Lev verdict.
+   `GateProof`, `ProofBundle`, and `proof.yaml` remain historical migration
+   inputs and cannot authorize V8.
+2. Keep monitor evidence bound to the active XDG `runtime.event_log` and exact
+   per-file `artifact.blob`; reject project-local historical fallback paths.
+3. Repair the unresolved FlowMind imports that currently keep the exec
+   typecheck red, then rerun the narrow and full exec/eval suites.
+4. Make the v1 pawl consumer ingest a deterministic `EvalDecision` whose input
+   bindings reconstruct the code-gate result.
+5. Mutation-test empty commands, model adapters, altered exit status,
+   non-fail-closed flows, missing evaluator output, XDG/path substitution, and
+   disagreement between inner and outer verdicts.
 
-Exit criterion: `G12_SEALED_PROVENANCE=true`; current-tree tool, edge, source, runtime, and ProofBundle hashes all replay.
+Exit criterion: a current-schema `EvalDecision` independently validates and
+replays the v1 evidence; no legacy proof object or LLM/provider field can open
+the gate; all relevant Lev suites and typechecks are green.
 
-## Phase 4 — G13 control-plane isolation
+## Phase 3 — refresh the finite sim estate
 
-1. Generate `.codex` and `.agents` Claude bridge surfaces from one canonical manifest; parity-test alias, fallback, timeout, budget, fanout, and receipt behavior.
-2. Fix the zero-Claude-agent inventory expectation or formally remove that expectation; rerun the skill inventory suite.
-3. Reconcile repo/installed parity for JAX, Julia, PyTorch, three-engine, and tool-status skills through reviewed deltas.
-4. Implement provider catalog locks, local rate/token buckets, hard campaign spending ceilings, and post-call overspend quarantine for NVIDIA, xAI, and Claude.
-5. Put model artifacts in advisory-only schemas/directories. Deterministic gate validators reject all provider/model fields.
-6. Mutation-test Lev for empty commands, `lev.exec`, model adapters, `fail_closed:false`, arbitrary red terminals, missing evaluator output, altered exit status, missing ProofBundle, and internal/outer verdict mismatch.
+1. Reconcile the 139-row roster with unregistered Lean4/mathlib, Maude,
+   auto_LiRPA, QICS, ALCO/GAP, physlib, deeptime, PyDMD, and kingdon surfaces.
+2. Rerun all 95 operational probes and 29 registered edges from the same
+   candidate launch commit and locked runtimes.
+3. Preserve edge semantics: 25 compatibility/co-health witnesses, three
+   independent recomputations, and one direct value handoff. Do not describe
+   them as 29 integrated shared-value pipelines.
+4. Classify every tool as missing, blocked, import-only, API smoke, function
+   receipt, integrated dataflow, proof discharge, quarantined, or decorative.
+5. Keep wrong-runtime, stale-tree, missing-boundary, and decorative-solver
+   receipts red even when their local process exits zero.
 
-Exit criterion: `G13_CONTROL_ISOLATION=true`; no LLM/provider artifact can influence a tooth and every known Lev false-green shape blocks.
+Exit criterion: current-tree tool, edge, source, runtime, and result hashes
+replay under one fail-closed estate validator with complete boundary metadata.
 
-## Phase 5 — next scientific rungs
+## Phase 4 — finish skills and provider isolation
 
-Only after G11-G13:
+1. Generate the installed `.codex` and `.agents` Claude bridge copies from one
+   reviewed repo-held source and parity-test both installations.
+2. Keep `fable`, `fable5`, and `fable-5` as a moving alias; pass explicit model
+   identifiers through; accept backend identity only from `modelUsage`.
+3. Rerun Claude live compatibility only as an advisory smoke. Budget stops,
+   auth failures, backend drift, and model output never become gate evidence.
+4. Reconcile JAX, Julia, PyTorch, three-engine, sim-stack, environment, and
+   tool-status skill copies through reviewed source-family deltas.
+5. Supply owner-confirmed account/model quota policies for NVIDIA and xAI,
+   plus local request ledgers and observed rate headers. Unknown quota remains
+   `HOLD`; no universal free-tier limit is invented.
+6. Keep every provider receipt advisory-only with gate, evidence, promotion,
+   admission, release, launch, and science authority false.
 
-1. Run the foundation chain with stable predicate IDs rather than overloaded R0/R1/R2 prose.
-2. Derive constrained distinguishability first, then finite support/probe family, then quotient validity.
-3. Keep the role split literal: constrained distinguishability is root; the declared loss gradient is drive; MSS exposes the plural weakness frontier; controls authorize a bounded tooth; flat gradient is HOLD.
-4. Preserve Julia as canon for QIT-aligned semantics, JAX for batched/exhaustive search, PyTorch/PyG for graph/network falsifiers, and z3/cvc5/Lean/Maude only at their exact proof ceilings.
-5. Defer terrain/operator and Axis promotion until the root and quotient chain is stable and source-derived.
+Exit criterion: installed skill parity is code-verified, advisory routes are
+budgeted and fail closed, and mutations cannot inject any model/provider
+artifact into a deterministic gate.
+
+## Phase 5 — later scientific rungs
+
+Only after Phases 1-4:
+
+1. Derive constrained distinguishability first, then finite support/probe
+   family, quotient validity, and a separately authorized QIT drive.
+2. Keep the role split literal: constrained distinguishability is root; the
+   declared loss gradient is drive; MSS exposes the weakness frontier;
+   controls authorize a bounded tooth; a flat gradient is `HOLD`.
+3. Use Julia for QIT-aligned semantics, JAX for batched/exhaustive search,
+   PyTorch/PyG for graph/network falsifiers, and z3/cvc5/Lean/Maude only at
+   their exact proof ceilings.
+4. Defer entropy, Axis, terrain/operator, cosmology, and cross-domain promotion
+   until their own carriers, bridges, and independent validators exist.
 
 ## Official launch checklist
 
-Official V8 launch is allowed only when all are code-true in one sealed report:
+Official V8 launch is allowed only when one deterministic sealed report shows:
 
-- clean committed owner tree and dependency locks;
-- G0-G10 rerun from that tree;
-- G11 generalization green;
-- G12 sealed provenance and refreshed finite estate green;
-- G13 control-plane isolation green;
-- independently validated Lev ProofBundle present;
-- all release/science fields remain false unless separately earned;
-- no unresolved baseline, skill-parity, provider-budget, or gate-authority red is hidden.
+- a clean candidate commit and locked dependency/runtime fingerprints;
+- v0 red preserved and v1 P0-P12 green on its post-seal estate;
+- the repaired QIT integration gate green at its scratch ceiling;
+- a current-tree 139-row/29-edge estate with complete boundary metadata;
+- a current-schema Lev `EvalDecision` and persistent pawl replay;
+- relevant Lev full suites and typechecks green;
+- installed skill parity green;
+- owner-confirmed provider quota policies while all provider artifacts remain
+  non-gating;
+- every known baseline, semantic, runtime, provenance, skill, and provider red
+  either repaired or explicitly blocking; and
+- top-level schema, command, cwd, runner identity, source/result hashes,
+  `all_pass`, and negative-mutation evidence present.
 
-The launch decision must be a deterministic function of those fields. A council, model, document, or human narrative may recommend work but cannot flip it.
+The launch decision is a deterministic function of those fields. Human or
+model review may select work, but cannot flip the gate.

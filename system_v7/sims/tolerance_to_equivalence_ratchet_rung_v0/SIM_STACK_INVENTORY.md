@@ -1,14 +1,14 @@
 # V8 Sim Engine, Library, Tool, Repo, and Code State
 
-Generated in an isolated worktree based on commit `fe6487de5136d18e7471952a2aa70595cc0f5cf7`. The new packet is bound by per-source hashes and is not yet commit-bound. This is an inventory and scratch-tooth report, not launch authority.
+Generated from the isolated integration-repair branch at source head `f45dfe38aa2a8995ccf775aa417a521e15134e43`. The inventory binds its named sources but does not claim a self-referential final commit. It is status evidence, not launch authority.
 
 ## Outcome
 
 - Finite roster: **139** rows across **10** buckets.
 - Historical estate: **95** operational passes and **29** integration edges, but bound to `576229471147` / tree `c249f58d144f` and stale to V8.
-- Fresh v0 mechanics: G0-G9 rerun locally, but the semantic-forcing audit is red.
-- Ratchet tooth: **NOT EARNED**. Current decision is HOLD_DESIGNED_SURROGATE; state remains OPEN.
-- Official launch: **BLOCKED**. A Lev replay or ProofBundle cannot override the semantic red.
+- Fresh v0 mechanics: **HOLD_DESIGNED_SURROGATE**; mechanical gates green, semantic forcing red.
+- Ratchet tooth: **NOT EARNED**. G10 or a ProofBundle cannot override the semantic red.
+- Official launch: **BLOCKED**.
 
 ## Bucket Counts
 
@@ -229,9 +229,10 @@ Exact IDs: `py_jax_backend`, `py_jax_module_train`, `py_flax_orbax`, `py_probabi
 | Path | Role | Live state | Connection / boundary |
 |---|---|---|---|
 | `/Users/joshuaeisenhart/Codex-Ratchet` | active dirty owner checkout | `session/r0-three-engine-probes` `4f3fb20ac839`; dirty 48 tracked + 87 untracked | source repo and parallel R0 work; not the V8 execution tree (live_repo_dirty) |
-| `/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-first-rungs-20260715` | V8 isolated worktree | `codex/v8-first-rungs-20260715` `fe6487de5136`; dirty 0 tracked + 1 untracked | current inventory and first-tooth execution (v8_execution_tree) |
+| `/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/v8-integration-repair-20260715` | current isolated V8 integration-repair worktree | `codex/v8-integration-repair-20260715` `f45dfe38aa2a`; dirty 5 tracked + 1 untracked | QIT integration repair, honest v0 HOLD, sealed v1 preregistration, provider controls, and repo-held skill candidate (current_v8_repair_tree) |
 | `/Users/joshuaeisenhart/lev-main` | active Lev development checkout | `fable/cr-sim-eval-pack` `5f844cb9580e`; dirty 1 tracked + 1 untracked | current process archaeology only; dirty and not the pinned gate runner (live_repo_dirty) |
-| `/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract` | pinned Lev gate executor | `codex/eval-projection-contract` `856acb1a5de4`; clean | deterministic no-model FlowMind G10 replay (pinned_clean_runtime) |
+| `/Users/joshuaeisenhart/.config/superpowers/worktrees/lev-main/v8-monitor-proof-evidence-repair-20260715` | isolated Lev XDG evidence repair | `codex/v8-monitor-proof-evidence-repair-20260715` `a8fe68e6943d`; clean | narrow monitor and legacy proof-bundle evidence repair; transitional because EvalDecision is current authority (transitional_lev_repair) |
+| `/Users/joshuaeisenhart/lev-main/.worktrees/eval-projection-contract` | historical pinned Lev replay executor | `codex/eval-projection-contract` `856acb1a5de4`; clean | old GateProof/G10 replay only; not current EvalDecision authority and cannot override the v0 semantic HOLD (historical_noncurrent_runtime) |
 | `/Users/joshuaeisenhart/wiki` | research and Wizard context | `main` `db038242238a`; dirty 6 tracked + 0 untracked | context/provenance only; not executable canon (research_context) |
 | `/Users/joshuaeisenhart/GitHub/auto_LiRPA` | neural bound oracle | `master` `ca767f1d8c0a`; clean | bounded CROWN/IBP gap-J fixture (external_bounded_oracle) |
 | `/Users/joshuaeisenhart/GitHub/qics` | convex/QIT numerical oracle | `DETACHED` `be18e5ef0725`; clean | isolated QuantRelEntr/Model/Solver receipt (external_supportive_oracle) |
@@ -256,7 +257,8 @@ Exact IDs: `py_jax_backend`, `py_jax_module_train`, `py_flax_orbax`, `py_probabi
 | V8 tolerance-to-equivalence JAX | fresh bounded claim-load-bearing | `run_jax.py plus results/jax_results.json` | x64 vmap census and lax fixed-point closure; scratch only |
 | V8 tolerance-to-equivalence PyTorch/PyG | fresh bounded claim-load-bearing | `run_pytorch.py plus results/pytorch_results.json` | MessagePassing reachability and torch census; scratch only |
 | V8 z3/cvc5 proof pair | fresh bounded proof discharge | `run_proofs.py plus results/proof_results.json` | free Boolean relation variables for four frozen SAT/UNSAT queries only |
-| V8 Lev deterministic gate | fresh orchestration receipt | `results/lev_replay_receipt.json` | four blocking GateProofs pass; ProofBundle absent, evaluator advisory red retained |
+| historical v0 Lev G10 replay | stale orchestration receipt; noncurrent authority | `results/lev_replay_receipt.json` | old GateProof replay cannot override semantic forcing red; current Lev promotion authority is EvalDecision |
+| Lev XDG monitor/proof evidence repair | narrow tests green; transitional HOLD | `/tmp/lev-v8-monitor-proof-evidence-a8fe68e69-20260715/receipt.json` | monitor 4/4, legacy proof-bundle 6/6, eval typecheck green; exec typecheck red and final proof readiness false |
 | deep-stack 139-tool estate | historical function-level estate stale to V8 tree | `system_v5/ops/tooling/deep_stack_stress_20260714/results/deep_stack_estate_lev.json` | 95 operational, 44 policy, 29 edges historically green; projection-only and source-bound to an older commit/tree |
 | Julia R0 distinguishability | stored unbound function receipt | `system_v5/julia_carrier/foundation_r0_distinguishability_julia.jl` | green scratch result lacks source hash |
 | JAX R0 SMT scout | imported in source | `system_v5/ops/formal_scouts/foundation_r0_distinguishability_jax_smt.py` | result absent in inspected V8 tree |
@@ -284,4 +286,4 @@ Exact IDs: `py_jax_backend`, `py_jax_module_train`, `py_flax_orbax`, `py_probabi
 
 ## Launch Boundary
 
-The code has earned exactly one bounded scratch tooth. It has not earned official launch, canonical status, a QIT derivation, terrain/operator promotion, or any cross-domain scientific claim. The next infrastructure blocker is a real runtime caller for `assembleProofBundle()` plus independent bundle validation; the next scientific rung is a broader tolerance/context tournament, not a prose promotion of this fixture.
+V0 has not earned a Ratchet tooth. Its finite mechanics are useful, but semantic forcing, held-out generalization, and a persistent pawl are red. Build the sealed v1 semantic-forcing preregistration before any G10, QIT, Axis, terrain/operator, or launch claim.

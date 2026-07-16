@@ -1,0 +1,1972 @@
+{
+    "schema": "codex_ratchet_julia_core_deep_stress_v1",
+    "created_at": "2026-07-14T09:44:58.007Z",
+    "classification": "integration_diagnostic",
+    "promotion_allowed": false,
+    "scientific_claim_proven": false,
+    "receipt_semantics": "operational package diagnostics only; red rows are preserved; no Ratchet/QIT or downstream science claim is promoted",
+    "active_project": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/julia_carrier/Project.toml",
+    "julia_version": "1.12.6",
+    "load_path": [
+        "@",
+        "@stdlib"
+    ],
+    "julia_load_path_env": "@:@stdlib",
+    "project_sha256": "5d72f15d4a00f9330dffa5923f24c1b47641d35a47d362c99ee6d6110352a038",
+    "manifest_sha256": "a07a59a7e917aebbb70cb3434431dba0b2ea2fcdbc5a70afdda4babf21777296",
+    "source_path": "/Users/joshuaeisenhart/.config/superpowers/worktrees/Codex-Ratchet/deep-stack-stress-20260714/system_v5/ops/tooling/deep_stack_stress_20260714/probes/julia_core_deep_stress.jl",
+    "source_sha256": "3ca14e2e2a310c253401bd1be6b8032d85f357bfe28d2a9b2a3724de93cdf045",
+    "roster": {
+        "declared_direct_nonstdlib": [
+            "Attractors",
+            "ChaosTools",
+            "CliffordAlgebras",
+            "DifferentialEquations",
+            "DynamicalSystems",
+            "Graphs",
+            "Grassmann",
+            "ITensorMPS",
+            "ITensors",
+            "JSON",
+            "JSON3",
+            "Manifolds",
+            "Octonions",
+            "QuantumClifford",
+            "QuantumOptics",
+            "QuantumToolbox",
+            "Quaternions",
+            "StaticArrays",
+            "Symbolics",
+            "Yao",
+            "Z3"
+        ],
+        "expected_direct_nonstdlib": [
+            "Attractors",
+            "ChaosTools",
+            "CliffordAlgebras",
+            "DifferentialEquations",
+            "DynamicalSystems",
+            "Graphs",
+            "Grassmann",
+            "ITensorMPS",
+            "ITensors",
+            "JSON",
+            "JSON3",
+            "Manifolds",
+            "Octonions",
+            "QuantumClifford",
+            "QuantumOptics",
+            "QuantumToolbox",
+            "Quaternions",
+            "StaticArrays",
+            "Symbolics",
+            "Yao",
+            "Z3"
+        ],
+        "declared_matches_expected": true,
+        "row_names": [
+            "Attractors",
+            "ChaosTools",
+            "CliffordAlgebras",
+            "DifferentialEquations",
+            "DynamicalSystems",
+            "Graphs",
+            "Grassmann",
+            "ITensorMPS",
+            "ITensors",
+            "JSON",
+            "JSON3",
+            "Manifolds",
+            "Octonions",
+            "QuantumClifford",
+            "QuantumOptics",
+            "QuantumToolbox",
+            "Quaternions",
+            "StaticArrays",
+            "Symbolics",
+            "Yao",
+            "Z3"
+        ],
+        "rows_match_expected": true,
+        "required_stdlib_support": [
+            "Dates",
+            "LinearAlgebra",
+            "SHA"
+        ],
+        "support_row_names": [
+            "Dates",
+            "LinearAlgebra",
+            "SHA"
+        ],
+        "support_rows_match_expected": true
+    },
+    "summary": {
+        "row_count": 24,
+        "direct_nonstdlib_row_count": 21,
+        "support_row_count": 3,
+        "operational_pass_count": 24,
+        "operational_red_count": 0,
+        "all_operational_pass": true,
+        "trustworthy_receipt_written_even_if_red": true
+    },
+    "rows": [
+        {
+            "package": "Attractors",
+            "role": "current_carrier_member",
+            "independent_engine": true,
+            "kind": "engine",
+            "qualified_api": [
+                "Attractors.AttractorsViaProximity",
+                "Attractors.basins_of_attraction"
+            ],
+            "version": "1.38.4",
+            "import_status": {
+                "pass": true,
+                "version": "1.38.4",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/Attractors/5lQXF/src/Attractors.jl",
+                "error": null,
+                "duration_ms": 2512.828
+            },
+            "positive": {
+                "label": "two fixed-point basins",
+                "pass": true,
+                "expected": "both -1 and +1 attractors are mapped",
+                "observed": {
+                    "labels": [
+                        -1,
+                        1,
+                        2
+                    ],
+                    "attractor_count": 2,
+                    "sample_count": 31
+                },
+                "error": null,
+                "duration_ms": 1803.023
+            },
+            "negative": {
+                "label": "degenerate automatic epsilon",
+                "pass": true,
+                "expected": "a one-point one-attractor mapper rejects automatic epsilon=0",
+                "observed": {
+                    "threw": true,
+                    "error_type": "ArgumentError",
+                    "message": "ArgumentError: Computed `ε = 0` in automatic estimation, probably because there is\na single attractor that also is a single point. Please provide `ε` manually.\n"
+                },
+                "error": null,
+                "duration_ms": 595.54
+            },
+            "boundary": {
+                "label": "separatrix boundary",
+                "pass": true,
+                "expected": "the unstable zero seed is reported as unmapped (-1)",
+                "observed": {
+                    "labels": [
+                        -1,
+                        1,
+                        2
+                    ],
+                    "attractor_count": 2,
+                    "sample_count": 31
+                },
+                "error": null,
+                "duration_ms": 1.228
+            },
+            "stress": {
+                "label": "dense bounded grid",
+                "pass": true,
+                "expected": "81 initial conditions complete with both attractors",
+                "observed": {
+                    "labels": [
+                        -1,
+                        1,
+                        2
+                    ],
+                    "attractor_count": 2,
+                    "sample_count": 81
+                },
+                "error": null,
+                "duration_ms": 1.303
+            },
+            "adjacent_integration_edge": {
+                "label": "DynamicalSystems + StaticArrays edge",
+                "pass": true,
+                "expected": "the mapper consumes a CoupledODEs/SVector system and returns 21 labels",
+                "observed": {
+                    "labels": [
+                        -1,
+                        1,
+                        2
+                    ],
+                    "attractor_count": 2,
+                    "sample_count": 21
+                },
+                "error": null,
+                "duration_ms": 1.032
+            },
+            "demotion_condition": "demote if both known fixed points are not recovered, the invalid one-attractor control is accepted silently, or bounded grid scaling fails",
+            "operational_pass": true
+        },
+        {
+            "package": "ChaosTools",
+            "role": "current_carrier_member",
+            "independent_engine": true,
+            "kind": "engine",
+            "qualified_api": [
+                "ChaosTools.lyapunov"
+            ],
+            "version": "3.5.4",
+            "import_status": {
+                "pass": true,
+                "version": "3.5.4",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/ChaosTools/0SbsT/src/ChaosTools.jl",
+                "error": null,
+                "duration_ms": 347.256
+            },
+            "positive": {
+                "label": "chaotic logistic exponent",
+                "pass": true,
+                "expected": "r=4 has a positive exponent near log(2)",
+                "observed": 0.6957254005824284,
+                "error": null,
+                "duration_ms": 127.181
+            },
+            "negative": {
+                "label": "stable logistic control",
+                "pass": true,
+                "expected": "r=2 has a strictly negative exponent",
+                "observed": -16.706681913236142,
+                "error": null,
+                "duration_ms": 0.119
+            },
+            "boundary": {
+                "label": "neutral logistic boundary",
+                "pass": true,
+                "expected": "r=1 approaches a near-zero exponent",
+                "observed": -0.0035185336665035814,
+                "error": null,
+                "duration_ms": 0.042
+            },
+            "stress": {
+                "label": "long exponent estimate",
+                "pass": true,
+                "expected": "10,000 iterates remain finite and positive",
+                "observed": 0.6931718012008283,
+                "error": null,
+                "duration_ms": 0.28
+            },
+            "adjacent_integration_edge": {
+                "label": "DynamicalSystems tangent edge",
+                "pass": true,
+                "expected": "ChaosTools consumes the live DynamicalSystems object",
+                "observed": {
+                    "samples": 21,
+                    "lyapunov": 0.6912634023424661
+                },
+                "error": null,
+                "duration_ms": 259.679
+            },
+            "demotion_condition": "demote if the chaotic and stable logistic controls do not separate in exponent sign or the long-run estimate is non-finite",
+            "operational_pass": true
+        },
+        {
+            "package": "CliffordAlgebras",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "library",
+            "qualified_api": [
+                "CliffordAlgebras.CliffordAlgebra",
+                "CliffordAlgebras.dimension"
+            ],
+            "version": "0.1.4",
+            "import_status": {
+                "pass": true,
+                "version": "0.1.4",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/CliffordAlgebras/FYhMR/src/CliffordAlgebras.jl",
+                "error": null,
+                "duration_ms": 32.308
+            },
+            "positive": {
+                "label": "Cl(3,0) anticommutation",
+                "pass": true,
+                "expected": "e1^2=1 and e1e2+e2e1=0",
+                "observed": {
+                    "dimension": 8,
+                    "product": "+1×e1e2 ∈ Cl(3, 0, 0)"
+                },
+                "error": null,
+                "duration_ms": 780.882
+            },
+            "negative": {
+                "label": "reversed-order control",
+                "pass": true,
+                "expected": "e1e2 differs from e2e1",
+                "observed": "+2×e1e2 ∈ Cl(3, 0, 0)",
+                "error": null,
+                "duration_ms": 7.354
+            },
+            "boundary": {
+                "label": "scalar identity boundary",
+                "pass": true,
+                "expected": "the scalar unit is multiplicatively neutral",
+                "observed": "+1 ∈ Cl(1, 0, 0)",
+                "error": null,
+                "duration_ms": 202.456
+            },
+            "stress": {
+                "label": "Cl(6,0) relation table",
+                "pass": true,
+                "expected": "all 36 generator pairs satisfy the Clifford relation",
+                "observed": {
+                    "pairs": 36,
+                    "failures": 0
+                },
+                "error": null,
+                "duration_ms": 1489.636
+            },
+            "adjacent_integration_edge": {
+                "label": "Grassmann relation edge",
+                "pass": true,
+                "expected": "both packages produce zero e1/e2 anticommutators",
+                "observed": {
+                    "clifford_zero": true,
+                    "grassmann_zero": true
+                },
+                "error": null,
+                "duration_ms": 0.092
+            },
+            "demotion_condition": "demote if Cl(n,0) generators fail their square/anticommutation relations or disagree with the Grassmann carrier",
+            "operational_pass": true
+        },
+        {
+            "package": "DifferentialEquations",
+            "role": "current_carrier_member",
+            "independent_engine": true,
+            "kind": "engine",
+            "qualified_api": [
+                "DifferentialEquations.ODEProblem",
+                "DifferentialEquations.solve",
+                "DifferentialEquations.EnsembleProblem"
+            ],
+            "version": "8.0.2",
+            "import_status": {
+                "pass": true,
+                "version": "8.0.2",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/DifferentialEquations/sGObi/src/DifferentialEquations.jl",
+                "error": null,
+                "duration_ms": 1031.761
+            },
+            "positive": {
+                "label": "exponential decay",
+                "pass": true,
+                "expected": "u(1) agrees with exp(-1)",
+                "observed": 0.3678794411728579,
+                "error": null,
+                "duration_ms": 436.227
+            },
+            "negative": {
+                "label": "sign-flipped growth control",
+                "pass": true,
+                "expected": "du=+u grows instead of matching decay",
+                "observed": 2.718281708773354,
+                "error": null,
+                "duration_ms": 384.844
+            },
+            "boundary": {
+                "label": "zero timespan boundary",
+                "pass": true,
+                "expected": "a zero-duration solve preserves the initial state",
+                "observed": {
+                    "saved": 1,
+                    "final": [
+                        1
+                    ]
+                },
+                "error": null,
+                "duration_ms": 859.242
+            },
+            "stress": {
+                "label": "threaded ensemble",
+                "pass": true,
+                "expected": "32 trajectories complete",
+                "observed": {
+                    "trajectories": 32,
+                    "flattened_length": 96
+                },
+                "error": null,
+                "duration_ms": 1253.682
+            },
+            "adjacent_integration_edge": {
+                "label": "StaticArrays state edge",
+                "pass": true,
+                "expected": "the solver preserves a two-component SVector state and invariant sum",
+                "observed": [
+                    0.3678794411727773,
+                    0.6321205588272226
+                ],
+                "error": null,
+                "duration_ms": 587.251
+            },
+            "demotion_condition": "demote if decay/growth controls do not separate, zero-span behavior drifts, or the ensemble runner loses trajectories",
+            "operational_pass": true
+        },
+        {
+            "package": "DynamicalSystems",
+            "role": "current_carrier_member",
+            "independent_engine": true,
+            "kind": "engine",
+            "qualified_api": [
+                "DynamicalSystems.DiscreteDynamicalSystem",
+                "DynamicalSystems.trajectory"
+            ],
+            "version": "3.6.8",
+            "import_status": {
+                "pass": true,
+                "version": "3.6.8",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/DynamicalSystems/p4jjA/src/DynamicalSystems.jl",
+                "error": null,
+                "duration_ms": 2170.558
+            },
+            "positive": {
+                "label": "logistic trajectory",
+                "pass": true,
+                "expected": "r=4 trajectory has n+1 bounded samples",
+                "observed": {
+                    "samples": 101,
+                    "extrema": [
+                        0.00024630478163611714,
+                        0.9999384200124961
+                    ]
+                },
+                "error": null,
+                "duration_ms": 38.264
+            },
+            "negative": {
+                "label": "negative length control",
+                "pass": true,
+                "expected": "trajectory rejects a negative iteration count",
+                "observed": {
+                    "threw": true,
+                    "error_type": "BoundsError",
+                    "message": "BoundsError: attempt to access 0-element Vector{StaticArraysCore.SVector{1, Float64}} at index [1]"
+                },
+                "error": null,
+                "duration_ms": 26.631
+            },
+            "boundary": {
+                "label": "zero-length boundary",
+                "pass": true,
+                "expected": "zero steps returns only the initial state at time zero",
+                "observed": {
+                    "points": 1,
+                    "time": 0
+                },
+                "error": null,
+                "duration_ms": 3.943
+            },
+            "stress": {
+                "label": "long discrete trajectory",
+                "pass": true,
+                "expected": "100,001 samples remain finite and bounded",
+                "observed": {
+                    "samples": 100001,
+                    "final": 0.10231638906381137
+                },
+                "error": null,
+                "duration_ms": 24.054
+            },
+            "adjacent_integration_edge": {
+                "label": "ChaosTools exponent edge",
+                "pass": true,
+                "expected": "the same discrete system produces a positive Lyapunov exponent",
+                "observed": 0.6957254005824284,
+                "error": null,
+                "duration_ms": 0.168
+            },
+            "demotion_condition": "demote if discrete trajectories escape their declared map semantics, invalid lengths stop failing, or ChaosTools cannot consume the system",
+            "operational_pass": true
+        },
+        {
+            "package": "Graphs",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "library",
+            "qualified_api": [
+                "Graphs.SimpleGraph",
+                "Graphs.add_edge!",
+                "Graphs.dijkstra_shortest_paths"
+            ],
+            "version": "1.14.0",
+            "import_status": {
+                "pass": true,
+                "version": "1.14.0",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/Graphs/nH2e0/src/Graphs.jl",
+                "error": null,
+                "duration_ms": 0.397
+            },
+            "positive": {
+                "label": "cycle graph invariants",
+                "pass": true,
+                "expected": "a five-cycle has five vertices, five edges, and one component",
+                "observed": {
+                    "vertices": 5,
+                    "edges": 5
+                },
+                "error": null,
+                "duration_ms": 0.063
+            },
+            "negative": {
+                "label": "disconnected control",
+                "pass": true,
+                "expected": "removing a bridge makes two connected components",
+                "observed": [
+                    [
+                        1,
+                        2
+                    ],
+                    [
+                        3,
+                        4
+                    ]
+                ],
+                "error": null,
+                "duration_ms": 1.029
+            },
+            "boundary": {
+                "label": "empty graph boundary",
+                "pass": true,
+                "expected": "a zero-vertex graph has no vertices or edges",
+                "observed": {
+                    "vertices": 0,
+                    "edges": 0
+                },
+                "error": null,
+                "duration_ms": 0
+            },
+            "stress": {
+                "label": "large path graph",
+                "pass": true,
+                "expected": "a 5,000-node path remains connected with distance 4,999",
+                "observed": {
+                    "edges": 4999,
+                    "terminal_distance": 4999
+                },
+                "error": null,
+                "duration_ms": 0.239
+            },
+            "adjacent_integration_edge": {
+                "label": "Z3 coloring edge",
+                "pass": true,
+                "expected": "the graph-derived triangle is 3-colorable but not 2-colorable",
+                "observed": {
+                    "three_colors": "sat",
+                    "two_colors": "unsat"
+                },
+                "error": null,
+                "duration_ms": 53.909
+            },
+            "demotion_condition": "demote if graph invariants, empty-graph boundaries, scale behavior, or graph-derived solver constraints fail",
+            "operational_pass": true
+        },
+        {
+            "package": "Grassmann",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "library",
+            "qualified_api": [
+                "Grassmann.Λ",
+                "Grassmann.wedge"
+            ],
+            "version": "0.8.45",
+            "import_status": {
+                "pass": true,
+                "version": "0.8.45",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/Grassmann/3z3l7/src/Grassmann.jl",
+                "error": null,
+                "duration_ms": 354.967
+            },
+            "positive": {
+                "label": "geometric bivector",
+                "pass": true,
+                "expected": "v1*v2 is nonzero and anticommutes",
+                "observed": "v₁₂",
+                "error": null,
+                "duration_ms": 2.466
+            },
+            "negative": {
+                "label": "self-wedge control",
+                "pass": true,
+                "expected": "v1 wedge v1 is zero while v1*v1 is the scalar unit",
+                "observed": {
+                    "wedge": "𝟎",
+                    "geometric": "1v"
+                },
+                "error": null,
+                "duration_ms": 0.034
+            },
+            "boundary": {
+                "label": "one-dimensional boundary",
+                "pass": true,
+                "expected": "the sole Euclidean generator squares to one",
+                "observed": "1v",
+                "error": null,
+                "duration_ms": 0.035
+            },
+            "stress": {
+                "label": "six-generator anticommutation",
+                "pass": true,
+                "expected": "all 15 distinct generator pairs anticommute",
+                "observed": {
+                    "pairs": 15,
+                    "failures": 0
+                },
+                "error": null,
+                "duration_ms": 346.066
+            },
+            "adjacent_integration_edge": {
+                "label": "CliffordAlgebras relation edge",
+                "pass": true,
+                "expected": "both packages agree that distinct Euclidean generators anticommute",
+                "observed": {
+                    "grassmann": true,
+                    "clifford": true
+                },
+                "error": null,
+                "duration_ms": 1.926
+            },
+            "demotion_condition": "demote if Euclidean basis products lose square/wedge/anticommutation laws or disagree with CliffordAlgebras",
+            "operational_pass": true
+        },
+        {
+            "package": "ITensorMPS",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "library",
+            "qualified_api": [
+                "ITensorMPS.MPS",
+                "ITensorMPS.apply",
+                "ITensorMPS.expect",
+                "ITensorMPS.inner"
+            ],
+            "version": "0.4.1",
+            "import_status": {
+                "pass": true,
+                "version": "0.4.1",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/ITensorMPS/DiVzn/src/ITensorMPS.jl",
+                "error": null,
+                "duration_ms": 2214.288
+            },
+            "positive": {
+                "label": "Hadamard product-state MPS",
+                "pass": true,
+                "expected": "H on site 1 yields Z≈0 while untouched sites remain +1",
+                "observed": {
+                    "z": [
+                        -2.2371143170757388e-17,
+                        1.0000000000000002,
+                        1.0000000000000002,
+                        1.0000000000000002
+                    ],
+                    "norm": 0.9999999999999998
+                },
+                "error": null,
+                "duration_ms": 10230.369
+            },
+            "negative": {
+                "label": "X-flip control",
+                "pass": true,
+                "expected": "X on |0> flips Z from +1 to -1",
+                "observed": [
+                    -1,
+                    1
+                ],
+                "error": null,
+                "duration_ms": 10.788
+            },
+            "boundary": {
+                "label": "single-site boundary",
+                "pass": true,
+                "expected": "a one-site |0> MPS has norm and Z expectation one",
+                "observed": 1,
+                "error": null,
+                "duration_ms": 625.546
+            },
+            "stress": {
+                "label": "24-site local-gate chain",
+                "pass": true,
+                "expected": "24 Hadamards preserve unit norm and yield 24 near-zero Z values",
+                "observed": {
+                    "max_abs_z": 2.2371143170757388e-17,
+                    "norm": 0.9999999999999962
+                },
+                "error": null,
+                "duration_ms": 169.728
+            },
+            "adjacent_integration_edge": {
+                "label": "ITensors operator edge",
+                "pass": true,
+                "expected": "an ITensors op is accepted by ITensorMPS.apply and changes a package expectation",
+                "observed": {
+                    "before": 1,
+                    "after": -1
+                },
+                "error": null,
+                "duration_ms": 4.673
+            },
+            "demotion_condition": "demote if MPS norms/expectations fail, the X control does not flip Z, or ITensors operators cannot drive the MPS",
+            "operational_pass": true
+        },
+        {
+            "package": "ITensors",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "library",
+            "qualified_api": [
+                "ITensors.Index",
+                "ITensors.ITensor",
+                "ITensors.dag",
+                "ITensors.scalar",
+                "ITensors.op"
+            ],
+            "version": "0.9.30",
+            "import_status": {
+                "pass": true,
+                "version": "0.9.30",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/ITensors/1tkBX/src/ITensors.jl",
+                "error": null,
+                "duration_ms": 0.359
+            },
+            "positive": {
+                "label": "basis tensor norm",
+                "pass": true,
+                "expected": "a basis tensor contracts with itself to one",
+                "observed": 1,
+                "error": null,
+                "duration_ms": 101.867
+            },
+            "negative": {
+                "label": "orthogonal contraction control",
+                "pass": true,
+                "expected": "orthogonal basis tensors contract to zero",
+                "observed": 0,
+                "error": null,
+                "duration_ms": 0.02
+            },
+            "boundary": {
+                "label": "dimension-one boundary",
+                "pass": true,
+                "expected": "a dimension-one index contracts exactly",
+                "observed": 4,
+                "error": null,
+                "duration_ms": 0.017
+            },
+            "stress": {
+                "label": "rank-12 product tensor",
+                "pass": true,
+                "expected": "a deterministic rank-12 product contracts to unit norm",
+                "observed": {
+                    "norm": 1,
+                    "rank": 12
+                },
+                "error": null,
+                "duration_ms": 8019.492
+            },
+            "adjacent_integration_edge": {
+                "label": "ITensorMPS state edge",
+                "pass": true,
+                "expected": "ITensors sites and operators produce a normalized MPS through ITensorMPS",
+                "observed": [
+                    1,
+                    -2.2371143170757382e-17,
+                    1
+                ],
+                "error": null,
+                "duration_ms": 4.474
+            },
+            "demotion_condition": "demote if contraction orthogonality/norm controls fail, rank scaling breaks, or the MPS layer cannot consume ITensors objects",
+            "operational_pass": true
+        },
+        {
+            "package": "JSON",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "serialization_library",
+            "qualified_api": [
+                "JSON.json",
+                "JSON.parse"
+            ],
+            "version": "1.6.1",
+            "import_status": {
+                "pass": true,
+                "version": "1.6.1",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/JSON/gMdcG/src/JSON.jl",
+                "error": null,
+                "duration_ms": 101.984
+            },
+            "positive": {
+                "label": "typed object round trip",
+                "pass": true,
+                "expected": "nested booleans, integers, strings, and arrays survive",
+                "observed": {
+                    "items": [
+                        1,
+                        "two"
+                    ],
+                    "n": 3,
+                    "name": "ratchet",
+                    "ok": true
+                },
+                "error": null,
+                "duration_ms": 126.276
+            },
+            "negative": {
+                "label": "malformed JSON control",
+                "pass": true,
+                "expected": "a truncated object raises a parser error",
+                "observed": {
+                    "threw": true,
+                    "error_type": "BoundsError",
+                    "message": "BoundsError: attempt to access 10-element Base.CodeUnits{UInt8, String} at index [1:11]"
+                },
+                "error": null,
+                "duration_ms": 14.607
+            },
+            "boundary": {
+                "label": "empty object boundary",
+                "pass": true,
+                "expected": "an empty object round trips with no keys",
+                "observed": {
+                },
+                "error": null,
+                "duration_ms": 1.696
+            },
+            "stress": {
+                "label": "2,000-record round trip",
+                "pass": true,
+                "expected": "record count and terminal id survive",
+                "observed": {
+                    "count": 2000,
+                    "terminal": 2000
+                },
+                "error": null,
+                "duration_ms": 37.398
+            },
+            "adjacent_integration_edge": {
+                "label": "JSON3 interchange edge",
+                "pass": true,
+                "expected": "JSON output is read by JSON3 with the same fields",
+                "observed": {
+                    "edge": "JSON->JSON3",
+                    "value": 137
+                },
+                "error": null,
+                "duration_ms": 4.157
+            },
+            "demotion_condition": "demote if typed round trips, malformed-input rejection, empty boundaries, scale behavior, or JSON3 interchange fails",
+            "operational_pass": true
+        },
+        {
+            "package": "JSON3",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "serialization_library",
+            "qualified_api": [
+                "JSON3.write",
+                "JSON3.read",
+                "JSON3.pretty"
+            ],
+            "version": "1.14.3",
+            "import_status": {
+                "pass": true,
+                "version": "1.14.3",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/JSON3/rT1w2/src/JSON3.jl",
+                "error": null,
+                "duration_ms": 62.627
+            },
+            "positive": {
+                "label": "named-tuple round trip",
+                "pass": true,
+                "expected": "ordered named fields and nested arrays survive",
+                "observed": {
+                    "schema": "deep_stack_v1",
+                    "values": [
+                        1,
+                        2,
+                        3
+                    ]
+                },
+                "error": null,
+                "duration_ms": 77.265
+            },
+            "negative": {
+                "label": "malformed JSON3 control",
+                "pass": true,
+                "expected": "a truncated array raises a parser error",
+                "observed": {
+                    "threw": true,
+                    "error_type": "ArgumentError",
+                    "message": "ArgumentError: invalid JSON at byte position 6 while parsing type JSON3.Array: UnexpectedEOF\n[1, 2\n"
+                },
+                "error": null,
+                "duration_ms": 2.713
+            },
+            "boundary": {
+                "label": "null boundary",
+                "pass": true,
+                "expected": "JSON null decodes to nothing",
+                "observed": "nothing",
+                "error": null,
+                "duration_ms": 0.023
+            },
+            "stress": {
+                "label": "2,000-record round trip",
+                "pass": true,
+                "expected": "record count and terminal id survive",
+                "observed": {
+                    "count": 2000,
+                    "terminal": 2000
+                },
+                "error": null,
+                "duration_ms": 26.619
+            },
+            "adjacent_integration_edge": {
+                "label": "JSON interchange edge",
+                "pass": true,
+                "expected": "JSON3 output is read by JSON with the same fields",
+                "observed": {
+                    "edge": "JSON3->JSON",
+                    "value": 160
+                },
+                "error": null,
+                "duration_ms": 0.036
+            },
+            "demotion_condition": "demote if structured round trips, malformed-input rejection, null boundary, scale behavior, or JSON interchange fails",
+            "operational_pass": true
+        },
+        {
+            "package": "Manifolds",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "library",
+            "qualified_api": [
+                "Manifolds.Sphere",
+                "Manifolds.distance",
+                "Manifolds.log",
+                "Manifolds.exp",
+                "Manifolds.is_point"
+            ],
+            "version": "0.11.28",
+            "import_status": {
+                "pass": true,
+                "version": "0.11.28",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/Manifolds/6LqaG/src/Manifolds.jl",
+                "error": null,
+                "duration_ms": 689.796
+            },
+            "positive": {
+                "label": "orthogonal sphere distance",
+                "pass": true,
+                "expected": "orthogonal S2 points are pi/2 apart",
+                "observed": 1.5707963267948966,
+                "error": null,
+                "duration_ms": 0.001
+            },
+            "negative": {
+                "label": "off-manifold control",
+                "pass": true,
+                "expected": "a norm-two point is rejected",
+                "observed": [
+                    2,
+                    0,
+                    0
+                ],
+                "error": null,
+                "duration_ms": 19.164
+            },
+            "boundary": {
+                "label": "coincident-point boundary",
+                "pass": true,
+                "expected": "distance(p,p) is zero",
+                "observed": 0,
+                "error": null,
+                "duration_ms": 0.01
+            },
+            "stress": {
+                "label": "128 log-exp round trips",
+                "pass": true,
+                "expected": "bounded great-circle samples reconstruct with small error",
+                "observed": {
+                    "samples": 128,
+                    "max_error": 1.1102230246251568e-16
+                },
+                "error": null,
+                "duration_ms": 0.06
+            },
+            "adjacent_integration_edge": {
+                "label": "StaticArrays point edge",
+                "pass": true,
+                "expected": "SVector inputs are accepted and reconstruct through log/exp",
+                "observed": {
+                    "input_type": "StaticArraysCore.SVector{3, Float64}",
+                    "output_type": "StaticArraysCore.MVector{3, Float64}",
+                    "reconstructed": [
+                        6.123233995736766e-17,
+                        1.0,
+                        0.0
+                    ]
+                },
+                "error": null,
+                "duration_ms": 0.088
+            },
+            "demotion_condition": "demote if sphere membership, geodesic round trips, invalid-point controls, or StaticArrays interoperability fails",
+            "operational_pass": true
+        },
+        {
+            "package": "Octonions",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "library",
+            "qualified_api": [
+                "Octonions.Octonion",
+                "Base.:*"
+            ],
+            "version": "0.2.3",
+            "import_status": {
+                "pass": true,
+                "version": "0.2.3",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/Octonions/8lyFm/src/Octonions.jl",
+                "error": null,
+                "duration_ms": 12.513
+            },
+            "positive": {
+                "label": "nonzero associator",
+                "pass": true,
+                "expected": "(e1e2)e4 - e1(e2e4) has norm two",
+                "observed": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    -2,
+                    0,
+                    0
+                ],
+                "error": null,
+                "duration_ms": 0.003
+            },
+            "negative": {
+                "label": "quaternionic-subalgebra control",
+                "pass": true,
+                "expected": "the e1,e2,e3 associator vanishes",
+                "observed": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "error": null,
+                "duration_ms": 0
+            },
+            "boundary": {
+                "label": "unit boundary",
+                "pass": true,
+                "expected": "e0 is a two-sided identity",
+                "observed": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1
+                ],
+                "error": null,
+                "duration_ms": 0
+            },
+            "stress": {
+                "label": "full basis table",
+                "pass": true,
+                "expected": "all 64 basis products remain signed unit basis elements",
+                "observed": {
+                    "products": 64,
+                    "bad": 0
+                },
+                "error": null,
+                "duration_ms": 0.029
+            },
+            "adjacent_integration_edge": {
+                "label": "Quaternions associativity edge",
+                "pass": true,
+                "expected": "the octonion witness is nonzero while the quaternion associator is zero",
+                "observed": {
+                    "octonion_norm": 2,
+                    "quaternion_norm": 0
+                },
+                "error": null,
+                "duration_ms": 0.005
+            },
+            "demotion_condition": "demote if the package loses its nonassociative witness, unit/basis norms, multiplication table, or quaternion embedding control",
+            "operational_pass": true
+        },
+        {
+            "package": "QuantumClifford",
+            "role": "current_carrier_member",
+            "independent_engine": true,
+            "kind": "engine",
+            "qualified_api": [
+                "QuantumClifford.ghz",
+                "QuantumClifford.stabilizerview",
+                "QuantumClifford.stab_to_gf2"
+            ],
+            "version": "0.11.5",
+            "import_status": {
+                "pass": true,
+                "version": "0.11.5",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/QuantumClifford/8vKvX/src/QuantumClifford.jl",
+                "error": null,
+                "duration_ms": 2986.532
+            },
+            "positive": {
+                "label": "three-qubit GHZ stabilizer",
+                "pass": true,
+                "expected": "GF(2) view is 3x6 with an all-X generator",
+                "observed": {
+                    "shape": [
+                        3,
+                        6
+                    ],
+                    "true_count": 7
+                },
+                "error": null,
+                "duration_ms": 0.067
+            },
+            "negative": {
+                "label": "product-state control",
+                "pass": true,
+                "expected": "the canonical product stabilizer has no X support",
+                "observed": {
+                    "x_true": 0,
+                    "z_true": 3
+                },
+                "error": null,
+                "duration_ms": 31.065
+            },
+            "boundary": {
+                "label": "Bell boundary",
+                "pass": true,
+                "expected": "the two-qubit GHZ/Bell state has a 2x4 stabilizer view",
+                "observed": [
+                    2,
+                    4
+                ],
+                "error": null,
+                "duration_ms": 0.386
+            },
+            "stress": {
+                "label": "64-qubit GHZ tableau",
+                "pass": true,
+                "expected": "the stabilizer conversion scales to 64 generators",
+                "observed": {
+                    "shape": [
+                        64,
+                        128
+                    ],
+                    "true_count": 190
+                },
+                "error": null,
+                "duration_ms": 0.014
+            },
+            "adjacent_integration_edge": {
+                "label": "Graphs stabilizer edge",
+                "pass": true,
+                "expected": "Z-pair GHZ generators induce a connected three-node graph",
+                "observed": {
+                    "edges": 2,
+                    "components": 1
+                },
+                "error": null,
+                "duration_ms": 0.025
+            },
+            "demotion_condition": "demote if GHZ stabilizers lose their GF(2) structure, product controls are indistinguishable, or graph extraction fails",
+            "operational_pass": true
+        },
+        {
+            "package": "QuantumOptics",
+            "role": "current_carrier_member",
+            "independent_engine": true,
+            "kind": "engine",
+            "qualified_api": [
+                "QuantumOptics.SpinBasis",
+                "QuantumOptics.dm",
+                "QuantumOptics.entropy_vn",
+                "QuantumOptics.tensor",
+                "QuantumOptics.sigmax"
+            ],
+            "version": "1.2.6",
+            "import_status": {
+                "pass": true,
+                "version": "1.2.6",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/QuantumOptics/EQ3lI/src/QuantumOptics.jl",
+                "error": null,
+                "duration_ms": 800.218
+            },
+            "positive": {
+                "label": "pure spin superposition",
+                "pass": true,
+                "expected": "a normalized pure-state density operator has entropy zero",
+                "observed": {
+                    "entropy": 2.220446049250313e-16,
+                    "trace": 0.9999999999999998
+                },
+                "error": null,
+                "duration_ms": 1.974
+            },
+            "negative": {
+                "label": "maximally mixed control",
+                "pass": true,
+                "expected": "I/2 has entropy log(2), unlike the pure state",
+                "observed": 0.6931471805599453,
+                "error": null,
+                "duration_ms": 0.013
+            },
+            "boundary": {
+                "label": "spin-basis boundary",
+                "pass": true,
+                "expected": "the spin-1/2 basis is two dimensional and sigma-X is 2x2",
+                "observed": {
+                    "basis_dim": 2,
+                    "operator_shape": [
+                        2,
+                        2
+                    ]
+                },
+                "error": null,
+                "duration_ms": 34.828
+            },
+            "stress": {
+                "label": "eight-spin tensor state",
+                "pass": true,
+                "expected": "an eight-spin product density operator remains normalized and pure",
+                "observed": {
+                    "dimension": 256,
+                    "entropy": 0
+                },
+                "error": null,
+                "duration_ms": 251.713
+            },
+            "adjacent_integration_edge": {
+                "label": "QuantumToolbox Pauli edge",
+                "pass": true,
+                "expected": "both quantum packages expose the same sigma-X matrix",
+                "observed": {
+                    "optics": "ComplexF64[0.0 + 0.0im 1.0 + 0.0im; 1.0 + 0.0im 0.0 + 0.0im]",
+                    "toolbox": "ComplexF64[0.0 + 0.0im 1.0 + 0.0im; 1.0 + 0.0im 0.0 + 0.0im]"
+                },
+                "error": null,
+                "duration_ms": 8.591
+            },
+            "demotion_condition": "demote if state entropy/trace controls fail, tensor scaling breaks, or the Pauli carrier disagrees with QuantumToolbox",
+            "operational_pass": true
+        },
+        {
+            "package": "QuantumToolbox",
+            "role": "current_carrier_member",
+            "independent_engine": true,
+            "kind": "engine",
+            "qualified_api": [
+                "QuantumToolbox.destroy",
+                "QuantumToolbox.fock",
+                "QuantumToolbox.mesolve",
+                "QuantumToolbox.sigmax"
+            ],
+            "version": "0.47.2",
+            "import_status": {
+                "pass": true,
+                "version": "0.47.2",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/QuantumToolbox/CkndR/src/QuantumToolbox.jl",
+                "error": null,
+                "duration_ms": 76.914
+            },
+            "positive": {
+                "label": "damped oscillator",
+                "pass": true,
+                "expected": "collapse dynamics reduce the occupation from n=2",
+                "observed": {
+                    "initial": 2.0000000000000004,
+                    "final": 0.8986579310428395
+                },
+                "error": null,
+                "duration_ms": 110.373
+            },
+            "negative": {
+                "label": "closed-system control",
+                "pass": true,
+                "expected": "without collapse operators the number expectation stays at two",
+                "observed": {
+                    "minimum": 2.0000000000000004,
+                    "maximum": 2.0000000000000004
+                },
+                "error": null,
+                "duration_ms": 123.126
+            },
+            "boundary": {
+                "label": "vacuum boundary",
+                "pass": true,
+                "expected": "the vacuum number expectation is zero",
+                "observed": 0,
+                "error": null,
+                "duration_ms": 0.02
+            },
+            "stress": {
+                "label": "ten-level dissipative solve",
+                "pass": true,
+                "expected": "101 time points remain finite and occupation decreases",
+                "observed": {
+                    "count": 101,
+                    "initial": 7.000000000000001,
+                    "final": 3.841681452734564
+                },
+                "error": null,
+                "duration_ms": 0.148
+            },
+            "adjacent_integration_edge": {
+                "label": "QuantumOptics Pauli edge",
+                "pass": true,
+                "expected": "both quantum packages expose the same sigma-X matrix",
+                "observed": {
+                    "toolbox": "ComplexF64[0.0 + 0.0im 1.0 + 0.0im; 1.0 + 0.0im 0.0 + 0.0im]",
+                    "optics": "ComplexF64[0.0 + 0.0im 1.0 + 0.0im; 1.0 + 0.0im 0.0 + 0.0im]"
+                },
+                "error": null,
+                "duration_ms": 0.591
+            },
+            "demotion_condition": "demote if dissipative and closed controls do not separate, vacuum behavior fails, scale integration breaks, or Pauli carriers disagree",
+            "operational_pass": true
+        },
+        {
+            "package": "Quaternions",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "library",
+            "qualified_api": [
+                "Quaternions.Quaternion",
+                "Base.:*"
+            ],
+            "version": "0.7.7",
+            "import_status": {
+                "pass": true,
+                "version": "0.7.7",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/Quaternions/n1MCJ/src/Quaternions.jl",
+                "error": null,
+                "duration_ms": 0.355
+            },
+            "positive": {
+                "label": "quaternion order gap",
+                "pass": true,
+                "expected": "ij=-ji with norm-two difference",
+                "observed": [
+                    0,
+                    0,
+                    0,
+                    2
+                ],
+                "error": null,
+                "duration_ms": 0.001
+            },
+            "negative": {
+                "label": "associativity control",
+                "pass": true,
+                "expected": "(ij)k-i(jk) is zero",
+                "observed": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "error": null,
+                "duration_ms": 0
+            },
+            "boundary": {
+                "label": "unit boundary",
+                "pass": true,
+                "expected": "q0 is a two-sided identity",
+                "observed": [
+                    0,
+                    0,
+                    0,
+                    1
+                ],
+                "error": null,
+                "duration_ms": 0
+            },
+            "stress": {
+                "label": "full basis table",
+                "pass": true,
+                "expected": "all 16 basis products remain signed unit basis elements",
+                "observed": {
+                    "products": 16,
+                    "bad": 0
+                },
+                "error": null,
+                "duration_ms": 0.022
+            },
+            "adjacent_integration_edge": {
+                "label": "Octonions associator edge",
+                "pass": true,
+                "expected": "quaternion associativity contrasts with a nonzero octonion witness",
+                "observed": {
+                    "quaternion_norm": 0,
+                    "octonion_norm": 2
+                },
+                "error": null,
+                "duration_ms": 0.006
+            },
+            "demotion_condition": "demote if quaternion noncommutation, associativity, identity, basis-table norms, or the octonion comparison fails",
+            "operational_pass": true
+        },
+        {
+            "package": "StaticArrays",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "library",
+            "qualified_api": [
+                "StaticArrays.SVector",
+                "StaticArrays.SMatrix"
+            ],
+            "version": "1.9.18",
+            "import_status": {
+                "pass": true,
+                "version": "1.9.18",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/StaticArrays/0cEwi/src/StaticArrays.jl",
+                "error": null,
+                "duration_ms": 0.353
+            },
+            "positive": {
+                "label": "fixed-size matrix-vector product",
+                "pass": true,
+                "expected": "a 2x2 SMatrix maps [1,2] to [5,11]",
+                "observed": [
+                    5,
+                    11
+                ],
+                "error": null,
+                "duration_ms": 0.006
+            },
+            "negative": {
+                "label": "dimension mismatch control",
+                "pass": true,
+                "expected": "adding unequal SVector dimensions raises DimensionMismatch",
+                "observed": {
+                    "threw": true,
+                    "error_type": "DimensionMismatch",
+                    "message": "DimensionMismatch: Sizes (Size(2,), Size(3,)) of input arrays do not match"
+                },
+                "error": null,
+                "duration_ms": 41.964
+            },
+            "boundary": {
+                "label": "singleton boundary",
+                "pass": true,
+                "expected": "a one-element SVector preserves value and norm",
+                "observed": [
+                    3
+                ],
+                "error": null,
+                "duration_ms": 0
+            },
+            "stress": {
+                "label": "100,000 fixed-size updates",
+                "pass": true,
+                "expected": "repeated bounded rotations remain finite",
+                "observed": {
+                    "vector": [
+                        0.8623188722883763,
+                        -0.5063656411101619
+                    ],
+                    "norm": 1.0000000000008011
+                },
+                "error": null,
+                "duration_ms": 0.353
+            },
+            "adjacent_integration_edge": {
+                "label": "DifferentialEquations state edge",
+                "pass": true,
+                "expected": "an SVector survives a solver round trip with the invariant sum",
+                "observed": [
+                    0.3678794411727773,
+                    0.6321205588272226
+                ],
+                "error": null,
+                "duration_ms": 379.204
+            },
+            "demotion_condition": "demote if fixed-size arithmetic, dimension errors, singleton boundaries, repeated multiplication, or solver interoperability fails",
+            "operational_pass": true
+        },
+        {
+            "package": "Symbolics",
+            "role": "current_carrier_member",
+            "independent_engine": true,
+            "kind": "engine",
+            "qualified_api": [
+                "Symbolics.variable",
+                "Symbolics.expand",
+                "Symbolics.derivative",
+                "Symbolics.simplify",
+                "Symbolics.substitute",
+                "Symbolics.build_function"
+            ],
+            "version": "7.32.0",
+            "import_status": {
+                "pass": true,
+                "version": "7.32.0",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/Symbolics/N6rMJ/src/Symbolics.jl",
+                "error": null,
+                "duration_ms": 2676.427
+            },
+            "positive": {
+                "label": "compiled polynomial derivative",
+                "pass": true,
+                "expected": "d(x+1)^5/dx at x=2 equals 405",
+                "observed": {
+                    "derivative": "5 + 30(deep_x^2) + 20(deep_x + deep_x^3) + 5(deep_x^4)",
+                    "value": 405
+                },
+                "error": null,
+                "duration_ms": 11803.281
+            },
+            "negative": {
+                "label": "wrong-derivative control",
+                "pass": true,
+                "expected": "the degree-four impostor differs from the real derivative at x=2",
+                "observed": {
+                    "actual": 405,
+                    "impostor": 108
+                },
+                "error": null,
+                "duration_ms": 136.495
+            },
+            "boundary": {
+                "label": "zero-expression boundary",
+                "pass": true,
+                "expected": "simplify(x-x) is zero",
+                "observed": "0",
+                "error": null,
+                "duration_ms": 7.313
+            },
+            "stress": {
+                "label": "degree-15 expansion",
+                "pass": true,
+                "expected": "the derivative at x=1 equals 15*2^14",
+                "observed": {
+                    "value": 245760,
+                    "expected": 245760,
+                    "expression_length": 349
+                },
+                "error": null,
+                "duration_ms": 34
+            },
+            "adjacent_integration_edge": {
+                "label": "Graphs degree-polynomial edge",
+                "pass": true,
+                "expected": "graph degrees become coefficients in a symbolic polynomial",
+                "observed": {
+                    "degrees": [
+                        1,
+                        2,
+                        2,
+                        2,
+                        1
+                    ],
+                    "symbolic": 45,
+                    "direct": 45
+                },
+                "error": null,
+                "duration_ms": 36.064
+            },
+            "demotion_condition": "demote if symbolic differentiation/substitution controls, zero boundaries, polynomial scale, or graph-derived expressions fail",
+            "operational_pass": true
+        },
+        {
+            "package": "Yao",
+            "role": "current_carrier_member",
+            "independent_engine": true,
+            "kind": "engine",
+            "qualified_api": [
+                "Yao.zero_state",
+                "Yao.chain",
+                "Yao.put",
+                "Yao.control",
+                "Yao.apply!",
+                "Yao.state",
+                "Yao.mat"
+            ],
+            "version": "0.9.3",
+            "import_status": {
+                "pass": true,
+                "version": "0.9.3",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/Yao/ir6ve/src/Yao.jl",
+                "error": null,
+                "duration_ms": 3544.495
+            },
+            "positive": {
+                "label": "Bell circuit",
+                "pass": true,
+                "expected": "H+CNOT prepares equal |00> and |11> amplitudes",
+                "observed": "ComplexF64[0.7071067811865475 + 0.0im, 0.0 + 0.0im, 0.0 + 0.0im, 0.7071067811865475 + 0.0im]",
+                "error": null,
+                "duration_ms": 141.724
+            },
+            "negative": {
+                "label": "identity-state control",
+                "pass": true,
+                "expected": "without the circuit, |11> amplitude is zero",
+                "observed": "ComplexF64[1.0 + 0.0im, 0.0 + 0.0im, 0.0 + 0.0im, 0.0 + 0.0im]",
+                "error": null,
+                "duration_ms": 0.185
+            },
+            "boundary": {
+                "label": "single-qubit X boundary",
+                "pass": true,
+                "expected": "X maps |0> exactly to |1>",
+                "observed": "ComplexF64[0.0 + 0.0im, 1.0 + 0.0im]",
+                "error": null,
+                "duration_ms": 153.6
+            },
+            "stress": {
+                "label": "12-qubit Hadamard layer",
+                "pass": true,
+                "expected": "4,096 amplitudes remain normalized",
+                "observed": {
+                    "amplitudes": 4096,
+                    "norm2": 0.9999999999999993
+                },
+                "error": null,
+                "duration_ms": 26.159
+            },
+            "adjacent_integration_edge": {
+                "label": "QuantumOptics Pauli edge",
+                "pass": true,
+                "expected": "Yao.X and QuantumOptics.sigmax have identical matrices",
+                "observed": {
+                    "yao": "ComplexF64[0.0 + 0.0im 1.0 + 0.0im; 1.0 + 0.0im 0.0 + 0.0im]",
+                    "optics": "ComplexF64[0.0 + 0.0im 1.0 + 0.0im; 1.0 + 0.0im 0.0 + 0.0im]"
+                },
+                "error": null,
+                "duration_ms": 0.618
+            },
+            "demotion_condition": "demote if Bell preparation, identity controls, one-qubit boundaries, state-vector scaling, or Pauli interoperability fails",
+            "operational_pass": true
+        },
+        {
+            "package": "Z3",
+            "role": "current_carrier_member",
+            "independent_engine": false,
+            "kind": "proof_solver",
+            "qualified_api": [
+                "Z3.Context",
+                "Z3.IntVar",
+                "Z3.Solver",
+                "Z3.add",
+                "Z3.check"
+            ],
+            "version": "1.0.4",
+            "import_status": {
+                "pass": true,
+                "version": "1.0.4",
+                "module_path": "/Users/joshuaeisenhart/.julia/packages/Z3/hj4Zb/src/Z3.jl",
+                "error": null,
+                "duration_ms": 233.316
+            },
+            "positive": {
+                "label": "bounded SAT model",
+                "pass": true,
+                "expected": "1 < x < 3 is satisfiable over integers",
+                "observed": "sat",
+                "error": null,
+                "duration_ms": 4.59
+            },
+            "negative": {
+                "label": "contradictory UNSAT control",
+                "pass": true,
+                "expected": "x>1 and x<0 is unsatisfiable",
+                "observed": "unsat",
+                "error": null,
+                "duration_ms": 4.442
+            },
+            "boundary": {
+                "label": "empty solver boundary",
+                "pass": true,
+                "expected": "an unconstrained solver is satisfiable",
+                "observed": "sat",
+                "error": null,
+                "duration_ms": 1.348
+            },
+            "stress": {
+                "label": "100 fixed integer bindings",
+                "pass": true,
+                "expected": "a 100-variable exact assignment is satisfiable",
+                "observed": {
+                    "variables": 100,
+                    "status": "sat"
+                },
+                "error": null,
+                "duration_ms": 4.359
+            },
+            "adjacent_integration_edge": {
+                "label": "Graphs coloring edge",
+                "pass": true,
+                "expected": "triangle edge constraints are SAT for 3 colors and UNSAT for 2",
+                "observed": {
+                    "three_colors": "sat",
+                    "two_colors": "unsat",
+                    "graph_edges": 3
+                },
+                "error": null,
+                "duration_ms": 9.782
+            },
+            "demotion_condition": "demote if SAT/UNSAT controls collapse, empty-solver semantics drift, bounded constraint scale fails, or graph coloring is not solver-derived",
+            "operational_pass": true
+        }
+    ],
+    "support_rows": [
+        {
+            "package": "Dates",
+            "role": "support",
+            "independent_engine": false,
+            "kind": "stdlib_support",
+            "qualified_api": [
+                "Dates.Date",
+                "Dates.DateTime",
+                "Dates.Day",
+                "Dates.datetime2unix",
+                "Dates.unix2datetime"
+            ],
+            "version": "1.11.0",
+            "import_status": {
+                "pass": true,
+                "version": "1.11.0",
+                "module_path": "/opt/homebrew/Cellar/julia/1.12.6/share/julia/stdlib/v1.12/Dates/src/Dates.jl",
+                "error": null,
+                "duration_ms": 0
+            },
+            "usage": "receipt time and temporal test fixtures; support only, never an independent engine or scientific claimant",
+            "positive": {
+                "label": "calendar arithmetic",
+                "pass": true,
+                "expected": "adding 1 hour and 26 minutes reaches 14:00 exactly",
+                "observed": "2026-07-14T14:00:00",
+                "error": null,
+                "duration_ms": 14.111
+            },
+            "negative": {
+                "label": "invalid calendar control",
+                "pass": true,
+                "expected": "February 30 is rejected",
+                "observed": {
+                    "threw": true,
+                    "error_type": "ArgumentError",
+                    "message": "ArgumentError: Day: 30 out of range (1:28)"
+                },
+                "error": null,
+                "duration_ms": 1.819
+            },
+            "boundary": {
+                "label": "Unix epoch boundary",
+                "pass": true,
+                "expected": "DateTime(1970-01-01) maps exactly to Unix time zero and back",
+                "observed": {
+                    "unix": 0,
+                    "roundtrip": "1970-01-01T00:00:00"
+                },
+                "error": null,
+                "duration_ms": 0.003
+            },
+            "stress": {
+                "label": "10,000-day sequence",
+                "pass": true,
+                "expected": "a 10,000-element date sequence remains sorted with the exact endpoint delta",
+                "observed": {
+                    "count": 10000,
+                    "first": "2000-01-01",
+                    "last": "2027-05-18"
+                },
+                "error": null,
+                "duration_ms": 0.811
+            },
+            "adjacent_integration_edge": {
+                "label": "JSON3 timestamp edge",
+                "pass": true,
+                "expected": "an ISO DateTime string survives JSON3 serialization and reparsing",
+                "observed": {
+                    "encoded": "{\"timestamp\":\"2026-07-14T21:09:53\"}",
+                    "reparsed": "2026-07-14T21:09:53"
+                },
+                "error": null,
+                "duration_ms": 0.057
+            },
+            "demotion_condition": "demote support if calendar arithmetic, invalid-date rejection, epoch boundaries, bounded date scaling, or JSON3 timestamp interchange fails",
+            "operational_pass": true
+        },
+        {
+            "package": "LinearAlgebra",
+            "role": "support",
+            "independent_engine": false,
+            "kind": "stdlib_support",
+            "qualified_api": [
+                "LinearAlgebra.norm",
+                "LinearAlgebra.cholesky",
+                "LinearAlgebra.SymTridiagonal",
+                "LinearAlgebra.eigvals"
+            ],
+            "version": "1.12.0",
+            "import_status": {
+                "pass": true,
+                "version": "1.12.0",
+                "module_path": "/opt/homebrew/Cellar/julia/1.12.6/share/julia/stdlib/v1.12/LinearAlgebra/src/LinearAlgebra.jl",
+                "error": null,
+                "duration_ms": 0
+            },
+            "usage": "numeric invariants and controls for package probes; support only, never counted as an independent engine",
+            "positive": {
+                "label": "dense linear solve",
+                "pass": true,
+                "expected": "a well-conditioned 2x2 solve recovers [2,3] with negligible residual",
+                "observed": {
+                    "solution": [
+                        2,
+                        3
+                    ],
+                    "residual": 0
+                },
+                "error": null,
+                "duration_ms": 1.002
+            },
+            "negative": {
+                "label": "indefinite Cholesky control",
+                "pass": true,
+                "expected": "an indefinite symmetric matrix raises PosDefException",
+                "observed": {
+                    "threw": true,
+                    "error_type": "LinearAlgebra.PosDefException",
+                    "message": "PosDefException: matrix is not positive definite; Factorization failed."
+                },
+                "error": null,
+                "duration_ms": 12.1
+            },
+            "boundary": {
+                "label": "zero-vector boundary",
+                "pass": true,
+                "expected": "the norm of an empty vector is exactly zero",
+                "observed": {
+                    "length": 0,
+                    "norm": 0
+                },
+                "error": null,
+                "duration_ms": 0
+            },
+            "stress": {
+                "label": "1,024-value tridiagonal spectrum",
+                "pass": true,
+                "expected": "the discrete Laplacian spectrum is finite and lies strictly between zero and four",
+                "observed": {
+                    "count": 1024,
+                    "minimum": 9.394024198722873e-6,
+                    "maximum": 3.999990605975801
+                },
+                "error": null,
+                "duration_ms": 12.503
+            },
+            "adjacent_integration_edge": {
+                "label": "StaticArrays solve edge",
+                "pass": true,
+                "expected": "LinearAlgebra solves an SMatrix/SVector system with negligible residual",
+                "observed": {
+                    "solution": [
+                        2,
+                        3
+                    ],
+                    "residual": 0
+                },
+                "error": null,
+                "duration_ms": 0.004
+            },
+            "demotion_condition": "demote support if solve residuals, definiteness rejection, zero boundaries, spectral scale, or StaticArrays interoperability fails",
+            "operational_pass": true
+        },
+        {
+            "package": "SHA",
+            "role": "support",
+            "independent_engine": false,
+            "kind": "stdlib_support",
+            "qualified_api": [
+                "SHA.sha256",
+                "Base.bytes2hex"
+            ],
+            "version": "0.7.0",
+            "import_status": {
+                "pass": true,
+                "version": "0.7.0",
+                "module_path": "/opt/homebrew/Cellar/julia/1.12.6/share/julia/stdlib/v1.12/SHA/src/SHA.jl",
+                "error": null,
+                "duration_ms": 0
+            },
+            "usage": "source, Project.toml, Manifest.toml, and receipt identity; support only, never an independent engine",
+            "positive": {
+                "label": "SHA-256 known vector",
+                "pass": true,
+                "expected": "sha256(\"abc\") matches the published digest",
+                "observed": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+                "error": null,
+                "duration_ms": 0.179
+            },
+            "negative": {
+                "label": "tampered-input control",
+                "pass": true,
+                "expected": "a one-byte mutation changes the digest",
+                "observed": {
+                    "original": "332a36f6afc7d2479341205267275497fbefe6dff5c4747f452dceb657c0531d",
+                    "tampered": "5539dfb136a79ec7c05f4fbc5a7da7b124fda7f50ab25fc8fe2614a30b899ea5"
+                },
+                "error": null,
+                "duration_ms": 0.007
+            },
+            "boundary": {
+                "label": "empty-input boundary",
+                "pass": true,
+                "expected": "sha256(empty) matches the standard empty digest",
+                "observed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "error": null,
+                "duration_ms": 0.008
+            },
+            "stress": {
+                "label": "four-megabyte payload",
+                "pass": true,
+                "expected": "a deterministic 4 MiB payload hashes reproducibly to 32 bytes",
+                "observed": {
+                    "payload_bytes": 4194304,
+                    "digest": "8c7631389970cde5de2c18211fd7b0e8f0618c6ea0221542f518ce4336149203"
+                },
+                "error": null,
+                "duration_ms": 24.314
+            },
+            "adjacent_integration_edge": {
+                "label": "JSON3 canonical payload edge",
+                "pass": true,
+                "expected": "decode/rebuild through JSON3 preserves the exact serialized digest",
+                "observed": {
+                    "encoded": "{\"id\":137,\"label\":\"deep-stack\"}",
+                    "digest": "7fd3e07bee03c1e03164e18f140ca92d19b499a4a7bc2dcd7590348e705f6601"
+                },
+                "error": null,
+                "duration_ms": 0.048
+            },
+            "demotion_condition": "demote support if known vectors, tamper separation, empty-input boundary, bounded large payloads, or JSON3 canonical payload hashing fails",
+            "operational_pass": true
+        }
+    ]
+}

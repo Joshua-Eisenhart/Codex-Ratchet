@@ -1,0 +1,471 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "supportive",
+    "torch.func": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "torch": {
+      "reason": "supportive tensor optimization of finite prototype readouts",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing jacrev/vmap sensitivity check on the learned nominal projection readout",
+      "tried": true,
+      "used": true
+    }
+  },
+  "ablation_load_bearing": {
+    "nominal_minus_bag_accuracy": 0.65,
+    "nominal_minus_view_erased_accuracy": 0.65,
+    "torch_func_jacrev_used": true
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-07-14T22:33:29Z",
+  "learned_layer_statement": "A tiny PyTorch prototype readout learns the finite projection records and fails at chance when the carrier is bag-erased or view-erased.",
+  "learned_projection_readouts": {
+    "bag_erased_control": {
+      "control": "bag_erased",
+      "mean_heldout_accuracy": 0.25,
+      "min_heldout_accuracy": 0.25,
+      "object_count": 4,
+      "torch_func_jacrev_nonzero": true,
+      "view_count": 5,
+      "view_results": [
+        {
+          "accuracy": 0.25,
+          "heldout_view": "maintenance_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            0.6277936586879567,
+            0.6277936586879567,
+            0.6277936586879567,
+            0.6277936586879567
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "finance_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            0.6277936586879567,
+            0.6277936586879567,
+            0.6277936586879567,
+            0.6277936586879567
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "safety_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            0.6277936586879567,
+            0.6277936586879567,
+            0.6277936586879567,
+            0.6277936586879567
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "planning_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            0.6277936586879567,
+            0.6277936586879567,
+            0.6277936586879567,
+            0.6277936586879567
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "ontology_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            0.6277936586879567,
+            0.6277936586879567,
+            0.6277936586879567,
+            0.6277936586879567
+          ]
+        }
+      ]
+    },
+    "nominal": {
+      "control": "none",
+      "mean_heldout_accuracy": 0.9,
+      "min_heldout_accuracy": 0.5,
+      "object_count": 4,
+      "torch_func_jacrev_nonzero": true,
+      "view_count": 5,
+      "view_results": [
+        {
+          "accuracy": 1.0,
+          "heldout_view": "maintenance_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            12.419283911024593,
+            12.063910898490683,
+            12.065265557978206,
+            12.417592113307043
+          ]
+        },
+        {
+          "accuracy": 1.0,
+          "heldout_view": "finance_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            21.232656715794842,
+            17.932751498276165,
+            17.931832903370076,
+            21.20937540108173
+          ]
+        },
+        {
+          "accuracy": 1.0,
+          "heldout_view": "safety_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            18.623411217726826,
+            18.41247575897735,
+            18.38959558726985,
+            18.650225060070138
+          ]
+        },
+        {
+          "accuracy": 0.5,
+          "heldout_view": "planning_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            1,
+            1,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            15.681880486738025,
+            15.423864759895634,
+            15.423864759895634,
+            15.681880486738025
+          ]
+        },
+        {
+          "accuracy": 1.0,
+          "heldout_view": "ontology_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            15.169067031202962,
+            14.87838982546182,
+            14.888233893126314,
+            15.167119898214276
+          ]
+        }
+      ]
+    },
+    "view_erased_control": {
+      "control": "view_erased",
+      "mean_heldout_accuracy": 0.25,
+      "min_heldout_accuracy": 0.25,
+      "object_count": 4,
+      "torch_func_jacrev_nonzero": true,
+      "view_count": 5,
+      "view_results": [
+        {
+          "accuracy": 0.25,
+          "heldout_view": "maintenance_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            0.6277936586887837,
+            0.6277936586887837,
+            0.6277936586887837,
+            0.6277936586887837
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "finance_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            0.6277936586887837,
+            0.6277936586887837,
+            0.6277936586887837,
+            0.6277936586887837
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "safety_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            0.6277936586887837,
+            0.6277936586887837,
+            0.6277936586887837,
+            0.6277936586887837
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "planning_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            0.6277936586887837,
+            0.6277936586887837,
+            0.6277936586887837,
+            0.6277936586887837
+          ]
+        },
+        {
+          "accuracy": 0.25,
+          "heldout_view": "ontology_mmm",
+          "labels": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "lossless_train_shape": [
+            16,
+            128
+          ],
+          "predictions": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "torch_func_jacrev_grad_norms": [
+            0.6277936586887837,
+            0.6277936586887837,
+            0.6277936586887837,
+            0.6277936586887837
+          ]
+        }
+      ]
+    }
+  },
+  "object_count": 4,
+  "package_observables": {
+    "torch.func": "jacrev/vmap gradient norms of the learned finite projection readout; nonzero nominal sensitivity is required"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func"
+  ],
+  "promotion_allowed": false,
+  "ran": true,
+  "reads_peer_result": false,
+  "result_path": "system_v7/sims/qit_projection_battery_v0/results/qit_projection_battery_v0_pytorch_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "qit_projection_battery_v0",
+  "source_path": "system_v7/sims/qit_projection_battery_v0/qit_projection_battery_v0_pytorch.py",
+  "source_sha256": "f3232ab5832cb246a1725a8b3569a4294580ab99d66ae563c13d9a96082faf63",
+  "view_count": 5
+}

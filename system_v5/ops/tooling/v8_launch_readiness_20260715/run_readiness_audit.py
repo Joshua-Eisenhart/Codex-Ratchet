@@ -49,6 +49,7 @@ EXPECTED_HOLD_REASONS = [
     "NVIDIA_QUOTA_UNKNOWN",
     "XAI_QUOTA_UNKNOWN",
     "CLAUDE_BRIDGE_ADVISORY_ONLY",
+    "SKILL_SURFACE_NOT_FULLY_PARITY_GREEN",
     "LEV_REPAIR_SOURCE_BOUND_NOT_PROCESS_ADMISSION",
 ]
 
@@ -458,6 +459,12 @@ def build_paths(root: Path, frozen_campaign_root: Path) -> dict[str, Path]:
         "frozen_diagnostics": frozen_campaign_root / "results/postrun_diagnostics.json",
         "lev_evidence": HERE / "results/lev_evidence/receipt.json",
         "lev_evidence_validation": HERE / "results/lev_evidence/validation.json",
+        "skill_audit": root
+        / "system_v5/ops/tooling/v8_skill_surface_audit_20260715/results/skill_surface_audit.json",
+        "skill_validation": root
+        / "system_v5/ops/tooling/v8_skill_surface_audit_20260715/results/validation.json",
+        "skill_mutations": root
+        / "system_v5/ops/tooling/v8_skill_surface_audit_20260715/results/mutation_tests.json",
     }
 
 
@@ -611,6 +618,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     frozen_diagnostics = payloads.get("frozen_diagnostics", {})
     lev_evidence = payloads.get("lev_evidence", {})
     lev_evidence_validation = payloads.get("lev_evidence_validation", {})
+    skill_audit = payloads.get("skill_audit", {})
+    skill_validation = payloads.get("skill_validation", {})
+    skill_mutations = payloads.get("skill_mutations", {})
 
     v1_builder_paths = v1_spec.get("builder_paths", [])
     v1_builders_absent = (
@@ -713,6 +723,30 @@ def main(argv: Sequence[str] | None = None) -> int:
         "claude_bridge_tests_green": claude_tests_green,
         "claude_fable5_dry_receipt_valid_nongating": (
             claude_validator_green and claude_receipt_valid(claude_receipt)
+        ),
+        "skill_surface_valid_with_claude_gap": (
+            skill_audit.get("schema") == "codex-ratchet-skill-surface-audit-v1"
+            and skill_audit.get("summary", {}).get("scope_count") == 10
+            and skill_audit.get("summary", {}).get("surface_presence")
+            == {"repo_held": 10, "codex_installed": 10, "agents_installed": 1}
+            and skill_audit.get("summary", {}).get("missing_repo_source") == []
+            and skill_audit.get("summary", {}).get("candidate_not_installed")
+            == ["claude-bridge"]
+            and skill_audit.get("summary", {}).get("repo_codex_body_drift")
+            == ["claude-bridge"]
+            and skill_audit.get("verdict", {}).get("operational_surface_ready") is False
+            and skill_audit.get("claim_boundaries")
+            and all(value is False for value in skill_audit["claim_boundaries"].values())
+            and skill_validation.get("schema")
+            == "codex-ratchet-skill-surface-validation-v1"
+            and skill_validation.get("ok") is True
+            and skill_validation.get("errors") == []
+            and skill_mutations.get("schema")
+            == "codex-ratchet-skill-surface-mutation-tests-v1"
+            and skill_mutations.get("baseline_valid") is True
+            and skill_mutations.get("case_count") == 7
+            and skill_mutations.get("rejected_count") == 7
+            and skill_mutations.get("all_mutations_rejected") is True
         ),
         "frozen_campaign_red_nonofficial": (
             frozen_execution.get("schema")

@@ -46,6 +46,7 @@ EXPECTED_CHECKS = {
     "provider_quota_preflights_hold_unknown",
     "claude_bridge_tests_green",
     "claude_fable5_dry_receipt_valid_nongating",
+    "skill_surface_valid_with_claude_gap",
     "frozen_campaign_red_nonofficial",
     "frozen_postrun_diagnostic_preserves_red",
     "lev_repair_branch_identity_bound",
@@ -60,6 +61,7 @@ EXPECTED_HOLD_REASONS = {
     "NVIDIA_QUOTA_UNKNOWN",
     "XAI_QUOTA_UNKNOWN",
     "CLAUDE_BRIDGE_ADVISORY_ONLY",
+    "SKILL_SURFACE_NOT_FULLY_PARITY_GREEN",
     "LEV_REPAIR_SOURCE_BOUND_NOT_PROCESS_ADMISSION",
 }
 EXPECTED_STEPS = {
@@ -91,6 +93,9 @@ REQUIRED_INPUTS = {
     "frozen_diagnostics",
     "lev_evidence",
     "lev_evidence_validation",
+    "skill_audit",
+    "skill_validation",
+    "skill_mutations",
     "claude_dry_receipt",
 }
 
@@ -416,6 +421,81 @@ def validate_claude(payloads: dict[str, dict[str, Any]], errors: list[str]) -> N
             path.is_file() and sha256_file(path) == receipt.get(f"{key}_sha256"),
             f"Claude {key} binding drift",
         )
+
+
+def validate_skill_surface(
+    payloads: dict[str, dict[str, Any]], errors: list[str]
+) -> None:
+    audit = payloads.get("skill_audit", {})
+    validation = payloads.get("skill_validation", {})
+    mutations = payloads.get("skill_mutations", {})
+    summary = audit.get("summary", {})
+    boundaries = audit.get("claim_boundaries", {})
+    require(
+        errors,
+        audit.get("schema") == "codex-ratchet-skill-surface-audit-v1"
+        and audit.get("classification") == "audit"
+        and audit.get("audit_kind") == "v8_skill_surface",
+        "skill audit schema/classification drift",
+    )
+    require(errors, summary.get("scope_count") == 10, "skill audit scope drift")
+    require(
+        errors,
+        summary.get("surface_presence")
+        == {"repo_held": 10, "codex_installed": 10, "agents_installed": 1},
+        "skill surface presence drift",
+    )
+    require(errors, summary.get("missing_repo_source") == [], "skill repo source repair regressed")
+    require(
+        errors,
+        summary.get("candidate_not_installed") == ["claude-bridge"]
+        and summary.get("repo_codex_body_drift") == ["claude-bridge"],
+        "skill Claude candidate gap drift",
+    )
+    require(
+        errors,
+        {
+            "codex-ratchet-sim-audit-spine",
+            "codex-ratchet-deep-stack-stress",
+        }
+        <= set(summary.get("exact_repo_codex_body_parity", [])),
+        "skill bounded parity repairs regressed",
+    )
+    require(
+        errors,
+        isinstance(boundaries, dict)
+        and bool(boundaries)
+        and all(value is False for value in boundaries.values()),
+        "skill audit authority boundary opened",
+    )
+    require(
+        errors,
+        audit.get("verdict", {}).get("operational_surface_ready") is False,
+        "skill surface falsely ready",
+    )
+    require(
+        errors,
+        validation.get("schema") == "codex-ratchet-skill-surface-validation-v1"
+        and validation.get("ok") is True
+        and validation.get("errors") == []
+        and validation.get("promotion_allowed") is False
+        and validation.get("formal_admission_allowed") is False
+        and validation.get("official_launch_allowed") is False,
+        "skill independent validation drift",
+    )
+    require(
+        errors,
+        mutations.get("schema")
+        == "codex-ratchet-skill-surface-mutation-tests-v1"
+        and mutations.get("baseline_valid") is True
+        and mutations.get("case_count") == 7
+        and mutations.get("rejected_count") == 7
+        and mutations.get("all_mutations_rejected") is True
+        and mutations.get("promotion_allowed") is False
+        and mutations.get("formal_admission_allowed") is False
+        and mutations.get("official_launch_allowed") is False,
+        "skill mutation evidence drift",
+    )
 
 
 def validate_frozen(payloads: dict[str, dict[str, Any]], errors: list[str]) -> None:
@@ -818,6 +898,7 @@ def validate(
         validate_v1(payloads, errors)
         validate_providers(payloads, errors)
         validate_claude(payloads, errors)
+        validate_skill_surface(payloads, errors)
         validate_frozen(payloads, errors)
         validate_lev(receipt, errors)
         validate_lev_evidence(payloads, receipt, errors)

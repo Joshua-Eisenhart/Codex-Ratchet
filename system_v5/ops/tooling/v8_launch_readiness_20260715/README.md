@@ -21,6 +21,8 @@ non-gating.
   preflights remain `HOLD` with `quota_unknown`;
 - the repo-held Claude Bridge passes its 20 local tests and writes a validated
   non-gating `fable5 -> fable` dry-run receipt;
+- the ten-skill implementation audit and seven negative mutations validate,
+  while the uninstalled Claude candidate remains an explicit blocking gap;
 - the supplied frozen campaign remains nonofficial and red, with the diagnostic
   preserving its unexpected QIT red;
 - the supplied Lev worktree is clean, exactly at the caller-supplied commit,

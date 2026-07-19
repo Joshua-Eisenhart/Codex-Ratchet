@@ -1,0 +1,206 @@
+{
+  "all_pass": true,
+  "bar": "UNOFFICIAL working-sim; NOT proof-level",
+  "checks": {
+    "galois_gf7_packet_words_match_t5_archive": true,
+    "galois_gf7_qr_set_is_124_all_three_methods": true,
+    "galois_gf8_every_element_square_unlike_gf7": true,
+    "galois_gf8_packet_width_four_nonempty": true,
+    "galois_gf8_units_closed_intmod8_has_zero_divisors": true,
+    "gf8_alone_base_engine_process_checks_pass": true,
+    "gf8_welded_base_engine_process_checks_pass": true,
+    "gf8_welded_simulated_ten_packets": true,
+    "gksl_integrator_matches_analytic_lt_1e-6": true,
+    "sindy_bloch_const_coeff_matches_gamma_5pct": true,
+    "sindy_bloch_form_is_linear_no_higher_terms": true,
+    "sindy_bloch_linear_coeff_matches_minus_gamma_5pct": true,
+    "sindy_bloch_model_score_above_0.999": true,
+    "sindy_quotient_entropy_fits_finite": true
+  },
+  "claim_ceiling": "working-sim diagnostics: package-level deep integration evidence only; no canonical, bridge, or admission claim",
+  "data": {
+    "part1_pysindy": {
+      "gamma_used": 0.3610057950879211,
+      "gksl_dt": 0.04,
+      "gksl_integrator_max_err_vs_analytic": 2.69820665810272e-10,
+      "gksl_steps": 200,
+      "receipt_series_lengths": {
+        "I": 30,
+        "S_L": 30,
+        "S_LR": 30,
+        "dC": 30,
+        "flux": 30
+      },
+      "sindy_bloch": {
+        "coefficients": [
+          0.36101731844585694,
+          -0.361016510152916,
+          0.0,
+          0.0
+        ],
+        "const_coeff": 0.36101731844585694,
+        "cubic_coeff": 0.0,
+        "feature_names": [
+          "1",
+          "x0",
+          "x0^2",
+          "x0^3"
+        ],
+        "linear_coeff": -0.361016510152916,
+        "quad_coeff": 0.0,
+        "rel_err_const": 3.1920146691978855e-05,
+        "rel_err_linear": 2.9681144016922898e-05,
+        "score": 0.9999999992280719
+      },
+      "sindy_quotient_entropy": {
+        "alone_equation": "-0.1113 1 +  0.0596 x0",
+        "alone_score": 0.048887183344409446,
+        "joint_equation": "-2.3391 1 + -4.8756 x1 +  0.1897 x2 + -0.1650 x0^2 + -0.1266 x0 x1 + -1.0621 x0 x2 + -2.1935 x1^2 + -1.3524 x1 x2",
+        "joint_score": 0.6111485300566684
+      }
+    },
+    "part2_galois": {
+      "frontier_changed_by_gf8": false,
+      "gf7_packet": {
+        "accepted_count": 8,
+        "accepted_words": [
+          "0010",
+          "0011",
+          "0100",
+          "0101",
+          "1000",
+          "1001",
+          "1110",
+          "1111"
+        ],
+        "coordinates": [
+          "a_is_QR",
+          "b_is_QR",
+          "product_is_QR",
+          "product_parity"
+        ],
+        "packet_digest": "sha256:7f916bb5a16804bd2f378b1eacc8bdfc20437ad26e7dafe612e2b02804fa70a7",
+        "packet_id": "gf7_multiplication_galois_rebuild",
+        "role": "source_observation",
+        "source": "system_v8/deep_integration/tools_dynamics_fields.py::part2_galois GF(7) via galois",
+        "width": 4
+      },
+      "gf7_qr_legendre": [
+        1,
+        2,
+        4
+      ],
+      "gf7_qr_squares": [
+        1,
+        2,
+        4
+      ],
+      "gf8_alone_frontier": [
+        "finite_automaton",
+        "finite_relation",
+        "partial_order",
+        "simplicial_complex"
+      ],
+      "gf8_alone_purgatory": [
+        "bracket_register",
+        "classical_distribution",
+        "clifford_spinor",
+        "complex_density",
+        "euclidean_jordan",
+        "finite_partition",
+        "matroid",
+        "octonionic",
+        "pairwise_graph",
+        "probe_incidence",
+        "quaternionic",
+        "rebit_density"
+      ],
+      "gf8_irreducible_poly": "x^3 + x + 1",
+      "gf8_packet": {
+        "accepted_count": 16,
+        "accepted_words": [
+          "0000",
+          "0001",
+          "0010",
+          "0011",
+          "0100",
+          "0101",
+          "0110",
+          "0111",
+          "1000",
+          "1001",
+          "1010",
+          "1011",
+          "1100",
+          "1101",
+          "1110",
+          "1111"
+        ],
+        "coordinates": [
+          "a_trace",
+          "b_trace",
+          "product_trace",
+          "product_dlog_parity"
+        ],
+        "packet_digest": "sha256:54df76ab1a8cf6ebe3ec48d95f0ed2a0d12bc671720f9d8f49dd229ba1aee534",
+        "packet_id": "gf8_ext_field_multiplication",
+        "role": "source_observation",
+        "source": "system_v8/deep_integration/tools_dynamics_fields.py::part2_galois GF(2^3) irreducible x^3 + x + 1, trace+dlog projection",
+        "width": 4
+      },
+      "gf8_welded_frontier": [
+        "finite_automaton",
+        "finite_relation"
+      ],
+      "intmod8_zero_divisor_pairs": [
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "previous_heldout_frontier": [
+        "finite_automaton",
+        "finite_relation"
+      ],
+      "t5_gf7_archive_digest": "sha256:1704192a09c4116ca0deaeb824efab969e82de1d88fedcc53404c17ce47fa877"
+    }
+  },
+  "findings": [
+    "local GKSL gamma = mean(julia_manifold gamma series) = 0.361006 (series cycles over [np.float64(0.208273), np.float64(0.333236), np.float64(0.541509)])",
+    "SINDy recovered (r_z)' = 0.361017 + -0.361017 r_z (quad 0.00e+00, cubic 0.00e+00); target gamma(1-r_z) with gamma=0.361006; rel errors const 0.003%, lin 0.003%; R^2=1.000000. pysindy regression decides these checks (load-bearing).",
+    "quotient-entropy S_LR autonomous 1-var fit: (S_LR)' = -0.1113 1 +  0.0596 x0; R^2=0.0489. Joint (S_LR,flux,I) fit: (S_LR)' = -2.3391 1 + -4.8756 x1 +  0.1897 x2 + -0.1650 x0^2 + -0.1266 x0 x1 + -1.0621 x0 x2 + -2.1935 x1^2 + -1.3524 x1 x2; R^2(all states)=0.6111. HONEST record: the 30-tick drive-coupled series rises then falls under a period-3 gamma schedule, so no autonomous low-order polynomial ODE in S_LR alone can represent it; the discovered structure is weak/trivial and is recorded as such, not promoted.",
+    "GF(7) rebuild via galois: QR set [1, 2, 4] from squares, legendre_symbol, and is_square all agree; packet words ['0010', '0011', '0100', '0101', '1000', '1001', '1110', '1111'] vs T5 archive ['0010', '0011', '0100', '0101', '1000', '1001', '1110', '1111'] \u2014 galois arithmetic decides the match (load-bearing).",
+    "GF(8) packet (16 words ['0000', '0001', '0010', '0011', '0100', '0101', '0110', '0111', '1000', '1001', '1010', '1011', '1100', '1101', '1110', '1111']) run through base MSS engine: alone frontier ['finite_automaton', 'finite_relation', 'partial_order', 'simplicial_complex'], welded (9+1) frontier ['finite_automaton', 'finite_relation'], previous frontier ['finite_automaton', 'finite_relation'], frontier_changed_by_gf8=False. Z/8 zero-divisor pairs [(2, 4), (4, 2), (4, 4), (4, 6), (6, 4)] witness that int-mod cannot build this field; only galois extension-field arithmetic (poly x^3 + x + 1, trace, dlog) produced this packet (load-bearing)."
+  ],
+  "formal_admission_allowed": false,
+  "inputs": {
+    "base_mss": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/manifold/results/base_mss.json",
+    "julia_manifold_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/engine_native/results/julia_manifold/receipt.json",
+    "source_packets": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/manifold/results/source_packets.json",
+    "t5_out_of_grammar": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/manifold/results/t5_out_of_grammar.json"
+  },
+  "lane": "dynamics_fields",
+  "packages": {
+    "galois": "load_bearing: GF(7) field mul/is_square/legendre decide the T5 word match; GF(2^3) extension arithmetic is the only constructor of the gf8 packet",
+    "numpy": "supportive: RK4 GKSL integrator + series handling",
+    "pysindy": "load_bearing: SINDy regression coefficients decide the Bloch-law identification checks (const=+gamma, linear=-gamma, linear form)"
+  },
+  "promotion_allowed": false,
+  "schema": "ratchet.v8.deep-integration.dynamics-fields.v0"
+}

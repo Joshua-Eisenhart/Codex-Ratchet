@@ -82,3 +82,11 @@ SMT = order/bracket witnesses exact on small cases. One heavy stack at a time.
 Builder lanes must not read each other's outputs; the scorer is a separate
 fresh-context agent; probe thresholds fixed in this card; no threshold edits
 post-hoc. Honest negatives kept.
+
+## AMENDMENT v0.1 (2026-07-19, PRE-RUN, recorded openly — post-hoc edits remain void)
+Loop-1 receipts showed the held-out-admissibility task is data-limited
+(transfer ceiling 0.50 even for oracle-capacity classical models). Task line
+amended BEFORE any tournament execution: the task is now OCCLUDED-OBJECT
+PERCEPTION — world-engine-generated objects with hidden state; predict
+masked probe outcomes + maintain belief under occlusion (probes P5/P6
+become primary). All other card content unchanged and frozen.

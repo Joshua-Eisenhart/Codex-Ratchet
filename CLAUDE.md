@@ -1,5 +1,8 @@
 # Codex Ratchet — Claude Reference Instructions
 
+## LEV OS BOOT (BINDING, 2026-07-19 owner order — fires via .claude/hooks/session-start.sh)
+This repo runs UNDER Lev OS. Front door: /Users/joshuaeisenhart/GitHub/lev — read AGENTS.md (iron-clad laws), dna/graph.yaml (C1 FINITUDE / C2 NON-COMMUTATION), .lev/validation-gates.yaml BEFORE work. CR-facing Lev branch: lev-main fable/cr-sim-eval-pack (Ratchet policy receipts). Hooks installed: session boot + post-compaction rule re-injection (.claude/hooks/). Inventory before generation, every task.
+
 This file is Claude-facing project guidance and reference doctrine. It is not Codex authority. Codex behavior is governed by repo-root `AGENTS.md`; Codex may read this file only as project-process reference.
 
 ## BINDING STATE 2026-07-04 (owner corrections — read before anything else)

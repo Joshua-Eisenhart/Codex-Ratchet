@@ -1,0 +1,162 @@
+{
+  "all_pass": true,
+  "checks": {
+    "chirality_all_pass": true,
+    "chirality_expressible": true,
+    "chirality_installable": true,
+    "chirality_no_promotion": true,
+    "chirality_not_forced": true,
+    "chirality_receipt_digests": true,
+    "chirality_result_digest": true,
+    "chirality_schema": true,
+    "connection_all_pass": true,
+    "connection_candidate_count": true,
+    "connection_default": true,
+    "connection_frontier": true,
+    "connection_no_promotion": true,
+    "connection_receipt_digests": true,
+    "connection_result_digest": true,
+    "connection_schema": true,
+    "connection_witnesses": true,
+    "history_all_pass": true,
+    "history_candidate_count": true,
+    "history_explicit_negative": true,
+    "history_frontier": true,
+    "history_frontier_witness": true,
+    "history_no_promotion": true,
+    "history_noncommutation_witness": true,
+    "history_receipt_digests": true,
+    "history_result_digest": true,
+    "history_schema": true,
+    "links_chain": true,
+    "persistence_all_pass": true,
+    "persistence_frontier_matches_history": true,
+    "persistence_inventory_nonempty": true,
+    "persistence_no_promotion": true,
+    "persistence_receipt_digests": true,
+    "persistence_result_digest": true,
+    "persistence_schema": true,
+    "source_all_pass": true,
+    "source_packet_count_pinned_9": true,
+    "source_result_digest": true,
+    "source_schema": true,
+    "whole_all_pass": true,
+    "whole_candidate_count": true,
+    "whole_final_chirality_status_link": true,
+    "whole_final_connection": true,
+    "whole_final_frontier_plural": true,
+    "whole_final_history": true,
+    "whole_no_promotion_terminal_or_exhaustion": true,
+    "whole_purgatory_witnesses": true,
+    "whole_receipt_count": true,
+    "whole_receipt_digests": true,
+    "whole_result_digest": true,
+    "whole_schema": true
+  },
+  "claim_ceiling": "semantic verification of redundant deep alt receipts only",
+  "formal_admission_allowed": false,
+  "mutation_count": 15,
+  "mutation_tests": [
+    {
+      "expected_failed_check": "source_packet_count_pinned_9",
+      "mutation": "drop_source_packet",
+      "rejected": true,
+      "target": "source"
+    },
+    {
+      "expected_failed_check": "connection_schema",
+      "mutation": "rename_connection_schema",
+      "rejected": true,
+      "target": "connection"
+    },
+    {
+      "expected_failed_check": "connection_candidate_count",
+      "mutation": "drop_connection_candidate",
+      "rejected": true,
+      "target": "connection"
+    },
+    {
+      "expected_failed_check": "connection_frontier",
+      "mutation": "collapse_connection_frontier",
+      "rejected": true,
+      "target": "connection"
+    },
+    {
+      "expected_failed_check": "connection_witnesses",
+      "mutation": "erase_connection_witness",
+      "rejected": true,
+      "target": "connection"
+    },
+    {
+      "expected_failed_check": "history_candidate_count",
+      "mutation": "drop_history_candidate",
+      "rejected": true,
+      "target": "history"
+    },
+    {
+      "expected_failed_check": "history_frontier_witness",
+      "mutation": "erase_history_witness",
+      "rejected": true,
+      "target": "history"
+    },
+    {
+      "expected_failed_check": "history_frontier",
+      "mutation": "change_history_frontier",
+      "rejected": true,
+      "target": "history"
+    },
+    {
+      "expected_failed_check": "persistence_inventory_nonempty",
+      "mutation": "empty_persistence_inventory",
+      "rejected": true,
+      "target": "persistence"
+    },
+    {
+      "expected_failed_check": "chirality_not_forced",
+      "mutation": "force_chirality",
+      "rejected": true,
+      "target": "chirality"
+    },
+    {
+      "expected_failed_check": "chirality_installable",
+      "mutation": "erase_chirality_installable",
+      "rejected": true,
+      "target": "chirality"
+    },
+    {
+      "expected_failed_check": "whole_final_frontier_plural",
+      "mutation": "collapse_whole_frontier",
+      "rejected": true,
+      "target": "whole"
+    },
+    {
+      "expected_failed_check": "whole_candidate_count",
+      "mutation": "alter_whole_candidate_count",
+      "rejected": true,
+      "target": "whole"
+    },
+    {
+      "expected_failed_check": "whole_no_promotion_terminal_or_exhaustion",
+      "mutation": "promote_whole",
+      "rejected": true,
+      "target": "whole"
+    },
+    {
+      "expected_failed_check": "whole_final_chirality_status_link",
+      "mutation": "break_deep_link",
+      "rejected": true,
+      "target": "whole"
+    }
+  ],
+  "pinned_schemas": {
+    "chirality": "ratchet.pack183.deep.chirality-alt.v1",
+    "connection": "ratchet.pack183.deep.connection-alt.v1",
+    "history": "ratchet.pack183.deep.history-alt.v1",
+    "persistence": "ratchet.pack183.deep.persistence-alt.v1",
+    "source": "ratchet.v8.source-packets.v1",
+    "whole": "ratchet.pack183.deep.whole-manifold-v2-alt.v1"
+  },
+  "promotion_allowed": false,
+  "result_digest": "sha256:8d0dbc9f77f560b1e2526affaccdf6b69ddc2ff9e0e0c81933a56c6424d0d584",
+  "schema": "ratchet.pack183.deep.verification-alt.v1"
+}

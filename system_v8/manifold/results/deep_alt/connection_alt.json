@@ -1,0 +1,321 @@
+{
+  "all_pass": true,
+  "candidate_count": 3,
+  "candidate_evaluations": {
+    "identity_transport": {
+      "all_transports_admissible": false,
+      "candidate_id": "identity_transport",
+      "connection_cost": 0,
+      "derivation": "default literal inner-to-outer coordinates",
+      "first_violation": {
+        "state": [
+          0,
+          1,
+          1
+        ],
+        "transport": "identity_transport",
+        "transported_outer": [
+          0,
+          1,
+          1
+        ],
+        "witness": "transported inner state is absent from the packet outer layer"
+      },
+      "packet_results": {
+        "nested_completion_baseline": {
+          "all_inner_states_outer_admissible": false,
+          "inner_state_count": 5,
+          "outer_state_count": 4,
+          "transported_outer_count": 5,
+          "violations": [
+            {
+              "state": [
+                0,
+                1,
+                1
+              ],
+              "transport": "identity_transport",
+              "transported_outer": [
+                0,
+                1,
+                1
+              ],
+              "witness": "transported inner state is absent from the packet outer layer"
+            },
+            {
+              "state": [
+                1,
+                1,
+                0
+              ],
+              "transport": "identity_transport",
+              "transported_outer": [
+                1,
+                1,
+                0
+              ],
+              "witness": "transported inner state is absent from the packet outer layer"
+            }
+          ]
+        },
+        "nested_completion_expanded": {
+          "all_inner_states_outer_admissible": false,
+          "inner_state_count": 6,
+          "outer_state_count": 4,
+          "transported_outer_count": 6,
+          "violations": [
+            {
+              "state": [
+                0,
+                1,
+                1
+              ],
+              "transport": "identity_transport",
+              "transported_outer": [
+                0,
+                1,
+                1
+              ],
+              "witness": "transported inner state is absent from the packet outer layer"
+            },
+            {
+              "state": [
+                1,
+                1,
+                0
+              ],
+              "transport": "identity_transport",
+              "transported_outer": [
+                1,
+                1,
+                0
+              ],
+              "witness": "transported inner state is absent from the packet outer layer"
+            }
+          ]
+        }
+      },
+      "transport_table": {
+        "000": [
+          0,
+          0,
+          0
+        ],
+        "010": [
+          0,
+          1,
+          0
+        ],
+        "011": [
+          0,
+          1,
+          1
+        ],
+        "100": [
+          1,
+          0,
+          0
+        ],
+        "110": [
+          1,
+          1,
+          0
+        ],
+        "111": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "qca_permutation_transport": {
+      "all_transports_admissible": true,
+      "candidate_id": "qca_permutation_transport",
+      "connection_cost": 2,
+      "derivation": "right-shift finite QCA transition table projection",
+      "first_violation": null,
+      "packet_results": {
+        "nested_completion_baseline": {
+          "all_inner_states_outer_admissible": true,
+          "inner_state_count": 5,
+          "outer_state_count": 4,
+          "transported_outer_count": 2,
+          "violations": []
+        },
+        "nested_completion_expanded": {
+          "all_inner_states_outer_admissible": true,
+          "inner_state_count": 6,
+          "outer_state_count": 4,
+          "transported_outer_count": 2,
+          "violations": []
+        }
+      },
+      "transport_table": {
+        "000": [
+          0,
+          0,
+          0
+        ],
+        "010": [
+          0,
+          1,
+          0
+        ],
+        "011": [
+          0,
+          1,
+          0
+        ],
+        "100": [
+          0,
+          0,
+          0
+        ],
+        "110": [
+          0,
+          1,
+          0
+        ],
+        "111": [
+          0,
+          1,
+          0
+        ]
+      }
+    },
+    "spinor_parity_sign_transport": {
+      "all_transports_admissible": true,
+      "candidate_id": "spinor_parity_sign_transport",
+      "connection_cost": 1,
+      "derivation": "spinor lift sign and density-erased parity",
+      "first_violation": null,
+      "packet_results": {
+        "nested_completion_baseline": {
+          "all_inner_states_outer_admissible": true,
+          "inner_state_count": 5,
+          "outer_state_count": 4,
+          "transported_outer_count": 4,
+          "violations": []
+        },
+        "nested_completion_expanded": {
+          "all_inner_states_outer_admissible": true,
+          "inner_state_count": 6,
+          "outer_state_count": 4,
+          "transported_outer_count": 4,
+          "violations": []
+        }
+      },
+      "transport_table": {
+        "000": [
+          0,
+          0,
+          0
+        ],
+        "010": [
+          0,
+          1,
+          0
+        ],
+        "011": [
+          1,
+          1,
+          1
+        ],
+        "100": [
+          1,
+          0,
+          0
+        ],
+        "110": [
+          1,
+          1,
+          1
+        ],
+        "111": [
+          0,
+          1,
+          0
+        ]
+      }
+    }
+  },
+  "checks": {
+    "excluded_candidates_have_concrete_witnesses": true,
+    "frontier_nonempty": true,
+    "no_promotion": true,
+    "prior_whole_all_pass": true,
+    "qca_transport_survives": true,
+    "source_all_pass": true,
+    "source_packet_count_pinned_9": true,
+    "three_transport_candidates_including_default": true
+  },
+  "claim_ceiling": "packet-relative finite transport admissibility only; no canonical connection or physical transport claim",
+  "formal_admission_allowed": false,
+  "frontier": [
+    "qca_permutation_transport",
+    "spinor_parity_sign_transport"
+  ],
+  "global_mss_claimed": false,
+  "operational_default": "qca_permutation_transport",
+  "prior_whole_digest": "sha256:15961e9aa6eada0cea7d5705f9cc9cfd1dea483caf8e3a96c48c49927a733c33",
+  "promotion_allowed": false,
+  "purgatory": [
+    {
+      "candidate_id": "identity_transport",
+      "reoffer_rule": "re-offer if a later source packet makes every transported inner state outer-admissible",
+      "witness": {
+        "state": [
+          0,
+          1,
+          1
+        ],
+        "transport": "identity_transport",
+        "transported_outer": [
+          0,
+          1,
+          1
+        ],
+        "witness": "transported inner state is absent from the packet outer layer"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "candidate_count_recomputed": 3,
+      "default": "qca_permutation_transport",
+      "frontier": [
+        "qca_permutation_transport",
+        "spinor_parity_sign_transport"
+      ],
+      "global_mss_claimed": false,
+      "purgatory": [
+        {
+          "candidate_id": "identity_transport",
+          "reoffer_rule": "re-offer if a later source packet makes every transported inner state outer-admissible",
+          "witness": {
+            "state": [
+              0,
+              1,
+              1
+            ],
+            "transport": "identity_transport",
+            "transported_outer": [
+              0,
+              1,
+              1
+            ],
+            "witness": "transported inner state is absent from the packet outer layer"
+          }
+        }
+      ],
+      "reason": "propose and settle finite transport candidates against nesting packet outer layers",
+      "receipt_digest": "sha256:dcb42b9cd675a2532bac2dae7739759f2a0d09c52f5208f9aa1230f8ed48f594",
+      "step": 0,
+      "terminal_state": false
+    }
+  ],
+  "result_digest": "sha256:8406d17146e19c4c51e77a760a11b5a27c99bdcd288abcc155dbd25f509bbd4b",
+  "schema": "ratchet.pack183.deep.connection-alt.v1",
+  "source_packet_digest": "sha256:9a6e32c785cca33328b92ed89c21c5004da2bd50ba28d446bf22f25d5911d122",
+  "terminal_state": false
+}

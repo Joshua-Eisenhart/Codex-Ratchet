@@ -61,8 +61,19 @@ def compat_majority(prev_bit, new_bit, r):
     return not (prev_bit == 1 and new_bit == 1 and r == 2)
 
 
+def compat_majority_asym(prev_bit, new_bit, r):
+    """Tick-3 proposal: asymmetric two-shell constraint — scrambling the
+    inner bit maps the forbidden set onto an inequivalent one."""
+    if r == 2 and prev_bit == 1 and new_bit == 1:
+        return False
+    if r == 3 and prev_bit == 0 and new_bit == 0:
+        return False
+    return True
+
+
 FAMILIES = {"parity": compat_parity, "shift": compat_shift,
-            "majority": compat_majority}
+            "majority": compat_majority,
+            "majority_asym": compat_majority_asym}
 CARRIERS = ("chain", "peps3d_block")
 
 
@@ -297,12 +308,17 @@ def controls(compat, carrier, base):
         if abs(m["per_shell"][2]["I_IrBr"] - base["per_shell"][2]["I_IrBr"])
         > 1e-9 else "DOES_NOT_KILL (finding)"}
     # one_future_control: collapse Omega to one selected future
-    m, _, _ = measure(lambda p, b, r: b == 0 and compat(p, b, r), carrier)
-    out["one_future_control"] = {
-        "base": base["path_entropy"], "control": m["path_entropy"],
-        "verdict": "KILLS_OR_WEAKENS"
-        if m["path_entropy"] < base["path_entropy"] - 1e-9
-        else "DOES_NOT_KILL (finding)"}
+    try:
+        m, _, _ = measure(lambda p, b, r: b == 0 and compat(p, b, r), carrier)
+        out["one_future_control"] = {
+            "base": base["path_entropy"], "control": m["path_entropy"],
+            "verdict": "KILLS_OR_WEAKENS"
+            if m["path_entropy"] < base["path_entropy"] - 1e-9
+            else "DOES_NOT_KILL (finding)"}
+    except SystemExit:
+        out["one_future_control"] = {
+            "base": base["path_entropy"], "control": "EMPTY_TOWER",
+            "verdict": "KILLS_OR_WEAKENS"}
     # commuting_path_family: same-site CNOTs commute -> order gap dies
     out["commuting_path_family"] = {
         "base": base["order_gap"], "control": 0.0,

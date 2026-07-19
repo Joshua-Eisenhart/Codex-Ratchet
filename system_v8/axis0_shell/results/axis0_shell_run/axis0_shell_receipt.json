@@ -16,6 +16,8 @@
   "late_readout_Xi": {
     "majority__chain": 1.1770517527421198,
     "majority__peps3d_block": 1.1770517527421198,
+    "majority_asym__chain": 1.0282895873558475,
+    "majority_asym__peps3d_block": 1.0282895873558475,
     "parity__chain": 0.8655380899868865,
     "parity__peps3d_block": 0.8655380899868865,
     "shift__chain": 1.399123963307143,
@@ -33,7 +35,10 @@
   ],
   "promotion_allowed": false,
   "schema": "ratchet.v8.axis0-shell-sim.v1",
-  "surviving_variants": [],
+  "surviving_variants": [
+    "majority_asym__chain",
+    "majority_asym__peps3d_block"
+  ],
   "variants": {
     "majority__chain": {
       "admissible_history_count": 24,
@@ -290,6 +295,266 @@
             "S_rho_Br": 0.5500477595827571,
             "neg_S_Ir_given_Br": 0.5500477595827578,
             "negativity_IB": 0.3333333333333337,
+            "omega_count_spectrum": [
+              2
+            ]
+          }
+        }
+      }
+    },
+    "majority_asym__chain": {
+      "admissible_history_count": 16,
+      "control_kills_or_passes": 11,
+      "controls": {
+        "FEP_without_kill": {
+          "verdict": "N/A (no FEP language used in any admission decision)"
+        },
+        "area_erased": {
+          "base_residual_vs_r2": 0.7568416051100796,
+          "flat_residual": 0.17462894391992065,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "commuting_path_family": {
+          "base": 1.4142135623730951,
+          "control": 0.0,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "dense_closure": {
+          "verdict": "NOT_REQUIRED (state assembled from local shell compatibility; no dense global closure invoked)"
+        },
+        "hash_without_model": {
+          "verdict": "N/A (Holodeck not involved)"
+        },
+        "message_channel_leak": {
+          "capacity_TD": 0.0,
+          "verdict": "PASSES (no leak)"
+        },
+        "no_boundary_bookkeeping": {
+          "base": 0.21040208776627656,
+          "control": 0.0,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "no_chirality": {
+          "base": 0.3535533905932738,
+          "control": 0.0,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "no_inward_outward_orientation": {
+          "base": 0.3535533905932738,
+          "control": 0.0,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "no_shell_radius": {
+          "base": 0.7568416051100796,
+          "control": 0.7492204369018008,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "one_future_control": {
+          "base": 4.0,
+          "control": "EMPTY_TOWER",
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "primitive_mass_attractor": {
+          "verdict": "BASELINE_ONLY (no attractor inserted; classification fence honored)"
+        },
+        "product_no_entanglement_cut": {
+          "base_negativity": 0.23296291314453418,
+          "product_negativity": 6.26934589045848e-17,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "scalar_entropy_only": {
+          "distance_Ic_vs_S": 0.9778212920802117,
+          "verdict": "AXIS0_LOAD_BEARING_HERE"
+        },
+        "scrambled_Omega": {
+          "base": 0.8112781244591325,
+          "control": 0.58278313430026,
+          "verdict": "KILLS_OR_WEAKENS"
+        }
+      },
+      "findings": [],
+      "measures": {
+        "carrier_cut_entropy": 0.6008760366928563,
+        "chirality_split": 0.3535533905932738,
+        "holodeck_hash_polarity": "N/A (Holodeck not involved; recorded per \u00a737)",
+        "inverse_square_residual": 0.7568416051100796,
+        "log_Z_path": 4.0,
+        "no_message_capacity_TD": 0.0,
+        "order_gap": 1.4142135623730951,
+        "path_entropy": 4.0,
+        "per_shell": {
+          "1": {
+            "H_Omega": 1.0,
+            "I_IrBr": 0.5922726756497834,
+            "Ic_Ir_to_Br": 0.10850573144835751,
+            "S_rho_Br": 0.7093817681412136,
+            "neg_S_Ir_given_Br": 0.10850573144835751,
+            "negativity_IB": 0.1597870496099637,
+            "omega_count_spectrum": [
+              2
+            ]
+          },
+          "2": {
+            "H_Omega": 0.8073549220576041,
+            "I_IrBr": 0.8112781244591325,
+            "Ic_Ir_to_Br": 0.21040208776627656,
+            "S_rho_Br": 0.8112781244591328,
+            "neg_S_Ir_given_Br": 0.21040208776627656,
+            "negativity_IB": 0.23296291314453418,
+            "omega_count_spectrum": [
+              1,
+              2
+            ]
+          },
+          "3": {
+            "H_Omega": 0.5849625007211562,
+            "I_IrBr": 0.8264908606326435,
+            "Ic_Ir_to_Br": 0.22561482393978732,
+            "S_rho_Br": 0.7093817681412131,
+            "neg_S_Ir_given_Br": 0.22561482393978732,
+            "negativity_IB": 0.24127659842921542,
+            "omega_count_spectrum": [
+              1,
+              2
+            ]
+          },
+          "4": {
+            "H_Omega": 1.0,
+            "I_IrBr": 0.9675338884028519,
+            "Ic_Ir_to_Br": 0.48376694420142613,
+            "S_rho_Br": 0.48376694420142613,
+            "neg_S_Ir_given_Br": 0.48376694420142613,
+            "negativity_IB": 0.3061862178478974,
+            "omega_count_spectrum": [
+              2
+            ]
+          }
+        }
+      }
+    },
+    "majority_asym__peps3d_block": {
+      "admissible_history_count": 16,
+      "control_kills_or_passes": 11,
+      "controls": {
+        "FEP_without_kill": {
+          "verdict": "N/A (no FEP language used in any admission decision)"
+        },
+        "area_erased": {
+          "base_residual_vs_r2": 0.7568416051100796,
+          "flat_residual": 0.17462894391992065,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "commuting_path_family": {
+          "base": 1.4142135623730951,
+          "control": 0.0,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "dense_closure": {
+          "verdict": "NOT_REQUIRED (state assembled from local shell compatibility; no dense global closure invoked)"
+        },
+        "hash_without_model": {
+          "verdict": "N/A (Holodeck not involved)"
+        },
+        "message_channel_leak": {
+          "capacity_TD": 0.0,
+          "verdict": "PASSES (no leak)"
+        },
+        "no_boundary_bookkeeping": {
+          "base": 0.21040208776627656,
+          "control": 0.0,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "no_chirality": {
+          "base": 0.3535533905932738,
+          "control": 0.0,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "no_inward_outward_orientation": {
+          "base": 0.3535533905932738,
+          "control": 0.0,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "no_shell_radius": {
+          "base": 0.7568416051100796,
+          "control": 0.7492204369018008,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "one_future_control": {
+          "base": 4.0,
+          "control": "EMPTY_TOWER",
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "primitive_mass_attractor": {
+          "verdict": "BASELINE_ONLY (no attractor inserted; classification fence honored)"
+        },
+        "product_no_entanglement_cut": {
+          "base_negativity": 0.23296291314453418,
+          "product_negativity": 6.26934589045848e-17,
+          "verdict": "KILLS_OR_WEAKENS"
+        },
+        "scalar_entropy_only": {
+          "distance_Ic_vs_S": 0.9778212920802117,
+          "verdict": "AXIS0_LOAD_BEARING_HERE"
+        },
+        "scrambled_Omega": {
+          "base": 0.8112781244591325,
+          "control": 0.58278313430026,
+          "verdict": "KILLS_OR_WEAKENS"
+        }
+      },
+      "findings": [],
+      "measures": {
+        "carrier_cut_entropy": -0.0,
+        "chirality_split": 0.3535533905932738,
+        "holodeck_hash_polarity": "N/A (Holodeck not involved; recorded per \u00a737)",
+        "inverse_square_residual": 0.7568416051100796,
+        "log_Z_path": 4.0,
+        "no_message_capacity_TD": 0.0,
+        "order_gap": 1.4142135623730951,
+        "path_entropy": 4.0,
+        "per_shell": {
+          "1": {
+            "H_Omega": 1.0,
+            "I_IrBr": 0.5922726756497834,
+            "Ic_Ir_to_Br": 0.10850573144835751,
+            "S_rho_Br": 0.7093817681412136,
+            "neg_S_Ir_given_Br": 0.10850573144835751,
+            "negativity_IB": 0.1597870496099637,
+            "omega_count_spectrum": [
+              2
+            ]
+          },
+          "2": {
+            "H_Omega": 0.8073549220576041,
+            "I_IrBr": 0.8112781244591325,
+            "Ic_Ir_to_Br": 0.21040208776627656,
+            "S_rho_Br": 0.8112781244591328,
+            "neg_S_Ir_given_Br": 0.21040208776627656,
+            "negativity_IB": 0.23296291314453418,
+            "omega_count_spectrum": [
+              1,
+              2
+            ]
+          },
+          "3": {
+            "H_Omega": 0.5849625007211562,
+            "I_IrBr": 0.8264908606326435,
+            "Ic_Ir_to_Br": 0.22561482393978732,
+            "S_rho_Br": 0.7093817681412131,
+            "neg_S_Ir_given_Br": 0.22561482393978732,
+            "negativity_IB": 0.24127659842921542,
+            "omega_count_spectrum": [
+              1,
+              2
+            ]
+          },
+          "4": {
+            "H_Omega": 1.0,
+            "I_IrBr": 0.9675338884028519,
+            "Ic_Ir_to_Br": 0.48376694420142613,
+            "S_rho_Br": 0.48376694420142613,
+            "neg_S_Ir_given_Br": 0.48376694420142613,
+            "negativity_IB": 0.3061862178478974,
             "omega_count_spectrum": [
               2
             ]

@@ -1,0 +1,42 @@
+{
+  "schema": "ratchet.v8.nested-manifold.rungA.v0",
+  "layers_executed": [
+    "L2_density_carrier",
+    "L3_hopf_qgt",
+    "L4_torus_foliation",
+    "L5_connection_flux",
+    "L6_chirality"
+  ],
+  "checks": {
+    "L3_berry_curvature_monopole": true,
+    "L5_discrete_stokes_flux_equals_strip_sum": true,
+    "C1_flatten_nesting_kills_flux": true,
+    "C2_contractible_loop_has_flux_without_nesting": true,
+    "L6_conjugate_bundle_reverses_flux": true,
+    "C3_chirality_erasure_kills_split": true,
+    "C4_scrambled_interior_endpoint_invariant": true,
+    "C5_pattern_cycle_flux_left": true,
+    "C5_pattern_cycle_flux_right_sign_flipped": true
+  },
+  "data": {
+    "F_numeric_vs_exact": [
+      0.4661100783538946,
+      0.46601954298361314
+    ],
+    "flux_relative_holonomy": -2.9025821900968336,
+    "strip_plaquette_sum": -2.902582190097077,
+    "analytic_2pi_dcos2eta": 2.9025451113597893,
+    "contractible_loop_phase": 0.035242173664010466,
+    "flux_left": -2.9025821900968336,
+    "flux_right": 2.9025821900968336,
+    "telescoped_flux": -2.9025821900968336,
+    "gamma_L": 2.003191860155644,
+    "gamma_R": -2.003191860155644,
+    "solid_angle_over_2": 2.0032121941545813
+  },
+  "all_pass": true,
+  "nesting_matters_witness": "non-contractible leaf loops carry flux ONLY as relative holonomy across the nested strip (discrete Stokes exact); contractible base loops carry flux without nesting \u2014 the theorem's honest boundary, recorded",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "executed finite instance of L2-L6 with flux battery; no uniqueness/optimality claim"
+}

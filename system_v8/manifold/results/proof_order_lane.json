@@ -1,0 +1,123 @@
+{
+  "all_pass": true,
+  "checks": {
+    "P1a_relation_dominates_automaton": true,
+    "P1b_automaton_dominates_relation": true,
+    "P1c_erasure_control_domination": true,
+    "P2a_subset_violation": true,
+    "P2b_expansion_adds_configuration": true,
+    "P2c_erasure_control_same_set": true,
+    "P3a_partition_matches_observation_somewhere": true,
+    "P3b_erasure_control_exclusions_dropped": true
+  },
+  "claim_ceiling": "dual-solver structural proofs over archived receipt values; packet-relative only",
+  "computed_inputs": {
+    "baseline_count": 7,
+    "deterministic_context_count": 8,
+    "expanded_count": 8,
+    "presumption_vectors": {
+      "finite_automaton": {
+        "axiom_count": 1,
+        "chosen_total_orders": 1,
+        "free_scalar_parameters": 0,
+        "primitive_carrier_atoms": 2,
+        "primitive_operations": 1,
+        "scalar_field_real_dimension": 0,
+        "stored_boolean_bits": 324
+      },
+      "finite_relation": {
+        "axiom_count": 0,
+        "chosen_total_orders": 0,
+        "free_scalar_parameters": 0,
+        "primitive_carrier_atoms": 8,
+        "primitive_operations": 0,
+        "scalar_field_real_dimension": 0,
+        "stored_boolean_bits": 144
+      }
+    },
+    "vector_order": [
+      "primitive_carrier_atoms",
+      "stored_boolean_bits",
+      "free_scalar_parameters",
+      "primitive_operations",
+      "axiom_count",
+      "scalar_field_real_dimension",
+      "chosen_total_orders"
+    ]
+  },
+  "formal_admission_allowed": false,
+  "promotion_allowed": false,
+  "proofs": [
+    {
+      "cvc5": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "proof": "P1a_relation_dominates_automaton",
+      "solvers_agree": true,
+      "z3": "unsat"
+    },
+    {
+      "cvc5": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "proof": "P1b_automaton_dominates_relation",
+      "solvers_agree": true,
+      "z3": "unsat"
+    },
+    {
+      "cvc5": "sat",
+      "expected": "sat",
+      "pass": true,
+      "proof": "P1c_erasure_control_domination",
+      "solvers_agree": true,
+      "z3": "sat"
+    },
+    {
+      "cvc5": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "proof": "P2a_subset_violation",
+      "solvers_agree": true,
+      "z3": "unsat"
+    },
+    {
+      "cvc5": "sat",
+      "expected": "sat",
+      "pass": true,
+      "proof": "P2b_expansion_adds_configuration",
+      "solvers_agree": true,
+      "z3": "sat"
+    },
+    {
+      "cvc5": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "proof": "P2c_erasure_control_same_set",
+      "solvers_agree": true,
+      "z3": "unsat"
+    },
+    {
+      "cvc5": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "proof": "P3a_partition_matches_observation_somewhere",
+      "solvers_agree": true,
+      "z3": "unsat"
+    },
+    {
+      "cvc5": "sat",
+      "expected": "sat",
+      "pass": true,
+      "proof": "P3b_erasure_control_exclusions_dropped",
+      "solvers_agree": true,
+      "z3": "sat"
+    }
+  ],
+  "result_digest": "sha256:2e1c27e34854cfb00151c4139c2069ac602f69da8ddb76b865e5bd6f43db9255",
+  "schema": "ratchet.v8.proof-order-lane.v2",
+  "verdict_flips": {
+    "P1_flip": true,
+    "P2_flip": true,
+    "P3_flip": true
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "schema": "ratchet.v8.nested-manifold.rungD.v0",
+  "layers_executed": [
+    "L_outer_aux_2level",
+    "L_inner_sheet_2level",
+    "GKSL_liouville_16dim",
+    "schur_complement_elimination"
+  ],
+  "constraints": {
+    "A": {
+      "Delta2": 1.0,
+      "Delta3": 1.5,
+      "gph": 0.1
+    },
+    "B": {
+      "Delta2": 3.0,
+      "Delta3": 0.5,
+      "gph": 0.8
+    },
+    "shared": {
+      "omega": 1.0,
+      "f_drive": 0.4,
+      "k_in": 0.3,
+      "g": 0.5,
+      "g2": 0.35,
+      "k_out": 0.8
+    }
+  },
+  "checks": {
+    "D1_two_outer_constraints_yield_different_Leff": true,
+    "D2_uncoupled_Leff_equals_LII_exactly": true,
+    "D3_inner_fixed_point_moves_bures": true,
+    "V1_schur_kernel_matches_full_ss_inner_block": true,
+    "D4_flattening_changes_inner_entropy_production": true
+  },
+  "data": {
+    "cond_L_OO": {
+      "A": 3.7877636087298066,
+      "B": 4.7805125971282205
+    },
+    "L_II_A_minus_L_II_B_maxabs": 0.0,
+    "Leff_A_minus_Leff_B_frobenius": 0.42731198520041164,
+    "Leff_A": {
+      "re": [
+        [
+          -0.096441702138,
+          0.056460880134,
+          0.056460880134,
+          0.43218255497
+        ],
+        [
+          -0.010100966879,
+          -0.417771735367,
+          0.007640014456,
+          -0.066561847013
+        ],
+        [
+          -0.010100966879,
+          0.007640014456,
+          -0.417771735367,
+          -0.066561847013
+        ],
+        [
+          0.096441702138,
+          -0.056460880134,
+          -0.056460880134,
+          -0.43218255497
+        ]
+      ],
+      "im": [
+        [
+          0.0,
+          -0.432285769211,
+          0.432285769211,
+          -0.0
+        ],
+        [
+          -0.410109632571,
+          1.173132898517,
+          -0.0,
+          0.42217613664
+        ],
+        [
+          0.410109632571,
+          0.0,
+          -1.173132898517,
+          -0.42217613664
+        ],
+        [
+          -0.0,
+          0.432285769211,
+          -0.432285769211,
+          0.0
+        ]
+      ]
+    },
+    "Leff_B": {
+      "re": [
+        [
+          -0.205822799014,
+          -0.013918733742,
+          -0.013918733742,
+          0.336045794587
+        ],
+        [
+          -0.019544874386,
+          -0.238395277333,
+          0.001533462555,
+          -0.005626140644
+        ],
+        [
+          -0.019544874386,
+          0.001533462555,
+          -0.238395277333,
+          -0.005626140644
+        ],
+        [
+          0.205822799014,
+          0.013918733742,
+          0.013918733742,
+          -0.336045794587
+        ]
+      ],
+      "im": [
+        [
+          0.0,
+          -0.387031074825,
+          0.387031074825,
+          0.0
+        ],
+        [
+          -0.378762685146,
+          1.035666165961,
+          -0.0,
+          0.408268389679
+        ],
+        [
+          0.378762685146,
+          0.0,
+          -1.035666165961,
+          -0.408268389679
+        ],
+        [
+          -0.0,
+          0.387031074825,
+          -0.387031074825,
+          0.0
+        ]
+      ]
+    },
+    "L_II": {
+      "re": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.3
+        ],
+        [
+          0.0,
+          -0.15,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.15,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          -0.3
+        ]
+      ],
+      "im": [
+        [
+          0.0,
+          -0.4,
+          0.4,
+          0.0
+        ],
+        [
+          -0.4,
+          1.0,
+          0.0,
+          0.4
+        ],
+        [
+          0.4,
+          0.0,
+          -1.0,
+          -0.4
+        ],
+        [
+          0.0,
+          0.4,
+          -0.4,
+          0.0
+        ]
+      ]
+    },
+    "uncoupled_Leff_minus_LII_maxabs": 0.0,
+    "uncoupled_L_OI_maxabs": 0.0,
+    "bures_inner_fixed_point_A_vs_B": 0.19705155810683467,
+    "inner_fixed_point_A": {
+      "re": [
+        [
+          0.733890189463,
+          0.135807959146
+        ],
+        [
+          0.135807959146,
+          0.266109810537
+        ]
+      ],
+      "im": [
+        [
+          -0.0,
+          0.068896638305
+        ],
+        [
+          -0.068896638305,
+          -0.0
+        ]
+      ]
+    },
+    "inner_fixed_point_B": {
+      "re": [
+        [
+          0.584378460993,
+          0.044443989713
+        ],
+        [
+          0.044443989713,
+          0.415621539007
+        ]
+      ],
+      "im": [
+        [
+          0.0,
+          0.02345063854
+        ],
+        [
+          -0.02345063854,
+          0.0
+        ]
+      ]
+    },
+    "Leff_kernel_singular_values": [
+      2.1883505599354497e-17,
+      2.7437424929993938e-17
+    ],
+    "V1_cross_check": {
+      "A": {
+        "maxabs_diff": 9.309503074677274e-17,
+        "full_kernel_sv": 4.691310014649157e-17,
+        "inner_trace_weight_in_full_ss": 0.8677138586591944
+      },
+      "B": {
+        "maxabs_diff": 2.220446049250313e-16,
+        "full_kernel_sv": 1.6448129335737197e-16,
+        "inner_trace_weight_in_full_ss": 0.8543291631750078
+      }
+    },
+    "entropy_flux_inner_channel": {
+      "nested": -0.0363784062065028,
+      "flattened": -0.03540445486712751,
+      "abs_diff": 0.0009739513393752924,
+      "flat_kernel_sv": 8.298757954962104e-17,
+      "eig_clip": 1e-14
+    },
+    "flattened_fixed_point": {
+      "re": [
+        [
+          0.56923848114,
+          0.024061155437
+        ],
+        [
+          0.024061155437,
+          0.43076151886
+        ]
+      ],
+      "im": [
+        [
+          -0.0,
+          0.023058607294
+        ],
+        [
+          -0.023058607294,
+          -0.0
+        ]
+      ]
+    }
+  },
+  "all_pass": true,
+  "nesting_matters_witness": "the Schur complement of the enclosing layer reshapes the inner generator: identical inner blocks (L_II byte-equal across constraints) acquire DIFFERENT effective dynamics and DIFFERENT fixed points purely from the outer layer; cutting the coupling restores L_II exactly; trivially flattening the outer levels into the sheet changes the measured inner entropy flux \u2014 nesting is load-bearing, computed",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "executed finite instance (one 4-level model, two outer constraints); entropy comparison uses the infinite-temperature per-channel flux convention; no uniqueness/optimality claim"
+}

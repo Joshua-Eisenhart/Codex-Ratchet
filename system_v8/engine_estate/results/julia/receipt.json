@@ -1,0 +1,104 @@
+{
+    "summary": {
+        "fail": 0,
+        "blocked": 0,
+        "pass": 7
+    },
+    "julia_version": "1.12.6",
+    "package_versions": {
+        "Octonions": "0.2.3",
+        "QuantumClifford": "0.11.4",
+        "CliffordAlgebras": "0.1.4",
+        "JSON3": "1.14.3",
+        "Grassmann": "0.8.44",
+        "Z3": "1.0.4",
+        "ITensorMPS": "0.4.1",
+        "QuantumOptics": "1.2.6",
+        "ITensors": "0.9.30",
+        "Attractors": "1.37.0"
+    },
+    "sections": {
+        "octonions_nonassoc_L10": {
+            "checks": {
+                "norm_composition_holds_1e-12": true,
+                "nonassociativity_witnessed": true
+            },
+            "note": "",
+            "status": "PASS",
+            "seconds": 0.14
+        },
+        "attractors_bistable_basins_L13": {
+            "checks": {
+                "basins_symmetric_half_half": true,
+                "positive_side_single_basin": true,
+                "basins_disjoint": true,
+                "negative_side_single_basin": true,
+                "two_attractors_found": true
+            },
+            "note": "",
+            "status": "PASS",
+            "seconds": 2.45
+        },
+        "grassmann_pseudoscalar_L10": {
+            "checks": {
+                "pseudoscalar_squares_to_plus1": true,
+                "one_vectors_anticommute": true,
+                "bivector_product_is_pseudoscalar": true
+            },
+            "note": "",
+            "status": "PASS",
+            "seconds": 2.42
+        },
+        "itensors_schmidt_cut_L7": {
+            "checks": {
+                "ghz_cut1_entropy_ln2": true,
+                "product_cut_entropy_zero": true,
+                "ghz_schmidt_values_half_half": true,
+                "ghz_cut2_entropy_ln2": true
+            },
+            "note": "",
+            "status": "PASS",
+            "seconds": 13.57
+        },
+        "quantumoptics_gksl_L8": {
+            "checks": {
+                "depol_endpoint_near_ln2": true,
+                "amp_damp_population_law_1e-6": true,
+                "depol_entropy_law_1e-6": true,
+                "amp_damp_entropy_law_1e-6": true,
+                "depol_entropy_monotone": true
+            },
+            "note": "",
+            "status": "PASS",
+            "seconds": 7.55
+        },
+        "cliffordalgebras_gamma5_L10": {
+            "checks": {
+                "gamma5_anticommutes_generators": true,
+                "gamma5_squares_to_plus1": true,
+                "gamma5_commutes_bivectors": true
+            },
+            "note": "",
+            "status": "PASS",
+            "seconds": 1.67
+        },
+        "quantumclifford_ghz_L6": {
+            "checks": {
+                "cut_1v23_entropy_1bit": true,
+                "circuit_state_equals_ghz": true,
+                "cut_12v3_entropy_1bit": true,
+                "product_state_entropy_0": true
+            },
+            "note": "",
+            "status": "PASS",
+            "seconds": 1.73
+        }
+    },
+    "known_breakage": {
+        "Attractors.extract_attractors": "UndefVarError referenced_sciml_model (Attractors v1.37.0 vs installed DynamicalSystemsBase); core mapper labels work, worked around"
+    },
+    "phase": "julia",
+    "promotion_allowed": false,
+    "date": "2026-07-19T12:07:40.376",
+    "claim_ceiling": "runs + passes-listed-checks in this session; not canonical"
+}

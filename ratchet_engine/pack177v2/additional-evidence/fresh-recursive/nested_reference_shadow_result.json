@@ -1,0 +1,203 @@
+{
+  "base_escape_pair_count": 2,
+  "base_escape_pairs": [
+    [
+      "a",
+      "b"
+    ],
+    [
+      "c",
+      "d"
+    ]
+  ],
+  "checks": {
+    "base_escape_pair_count": true,
+    "context_changes_inner_semantics": true,
+    "contextual_operation_witness_count": true,
+    "full_nest_count": true,
+    "inner_obstruction_changes_outer_survivors": true,
+    "inner_obstruction_witness_count": true,
+    "mss_frontier": true,
+    "projection_sizes": true,
+    "relation_deletion_witnesses": true
+  },
+  "claim_ceiling": "AUTHORED_FINITE_CALIBRATION_ONLY",
+  "context_changes_inner_semantics": true,
+  "context_witness_states": [
+    "b"
+  ],
+  "contextual_operation_witnesses": [
+    {
+      "contexts": [
+        {
+          "outer": "o0",
+          "post_fingerprint": {
+            "continuations": [
+              [
+                "b",
+                [
+                  [
+                    "m0",
+                    "o0"
+                  ],
+                  [
+                    "m1",
+                    "o0"
+                  ]
+                ]
+              ]
+            ],
+            "nests": [
+              [
+                "b",
+                "m0",
+                "o0"
+              ],
+              [
+                "b",
+                "m1",
+                "o0"
+              ]
+            ],
+            "projections": [
+              [
+                "b"
+              ],
+              [
+                "m0",
+                "m1"
+              ],
+              [
+                "o0"
+              ]
+            ]
+          },
+          "post_nest_count": 2,
+          "source": "b",
+          "target": "b"
+        },
+        {
+          "outer": "o1",
+          "post_fingerprint": {
+            "continuations": [
+              [
+                "c",
+                [
+                  [
+                    "m1",
+                    "o1"
+                  ],
+                  [
+                    "m2",
+                    "o1"
+                  ]
+                ]
+              ]
+            ],
+            "nests": [
+              [
+                "c",
+                "m1",
+                "o1"
+              ],
+              [
+                "c",
+                "m2",
+                "o1"
+              ]
+            ],
+            "projections": [
+              [
+                "c"
+              ],
+              [
+                "m1",
+                "m2"
+              ],
+              [
+                "o1"
+              ]
+            ]
+          },
+          "post_nest_count": 2,
+          "source": "b",
+          "target": "c"
+        }
+      ],
+      "operation": "step",
+      "source": "b"
+    }
+  ],
+  "continuation_language_sizes": [
+    1,
+    1,
+    3,
+    3
+  ],
+  "fixture_id": "anonymous_three_layer_calibration",
+  "full_nest_count": 8,
+  "inner_obstruction_changes_outer_survivors": true,
+  "inner_obstruction_witnesses": [
+    {
+      "outer": "o1",
+      "post_extension_count": 0,
+      "pre_extension_count": 4
+    }
+  ],
+  "mss_frontier": [
+    [
+      "full"
+    ],
+    [
+      "left",
+      "right"
+    ]
+  ],
+  "outer_survivors_after": [
+    "o0"
+  ],
+  "outer_survivors_before": [
+    "o0",
+    "o1"
+  ],
+  "projection_sizes": [
+    4,
+    3,
+    2
+  ],
+  "relation_deletions": {
+    "R10": {
+      "continuation_language_sizes": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "full_nest_count": 16,
+      "load_bearing": true,
+      "projection_sizes": [
+        4,
+        3,
+        2
+      ]
+    },
+    "R21": {
+      "continuation_language_sizes": [
+        2,
+        2,
+        4,
+        4
+      ],
+      "full_nest_count": 12,
+      "load_bearing": true,
+      "projection_sizes": [
+        4,
+        3,
+        2
+      ]
+    }
+  },
+  "runtime": "python_stdlib_shadow_nonclaiming",
+  "schema": "ratchet.nested-completion-result.v1",
+  "status": "PASS"
+}

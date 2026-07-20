@@ -1,0 +1,184 @@
+{
+  "schema_version": "ratchet.full-local-campaign/0.2",
+  "status": "HOLD_MISSING_ENGINE_OR_SOLVER_DEPENDENCY",
+  "steps": [
+    {
+      "name": "exact-self-test",
+      "state": "PASS",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/source_balanced_completion_ratchet.py",
+        "--self-test"
+      ],
+      "returncode": 0,
+      "stdout": "PASS source_balanced_completion_ratchet self-test\n",
+      "stderr": ""
+    },
+    {
+      "name": "exact-run",
+      "state": "PASS",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/source_balanced_completion_ratchet.py",
+        "--run"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"schema_version\": \"ratchet.source-balanced-completion/0.1\",\n  \"ticks\": [\n    {\n      \"tick\": \"r3\",\n      \"receipt\": \"r3_projection_eligibility.json\",\n      \"sha256\": \"sha256:10349e1afec7587678d73f457ba71720b0fa3fb8ac27d065927dc126ea4a61b4\"\n    },\n    {\n      \"tick\": \"r4\",\n      \"receipt\": \"r4_exact_completion_census.json\",\n      \"sha256\": \"sha256:572506d7e38722eaeb25e9aa9769446f175c18abf5de48a3e3cc7212f7f5353b\"\n    },\n    {\n      \"tick\": \"r5\",\n      \"receipt\": \"r5_heldout_reoffer.json\",\n      \"sha256\": \"sha256:bf30ac2927780d826982dbb0405f608a7e8589487e90f2f92c6d5ec084bf183e\"\n    },\n    {\n      \"tick\": \"r6\",\n      \"receipt\": \"r6_full_recompute.json\",\n      \"sha256\": \"sha256:94613b519788eadabb83f68d5f87761f501eed1f14ac8d968b1c7f7df611b80c\"\n    }\n  ],\n  \"mathematical_motion_executed\": true,\n  \"recursive_raw_boundary_recomputations\": 2,\n  \"prior_retained_repair_challenged\": true,\n  \"prior_repair_split_or_nonminimal\": true,\n  \"source_count\": 8,\n  \"source_count_with_heldout_history_effect\": 1,\n  \"controls_pass\": true,\n  \"native_lev_bound\": false,\n  \"julia_jax_pytorch_recomputed\": false,\n  \"z3_cvc5_recomputed\": false,\n  \"canonical_project_mutated\": false,\n  \"status\": \"RUN_COMPLETE_SOURCE_BALANCED_R3_R6__HOLD_NATIVE_LEV_TRI_ENGINE_SOLVER_AND_LIVE_INTEGRATION\",\n  \"claim_ceiling\": \"exact finite packet-relative completion census over eight returned projection receipts; no source claim, root axiom, scientific manifold, physics, engine, axis, owner hypothesis, or universal architecture admitted\"\n}\nPASS source-balanced r3-r6 exact completion campaign\n",
+      "stderr": ""
+    },
+    {
+      "name": "exact-validate",
+      "state": "PASS",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/source_balanced_completion_ratchet.py",
+        "--validate"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "fuel-self-test",
+      "state": "PASS",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/compile_fuel_obligations.py",
+        "--self-test"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"self_test\": \"PASS\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "fuel-run",
+      "state": "PASS",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/compile_fuel_obligations.py",
+        "--run"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"run\": \"PASS\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "fuel-validate",
+      "state": "PASS",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/compile_fuel_obligations.py",
+        "--validate"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"failures\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "lev-graph-projection",
+      "state": "PASS",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/build_lev_context_graph.py"
+      ],
+      "returncode": 0,
+      "stdout": "PASS Lev graph projection 78 nodes 102 edges\n",
+      "stderr": ""
+    },
+    {
+      "name": "cvc5-instance-generation",
+      "state": "PASS",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "solver/generate_cvc5_instances.py"
+      ],
+      "returncode": 0,
+      "stdout": "generated 8 cvc5 instances\n",
+      "stderr": ""
+    },
+    {
+      "name": "jax-census",
+      "state": "BLOCKED_DEPENDENCY_UNAVAILABLE",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "tri-engine/run_jax.py"
+      ],
+      "returncode": null
+    },
+    {
+      "name": "pytorch-census",
+      "state": "BLOCKED_DEPENDENCY_UNAVAILABLE",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "tri-engine/run_pytorch.py"
+      ],
+      "returncode": null
+    },
+    {
+      "name": "julia-census",
+      "state": "BLOCKED_DEPENDENCY_UNAVAILABLE",
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "tri-engine/run_julia.jl"
+      ],
+      "returncode": null
+    },
+    {
+      "name": "tri-engine-agreement",
+      "state": "BLOCKED_DEPENDENCY_UNAVAILABLE",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "tri-engine/check_agreement.py"
+      ],
+      "returncode": null
+    },
+    {
+      "name": "z3-census",
+      "state": "BLOCKED_DEPENDENCY_UNAVAILABLE",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "solver/run_z3_anf_census.py"
+      ],
+      "returncode": null
+    },
+    {
+      "name": "cvc5-census",
+      "state": "BLOCKED_DEPENDENCY_UNAVAILABLE",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "solver/run_cvc5_instances.py",
+        "--cvc5",
+        "cvc5"
+      ],
+      "returncode": null
+    }
+  ],
+  "blocked_dependencies": [
+    "jax-census",
+    "pytorch-census",
+    "julia-census",
+    "tri-engine-agreement",
+    "z3-census",
+    "cvc5-census"
+  ],
+  "native_lev_invoked": false,
+  "live_ratchet_integrated": false,
+  "mathematical_authority_assigned_to_orchestrator": false,
+  "numpy_on_claim_path": false,
+  "fuel_compiler_executed": true,
+  "claim_ceiling": "finite completion calibration, residual-to-obligation compilation, and port/solver fidelity; no source science or owner hypothesis admitted"
+}

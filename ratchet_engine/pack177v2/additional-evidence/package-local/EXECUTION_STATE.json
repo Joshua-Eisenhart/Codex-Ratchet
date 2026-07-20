@@ -1,0 +1,291 @@
+{
+  "claim_ceiling": "Root process, QIT/FEP trace, source-locked bridges, r0-r2 repair, and package-local r3-r5 replay are executable. No source family is admitted; no owner hypothesis, carrier, physics, or native Leviathan claim is produced.",
+  "fresh_three_engine": {
+    "ready": false,
+    "requested": false,
+    "status": "ARCHIVED_THREE_ENGINE_LEGS_VALIDATED_ONLY",
+    "steps": []
+  },
+  "native_lev": "NOT_EXECUTED; only the supplied evidence-contract validator ran",
+  "overall_status": "HOLD_EXECUTABLE_BOUNDED_LANES_COMPLETE",
+  "required_steps_ok": true,
+  "runtime_probe": {
+    "fresh_three_engine_boundary": "Fresh JAX/PyTorch/Julia is optional and never upgrades the package; it only replaces archived legs with locally rerun diagnostic legs before the same hold-grade bridge is replayed.",
+    "fresh_three_engine_ready": false,
+    "julia_executable": null,
+    "modules": {
+      "cvc5": false,
+      "jax": false,
+      "torch": false,
+      "z3": false
+    },
+    "python": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "python_version": "3.12.13"
+  },
+  "schema_version": "ratchet.package_local_execution_state/v1",
+  "steps": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "ratchet_engine.py",
+        "--self-test"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1/source/system_v7/constraint_core/ratchet",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "97dc46427b1a57280dbe464fdcdcd282f082d43674ae42c13174389c1d422d2c",
+      "stdout_tail": "PASS order_open_ratchet_v0_5\nmass candidate batches, all gate orders/decompositions, coface gradients, and anti-canon controls verified\n",
+      "step_id": "root_order_open_selftest"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "ratchet_engine.py",
+        "--run",
+        "examples/root_order_open_packet_v0_5.json",
+        "--output",
+        "../../../../receipts/root_order_open_fresh_run.json"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1/source/system_v7/constraint_core/ratchet",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "43dabbff10703a974b60f04a9baefa7539b863046fc4664097f9931c156bceb9",
+      "stdout_tail": "{\n  \"parameter_proposals_executed\": 32400,\n  \"behavioural_partition_classes\": 3147,\n  \"behaviour_subset_evaluations\": 50352,\n  \"schedule_hypotheses_executed\": 75,\n  \"gate_decompositions_executed\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"packet_final_frontier_convergent\": true,\n  \"canonical_gate_order_admitted\": false,\n  \"canonical_gate_decomposition_admitted\": false,\n  \"scientific_manifold_layers_admitted\": 0,\n  \"physical_entropy_types_admitted\": 0,\n  \"global_search_exhausted\": false,\n  \"terminal_hold_asserted\": false,\n  \"run_boundary\": \"FINITE_BUDGET_REACHED__ORDER_CANDIDATES_AND_REOPENING_REMAIN_ACTIVE\"\n}\nderived dig proposals: 4\nwrote ../../../../receipts/root_order_open_fresh_run.json\nPASS order_open_ratchet_run\n",
+      "step_id": "root_order_open_run"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "ratchet_engine.py",
+        "--validate",
+        "../../../../receipts/root_order_open_fresh_run.json"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1/source/system_v7/constraint_core/ratchet",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "9bf5d597ef1cce6c355e1727229cc29f9433e59b89ec5ce3fdd64387b7217581",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"errors\": []\n}\n",
+      "step_id": "root_order_open_validate"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "qit_fep_external_record_bridge.py",
+        "--rerun-source",
+        "--out",
+        "../../../../receipts/qit_fep_external_record_bridge_fresh.json",
+        "--host-out",
+        "../../../../receipts/qit_fep_external_record_bridge_fresh_lev_evidence.json"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1/source/system_v7/constraint_core/ratchet",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "963ecf534b49556d1ed75a9c439167b16f0a4663dc313ffe54629f617daa2a67",
+      "stdout_tail": "QIT/FEP \u2192 EXTERNAL-RECORD RATCHET \u2192 LEV EVIDENCE-ONLY BRIDGE\n\n  prefix frontier: 1; continuation fresh frontier: 0\n  retained compiler changes admissibility on later records: True\n  source continuation conflicts: 1\n  Lev local evidence-only boundary: True\n  status: HOLD_EXTERNAL_COUNTEREXAMPLE_REQUIRES_NEW_OPERATIONAL_MARK\nPASS qit_fep_external_record_bridge\nALL_GATES: PASS -> ../../../../receipts/qit_fep_external_record_bridge_fresh.json\n",
+      "step_id": "qit_fep_source_and_root_bridge"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "qit_fep_external_record_bridge.py",
+        "--validate-only",
+        "--out",
+        "../../../../receipts/qit_fep_external_record_bridge_fresh.json"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1/source/system_v7/constraint_core/ratchet",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "d22d2cc8b858c2a06cb3a68b7806527bf129268808e588245218137e03d888e6",
+      "stdout_tail": "PASS qit_fep_external_record_bridge validation\n",
+      "step_id": "qit_fep_bridge_validate"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "fresh_engine_ratchet_lev_campaign.py",
+        "--self-test"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1/source/system_v7/constraint_core/sims_and_scripts",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "9e142048a9fa2c7815744caa08b6c42714efa0c01b9d1b29574ed7a8b796230c",
+      "stdout_tail": "host-envelope validation: True\npromoting-twin rejection: True\nPurgatory candidate preserves fixture fence and records external replay: True\nPASS fresh_engine_ratchet_lev_campaign_self_test\n",
+      "step_id": "fresh_engine_campaign_contract_selftest"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "check_agreement.py"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1/source/system_v7/sims/probe_quotient_fingerprint_floor_v1",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "58769113feb6269dc02f46b66d71942ae4b9ab6f69a11fc6a2d7d7e5750272a9",
+      "stdout_tail": "{\n  \"ok\": true,\n  \"result_path\": \"/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1/source/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n  \"build_status\": \"PASS\",\n  \"failures\": [],\n  \"parity_max\": 0.0\n}\n",
+      "step_id": "three_engine_envelope_check"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "three_engine_quotient_continuation_bridge.py",
+        "--out",
+        "../../../../receipts/three_engine_quotient_root_bridge_replay.json",
+        "--host-out",
+        "../../../../receipts/three_engine_quotient_root_bridge_replay_lev_evidence.json"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1/source/system_v7/constraint_core/ratchet",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "b4e82edf6d7e9954b2d451866927a0c45b1263bf33049a394966b1a1f41489ba",
+      "stdout_tail": "THREE-ENGINE QUOTIENT \u2192 ROOT RATCHET \u2192 LEV EVIDENCE-ONLY BRIDGE\n\n  source classes: 4 erased \u2192 5 full\n  prefix frontier: 1; continuation fresh frontier: 0\n  retained candidate changes admissibility on measured p_split refinement: True\n  operational continuation conflicts: 1\n  Lev local evidence-only boundary: True\n  status: HOLD_EARNED_PROBE_REFINEMENT_AWAITS_SUCCESSOR_COMPILER\nPASS three_engine_quotient_continuation_bridge\nALL_GATES: PASS -> ../../../../receipts/three_engine_quotient_root_bridge_replay.json\n",
+      "step_id": "three_engine_root_bridge"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "three_engine_quotient_continuation_bridge.py",
+        "--validate-only",
+        "--out",
+        "../../../../receipts/three_engine_quotient_root_bridge_replay.json"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1/source/system_v7/constraint_core/ratchet",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "9d47c536378a290414623726fd53c032b222e2ecd346abb9d5b1553748f3badf",
+      "stdout_tail": "PASS three_engine_quotient_continuation_bridge validation\n",
+      "step_id": "three_engine_root_bridge_validate"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/dual_source_repair_ratchet_176.py",
+        "--three-engine",
+        "receipts/three_engine_quotient_root_bridge_replay.json",
+        "--qit",
+        "receipts/qit_fep_external_record_bridge_fresh.json",
+        "--output",
+        "receipts/dual_source_r0_r2"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "4097bdb6031b0bd06cf6597080c395bb94f7d52e7dd37cad5c89916107b086e3",
+      "stdout_tail": "{\n  \"schema_version\": \"ratchet.dual-source-repair.campaign/0.1\",\n  \"recursive_depth\": 3,\n  \"status\": \"CALIBRATION_RELATIONAL_REPAIR_EXECUTED_ACROSS_TWO_EXTERNAL_SURFACES__HOLD_FOR_UNSELECTED_SOURCES_AND_TRI_ENGINE\",\n  \"validation_errors\": []\n}\n",
+      "step_id": "dual_source_r0_r2"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/dual_source_repair_ratchet_176.py",
+        "--validate",
+        "--output",
+        "receipts/dual_source_r0_r2"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "30efcdbbc47aa467855788ec3bb48026384f298480cf26c0bdb151cd10007b17",
+      "stdout_tail": "PASS dual_source_repair_ratchet validation\n",
+      "step_id": "dual_source_r0_r2_validate"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/relocatable_r3_r4_r5_replay.py",
+        "--self-test"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "e68130e26286ca43675f0bfe78b9c2cc2ab6f34ba8888f17ee063d83325bfdf1",
+      "stdout_tail": "PASS package_local_r3_r4_r5_replay self-test\n",
+      "step_id": "r3_r5_portable_replay_selftest"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/relocatable_r3_r4_r5_replay.py",
+        "--output",
+        "receipts/r3_default_package_local_replay.json"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "1dd31f641a485049bf2410e6598414dc2186917c37356ee5dc06d8b6c159ab73",
+      "stdout_tail": "{\"official_status\": \"HOLD_OFFICIAL_PROGRESS_BLOCKED_BY_R3\", \"output\": \"receipts/r3_default_package_local_replay.json\", \"receipt_sha256\": \"sha256:7412bed2352bdec2441e114e6b5d55237c400b7d51ca6d808c5393829817563f\", \"sandbox_status\": \"HOLD_SANDBOX_CONTINUATION_NOT_REQUESTED\"}\n",
+      "step_id": "r3_default_portable_replay"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "source/relocatable_r3_r4_r5_replay.py",
+        "--allow-held-sandbox-continuation",
+        "--output",
+        "receipts/r4_r5_sandbox_package_local_replay.json"
+      ],
+      "cwd": "/workspace/scratch/b6566a66296c/work177/RATCHET_177_PACKAGE_LOCAL_EXECUTION_REPAIR_2026-07-18_v1",
+      "ok": true,
+      "required": true,
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_tail": "",
+      "stdout_sha256": "ecd97c8f82abf966ec96bc54916d40233d74ca9ddad1c94f16991dff1497ec62",
+      "stdout_tail": "{\"official_status\": \"HOLD_OFFICIAL_PROGRESS_BLOCKED_BY_R3\", \"output\": \"receipts/r4_r5_sandbox_package_local_replay.json\", \"receipt_sha256\": \"sha256:3d020f984caaee3ac6cc5e8bb82a02520189c59e8b32a6d825ce9f9c117849e0\", \"sandbox_status\": \"HOLD_NONOFFICIAL_R4_R5_RECOMPUTED__OFFICIAL_PROGRESS_BLOCKED_BY_R3\"}\n",
+      "step_id": "r4_r5_sandbox_portable_replay"
+    }
+  ],
+  "written_at": "2026-07-18T06:26:11Z"
+}

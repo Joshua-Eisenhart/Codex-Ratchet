@@ -1,0 +1,32 @@
+package:
+  name: ratchet-bridge
+  version: 0.2.0
+  type: plugin
+  namespace: "@lev-os/ratchet-bridge"
+  description: "Authorized local fuel-bearing mathematical Ratchet execution and receipt bridge"
+
+ships-with: false
+
+integration:
+  adapters:
+    - eventprovider
+    - cli-shim
+
+capabilities:
+  - local_math_execution
+  - receipt_emission
+  - lineage_projection
+
+events:
+  emits:
+    - ratchet.campaign.started
+    - ratchet.campaign.completed
+    - ratchet.campaign.held
+    - ratchet.campaign.failed
+  subscribes: []
+
+poly:
+  sdk:
+    run-source-balanced:
+      handler: src/handlers/run-source-balanced.ts
+      description: "Execute the source-balanced census and compile every residual into a fair fuel queue"

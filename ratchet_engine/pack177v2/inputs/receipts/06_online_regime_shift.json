@@ -1,0 +1,296 @@
+{
+  "all_pass": false,
+  "blocked_consumers": [
+    "ratchet_admission",
+    "formal_admission",
+    "canonical_or_scientific_promotion",
+    "cross_family_inference"
+  ],
+  "claim_ceiling": "source_locked_runtime_only_hpo_projection_from_a_scratch_diagnostic; HOLD only; no ratchet, formal admission, canonical, cross-family, or scientific claim",
+  "classification": "runtime_only_hold",
+  "commands": [
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+        "-B",
+        "/private/tmp/ratchet176_online_hpo_run_20260717/isolated_sources/online_regime_shift_detector_v0/online_regime_shift_detector_v0_exact.py"
+      ],
+      "command_id": "fresh_exact",
+      "cwd": "isolated_sources/online_regime_shift_detector_v0",
+      "returncode": 0,
+      "stderr_path": "command_logs/fresh_exact.stderr.txt",
+      "stderr_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "command_logs/fresh_exact.stdout.txt",
+      "stdout_sha256": "sha256:c0dd2359a28889d2e78616004710a7caaed78814ba6674a6b487b934a34a00db"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+        "-B",
+        "/private/tmp/ratchet176_online_hpo_run_20260717/isolated_sources/online_regime_shift_detector_v0/online_regime_shift_detector_v0_jax.py"
+      ],
+      "command_id": "fresh_jax",
+      "cwd": "isolated_sources/online_regime_shift_detector_v0",
+      "returncode": 1,
+      "stderr_path": "command_logs/fresh_jax.stderr.txt",
+      "stderr_sha256": "sha256:e472e789f3ae6f6aba214f11bc07e5059bbf65132227860573461096724f3178",
+      "stdout_path": "command_logs/fresh_jax.stdout.txt",
+      "stdout_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+        "-B",
+        "/private/tmp/ratchet176_online_hpo_run_20260717/isolated_sources/online_regime_shift_detector_v0/check_agreement.py"
+      ],
+      "command_id": "fresh_agreement",
+      "cwd": "isolated_sources/online_regime_shift_detector_v0",
+      "returncode": 1,
+      "stderr_path": "command_logs/fresh_agreement.stderr.txt",
+      "stderr_sha256": "sha256:3078cd584ef429c52a13426783a2c8f230590761daf44854bb688716d5f1a960",
+      "stdout_path": "command_logs/fresh_agreement.stdout.txt",
+      "stdout_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "controls": {
+    "copied_source_hash_binding": {
+      "copied_source_file_count": 4,
+      "passed": true
+    },
+    "fresh_source_fences": {
+      "passed": false,
+      "source_validation_errors": [
+        "source command failed: fresh_jax (exit 1)",
+        "source command failed: fresh_agreement (exit 1)",
+        "jax: fresh result unavailable or invalid: fresh source result is absent: /private/tmp/ratchet176_online_hpo_run_20260717/isolated_sources/online_regime_shift_detector_v0/results/online_regime_shift_detector_v0_jax_results.json",
+        "agreement: fresh result unavailable or invalid: fresh source result is absent: /private/tmp/ratchet176_online_hpo_run_20260717/isolated_sources/online_regime_shift_detector_v0/results/online_regime_shift_detector_v0_agreement_results.json"
+      ]
+    },
+    "no_saved_result_input": {
+      "passed": true,
+      "pre_execution_result_files": []
+    },
+    "projection_record_digest": {
+      "passed": true,
+      "record_multiset_sha256": "sha256:82ed5e286da2d1cb79fac325554c85d0a065ac827b6aa513e0b42918d16df2fd"
+    },
+    "projection_records_are_generic_hpo_only": {
+      "error": null,
+      "expected_fields": [
+        "history",
+        "probe",
+        "outcome"
+      ],
+      "passed": true
+    },
+    "raw_table_only_projection": {
+      "passed": true,
+      "raw_table": "fresh exact result.scenarios",
+      "saved_result_summary_fields_used": []
+    }
+  },
+  "family_id": "online_regime_shift_detector_v0",
+  "formal_admission_allowed": false,
+  "projection": {
+    "record_count": 5,
+    "record_multiset_sha256": "sha256:82ed5e286da2d1cb79fac325554c85d0a065ac827b6aa513e0b42918d16df2fd",
+    "records": [
+      {
+        "history": [
+          "1",
+          "1"
+        ],
+        "outcome": [
+          "1"
+        ],
+        "probe": [
+          "1"
+        ]
+      },
+      {
+        "history": [
+          "1",
+          "1"
+        ],
+        "outcome": [
+          "1"
+        ],
+        "probe": [
+          "1"
+        ]
+      },
+      {
+        "history": [
+          "1",
+          "1"
+        ],
+        "outcome": [
+          "1"
+        ],
+        "probe": [
+          "1"
+        ]
+      },
+      {
+        "history": [
+          "1",
+          "1"
+        ],
+        "outcome": [
+          "1"
+        ],
+        "probe": [
+          "1"
+        ]
+      },
+      {
+        "history": [
+          "0",
+          "0"
+        ],
+        "outcome": [
+          "0"
+        ],
+        "probe": [
+          "0"
+        ]
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "receipt_only_metadata": {
+    "fresh_result_paths_and_hashes": {
+      "exact": {
+        "path": "isolated_sources/online_regime_shift_detector_v0/results/online_regime_shift_detector_v0_exact_results.json",
+        "sha256": "sha256:f8445f67702165930d9fc8877918082bd3f0898028edd7be8b62efbcb17ee407"
+      }
+    },
+    "fresh_result_role": "exact.scenarios is the raw projection table; exact/JAX/agreement result fences are validation receipts only outside that raw table",
+    "isolated_source_root": "isolated_sources/online_regime_shift_detector_v0",
+    "projection_rule": "history is two raw detector-presence bits; probe is the raw agreement bit; outcome is raw dual-detection presence (or paired raw relabel detection presence)",
+    "raw_table_name": "fresh exact result.scenarios",
+    "raw_table_row_count": 5,
+    "raw_table_sha256": "sha256:d5e1fdf34e662524f284a3369eceaa527024b0ef2a8a3ca8ee559c3ce9d566bb",
+    "source_inputs": [
+      {
+        "candidate_source_sha256": "sha256:891563000f79c2b8134f81ab98be2c8606ddfc061478ccb5521981cebb5bc6cd",
+        "isolated_copy_path": "isolated_sources/online_regime_shift_detector_v0/online_regime_shift_detector_v0_exact.py",
+        "isolated_source_sha256": "sha256:891563000f79c2b8134f81ab98be2c8606ddfc061478ccb5521981cebb5bc6cd",
+        "source_relative_path": "online_regime_shift_detector_v0_exact.py"
+      },
+      {
+        "candidate_source_sha256": "sha256:decf0719764e0da16936b591a12a649138b124e353fe7d54eec11e105fcc5a19",
+        "isolated_copy_path": "isolated_sources/online_regime_shift_detector_v0/online_regime_shift_detector_v0_jax.py",
+        "isolated_source_sha256": "sha256:decf0719764e0da16936b591a12a649138b124e353fe7d54eec11e105fcc5a19",
+        "source_relative_path": "online_regime_shift_detector_v0_jax.py"
+      },
+      {
+        "candidate_source_sha256": "sha256:e06ca670da0b27bbad8b15e462c83a887c4df589a21b65009cbab2b48ee9b540",
+        "isolated_copy_path": "isolated_sources/online_regime_shift_detector_v0/check_agreement.py",
+        "isolated_source_sha256": "sha256:e06ca670da0b27bbad8b15e462c83a887c4df589a21b65009cbab2b48ee9b540",
+        "source_relative_path": "check_agreement.py"
+      },
+      {
+        "candidate_source_sha256": "sha256:6c834eca974daab51a62c05d6a15aa47fdb466d98843e01e400f8bd8fb97f9d6",
+        "isolated_copy_path": "isolated_sources/online_regime_shift_detector_v0/spec.json",
+        "isolated_source_sha256": "sha256:6c834eca974daab51a62c05d6a15aa47fdb466d98843e01e400f8bd8fb97f9d6",
+        "source_relative_path": "spec.json"
+      }
+    ],
+    "source_row_bindings": [
+      {
+        "record_ordinal": 0,
+        "source_raw_field_paths": [
+          "page_hinkley_detection_tick",
+          "cusum_detection_tick",
+          "detectors_agree_within_w",
+          "dual_detection_tick"
+        ],
+        "source_raw_table_key": "adversarial_slow_drift"
+      },
+      {
+        "record_ordinal": 1,
+        "source_raw_field_paths": [
+          "page_hinkley_detection_tick",
+          "cusum_detection_tick",
+          "detectors_agree_within_w",
+          "dual_detection_tick"
+        ],
+        "source_raw_table_key": "boundary_small_shift_at_threshold"
+      },
+      {
+        "record_ordinal": 2,
+        "source_raw_field_paths": [
+          "stream_a_detection_tick",
+          "stream_b_detection_tick",
+          "invariant_to_stream_id_relabeling"
+        ],
+        "source_raw_table_key": "label_erased"
+      },
+      {
+        "record_ordinal": 3,
+        "source_raw_field_paths": [
+          "page_hinkley_detection_tick",
+          "cusum_detection_tick",
+          "detectors_agree_within_w",
+          "dual_detection_tick"
+        ],
+        "source_raw_table_key": "positive_known_shift"
+      },
+      {
+        "record_ordinal": 4,
+        "source_raw_field_paths": [
+          "page_hinkley_detection_tick",
+          "cusum_detection_tick",
+          "detectors_agree_within_w",
+          "dual_detection_tick"
+        ],
+        "source_raw_table_key": "stationary_10k"
+      }
+    ]
+  },
+  "schema_version": "ratchet.r3.source_locked_raw_hpo_extractor.v1",
+  "source_lock": {
+    "candidate_root": "/private/tmp/ratchet176_candidate_a37462d_20260718",
+    "copied_inputs": [
+      {
+        "candidate_source_sha256": "sha256:891563000f79c2b8134f81ab98be2c8606ddfc061478ccb5521981cebb5bc6cd",
+        "isolated_copy_path": "isolated_sources/online_regime_shift_detector_v0/online_regime_shift_detector_v0_exact.py",
+        "isolated_source_sha256": "sha256:891563000f79c2b8134f81ab98be2c8606ddfc061478ccb5521981cebb5bc6cd",
+        "source_relative_path": "online_regime_shift_detector_v0_exact.py"
+      },
+      {
+        "candidate_source_sha256": "sha256:decf0719764e0da16936b591a12a649138b124e353fe7d54eec11e105fcc5a19",
+        "isolated_copy_path": "isolated_sources/online_regime_shift_detector_v0/online_regime_shift_detector_v0_jax.py",
+        "isolated_source_sha256": "sha256:decf0719764e0da16936b591a12a649138b124e353fe7d54eec11e105fcc5a19",
+        "source_relative_path": "online_regime_shift_detector_v0_jax.py"
+      },
+      {
+        "candidate_source_sha256": "sha256:e06ca670da0b27bbad8b15e462c83a887c4df589a21b65009cbab2b48ee9b540",
+        "isolated_copy_path": "isolated_sources/online_regime_shift_detector_v0/check_agreement.py",
+        "isolated_source_sha256": "sha256:e06ca670da0b27bbad8b15e462c83a887c4df589a21b65009cbab2b48ee9b540",
+        "source_relative_path": "check_agreement.py"
+      },
+      {
+        "candidate_source_sha256": "sha256:6c834eca974daab51a62c05d6a15aa47fdb466d98843e01e400f8bd8fb97f9d6",
+        "isolated_copy_path": "isolated_sources/online_regime_shift_detector_v0/spec.json",
+        "isolated_source_sha256": "sha256:6c834eca974daab51a62c05d6a15aa47fdb466d98843e01e400f8bd8fb97f9d6",
+        "source_relative_path": "spec.json"
+      }
+    ],
+    "fresh_results_are_fenced_before_projection": true,
+    "isolated_source_copies_only": true,
+    "isolated_source_root": "isolated_sources/online_regime_shift_detector_v0",
+    "local_sources_only": true,
+    "pre_execution_result_files": [],
+    "saved_source_result_reused": false,
+    "source_directory": "/private/tmp/ratchet176_candidate_a37462d_20260718/system_v7/sims/online_regime_shift_detector_v0"
+  },
+  "source_validation_errors": [
+    "source command failed: fresh_jax (exit 1)",
+    "source command failed: fresh_agreement (exit 1)",
+    "jax: fresh result unavailable or invalid: fresh source result is absent: /private/tmp/ratchet176_online_hpo_run_20260717/isolated_sources/online_regime_shift_detector_v0/results/online_regime_shift_detector_v0_jax_results.json",
+    "agreement: fresh result unavailable or invalid: fresh source result is absent: /private/tmp/ratchet176_online_hpo_run_20260717/isolated_sources/online_regime_shift_detector_v0/results/online_regime_shift_detector_v0_agreement_results.json"
+  ],
+  "status": "HOLD"
+}

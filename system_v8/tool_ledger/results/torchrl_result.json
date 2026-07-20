@@ -1,0 +1,33 @@
+{
+  "donor": "torchrl",
+  "checks": {
+    "torch_version": "2.11.0",
+    "torchrl_version": "0.13.3",
+    "tensordict_version": "0.13.0",
+    "import": "ok",
+    "n_objects": 64,
+    "n_views": 6,
+    "n_probes": 8,
+    "world_model_build": "ok",
+    "n_params": 909,
+    "losses_first5": [
+      0.7639641761779785,
+      0.6399021148681641,
+      0.5497214198112488,
+      0.47193822264671326,
+      0.4002469778060913
+    ],
+    "losses_last5": [
+      0.007738769520074129,
+      0.0074387360364198685,
+      0.0071011316031217575,
+      0.006767171900719404,
+      0.006462315563112497
+    ],
+    "loss_start": 0.7639641761779785,
+    "loss_end": 0.006462315563112497,
+    "loss_decreased": true
+  },
+  "verdict": "INTEGRATED",
+  "reason": "torchrl.modules.GRUModule + WorldModelWrapper (transition_model=GRUModule->decoder, reward_model=linear head) trained 60 steps on the real 64-object x 6-view x 8-probe occluded-view sequences from events_dynamics_on.jsonl. Reconstruction MSE loss 0.7640 -> 0.0065 (decreased). 909 params."
+}

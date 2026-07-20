@@ -1,0 +1,35 @@
+{
+  "schema": "ratchet.v8.tool_ledger.donor_test.v0",
+  "date": "2026-07-19",
+  "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+  "memory_gate": {
+    "threshold_percent": 25,
+    "observed_percent_at_test_time": 45,
+    "gate": "pass"
+  },
+  "data_source": "system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl (64 objects x 6 views x 8 probes, occluded views)",
+  "donors": {
+    "torchrl": {
+      "verdict": "INTEGRATED",
+      "reason": "torchrl.modules.GRUModule + WorldModelWrapper (transition_model=GRUModule->decoder, reward_model=linear head) trained 60 steps on the real 64-object x 6-view x 8-probe occluded-view sequences from events_dynamics_on.jsonl. Reconstruction MSE loss 0.7640 -> 0.0065 (decreased). 909 params.",
+      "result_file": "system_v8/tool_ledger/results/torchrl_result.json"
+    },
+    "pymdp": {
+      "verdict": "INTEGRATED",
+      "reason": "pymdp.legacy Agent built with A matrix = empirical probe-outcome distribution from obj-000:view:1 (p1=0.4000 over 5 real probes). One infer_states() belief update on obs=0 moved posterior P(state=match) 0.5000 -> 0.6000 (delta=+0.1000), the correct direction given the real observation model.",
+      "result_file": "system_v8/tool_ledger/results/pymdp_result.json"
+    },
+    "vjepa2": {
+      "verdict": "INTEGRATED",
+      "reason": "transformers.models.vjepa2 VJEPA2Model instantiated tiny (191856 params, hidden_size=48/pred_hidden_size=48) and ran one forward pass on a random tiny video tensor -> last_hidden_state shape [1, 8, 48]. No pretrained weights loaded, no real video training \u2014 import+config-load+tiny-instantiate only, per scope. An even-tinier first-attempt config (hidden_size=32/pred_hidden_size=16) hit a real library rotary-embedding shape bug (see first_attempt_tiny_config_error) that does not occur at this or at released-checkpoint scale.",
+      "result_file": "system_v8/tool_ledger/results/vjepa2_result.json"
+    }
+  },
+  "summary": {
+    "torchrl": "INTEGRATED",
+    "pymdp": "INTEGRATED",
+    "vjepa2": "INTEGRATED"
+  },
+  "claim_ceiling": "tool-integration evidence only; no canonical/bridge/QIT/GStack/axis/nonclassical admission claim",
+  "promotion_allowed": false
+}

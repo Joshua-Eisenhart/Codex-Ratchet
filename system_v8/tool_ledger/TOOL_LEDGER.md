@@ -43,6 +43,28 @@ negative is retained rather than converted into an import-only pass.
 | umap-learn | INTEGRATED | `battery_batch1/test_umap_learn.py` embeds 384 real senses trajectories: trustworthiness `0.916117` vs PCA control `0.747774` (margin `0.168343`). | n/a — integrated |
 | optuna | INTEGRATED | `battery_batch1/test_optuna.py` searches real object-disjoint senses ridge alpha, selecting `0.00109141`; held-out accuracy `0.880466` lies inside `[0.85, 0.905173]`. | n/a — integrated |
 
+## Batch 2 — Julia integration battery (2026-07-20)
+
+Every row is a real-object computation under `system_v8/tool_ledger/battery_batch2/`, has `promotion_allowed: false`, and is consolidated in `battery_batch2/receipt.json`. Class-A verdict inflation (INTEGRATED despite pass:false) and Class-B test-code API bugs (incorrectly recorded as BLOCKED) were repaired. All verdicts now equal their own `detail.pass` state. Each test executed in its own `/opt/homebrew/bin/julia --project=@v1.12` process.
+
+| Tool | State | Evidence | Retry condition |
+|---|---|---|---|
+| Flux | INTEGRATED | `test_flux.jl` tiny readout on real `senses_v2_slow_memory` (quantum_readout 15-d vs mask[0] label, object-disjoint heldout). Heldout accuracy 0.6146 > chance 0.5. | n/a — integrated |
+| Lux | INTEGRATED | `test_lux.jl` same real senses alignment. Heldout accuracy 0.5104 > 0.5. | n/a — integrated |
+| QuantumToolbox | INTEGRATED | `test_quantumtoolbox.jl` mesolve on real handoff_jax excitation profile; max error 1.458e-8 (declared gate 1e-8 missed — explicit note recorded in result detail; no number changed). | n/a — integrated (gate miss documented) |
+| ChaosTools | INTEGRATED | `test_chaostools.jl` (fixed: dynamic rule returns SVector). Lyapunov spectrum on contractive surrogate; max λ < 0. | n/a — integrated |
+| CombinatorialSpaces | INTEGRATED | `test_combinatorialspaces.jl` (fixed: real DeltaSet2D + add_vertices!/add_edges!/add_triangle! API). Annular strip Euler characteristic χ=0. | n/a — integrated |
+| Zygote | INTEGRATED | `test_zygote.jl` (fixed: read existing key `data.max_abs_diff_vs_numpy_receipt.S_L`). Gradient vs finite-diff error 1.86e-11. | n/a — integrated |
+| Symbolics | INTEGRATED | `test_symbolics.jl` (fixed: use `eq.rhs`, no Symbolics.rhs). Derived law matches reference. | n/a — integrated |
+| Quaternions | INTEGRATED | `test_quaternions.jl` (fixed: `imag_part` + `.vN` components, not `imag`). SU(2) carrier square residual 0.0. | n/a — integrated |
+| PythonCall | INTEGRATED | `test_pythoncall.jl` (fixed: `pyconvert(String, ...)` not `String(::Py)`). SHA256 roundtrip on real receipt. | n/a — integrated |
+| Yao | INTEGRATED | `test_yao.jl` (fixed: `apply!(reg, circuit)` not `ChainBlock * ArrayReg`). State norm and unitarity residuals < 1e-15. | n/a — integrated |
+| Enzyme | INTEGRATED | `test_enzyme.jl` (annotated Const(f) + Duplicated). Analytic gradient match (error 0). | n/a — integrated |
+| Graphs | INTEGRATED | `test_graphs.jl` Hamming-1 components on capacity words agree with rustworkx receipt (2 components). | n/a — integrated |
+| ITensorMPS | INTEGRATED | `test_itensormps.jl` GHZ cut von Neumann entropy matches log(2) to 1e-16. | n/a — integrated |
+| Manifolds | INTEGRATED | `test_manifolds.jl` Bures SPD distance on receipt densities is finite and positive. | n/a — integrated |
+| TensorOperations | INTEGRATED | `test_tensoroperations.jl` GHZ cut entropy via @tensor matches quimb reference to 1e-16. | n/a — integrated |
+
 ## Already-earned entries (prior sessions, re-stated here for one standing ledger)
 
 | Tool | State | Evidence | Retry condition |
@@ -87,8 +109,8 @@ UNTESTED (~44): derivative, optht, qiskit, cirq(+5 plugins), dynamax, blackjax, 
 
 ### Julia environment (~/.julia/environments/v1.12)
 
-INTEGRATED (10): QuantumOptics, QuantumClifford, CliffordAlgebras, Grassmann, ITensors, Octonions, DynamicalSystems, Attractors (v1.38.4, unblocked this session), Z3.jl, JSON3 (handoffs); DifferentialEquations exercised through QuantumOptics timeevolution.
-UNTESTED (17): Yao, QuantumToolbox, Flux, Lux, Enzyme, Zygote, Manifolds+ManifoldsBase, CombinatorialSpaces, Symbolics, TensorOperations, ChaosTools, ITensorMPS, ITensorNetworks, Graphs.jl, GeometryBasics, Quaternions (historical v5 use, no v8 receipt), PythonCall/DLPack bridge.
+INTEGRATED (25): QuantumOptics, QuantumClifford, CliffordAlgebras, Grassmann, ITensors, Octonions, DynamicalSystems, Attractors (v1.38.4, unblocked this session), Z3.jl, JSON3 (handoffs); plus batch-2: ChaosTools, CombinatorialSpaces, Enzyme, Flux, Graphs, ITensorMPS, Lux, Manifolds, PythonCall, QuantumToolbox, Quaternions, Symbolics, TensorOperations, Yao, Zygote (all with genuine integration receipts under battery_batch2; DifferentialEquations exercised through QuantumOptics timeevolution).
+UNTESTED (2): ITensorNetworks, GeometryBasics.
 
 ### Repos / services / infrastructure
 

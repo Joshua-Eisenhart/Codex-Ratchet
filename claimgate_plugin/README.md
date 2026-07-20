@@ -1,4 +1,4 @@
-# ClaimGate v0.1
+# lev-gates: ClaimGate + ArchFence + Hammer
 
 Done-ness is computed, never asserted. Two gates, exit codes are the interface.
 
@@ -98,6 +98,42 @@ inflated receipt (rejected, 8 violations), honest receipt with explained
 gate-miss + recompute contract (admissible), duplicate config loader
 (parked, name_sim 1.0 + 2 interface collisions), novel module without a search
 receipt (rejected), novel module with search receipt (admitted).
+
+## 3. ArchFence — architectural invariants as exit codes
+
+```
+node archfence.mjs rules.json --estate <repo-dir>
+```
+
+Exit 0 clean, 1 violations, 2 error. Rule types: `forbidden_path` (path regex
+that must match nothing), `required_location` (files matching a name regex must
+live under a dir regex), `import_boundary` (files under source_regex may not
+import specs matching forbidden_import_regex, minus an allowed_import_regex).
+Reports file:line for import violations. Anti-theater: any rule that matched
+NOTHING in the whole scan is flagged as a stale-rule warning — a fence that
+never touches anything may guard a path that no longer exists. Broken regexes
+are hard errors, never silent skips. `stress/lev_rules.json` encodes the real
+Lev gates (no-poly-handlers, no-commands-dirs, handlers-in-handlers,
+plugins-no-core-internals) and catches all planted violations in the fixture
+estate.
+
+## 4. Hammer — property-based input hammering for agent-written functions
+
+```
+node hammer.mjs spec.mjs [--runs 1000] [--seed 42]
+```
+
+Exit 0 survived, 1 counterexamples, 2 bad spec. The spec declares the function,
+realistic seed inputs, and invariants; the hammer mutates seeds
+structure-preservingly (nasty numbers incl. NaN/Infinity, injection-shaped
+strings, dropped/nulled/injected object keys, empty/shuffled arrays), checks
+every invariant on every run, and greedily shrinks failures toward the seed
+before reporting. Deterministic: same seed, byte-identical report. Seeds are
+checked unmutated first — a failing seed is reported as a spec/function error
+before any fuzzing. Demo: `stress/spec_buggy.mjs` (planted bugs found in
+<1s, shrunk to `[]`, `{start:0}`, `{start:null}`) vs `stress/spec_fixed.mjs`
+(survives 2000 runs). The card's acceptance check becomes "survives N mutated
+inputs holding these invariants", not "passes the agent's own 3 examples".
 
 ## Boundary
 

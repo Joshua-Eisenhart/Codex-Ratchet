@@ -63,13 +63,22 @@ function getPath(obj, dotted) {
 
 const num = (x) => typeof x === "number" && Number.isFinite(x);
 
+function nonEmpty(v) {
+  // gaming defense: {} and [] and "" are NOT evidence
+  if (v == null) return false;
+  if (Array.isArray(v)) return v.length > 0;
+  if (typeof v === "object") return Object.keys(v).length > 0;
+  if (typeof v === "string") return v.trim().length > 0;
+  return true; // numbers, booleans
+}
+
 // ---------------------------------------------------------------- lint-receipt
 
 const DEFAULT_RULES = {
   // verdict vocabularies and what pass-state each verdict REQUIRES.
   // null = pass must be absent/false-y (a blocked tool has no pass).
   verdict_fields: ["verdict", "status", "outcome"],
-  pass_fields: ["pass", "all_pass", "passed", "ok"],
+  pass_fields: ["pass", "all_pass", "passed", "ok", "succeeded", "success"],
   verdict_pass_map: {
     INTEGRATED: true,
     PASS: true,
@@ -117,7 +126,7 @@ const DEFAULT_RULES = {
   recompute_ops: ["mean", "min", "max", "count", "sum", "fraction_true"],
 };
 
-function lintReceipt(receiptPath, rulesPath) {
+function lintReceipt(receiptPath, rulesPath, strict) {
   const receipt = readJson(receiptPath);
   const rules = rulesPath
     ? { ...DEFAULT_RULES, ...readJson(rulesPath) }
@@ -131,7 +140,11 @@ function lintReceipt(receiptPath, rulesPath) {
     if (!vKey) continue;
     const verdict = obj[vKey].toUpperCase();
     if (!(verdict in rules.verdict_pass_map)) {
-      notes.push({ rule: "R1-vocab", trail, note: `unknown verdict '${obj[vKey]}' — not in vocabulary, not checkable` });
+      if (strict) {
+        violations.push({ rule: "R1-unknown-verdict", trail, detail: `verdict '${obj[vKey]}' is not in the agreed vocabulary — in strict mode an uncheckable verdict is a rejected verdict (vocabulary evasion defense)` });
+      } else {
+        notes.push({ rule: "R1-vocab", trail, note: `unknown verdict '${obj[vKey]}' — not in vocabulary, not checkable (use --strict to reject)` });
+      }
       continue;
     }
     const required = rules.verdict_pass_map[verdict];
@@ -142,9 +155,9 @@ function lintReceipt(receiptPath, rulesPath) {
     const agrees = required === true ? actual === true : actual !== true;
     if (!agrees) {
       const explained = rules.divergence_explanation_fields.some(
-        (f) => typeof obj[f] === "string" && obj[f].length > 10
+        (f) => typeof obj[f] === "string" && obj[f].length > 30
       ) || rules.divergence_explanation_fields.some(
-        (f) => obj.detail && typeof obj.detail[f] === "string" && obj.detail[f].length > 10
+        (f) => obj.detail && typeof obj.detail[f] === "string" && obj.detail[f].length > 30
       );
       if (explained) {
         notes.push({ rule: "R1-explained", trail, note: `verdict ${verdict} vs ${pKey}=${JSON.stringify(actual)} diverge WITH explanation — allowed, surfaced` });
@@ -161,7 +174,7 @@ function lintReceipt(receiptPath, rulesPath) {
         num(obj[key]) &&
         rules.claim_field_patterns.some((p) => key.toLowerCase().includes(p));
       if (!isClaim) continue;
-      const hasProv = rules.provenance_fields.some((f) => f in obj && obj[f] != null);
+      const hasProv = rules.provenance_fields.some((f) => nonEmpty(obj[f]));
       if (!hasProv) {
         violations.push({ rule: "R2-claim-without-evidence", trail: `${trail}.${key}`, detail: `numeric claim '${key}'=${obj[key]} has no provenance field beside it (need one of: ${rules.provenance_fields.slice(0, 6).join(", ")}, ...)` });
       }
@@ -182,11 +195,12 @@ function lintReceipt(receiptPath, rulesPath) {
   const prereg = receipt[rules.preregistration_block];
   const checks = receipt[rules.checks_block];
   if (checks && typeof checks === "object") {
+    const checkNames = Array.isArray(checks) ? checks.map(String) : Object.keys(checks);
     if (!prereg) {
-      violations.push({ rule: "R4-no-preregistration", trail: `$.${rules.checks_block}`, detail: `receipt evaluates ${Object.keys(checks).length} checks but has no '${rules.preregistration_block}' block — gates must exist before the run` });
+      violations.push({ rule: "R4-no-preregistration", trail: `$.${rules.checks_block}`, detail: `receipt evaluates ${checkNames.length} checks but has no '${rules.preregistration_block}' block — gates must exist before the run` });
     } else {
       const declared = new Set(Array.isArray(prereg) ? prereg : Object.keys(prereg));
-      for (const k of Object.keys(checks)) {
+      for (const k of checkNames) {
         if (!declared.has(k)) {
           violations.push({ rule: "R4-posthoc-gate", trail: `$.${rules.checks_block}.${k}`, detail: `check '${k}' evaluated but not preregistered` });
         }
@@ -201,6 +215,12 @@ function lintReceipt(receiptPath, rulesPath) {
       const claimed = getPath(receipt, r.claim);
       const from = getPath(receipt, r.from);
       const tol = num(r.tol) ? r.tol : 1e-9;
+      const claimedMag = num(claimed) ? Math.abs(claimed) : 0;
+      const tolCeiling = Math.max(1e-6, 0.05 * claimedMag);
+      if (tol > tolCeiling) {
+        violations.push({ rule: "R5-tolerance-gaming", trail: r.claim, detail: `declared tol ${tol} exceeds ceiling ${tolCeiling} (5% of |claim|) — a loose tolerance makes the recompute contract decorative` });
+        continue;
+      }
       if (!Array.isArray(from)) {
         violations.push({ rule: "R5-recompute-missing-raw", trail: r.from, detail: `raw array for recompute not found` });
         continue;
@@ -371,7 +391,7 @@ const flag = (name, dflt) => {
 if (cmd === "lint-receipt") {
   const target = args.find((a) => !a.startsWith("--"));
   if (!target) die("usage: claimgate lint-receipt <receipt.json> [--rules rules.json]");
-  lintReceipt(target, flag("rules"));
+  lintReceipt(target, flag("rules"), args.includes("--strict"));
 } else if (cmd === "admit-module") {
   const target = args.find((a) => !a.startsWith("--"));
   const estate = flag("estate");

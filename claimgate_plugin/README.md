@@ -23,7 +23,8 @@ Exit 0 admissible, 1 rejected, 2 malformed. Rules (all mechanical):
   baseline field. "Beats chance 0.5" hid a 0.867 majority class once; never again.
 - R4 preregistration: every evaluated check must appear in a `preregistered`
   block. Post-hoc gates are rejected.
-- R5 recompute contract: the receipt may declare
+- R5 recompute contract (with tolerance ceiling: declared tol must be within
+  5% of the claim magnitude, else R5-tolerance-gaming): the receipt may declare
   `recompute: [{claim, op, from, tol}]` (mean/min/max/sum/count/fraction_true);
   the linter re-derives each claim from the receipt's own raw arrays.
   Receipts with no recompute contract pass R5 but are flagged: asserted, not re-derivable.
@@ -78,6 +79,17 @@ Every decision appends to `admissions.jsonl` — an append-only log.
 Wrap the agent's file-creation tool (or a pre-commit hook listing new files):
 creation is only executed when admit-module exits 0; exit 3 routes to the human
 queue with the near-duplicate evidence attached.
+
+### Gaming defenses (added after adversarial stress round)
+
+- Empty evidence is not evidence: `{}`, `[]`, and `""` do not satisfy R2.
+- Explanation fields must exceed 30 characters to legitimize a verdict/pass
+  divergence — junk notes do not.
+- `--strict`: verdicts outside the agreed vocabulary are rejected, not noted
+  (vocabulary-evasion defense). Recommended for CI.
+- Tolerance gaming: `tol` larger than 5% of the claim magnitude voids the
+  recompute contract instead of passing it.
+- `checks` as an array of names is handled the same as an object.
 
 ## Tests
 

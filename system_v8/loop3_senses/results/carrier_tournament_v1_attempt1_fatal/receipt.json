@@ -1,0 +1,52 @@
+{
+  "schema": "loop3_senses/carrier_tournament_v1/receipt_v1",
+  "sim_id": "carrier_tournament_v1",
+  "version": "1.0.0",
+  "generated_at": "2026-07-20T04:08:06.930847+00:00",
+  "classification": "scratch_diagnostic",
+  "runtime": {
+    "python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "required_python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "memory_free_percent": 43,
+    "minimum_required_percent": 25,
+    "object_card_validation": {
+      "checked": {
+        "claude_pattern_cards": 0,
+        "evidence_spine": true,
+        "lateral_mappings": 3,
+        "method_contracts": [
+          "baseline_preservation",
+          "falsifier_first",
+          "feynman_testability",
+          "human_offload",
+          "order_check_separate",
+          "question_is_not_authorization",
+          "synthesis_refusal"
+        ],
+        "primary_object_card": true,
+        "sim_audit_receipts": 1,
+        "source_math_locks": 3
+      },
+      "errors": [],
+      "ok": true,
+      "schema_version": "wizard_v4_3_primary_object_card_v1",
+      "warnings": []
+    },
+    "result_directory_absent": true
+  },
+  "fatal_error": "TournamentError: product lane produced a nonphysical qubit",
+  "checks": {
+    "fatal_preflight_or_runtime": false
+  },
+  "all_pass": false,
+  "divergence_log": [
+    {
+      "comparison": "requested tournament versus fatal execution state",
+      "status": "not_completed",
+      "reason": "TournamentError: product lane produced a nonphysical qubit"
+    }
+  ],
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "fatal fail-closed diagnostic; no carrier result or promotion claim"
+}

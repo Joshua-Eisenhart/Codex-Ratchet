@@ -48,3 +48,25 @@ Memory gate observed before every torch/jax/qutip import in this session:
 - All three new-donor tests write structured JSON to `system_v8/tool_ledger/results/` (`torchrl_result.json`, `pymdp_result.json`, `vjepa2_result.json`) with a `verdict` field and full check detail — see `receipt.json` in this directory for the consolidated new-donor summary.
 - Claim ceiling for everything in this ledger: tool-integration evidence only. Nothing here is a canonical, bridge, QIT, GStack, axis, or nonclassical admission claim.
 - No files were deleted or moved. No commit was made.
+
+## COMPLETE ESTATE INVENTORY (2026-07-19, from live environments — every substantive item, four states)
+
+States: INTEGRATED (load-bearing receipt exists) / BLOCKED (real error recorded) / PRUNED (real limitation excludes it) / UNTESTED (installed+importable, no integration receipt yet — may NOT be leaned on until integrated; each is queue work).
+
+### Python sim-stack (/Users/joshuaeisenhart/.local/share/sim-stack) — substantive packages
+
+INTEGRATED (28): torch 2.11, jax+jaxlib 0.10.1, diffrax, quimb, lineax, jaxopt, netket, e3nn, e3nn-jax, ott-jax, jraph, torch-geometric, geomstats, qutip, pennylane+lightning, pysindy, galois, gudhi, toponetx, rustworkx, networkx, torchrl+tensordict, inferactively-pymdp, transformers(vjepa2 path), z3-solver, cvc5, sympy (proof lanes), auto_LiRPA (v5 scout), numpy (control-only by doctrine).
+BLOCKED (1): cotengra direct executor (search path IS integrated).
+PRUNED (1): torch_ga (float32-only).
+UNTESTED (~60): pykoopman, PyDMD, derivative, optht, dynamiqs, qutip-jax, qiskit, cirq(+5 plugins), dynamax, numpyro, blackjax, pymc/pytensor, tensorflow-probability, flowMC, nutpie, oryx, arviz, bayeux-ml, mctx, dm-haiku, gymnasium, evotorch, cma, deap, pymoo, moocore, ribs, optuna, cvxpy, cvxpylayers, diffcp, clarabel, osqp, scs, highspy, xitorch, hoptorch, torchdiffeq, torchode, (pytorch-)lightning, torchmetrics, kingdon (GA), clifford (GA), jaxga, jax-verify, jaxlie, equinox, flax, optax, optimistix, orbax-checkpoint, umap-learn, hdbscan, pynndescent, kahypar, igraph, xgi (hypergraphs), maude (rewriting logic), miniKanren+logical-unification, hypothesis, datasketch, sparse, sparsediffpy, ray, numba, scikit-learn, trimesh, pyvista/vtk, treescope.
+
+### Julia environment (~/.julia/environments/v1.12)
+
+INTEGRATED (10): QuantumOptics, QuantumClifford, CliffordAlgebras, Grassmann, ITensors, Octonions, DynamicalSystems, Attractors (v1.38.4, unblocked this session), Z3.jl, JSON3 (handoffs); DifferentialEquations exercised through QuantumOptics timeevolution.
+UNTESTED (17): Yao, QuantumToolbox, Flux, Lux, Enzyme, Zygote, Manifolds+ManifoldsBase, CombinatorialSpaces, Symbolics, TensorOperations, ChaosTools, ITensorMPS, ITensorNetworks, Graphs.jl, GeometryBasics, Quaternions (historical v5 use, no v8 receipt), PythonCall/DLPack bridge.
+
+### Repos / services / infrastructure
+
+INTEGRATED: Pack-183 engine (vendored, hash-bound), owner packs 167-189 (ingested), codebase-memory-mcp index, cocoindex_wiki index, codex1 (gpt-5.6-terra; sol OFF), grok CLI (grok-build-0.1 first audit landed), NVIDIA API (40 rpm, referee-panel pattern), xAI API, wiki (~/wiki).
+PARTIAL: Lev OS (exec/gate/trace alive; ClaimGate plugin + per-lane evidence routing pending).
+UNTESTED: OpenRouter (used once 07-18), Gemini key, codex2 (gpt-5.5 roster; idle this session).

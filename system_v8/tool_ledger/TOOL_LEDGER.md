@@ -65,6 +65,32 @@ Every row is a real-object computation under `system_v8/tool_ledger/battery_batc
 | Manifolds | INTEGRATED | `test_manifolds.jl` Bures SPD distance on receipt densities is finite and positive. | n/a — integrated |
 | TensorOperations | INTEGRATED | `test_tensoroperations.jl` GHZ cut entropy via @tensor matches quimb reference to 1e-16. | n/a — integrated |
 
+## Batch 3 — python UNTESTED tier (2026-07-20)
+
+Every row is a real-object computation under `system_v8/tool_ledger/battery_batch3/`, has `promotion_allowed: false`, and is consolidated in `battery_batch3/receipt.json`. One test file per tool. Each executed under `/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3` with one heavy stack per subprocess. Verdicts equal own `pass` state. Honest negatives retained.
+
+| Tool | State | Evidence | Retry condition |
+|---|---|---|---|
+| dynamax | BLOCKED | `test_dynamax.py` fails on jax interpreter internals under current JAX stack: `AttributeError: module 'jax.interpreters.xla' has no attribute 'pytype_aval_mappings'`. | Retry after JAX/dynamax compatibility alignment in the sim-stack. |
+| blackjax | INTEGRATED | `test_blackjax.py` NUTS posterior over gamma from real qit_referee lawD trajectory likelihood recovers receipt gamma 0.5 inside 95% CI (mean 0.6047). | n/a — integrated |
+| tensorflow-probability | BLOCKED | `test_tensorflow_probability.py` grid posterior over gamma on real lawD series via `tfp.substrates.jax`; JAX substrate hit interpreter internals: `AttributeError: module 'jax.interpreters.xla' has no attribute 'pytype_aval_mappings'`. | Install/align tensorflow-probability substrate against current JAX in the sim-stack. |
+| gymnasium | INTEGRATED | `test_gymnasium.py` wraps real occluded-object probe sequences from world events as Gym env; 100 load-bearing steps executed (total reward 42.0). | n/a — integrated |
+| evotorch | BLOCKED | `test_evotorch.py` GA on real probe-order cumulative IG (reused cma/deap/pymoo objective); internal evals path error under evotorch 0.6.1: `AttributeError: 'NoneType' object has no attribute 'evals'`. | Retry after evotorch GA operator/API compatibility or env upgrade. |
+| cma | INTEGRATED | `test_cma.py` CMA-ES evolves real probe-order IG (33.72586); beats random mean. | n/a — integrated |
+| deap | INTEGRATED | `test_deap.py` DEAP GA on real probe-order IG (33.94900); beats random mean. | n/a — integrated |
+| pymoo | INTEGRATED | `test_pymoo.py` pymoo GA on real probe-order IG (33.72586); beats random mean. | n/a — integrated |
+| cvxpylayers | BLOCKED | `test_cvxpylayers.py` CvxpyLayer on real perturbed stage Choi; complex variables not supported in current cvxpylayers path (`NotImplementedError: Complex variables are not yet supported.`). | Retry when cvxpylayers ships complex support or switch to real formulation. |
+| osqp | INTEGRATED | `test_osqp.py` QP solve on real channel projection subproblem; residual 7.59e-06 under status gate. | n/a — integrated |
+| xitorch | INTEGRATED | `test_xitorch.py` linear solve on real capacity-word Gram matrix vs numpy; max abs diff 0.0 (gate). | n/a — integrated |
+| torchode | INTEGRATED | `test_torchode.py` Bloch ODE integration on receipt-derived damping (IntegralController + term passed to solve per torchode 1.0.1); abs err 2.29e-07 vs analytic. | n/a — integrated |
+| equinox | INTEGRATED | `test_equinox.py` tiny readout on exact batch2 real senses features (candidate_reset_fast quantum_readout vs mask[0] from state_trajectories.json); heldout acc 0.625 > chance 0.5. | n/a — integrated |
+| flax | BLOCKED | `test_flax.py` tiny readout on exact batch2 real senses features (same data path); heldout acc 0.5 == chance (honest negative retained). | n/a — blocked by gate on real data |
+| optax | INTEGRATED | `test_optax.py` SGD on linear readout over exact batch2 real senses features; heldout acc 0.625 > chance. | n/a — integrated |
+| jaxlie | INTEGRATED | `test_jaxlie.py` SO3 transport of real Bloch vector (explicit float64 jnp cast); exactness gate passed (max abs err 2.38e-08). | n/a — integrated |
+| hdbscan | BLOCKED | `test_hdbscan.py` clusters real rho_fast trajectories (explicit reshape to 2D samples x features); 32 clusters vs gudhi source 4 (not close under gate). | n/a — blocked by gate on real data |
+| igraph | INTEGRATED | `test_igraph.py` connected_components on real per-packet capacity Hamming-1 graphs; bitwise match to rustworkx receipt (4 components). | n/a — integrated |
+| kahypar | BLOCKED | `test_kahypar.py` hypergraph partition of real capacity words (CSR index/edge vectors + Context.setK/setEpsilon); constructor mismatch on arm64 pip wheel 1.3.7 (full error recorded). | Genuine arm64 wheel limitation; retry only on working wheel or different platform. |
+
 ## Already-earned entries (prior sessions, re-stated here for one standing ledger)
 
 | Tool | State | Evidence | Retry condition |
@@ -102,10 +128,10 @@ States: INTEGRATED (load-bearing receipt exists) / BLOCKED (real error recorded)
 
 ### Python sim-stack (/Users/joshuaeisenhart/.local/share/sim-stack) — substantive packages
 
-INTEGRATED (43): torch 2.11, jax+jaxlib 0.10.1, diffrax, quimb, lineax, jaxopt, netket, e3nn, e3nn-jax, ott-jax, jraph, torch-geometric, geomstats, qutip, pennylane+lightning, pysindy, galois, gudhi, toponetx, rustworkx, networkx, torchrl+tensordict, inferactively-pymdp, transformers(vjepa2 path), z3-solver, cvc5, sympy (proof lanes), auto_LiRPA (v5 scout), numpy (control-only by doctrine), pykoopman, PyDMD, dynamiqs, qutip-jax, numpyro, mctx, kingdon, clifford, cvxpy, torchdiffeq, xgi, maude, hypothesis, umap-learn, optuna.
-BLOCKED (2): cotengra direct executor (search path IS integrated); jax-verify (references removed `jax.lax.standard_naryop` under JAX 0.10.1).
+INTEGRATED (55): torch 2.11, jax+jaxlib 0.10.1, diffrax, quimb, lineax, jaxopt, netket, e3nn, e3nn-jax, ott-jax, jraph, torch-geometric, geomstats, qutip, pennylane+lightning, pysindy, galois, gudhi, toponetx, rustworkx, networkx, torchrl+tensordict, inferactively-pymdp, transformers(vjepa2 path), z3-solver, cvc5, sympy (proof lanes), auto_LiRPA (v5 scout), numpy (control-only by doctrine), pykoopman, PyDMD, dynamiqs, qutip-jax, numpyro, mctx, kingdon, clifford, cvxpy, torchdiffeq, xgi, maude, hypothesis, umap-learn, optuna, blackjax, cma, deap, pymoo, gymnasium, osqp, xitorch, optax, igraph, equinox, jaxlie, torchode.
+BLOCKED (9): cotengra direct executor (search path IS integrated); jax-verify (references removed `jax.lax.standard_naryop` under JAX 0.10.1); plus batch3: dynamax, tensorflow-probability, evotorch, cvxpylayers, flax, hdbscan, kahypar.
 PRUNED (1): torch_ga (float32-only).
-UNTESTED (~44): derivative, optht, qiskit, cirq(+5 plugins), dynamax, blackjax, pymc/pytensor, tensorflow-probability, flowMC, nutpie, oryx, arviz, bayeux-ml, dm-haiku, gymnasium, evotorch, cma, deap, pymoo, moocore, ribs, cvxpylayers, diffcp, clarabel, osqp, scs, highspy, xitorch, hoptorch, torchode, (pytorch-)lightning, torchmetrics, jaxga, jaxlie, equinox, flax, optax, optimistix, orbax-checkpoint, hdbscan, pynndescent, kahypar, igraph, miniKanren+logical-unification, datasketch, sparse, sparsediffpy, ray, numba, scikit-learn, trimesh, pyvista/vtk, treescope.
+UNTESTED (~22 remaining after batch3 repair): derivative, optht, qiskit, cirq(+5 plugins), pymc/pytensor, flowMC, nutpie, oryx, arviz, bayeux-ml, dm-haiku, moocore, ribs, diffcp, clarabel, scs, highspy, hoptorch, (pytorch-)lightning, torchmetrics, jaxga, optimistix, orbax-checkpoint, pynndescent, miniKanren+logical-unification, datasketch, sparse, sparsediffpy, ray, numba, scikit-learn, trimesh, pyvista/vtk, treescope.
 
 ### Julia environment (~/.julia/environments/v1.12)
 

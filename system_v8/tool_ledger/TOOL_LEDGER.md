@@ -18,6 +18,31 @@ Memory gate observed before every torch/jax/qutip import in this session:
 | inferactively-pymdp 1.0.3 (`pymdp.legacy` Agent) | INTEGRATED | `system_v8/tool_ledger/test_pymdp_active_inference.py`. Built a minimal 2-state/2-obs POMDP `Agent(A, B, D)` whose A (observation/likelihood) matrix IS the empirical probe-outcome distribution of one real packet, `obj-000:view:1` (p1=0.4000 over 5 non-withheld real probes; A=[[0.6,0.4],[0.4,0.6]]). One `infer_states()` belief update on the match-consistent observation moved the posterior P(state=match) 0.5000 -> 0.6000 (delta +0.1000), the correct Bayesian direction. Note: `obj-000:view:0` was tried first and rejected — its empirical p1 was exactly 0.5 (3 ones/3 zeros of 6 real probes), giving an uninformative A matrix that cannot move any posterior by construction (not a pymdp defect); view 1 was substituted. Result: `results/pymdp_result.json`. | n/a — integrated |
 | vjepa2 (facebookresearch, via `transformers.models.vjepa2`) | INTEGRATED | `system_v8/tool_ledger/test_vjepa2_instantiate.py`. No standalone `vjepa2` pip package exists (`pip install vjepa2` -> no matching distribution); the officially-supported integration path for the released facebookresearch/vjepa2 checkpoints is bundled in `transformers` 4.57.0 (`VJEPA2Config`/`VJEPA2Model`). Scope was import+config-load+tiny-instantiate only, no video training. A tiny config (hidden_size=48, pred_hidden_size=48, crop_size=32, frames_per_clip=4, 2 encoder + 2 predictor layers, 191,856 params, random init, no pretrained weights) instantiated and ran one forward pass on a random tiny video tensor -> `last_hidden_state` shape `[1, 8, 48]`. Secondary finding: an even-tinier first attempt (hidden_size=32, pred_hidden_size=16) hit a real shape bug in the shipped rotary-embedding code (`modeling_vjepa2.py: rotate_queries_or_keys`), `RuntimeError: The size of tensor a (2) must match the size of tensor b (32) at non-singleton dimension 3` — traced to a `D//2==1` corner case in the 3-way (temporal/height/width) RoPE split that never occurs at released-checkpoint scale or at the working hidden_size=48 config. Result: `results/vjepa2_result.json`. | n/a — integrated (secondary rotary-embedding corner-case bug noted, not blocking at real or working-tiny scale) |
 
+## Batch 1 — integrate-before-use micro-lanes (2026-07-19)
+
+Every row below is a real-object computation, has `promotion_allowed: false`,
+and is consolidated in `battery_batch1/receipt.json`. The one terminal
+negative is retained rather than converted into an import-only pass.
+
+| Tool | State | Evidence | Retry condition |
+|---|---|---|---|
+| pykoopman | INTEGRATED | `battery_batch1/test_pykoopman.py` EDMD on the receipt-derived damped-Bloch observable recovered continuous eigenvalue `-0.361005795087912` vs `-gamma=-0.3610057950879211` (relative error `2.52e-14`). | n/a — integrated |
+| PyDMD | INTEGRATED | `battery_batch1/test_pydmd.py` DMD on three QIT-referee-derived amplitude-damping observables recovered the known-law spectrum with max error `4.951e-15`. | n/a — integrated |
+| dynamiqs | INTEGRATED | `battery_batch1/test_dynamiqs.py` JAX GKSL `mesolve` of the QIT-referee manifold damping channel gives population error `2.894e-13` against the referee value. | n/a — integrated |
+| qutip-jax | INTEGRATED | `battery_batch1/test_qutip_jax.py` qutip-jax backend evolution of that same channel gives population error `3.910e-11`, preserves trace exactly, and passes the backend gate. | n/a — integrated |
+| numpyro | INTEGRATED | `battery_batch1/test_numpyro.py` categorical posterior over the real `obj-000:view-2` senses likelihood agrees with `m_slow`; maximum hypothesis-posterior difference `6.939e-18`. | n/a — integrated |
+| mctx | INTEGRATED | `battery_batch1/test_mctx.py` Gumbel MuZero selects a real `obj-000:view-4` probe action with information gain `0.980829` nats vs uniform-random mean `0.597710`. | n/a — integrated |
+| kingdon | INTEGRATED | `battery_batch1/test_kingdon.py` float64 Cl(4) recomputation of the Julia `gamma5` receipt has square, generator-anticommutator, and bivector-commutator residuals all `0.0`. | n/a — integrated |
+| clifford | INTEGRATED | `battery_batch1/test_clifford.py` independently repeats the float64 Julia `gamma5` quantity with all three residuals `0.0`. | n/a — integrated |
+| cvxpy | INTEGRATED | `battery_batch1/test_cvxpy.py` closest-CPTP SDP for a perturbed real stage-channel Choi has TP deviation `6.217e-15` and projected-to-exact distance `0.053927 < 0.087464` perturbation distance. | n/a — integrated |
+| jax-verify | BLOCKED | `battery_batch1/test_jax_verify.py` fails while loading the tournament-GRU family: `AttributeError: module 'jax.lax' has no attribute 'standard_naryop'`. | Install a jax-verify release compatible with JAX `0.10.1`; current package references the removed API. |
+| torchdiffeq | INTEGRATED | `battery_batch1/test_torchdiffeq.py` torch adjoint solve of the receipt-derived damped Bloch ODE has max error `3.309e-11` (Diffrax reference `2.924e-11`). | n/a — integrated |
+| xgi | INTEGRATED | `battery_batch1/test_xgi.py` builds Hamming-1 hypergraphs from all nine real capacity packets; edge/component statistics agree with the rustworkx receipt on all 9. | n/a — integrated |
+| maude | INTEGRATED | `battery_batch1/test_maude.py` normalizes 8 real QCA left-shift packet words in at most 1 rank-decreasing step, with 0 critical pairs. | n/a — integrated |
+| hypothesis | INTEGRATED | `battery_batch1/test_hypothesis.py` runs 80 generated perturbations of real 1024-state senses posteriors; normalization/non-negativity invariants hold to `1e-12`. | n/a — integrated |
+| umap-learn | INTEGRATED | `battery_batch1/test_umap_learn.py` embeds 384 real senses trajectories: trustworthiness `0.916117` vs PCA control `0.747774` (margin `0.168343`). | n/a — integrated |
+| optuna | INTEGRATED | `battery_batch1/test_optuna.py` searches real object-disjoint senses ridge alpha, selecting `0.00109141`; held-out accuracy `0.880466` lies inside `[0.85, 0.905173]`. | n/a — integrated |
+
 ## Already-earned entries (prior sessions, re-stated here for one standing ledger)
 
 | Tool | State | Evidence | Retry condition |
@@ -55,10 +80,10 @@ States: INTEGRATED (load-bearing receipt exists) / BLOCKED (real error recorded)
 
 ### Python sim-stack (/Users/joshuaeisenhart/.local/share/sim-stack) — substantive packages
 
-INTEGRATED (28): torch 2.11, jax+jaxlib 0.10.1, diffrax, quimb, lineax, jaxopt, netket, e3nn, e3nn-jax, ott-jax, jraph, torch-geometric, geomstats, qutip, pennylane+lightning, pysindy, galois, gudhi, toponetx, rustworkx, networkx, torchrl+tensordict, inferactively-pymdp, transformers(vjepa2 path), z3-solver, cvc5, sympy (proof lanes), auto_LiRPA (v5 scout), numpy (control-only by doctrine).
-BLOCKED (1): cotengra direct executor (search path IS integrated).
+INTEGRATED (43): torch 2.11, jax+jaxlib 0.10.1, diffrax, quimb, lineax, jaxopt, netket, e3nn, e3nn-jax, ott-jax, jraph, torch-geometric, geomstats, qutip, pennylane+lightning, pysindy, galois, gudhi, toponetx, rustworkx, networkx, torchrl+tensordict, inferactively-pymdp, transformers(vjepa2 path), z3-solver, cvc5, sympy (proof lanes), auto_LiRPA (v5 scout), numpy (control-only by doctrine), pykoopman, PyDMD, dynamiqs, qutip-jax, numpyro, mctx, kingdon, clifford, cvxpy, torchdiffeq, xgi, maude, hypothesis, umap-learn, optuna.
+BLOCKED (2): cotengra direct executor (search path IS integrated); jax-verify (references removed `jax.lax.standard_naryop` under JAX 0.10.1).
 PRUNED (1): torch_ga (float32-only).
-UNTESTED (~60): pykoopman, PyDMD, derivative, optht, dynamiqs, qutip-jax, qiskit, cirq(+5 plugins), dynamax, numpyro, blackjax, pymc/pytensor, tensorflow-probability, flowMC, nutpie, oryx, arviz, bayeux-ml, mctx, dm-haiku, gymnasium, evotorch, cma, deap, pymoo, moocore, ribs, optuna, cvxpy, cvxpylayers, diffcp, clarabel, osqp, scs, highspy, xitorch, hoptorch, torchdiffeq, torchode, (pytorch-)lightning, torchmetrics, kingdon (GA), clifford (GA), jaxga, jax-verify, jaxlie, equinox, flax, optax, optimistix, orbax-checkpoint, umap-learn, hdbscan, pynndescent, kahypar, igraph, xgi (hypergraphs), maude (rewriting logic), miniKanren+logical-unification, hypothesis, datasketch, sparse, sparsediffpy, ray, numba, scikit-learn, trimesh, pyvista/vtk, treescope.
+UNTESTED (~44): derivative, optht, qiskit, cirq(+5 plugins), dynamax, blackjax, pymc/pytensor, tensorflow-probability, flowMC, nutpie, oryx, arviz, bayeux-ml, dm-haiku, gymnasium, evotorch, cma, deap, pymoo, moocore, ribs, cvxpylayers, diffcp, clarabel, osqp, scs, highspy, xitorch, hoptorch, torchode, (pytorch-)lightning, torchmetrics, jaxga, jaxlie, equinox, flax, optax, optimistix, orbax-checkpoint, hdbscan, pynndescent, kahypar, igraph, miniKanren+logical-unification, datasketch, sparse, sparsediffpy, ray, numba, scikit-learn, trimesh, pyvista/vtk, treescope.
 
 ### Julia environment (~/.julia/environments/v1.12)
 

@@ -1,0 +1,15 @@
+{
+  "tool": "jax-verify",
+  "state": "BLOCKED",
+  "verdict": "BLOCKED",
+  "promotion_allowed": false,
+  "generated_at": "2026-07-20T05:03:27.959623+00:00",
+  "real_object": "carrier_tournament_v1 16-to-11 GRU family",
+  "inputs": {
+    "gru_lane": "system_v8/loop3_senses/carrier_tournament_v1.py"
+  },
+  "attempted_computation": "interval/bound propagation for a tiny trained tournament-GRU family net",
+  "memory_free_percent": 61,
+  "exact_error": "AttributeError: module 'jax.lax' has no attribute 'standard_naryop'",
+  "retry_condition": "Install a jax-verify release compatible with installed jax 0.10.1 (current package references removed jax.lax.standard_naryop)."
+}

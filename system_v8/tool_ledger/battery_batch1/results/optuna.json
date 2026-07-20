@@ -1,0 +1,26 @@
+{
+  "tool": "optuna",
+  "state": "INTEGRATED",
+  "verdict": "INTEGRATED",
+  "promotion_allowed": false,
+  "generated_at": "2026-07-20T05:04:01.267150+00:00",
+  "inputs": {
+    "trajectories": "system_v8/loop3_senses/results/senses_v2_slow_memory/state_trajectories.json",
+    "receipt": "system_v8/loop3_senses/results/senses_v2_slow_memory/receipt.json"
+  },
+  "memory_free_percent": 64,
+  "real_object": "senses_v2 stored rho_fast plus m_slow object-disjoint ridge readout",
+  "computed_number": 0.880466472303207,
+  "checks": {
+    "trials": 20,
+    "best_ridge_alpha": 0.0010914129209445638,
+    "held_out_accuracy": 0.880466472303207,
+    "anchor_ci95": [
+      0.85,
+      0.905173072867236
+    ],
+    "within_anchor_ci_gate": true,
+    "test_slots": 343
+  },
+  "reason": "optuna selected the ridge alpha for the object-disjoint per-position readout using real stored rho_fast plus m_slow features and recovered world targets; the selected held-out accuracy is gated against the existing whole-object CI."
+}

@@ -1,0 +1,22 @@
+{
+  "tool": "mctx",
+  "state": "INTEGRATED",
+  "verdict": "INTEGRATED",
+  "promotion_allowed": false,
+  "generated_at": "2026-07-20T05:03:55.235993+00:00",
+  "real_object": "obj-000 view-4 world-source action sequence",
+  "inputs": {
+    "events": "system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl"
+  },
+  "memory_free_percent": 64,
+  "computed_number": 0.9808292530117271,
+  "checks": {
+    "mctx_first_action_position": 4,
+    "mctx_information_gain_nats": 0.9808292530117271,
+    "random_policy_mean_gain_nats": 0.5977100351872342,
+    "mctx_beats_random_gate": true,
+    "simulations": 64,
+    "candidate_hypotheses": 1024
+  },
+  "reason": "mctx Gumbel MuZero chooses an actual world-source probe position from a belief over the real additive-XOR hypotheses; reward is posterior entropy reduction after that real event, and is compared with a seeded random policy."
+}

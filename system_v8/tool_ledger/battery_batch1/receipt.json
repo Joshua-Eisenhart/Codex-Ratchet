@@ -1,0 +1,32 @@
+{
+  "schema": "ratchet.v8.tool_ledger.battery_batch1.v1",
+  "classification": "tool_integration_battery",
+  "claim_ceiling": "load-bearing tool-integration evidence only; no canonical, bridge, manifold, QIT, axis, or admission claim",
+  "promotion_allowed": false,
+  "memory_gate": {
+    "authority": "memory_pressure System-wide memory free percentage",
+    "required_free_percent": ">25",
+    "per_tool_receipts_record_the_observed_value": true
+  },
+  "all_required_tools_have_terminal_verdicts": true,
+  "all_pass": false,
+  "blocked_tools": ["jax_verify"],
+  "tools": {
+    "pykoopman": {"verdict": "INTEGRATED", "result": "results/pykoopman.json", "computed_number": -0.361005795087912},
+    "pydmd": {"verdict": "INTEGRATED", "result": "results/pydmd.json", "computed_number": 4.951395542680038e-15},
+    "dynamiqs": {"verdict": "INTEGRATED", "result": "results/dynamiqs.json", "computed_number": 2.8938071557071954e-13},
+    "qutip_jax": {"verdict": "INTEGRATED", "result": "results/qutip_jax.json", "computed_number": 3.909704721430374e-11},
+    "numpyro": {"verdict": "INTEGRATED", "result": "results/numpyro.json", "computed_number": 6.938893903907228e-18},
+    "mctx": {"verdict": "INTEGRATED", "result": "results/mctx.json", "computed_number": 0.9808292530117271},
+    "kingdon": {"verdict": "INTEGRATED", "result": "results/kingdon.json", "computed_number": 0.0},
+    "clifford": {"verdict": "INTEGRATED", "result": "results/clifford.json", "computed_number": 0.0},
+    "cvxpy": {"verdict": "INTEGRATED", "result": "results/cvxpy.json", "computed_number": 0.053926940765988036},
+    "jax_verify": {"verdict": "BLOCKED", "result": "results/jax_verify.json", "exact_error": "AttributeError: module 'jax.lax' has no attribute 'standard_naryop'"},
+    "torchdiffeq": {"verdict": "INTEGRATED", "result": "results/torchdiffeq.json", "computed_number": 3.309053031586018e-11},
+    "xgi": {"verdict": "INTEGRATED", "result": "results/xgi.json", "computed_number": true},
+    "maude": {"verdict": "INTEGRATED", "result": "results/maude.json", "computed_number": 8},
+    "hypothesis": {"verdict": "INTEGRATED", "result": "results/hypothesis.json", "computed_number": 80},
+    "umap_learn": {"verdict": "INTEGRATED", "result": "results/umap_learn.json", "computed_number": 0.9161168588873813},
+    "optuna": {"verdict": "INTEGRATED", "result": "results/optuna.json", "computed_number": 0.880466472303207}
+  }
+}

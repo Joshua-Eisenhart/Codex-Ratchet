@@ -1,0 +1,18 @@
+{
+  "sim_id": "senses_v2_style",
+  "preregistered": {"occluded_beats_twin": "candidate > twin within CI", "mi_above_null": "MI > null p95"},
+  "checks": {"occluded_beats_twin": true, "mi_above_null": true},
+  "tools": [
+    {"tool": "quantumtoolbox", "verdict": "INTEGRATED", "pass": false,
+     "computed_number": 1.458e-08,
+     "gate_miss_note": "declared gate 1e-8 missed; observed 1.458e-8 — integration genuine, miss recorded"},
+    {"tool": "oryx", "verdict": "BLOCKED", "pass": false,
+     "detail": {"exact_error": "AttributeError: ..."}}
+  ],
+  "belief": {"accuracy": 0.8776, "chance": 0.4956, "majority_baseline": 0.6006,
+             "ci95": [0.85, 0.905],
+             "raw_accs": [0.87, 0.88, 0.885, 0.875]},
+  "recompute": [
+    {"claim": "$.belief.accuracy", "op": "mean", "from": "$.belief.raw_accs", "tol": 0.01}
+  ]
+}

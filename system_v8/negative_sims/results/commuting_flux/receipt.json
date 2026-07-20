@@ -1,0 +1,24 @@
+{
+  "schema": "ratchet.v8.negative-sim.v1",
+  "name": "commuting_flux",
+  "preregistered_expectation": "loop holonomy differences (flux) collapse toward zero and order-sensitivity dies; measure flux magnitude vs the noncommuting reference",
+  "observed_outcome": {
+    "flux_ref": -1.7552066813286045,
+    "flux_comm": 0.0,
+    "flux_mag_ref": 1.7552066813286045,
+    "flux_mag_comm": 0.0,
+    "collapse_ratio": 0.0,
+    "flux_scrambled_ref": -3.6073978254777797,
+    "flux_scrambled_comm": 0.0,
+    "order_gap_ref": 1.8521911441491752,
+    "order_gap_comm": 0.0
+  },
+  "verdict": "FAILED_AS_EXPECTED",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "negative diagnostic; failure is the deliverable",
+  "objects_used": [
+    "system_v8/nested_manifold/rungA_carrier_to_flux.py (loop_holonomy, chi_loop, discrete Pancharatnam)",
+    "system_v8/nested_manifold/manifold_one.py (flux definitions, ETA1/ETA2)"
+  ]
+}

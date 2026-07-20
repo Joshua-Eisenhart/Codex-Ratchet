@@ -1,0 +1,24 @@
+{
+  "schema": "ratchet.v8.negative-sim.v1",
+  "name": "entropy_as_master",
+  "preregistered_expectation": "the 16 stage patterns lose distinguishability (fingerprint distinctness collapses below the 16/16 unique baseline min-pairwise 0.336); measure how many remain distinct",
+  "observed_outcome": {
+    "n_stages": 16,
+    "distinct_under_entropy_only": 8,
+    "min_pairwise_entropy_sig": 0.0,
+    "baseline_min_pairwise": 0.336,
+    "collapsed_below_baseline": true,
+    "entropy_sig_range": [
+      0.0023775520999474936,
+      0.5949567915536761
+    ]
+  },
+  "verdict": "FAILED_AS_EXPECTED",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "negative diagnostic; entropy alone does not preserve stage fingerprint",
+  "objects_used": [
+    "system_v8/nested_manifold/stage64_constraint_tournament.py (16 stages, K1/K2/K3)",
+    "system_v8/engines_perception/processor_at_scale.py (L/R_STAGES, 16 patterns)"
+  ]
+}

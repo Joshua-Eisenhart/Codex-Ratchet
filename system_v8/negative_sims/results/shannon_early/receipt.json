@@ -1,0 +1,26 @@
+{
+  "schema": "ratchet.v8.negative-sim.v1",
+  "name": "shannon_early",
+  "preregistered_expectation": "admission frontier changes or the drive stalls/becomes degenerate where counting kept it moving; measure frontier delta and drive trajectory divergence",
+  "observed_outcome": {
+    "frontier_delta_ticks": 30,
+    "frontier_size_delta": 19996,
+    "drive_L2_divergence": 2.148267572988659,
+    "drive_max_abs_divergence": 0.5877866649021191,
+    "stalls_where_count_moved": 16,
+    "counting_dC_min": 0.0,
+    "shannon_dS_min": 0.0,
+    "counting_dC_all_positive": false,
+    "shannon_dS_all_positive": false,
+    "X_count_final": 20000,
+    "X_sh_final": 4
+  },
+  "verdict": "FAILED_AS_EXPECTED",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "negative diagnostic; failure is the deliverable; no promotion",
+  "objects_used": [
+    "system_v8/nested_manifold/manifold_one.py (A_SCHED, admissible_extension rule, counting drive formula)",
+    "real integer cardinalities under the declared adjacent-symbol constraint"
+  ]
+}

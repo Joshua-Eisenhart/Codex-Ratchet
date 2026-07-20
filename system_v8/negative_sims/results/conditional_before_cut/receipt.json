@@ -1,0 +1,21 @@
+{
+  "schema": "ratchet.v8.negative-sim.v1",
+  "name": "conditional_before_cut",
+  "preregistered_expectation": "compute 'mutual information' from mismatched marginals WITHOUT an earned bipartition and show it goes negative (impossible for true MI, which is >=0); then compute the correct I on a proper cut and show >=0",
+  "observed_outcome": {
+    "I_correct_on_proper_cut": 2.0,
+    "I_correct_ge_zero": true,
+    "I_fake_from_mismatched": -0.07002299455680694,
+    "I_fake_negative": true,
+    "I_bad_inconsistent": -1.9771844845250777,
+    "I_bad_negative": true
+  },
+  "verdict": "FAILED_AS_EXPECTED",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "negative diagnostic; licenses conditional/mutual only after cuts",
+  "objects_used": [
+    "system_v8/nested_manifold/rungC_joint_cuts.py (ptrace, vn_entropy, cut family)",
+    "system_v8/nested_manifold/manifold_one.py (rho_LR, cut_readouts)"
+  ]
+}

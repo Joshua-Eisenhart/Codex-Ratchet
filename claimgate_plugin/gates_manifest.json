@@ -1,14 +1,142 @@
 {
-  "gate_name": "lev-gates kit (claimgate + archfence + hammer)",
-  "cases": [
-    {"id": "claim-inflated-rejected", "cmd": "node", "args": ["claimgate.mjs", "lint-receipt", "fixtures/receipt_inflated.json"], "expect_exit": 1},
-    {"id": "claim-honest-admitted",   "cmd": "node", "args": ["claimgate.mjs", "lint-receipt", "fixtures/receipt_honest.json"],   "expect_exit": 0},
-    {"id": "claim-gaming-rejected",   "cmd": "node", "args": ["claimgate.mjs", "lint-receipt", "stress/s1_gaming.json"],          "expect_exit": 1},
-    {"id": "claim-malformed-errors",  "cmd": "node", "args": ["claimgate.mjs", "lint-receipt", "stress/s3_malformed.json"],       "expect_exit": 2},
-    {"id": "admit-duplicate-parked",  "cmd": "node", "args": ["claimgate.mjs", "admit-module", "fixtures/decl_duplicate.json", "--estate", "fixtures/estate"], "expect_exit": 3},
-    {"id": "admit-no-search-rejected","cmd": "node", "args": ["claimgate.mjs", "admit-module", "fixtures/decl_novel_no_search.json", "--estate", "fixtures/estate"], "expect_exit": 1},
-    {"id": "fence-violations-caught", "cmd": "node", "args": ["archfence.mjs", "stress/lev_rules.json", "--estate", "stress/lev_estate"], "expect_exit": 1},
-    {"id": "hammer-buggy-caught",     "cmd": "node", "args": ["hammer.mjs", "stress/spec_buggy.mjs", "--runs", "300", "--seed", "7"], "expect_exit": 1},
-    {"id": "hammer-fixed-survives",   "cmd": "node", "args": ["hammer.mjs", "stress/spec_fixed.mjs", "--runs", "300", "--seed", "7"], "expect_exit": 0}
-  ]
+ "gate_name": "lev-gates kit (claimgate + archfence + hammer)",
+ "cases": [
+  {
+   "id": "claim-inflated-rejected",
+   "cmd": "node",
+   "args": [
+    "claimgate.mjs",
+    "lint-receipt",
+    "fixtures/receipt_inflated.json"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "claim-honest-admitted",
+   "cmd": "node",
+   "args": [
+    "claimgate.mjs",
+    "lint-receipt",
+    "fixtures/receipt_honest.json"
+   ],
+   "expect_exit": 0
+  },
+  {
+   "id": "claim-gaming-rejected",
+   "cmd": "node",
+   "args": [
+    "claimgate.mjs",
+    "lint-receipt",
+    "stress/s1_gaming.json"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "claim-malformed-errors",
+   "cmd": "node",
+   "args": [
+    "claimgate.mjs",
+    "lint-receipt",
+    "stress/s3_malformed.json"
+   ],
+   "expect_exit": 2
+  },
+  {
+   "id": "admit-duplicate-parked",
+   "cmd": "node",
+   "args": [
+    "claimgate.mjs",
+    "admit-module",
+    "fixtures/decl_duplicate.json",
+    "--estate",
+    "fixtures/estate"
+   ],
+   "expect_exit": 3
+  },
+  {
+   "id": "admit-no-search-rejected",
+   "cmd": "node",
+   "args": [
+    "claimgate.mjs",
+    "admit-module",
+    "fixtures/decl_novel_no_search.json",
+    "--estate",
+    "fixtures/estate"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "fence-violations-caught",
+   "cmd": "node",
+   "args": [
+    "archfence.mjs",
+    "stress/lev_rules.json",
+    "--estate",
+    "stress/lev_estate"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "hammer-buggy-caught",
+   "cmd": "node",
+   "args": [
+    "hammer.mjs",
+    "stress/spec_buggy.mjs",
+    "--runs",
+    "300",
+    "--seed",
+    "7"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "hammer-fixed-survives",
+   "cmd": "node",
+   "args": [
+    "hammer.mjs",
+    "stress/spec_fixed.mjs",
+    "--runs",
+    "300",
+    "--seed",
+    "7"
+   ],
+   "expect_exit": 0
+  },
+  {
+   "id": "evalcheck-honest-calibrated",
+   "cmd": "node",
+   "args": [
+    "evalcheck.mjs",
+    "evaldeck/deck_honest.json"
+   ],
+   "expect_exit": 0
+  },
+  {
+   "id": "evalcheck-theater-rejected",
+   "cmd": "node",
+   "args": [
+    "evalcheck.mjs",
+    "evaldeck/deck_theater.json"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "evalcheck-lazy-rejected",
+   "cmd": "node",
+   "args": [
+    "evalcheck.mjs",
+    "evaldeck/deck_lazy.json"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "evalcheck-flaky-rejected",
+   "cmd": "node",
+   "args": [
+    "evalcheck.mjs",
+    "evaldeck/deck_flaky.json"
+   ],
+   "expect_exit": 1
+  }
+ ]
 }

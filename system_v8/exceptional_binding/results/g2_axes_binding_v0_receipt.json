@@ -1,0 +1,205 @@
+{
+  "all_pass": true,
+  "caveats": [
+    "The G2 generators are basis-dependent as matrices (Der(O) is only defined up to conjugation); the orbit-alignment score is therefore ALSO basis-dependent unless the manifold's axis ordering is independently known to align with the octonion basis ordering used here. This sim does NOT establish that alignment -- it tests it, and the scrambled-descriptor control is the direct probe of exactly this assumption.",
+    "Orthonormalizing the 14 Der(O) generators via QR changes their matrix representation (a different real linear combination) but not the 14-dim subspace/orbit structure they span; the orbit-alignment score depends only on the spanned tangent subspace T_i, not on the specific generator basis chosen, so this is safe.",
+    "16 stages is a small sample (120 same/cross-class ordered pairs per partition at most); the control distribution (n=20) is likewise small. Percentile estimates from n=20 controls have coarse resolution (5-point steps); treat percentile as indicative, not a precise p-value."
+  ],
+  "checks": {
+    "chirality_has_2_classes": true,
+    "control_distribution_built_n20": true,
+    "der_O_dimension_is_14": true,
+    "g2_generators_are_skew_in_so7": true,
+    "g2_score_computed": true,
+    "generators_fix_identity": true,
+    "generators_preserve_imaginary_octonions": true,
+    "loaded_16_stages": true,
+    "loaded_7_axis_coordinates": true,
+    "orthonormalized_generator_count_is_14": true,
+    "scrambled_control_computed": true,
+    "supdown_has_2_classes": true,
+    "terrain8_has_8_classes": true
+  },
+  "classification": "tool_lego_fit_probe",
+  "control_distribution": {
+    "max": 0.00631185217529547,
+    "mean": -0.033585664094962345,
+    "min": -0.08988248009254879,
+    "n_controls": 20,
+    "scores": [
+      -0.019756339709494235,
+      0.00631185217529547,
+      -0.08082785119475994,
+      0.0010155184546376539,
+      -0.03201037665474371,
+      -0.06800123046336011,
+      -0.011141328867991277,
+      -0.027382855857455295,
+      -0.02930280007943037,
+      -0.05142209073052367,
+      -0.03151001264572891,
+      0.003398826685770332,
+      -0.07100736292067711,
+      -0.0001769681264510159,
+      -0.02786953486890346,
+      -0.08988248009254879,
+      -0.028496780550386087,
+      -0.04722161784778767,
+      -0.01841821160917534,
+      -0.04801163699553338
+    ],
+    "std": 0.02740294891637218
+  },
+  "der_O": {
+    "fixes_identity": true,
+    "linear_system_rows": 512,
+    "linear_system_unknowns": 64,
+    "maps_imaginary_to_imaginary": true,
+    "null_dim": 14,
+    "rank": 50,
+    "singular_values_near_null": [
+      4.472135954999579,
+      4.472135954999579,
+      2.8284271247461903,
+      4.911690220781886e-15,
+      4.351167857633656e-15,
+      1.591520833669301e-15
+    ],
+    "skew_symmetric_in_so7": {
+      "all_skew_within_1e-6": true,
+      "max_symmetric_part_over_generators": 6.106226635438361e-16
+    }
+  },
+  "design_history": [
+    "First design (full 14-generator joint tangent-span projection residual) was run and found degenerate: control_std ~= 2.2e-17 and control_mean numerically equal to the G2 score (both -0.0501712840579715...), because 14 generic skew-symmetric generators applied to any fixed 7-vector generically saturate the full 6-dim tangent hyperplane orthogonal to that vector, independent of which 14-dim generator set is used. That design could not have distinguished G2 from random by construction, so it was replaced (same run, before any interpretation of the degenerate numbers as a G2 result) with the single-generator directional-alignment score described in the module docstring and used for the numbers reported below."
+  ],
+  "f4_scope_note": "F4 / Choi-level axes 7-12 explicitly OUT OF SCOPE for v0; follow-up only.",
+  "findings": [
+    "Der(O) solved from Leibniz-rule linear system on octonion structure constants: rank=50, null_dim=14 (expected 14 for Der(O)=g2)."
+  ],
+  "g2_percentile_vs_controls": 65.0,
+  "g2_score": {
+    "mean_score": -0.02561981892263432,
+    "per_partition": {
+      "P_chirality": {
+        "mean_alignment_cross_class": 0.5349731527265597,
+        "mean_alignment_same_class": 0.5738725713931707,
+        "n_cross_pairs": 128,
+        "n_same_pairs": 112,
+        "score": 0.03889941866661106
+      },
+      "P_supdown": {
+        "mean_alignment_cross_class": 0.5972847893096446,
+        "mean_alignment_same_class": 0.5026592724410737,
+        "n_cross_pairs": 128,
+        "n_same_pairs": 112,
+        "score": -0.0946255168685709
+      },
+      "P_terrain8": {
+        "mean_alignment_cross_class": 0.5545351053420411,
+        "mean_alignment_same_class": 0.533401746776098,
+        "n_cross_pairs": 224,
+        "n_same_pairs": 16,
+        "score": -0.021133358565943117
+      }
+    }
+  },
+  "installed_choices": [
+    "Der(O) built by solving the Leibniz linear system on octonion structure constants derived from a standard Cayley-Dickson octonion multiplication table (basis-dependent presentation; Der(O)=g2 up to isomorphism is basis-independent).",
+    "Manifold 7-axis descriptor is the L07 layer's own 'vector' field (axis0..axis6) taken as-is per stage; no additional Bloch-drift/chirality/order-sensitivity descriptor invented for v0.",
+    "P_terrain8 = (family, sheet) tuple partition of the 16 stages, 8 classes.",
+    "P_chirality = sheet label (L vs R).",
+    "P_supdown = sign(axis1_dissipative_entropy_delta_bits) per stage, read directly off the fingerprint's own entropy-stroke coordinate.",
+    "Orbit-alignment score defined per docstring section (3) above; aggregate = mean over the 3 partitions.",
+    "Random controls: 20 random 14-generator antisymmetric sets in so(7), NOT asserted to be closed Lie subalgebras (per the task's own fallback wording)."
+  ],
+  "manifold_descriptors": {
+    "coordinate_count": 7,
+    "fixed_probe": "fixed asymmetric product state: left=(0.45,0.15,-0.25), right=(-0.20,0.25,0.35)",
+    "labels": [
+      "family_0|L|f+1",
+      "family_0|R|f-1",
+      "family_1|L|f+1",
+      "family_1|R|f-1",
+      "family_2|L|f+1",
+      "family_2|R|f-1",
+      "family_3|L|f+1",
+      "family_3|R|f-1",
+      "family_0|L|f-1",
+      "family_0|R|f+1",
+      "family_1|L|f-1",
+      "family_1|R|f+1",
+      "family_2|L|f-1",
+      "family_2|R|f+1",
+      "family_3|L|f-1",
+      "family_3|R|f+1"
+    ],
+    "stage_count": 16
+  },
+  "owner_hypothesis": "7 manifold axes (0-6) <-> 7-dim fundamental rep of G2 (Im(O)); field axes 7-12 <-> F4 at Choi level (out of scope v0). Owner's own epistemic label: 'the numbers just match and that is about it'.",
+  "partitions": {
+    "P_chirality": [
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    "P_supdown": [
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1
+    ],
+    "P_terrain8": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "promotion_allowed": false,
+  "schema": "ratchet.g2_axes_binding.v0",
+  "scrambled_descriptor_control": {
+    "mean_score": -0.023269937194525043,
+    "percentile_vs_same_controls": 65.0,
+    "scrambled_score_below_g2_score": false
+  },
+  "verdict": "NUMEROLOGY_NOT_REJECTED_AS_SUCH",
+  "verdict_rule": "G2_ORGANIZES_AXES_CANDIDATE iff g2_percentile_vs_controls >= 95.0; else NUMEROLOGY_NOT_REJECTED_AS_SUCH. Preregistered before this run's numbers were read."
+}

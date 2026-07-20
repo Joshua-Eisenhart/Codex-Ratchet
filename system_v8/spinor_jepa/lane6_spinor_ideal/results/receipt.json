@@ -1,0 +1,236 @@
+{
+  "lane": "lane6_spinor_ideal",
+  "sim_id": "spinor_jepa_lane6_clifford_minimal_ideal_v0",
+  "classification": "tournament_lane_working_sim",
+  "card_authority": "system_v8/spinor_jepa/TOURNAMENT_CARD_v0.md (frozen, incl AMENDMENT v0.1)",
+  "task": "occluded-object perception: predict masked probe outcomes + maintain belief under occlusion (P5/P6 primary)",
+  "data": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl",
+  "seed": 20260719,
+  "engine": {
+    "torch": "2.11.0",
+    "dtype": "float64",
+    "device": "cpu",
+    "python": "3.13.6",
+    "memory_gate": {
+      "os_memorystatus_free_fraction": 0.5,
+      "psutil_available_fraction": 0.2500486373901367
+    },
+    "memory_gate_note": "gate passes on max(os kern.memorystatus_level, psutil available); both recorded"
+  },
+  "budget": {
+    "latent_real_dof": 16,
+    "params": 3232,
+    "param_budget": 60000,
+    "train_steps": 300,
+    "batch": 32,
+    "split": {
+      "train_objects": "0-47",
+      "test_objects": "48-63"
+    }
+  },
+  "carrier_construction_receipt": {
+    "clifford_relation_max_dev": 0.0,
+    "chirality_hermitian_dev": 0.0,
+    "chirality_square_dev": 0.0,
+    "chirality_spectrum": [
+      -1.0,
+      -1.0,
+      -1.0,
+      -1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "idempotent_dev": 0.0,
+    "idempotent_rank": 1
+  },
+  "charges": [
+    "field: complex structure C on R^16 (spinor space S ~= C^8)",
+    "signature/quadratic form: Cl(6,0), positive-definite delta_ij",
+    "Clifford relations: g_i g_j + g_j g_i = 2 delta_ij (verified, max dev 0.0e+00)",
+    "grading: Z2 grading + chirality operator Gamma (4+4 sector split)",
+    "pairing: Hermitian Spin(6)-invariant <psi,phi>=psi^dag phi (ray loss + derived bilinear readouts)",
+    "minimal left ideal: primitive idempotent prod(1+i g_{2j-1}g_{2j})/2, rank 1 (verified); S = Cl(6,C)P",
+    "connection/transport: typed open dynamics transport A in Cl(6,C) (non-unitary Kraus-fragment, retraction = ray normalization); structural spin connection exp(bivector) for P1/P10 witnesses",
+    "probe instruments: M_{q,o} = I + W_{q,o} in Cl(6,C), order retained, retraction after each application",
+    "bracket: NONE (associative algebra; declared, see P4 honest zero)"
+  ],
+  "training_curve": [
+    {
+      "step": 0,
+      "bce": 0.724398,
+      "jepa_ray": 0.738515
+    },
+    {
+      "step": 25,
+      "bce": 0.69472,
+      "jepa_ray": 0.155894
+    },
+    {
+      "step": 50,
+      "bce": 0.675392,
+      "jepa_ray": 0.063628
+    },
+    {
+      "step": 75,
+      "bce": 0.649912,
+      "jepa_ray": 0.066694
+    },
+    {
+      "step": 100,
+      "bce": 0.63177,
+      "jepa_ray": 0.067756
+    },
+    {
+      "step": 125,
+      "bce": 0.624654,
+      "jepa_ray": 0.087654
+    },
+    {
+      "step": 150,
+      "bce": 0.640469,
+      "jepa_ray": 0.090655
+    },
+    {
+      "step": 175,
+      "bce": 0.620878,
+      "jepa_ray": 0.096729
+    },
+    {
+      "step": 200,
+      "bce": 0.596361,
+      "jepa_ray": 0.121996
+    },
+    {
+      "step": 225,
+      "bce": 0.630174,
+      "jepa_ray": 0.138243
+    },
+    {
+      "step": 250,
+      "bce": 0.590515,
+      "jepa_ray": 0.159078
+    },
+    {
+      "step": 275,
+      "bce": 0.609493,
+      "jepa_ray": 0.226281
+    },
+    {
+      "step": 299,
+      "bce": 0.582858,
+      "jepa_ray": 0.240543
+    }
+  ],
+  "metrics": {
+    "occluded_bit_accuracy_test": 0.5703971119133574,
+    "occluded_bit_accuracy_train": 0.5695754716981132,
+    "occluded_bit_accuracy_test_counterfactual_evidence": 0.4296028880866426,
+    "n_occluded_test_bits": 277,
+    "belief_persistence_holevo": {
+      "chi_observed": 0.05406441459173336,
+      "null_mean": 0.04421538805700189,
+      "null_p95": 0.05252910164838585,
+      "above_null": true,
+      "margin_over_p95": 0.0015353129433475152,
+      "n_permutations": 200
+    },
+    "train_ray_loss": 0.2549309489802865,
+    "test_ray_loss": 0.26370158571155644,
+    "latent_cluster_ari": {
+      "ari": 0.0249324745480989,
+      "shuffled_null_mean": 0.0006939538749220858,
+      "shuffled_null_p95": 0.020984832744649906,
+      "above_null": true
+    }
+  },
+  "probes": {
+    "P1_sign_lift_memory": {
+      "score": 1.0,
+      "measurement": "coherent-path interference |psi+U(theta)psi|^2/4 on trained beliefs; U=exp(-theta/2 g1g2). 2pi -> destructive (sign flip), 4pi -> constructive; bilinear readout shown sign-blind (projector erases psi->-psi).",
+      "interference_2pi": 6.430825945422187e-31,
+      "interference_4pi": 1.0000000000000018,
+      "bilinear_sign_blindness_max_dev": 0.0
+    },
+    "P2_chirality_sector": {
+      "score": 1.0,
+      "measurement": "structural: Gamma^2=I, 4+4 sector split, odd element g1 anticommutes with Gamma (exact sector flip). Learned instruments' mean |delta <Gamma>| reported.",
+      "checks_passed": "3/3",
+      "learned_mean_abs_sector_shift": 0.10974683562691596
+    },
+    "P3_order_witness": {
+      "score": 0.04247322496593174,
+      "measurement": "mean ray distance 1-|<psi_ab,psi_ba>|^2 over 64 random learned instrument pairs applied in both orders to trained beliefs. >0 = order retained and load-bearing.",
+      "mean_ray_distance_ab_vs_ba": 0.04247322496593174
+    },
+    "P4_bracket_witness": {
+      "score": 0.0,
+      "measurement": "max |(M_a M_b)M_c - M_a(M_b M_c)| over 32 learned triples: matrix (Clifford) algebra is associative, so this carrier has NO bracket-witness capacity. Scored 0 as an honest structural fact, not not_applicable.",
+      "max_associator_norm": 8.899114524108741e-16
+    },
+    "P5_occluded_belief": {
+      "score": 0.5703971119133574,
+      "measurement": "occluded-bit accuracy on test objects from filtered belief (oracle ground truth used for scoring only). Occluded probes never update belief (identity: persistence by construction).",
+      "n_occluded_test_bits": 277,
+      "train_occluded_accuracy": 0.5695754716981132
+    },
+    "P6_counterfactual_binding": {
+      "score": 0.1407942238267148,
+      "measurement": "occluded-bit accuracy with true evidence minus accuracy when every visible outcome fed to the instruments is flipped (counterfactual). Positive gap = belief binds to the actual instrument sequence.",
+      "acc_true_evidence": 0.5703971119133574,
+      "acc_counterfactual_evidence": 0.4296028880866426,
+      "mean_abs_prob_sensitivity": 0.2937191489797871
+    },
+    "P7_reachability": {
+      "score": 0.004933053049132274,
+      "measurement": "one-step transport ray loss to the correct next-view target vs permuted-object null: attainability within the 1-step budget, not mere latent similarity.",
+      "ray_loss_pred": 0.26370158571155644,
+      "ray_loss_null": 0.26500888861759864
+    },
+    "P8_cross_view_persistence": {
+      "score": 0.5169479166666666,
+      "measurement": "AUC: P(fidelity |<psi,psi'>|^2 of same-object view pair > different-object pair) over all test view latents.",
+      "n_same_pairs": 240,
+      "n_diff_pairs_sampled": 4000
+    },
+    "P9_contraction_attractor": {
+      "score": 0.9999999999999999,
+      "measurement": "50 iterations of the open (non-unitary) transport Retr(A psi) from 64 random rays: 1 - d_final/d_initial of mean pairwise ray distance (1 = collapse to attractor). Shock recovery distance reported.",
+      "mean_pairwise_ray_dist_initial": 0.8755560692982477,
+      "mean_pairwise_ray_dist_after_50": 7.5832197664129e-17,
+      "mean_pairwise_ray_dist_after_shock_recovery": 8.970998547194345e-17
+    },
+    "P10_gauge_invariance": {
+      "score": 0.9999999999999991,
+      "measurement": "random Spin(6) element U=exp(bivector): readout bilinears under (psi,O)->(U psi, U O U^dag) and pairing fidelities under psi->U psi; score = 1 - max deviation.",
+      "max_deviation": 8.881784197001252e-16,
+      "spin_element_unitarity_dev": 8.881784197001252e-16
+    }
+  },
+  "controls": {
+    "leak_check": {
+      "pass": true,
+      "criterion": "occluded slots are sentinel-masked; oracle perturbation cannot reach any feature tensor"
+    },
+    "shuffled_object_ids_ari": {
+      "ari_null_mean": 0.0006939538749220858,
+      "ari_null_p95": 0.020984832744649906,
+      "ari_observed_above_null": true
+    },
+    "occluded_majority_baseline": {
+      "occluded_bit_base_rate_1": 0.49333333333333335,
+      "majority_accuracy": 0.5066666666666666,
+      "model_above_majority": true
+    },
+    "counterfactual_evidence": {
+      "acc_true": 0.5703971119133574,
+      "acc_cf": 0.4296028880866426,
+      "binds": true
+    }
+  },
+  "all_pass": true,
+  "promotion_allowed": false,
+  "claim_ceiling": "working_sim; single tournament lane; no cross-lane comparison and no spinor-minimality claim is made here",
+  "findings": []
+}

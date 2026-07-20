@@ -1,0 +1,173 @@
+{
+  "lane": "lane3_projective_ray",
+  "sim_id": "spinor_jepa_tournament_v0_lane3",
+  "card_authority": "system_v8/spinor_jepa/TOURNAMENT_CARD_v0.md (incl AMENDMENT v0.1, occluded-object perception)",
+  "carrier": "complex projective ray (CP^7): psi in C^8, ||psi||=1, U(1) gauge class; update psi_v = Retr(M(obs_v) R psi_{v-1})",
+  "classification": "tournament_lane_receipt",
+  "promotion_allowed": false,
+  "claim_ceiling": "working_sim; single-lane receipt; cross-lane verdicts belong to the separate fresh-context scorer",
+  "seed": 20260719,
+  "data": "system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl (64 objects x 6 views x 8 probes; occluded outcomes withheld at source)",
+  "eval_label_provenance": "occluded-bit labels reconstructed by exhaustive consistency over the 1024-element hidden space using VISIBLE bits only (data_oracle.py); unique for all 64 objects; eval-only, never a model feature",
+  "all_pass": true,
+  "metrics": {
+    "occluded_bit_accuracy_test_posterior": 0.631768953068592,
+    "occluded_bit_accuracy_test_prior": 0.5088495575221239,
+    "occluded_bit_accuracy_train_posterior": 0.5719339622641509,
+    "n_occluded_bits_test": 277,
+    "majority_chance_baseline": 0.5151098901098901,
+    "belief_persistence_holevo": {
+      "above_permutation_null": false,
+      "chi_bits": 0.3307786197791598,
+      "null_p95": 0.36803018184515535,
+      "margin": -0.03725156206599556,
+      "n_permutations": 200
+    },
+    "ray_loss_train": 0.22695218835998024,
+    "ray_loss_test": 0.2783911723340887,
+    "latent_cluster_ari_test": {
+      "ari": -0.013526780844332934,
+      "null_mean": -0.0009665103087160464,
+      "null_p95": 0.027926257227009928,
+      "k": 16,
+      "features": "vec(rho) gauge-invariant, per (object,view) belief"
+    },
+    "controls": {
+      "shuffled_object_ids_occluded_acc_test": 0.592057761732852,
+      "shuffled_object_ids_occluded_acc_test_prior": 0.5265486725663717,
+      "leak_check_occluded_bits_never_in_features": true
+    },
+    "budget": {
+      "latent_real_dof": 16,
+      "params_real_count": 18312,
+      "param_limit": 60000,
+      "train_steps": 300,
+      "batch": 32,
+      "dtype": "float64/complex128",
+      "device": "cpu",
+      "split_seed": 20260719,
+      "train_objects": "0-47",
+      "test_objects": "48-63",
+      "memory_gate_free_frac": 0.26943111419677734
+    }
+  },
+  "charges": [
+    "field: complex numbers C; latent psi in C^8 = exactly 16 real DOF",
+    "pairing: Hermitian inner product <z,w>=sum z_i* w_i; ray metric L_ray = 1-|<psi*,psihat>|^2 (never coordinate MSE)",
+    "gauge: U(1) global-phase quotient (physical state = ray in CP^7); enforced by ray loss + rho-only readout, verified by P10",
+    "connection/transport: ONE learned complex 8x8 action transport R=A (one world step), applied per view step; 128 real params",
+    "instrument update: observation-conditioned complex 8x8 operator M(obs) = I + reshape(W_m f_obs); card's M_q; order retained (P3)",
+    "retraction: normalization to unit sphere of C^8 after each update",
+    "derived bilinear: rank-1 density rho = psi psi^dagger used for all readouts (derived, never primitive, per card Object section)",
+    "target-update rule: stop-gradient target encoder, no EMA",
+    "NOT charged: Clifford relation, grading, signature beyond positive-definite Hermitian form, bracket, factorization"
+  ],
+  "probes": {
+    "P1_sign_lift_memory": {
+      "score": 0.0,
+      "na": true,
+      "reason": "CP^7 ray carrier gauges out the global phase by construction (ray loss + rho readout): computed fidelity(psi, -psi) = 1.000000000000 = 1, so psi -> -psi is unobservable; no spin structure or holonomy witness is charged, and the view axis 0..5 has no loops to carry holonomy. Honest N/A.",
+      "measurement": "1 - L_ray(psi, -psi) averaged over all test beliefs"
+    },
+    "P2_chirality_sector": {
+      "score": 0.29166666666666663,
+      "na": false,
+      "measurement": "nearest-centroid on mean rho feats, train centroids, test objs rule2=6 rule3=4, balanced acc"
+    },
+    "P3_order_witness": {
+      "score": 0.3132870314999202,
+      "na": false,
+      "measurement": "normalized commutator ||MA-AM||_F/(||M|| ||A||) mean 0.3133 over test instrument updates; behavioural mean |dp| of posterior probe probs under swapped update order = 0.3021. Order is retained and measurable."
+    },
+    "P4_bracket_witness": {
+      "score": 2.6536081764698346e-16,
+      "na": false,
+      "measurement": "max normalized associator defect ||(MA)N - M(AN)||/||.|| = 2.654e-16: composition is associative to float precision; no bracket/nonassociative structure charged in this carrier (genuine negative, not N/A)."
+    },
+    "P5_occlusion_belief": {
+      "score": 0.631768953068592,
+      "na": false,
+      "measurement": "posterior occluded-bit accuracy on test objects (n=277 withheld bits, labels = oracle visible-bit reconstruction); prior-only acc 0.5088; majority chance 0.5151"
+    },
+    "P6_counterfactual_action": {
+      "score": 0.014440433212996373,
+      "na": false,
+      "measurement": "occluded acc with learned transport 0.6318 vs identity transport 0.5776 vs A^2 0.6245; score = clip(2*(correct - best_wrong), 0, 1)"
+    },
+    "P7_similarity_vs_reachability": {
+      "score": 0.44460378753351454,
+      "na": false,
+      "measurement": "Spearman rank corr between encoder ray distance and transport step budget dv over test view pairs = -0.1108 (score=(r+1)/2). Low corr = similarity is NOT attainability for this carrier (RC-aux lesson)."
+    },
+    "P8_cross_view_persistence": {
+      "score": 0.5107060185185185,
+      "na": false,
+      "measurement": "AUC of transported ray fidelity |<A^dv z_v, z_w>|^2 separating same-object from different-object test pairs (240 pos / 3600 neg)"
+    },
+    "P9_contraction_attractor": {
+      "score": 0.9992268553831574,
+      "na": false,
+      "measurement": "mean fidelity of 256 random rays to dominant eigenray of learned transport after 64 retracted steps = 0.9992; spectral ratio |l2/l1| = 0.9462. Non-unitary linear transport + retraction admits a projective attractor (card: unitary-only rollout cannot)."
+    },
+    "P10_gauge_invariance": {
+      "score": 0.9999999999999987,
+      "na": false,
+      "measurement": "max deviation of probe probabilities and ray loss under 20 random global U(1) phases on beliefs = 1.332e-15"
+    }
+  },
+  "training_history": [
+    [
+      0,
+      0.6939745027111903,
+      0.6934015786097969,
+      0.6679181245793409
+    ],
+    [
+      50,
+      0.6677343827543184,
+      0.6824343636596157,
+      0.05456388797157565
+    ],
+    [
+      100,
+      0.4998934047866364,
+      0.6896725226232908,
+      0.05460005824243023
+    ],
+    [
+      150,
+      0.35259592040072973,
+      0.6660058852408131,
+      0.12315246694062769
+    ],
+    [
+      200,
+      0.32119233268060426,
+      0.6548030703146409,
+      0.24436784905697073
+    ],
+    [
+      250,
+      0.2708366413802788,
+      0.5723215286938711,
+      0.2562408104001553
+    ],
+    [
+      299,
+      0.22783461379758338,
+      0.5631917046649455,
+      0.2575099196598539
+    ]
+  ],
+  "findings": [
+    "Posterior occluded-bit accuracy on held-out objects 0.6318 vs majority chance 0.5151 and shuffled-object-id control 0.5921 (labels: oracle reconstruction from visible bits only; world is exactly identifiable, so 1.0 is the informational ceiling).",
+    "Structural limit of this carrier (honest negative): ONE global linear transport A on C^8 cannot branch over the 4 hidden CA rules; rule identity is only inferable across views, so dynamics must be carried by the observation-conditioned instrument updates M(obs). Expect the gap to the 1.0 ceiling to be structural, not merely optimization.",
+    "Order witness P3 is real for this carrier (0.313 normalized commutator): M(obs) and A do not commute, matching the card's ORDER RETAINED requirement; bracket witness P4 is a genuine zero (associative composition).",
+    "P1 (2pi/4pi lift) is not_applicable_for_this_carrier: the ray quotient erases the sign by construction; recorded as a scored fact.",
+    "HONEST NEGATIVE: belief-persistence Holevo is NOT above the permutation null (chi 0.3308 bits vs null p95 0.3680, margin -0.0373): the ray belief trajectory does not retain object identity beyond what random view regrouping gives.",
+    "HONEST NEGATIVE: latent-cluster ARI on test beliefs is at the shuffled null (-0.0135 vs null p95 0.0279): no object clustering in belief space.",
+    "HONEST NEGATIVE: counterfactual action binding (P6) is near zero (score 0.0144): replacing the learned transport with identity barely degrades occluded accuracy, so the action operator is only weakly load-bearing.",
+    "Shuffled-object-id control reaches 0.5921 vs real 0.6318 occluded accuracy: only ~0.04 of the margin is object-binding-specific; the rest is generic view-structure regularity (CA-image subspace constraints).",
+    "Card hash at run time: TOURNAMENT_CARD_v0.md sha256 82015599eb6905b27bf64a10fbc95bd416005694c64746ff4e3134d3a7eb4576 (read-only, not edited)."
+  ]
+}

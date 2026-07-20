@@ -1,0 +1,183 @@
+{
+  "lane": "lane1_vector_scout",
+  "sim_id": "spinor_jepa_tournament_lane1_vector_scout_v0",
+  "classification": "tournament_control_lane_receipt",
+  "promotion_allowed": false,
+  "card_authority": "system_v8/spinor_jepa/TOURNAMENT_CARD_v0.md (AMENDMENT v0.1, occluded-object perception)",
+  "carrier": "six-dim vector scout semantics ported to matched 16-DOF budget: tanh latent, linear layers, MSE (historical control, this lane only)",
+  "data": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl",
+  "seed": 20260719,
+  "memory_gate": {
+    "pass": true,
+    "pct_free_at_import": 28.39,
+    "attempts": 2,
+    "history": [
+      19.77,
+      28.39
+    ]
+  },
+  "budgets": {
+    "latent_real_dof": 16,
+    "latent_dof_exact_16": true,
+    "param_count": 1432,
+    "param_budget": 60000,
+    "train_steps": 300,
+    "batch": 32,
+    "split": {
+      "seed": 20260719,
+      "train_objects": [
+        0,
+        47
+      ],
+      "test_objects": [
+        48,
+        63
+      ]
+    },
+    "dtype": "float64",
+    "device": "cpu"
+  },
+  "charges": [
+    "field: R (real vector latent, 16 DOF belief state)",
+    "signature: none",
+    "quadratic_form/pairing: Euclidean inner product (readout + ray-metric scoring only, not a charged geometric structure of the carrier)",
+    "clifford_relation: none",
+    "orientation: none",
+    "grading: none",
+    "connection: none",
+    "factorization: none",
+    "bracket: none",
+    "nonlinearity: tanh (scout semantics)",
+    "loss: coordinate MSE \u2014 historical-control exemption, card lane 1 only",
+    "parameters: 1432 of 60000 budget"
+  ],
+  "metrics": {
+    "occluded_bit_accuracy_test": 0.5199,
+    "occluded_bit_accuracy_train": 0.5637,
+    "belief_persistence_holevo": {
+      "chi_bits": 1.264896087305008,
+      "null_mean": 1.2770986959330697,
+      "null_q95": 1.3213349568664177,
+      "above_null": false,
+      "margin_bits": -0.056438869561409755,
+      "n_permutations": 200,
+      "measurement": "unit-normalized belief vectors -> rho_o = mean_v u u^T per test object; chi = S(mean rho) - mean S(rho_o), log2; null = object labels permuted over the 96 test latents"
+    },
+    "ray_loss_train": 0.6371,
+    "ray_loss_test": 0.7759,
+    "latent_cluster_ari": {
+      "ari": 0.011345041998472782,
+      "shuffled_null_mean": -0.0008628777135376894,
+      "shuffled_null_q95": 0.02378095341987564,
+      "above_null": false,
+      "measurement": "KMeans k=16 on 96 test beliefs; ARI vs object ids; null = 200 object-id shuffles against same clustering"
+    },
+    "final_train_loss_mse_plus_jepa": 0.424843,
+    "first_train_loss": 1.115659
+  },
+  "probes": {
+    "P1_sign_lift": {
+      "score": null,
+      "status": "not_applicable_for_this_carrier",
+      "reason": "real tanh vector latent charges no phase, no sign double cover, no connection; card sign law requires coherent paths + connection + interference/holonomy witness, none of which exist on this carrier \u2014 recorded as a scored fact of the control lane"
+    },
+    "P2_chirality": {
+      "score": 0.4583,
+      "measurement": "linear least-squares probe on final beliefs; train n=23, test n=10 objects with mirror-pair rules (2, 3); balanced accuracy",
+      "rule_counts_train": [
+        10,
+        15,
+        15,
+        8
+      ],
+      "rule_counts_test": [
+        2,
+        4,
+        6,
+        4
+      ]
+    },
+    "P3_order_witness": {
+      "score": 0.1539,
+      "measurement": "mean (1 - cos^2) between final beliefs for view order (...,2,3,...) vs (...,3,2,...); inputs keep their own view one-hots so only feeding order differs",
+      "occluded_acc_true_order": 0.5199,
+      "occluded_acc_swapped_order": 0.5415
+    },
+    "P4_bracket_witness": {
+      "score": 0.0,
+      "measurement": "max |((T.T).T)b - (T.(T.T))b| over 96 test beliefs; the carrier charges no bracket \u2014 composition is function composition, associative by construction",
+      "max_deviation": 0.0
+    },
+    "P5_occluded_belief": {
+      "score": 0.5199,
+      "measurement": "causal belief over views 0..v; sign(decode) at withheld cells of test objects vs CA-solved ground truth; chance ~0.5",
+      "n_occluded_test_bits": 277
+    },
+    "P6_counterfactual_binding": {
+      "score": 0.5375,
+      "measurement": "for each test (obj, v<5): imagined action-advanced belief (T then belief_step) vs static belief, both decoded against view v+1 VISIBLE bits; score = win rate + 0.5*ties; 0.5 = action adds nothing",
+      "wins": 31,
+      "ties": 24,
+      "n": 80
+    },
+    "P7_reachability": {
+      "score": 0.275,
+      "measurement": "predicted next embedding vs {true successor + 5 maximally visible-pattern-similar decoy views of OTHER objects}; top-1 by ray distance; chance ~0.167 \u2014 similarity-only carriers get fooled by lookalike unreachable views",
+      "n": 80
+    },
+    "P8_cross_view_persistence": {
+      "score": 0.0312,
+      "measurement": "nearest-neighbour (|cos|) among the 96 test beliefs, self excluded; hit = same object; chance = 5/95 ~ 0.053"
+    },
+    "P9_shock_recovery": {
+      "score": 0.9215,
+      "measurement": "flip all visible bits of view 2 (shock); divergence d_v = 1-cos^2 vs clean belief; recovery = (d_2-d_5)/d_2 clipped to [0,1], mean over test objects",
+      "mean_d_shock": 0.8264278870586801,
+      "mean_d_final": 0.061990789054863875,
+      "n_objects_with_divergence": 16
+    },
+    "P10_gauge_invariance": {
+      "score": 0.8294,
+      "measurement": "cyclic position rotation is an exact symmetry of the periodic additive CA; score = mean sign-prediction equivariance over k=1..7 rotations, test objects, all views/positions; the carrier charges no equivariance",
+      "per_k": [
+        0.8385,
+        0.8138,
+        0.8398,
+        0.8294,
+        0.8203,
+        0.8307,
+        0.8333
+      ]
+    }
+  },
+  "controls": {
+    "leak_check_occluded_bits_never_in_features": {
+      "pass": true,
+      "measurement": "features rebuilt with random garbage in all withheld cells; torch.equal on the two feature tensors",
+      "identical": true
+    },
+    "shuffled_object_ids": {
+      "note": "training uses no object-id labels; shuffle control applied at scoring",
+      "ari_vs_shuffled_ids_mean": -0.0008628777135376894,
+      "holevo_null_mean_bits": 1.2770986959330697
+    },
+    "ca_solve_unique_survivors": {
+      "pass": true,
+      "survivor_counts_min_max": [
+        1,
+        1
+      ],
+      "note": "scoring-only ground truth; matches world_source joint_identifiability (64/64 exact)"
+    }
+  },
+  "all_pass": true,
+  "findings": [
+    "occluded-bit test accuracy 0.5199 (train 0.5637, chance ~0.5) over 277 withheld test bits",
+    "belief persistence: Holevo chi 1.2649 bits vs permutation-null q95 1.3213 -> above_null=False, margin -0.0564 bits",
+    "latent clusters: ARI 0.0113 vs shuffled-null mean -0.0009",
+    "ray-loss (metric only, MSE-trained control): train 0.6371 / test 0.7759",
+    "P1 not_applicable_for_this_carrier (no phase/connection charged); P4 deviation exactly 0 (no bracket charged, associative by construction)",
+    "control lane: vector scout sets the floor the geometric carriers must beat under identical budgets; promotion_allowed false"
+  ],
+  "runtime_s": 3.05
+}

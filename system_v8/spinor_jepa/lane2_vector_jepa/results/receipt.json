@@ -1,0 +1,250 @@
+{
+ "lane": "lane2_vector_jepa",
+ "sim_id": "lane2_vector_jepa_v0",
+ "classification": "tournament_lane_working_sim",
+ "card_authority": "system_v8/spinor_jepa/TOURNAMENT_CARD_v0.md (frozen, AMENDMENT v0.1)",
+ "carrier": "ordinary vector JEPA (LeJEPA-style): unit-norm real 16-d latent, ray loss",
+ "seed": 20260719,
+ "python": "3.13.6",
+ "torch": "2.11.0",
+ "dtype": "float64",
+ "device": "cpu",
+ "data": {
+  "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl",
+  "sha256_16": "5b139ea26f8f2667",
+  "events": 3072,
+  "objects": 64,
+  "views": 6,
+  "positions": 8
+ },
+ "split": {
+  "train_objects": "0-47",
+  "test_objects": "48-63"
+ },
+ "budgets": {
+  "latent_real_dof": 16,
+  "params_encoder": 8416,
+  "params_predictor": 2896,
+  "params_readout": 1992,
+  "params_total": 13304,
+  "params_budget": 60000,
+  "params_within_budget": true,
+  "train_steps": 300,
+  "batch": 32,
+  "train_wall_seconds": 2.4
+ },
+ "memory_gate": {
+  "criterion": "available memory > 25% before torch import",
+  "pass": true,
+  "free_pct_at_decision": 25.21,
+  "poll_trace_pct": [
+   23.88,
+   24.54,
+   24.4,
+   24.54,
+   23.99,
+   24.26,
+   22.69,
+   24.57,
+   24.96,
+   25.21
+  ],
+  "timeout_s": 900.0
+ },
+ "metrics": {
+  "occluded_bit_accuracy_test_belief": 0.5487,
+  "occluded_bit_accuracy_test_selfview": 0.5451,
+  "occluded_bit_accuracy_train_belief": 0.546,
+  "occluded_bits_scored_test": 277,
+  "occluded_majority_chance": 0.5126,
+  "belief_persistence_holevo_bits": 0.0551,
+  "holevo_permutation_null_p95": 0.0657,
+  "holevo_above_permutation_null": false,
+  "holevo_margin_bits": -0.0106,
+  "ray_loss_train": 0.04412,
+  "ray_loss_test": 0.04486,
+  "latent_cluster_ari_test": 0.0008,
+  "ari_shuffled_null_mean": -0.0018,
+  "ari_shuffled_null_p95": 0.0166
+ },
+ "controls": {
+  "shuffled_object_pairing_model": {
+   "occluded_bit_accuracy_test_belief": 0.5235,
+   "latent_cluster_ari_test": -0.0048,
+   "note": "identical arch/budget trained with target views drawn from random other objects (object binding broken)"
+  },
+  "leak_check_occluded_bits_never_in_features": true,
+  "leak_check_method": "counterfactual rebuild: every withheld outcome rewritten to random bits; feature tensors byte-identical"
+ },
+ "probes": {
+  "P1_sign_lift_memory": {
+   "score": 0.0,
+   "not_applicable_for_this_carrier": true,
+   "reason": "real unit-vector carrier with ray loss quotients out the sign (z ~ -z); no connection, no coherent-path or holonomy structure exists to traverse a 2pi vs 4pi loop; per the card, a lift claim requires connection + interference witness, which this carrier does not define",
+   "measurement": "structural: carrier defines no loop transport to test"
+  },
+  "P2_chirality": {
+   "score": 0.0737,
+   "measurement": "fraction of test views (mirror-distinct only, n=95) where ray distance to the position-mirrored view exceeds mean ray distance to same-object other views"
+  },
+  "P3_order_witness": {
+   "score": 0.0,
+   "measurement": "mean ray distance between M_a.M_b and M_b.M_a occlusion orders over 200 trials; instrument updates commute on the observation and the carrier holds no internal non-commuting update -- honest 0 expected"
+  },
+  "P4_bracket_witness": {
+   "score": 0.0,
+   "measurement": "mean ray distance between (M_a M_b) M_c and M_a (M_b M_c) groupings over 200 trials; flat associative application, no bracket structure in the carrier -- honest 0 expected"
+  },
+  "P5_hidden_mode_belief": {
+   "score": 0.5487,
+   "measurement": "test occluded-bit accuracy via multi-view belief: normalized mean of predictor outputs from all other views -> readout at occluded positions vs reconstructed CA ground truth (n=277 bits; majority chance 0.513)"
+  },
+  "P6_counterfactual_action": {
+   "score": 0.5312,
+   "measurement": "fraction of ordered test pairs (n=480) where the predictor conditioned on the true target-view action lands closer (ray sim) to the true target latent than the same predictor with a counterfactual action label"
+  },
+  "P7_prediction_vs_reachability": {
+   "score": 0.5266,
+   "measurement": "AUC separating predictor similarity to the genuinely reachable same-object target view (n=480) from similarity to the same view index of a different object; similarity != attainability unless AUC >> 0.5",
+   "caveat": "carrier has no explicit budget/viability structure; this is a similarity-based proxy, the honest weak form for lane 2"
+  },
+  "P8_cross_view_persistence": {
+   "score": 0.0208,
+   "measurement": "nearest-neighbour retrieval over the 96 test-view latents (ray sim): fraction whose NN is another view of the same object; chance = 5/95 = 0.053"
+  },
+  "P9_contraction_attractor": {
+   "score": 1.0,
+   "mean_contraction_ratio": 0.0038,
+   "measurement": "fraction of 96 perturbed test latents whose ray distance to the unperturbed trajectory shrinks after 12 cyclic predictor iterations; no energy/Hopfield structure is charged, so any contraction is emergent from the predictor map alone"
+  },
+  "P10_gauge_basis_invariance": {
+   "score": 1.0,
+   "measurement": "fraction of 20 random O(16) latent-basis changes under which the pairwise ray-similarity matrix of test latents is unchanged to 1e-10 (the ray metric is exactly O(16)-invariant); caveat: the bit-readout and predictor heads are basis-FIXED, so full-model gauge invariance does not hold and is not claimed"
+  }
+ },
+ "train_curve": [
+  {
+   "step": 0,
+   "loss": 1.97206,
+   "ray": 0.92724,
+   "bits": 0.69693
+  },
+  {
+   "step": 25,
+   "loss": 1.12085,
+   "ray": 0.09504,
+   "bits": 0.67897
+  },
+  {
+   "step": 50,
+   "loss": 1.02675,
+   "ray": 0.00583,
+   "bits": 0.68081
+  },
+  {
+   "step": 75,
+   "loss": 1.02464,
+   "ray": 0.00278,
+   "bits": 0.68079
+  },
+  {
+   "step": 100,
+   "loss": 1.02696,
+   "ray": 0.0015,
+   "bits": 0.67459
+  },
+  {
+   "step": 125,
+   "loss": 1.00125,
+   "ray": 0.00147,
+   "bits": 0.66279
+  },
+  {
+   "step": 150,
+   "loss": 1.01226,
+   "ray": 0.00186,
+   "bits": 0.66733
+  },
+  {
+   "step": 175,
+   "loss": 1.01379,
+   "ray": 0.00137,
+   "bits": 0.67454
+  },
+  {
+   "step": 200,
+   "loss": 1.04014,
+   "ray": 0.00135,
+   "bits": 0.68647
+  },
+  {
+   "step": 225,
+   "loss": 1.00099,
+   "ray": 0.00159,
+   "bits": 0.6584
+  },
+  {
+   "step": 250,
+   "loss": 1.05659,
+   "ray": 0.0033,
+   "bits": 0.70756
+  },
+  {
+   "step": 275,
+   "loss": 1.02427,
+   "ray": 0.00629,
+   "bits": 0.68358
+  },
+  {
+   "step": 299,
+   "loss": 1.07336,
+   "ray": 0.03278,
+   "bits": 0.71844
+  }
+ ],
+ "control_train_curve_tail": [
+  {
+   "step": 275,
+   "loss": 1.04267,
+   "ray": 0.03941,
+   "bits": 0.66258
+  },
+  {
+   "step": 299,
+   "loss": 1.35198,
+   "ray": 0.36088,
+   "bits": 0.67306
+  }
+ ],
+ "charges": [
+  "field: R (real numbers only)",
+  "latent space: unit sphere S^15 in R^16 (norm-1 constraint; the charged 16 real DOF)",
+  "pairing: Euclidean inner product; ray similarity <z,z'>^2",
+  "signature: positive-definite Euclidean (16,0)",
+  "loss: ray metric L_ray = 1 - <z*,zhat>^2 (quotients latent sign)",
+  "action conditioning: source+target view one-hots (12 dims) into predictor",
+  "asymmetry: stop-gradient target encoder (LeJEPA/SimSiam-style)",
+  "regularizer: batch-covariance isotropy penalty (LeJEPA SIGReg-lite)",
+  "instrument update M_q: position masking to a mask token (training augmentation)",
+  "readout head: latent+view -> 8 bit logits (probe decoder, counted in params)",
+  "NOT charged: connection, bracket, grading, Clifford relation, complex/quaternion structure, factorization"
+ ],
+ "findings": [
+  "memory gate passed at 25.21% free after polling (trace in receipt)",
+  "ground truth for scoring reconstructed scorer-side by brute-forcing the 1024-state hidden space against visible bits (unique for all 64 objects); never used in features or training targets",
+  "P1 honest not_applicable: no lift/connection structure in a real vector carrier",
+  "P3/P4 honest ~0: commuting/associative instrument updates cannot witness order or bracket"
+ ],
+ "promotion_allowed": false,
+ "claim_ceiling": "working_sim tournament lane; no minimality or spinor verdict is made here -- scorer is a separate agent",
+ "gates": {
+  "ran_to_completion": true,
+  "memory_gate": true,
+  "params_within_budget": true,
+  "steps_within_budget": true,
+  "leak_check": true,
+  "controls_behave": true,
+  "all_probes_scored": true
+ },
+ "all_pass": true
+}

@@ -1,0 +1,1157 @@
+{
+  "schema": "loop3_senses/senses_v2_slow_memory/receipt_v1",
+  "sim_id": "senses_v2_slow_memory",
+  "version": "2.0.0",
+  "generated_at": "2026-07-20T03:37:08.870813+00:00",
+  "classification": "scratch_diagnostic",
+  "promotion_status": "diagnostic_only",
+  "card_authority": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/LOOP3_FOUNDATION_CARD.md",
+  "object_preservation_card": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/senses_v2_slow_memory_v43_card.json",
+  "runtime": {
+    "python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "python_version": "3.13.6",
+    "required_python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "memory_free_percent": 36,
+    "minimum_required_percent": 25,
+    "memory_gate_checked_before_heavy_imports": true,
+    "torch_used": false,
+    "qutip_used": false,
+    "one_heavy_runtime_at_a_time": true
+  },
+  "inputs": {
+    "world_events": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl",
+    "world_events_sha256": "5b139ea26f8f2667a5a134f479f59dbc505a1c581cf9615d17041d29a3ed7e9d",
+    "world_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/receipt.json",
+    "world_receipt_sha256": "f5b2e49a24ccc8d4478ac3e59b323cd550db38101fad832e6b00cb2108c533db",
+    "loop2_source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/perception_intelligence_v0.py",
+    "loop2_source_sha256": "765b8faddd6bc5ffadf3af46d99a86d7e51b0a39f4aca8fb1e859e618651bc98",
+    "loop2_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/intelligence/receipt.json",
+    "loop2_receipt_sha256": "f8142fd36d2131b1cfda021f31da0036d14d15147c3cd17f0a925e2ac816c694",
+    "stage64_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/nested_manifold/results/stage64/receipt.json",
+    "stage64_receipt_sha256": "2dcf422411fa9580df30fd7ec5e112dc896bfaa4feff51b4bc9b7ccd83ca62dd",
+    "visibility_source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/visibility_sanity_gate.py",
+    "visibility_source_sha256": "5164c2d34451ebc7496e5580e1aeebbb7ab8e161335805cf72410a24ef622641",
+    "parent_retest_source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/loop2_retest_fixed_senses.py",
+    "parent_retest_source_sha256": "abf2a50cc0195d3ff0338619a415cda7d574ac7561bbf3dc3085a1cf1f4a2178",
+    "parent_retest_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/results/loop2_retest_fixed_senses/receipt.json",
+    "parent_retest_receipt_sha256": "76b462320edda8bbd1477fd51f069ad40498816c4d82a3e5c85ae3ceb56915a5",
+    "foundation_card": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/LOOP3_FOUNDATION_CARD.md",
+    "foundation_card_sha256": "a0f75dc7c44ee890bbae994751ea363db3cbe8d6005d9b164146e90097c7cc20",
+    "object_preservation_card": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/senses_v2_slow_memory_v43_card.json",
+    "object_preservation_card_sha256": "4fb3c18902181d623f25abc31bae63ac69ab636f22dcd3835b58ae6038fd8a52",
+    "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/senses_v2_slow_memory.py",
+    "source_sha256": "2a271c00f72dd61d65f7e237850c90c93af64602d85022d06764c3c52e6b9100",
+    "start_hashes": {
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl": "5b139ea26f8f2667a5a134f479f59dbc505a1c581cf9615d17041d29a3ed7e9d",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/receipt.json": "f5b2e49a24ccc8d4478ac3e59b323cd550db38101fad832e6b00cb2108c533db",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/perception_intelligence_v0.py": "765b8faddd6bc5ffadf3af46d99a86d7e51b0a39f4aca8fb1e859e618651bc98",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/intelligence/receipt.json": "f8142fd36d2131b1cfda021f31da0036d14d15147c3cd17f0a925e2ac816c694",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/nested_manifold/results/stage64/receipt.json": "2dcf422411fa9580df30fd7ec5e112dc896bfaa4feff51b4bc9b7ccd83ca62dd",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/visibility_sanity_gate.py": "5164c2d34451ebc7496e5580e1aeebbb7ab8e161335805cf72410a24ef622641",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/loop2_retest_fixed_senses.py": "abf2a50cc0195d3ff0338619a415cda7d574ac7561bbf3dc3085a1cf1f4a2178",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/results/loop2_retest_fixed_senses/receipt.json": "76b462320edda8bbd1477fd51f069ad40498816c4d82a3e5c85ae3ceb56915a5",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/LOOP3_FOUNDATION_CARD.md": "a0f75dc7c44ee890bbae994751ea363db3cbe8d6005d9b164146e90097c7cc20",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/senses_v2_slow_memory_v43_card.json": "4fb3c18902181d623f25abc31bae63ac69ab636f22dcd3835b58ae6038fd8a52",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/senses_v2_slow_memory.py": "2a271c00f72dd61d65f7e237850c90c93af64602d85022d06764c3c52e6b9100"
+    },
+    "end_hashes": {
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl": "5b139ea26f8f2667a5a134f479f59dbc505a1c581cf9615d17041d29a3ed7e9d",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/receipt.json": "f5b2e49a24ccc8d4478ac3e59b323cd550db38101fad832e6b00cb2108c533db",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/perception_intelligence_v0.py": "765b8faddd6bc5ffadf3af46d99a86d7e51b0a39f4aca8fb1e859e618651bc98",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/intelligence/receipt.json": "f8142fd36d2131b1cfda021f31da0036d14d15147c3cd17f0a925e2ac816c694",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/nested_manifold/results/stage64/receipt.json": "2dcf422411fa9580df30fd7ec5e112dc896bfaa4feff51b4bc9b7ccd83ca62dd",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/visibility_sanity_gate.py": "5164c2d34451ebc7496e5580e1aeebbb7ab8e161335805cf72410a24ef622641",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/loop2_retest_fixed_senses.py": "abf2a50cc0195d3ff0338619a415cda7d574ac7561bbf3dc3085a1cf1f4a2178",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/results/loop2_retest_fixed_senses/receipt.json": "76b462320edda8bbd1477fd51f069ad40498816c4d82a3e5c85ae3ceb56915a5",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/LOOP3_FOUNDATION_CARD.md": "a0f75dc7c44ee890bbae994751ea363db3cbe8d6005d9b164146e90097c7cc20",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/senses_v2_slow_memory_v43_card.json": "4fb3c18902181d623f25abc31bae63ac69ab636f22dcd3835b58ae6038fd8a52",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/senses_v2_slow_memory.py": "2a271c00f72dd61d65f7e237850c90c93af64602d85022d06764c3c52e6b9100"
+    },
+    "schema_metrics": {
+      "events_validated": 3072,
+      "hidden_field_leaks": 0
+    },
+    "ground_truth_recovery_for_evaluation_only": {
+      "candidate_space_size": 1024,
+      "objects_uniquely_recovered": 64,
+      "joint_survivor_min": 1,
+      "joint_survivor_max": 1,
+      "ground_truth_source": "exhaustive consistency over public rule family and visible events only"
+    }
+  },
+  "protocol": {
+    "task": "after visible probes of views 0..v, predict each occluded current-world bit at view v",
+    "seed": 20260719,
+    "split": {
+      "train_objects": [
+        "obj-032",
+        "obj-030",
+        "obj-036",
+        "obj-013",
+        "obj-035",
+        "obj-020",
+        "obj-054",
+        "obj-033",
+        "obj-055",
+        "obj-053",
+        "obj-004",
+        "obj-039",
+        "obj-031",
+        "obj-019",
+        "obj-005",
+        "obj-022",
+        "obj-043",
+        "obj-018",
+        "obj-024",
+        "obj-062",
+        "obj-011",
+        "obj-028",
+        "obj-044",
+        "obj-041",
+        "obj-009",
+        "obj-002",
+        "obj-029",
+        "obj-058",
+        "obj-023",
+        "obj-000",
+        "obj-040",
+        "obj-034",
+        "obj-025",
+        "obj-057",
+        "obj-038",
+        "obj-001",
+        "obj-049",
+        "obj-017",
+        "obj-021",
+        "obj-046",
+        "obj-027",
+        "obj-042",
+        "obj-008",
+        "obj-052"
+      ],
+      "test_objects": [
+        "obj-006",
+        "obj-003",
+        "obj-063",
+        "obj-012",
+        "obj-026",
+        "obj-051",
+        "obj-007",
+        "obj-010",
+        "obj-060",
+        "obj-037",
+        "obj-045",
+        "obj-047",
+        "obj-014",
+        "obj-048",
+        "obj-061",
+        "obj-015",
+        "obj-016",
+        "obj-059",
+        "obj-050",
+        "obj-056"
+      ],
+      "train_count": 44,
+      "test_count": 20,
+      "train_slots": 782,
+      "test_slots": 343,
+      "object_disjoint": true,
+      "fingerprint_sha256": "d2cc9743fcb3fd5980522fd15d953ca869570dcb075ffd89fbd068577c9557c0"
+    },
+    "state": "Z_t=(rho_fast,m_slow); rho_fast resets from rho_initial each view; m_slow persists across views and resets between object episodes",
+    "slow_memory": {
+      "register": "normalized posterior over 256 initial words x 4 public rules",
+      "hypothesis_count": 1024,
+      "update": "posterior_h <- posterior_h * exp(-||q_actual-q_h||^2/(2*sigma^2)); normalize",
+      "actual_evidence": "15 Pauli expectations of rho_fast after visible probes only",
+      "mask_role": "selects the candidate quantum emission surface; carries no bit value",
+      "raw_visible_values_enter_posterior_directly": false,
+      "recovered_hidden_targets_enter_main_posterior": false,
+      "likelihood_calibration": {
+        "calibration_uses_labels": false,
+        "calibration_source": "median nearest-neighbor separation among finite candidate Pauli readouts",
+        "sigma_multiplier": 0.5,
+        "median_nearest_readout_distance": 0.10076812737009329,
+        "sigma": 0.050384063685046644,
+        "mask_view_pairs": 358,
+        "minimum_unique_readouts": 12,
+        "maximum_unique_readouts": 256
+      }
+    },
+    "joint_readout": "15 rho_fast Pauli features plus 8 current-bit marginals, 4 rule marginals, normalized entropy, maximum mass, and effective-support fraction from m_slow; same per-position ridge protocol",
+    "twin": "exact imported loop-2 ID3 categorical features and hyperparameters; no slow-memory feature added",
+    "bootstrap": "held-out object; all occluded slots for a sampled object stay together",
+    "mutual_information": "held-out position-wise empirical I(O;m_slow), where O is the current queried hidden bit and the register statistic is its m_slow posterior marginal; 5 unsupervised quantile-bin edges are frozen from train objects and the mean is taken over positions",
+    "ground_truth_boundary": "full_views is evaluation oracle only in the main occluded lane; the main getter returns None for every queried withheld target"
+  },
+  "results": {
+    "computed_baseline": 0.4956268221574344,
+    "slow_memory_engine": {
+      "occluded_accuracy": 0.8775510204081632,
+      "occluded_accuracy_ci95_object_bootstrap": [
+        0.85,
+        0.905173072867236
+      ],
+      "belief_persistence_mutual_information_bits": 0.6767695948497018,
+      "mutual_information_by_position_bits": [
+        0.6447257607490349,
+        0.7874745680828257,
+        0.7101925717114853,
+        0.6621681705244069,
+        0.6255160696732336,
+        0.7409706140095187,
+        0.728759500893876,
+        0.514349503153233
+      ],
+      "mutual_information_O_definition": "current queried hidden bit at a held-out occluded slot",
+      "mutual_information_register_statistic": "m_slow posterior marginal for that current bit and position",
+      "mutual_information_sample_unit": "held-out occluded slot, stratified by position; quantile edges frozen from train objects",
+      "mutual_information_permutation_scheme": "held-out hidden labels permuted within target position; m_slow values and train-fitted bin edges fixed",
+      "mutual_information_permutation_draws": 200,
+      "mutual_information_permutation_seed": 20261120,
+      "mutual_information_permutation_null_mean_bits": 0.05610073897659937,
+      "mutual_information_permutation_null_p95_bits": 0.08620061897322179,
+      "mutual_information_monte_carlo_pvalue": 0.004975124378109453
+    },
+    "accuracy_object_bootstrap": {
+      "bootstrap_unit": "held-out object; all occluded slots stay together",
+      "confidence_level": 0.95,
+      "draws": 5000,
+      "seed": 20260870,
+      "metrics": {
+        "candidate_accuracy": {
+          "estimate": 0.8775510204081632,
+          "ci95": [
+            0.85,
+            0.905173072867236
+          ]
+        },
+        "twin_accuracy": {
+          "estimate": 0.6005830903790087,
+          "ci95": [
+            0.5459704433497538,
+            0.6558823529411765
+          ]
+        },
+        "chance_accuracy": {
+          "estimate": 0.4956268221574344,
+          "ci95": [
+            0.4438040345821326,
+            0.5472794204913447
+          ]
+        },
+        "slow_reset_accuracy": {
+          "estimate": 0.6326530612244898,
+          "ci95": [
+            0.5625,
+            0.6956554478784703
+          ]
+        },
+        "candidate_minus_twin": {
+          "estimate": 0.27696793002915454,
+          "ci95": [
+            0.22349490163435834,
+            0.33149734187105073
+          ]
+        },
+        "candidate_minus_chance": {
+          "estimate": 0.3819241982507288,
+          "ci95": [
+            0.32748538011695905,
+            0.43465067180160266
+          ]
+        },
+        "candidate_minus_slow_reset": {
+          "estimate": 0.2448979591836734,
+          "ci95": [
+            0.17280196800997413,
+            0.3224875930521091
+          ]
+        }
+      }
+    },
+    "twin": {
+      "occluded_accuracy": 0.6005830903790087,
+      "occluded_accuracy_ci95_object_bootstrap": [
+        0.5459704433497538,
+        0.6558823529411765
+      ],
+      "tree_nodes": 232,
+      "tree_depth": 7,
+      "features_unchanged": true,
+      "feature_schema": [
+        "age",
+        "agree0",
+        "agree1",
+        "agree2",
+        "agree3",
+        "best_pred",
+        "last",
+        "pos",
+        "rule0_pred",
+        "rule1_pred",
+        "rule2_pred",
+        "rule3_pred",
+        "view"
+      ],
+      "feature_fingerprint_sha256": "91724fa7c6c78e98b30aca2ea9ccf79aa63826951ba44b91e5c165a161df3b4b",
+      "prediction_fingerprint_sha256": "267d2279f91c596db2274d7dd9167ca838745f5e31fa45cce959ed469bc76043"
+    },
+    "complementarity": {
+      "bootstrap_unit": "held-out object; all occluded slots for a sampled object stay together",
+      "confidence_level": 0.95,
+      "draws": 5000,
+      "seed": 20260820,
+      "table_layout": "[[both_wrong, twin_only], [engine_only, both_correct]]",
+      "counts": [
+        [
+          26,
+          16
+        ],
+        [
+          111,
+          190
+        ]
+      ],
+      "metrics": {
+        "engine_accuracy": {
+          "estimate": 0.8775510204081632,
+          "ci95": [
+            0.8504398826979472,
+            0.9060630498533724
+          ]
+        },
+        "twin_accuracy": {
+          "estimate": 0.6005830903790087,
+          "ci95": [
+            0.5449101796407185,
+            0.6546028791875168
+          ]
+        },
+        "union_accuracy": {
+          "estimate": 0.924198250728863,
+          "ci95": [
+            0.9003021148036254,
+            0.9467455621301775
+          ]
+        },
+        "engine_minus_twin": {
+          "estimate": 0.27696793002915454,
+          "ci95": [
+            0.22478224265777283,
+            0.3313261923433378
+          ]
+        },
+        "union_gain_over_best": {
+          "estimate": 0.04664723032069973,
+          "ci95": [
+            0.02639296187683282,
+            0.06830601092896171
+          ]
+        },
+        "both_wrong_proportion": {
+          "estimate": 0.07580174927113703,
+          "ci95": [
+            0.05325443786982249,
+            0.09969788519637462
+          ]
+        },
+        "twin_only_proportion": {
+          "estimate": 0.04664723032069971,
+          "ci95": [
+            0.026392961876832845,
+            0.06830601092896176
+          ]
+        },
+        "engine_only_proportion": {
+          "estimate": 0.3236151603498542,
+          "ci95": [
+            0.2754469322225115,
+            0.3698224852071006
+          ]
+        },
+        "both_correct_proportion": {
+          "estimate": 0.5539358600583091,
+          "ci95": [
+            0.4985072385818654,
+            0.6107784431137725
+          ]
+        },
+        "phi": {
+          "estimate": 0.1675076662785139,
+          "ci95": [
+            0.07355704353894874,
+            0.26334025630945607
+          ]
+        }
+      },
+      "coupling_class": "partially_independent_with_above_random_guard",
+      "both_random_confound_excluded": true,
+      "at_least_one_lane_above_random": true,
+      "union_above_joint_shuffled_null": true,
+      "useful_complementarity_eligible": true,
+      "synergy_supported": false,
+      "synergy_boundary": "oracle union coverage only; no learned joint engine-twin combiner"
+    },
+    "prediction_fingerprint_sha256": "c3830585acfa964c9cb7ad348f9f145845a9f0bb064762292a0d389781490ba7",
+    "episode_level_table": [
+      {
+        "object_id": "obj-006",
+        "occluded_slots": 22,
+        "engine_accuracy": 0.7727272727272727,
+        "twin_accuracy": 0.5454545454545454,
+        "union_accuracy": 0.9090909090909091,
+        "counts": {
+          "both_wrong": 2,
+          "twin_only": 3,
+          "engine_only": 8,
+          "both_correct": 9
+        }
+      },
+      {
+        "object_id": "obj-003",
+        "occluded_slots": 18,
+        "engine_accuracy": 0.9444444444444444,
+        "twin_accuracy": 0.6666666666666666,
+        "union_accuracy": 0.9444444444444444,
+        "counts": {
+          "both_wrong": 1,
+          "twin_only": 0,
+          "engine_only": 5,
+          "both_correct": 12
+        }
+      },
+      {
+        "object_id": "obj-063",
+        "occluded_slots": 17,
+        "engine_accuracy": 0.8823529411764706,
+        "twin_accuracy": 0.8235294117647058,
+        "union_accuracy": 0.9411764705882353,
+        "counts": {
+          "both_wrong": 1,
+          "twin_only": 1,
+          "engine_only": 2,
+          "both_correct": 13
+        }
+      },
+      {
+        "object_id": "obj-012",
+        "occluded_slots": 19,
+        "engine_accuracy": 0.8947368421052632,
+        "twin_accuracy": 0.5263157894736842,
+        "union_accuracy": 0.9473684210526315,
+        "counts": {
+          "both_wrong": 1,
+          "twin_only": 1,
+          "engine_only": 8,
+          "both_correct": 9
+        }
+      },
+      {
+        "object_id": "obj-026",
+        "occluded_slots": 15,
+        "engine_accuracy": 0.8,
+        "twin_accuracy": 0.4666666666666667,
+        "union_accuracy": 0.8666666666666667,
+        "counts": {
+          "both_wrong": 2,
+          "twin_only": 1,
+          "engine_only": 6,
+          "both_correct": 6
+        }
+      },
+      {
+        "object_id": "obj-051",
+        "occluded_slots": 18,
+        "engine_accuracy": 1.0,
+        "twin_accuracy": 0.6666666666666666,
+        "union_accuracy": 1.0,
+        "counts": {
+          "both_wrong": 0,
+          "twin_only": 0,
+          "engine_only": 6,
+          "both_correct": 12
+        }
+      },
+      {
+        "object_id": "obj-007",
+        "occluded_slots": 15,
+        "engine_accuracy": 0.8666666666666667,
+        "twin_accuracy": 0.5333333333333333,
+        "union_accuracy": 0.8666666666666667,
+        "counts": {
+          "both_wrong": 2,
+          "twin_only": 0,
+          "engine_only": 5,
+          "both_correct": 8
+        }
+      },
+      {
+        "object_id": "obj-010",
+        "occluded_slots": 18,
+        "engine_accuracy": 0.9444444444444444,
+        "twin_accuracy": 0.3888888888888889,
+        "union_accuracy": 0.9444444444444444,
+        "counts": {
+          "both_wrong": 1,
+          "twin_only": 0,
+          "engine_only": 10,
+          "both_correct": 7
+        }
+      },
+      {
+        "object_id": "obj-060",
+        "occluded_slots": 20,
+        "engine_accuracy": 0.85,
+        "twin_accuracy": 0.55,
+        "union_accuracy": 0.9,
+        "counts": {
+          "both_wrong": 2,
+          "twin_only": 1,
+          "engine_only": 7,
+          "both_correct": 10
+        }
+      },
+      {
+        "object_id": "obj-037",
+        "occluded_slots": 16,
+        "engine_accuracy": 0.9375,
+        "twin_accuracy": 0.8125,
+        "union_accuracy": 0.9375,
+        "counts": {
+          "both_wrong": 1,
+          "twin_only": 0,
+          "engine_only": 2,
+          "both_correct": 13
+        }
+      },
+      {
+        "object_id": "obj-045",
+        "occluded_slots": 18,
+        "engine_accuracy": 0.8333333333333334,
+        "twin_accuracy": 0.7777777777777778,
+        "union_accuracy": 0.8888888888888888,
+        "counts": {
+          "both_wrong": 2,
+          "twin_only": 1,
+          "engine_only": 2,
+          "both_correct": 13
+        }
+      },
+      {
+        "object_id": "obj-047",
+        "occluded_slots": 18,
+        "engine_accuracy": 0.8333333333333334,
+        "twin_accuracy": 0.6111111111111112,
+        "union_accuracy": 0.9444444444444444,
+        "counts": {
+          "both_wrong": 1,
+          "twin_only": 2,
+          "engine_only": 6,
+          "both_correct": 9
+        }
+      },
+      {
+        "object_id": "obj-014",
+        "occluded_slots": 17,
+        "engine_accuracy": 0.8823529411764706,
+        "twin_accuracy": 0.7058823529411765,
+        "union_accuracy": 0.9411764705882353,
+        "counts": {
+          "both_wrong": 1,
+          "twin_only": 1,
+          "engine_only": 4,
+          "both_correct": 11
+        }
+      },
+      {
+        "object_id": "obj-048",
+        "occluded_slots": 15,
+        "engine_accuracy": 0.8666666666666667,
+        "twin_accuracy": 0.4666666666666667,
+        "union_accuracy": 0.8666666666666667,
+        "counts": {
+          "both_wrong": 2,
+          "twin_only": 0,
+          "engine_only": 6,
+          "both_correct": 7
+        }
+      },
+      {
+        "object_id": "obj-061",
+        "occluded_slots": 14,
+        "engine_accuracy": 1.0,
+        "twin_accuracy": 0.6428571428571429,
+        "union_accuracy": 1.0,
+        "counts": {
+          "both_wrong": 0,
+          "twin_only": 0,
+          "engine_only": 5,
+          "both_correct": 9
+        }
+      },
+      {
+        "object_id": "obj-015",
+        "occluded_slots": 15,
+        "engine_accuracy": 0.8,
+        "twin_accuracy": 0.6,
+        "union_accuracy": 0.9333333333333333,
+        "counts": {
+          "both_wrong": 1,
+          "twin_only": 2,
+          "engine_only": 5,
+          "both_correct": 7
+        }
+      },
+      {
+        "object_id": "obj-016",
+        "occluded_slots": 17,
+        "engine_accuracy": 0.9411764705882353,
+        "twin_accuracy": 0.6470588235294118,
+        "union_accuracy": 1.0,
+        "counts": {
+          "both_wrong": 0,
+          "twin_only": 1,
+          "engine_only": 6,
+          "both_correct": 10
+        }
+      },
+      {
+        "object_id": "obj-059",
+        "occluded_slots": 17,
+        "engine_accuracy": 0.8823529411764706,
+        "twin_accuracy": 0.7058823529411765,
+        "union_accuracy": 1.0,
+        "counts": {
+          "both_wrong": 0,
+          "twin_only": 2,
+          "engine_only": 5,
+          "both_correct": 10
+        }
+      },
+      {
+        "object_id": "obj-050",
+        "occluded_slots": 18,
+        "engine_accuracy": 0.8333333333333334,
+        "twin_accuracy": 0.5,
+        "union_accuracy": 0.8333333333333334,
+        "counts": {
+          "both_wrong": 3,
+          "twin_only": 0,
+          "engine_only": 6,
+          "both_correct": 9
+        }
+      },
+      {
+        "object_id": "obj-056",
+        "occluded_slots": 16,
+        "engine_accuracy": 0.8125,
+        "twin_accuracy": 0.375,
+        "union_accuracy": 0.8125,
+        "counts": {
+          "both_wrong": 3,
+          "twin_only": 0,
+          "engine_only": 7,
+          "both_correct": 6
+        }
+      }
+    ],
+    "full_context_target_masked": {
+      "accuracy_type": "occluded current-world bit with all prior views and all non-target current-view bits visible",
+      "queried_target_remains_masked": true,
+      "candidate_held_out_accuracy": 0.9096209912536443,
+      "original_broken_held_out_accuracy": 0.9125364431486881,
+      "computed_chance_accuracy": 0.4956268221574344,
+      "candidate_margin": 0.41399416909620984,
+      "per_k": [
+        {
+          "k": 0,
+          "test_slots": 60,
+          "candidate_accuracy": 0.48333333333333334,
+          "original_broken_accuracy": 0.5,
+          "computed_chance_accuracy": 0.43333333333333335,
+          "candidate_margin": 0.04999999999999999,
+          "candidate_pass": true
+        },
+        {
+          "k": 1,
+          "test_slots": 55,
+          "candidate_accuracy": 1.0,
+          "original_broken_accuracy": 1.0,
+          "computed_chance_accuracy": 0.43636363636363634,
+          "candidate_margin": 0.5636363636363637,
+          "candidate_pass": true
+        },
+        {
+          "k": 2,
+          "test_slots": 60,
+          "candidate_accuracy": 1.0,
+          "original_broken_accuracy": 1.0,
+          "computed_chance_accuracy": 0.5,
+          "candidate_margin": 0.5,
+          "candidate_pass": true
+        },
+        {
+          "k": 3,
+          "test_slots": 58,
+          "candidate_accuracy": 1.0,
+          "original_broken_accuracy": 1.0,
+          "computed_chance_accuracy": 0.5344827586206896,
+          "candidate_margin": 0.4655172413793104,
+          "candidate_pass": true
+        },
+        {
+          "k": 4,
+          "test_slots": 58,
+          "candidate_accuracy": 1.0,
+          "original_broken_accuracy": 1.0,
+          "computed_chance_accuracy": 0.5,
+          "candidate_margin": 0.5,
+          "candidate_pass": true
+        },
+        {
+          "k": 5,
+          "test_slots": 52,
+          "candidate_accuracy": 1.0,
+          "original_broken_accuracy": 1.0,
+          "computed_chance_accuracy": 0.5769230769230769,
+          "candidate_margin": 0.42307692307692313,
+          "candidate_pass": true
+        }
+      ],
+      "all_k_beat_chance": true
+    },
+    "visibility_gate_G4_replication": {
+      "accuracy_type": "current-world-state bitwise accuracy",
+      "full_visibility": true,
+      "readout": "joint 15-Pauli rho_fast features plus m_slow marginals with object-disjoint per-bit ridge",
+      "held_out_accuracy": 0.9979166666666667,
+      "computed_chance_accuracy": 0.49375,
+      "margin": 0.5041666666666667,
+      "per_k": [
+        {
+          "k": 0,
+          "held_out_accuracy": 0.99375,
+          "computed_chance_accuracy": 0.51875,
+          "margin": 0.475,
+          "pass": true
+        },
+        {
+          "k": 1,
+          "held_out_accuracy": 1.0,
+          "computed_chance_accuracy": 0.55625,
+          "margin": 0.44375,
+          "pass": true
+        },
+        {
+          "k": 2,
+          "held_out_accuracy": 1.0,
+          "computed_chance_accuracy": 0.58125,
+          "margin": 0.41874999999999996,
+          "pass": true
+        },
+        {
+          "k": 3,
+          "held_out_accuracy": 1.0,
+          "computed_chance_accuracy": 0.53125,
+          "margin": 0.46875,
+          "pass": true
+        },
+        {
+          "k": 4,
+          "held_out_accuracy": 1.0,
+          "computed_chance_accuracy": 0.51875,
+          "margin": 0.48124999999999996,
+          "pass": true
+        },
+        {
+          "k": 5,
+          "held_out_accuracy": 1.0,
+          "computed_chance_accuracy": 0.60625,
+          "margin": 0.39375000000000004,
+          "pass": true
+        }
+      ],
+      "all_k_beat_chance": true
+    },
+    "controls": {
+      "frozen_quantum_readout": {
+        "occluded_accuracy": 0.48104956268221577,
+        "belief_persistence_mutual_information_bits": 0.061811686145934464,
+        "mutual_information_by_position_bits": [
+          0.10294173397870315,
+          0.03187250379273322,
+          0.055359760783566664,
+          0.006985099657127534,
+          0.06418778796694881,
+          0.03499984007133117,
+          0.11623387206870626,
+          0.08191289084835893
+        ],
+        "mutual_information_permutation_null_mean_bits": 0.07389456365742905,
+        "mutual_information_permutation_null_p95_bits": 0.10710070727400733,
+        "scope": "actual visible outcomes forced to zero before the quantum readout; masks and candidate emission model unchanged"
+      },
+      "m_slow_reset_each_view": {
+        "occluded_accuracy": 0.6326530612244898,
+        "belief_persistence_mutual_information_bits": 0.31997600016231886,
+        "mutual_information_by_position_bits": [
+          0.2774502939019388,
+          0.35808422253257477,
+          0.1668187029579819,
+          0.39123378876074744,
+          0.4208475369828335,
+          0.2711209260227382,
+          0.39253335916853904,
+          0.2817191709711971
+        ],
+        "feature_dimension": 30,
+        "scope": "same rho_fast, joint feature dimension, split, ridge readout, and refit; only m_slow is reset to uniform before every view"
+      },
+      "original_broken_update_with_slow_memory": {
+        "occluded_accuracy": 0.8629737609329446,
+        "belief_persistence_mutual_information_bits": 0.6691328454775806,
+        "mutual_information_by_position_bits": [
+          0.5932535145279958,
+          0.7874745680828257,
+          0.7101925717114853,
+          0.6621681705244069,
+          0.6415785712201891,
+          0.7409706140095187,
+          0.7030752505909904,
+          0.5143495031532329
+        ],
+        "mutual_information_permutation_null_mean_bits": 0.05614637279379568,
+        "mutual_information_permutation_null_p95_bits": 0.08325080280702687,
+        "scope": "rho_fast and candidate emissions recur instead of resetting; the same m_slow update and decoder are used"
+      },
+      "shuffled_training_labels": {
+        "draws": 200,
+        "seed": 20260750,
+        "paired_engine_twin_label_map": true,
+        "engine_accuracy_mean": 0.49137026239067055,
+        "engine_accuracy_p95": 0.5539358600583091,
+        "engine_monte_carlo_pvalue": 0.004975124378109453,
+        "twin_accuracy_mean": 0.49444606413994163,
+        "twin_accuracy_p95": 0.5481049562682215,
+        "union_accuracy_mean": 0.7274635568513119,
+        "union_accuracy_p95": 0.772740524781341,
+        "shuffle_scope": "training labels permuted within target position; both decoders refit; held-out labels unchanged"
+      },
+      "leak_counterfactual": {
+        "evaluation_only_hidden_targets_flipped": true,
+        "original_truth_sha256": "84da96bd815125f3817643e05641054bb1f9345b3288c9cc1a11830bca9695d2",
+        "flipped_truth_sha256": "1cfa9798250409c265c9e06217b9d471d50bb0693c44a6874c45995c613e75d8",
+        "candidate_feature_sha256": "7d0e2d23e950f0b578e68ada01e65910fb2c56690617c2f132306117d04e7d70",
+        "counterfactual_candidate_feature_sha256": "7d0e2d23e950f0b578e68ada01e65910fb2c56690617c2f132306117d04e7d70",
+        "candidate_features_identical": true,
+        "rho_fast_max_abs_delta": 0.0,
+        "m_slow_max_abs_delta": 0.0,
+        "joint_feature_max_abs_delta": 0.0,
+        "causal_prefix_max_abs_delta": 0.0,
+        "positive_unmask_sentinel_changed_count": 343,
+        "positive_unmask_sentinel_slow_changed_count": 123,
+        "positive_unmask_sentinel_total": 343,
+        "positive_unmask_sentinel_fast_max_delta": 1.386559086786903,
+        "positive_unmask_sentinel_slow_max_delta": 0.6672730957664487,
+        "positive_unmask_sentinel_joint_max_delta": 1.386559086786903
+      }
+    },
+    "physicality": {
+      "candidate_reset_fast": {
+        "pass": true,
+        "states_checked": 384,
+        "violations": 0,
+        "max_trace_deviation": 8.890747910495562e-16,
+        "max_hermiticity_deviation": 1.7772239894833365e-16,
+        "min_eigenvalue": -3.8069761494124903e-17
+      },
+      "frozen_reset_fast": {
+        "pass": true,
+        "states_checked": 384,
+        "violations": 0,
+        "max_trace_deviation": 6.69300525555062e-16,
+        "max_hermiticity_deviation": 1.7554167342883506e-16,
+        "min_eigenvalue": 1.6602681985850028e-17
+      },
+      "original_broken_fast": {
+        "pass": true,
+        "states_checked": 384,
+        "violations": 0,
+        "max_trace_deviation": 3.9969887117581695e-15,
+        "max_hermiticity_deviation": 1.7554167342883506e-16,
+        "min_eigenvalue": 0.0001950083513449308
+      },
+      "full_visibility_reset_fast": {
+        "pass": true,
+        "states_checked": 384,
+        "violations": 0,
+        "max_trace_deviation": 1.1107254602439665e-15,
+        "max_hermiticity_deviation": 1.6184142622847341e-16,
+        "min_eigenvalue": 0.007333884920477853
+      },
+      "target_masked_full_context_reset_fast": {
+        "pass": true,
+        "states_checked": 1125,
+        "violations": 0,
+        "max_trace_deviation": 1.110422595526482e-15,
+        "max_hermiticity_deviation": 2.237726045655905e-16,
+        "min_eigenvalue": 0.0019959209155159686
+      }
+    },
+    "measurement_channel_cptp": {
+      "channel_count": 16,
+      "minimum_choi_eigenvalue": -5.973378293054343e-16,
+      "maximum_trace_preserving_deviation": 4.440892098500626e-16,
+      "pass": true,
+      "certificates": {
+        "position_0_bit_0": {
+          "choi_min_eigenvalue": -3.9775407851787853e-16,
+          "trace_preserving_deviation": 2.220446049250313e-16
+        },
+        "position_0_bit_1": {
+          "choi_min_eigenvalue": -5.721049172996681e-16,
+          "trace_preserving_deviation": 4.440892098500626e-16
+        },
+        "position_1_bit_0": {
+          "choi_min_eigenvalue": -4.504036118977588e-16,
+          "trace_preserving_deviation": 2.220446049250313e-16
+        },
+        "position_1_bit_1": {
+          "choi_min_eigenvalue": -2.1869981386614016e-16,
+          "trace_preserving_deviation": 4.440892098500626e-16
+        },
+        "position_2_bit_0": {
+          "choi_min_eigenvalue": -5.973378293054343e-16,
+          "trace_preserving_deviation": 2.220446049250313e-16
+        },
+        "position_2_bit_1": {
+          "choi_min_eigenvalue": -2.3222964661376713e-16,
+          "trace_preserving_deviation": 2.220446049250313e-16
+        },
+        "position_3_bit_0": {
+          "choi_min_eigenvalue": -5.973319177132758e-16,
+          "trace_preserving_deviation": 2.220446049250313e-16
+        },
+        "position_3_bit_1": {
+          "choi_min_eigenvalue": -2.3191823939790157e-16,
+          "trace_preserving_deviation": 2.220446049250313e-16
+        },
+        "position_4_bit_0": {
+          "choi_min_eigenvalue": -4.755945892560406e-16,
+          "trace_preserving_deviation": 4.440892098500626e-16
+        },
+        "position_4_bit_1": {
+          "choi_min_eigenvalue": -1.499369576887037e-16,
+          "trace_preserving_deviation": 4.440892098500626e-16
+        },
+        "position_5_bit_0": {
+          "choi_min_eigenvalue": -4.194004427605662e-16,
+          "trace_preserving_deviation": 4.440892098500626e-16
+        },
+        "position_5_bit_1": {
+          "choi_min_eigenvalue": -2.793375723013709e-16,
+          "trace_preserving_deviation": 4.440892098500626e-16
+        },
+        "position_6_bit_0": {
+          "choi_min_eigenvalue": -3.568741992503635e-16,
+          "trace_preserving_deviation": 0.0
+        },
+        "position_6_bit_1": {
+          "choi_min_eigenvalue": -2.1796180552764704e-16,
+          "trace_preserving_deviation": 0.0
+        },
+        "position_7_bit_0": {
+          "choi_min_eigenvalue": -3.5687451225081264e-16,
+          "trace_preserving_deviation": 0.0
+        },
+        "position_7_bit_1": {
+          "choi_min_eigenvalue": -2.1793619912756374e-16,
+          "trace_preserving_deviation": 0.0
+        }
+      }
+    },
+    "state_trajectories": {
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/results/senses_v2_slow_memory/state_trajectories.json",
+      "sha256": "0e974e7d3eb8a7feeb4b78ffb28eaea631e1cddb5284b531d74d7b3c7965572d",
+      "candidate_lane_contains_full_m_slow_posterior": true
+    },
+    "replay_and_boundary_residuals": {
+      "rho_fast_reset_replay_max_abs": 0.0,
+      "m_slow_bayes_replay_max_abs": 0.0,
+      "posterior_minimum": 0.0,
+      "masked_hypothesis_readout_max_abs": 0.0,
+      "readout_updater_repeat_max_abs": 0.0,
+      "readout_updater_discriminating_total_variation": 1.0,
+      "persistent_vs_reset_register_max_abs": 0.997076652287973
+    }
+  },
+  "integrity_checks": {
+    "parent_promotion_is_false": true,
+    "parent_fixed_occluded_accuracy_matches_context": true,
+    "parent_fixed_holevo_below_null": true,
+    "parent_full_context_accuracy_matches_context": true,
+    "canonical_interpreter": true,
+    "memory_free_above_25_percent_before_heavy_imports": true,
+    "torch_not_imported": true,
+    "qutip_not_imported": true,
+    "ground_truth_recovered_from_visible_probes_only_for_evaluation": true,
+    "split_matches_parent_retest": true,
+    "split_matches_original_loop2": true,
+    "object_split_is_disjoint": true,
+    "occluded_slot_counts_match_parent": true,
+    "occluded_targets_remain_masked_in_main_getter": true,
+    "twin_features_unchanged_by_source_reuse": true,
+    "rho_fast_resets_from_initial_density_each_view": true,
+    "m_slow_resets_between_objects": true,
+    "m_slow_posterior_normalized_and_nonnegative": true,
+    "m_slow_bayes_replay_matches": true,
+    "m_slow_update_consumes_quantum_readouts_not_raw_values": true,
+    "hypothesis_likelihoods_ignore_withheld_values": true,
+    "likelihood_scale_is_unsupervised_and_positive": true,
+    "input_hashes_unchanged_during_run": true,
+    "all_density_lanes_physical": true,
+    "measurement_channels_cptp": true,
+    "original_broken_update_comparison_lane_executed": true,
+    "slow_reset_ablation_has_same_feature_dimension": true,
+    "hidden_target_flip_changes_truth_oracle": true,
+    "hidden_target_flip_leaves_rho_fast_identical": true,
+    "hidden_target_flip_leaves_m_slow_identical": true,
+    "hidden_target_flip_leaves_joint_features_identical": true,
+    "causal_prefix_is_future_invariant": true,
+    "deliberately_unmasked_leak_sentinel_changes_fast_and_slow": false,
+    "bootstrap_sample_size_adequate": true,
+    "trajectory_artifact_written": true,
+    "promotion_allowed_is_false": true,
+    "formal_admission_allowed_is_false": true
+  },
+  "scientific_checks": {
+    "candidate_occluded_accuracy_above_chance_and_shuffled_p95": true,
+    "candidate_accuracy_bootstrap_lower_above_chance": true,
+    "belief_persistence_mutual_information_above_permutation_null": true,
+    "persistent_slow_memory_beats_same_feature_reset_ablation": true,
+    "full_context_target_masked_overall_above_chance": true,
+    "full_context_target_masked_all_k_beat_chance": true,
+    "full_visibility_replication_all_k_beat_chance": true,
+    "frozen_control_does_not_pass": true,
+    "shuffled_label_control_is_below_candidate": true
+  },
+  "integrity_pass": false,
+  "scientific_pass": true,
+  "checks": {
+    "parent_promotion_is_false": true,
+    "parent_fixed_occluded_accuracy_matches_context": true,
+    "parent_fixed_holevo_below_null": true,
+    "parent_full_context_accuracy_matches_context": true,
+    "canonical_interpreter": true,
+    "memory_free_above_25_percent_before_heavy_imports": true,
+    "torch_not_imported": true,
+    "qutip_not_imported": true,
+    "ground_truth_recovered_from_visible_probes_only_for_evaluation": true,
+    "split_matches_parent_retest": true,
+    "split_matches_original_loop2": true,
+    "object_split_is_disjoint": true,
+    "occluded_slot_counts_match_parent": true,
+    "occluded_targets_remain_masked_in_main_getter": true,
+    "twin_features_unchanged_by_source_reuse": true,
+    "rho_fast_resets_from_initial_density_each_view": true,
+    "m_slow_resets_between_objects": true,
+    "m_slow_posterior_normalized_and_nonnegative": true,
+    "m_slow_bayes_replay_matches": true,
+    "m_slow_update_consumes_quantum_readouts_not_raw_values": true,
+    "hypothesis_likelihoods_ignore_withheld_values": true,
+    "likelihood_scale_is_unsupervised_and_positive": true,
+    "input_hashes_unchanged_during_run": true,
+    "all_density_lanes_physical": true,
+    "measurement_channels_cptp": true,
+    "original_broken_update_comparison_lane_executed": true,
+    "slow_reset_ablation_has_same_feature_dimension": true,
+    "hidden_target_flip_changes_truth_oracle": true,
+    "hidden_target_flip_leaves_rho_fast_identical": true,
+    "hidden_target_flip_leaves_m_slow_identical": true,
+    "hidden_target_flip_leaves_joint_features_identical": true,
+    "causal_prefix_is_future_invariant": true,
+    "deliberately_unmasked_leak_sentinel_changes_fast_and_slow": false,
+    "bootstrap_sample_size_adequate": true,
+    "trajectory_artifact_written": true,
+    "promotion_allowed_is_false": true,
+    "formal_admission_allowed_is_false": true,
+    "candidate_occluded_accuracy_above_chance_and_shuffled_p95": true,
+    "candidate_accuracy_bootstrap_lower_above_chance": true,
+    "belief_persistence_mutual_information_above_permutation_null": true,
+    "persistent_slow_memory_beats_same_feature_reset_ablation": true,
+    "full_context_target_masked_overall_above_chance": true,
+    "full_context_target_masked_all_k_beat_chance": true,
+    "full_visibility_replication_all_k_beat_chance": true,
+    "frozen_control_does_not_pass": true,
+    "shuffled_label_control_is_below_candidate": true
+  },
+  "all_pass": false,
+  "findings": [
+    "Slow-memory occluded accuracy 0.8776, twin 0.6006, computed chance 0.4956, shuffled-engine p95 0.5539.",
+    "I(O;m_slow) 0.676770 bits versus permutation p95 0.086201; frozen 0.061812; broken 0.669133.",
+    "Full-context target-masked accuracy 0.9096 versus chance 0.4956; every-k pass=True.",
+    "Frozen accuracy 0.4810; original-broken-with-slow-memory accuracy 0.8630.",
+    "Leak counterfactual invariant=True; positive sentinel changed 343/343 features (joint max delta 1.38656).",
+    "HONEST NEGATIVE KEPT: at least one fail-closed check is red; the diagnostic is retained without promotion."
+  ],
+  "divergence_log": [
+    {
+      "comparison": "slow memory versus parent fixed-fast-only retest",
+      "occluded_accuracy_delta": 0.36443148688046645,
+      "belief_metric_note": "I(O;m_slow) and Holevo(O;rho_fast) are different metrics and are not subtracted"
+    },
+    {
+      "comparison": "reset-fast slow memory versus original-broken-fast slow memory",
+      "occluded_accuracy_delta": 0.014577259475218596,
+      "mutual_information_delta_bits": 0.007636749372121221,
+      "full_context_accuracy_delta": -0.00291545189504383
+    },
+    {
+      "comparison": "slow memory versus unchanged classical twin",
+      "occluded_accuracy_delta": 0.27696793002915454,
+      "union_gain_over_best": 0.04664723032069973
+    }
+  ],
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite Bayesian posterior, density/readout algebra, ridge readout, object-block bootstrap, mutual information, and permutation controls"
+    },
+    "scipy.linalg.expm": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing through visibility_sanity_gate.load_stage_channels, which constructs every quantum measurement channel"
+    },
+    "torch": {
+      "tried": false,
+      "used": false,
+      "reason": "not scoped: this diagnostic isolates a slow classical register beside the exact diagnosed NumPy/SciPy two-qubit readout path"
+    },
+    "qutip": {
+      "tried": false,
+      "used": false,
+      "reason": "not scoped: no second quantum runtime or carrier comparison is attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "scipy.linalg.expm": "load_bearing",
+    "torch": null,
+    "qutip": null
+  },
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "carrier_comparison_executed": false,
+  "blocked_consumers": [
+    "carrier promotion or scaling",
+    "loop-3 carrier tournament",
+    "quantum-memory proof from a classical register",
+    "bridge, axis, manifold, physics, or scientific admission",
+    "reuse of this result directory"
+  ],
+  "accepted_status_label": "exists",
+  "claim_ceiling": "fresh diagnostic artifacts exist and retain one or more red checks; no senses pass, carrier comparison, scaling, promotion, or admission",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/results/senses_v2_slow_memory/receipt.json"
+}

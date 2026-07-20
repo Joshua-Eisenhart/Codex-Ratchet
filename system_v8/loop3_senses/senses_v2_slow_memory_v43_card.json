@@ -1,0 +1,224 @@
+{
+  "schema_version": "wizard_v4_3_primary_object_card_v1",
+  "primary_object_card": {
+    "object_name": "SensesV2SlowMemory",
+    "object_type": "bounded_two_timescale_senses_probe",
+    "object_statement": "A loop-3 senses iteration that keeps rho_fast view-local and reset, persists a per-object-episode Bayesian m_slow whose only evidence is visible-probe quantum Pauli readouts, jointly decodes occluded bits from (rho_fast,m_slow), leaves the classical twin unchanged, runs matched negatives and leak counterfactuals, and emits a fail-closed non-promoting receipt.",
+    "object_statement_sha256": "700204e403dc27d5b4dafe0db74092fdf69ba830d6e9f7f7c584486252c739f1",
+    "source_anchors": [
+      {
+        "surface": "owner_card",
+        "reference": "system_v8/loop3_senses/LOOP3_FOUNDATION_CARD.md",
+        "quote_or_summary": "Binding correction 2 requires Z_t to contain both rho_fast and a slow memory that survives fast-density reconvergence."
+      },
+      {
+        "surface": "repo_source",
+        "reference": "system_v8/loop3_senses/loop2_retest_fixed_senses.py",
+        "quote_or_summary": "Owner source for the fixed residual retest, unchanged twin, split, metrics, bootstrap, and negative-control semantics."
+      },
+      {
+        "surface": "repo_receipt",
+        "reference": "system_v8/loop3_senses/results/loop2_retest_fixed_senses/receipt.json",
+        "quote_or_summary": "Shows full-context recovery but below-control occluded accuracy and below-null fast-density belief persistence."
+      }
+    ],
+    "plain_language_definition": "The candidate state has two timescales. For each view, rho_fast is rebuilt only from that view's visible measurements. A finite posterior register m_slow persists across the object episode and is multiplied by likelihoods computed from Pauli readouts of rho_fast. The register never reads a withheld target or recovered hidden view. The held-out decoder sees rho_fast and a compact summary of m_slow together. The exact loop-2 twin remains unchanged, all controls remain visible, and no result can promote the carrier.",
+    "native_terms": {
+      "rho_fast": "The two-qubit density rebuilt from the initial density for each view using only measurements visible in that view.",
+      "m_slow": "A normalized posterior over the finite public rule-and-initial-word hypothesis space, updated multiplicatively from quantum Pauli-readout likelihoods and retained across views in one object episode.",
+      "joint readout": "The unchanged per-position ridge protocol applied to concatenated rho_fast Pauli features and low-dimensional marginals of m_slow.",
+      "leak counterfactual": "Flipping evaluation-only hidden targets must leave candidate features unchanged, while deliberately unmasking the target in a sentinel lane must change the register."
+    },
+    "weirdness_signature": [
+      "The slow register is classical but its only value-bearing evidence arrives through the quantum readout path.",
+      "rho_fast is reset each view while m_slow is persistent within an episode and reset between objects.",
+      "The current target remains absent from the likelihood update even when full prior context is supplied.",
+      "The classical twin's features and hyperparameters are not expanded to include m_slow.",
+      "A successful diagnostic remains promotion-ineligible and an honest negative remains a valid output."
+    ],
+    "first_class_fields": [
+      "rho_fast density trajectories",
+      "m_slow posterior and marginal trajectories",
+      "quantum-readout likelihood scale and finite hypothesis space",
+      "object-disjoint train test split",
+      "joint engine and unchanged twin held-out predictions",
+      "object-block bootstrap confidence intervals",
+      "mutual information I(O;m_slow) and permutation null",
+      "full-context target-masked accuracy",
+      "frozen shuffled and broken-update controls",
+      "target-flip leak counterfactual and positive leak sentinel",
+      "fail-closed checks hashes and claim ceiling"
+    ],
+    "domain": "The fixed 64-object loop-2 dynamics-on event log, public four-rule family, six views, eight bits, original seed, object-disjoint split, and original occluded slots.",
+    "codomain_or_output": "A diagnostic-only receipt and state-trajectory artifact with exact metrics, nulls, hashes, checks, promotion_allowed false, and formal_admission_allowed false.",
+    "allowed_operations": [
+      "rebuild rho_fast from the initial density on each view",
+      "derive likelihoods only from 15 Pauli expectations of visible-probe density states",
+      "multiply and normalize a finite per-episode posterior across views",
+      "summarize m_slow with current-bit and rule marginals plus concentration statistics",
+      "reuse the original split twin metrics bootstrap and permutation protocols",
+      "flip evaluation-only hidden targets for a leak counterfactual"
+    ],
+    "required_invariants": [
+      "same world data seed split held-out objects slots and twin semantics as the retest",
+      "no withheld bit or recovered full view enters the main occluded likelihood path",
+      "m_slow resets between objects and persists only across views of one object episode",
+      "rho_fast resets from the initial density at every view in the candidate lane",
+      "all negative controls and failed checks remain in the receipt",
+      "promotion_allowed remains false regardless of metric outcomes"
+    ],
+    "forbidden_substitutions": [
+      "raw visible event values substituted for quantum Pauli readouts in m_slow updates",
+      "recovered hidden target substituted for an observed measurement",
+      "object identifier substituted for a learned or measured feature",
+      "expanded twin features substituted for the unchanged loop-2 twin",
+      "full-context or supplemental G4 success substituted for occluded belief success",
+      "diagnostic metric success substituted for promotion or scientific admission",
+      "a proxy readout or convenient route label substituted for the two-timescale primary object"
+    ],
+    "negative_controls": [
+      "frozen quantum-readout feeder with visible outcomes forced to zero",
+      "position-stratified shuffled training labels with decoder refit",
+      "original broken recurrent fast-density comparison lane",
+      "permuted hidden labels for the m_slow mutual-information null",
+      "evaluation-only hidden-target flip invariance",
+      "deliberately unmasked positive leak sentinel"
+    ],
+    "adapter_policy": "The Bayesian register is a bounded adapter beside the fast density. It must state what it preserves, expose its likelihood construction, and remain diagnostic even if it improves accuracy.",
+    "promotion_locks": [
+      "promotion_allowed is always false",
+      "formal_admission_allowed is always false",
+      "passing this one event-log probe does not admit or scale a carrier",
+      "the result directory is refuse-to-reuse"
+    ],
+    "blocked_downstream_consumers": [
+      "loop-3 carrier tournament promotion",
+      "carrier scaling",
+      "bridge axis manifold physics or scientific admission",
+      "canonical or official rung advancement"
+    ],
+    "artifact_surface": "system_v8/loop3_senses/senses_v2_slow_memory.py and system_v8/loop3_senses/results/senses_v2_slow_memory/receipt.json"
+  },
+  "lateral_mappings": [
+    {
+      "label": "Bayesian slow register",
+      "use_type": "adapter",
+      "target": "persistent cross-view memory beside a view-local fast density",
+      "preserves": [
+        "finite public world-hypothesis space",
+        "visible-probe quantum density as the sole evidence source",
+        "per-object episode boundary"
+      ],
+      "loses": [
+        "the slow register is classical and does not establish a quantum-memory claim",
+        "the finite public rule family limits external generality"
+      ],
+      "preconditions": [
+        "every likelihood consumes Pauli readouts rather than raw event bits",
+        "the queried hidden target stays masked",
+        "posterior weights normalize after every view"
+      ],
+      "kill_control": "If hidden-target flips change main candidate features, raw event values enter the update, or m_slow persists across object identities, invalidate the lane.",
+      "promotion_allowed": false
+    },
+    {
+      "label": "joint fast-slow metric suite",
+      "use_type": "probe",
+      "target": "occluded accuracy, belief persistence, full-context readout, and negative-control separation",
+      "preserves": [
+        "held-out object evaluation",
+        "unchanged twin and matched chance controls",
+        "bootstrap and permutation uncertainty"
+      ],
+      "loses": [
+        "no claim about untested tasks, novel rules, or carrier scaling"
+      ],
+      "preconditions": [
+        "all readouts and controls run on the same split",
+        "checks may fail and failures remain artifacted"
+      ],
+      "kill_control": "Any split drift, twin-feature drift, missing null, result-directory reuse, or promotion flag invalidates the receipt.",
+      "promotion_allowed": false
+    }
+  ],
+  "constraint_bands": {
+    "root_constraints": [
+      "rho_fast resets each view and m_slow persists within an object episode",
+      "m_slow receives evidence only from visible-probe quantum readouts",
+      "queried targets stay masked and the loop-2 twin stays unchanged",
+      "honest fail-closed non-promotion receipt"
+    ],
+    "extended_constraints": [
+      "finite Bayesian hypothesis posterior",
+      "object-block bootstrap confidence intervals",
+      "mutual-information permutation null",
+      "memory pressure preflight above 25 percent",
+      "refuse-to-reuse result directory"
+    ]
+  },
+  "exploration_contract": {
+    "wildcard_lanes_min": 1,
+    "lateral_lane_types": [
+      "adapter",
+      "probe",
+      "analogy",
+      "proxy"
+    ],
+    "fixation_breakers": [
+      "retain a broken or no-improvement result instead of tuning on held-out outcomes",
+      "treat the classical Bayesian register as an adapter, not as proof that the density itself remembers"
+    ]
+  },
+  "loop_contract": {
+    "max_loops": 3,
+    "phases": [
+      "build",
+      "premortem",
+      "repair",
+      "selftest"
+    ],
+    "repair_rule": "Repair the first provenance, leakage, twin-drift, runtime, or receipt-integrity failure before interpreting accuracy or mutual information.",
+    "stop_condition": "One fresh refuse-to-reuse result directory contains a receipt and trajectory artifact, or execution stops at a named source, memory, runtime, or integrity blocker."
+  },
+  "method_contracts": {
+    "question_is_not_authorization": "A question is not authorization; this request explicitly authorizes only the named build and run without commit, deletion, or movement.",
+    "order_check_separate": "Check execution order separately from content correctness: validate the current-task object card and source locks before building, then audit, run, and verify the fresh receipt in that order, with the order witness named.",
+    "baseline_preservation": "While debugging the runtime path, preserve the tuned visible and output baseline: the original event log, split, twin, target, metric, control semantics, and receipt visibility remain unchanged while only the two-timescale candidate state is added.",
+    "falsifier_first": "Target claim: the slow register retains nonleaking cross-view belief. Strongest live falsifiers: hidden-target sensitivity, frozen-lane success, unchanged or worse held-out accuracy, and mutual information below its permutation null. Decisive checks: the target-flip counterfactual, matched control metrics, and MI permutation p95. Classify each target as killed, open, or survived before agreement.",
+    "feynman_testability": "Operation: multiply and normalize the slow posterior from Pauli-readout distance likelihoods. Observable: held-out accuracy, I(O;m_slow), matched controls, and target-flip invariance. Pass/fail condition: candidate accuracy and MI must beat their named controls while the hidden-target flip changes no candidate feature and the positive leak sentinel does.",
+    "synthesis_refusal": "Refuse to merge classical-register success with quantum-memory proof, and refuse to merge a diagnostic result with promotion.",
+    "human_offload": "Resolve source, runtime, metric, and leakage questions with local tools before asking the owner for unrecoverable information."
+  },
+  "evidence_spine": {
+    "wizard_runtime": "Wizard v4.3 is the current object-preservation and route-truth boundary; legacy v4.2 surfaces are provenance only and are not run.",
+    "source_math_locks": [
+      {
+        "path": "system_v8/loop3_senses/LOOP3_FOUNDATION_CARD.md",
+        "preserves": "the two-timescale state and senses-before-scale boundary",
+        "status": "owner assessment authority"
+      },
+      {
+        "path": "system_v8/loop3_senses/loop2_retest_fixed_senses.py",
+        "preserves": "the retest split, twin, target, metrics, nulls, and controls",
+        "status": "repo source lock"
+      }
+    ],
+    "sim_audit_receipts": [
+      {
+        "path": "system_v8/loop3_senses/results/loop2_retest_fixed_senses/receipt.json",
+        "claim_ceiling": "the update-residual retest runs but retains below-control occluded-belief failures",
+        "blocked_consumers": [
+          "carrier promotion",
+          "claim that the fast density preserves cross-view belief"
+        ]
+      }
+    ],
+    "claude_pattern_cards": [],
+    "claim_ceiling": "one local bounded two-timescale diagnostic; checks may fail; promotion_allowed false",
+    "blocked_consumers": [
+      "carrier scaling",
+      "scientific promotion",
+      "canonical or official advancement"
+    ]
+  }
+}

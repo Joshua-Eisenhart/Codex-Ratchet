@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex-ratchet.local/fuel_gate/candidate_package_schema.json",
+  "title": "Codex Ratchet candidate fuel package",
+  "description": "Structural shape of one candidate package P = (claim, assumptions, carrier, nesting_order, implementation, predictions, rivals, known_failure_modes) plus a provenance sub-schema, per owner spec. This schema describes what a candidate SHOULD carry to be adequate fuel for the pairwise ratchet. It does not itself rank, admit, or compare candidates -- computing relative MSS / presumption / any tooth is the ratchet's job (code run on executable finite structures), never this schema and never an LLM narrative. See fuel_gate/README.md and system_v8/candidates/RANKING_VOID_llm_did_ratchets_job.md for the incident that makes this boundary explicit.",
+  "type": "object",
+  "required": [
+    "claim",
+    "assumptions",
+    "carrier",
+    "nesting_order",
+    "implementation",
+    "predictions",
+    "rivals",
+    "known_failure_modes",
+    "provenance"
+  ],
+  "properties": {
+    "claim": {
+      "type": "string",
+      "description": "The one-sentence conditional proposal this candidate makes. Stays conditional ('if a finite ratchet needs X, then...'), never asserted as settled fact."
+    },
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Named commitments the carrier installs (e.g. positivity, unit trace, associativity). Every commitment a rival could point to should be named here or in known_failure_modes, not left implicit."
+    },
+    "carrier": {
+      "type": "string",
+      "description": "Short machine-comparable identifier for the underlying mathematical carrier family (e.g. 'finite_density_matrix_clifford_spinor_ideal'). The fuel-adequacy gate reads this verbatim to detect candidates that are relabeled copies of one another (same carrier + same model family + same order)."
+    },
+    "nesting_order": {
+      "type": "string",
+      "description": "Short machine-comparable identifier for the schedule direction (e.g. 'bottom_up_0to8', 'top_down_12to0'). Used by the fuel-adequacy gate's effective-candidate collapse rule."
+    },
+    "implementation": {
+      "type": "object",
+      "required": ["kind", "path"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["prose_spec", "partial", "executable_code"],
+          "description": "'prose_spec' = markdown only, no code. 'partial' = some layers reuse or wire to already-executed code. 'executable_code' = the candidate itself runs."
+        },
+        "path": { "type": "string" },
+        "language": { "type": ["string", "null"] },
+        "notes": { "type": ["string", "null"] }
+      },
+      "description": "What actually exists on disk for this candidate today. Honesty-forcing: a candidate cannot claim executable-enough status merely by describing probes in prose if implementation.kind says prose_spec."
+    },
+    "predictions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Concrete, checkable predictions this candidate makes -- what a probe should show if the candidate is right."
+    },
+    "rivals": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Named rival carriers or candidates this one should be run against."
+    },
+    "known_failure_modes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Ways this candidate is already known or suspected to be beatable. An empty list here is itself a red flag, not a clean bill of health."
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "model",
+        "version",
+        "prompt_lineage",
+        "source_corpus",
+        "tools",
+        "saw_preferred_answer",
+        "inherited_assumptions",
+        "code_lineage"
+      ],
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "Model family that generated this candidate, as a short slug (e.g. 'openai_gpt_codex', 'xai_grok', 'anthropic_claude'). This is the field the fuel-adequacy gate buckets on for 'distinct model families' -- keep it a stable short slug, not a long free-text description, or diversity counting breaks."
+        },
+        "version": {
+          "type": "string",
+          "description": "Version, build, or session label within the model family (e.g. 'sonnet', 'haiku', 'terra'). Free text; not used for family bucketing."
+        },
+        "prompt_lineage": {
+          "type": "string",
+          "description": "The prompt or prompt chain that produced this candidate. If genuinely untracked, say so explicitly ('unknown -- no session log captured') rather than omitting the key -- an explicit unknown is a thin-provenance flag the gate can detect; a missing key is a harder failure."
+        },
+        "source_corpus": {
+          "type": ["string", "null"],
+          "description": "What source material (docs, prior receipts, repo files) the candidate draws on, if known. Nullable -- 'if known' per owner spec -- but the key must be present."
+        },
+        "tools": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tools or skills used to produce the candidate."
+        },
+        "saw_preferred_answer": {
+          "type": "boolean",
+          "description": "Did the generating process see the owner's preferred/reference answer before producing this candidate? Must be a real boolean. Writing the string 'unknown' is a type violation, on purpose: not knowing whether a candidate saw the answer key is a real, reportable defect, not a detail to shrug off."
+        },
+        "inherited_assumptions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Assumptions inherited from cited prior work, distinct from the candidate's own new assumptions in the top-level 'assumptions' field."
+        },
+        "code_lineage": {
+          "type": ["string", "null"],
+          "description": "What code, if any, this candidate reuses or extends (e.g. a specific script and function name). Nullable when no code exists -- but say so explicitly rather than omitting the key."
+        },
+        "counterarguments": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Known objections to this candidate, including from rival candidates or audits. Optional -- not required for provenance-adequacy, but strongly encouraged."
+        },
+        "rejected_alternatives": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Alternatives considered and rejected in favor of this candidate's carrier/order, with the reason. Optional -- not required for provenance-adequacy, but strongly encouraged."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "variation_slot": {
+      "type": "string",
+      "enum": [
+        "incumbent",
+        "minimal_rival",
+        "structural_rival",
+        "order_nesting_rival",
+        "countermodel",
+        "ablation_control"
+      ],
+      "description": "The six required fuel-pool roles the fuel-adequacy gate checks for coverage. Not a package field -- which slot a candidate fills is a pool-relative role assigned in the provenance manifest's wrapper entry, not an intrinsic property of the candidate itself."
+    }
+  }
+}

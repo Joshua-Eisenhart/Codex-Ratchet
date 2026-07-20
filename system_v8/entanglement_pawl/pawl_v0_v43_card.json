@@ -1,0 +1,189 @@
+{
+  "schema_version": "wizard_v4_3_primary_object_card_v1",
+  "primary_object_card": {
+    "object_name": "EntanglementPawlV0",
+    "object_type": "bounded_three_qubit_resource_retention_probe",
+    "object_statement": "A three-qubit drive-modulated GKSL register searches four declared pawl designs for a negative conditional-entropy resource sustained across the nested cuts q0|q12 and q01|q2, while preserving state-only entropy readouts, shuffled-drive controls, classical and product negatives, and a non-promoting boundary receipt.",
+    "object_statement_sha256": "1a5355825336a03bdd4ba6b5a7d0b206e657db7c5fa46b772a2688c817c035a6",
+    "source_anchors": [
+      {
+        "surface": "repo_source",
+        "reference": "system_v8/nested_manifold/manifold_one.py",
+        "quote_or_summary": "Provides the declared tick duration, substep count, Pauli and jump vocabulary, local Hamiltonian type, stage-bank types, and drive-producing packet-growth tick."
+      },
+      {
+        "surface": "prior_receipt",
+        "reference": "system_v8/entanglement_gradient/results/coherent_information_ladder_v0/receipt.json",
+        "quote_or_summary": "Records a three-qubit nested-cut resource that becomes nonnegative after the first few ticks under the earlier local dissipation path."
+      },
+      {
+        "surface": "prior_receipt",
+        "reference": "system_v8/unified/results/manifold_unified_v2/receipt.json",
+        "quote_or_summary": "Defines the fixed two-qubit observable panel as purity, von Neumann entropy, two Bloch-z values, pauli-xx, and pauli-yy without drive in the readout."
+      }
+    ],
+    "plain_language_definition": "The object is a finite 8 by 8 density state for three qubits undergoing a source-shaped open-system evolution. It evaluates whether a declared retention mechanism can keep a real negative conditional entropy on either nested bipartition for many consecutive ticks. The four mechanisms are probes, not substitute meanings for entanglement: every claimed resource value is recomputed from the density state, and every candidate remains bounded by product, classical-mixture, shuffled-drive, and QuTiP checks.",
+    "native_terms": {
+      "entanglement fuel": "Negative S(A|B) computed from the current density state only, with I(A>B) equal to its negative on the declared cut.",
+      "pawl stroke": "A declared retention operation applied after or within the GKSL tick that may preserve a resource but may not write entropy or coherent information directly.",
+      "nested cut": "The fixed ordered cuts q0|q12 and q01|q2 over the same three-qubit density register.",
+      "chamber wall": "A spectral-degeneracy proximity condition obtained from eigenvalue gaps of the current q0q1 reduced density state before deciding whether to gate a dissipative stroke."
+    },
+    "weirdness_signature": [
+      "conditional entropy stays a state-derived resource rather than a scalar drive proxy",
+      "the same three-qubit state is inspected through two nested nonidentical cuts",
+      "the pawl may alter only declared generators or CPTP retention strokes and never entropy readouts",
+      "a classical correlated mixture is retained as a must-not-entangle negative control"
+    ],
+    "first_class_fields": [
+      "rho_abc 8 by 8 density state at every tick",
+      "nested-cut conditional entropies and coherent informations",
+      "source-generated drive and stage schedule",
+      "Hamiltonian and Lindblad jump lists used at every tick",
+      "retention-stroke configuration, spectral-gap gate, or measurement-feedback event",
+      "product, no-pawl, shuffled-drive, and classical-mixture controls"
+    ],
+    "domain": "The imported finite nested-manifold drive series and generator vocabulary, a three-qubit complex128 density register, three fixed stage schedules, and the four declared finite sweep families.",
+    "codomain_or_output": "A refuse-to-reuse local receipt under system_v8/entanglement_pawl/results/pawl_v0/ with every variant metric, selected per-candidate trajectory, controls, Qutip spot checks, and a promotion_allowed false boundary verdict.",
+    "allowed_operations": [
+      "embed the imported two-level operator vocabulary into a three-qubit register",
+      "evolve the density state with RK4 GKSL substeps using drive only to set generator coefficients",
+      "apply a declared commuting-jump, spectral gate, or weak stabilizer measurement-feedback retention stroke",
+      "trace out subsystems and compute state-only entropies, coherent information, spectral gaps, and the fixed observable panel",
+      "permute the fixed drive sequence only for the shuffled-drive control",
+      "use QuTiP only as an independent spot-tick entropy referee"
+    ],
+    "required_invariants": [
+      "all entropy and coherent-information functions take a density state and no drive argument",
+      "drive affects the trajectory only through Hamiltonian or jump-generator coefficients",
+      "all four candidate families and all declared stage schedules are tried",
+      "no-pawl, product, and pawl-on-classical-mixture controls are retained even when a candidate succeeds",
+      "the product and classical controls must not show negative conditional entropy",
+      "promotion_allowed remains false regardless of any sustained run"
+    ],
+    "forbidden_substitutions": [
+      "a scalar drive proxy or correlation label substituted for state-derived negative conditional entropy",
+      "a post-selected measurement branch substituted for the nonselective feedback channel",
+      "a favorable parameter row substituted for the full declared sweep",
+      "a classical correlation or spectral-gap label substituted for entanglement",
+      "a diagnostic success substituted for promotion, scientific admission, or canonical advancement"
+    ],
+    "negative_controls": [
+      "no-pawl source schedule baseline with the earlier short resource lifetime",
+      "product state under local Hamiltonians and local jumps only",
+      "each pawl variant acting on a q0q1q2 classical mixture with entangling Hamiltonian removed",
+      "fixed-seed shuffled-drive rerun with the same drive multiset",
+      "three QuTiP state-entropic referee spot ticks per selected candidate"
+    ],
+    "adapter_policy": "The fixed two-qubit observable panel is an adapter applied to rho_q0q1. It is held identical to unified v2, exposes its reduced-state target, and never replaces the three-qubit nested-cut resource witness.",
+    "promotion_locks": [
+      "promotion_allowed is always false",
+      "formal_admission_allowed is always false",
+      "a sustained trajectory is only a finite local diagnostic",
+      "the result directory is refuse-to-reuse"
+    ],
+    "blocked_downstream_consumers": [
+      "official or canonical rung advancement",
+      "scientific entanglement-engine claim",
+      "carrier scaling or bridge admission",
+      "any general error-correction or fault-tolerance claim"
+    ],
+    "artifact_surface": "system_v8/entanglement_pawl/pawl_v0.py and system_v8/entanglement_pawl/results/pawl_v0/receipt.json"
+  },
+  "lateral_mappings": [
+    {
+      "label": "decoherence-free retention stroke",
+      "use_type": "probe",
+      "target": "collective jump restricted to a commutant of the two-qubit XY coupling",
+      "preserves": [
+        "the imported entangling generator", "CPTP GKSL evolution", "state-only resource readout"
+      ],
+      "loses": [
+        "it does not establish a hardware decoherence-free subspace", "it does not prove a scalable code"
+      ],
+      "preconditions": [
+        "the reported commutator norm is numerically small", "the stroke is listed in the generator ledger"
+      ],
+      "kill_control": "A noncommuting jump, direct entropy modification, or classical-mixture negativity invalidates this probe.",
+      "promotion_allowed": false
+    },
+    {
+      "label": "stabilizer-like weak-measurement pawl",
+      "use_type": "probe",
+      "target": "a nonselective weak parity measurement followed by a declared outcome-conditioned local feedback channel",
+      "preserves": [
+        "trace preservation", "non-postselected branch averaging", "fixed nested cuts"
+      ],
+      "loses": [
+        "it is not a demonstrated quantum error-correcting code", "it does not imply fault tolerance"
+      ],
+      "preconditions": [
+        "both Kraus outcomes are included", "the same channel is run on the classical-mixture control"
+      ],
+      "kill_control": "Postselection, nontrace preservation, or an entanglement-free control becoming negative invalidates this probe.",
+      "promotion_allowed": false
+    }
+  ],
+  "constraint_bands": {
+    "root_constraints": [
+      "negative conditional entropy must be computed from rho alone on the two declared nested cuts",
+      "drive can enter only through declared Hamiltonian or jump generator coefficients",
+      "all controls and failing variants remain in the receipt",
+      "no promotion is allowed"
+    ],
+    "extended_constraints": [
+      "three stage schedules and finite retention sweep grids",
+      "spectral-gap gating and nonselective measurement feedback",
+      "fixed-seed shuffle correlation and QuTiP spot refereeing",
+      "physicality, a two-GiB minimum free-memory gate, and source-hash ledger"
+    ]
+  },
+  "exploration_contract": {
+    "wildcard_lanes_min": 1,
+    "lateral_lane_types": ["probe", "adapter", "analogy", "proxy"],
+    "fixation_breakers": [
+      "retain every non-sustaining candidate instead of tuning the receipt after selection",
+      "keep the classical mixture and shuffled-drive controls able to kill a seemingly favorable retention mechanism"
+    ]
+  },
+  "loop_contract": {
+    "max_loops": 1,
+    "phases": ["build", "premortem", "repair", "selftest"],
+    "repair_rule": "Repair a source import, physicality, direct-drive, postselection, control, or receipt-integrity failure before interpreting a sustained-run metric.",
+    "stop_condition": "One fresh result directory contains all four candidate sweeps, controls, and Qutip checks, or execution stops at a named runtime or integrity blocker."
+  },
+  "method_contracts": {
+    "question_is_not_authorization": "A question is not authorization; the user explicitly authorizes only this named build and run, with no deletion, movement, or commit.",
+    "order_check_separate": "Check execution order separately from scientific content: validate this object card before run, then inspect controls and receipt integrity after the sweep.",
+    "baseline_preservation": "Preserve the no-pawl baseline, product control, classical mixture control, imported source constants, nested cuts, and fixed observable panel while the pawl designs are compared.",
+    "falsifier_first": "Target: one pawl sustains negative conditional entropy. Falsifier: no long negative run, fake negativity on a classical mixture, direct drive in metrics, shuffle failure, or Qutip disagreement. Check every sweep and classify the target as killed, open, or survived.",
+    "feynman_testability": "Operation: evolve the declared GKSL generator and optional retention stroke. Observable: conditional entropy, run length, fixed panel, and control sign maps. Pass/fail: at least ten consecutive negative ticks on one cut with all integrity controls passing.",
+    "synthesis_refusal": "Refuse to merge a short transient or a successful scalar correlation with a sustained resource claim, and refuse to merge a finite diagnostic with promotion.",
+    "human_offload": "Resolve available source, runtime, and numerical checks locally before asking the human for any unavailable authority."
+  },
+  "evidence_spine": {
+    "wizard_runtime": "Wizard v4.3 is the current object-preservation boundary; v4.2 is legacy/provenance and is not run.",
+    "source_math_locks": [
+      {
+        "path": "system_v8/nested_manifold/manifold_one.py",
+        "preserves": "source timing, Pauli/jump vocabulary, stage types, and packet-growth drive",
+        "status": "repo source authority"
+      },
+      {
+        "path": "system_v8/unified/manifold_unified_v2.py",
+        "preserves": "fixed two-qubit observable panel without a drive argument",
+        "status": "repo source authority"
+      }
+    ],
+    "sim_audit_receipts": [
+      {
+        "path": "system_v8/entanglement_gradient/results/coherent_information_ladder_v0/receipt.json",
+        "claim_ceiling": "finite three-qubit coherent-information ladder with short-lived negative conditional entropy",
+        "blocked_consumers": ["sustained-resource claim", "promotion"]
+      }
+    ],
+    "claude_pattern_cards": [],
+    "claim_ceiling": "one local finite retention sweep; no official, canonical, scientific, admission, or promotion claim",
+    "blocked_consumers": ["promotion", "scaling", "canonical advancement"]
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "schema": "loop3_senses/visibility_sanity_gate/receipt_v1",
+  "sim_id": "visibility_sanity_gate",
+  "version": "1.0.0",
+  "date": "2026-07-19",
+  "run_kind": "fix_v1",
+  "fix_v1_mode": "update_residual",
+  "parent_failure_receipt": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/results/visibility_sanity_gate_v1/receipt.json",
+    "sha256": "d9437187ad3ebb0c229f2e0bf47a04fb42f6a50c2b6367fb73507b15e85cfad9"
+  },
+  "superseded_pre_audit_receipt": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/results/visibility_sanity_gate/receipt.json",
+    "sha256": "3683423edfcd48beb4dafd7443a6ec5578a8126587f2a07def18def800c444a6",
+    "status": "superseded_false_green_retained_unchanged",
+    "reason": "pre-audit G3 averaged across k and allowed early information to hide late reconvergence"
+  },
+  "classification": "diagnostic_only",
+  "promotion_status": "diagnostic_only",
+  "card_authority": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/LOOP3_FOUNDATION_CARD.md",
+  "runtime": {
+    "python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "python_version": "3.13.6",
+    "memory_free_percent": 48,
+    "minimum_required_percent": 25,
+    "torch_used": false,
+    "qutip_used": false,
+    "one_heavy_runtime_at_a_time": true
+  },
+  "inputs": {
+    "world_events": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/events_dynamics_on.jsonl",
+    "world_events_sha256": "5b139ea26f8f2667a5a134f479f59dbc505a1c581cf9615d17041d29a3ed7e9d",
+    "world_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/results/world_source/receipt.json",
+    "world_receipt_sha256": "f5b2e49a24ccc8d4478ac3e59b323cd550db38101fad832e6b00cb2108c533db",
+    "engine_interface": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop2_world/perception_intelligence_v0.py",
+    "engine_interface_sha256": "765b8faddd6bc5ffadf3af46d99a86d7e51b0a39f4aca8fb1e859e618651bc98",
+    "visibility_gate_source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/visibility_sanity_gate.py",
+    "visibility_gate_source_sha256": "085bf2273f5448dc5a97418a6d37f4f6eff25700af262bfee6c1b2ebf96aec79",
+    "stage64_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/nested_manifold/results/stage64/receipt.json",
+    "stage64_receipt_sha256": "2dcf422411fa9580df30fd7ec5e112dc896bfaa4feff51b4bc9b7ccd83ca62dd",
+    "foundation_card": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/LOOP3_FOUNDATION_CARD.md",
+    "foundation_card_sha256": "a0f75dc7c44ee890bbae994751ea363db3cbe8d6005d9b164146e90097c7cc20",
+    "schema_metrics": {
+      "events_validated": 3072,
+      "hidden_field_leaks": 0
+    },
+    "ground_truth_recovery": {
+      "candidate_space_size": 1024,
+      "objects_uniquely_recovered": 64,
+      "joint_survivor_min": 1,
+      "joint_survivor_max": 1,
+      "ground_truth_source": "exhaustive consistency over public rule family and visible events only"
+    }
+  },
+  "protocol": {
+    "scope": "LOOP3_FOUNDATION_CARD correction 1 only",
+    "diagnosed_path": {
+      "encoder_conditioning": "perception_intelligence_v0.py stage_superops(bit) and probe-position branch selection",
+      "update": "perception_intelligence_v0.py run_engine_on_log sequential non-reset density update",
+      "readout": "perception_intelligence_v0.py pauli_feats -> per-position ridge"
+    },
+    "engine_port": "exact NumPy/SciPy port of stage_list, stage_superops, run_engine_on_log full-visibility branch, and pauli_feats",
+    "split": {
+      "seed": 20260719,
+      "train_objects": [
+        "obj-032",
+        "obj-030",
+        "obj-036",
+        "obj-013",
+        "obj-035",
+        "obj-020",
+        "obj-054",
+        "obj-033",
+        "obj-055",
+        "obj-053",
+        "obj-004",
+        "obj-039",
+        "obj-031",
+        "obj-019",
+        "obj-005",
+        "obj-022",
+        "obj-043",
+        "obj-018",
+        "obj-024",
+        "obj-062",
+        "obj-011",
+        "obj-028",
+        "obj-044",
+        "obj-041",
+        "obj-009",
+        "obj-002",
+        "obj-029",
+        "obj-058",
+        "obj-023",
+        "obj-000",
+        "obj-040",
+        "obj-034",
+        "obj-025",
+        "obj-057",
+        "obj-038",
+        "obj-001",
+        "obj-049",
+        "obj-017",
+        "obj-021",
+        "obj-046",
+        "obj-027",
+        "obj-042",
+        "obj-008",
+        "obj-052"
+      ],
+      "test_objects": [
+        "obj-006",
+        "obj-003",
+        "obj-063",
+        "obj-012",
+        "obj-026",
+        "obj-051",
+        "obj-007",
+        "obj-010",
+        "obj-060",
+        "obj-037",
+        "obj-045",
+        "obj-047",
+        "obj-014",
+        "obj-048",
+        "obj-061",
+        "obj-015",
+        "obj-016",
+        "obj-059",
+        "obj-050",
+        "obj-056"
+      ],
+      "train_count": 44,
+      "test_count": 20,
+      "object_disjoint": true
+    },
+    "full_visibility_definition": "all eight current-view bits reconstructed by visible-only joint-survivor consistency, then supplied to the existing outcome-conditioned stage path; the JSONL contains no literal 8/8-visible view",
+    "ground_truth_boundary": "reconstructed from all visible events plus the public rule family; no hidden event field is read",
+    "fix_boundary": "one fixed candidate selected from the original diagnosis; no threshold tuning and no second fix loop"
+  },
+  "checks": {
+    "G1": {
+      "name": "raw_views_have_object_predictive_information",
+      "pass": true,
+      "criterion": "held-out bitwise accuracy > max(train-selected chance, shuffled-label p95) + 0.02",
+      "metrics": {
+        "accuracy_type": "current-world-state bitwise accuracy",
+        "raw_feature_dimension": 16,
+        "held_out_accuracy": 0.85,
+        "computed_chance_accuracy": 0.49375,
+        "shuffled_label_mean": 0.5075416666666667,
+        "shuffled_label_p95": 0.5500520833333333,
+        "margin_over_strongest_control": 0.29994791666666665,
+        "label_permutations": 200
+      }
+    },
+    "G2": {
+      "name": "observation_encoder_alters_density_conditionally",
+      "pass": true,
+      "criterion": "physical CPTP states; both outcome branches separate from the same parent at every position; >=95% different views separate; frozen and deterministic controls behave",
+      "metrics": {
+        "min_channel_branch_frobenius": 1.7975914581403931,
+        "channel_branch_frobenius_by_position": [
+          1.8405406861986202,
+          1.8405406861986202,
+          2.219947415770369,
+          2.219947415770369,
+          1.7975914581403931,
+          1.7975914581403933,
+          3.7197507498967095,
+          3.7197507498967095
+        ],
+        "counterfactual_same_parent_median_frobenius_by_position": {
+          "0": 0.4596636612114562,
+          "1": 0.43165501302278286,
+          "2": 0.3468821689287045,
+          "3": 0.3265130996594402,
+          "4": 0.33848369811953766,
+          "5": 0.32419140562697,
+          "6": 0.6276298964927336,
+          "7": 0.6016490599627924
+        },
+        "counterfactual_same_parent_min_position_median_frobenius": 0.32419140562697,
+        "different_view_median_density_frobenius": 0.6046464954505837,
+        "different_view_fraction_above_1e-8": 1.0,
+        "mean_conditioned_to_all_zero_frozen_frobenius": 0.6073494377064262,
+        "deterministic_replay_max_frobenius": 0.0,
+        "physicality": {
+          "pass": true,
+          "states_checked": 768,
+          "violations": 0,
+          "max_trace_deviation": 1.9985368097665994e-15,
+          "max_hermiticity_deviation": 1.6184142622847341e-16,
+          "min_eigenvalue": 0.007333884920477853
+        },
+        "cptp_pass": true,
+        "cptp_certificates": {
+          "position_0_bit_0": {
+            "choi_min_eigenvalue": -3.9775407851787853e-16,
+            "trace_preserving_deviation": 2.220446049250313e-16
+          },
+          "position_0_bit_1": {
+            "choi_min_eigenvalue": -5.721049172996681e-16,
+            "trace_preserving_deviation": 4.440892098500626e-16
+          },
+          "position_1_bit_0": {
+            "choi_min_eigenvalue": -4.504036118977588e-16,
+            "trace_preserving_deviation": 2.220446049250313e-16
+          },
+          "position_1_bit_1": {
+            "choi_min_eigenvalue": -2.1869981386614016e-16,
+            "trace_preserving_deviation": 4.440892098500626e-16
+          },
+          "position_2_bit_0": {
+            "choi_min_eigenvalue": -5.973378293054343e-16,
+            "trace_preserving_deviation": 2.220446049250313e-16
+          },
+          "position_2_bit_1": {
+            "choi_min_eigenvalue": -2.3222964661376713e-16,
+            "trace_preserving_deviation": 2.220446049250313e-16
+          },
+          "position_3_bit_0": {
+            "choi_min_eigenvalue": -5.973319177132758e-16,
+            "trace_preserving_deviation": 2.220446049250313e-16
+          },
+          "position_3_bit_1": {
+            "choi_min_eigenvalue": -2.3191823939790157e-16,
+            "trace_preserving_deviation": 2.220446049250313e-16
+          },
+          "position_4_bit_0": {
+            "choi_min_eigenvalue": -4.755945892560406e-16,
+            "trace_preserving_deviation": 4.440892098500626e-16
+          },
+          "position_4_bit_1": {
+            "choi_min_eigenvalue": -1.499369576887037e-16,
+            "trace_preserving_deviation": 4.440892098500626e-16
+          },
+          "position_5_bit_0": {
+            "choi_min_eigenvalue": -4.194004427605662e-16,
+            "trace_preserving_deviation": 4.440892098500626e-16
+          },
+          "position_5_bit_1": {
+            "choi_min_eigenvalue": -2.793375723013709e-16,
+            "trace_preserving_deviation": 4.440892098500626e-16
+          },
+          "position_6_bit_0": {
+            "choi_min_eigenvalue": -3.568741992503635e-16,
+            "trace_preserving_deviation": 0.0
+          },
+          "position_6_bit_1": {
+            "choi_min_eigenvalue": -2.1796180552764704e-16,
+            "trace_preserving_deviation": 0.0
+          },
+          "position_7_bit_0": {
+            "choi_min_eigenvalue": -3.5687451225081264e-16,
+            "trace_preserving_deviation": 0.0
+          },
+          "position_7_bit_1": {
+            "choi_min_eigenvalue": -2.1793619912756374e-16,
+            "trace_preserving_deviation": 0.0
+          }
+        }
+      }
+    },
+    "G3": {
+      "name": "holevo_object_information_above_shuffled_labels",
+      "pass": true,
+      "criterion": "for every k=0..5, mean chi(current eight-bit object state; rho_k) > that k's shuffled-label p95 by more than 1e-6 bits",
+      "metrics": {
+        "object_variable_definition": "eight binary components of the current full world state; averaged over bit positions separately at each k",
+        "chi_mean_bits": 0.02371224494073057,
+        "chi_mean_by_k": [
+          0.03738874032350385,
+          0.0206077541609596,
+          0.012035087474893985,
+          0.014143113813780805,
+          0.03330272731541693,
+          0.02479604655582826
+        ],
+        "shuffled_label_mean_bits": 0.0043094628523309446,
+        "shuffled_label_p95_bits": 0.004965676696293826,
+        "shuffled_label_p95_by_k_bits": [
+          0.010878044927261975,
+          0.006814393002253245,
+          0.0045733929315200225,
+          0.004430087655563499,
+          0.004413626417437871,
+          0.004561037852310216
+        ],
+        "margin_by_k_bits": [
+          0.026510695396241877,
+          0.013793361158706354,
+          0.007461694543373963,
+          0.009713026158217307,
+          0.02888910089797906,
+          0.020235008703518045
+        ],
+        "all_k_above_control": true,
+        "label_permutations": 200
+      }
+    },
+    "G4": {
+      "name": "simple_density_probe_beats_chance_under_full_visibility",
+      "pass": true,
+      "criterion": "object-disjoint 15-Pauli ridge bitwise accuracy > train-selected chance with object-block sign-flip p<=0.05",
+      "metrics": {
+        "accuracy_type": "current-world-state bitwise accuracy",
+        "full_visibility": true,
+        "readout": "15 Pauli expectations",
+        "held_out_accuracy": 0.76875,
+        "computed_chance_accuracy": 0.49375,
+        "margin": 0.275,
+        "object_block_sign_flip_pvalue": 0.0001999600079984003,
+        "object_level_accuracy_differences": [
+          0.125,
+          0.25,
+          0.14583333333333337,
+          0.10416666666666674,
+          0.25,
+          0.4166666666666667,
+          0.25,
+          0.37500000000000006,
+          0.4166666666666667,
+          0.20833333333333337,
+          0.20833333333333337,
+          0.4166666666666667,
+          0.47916666666666663,
+          0.2708333333333333,
+          0.20833333333333326,
+          0.27083333333333337,
+          0.14583333333333337,
+          0.27083333333333337,
+          0.29166666666666663,
+          0.3958333333333333
+        ],
+        "sign_flip_draws": 5000
+      }
+    },
+    "G5": {
+      "name": "carrier_comparison_eligibility_only",
+      "pass": true,
+      "criterion": "G1-G4 all pass; this correction still performs zero carrier comparisons",
+      "metrics": {
+        "prerequisite_passes": {
+          "G1": true,
+          "G2": true,
+          "G3": true,
+          "G4": true
+        },
+        "carrier_comparison_executed": false,
+        "carrier_comparison_eligible": true
+      }
+    }
+  },
+  "check_bools": {
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "G4": true,
+    "G5": true
+  },
+  "all_pass": true,
+  "findings": [
+    "G1 raw partial-view bitwise accuracy 0.8500 vs computed chance 0.4938 and shuffled-label p95 0.5501.",
+    "G2 conditional path: minimum channel-branch distance 1.79759; different-view median density distance 0.604646; 100.000% of different-view pairs separated above 1e-8.",
+    "G3 per-k chi margins over shuffled-label p95 [0.0265107, 0.01379336, 0.00746169, 0.00971303, 0.0288891, 0.02023501]; every-k pass=True.",
+    "G4 full-visibility Pauli-probe bitwise accuracy 0.7688 vs computed chance 0.4938, object-block p=0.000200.",
+    "G5 carrier comparison eligibility=True; carrier comparison executed=False.",
+    "DIAGNOSIS: no path component failed G1-G5; no fix_v1 run is warranted."
+  ],
+  "diagnosis": {
+    "status": "no_failure",
+    "first_failed_gate": null,
+    "broken_component": null,
+    "minimal_fix_candidate": null,
+    "fix_v1_command": null
+  },
+  "carrier_comparison_eligible": true,
+  "carrier_comparison_executed": false,
+  "tool_manifest": {
+    "numpy": "load_bearing: event tensors, density-matrix algebra, exact Pauli expectations, ridge probes, permutation controls, and gate booleans",
+    "scipy.linalg.expm": "load_bearing: exact port of the loop-2 GKSL/unitary stage-channel construction; changing these channels changes G2-G4",
+    "torch": "not_scoped: the diagnosed loop-2 QIT interface is NumPy/SciPy",
+    "qutip": "not_scoped: no second QIT runtime is needed for correction 1"
+  },
+  "tool_integration_depth": "load_bearing",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "blocked_consumers": [
+    "carrier comparison execution in correction 1",
+    "carrier scaling",
+    "loop-3 correction 2 or later",
+    "bridge, axis, manifold, physics, or scientific promotion"
+  ],
+  "claim_ceiling": "passes local rerun of a bounded diagnostic gate only; no carrier comparison, scaling, promotion, or admission",
+  "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/loop3_senses/results/visibility_sanity_gate_v1/fix_v1/receipt.json"
+}

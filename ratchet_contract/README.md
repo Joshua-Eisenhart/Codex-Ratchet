@@ -42,7 +42,10 @@ prose, model brand, or machinery count.
   against a fresh recompute.
 - `declared_primitives()` — explicit list drawn from `identity, equality,
   time, metric, probability, frame`.
-- `controls()` — positive and negative control pairs.
+- `controls()` — positive and negative control pairs. Both are enforced by
+  `probe_validity_gate`, not just declared: positive controls gate a `HOLD`
+  if `D` fails to separate them; negative controls gate a `FAIL` if `D`
+  separates them anyway (a leakage-fence violation).
 
 `EngineAdapter` (plus `JuliaEngineAdapter`, `JaxEngineAdapter`,
 `PyTorchEngineAdapter`) is the same idea for engines: every method raises
@@ -59,7 +62,7 @@ never a tie and never silently upgraded to pass.
 | Gate | What it checks |
 |---|---|
 | `buildability_gate` | Does the candidate instantiate and run its own probes on its own states without error? |
-| `probe_validity_gate` | Does the supplied demand family `D` separate the candidate's declared positive controls? Too thin → `HOLD "probe family has not demonstrated discrimination power"`, never a tie. |
+| `probe_validity_gate` | Does the supplied demand family `D` separate the candidate's declared positive controls, and does it avoid falsely separating the declared negative controls? Too thin → `HOLD "probe family has not demonstrated discrimination power"` (never a tie); leaks a negative control → `FAIL "D leaks a distinction the candidate declares must not exist"`. |
 | `IDENTITY_GATE` | The nominalist core. See below. |
 | `persistence_gate` | Demand generator: pushes `D` through `persist()` and checks survivorship with the same partition kernel. |
 | `evolvability_gate` | Demand generator: pushes `D` through `evolve()` and checks survivorship, plus a no-new-primitive check. |
@@ -135,7 +138,7 @@ vacuous):
 | Gate | toy_raw_label | toy_quotient_respecting | toy_frozen | toy_amnesiac |
 |---|---|---|---|---|
 | `buildability_gate` | PASS | PASS | PASS | PASS |
-| `probe_validity_gate` (own D / thin D) | PASS / HOLD | PASS / HOLD | PASS / HOLD | PASS / HOLD |
+| `probe_validity_gate` (own D / thin D / leaky D) | PASS / HOLD / **FAIL** | PASS / HOLD / **FAIL** | PASS / HOLD / PASS | PASS / HOLD / PASS |
 | `IDENTITY_GATE` | **FAIL** | PASS | PASS | PASS |
 | `persistence_gate` | PASS | PASS | PASS | **FAIL** |
 | `evolvability_gate` | PASS | PASS | **FAIL** | PASS |
@@ -146,7 +149,35 @@ vacuous):
 small non-roster fixture whose `apply()` always raises — the four roster
 toys are all well-formed on purpose, so breaking buildability on one of them
 would have blurred the clean single-axis isolation the other three gates
-rely on.
+rely on. `probe_validity_gate`'s "leaky D" column passes `D=("noop",)`,
+which echoes the full `(raw_id, value)` state instead of just `value` — for
+the two toys that declare a same-value/different-raw_id negative control
+(an alias pair that must not be told apart), that D falsely separates it,
+so the gate correctly FAILs; `toy_frozen` and `toy_amnesiac` declare no
+negative control, so this column has nothing to catch for them and reads
+PASS.
+
+### Audit fixes (2026-07-20)
+
+A fresh-context adversarial audit (`results/AUDIT_VERDICT.md`) came back
+clean on the core design — pure-coarseness MSS, a behaviourally earned
+`IDENTITY_GATE` FAIL, a faithful kernel port — and found two low-severity
+gaps, both now closed and both now demonstrated inside `selfcheck.json`
+itself (`fail_branch_demonstrations`), not just verified on the auditor's
+own throwaway inputs:
+
+- **F1** — `ControlSet.negative` and `expected_distinguishable=False` were
+  declared and populated by the toys but had zero consumers; the
+  `controls()` docstring promised a check that never ran. Fixed by wiring
+  a real negative-control check into `probe_validity_gate` (above).
+- **F2** — the roster toys only ever drove `evolvability_gate`'s
+  `evolve() -> None` FAIL branch. Two non-roster fixtures were added
+  (`_evolve_collapses_distinction_fixture`, `_evolve_smuggles_primitive_fixture`),
+  each isolating one of the other two FAIL branches — an extension that
+  collapses a demanded distinction, and an extension that declares a new
+  primitive the original didn't. Both fixtures independently PASS
+  `IDENTITY_GATE`, confirming the FAIL is isolated to evolvability and not
+  a side effect of a dishonest partition.
 
 Headline `pairwise_mss` result, base demand only (no thickening):
 `pairwise_mss(toy_frozen, toy_quotient_respecting)` → **`A_WEAKER`**.

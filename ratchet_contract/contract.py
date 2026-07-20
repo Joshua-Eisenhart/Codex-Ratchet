@@ -109,8 +109,12 @@ class NestInterface:
 @dataclass(frozen=True)
 class ControlCase:
     """One control pair. `expected_distinguishable=True` marks a positive
-    control (D must separate state_a from state_b); False marks a negative
-    control (an ablation/alias pair that must NOT be falsely separated)."""
+    control (D must separate state_a from state_b) -- checked by
+    gates.py's probe_validity_gate, which HOLDs if D fails to separate it.
+    False marks a negative control (an ablation/alias pair that must NOT
+    be falsely separated) -- also checked by probe_validity_gate, which
+    FAILs if D separates it anyway (a leakage-fence violation: D exposes a
+    distinction the candidate declares must not exist)."""
 
     label: str
     state_a: State
@@ -270,7 +274,11 @@ class CandidatePackage(ABC):
     @abstractmethod
     def controls(self) -> ControlSet:
         """Positive controls (pairs D must separate) and negative controls
-        (pairs D must NOT falsely separate -- ablation/alias pairs)."""
+        (pairs D must NOT falsely separate -- ablation/alias pairs). Both
+        are enforced by gates.py's probe_validity_gate: positive controls
+        gate a HOLD ("D has not demonstrated discrimination power"),
+        negative controls gate a FAIL ("D leaks a distinction the candidate
+        declares must not exist")."""
 
 
 # ---------------------------------------------------------------------------

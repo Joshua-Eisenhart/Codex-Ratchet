@@ -1,5 +1,5 @@
 {
-  "schema_version": "ratchet-contract-selfcheck/0.1",
+  "schema_version": "ratchet-contract-selfcheck/0.2",
   "ceiling": "infrastructure_selfcheck_on_toy_candidates; promotion_allowed=false",
   "X_BASE": [
     [
@@ -55,8 +55,11 @@
           "D": [
             "'read_value'"
           ],
-          "separated_controls": [
+          "separated_positive_controls": [
             "red_vs_blue"
+          ],
+          "checked_negative_controls": [
+            "red_vs_red_alias"
           ]
         }
       },
@@ -76,6 +79,27 @@
               ]
             }
           ]
+        }
+      },
+      "probe_validity_gate__leaky_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_raw_label",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "D falsely separates a declared negative control (alias/ablation pair) -- D leaks a distinction the candidate declares must not exist",
+          "leaked_negative_controls": [
+            {
+              "control": "red_vs_red_alias",
+              "state_a": "(0, 'red')",
+              "state_b": "(2, 'red')",
+              "D": [
+                "'noop'"
+              ],
+              "obs_a": "[(0, 'red')]",
+              "obs_b": "[(2, 'red')]"
+            }
+          ],
+          "also_unseparated_positive_controls": []
         }
       },
       "IDENTITY_GATE": {
@@ -158,8 +182,11 @@
                 "D": [
                   "'read_value'"
                 ],
-                "separated_controls": [
+                "separated_positive_controls": [
                   "red_vs_blue"
+                ],
+                "checked_negative_controls": [
+                  "red_vs_red_alias"
                 ]
               }
             },
@@ -250,8 +277,11 @@
           "D": [
             "'read_value'"
           ],
-          "separated_controls": [
+          "separated_positive_controls": [
             "red_vs_blue"
+          ],
+          "checked_negative_controls": [
+            "red_vs_red_alias"
           ]
         }
       },
@@ -271,6 +301,27 @@
               ]
             }
           ]
+        }
+      },
+      "probe_validity_gate__leaky_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_quotient_respecting",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "D falsely separates a declared negative control (alias/ablation pair) -- D leaks a distinction the candidate declares must not exist",
+          "leaked_negative_controls": [
+            {
+              "control": "red_vs_red_alias",
+              "state_a": "(0, 'red')",
+              "state_b": "(2, 'red')",
+              "D": [
+                "'noop'"
+              ],
+              "obs_a": "[(0, 'red')]",
+              "obs_b": "[(2, 'red')]"
+            }
+          ],
+          "also_unseparated_positive_controls": []
         }
       },
       "IDENTITY_GATE": {
@@ -352,8 +403,11 @@
                 "D": [
                   "'read_value'"
                 ],
-                "separated_controls": [
+                "separated_positive_controls": [
                   "red_vs_blue"
+                ],
+                "checked_negative_controls": [
+                  "red_vs_red_alias"
                 ]
               }
             },
@@ -443,9 +497,10 @@
           "D": [
             "'read_category'"
           ],
-          "separated_controls": [
+          "separated_positive_controls": [
             "green_vs_yellow"
-          ]
+          ],
+          "checked_negative_controls": []
         }
       },
       "probe_validity_gate__thin_D": {
@@ -464,6 +519,20 @@
               ]
             }
           ]
+        }
+      },
+      "probe_validity_gate__leaky_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_frozen",
+        "verdict": "PASS",
+        "reasons": {
+          "D": [
+            "'noop'"
+          ],
+          "separated_positive_controls": [
+            "green_vs_yellow"
+          ],
+          "checked_negative_controls": []
         }
       },
       "IDENTITY_GATE": {
@@ -546,9 +615,10 @@
                 "D": [
                   "'read_category'"
                 ],
-                "separated_controls": [
+                "separated_positive_controls": [
                   "green_vs_yellow"
-                ]
+                ],
+                "checked_negative_controls": []
               }
             },
             "Distinguish": {
@@ -638,9 +708,10 @@
           "D": [
             "'read_value'"
           ],
-          "separated_controls": [
+          "separated_positive_controls": [
             "red_vs_blue"
-          ]
+          ],
+          "checked_negative_controls": []
         }
       },
       "probe_validity_gate__thin_D": {
@@ -659,6 +730,20 @@
               ]
             }
           ]
+        }
+      },
+      "probe_validity_gate__leaky_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_amnesiac",
+        "verdict": "PASS",
+        "reasons": {
+          "D": [
+            "'noop'"
+          ],
+          "separated_positive_controls": [
+            "red_vs_blue"
+          ],
+          "checked_negative_controls": []
         }
       },
       "IDENTITY_GATE": {
@@ -747,9 +832,10 @@
                 "D": [
                   "'read_value'"
                 ],
-                "separated_controls": [
+                "separated_positive_controls": [
                   "red_vs_blue"
-                ]
+                ],
+                "checked_negative_controls": []
               }
             },
             "Distinguish": {
@@ -850,6 +936,330 @@
       }
     }
   },
+  "evolvability_gate_extra_fixtures": {
+    "collapses_distinction": {
+      "fixture_name": "_evolve_collapses_distinction_fixture(non_roster_F2_demo)",
+      "identity_gate": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "_evolve_collapses_distinction_fixture(non_roster_F2_demo)",
+        "verdict": "PASS",
+        "reasons": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_probes_cells": 4,
+          "pi_reidentify_cells": 4,
+          "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+        }
+      },
+      "evolvability_gate": {
+        "gate": "evolvability_gate",
+        "candidate": "_evolve_collapses_distinction_fixture(non_roster_F2_demo)",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "the evolved extension destroys a previously-live demanded distinction",
+          "new_constraint": "'probe_generic_extension'",
+          "collapsed_evolvability_demand_edges": [
+            [
+              "(0, 'red')",
+              "(1, 'blue')"
+            ]
+          ]
+        }
+      }
+    },
+    "smuggles_primitive": {
+      "fixture_name": "_evolve_smuggles_primitive_fixture(non_roster_F2_demo)",
+      "identity_gate": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "_evolve_smuggles_primitive_fixture(non_roster_F2_demo)",
+        "verdict": "PASS",
+        "reasons": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_probes_cells": 4,
+          "pi_reidentify_cells": 4,
+          "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+        }
+      },
+      "evolvability_gate": {
+        "gate": "evolvability_gate",
+        "candidate": "_evolve_smuggles_primitive_fixture(non_roster_F2_demo)",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "evolve() smuggled in a new declared primitive not present before -- ad hoc primitive",
+          "new_primitives": [
+            "time"
+          ]
+        }
+      }
+    }
+  },
+  "fail_branch_demonstrations": {
+    "buildability_gate.FAIL": {
+      "candidate": "_broken_buildability_fixture(non_roster_vacuity_check_only)",
+      "result": {
+        "gate": "buildability_gate",
+        "candidate": "_broken_buildability_fixture(non_roster_vacuity_check_only)",
+        "verdict": "FAIL",
+        "reasons": {
+          "stage": "apply(probe,state)",
+          "errors": [
+            {
+              "probe": "'probe'",
+              "state": "0",
+              "error": "RuntimeError('this candidate cannot run its own probes -- buildability_gate must FAIL it')"
+            },
+            {
+              "probe": "'probe'",
+              "state": "1",
+              "error": "RuntimeError('this candidate cannot run its own probes -- buildability_gate must FAIL it')"
+            }
+          ]
+        }
+      },
+      "note": "non-roster fixture -- the 4 roster toys are all well-formed by design"
+    },
+    "probe_validity_gate.HOLD_thin_D": {
+      "candidate": "toy_raw_label",
+      "D": [
+        "constant_probe"
+      ],
+      "result": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_raw_label",
+        "verdict": "HOLD",
+        "reasons": {
+          "reason": "probe family has not demonstrated discrimination power",
+          "unseparated_positive_controls": [
+            {
+              "control": "red_vs_blue",
+              "state_a": "(0, 'red')",
+              "state_b": "(1, 'blue')",
+              "D": [
+                "'constant_probe'"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "probe_validity_gate.FAIL_negative_control_leak": {
+      "candidate": "toy_quotient_respecting",
+      "D": [
+        "noop"
+      ],
+      "result": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_quotient_respecting",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "D falsely separates a declared negative control (alias/ablation pair) -- D leaks a distinction the candidate declares must not exist",
+          "leaked_negative_controls": [
+            {
+              "control": "red_vs_red_alias",
+              "state_a": "(0, 'red')",
+              "state_b": "(2, 'red')",
+              "D": [
+                "'noop'"
+              ],
+              "obs_a": "[(0, 'red')]",
+              "obs_b": "[(2, 'red')]"
+            }
+          ],
+          "also_unseparated_positive_controls": []
+        }
+      },
+      "note": "audit finding F1 fix -- previously dead scaffolding (zero consumers of ControlSet.negative), now a real, firing FAIL branch in probe_validity_gate"
+    },
+    "IDENTITY_GATE.FAIL_unearned_identity": {
+      "candidate": "toy_raw_label",
+      "result": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "toy_raw_label",
+        "verdict": "FAIL",
+        "reasons": {
+          "declared_primitives": [
+            "identity"
+          ],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pi_probes_cells": 4,
+          "pi_reidentify_cells": 5,
+          "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+        }
+      }
+    },
+    "persistence_gate.FAIL_collapse_under_continuation": {
+      "candidate": "toy_amnesiac",
+      "result": {
+        "gate": "persistence_gate",
+        "candidate": "toy_amnesiac",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+          "perturbation": "'default_probe_perturbation'",
+          "delay": 1,
+          "partial_access": "None",
+          "relabeled": false,
+          "collapsed_persistence_demand_edges": [
+            [
+              "(0, 'forgotten')",
+              "(1, 'forgotten')"
+            ]
+          ],
+          "D_persistence_size": 1
+        }
+      }
+    },
+    "evolvability_gate.FAIL_no_admissible_extension": {
+      "candidate": "toy_frozen",
+      "result": {
+        "gate": "evolvability_gate",
+        "candidate": "toy_frozen",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "evolve() returned None -- no admissible extension for the new constraint; every demanded distinction is treated as failed under this layer",
+          "new_constraint": "'probe_generic_extension'",
+          "D_size": 1
+        }
+      }
+    },
+    "evolvability_gate.FAIL_extension_collapses_distinction": {
+      "candidate": "_evolve_collapses_distinction_fixture(non_roster_F2_demo)",
+      "identity_gate_of_base_candidate": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "_evolve_collapses_distinction_fixture(non_roster_F2_demo)",
+        "verdict": "PASS",
+        "reasons": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_probes_cells": 4,
+          "pi_reidentify_cells": 4,
+          "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+        }
+      },
+      "result": {
+        "gate": "evolvability_gate",
+        "candidate": "_evolve_collapses_distinction_fixture(non_roster_F2_demo)",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "the evolved extension destroys a previously-live demanded distinction",
+          "new_constraint": "'probe_generic_extension'",
+          "collapsed_evolvability_demand_edges": [
+            [
+              "(0, 'red')",
+              "(1, 'blue')"
+            ]
+          ]
+        }
+      },
+      "note": "audit finding F2 fix -- distinct code path from the evolve()->None branch above; the base fixture itself PASSES IDENTITY_GATE, isolating this to evolvability alone"
+    },
+    "evolvability_gate.FAIL_extension_smuggles_primitive": {
+      "candidate": "_evolve_smuggles_primitive_fixture(non_roster_F2_demo)",
+      "identity_gate_of_base_candidate": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "_evolve_smuggles_primitive_fixture(non_roster_F2_demo)",
+        "verdict": "PASS",
+        "reasons": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_probes_cells": 4,
+          "pi_reidentify_cells": 4,
+          "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+        }
+      },
+      "result": {
+        "gate": "evolvability_gate",
+        "candidate": "_evolve_smuggles_primitive_fixture(non_roster_F2_demo)",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "evolve() smuggled in a new declared primitive not present before -- ad hoc primitive",
+          "new_primitives": [
+            "time"
+          ]
+        }
+      },
+      "note": "audit finding F2 fix -- distinct code path from both evolvability branches above"
+    },
+    "extension_gate.FAIL_stale_nest_digest": {
+      "candidate": "toy_frozen",
+      "result": {
+        "gate": "extension_gate",
+        "candidate": "toy_frozen",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "declared inner/nest recompute digest does not match a fresh recompute -- local result does NOT survive whole-nest recompute",
+          "declared_digest": "stale-digest-0000-recorded-once",
+          "fresh_digest": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81"
+        }
+      }
+    }
+  },
   "vacuity_report": {
     "buildability_gate": {
       "verdicts": {
@@ -879,12 +1289,19 @@
         "toy_frozen": "HOLD",
         "toy_amnesiac": "HOLD"
       },
+      "leaky_D_verdicts": {
+        "toy_raw_label": "FAIL",
+        "toy_quotient_respecting": "FAIL",
+        "toy_frozen": "PASS",
+        "toy_amnesiac": "PASS"
+      },
       "distinct_verdicts": [
+        "FAIL",
         "HOLD",
         "PASS"
       ],
       "pass": true,
-      "note": "own_D (the toy's own adequate probes) demonstrates PASS; thin_D=('constant_probe',) demonstrates HOLD -- 'probe family has not demonstrated discrimination power'"
+      "note": "own_D (the toy's own adequate probes) demonstrates PASS; thin_D=('constant_probe',) demonstrates HOLD -- 'probe family has not demonstrated discrimination power'; leaky_D=('noop',) demonstrates FAIL for toys with a declared negative control -- 'noop' echoes the full (raw_id,value) state, so it separates a same-value/different-raw_id alias pair the candidate declares must not be separated (audit finding F1's fix)"
     },
     "IDENTITY_GATE": {
       "verdicts": {
@@ -1789,10 +2206,19 @@
     "hits": {},
     "clean": true
   },
+  "audit_response": {
+    "audit_verdict_file": "results/AUDIT_VERDICT.md",
+    "F1_negative_control_check_wired": true,
+    "F1_fires_in_this_receipt": true,
+    "F2_evolvability_D_collapse_branch_fires_in_this_receipt": true,
+    "F2_evolvability_primitive_smuggle_branch_fires_in_this_receipt": true,
+    "F2_new_fixtures_are_identity_honest": true
+  },
   "confirmations": {
     "all_gates_non_vacuous": true,
     "no_llm_or_network_calls_clean": true,
     "headline_pairwise_mss_is_strict_coarsening": true,
+    "audit_fixes_confirmed": true,
     "overall_ok": true
   }
 }

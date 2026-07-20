@@ -23,7 +23,10 @@ UNRESOLVED} and a reasons dict:
   buildability_gate     -- does the candidate instantiate/run its own probes
                             on its own states without error?               (UNCHANGED per owner correction)
   probe_validity_gate   -- does D separate the candidate's own positive
-                            controls?                                       (UNCHANGED per owner correction)
+                            controls, AND does D avoid falsely separating
+                            the candidate's own negative controls?          (positive-control check UNCHANGED
+                                                                              per owner correction; negative-control
+                                                                              check ADDED per audit finding F1)
   IDENTITY_GATE         -- THE NOMINALIST CORE: does reidentify() exactly
                             reproduce the probe-induced partition (a=a iff
                             a~b)? Gates ELIGIBILITY for every downstream
@@ -216,25 +219,46 @@ def buildability_gate(candidate: CandidatePackage) -> GateResult:
 
 
 # ===========================================================================
-# probe_validity_gate -- UNCHANGED per owner correction.
+# probe_validity_gate -- positive-control check UNCHANGED per owner
+# correction; negative-control check ADDED 2026-07-20 (audit finding F1:
+# ControlSet.negative / expected_distinguishable=False were declared and
+# populated by toys but had zero consumers in gates.py/mss.py -- dead
+# scaffolding behind an over-promising docstring). Both checks now share
+# one gate because both are about whether D itself has the right shape:
+# separates what it must (positive), and does not separate what it must
+# not (negative) -- a real leakage-fence control, not decorative.
 # ===========================================================================
 def probe_validity_gate(
     candidate: CandidatePackage,
     D: Optional[Sequence[Any]] = None,
     positive_controls: Optional[Sequence[Any]] = None,
+    negative_controls: Optional[Sequence[Any]] = None,
 ) -> GateResult:
-    """Does D SEPARATE the known positive controls? If candidates return
-    identical because D is too thin (the base_campaign
-    restricting_outer_changes_inner:false pattern) -> HOLD "probe family
-    has not demonstrated discrimination power". NOT a tie."""
+    """Does D SEPARATE the known positive controls, and does D AVOID
+    falsely separating the known negative controls?
+
+    Positive: if D fails to separate a declared positive control (the
+    base_campaign restricting_outer_changes_inner:false pattern) -> HOLD
+    "probe family has not demonstrated discrimination power". NOT a tie.
+
+    Negative: if D DOES separate a declared negative control (an
+    ablation/alias pair the candidate says must not be told apart) -> FAIL
+    "D leaks a distinction the candidate declares must not exist" -- this
+    is a leakage-fence violation (RATCHET_SPEC.md section 8), not
+    insufficient evidence, so it is FAIL rather than HOLD, and it takes
+    priority over a co-occurring positive-control HOLD (a definitive
+    over-reach is reported, not masked by "not yet proven enough").
+    """
     if D is None:
         D = list(candidate.probes())
     if positive_controls is None:
         positive_controls = candidate.controls().positive
+    if negative_controls is None:
+        negative_controls = candidate.controls().negative
 
-    if not positive_controls:
+    if not positive_controls and not negative_controls:
         return _result("probe_validity_gate", candidate, Verdict.UNRESOLVED,
-                        {"reason": "no positive controls declared -- cannot test discrimination power"})
+                        {"reason": "no positive or negative controls declared -- cannot test discrimination power"})
 
     unseparated = []
     for cc in positive_controls:
@@ -243,21 +267,45 @@ def probe_validity_gate(
             obs_b = [candidate.apply(p, cc.state_b) for p in D]
         except Exception as e:
             return _result("probe_validity_gate", candidate, Verdict.FAIL,
-                            {"reason": f"D raised while probing control {cc.label!r}: {e!r}"})
+                            {"reason": f"D raised while probing positive control {cc.label!r}: {e!r}"})
         if obs_a == obs_b:
             unseparated.append({
                 "control": cc.label, "state_a": repr(cc.state_a), "state_b": repr(cc.state_b),
                 "D": [repr(p) for p in D],
             })
 
+    leaked = []
+    for cc in negative_controls:
+        try:
+            obs_a = [candidate.apply(p, cc.state_a) for p in D]
+            obs_b = [candidate.apply(p, cc.state_b) for p in D]
+        except Exception as e:
+            return _result("probe_validity_gate", candidate, Verdict.FAIL,
+                            {"reason": f"D raised while probing negative control {cc.label!r}: {e!r}"})
+        if obs_a != obs_b:
+            leaked.append({
+                "control": cc.label, "state_a": repr(cc.state_a), "state_b": repr(cc.state_b),
+                "D": [repr(p) for p in D], "obs_a": repr(obs_a), "obs_b": repr(obs_b),
+            })
+
+    if leaked:
+        return _result("probe_validity_gate", candidate, Verdict.FAIL, {
+            "reason": ("D falsely separates a declared negative control (alias/ablation pair) -- "
+                       "D leaks a distinction the candidate declares must not exist"),
+            "leaked_negative_controls": leaked,
+            "also_unseparated_positive_controls": unseparated,
+        })
+
     if unseparated:
         return _result("probe_validity_gate", candidate, Verdict.HOLD, {
             "reason": "probe family has not demonstrated discrimination power",
             "unseparated_positive_controls": unseparated,
         })
+
     return _result("probe_validity_gate", candidate, Verdict.PASS, {
         "D": [repr(p) for p in D],
-        "separated_controls": [cc.label for cc in positive_controls],
+        "separated_positive_controls": [cc.label for cc in positive_controls],
+        "checked_negative_controls": [cc.label for cc in negative_controls],
     })
 
 
@@ -509,6 +557,7 @@ def adequacy(
     *,
     probe_D: Optional[Sequence[Any]] = None,
     positive_controls: Optional[Sequence[Any]] = None,
+    negative_controls: Optional[Sequence[Any]] = None,
     perturbation: Any = "default_probe_perturbation",
     delay: int = 1,
     partial_access: Any = None,
@@ -516,7 +565,8 @@ def adequacy(
     new_constraint: Any = "probe_generic_extension",
 ) -> GateResult:
     compose = buildability_gate(candidate)
-    pass_controls = probe_validity_gate(candidate, D=probe_D, positive_controls=positive_controls)
+    pass_controls = probe_validity_gate(candidate, D=probe_D, positive_controls=positive_controls,
+                                         negative_controls=negative_controls)
     distinguish = IDENTITY_GATE(candidate, X)
     persist = persistence_gate(candidate, X, D, perturbation=perturbation, delay=delay,
                                 partial_access=partial_access, relabeled=relabeled)

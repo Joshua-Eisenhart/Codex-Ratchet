@@ -1,0 +1,544 @@
+#!/usr/bin/env python3
+"""
+gates.py -- deterministic gate operators (CODE, never LLM judgment).
+
+Style match: system_v7/constraint_core/ratchet/ratchet_engine.py's partition
+kernel (`_normalise_partition`, `_partition_coarser`, `compute_frontier_cache`)
+and fuel_gate/fuel_adequacy_gate.py's exit-code/receipt discipline (every
+check runs every time; every failing check is reported, not just the first;
+reasons are a JSON dict, never prose a human has to parse).
+
+THE PARTITION KERNEL (normalise_partition / induced_partition / partition_coarser
+/ partition_digest / collapsed_demand_edges) is a direct, deliberate port of
+ratchet_engine.py's own math onto CandidatePackage objects. MSS is partition
+coarseness, full stop -- there is exactly one judge in this file and in
+mss.py, and every gate below either (a) is an ELIGIBILITY control on whether
+a candidate's partition may be trusted at all (IDENTITY_GATE), or (b)
+ENLARGES the demand set D that the SAME kernel evaluates (persistence_gate,
+evolvability_gate, extension_gate emit demand-thickened survivorship checks,
+they do not compute independent scores).
+
+Six gates, each returns a GateResult with verdict in {PASS, FAIL, HOLD,
+UNRESOLVED} and a reasons dict:
+  buildability_gate     -- does the candidate instantiate/run its own probes
+                            on its own states without error?               (UNCHANGED per owner correction)
+  probe_validity_gate   -- does D separate the candidate's own positive
+                            controls?                                       (UNCHANGED per owner correction)
+  IDENTITY_GATE         -- THE NOMINALIST CORE: does reidentify() exactly
+                            reproduce the probe-induced partition (a=a iff
+                            a~b)? Gates ELIGIBILITY for every downstream
+                            partition-coarseness comparison.
+  persistence_gate       -- DEMAND GENERATOR: do D's distinctions survive
+                            being pushed through persist() (delay/
+                            perturbation/relabeling/partial-access)?
+  evolvability_gate      -- DEMAND GENERATOR: do D's distinctions survive
+                            being pushed through evolve(new_constraint)?
+  extension_gate         -- DEMAND GENERATOR (whole-nest): does a declared
+                            nest_interface recompute_digest match a fresh
+                            recompute of the induced partition?
+  adequacy               -- combines all six into one verdict.
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+from dataclasses import dataclass
+from enum import Enum
+from typing import Any, Optional, Sequence
+
+from contract import CandidatePackage, State
+
+
+class Verdict(str, Enum):
+    PASS = "PASS"
+    FAIL = "FAIL"
+    HOLD = "HOLD"
+    UNRESOLVED = "UNRESOLVED"
+
+
+@dataclass(frozen=True)
+class GateResult:
+    gate: str
+    candidate: str
+    verdict: Verdict
+    reasons: dict
+
+    def to_json(self) -> dict:
+        return {
+            "gate": self.gate,
+            "candidate": self.candidate,
+            "verdict": self.verdict.value,
+            "reasons": self.reasons,
+        }
+
+
+def _result(gate: str, candidate: CandidatePackage, verdict: Verdict, reasons: dict) -> GateResult:
+    return GateResult(gate=gate, candidate=candidate.name, verdict=verdict, reasons=reasons)
+
+
+# ===========================================================================
+# THE PARTITION KERNEL -- ported from ratchet_engine.py, generalized from
+# "candidate assignment over generated rows" to "CandidatePackage.reidentify
+# over an externally supplied observation surface X."
+# ===========================================================================
+def normalise_partition(labels: Sequence[Any]) -> tuple[int, ...]:
+    """Exact port of ratchet_engine.py's `_normalise_partition`: canonical
+    block-label encoding, first-seen-gets-lowest-label."""
+    seen: dict[Any, int] = {}
+    out: list[int] = []
+    for v in labels:
+        if v not in seen:
+            seen[v] = len(seen)
+        out.append(seen[v])
+    return tuple(out)
+
+
+def induced_partition(candidate: CandidatePackage, X: Sequence[State]) -> tuple[int, ...]:
+    """pi_C : X -> Q_pi. Union-find over candidate.reidentify(x,y) checked
+    BOTH directions, across every pair of X. This is "the candidate's
+    presentation as a probe-relative quotient S/~_M"
+    (HOW_THE_ENGINES_RUN_THE_RATCHET.md Part A.2), generalized from
+    ratchet_engine.py's `_candidate_assignment` (which reads a parameter
+    proposal's assignment keys) to reading a CandidatePackage's own
+    reidentify oracle directly.
+
+    Meaningful only for identity-honest candidates -- callers that skip
+    IDENTITY_GATE first are trusting an uncontrolled partition. mss.py
+    always runs IDENTITY_GATE before calling this."""
+    n = len(X)
+    parent = list(range(n))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    def union(i: int, j: int) -> None:
+        ri, rj = find(i), find(j)
+        if ri != rj:
+            parent[ri] = rj
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            if candidate.reidentify(X[i], X[j]) and candidate.reidentify(X[j], X[i]):
+                union(i, j)
+
+    return normalise_partition([find(i) for i in range(n)])
+
+
+def partition_coarser(left: Sequence[int], right: Sequence[int]) -> bool:
+    """Exact port of ratchet_engine.py's `_partition_coarser`: whether
+    `left` is a quotient/coarsening of `right` (every block of `right`
+    lies inside a single block of `left`)."""
+    mapping: dict[int, int] = {}
+    for right_label, left_label in zip(right, left, strict=True):
+        previous = mapping.setdefault(right_label, left_label)
+        if previous != left_label:
+            return False
+    return True
+
+
+def partition_digest(partition: Sequence[int]) -> str:
+    raw = json.dumps(list(partition), separators=(",", ":"))
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def collapsed_demand_edges(
+    partition: Sequence[int], index: dict[State, int], D: Sequence[tuple[State, State]]
+) -> list[tuple[State, State]]:
+    """L_D(pi), itemized: which demanded pairs (x,y) in D got merged into
+    the same block of `partition`. Mirrors ratchet_engine.py's
+    `collapsed_demand_edges` count, but returns the offending pairs
+    (never just a count) so reasons dicts stay non-empty and inspectable."""
+    collapsed = []
+    for (a, b) in D:
+        if partition[index[a]] == partition[index[b]]:
+            collapsed.append((a, b))
+    return collapsed
+
+
+# ===========================================================================
+# buildability_gate -- UNCHANGED per owner correction.
+# ===========================================================================
+def buildability_gate(candidate: CandidatePackage) -> GateResult:
+    """Instantiates + runs its own probes on its own states without error?"""
+    try:
+        states = list(candidate.states())
+    except Exception as e:  # noqa: BLE001 -- deliberately broad, we report and continue
+        return _result("buildability_gate", candidate, Verdict.FAIL,
+                        {"stage": "states()", "error": repr(e)})
+    if not states:
+        return _result("buildability_gate", candidate, Verdict.FAIL,
+                        {"stage": "states()", "error": "empty state population"})
+
+    try:
+        probes = list(candidate.probes())
+    except Exception as e:
+        return _result("buildability_gate", candidate, Verdict.FAIL,
+                        {"stage": "probes()", "error": repr(e)})
+    if not probes:
+        return _result("buildability_gate", candidate, Verdict.FAIL,
+                        {"stage": "probes()", "error": "empty probe family"})
+
+    apply_errors = []
+    for p in probes:
+        for s in states:
+            try:
+                candidate.apply(p, s)
+            except Exception as e:
+                apply_errors.append({"probe": repr(p), "state": repr(s), "error": repr(e)})
+    if apply_errors:
+        return _result("buildability_gate", candidate, Verdict.FAIL,
+                        {"stage": "apply(probe,state)", "errors": apply_errors})
+
+    try:
+        allowed_ops = list(candidate.carrier.allowed_ops)
+    except Exception as e:
+        return _result("buildability_gate", candidate, Verdict.FAIL,
+                        {"stage": "carrier.allowed_ops", "error": repr(e)})
+
+    seq_errors = []
+    if allowed_ops:
+        for bracketing in ("left", "right"):
+            try:
+                candidate.apply_sequence(allowed_ops, states[0], bracketing=bracketing)
+            except Exception as e:
+                seq_errors.append({"bracketing": bracketing, "error": repr(e)})
+    if seq_errors:
+        return _result("buildability_gate", candidate, Verdict.FAIL,
+                        {"stage": "apply_sequence", "errors": seq_errors})
+
+    return _result("buildability_gate", candidate, Verdict.PASS, {
+        "state_count": len(states), "probe_count": len(probes), "allowed_op_count": len(allowed_ops),
+    })
+
+
+# ===========================================================================
+# probe_validity_gate -- UNCHANGED per owner correction.
+# ===========================================================================
+def probe_validity_gate(
+    candidate: CandidatePackage,
+    D: Optional[Sequence[Any]] = None,
+    positive_controls: Optional[Sequence[Any]] = None,
+) -> GateResult:
+    """Does D SEPARATE the known positive controls? If candidates return
+    identical because D is too thin (the base_campaign
+    restricting_outer_changes_inner:false pattern) -> HOLD "probe family
+    has not demonstrated discrimination power". NOT a tie."""
+    if D is None:
+        D = list(candidate.probes())
+    if positive_controls is None:
+        positive_controls = candidate.controls().positive
+
+    if not positive_controls:
+        return _result("probe_validity_gate", candidate, Verdict.UNRESOLVED,
+                        {"reason": "no positive controls declared -- cannot test discrimination power"})
+
+    unseparated = []
+    for cc in positive_controls:
+        try:
+            obs_a = [candidate.apply(p, cc.state_a) for p in D]
+            obs_b = [candidate.apply(p, cc.state_b) for p in D]
+        except Exception as e:
+            return _result("probe_validity_gate", candidate, Verdict.FAIL,
+                            {"reason": f"D raised while probing control {cc.label!r}: {e!r}"})
+        if obs_a == obs_b:
+            unseparated.append({
+                "control": cc.label, "state_a": repr(cc.state_a), "state_b": repr(cc.state_b),
+                "D": [repr(p) for p in D],
+            })
+
+    if unseparated:
+        return _result("probe_validity_gate", candidate, Verdict.HOLD, {
+            "reason": "probe family has not demonstrated discrimination power",
+            "unseparated_positive_controls": unseparated,
+        })
+    return _result("probe_validity_gate", candidate, Verdict.PASS, {
+        "D": [repr(p) for p in D],
+        "separated_controls": [cc.label for cc in positive_controls],
+    })
+
+
+# ===========================================================================
+# IDENTITY_GATE -- THE NOMINALIST CORE. Executable form of a=a iff a~b.
+# ELIGIBILITY control: a candidate whose partition fails this is INELIGIBLE
+# for the coarseness comparison in mss.py (its partition is not honest).
+# ===========================================================================
+def IDENTITY_GATE(candidate: CandidatePackage, X: Optional[Sequence[State]] = None) -> GateResult:
+    if X is None:
+        X = list(candidate.states())
+    if len(X) < 2:
+        return _result("IDENTITY_GATE", candidate, Verdict.UNRESOLVED,
+                        {"reason": "fewer than two states in X -- nothing to test"})
+
+    try:
+        probes = list(candidate.probes())
+        fingerprints = [tuple(candidate.apply(p, x) for p in probes) for x in X]
+    except Exception as e:
+        return _result("IDENTITY_GATE", candidate, Verdict.FAIL,
+                        {"stage": "probe fingerprint", "error": repr(e)})
+    pi_probes = normalise_partition(fingerprints)
+
+    try:
+        pi_reidentify = induced_partition(candidate, X)
+    except Exception as e:
+        return _result("IDENTITY_GATE", candidate, Verdict.FAIL,
+                        {"stage": "reidentify", "error": repr(e)})
+
+    declared = candidate.declared_primitives()
+    declared_flag = bool(set(declared) & {"identity", "equality"})
+
+    equal = pi_probes == pi_reidentify
+    # reidentify STRICTLY FINER than the probe partition == unearned distinction:
+    reidentify_finer = (not equal) and partition_coarser(pi_probes, pi_reidentify)
+    # reidentify STRICTLY COARSER than the probe partition == under-discriminating:
+    reidentify_coarser = (not equal) and partition_coarser(pi_reidentify, pi_probes)
+
+    base = {
+        "declared_primitives": list(declared),
+        "pi_probes": list(pi_probes),
+        "pi_reidentify": list(pi_reidentify),
+        "pi_probes_cells": len(set(pi_probes)),
+        "pi_reidentify_cells": len(set(pi_reidentify)),
+    }
+
+    if equal and not declared_flag:
+        base["reason"] = (
+            "reidentify agrees exactly with the probe-induced partition over X; "
+            "a=a iff a~b holds under the current probe family"
+        )
+        return _result("IDENTITY_GATE", candidate, Verdict.PASS, base)
+
+    if reidentify_finer or declared_flag:
+        base["reason"] = (
+            "reidentify distinguishes states no probe in the family separates, "
+            "and/or the candidate declares raw identity/equality as an installed "
+            "primitive -- unearned identity"
+        )
+        return _result("IDENTITY_GATE", candidate, Verdict.FAIL, base)
+
+    if reidentify_coarser:
+        base["reason"] = (
+            "reidentify merges states the current probe family still separates -- "
+            "new probe required, or reidentify is under-discriminating relative to "
+            "observed evidence"
+        )
+        return _result("IDENTITY_GATE", candidate, Verdict.HOLD, base)
+
+    base["reason"] = "reidentify and the probe-induced partition are incomparable (neither refines the other)"
+    return _result("IDENTITY_GATE", candidate, Verdict.HOLD, base)
+
+
+# ===========================================================================
+# persistence_gate -- DEMAND GENERATOR. Pushes D through persist() and
+# checks survivorship via the SAME partition kernel. Not a self-reported
+# score: viability is derived mechanically from reidentify, never trusted
+# from the candidate's own say-so.
+# ===========================================================================
+def persistence_gate(
+    candidate: CandidatePackage,
+    X: Sequence[State],
+    D: Sequence[tuple[State, State]],
+    *,
+    perturbation: Any = "default_probe_perturbation",
+    delay: int = 1,
+    partial_access: Any = None,
+    relabeled: bool = False,
+) -> GateResult:
+    try:
+        continuation = {
+            x: candidate.persist(x, perturbation=perturbation, delay=delay,
+                                  partial_access=partial_access, relabeled=relabeled)
+            for x in X
+        }
+    except Exception as e:
+        return _result("persistence_gate", candidate, Verdict.FAIL,
+                        {"stage": "persist()", "error": repr(e)})
+
+    D_persistence = [(continuation[a], continuation[b]) for (a, b) in D]
+    X_layer = list({*continuation.values()})
+    if len(X_layer) < 2:
+        return _result("persistence_gate", candidate, Verdict.UNRESOLVED,
+                        {"reason": "fewer than two distinct continuation states -- nothing to test"})
+
+    try:
+        pi_layer = induced_partition(candidate, X_layer)
+    except Exception as e:
+        return _result("persistence_gate", candidate, Verdict.FAIL,
+                        {"stage": "induced_partition(persisted)", "error": repr(e)})
+
+    index = {x: i for i, x in enumerate(X_layer)}
+    collapsed = collapsed_demand_edges(pi_layer, index, D_persistence)
+
+    if collapsed:
+        return _result("persistence_gate", candidate, Verdict.FAIL, {
+            "reason": (
+                "distinctions demanded by D do not survive the declared continuation "
+                "(delay/perturbation/relabeling/partial-access)"
+            ),
+            "perturbation": repr(perturbation), "delay": delay,
+            "partial_access": repr(partial_access), "relabeled": relabeled,
+            "collapsed_persistence_demand_edges": [[repr(a), repr(b)] for (a, b) in collapsed],
+            "D_persistence_size": len(D_persistence),
+        })
+    return _result("persistence_gate", candidate, Verdict.PASS, {
+        "perturbation": repr(perturbation), "delay": delay,
+        "D_persistence_size": len(D_persistence), "collapsed": 0,
+    })
+
+
+# ===========================================================================
+# evolvability_gate -- DEMAND GENERATOR. Pushes D through evolve() and
+# checks survivorship via the SAME partition kernel, plus a no-new-primitive
+# check.
+# ===========================================================================
+def evolvability_gate(
+    candidate: CandidatePackage,
+    X: Sequence[State],
+    D: Sequence[tuple[State, State]],
+    *,
+    new_constraint: Any = "probe_generic_extension",
+) -> GateResult:
+    try:
+        extended = candidate.evolve(new_constraint)
+    except Exception as e:
+        return _result("evolvability_gate", candidate, Verdict.FAIL,
+                        {"stage": "evolve()", "error": repr(e)})
+
+    if extended is None:
+        return _result("evolvability_gate", candidate, Verdict.FAIL, {
+            "reason": (
+                "evolve() returned None -- no admissible extension for the new "
+                "constraint; every demanded distinction is treated as failed under "
+                "this layer"
+            ),
+            "new_constraint": repr(new_constraint), "D_size": len(D),
+        })
+    if not isinstance(extended, CandidatePackage):
+        return _result("evolvability_gate", candidate, Verdict.FAIL,
+                        {"reason": "evolve() did not return a CandidatePackage", "got": repr(type(extended))})
+
+    try:
+        pi_extended = induced_partition(extended, X)
+    except Exception as e:
+        return _result("evolvability_gate", candidate, Verdict.FAIL,
+                        {"stage": "induced_partition(extended)", "error": repr(e)})
+
+    index = {x: i for i, x in enumerate(X)}
+    collapsed = collapsed_demand_edges(pi_extended, index, D)
+    if collapsed:
+        return _result("evolvability_gate", candidate, Verdict.FAIL, {
+            "reason": "the evolved extension destroys a previously-live demanded distinction",
+            "new_constraint": repr(new_constraint),
+            "collapsed_evolvability_demand_edges": [[repr(a), repr(b)] for (a, b) in collapsed],
+        })
+
+    new_primitives = set(extended.declared_primitives()) - set(candidate.declared_primitives())
+    if new_primitives:
+        return _result("evolvability_gate", candidate, Verdict.FAIL, {
+            "reason": "evolve() smuggled in a new declared primitive not present before -- ad hoc primitive",
+            "new_primitives": sorted(new_primitives),
+        })
+
+    return _result("evolvability_gate", candidate, Verdict.PASS, {
+        "new_constraint": repr(new_constraint), "D_size": len(D), "collapsed": 0,
+    })
+
+
+# ===========================================================================
+# extension_gate -- DEMAND GENERATOR (whole-nest). Does the declared
+# nest_interface recompute_digest match a fresh recompute of the induced
+# partition?
+# ===========================================================================
+def extension_gate(
+    candidate: CandidatePackage,
+    X: Sequence[State],
+    D: Sequence[tuple[State, State]],
+) -> GateResult:
+    try:
+        ni = candidate.nest_interface()
+    except Exception as e:
+        return _result("extension_gate", candidate, Verdict.FAIL,
+                        {"stage": "nest_interface()", "error": repr(e)})
+
+    if ni.inner is None and ni.outer is None and not ni.neighbors:
+        return _result("extension_gate", candidate, Verdict.HOLD, {
+            "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable",
+        })
+
+    declared_digest = ni.inner.get("recompute_digest") if ni.inner is not None else None
+    if declared_digest is None:
+        return _result("extension_gate", candidate, Verdict.HOLD, {
+            "reason": "nest interface declared but no recompute_digest present to check",
+        })
+
+    try:
+        pi_fresh = induced_partition(candidate, X)
+    except Exception as e:
+        return _result("extension_gate", candidate, Verdict.FAIL,
+                        {"stage": "induced_partition(fresh)", "error": repr(e)})
+    fresh_digest = partition_digest(pi_fresh)
+
+    if declared_digest != fresh_digest:
+        return _result("extension_gate", candidate, Verdict.FAIL, {
+            "reason": (
+                "declared inner/nest recompute digest does not match a fresh recompute -- "
+                "local result does NOT survive whole-nest recompute"
+            ),
+            "declared_digest": declared_digest, "fresh_digest": fresh_digest,
+        })
+
+    return _result("extension_gate", candidate, Verdict.PASS, {
+        "reason": "declared nest recompute digest matches a fresh recompute of the induced partition",
+        "digest": fresh_digest,
+    })
+
+
+# ===========================================================================
+# adequacy -- combines all six into one verdict.
+# adequacy = Distinguish(IDENTITY_GATE) AND Persist(persistence_gate) AND
+#            Evolve(evolvability_gate) AND Compose(buildability_gate) AND
+#            Extend(extension_gate) AND PassControls(probe_validity_gate)
+# ===========================================================================
+def adequacy(
+    candidate: CandidatePackage,
+    X: Sequence[State],
+    D: Sequence[tuple[State, State]],
+    *,
+    probe_D: Optional[Sequence[Any]] = None,
+    positive_controls: Optional[Sequence[Any]] = None,
+    perturbation: Any = "default_probe_perturbation",
+    delay: int = 1,
+    partial_access: Any = None,
+    relabeled: bool = False,
+    new_constraint: Any = "probe_generic_extension",
+) -> GateResult:
+    compose = buildability_gate(candidate)
+    pass_controls = probe_validity_gate(candidate, D=probe_D, positive_controls=positive_controls)
+    distinguish = IDENTITY_GATE(candidate, X)
+    persist = persistence_gate(candidate, X, D, perturbation=perturbation, delay=delay,
+                                partial_access=partial_access, relabeled=relabeled)
+    evolve = evolvability_gate(candidate, X, D, new_constraint=new_constraint)
+    extend = extension_gate(candidate, X, D)
+
+    terms = {
+        "Compose": compose, "PassControls": pass_controls, "Distinguish": distinguish,
+        "Persist": persist, "Evolve": evolve, "Extend": extend,
+    }
+    verdicts = {k: v.verdict for k, v in terms.items()}
+
+    if all(v == Verdict.PASS for v in verdicts.values()):
+        overall = Verdict.PASS
+    elif any(v == Verdict.FAIL for v in verdicts.values()):
+        overall = Verdict.FAIL
+    elif any(v == Verdict.HOLD for v in verdicts.values()):
+        overall = Verdict.HOLD
+    else:
+        overall = Verdict.UNRESOLVED
+
+    return _result("adequacy", candidate, overall, {
+        "terms": {k: v.to_json() for k, v in terms.items()},
+        "verdicts": {k: v.value for k, v in verdicts.items()},
+    })

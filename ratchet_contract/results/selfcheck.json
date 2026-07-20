@@ -1,0 +1,1798 @@
+{
+  "schema_version": "ratchet-contract-selfcheck/0.1",
+  "ceiling": "infrastructure_selfcheck_on_toy_candidates; promotion_allowed=false",
+  "X_BASE": [
+    [
+      0,
+      "red"
+    ],
+    [
+      1,
+      "blue"
+    ],
+    [
+      2,
+      "red"
+    ],
+    [
+      3,
+      "green"
+    ],
+    [
+      4,
+      "yellow"
+    ]
+  ],
+  "D_BASE": [
+    [
+      [
+        0,
+        "red"
+      ],
+      [
+        1,
+        "blue"
+      ]
+    ]
+  ],
+  "discrimination_matrix": {
+    "toy_raw_label": {
+      "buildability_gate": {
+        "gate": "buildability_gate",
+        "candidate": "toy_raw_label",
+        "verdict": "PASS",
+        "reasons": {
+          "state_count": 5,
+          "probe_count": 1,
+          "allowed_op_count": 1
+        }
+      },
+      "probe_validity_gate__own_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_raw_label",
+        "verdict": "PASS",
+        "reasons": {
+          "D": [
+            "'read_value'"
+          ],
+          "separated_controls": [
+            "red_vs_blue"
+          ]
+        }
+      },
+      "probe_validity_gate__thin_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_raw_label",
+        "verdict": "HOLD",
+        "reasons": {
+          "reason": "probe family has not demonstrated discrimination power",
+          "unseparated_positive_controls": [
+            {
+              "control": "red_vs_blue",
+              "state_a": "(0, 'red')",
+              "state_b": "(1, 'blue')",
+              "D": [
+                "'constant_probe'"
+              ]
+            }
+          ]
+        }
+      },
+      "IDENTITY_GATE": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "toy_raw_label",
+        "verdict": "FAIL",
+        "reasons": {
+          "declared_primitives": [
+            "identity"
+          ],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pi_probes_cells": 4,
+          "pi_reidentify_cells": 5,
+          "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+        }
+      },
+      "persistence_gate__base_D": {
+        "gate": "persistence_gate",
+        "candidate": "toy_raw_label",
+        "verdict": "PASS",
+        "reasons": {
+          "perturbation": "'default_probe_perturbation'",
+          "delay": 1,
+          "D_persistence_size": 1,
+          "collapsed": 0
+        }
+      },
+      "evolvability_gate__base_D": {
+        "gate": "evolvability_gate",
+        "candidate": "toy_raw_label",
+        "verdict": "PASS",
+        "reasons": {
+          "new_constraint": "'probe_generic_extension'",
+          "D_size": 1,
+          "collapsed": 0
+        }
+      },
+      "extension_gate__base_D": {
+        "gate": "extension_gate",
+        "candidate": "toy_raw_label",
+        "verdict": "HOLD",
+        "reasons": {
+          "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+        }
+      },
+      "adequacy": {
+        "gate": "adequacy",
+        "candidate": "toy_raw_label",
+        "verdict": "FAIL",
+        "reasons": {
+          "terms": {
+            "Compose": {
+              "gate": "buildability_gate",
+              "candidate": "toy_raw_label",
+              "verdict": "PASS",
+              "reasons": {
+                "state_count": 5,
+                "probe_count": 1,
+                "allowed_op_count": 1
+              }
+            },
+            "PassControls": {
+              "gate": "probe_validity_gate",
+              "candidate": "toy_raw_label",
+              "verdict": "PASS",
+              "reasons": {
+                "D": [
+                  "'read_value'"
+                ],
+                "separated_controls": [
+                  "red_vs_blue"
+                ]
+              }
+            },
+            "Distinguish": {
+              "gate": "IDENTITY_GATE",
+              "candidate": "toy_raw_label",
+              "verdict": "FAIL",
+              "reasons": {
+                "declared_primitives": [
+                  "identity"
+                ],
+                "pi_probes": [
+                  0,
+                  1,
+                  0,
+                  2,
+                  3
+                ],
+                "pi_reidentify": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "pi_probes_cells": 4,
+                "pi_reidentify_cells": 5,
+                "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+              }
+            },
+            "Persist": {
+              "gate": "persistence_gate",
+              "candidate": "toy_raw_label",
+              "verdict": "PASS",
+              "reasons": {
+                "perturbation": "'default_probe_perturbation'",
+                "delay": 1,
+                "D_persistence_size": 1,
+                "collapsed": 0
+              }
+            },
+            "Evolve": {
+              "gate": "evolvability_gate",
+              "candidate": "toy_raw_label",
+              "verdict": "PASS",
+              "reasons": {
+                "new_constraint": "'probe_generic_extension'",
+                "D_size": 1,
+                "collapsed": 0
+              }
+            },
+            "Extend": {
+              "gate": "extension_gate",
+              "candidate": "toy_raw_label",
+              "verdict": "HOLD",
+              "reasons": {
+                "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+              }
+            }
+          },
+          "verdicts": {
+            "Compose": "PASS",
+            "PassControls": "PASS",
+            "Distinguish": "FAIL",
+            "Persist": "PASS",
+            "Evolve": "PASS",
+            "Extend": "HOLD"
+          }
+        }
+      }
+    },
+    "toy_quotient_respecting": {
+      "buildability_gate": {
+        "gate": "buildability_gate",
+        "candidate": "toy_quotient_respecting",
+        "verdict": "PASS",
+        "reasons": {
+          "state_count": 5,
+          "probe_count": 1,
+          "allowed_op_count": 1
+        }
+      },
+      "probe_validity_gate__own_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_quotient_respecting",
+        "verdict": "PASS",
+        "reasons": {
+          "D": [
+            "'read_value'"
+          ],
+          "separated_controls": [
+            "red_vs_blue"
+          ]
+        }
+      },
+      "probe_validity_gate__thin_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_quotient_respecting",
+        "verdict": "HOLD",
+        "reasons": {
+          "reason": "probe family has not demonstrated discrimination power",
+          "unseparated_positive_controls": [
+            {
+              "control": "red_vs_blue",
+              "state_a": "(0, 'red')",
+              "state_b": "(1, 'blue')",
+              "D": [
+                "'constant_probe'"
+              ]
+            }
+          ]
+        }
+      },
+      "IDENTITY_GATE": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "toy_quotient_respecting",
+        "verdict": "PASS",
+        "reasons": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_probes_cells": 4,
+          "pi_reidentify_cells": 4,
+          "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+        }
+      },
+      "persistence_gate__base_D": {
+        "gate": "persistence_gate",
+        "candidate": "toy_quotient_respecting",
+        "verdict": "PASS",
+        "reasons": {
+          "perturbation": "'default_probe_perturbation'",
+          "delay": 1,
+          "D_persistence_size": 1,
+          "collapsed": 0
+        }
+      },
+      "evolvability_gate__base_D": {
+        "gate": "evolvability_gate",
+        "candidate": "toy_quotient_respecting",
+        "verdict": "PASS",
+        "reasons": {
+          "new_constraint": "'probe_generic_extension'",
+          "D_size": 1,
+          "collapsed": 0
+        }
+      },
+      "extension_gate__base_D": {
+        "gate": "extension_gate",
+        "candidate": "toy_quotient_respecting",
+        "verdict": "PASS",
+        "reasons": {
+          "reason": "declared nest recompute digest matches a fresh recompute of the induced partition",
+          "digest": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21"
+        }
+      },
+      "adequacy": {
+        "gate": "adequacy",
+        "candidate": "toy_quotient_respecting",
+        "verdict": "PASS",
+        "reasons": {
+          "terms": {
+            "Compose": {
+              "gate": "buildability_gate",
+              "candidate": "toy_quotient_respecting",
+              "verdict": "PASS",
+              "reasons": {
+                "state_count": 5,
+                "probe_count": 1,
+                "allowed_op_count": 1
+              }
+            },
+            "PassControls": {
+              "gate": "probe_validity_gate",
+              "candidate": "toy_quotient_respecting",
+              "verdict": "PASS",
+              "reasons": {
+                "D": [
+                  "'read_value'"
+                ],
+                "separated_controls": [
+                  "red_vs_blue"
+                ]
+              }
+            },
+            "Distinguish": {
+              "gate": "IDENTITY_GATE",
+              "candidate": "toy_quotient_respecting",
+              "verdict": "PASS",
+              "reasons": {
+                "declared_primitives": [],
+                "pi_probes": [
+                  0,
+                  1,
+                  0,
+                  2,
+                  3
+                ],
+                "pi_reidentify": [
+                  0,
+                  1,
+                  0,
+                  2,
+                  3
+                ],
+                "pi_probes_cells": 4,
+                "pi_reidentify_cells": 4,
+                "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+              }
+            },
+            "Persist": {
+              "gate": "persistence_gate",
+              "candidate": "toy_quotient_respecting",
+              "verdict": "PASS",
+              "reasons": {
+                "perturbation": "'default_probe_perturbation'",
+                "delay": 1,
+                "D_persistence_size": 1,
+                "collapsed": 0
+              }
+            },
+            "Evolve": {
+              "gate": "evolvability_gate",
+              "candidate": "toy_quotient_respecting",
+              "verdict": "PASS",
+              "reasons": {
+                "new_constraint": "'probe_generic_extension'",
+                "D_size": 1,
+                "collapsed": 0
+              }
+            },
+            "Extend": {
+              "gate": "extension_gate",
+              "candidate": "toy_quotient_respecting",
+              "verdict": "PASS",
+              "reasons": {
+                "reason": "declared nest recompute digest matches a fresh recompute of the induced partition",
+                "digest": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21"
+              }
+            }
+          },
+          "verdicts": {
+            "Compose": "PASS",
+            "PassControls": "PASS",
+            "Distinguish": "PASS",
+            "Persist": "PASS",
+            "Evolve": "PASS",
+            "Extend": "PASS"
+          }
+        }
+      }
+    },
+    "toy_frozen": {
+      "buildability_gate": {
+        "gate": "buildability_gate",
+        "candidate": "toy_frozen",
+        "verdict": "PASS",
+        "reasons": {
+          "state_count": 5,
+          "probe_count": 1,
+          "allowed_op_count": 1
+        }
+      },
+      "probe_validity_gate__own_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_frozen",
+        "verdict": "PASS",
+        "reasons": {
+          "D": [
+            "'read_category'"
+          ],
+          "separated_controls": [
+            "green_vs_yellow"
+          ]
+        }
+      },
+      "probe_validity_gate__thin_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_frozen",
+        "verdict": "HOLD",
+        "reasons": {
+          "reason": "probe family has not demonstrated discrimination power",
+          "unseparated_positive_controls": [
+            {
+              "control": "green_vs_yellow",
+              "state_a": "(3, 'green')",
+              "state_b": "(4, 'yellow')",
+              "D": [
+                "'constant_probe'"
+              ]
+            }
+          ]
+        }
+      },
+      "IDENTITY_GATE": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "toy_frozen",
+        "verdict": "PASS",
+        "reasons": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "pi_probes_cells": 2,
+          "pi_reidentify_cells": 2,
+          "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+        }
+      },
+      "persistence_gate__base_D": {
+        "gate": "persistence_gate",
+        "candidate": "toy_frozen",
+        "verdict": "PASS",
+        "reasons": {
+          "perturbation": "'default_probe_perturbation'",
+          "delay": 1,
+          "D_persistence_size": 1,
+          "collapsed": 0
+        }
+      },
+      "evolvability_gate__base_D": {
+        "gate": "evolvability_gate",
+        "candidate": "toy_frozen",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "evolve() returned None -- no admissible extension for the new constraint; every demanded distinction is treated as failed under this layer",
+          "new_constraint": "'probe_generic_extension'",
+          "D_size": 1
+        }
+      },
+      "extension_gate__base_D": {
+        "gate": "extension_gate",
+        "candidate": "toy_frozen",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "declared inner/nest recompute digest does not match a fresh recompute -- local result does NOT survive whole-nest recompute",
+          "declared_digest": "stale-digest-0000-recorded-once",
+          "fresh_digest": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81"
+        }
+      },
+      "adequacy": {
+        "gate": "adequacy",
+        "candidate": "toy_frozen",
+        "verdict": "FAIL",
+        "reasons": {
+          "terms": {
+            "Compose": {
+              "gate": "buildability_gate",
+              "candidate": "toy_frozen",
+              "verdict": "PASS",
+              "reasons": {
+                "state_count": 5,
+                "probe_count": 1,
+                "allowed_op_count": 1
+              }
+            },
+            "PassControls": {
+              "gate": "probe_validity_gate",
+              "candidate": "toy_frozen",
+              "verdict": "PASS",
+              "reasons": {
+                "D": [
+                  "'read_category'"
+                ],
+                "separated_controls": [
+                  "green_vs_yellow"
+                ]
+              }
+            },
+            "Distinguish": {
+              "gate": "IDENTITY_GATE",
+              "candidate": "toy_frozen",
+              "verdict": "PASS",
+              "reasons": {
+                "declared_primitives": [],
+                "pi_probes": [
+                  0,
+                  1,
+                  0,
+                  1,
+                  0
+                ],
+                "pi_reidentify": [
+                  0,
+                  1,
+                  0,
+                  1,
+                  0
+                ],
+                "pi_probes_cells": 2,
+                "pi_reidentify_cells": 2,
+                "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+              }
+            },
+            "Persist": {
+              "gate": "persistence_gate",
+              "candidate": "toy_frozen",
+              "verdict": "PASS",
+              "reasons": {
+                "perturbation": "'default_probe_perturbation'",
+                "delay": 1,
+                "D_persistence_size": 1,
+                "collapsed": 0
+              }
+            },
+            "Evolve": {
+              "gate": "evolvability_gate",
+              "candidate": "toy_frozen",
+              "verdict": "FAIL",
+              "reasons": {
+                "reason": "evolve() returned None -- no admissible extension for the new constraint; every demanded distinction is treated as failed under this layer",
+                "new_constraint": "'probe_generic_extension'",
+                "D_size": 1
+              }
+            },
+            "Extend": {
+              "gate": "extension_gate",
+              "candidate": "toy_frozen",
+              "verdict": "FAIL",
+              "reasons": {
+                "reason": "declared inner/nest recompute digest does not match a fresh recompute -- local result does NOT survive whole-nest recompute",
+                "declared_digest": "stale-digest-0000-recorded-once",
+                "fresh_digest": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81"
+              }
+            }
+          },
+          "verdicts": {
+            "Compose": "PASS",
+            "PassControls": "PASS",
+            "Distinguish": "PASS",
+            "Persist": "PASS",
+            "Evolve": "FAIL",
+            "Extend": "FAIL"
+          }
+        }
+      }
+    },
+    "toy_amnesiac": {
+      "buildability_gate": {
+        "gate": "buildability_gate",
+        "candidate": "toy_amnesiac",
+        "verdict": "PASS",
+        "reasons": {
+          "state_count": 5,
+          "probe_count": 1,
+          "allowed_op_count": 1
+        }
+      },
+      "probe_validity_gate__own_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_amnesiac",
+        "verdict": "PASS",
+        "reasons": {
+          "D": [
+            "'read_value'"
+          ],
+          "separated_controls": [
+            "red_vs_blue"
+          ]
+        }
+      },
+      "probe_validity_gate__thin_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_amnesiac",
+        "verdict": "HOLD",
+        "reasons": {
+          "reason": "probe family has not demonstrated discrimination power",
+          "unseparated_positive_controls": [
+            {
+              "control": "red_vs_blue",
+              "state_a": "(0, 'red')",
+              "state_b": "(1, 'blue')",
+              "D": [
+                "'constant_probe'"
+              ]
+            }
+          ]
+        }
+      },
+      "IDENTITY_GATE": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "toy_amnesiac",
+        "verdict": "PASS",
+        "reasons": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_probes_cells": 4,
+          "pi_reidentify_cells": 4,
+          "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+        }
+      },
+      "persistence_gate__base_D": {
+        "gate": "persistence_gate",
+        "candidate": "toy_amnesiac",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+          "perturbation": "'default_probe_perturbation'",
+          "delay": 1,
+          "partial_access": "None",
+          "relabeled": false,
+          "collapsed_persistence_demand_edges": [
+            [
+              "(0, 'forgotten')",
+              "(1, 'forgotten')"
+            ]
+          ],
+          "D_persistence_size": 1
+        }
+      },
+      "evolvability_gate__base_D": {
+        "gate": "evolvability_gate",
+        "candidate": "toy_amnesiac",
+        "verdict": "PASS",
+        "reasons": {
+          "new_constraint": "'probe_generic_extension'",
+          "D_size": 1,
+          "collapsed": 0
+        }
+      },
+      "extension_gate__base_D": {
+        "gate": "extension_gate",
+        "candidate": "toy_amnesiac",
+        "verdict": "HOLD",
+        "reasons": {
+          "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+        }
+      },
+      "adequacy": {
+        "gate": "adequacy",
+        "candidate": "toy_amnesiac",
+        "verdict": "FAIL",
+        "reasons": {
+          "terms": {
+            "Compose": {
+              "gate": "buildability_gate",
+              "candidate": "toy_amnesiac",
+              "verdict": "PASS",
+              "reasons": {
+                "state_count": 5,
+                "probe_count": 1,
+                "allowed_op_count": 1
+              }
+            },
+            "PassControls": {
+              "gate": "probe_validity_gate",
+              "candidate": "toy_amnesiac",
+              "verdict": "PASS",
+              "reasons": {
+                "D": [
+                  "'read_value'"
+                ],
+                "separated_controls": [
+                  "red_vs_blue"
+                ]
+              }
+            },
+            "Distinguish": {
+              "gate": "IDENTITY_GATE",
+              "candidate": "toy_amnesiac",
+              "verdict": "PASS",
+              "reasons": {
+                "declared_primitives": [],
+                "pi_probes": [
+                  0,
+                  1,
+                  0,
+                  2,
+                  3
+                ],
+                "pi_reidentify": [
+                  0,
+                  1,
+                  0,
+                  2,
+                  3
+                ],
+                "pi_probes_cells": 4,
+                "pi_reidentify_cells": 4,
+                "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+              }
+            },
+            "Persist": {
+              "gate": "persistence_gate",
+              "candidate": "toy_amnesiac",
+              "verdict": "FAIL",
+              "reasons": {
+                "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+                "perturbation": "'default_probe_perturbation'",
+                "delay": 1,
+                "partial_access": "None",
+                "relabeled": false,
+                "collapsed_persistence_demand_edges": [
+                  [
+                    "(0, 'forgotten')",
+                    "(1, 'forgotten')"
+                  ]
+                ],
+                "D_persistence_size": 1
+              }
+            },
+            "Evolve": {
+              "gate": "evolvability_gate",
+              "candidate": "toy_amnesiac",
+              "verdict": "PASS",
+              "reasons": {
+                "new_constraint": "'probe_generic_extension'",
+                "D_size": 1,
+                "collapsed": 0
+              }
+            },
+            "Extend": {
+              "gate": "extension_gate",
+              "candidate": "toy_amnesiac",
+              "verdict": "HOLD",
+              "reasons": {
+                "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+              }
+            }
+          },
+          "verdicts": {
+            "Compose": "PASS",
+            "PassControls": "PASS",
+            "Distinguish": "PASS",
+            "Persist": "FAIL",
+            "Evolve": "PASS",
+            "Extend": "HOLD"
+          }
+        }
+      }
+    }
+  },
+  "buildability_gate_vacuity_fixture": {
+    "fixture_name": "_broken_buildability_fixture(non_roster_vacuity_check_only)",
+    "result": {
+      "gate": "buildability_gate",
+      "candidate": "_broken_buildability_fixture(non_roster_vacuity_check_only)",
+      "verdict": "FAIL",
+      "reasons": {
+        "stage": "apply(probe,state)",
+        "errors": [
+          {
+            "probe": "'probe'",
+            "state": "0",
+            "error": "RuntimeError('this candidate cannot run its own probes -- buildability_gate must FAIL it')"
+          },
+          {
+            "probe": "'probe'",
+            "state": "1",
+            "error": "RuntimeError('this candidate cannot run its own probes -- buildability_gate must FAIL it')"
+          }
+        ]
+      }
+    }
+  },
+  "vacuity_report": {
+    "buildability_gate": {
+      "verdicts": {
+        "toy_raw_label": "PASS",
+        "toy_quotient_respecting": "PASS",
+        "toy_frozen": "PASS",
+        "toy_amnesiac": "PASS",
+        "_broken_buildability_fixture(non_roster_vacuity_check_only)": "FAIL"
+      },
+      "distinct_verdicts": [
+        "FAIL",
+        "PASS"
+      ],
+      "pass": true,
+      "note": "the 4 roster toys are all well-formed and PASS; FAIL is demonstrated via a separate non-roster broken fixture (apply() always raises), never by breaking a toy that another gate depends on for a clean single-axis failure"
+    },
+    "probe_validity_gate": {
+      "own_D_verdicts": {
+        "toy_raw_label": "PASS",
+        "toy_quotient_respecting": "PASS",
+        "toy_frozen": "PASS",
+        "toy_amnesiac": "PASS"
+      },
+      "thin_D_verdicts": {
+        "toy_raw_label": "HOLD",
+        "toy_quotient_respecting": "HOLD",
+        "toy_frozen": "HOLD",
+        "toy_amnesiac": "HOLD"
+      },
+      "distinct_verdicts": [
+        "HOLD",
+        "PASS"
+      ],
+      "pass": true,
+      "note": "own_D (the toy's own adequate probes) demonstrates PASS; thin_D=('constant_probe',) demonstrates HOLD -- 'probe family has not demonstrated discrimination power'"
+    },
+    "IDENTITY_GATE": {
+      "verdicts": {
+        "toy_raw_label": "FAIL",
+        "toy_quotient_respecting": "PASS",
+        "toy_frozen": "PASS",
+        "toy_amnesiac": "PASS"
+      },
+      "distinct_verdicts": [
+        "FAIL",
+        "PASS"
+      ],
+      "pass": true
+    },
+    "persistence_gate": {
+      "verdicts": {
+        "toy_raw_label": "PASS",
+        "toy_quotient_respecting": "PASS",
+        "toy_frozen": "PASS",
+        "toy_amnesiac": "FAIL"
+      },
+      "distinct_verdicts": [
+        "FAIL",
+        "PASS"
+      ],
+      "pass": true
+    },
+    "evolvability_gate": {
+      "verdicts": {
+        "toy_raw_label": "PASS",
+        "toy_quotient_respecting": "PASS",
+        "toy_frozen": "FAIL",
+        "toy_amnesiac": "PASS"
+      },
+      "distinct_verdicts": [
+        "FAIL",
+        "PASS"
+      ],
+      "pass": true
+    },
+    "extension_gate": {
+      "verdicts": {
+        "toy_raw_label": "HOLD",
+        "toy_quotient_respecting": "PASS",
+        "toy_frozen": "FAIL",
+        "toy_amnesiac": "HOLD"
+      },
+      "distinct_verdicts": [
+        "FAIL",
+        "HOLD",
+        "PASS"
+      ],
+      "pass": true
+    },
+    "adequacy": {
+      "verdicts": {
+        "toy_raw_label": "FAIL",
+        "toy_quotient_respecting": "PASS",
+        "toy_frozen": "FAIL",
+        "toy_amnesiac": "FAIL"
+      },
+      "distinct_verdicts": [
+        "FAIL",
+        "PASS"
+      ],
+      "pass": true
+    }
+  },
+  "pairwise_mss_base": {
+    "toy_raw_label__vs__toy_quotient_respecting": {
+      "candidate_a": "toy_raw_label",
+      "candidate_b": "toy_quotient_respecting",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_raw_label",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [
+              "identity"
+            ],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 5,
+            "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_quotient_respecting",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 4,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        }
+      }
+    },
+    "toy_raw_label__vs__toy_frozen": {
+      "candidate_a": "toy_raw_label",
+      "candidate_b": "toy_frozen",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_raw_label",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [
+              "identity"
+            ],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 5,
+            "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_frozen",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "pi_probes_cells": 2,
+            "pi_reidentify_cells": 2,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        }
+      }
+    },
+    "toy_raw_label__vs__toy_amnesiac": {
+      "candidate_a": "toy_raw_label",
+      "candidate_b": "toy_amnesiac",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_raw_label",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [
+              "identity"
+            ],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 5,
+            "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_amnesiac",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 4,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        }
+      }
+    },
+    "toy_quotient_respecting__vs__toy_frozen": {
+      "candidate_a": "toy_quotient_respecting",
+      "candidate_b": "toy_frozen",
+      "verdict": "B_WEAKER",
+      "reasons": {
+        "stage": "coarseness",
+        "pi_A": [
+          0,
+          1,
+          0,
+          2,
+          3
+        ],
+        "pi_B": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "cells_A": 4,
+        "cells_B": 2,
+        "partition_digest_A": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+        "partition_digest_B": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81",
+        "reason": "B's partition is a strict coarsening of A's -- B preserves every demanded distinction A preserves using fewer distinctions overall (more MSS)"
+      }
+    },
+    "toy_quotient_respecting__vs__toy_amnesiac": {
+      "candidate_a": "toy_quotient_respecting",
+      "candidate_b": "toy_amnesiac",
+      "verdict": "INCOMPARABLE",
+      "reasons": {
+        "stage": "coarseness",
+        "pi_A": [
+          0,
+          1,
+          0,
+          2,
+          3
+        ],
+        "pi_B": [
+          0,
+          1,
+          0,
+          2,
+          3
+        ],
+        "cells_A": 4,
+        "cells_B": 4,
+        "partition_digest_A": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+        "partition_digest_B": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+        "reason": "identical induced partitions over the base surface -- re-mergeable, no strict order"
+      }
+    },
+    "toy_frozen__vs__toy_amnesiac": {
+      "candidate_a": "toy_frozen",
+      "candidate_b": "toy_amnesiac",
+      "verdict": "A_WEAKER",
+      "reasons": {
+        "stage": "coarseness",
+        "pi_A": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "pi_B": [
+          0,
+          1,
+          0,
+          2,
+          3
+        ],
+        "cells_A": 2,
+        "cells_B": 4,
+        "partition_digest_A": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81",
+        "partition_digest_B": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+        "reason": "A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)"
+      }
+    }
+  },
+  "pairwise_mss_thickened": {
+    "toy_raw_label__vs__toy_quotient_respecting": {
+      "candidate_a": "toy_raw_label",
+      "candidate_b": "toy_quotient_respecting",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_raw_label",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [
+              "identity"
+            ],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 5,
+            "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_quotient_respecting",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 4,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        }
+      }
+    },
+    "toy_raw_label__vs__toy_frozen": {
+      "candidate_a": "toy_raw_label",
+      "candidate_b": "toy_frozen",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_raw_label",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [
+              "identity"
+            ],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 5,
+            "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_frozen",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "pi_probes_cells": 2,
+            "pi_reidentify_cells": 2,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        }
+      }
+    },
+    "toy_raw_label__vs__toy_amnesiac": {
+      "candidate_a": "toy_raw_label",
+      "candidate_b": "toy_amnesiac",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_raw_label",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [
+              "identity"
+            ],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 5,
+            "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_amnesiac",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 4,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        }
+      }
+    },
+    "toy_quotient_respecting__vs__toy_frozen": {
+      "candidate_a": "toy_quotient_respecting",
+      "candidate_b": "toy_frozen",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "demand_thickened_survivorship",
+        "reason": "does not survive the demand-thickened comparison",
+        "failures_A": [],
+        "failures_B": [
+          {
+            "layer": "evolvability_demand",
+            "verdict": "FAIL",
+            "detail": {
+              "reason": "evolve() returned None -- no admissible extension for the new constraint; every demanded distinction is treated as failed under this layer",
+              "new_constraint": "'probe_generic_extension'",
+              "D_size": 1
+            }
+          },
+          {
+            "layer": "wholenest_demand",
+            "verdict": "FAIL",
+            "detail": {
+              "reason": "declared inner/nest recompute digest does not match a fresh recompute -- local result does NOT survive whole-nest recompute",
+              "declared_digest": "stale-digest-0000-recorded-once",
+              "fresh_digest": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81"
+            }
+          }
+        ]
+      }
+    },
+    "toy_quotient_respecting__vs__toy_amnesiac": {
+      "candidate_a": "toy_quotient_respecting",
+      "candidate_b": "toy_amnesiac",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "demand_thickened_survivorship",
+        "reason": "does not survive the demand-thickened comparison",
+        "failures_A": [],
+        "failures_B": [
+          {
+            "layer": "persistence_demand",
+            "verdict": "FAIL",
+            "detail": {
+              "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+              "perturbation": "'default_probe_perturbation'",
+              "delay": 1,
+              "partial_access": "None",
+              "relabeled": false,
+              "collapsed_persistence_demand_edges": [
+                [
+                  "(0, 'forgotten')",
+                  "(1, 'forgotten')"
+                ]
+              ],
+              "D_persistence_size": 1
+            }
+          }
+        ]
+      }
+    },
+    "toy_frozen__vs__toy_amnesiac": {
+      "candidate_a": "toy_frozen",
+      "candidate_b": "toy_amnesiac",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "demand_thickened_survivorship",
+        "reason": "does not survive the demand-thickened comparison",
+        "failures_A": [
+          {
+            "layer": "evolvability_demand",
+            "verdict": "FAIL",
+            "detail": {
+              "reason": "evolve() returned None -- no admissible extension for the new constraint; every demanded distinction is treated as failed under this layer",
+              "new_constraint": "'probe_generic_extension'",
+              "D_size": 1
+            }
+          },
+          {
+            "layer": "wholenest_demand",
+            "verdict": "FAIL",
+            "detail": {
+              "reason": "declared inner/nest recompute digest does not match a fresh recompute -- local result does NOT survive whole-nest recompute",
+              "declared_digest": "stale-digest-0000-recorded-once",
+              "fresh_digest": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81"
+            }
+          }
+        ],
+        "failures_B": [
+          {
+            "layer": "persistence_demand",
+            "verdict": "FAIL",
+            "detail": {
+              "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+              "perturbation": "'default_probe_perturbation'",
+              "delay": 1,
+              "partial_access": "None",
+              "relabeled": false,
+              "collapsed_persistence_demand_edges": [
+                [
+                  "(0, 'forgotten')",
+                  "(1, 'forgotten')"
+                ]
+              ],
+              "D_persistence_size": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "frontier_base": {
+    "purgatory": [
+      {
+        "candidate": "toy_raw_label",
+        "failed_at": "eligibility_identity_honesty",
+        "reason": {
+          "declared_primitives": [
+            "identity"
+          ],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pi_probes_cells": 4,
+          "pi_reidentify_cells": 5,
+          "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+        },
+        "re_entry_condition": "reidentify() must agree exactly with the probe-induced partition over X (no distinction reidentify makes that no probe exposes)"
+      }
+    ],
+    "survivors": [
+      "toy_quotient_respecting",
+      "toy_frozen",
+      "toy_amnesiac"
+    ],
+    "branches": [
+      {
+        "partition_digest": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+        "members": [
+          "toy_amnesiac",
+          "toy_quotient_respecting"
+        ],
+        "cells": 4
+      },
+      {
+        "partition_digest": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81",
+        "members": [
+          "toy_frozen"
+        ],
+        "cells": 2
+      }
+    ],
+    "dominated": [
+      "toy_amnesiac",
+      "toy_quotient_respecting"
+    ],
+    "antichain": [
+      "toy_frozen"
+    ],
+    "pairwise": {
+      "toy_quotient_respecting__vs__toy_frozen": {
+        "candidate_a": "toy_quotient_respecting",
+        "candidate_b": "toy_frozen",
+        "verdict": "B_WEAKER",
+        "reasons": {
+          "stage": "coarseness",
+          "pi_A": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_B": [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "cells_A": 4,
+          "cells_B": 2,
+          "partition_digest_A": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+          "partition_digest_B": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81",
+          "reason": "B's partition is a strict coarsening of A's -- B preserves every demanded distinction A preserves using fewer distinctions overall (more MSS)"
+        }
+      },
+      "toy_quotient_respecting__vs__toy_amnesiac": {
+        "candidate_a": "toy_quotient_respecting",
+        "candidate_b": "toy_amnesiac",
+        "verdict": "INCOMPARABLE",
+        "reasons": {
+          "stage": "coarseness",
+          "pi_A": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_B": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "cells_A": 4,
+          "cells_B": 4,
+          "partition_digest_A": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+          "partition_digest_B": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+          "reason": "identical induced partitions over the base surface -- re-mergeable, no strict order"
+        }
+      },
+      "toy_frozen__vs__toy_amnesiac": {
+        "candidate_a": "toy_frozen",
+        "candidate_b": "toy_amnesiac",
+        "verdict": "A_WEAKER",
+        "reasons": {
+          "stage": "coarseness",
+          "pi_A": [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "pi_B": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "cells_A": 2,
+          "cells_B": 4,
+          "partition_digest_A": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81",
+          "partition_digest_B": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+          "reason": "A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)"
+        }
+      }
+    }
+  },
+  "frontier_thickened": {
+    "purgatory": [
+      {
+        "candidate": "toy_raw_label",
+        "failed_at": "eligibility_identity_honesty",
+        "reason": {
+          "declared_primitives": [
+            "identity"
+          ],
+          "pi_probes": [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          "pi_reidentify": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pi_probes_cells": 4,
+          "pi_reidentify_cells": 5,
+          "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+        },
+        "re_entry_condition": "reidentify() must agree exactly with the probe-induced partition over X (no distinction reidentify makes that no probe exposes)"
+      },
+      {
+        "candidate": "toy_frozen",
+        "failed_at": "evolvability_demand",
+        "reason": {
+          "reason": "evolve() returned None -- no admissible extension for the new constraint; every demanded distinction is treated as failed under this layer",
+          "new_constraint": "'probe_generic_extension'",
+          "D_size": 1
+        },
+        "re_entry_condition": "evolve() must return a non-None extension whose reidentify-relation still separates every base-demanded pair, without adding a new declared primitive",
+        "all_failed_layers": [
+          "evolvability_demand",
+          "wholenest_demand"
+        ]
+      },
+      {
+        "candidate": "toy_amnesiac",
+        "failed_at": "persistence_demand",
+        "reason": {
+          "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+          "perturbation": "'default_probe_perturbation'",
+          "delay": 1,
+          "partial_access": "None",
+          "relabeled": false,
+          "collapsed_persistence_demand_edges": [
+            [
+              "(0, 'forgotten')",
+              "(1, 'forgotten')"
+            ]
+          ],
+          "D_persistence_size": 1
+        },
+        "re_entry_condition": "persist() must produce continuations whose reidentify-relation still separates every base-demanded pair (no collapse under delay/perturbation/relabeling/partial-access)",
+        "all_failed_layers": [
+          "persistence_demand"
+        ]
+      }
+    ],
+    "survivors": [
+      "toy_quotient_respecting"
+    ],
+    "branches": [
+      {
+        "partition_digest": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+        "members": [
+          "toy_quotient_respecting"
+        ],
+        "cells": 4
+      }
+    ],
+    "dominated": [],
+    "antichain": [
+      "toy_quotient_respecting"
+    ],
+    "pairwise": {}
+  },
+  "headline_pairwise_mss_result": {
+    "candidate_a": "toy_frozen",
+    "candidate_b": "toy_quotient_respecting",
+    "verdict": "A_WEAKER",
+    "reasons": {
+      "stage": "coarseness",
+      "pi_A": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "pi_B": [
+        0,
+        1,
+        0,
+        2,
+        3
+      ],
+      "cells_A": 2,
+      "cells_B": 4,
+      "partition_digest_A": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81",
+      "partition_digest_B": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
+      "reason": "A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)"
+    }
+  },
+  "no_llm_or_network_calls": {
+    "scanned_files": [
+      "contract.py",
+      "gates.py",
+      "mss.py",
+      "toy_candidates.py"
+    ],
+    "suspicious_tokens_checked": [
+      "openai",
+      "anthropic",
+      "requests.",
+      "urllib",
+      "http.client",
+      "socket.",
+      "subprocess",
+      "os.system",
+      "eval(",
+      "exec("
+    ],
+    "hits": {},
+    "clean": true
+  },
+  "confirmations": {
+    "all_gates_non_vacuous": true,
+    "no_llm_or_network_calls_clean": true,
+    "headline_pairwise_mss_is_strict_coarsening": true,
+    "overall_ok": true
+  }
+}

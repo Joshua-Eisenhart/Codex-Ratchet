@@ -7,10 +7,11 @@ semantics are reused.  The oracle is a ceiling reference, not a competitor.
 Important source-level boundary: the unchanged anchor is a 4x4 (two-qubit)
 ``rho_fast`` plus a 1024-hypothesis ``m_slow`` posterior.  That is 1038 live
 real state degrees of freedom, despite the owner prompt's three-qubit
-shorthand.  A standard trainable GRU cannot match both those live DOF and the
-anchor's fitted parameter count without changing the anchor or padding unused
-parameters.  The run therefore executes every requested lane and control but
-fails the literal fairness gate closed.  No result permits promotion.
+shorthand.  Attempt 2 freezes that actual 1038-DOF capacity as the charged
+fitted-parameter budget: every competitor must land within plus or minus ten
+percent of it, with a hard fail-closed gate.  The product lane uses only
+outcome-conditioned CPTP Kraus instruments and asserts physicality after each
+update.  No result permits promotion.
 """
 
 from __future__ import annotations
@@ -47,8 +48,14 @@ SCRAMBLE_SEED = 20261420
 N_BITS = 8
 N_VIEWS = 6
 FEATURE_DOF = 30
-GRU_HIDDEN = 30
+GRU_HIDDEN = 11
 GRU_EPOCHS = 250
+HMM_EPOCHS = 250
+HMM_LEARNING_RATE = 5e-2
+PRODUCT_QUBITS = 10
+ANCHOR_CHARGED_FITTED_PARAMETER_COUNT = 1038
+BUDGET_TOLERANCE_FRACTION = 0.10
+PHYSICALITY_TOLERANCE = 1e-9
 N_BOOTSTRAPS = 5000
 N_PERMUTATIONS = 200
 MI_BINS = 5
@@ -61,7 +68,7 @@ TOOL_MANIFEST = {
     "numpy": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing finite filters, product Bloch states, bootstrap, MI nulls, pair tables, and receipt checks",
+        "reason": "load-bearing finite filters, CPTP product density states, bootstrap, MI nulls, pair tables, and receipt checks",
     },
     "scipy.linalg.expm": {
         "tried": True,
@@ -153,7 +160,9 @@ def required_paths() -> list[Path]:
     ]
 
 
-def preflight(*, require_fresh_outdir: bool) -> dict[str, Any]:
+def preflight(
+    *, require_fresh_outdir: bool, repair_malformed_receipt: bool = False
+) -> dict[str, Any]:
     if SIM_PY.resolve() != Path(sys.executable).resolve():
         raise TournamentError(
             f"wrong interpreter: {sys.executable}; required realpath {SIM_PY.resolve()}"
@@ -163,6 +172,19 @@ def preflight(*, require_fresh_outdir: bool) -> dict[str, Any]:
         raise TournamentError(f"missing required inputs: {missing}")
     if require_fresh_outdir:
         refuse_to_reuse()
+    if repair_malformed_receipt:
+        if not OUTDIR.is_dir() or not RECEIPT_PATH.is_file():
+            raise TournamentError(
+                "malformed-receipt repair requires the exact existing result directory and receipt path"
+            )
+        try:
+            json.loads(RECEIPT_PATH.read_text())
+        except json.JSONDecodeError:
+            pass
+        else:
+            raise TournamentError(
+                "REFUSE-TO-REUSE: repair mode accepts only an invalid partial receipt"
+            )
     memory_percent = memory_free_percent()
     if memory_percent <= MIN_MEMORY_FREE_PERCENT:
         raise TournamentError(
@@ -177,6 +199,7 @@ def preflight(*, require_fresh_outdir: bool) -> dict[str, Any]:
         "minimum_required_percent": MIN_MEMORY_FREE_PERCENT,
         "object_card_validation": card,
         "result_directory_absent": not OUTDIR.exists(),
+        "malformed_receipt_repair": repair_malformed_receipt,
     }
 
 
@@ -356,12 +379,17 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
     def posterior_episode(
         object_id: str,
         *,
-        epsilon_by_position: Any,
+        epsilon_by_view_position: Any | None,
         exact: bool,
+        prior: Any | None = None,
         parameter_permutation: Any | None = None,
     ) -> list[dict[str, Any]]:
         getter = log_getter(object_id)
-        posterior = np.full(len(hypotheses), 1.0 / len(hypotheses), dtype=float)
+        posterior = (
+            np.full(len(hypotheses), 1.0 / len(hypotheses), dtype=float)
+            if prior is None
+            else np.asarray(prior, dtype=float).copy()
+        )
         states = []
         for view in range(N_VIEWS):
             for position in range(N_BITS):
@@ -377,7 +405,11 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
                         if parameter_permutation is not None
                         else position
                     )
-                    epsilon = float(epsilon_by_position[parameter_position])
+                    if epsilon_by_view_position is None:
+                        raise TournamentError("HMM emission parameters are missing")
+                    epsilon = float(
+                        epsilon_by_view_position[view, parameter_position]
+                    )
                     likelihood = np.where(candidate == int(observed), 1.0 - epsilon, epsilon)
                 posterior *= likelihood
                 total = float(posterior.sum())
@@ -397,24 +429,97 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
             )
         return states
 
-    # Lane 2: a finite-state/HMM filter fitted only through eight smoothed
-    # emission-error scalars.  The public transition family is fixed.
-    visible_counts = np.zeros(N_BITS, dtype=float)
-    for object_id in train_objects:
-        getter = log_getter(object_id)
-        for view in range(N_VIEWS):
-            for position in range(N_BITS):
-                visible_counts[position] += getter(view, position) is not None
-    hmm_epsilon = 1.0 / (visible_counts + 2.0)  # Beta(1,1), zero observed errors.
+    # Lane 2: a finite-state/HMM filter with an actually fitted 1036-scalar
+    # capacity: 1023 nonredundant prior logits, eight position emission logits,
+    # and five view emission logits (the sixth view is the fixed reference).
+    # Every scalar enters the
+    # train-object marginal likelihood; no nominal padding is counted.
+    def fit_hmm_parameters() -> tuple[Any, Any, int, list[dict[str, float]], bool]:
+        hypothesis_tensor = torch.tensor(hypotheses, dtype=torch.bool)
+        prior_logits = torch.nn.Parameter(torch.zeros(len(hypotheses) - 1))
+        position_logits = torch.nn.Parameter(torch.zeros(N_BITS))
+        view_logits = torch.nn.Parameter(torch.zeros(N_VIEWS - 1))
+        parameters = [prior_logits, position_logits, view_logits]
+        optimizer = torch.optim.Adam(parameters, lr=HMM_LEARNING_RATE)
+        trace = []
+        for epoch in range(HMM_EPOCHS):
+            optimizer.zero_grad(set_to_none=True)
+            complete_prior_logits = torch.cat(
+                [prior_logits, torch.zeros(1, dtype=prior_logits.dtype)]
+            )
+            complete_view_logits = torch.cat(
+                [view_logits, torch.zeros(1, dtype=view_logits.dtype)]
+            )
+            log_prior = torch.log_softmax(complete_prior_logits, dim=0)
+            negative_log_likelihoods = []
+            for object_id in train_objects:
+                getter = log_getter(object_id)
+                log_posterior = log_prior
+                for view in range(N_VIEWS):
+                    for position in range(N_BITS):
+                        observed = getter(view, position)
+                        if observed is None:
+                            continue
+                        epsilon = 0.01 + 0.24 * torch.sigmoid(
+                            position_logits[position] + complete_view_logits[view]
+                        )
+                        candidate = hypothesis_tensor[:, view, position] == int(observed)
+                        log_posterior = log_posterior + torch.where(
+                            candidate, torch.log1p(-epsilon), torch.log(epsilon)
+                        )
+                negative_log_likelihoods.append(-torch.logsumexp(log_posterior, dim=0))
+            regularizer = 1e-4 * sum(torch.square(parameter).mean() for parameter in parameters)
+            loss = torch.stack(negative_log_likelihoods).mean() + regularizer
+            loss.backward()
+            optimizer.step()
+            if epoch in {0, HMM_EPOCHS - 1}:
+                trace.append({"epoch": float(epoch + 1), "loss": float(loss.detach())})
+        fitted_prior = torch.softmax(
+            torch.cat([prior_logits.detach(), torch.zeros(1)]), dim=0
+        ).cpu().numpy()
+        fitted_epsilon = (
+            0.01
+            + 0.24
+            * torch.sigmoid(
+                position_logits.detach()[None, :]
+                + torch.cat([view_logits.detach(), torch.zeros(1)])[:, None]
+            )
+        ).cpu().numpy()
+        all_parameters_active = bool(
+            all(
+                parameter.grad is not None
+                and bool(torch.isfinite(parameter.grad).all())
+                and bool(torch.any(parameter.grad != 0))
+                for parameter in parameters
+            )
+        )
+        return (
+            fitted_prior,
+            fitted_epsilon,
+            int(sum(parameter.numel() for parameter in parameters)),
+            trace,
+            all_parameters_active,
+        )
+
+    (
+        hmm_prior,
+        hmm_epsilon,
+        hmm_parameter_count,
+        hmm_loss_trace,
+        hmm_all_parameters_active,
+    ) = fit_hmm_parameters()
     oracle_states = {
         object_id: posterior_episode(
-            object_id, epsilon_by_position=hmm_epsilon, exact=True
+            object_id, epsilon_by_view_position=None, exact=True
         )
         for object_id in object_ids
     }
     hmm_states = {
         object_id: posterior_episode(
-            object_id, epsilon_by_position=hmm_epsilon, exact=False
+            object_id,
+            epsilon_by_view_position=hmm_epsilon,
+            exact=False,
+            prior=hmm_prior,
         )
         for object_id in object_ids
     }
@@ -437,7 +542,10 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
         return np.asarray(values + masks + [view / (N_VIEWS - 1)], dtype=np.float32)
 
     # Lane 3: standard Torch GRU, trained for a frozen number of full-batch
-    # epochs.  No test-object validation or early stopping is permitted.
+    # epochs.  H=11 gives 1086 fitted parameters, inside the fixed Attempt 2
+    # capacity interval.  A deterministic non-parameterized feature lift keeps
+    # the common 30-coordinate readout interface.  No test-object validation
+    # or early stopping is permitted.
     class SequentialGRU(nn.Module):
         def __init__(self) -> None:
             super().__init__()
@@ -459,6 +567,9 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
     torch.manual_seed(TORCH_SEED)
     torch.use_deterministic_algorithms(True)
     gru_model = SequentialGRU()
+    gru_initial_parameter_sha256 = sha256_json(
+        [parameter.detach().cpu().numpy().tolist() for parameter in gru_model.parameters()]
+    )
     optimizer = torch.optim.Adam(gru_model.parameters(), lr=1e-2)
     train_inputs = torch.tensor(
         np.stack(
@@ -501,6 +612,17 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
         optimizer.step()
         if epoch in {0, GRU_EPOCHS - 1}:
             loss_trace.append({"epoch": epoch + 1, "loss": float(loss.detach())})
+    gru_final_parameter_sha256 = sha256_json(
+        [parameter.detach().cpu().numpy().tolist() for parameter in gru_model.parameters()]
+    )
+    gru_all_parameters_active = bool(
+        all(
+            parameter.grad is not None
+            and bool(torch.isfinite(parameter.grad).all())
+            and bool(torch.any(parameter.grad != 0))
+            for parameter in gru_model.parameters()
+        )
+    )
 
     def gru_state_map(source_permutation: Any | None = None) -> dict[str, list[dict[str, Any]]]:
         inputs = torch.tensor(
@@ -525,10 +647,16 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
             beliefs = torch.sigmoid(logits)
         hidden_np = hidden.cpu().numpy().astype(float)
         belief_np = beliefs.cpu().numpy().astype(float)
+        hidden_summary = np.concatenate(
+            [hidden_np[:, :, :9], hidden_np.mean(axis=2, keepdims=True)], axis=2
+        )
+        feature_np = np.concatenate(
+            [hidden_summary, np.square(hidden_summary), np.tanh(hidden_summary)], axis=2
+        )
         return {
             object_id: [
                 {
-                    "feature": hidden_np[object_index, view].copy(),
+                    "feature": feature_np[object_index, view].copy(),
                     "belief": belief_np[object_index, view].copy(),
                 }
                 for view in range(N_VIEWS)
@@ -538,77 +666,258 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
 
     gru_states = gru_state_map()
 
-    # Lane 5: ten independent single-qubit density stages.  Their Bloch vectors
-    # provide exactly the common 30-coordinate interface.  Eight stages track
-    # positions; two track global visibility and episode clock.  This is an
-    # explicit product-state diagnostic, not an entangled density.
-    position_means = np.zeros(N_BITS, dtype=float)
-    position_persistence = np.zeros(N_BITS, dtype=float)
-    for position in range(N_BITS):
-        observed_bits = []
-        same = []
-        for object_id in train_objects:
-            getter = log_getter(object_id)
-            previous = None
+    # Lane 5: ten independent single-qubit density stages.  Eight stages retain
+    # position-specific evidence; two retain global public-visibility and clock
+    # context.  Every transition is an outcome-conditioned CPTP Kraus
+    # instrument, never an additive Bloch-vector update.  A 10x6x8 bank of
+    # fitted unsharpness and phase values, plus ten fitted initial z biases,
+    # gives 970 charged fitted product parameters inside the Attempt 2 budget.
+    product_i2 = np.eye(2, dtype=complex)
+    product_sx = np.asarray([[0.0, 1.0], [1.0, 0.0]], dtype=complex)
+    product_sy = np.asarray([[0.0, -1.0j], [1.0j, 0.0]], dtype=complex)
+    product_sz = np.asarray([[1.0, 0.0], [0.0, -1.0]], dtype=complex)
+    product_paulis = (product_sx, product_sy, product_sz)
+
+    def stable_logit(value: float) -> float:
+        clipped = float(np.clip(value, 1e-6, 1.0 - 1e-6))
+        return float(np.log(clipped / (1.0 - clipped)))
+
+    def product_training_outcome(
+        stage: int, position: int, observed: str | None
+    ) -> int | None:
+        if stage < N_BITS and stage == position:
+            return None if observed is None else int(observed)
+        return int(observed is not None)
+
+    def fit_product_instruments() -> tuple[Any, Any, Any, int, dict[str, Any]]:
+        eta_logits = np.empty((PRODUCT_QUBITS, N_VIEWS, N_BITS), dtype=float)
+        phase_angles = np.empty((PRODUCT_QUBITS, N_VIEWS, N_BITS), dtype=float)
+        initial_z_logits = np.empty(PRODUCT_QUBITS, dtype=float)
+        training_counts = np.zeros((PRODUCT_QUBITS, N_VIEWS, N_BITS), dtype=int)
+        for stage in range(PRODUCT_QUBITS):
+            initial_values = []
+            stage_prior = (stage + 1.0) / (PRODUCT_QUBITS + 1.0)
             for view in range(N_VIEWS):
-                observed = getter(view, position)
-                if observed is None:
-                    continue
-                bit = int(observed)
-                observed_bits.append(bit)
-                if previous is not None:
-                    same.append(bit == previous)
-                previous = bit
-        position_means[position] = float(np.mean(observed_bits))
-        position_persistence[position] = float(np.mean(same)) if same else 0.5
-    product_decay = np.clip(0.25 + 0.5 * position_persistence, 0.25, 0.75)
-    product_phase = 2.0 * np.pi * position_means
+                for position in range(N_BITS):
+                    values = []
+                    for object_id in train_objects:
+                        outcome = product_training_outcome(
+                            stage, position, log_getter(object_id)(view, position)
+                        )
+                        if outcome is not None:
+                            values.append(outcome)
+                            if view == 0:
+                                initial_values.append(outcome)
+                    if not values:
+                        raise TournamentError(
+                            f"product parameter {stage}/{view}/{position} has no train observation"
+                        )
+                    training_counts[stage, view, position] = len(values)
+                    posterior_mean = (sum(values) + stage_prior) / (
+                        len(values) + 1.0
+                    )
+                    eta = 0.05 + 0.85 * abs(2.0 * posterior_mean - 1.0)
+                    eta_logits[stage, view, position] = stable_logit(
+                        (eta - 0.02) / 0.94
+                    )
+                    phase_angles[stage, view, position] = np.pi * (
+                        posterior_mean - 0.5
+                    )
+            initial_mean = (sum(initial_values) + stage_prior) / (
+                len(initial_values) + 1.0
+            )
+            initial_z_logits[stage] = stable_logit(initial_mean)
+        parameter_count = int(
+            eta_logits.size + phase_angles.size + initial_z_logits.size
+        )
+        return eta_logits, phase_angles, initial_z_logits, parameter_count, {
+            "fit_data": "train-object visible bits for local stages and train-object public visibility masks for global/context stages",
+            "minimum_train_observations_per_bank_entry": int(training_counts.min()),
+            "maximum_train_observations_per_bank_entry": int(training_counts.max()),
+            "eta_logits": int(eta_logits.size),
+            "phase_angles": int(phase_angles.size),
+            "initial_z_logits": int(initial_z_logits.size),
+        }
+
+    (
+        product_eta_logits,
+        product_phase_angles,
+        product_initial_z_logits,
+        product_parameter_count,
+        product_fit_metadata,
+    ) = fit_product_instruments()
+    product_parameter_usage = np.zeros(
+        (PRODUCT_QUBITS, N_VIEWS, N_BITS), dtype=int
+    )
+
+    def new_product_physicality_ledger() -> dict[str, Any]:
+        return {
+            "updates_checked": 0,
+            "visible_bit_updates": 0,
+            "visibility_mask_updates": 0,
+            "missing_identity_updates": 0,
+            "clock_updates": 0,
+            "zero_or_nonfinite_probability_updates": 0,
+            "maximum_bloch_norm": 0.0,
+            "maximum_trace_deviation": 0.0,
+            "maximum_hermiticity_deviation": 0.0,
+            "minimum_eigenvalue": 1.0,
+            "threshold": PHYSICALITY_TOLERANCE,
+            "pass": True,
+        }
+
+    def product_bloch(density: Any) -> Any:
+        return np.asarray(
+            [float(np.real(np.trace(pauli @ density))) for pauli in product_paulis],
+            dtype=float,
+        )
+
+    def assert_product_update(
+        density: Any,
+        probability: float,
+        ledger: dict[str, Any],
+        *,
+        object_id: str,
+        view: int,
+        stage: int,
+        event: str,
+    ) -> tuple[Any, float]:
+        trace_deviation = float(abs(np.trace(density) - 1.0))
+        hermiticity_deviation = float(np.max(abs(density - density.conj().T)))
+        eigenvalue = float(np.linalg.eigvalsh(0.5 * (density + density.conj().T)).min())
+        bloch = product_bloch(density)
+        norm = float(np.linalg.norm(bloch))
+        ledger["updates_checked"] += 1
+        ledger["maximum_bloch_norm"] = max(ledger["maximum_bloch_norm"], norm)
+        ledger["maximum_trace_deviation"] = max(
+            ledger["maximum_trace_deviation"], trace_deviation
+        )
+        ledger["maximum_hermiticity_deviation"] = max(
+            ledger["maximum_hermiticity_deviation"], hermiticity_deviation
+        )
+        ledger["minimum_eigenvalue"] = min(ledger["minimum_eigenvalue"], eigenvalue)
+        if not np.isfinite(probability) or probability <= 1e-15:
+            ledger["zero_or_nonfinite_probability_updates"] += 1
+        if (
+            not np.isfinite([probability, trace_deviation, hermiticity_deviation, eigenvalue, norm]).all()
+            or probability <= 1e-15
+            or trace_deviation > PHYSICALITY_TOLERANCE
+            or hermiticity_deviation > PHYSICALITY_TOLERANCE
+            or eigenvalue < -PHYSICALITY_TOLERANCE
+            or norm > 1.0 + PHYSICALITY_TOLERANCE
+        ):
+            ledger["pass"] = False
+            raise TournamentError(
+                "nonphysical product CPTP update "
+                f"object={object_id} view={view} stage={stage} event={event} "
+                f"probability={probability} norm={norm}"
+            )
+        return bloch, norm
+
+    def product_measurement_kraus(eta: float, phase: float) -> tuple[Any, Any]:
+        if not 0.0 <= eta < 1.0:
+            raise TournamentError(f"invalid product measurement sharpness {eta}")
+        rotation = (
+            np.cos(phase / 2.0) * product_i2
+            - 1.0j * np.sin(phase / 2.0) * product_sx
+        )
+        k0 = rotation @ np.diag(
+            [np.sqrt((1.0 + eta) / 2.0), np.sqrt((1.0 - eta) / 2.0)]
+        )
+        k1 = rotation @ np.diag(
+            [np.sqrt((1.0 - eta) / 2.0), np.sqrt((1.0 + eta) / 2.0)]
+        )
+        completeness = k0.conj().T @ k0 + k1.conj().T @ k1
+        if not np.allclose(completeness, product_i2, atol=PHYSICALITY_TOLERANCE):
+            raise TournamentError("product measurement Kraus pair is not CPTP")
+        return k0, k1
+
+    def apply_product_measurement(
+        density: Any, eta: float, phase: float, outcome: int
+    ) -> tuple[Any, float]:
+        kraus = product_measurement_kraus(eta, phase)[int(outcome)]
+        unnormalized = kraus @ density @ kraus.conj().T
+        probability = float(np.real(np.trace(unnormalized)))
+        if not np.isfinite(probability) or probability <= 1e-15:
+            raise TournamentError("product measurement outcome has zero/nonfinite probability")
+        return unnormalized / probability, probability
+
+    def product_initial_density(z_logit: float) -> Any:
+        z_value = float(np.tanh(z_logit))
+        return 0.5 * (product_i2 + z_value * product_sz)
 
     def product_episode(
-        object_id: str, *, parameter_permutation: Any | None = None
+        object_id: str,
+        *,
+        physicality_ledger: dict[str, Any],
+        parameter_permutation: Any | None = None,
     ) -> list[dict[str, Any]]:
         getter = log_getter(object_id)
-        bloch = np.zeros((10, 3), dtype=float)
+        densities = np.asarray(
+            [product_initial_density(value) for value in product_initial_z_logits]
+        )
         states = []
         for view in range(N_VIEWS):
-            visible_values = []
-            for position in range(N_BITS):
-                parameter_position = (
-                    int(parameter_permutation[position])
-                    if parameter_permutation is not None
-                    else position
-                )
-                observed = getter(view, position)
-                if observed is None:
-                    bloch[position] *= 0.97
-                    continue
-                bit = int(observed)
-                visible_values.append(bit)
-                amplitude = 0.35
-                target = np.asarray(
-                    [
-                        amplitude * np.cos(product_phase[parameter_position]),
-                        amplitude * np.sin(product_phase[parameter_position]),
-                        (2.0 * bit - 1.0) * np.sqrt(1.0 - amplitude**2),
-                    ]
-                )
-                decay = float(product_decay[parameter_position])
-                bloch[position] = decay * bloch[position] + (1.0 - decay) * target
-            visibility_fraction = len(visible_values) / N_BITS
-            signed_mean = (
-                float(np.mean([2.0 * bit - 1.0 for bit in visible_values]))
-                if visible_values
-                else 0.0
+            for stage in range(PRODUCT_QUBITS):
+                for position in range(N_BITS):
+                    parameter_position = (
+                        int(parameter_permutation[position])
+                        if parameter_permutation is not None
+                        else position
+                    )
+                    observed = getter(view, position)
+                    if stage < N_BITS and stage == position and observed is None:
+                        updated = densities[stage].copy()
+                        probability = 1.0
+                        physicality_ledger["missing_identity_updates"] += 1
+                        event = "missing_position_identity"
+                    else:
+                        outcome = product_training_outcome(stage, position, observed)
+                        if outcome is None:
+                            raise TournamentError("missing product outcome without identity branch")
+                        eta = 0.02 + 0.94 * float(
+                            1.0 / (1.0 + np.exp(-product_eta_logits[stage, view, parameter_position]))
+                        )
+                        phase = float(product_phase_angles[stage, view, parameter_position])
+                        updated, probability = apply_product_measurement(
+                            densities[stage], eta, phase, outcome
+                        )
+                        product_parameter_usage[stage, view, parameter_position] += 1
+                        if stage < N_BITS and stage == position:
+                            physicality_ledger["visible_bit_updates"] += 1
+                            event = "visible_position_bit"
+                        else:
+                            physicality_ledger["visibility_mask_updates"] += 1
+                            event = "public_visibility_mask"
+                    densities[stage] = updated
+                    assert_product_update(
+                        densities[stage],
+                        probability,
+                        physicality_ledger,
+                        object_id=object_id,
+                        view=view,
+                        stage=stage,
+                        event=event,
+                    )
+            # The clock stage has a public, deterministic outcome but still
+            # evolves through an explicit CPTP instrument rather than a direct
+            # Bloch assignment.
+            clock_phase = np.pi * view / (N_VIEWS - 1)
+            densities[9], clock_probability = apply_product_measurement(
+                densities[9], 0.0, clock_phase, view % 2
             )
-            bloch[8] = 0.5 * bloch[8] + 0.5 * np.asarray(
-                [visibility_fraction, signed_mean, 0.0]
+            physicality_ledger["clock_updates"] += 1
+            assert_product_update(
+                densities[9],
+                clock_probability,
+                physicality_ledger,
+                object_id=object_id,
+                view=view,
+                stage=9,
+                event="public_episode_clock",
             )
-            bloch[9] = np.asarray(
-                [view / (N_VIEWS - 1), 0.0, 1.0 - view / (N_VIEWS - 1)]
-            ) / np.sqrt(2.0)
+            bloch = np.asarray([product_bloch(density) for density in densities])
             norms = np.linalg.norm(bloch, axis=1)
-            if float(norms.max()) > 1.0 + 1e-12:
-                raise TournamentError("product lane produced a nonphysical qubit")
             states.append(
                 {
                     "feature": bloch.reshape(-1).copy(),
@@ -618,8 +927,12 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
             )
         return states
 
+    product_main_physicality = new_product_physicality_ledger()
     product_states = {
-        object_id: product_episode(object_id) for object_id in object_ids
+        object_id: product_episode(
+            object_id, physicality_ledger=product_main_physicality
+        )
+        for object_id in object_ids
     }
 
     lane_states = {
@@ -859,12 +1172,14 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
             for object_id in object_ids
         }
     )
+    product_scrambled_physicality = new_product_physicality_ledger()
     scrambled_states = {
         "classical_fst_hmm": {
             object_id: posterior_episode(
                 object_id,
-                epsilon_by_position=hmm_epsilon,
+                epsilon_by_view_position=hmm_epsilon,
                 exact=False,
+                prior=hmm_prior,
                 parameter_permutation=permutation,
             )
             for object_id in object_ids
@@ -873,7 +1188,9 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
         "senses_v2_anchor": scrambled_anchor_states,
         "product_single_qubit_per_stage": {
             object_id: product_episode(
-                object_id, parameter_permutation=permutation
+                object_id,
+                physicality_ledger=product_scrambled_physicality,
+                parameter_permutation=permutation,
             )
             for object_id in object_ids
         },
@@ -933,27 +1250,111 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
 
     gru_parameter_count = int(sum(parameter.numel() for parameter in gru_model.parameters()))
     common_readout_parameters = N_BITS * (FEATURE_DOF + 1)
+    anchor_capacity_charge = 15 + (len(hypotheses) - 1)
+    if anchor_capacity_charge != ANCHOR_CHARGED_FITTED_PARAMETER_COUNT:
+        raise TournamentError(
+            "anchor charged capacity drifted from the frozen Attempt 2 budget "
+            f"{ANCHOR_CHARGED_FITTED_PARAMETER_COUNT}: {anchor_capacity_charge}"
+        )
+    lower_parameter_limit = int(
+        np.ceil((1.0 - BUDGET_TOLERANCE_FRACTION) * anchor_capacity_charge)
+    )
+    upper_parameter_limit = int(
+        np.floor((1.0 + BUDGET_TOLERANCE_FRACTION) * anchor_capacity_charge)
+    )
+    product_all_parameters_executed = bool(product_parameter_usage.min() > 0)
+    competitor_parameter_counts = {
+        "classical_fst_hmm": hmm_parameter_count,
+        "torch_gru": gru_parameter_count,
+        "product_single_qubit_per_stage": product_parameter_count,
+    }
+    competitor_within_budget = {
+        name: lower_parameter_limit <= count <= upper_parameter_limit
+        for name, count in competitor_parameter_counts.items()
+    }
+    parameter_manifest = {
+        "classical_fst_hmm": {
+            "active_fitted_parameter_count": hmm_parameter_count,
+            "blocks": [
+                {"name": "nonredundant_hypothesis_prior_logits", "shape": [len(hypotheses) - 1], "count": len(hypotheses) - 1},
+                {"name": "position_emission_logits", "shape": [N_BITS], "count": N_BITS},
+                {"name": "view_emission_logits_reference_fixed", "shape": [N_VIEWS - 1], "count": N_VIEWS - 1},
+            ],
+            "initial_parameter_sha256": sha256_json(
+                {"prior": [0.0] * (len(hypotheses) - 1), "position": [0.0] * N_BITS, "view": [0.0] * (N_VIEWS - 1)}
+            ),
+            "final_parameter_sha256": sha256_json(
+                {"prior_probability": hmm_prior.tolist(), "emission_error": hmm_epsilon.tolist()}
+            ),
+            "fit_scope": "train objects and visible observations only; fixed marginal-likelihood optimization",
+            "all_charged_scalars_active": hmm_all_parameters_active,
+        },
+        "torch_gru": {
+            "active_fitted_parameter_count": gru_parameter_count,
+            "blocks": [
+                {"name": "GRUCell", "shape": [17, GRU_HIDDEN], "count_formula": "3*h*17 + 3*h*h + 6*h"},
+                {"name": "Linear", "shape": [GRU_HIDDEN, N_BITS], "count_formula": "8*h + 8"},
+            ],
+            "initial_parameter_sha256": gru_initial_parameter_sha256,
+            "final_parameter_sha256": gru_final_parameter_sha256,
+            "fit_scope": "train objects and masked train-target loss only; no test validation or early stop",
+            "all_charged_scalars_active": gru_all_parameters_active,
+        },
+        "product_single_qubit_per_stage": {
+            "active_fitted_parameter_count": product_parameter_count,
+            "blocks": [
+                {"name": "measurement_eta_logits", "shape": [PRODUCT_QUBITS, N_VIEWS, N_BITS], "count": int(product_eta_logits.size)},
+                {"name": "measurement_phase_angles", "shape": [PRODUCT_QUBITS, N_VIEWS, N_BITS], "count": int(product_phase_angles.size)},
+                {"name": "initial_z_logits", "shape": [PRODUCT_QUBITS], "count": int(product_initial_z_logits.size)},
+            ],
+            "fit_rule_sha256": sha256_json(product_fit_metadata),
+            "final_parameter_sha256": sha256_json(
+                {"eta_logits": product_eta_logits.tolist(), "phase_angles": product_phase_angles.tolist(), "initial_z_logits": product_initial_z_logits.tolist()}
+            ),
+            "fit_scope": "train-object visible bits for local stages and public masks for context stages only",
+            "all_charged_scalars_active": product_all_parameters_executed,
+        },
+    }
+    parameter_manifests_complete = bool(
+        all(
+            manifest["active_fitted_parameter_count"] == competitor_parameter_counts[name]
+            and manifest["all_charged_scalars_active"]
+            for name, manifest in parameter_manifest.items()
+        )
+    )
     budget_ledger = {
+        "definition": "Attempt 2 frozen explicitly charged active-carrier capacity; common readout is reported separately and never charged twice.",
+        "anchor_capacity_charge": {
+            "count": anchor_capacity_charge,
+            "formula": "1023 m_slow posterior-simplex coordinates plus 15 trace-one 4x4 rho_fast coordinates",
+            "conventional_train_fitted_scalars_disclosed": 1,
+            "conventional_scalar_note": "The old sigma-only count is disclosed but is not the user-defined Attempt 2 capacity ceiling.",
+        },
+        "tolerance": {
+            "fraction": BUDGET_TOLERANCE_FRACTION,
+            "inclusive_integer_range": [lower_parameter_limit, upper_parameter_limit],
+        },
         "matching_axes": {
             "same_world_data_split_masks_targets": True,
             "same_train_test_slot_counts": True,
             "same_exposed_real_feature_dof": True,
             "same_per_position_ridge_readout_contract": True,
             "same_common_readout_fitted_parameters": True,
-            "same_live_carrier_real_dof": False,
-            "same_fitted_carrier_parameters": False,
+            "anchor_charged_capacity_matches_frozen_1038": anchor_capacity_charge == ANCHOR_CHARGED_FITTED_PARAMETER_COUNT,
+            "oracle_exempt_from_competitor_budget": True,
+            "all_competitor_parameter_manifests_complete": parameter_manifests_complete,
+            **{
+                f"{name}_within_plus_or_minus_10_percent": passed
+                for name, passed in competitor_within_budget.items()
+            },
         },
-        "literal_all_axes_matched": False,
-        "failure_reason": (
-            "unchanged anchor has 1023 posterior-simplex DOF plus 15 rho_fast DOF; "
-            "the standard H=30 GRU and ten-qubit product lane expose 30 live coordinates, "
-            "and fitted carrier parameter counts differ. Matching both axes would require "
-            "changing the anchor, a nonstandard tied GRU, or unused padding parameters."
-        ),
+        "hard_fail_closed": True,
+        "parameter_manifest": parameter_manifest,
         "common": {
             "feature_dof": FEATURE_DOF,
             "readout": "eight independent ridge regressions with bias and lambda=1e-3",
             "readout_fitted_parameters": common_readout_parameters,
+            "excluded_from_capacity_gate": True,
             "train_objects": len(train_objects),
             "test_objects": len(test_objects),
             "train_slots": len(train_slots),
@@ -962,19 +1363,21 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
         "lanes": {
             "oracle_exact_filter": {
                 "competition_status": "exempt_ceiling_reference",
-                "live_state_dof": 1038,
-                "fitted_carrier_parameters": 0,
+                "live_state_dof": anchor_capacity_charge,
+                "active_fitted_parameter_count": 0,
             },
             "classical_fst_hmm": {
-                "live_state_dof": 1038,
-                "dof_breakdown": "1023 posterior simplex plus 15 masked sensory coordinates",
-                "fitted_carrier_parameters": 8,
-                "parameter_definition": "eight Beta-smoothed emission-error scalars",
+                "live_state_dof": anchor_capacity_charge,
+                "active_fitted_parameter_count": hmm_parameter_count,
+                "within_frozen_budget": competitor_within_budget["classical_fst_hmm"],
+                "parameter_definition": "1023 nonredundant fitted hypothesis-prior logits plus eight position and five nonreference-view emission logits",
+                "training": {"epochs": HMM_EPOCHS, "optimizer": "Adam", "learning_rate": HMM_LEARNING_RATE, "loss_trace": hmm_loss_trace},
             },
             "torch_gru": {
                 "live_state_dof": GRU_HIDDEN,
-                "fitted_carrier_parameters": gru_parameter_count,
-                "architecture": "torch.nn.GRUCell(17,30) plus Linear(30,8)",
+                "active_fitted_parameter_count": gru_parameter_count,
+                "within_frozen_budget": competitor_within_budget["torch_gru"],
+                "architecture": f"torch.nn.GRUCell(17,{GRU_HIDDEN}) plus Linear({GRU_HIDDEN},8); fixed 11-to-10 summary then deterministic 30-coordinate lift",
                 "training": {
                     "epochs": GRU_EPOCHS,
                     "optimizer": "Adam",
@@ -985,24 +1388,34 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
                 },
             },
             "senses_v2_anchor": {
-                "live_state_dof": 1038,
+                "live_state_dof": anchor_capacity_charge,
                 "dof_breakdown": "15 for source 4x4 rho_fast plus 1023 for m_slow simplex",
-                "fitted_carrier_parameters": 1,
-                "parameter_definition": "unsupervised likelihood sigma; frozen donor channels separately provenance-locked",
+                "active_fitted_parameter_count": anchor_capacity_charge,
+                "parameter_definition": "frozen user-defined charged active-carrier capacity; conventional sigma-only scalar count separately disclosed",
                 "source_actual_qubits": 2,
                 "owner_prompt_qubit_shorthand_matches_source": False,
             },
             "product_single_qubit_per_stage": {
-                "live_state_dof": 30,
-                "dof_breakdown": "ten independent single-qubit Bloch vectors",
-                "fitted_carrier_parameters": 16,
-                "parameter_definition": "eight train-only decay and eight phase scalars",
-                "stage_definition": "eight position stages plus global visibility and episode-clock stages",
+                "live_state_dof": FEATURE_DOF,
+                "dof_breakdown": "ten independent 2x2 density matrices emitted as Bloch triples",
+                "active_fitted_parameter_count": product_parameter_count,
+                "within_frozen_budget": competitor_within_budget["product_single_qubit_per_stage"],
+                "parameter_definition": "480 train-fitted measurement sharpness logits, 480 train-fitted phase angles, and ten train-fitted initial z logits; every update uses a two-outcome CPTP Kraus instrument",
+                "stage_definition": "eight position stages plus global visibility and episode-clock stages; context is public visibility only",
+                "fit_metadata": product_fit_metadata,
             },
         },
     }
+    budget_ledger["hard_parameter_fairness_pass"] = bool(
+        all(budget_ledger["matching_axes"].values())
+    )
+    budget_ledger["failure_reason"] = (
+        "all Attempt 2 active-carrier capacity checks passed"
+        if budget_ledger["hard_parameter_fairness_pass"]
+        else "one or more explicit Attempt 2 active-carrier capacity checks failed; no scientific interpretation is allowed"
+    )
 
-    fairness_pass = bool(all(budget_ledger["matching_axes"].values()))
+    fairness_pass = bool(budget_ledger["hard_parameter_fairness_pass"])
     any_classical_match = bool(any(classical_matches_within_ci.values()))
     frozen_verdict = {
         "rule": "If a fair matched classical sequential lane matches or beats the anchor within paired object-bootstrap CI, the quantum carrier has not earned minimal status.",
@@ -1021,15 +1434,14 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
         ),
         "promotion_allowed": False,
         "note": (
-            "The fairness mismatch cannot rescue the carrier: it blocks a positive minimality claim. "
-            "Conditional CI outcomes remain recorded without being called a fair win."
+            "The hard capacity gate cannot rescue the carrier: a failure blocks a positive "
+            "minimality claim, while a fair classical within-CI match records nonminimality."
         ),
     }
 
     product_max_norm = max(
-        state["max_bloch_norm"]
-        for states in product_states.values()
-        for state in states
+        product_main_physicality["maximum_bloch_norm"],
+        product_scrambled_physicality["maximum_bloch_norm"],
     )
     occlusions_per_view = [
         sum(log[object_id][view][position] == "withheld" for position in range(N_BITS))
@@ -1082,9 +1494,19 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
         "oracle_excluded_from_competitor_verdict": "oracle_exact_filter"
         not in ["classical_fst_hmm", "torch_gru"],
         "torch_gru_executed": gru_parameter_count > 0 and len(gru_states) == 64,
-        "product_single_qubit_states_physical": product_max_norm <= 1.0 + 1e-12,
-        "channel_scramble_is_fixed_derangement": np.all(
-            permutation != np.arange(N_BITS)
+        "product_single_qubit_states_physical": bool(
+            product_main_physicality["pass"]
+            and product_scrambled_physicality["pass"]
+            and product_max_norm <= 1.0 + PHYSICALITY_TOLERANCE
+        ),
+        "product_physicality_asserted_after_every_update": bool(
+            product_main_physicality["updates_checked"] > 0
+            and product_scrambled_physicality["updates_checked"] > 0
+            and product_main_physicality["zero_or_nonfinite_probability_updates"] == 0
+            and product_scrambled_physicality["zero_or_nonfinite_probability_updates"] == 0
+        ),
+        "channel_scramble_is_fixed_derangement": bool(
+            np.all(permutation != np.arange(N_BITS))
         ),
         "channel_scramble_results_recorded_whichever_way": set(scramble_results)
         == set(competitor_order),
@@ -1117,8 +1539,9 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
             "4x4 rho_fast plus a 1024-hypothesis m_slow posterior, not a three-qubit lane."
         ),
         (
-            f"Fairness fail-closed: live-state DOF and fitted carrier parameter counts are "
-            f"not both equal; literal_all_axes_matched={fairness_pass}."
+            f"Attempt 2 fairness fail-closed: anchor charged capacity {anchor_capacity_charge}; "
+            f"inclusive competitor range [{lower_parameter_limit}, {upper_parameter_limit}]; "
+            f"counts {competitor_parameter_counts}; pass={fairness_pass}."
         ),
         *[
             f"{name}: occluded accuracy {accuracy_by_lane[name]:.4f}, MI "
@@ -1130,8 +1553,8 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
             f"final status {frozen_verdict['status']}."
         ),
         (
-            "HONEST NEGATIVE KEPT: the requested literal matched-budget tournament is "
-            "not scientifically interpretable without changing one frozen constraint."
+            "HONEST NEGATIVE KEPT: a fair classical within-CI match is recorded as "
+            "nonminimality, and no outcome permits promotion or formal admission."
         ),
     ]
 
@@ -1146,7 +1569,18 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
             "boundary_case": "per-episode hidden state resets and no test-object model selection",
             "demotion_condition": "missing Torch execution or predictions blocks the GRU lane and every carrier conclusion",
             "gates": "frozen classical falsifier and fairness ledger",
-        }
+        },
+        {
+            "tool": "numpy",
+            "qualified_api/function": "numpy.linalg.eigvalsh plus explicit two-Kraus qubit instrument",
+            "input_object": "ten independent 2x2 product density stages and visible/public-mask outcomes",
+            "output_object": "renormalized density updates, 30 Pauli-coordinate features, and per-update physicality ledger",
+            "positive_case": "every main and scrambled update has finite positive outcome probability, trace one, PSD spectrum, and Bloch norm at most one plus 1e-9",
+            "negative/erased_control": "missing local observation follows the identity Kraus channel rather than inserting a hidden bit",
+            "boundary_case": "clock stage uses a public deterministic CPTP instrument; all ten stages remain unentangled 2x2 densities",
+            "demotion_condition": "any nonphysical update raises TournamentError before a normal receipt can claim the product lane",
+            "gates": "product physicality integrity check and hard fail-closed all_pass",
+        },
     ]
 
     receipt = {
@@ -1238,10 +1672,16 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
             },
             "frozen_verdict": frozen_verdict,
             "product_physicality": {
-                "qubits": 10,
-                "states_checked": len(object_ids) * N_VIEWS * 10,
-                "maximum_bloch_norm": product_max_norm,
-                "pass": product_max_norm <= 1.0 + 1e-12,
+                "qubits": PRODUCT_QUBITS,
+                "formalism": "outcome-conditioned two-Kraus qubit instruments with rho -> K_b rho K_b-dagger / Tr(K_b rho K_b-dagger); missing local observations use the identity Kraus channel",
+                "per_update_assertion": "trace=1, Hermitian, PSD within tolerance, and Bloch norm <= 1 + 1e-9 after every update",
+                "main_evaluation": product_main_physicality,
+                "channel_scramble_evaluation": product_scrambled_physicality,
+                "maximum_bloch_norm_across_evaluations": product_max_norm,
+                "pass": bool(
+                    product_main_physicality["pass"]
+                    and product_scrambled_physicality["pass"]
+                ),
             },
             "prediction_fingerprints_sha256": {
                 name: sha256_json(
@@ -1261,7 +1701,11 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
         "divergence_log": [
             {
                 "comparison": "requested literal match versus unchanged source anchor",
-                "status": "blocked_budget_mismatch",
+                "status": (
+                    "matched_parameter_capacity"
+                    if fairness_pass
+                    else "blocked_budget_mismatch"
+                ),
                 "reason": budget_ledger["failure_reason"],
             },
             *[
@@ -1289,12 +1733,37 @@ def run(preflight_receipt: dict[str, Any]) -> dict[str, Any]:
         ],
         "accepted_status_label": "exists",
         "claim_ceiling": (
-            "fresh carrier-tournament diagnostic with complete lane metrics but a red literal-budget fairness gate; "
-            "the quantum carrier has not earned minimal status; promotion_allowed false"
+            "fresh carrier-tournament diagnostic with a hard Attempt 2 charged-capacity gate, "
+            "complete lane metrics, frozen falsifier, and CPTP product physicality checks; "
+            "promotion_allowed false"
         ),
         "receipt_path": str(RECEIPT_PATH),
     }
     return receipt
+
+
+def write_json_receipt(
+    receipt: dict[str, Any], *, repair_malformed_receipt: bool = False
+) -> None:
+    # Serialize before opening the fresh path.  This preserves refuse-to-reuse
+    # semantics if a new receipt ever contains a non-JSON value.  Repair mode
+    # is intentionally narrower: it may replace only a malformed partial file
+    # made by this same failed writer; it never accepts a valid prior receipt.
+    serialized = json.dumps(receipt, indent=2, allow_nan=False)
+    if repair_malformed_receipt:
+        try:
+            json.loads(RECEIPT_PATH.read_text())
+        except json.JSONDecodeError:
+            pass
+        else:
+            raise TournamentError(
+                "REFUSE-TO-REUSE: repair mode cannot replace a valid receipt"
+            )
+        with RECEIPT_PATH.open("w") as handle:
+            handle.write(serialized)
+        return
+    with RECEIPT_PATH.open("x") as handle:
+        handle.write(serialized)
 
 
 def write_fatal_receipt(message: str, preflight_receipt: dict[str, Any]) -> None:
@@ -1319,8 +1788,7 @@ def write_fatal_receipt(message: str, preflight_receipt: dict[str, Any]) -> None
         "formal_admission_allowed": False,
         "claim_ceiling": "fatal fail-closed diagnostic; no carrier result or promotion claim",
     }
-    with RECEIPT_PATH.open("x") as handle:
-        json.dump(receipt, handle, indent=2, allow_nan=False)
+    write_json_receipt(receipt)
 
 
 def main() -> int:
@@ -1330,9 +1798,17 @@ def main() -> int:
         action="store_true",
         help="validate runtime, memory, inputs, object card, and fresh output path without writing",
     )
+    parser.add_argument(
+        "--repair-malformed-receipt",
+        action="store_true",
+        help="replace only an invalid partial receipt created by this writer after revalidating the full run",
+    )
     args = parser.parse_args()
     try:
-        preflight_receipt = preflight(require_fresh_outdir=True)
+        preflight_receipt = preflight(
+            require_fresh_outdir=not args.repair_malformed_receipt,
+            repair_malformed_receipt=args.repair_malformed_receipt,
+        )
     except (OSError, subprocess.CalledProcessError, TournamentError) as error:
         print(f"FATAL PRE-WRITE: {type(error).__name__}: {error}", file=sys.stderr)
         return 2
@@ -1340,16 +1816,20 @@ def main() -> int:
         print(json.dumps(preflight_receipt, indent=2))
         return 0
 
-    OUTDIR.mkdir(parents=True, exist_ok=False)
+    if not args.repair_malformed_receipt:
+        OUTDIR.mkdir(parents=True, exist_ok=False)
     try:
         receipt = run(preflight_receipt)
     except Exception as error:
-        write_fatal_receipt(f"{type(error).__name__}: {error}", preflight_receipt)
+        if not args.repair_malformed_receipt:
+            write_fatal_receipt(f"{type(error).__name__}: {error}", preflight_receipt)
         print(f"FATAL: {type(error).__name__}: {error}", file=sys.stderr)
-        print(f"fatal receipt written: {RECEIPT_PATH}", file=sys.stderr)
+        if not args.repair_malformed_receipt:
+            print(f"fatal receipt written: {RECEIPT_PATH}", file=sys.stderr)
         return 1
-    with RECEIPT_PATH.open("x") as handle:
-        json.dump(receipt, handle, indent=2, allow_nan=False)
+    write_json_receipt(
+        receipt, repair_malformed_receipt=args.repair_malformed_receipt
+    )
     print(f"receipt written: {RECEIPT_PATH}")
     print(
         json.dumps(

@@ -1,0 +1,51 @@
+**AUDIT FINDINGS**
+
+**1. Hidden/occluded ground-truth bits into m_slow or readout features (dataflow trace)**  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:709-711` (`log_getter` returns `None` on `"withheld"`).  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:260-274` (`actual_density` passes `None` for withheld; `apply_values` skips `None`).  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:381-396` (`update_posterior` receives only `quantum_readout` (from density after visible probes) + `candidate_readouts`).  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:284-305` (`reset_candidate_readouts` applies channels only for visible mask positions using `trajectories[:, view, position]` for candidates).  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:737` (main lane: `engine.episode(log_getter(...))`).  
+`full_views` (from `visibility.recover_full_views`) is used only for `truth(slot)` (eval), MI oracle, bootstrap labels, leak-oracle construction, and `full_getter`. It never reaches main `episode` or `update_posterior`.  
+`integrity_checks["m_slow_update_consumes_quantum_readouts_not_raw_values"]` and `["hypothesis_likelihoods_ignore_withheld_values"]` both true (replay deltas <1e-12).  
+Severity: **CLEAN**
+
+**2. Twin information contract**  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:831-832` (`twin_feature = lambda slot: parent.twin_features(log_getter(slot[0]), ...)`).  
+`parent.twin_features` (loop2_retest_fixed_senses.py:351+) only reads visible outcomes via the same getter (withheld → "none"/"unk"). No slow-memory features or hidden bits are added.  
+Receipt reports `features_unchanged: true`, identical tree size/depth to parent within 1e-15, and identical feature schema. Same visible-only contract as the candidate.  
+Severity: **CLEAN**
+
+**3. Permutation null construction**  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:543-546` (`persistence_mutual_information`): `bits = permutation_rng.permutation(bits)` where `bits` are the held-out hidden labels for the current queried bit, per position.  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:1049-1052` (shuffled training labels): within-position `shuffle_rng.permutation(labels)` on `truth` values; assigned to slots by position.  
+Protocol (receipt): "held-out hidden labels permuted within target position; m_slow values and train-fitted bin edges fixed." Matches code. Features and edges are never permuted.  
+Severity: **CLEAN**
+
+**4. Control lanes (frozen, m_slow reset, broken update)**  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:748-761`: three separate `engine.episode(...)` calls with `frozen_actual=True`, `reset_slow_each_view=True`, `update_mode="original_broken"`.  
+Each produces its own state map; `decode_per_position` and `persistence_mutual_information` are then run on those maps (lines 824-828, 890-894).  
+Receipt numbers are distinct (frozen acc 0.4810, slow_reset 0.6327, broken 0.8630) and accompanied by their own MI/permutation stats. Not copy-pasted constants.  
+Severity: **CLEAN**
+
+**5. Leak counterfactual**  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:1088-1098`: flips only withheld bits into `counterfactual_full_views`.  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:1100-1102`: `counterfactual_states = { ... engine.episode(log_getter(object_id), ...)}` — still uses the original **masked** `log_getter`, not the flipped oracle.  
+Result: rho_fast / m_slow / joint deltas are 0.0 (as intended).  
+File: `system_v8/loop3_senses/senses_v2_slow_memory.py:1165-1182`: separate **sentinel** (`leaked_getter`) deliberately injects `full_views` for the target position and records positive deltas + changed counts.  
+Receipt correctly reports `candidate_features_identical: true` for the counterfactual arm and a red `deliberately_unmasked_leak_sentinel_changes_fast_and_slow: false` (sentinel_slow_changed=123 ≠ 343). The main pipeline is not fed flipped hidden bits.  
+Severity: **MINOR** (check name "leak_counterfactual" + integrity flag is slightly misleading in wording, but the isolation logic and reporting are honest).
+
+**6. Seed/selection gaming or post-hoc cherry-picking**  
+Single `SEED = 20260719` (line 59). Split, bootstrap (SEED+151), MI nulls (SEED+40x), label shuffle (SEED+31) all use deterministic offsets.  
+Metrics and protocol are declared up front (occluded accuracy + position-stratified MI with train-frozen quantiles + within-position label permutation).  
+All 8 positions and all 20 test objects are reported in full tables (`mutual_information_by_position_bits`, `episode_level_table`). No evidence of metric selection after seeing results or position cherry-picking.  
+Severity: **CLEAN**
+
+**Additional observations**  
+- `m_slow_resets_between_objects` (line 1429) is asserted via `candidate_feature_hash == counterfactual_feature_hash` (reverse iteration with identical masked log). This is a hash-identity check on the same inputs, not a direct test that the per-object `posterior = uniform` line (424) fired. Minor naming friction.  
+- One integrity check is openly red, causing `integrity_pass=false` and `all_pass=false`; findings list an "HONEST NEGATIVE KEPT" entry.  
+- No path was found that injects hidden bits into the main candidate's quantum readout or m_slow posterior. Twin contract, permutation scheme, and live control re-executions are as documented.
+
+**AUDIT VERDICT: CLEAN**  
+No fabrication or hidden ground-truth leakage into m_slow or readout features was found; the reported performance gap rests on the stated visible-only quantum-readout contract with correctly implemented controls and permutation null.

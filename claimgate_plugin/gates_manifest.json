@@ -137,6 +137,39 @@
     "evaldeck/deck_flaky.json"
    ],
    "expect_exit": 1
+  },
+  {
+   "id": "failurecard-extract-ok",
+   "cmd": "node",
+   "args": [
+    "failurecard.mjs",
+    "extract",
+    "failures.jsonl",
+    "--anonymous"
+   ],
+   "expect_exit": 0
+  },
+  {
+   "id": "failurecard-tried-hit",
+   "cmd": "node",
+   "args": [
+    "failurecard.mjs",
+    "tried",
+    "archive_local.json",
+    "correlate the drive against the effect it produces"
+   ],
+   "expect_exit": 3
+  },
+  {
+   "id": "failurecard-tried-novel",
+   "cmd": "node",
+   "args": [
+    "failurecard.mjs",
+    "tried",
+    "archive_local.json",
+    "add rate limiting middleware to an unrelated web server"
+   ],
+   "expect_exit": 0
   }
  ]
 }

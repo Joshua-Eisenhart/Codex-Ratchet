@@ -1,0 +1,214 @@
+{
+ "schema": "failurecard.archive.v1",
+ "anonymous": true,
+ "count": 15,
+ "classes": [
+  "dead-end",
+  "eval-theater",
+  "gate-evasion",
+  "gate-theater",
+  "meta",
+  "planning",
+  "reporting",
+  "stats-theater",
+  "verification-theater"
+ ],
+ "cards": [
+  {
+   "id": "verdict-inflation",
+   "class": "reporting",
+   "trigger": "agent marks a unit INTEGRATED/PASS while its own attached data says pass:false",
+   "signature": [
+    "verdict field disagrees with pass field in the same object",
+    "self-contradicting receipt"
+   ],
+   "approach": "batch tool integration; report a verdict alongside a pass flag and detail block",
+   "caught_by": "claim linter: verdict==pass-state cross-field check",
+   "outcome": "would have shipped a false green",
+   "real": true
+  },
+  {
+   "id": "inverted-inflation",
+   "class": "reporting",
+   "trigger": "top-level CLEAN/all_pass:true wrapping a nested BLOCKED unit that carries pass:true",
+   "signature": [
+    "container verdict green",
+    "nested contradiction hidden by nesting depth"
+   ],
+   "approach": "aggregate many sub-results into one summary verdict",
+   "caught_by": "linter walks every object, not just the root",
+   "outcome": "summary hides a buried failure",
+   "real": true
+  },
+  {
+   "id": "self-correlation-gate",
+   "class": "gate-theater",
+   "trigger": "a metric is correlated against a quantity that is an algebraic function of the same input, then reported as an independent coupling",
+   "signature": [
+    "driver baked into the thing it is correlated with",
+    "correlation cannot come out low"
+   ],
+   "approach": "prove X drives Y by correlating X against distance-from-X-off, with X inside the definition of the distance",
+   "caught_by": "adversarial audit: erase X, the correlate does not move independently",
+   "outcome": "0.93 correlation that means nothing; a decorative >0.3 gate",
+   "real": true
+  },
+  {
+   "id": "tautological-ablation",
+   "class": "gate-theater",
+   "trigger": "an ablation control re-runs with the ablated and non-ablated paths made identical, so the difference is 0 by construction",
+   "signature": [
+    "control compares a state to itself",
+    "gate checks a structurally-zero quantity < epsilon"
+   ],
+   "approach": "show removing a component matters by trace-distance between with and without, where both use the same generators under ablation",
+   "caught_by": "read the control code path, not the number",
+   "outcome": "a control that passes tautologically",
+   "real": true
+  },
+  {
+   "id": "circular-target",
+   "class": "gate-theater",
+   "trigger": "a predictor's target is computed from the same features that feed the predictor",
+   "signature": [
+    "label derived from input",
+    "accuracy is circular not learned"
+   ],
+   "approach": "score belief/prediction where the ground-truth target is a function of the readout the model also consumes",
+   "caught_by": "trace the target's provenance to first principles",
+   "outcome": "high accuracy that proves nothing",
+   "real": true
+  },
+  {
+   "id": "mislabeled-baseline",
+   "class": "stats-theater",
+   "trigger": "a score is reported against chance (0.5) while the honest majority-class baseline is far higher",
+   "signature": [
+    "beats-chance framing",
+    "class imbalance ignored"
+   ],
+   "approach": "report accuracy vs chance without the majority-class or null baseline beside it",
+   "caught_by": "linter: any chance-comparison must carry a majority[path]/twin baseline",
+   "outcome": "0.97 vs 0.5 looked great; majority baseline was 0.87",
+   "real": true
+  },
+  {
+   "id": "formula-vs-itself-referee",
+   "class": "verification-theater",
+   "trigger": "an independent referee recomputes the same closed-form the primary computed, gets exact agreement, and it is reported as cross-validation",
+   "signature": [
+    "two engines evaluate identical math",
+    "15-digit agreement proves nothing",
+    "the load-bearing dynamical quantity was never refereed"
+   ],
+   "approach": "have a second runtime confirm a value by evaluating the same formula",
+   "caught_by": "check the referee recomputes the dynamical quantity, not the closed form",
+   "outcome": "decorative referee; real quantity differed in sign",
+   "real": true
+  },
+  {
+   "id": "empty-evidence-gaming",
+   "class": "gate-evasion",
+   "trigger": "an empty object[path]/string is submitted in a provenance field to satisfy an evidence requirement",
+   "signature": [
+    "provenance field present but empty",
+    "{} counted as data"
+   ],
+   "approach": "attach a raw[path]/evidence key with no content to pass an evidence check",
+   "caught_by": "non-empty test: {}, [], \"\" are not evidence",
+   "outcome": "claim admitted with no actual evidence",
+   "real": true
+  },
+  {
+   "id": "loose-tolerance-gaming",
+   "class": "gate-evasion",
+   "trigger": "a recompute contract declares a tolerance far larger than the claim, so any value passes",
+   "signature": [
+    "tol >> claim magnitude",
+    "recompute becomes decorative"
+   ],
+   "approach": "declare a self-check with a tolerance wide enough that it cannot fail",
+   "caught_by": "tolerance ceiling: tol capped at a fraction of the claim magnitude",
+   "outcome": "a self-verification that verifies nothing",
+   "real": true
+  },
+  {
+   "id": "invented-verdict-vocab",
+   "class": "gate-evasion",
+   "trigger": "a verdict outside the agreed vocabulary is used to dodge the verdict/pass consistency map",
+   "signature": [
+    "novel verdict token",
+    "not in the checkable set"
+   ],
+   "approach": "emit a verdict like TOTALLY_FINE that no rule knows how to score",
+   "caught_by": "strict mode: an uncheckable verdict is a rejected verdict",
+   "outcome": "claim slips past the consistency check",
+   "real": true
+  },
+  {
+   "id": "generate-instead-of-retrieve",
+   "class": "planning",
+   "trigger": "agent builds a new implementation of something that already exists because it did not search first",
+   "signature": [
+    "duplicate module",
+    "no inventory step before creation"
+   ],
+   "approach": "start a task by building, when a spec or implementation already exists in the estate",
+   "caught_by": "admission gate: mandatory search receipt + near-duplicate detection before create",
+   "outcome": "split-brain implementations; the 5-config-loaders problem",
+   "real": true
+  },
+  {
+   "id": "phantom-findings",
+   "class": "eval-theater",
+   "trigger": "an evaluator invents problems on clean artifacts to meet an implicit demand to find problems",
+   "signature": [
+    "findings with no reproducible anchor",
+    "diligence performance"
+   ],
+   "approach": "ask an LLM to find problems; it produces some regardless of whether any exist",
+   "caught_by": "evalcheck: fabrication rate against a sealed known-clean deck",
+   "outcome": "noise treated as signal; wasted review",
+   "real": true
+  },
+  {
+   "id": "entropy-only-admission",
+   "class": "dead-end",
+   "trigger": "driving stage admission by a single summary entropy instead of typed constraints",
+   "signature": [
+    "16 distinct stages collapse to 8",
+    "distinguishability lost"
+   ],
+   "approach": "use von Neumann entropy alone as the organizing/admission variable",
+   "caught_by": "negative sim: fingerprint distinctness drops below the 16/16 baseline",
+   "outcome": "known dead end; typed constraints are load-bearing",
+   "real": true
+  },
+  {
+   "id": "commuting-generators-kill-structure",
+   "class": "dead-end",
+   "trigger": "projecting generators to a commuting family to simplify",
+   "signature": [
+    "flux/holonomy collapses to 0",
+    "order-sensitivity dies"
+   ],
+   "approach": "assume generators can be made to commute without losing the phenomenon",
+   "caught_by": "negative sim: flux goes exactly to 0",
+   "outcome": "known dead end; non-commutation is the source of the effect",
+   "real": true
+  },
+  {
+   "id": "one-sided-fixture-deck",
+   "class": "meta",
+   "trigger": "a gate or evaluator is tested only with cases it should reject (or only cases it should pass)",
+   "signature": [
+    "no known-good among the tests",
+    "always-reject gate passes its own suite"
+   ],
+   "approach": "validate a checker with a suite of only-bad or only-good examples",
+   "caught_by": "gatecheck/evalcheck refuse one-sided decks",
+   "outcome": "an always-yes or always-no checker certified as working",
+   "real": true
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema": "ratchet.v8.tool_ledger.battery_batch4.v1",
+  "classification": "tool_integration_battery",
+  "claim_ceiling": "load-bearing tool-integration evidence only; no canonical, bridge, manifold, QIT, axis, or admission claim",
+  "promotion_allowed": false,
+  "generated_at": "2026-07-20T06:52:18.509833+00:00",
+  "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+  "all_required_tools_have_terminal_verdicts": true,
+  "tools": {
+    "pymc": {
+      "verdict": "INTEGRATED",
+      "pass": true,
+      "computed_number": 0.5961128573493361,
+      "result_file": "results/pymc.json"
+    },
+    "arviz": {
+      "verdict": "INTEGRATED",
+      "pass": true,
+      "computed_number": 1.0,
+      "result_file": "results/arviz.json"
+    },
+    "oryx": {
+      "verdict": "BLOCKED",
+      "pass": false,
+      "computed_number": null,
+      "result_file": "results/oryx.json"
+    },
+    "flowMC": {
+      "verdict": "INTEGRATED",
+      "pass": true,
+      "computed_number": 0.6014736294746399,
+      "result_file": "results/flowMC.json"
+    },
+    "nutpie": {
+      "verdict": "INTEGRATED",
+      "pass": true,
+      "computed_number": 0.5955272857307703,
+      "result_file": "results/nutpie.json"
+    },
+    "numba": {
+      "verdict": "INTEGRATED",
+      "pass": true,
+      "computed_number": 3.5521862776985498,
+      "result_file": "results/numba.json"
+    },
+    "datasketch": {
+      "verdict": "INTEGRATED",
+      "pass": true,
+      "computed_number": 0.03437499999999999,
+      "result_file": "results/datasketch.json"
+    },
+    "sparse": {
+      "verdict": "INTEGRATED",
+      "pass": true,
+      "computed_number": 0.0,
+      "result_file": "results/sparse.json"
+    },
+    "kahypar": {
+      "verdict": "INTEGRATED",
+      "pass": true,
+      "computed_number": 35.0,
+      "result_file": "results/kahypar.json"
+    },
+    "hdbscan": {
+      "verdict": "INTEGRATED",
+      "pass": true,
+      "computed_number": 6.0,
+      "result_file": "results/hdbscan.json"
+    },
+    "ray": {
+      "verdict": "INTEGRATED",
+      "pass": true,
+      "computed_number": 4.0,
+      "result_file": "results/ray.json"
+    },
+    "treescope": {
+      "verdict": "PRUNED",
+      "pass": true,
+      "computed_number": 95129.0,
+      "result_file": "results/treescope.json"
+    }
+  },
+  "all_pass": false,
+  "counts": {
+    "INTEGRATED": 10,
+    "BLOCKED": 1,
+    "PRUNED": 1
+  }
+}

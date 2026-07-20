@@ -1,0 +1,26 @@
+{
+  "tool": "kahypar",
+  "state": "INTEGRATED",
+  "verdict": "INTEGRATED",
+  "promotion_allowed": false,
+  "generated_at": "2026-07-20T06:48:36.824436+00:00",
+  "real_object": "real capacity words from manifold source_packets.json as hypergraph",
+  "inputs": {
+    "packets": "system_v8/manifold/results/source_packets.json",
+    "ini_config": "/Users/joshuaeisenhart/.local/share/lev/sim-stack/lib/python3.13/site-packages/cotengra/pathfinders/kahypar_profiles/cut_kKaHyPar_sea20.ini"
+  },
+  "memory_free_percent": 46,
+  "computed_number": 35.0,
+  "checks": {
+    "partition_sizes": [
+      35,
+      35
+    ],
+    "balance_gate": true,
+    "all_nodes_assigned_a_block": true,
+    "n_nodes": 70,
+    "n_hyperedges": 4,
+    "cut_hyperedges": 0
+  },
+  "reason": "kahypar partitions the real capacity-word hypergraph (CSR + k/epsilon + a real cotengra-shipped ini via loadINIconfiguration, avoiding the batch3 \"Mode/Objective UNDEFINED\" misconfiguration); blockID (not partID) reads the resulting partition; balance gate on part sizes."
+}

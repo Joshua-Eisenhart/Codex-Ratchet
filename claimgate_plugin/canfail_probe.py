@@ -70,14 +70,161 @@ def patch_source(src, overrides):
         lines[start - 1:end] = [rep]
     return "\n".join(lines), missed
 
-def run_variant(sim_path, overrides, receipt_rel, checks_key):
-    """Copy the sim into a temp dir with constants patched, run it, read the receipt.
-    Returns (checks_dict_or_None, missed, err). A crashing variant returns None +
-    the error — the caller records it and continues (one bad mutation must not
-    abort the whole probe, and a crash is NOT evidence about any check)."""
+def _first_positional_name(args):
+    """First positional-or-keyword param name of an ast.arguments node, or None."""
+    if args.posonlyargs:
+        return args.posonlyargs[0].arg
+    if args.args:
+        return args.args[0].arg
+    return None
+
+
+def _returns_tuple(func_node):
+    for n in ast.walk(func_node):
+        if isinstance(n, ast.Return) and isinstance(n.value, ast.Tuple):
+            return len(n.value.elts)
+    return None
+
+
+def _returns_dictish(func_node):
+    for n in ast.walk(func_node):
+        if isinstance(n, ast.Return) and n.value is not None:
+            v = n.value
+            if isinstance(v, ast.Dict):
+                return True
+            if isinstance(v, ast.Call) and isinstance(v.func, ast.Name) and v.func.id == "dict":
+                return True
+    return False
+
+
+def _returns_listish(func_node):
+    for n in ast.walk(func_node):
+        if isinstance(n, ast.Return) and n.value is not None:
+            v = n.value
+            if isinstance(v, ast.List):
+                return True
+            if isinstance(v, ast.Call) and isinstance(v.func, ast.Name) and v.func.id == "list":
+                return True
+    return False
+
+
+def _returns_setish(func_node):
+    for n in ast.walk(func_node):
+        if isinstance(n, ast.Return) and n.value is not None:
+            v = n.value
+            if isinstance(v, ast.Set):
+                return True
+            if isinstance(v, ast.Call) and isinstance(v.func, ast.Name) and v.func.id == "set":
+                return True
+    return False
+
+
+def _indent_of(line):
+    return line[:len(line) - len(line.lstrip(" "))]
+
+
+def patch_function(src, func_name, mode, warnings=None):
+    """AST-replace a module-level function's BODY (signature line kept as-is),
+    using the same bottom-to-top end_lineno-span convention as patch_source.
+
+    'identity'      -> body is `return <first_positional_param>` (or `return
+                       None` if the function takes no positional args — a
+                       recorded fallback, not a crash).
+    'zero'          -> best-effort zero-like return, matched against the
+                       function's OWN return statements (never deep type
+                       inference, just enough to dodge the common unpack
+                       crash): a Tuple return -> tuple of 0.0 of matching
+                       arity; a Dict/dict(...) return -> {}; a List/list(...)
+                       return -> []; a Set/set(...) return -> set(); else
+                       plain 0.0.
+    'shuffle_args'  -> keeps a renamed `_orig_<name>` copy of the ORIGINAL
+                       body, and the replacement body swaps the first two
+                       positional arg names before calling it. Fewer than 2
+                       positional params -> a no-op passthrough wrapper
+                       (recorded, not a crash).
+
+    Returns (new_src, missed) — missed=[func_name] if no module-level
+    ast.FunctionDef named func_name is found, exactly mirroring patch_source's
+    contract so the caller can report a miss without crashing.
+    """
+    if warnings is None:
+        warnings = []
+    try:
+        tree = ast.parse(src)
+    except SyntaxError:
+        return src, [func_name]
+    target = None
+    for node in tree.body:
+        if isinstance(node, ast.FunctionDef) and node.name == func_name:
+            target = node
+            break
+    if target is None:
+        return src, [func_name]
+
+    lines = src.split("\n")
+    start, end = target.lineno, getattr(target, "end_lineno", target.lineno)
+    sig_line = lines[start - 1]
+    indent = _indent_of(lines[start] if start < len(lines) else "    ")
+    if not indent.strip() == "" or indent == "":
+        # fall back to a conservative 4-space body indent under the def line
+        body_indent = "    "
+    else:
+        body_indent = indent
+
+    if mode == "identity":
+        first = _first_positional_name(target.args)
+        if first is None:
+            warnings.append(f"{func_name}:identity_no_positional_arg->return None")
+            body = [f"{body_indent}return None"]
+        else:
+            body = [f"{body_indent}return {first}"]
+        new_def = [sig_line] + body
+    elif mode == "zero":
+        arity = _returns_tuple(target)
+        if arity:
+            body = [f"{body_indent}return (" + ", ".join(["0.0"] * arity) + ("," if arity == 1 else "") + ")"]
+        elif _returns_dictish(target):
+            body = [f"{body_indent}return {{}}"]
+        elif _returns_listish(target):
+            body = [f"{body_indent}return []"]
+        elif _returns_setish(target):
+            body = [f"{body_indent}return set()"]
+        else:
+            body = [f"{body_indent}return 0.0"]
+        new_def = [sig_line] + body
+    elif mode == "shuffle_args":
+        posargs = [a.arg for a in target.args.posonlyargs] + [a.arg for a in target.args.args]
+        orig_name = f"_orig_{func_name}"
+        orig_def_lines = list(lines[start - 1:end])
+        orig_def_lines[0] = orig_def_lines[0].replace(f"def {func_name}(", f"def {orig_name}(", 1)
+        if len(posargs) < 2:
+            warnings.append(f"{func_name}:shuffle_args_fewer_than_2_positional_args->passthrough")
+            call_args = ", ".join(posargs)
+        else:
+            swapped = list(posargs)
+            swapped[0], swapped[1] = swapped[1], swapped[0]
+            call_args = ", ".join(swapped)
+        wrapper = [sig_line, f"{body_indent}return {orig_name}({call_args})"]
+        new_def = orig_def_lines + wrapper
+    else:
+        return src, [func_name]
+
+    lines[start - 1:end] = new_def
+    return "\n".join(lines), []
+
+
+def run_variant(sim_path, overrides, receipt_rel, checks_key, defunc=None):
+    """Copy the sim into a temp dir with constants (or a named function) patched,
+    run it, read the receipt. Returns (checks_dict_or_None, missed, err). A
+    crashing variant returns None + the error — the caller records it and
+    continues (one bad mutation must not abort the whole probe, and a crash is
+    NOT evidence about any check)."""
     sim_dir = os.path.dirname(os.path.abspath(sim_path))
     src = open(sim_path).read()
-    patched, missed = patch_source(src, overrides) if overrides else (src, [])
+    if defunc is not None:
+        patched, missed = patch_function(src, defunc["defunc"], defunc["mode"])
+    else:
+        patched, missed = patch_source(src, overrides) if overrides else (src, [])
     with tempfile.TemporaryDirectory() as td:
         for f in os.listdir(sim_dir):
             fp = os.path.join(sim_dir, f)
@@ -125,18 +272,31 @@ def main():
     targeted = {k: False for k in base}   # was this check named as a target of a mutation that ACTUALLY RAN?
     mlog = []
     for mut in muts:
-        mutated, missed, err = run_variant(sim, mut["set"], receipt_rel, ckey)
+        is_defunc = "defunc" in mut
+        if is_defunc and "set" in mut:
+            die(f"mutation {mut.get('name')!r} has both 'set' and 'defunc' — exactly one required")
+        if is_defunc:
+            mutated, missed, err = run_variant(sim, None, receipt_rel, ckey, defunc=mut)
+        else:
+            mutated, missed, err = run_variant(sim, mut["set"], receipt_rel, ckey)
+        if is_defunc:
+            entry = {"mutation": mut["name"], "defunc": mut["defunc"], "mode": mut["mode"],
+                     "targets": mut.get("targets", [])}
+        else:
+            entry = {"mutation": mut["name"], "set": mut["set"], "targets": mut.get("targets", [])}
         if mutated is None:
             # a crash is not evidence about any check; record and move on, do not mark targeted
-            mlog.append({"mutation": mut["name"], "set": mut["set"], "targets": mut.get("targets", []),
-                         "crashed": err, "flipped": []})
+            entry["crashed"] = err
+            entry["flipped"] = []
+            mlog.append(entry)
             continue
         for k in mut.get("targets", []):
             if k in targeted: targeted[k] = True   # only after a successful run
         changed = [k for k in base if k in mutated and mutated[k] != base[k]]
         for k in changed: flips[k].append(mut["name"])
-        mlog.append({"mutation": mut["name"], "set": mut["set"], "targets": mut.get("targets", []),
-                     "missed_consts": missed, "flipped": changed})
+        entry["missed_consts"] = missed
+        entry["flipped"] = changed
+        mlog.append(entry)
 
     # three honest classes — the corpus workflow flagged that lumping them lies:
     #   CAN_FAIL          : flipped under some mutation (proven genuine)

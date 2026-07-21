@@ -1,0 +1,9 @@
+{"sim":"system_v8/nested_manifold/manifold_one.py","entry":"main",
+ "receipt":"results/manifold_one/receipt.json","checks_key":"checks",
+ "mutations":[
+   {"name":"sever_drive_coupling(GAMMA_BASE=0)","set":{"GAMMA_BASE":0.0},
+    "targets":["K2_downstream_entropy_comoves_with_drive","K6_freeze_drive_damps_downstream"]},
+   {"name":"sever_outer_layer(OUTER couplings=0)","set":{"OUTER":{"Delta4":0.0,"Delta5":0.0,"gph":0.0,"g":0.0,"g2":0.0,"k_out":0.0}},
+    "targets":["K5_flatten_nesting_diverges"]},
+   {"name":"defunc_apply_outer_identity(M_tick=I structural)","defunc":"apply_outer","mode":"identity",
+    "targets":["K5_flatten_nesting_diverges"]}]}

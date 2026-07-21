@@ -1,0 +1,3311 @@
+{
+  "anti_stall_control": "PASS",
+  "anti_stall_control_diff": null,
+  "classification": "tool_lego_fit_probe",
+  "d_monotone": true,
+  "floor_seal": {
+    "error": null,
+    "exit_code": 0,
+    "invoked": true,
+    "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/ratchet_contract/results/ratchet_tick_floors.json",
+    "stdout_or_result": {
+      "decisions": [
+        {
+          "action": "hold",
+          "direction": "higher_is_better",
+          "floor": 7,
+          "from": 7,
+          "key": "ratchet_tick.demand_count"
+        },
+        {
+          "action": "hold",
+          "direction": "lower_is_better",
+          "floor": 2,
+          "from": 2,
+          "key": "ratchet_tick.purgatory_count"
+        }
+      ],
+      "receipt": "ratchet_tick_floor_receipt.json",
+      "tool": "ratchet_floor",
+      "verdict": "ADMITTED",
+      "violations": []
+    }
+  },
+  "frontier_moved": false,
+  "junk_run": {
+    "d_size": 7,
+    "demand_pairs": [
+      [
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        },
+        {
+          "prefix": [],
+          "root": "'root_bell'"
+        }
+      ],
+      [
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        },
+        {
+          "prefix": [
+            "'prepare_bell'"
+          ],
+          "root": "'root_00'"
+        }
+      ],
+      [
+        {
+          "prefix": [
+            "('ordered_compose', ('H0', 'CNOT01'))"
+          ],
+          "root": "'root_plus0'"
+        },
+        {
+          "prefix": [
+            "('ordered_compose', ('CNOT01', 'H0'))"
+          ],
+          "root": "'root_plus0'"
+        }
+      ],
+      [
+        {
+          "prefix": [
+            "'couple_inner_outer'"
+          ],
+          "root": "'root_plus0'"
+        },
+        {
+          "prefix": [
+            "'couple_neighbor_neighbor'"
+          ],
+          "root": "'root_plus0'"
+        }
+      ],
+      [
+        {
+          "prefix": [
+            "'prepare_00'"
+          ],
+          "root": "'root_mixed'"
+        },
+        {
+          "prefix": [
+            "'prepare_bell'"
+          ],
+          "root": "'root_mixed'"
+        }
+      ],
+      [
+        {
+          "prefix": [
+            "'prepare_plus0'"
+          ],
+          "root": "'root_mixed'"
+        },
+        {
+          "prefix": [
+            "'restrict_trace_out_qubit1'"
+          ],
+          "root": "'root_mixed'"
+        }
+      ],
+      [
+        {
+          "prefix": [
+            "('ordered_compose', ('H0', 'CNOT01'))"
+          ],
+          "root": "'root_mixed'"
+        },
+        {
+          "prefix": [
+            "'perturb_small_rx0'"
+          ],
+          "root": "'root_mixed'"
+        }
+      ]
+    ],
+    "frontier": {
+      "antichain": [
+        "ablation_flattened_exec_pkg"
+      ],
+      "branches": [
+        {
+          "cells": 8,
+          "members": [
+            "ablation_flattened_exec_pkg"
+          ],
+          "partition_digest": "24345cccafcc564b58d02ae7eef0bda2f13c6628714b8d8321bac283e7b0616a"
+        }
+      ],
+      "dominated": [],
+      "pairwise": {},
+      "purgatory": [
+        {
+          "candidate": "classical_relational_exec_pkg",
+          "failed_at": "base_survivorship",
+          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
+          "reason": {
+            "collapsed_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ]
+          }
+        },
+        {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "failed_at": "base_survivorship",
+          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
+          "reason": {
+            "collapsed_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ]
+          }
+        }
+      ],
+      "survivors": [
+        "ablation_flattened_exec_pkg"
+      ]
+    },
+    "gate_verdicts": {
+      "ablation_flattened_exec_pkg": {
+        "IDENTITY_GATE": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "IDENTITY_GATE",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "pi_probes_cells": 8,
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "pi_reidentify_cells": 8,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          },
+          "verdict": "PASS"
+        },
+        "adequacy": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "adequacy",
+          "reasons": {
+            "terms": {
+              "Compose": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "buildability_gate",
+                "reasons": {
+                  "allowed_op_count": 18,
+                  "probe_count": 19,
+                  "state_count": 17
+                },
+                "verdict": "PASS"
+              },
+              "Distinguish": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "IDENTITY_GATE",
+                "reasons": {
+                  "declared_primitives": [],
+                  "pi_probes": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    2,
+                    0,
+                    6,
+                    0,
+                    1,
+                    2,
+                    3,
+                    3,
+                    7
+                  ],
+                  "pi_probes_cells": 8,
+                  "pi_reidentify": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    2,
+                    0,
+                    6,
+                    0,
+                    1,
+                    2,
+                    3,
+                    3,
+                    7
+                  ],
+                  "pi_reidentify_cells": 8,
+                  "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+                },
+                "verdict": "PASS"
+              },
+              "Evolve": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "evolvability_gate",
+                "reasons": {
+                  "D_size": 7,
+                  "collapsed": 0,
+                  "new_constraint": "'probe_generic_extension'"
+                },
+                "verdict": "PASS"
+              },
+              "Extend": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "extension_gate",
+                "reasons": {
+                  "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+                },
+                "verdict": "HOLD"
+              },
+              "PassControls": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "probe_validity_gate",
+                "reasons": {
+                  "D": [
+                    "('peek', ())",
+                    "('peek', ('prepare_00',))",
+                    "('peek', ('prepare_bell',))",
+                    "('peek', ('prepare_plus0',))",
+                    "('peek', ('restrict_trace_out_qubit1',))",
+                    "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+                    "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+                    "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', ('perturb_small_rx0',))",
+                    "('peek', ('delay_short',))",
+                    "('peek', ('delay_long',))",
+                    "('peek', ('couple_inner_outer',))",
+                    "('peek', ('couple_neighbor_neighbor',))",
+                    "('peek', ('renest_swap01',))",
+                    "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+                    "('peek', (('extend_under_constraint', 'require_purity'),))",
+                    "('peek', ('read_outcome_z',))",
+                    "('peek', ('read_outcome_x',))"
+                  ],
+                  "checked_negative_controls": [
+                    "trace_preserving_is_a_genuine_noop"
+                  ],
+                  "separated_positive_controls": [
+                    "root_00_vs_root_bell"
+                  ]
+                },
+                "verdict": "PASS"
+              },
+              "Persist": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "persistence_gate",
+                "reasons": {
+                  "D_persistence_size": 7,
+                  "already_collapsed_at_base_edges": [],
+                  "collapsed_persistence_demand_edges": [
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ],
+                    [
+                      "('root_mixed', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                      "('root_mixed', ('perturb_small_rx0', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "delay": 1,
+                  "newly_collapsed_by_continuation_edges": [
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ],
+                    [
+                      "('root_mixed', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                      "('root_mixed', ('perturb_small_rx0', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "partial_access": "None",
+                  "perturbation": "'default_probe_perturbation'",
+                  "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+                  "relabeled": false
+                },
+                "verdict": "FAIL"
+              }
+            },
+            "verdicts": {
+              "Compose": "PASS",
+              "Distinguish": "PASS",
+              "Evolve": "PASS",
+              "Extend": "HOLD",
+              "PassControls": "PASS",
+              "Persist": "FAIL"
+            }
+          },
+          "verdict": "FAIL"
+        },
+        "buildability_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "buildability_gate",
+          "reasons": {
+            "allowed_op_count": 18,
+            "probe_count": 19,
+            "state_count": 17
+          },
+          "verdict": "PASS"
+        },
+        "evolvability_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "evolvability_gate",
+          "reasons": {
+            "D_size": 7,
+            "collapsed": 0,
+            "new_constraint": "'probe_generic_extension'"
+          },
+          "verdict": "PASS"
+        },
+        "extension_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "extension_gate",
+          "reasons": {
+            "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+          },
+          "verdict": "HOLD"
+        },
+        "persistence_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "persistence_gate",
+          "reasons": {
+            "D_persistence_size": 7,
+            "already_collapsed_at_base_edges": [],
+            "collapsed_persistence_demand_edges": [
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ],
+              [
+                "('root_mixed', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                "('root_mixed', ('perturb_small_rx0', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "delay": 1,
+            "newly_collapsed_by_continuation_edges": [
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ],
+              [
+                "('root_mixed', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                "('root_mixed', ('perturb_small_rx0', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "partial_access": "None",
+            "perturbation": "'default_probe_perturbation'",
+            "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+            "relabeled": false
+          },
+          "verdict": "FAIL"
+        },
+        "probe_validity_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "probe_validity_gate",
+          "reasons": {
+            "D": [
+              "('peek', ())",
+              "('peek', ('prepare_00',))",
+              "('peek', ('prepare_bell',))",
+              "('peek', ('prepare_plus0',))",
+              "('peek', ('restrict_trace_out_qubit1',))",
+              "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+              "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', ('perturb_small_rx0',))",
+              "('peek', ('delay_short',))",
+              "('peek', ('delay_long',))",
+              "('peek', ('couple_inner_outer',))",
+              "('peek', ('couple_neighbor_neighbor',))",
+              "('peek', ('renest_swap01',))",
+              "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+              "('peek', (('extend_under_constraint', 'require_purity'),))",
+              "('peek', ('read_outcome_z',))",
+              "('peek', ('read_outcome_x',))"
+            ],
+            "checked_negative_controls": [
+              "trace_preserving_is_a_genuine_noop"
+            ],
+            "separated_positive_controls": [
+              "root_00_vs_root_bell"
+            ]
+          },
+          "verdict": "PASS"
+        }
+      },
+      "classical_relational_exec_pkg": {
+        "IDENTITY_GATE": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "IDENTITY_GATE",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "pi_probes_cells": 8,
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "pi_reidentify_cells": 8,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          },
+          "verdict": "PASS"
+        },
+        "adequacy": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "adequacy",
+          "reasons": {
+            "terms": {
+              "Compose": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "buildability_gate",
+                "reasons": {
+                  "allowed_op_count": 18,
+                  "probe_count": 19,
+                  "state_count": 17
+                },
+                "verdict": "PASS"
+              },
+              "Distinguish": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "IDENTITY_GATE",
+                "reasons": {
+                  "declared_primitives": [],
+                  "pi_probes": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6,
+                    0,
+                    1,
+                    2,
+                    3,
+                    3,
+                    7
+                  ],
+                  "pi_probes_cells": 8,
+                  "pi_reidentify": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6,
+                    0,
+                    1,
+                    2,
+                    3,
+                    3,
+                    7
+                  ],
+                  "pi_reidentify_cells": 8,
+                  "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+                },
+                "verdict": "PASS"
+              },
+              "Evolve": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "evolvability_gate",
+                "reasons": {
+                  "already_collapsed_at_base_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "collapsed_evolvability_demand_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "new_constraint": "'probe_generic_extension'",
+                  "newly_collapsed_by_continuation_edges": [],
+                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                },
+                "verdict": "FAIL"
+              },
+              "Extend": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "extension_gate",
+                "reasons": {
+                  "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+                },
+                "verdict": "HOLD"
+              },
+              "PassControls": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "probe_validity_gate",
+                "reasons": {
+                  "D": [
+                    "('peek', ())",
+                    "('peek', ('prepare_00',))",
+                    "('peek', ('prepare_bell',))",
+                    "('peek', ('prepare_plus0',))",
+                    "('peek', ('restrict_trace_out_qubit1',))",
+                    "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+                    "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+                    "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', ('perturb_small_rx0',))",
+                    "('peek', ('delay_short',))",
+                    "('peek', ('delay_long',))",
+                    "('peek', ('couple_inner_outer',))",
+                    "('peek', ('couple_neighbor_neighbor',))",
+                    "('peek', ('renest_swap01',))",
+                    "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+                    "('peek', (('extend_under_constraint', 'require_purity'),))",
+                    "('peek', ('read_outcome_z',))",
+                    "('peek', ('read_outcome_x',))"
+                  ],
+                  "checked_negative_controls": [
+                    "trace_preserving_is_a_genuine_noop"
+                  ],
+                  "separated_positive_controls": [
+                    "root_00_vs_root_bell"
+                  ]
+                },
+                "verdict": "PASS"
+              },
+              "Persist": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "persistence_gate",
+                "reasons": {
+                  "D_persistence_size": 7,
+                  "already_collapsed_at_base_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "collapsed_persistence_demand_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+                    ],
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ],
+                    [
+                      "('root_mixed', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                      "('root_mixed', ('perturb_small_rx0', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "delay": 1,
+                  "newly_collapsed_by_continuation_edges": [
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ],
+                    [
+                      "('root_mixed', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                      "('root_mixed', ('perturb_small_rx0', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "partial_access": "None",
+                  "perturbation": "'default_probe_perturbation'",
+                  "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+                  "relabeled": false
+                },
+                "verdict": "FAIL"
+              }
+            },
+            "verdicts": {
+              "Compose": "PASS",
+              "Distinguish": "PASS",
+              "Evolve": "FAIL",
+              "Extend": "HOLD",
+              "PassControls": "PASS",
+              "Persist": "FAIL"
+            }
+          },
+          "verdict": "FAIL"
+        },
+        "buildability_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "buildability_gate",
+          "reasons": {
+            "allowed_op_count": 18,
+            "probe_count": 19,
+            "state_count": 17
+          },
+          "verdict": "PASS"
+        },
+        "evolvability_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "evolvability_gate",
+          "reasons": {
+            "already_collapsed_at_base_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "collapsed_evolvability_demand_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "new_constraint": "'probe_generic_extension'",
+            "newly_collapsed_by_continuation_edges": [],
+            "reason": "the evolved extension destroys a previously-live demanded distinction"
+          },
+          "verdict": "FAIL"
+        },
+        "extension_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "extension_gate",
+          "reasons": {
+            "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+          },
+          "verdict": "HOLD"
+        },
+        "persistence_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "persistence_gate",
+          "reasons": {
+            "D_persistence_size": 7,
+            "already_collapsed_at_base_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "collapsed_persistence_demand_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+              ],
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ],
+              [
+                "('root_mixed', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                "('root_mixed', ('perturb_small_rx0', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "delay": 1,
+            "newly_collapsed_by_continuation_edges": [
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ],
+              [
+                "('root_mixed', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                "('root_mixed', ('perturb_small_rx0', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "partial_access": "None",
+            "perturbation": "'default_probe_perturbation'",
+            "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+            "relabeled": false
+          },
+          "verdict": "FAIL"
+        },
+        "probe_validity_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "probe_validity_gate",
+          "reasons": {
+            "D": [
+              "('peek', ())",
+              "('peek', ('prepare_00',))",
+              "('peek', ('prepare_bell',))",
+              "('peek', ('prepare_plus0',))",
+              "('peek', ('restrict_trace_out_qubit1',))",
+              "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+              "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', ('perturb_small_rx0',))",
+              "('peek', ('delay_short',))",
+              "('peek', ('delay_long',))",
+              "('peek', ('couple_inner_outer',))",
+              "('peek', ('couple_neighbor_neighbor',))",
+              "('peek', ('renest_swap01',))",
+              "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+              "('peek', (('extend_under_constraint', 'require_purity'),))",
+              "('peek', ('read_outcome_z',))",
+              "('peek', ('read_outcome_x',))"
+            ],
+            "checked_negative_controls": [
+              "trace_preserving_is_a_genuine_noop"
+            ],
+            "separated_positive_controls": [
+              "root_00_vs_root_bell"
+            ]
+          },
+          "verdict": "PASS"
+        }
+      },
+      "countermodel_lookup_replay_exec_pkg": {
+        "IDENTITY_GATE": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "IDENTITY_GATE",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "pi_probes_cells": 8,
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "pi_reidentify_cells": 8,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          },
+          "verdict": "PASS"
+        },
+        "adequacy": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "adequacy",
+          "reasons": {
+            "terms": {
+              "Compose": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "buildability_gate",
+                "reasons": {
+                  "allowed_op_count": 18,
+                  "probe_count": 19,
+                  "state_count": 17
+                },
+                "verdict": "PASS"
+              },
+              "Distinguish": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "IDENTITY_GATE",
+                "reasons": {
+                  "declared_primitives": [],
+                  "pi_probes": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6,
+                    0,
+                    1,
+                    2,
+                    3,
+                    3,
+                    7
+                  ],
+                  "pi_probes_cells": 8,
+                  "pi_reidentify": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6,
+                    0,
+                    1,
+                    2,
+                    3,
+                    3,
+                    7
+                  ],
+                  "pi_reidentify_cells": 8,
+                  "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+                },
+                "verdict": "PASS"
+              },
+              "Evolve": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "evolvability_gate",
+                "reasons": {
+                  "already_collapsed_at_base_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "collapsed_evolvability_demand_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "new_constraint": "'probe_generic_extension'",
+                  "newly_collapsed_by_continuation_edges": [],
+                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                },
+                "verdict": "FAIL"
+              },
+              "Extend": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "extension_gate",
+                "reasons": {
+                  "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+                },
+                "verdict": "HOLD"
+              },
+              "PassControls": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "probe_validity_gate",
+                "reasons": {
+                  "D": [
+                    "('peek', ())",
+                    "('peek', ('prepare_00',))",
+                    "('peek', ('prepare_bell',))",
+                    "('peek', ('prepare_plus0',))",
+                    "('peek', ('restrict_trace_out_qubit1',))",
+                    "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+                    "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+                    "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', ('perturb_small_rx0',))",
+                    "('peek', ('delay_short',))",
+                    "('peek', ('delay_long',))",
+                    "('peek', ('couple_inner_outer',))",
+                    "('peek', ('couple_neighbor_neighbor',))",
+                    "('peek', ('renest_swap01',))",
+                    "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+                    "('peek', (('extend_under_constraint', 'require_purity'),))",
+                    "('peek', ('read_outcome_z',))",
+                    "('peek', ('read_outcome_x',))"
+                  ],
+                  "checked_negative_controls": [
+                    "trace_preserving_is_a_genuine_noop"
+                  ],
+                  "separated_positive_controls": [
+                    "root_00_vs_root_bell"
+                  ]
+                },
+                "verdict": "PASS"
+              },
+              "Persist": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "persistence_gate",
+                "reasons": {
+                  "error": "ValueError(\"countermodel lookup missing bounded key ('root_mixed', ('prepare_00', 'delay_short'), 'perturb_small_rx0')\")",
+                  "stage": "induced_partition(persisted)"
+                },
+                "verdict": "FAIL"
+              }
+            },
+            "verdicts": {
+              "Compose": "PASS",
+              "Distinguish": "PASS",
+              "Evolve": "FAIL",
+              "Extend": "HOLD",
+              "PassControls": "PASS",
+              "Persist": "FAIL"
+            }
+          },
+          "verdict": "FAIL"
+        },
+        "buildability_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "buildability_gate",
+          "reasons": {
+            "allowed_op_count": 18,
+            "probe_count": 19,
+            "state_count": 17
+          },
+          "verdict": "PASS"
+        },
+        "evolvability_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "evolvability_gate",
+          "reasons": {
+            "already_collapsed_at_base_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "collapsed_evolvability_demand_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "new_constraint": "'probe_generic_extension'",
+            "newly_collapsed_by_continuation_edges": [],
+            "reason": "the evolved extension destroys a previously-live demanded distinction"
+          },
+          "verdict": "FAIL"
+        },
+        "extension_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "extension_gate",
+          "reasons": {
+            "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+          },
+          "verdict": "HOLD"
+        },
+        "persistence_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "persistence_gate",
+          "reasons": {
+            "error": "ValueError(\"countermodel lookup missing bounded key ('root_mixed', ('prepare_00', 'delay_short'), 'perturb_small_rx0')\")",
+            "stage": "induced_partition(persisted)"
+          },
+          "verdict": "FAIL"
+        },
+        "probe_validity_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "probe_validity_gate",
+          "reasons": {
+            "D": [
+              "('peek', ())",
+              "('peek', ('prepare_00',))",
+              "('peek', ('prepare_bell',))",
+              "('peek', ('prepare_plus0',))",
+              "('peek', ('restrict_trace_out_qubit1',))",
+              "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+              "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', ('perturb_small_rx0',))",
+              "('peek', ('delay_short',))",
+              "('peek', ('delay_long',))",
+              "('peek', ('couple_inner_outer',))",
+              "('peek', ('couple_neighbor_neighbor',))",
+              "('peek', ('renest_swap01',))",
+              "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+              "('peek', (('extend_under_constraint', 'require_purity'),))",
+              "('peek', ('read_outcome_z',))",
+              "('peek', ('read_outcome_x',))"
+            ],
+            "checked_negative_controls": [
+              "trace_preserving_is_a_genuine_noop"
+            ],
+            "separated_positive_controls": [
+              "root_00_vs_root_bell"
+            ]
+          },
+          "verdict": "PASS"
+        }
+      }
+    },
+    "pairwise_mss_base_no_thickening": [
+      {
+        "candidate_a": "classical_relational_exec_pkg",
+        "candidate_b": "countermodel_lookup_replay_exec_pkg",
+        "reasons": {
+          "collapsed_edges_A": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "collapsed_edges_B": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "reason": "does not preserve every demanded distinction in the base demand set D",
+          "stage": "base_survivorship"
+        },
+        "verdict": "HOLD"
+      },
+      {
+        "candidate_a": "classical_relational_exec_pkg",
+        "candidate_b": "ablation_flattened_exec_pkg",
+        "reasons": {
+          "collapsed_edges_A": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "collapsed_edges_B": [],
+          "reason": "does not preserve every demanded distinction in the base demand set D",
+          "stage": "base_survivorship"
+        },
+        "verdict": "HOLD"
+      },
+      {
+        "candidate_a": "countermodel_lookup_replay_exec_pkg",
+        "candidate_b": "ablation_flattened_exec_pkg",
+        "reasons": {
+          "collapsed_edges_A": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "collapsed_edges_B": [],
+          "reason": "does not preserve every demanded distinction in the base demand set D",
+          "stage": "base_survivorship"
+        },
+        "verdict": "HOLD"
+      }
+    ],
+    "x_size": 17
+  },
+  "movement_attribution": [],
+  "no_unearned_resurrection": true,
+  "promotion_allowed": false,
+  "schema_version": "ratchet-tick/0.1",
+  "tick0": {
+    "d_size": 4,
+    "demand_pairs": [
+      [
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        },
+        {
+          "prefix": [],
+          "root": "'root_bell'"
+        }
+      ],
+      [
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        },
+        {
+          "prefix": [
+            "'prepare_bell'"
+          ],
+          "root": "'root_00'"
+        }
+      ],
+      [
+        {
+          "prefix": [
+            "('ordered_compose', ('H0', 'CNOT01'))"
+          ],
+          "root": "'root_plus0'"
+        },
+        {
+          "prefix": [
+            "('ordered_compose', ('CNOT01', 'H0'))"
+          ],
+          "root": "'root_plus0'"
+        }
+      ],
+      [
+        {
+          "prefix": [
+            "'couple_inner_outer'"
+          ],
+          "root": "'root_plus0'"
+        },
+        {
+          "prefix": [
+            "'couple_neighbor_neighbor'"
+          ],
+          "root": "'root_plus0'"
+        }
+      ]
+    ],
+    "frontier": {
+      "antichain": [
+        "ablation_flattened_exec_pkg"
+      ],
+      "branches": [
+        {
+          "cells": 7,
+          "members": [
+            "ablation_flattened_exec_pkg"
+          ],
+          "partition_digest": "fa2b0fcd245e18d726653912b6b8871e2ebc6e681e39680b99bb69d5d35f8285"
+        }
+      ],
+      "dominated": [],
+      "pairwise": {},
+      "purgatory": [
+        {
+          "candidate": "classical_relational_exec_pkg",
+          "failed_at": "base_survivorship",
+          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
+          "reason": {
+            "collapsed_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ]
+          }
+        },
+        {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "failed_at": "base_survivorship",
+          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
+          "reason": {
+            "collapsed_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ]
+          }
+        }
+      ],
+      "survivors": [
+        "ablation_flattened_exec_pkg"
+      ]
+    },
+    "gate_verdicts": {
+      "ablation_flattened_exec_pkg": {
+        "IDENTITY_GATE": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "IDENTITY_GATE",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6
+            ],
+            "pi_probes_cells": 7,
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6
+            ],
+            "pi_reidentify_cells": 7,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          },
+          "verdict": "PASS"
+        },
+        "adequacy": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "adequacy",
+          "reasons": {
+            "terms": {
+              "Compose": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "buildability_gate",
+                "reasons": {
+                  "allowed_op_count": 18,
+                  "probe_count": 19,
+                  "state_count": 11
+                },
+                "verdict": "PASS"
+              },
+              "Distinguish": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "IDENTITY_GATE",
+                "reasons": {
+                  "declared_primitives": [],
+                  "pi_probes": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    2,
+                    0,
+                    6
+                  ],
+                  "pi_probes_cells": 7,
+                  "pi_reidentify": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    2,
+                    0,
+                    6
+                  ],
+                  "pi_reidentify_cells": 7,
+                  "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+                },
+                "verdict": "PASS"
+              },
+              "Evolve": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "evolvability_gate",
+                "reasons": {
+                  "D_size": 4,
+                  "collapsed": 0,
+                  "new_constraint": "'probe_generic_extension'"
+                },
+                "verdict": "PASS"
+              },
+              "Extend": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "extension_gate",
+                "reasons": {
+                  "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+                },
+                "verdict": "HOLD"
+              },
+              "PassControls": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "probe_validity_gate",
+                "reasons": {
+                  "D": [
+                    "('peek', ())",
+                    "('peek', ('prepare_00',))",
+                    "('peek', ('prepare_bell',))",
+                    "('peek', ('prepare_plus0',))",
+                    "('peek', ('restrict_trace_out_qubit1',))",
+                    "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+                    "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+                    "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', ('perturb_small_rx0',))",
+                    "('peek', ('delay_short',))",
+                    "('peek', ('delay_long',))",
+                    "('peek', ('couple_inner_outer',))",
+                    "('peek', ('couple_neighbor_neighbor',))",
+                    "('peek', ('renest_swap01',))",
+                    "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+                    "('peek', (('extend_under_constraint', 'require_purity'),))",
+                    "('peek', ('read_outcome_z',))",
+                    "('peek', ('read_outcome_x',))"
+                  ],
+                  "checked_negative_controls": [
+                    "trace_preserving_is_a_genuine_noop"
+                  ],
+                  "separated_positive_controls": [
+                    "root_00_vs_root_bell"
+                  ]
+                },
+                "verdict": "PASS"
+              },
+              "Persist": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "persistence_gate",
+                "reasons": {
+                  "D_persistence_size": 4,
+                  "already_collapsed_at_base_edges": [],
+                  "collapsed_persistence_demand_edges": [
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "delay": 1,
+                  "newly_collapsed_by_continuation_edges": [
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "partial_access": "None",
+                  "perturbation": "'default_probe_perturbation'",
+                  "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+                  "relabeled": false
+                },
+                "verdict": "FAIL"
+              }
+            },
+            "verdicts": {
+              "Compose": "PASS",
+              "Distinguish": "PASS",
+              "Evolve": "PASS",
+              "Extend": "HOLD",
+              "PassControls": "PASS",
+              "Persist": "FAIL"
+            }
+          },
+          "verdict": "FAIL"
+        },
+        "buildability_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "buildability_gate",
+          "reasons": {
+            "allowed_op_count": 18,
+            "probe_count": 19,
+            "state_count": 11
+          },
+          "verdict": "PASS"
+        },
+        "evolvability_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "evolvability_gate",
+          "reasons": {
+            "D_size": 4,
+            "collapsed": 0,
+            "new_constraint": "'probe_generic_extension'"
+          },
+          "verdict": "PASS"
+        },
+        "extension_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "extension_gate",
+          "reasons": {
+            "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+          },
+          "verdict": "HOLD"
+        },
+        "persistence_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "persistence_gate",
+          "reasons": {
+            "D_persistence_size": 4,
+            "already_collapsed_at_base_edges": [],
+            "collapsed_persistence_demand_edges": [
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "delay": 1,
+            "newly_collapsed_by_continuation_edges": [
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "partial_access": "None",
+            "perturbation": "'default_probe_perturbation'",
+            "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+            "relabeled": false
+          },
+          "verdict": "FAIL"
+        },
+        "probe_validity_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "probe_validity_gate",
+          "reasons": {
+            "D": [
+              "('peek', ())",
+              "('peek', ('prepare_00',))",
+              "('peek', ('prepare_bell',))",
+              "('peek', ('prepare_plus0',))",
+              "('peek', ('restrict_trace_out_qubit1',))",
+              "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+              "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', ('perturb_small_rx0',))",
+              "('peek', ('delay_short',))",
+              "('peek', ('delay_long',))",
+              "('peek', ('couple_inner_outer',))",
+              "('peek', ('couple_neighbor_neighbor',))",
+              "('peek', ('renest_swap01',))",
+              "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+              "('peek', (('extend_under_constraint', 'require_purity'),))",
+              "('peek', ('read_outcome_z',))",
+              "('peek', ('read_outcome_x',))"
+            ],
+            "checked_negative_controls": [
+              "trace_preserving_is_a_genuine_noop"
+            ],
+            "separated_positive_controls": [
+              "root_00_vs_root_bell"
+            ]
+          },
+          "verdict": "PASS"
+        }
+      },
+      "classical_relational_exec_pkg": {
+        "IDENTITY_GATE": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "IDENTITY_GATE",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6
+            ],
+            "pi_probes_cells": 7,
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6
+            ],
+            "pi_reidentify_cells": 7,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          },
+          "verdict": "PASS"
+        },
+        "adequacy": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "adequacy",
+          "reasons": {
+            "terms": {
+              "Compose": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "buildability_gate",
+                "reasons": {
+                  "allowed_op_count": 18,
+                  "probe_count": 19,
+                  "state_count": 11
+                },
+                "verdict": "PASS"
+              },
+              "Distinguish": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "IDENTITY_GATE",
+                "reasons": {
+                  "declared_primitives": [],
+                  "pi_probes": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6
+                  ],
+                  "pi_probes_cells": 7,
+                  "pi_reidentify": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6
+                  ],
+                  "pi_reidentify_cells": 7,
+                  "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+                },
+                "verdict": "PASS"
+              },
+              "Evolve": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "evolvability_gate",
+                "reasons": {
+                  "already_collapsed_at_base_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "collapsed_evolvability_demand_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "new_constraint": "'probe_generic_extension'",
+                  "newly_collapsed_by_continuation_edges": [],
+                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                },
+                "verdict": "FAIL"
+              },
+              "Extend": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "extension_gate",
+                "reasons": {
+                  "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+                },
+                "verdict": "HOLD"
+              },
+              "PassControls": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "probe_validity_gate",
+                "reasons": {
+                  "D": [
+                    "('peek', ())",
+                    "('peek', ('prepare_00',))",
+                    "('peek', ('prepare_bell',))",
+                    "('peek', ('prepare_plus0',))",
+                    "('peek', ('restrict_trace_out_qubit1',))",
+                    "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+                    "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+                    "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', ('perturb_small_rx0',))",
+                    "('peek', ('delay_short',))",
+                    "('peek', ('delay_long',))",
+                    "('peek', ('couple_inner_outer',))",
+                    "('peek', ('couple_neighbor_neighbor',))",
+                    "('peek', ('renest_swap01',))",
+                    "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+                    "('peek', (('extend_under_constraint', 'require_purity'),))",
+                    "('peek', ('read_outcome_z',))",
+                    "('peek', ('read_outcome_x',))"
+                  ],
+                  "checked_negative_controls": [
+                    "trace_preserving_is_a_genuine_noop"
+                  ],
+                  "separated_positive_controls": [
+                    "root_00_vs_root_bell"
+                  ]
+                },
+                "verdict": "PASS"
+              },
+              "Persist": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "persistence_gate",
+                "reasons": {
+                  "D_persistence_size": 4,
+                  "already_collapsed_at_base_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "collapsed_persistence_demand_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+                    ],
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "delay": 1,
+                  "newly_collapsed_by_continuation_edges": [
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "partial_access": "None",
+                  "perturbation": "'default_probe_perturbation'",
+                  "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+                  "relabeled": false
+                },
+                "verdict": "FAIL"
+              }
+            },
+            "verdicts": {
+              "Compose": "PASS",
+              "Distinguish": "PASS",
+              "Evolve": "FAIL",
+              "Extend": "HOLD",
+              "PassControls": "PASS",
+              "Persist": "FAIL"
+            }
+          },
+          "verdict": "FAIL"
+        },
+        "buildability_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "buildability_gate",
+          "reasons": {
+            "allowed_op_count": 18,
+            "probe_count": 19,
+            "state_count": 11
+          },
+          "verdict": "PASS"
+        },
+        "evolvability_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "evolvability_gate",
+          "reasons": {
+            "already_collapsed_at_base_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "collapsed_evolvability_demand_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "new_constraint": "'probe_generic_extension'",
+            "newly_collapsed_by_continuation_edges": [],
+            "reason": "the evolved extension destroys a previously-live demanded distinction"
+          },
+          "verdict": "FAIL"
+        },
+        "extension_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "extension_gate",
+          "reasons": {
+            "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+          },
+          "verdict": "HOLD"
+        },
+        "persistence_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "persistence_gate",
+          "reasons": {
+            "D_persistence_size": 4,
+            "already_collapsed_at_base_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "collapsed_persistence_demand_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+              ],
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "delay": 1,
+            "newly_collapsed_by_continuation_edges": [
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "partial_access": "None",
+            "perturbation": "'default_probe_perturbation'",
+            "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+            "relabeled": false
+          },
+          "verdict": "FAIL"
+        },
+        "probe_validity_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "probe_validity_gate",
+          "reasons": {
+            "D": [
+              "('peek', ())",
+              "('peek', ('prepare_00',))",
+              "('peek', ('prepare_bell',))",
+              "('peek', ('prepare_plus0',))",
+              "('peek', ('restrict_trace_out_qubit1',))",
+              "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+              "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', ('perturb_small_rx0',))",
+              "('peek', ('delay_short',))",
+              "('peek', ('delay_long',))",
+              "('peek', ('couple_inner_outer',))",
+              "('peek', ('couple_neighbor_neighbor',))",
+              "('peek', ('renest_swap01',))",
+              "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+              "('peek', (('extend_under_constraint', 'require_purity'),))",
+              "('peek', ('read_outcome_z',))",
+              "('peek', ('read_outcome_x',))"
+            ],
+            "checked_negative_controls": [
+              "trace_preserving_is_a_genuine_noop"
+            ],
+            "separated_positive_controls": [
+              "root_00_vs_root_bell"
+            ]
+          },
+          "verdict": "PASS"
+        }
+      },
+      "countermodel_lookup_replay_exec_pkg": {
+        "IDENTITY_GATE": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "IDENTITY_GATE",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6
+            ],
+            "pi_probes_cells": 7,
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6
+            ],
+            "pi_reidentify_cells": 7,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          },
+          "verdict": "PASS"
+        },
+        "adequacy": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "adequacy",
+          "reasons": {
+            "terms": {
+              "Compose": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "buildability_gate",
+                "reasons": {
+                  "allowed_op_count": 18,
+                  "probe_count": 19,
+                  "state_count": 11
+                },
+                "verdict": "PASS"
+              },
+              "Distinguish": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "IDENTITY_GATE",
+                "reasons": {
+                  "declared_primitives": [],
+                  "pi_probes": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6
+                  ],
+                  "pi_probes_cells": 7,
+                  "pi_reidentify": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6
+                  ],
+                  "pi_reidentify_cells": 7,
+                  "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+                },
+                "verdict": "PASS"
+              },
+              "Evolve": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "evolvability_gate",
+                "reasons": {
+                  "already_collapsed_at_base_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "collapsed_evolvability_demand_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "new_constraint": "'probe_generic_extension'",
+                  "newly_collapsed_by_continuation_edges": [],
+                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                },
+                "verdict": "FAIL"
+              },
+              "Extend": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "extension_gate",
+                "reasons": {
+                  "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+                },
+                "verdict": "HOLD"
+              },
+              "PassControls": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "probe_validity_gate",
+                "reasons": {
+                  "D": [
+                    "('peek', ())",
+                    "('peek', ('prepare_00',))",
+                    "('peek', ('prepare_bell',))",
+                    "('peek', ('prepare_plus0',))",
+                    "('peek', ('restrict_trace_out_qubit1',))",
+                    "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+                    "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+                    "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', ('perturb_small_rx0',))",
+                    "('peek', ('delay_short',))",
+                    "('peek', ('delay_long',))",
+                    "('peek', ('couple_inner_outer',))",
+                    "('peek', ('couple_neighbor_neighbor',))",
+                    "('peek', ('renest_swap01',))",
+                    "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+                    "('peek', (('extend_under_constraint', 'require_purity'),))",
+                    "('peek', ('read_outcome_z',))",
+                    "('peek', ('read_outcome_x',))"
+                  ],
+                  "checked_negative_controls": [
+                    "trace_preserving_is_a_genuine_noop"
+                  ],
+                  "separated_positive_controls": [
+                    "root_00_vs_root_bell"
+                  ]
+                },
+                "verdict": "PASS"
+              },
+              "Persist": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "persistence_gate",
+                "reasons": {
+                  "error": "ValueError(\"countermodel lookup missing bounded key ('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short'), 'perturb_small_rx0')\")",
+                  "stage": "induced_partition(persisted)"
+                },
+                "verdict": "FAIL"
+              }
+            },
+            "verdicts": {
+              "Compose": "PASS",
+              "Distinguish": "PASS",
+              "Evolve": "FAIL",
+              "Extend": "HOLD",
+              "PassControls": "PASS",
+              "Persist": "FAIL"
+            }
+          },
+          "verdict": "FAIL"
+        },
+        "buildability_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "buildability_gate",
+          "reasons": {
+            "allowed_op_count": 18,
+            "probe_count": 19,
+            "state_count": 11
+          },
+          "verdict": "PASS"
+        },
+        "evolvability_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "evolvability_gate",
+          "reasons": {
+            "already_collapsed_at_base_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "collapsed_evolvability_demand_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "new_constraint": "'probe_generic_extension'",
+            "newly_collapsed_by_continuation_edges": [],
+            "reason": "the evolved extension destroys a previously-live demanded distinction"
+          },
+          "verdict": "FAIL"
+        },
+        "extension_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "extension_gate",
+          "reasons": {
+            "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+          },
+          "verdict": "HOLD"
+        },
+        "persistence_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "persistence_gate",
+          "reasons": {
+            "error": "ValueError(\"countermodel lookup missing bounded key ('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short'), 'perturb_small_rx0')\")",
+            "stage": "induced_partition(persisted)"
+          },
+          "verdict": "FAIL"
+        },
+        "probe_validity_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "probe_validity_gate",
+          "reasons": {
+            "D": [
+              "('peek', ())",
+              "('peek', ('prepare_00',))",
+              "('peek', ('prepare_bell',))",
+              "('peek', ('prepare_plus0',))",
+              "('peek', ('restrict_trace_out_qubit1',))",
+              "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+              "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', ('perturb_small_rx0',))",
+              "('peek', ('delay_short',))",
+              "('peek', ('delay_long',))",
+              "('peek', ('couple_inner_outer',))",
+              "('peek', ('couple_neighbor_neighbor',))",
+              "('peek', ('renest_swap01',))",
+              "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+              "('peek', (('extend_under_constraint', 'require_purity'),))",
+              "('peek', ('read_outcome_z',))",
+              "('peek', ('read_outcome_x',))"
+            ],
+            "checked_negative_controls": [
+              "trace_preserving_is_a_genuine_noop"
+            ],
+            "separated_positive_controls": [
+              "root_00_vs_root_bell"
+            ]
+          },
+          "verdict": "PASS"
+        }
+      }
+    },
+    "pairwise_mss_base_no_thickening": [
+      {
+        "candidate_a": "classical_relational_exec_pkg",
+        "candidate_b": "countermodel_lookup_replay_exec_pkg",
+        "reasons": {
+          "collapsed_edges_A": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "collapsed_edges_B": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "reason": "does not preserve every demanded distinction in the base demand set D",
+          "stage": "base_survivorship"
+        },
+        "verdict": "HOLD"
+      },
+      {
+        "candidate_a": "classical_relational_exec_pkg",
+        "candidate_b": "ablation_flattened_exec_pkg",
+        "reasons": {
+          "collapsed_edges_A": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "collapsed_edges_B": [],
+          "reason": "does not preserve every demanded distinction in the base demand set D",
+          "stage": "base_survivorship"
+        },
+        "verdict": "HOLD"
+      },
+      {
+        "candidate_a": "countermodel_lookup_replay_exec_pkg",
+        "candidate_b": "ablation_flattened_exec_pkg",
+        "reasons": {
+          "collapsed_edges_A": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "collapsed_edges_B": [],
+          "reason": "does not preserve every demanded distinction in the base demand set D",
+          "stage": "base_survivorship"
+        },
+        "verdict": "HOLD"
+      }
+    ],
+    "x_size": 11
+  },
+  "tick1": {
+    "d_size": 7,
+    "demand_pairs": [
+      [
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        },
+        {
+          "prefix": [],
+          "root": "'root_bell'"
+        }
+      ],
+      [
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        },
+        {
+          "prefix": [
+            "'prepare_bell'"
+          ],
+          "root": "'root_00'"
+        }
+      ],
+      [
+        {
+          "prefix": [
+            "('ordered_compose', ('H0', 'CNOT01'))"
+          ],
+          "root": "'root_plus0'"
+        },
+        {
+          "prefix": [
+            "('ordered_compose', ('CNOT01', 'H0'))"
+          ],
+          "root": "'root_plus0'"
+        }
+      ],
+      [
+        {
+          "prefix": [
+            "'couple_inner_outer'"
+          ],
+          "root": "'root_plus0'"
+        },
+        {
+          "prefix": [
+            "'couple_neighbor_neighbor'"
+          ],
+          "root": "'root_plus0'"
+        }
+      ],
+      [
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        },
+        {
+          "prefix": [
+            "'perturb_small_rx0'"
+          ],
+          "root": "'root_00'"
+        }
+      ],
+      [
+        {
+          "prefix": [],
+          "root": "'root_bell'"
+        },
+        {
+          "prefix": [
+            "'restrict_trace_out_qubit1'"
+          ],
+          "root": "'root_bell'"
+        }
+      ],
+      [
+        {
+          "prefix": [
+            "'perturb_small_rx0'"
+          ],
+          "root": "'root_bell'"
+        },
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        }
+      ]
+    ],
+    "frontier": {
+      "antichain": [
+        "ablation_flattened_exec_pkg"
+      ],
+      "branches": [
+        {
+          "cells": 9,
+          "members": [
+            "ablation_flattened_exec_pkg"
+          ],
+          "partition_digest": "435c65eedcf651ca0fd3b085360055e8da4f4e412df75dd33b5ea7f220ba0290"
+        }
+      ],
+      "dominated": [],
+      "pairwise": {},
+      "purgatory": [
+        {
+          "candidate": "classical_relational_exec_pkg",
+          "failed_at": "base_survivorship",
+          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
+          "reason": {
+            "collapsed_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ]
+          }
+        },
+        {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "failed_at": "base_survivorship",
+          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
+          "reason": {
+            "collapsed_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ]
+          }
+        }
+      ],
+      "survivors": [
+        "ablation_flattened_exec_pkg"
+      ]
+    },
+    "gate_verdicts": {
+      "ablation_flattened_exec_pkg": {
+        "IDENTITY_GATE": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "IDENTITY_GATE",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6,
+              7,
+              8,
+              3
+            ],
+            "pi_probes_cells": 9,
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6,
+              7,
+              8,
+              3
+            ],
+            "pi_reidentify_cells": 9,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          },
+          "verdict": "PASS"
+        },
+        "adequacy": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "adequacy",
+          "reasons": {
+            "terms": {
+              "Compose": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "buildability_gate",
+                "reasons": {
+                  "allowed_op_count": 18,
+                  "probe_count": 19,
+                  "state_count": 14
+                },
+                "verdict": "PASS"
+              },
+              "Distinguish": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "IDENTITY_GATE",
+                "reasons": {
+                  "declared_primitives": [],
+                  "pi_probes": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    2,
+                    0,
+                    6,
+                    7,
+                    8,
+                    3
+                  ],
+                  "pi_probes_cells": 9,
+                  "pi_reidentify": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    2,
+                    0,
+                    6,
+                    7,
+                    8,
+                    3
+                  ],
+                  "pi_reidentify_cells": 9,
+                  "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+                },
+                "verdict": "PASS"
+              },
+              "Evolve": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "evolvability_gate",
+                "reasons": {
+                  "D_size": 7,
+                  "collapsed": 0,
+                  "new_constraint": "'probe_generic_extension'"
+                },
+                "verdict": "PASS"
+              },
+              "Extend": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "extension_gate",
+                "reasons": {
+                  "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+                },
+                "verdict": "HOLD"
+              },
+              "PassControls": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "probe_validity_gate",
+                "reasons": {
+                  "D": [
+                    "('peek', ())",
+                    "('peek', ('prepare_00',))",
+                    "('peek', ('prepare_bell',))",
+                    "('peek', ('prepare_plus0',))",
+                    "('peek', ('restrict_trace_out_qubit1',))",
+                    "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+                    "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+                    "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', ('perturb_small_rx0',))",
+                    "('peek', ('delay_short',))",
+                    "('peek', ('delay_long',))",
+                    "('peek', ('couple_inner_outer',))",
+                    "('peek', ('couple_neighbor_neighbor',))",
+                    "('peek', ('renest_swap01',))",
+                    "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+                    "('peek', (('extend_under_constraint', 'require_purity'),))",
+                    "('peek', ('read_outcome_z',))",
+                    "('peek', ('read_outcome_x',))"
+                  ],
+                  "checked_negative_controls": [
+                    "trace_preserving_is_a_genuine_noop"
+                  ],
+                  "separated_positive_controls": [
+                    "root_00_vs_root_bell"
+                  ]
+                },
+                "verdict": "PASS"
+              },
+              "Persist": {
+                "candidate": "ablation_flattened_exec_pkg",
+                "gate": "persistence_gate",
+                "reasons": {
+                  "D_persistence_size": 7,
+                  "already_collapsed_at_base_edges": [],
+                  "collapsed_persistence_demand_edges": [
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "delay": 1,
+                  "newly_collapsed_by_continuation_edges": [
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "partial_access": "None",
+                  "perturbation": "'default_probe_perturbation'",
+                  "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+                  "relabeled": false
+                },
+                "verdict": "FAIL"
+              }
+            },
+            "verdicts": {
+              "Compose": "PASS",
+              "Distinguish": "PASS",
+              "Evolve": "PASS",
+              "Extend": "HOLD",
+              "PassControls": "PASS",
+              "Persist": "FAIL"
+            }
+          },
+          "verdict": "FAIL"
+        },
+        "buildability_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "buildability_gate",
+          "reasons": {
+            "allowed_op_count": 18,
+            "probe_count": 19,
+            "state_count": 14
+          },
+          "verdict": "PASS"
+        },
+        "evolvability_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "evolvability_gate",
+          "reasons": {
+            "D_size": 7,
+            "collapsed": 0,
+            "new_constraint": "'probe_generic_extension'"
+          },
+          "verdict": "PASS"
+        },
+        "extension_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "extension_gate",
+          "reasons": {
+            "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+          },
+          "verdict": "HOLD"
+        },
+        "persistence_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "persistence_gate",
+          "reasons": {
+            "D_persistence_size": 7,
+            "already_collapsed_at_base_edges": [],
+            "collapsed_persistence_demand_edges": [
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "delay": 1,
+            "newly_collapsed_by_continuation_edges": [
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "partial_access": "None",
+            "perturbation": "'default_probe_perturbation'",
+            "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+            "relabeled": false
+          },
+          "verdict": "FAIL"
+        },
+        "probe_validity_gate": {
+          "candidate": "ablation_flattened_exec_pkg",
+          "gate": "probe_validity_gate",
+          "reasons": {
+            "D": [
+              "('peek', ())",
+              "('peek', ('prepare_00',))",
+              "('peek', ('prepare_bell',))",
+              "('peek', ('prepare_plus0',))",
+              "('peek', ('restrict_trace_out_qubit1',))",
+              "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+              "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', ('perturb_small_rx0',))",
+              "('peek', ('delay_short',))",
+              "('peek', ('delay_long',))",
+              "('peek', ('couple_inner_outer',))",
+              "('peek', ('couple_neighbor_neighbor',))",
+              "('peek', ('renest_swap01',))",
+              "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+              "('peek', (('extend_under_constraint', 'require_purity'),))",
+              "('peek', ('read_outcome_z',))",
+              "('peek', ('read_outcome_x',))"
+            ],
+            "checked_negative_controls": [
+              "trace_preserving_is_a_genuine_noop"
+            ],
+            "separated_positive_controls": [
+              "root_00_vs_root_bell"
+            ]
+          },
+          "verdict": "PASS"
+        }
+      },
+      "classical_relational_exec_pkg": {
+        "IDENTITY_GATE": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "IDENTITY_GATE",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              7,
+              8,
+              3
+            ],
+            "pi_probes_cells": 9,
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              7,
+              8,
+              3
+            ],
+            "pi_reidentify_cells": 9,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          },
+          "verdict": "PASS"
+        },
+        "adequacy": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "adequacy",
+          "reasons": {
+            "terms": {
+              "Compose": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "buildability_gate",
+                "reasons": {
+                  "allowed_op_count": 18,
+                  "probe_count": 19,
+                  "state_count": 14
+                },
+                "verdict": "PASS"
+              },
+              "Distinguish": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "IDENTITY_GATE",
+                "reasons": {
+                  "declared_primitives": [],
+                  "pi_probes": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6,
+                    7,
+                    8,
+                    3
+                  ],
+                  "pi_probes_cells": 9,
+                  "pi_reidentify": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6,
+                    7,
+                    8,
+                    3
+                  ],
+                  "pi_reidentify_cells": 9,
+                  "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+                },
+                "verdict": "PASS"
+              },
+              "Evolve": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "evolvability_gate",
+                "reasons": {
+                  "already_collapsed_at_base_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "collapsed_evolvability_demand_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "new_constraint": "'probe_generic_extension'",
+                  "newly_collapsed_by_continuation_edges": [],
+                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                },
+                "verdict": "FAIL"
+              },
+              "Extend": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "extension_gate",
+                "reasons": {
+                  "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+                },
+                "verdict": "HOLD"
+              },
+              "PassControls": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "probe_validity_gate",
+                "reasons": {
+                  "D": [
+                    "('peek', ())",
+                    "('peek', ('prepare_00',))",
+                    "('peek', ('prepare_bell',))",
+                    "('peek', ('prepare_plus0',))",
+                    "('peek', ('restrict_trace_out_qubit1',))",
+                    "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+                    "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+                    "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', ('perturb_small_rx0',))",
+                    "('peek', ('delay_short',))",
+                    "('peek', ('delay_long',))",
+                    "('peek', ('couple_inner_outer',))",
+                    "('peek', ('couple_neighbor_neighbor',))",
+                    "('peek', ('renest_swap01',))",
+                    "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+                    "('peek', (('extend_under_constraint', 'require_purity'),))",
+                    "('peek', ('read_outcome_z',))",
+                    "('peek', ('read_outcome_x',))"
+                  ],
+                  "checked_negative_controls": [
+                    "trace_preserving_is_a_genuine_noop"
+                  ],
+                  "separated_positive_controls": [
+                    "root_00_vs_root_bell"
+                  ]
+                },
+                "verdict": "PASS"
+              },
+              "Persist": {
+                "candidate": "classical_relational_exec_pkg",
+                "gate": "persistence_gate",
+                "reasons": {
+                  "D_persistence_size": 7,
+                  "already_collapsed_at_base_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "collapsed_persistence_demand_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+                    ],
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "delay": 1,
+                  "newly_collapsed_by_continuation_edges": [
+                    [
+                      "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                      "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+                    ]
+                  ],
+                  "partial_access": "None",
+                  "perturbation": "'default_probe_perturbation'",
+                  "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+                  "relabeled": false
+                },
+                "verdict": "FAIL"
+              }
+            },
+            "verdicts": {
+              "Compose": "PASS",
+              "Distinguish": "PASS",
+              "Evolve": "FAIL",
+              "Extend": "HOLD",
+              "PassControls": "PASS",
+              "Persist": "FAIL"
+            }
+          },
+          "verdict": "FAIL"
+        },
+        "buildability_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "buildability_gate",
+          "reasons": {
+            "allowed_op_count": 18,
+            "probe_count": 19,
+            "state_count": 14
+          },
+          "verdict": "PASS"
+        },
+        "evolvability_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "evolvability_gate",
+          "reasons": {
+            "already_collapsed_at_base_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "collapsed_evolvability_demand_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "new_constraint": "'probe_generic_extension'",
+            "newly_collapsed_by_continuation_edges": [],
+            "reason": "the evolved extension destroys a previously-live demanded distinction"
+          },
+          "verdict": "FAIL"
+        },
+        "extension_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "extension_gate",
+          "reasons": {
+            "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+          },
+          "verdict": "HOLD"
+        },
+        "persistence_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "persistence_gate",
+          "reasons": {
+            "D_persistence_size": 7,
+            "already_collapsed_at_base_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "collapsed_persistence_demand_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
+              ],
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "delay": 1,
+            "newly_collapsed_by_continuation_edges": [
+              [
+                "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
+                "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
+              ]
+            ],
+            "partial_access": "None",
+            "perturbation": "'default_probe_perturbation'",
+            "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+            "relabeled": false
+          },
+          "verdict": "FAIL"
+        },
+        "probe_validity_gate": {
+          "candidate": "classical_relational_exec_pkg",
+          "gate": "probe_validity_gate",
+          "reasons": {
+            "D": [
+              "('peek', ())",
+              "('peek', ('prepare_00',))",
+              "('peek', ('prepare_bell',))",
+              "('peek', ('prepare_plus0',))",
+              "('peek', ('restrict_trace_out_qubit1',))",
+              "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+              "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', ('perturb_small_rx0',))",
+              "('peek', ('delay_short',))",
+              "('peek', ('delay_long',))",
+              "('peek', ('couple_inner_outer',))",
+              "('peek', ('couple_neighbor_neighbor',))",
+              "('peek', ('renest_swap01',))",
+              "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+              "('peek', (('extend_under_constraint', 'require_purity'),))",
+              "('peek', ('read_outcome_z',))",
+              "('peek', ('read_outcome_x',))"
+            ],
+            "checked_negative_controls": [
+              "trace_preserving_is_a_genuine_noop"
+            ],
+            "separated_positive_controls": [
+              "root_00_vs_root_bell"
+            ]
+          },
+          "verdict": "PASS"
+        }
+      },
+      "countermodel_lookup_replay_exec_pkg": {
+        "IDENTITY_GATE": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "IDENTITY_GATE",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              7,
+              8,
+              3
+            ],
+            "pi_probes_cells": 9,
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              7,
+              8,
+              3
+            ],
+            "pi_reidentify_cells": 9,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          },
+          "verdict": "PASS"
+        },
+        "adequacy": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "adequacy",
+          "reasons": {
+            "terms": {
+              "Compose": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "buildability_gate",
+                "reasons": {
+                  "allowed_op_count": 18,
+                  "probe_count": 19,
+                  "state_count": 14
+                },
+                "verdict": "PASS"
+              },
+              "Distinguish": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "IDENTITY_GATE",
+                "reasons": {
+                  "declared_primitives": [],
+                  "pi_probes": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6,
+                    7,
+                    8,
+                    3
+                  ],
+                  "pi_probes_cells": 9,
+                  "pi_reidentify": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    1,
+                    4,
+                    5,
+                    3,
+                    3,
+                    0,
+                    6,
+                    7,
+                    8,
+                    3
+                  ],
+                  "pi_reidentify_cells": 9,
+                  "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+                },
+                "verdict": "PASS"
+              },
+              "Evolve": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "evolvability_gate",
+                "reasons": {
+                  "already_collapsed_at_base_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "collapsed_evolvability_demand_edges": [
+                    [
+                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+                    ]
+                  ],
+                  "new_constraint": "'probe_generic_extension'",
+                  "newly_collapsed_by_continuation_edges": [],
+                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                },
+                "verdict": "FAIL"
+              },
+              "Extend": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "extension_gate",
+                "reasons": {
+                  "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+                },
+                "verdict": "HOLD"
+              },
+              "PassControls": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "probe_validity_gate",
+                "reasons": {
+                  "D": [
+                    "('peek', ())",
+                    "('peek', ('prepare_00',))",
+                    "('peek', ('prepare_bell',))",
+                    "('peek', ('prepare_plus0',))",
+                    "('peek', ('restrict_trace_out_qubit1',))",
+                    "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+                    "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+                    "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+                    "('peek', ('perturb_small_rx0',))",
+                    "('peek', ('delay_short',))",
+                    "('peek', ('delay_long',))",
+                    "('peek', ('couple_inner_outer',))",
+                    "('peek', ('couple_neighbor_neighbor',))",
+                    "('peek', ('renest_swap01',))",
+                    "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+                    "('peek', (('extend_under_constraint', 'require_purity'),))",
+                    "('peek', ('read_outcome_z',))",
+                    "('peek', ('read_outcome_x',))"
+                  ],
+                  "checked_negative_controls": [
+                    "trace_preserving_is_a_genuine_noop"
+                  ],
+                  "separated_positive_controls": [
+                    "root_00_vs_root_bell"
+                  ]
+                },
+                "verdict": "PASS"
+              },
+              "Persist": {
+                "candidate": "countermodel_lookup_replay_exec_pkg",
+                "gate": "persistence_gate",
+                "reasons": {
+                  "error": "ValueError(\"countermodel lookup missing bounded key ('root_bell', ('restrict_trace_out_qubit1', 'delay_short'), 'perturb_small_rx0')\")",
+                  "stage": "induced_partition(persisted)"
+                },
+                "verdict": "FAIL"
+              }
+            },
+            "verdicts": {
+              "Compose": "PASS",
+              "Distinguish": "PASS",
+              "Evolve": "FAIL",
+              "Extend": "HOLD",
+              "PassControls": "PASS",
+              "Persist": "FAIL"
+            }
+          },
+          "verdict": "FAIL"
+        },
+        "buildability_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "buildability_gate",
+          "reasons": {
+            "allowed_op_count": 18,
+            "probe_count": 19,
+            "state_count": 14
+          },
+          "verdict": "PASS"
+        },
+        "evolvability_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "evolvability_gate",
+          "reasons": {
+            "already_collapsed_at_base_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "collapsed_evolvability_demand_edges": [
+              [
+                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+              ]
+            ],
+            "new_constraint": "'probe_generic_extension'",
+            "newly_collapsed_by_continuation_edges": [],
+            "reason": "the evolved extension destroys a previously-live demanded distinction"
+          },
+          "verdict": "FAIL"
+        },
+        "extension_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "extension_gate",
+          "reasons": {
+            "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+          },
+          "verdict": "HOLD"
+        },
+        "persistence_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "persistence_gate",
+          "reasons": {
+            "error": "ValueError(\"countermodel lookup missing bounded key ('root_bell', ('restrict_trace_out_qubit1', 'delay_short'), 'perturb_small_rx0')\")",
+            "stage": "induced_partition(persisted)"
+          },
+          "verdict": "FAIL"
+        },
+        "probe_validity_gate": {
+          "candidate": "countermodel_lookup_replay_exec_pkg",
+          "gate": "probe_validity_gate",
+          "reasons": {
+            "D": [
+              "('peek', ())",
+              "('peek', ('prepare_00',))",
+              "('peek', ('prepare_bell',))",
+              "('peek', ('prepare_plus0',))",
+              "('peek', ('restrict_trace_out_qubit1',))",
+              "('peek', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('peek', (('ordered_compose', ('CNOT01', 'H0')),))",
+              "('peek', (('bracket_compose', ('left', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', (('bracket_compose', ('right', ('H0', 'X1', 'CNOT01'))),))",
+              "('peek', ('perturb_small_rx0',))",
+              "('peek', ('delay_short',))",
+              "('peek', ('delay_long',))",
+              "('peek', ('couple_inner_outer',))",
+              "('peek', ('couple_neighbor_neighbor',))",
+              "('peek', ('renest_swap01',))",
+              "('peek', (('extend_under_constraint', 'trace_preserving'),))",
+              "('peek', (('extend_under_constraint', 'require_purity'),))",
+              "('peek', ('read_outcome_z',))",
+              "('peek', ('read_outcome_x',))"
+            ],
+            "checked_negative_controls": [
+              "trace_preserving_is_a_genuine_noop"
+            ],
+            "separated_positive_controls": [
+              "root_00_vs_root_bell"
+            ]
+          },
+          "verdict": "PASS"
+        }
+      }
+    },
+    "pairwise_mss_base_no_thickening": [
+      {
+        "candidate_a": "classical_relational_exec_pkg",
+        "candidate_b": "countermodel_lookup_replay_exec_pkg",
+        "reasons": {
+          "collapsed_edges_A": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "collapsed_edges_B": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "reason": "does not preserve every demanded distinction in the base demand set D",
+          "stage": "base_survivorship"
+        },
+        "verdict": "HOLD"
+      },
+      {
+        "candidate_a": "classical_relational_exec_pkg",
+        "candidate_b": "ablation_flattened_exec_pkg",
+        "reasons": {
+          "collapsed_edges_A": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "collapsed_edges_B": [],
+          "reason": "does not preserve every demanded distinction in the base demand set D",
+          "stage": "base_survivorship"
+        },
+        "verdict": "HOLD"
+      },
+      {
+        "candidate_a": "countermodel_lookup_replay_exec_pkg",
+        "candidate_b": "ablation_flattened_exec_pkg",
+        "reasons": {
+          "collapsed_edges_A": [
+            [
+              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
+              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
+            ]
+          ],
+          "collapsed_edges_B": [],
+          "reason": "does not preserve every demanded distinction in the base demand set D",
+          "stage": "base_survivorship"
+        },
+        "verdict": "HOLD"
+      }
+    ],
+    "x_size": 14
+  },
+  "translated_d2_edges": [
+    {
+      "demand_pair": [
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        },
+        {
+          "prefix": [
+            "'perturb_small_rx0'"
+          ],
+          "root": "'root_00'"
+        }
+      ],
+      "name": "cut_change_ab00",
+      "source_edges_deduplicated": [
+        "cut_change_ab00",
+        "cut_change_ab01",
+        "cut_change_ab10",
+        "cut_change_ab11"
+      ],
+      "translation_choice": "cut-0 versus native cut-1 history address"
+    },
+    {
+      "demand_pair": [
+        {
+          "prefix": [],
+          "root": "'root_bell'"
+        },
+        {
+          "prefix": [
+            "'restrict_trace_out_qubit1'"
+          ],
+          "root": "'root_bell'"
+        }
+      ],
+      "name": "joint_vs_marginal_cut0_root_bell_ab00",
+      "translation_choice": "joint root_bell/cut0 address versus native correlation-removing restrict_trace_out_qubit1 proxy address; not a synthetic product state"
+    },
+    {
+      "demand_pair": [
+        {
+          "prefix": [
+            "'perturb_small_rx0'"
+          ],
+          "root": "'root_bell'"
+        },
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        }
+      ],
+      "name": "joint_vs_marginal_cut1_root_bell_ab11",
+      "translation_choice": "one-action root_bell/cut1 joint address versus existing root_00 product-preparation proxy; the D2 product table is not manufactured as a HistoryPoint"
+    }
+  ],
+  "verdict": "STALLED"
+}

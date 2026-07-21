@@ -87,11 +87,15 @@ const DEFAULT_RULES = {
     CONFIRMED: true,
     FAILED_AS_EXPECTED: false,
     BLOCKED: false,
-    PRUNED: false,
     FAIL: false,
     RED: false,
     TAINTED: false,
     // verdicts that carry no pass obligation:
+    // PRUNED = importable/works but excluded for a real limitation — pass state
+    // varies (a pruned-but-working tool is pass:true; the prune is the reason
+    // it is excluded, not a failure). HOLD = decision withheld (ratchet ledger).
+    PRUNED: null,
+    HOLD: null,
     INCONCLUSIVE: null,
     OPEN: null,
     SURVIVED_UNEXPECTEDLY: null,
@@ -174,7 +178,12 @@ function lintReceipt(receiptPath, rulesPath, strict) {
         num(obj[key]) &&
         rules.claim_field_patterns.some((p) => key.toLowerCase().includes(p));
       if (!isClaim) continue;
-      const hasProv = rules.provenance_fields.some((f) => nonEmpty(obj[f]));
+      // provenance is satisfied by any NON-EMPTY sibling key whose name CONTAINS
+      // a provenance token — handles prefixed conventions like
+      // occluded_accuracy_ci95_object_bootstrap (contains ci95, bootstrap).
+      const hasProv = Object.keys(obj).some(
+        (k) => nonEmpty(obj[k]) && rules.provenance_fields.some((pf) => k.toLowerCase().includes(pf))
+      );
       if (!hasProv) {
         violations.push({ rule: "R2-claim-without-evidence", trail: `${trail}.${key}`, detail: `numeric claim '${key}'=${obj[key]} has no provenance field beside it (need one of: ${rules.provenance_fields.slice(0, 6).join(", ")}, ...)` });
       }
@@ -185,7 +194,11 @@ function lintReceipt(receiptPath, rulesPath, strict) {
   for (const [trail, obj] of walkObjects(receipt)) {
     const hasChance = rules.chance_fields.some((f) => num(obj[f]));
     if (!hasChance) continue;
-    const hasBaseline = rules.baseline_fields.some((f) => f in obj);
+    // baseline satisfied by any sibling key CONTAINING a baseline token
+    // (handles mutual_information_permutation_null_mean_bits, twin_accuracy, ...)
+    const hasBaseline = Object.keys(obj).some(
+      (k) => rules.baseline_fields.some((bf) => k.toLowerCase().includes(bf))
+    );
     if (!hasBaseline) {
       violations.push({ rule: "R3-baseline-honesty", trail, detail: `claims a chance comparison but carries no majority/null/twin baseline field — 'beats chance' can hide a majority-class artifact` });
     }

@@ -1,0 +1,131 @@
+{
+  "name": "carnot_engine",
+  "engine": "Carnot cycle, monatomic ideal gas working substance",
+  "probe_family": "M_numeric_PV_trapezoid_integration",
+  "constraint_set": "C_reversible_quasi_static_ideal_gas_cycle",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "classical ideal-gas P-V thermodynamics: numeric trapezoid integration of P(V) along each stroke, closed-loop area cross-check, and root-level arithmetic. This is the correct primary tool, not a fallback."
+    },
+    "qutip": {
+      "tried": true,
+      "used": false,
+      "reason": "no Hilbert space / operator content in a classical ideal gas cycle; importing qutip here would be decorative, not load-bearing, so it is honestly left unused."
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "qutip": null
+  },
+  "positive": {
+    "cycle": {
+      "Th_K": 400.0,
+      "Tc_K": 300.0,
+      "V1_m3": 0.001,
+      "V2_m3": 0.0025,
+      "V3_m3": 0.003849001794597505,
+      "V4_m3": 0.001539600717839002,
+      "expansion_ratio": 2.5,
+      "Qh_J": 3047.3860149681045,
+      "Qc_J": 2285.539511226079,
+      "W12_J": 3047.3860149681045,
+      "W23_J": 1247.1693927022982,
+      "W34_J": -2285.539511226079,
+      "W41_J": -1247.1693927022984,
+      "W_net_stroke_sum_J": 761.8465037420256,
+      "W_net_loop_area_J": 761.8465037420256,
+      "W_net_analytic_J": 761.8465037387524,
+      "eta_numeric": 0.2499999999999998,
+      "eta_analytic": 0.25
+    },
+    "C1_eta_matches_1_minus_Tc_over_Th": {
+      "pass": true,
+      "rel_err": 7.771561172376096e-16,
+      "tol": 1e-06,
+      "eta_numeric": 0.2499999999999998,
+      "eta_analytic": 0.25
+    },
+    "C2_Wnet_matches_analytic_nR_dT_lnr": {
+      "pass": true,
+      "rel_err": 4.2963480553891964e-12,
+      "tol": 1e-06,
+      "W_net_numeric_J": 761.8465037420256,
+      "W_net_analytic_J": 761.8465037387524
+    },
+    "C3_stroke_sum_matches_loop_area": {
+      "pass": true,
+      "rel_err": 0.0,
+      "tol": 1e-06,
+      "W_net_stroke_sum_J": 761.8465037420256,
+      "W_net_loop_area_J": 761.8465037420256
+    }
+  },
+  "negative": {
+    "C4_degenerate_Th_eq_Tc_zero_work_control": {
+      "pass": true,
+      "Th_K": 350.0,
+      "Tc_K": 350.0,
+      "eta_numeric": 0.0,
+      "W_net_J": 0.0,
+      "abs_tol": 1e-09,
+      "note": "Carnot engine across zero temperature difference must admit zero net work -- this is the negative control paired against the positive eta=1-Tc/Th claim."
+    }
+  },
+  "boundary": {
+    "r_sweep_eta_invariance": {
+      "etas_by_expansion_ratio": [
+        {
+          "r": 1.05,
+          "eta_numeric": 0.2499999999999985
+        },
+        {
+          "r": 1.5,
+          "eta_numeric": 0.24999999999999983
+        },
+        {
+          "r": 2.5,
+          "eta_numeric": 0.2499999999999998
+        },
+        {
+          "r": 5.0,
+          "eta_numeric": 0.24999999999999978
+        },
+        {
+          "r": 10.0,
+          "eta_numeric": 0.25000000000000006
+        }
+      ],
+      "eta_analytic": 0.25,
+      "max_abs_deviation": 1.4988010832439613e-15,
+      "pass": true,
+      "note": "eta must be independent of the isothermal expansion ratio r=V2/V1 by construction; this sweep is the boundary check that this invariance actually holds numerically, not just algebraically."
+    }
+  },
+  "classification": "classical_baseline",
+  "surviving_alternatives": [],
+  "claim_ceiling": "engine_competence_check_only",
+  "promotion_allowed": false,
+  "next_lego_target": "none",
+  "promotion_condition": "not applicable -- this is a tool/engine competence check, not a Codex-Ratchet lego/bridge/axis admission attempt",
+  "out_of_scope": [
+    "no lego promotion from this result",
+    "no bridge, axis, engine-estate, emergence, or nonclassical claim"
+  ],
+  "all_pass": true,
+  "criteria_checked": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "r_sweep_boundary"
+  ],
+  "engine_machinery_used": {
+    "qutip_mesolve": false,
+    "qutip_unitary": false,
+    "qutip_counts": false,
+    "numpy_trapezoid_integration": true,
+    "note": "purely classical ideal-gas P-V thermodynamics; no quantum engine machinery is applicable or used."
+  }
+}

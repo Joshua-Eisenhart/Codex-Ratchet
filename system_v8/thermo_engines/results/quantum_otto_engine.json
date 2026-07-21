@@ -1,0 +1,339 @@
+{
+  "name": "quantum_otto_engine",
+  "engine": "spin-1/2 quantum Otto cycle (Zeeman gap as piston), qutip density matrices",
+  "probe_family": "M_qutip_mesolve_lindblad_and_unitary_qobjevo",
+  "constraint_set": "C_two_isochoric_two_isentropic_strokes_natural_units",
+  "units": "hbar = k_B = 1 (natural units)",
+  "parameters": {
+    "B_hot": 2.0,
+    "B_cold": 1.0,
+    "T_hot": 2.0,
+    "T_cold": 0.5,
+    "eps_max": 0.8,
+    "gamma_bath": 1.0,
+    "tau_ideal_reference": 200.0,
+    "tau_friction_control": 1.0
+  },
+  "tool_manifest": {
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "qutip.mesolve drives both the Lindblad thermal-bath relaxation (isochoric strokes) and the unitary time-dependent-Hamiltonian evolution (isentropic strokes, including the non-commuting tilt term that produces genuine quantum friction). The reported eta and friction-penalty numbers are computed directly from qutip Qobj/QobjEvo state output."
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "control-only: coefficient functions for the time-dependent Hamiltonian, tolerance arithmetic, and the analytic Gibbs-population cross-check formula."
+    }
+  },
+  "tool_integration_depth": {
+    "qutip": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "p1_excited_pop_hot_gibbs": 0.26894142136999516,
+    "p3_excited_pop_cold_gibbs": 0.11920292202211757,
+    "notilt_tau_independence_check": [
+      {
+        "tau": 0.5,
+        "eps_max": 0.0,
+        "p2": 0.2689414213699951,
+        "p4": 0.11920292202211757,
+        "offdiag_stroke2": 0.0,
+        "offdiag_stroke4": 0.0,
+        "Q_in": 0.29947699869575517,
+        "Q_out": 0.14973849934787753,
+        "W_net": 0.14973849934787764,
+        "eta": 0.5000000000000002
+      },
+      {
+        "tau": 200.0,
+        "eps_max": 0.0,
+        "p2": 0.2689414213699951,
+        "p4": 0.11920292202211757,
+        "offdiag_stroke2": 0.0,
+        "offdiag_stroke4": 0.0,
+        "Q_in": 0.29947699869575517,
+        "Q_out": 0.14973849934787753,
+        "W_net": 0.14973849934787764,
+        "eta": 0.5000000000000002
+      }
+    ],
+    "C2_notilt_eta_tau_independent": {
+      "pass": true,
+      "abs_dev": 0.0,
+      "tol": 1e-09,
+      "note": "a pure sigma_z ramp cannot generate friction at any speed because its eigenbasis never changes; eta must be exactly tau-independent."
+    },
+    "ideal_cycle": {
+      "tau": 200.0,
+      "eps_max": 0.0,
+      "p2": 0.2689414213699951,
+      "p4": 0.11920292202211757,
+      "offdiag_stroke2": 0.0,
+      "offdiag_stroke4": 0.0,
+      "Q_in": 0.29947699869575517,
+      "Q_out": 0.14973849934787753,
+      "W_net": 0.14973849934787764,
+      "eta": 0.5000000000000002
+    },
+    "eta_analytic_1_minus_Bcold_over_Bhot": 0.5,
+    "C3_ideal_eta_matches_analytic": {
+      "pass": true,
+      "rel_err": 4.440892098500626e-16,
+      "tol": 0.0001
+    },
+    "eta_carnot_bound": 0.75,
+    "C4_ideal_eta_within_carnot_bound": {
+      "pass": true,
+      "eta_ideal": 0.5000000000000002,
+      "eta_carnot": 0.75,
+      "note": "a quantum Otto engine can never exceed the Carnot efficiency at the same two bath temperatures."
+    }
+  },
+  "negative": {
+    "friction_control_cycle": {
+      "tau": 1.0,
+      "eps_max": 0.8,
+      "p2": 0.2952551742093095,
+      "p4": 0.1625693752937091,
+      "offdiag_stroke2": 0.10708684047253507,
+      "offdiag_stroke4": 0.1764850733584921,
+      "Q_in": 0.21274409215257212,
+      "Q_out": 0.17605225218719195,
+      "W_net": 0.03669183996538017,
+      "eta": 0.1724693719770425
+    },
+    "eta_ideal_reference": 0.5000000000000002,
+    "eta_drop_absolute": 0.32753062802295774,
+    "eta_drop_relative_to_ideal": 0.6550612560459151,
+    "C5_fast_ramp_friction_penalty": {
+      "pass": true,
+      "max_offdiag": 0.1764850733584921,
+      "offdiag_tol": 0.001,
+      "offdiag_check_pass": true,
+      "eta_drop_absolute": 0.32753062802295774,
+      "min_required_drop": 0.05,
+      "drop_check_pass": true,
+      "note": "tau_friction=1.0 vs tau_ideal=200.0, same eps_max=0.8 tilt amplitude."
+    }
+  },
+  "boundary": {
+    "C1_lindblad_thermalization_convergence": {
+      "pass": true,
+      "hot": {
+        "B": 2.0,
+        "T": 2.0,
+        "max_abs_diff_from_analytic_gibbs": 6.000370200709426e-10,
+        "pass": true,
+        "tol": 1e-06
+      },
+      "cold": {
+        "B": 1.0,
+        "T": 0.5,
+        "max_abs_diff_from_analytic_gibbs": 1.5771849548595895e-08,
+        "pass": true,
+        "tol": 1e-06
+      }
+    },
+    "tau_sweep_eps_0p8": [
+      {
+        "tau": 0.02,
+        "eps_max": 0.8,
+        "p2": 0.2689534051306286,
+        "p4": 0.11922267462002543,
+        "offdiag_stroke2": 0.0023534610186420244,
+        "offdiag_stroke4": 0.0038785837491839147,
+        "Q_in": 0.2994374934999394,
+        "Q_out": 0.14975048310851102,
+        "W_net": 0.1496870103914284,
+        "eta": 0.49989401341104495
+      },
+      {
+        "tau": 0.1,
+        "eps_max": 0.8,
+        "p2": 0.26924068977115995,
+        "p4": 0.119696140248152,
+        "offdiag_stroke2": 0.011756274911663273,
+        "offdiag_stroke4": 0.01937509897650971,
+        "Q_in": 0.2984905622436863,
+        "Q_out": 0.15003776774904237,
+        "W_net": 0.14845279449464394,
+        "eta": 0.4973450194832216
+      },
+      {
+        "tau": 0.3,
+        "eps_max": 0.8,
+        "p2": 0.27160722695535067,
+        "p4": 0.12359632512701439,
+        "offdiag_stroke2": 0.034997642218470335,
+        "offdiag_stroke4": 0.057677928112097515,
+        "Q_in": 0.2906901924859615,
+        "Q_out": 0.1524043049332331,
+        "W_net": 0.13828588755272841,
+        "eta": 0.4757156970798275
+      },
+      {
+        "tau": 0.6,
+        "eps_max": 0.8,
+        "p2": 0.2792388041099248,
+        "p4": 0.1361735469437603,
+        "offdiag_stroke2": 0.06820977562928637,
+        "offdiag_stroke4": 0.11241367429330626,
+        "Q_in": 0.2655357488524697,
+        "Q_out": 0.16003588208780722,
+        "W_net": 0.1054998667646625,
+        "eta": 0.39730946669360767
+      },
+      {
+        "tau": 1.0,
+        "eps_max": 0.8,
+        "p2": 0.2952551742093095,
+        "p4": 0.1625693752937091,
+        "offdiag_stroke2": 0.10708684047253507,
+        "offdiag_stroke4": 0.1764850733584921,
+        "Q_in": 0.21274409215257212,
+        "Q_out": 0.17605225218719195,
+        "W_net": 0.03669183996538017,
+        "eta": 0.1724693719770425
+      },
+      {
+        "tau": 1.5,
+        "eps_max": 0.8,
+        "p2": 0.31910021743978295,
+        "p4": 0.20186739873190887,
+        "offdiag_stroke2": 0.14374765341240173,
+        "offdiag_stroke4": 0.23690422944732117,
+        "Q_in": 0.13414804527617258,
+        "Q_out": 0.19989729541766538,
+        "W_net": -0.0657492501414928,
+        "eta": -0.4901245486367978
+      },
+      {
+        "tau": 2.0,
+        "eps_max": 0.8,
+        "p2": 0.33916791862000345,
+        "p4": 0.23494006795511105,
+        "offdiag_stroke2": 0.16589480242222732,
+        "offdiag_stroke4": 0.2734038170480995,
+        "Q_in": 0.06800270682976822,
+        "Q_out": 0.21996499659788588,
+        "W_net": -0.15196228976811765,
+        "eta": -2.2346506021962655
+      },
+      {
+        "tau": 3.0,
+        "eps_max": 0.8,
+        "p2": 0.344927355234171,
+        "p4": 0.24443186979593606,
+        "offdiag_stroke2": 0.17129080354726015,
+        "offdiag_stroke4": 0.28229647330424823,
+        "Q_in": 0.04901910314811819,
+        "Q_out": 0.22572443321205343,
+        "W_net": -0.17670533006393524,
+        "eta": -3.604825847792338
+      },
+      {
+        "tau": 5.0,
+        "eps_max": 0.8,
+        "p2": 0.2796272135532908,
+        "p4": 0.13681358434191804,
+        "offdiag_stroke2": 0.06945419596811352,
+        "offdiag_stroke4": 0.11446323241250199,
+        "Q_in": 0.26425567405615424,
+        "Q_out": 0.1604242915311732,
+        "W_net": 0.10383138252498103,
+        "eta": 0.39292016300439736
+      },
+      {
+        "tau": 10.0,
+        "eps_max": 0.8,
+        "p2": 0.27342203000105336,
+        "p4": 0.12658725659404804,
+        "offdiag_stroke2": 0.0452827380740425,
+        "offdiag_stroke4": 0.07462342576063563,
+        "Q_in": 0.28470832955189423,
+        "Q_out": 0.1542191079789358,
+        "W_net": 0.13048922157295845,
+        "eta": 0.45832597092728883
+      },
+      {
+        "tau": 50.0,
+        "eps_max": 0.8,
+        "p2": 0.26926912310654716,
+        "p4": 0.1197420438330991,
+        "offdiag_stroke2": 0.012302193346160615,
+        "offdiag_stroke4": 0.02022974544634096,
+        "Q_in": 0.2983987550737921,
+        "Q_out": 0.15006620108442958,
+        "W_net": 0.14833255398936251,
+        "eta": 0.49709508323076224
+      },
+      {
+        "tau": 200.0,
+        "eps_max": 0.8,
+        "p2": 0.26896955203733985,
+        "p4": 0.11924938393293089,
+        "offdiag_stroke2": 0.0036026016622910436,
+        "offdiag_stroke4": 0.005861222269418822,
+        "Q_in": 0.29938407487412855,
+        "Q_out": 0.14976663001522228,
+        "W_net": 0.14961744485890627,
+        "eta": 0.4997508465398857
+      },
+      {
+        "tau": 1000.0,
+        "eps_max": 0.8,
+        "p2": 0.26894215051964143,
+        "p4": 0.11920426604009299,
+        "offdiag_stroke2": 0.0005777540691463929,
+        "offdiag_stroke4": 0.0006802044837402783,
+        "Q_in": 0.29947431065980434,
+        "Q_out": 0.14973922849752386,
+        "W_net": 0.1497350821622805,
+        "eta": 0.49999307731064774
+      }
+    ],
+    "worst_case_in_sweep": {
+      "tau": 3.0,
+      "eta": -3.604825847792338
+    },
+    "C6_friction_never_exceeds_ideal": {
+      "pass": true,
+      "max_eta_minus_eta_ideal_over_sweep": -6.922689352484301e-06,
+      "tol": 1e-06,
+      "note": "friction must never IMPROVE efficiency beyond the ideal/adiabatic reference at any ramp duration."
+    },
+    "friction_is_non_monotonic_in_ramp_speed": {
+      "finding": true,
+      "explanation": "the fast-ramp (sudden/frozen) and slow-ramp (adiabatic) limits both recover near-ideal efficiency; the penalty peaks at an intermediate, near-resonant ramp duration (tau ~ 2-3 in this parameterization). This is reported as-is rather than smoothed into a false monotone 'faster is always worse' claim."
+    }
+  },
+  "classification": "classical_baseline",
+  "surviving_alternatives": [],
+  "claim_ceiling": "engine_competence_check_only",
+  "promotion_allowed": false,
+  "next_lego_target": "none",
+  "promotion_condition": "not applicable -- this is a tool/engine competence check, not a Codex-Ratchet lego/bridge/axis admission attempt",
+  "out_of_scope": [
+    "no lego promotion from this result",
+    "no bridge, axis, engine-estate, emergence, or nonclassical claim"
+  ],
+  "all_pass": true,
+  "criteria_checked": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6"
+  ],
+  "engine_machinery_used": {
+    "qutip_mesolve_lindblad_thermal_relaxation": true,
+    "qutip_mesolve_unitary_time_dependent_H": true,
+    "qutip_QobjEvo": true,
+    "qutip_mcsolve_counts": false,
+    "numpy_control_only": true,
+    "note": "mesolve covers both the dissipative (isochoric) and unitary (isentropic) strokes; no trajectory/counts solver is needed for ensemble-averaged thermodynamic quantities."
+  }
+}

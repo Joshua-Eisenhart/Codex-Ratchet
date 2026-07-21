@@ -1,0 +1,98 @@
+{
+  "name": "szilard_engine",
+  "engine": "Szilard one-molecule / one-bit engine",
+  "probe_family": "M_numeric_quadrature_plus_monte_carlo_ensemble",
+  "constraint_set": "C_single_particle_isothermal_quasi_static_expansion",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numeric quadrature of the single-particle work integral and a genuine Monte Carlo ensemble over random which-side measurement outcomes."
+    },
+    "qutip": {
+      "tried": true,
+      "used": false,
+      "reason": "single-molecule positional degree of freedom in a box has no operator/Hilbert-space content in the standard Szilard derivation; qutip would be decorative here."
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "qutip": null
+  },
+  "positive": {
+    "W_left_J": 2.8709788850787886e-21,
+    "W_right_J": 2.8709788850787886e-21,
+    "k_B_T_ln2_J": 2.870978885078724e-21,
+    "C1_informed_work_matches_kT_ln2": {
+      "pass": true,
+      "rel_err": 2.2535592095615365e-14,
+      "tol": 1e-06
+    },
+    "C2_left_right_symmetry": {
+      "pass": true,
+      "rel_err": 0.0,
+      "tol": 1e-09
+    }
+  },
+  "ensemble": {
+    "n_trials": 100000,
+    "rng_seed": 20260719,
+    "fraction_left": 0.50094,
+    "informed_mean_J": 2.8709788850787882e-21,
+    "informed_std_J": 3.76158192263132e-37,
+    "blind_mean_J": 0.0,
+    "blind_std_J": 0.0
+  },
+  "negative": {
+    "C3_zero_information_zero_work": {
+      "pass": true,
+      "blind_mean_J": 0.0,
+      "blind_std_J": 0.0,
+      "note": "free expansion with no piston coupled extracts exactly zero work across all N trials -- this is the information-licenses-work control."
+    },
+    "C4_never_exceeds_landauer_bound": {
+      "pass": true,
+      "informed_mean_J": 2.8709788850787882e-21,
+      "landauer_bound_J": 2.870978885078724e-21,
+      "note": "the idealized 100%-efficient Szilard engine saturates but must never exceed the Landauer erasure cost per bit; exceeding it would violate the second law over the combined engine+memory-reset cycle."
+    }
+  },
+  "boundary": {
+    "C5_grid_convergence": {
+      "pass": true,
+      "W_coarse_J": 2.871005297525012e-21,
+      "coarse_n": 100,
+      "W_fine_J": 2.8709788850787886e-21,
+      "fine_n": 2000000,
+      "rel_err": 9.199805112053435e-06,
+      "tol": 0.0001,
+      "note": "bounds how much the coarse grid's numerical error could be masking; fine grid is the reported value."
+    }
+  },
+  "classification": "classical_baseline",
+  "surviving_alternatives": [],
+  "claim_ceiling": "engine_competence_check_only",
+  "promotion_allowed": false,
+  "next_lego_target": "none",
+  "promotion_condition": "not applicable -- this is a tool/engine competence check, not a Codex-Ratchet lego/bridge/axis admission attempt",
+  "out_of_scope": [
+    "no lego promotion from this result",
+    "no bridge, axis, engine-estate, emergence, or nonclassical claim"
+  ],
+  "all_pass": true,
+  "criteria_checked": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+  ],
+  "engine_machinery_used": {
+    "qutip_mesolve": false,
+    "qutip_unitary": false,
+    "qutip_counts": false,
+    "numpy_quadrature": true,
+    "numpy_monte_carlo_ensemble": true,
+    "note": "classical single-molecule statistical mechanics; no quantum engine machinery is applicable or used."
+  }
+}

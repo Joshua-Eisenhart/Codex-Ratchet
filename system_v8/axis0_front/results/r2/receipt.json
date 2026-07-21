@@ -1,0 +1,887 @@
+{
+  "schema": "ratchet.v8.axis0_front.r2_strengthen_coupling.v0",
+  "authority": "system_v8/axis0_front/AXIS0_FRONT_OBJECT_CARD_v0.md \u00a79, \u00a714, GAP-1..GAP-3; owner doctrine memory: user_entanglement_central_conditional_entropy_gradient.md",
+  "hypothesis_status": "installed hypothesis only; nothing canon until ratcheted",
+  "new_ingredient": "collective/entangling dissipative branch (E_plus, E_minus); never present in any prior axis0_front or entanglement_gradient sim",
+  "entangling_operator_check": {
+    "input_ket": "|q0=1,q1=1,q2=0>",
+    "E_plus_output_amplitudes_nonzero_at": [
+      2,
+      4
+    ],
+    "is_product_form_impossible_check": "output has amplitude on >1 basis ket from a single product input ket under a single branch operator; no operator of product form (A tensor B tensor I) can do this",
+    "n_nonzero_output_terms": 2
+  },
+  "prior_state_cited": {
+    "scalar_rate_manifold_one": {
+      "path": "system_v8/nested_manifold/results/manifold_one/receipt.json",
+      "drive_correlations": {
+        "dS_L": 0.0155,
+        "dS_LR": 0.0188,
+        "dPhi0": -0.0359
+      }
+    },
+    "scalar_rate_unified_v2_L09": {
+      "path": "system_v8/unified/results/manifold_unified_v2/receipt.json:layer_computations.L09",
+      "baseline_rms_correlation": 0.05983978912442773,
+      "shuffled_rms_correlation": 0.03727037487323659,
+      "signal_floor": 0.2
+    },
+    "history_weights_r1": {
+      "path": "system_v8/axis0_front/results/r1/receipt.json:summary",
+      "best_rms_cut_correlation": 0.044456556847851436,
+      "scalar_baseline_rms_cut_correlation": 0.04358289706304026,
+      "best_shuffle_rms_cut_correlation": 0.1616715574347303
+    },
+    "gradient_tournament": {
+      "path": "system_v8/axis0_front/results/gradient_tournament_v0/receipt.json:findings",
+      "best_per_event_class_stage_transition": null
+    },
+    "coherent_information_ladder": {
+      "path": "system_v8/entanglement_gradient/results/coherent_information_ladder_v0/receipt.json:data",
+      "drive_I_correlation": -0.1288550593771927,
+      "shuffled_drive_correlation": -0.05665507024423676,
+      "note": "readout-side probe only; kept scalar-rate coupling; recalibrated J_XY 0.35->2.0 (fixed, drive-blind) to make its own P3 control fire"
+    }
+  },
+  "parameters": {
+    "n_ticks": 35,
+    "tick_dt": 0.4,
+    "depth": 2,
+    "gamma_base": 0.6,
+    "k_ent": 1.0,
+    "j_xy_unchanged_drive_blind": 0.35,
+    "n_null_shuffles": 30,
+    "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "memory_gate": {
+      "available_frac": 0.27013587951660156,
+      "used_pct": 73.0,
+      "threshold": 0.25,
+      "ok": true
+    }
+  },
+  "drive_series_source": "A_SCHED packet growth (identical to manifold_one and r1)",
+  "candidates": [
+    "W5_scalar_baseline",
+    "W6_entangling_drive",
+    "W7_entangling_uniform"
+  ],
+  "per_candidate": {
+    "W5_scalar_baseline": {
+      "law": "W5_scalar_baseline",
+      "n_ticks": 35,
+      "drive_series": [
+        1.0986122886681098,
+        1.3862943611198904,
+        0.8823891801984738,
+        1.09861228866811,
+        1.38629436111989,
+        0.8823891801984738,
+        1.09861228866811,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.0986122886681091,
+        1.3862943611198926,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198872,
+        0.8823891801984765,
+        1.0986122886681073,
+        1.3862943611198908,
+        0.8823891801984765,
+        1.0986122886681073,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198872,
+        0.88238918019848,
+        1.0986122886681073,
+        1.3862943611198872,
+        0.8823891801984729,
+        1.0986122886681144,
+        1.3862943611198872
+      ],
+      "independent_corrs": {
+        "purity": 0.05628330243194717,
+        "von_neumann_entropy_bits": -0.05589666294070724,
+        "bloch_z_0": 0.008287437545136746,
+        "bloch_z_1": 0.01910860506763201,
+        "bloch_z_2": 0.0,
+        "pauli_xx_01": 0.07121499089972838,
+        "pauli_yy_12": 0.0
+      },
+      "cut_corrs": {
+        "S_L": -0.05770217329345639,
+        "S_MR": -0.05815398550394003,
+        "S_LR": -0.05589666294070724,
+        "S_L_given_MR": -0.041293288306462256,
+        "S_MR_given_L": -0.03640835204623759,
+        "S_LM_given_R": 0.021786107679624155,
+        "Phi0_proxy": 0.04306447869023116,
+        "negativity": 0.0
+      },
+      "rms_cut_correlation": 0.04358289706304026,
+      "shuffled_cut_corrs": {
+        "S_L": -0.1870176116248349,
+        "S_MR": -0.19857075596857665,
+        "S_LR": -0.2065203897143585,
+        "S_L_given_MR": -0.20071352723976177,
+        "S_MR_given_L": -0.19055008293918865,
+        "S_LM_given_R": -0.1280288163797955,
+        "Phi0_proxy": 0.21635372325881863,
+        "negativity": 0.0
+      },
+      "shuffled_rms_cut_correlation": 0.17918292645655556,
+      "shuffle_collapsed": false,
+      "trace_dev_summary": {
+        "max": 0.0,
+        "mean": 0.0
+      },
+      "scalar_entropy_only": {
+        "S_L": {
+          "drive_cut_corr": -0.05770217329345639,
+          "entropy_cut_corr": 0.9562247252306487,
+          "S_explains_as_well": true
+        },
+        "S_MR": {
+          "drive_cut_corr": -0.05815398550394003,
+          "entropy_cut_corr": 0.9868379058693413,
+          "S_explains_as_well": true
+        },
+        "S_LR": {
+          "drive_cut_corr": -0.05589666294070724,
+          "entropy_cut_corr": 1.0,
+          "S_explains_as_well": true
+        },
+        "S_L_given_MR": {
+          "drive_cut_corr": -0.041293288306462256,
+          "entropy_cut_corr": 0.8898299679283982,
+          "S_explains_as_well": true
+        },
+        "S_MR_given_L": {
+          "drive_cut_corr": -0.03640835204623759,
+          "entropy_cut_corr": 0.80543254003034,
+          "S_explains_as_well": true
+        },
+        "S_LM_given_R": {
+          "drive_cut_corr": 0.021786107679624155,
+          "entropy_cut_corr": 0.139750575546888,
+          "S_explains_as_well": true
+        },
+        "Phi0_proxy": {
+          "drive_cut_corr": 0.04306447869023116,
+          "entropy_cut_corr": -0.941365503797685,
+          "S_explains_as_well": true
+        },
+        "negativity": {
+          "drive_cut_corr": 0.0,
+          "entropy_cut_corr": 0.0,
+          "S_explains_as_well": true
+        }
+      },
+      "min_conditional_entropy_per_cut": {
+        "S_L_given_MR": 0.6924064722008272,
+        "S_MR_given_L": 1.5167227424918328,
+        "S_LM_given_R": 1.6814973119785153
+      },
+      "any_negative_conditional_entropy": false,
+      "entangling_branch_activity": null,
+      "rows_tail": [
+        {
+          "tick": 32,
+          "stage": 3,
+          "drive": 0.8823891801984729,
+          "independent": {
+            "purity": 0.3531826368755226,
+            "von_neumann_entropy_bits": 1.8951734818238153,
+            "bloch_z_0": 0.5747853922698988,
+            "bloch_z_1": 0.7311478252598728,
+            "bloch_z_2": 0.19999999999999954,
+            "pauli_xx_01": 0.14104725346610425,
+            "pauli_yy_12": 0.0
+          },
+          "cuts": {
+            "S_L": 0.2947396385559393,
+            "S_MR": 1.1388227508299946,
+            "S_LR": 1.8951734818238153,
+            "S_L_given_MR": 0.7563507309938207,
+            "S_MR_given_L": 1.600433843267876,
+            "S_LM_given_R": 1.7438059297681656,
+            "Phi0_proxy": -1.1783922871308483,
+            "negativity": 0.0
+          },
+          "map_class": "scalar_gksl_gamma_t",
+          "gamma": 0.3819055483219244
+        },
+        {
+          "tick": 33,
+          "stage": 3,
+          "drive": 1.0986122886681144,
+          "independent": {
+            "purity": 0.3627789200054263,
+            "von_neumann_entropy_bits": 1.8511653344455463,
+            "bloch_z_0": 0.5619326461602394,
+            "bloch_z_1": 0.7390508498060813,
+            "bloch_z_2": 0.19999999999999962,
+            "pauli_xx_01": 0.14769604716730517,
+            "pauli_yy_12": 0.0
+          },
+          "cuts": {
+            "S_L": 0.2940236365182066,
+            "S_MR": 1.0889707973886944,
+            "S_LR": 1.8511653344455463,
+            "S_L_given_MR": 0.7621945370568519,
+            "S_MR_given_L": 1.5571416979273396,
+            "S_LM_given_R": 1.7169823968421738,
+            "Phi0_proxy": -1.1596681174920958,
+            "negativity": 0.0
+          },
+          "map_class": "scalar_gksl_gamma_t",
+          "gamma": 0.4754887502163489
+        },
+        {
+          "tick": 34,
+          "stage": 3,
+          "drive": 1.3862943611198872,
+          "independent": {
+            "purity": 0.37234942279618854,
+            "von_neumann_entropy_bits": 1.80731617035275,
+            "bloch_z_0": 0.5568242690106457,
+            "bloch_z_1": 0.7513928710801316,
+            "bloch_z_2": 0.19999999999999968,
+            "pauli_xx_01": 0.15101404730691473,
+            "pauli_yy_12": 0.0
+          },
+          "cuts": {
+            "S_L": 0.29059342786091724,
+            "S_MR": 1.03835387194763,
+            "S_LR": 1.80731617035275,
+            "S_L_given_MR": 0.7689622984051201,
+            "S_MR_given_L": 1.5167227424918328,
+            "S_LM_given_R": 1.6814973119785153,
+            "Phi0_proxy": -1.1428425204484765,
+            "negativity": 0.0
+          },
+          "map_class": "scalar_gksl_gamma_t",
+          "gamma": 0.5999999999999985
+        }
+      ]
+    },
+    "W6_entangling_drive": {
+      "law": "W6_entangling_drive",
+      "n_ticks": 35,
+      "drive_series": [
+        1.0986122886681098,
+        1.3862943611198904,
+        0.8823891801984738,
+        1.09861228866811,
+        1.38629436111989,
+        0.8823891801984738,
+        1.09861228866811,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.0986122886681091,
+        1.3862943611198926,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198872,
+        0.8823891801984765,
+        1.0986122886681073,
+        1.3862943611198908,
+        0.8823891801984765,
+        1.0986122886681073,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198872,
+        0.88238918019848,
+        1.0986122886681073,
+        1.3862943611198872,
+        0.8823891801984729,
+        1.0986122886681144,
+        1.3862943611198872
+      ],
+      "independent_corrs": {
+        "purity": 0.011922625338176908,
+        "von_neumann_entropy_bits": -0.011891116477028783,
+        "bloch_z_0": -0.028005492004282224,
+        "bloch_z_1": -0.023773052466211274,
+        "bloch_z_2": 0.0,
+        "pauli_xx_01": 0.06316692216519838,
+        "pauli_yy_12": 0.0
+      },
+      "cut_corrs": {
+        "S_L": -0.028644221151068613,
+        "S_MR": -0.012642405192131185,
+        "S_LR": -0.011891116477028783,
+        "S_L_given_MR": -0.010138962649039863,
+        "S_MR_given_L": 0.012176692918781571,
+        "S_LM_given_R": 0.024856574435035937,
+        "Phi0_proxy": -0.002701808926404101,
+        "negativity": 0.0
+      },
+      "rms_cut_correlation": 0.015803243115021626,
+      "shuffled_cut_corrs": {
+        "S_L": -0.10331203965049937,
+        "S_MR": -0.06657902621328132,
+        "S_LR": -0.06543151151900115,
+        "S_L_given_MR": -0.0616529068413699,
+        "S_MR_given_L": -0.004129452311339432,
+        "S_LM_given_R": 0.017068545566175146,
+        "Phi0_proxy": 0.02937820617875919,
+        "negativity": 0.0
+      },
+      "shuffled_rms_cut_correlation": 0.05518148977728501,
+      "shuffle_collapsed": false,
+      "trace_dev_summary": {
+        "max": 0.9492131344803632,
+        "mean": 0.8830977513296736
+      },
+      "scalar_entropy_only": {
+        "S_L": {
+          "drive_cut_corr": -0.028644221151068613,
+          "entropy_cut_corr": 0.940669710086487,
+          "S_explains_as_well": true
+        },
+        "S_MR": {
+          "drive_cut_corr": -0.012642405192131185,
+          "entropy_cut_corr": 0.9947158380754302,
+          "S_explains_as_well": true
+        },
+        "S_LR": {
+          "drive_cut_corr": -0.011891116477028783,
+          "entropy_cut_corr": 1.0,
+          "S_explains_as_well": true
+        },
+        "S_L_given_MR": {
+          "drive_cut_corr": -0.010138962649039863,
+          "entropy_cut_corr": 0.9812344316567876,
+          "S_explains_as_well": true
+        },
+        "S_MR_given_L": {
+          "drive_cut_corr": 0.012176692918781571,
+          "entropy_cut_corr": 0.8961380885754905,
+          "S_explains_as_well": true
+        },
+        "S_LM_given_R": {
+          "drive_cut_corr": 0.024856574435035937,
+          "entropy_cut_corr": 0.8410720134089309,
+          "S_explains_as_well": true
+        },
+        "Phi0_proxy": {
+          "drive_cut_corr": -0.002701808926404101,
+          "entropy_cut_corr": -0.9542458383709963,
+          "S_explains_as_well": true
+        },
+        "negativity": {
+          "drive_cut_corr": 0.0,
+          "entropy_cut_corr": 0.0,
+          "S_explains_as_well": true
+        }
+      },
+      "min_conditional_entropy_per_cut": {
+        "S_L_given_MR": 0.48406552110377676,
+        "S_MR_given_L": 1.3969972399658814,
+        "S_LM_given_R": 0.9445914112202569
+      },
+      "any_negative_conditional_entropy": false,
+      "entangling_branch_activity": {
+        "E_plus_p_unweighted_mean": 0.0842741868172274,
+        "E_plus_p_unweighted_max": 0.29599999999999993,
+        "E_minus_p_unweighted_mean": 0.07779120470558068,
+        "E_minus_p_unweighted_max": 0.2639999999999999,
+        "E_plus_weight_mean": 0.18604904811819598,
+        "E_minus_weight_mean": 0.18604904811819598,
+        "branches_ever_active": true
+      },
+      "rows_tail": [
+        {
+          "tick": 32,
+          "stage": 3,
+          "drive": 0.8823891801984729,
+          "independent": {
+            "purity": 0.41351309885514,
+            "von_neumann_entropy_bits": 1.6180415817262044,
+            "bloch_z_0": 0.822162107450675,
+            "bloch_z_1": 0.8756207700864566,
+            "bloch_z_2": 0.19999999999999934,
+            "pauli_xx_01": 0.1470020111510388,
+            "pauli_yy_12": 0.0
+          },
+          "cuts": {
+            "S_L": 0.16193764123125354,
+            "S_MR": 1.1099044004631846,
+            "S_LR": 1.6180415817262044,
+            "S_L_given_MR": 0.5081371812630198,
+            "S_MR_given_L": 1.456103940494951,
+            "S_LM_given_R": 1.0558471104452352,
+            "Phi0_proxy": -0.9821205608789854,
+            "negativity": 0.0
+          },
+          "map_class": "trace_renormalized",
+          "trace_dev": 0.901459590168586,
+          "n_branches": 9,
+          "entangling_branch_info": [
+            {
+              "h": "E_plus",
+              "depth": 1,
+              "w": 0.20422535211267598,
+              "p_unweighted": 0.03540177625665564
+            },
+            {
+              "h": "E_minus",
+              "depth": 1,
+              "w": 0.20422535211267598,
+              "p_unweighted": 0.02504164823591805
+            }
+          ]
+        },
+        {
+          "tick": 33,
+          "stage": 3,
+          "drive": 1.0986122886681144,
+          "independent": {
+            "purity": 0.419633359978098,
+            "von_neumann_entropy_bits": 1.588486833760587,
+            "bloch_z_0": 0.8243133510003013,
+            "bloch_z_1": 0.8804793574210915,
+            "bloch_z_2": 0.19999999999999923,
+            "pauli_xx_01": 0.1549953798371082,
+            "pauli_yy_12": 0.0
+          },
+          "cuts": {
+            "S_L": 0.12875853641402735,
+            "S_MR": 1.082145860425526,
+            "S_LR": 1.588486833760587,
+            "S_L_given_MR": 0.506340973335061,
+            "S_MR_given_L": 1.4597282973465597,
+            "S_LM_given_R": 1.0624354927861699,
+            "Phi0_proxy": -0.9830346353408104,
+            "negativity": 0.0
+          },
+          "map_class": "trace_renormalized",
+          "trace_dev": 0.9077902616280777,
+          "n_branches": 9,
+          "entangling_branch_info": [
+            {
+              "h": "E_plus",
+              "depth": 1,
+              "w": 0.23076923076923136,
+              "p_unweighted": 0.035167216870386576
+            },
+            {
+              "h": "E_minus",
+              "depth": 1,
+              "w": 0.23076923076923136,
+              "p_unweighted": 0.023874241445334832
+            }
+          ]
+        },
+        {
+          "tick": 34,
+          "stage": 3,
+          "drive": 1.3862943611198872,
+          "independent": {
+            "purity": 0.4204677878266949,
+            "von_neumann_entropy_bits": 1.5843499620639134,
+            "bloch_z_0": 0.8233262023666432,
+            "bloch_z_1": 0.8807003539135891,
+            "bloch_z_2": 0.19999999999999923,
+            "pauli_xx_01": 0.15637433887046362,
+            "pauli_yy_12": 0.0
+          },
+          "cuts": {
+            "S_L": 0.11743121445281052,
+            "S_MR": 1.0751921629139192,
+            "S_LR": 1.5843499620639134,
+            "S_L_given_MR": 0.5091577991499943,
+            "S_MR_given_L": 1.466918747611103,
+            "S_LM_given_R": 1.0750410628092943,
+            "Phi0_proxy": -0.9880382733805486,
+            "negativity": 0.0
+          },
+          "map_class": "trace_renormalized",
+          "trace_dev": 0.9160642446476984,
+          "n_branches": 9,
+          "entangling_branch_info": [
+            {
+              "h": "E_plus",
+              "depth": 1,
+              "w": 0.2666666666666663,
+              "p_unweighted": 0.03542124047085081
+            },
+            {
+              "h": "E_minus",
+              "depth": 1,
+              "w": 0.2666666666666663,
+              "p_unweighted": 0.023773448273102765
+            }
+          ]
+        }
+      ]
+    },
+    "W7_entangling_uniform": {
+      "law": "W7_entangling_uniform",
+      "n_ticks": 35,
+      "drive_series": [
+        1.0986122886681098,
+        1.3862943611198904,
+        0.8823891801984738,
+        1.09861228866811,
+        1.38629436111989,
+        0.8823891801984738,
+        1.09861228866811,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.0986122886681091,
+        1.3862943611198926,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198872,
+        0.8823891801984765,
+        1.0986122886681073,
+        1.3862943611198908,
+        0.8823891801984765,
+        1.0986122886681073,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198908,
+        0.8823891801984729,
+        1.098612288668111,
+        1.3862943611198872,
+        0.88238918019848,
+        1.0986122886681073,
+        1.3862943611198872,
+        0.8823891801984729,
+        1.0986122886681144,
+        1.3862943611198872
+      ],
+      "independent_corrs": {
+        "purity": 0.03149546471558783,
+        "von_neumann_entropy_bits": -0.03319799743269072,
+        "bloch_z_0": 0.0029251681139150177,
+        "bloch_z_1": 0.004532345769334609,
+        "bloch_z_2": 0.0,
+        "pauli_xx_01": 0.05396028529024318,
+        "pauli_yy_12": 0.0
+      },
+      "cut_corrs": {
+        "S_L": -0.0418057722735513,
+        "S_MR": -0.030314724651316387,
+        "S_LR": -0.03319799743269072,
+        "S_L_given_MR": -0.03870386063631172,
+        "S_MR_given_L": -0.01428767348747576,
+        "S_LM_given_R": -0.002220725011570016,
+        "Phi0_proxy": 0.025336152932548095,
+        "negativity": 0.0
+      },
+      "rms_cut_correlation": 0.027653640959312067,
+      "shuffled_cut_corrs": {
+        "S_L": -0.14471534127827754,
+        "S_MR": -0.11335253060031153,
+        "S_LR": -0.124498666144035,
+        "S_L_given_MR": -0.14585613155275384,
+        "S_MR_given_L": -0.07065116448495809,
+        "S_LM_given_R": -0.036540485243593976,
+        "Phi0_proxy": 0.10566172221417315,
+        "negativity": 0.0
+      },
+      "shuffled_rms_cut_correlation": 0.10491451807551709,
+      "shuffle_collapsed": false,
+      "trace_dev_summary": {
+        "max": 0.9523089680172787,
+        "mean": 0.8488303089803196
+      },
+      "scalar_entropy_only": {
+        "S_L": {
+          "drive_cut_corr": -0.0418057722735513,
+          "entropy_cut_corr": 0.9417904006398449,
+          "S_explains_as_well": true
+        },
+        "S_MR": {
+          "drive_cut_corr": -0.030314724651316387,
+          "entropy_cut_corr": 0.9971556578134704,
+          "S_explains_as_well": true
+        },
+        "S_LR": {
+          "drive_cut_corr": -0.03319799743269072,
+          "entropy_cut_corr": 1.0,
+          "S_explains_as_well": true
+        },
+        "S_L_given_MR": {
+          "drive_cut_corr": -0.03870386063631172,
+          "entropy_cut_corr": 0.9870492543014207,
+          "S_explains_as_well": true
+        },
+        "S_MR_given_L": {
+          "drive_cut_corr": -0.01428767348747576,
+          "entropy_cut_corr": 0.8796089321544648,
+          "S_explains_as_well": true
+        },
+        "S_LM_given_R": {
+          "drive_cut_corr": -0.002220725011570016,
+          "entropy_cut_corr": 0.8092537086417126,
+          "S_explains_as_well": true
+        },
+        "Phi0_proxy": {
+          "drive_cut_corr": 0.025336152932548095,
+          "entropy_cut_corr": -0.9582626818725352,
+          "S_explains_as_well": true
+        },
+        "negativity": {
+          "drive_cut_corr": 0.0,
+          "entropy_cut_corr": 0.0,
+          "S_explains_as_well": true
+        }
+      },
+      "min_conditional_entropy_per_cut": {
+        "S_L_given_MR": 0.5999465984246162,
+        "S_MR_given_L": 1.5018539591439841,
+        "S_LM_given_R": 1.1787888092547152
+      },
+      "any_negative_conditional_entropy": false,
+      "entangling_branch_activity": {
+        "E_plus_p_unweighted_mean": 0.11739349758255399,
+        "E_plus_p_unweighted_max": 0.29599999999999993,
+        "E_minus_p_unweighted_mean": 0.10897726762323458,
+        "E_minus_p_unweighted_max": 0.2639999999999999,
+        "E_plus_weight_mean": 0.08571428571428572,
+        "E_minus_weight_mean": 0.08571428571428572,
+        "branches_ever_active": true
+      },
+      "rows_tail": [
+        {
+          "tick": 32,
+          "stage": 3,
+          "drive": 0.8823891801984729,
+          "independent": {
+            "purity": 0.3796004474510891,
+            "von_neumann_entropy_bits": 1.792216193592457,
+            "bloch_z_0": 0.7553927786744551,
+            "bloch_z_1": 0.8249079655992613,
+            "bloch_z_2": 0.200000000000001,
+            "pauli_xx_01": 0.17369678912833686,
+            "pauli_yy_12": 0.0
+          },
+          "cuts": {
+            "S_L": 0.2846796859246946,
+            "S_MR": 1.1921719998587919,
+            "S_LR": 1.792216193592457,
+            "S_L_given_MR": 0.6000441937336651,
+            "S_MR_given_L": 1.5075365076677625,
+            "S_LM_given_R": 1.2021866533322232,
+            "Phi0_proxy": -1.0537903507007138,
+            "negativity": 0.0
+          },
+          "map_class": "trace_renormalized",
+          "trace_dev": 0.874514074680787,
+          "n_branches": 9,
+          "entangling_branch_info": [
+            {
+              "h": "E_plus",
+              "depth": 1,
+              "w": 0.1111111111111111,
+              "p_unweighted": 0.04829122912240401
+            },
+            {
+              "h": "E_minus",
+              "depth": 1,
+              "w": 0.1111111111111111,
+              "p_unweighted": 0.03564862202285274
+            }
+          ]
+        },
+        {
+          "tick": 33,
+          "stage": 3,
+          "drive": 1.0986122886681144,
+          "independent": {
+            "purity": 0.38281226439017074,
+            "von_neumann_entropy_bits": 1.7769624782390574,
+            "bloch_z_0": 0.7570446030297404,
+            "bloch_z_1": 0.8283220954161716,
+            "bloch_z_2": 0.20000000000000098,
+            "pauli_xx_01": 0.17820730788443387,
+            "pauli_yy_12": 0.0
+          },
+          "cuts": {
+            "S_L": 0.2645368488121299,
+            "S_MR": 1.1770158798144412,
+            "S_LR": 1.7769624782390574,
+            "S_L_given_MR": 0.5999465984246162,
+            "S_MR_given_L": 1.5124256294269274,
+            "S_LM_given_R": 1.2133489988547432,
+            "Phi0_proxy": -1.0561861139257718,
+            "negativity": 0.0
+          },
+          "map_class": "trace_renormalized",
+          "trace_dev": 0.8746227264168702,
+          "n_branches": 9,
+          "entangling_branch_info": [
+            {
+              "h": "E_plus",
+              "depth": 1,
+              "w": 0.1111111111111111,
+              "p_unweighted": 0.04795331862007087
+            },
+            {
+              "h": "E_minus",
+              "depth": 1,
+              "w": 0.1111111111111111,
+              "p_unweighted": 0.03497334169074672
+            }
+          ]
+        },
+        {
+          "tick": 34,
+          "stage": 3,
+          "drive": 1.3862943611198872,
+          "independent": {
+            "purity": 0.3856832889100107,
+            "von_neumann_entropy_bits": 1.7632758960600072,
+            "bloch_z_0": 0.7584452063828511,
+            "bloch_z_1": 0.8311969994462379,
+            "bloch_z_2": 0.2000000000000009,
+            "pauli_xx_01": 0.18210416767035614,
+            "pauli_yy_12": 0.0
+          },
+          "cuts": {
+            "S_L": 0.24538541262241698,
+            "S_MR": 1.1633104627023978,
+            "S_LR": 1.7632758960600072,
+            "S_L_given_MR": 0.5999654333576094,
+            "S_MR_given_L": 1.5178904834375904,
+            "S_LM_given_R": 1.224689890879311,
+            "Phi0_proxy": -1.0589279583976,
+            "negativity": 0.0
+          },
+          "map_class": "trace_renormalized",
+          "trace_dev": 0.8747102525267323,
+          "n_branches": 9,
+          "entangling_branch_info": [
+            {
+              "h": "E_plus",
+              "depth": 1,
+              "w": 0.1111111111111111,
+              "p_unweighted": 0.04770666601172128
+            },
+            {
+              "h": "E_minus",
+              "depth": 1,
+              "w": 0.1111111111111111,
+              "p_unweighted": 0.034364892822460975
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "w6_null_distribution": {
+    "n_shuffles": 30,
+    "mean": 0.12370675133681447,
+    "std": 0.0739527330504567,
+    "min": 0.02579884744082755,
+    "max": 0.3041491245275955,
+    "p95": 0.2788830752578616,
+    "values": [
+      0.1412093765324842,
+      0.3041491245275955,
+      0.1643561505861666,
+      0.277352872136282,
+      0.0827124460005139,
+      0.15055370435467147,
+      0.17858254832461046,
+      0.02579884744082755,
+      0.09637373431411993,
+      0.05570657757049851,
+      0.07396673040735136,
+      0.10619903416159812,
+      0.1171473187355787,
+      0.15451021414367022,
+      0.0901427196700495,
+      0.08989798136063416,
+      0.11150454633024628,
+      0.0859957553612449,
+      0.10407977150372254,
+      0.08194009137399567,
+      0.0460185654939497,
+      0.07808156259895249,
+      0.11257024294293667,
+      0.04283903959769511,
+      0.044202457074377845,
+      0.28013505963006313,
+      0.035501129316042206,
+      0.15645391501791128,
+      0.26617347568600175,
+      0.15704754791064193
+    ]
+  },
+  "qutip_referee": [
+    {
+      "tick": 8,
+      "label": "W5_stage0",
+      "entropy_qt": 2.956584773667804,
+      "entropy_np": 2.9565847442492488,
+      "abs_dev": 2.9418555147486813e-08,
+      "pass_1e5": true
+    },
+    {
+      "tick": 24,
+      "label": "W5_stage2",
+      "entropy_qt": 2.4813246079663185,
+      "entropy_np": 2.481324354871229,
+      "abs_dev": 2.530950893309125e-07,
+      "pass_1e5": true
+    }
+  ],
+  "product_no_entanglement_cut_control": "not re-run; equals r1's existing W1_capacity/W2_surprise/W3_growth receipts (rms 0.0282-0.0445, all near/below the scalar baseline and below their own single-shuffle nulls) -- this file differs from r1 only by adding E_plus/E_minus",
+  "summary": {
+    "w6_rms_cut_correlation": 0.015803243115021626,
+    "w6_shuffled_rms_cut_correlation_matched": 0.05518148977728501,
+    "w6_null_distribution_30draw": {
+      "mean": 0.12370675133681447,
+      "std": 0.0739527330504567,
+      "p95": 0.2788830752578616
+    },
+    "w6_percentile_vs_null": 0.0,
+    "scalar_baseline_rms_cut_correlation": 0.04358289706304026,
+    "w7_ablation_rms_cut_correlation": 0.027653640959312067,
+    "w6_minus_scalar_baseline": -0.027779653948018637,
+    "w6_minus_w7_ablation": -0.011850397844290442,
+    "prior_r1_best_rms_cut_correlation": 0.044456556847851436,
+    "prior_r1_best_shuffle_rms_cut_correlation": 0.1616715574347303,
+    "criteria": {
+      "a_beats_scalar_baseline": false,
+      "b_beats_matched_shuffle": false,
+      "c_beats_null_p95": false
+    },
+    "verdict": "still-open",
+    "entangling_branches_ever_active_W6": true,
+    "any_negative_conditional_entropy_any_candidate": {
+      "W5_scalar_baseline": false,
+      "W6_entangling_drive": false,
+      "W7_entangling_uniform": false
+    }
+  },
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "scratch_diagnostic / tool_lego_fit_probe; tests the doc's \u00a79 w_h slot with a genuinely entangling (collective) branch for the first time in this lane; reports numbers honestly; no physics claim",
+  "timestamp": "2026-07-21T05:32:49.269727Z"
+}

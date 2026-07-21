@@ -42,6 +42,17 @@ def _words_upto(alphabet: Sequence[Action], horizon: int) -> tuple[tuple[Action,
     return tuple(words)
 
 
+def replay_trace(candidate: CandidateBridgeInterface, point: tuple, word: tuple[Action, ...], *, memo: dict) -> tuple[Outcome, ...]:
+    """Replay a HistoryPoint, then collect its Outcome trace for ``word``."""
+    root, prefix = point
+    state = replay(candidate, root, prefix, memo=memo)
+    trace = []
+    for action in word:
+        state, outcome = candidate.step_C(state, action, None)
+        trace.append(outcome)
+    return tuple(trace)
+
+
 class BridgeCandidateAsPackage(CandidatePackage):
     """Verbatim behavioural adapter from practice_run, minus QIT imports."""
     def __init__(self, bridge_candidate: CandidateBridgeInterface, X: Sequence[tuple], *, horizon: int,
@@ -66,13 +77,7 @@ class BridgeCandidateAsPackage(CandidatePackage):
     def probes(self): return tuple(("peek", word) for word in self._words)
 
     def _trace(self, x: tuple, word: tuple[Action, ...]) -> tuple[Outcome, ...]:
-        root, prefix = x
-        state = replay(self._bridge, root, prefix, memo=self._memo)
-        trace = []
-        for action in word:
-            state, outcome = self._bridge.step_C(state, action, None)
-            trace.append(outcome)
-        return tuple(trace)
+        return replay_trace(self._bridge, x, word, memo=self._memo)
 
     def apply(self, op, state):
         kind, word = op
@@ -137,6 +142,39 @@ def build_deck():
         (named["root_plus0_couple_inner_outer"], named["root_plus0_couple_neighbor_neighbor"]),
     )
     return named, tuple(named.values()), demands
+
+
+def demand_candidates(named: dict[str, tuple]) -> tuple[tuple[str, tuple[tuple, tuple]], ...]:
+    """Named D_0 candidates; names make earned and excluded demands auditable."""
+    return (
+        ("root_00_vs_root_bell", (named["root_00"], named["root_bell"])),
+        ("root_00_vs_root_00_reprepared_bell", (named["root_00"], named["root_00_reprepared_bell"])),
+        ("root_plus0_order_H0_then_CNOT01_vs_CNOT01_then_H0", (named["root_plus0_order_H0_then_CNOT01"], named["root_plus0_order_CNOT01_then_H0"])),
+        ("root_plus0_couple_inner_outer_vs_couple_neighbor_neighbor", (named["root_plus0_couple_inner_outer"], named["root_plus0_couple_neighbor_neighbor"])),
+    )
+
+
+def witness_demands(reference: CandidateBridgeInterface, candidates: Sequence[tuple[str, tuple[tuple, tuple]]], *, horizon: int) -> tuple[tuple[tuple, ...], list[dict], list[dict]]:
+    """Keep only D_0 pairs with a behavioural witness under the reference replay carrier."""
+    # ClassicalRelationalExecCandidate is the sole physically-generative stdlib carrier here.
+    # CountermodelLookupReplayExecCandidate merely replays its precomputed table (circular as a
+    # reference), and the flattened ablation is the confound-suspect candidate and cannot validate itself.
+    words = _words_upto(reference.action_alphabet(), horizon)
+    word_json = [list(word) for word in words]
+    earned: list[tuple] = []
+    provenance: list[dict] = []
+    unearned: list[dict] = []
+    for name, pair in candidates:
+        memo: dict = {}
+        witness = next((word for word in words if replay_trace(reference, pair[0], word, memo=memo)
+                        != replay_trace(reference, pair[1], word, memo=memo)), None)
+        if witness is None:
+            unearned.append({"name": name, "history_points": pair_json(pair), "words_tried": word_json,
+                             "note": "all probe words produced identical Outcome traces under ClassicalRelationalExecCandidate"})
+        else:
+            earned.append(pair)
+            provenance.append({"name": name, "history_points": pair_json(pair), "witness_word": list(witness)})
+    return tuple(earned), provenance, unearned
 
 
 def point_json(point: tuple) -> dict: return hp_json(point)
@@ -223,8 +261,11 @@ def invoke_floor(d_size: int, purgatory_count: int) -> dict:
     results = HERE / "results"; results.mkdir(parents=True, exist_ok=True)
     receipt = results / "ratchet_tick_floor_receipt.json"
     receipt.write_text(json.dumps({"floor_claims": [{"key": "ratchet_tick.demand_count", "value": d_size, "direction": "higher_is_better"}, {"key": "ratchet_tick.purgatory_count", "value": purgatory_count, "direction": "lower_is_better"}]}, indent=2) + "\n", encoding="utf-8")
-    store = results / "ratchet_tick_floors.json"
-    command = [sys.executable, str(REPO_ROOT / "claimgate_plugin" / "ratchet_floor.py"), "admit", str(receipt), "--store", str(store)]
+    # Legacy store ratchet_tick_floors.json is RETIRED in place (pre-hash-chain
+    # format + purgatory_count direction mis-declared at first seal). Never
+    # mutated, never deleted; new store = new admission at a new path.
+    store = results / "ratchet_tick_floors_chain.json"
+    command = [sys.executable, str(REPO_ROOT / "claimgate_plugin" / "ratchet_floor.py"), "admit", str(receipt), "--store", str(store), "--allow-new-keys"]
     try:
         completed = subprocess.run(command, text=True, capture_output=True, check=False)
         parsed: Any
@@ -235,6 +276,107 @@ def invoke_floor(d_size: int, purgatory_count: int) -> dict:
                 "exit_code": completed.returncode}
     except Exception as exc:
         return {"invoked": True, "result_path": str(store), "stdout_or_result": None, "error": repr(exc)}
+
+
+def invoke_floor_v2(d_size: int, purgatory_count: int) -> dict:
+    """Make a first v2 admission without mutating the sealed original floor store."""
+    results = HERE / "results"; results.mkdir(parents=True, exist_ok=True)
+    receipt = results / "ratchet_tick_floor_receipt_v2.json"
+    receipt.write_text(json.dumps({"floor_claims": [{"key": "ratchet_tick.demand_count", "value": d_size, "direction": "higher_is_better"}, {"key": "ratchet_tick.purgatory_count", "value": purgatory_count, "direction": "lower_is_better"}]}, indent=2) + "\n", encoding="utf-8")
+    store = results / "ratchet_tick_floors_v2.json"
+    command = [sys.executable, str(REPO_ROOT / "claimgate_plugin" / "ratchet_floor.py"), "admit", str(receipt), "--store", str(store), "--allow-new-keys"]
+    try:
+        completed = subprocess.run(command, text=True, capture_output=True, check=False)
+        try: parsed: Any = json.loads(completed.stdout)
+        except json.JSONDecodeError: parsed = completed.stdout
+        return {"invoked": True, "result_path": str(store), "stdout_or_result": parsed,
+                "error": None if completed.returncode in (0, 1) else (completed.stderr or f"exit {completed.returncode}"),
+                "exit_code": completed.returncode}
+    except Exception as exc:
+        return {"invoked": True, "result_path": str(store), "stdout_or_result": None, "error": repr(exc)}
+
+
+def frontier_membership(kernel: dict, candidate: str) -> str:
+    current = kernel["frontier"]
+    if candidate in current["survivors"]: return "survivor"
+    if candidate in current["antichain"]: return "antichain"
+    for item in current["purgatory"]:
+        if item["candidate"] == candidate: return f"purgatory:{item['failed_at']}"
+    return "absent"
+
+
+def main_v2() -> int:
+    try:
+        from candidate_classical_exec import ClassicalRelationalExecCandidate
+        from candidate_countermodel_exec import CountermodelLookupReplayExecCandidate
+        from candidate_ablation_exec import AblationFlattenedExecCandidate
+        reference = ClassicalRelationalExecCandidate()
+        candidates = [reference, CountermodelLookupReplayExecCandidate(), AblationFlattenedExecCandidate()]
+        named, X0, _original_d0 = build_deck()
+        D0, demand_provenance, unearned_demands = witness_demands(reference, demand_candidates(named), horizon=1)
+        tick0 = run_kernel(candidates, X0, D0)
+        translated, d2_pairs, d2_points = d2_thickening()
+        X1, D1 = tuple(dict.fromkeys((*X0, *d2_points))), tuple(dict.fromkeys((*D0, *d2_pairs)))
+        if not (len(D1) > len(D0) and set(D0).issubset(D1)): fail("D1 v2 monotonicity", "D1 did not strictly extend witnessed D0")
+        tick1 = run_kernel(candidates, X1, D1)
+        junk_pairs = (
+            (history_point("root_mixed", ("prepare_00",)), history_point("root_mixed", ("prepare_bell",))),
+            (history_point("root_mixed", ("prepare_plus0",)), history_point("root_mixed", ("restrict_trace_out_qubit1",))),
+            (history_point("root_mixed", (("ordered_compose", ("H0", "CNOT01")),)), history_point("root_mixed", ("perturb_small_rx0",))),
+        )
+        Xjunk = tuple(dict.fromkeys((*X0, *(point for pair in junk_pairs for point in pair))))
+        Djunk = tuple(dict.fromkeys((*D0, *junk_pairs)))
+        junk_run = run_kernel(candidates, Xjunk, Djunk)
+        control_diff = frontier_diff(tick0, junk_run)
+        anti = "PASS" if not control_diff else "FAILED"
+        moved_diff = frontier_diff(tick0, tick1)
+        attribution = []
+        for difference in moved_diff:
+            trials, reverting = [], []
+            for index, pair in enumerate(d2_pairs):
+                trial = run_kernel(candidates, X1, tuple(item for item in D1 if item != pair))
+                trial_diff = frontier_diff(tick0, trial)
+                trials.append({"removed_edge": translated[index]["name"], "frontier_diff_from_tick0": trial_diff})
+                if not trial_diff: reverting.append(translated[index]["name"])
+            attribution.append({"difference": difference, "responsible_edges": reverting,
+                                "attribution": "unambiguous" if len(reverting) == 1 else "ambiguous attribution",
+                                "single_pair_removal_reruns": trials})
+        moved = bool(moved_diff)
+        ambiguous = any(item["attribution"] == "ambiguous attribution" for item in attribution)
+        old_purgatory_names = {item["candidate"] for item in tick0["frontier"]["purgatory"]}
+        new_live_names = set(tick1["frontier"]["survivors"]) | set(tick1["frontier"]["antichain"])
+        named_resurrection = old_purgatory_names & new_live_names
+        attributed_edges = {edge for item in attribution for edge in item["responsible_edges"]}
+        no_resurrection = not named_resurrection or (not ambiguous and bool(attributed_edges))
+        if anti == "FAILED": verdict = "CONTROL_FAILED"
+        elif not moved: verdict = "STALLED"
+        elif not ambiguous: verdict = "RATCHETED"
+        else: verdict = "STALLED"
+        baseline = json.loads((HERE / "results" / "ratchet_tick.json").read_text(encoding="utf-8"))
+        statuses = {name: {"before": frontier_membership(baseline["tick0"], name), "after": frontier_membership(tick0, name)}
+                    for name in ("classical_relational_exec_pkg", "countermodel_lookup_replay_exec_pkg", "ablation_flattened_exec_pkg")}
+        floor = invoke_floor_v2(len(D1), len(tick1["frontier"]["purgatory"]))
+        output = {"schema_version": "ratchet-tick/0.1", "classification": "tool_lego_fit_probe", "promotion_allowed": False,
+                  "tick0": tick0, "tick1": tick1, "junk_run": junk_run, "translated_d2_edges": translated,
+                  "frontier_moved": moved, "movement_attribution": attribution, "d_monotone": True,
+                  "no_unearned_resurrection": no_resurrection, "anti_stall_control": anti,
+                  "anti_stall_control_diff": None if anti == "PASS" else {"differences": control_diff}, "verdict": verdict,
+                  "floor_seal": floor, "unearned_demands": unearned_demands, "demand_provenance": demand_provenance,
+                  "floor_store_note": "A new floor store was required because |D| changed when the witness check removed an unearned D_0 edge.",
+                  "tick0_verdict": "FRONTIER_LIVE" if any(value["after"] in ("survivor", "antichain") for value in statuses.values()) else "NO_FRONTIER_LIVE_CANDIDATE",
+                  "tick1_verdict": verdict, "junk_verdict": anti,
+                  "honest_delta": {"tick0_frontier_before_after": statuses,
+                                   "physical_carriers_frontier_live_after_confound_removal": all(statuses[name]["after"] in ("survivor", "antichain") for name in ("classical_relational_exec_pkg", "countermodel_lookup_replay_exec_pkg")),
+                                   "d2_thickening_verdict": verdict,
+                                   "ablation_advantage_after_confound_removal": statuses["ablation_flattened_exec_pkg"],
+                                   "deeper_bottleneck_if_stalled": "kernel" if verdict == "STALLED" else None}}
+        results = HERE / "results"; results.mkdir(parents=True, exist_ok=True)
+        (results / "ratchet_tick_v2.json").write_text(json.dumps(output, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(f"v2: D_0 witnessed={len(D0)} excluded={len(unearned_demands)}; tick0={output['tick0_verdict']}; tick1={verdict}; junk={anti}")
+        return 0
+    except Exception as exc:
+        print(f"run_ratchet_tick --v2: hard failure: {exc}", file=sys.stderr)
+        return 2
 
 
 def main() -> int:
@@ -307,4 +449,9 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    if sys.argv[1:] == ["--v2"]:
+        raise SystemExit(main_v2())
+    if sys.argv[1:]:
+        print("usage: run_ratchet_tick.py [--v2]", file=sys.stderr)
+        raise SystemExit(2)
     raise SystemExit(main())

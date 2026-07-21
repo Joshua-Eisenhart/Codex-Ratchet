@@ -16,4 +16,12 @@ if [ "$tier0_exit" -ne 0 ]; then
 fi
 
 python3 "$script_dir/../claim_verify.py" "$receipt"
-exit $?
+claim_exit=$?
+if [ "$claim_exit" -ne 0 ]; then
+  exit "$claim_exit"
+fi
+if python3 -c "import json,sys; d=json.load(open(sys.argv[1])); sys.exit(0 if d.get('floor_claims') else 1)" "$receipt"; then
+  python3 "$script_dir/../ratchet_floor.py" admit "$receipt" --store "${RF_STORE:-$script_dir/../ratchet_floor.json}"
+  exit $?
+fi
+exit "$claim_exit"

@@ -3,37 +3,125 @@
   "anti_stall_control_diff": null,
   "classification": "tool_lego_fit_probe",
   "d_monotone": true,
+  "demand_provenance": [
+    {
+      "history_points": [
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        },
+        {
+          "prefix": [],
+          "root": "'root_bell'"
+        }
+      ],
+      "name": "root_00_vs_root_bell",
+      "witness_word": [
+        [
+          "extend_under_constraint",
+          "require_purity"
+        ]
+      ]
+    },
+    {
+      "history_points": [
+        {
+          "prefix": [],
+          "root": "'root_00'"
+        },
+        {
+          "prefix": [
+            "'prepare_bell'"
+          ],
+          "root": "'root_00'"
+        }
+      ],
+      "name": "root_00_vs_root_00_reprepared_bell",
+      "witness_word": [
+        [
+          "extend_under_constraint",
+          "require_purity"
+        ]
+      ]
+    },
+    {
+      "history_points": [
+        {
+          "prefix": [
+            "'couple_inner_outer'"
+          ],
+          "root": "'root_plus0'"
+        },
+        {
+          "prefix": [
+            "'couple_neighbor_neighbor'"
+          ],
+          "root": "'root_plus0'"
+        }
+      ],
+      "name": "root_plus0_couple_inner_outer_vs_couple_neighbor_neighbor",
+      "witness_word": [
+        "read_outcome_x"
+      ]
+    }
+  ],
   "floor_seal": {
     "error": null,
     "exit_code": 0,
     "invoked": true,
-    "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/ratchet_contract/results/ratchet_tick_floors_chain.json",
+    "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/ratchet_contract/results/ratchet_tick_floors_v2.json",
     "stdout_or_result": {
       "decisions": [
         {
-          "action": "new",
+          "action": "hold",
           "direction": "higher_is_better",
-          "floor": 7,
+          "floor": 6,
+          "from": 6,
           "key": "ratchet_tick.demand_count"
         },
         {
-          "action": "new",
+          "action": "hold",
           "direction": "lower_is_better",
-          "floor": 2,
+          "floor": 0,
+          "from": 0,
           "key": "ratchet_tick.purgatory_count"
         }
       ],
       "parked": [],
-      "receipt": "ratchet_tick_floor_receipt.json",
+      "receipt": "ratchet_tick_floor_receipt_v2.json",
       "threshold": 0.5,
       "tool": "ratchet_floor",
       "verdict": "ADMITTED",
       "violations": []
     }
   },
+  "floor_store_note": "A new floor store was required because |D| changed when the witness check removed an unearned D_0 edge.",
   "frontier_moved": false,
+  "honest_delta": {
+    "ablation_advantage_after_confound_removal": {
+      "after": "survivor",
+      "before": "survivor"
+    },
+    "d2_thickening_verdict": "STALLED",
+    "deeper_bottleneck_if_stalled": "kernel",
+    "physical_carriers_frontier_live_after_confound_removal": true,
+    "tick0_frontier_before_after": {
+      "ablation_flattened_exec_pkg": {
+        "after": "survivor",
+        "before": "survivor"
+      },
+      "classical_relational_exec_pkg": {
+        "after": "survivor",
+        "before": "purgatory:base_survivorship"
+      },
+      "countermodel_lookup_replay_exec_pkg": {
+        "after": "survivor",
+        "before": "purgatory:base_survivorship"
+      }
+    }
+  },
   "junk_run": {
-    "d_size": 7,
+    "d_size": 6,
     "demand_pairs": [
       [
         {
@@ -55,20 +143,6 @@
             "'prepare_bell'"
           ],
           "root": "'root_00'"
-        }
-      ],
-      [
-        {
-          "prefix": [
-            "('ordered_compose', ('H0', 'CNOT01'))"
-          ],
-          "root": "'root_plus0'"
-        },
-        {
-          "prefix": [
-            "('ordered_compose', ('CNOT01', 'H0'))"
-          ],
-          "root": "'root_plus0'"
         }
       ],
       [
@@ -130,9 +204,18 @@
     ],
     "frontier": {
       "antichain": [
-        "ablation_flattened_exec_pkg"
+        "ablation_flattened_exec_pkg",
+        "classical_relational_exec_pkg"
       ],
       "branches": [
+        {
+          "cells": 8,
+          "members": [
+            "classical_relational_exec_pkg",
+            "countermodel_lookup_replay_exec_pkg"
+          ],
+          "partition_digest": "c46817800f79d86c9b53ee7a073bd905f208ed5b4834062ea9a43b535b946245"
+        },
         {
           "cells": 8,
           "members": [
@@ -142,36 +225,165 @@
         }
       ],
       "dominated": [],
-      "pairwise": {},
-      "purgatory": [
-        {
-          "candidate": "classical_relational_exec_pkg",
-          "failed_at": "base_survivorship",
-          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
-          "reason": {
-            "collapsed_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ]
-          }
+      "pairwise": {
+        "classical_relational_exec_pkg__vs__ablation_flattened_exec_pkg": {
+          "candidate_a": "classical_relational_exec_pkg",
+          "candidate_b": "ablation_flattened_exec_pkg",
+          "reasons": {
+            "cells_A": 8,
+            "cells_B": 8,
+            "partition_digest_A": "c46817800f79d86c9b53ee7a073bd905f208ed5b4834062ea9a43b535b946245",
+            "partition_digest_B": "24345cccafcc564b58d02ae7eef0bda2f13c6628714b8d8321bac283e7b0616a",
+            "pi_A": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "pi_B": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+            "stage": "coarseness"
+          },
+          "verdict": "INCOMPARABLE"
         },
-        {
-          "candidate": "countermodel_lookup_replay_exec_pkg",
-          "failed_at": "base_survivorship",
-          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
-          "reason": {
-            "collapsed_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ]
-          }
+        "classical_relational_exec_pkg__vs__countermodel_lookup_replay_exec_pkg": {
+          "candidate_a": "classical_relational_exec_pkg",
+          "candidate_b": "countermodel_lookup_replay_exec_pkg",
+          "reasons": {
+            "cells_A": 8,
+            "cells_B": 8,
+            "partition_digest_A": "c46817800f79d86c9b53ee7a073bd905f208ed5b4834062ea9a43b535b946245",
+            "partition_digest_B": "c46817800f79d86c9b53ee7a073bd905f208ed5b4834062ea9a43b535b946245",
+            "pi_A": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "pi_B": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "reason": "identical induced partitions over the base surface -- re-mergeable, no strict order",
+            "stage": "coarseness"
+          },
+          "verdict": "INCOMPARABLE"
+        },
+        "countermodel_lookup_replay_exec_pkg__vs__ablation_flattened_exec_pkg": {
+          "candidate_a": "countermodel_lookup_replay_exec_pkg",
+          "candidate_b": "ablation_flattened_exec_pkg",
+          "reasons": {
+            "cells_A": 8,
+            "cells_B": 8,
+            "partition_digest_A": "c46817800f79d86c9b53ee7a073bd905f208ed5b4834062ea9a43b535b946245",
+            "partition_digest_B": "24345cccafcc564b58d02ae7eef0bda2f13c6628714b8d8321bac283e7b0616a",
+            "pi_A": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "pi_B": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6,
+              0,
+              1,
+              2,
+              3,
+              3,
+              7
+            ],
+            "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+            "stage": "coarseness"
+          },
+          "verdict": "INCOMPARABLE"
         }
-      ],
+      },
+      "purgatory": [],
       "survivors": [
+        "classical_relational_exec_pkg",
+        "countermodel_lookup_replay_exec_pkg",
         "ablation_flattened_exec_pkg"
       ]
     },
@@ -294,7 +506,7 @@
                 "candidate": "ablation_flattened_exec_pkg",
                 "gate": "evolvability_gate",
                 "reasons": {
-                  "D_size": 7,
+                  "D_size": 6,
                   "collapsed": 0,
                   "new_constraint": "'probe_generic_extension'"
                 },
@@ -346,7 +558,7 @@
                 "candidate": "ablation_flattened_exec_pkg",
                 "gate": "persistence_gate",
                 "reasons": {
-                  "D_persistence_size": 7,
+                  "D_persistence_size": 6,
                   "already_collapsed_at_base_edges": [],
                   "collapsed_persistence_demand_edges": [
                     [
@@ -402,7 +614,7 @@
           "candidate": "ablation_flattened_exec_pkg",
           "gate": "evolvability_gate",
           "reasons": {
-            "D_size": 7,
+            "D_size": 6,
             "collapsed": 0,
             "new_constraint": "'probe_generic_extension'"
           },
@@ -420,7 +632,7 @@
           "candidate": "ablation_flattened_exec_pkg",
           "gate": "persistence_gate",
           "reasons": {
-            "D_persistence_size": 7,
+            "D_persistence_size": 6,
             "already_collapsed_at_base_edges": [],
             "collapsed_persistence_demand_edges": [
               [
@@ -603,23 +815,11 @@
                 "candidate": "classical_relational_exec_pkg",
                 "gate": "evolvability_gate",
                 "reasons": {
-                  "already_collapsed_at_base_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "collapsed_evolvability_demand_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "new_constraint": "'probe_generic_extension'",
-                  "newly_collapsed_by_continuation_edges": [],
-                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                  "D_size": 6,
+                  "collapsed": 0,
+                  "new_constraint": "'probe_generic_extension'"
                 },
-                "verdict": "FAIL"
+                "verdict": "PASS"
               },
               "Extend": {
                 "candidate": "classical_relational_exec_pkg",
@@ -667,18 +867,9 @@
                 "candidate": "classical_relational_exec_pkg",
                 "gate": "persistence_gate",
                 "reasons": {
-                  "D_persistence_size": 7,
-                  "already_collapsed_at_base_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-                    ]
-                  ],
+                  "D_persistence_size": 6,
+                  "already_collapsed_at_base_edges": [],
                   "collapsed_persistence_demand_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-                    ],
                     [
                       "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
                       "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
@@ -710,7 +901,7 @@
             "verdicts": {
               "Compose": "PASS",
               "Distinguish": "PASS",
-              "Evolve": "FAIL",
+              "Evolve": "PASS",
               "Extend": "HOLD",
               "PassControls": "PASS",
               "Persist": "FAIL"
@@ -732,23 +923,11 @@
           "candidate": "classical_relational_exec_pkg",
           "gate": "evolvability_gate",
           "reasons": {
-            "already_collapsed_at_base_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "collapsed_evolvability_demand_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "new_constraint": "'probe_generic_extension'",
-            "newly_collapsed_by_continuation_edges": [],
-            "reason": "the evolved extension destroys a previously-live demanded distinction"
+            "D_size": 6,
+            "collapsed": 0,
+            "new_constraint": "'probe_generic_extension'"
           },
-          "verdict": "FAIL"
+          "verdict": "PASS"
         },
         "extension_gate": {
           "candidate": "classical_relational_exec_pkg",
@@ -762,18 +941,9 @@
           "candidate": "classical_relational_exec_pkg",
           "gate": "persistence_gate",
           "reasons": {
-            "D_persistence_size": 7,
-            "already_collapsed_at_base_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-              ]
-            ],
+            "D_persistence_size": 6,
+            "already_collapsed_at_base_edges": [],
             "collapsed_persistence_demand_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-              ],
               [
                 "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
                 "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
@@ -954,23 +1124,11 @@
                 "candidate": "countermodel_lookup_replay_exec_pkg",
                 "gate": "evolvability_gate",
                 "reasons": {
-                  "already_collapsed_at_base_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "collapsed_evolvability_demand_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "new_constraint": "'probe_generic_extension'",
-                  "newly_collapsed_by_continuation_edges": [],
-                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                  "D_size": 6,
+                  "collapsed": 0,
+                  "new_constraint": "'probe_generic_extension'"
                 },
-                "verdict": "FAIL"
+                "verdict": "PASS"
               },
               "Extend": {
                 "candidate": "countermodel_lookup_replay_exec_pkg",
@@ -1027,7 +1185,7 @@
             "verdicts": {
               "Compose": "PASS",
               "Distinguish": "PASS",
-              "Evolve": "FAIL",
+              "Evolve": "PASS",
               "Extend": "HOLD",
               "PassControls": "PASS",
               "Persist": "FAIL"
@@ -1049,23 +1207,11 @@
           "candidate": "countermodel_lookup_replay_exec_pkg",
           "gate": "evolvability_gate",
           "reasons": {
-            "already_collapsed_at_base_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "collapsed_evolvability_demand_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "new_constraint": "'probe_generic_extension'",
-            "newly_collapsed_by_continuation_edges": [],
-            "reason": "the evolved extension destroys a previously-live demanded distinction"
+            "D_size": 6,
+            "collapsed": 0,
+            "new_constraint": "'probe_generic_extension'"
           },
-          "verdict": "FAIL"
+          "verdict": "PASS"
         },
         "extension_gate": {
           "candidate": "countermodel_lookup_replay_exec_pkg",
@@ -1125,64 +1271,165 @@
         "candidate_a": "classical_relational_exec_pkg",
         "candidate_b": "countermodel_lookup_replay_exec_pkg",
         "reasons": {
-          "collapsed_edges_A": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "cells_A": 8,
+          "cells_B": 8,
+          "partition_digest_A": "c46817800f79d86c9b53ee7a073bd905f208ed5b4834062ea9a43b535b946245",
+          "partition_digest_B": "c46817800f79d86c9b53ee7a073bd905f208ed5b4834062ea9a43b535b946245",
+          "pi_A": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6,
+            0,
+            1,
+            2,
+            3,
+            3,
+            7
           ],
-          "collapsed_edges_B": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "pi_B": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6,
+            0,
+            1,
+            2,
+            3,
+            3,
+            7
           ],
-          "reason": "does not preserve every demanded distinction in the base demand set D",
-          "stage": "base_survivorship"
+          "reason": "identical induced partitions over the base surface -- re-mergeable, no strict order",
+          "stage": "coarseness"
         },
-        "verdict": "HOLD"
+        "verdict": "INCOMPARABLE"
       },
       {
         "candidate_a": "classical_relational_exec_pkg",
         "candidate_b": "ablation_flattened_exec_pkg",
         "reasons": {
-          "collapsed_edges_A": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "cells_A": 8,
+          "cells_B": 8,
+          "partition_digest_A": "c46817800f79d86c9b53ee7a073bd905f208ed5b4834062ea9a43b535b946245",
+          "partition_digest_B": "24345cccafcc564b58d02ae7eef0bda2f13c6628714b8d8321bac283e7b0616a",
+          "pi_A": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6,
+            0,
+            1,
+            2,
+            3,
+            3,
+            7
           ],
-          "collapsed_edges_B": [],
-          "reason": "does not preserve every demanded distinction in the base demand set D",
-          "stage": "base_survivorship"
+          "pi_B": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            2,
+            0,
+            6,
+            0,
+            1,
+            2,
+            3,
+            3,
+            7
+          ],
+          "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+          "stage": "coarseness"
         },
-        "verdict": "HOLD"
+        "verdict": "INCOMPARABLE"
       },
       {
         "candidate_a": "countermodel_lookup_replay_exec_pkg",
         "candidate_b": "ablation_flattened_exec_pkg",
         "reasons": {
-          "collapsed_edges_A": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "cells_A": 8,
+          "cells_B": 8,
+          "partition_digest_A": "c46817800f79d86c9b53ee7a073bd905f208ed5b4834062ea9a43b535b946245",
+          "partition_digest_B": "24345cccafcc564b58d02ae7eef0bda2f13c6628714b8d8321bac283e7b0616a",
+          "pi_A": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6,
+            0,
+            1,
+            2,
+            3,
+            3,
+            7
           ],
-          "collapsed_edges_B": [],
-          "reason": "does not preserve every demanded distinction in the base demand set D",
-          "stage": "base_survivorship"
+          "pi_B": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            2,
+            0,
+            6,
+            0,
+            1,
+            2,
+            3,
+            3,
+            7
+          ],
+          "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+          "stage": "coarseness"
         },
-        "verdict": "HOLD"
+        "verdict": "INCOMPARABLE"
       }
     ],
     "x_size": 17
   },
+  "junk_verdict": "PASS",
   "movement_attribution": [],
   "no_unearned_resurrection": true,
   "promotion_allowed": false,
   "schema_version": "ratchet-tick/0.1",
   "tick0": {
-    "d_size": 4,
+    "d_size": 3,
     "demand_pairs": [
       [
         {
@@ -1204,20 +1451,6 @@
             "'prepare_bell'"
           ],
           "root": "'root_00'"
-        }
-      ],
-      [
-        {
-          "prefix": [
-            "('ordered_compose', ('H0', 'CNOT01'))"
-          ],
-          "root": "'root_plus0'"
-        },
-        {
-          "prefix": [
-            "('ordered_compose', ('CNOT01', 'H0'))"
-          ],
-          "root": "'root_plus0'"
         }
       ],
       [
@@ -1237,9 +1470,18 @@
     ],
     "frontier": {
       "antichain": [
-        "ablation_flattened_exec_pkg"
+        "ablation_flattened_exec_pkg",
+        "classical_relational_exec_pkg"
       ],
       "branches": [
+        {
+          "cells": 7,
+          "members": [
+            "classical_relational_exec_pkg",
+            "countermodel_lookup_replay_exec_pkg"
+          ],
+          "partition_digest": "91e776aea48cdce68c20682a604ea2d9e11ec84a0a6e48f08a42e02588e3445a"
+        },
         {
           "cells": 7,
           "members": [
@@ -1249,36 +1491,129 @@
         }
       ],
       "dominated": [],
-      "pairwise": {},
-      "purgatory": [
-        {
-          "candidate": "classical_relational_exec_pkg",
-          "failed_at": "base_survivorship",
-          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
-          "reason": {
-            "collapsed_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ]
-          }
+      "pairwise": {
+        "classical_relational_exec_pkg__vs__ablation_flattened_exec_pkg": {
+          "candidate_a": "classical_relational_exec_pkg",
+          "candidate_b": "ablation_flattened_exec_pkg",
+          "reasons": {
+            "cells_A": 7,
+            "cells_B": 7,
+            "partition_digest_A": "91e776aea48cdce68c20682a604ea2d9e11ec84a0a6e48f08a42e02588e3445a",
+            "partition_digest_B": "fa2b0fcd245e18d726653912b6b8871e2ebc6e681e39680b99bb69d5d35f8285",
+            "pi_A": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6
+            ],
+            "pi_B": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6
+            ],
+            "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+            "stage": "coarseness"
+          },
+          "verdict": "INCOMPARABLE"
         },
-        {
-          "candidate": "countermodel_lookup_replay_exec_pkg",
-          "failed_at": "base_survivorship",
-          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
-          "reason": {
-            "collapsed_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ]
-          }
+        "classical_relational_exec_pkg__vs__countermodel_lookup_replay_exec_pkg": {
+          "candidate_a": "classical_relational_exec_pkg",
+          "candidate_b": "countermodel_lookup_replay_exec_pkg",
+          "reasons": {
+            "cells_A": 7,
+            "cells_B": 7,
+            "partition_digest_A": "91e776aea48cdce68c20682a604ea2d9e11ec84a0a6e48f08a42e02588e3445a",
+            "partition_digest_B": "91e776aea48cdce68c20682a604ea2d9e11ec84a0a6e48f08a42e02588e3445a",
+            "pi_A": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6
+            ],
+            "pi_B": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6
+            ],
+            "reason": "identical induced partitions over the base surface -- re-mergeable, no strict order",
+            "stage": "coarseness"
+          },
+          "verdict": "INCOMPARABLE"
+        },
+        "countermodel_lookup_replay_exec_pkg__vs__ablation_flattened_exec_pkg": {
+          "candidate_a": "countermodel_lookup_replay_exec_pkg",
+          "candidate_b": "ablation_flattened_exec_pkg",
+          "reasons": {
+            "cells_A": 7,
+            "cells_B": 7,
+            "partition_digest_A": "91e776aea48cdce68c20682a604ea2d9e11ec84a0a6e48f08a42e02588e3445a",
+            "partition_digest_B": "fa2b0fcd245e18d726653912b6b8871e2ebc6e681e39680b99bb69d5d35f8285",
+            "pi_A": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6
+            ],
+            "pi_B": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6
+            ],
+            "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+            "stage": "coarseness"
+          },
+          "verdict": "INCOMPARABLE"
         }
-      ],
+      },
+      "purgatory": [],
       "survivors": [
+        "classical_relational_exec_pkg",
+        "countermodel_lookup_replay_exec_pkg",
         "ablation_flattened_exec_pkg"
       ]
     },
@@ -1377,7 +1712,7 @@
                 "candidate": "ablation_flattened_exec_pkg",
                 "gate": "evolvability_gate",
                 "reasons": {
-                  "D_size": 4,
+                  "D_size": 3,
                   "collapsed": 0,
                   "new_constraint": "'probe_generic_extension'"
                 },
@@ -1429,7 +1764,7 @@
                 "candidate": "ablation_flattened_exec_pkg",
                 "gate": "persistence_gate",
                 "reasons": {
-                  "D_persistence_size": 4,
+                  "D_persistence_size": 3,
                   "already_collapsed_at_base_edges": [],
                   "collapsed_persistence_demand_edges": [
                     [
@@ -1477,7 +1812,7 @@
           "candidate": "ablation_flattened_exec_pkg",
           "gate": "evolvability_gate",
           "reasons": {
-            "D_size": 4,
+            "D_size": 3,
             "collapsed": 0,
             "new_constraint": "'probe_generic_extension'"
           },
@@ -1495,7 +1830,7 @@
           "candidate": "ablation_flattened_exec_pkg",
           "gate": "persistence_gate",
           "reasons": {
-            "D_persistence_size": 4,
+            "D_persistence_size": 3,
             "already_collapsed_at_base_edges": [],
             "collapsed_persistence_demand_edges": [
               [
@@ -1646,23 +1981,11 @@
                 "candidate": "classical_relational_exec_pkg",
                 "gate": "evolvability_gate",
                 "reasons": {
-                  "already_collapsed_at_base_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "collapsed_evolvability_demand_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "new_constraint": "'probe_generic_extension'",
-                  "newly_collapsed_by_continuation_edges": [],
-                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                  "D_size": 3,
+                  "collapsed": 0,
+                  "new_constraint": "'probe_generic_extension'"
                 },
-                "verdict": "FAIL"
+                "verdict": "PASS"
               },
               "Extend": {
                 "candidate": "classical_relational_exec_pkg",
@@ -1710,18 +2033,9 @@
                 "candidate": "classical_relational_exec_pkg",
                 "gate": "persistence_gate",
                 "reasons": {
-                  "D_persistence_size": 4,
-                  "already_collapsed_at_base_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-                    ]
-                  ],
+                  "D_persistence_size": 3,
+                  "already_collapsed_at_base_edges": [],
                   "collapsed_persistence_demand_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-                    ],
                     [
                       "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
                       "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
@@ -1745,7 +2059,7 @@
             "verdicts": {
               "Compose": "PASS",
               "Distinguish": "PASS",
-              "Evolve": "FAIL",
+              "Evolve": "PASS",
               "Extend": "HOLD",
               "PassControls": "PASS",
               "Persist": "FAIL"
@@ -1767,23 +2081,11 @@
           "candidate": "classical_relational_exec_pkg",
           "gate": "evolvability_gate",
           "reasons": {
-            "already_collapsed_at_base_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "collapsed_evolvability_demand_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "new_constraint": "'probe_generic_extension'",
-            "newly_collapsed_by_continuation_edges": [],
-            "reason": "the evolved extension destroys a previously-live demanded distinction"
+            "D_size": 3,
+            "collapsed": 0,
+            "new_constraint": "'probe_generic_extension'"
           },
-          "verdict": "FAIL"
+          "verdict": "PASS"
         },
         "extension_gate": {
           "candidate": "classical_relational_exec_pkg",
@@ -1797,18 +2099,9 @@
           "candidate": "classical_relational_exec_pkg",
           "gate": "persistence_gate",
           "reasons": {
-            "D_persistence_size": 4,
-            "already_collapsed_at_base_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-              ]
-            ],
+            "D_persistence_size": 3,
+            "already_collapsed_at_base_edges": [],
             "collapsed_persistence_demand_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-              ],
               [
                 "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
                 "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
@@ -1957,23 +2250,11 @@
                 "candidate": "countermodel_lookup_replay_exec_pkg",
                 "gate": "evolvability_gate",
                 "reasons": {
-                  "already_collapsed_at_base_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "collapsed_evolvability_demand_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "new_constraint": "'probe_generic_extension'",
-                  "newly_collapsed_by_continuation_edges": [],
-                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                  "D_size": 3,
+                  "collapsed": 0,
+                  "new_constraint": "'probe_generic_extension'"
                 },
-                "verdict": "FAIL"
+                "verdict": "PASS"
               },
               "Extend": {
                 "candidate": "countermodel_lookup_replay_exec_pkg",
@@ -2030,7 +2311,7 @@
             "verdicts": {
               "Compose": "PASS",
               "Distinguish": "PASS",
-              "Evolve": "FAIL",
+              "Evolve": "PASS",
               "Extend": "HOLD",
               "PassControls": "PASS",
               "Persist": "FAIL"
@@ -2052,23 +2333,11 @@
           "candidate": "countermodel_lookup_replay_exec_pkg",
           "gate": "evolvability_gate",
           "reasons": {
-            "already_collapsed_at_base_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "collapsed_evolvability_demand_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "new_constraint": "'probe_generic_extension'",
-            "newly_collapsed_by_continuation_edges": [],
-            "reason": "the evolved extension destroys a previously-live demanded distinction"
+            "D_size": 3,
+            "collapsed": 0,
+            "new_constraint": "'probe_generic_extension'"
           },
-          "verdict": "FAIL"
+          "verdict": "PASS"
         },
         "extension_gate": {
           "candidate": "countermodel_lookup_replay_exec_pkg",
@@ -2128,60 +2397,125 @@
         "candidate_a": "classical_relational_exec_pkg",
         "candidate_b": "countermodel_lookup_replay_exec_pkg",
         "reasons": {
-          "collapsed_edges_A": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "cells_A": 7,
+          "cells_B": 7,
+          "partition_digest_A": "91e776aea48cdce68c20682a604ea2d9e11ec84a0a6e48f08a42e02588e3445a",
+          "partition_digest_B": "91e776aea48cdce68c20682a604ea2d9e11ec84a0a6e48f08a42e02588e3445a",
+          "pi_A": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6
           ],
-          "collapsed_edges_B": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "pi_B": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6
           ],
-          "reason": "does not preserve every demanded distinction in the base demand set D",
-          "stage": "base_survivorship"
+          "reason": "identical induced partitions over the base surface -- re-mergeable, no strict order",
+          "stage": "coarseness"
         },
-        "verdict": "HOLD"
+        "verdict": "INCOMPARABLE"
       },
       {
         "candidate_a": "classical_relational_exec_pkg",
         "candidate_b": "ablation_flattened_exec_pkg",
         "reasons": {
-          "collapsed_edges_A": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "cells_A": 7,
+          "cells_B": 7,
+          "partition_digest_A": "91e776aea48cdce68c20682a604ea2d9e11ec84a0a6e48f08a42e02588e3445a",
+          "partition_digest_B": "fa2b0fcd245e18d726653912b6b8871e2ebc6e681e39680b99bb69d5d35f8285",
+          "pi_A": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6
           ],
-          "collapsed_edges_B": [],
-          "reason": "does not preserve every demanded distinction in the base demand set D",
-          "stage": "base_survivorship"
+          "pi_B": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            2,
+            0,
+            6
+          ],
+          "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+          "stage": "coarseness"
         },
-        "verdict": "HOLD"
+        "verdict": "INCOMPARABLE"
       },
       {
         "candidate_a": "countermodel_lookup_replay_exec_pkg",
         "candidate_b": "ablation_flattened_exec_pkg",
         "reasons": {
-          "collapsed_edges_A": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "cells_A": 7,
+          "cells_B": 7,
+          "partition_digest_A": "91e776aea48cdce68c20682a604ea2d9e11ec84a0a6e48f08a42e02588e3445a",
+          "partition_digest_B": "fa2b0fcd245e18d726653912b6b8871e2ebc6e681e39680b99bb69d5d35f8285",
+          "pi_A": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6
           ],
-          "collapsed_edges_B": [],
-          "reason": "does not preserve every demanded distinction in the base demand set D",
-          "stage": "base_survivorship"
+          "pi_B": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            2,
+            0,
+            6
+          ],
+          "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+          "stage": "coarseness"
         },
-        "verdict": "HOLD"
+        "verdict": "INCOMPARABLE"
       }
     ],
     "x_size": 11
   },
+  "tick0_verdict": "FRONTIER_LIVE",
   "tick1": {
-    "d_size": 7,
+    "d_size": 6,
     "demand_pairs": [
       [
         {
@@ -2203,20 +2537,6 @@
             "'prepare_bell'"
           ],
           "root": "'root_00'"
-        }
-      ],
-      [
-        {
-          "prefix": [
-            "('ordered_compose', ('H0', 'CNOT01'))"
-          ],
-          "root": "'root_plus0'"
-        },
-        {
-          "prefix": [
-            "('ordered_compose', ('CNOT01', 'H0'))"
-          ],
-          "root": "'root_plus0'"
         }
       ],
       [
@@ -2272,48 +2592,168 @@
     ],
     "frontier": {
       "antichain": [
-        "ablation_flattened_exec_pkg"
+        "ablation_flattened_exec_pkg",
+        "classical_relational_exec_pkg"
       ],
       "branches": [
         {
           "cells": 9,
           "members": [
+            "classical_relational_exec_pkg",
+            "countermodel_lookup_replay_exec_pkg"
+          ],
+          "partition_digest": "2ed84621e2318959adb9aedd11c6e44415a43983ff87e22b57779432d01613fe"
+        },
+        {
+          "cells": 9,
+          "members": [
             "ablation_flattened_exec_pkg"
           ],
-          "partition_digest": "029f0e1ec44306a2f49387895a330b04c699909e47a77df8d31f4c696506c686"
+          "partition_digest": "ed14f08b1966f652ffafe807496ffb9fd207e2fedfee1c72c3eda18821e99913"
         }
       ],
       "dominated": [],
-      "pairwise": {},
-      "purgatory": [
-        {
-          "candidate": "classical_relational_exec_pkg",
-          "failed_at": "base_survivorship",
-          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
-          "reason": {
-            "collapsed_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ]
-          }
+      "pairwise": {
+        "classical_relational_exec_pkg__vs__ablation_flattened_exec_pkg": {
+          "candidate_a": "classical_relational_exec_pkg",
+          "candidate_b": "ablation_flattened_exec_pkg",
+          "reasons": {
+            "cells_A": 9,
+            "cells_B": 9,
+            "partition_digest_A": "2ed84621e2318959adb9aedd11c6e44415a43983ff87e22b57779432d01613fe",
+            "partition_digest_B": "ed14f08b1966f652ffafe807496ffb9fd207e2fedfee1c72c3eda18821e99913",
+            "pi_A": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              3,
+              7,
+              8
+            ],
+            "pi_B": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6,
+              3,
+              7,
+              8
+            ],
+            "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+            "stage": "coarseness"
+          },
+          "verdict": "INCOMPARABLE"
         },
-        {
-          "candidate": "countermodel_lookup_replay_exec_pkg",
-          "failed_at": "base_survivorship",
-          "re_entry_condition": "the candidate's own induced partition must not collapse any pair in D",
-          "reason": {
-            "collapsed_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ]
-          }
+        "classical_relational_exec_pkg__vs__countermodel_lookup_replay_exec_pkg": {
+          "candidate_a": "classical_relational_exec_pkg",
+          "candidate_b": "countermodel_lookup_replay_exec_pkg",
+          "reasons": {
+            "cells_A": 9,
+            "cells_B": 9,
+            "partition_digest_A": "2ed84621e2318959adb9aedd11c6e44415a43983ff87e22b57779432d01613fe",
+            "partition_digest_B": "2ed84621e2318959adb9aedd11c6e44415a43983ff87e22b57779432d01613fe",
+            "pi_A": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              3,
+              7,
+              8
+            ],
+            "pi_B": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              3,
+              7,
+              8
+            ],
+            "reason": "identical induced partitions over the base surface -- re-mergeable, no strict order",
+            "stage": "coarseness"
+          },
+          "verdict": "INCOMPARABLE"
+        },
+        "countermodel_lookup_replay_exec_pkg__vs__ablation_flattened_exec_pkg": {
+          "candidate_a": "countermodel_lookup_replay_exec_pkg",
+          "candidate_b": "ablation_flattened_exec_pkg",
+          "reasons": {
+            "cells_A": 9,
+            "cells_B": 9,
+            "partition_digest_A": "2ed84621e2318959adb9aedd11c6e44415a43983ff87e22b57779432d01613fe",
+            "partition_digest_B": "ed14f08b1966f652ffafe807496ffb9fd207e2fedfee1c72c3eda18821e99913",
+            "pi_A": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              3,
+              0,
+              6,
+              3,
+              7,
+              8
+            ],
+            "pi_B": [
+              0,
+              1,
+              2,
+              3,
+              1,
+              4,
+              5,
+              3,
+              2,
+              0,
+              6,
+              3,
+              7,
+              8
+            ],
+            "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+            "stage": "coarseness"
+          },
+          "verdict": "INCOMPARABLE"
         }
-      ],
+      },
+      "purgatory": [],
       "survivors": [
+        "classical_relational_exec_pkg",
+        "countermodel_lookup_replay_exec_pkg",
         "ablation_flattened_exec_pkg"
       ]
     },
@@ -2336,8 +2776,8 @@
               2,
               0,
               6,
-              7,
               3,
+              7,
               8
             ],
             "pi_probes_cells": 9,
@@ -2353,8 +2793,8 @@
               2,
               0,
               6,
-              7,
               3,
+              7,
               8
             ],
             "pi_reidentify_cells": 9,
@@ -2394,8 +2834,8 @@
                     2,
                     0,
                     6,
-                    7,
                     3,
+                    7,
                     8
                   ],
                   "pi_probes_cells": 9,
@@ -2411,8 +2851,8 @@
                     2,
                     0,
                     6,
-                    7,
                     3,
+                    7,
                     8
                   ],
                   "pi_reidentify_cells": 9,
@@ -2424,7 +2864,7 @@
                 "candidate": "ablation_flattened_exec_pkg",
                 "gate": "evolvability_gate",
                 "reasons": {
-                  "D_size": 7,
+                  "D_size": 6,
                   "collapsed": 0,
                   "new_constraint": "'probe_generic_extension'"
                 },
@@ -2476,7 +2916,7 @@
                 "candidate": "ablation_flattened_exec_pkg",
                 "gate": "persistence_gate",
                 "reasons": {
-                  "D_persistence_size": 7,
+                  "D_persistence_size": 6,
                   "already_collapsed_at_base_edges": [],
                   "collapsed_persistence_demand_edges": [
                     [
@@ -2524,7 +2964,7 @@
           "candidate": "ablation_flattened_exec_pkg",
           "gate": "evolvability_gate",
           "reasons": {
-            "D_size": 7,
+            "D_size": 6,
             "collapsed": 0,
             "new_constraint": "'probe_generic_extension'"
           },
@@ -2542,7 +2982,7 @@
           "candidate": "ablation_flattened_exec_pkg",
           "gate": "persistence_gate",
           "reasons": {
-            "D_persistence_size": 7,
+            "D_persistence_size": 6,
             "already_collapsed_at_base_edges": [],
             "collapsed_persistence_demand_edges": [
               [
@@ -2617,8 +3057,8 @@
               3,
               0,
               6,
-              7,
               3,
+              7,
               8
             ],
             "pi_probes_cells": 9,
@@ -2634,8 +3074,8 @@
               3,
               0,
               6,
-              7,
               3,
+              7,
               8
             ],
             "pi_reidentify_cells": 9,
@@ -2675,8 +3115,8 @@
                     3,
                     0,
                     6,
-                    7,
                     3,
+                    7,
                     8
                   ],
                   "pi_probes_cells": 9,
@@ -2692,8 +3132,8 @@
                     3,
                     0,
                     6,
-                    7,
                     3,
+                    7,
                     8
                   ],
                   "pi_reidentify_cells": 9,
@@ -2705,23 +3145,11 @@
                 "candidate": "classical_relational_exec_pkg",
                 "gate": "evolvability_gate",
                 "reasons": {
-                  "already_collapsed_at_base_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "collapsed_evolvability_demand_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "new_constraint": "'probe_generic_extension'",
-                  "newly_collapsed_by_continuation_edges": [],
-                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                  "D_size": 6,
+                  "collapsed": 0,
+                  "new_constraint": "'probe_generic_extension'"
                 },
-                "verdict": "FAIL"
+                "verdict": "PASS"
               },
               "Extend": {
                 "candidate": "classical_relational_exec_pkg",
@@ -2769,18 +3197,9 @@
                 "candidate": "classical_relational_exec_pkg",
                 "gate": "persistence_gate",
                 "reasons": {
-                  "D_persistence_size": 7,
-                  "already_collapsed_at_base_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-                    ]
-                  ],
+                  "D_persistence_size": 6,
+                  "already_collapsed_at_base_edges": [],
                   "collapsed_persistence_demand_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-                    ],
                     [
                       "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
                       "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
@@ -2804,7 +3223,7 @@
             "verdicts": {
               "Compose": "PASS",
               "Distinguish": "PASS",
-              "Evolve": "FAIL",
+              "Evolve": "PASS",
               "Extend": "HOLD",
               "PassControls": "PASS",
               "Persist": "FAIL"
@@ -2826,23 +3245,11 @@
           "candidate": "classical_relational_exec_pkg",
           "gate": "evolvability_gate",
           "reasons": {
-            "already_collapsed_at_base_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "collapsed_evolvability_demand_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "new_constraint": "'probe_generic_extension'",
-            "newly_collapsed_by_continuation_edges": [],
-            "reason": "the evolved extension destroys a previously-live demanded distinction"
+            "D_size": 6,
+            "collapsed": 0,
+            "new_constraint": "'probe_generic_extension'"
           },
-          "verdict": "FAIL"
+          "verdict": "PASS"
         },
         "extension_gate": {
           "candidate": "classical_relational_exec_pkg",
@@ -2856,18 +3263,9 @@
           "candidate": "classical_relational_exec_pkg",
           "gate": "persistence_gate",
           "reasons": {
-            "D_persistence_size": 7,
-            "already_collapsed_at_base_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-              ]
-            ],
+            "D_persistence_size": 6,
+            "already_collapsed_at_base_edges": [],
             "collapsed_persistence_demand_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')), 'delay_short', 'perturb_small_rx0'))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')), 'delay_short', 'perturb_small_rx0'))"
-              ],
               [
                 "('root_plus0', ('couple_inner_outer', 'delay_short', 'perturb_small_rx0'))",
                 "('root_plus0', ('couple_neighbor_neighbor', 'delay_short', 'perturb_small_rx0'))"
@@ -2940,8 +3338,8 @@
               3,
               0,
               6,
-              7,
               3,
+              7,
               8
             ],
             "pi_probes_cells": 9,
@@ -2957,8 +3355,8 @@
               3,
               0,
               6,
-              7,
               3,
+              7,
               8
             ],
             "pi_reidentify_cells": 9,
@@ -2998,8 +3396,8 @@
                     3,
                     0,
                     6,
-                    7,
                     3,
+                    7,
                     8
                   ],
                   "pi_probes_cells": 9,
@@ -3015,8 +3413,8 @@
                     3,
                     0,
                     6,
-                    7,
                     3,
+                    7,
                     8
                   ],
                   "pi_reidentify_cells": 9,
@@ -3028,23 +3426,11 @@
                 "candidate": "countermodel_lookup_replay_exec_pkg",
                 "gate": "evolvability_gate",
                 "reasons": {
-                  "already_collapsed_at_base_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "collapsed_evolvability_demand_edges": [
-                    [
-                      "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                      "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-                    ]
-                  ],
-                  "new_constraint": "'probe_generic_extension'",
-                  "newly_collapsed_by_continuation_edges": [],
-                  "reason": "the evolved extension destroys a previously-live demanded distinction"
+                  "D_size": 6,
+                  "collapsed": 0,
+                  "new_constraint": "'probe_generic_extension'"
                 },
-                "verdict": "FAIL"
+                "verdict": "PASS"
               },
               "Extend": {
                 "candidate": "countermodel_lookup_replay_exec_pkg",
@@ -3101,7 +3487,7 @@
             "verdicts": {
               "Compose": "PASS",
               "Distinguish": "PASS",
-              "Evolve": "FAIL",
+              "Evolve": "PASS",
               "Extend": "HOLD",
               "PassControls": "PASS",
               "Persist": "FAIL"
@@ -3123,23 +3509,11 @@
           "candidate": "countermodel_lookup_replay_exec_pkg",
           "gate": "evolvability_gate",
           "reasons": {
-            "already_collapsed_at_base_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "collapsed_evolvability_demand_edges": [
-              [
-                "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-                "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-              ]
-            ],
-            "new_constraint": "'probe_generic_extension'",
-            "newly_collapsed_by_continuation_edges": [],
-            "reason": "the evolved extension destroys a previously-live demanded distinction"
+            "D_size": 6,
+            "collapsed": 0,
+            "new_constraint": "'probe_generic_extension'"
           },
-          "verdict": "FAIL"
+          "verdict": "PASS"
         },
         "extension_gate": {
           "candidate": "countermodel_lookup_replay_exec_pkg",
@@ -3199,58 +3573,141 @@
         "candidate_a": "classical_relational_exec_pkg",
         "candidate_b": "countermodel_lookup_replay_exec_pkg",
         "reasons": {
-          "collapsed_edges_A": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "cells_A": 9,
+          "cells_B": 9,
+          "partition_digest_A": "2ed84621e2318959adb9aedd11c6e44415a43983ff87e22b57779432d01613fe",
+          "partition_digest_B": "2ed84621e2318959adb9aedd11c6e44415a43983ff87e22b57779432d01613fe",
+          "pi_A": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6,
+            3,
+            7,
+            8
           ],
-          "collapsed_edges_B": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "pi_B": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6,
+            3,
+            7,
+            8
           ],
-          "reason": "does not preserve every demanded distinction in the base demand set D",
-          "stage": "base_survivorship"
+          "reason": "identical induced partitions over the base surface -- re-mergeable, no strict order",
+          "stage": "coarseness"
         },
-        "verdict": "HOLD"
+        "verdict": "INCOMPARABLE"
       },
       {
         "candidate_a": "classical_relational_exec_pkg",
         "candidate_b": "ablation_flattened_exec_pkg",
         "reasons": {
-          "collapsed_edges_A": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "cells_A": 9,
+          "cells_B": 9,
+          "partition_digest_A": "2ed84621e2318959adb9aedd11c6e44415a43983ff87e22b57779432d01613fe",
+          "partition_digest_B": "ed14f08b1966f652ffafe807496ffb9fd207e2fedfee1c72c3eda18821e99913",
+          "pi_A": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6,
+            3,
+            7,
+            8
           ],
-          "collapsed_edges_B": [],
-          "reason": "does not preserve every demanded distinction in the base demand set D",
-          "stage": "base_survivorship"
+          "pi_B": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            2,
+            0,
+            6,
+            3,
+            7,
+            8
+          ],
+          "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+          "stage": "coarseness"
         },
-        "verdict": "HOLD"
+        "verdict": "INCOMPARABLE"
       },
       {
         "candidate_a": "countermodel_lookup_replay_exec_pkg",
         "candidate_b": "ablation_flattened_exec_pkg",
         "reasons": {
-          "collapsed_edges_A": [
-            [
-              "('root_plus0', (('ordered_compose', ('H0', 'CNOT01')),))",
-              "('root_plus0', (('ordered_compose', ('CNOT01', 'H0')),))"
-            ]
+          "cells_A": 9,
+          "cells_B": 9,
+          "partition_digest_A": "2ed84621e2318959adb9aedd11c6e44415a43983ff87e22b57779432d01613fe",
+          "partition_digest_B": "ed14f08b1966f652ffafe807496ffb9fd207e2fedfee1c72c3eda18821e99913",
+          "pi_A": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            3,
+            0,
+            6,
+            3,
+            7,
+            8
           ],
-          "collapsed_edges_B": [],
-          "reason": "does not preserve every demanded distinction in the base demand set D",
-          "stage": "base_survivorship"
+          "pi_B": [
+            0,
+            1,
+            2,
+            3,
+            1,
+            4,
+            5,
+            3,
+            2,
+            0,
+            6,
+            3,
+            7,
+            8
+          ],
+          "reason": "neither partition is a coarsening of the other -- genuinely incomparable",
+          "stage": "coarseness"
         },
-        "verdict": "HOLD"
+        "verdict": "INCOMPARABLE"
       }
     ],
     "x_size": 14
   },
+  "tick1_verdict": "STALLED",
   "translated_d2_edges": [
     {
       "demand_pair": [
@@ -3305,6 +3762,121 @@
       ],
       "name": "joint_vs_marginal_cut1_root_bell_ab11",
       "translation_choice": "one-action root_bell/cut1 joint address versus existing root_00 product-preparation proxy; the D2 product table is not manufactured as a HistoryPoint"
+    }
+  ],
+  "unearned_demands": [
+    {
+      "history_points": [
+        {
+          "prefix": [
+            "('ordered_compose', ('H0', 'CNOT01'))"
+          ],
+          "root": "'root_plus0'"
+        },
+        {
+          "prefix": [
+            "('ordered_compose', ('CNOT01', 'H0'))"
+          ],
+          "root": "'root_plus0'"
+        }
+      ],
+      "name": "root_plus0_order_H0_then_CNOT01_vs_CNOT01_then_H0",
+      "note": "all probe words produced identical Outcome traces under ClassicalRelationalExecCandidate",
+      "words_tried": [
+        [],
+        [
+          "prepare_00"
+        ],
+        [
+          "prepare_bell"
+        ],
+        [
+          "prepare_plus0"
+        ],
+        [
+          "restrict_trace_out_qubit1"
+        ],
+        [
+          [
+            "ordered_compose",
+            [
+              "H0",
+              "CNOT01"
+            ]
+          ]
+        ],
+        [
+          [
+            "ordered_compose",
+            [
+              "CNOT01",
+              "H0"
+            ]
+          ]
+        ],
+        [
+          [
+            "bracket_compose",
+            [
+              "left",
+              [
+                "H0",
+                "X1",
+                "CNOT01"
+              ]
+            ]
+          ]
+        ],
+        [
+          [
+            "bracket_compose",
+            [
+              "right",
+              [
+                "H0",
+                "X1",
+                "CNOT01"
+              ]
+            ]
+          ]
+        ],
+        [
+          "perturb_small_rx0"
+        ],
+        [
+          "delay_short"
+        ],
+        [
+          "delay_long"
+        ],
+        [
+          "couple_inner_outer"
+        ],
+        [
+          "couple_neighbor_neighbor"
+        ],
+        [
+          "renest_swap01"
+        ],
+        [
+          [
+            "extend_under_constraint",
+            "trace_preserving"
+          ]
+        ],
+        [
+          [
+            "extend_under_constraint",
+            "require_purity"
+          ]
+        ],
+        [
+          "read_outcome_z"
+        ],
+        [
+          "read_outcome_x"
+        ]
+      ]
     }
   ],
   "verdict": "STALLED"

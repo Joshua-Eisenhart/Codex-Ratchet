@@ -75,3 +75,24 @@ missing-search-receipt rejection (`decl_novel_no_search.json`).
 - The audit standard that catches what linting misses (fresh-context
   adversarial pass armed with this catalog): the four by-construction patterns
   above are its current library; every new find extends it.
+
+## Wide-stress workflow findings (2026-07-20, 7 lanes, each hole verified fresh)
+
+- FATAL (self-inflicted): tier4 trusted any checked-in `evaldeck/*.calibration.json`
+  verbatim — a builder drops a forged one + self-authored CLEAN audit -> VERIFIED.
+  My own hand-written `opus-auditor.calibration.json` was a standing forged
+  credential. FIX: removed it; tier4 now RE-RUNS evalcheck fresh against a
+  registry-fixed deck (no static file trusted); unregistered auditors cannot
+  certify. Guard fixture: `stress/cv/forged_auditor/`.
+- ratchet_floor NaN/Inf poison (non-finite value admitted, poisons the key). FIX:
+  `math.isfinite` reject.
+- CONSENSUS RESIDUAL (NVIDIA panel + semantic-bug lane, IRREDUCIBLE): a "plausible
+  bug" that passes every structural gate (tier0-3, floor, gatecheck) but is
+  semantically wrong; and poisoning of the trust root itself (registry/decks/
+  fixtures). No mechanical gate closes these — they are why tier4 (bounded LLM
+  audit) exists and why the trust root MUST be branch-protected. This is the
+  honest limit, not a bug to fix.
+- TRUST-ROOT BOUNDARY (open, deployment-level): gate_registry.json + evaldeck +
+  the fixtures live in the agent-writable repo today. "External policy" is only
+  real once they move to a branch-protected / CODEOWNERS / harness-owned path.
+  claim_verify cannot self-enforce its own registry's immutability.

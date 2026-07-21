@@ -32,7 +32,7 @@ Rules (forward-only ratchet):
 
 No third-party deps. Python 3.
 """
-import json, os, sys, hashlib
+import json, os, sys, hashlib, math
 
 EPS = 1e-12
 
@@ -78,8 +78,13 @@ def admit(receipt_path, store_path):
     decisions, violations = [], []
     for c in claims:
         key, val, direction = c.get("key"), c.get("value"), c.get("direction")
-        if key is None or not isinstance(val, (int, float)) or direction not in ("higher_is_better", "lower_is_better"):
+        if key is None or not isinstance(val, (int, float)) or isinstance(val, bool) or direction not in ("higher_is_better", "lower_is_better"):
             violations.append({"key": key, "reason": "malformed floor_claim (need key, numeric value, direction)"})
+            continue
+        if not math.isfinite(val):
+            # NaN/Inf poison the floor: NaN comparisons are always False (never
+            # "weakens") so a NaN would be admitted and then max/min-poison the key.
+            violations.append({"key": key, "reason": f"non-finite value {val} forbidden"})
             continue
         cur = floors.get(key)
         if cur is None:

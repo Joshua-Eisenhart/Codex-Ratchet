@@ -1,2 +1,3 @@
 verdict: CLEAN
-auditor: opus-auditor
+auditor: honest
+Findings: none survived.

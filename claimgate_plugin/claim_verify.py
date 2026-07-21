@@ -161,24 +161,32 @@ def tier4(receipt_path, receipt, root, reg):
         if producer and auditor.lower() == str(producer).lower():
             return "FAIL", os.path.relpath(found, root), f"auditor '{auditor}' == producer — self-audit forbidden"
     if pol.get("require_calibration"):
-        deck_dir = os.path.join(root, pol.get("calibration_deck_dir", ""))
-        cal = _auditor_calibrated(auditor if pol.get("require_auditor_identity") else None, deck_dir, root)
-        if not cal:
-            return "FAIL", os.path.relpath(found, root), "audit CLEAN but no current evalcheck calibration receipt for the auditor (eval-the-eval unmet)"
-    return "PASS", os.path.relpath(found, root), f"audit CLEAN, auditor identified{' + calibrated' if pol.get('require_calibration') else ''}"
+        ok, why = _auditor_calibrated(auditor, root, reg)
+        if not ok:
+            return "FAIL", os.path.relpath(found, root), f"audit CLEAN but auditor not freshly calibrated: {why}"
+    return "PASS", os.path.relpath(found, root), f"audit CLEAN, auditor '{auditor}' fresh-calibrated"
 
-def _auditor_calibrated(auditor, deck_dir, root):
-    # a current EVALUATOR_CALIBRATED evalcheck receipt must exist for this auditor/deck.
-    if not os.path.isdir(deck_dir):
-        return False
-    for cal in glob.glob(os.path.join(deck_dir, "*.calibration.json")):
-        try:
-            c = load(cal)
-            if c.get("verdict") == "EVALUATOR_CALIBRATED" and (auditor is None or c.get("evaluator") == auditor):
-                return True
-        except Exception:
-            continue
-    return False
+def _auditor_calibrated(auditor, root, reg):
+    # NO static file trust (a checked-in *.calibration.json is forgeable — the
+    # workflow proved it FATAL). Calibration is RE-DERIVED per run: evalcheck is
+    # executed fresh against a REGISTRY-FIXED sealed deck for this auditor. An
+    # auditor with no registered calibration gate is, by definition, not calibrated.
+    pol = reg.get("audit_policy", {})
+    gate = (pol.get("calibration_gates") or {}).get(auditor)
+    if not gate or "deck" not in gate:
+        return (False, f"auditor '{auditor}' has no registered calibration gate (unregistered auditors cannot self-certify)")
+    deck = os.path.join(root, gate["deck"])
+    if not os.path.exists(deck):
+        return (False, f"registered deck missing: {gate['deck']}")
+    rc, out, err = run(["node", os.path.join(root, "claimgate_plugin", "evalcheck.mjs"), deck], root)
+    if rc is None:
+        return (False, f"evalcheck did not run: {err[:80]}")
+    try:
+        rep = json.loads(out)
+    except Exception:
+        return (False, "evalcheck output unparseable")
+    return (rep.get("verdict") == "EVALUATOR_CALIBRATED",
+            f"fresh evalcheck on {gate['deck']}: {rep.get('verdict')}")
 
 TIERS = [("tier0", tier0), ("tier1", tier1), ("tier2", tier2), ("tier3", tier3), ("tier4", tier4)]
 
@@ -188,9 +196,13 @@ def main():
     if not receipt_path or not os.path.exists(receipt_path):
         sys.stderr.write("usage: claim_verify <receipt.json> [--registry gate_registry.json]\n"); sys.exit(2)
     receipt_path = os.path.abspath(receipt_path)  # subprocesses run with cwd=root; the path must be absolute
-    root = repo_root(receipt_path)
+    # root = the SCRIPT's repo (fixed), NOT the receipt's — a receipt can live
+    # anywhere (a /tmp fixture, a Lev-supplied path); the tools/registry/decks are
+    # fixed relative to this file.
+    here = os.path.dirname(os.path.abspath(__file__))
+    root = repo_root(here)
     reg_path = args[args.index("--registry") + 1] if "--registry" in args else \
-        os.path.join(root, "claimgate_plugin", "gate_registry.json")
+        os.path.join(here, "gate_registry.json")
     try:
         receipt = load(receipt_path)
         reg = load(reg_path)

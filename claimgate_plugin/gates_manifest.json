@@ -275,6 +275,24 @@
     "stress/canfail/toy_spec.json"
    ],
    "expect_exit": 3
+  },
+  {
+   "id": "hook-clean-accepted",
+   "cmd": "sh",
+   "args": [
+    "hooks/post_receipt_gate.sh",
+    "fixtures/hook_clean_receipt.json"
+   ],
+   "expect_exit": 0
+  },
+  {
+   "id": "hook-inflated-rejected",
+   "cmd": "sh",
+   "args": [
+    "hooks/post_receipt_gate.sh",
+    "fixtures/hook_inflated_receipt.json"
+   ],
+   "expect_exit": 1
   }
  ]
 }

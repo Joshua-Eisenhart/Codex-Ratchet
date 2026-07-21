@@ -1,0 +1,8 @@
+# this is a declaration for the Lev dev to admit through his own pipeline; it admits nothing by itself
+gates:
+  - gate_id: claimgate-post-receipt
+    driver: command
+    check: sh hooks/post_receipt_gate.sh <receipt.json>
+    verdict:
+      0: pass
+      nonzero: fail

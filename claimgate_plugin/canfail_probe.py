@@ -39,46 +39,64 @@ Only top-level `NAME = ...` assignments are patchable (they are what the sim rea
 
 No third-party deps beyond the sim's own. Python 3.
 """
-import json, os, re, sys, shutil, tempfile, subprocess, glob
+import json, os, re, sys, shutil, tempfile, subprocess, glob, ast
 
 def die(m, c=2): sys.stderr.write(f"canfail_probe: {m}\n"); sys.exit(c)
 
 def patch_source(src, overrides):
-    """Regex-replace top-level `NAME = <expr>` for each override. Returns (new_src, missed)."""
+    """Replace top-level `NAME = <expr>` (even MULTI-LINE dicts/lists) with the
+    override literal, using AST line spans so a multi-line constant is fully
+    replaced (the old regex left dangling fragments -> IndentationError). Returns
+    (new_src, missed)."""
     missed = []
+    lines = src.split("\n")
+    spans = {}
+    try:
+        tree = ast.parse(src)
+        for node in tree.body:
+            if isinstance(node, ast.Assign):
+                for t in node.targets:
+                    if isinstance(t, ast.Name) and t.id in overrides:
+                        spans[t.id] = (node.lineno, getattr(node, "end_lineno", node.lineno))
+    except SyntaxError:
+        spans = {}
+    edits = []
     for name, val in overrides.items():
-        pat = re.compile(rf"^({re.escape(name)})\s*=\s*.*$", re.M)
-        rep = f"{name} = {json.dumps(val)}"
-        new, n = pat.subn(lambda m: rep, src, count=1)
-        if n == 0:
-            missed.append(name)
+        if name in spans:
+            edits.append((spans[name][0], spans[name][1], f"{name} = {json.dumps(val)}"))
         else:
-            src = new
-    return src, missed
+            missed.append(name)
+    for start, end, rep in sorted(edits, key=lambda e: -e[0]):   # bottom-to-top keeps indices valid
+        lines[start - 1:end] = [rep]
+    return "\n".join(lines), missed
 
 def run_variant(sim_path, overrides, receipt_rel, checks_key):
-    """Copy the sim into a temp dir with constants patched, run it, read the receipt."""
+    """Copy the sim into a temp dir with constants patched, run it, read the receipt.
+    Returns (checks_dict_or_None, missed, err). A crashing variant returns None +
+    the error — the caller records it and continues (one bad mutation must not
+    abort the whole probe, and a crash is NOT evidence about any check)."""
     sim_dir = os.path.dirname(os.path.abspath(sim_path))
     src = open(sim_path).read()
     patched, missed = patch_source(src, overrides) if overrides else (src, [])
     with tempfile.TemporaryDirectory() as td:
-        # copy sibling files the sim may read relative to its dir (cheap, shallow)
         for f in os.listdir(sim_dir):
             fp = os.path.join(sim_dir, f)
             if os.path.isfile(fp) and f.endswith((".py", ".json", ".txt")):
                 shutil.copy2(fp, os.path.join(td, f))
-        # overwrite the sim copy with the patched source
         open(os.path.join(td, os.path.basename(sim_path)), "w").write(patched)
-        r = subprocess.run([sys.executable, os.path.basename(sim_path)], cwd=td,
-                           capture_output=True, text=True, timeout=1800)
+        try:
+            r = subprocess.run([sys.executable, os.path.basename(sim_path)], cwd=td,
+                               capture_output=True, text=True, timeout=1800)
+        except Exception as e:
+            return None, missed, f"subprocess error: {e}"
         cand = os.path.join(td, receipt_rel)
         if not os.path.exists(cand):
             found = glob.glob(os.path.join(td, "**", "receipt.json"), recursive=True)
             cand = found[0] if found else None
         if not cand or not os.path.exists(cand):
-            die(f"variant produced no receipt (rc={r.returncode}); stderr: {r.stderr[-200:]}")
+            return None, missed, f"no receipt (rc={r.returncode}); {r.stderr[-160:]}"
         checks = json.load(open(cand)).get(checks_key, {})
-        return {k: bool(v) for k, v in checks.items()}, missed
+        return {k: bool(v) for k, v in checks.items()}, missed, None
 
 def main():
     args = sys.argv[1:]
@@ -97,19 +115,24 @@ def main():
     ckey = spec.get("checks_key", "checks")
     receipt_rel = spec.get("receipt_glob") or "results/receipt.json"
 
-    base, _ = run_variant(sim, None, receipt_rel, ckey)
-    if not base: die("baseline produced no checks")
+    base, _, berr = run_variant(sim, None, receipt_rel, ckey)
+    if not base: die(f"baseline produced no checks: {berr}")
 
     muts = spec.get("mutations") or []
     if not muts: die("spec has no mutations — a can-fail probe needs a mutation deck that severs each claimed mechanism")
 
     flips = {k: [] for k in base}
-    targeted = {k: False for k in base}   # was this check named as a mutation's target?
+    targeted = {k: False for k in base}   # was this check named as a target of a mutation that ACTUALLY RAN?
     mlog = []
     for mut in muts:
+        mutated, missed, err = run_variant(sim, mut["set"], receipt_rel, ckey)
+        if mutated is None:
+            # a crash is not evidence about any check; record and move on, do not mark targeted
+            mlog.append({"mutation": mut["name"], "set": mut["set"], "targets": mut.get("targets", []),
+                         "crashed": err, "flipped": []})
+            continue
         for k in mut.get("targets", []):
-            if k in targeted: targeted[k] = True
-        mutated, missed = run_variant(sim, mut["set"], receipt_rel, ckey)
+            if k in targeted: targeted[k] = True   # only after a successful run
         changed = [k for k in base if k in mutated and mutated[k] != base[k]]
         for k in changed: flips[k].append(mut["name"])
         mlog.append({"mutation": mut["name"], "set": mut["set"], "targets": mut.get("targets", []),

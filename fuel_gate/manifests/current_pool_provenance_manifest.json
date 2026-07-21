@@ -60,7 +60,7 @@
             "Clifford relations and minimal-left-ideal spinor presentation inherited from Clifford algebra representation theory",
             "von Neumann entropy selection inherited from standard QIT, explicitly flagged in the file as 'not root-installed'"
           ],
-          "code_lineage": "none -- candidate is prose/spec only; no implementation exists",
+          "code_lineage": "CORRECTED 2026-07-21 per git log --follow (task: honest provenance recovery, not retrofit) -- this field previously read 'none -- candidate is prose/spec only; no implementation exists', which is no longer accurate as of commit d419077427d386736e7978f50ba4d86ea44d2ad1 (2026-07-20 21:32:31 -0700, 'first END-TO-END pipeline flow on executable fuel'): that commit introduced ratchet_contract/fuel_sims/candidate_spinor_qit_exec.py, a real executable 2-qubit qutip density-matrix slice of this candidate (GKSL/Lindblad amplitude-damping via mesolve, Born-rule integer-multiplicity readout) wired to ratchet_contract/bridge_validation/bridge_interface.py's CandidateBridgeInterface. The exec file's own docstring is explicit that it is NOT the 9-layer candidate_spinor_qit.md schedule executed in full -- a small, tractable 2-qubit slice only; promotion_allowed=false, formal_admission_allowed=false there too. So: implementation.kind stays 'prose_spec' for the .md schedule as a whole (still accurate -- the 9-layer document itself is not executable), but code_lineage 'none' was stale/false; a partial executable slice does exist and is cited here.",
           "counterarguments": [
             "candidate_classical_bottomup.md argues this carrier is unearned richness relative to the frame's stated minimality criterion (ROOT_CARD.md line 3 tension, held not resolved)"
           ],
@@ -168,7 +168,7 @@
             "F01 finitude",
             "the admissibility relation R0 and persistent-distinction phrasing R3, reused literally from system_v8/README.md's own ladder naming"
           ],
-          "code_lineage": "reuses system_v8/base_campaign/base_ratchet_campaign.py's evaluate() and nesting_tests() functions for Layer 0 probes, confirmed to exist; Layers 1-2 have no code",
+          "code_lineage": "reuses system_v8/base_campaign/base_ratchet_campaign.py's evaluate() and nesting_tests() functions for Layer 0 probes, confirmed to exist; Layers 1-2 have no code. BACKFILLED 2026-07-21 per git log --follow on this file (task: honest provenance recovery, not retrofit): commit d419077427d386736e7978f50ba4d86ea44d2ad1 (2026-07-20 21:32:31 -0700, 'first END-TO-END pipeline flow on executable fuel') additionally introduced ratchet_contract/fuel_sims/candidate_classical_exec.py, a second, later executable slice implementing this candidate's Layer-0 finite integer weight/edge relation (answering the same 18-action deck as candidate_spinor_qit_exec.py, checked literally-equal at runtime by practice_run.py). Layers 1-2 of the .md schedule remain unimplemented by this exec file too -- confirmed by reading the file, which docstrings itself as the Layer-0 relation only.",
           "counterarguments": [
             "candidate_spinor_qit.md and ROOT_CARD.md line 3 ('everything has to run on density matrices if it is the MSS') require more structure than this candidate installs; the file itself names this as direct, acknowledged tension rather than resolving it"
           ],
@@ -334,6 +334,116 @@
           "inherited_assumptions": [
             "the base candidate's Layer 0 carrier (finite probe-response incidence relation) taken as given and unmodified, per the brief's explicit instruction to keep Layer 0 as-is",
             "finitude (F01), inherited from the base candidate it ablates"
+          ],
+          "code_lineage": null,
+          "counterarguments": [],
+          "rejected_alternatives": []
+        }
+      }
+    },
+    "candidate_stress_variant_stochastic_counts.md": {
+      "variation_slots": [
+        "structural_rival"
+      ],
+      "package": {
+        "claim": "If the minimal persisting structure of a finite ratchet must preserve exactly the same set of admitted outcomes when atom labels are permuted within a fixed finite set and when a bounded random fraction of recorded observations is dropped, then a carrier built solely from raw finite counts of (context, response) transitions may serve as that structure.",
+        "assumptions": [
+          "all structure relevant to admission is exhausted by the finite matrix of observed transition counts between discrete atoms",
+          "atom labels possess no intrinsic identity; only their co-occurrence statistics within the count table matter",
+          "observations are discrete, countable events collected inside a fixed finite window",
+          "the admission rule depends only on count-derived properties invariant under finite label permutation and bounded uniform dropout",
+          "both the label set and the dropout bound are declared in advance and fixed"
+        ],
+        "carrier": "stochastic_transition_count_v1",
+        "nesting_order": "fuel_pool_structural_rival_stress_variant_order_3",
+        "implementation": {
+          "kind": "prose_spec",
+          "path": "system_v8/candidates/candidate_stress_variant_stochastic_counts.md",
+          "language": null,
+          "notes": "prose spec generated in a single grok-build-0.1 turn via the grok CLI; no code written"
+        },
+        "predictions": [
+          "the admitted-outcome set is identical before and after any stress (label permutation + bounded dropout) inside the declared bounds, if the carrier's minimality claim holds",
+          "a witnessed pair of count tables related by an in-bounds stress that nevertheless yields unequal admitted sets defeats the claim"
+        ],
+        "rivals": [
+          "candidate_classical_bottomup.md (also a finite-relation-style carrier, but untested under permutation/dropout stress)",
+          "candidate_spinor_qit.md",
+          "candidate_foreign_nonassoc.md",
+          "candidate_topdown_12to0.md"
+        ],
+        "known_failure_modes": [
+          "adversarial dropout that removes precisely the transitions required to distinguish otherwise confusable count profiles",
+          "label alphabets whose size changes during the observation window, so no fixed finite permutation group applies",
+          "dynamics whose relevant distinctions require order, timing, or higher-order joint counts not encoded in the first-order transition matrix",
+          "admission rules that inspect absolute label names or external metadata absent from the count table",
+          "continuous or countably infinite label spaces for which the finite-permutation model is undefined"
+        ],
+        "provenance": {
+          "model": "xai_grok",
+          "version": "grok-build-0.1 (via grok CLI v0.2.103, single-turn -p, --max-turns 3 --always-approve)",
+          "prompt_lineage": "STRESS-VARIANT CANDIDATE BRIEF (role: structural_rival, for a fuel-adequacy pool in a nominalist constraint-admissibility ratchet project called Codex-Ratchet).\n\nContext: an existing pool of candidate carrier proposals (system_v8/candidates/*.md) argues over what the minimal persisting structure (\"MSS\") for a finite ratchet should be. Current members include a spinor/QIT density-matrix carrier, a classical finite-relation carrier, a nonassociative octonion carrier, and a top-down multi-agent registry carrier. This task asks for ONE MORE genuinely distinct structural rival carrier family (not a relabel of any of the above) framed as a STRESS-VARIANT: a carrier whose entire claim is that it survives an explicit adversarial/noise/permutation stress that the frame's other candidates have not been shown to survive, and that names precisely what stress condition would defeat it.\n\nCandidate carrier suggestion (you may substitute a better one if you have a stronger genuinely-distinct proposal, but justify the substitution): a finite stochastic transition-count carrier under bounded label-permutation and dropout stress -- i.e. a carrier built from raw finite (context, response) counts that is deliberately tested for whether its admitted-outcome set is invariant under (a) permuting atom labels and (b) randomly dropping a bounded fraction of recorded observations, as its own defeat condition.\n\nTASK: author a stress-variant structural_rival candidate as a markdown document with:\n1. A one-sentence conditional claim (never asserted as settled fact).\n2. Named assumptions the carrier installs.\n3. A short carrier identifier and a nesting/order identifier.\n4. A \"Probe / distinguishability test\" section (must literally contain the words \"probe\" and \"test\" together, e.g. as a heading).\n5. A section using at least one of: \"witness\", \"defeat condition\", \"can-fail\", \"falsifiable\", \"would flip\", \"loses its\", \"wins if\" -- because an automated executable-enough check greps for these patterns.\n6. Named known failure modes (an empty list here would itself be a red flag).\n7. Explicitly state this is `promotion_allowed: false`, `formal_admission_allowed: false`, prose-only (no executable code), a candidate among rivals, not canon, does not admit anything.\n\nDo NOT write any files. Do NOT run any shell commands or tools. Output ONLY the full markdown document text directly in your response, starting with a level-1 heading, and nothing else (no preamble, no explanation before or after).",
+          "source_corpus": "no repo files were cited to the model; the brief describes the existing pool's carrier families in prose (spinor/QIT, classical finite-relation, nonassociative octonion, top-down multi-agent registry) without quoting any file verbatim",
+          "tools": [
+            "grok_cli (grok -p '<brief>' -m grok-build-0.1 --max-turns 3 --always-approve --cwd <isolated scratch dir> --no-subagents --output-format plain; run confirmed via `git status` before/after to show no repo files were written by the call)"
+          ],
+          "saw_preferred_answer": false,
+          "inherited_assumptions": [
+            "finitude (F01), inherited from the shared repo frame, same as every other pool candidate",
+            "the pool's existing carrier-family list (spinor/QIT, classical relation, octonion, multi-agent registry), inherited from the brief's own framing, not independently re-derived by the model"
+          ],
+          "code_lineage": null,
+          "counterarguments": [],
+          "rejected_alternatives": []
+        }
+      }
+    },
+    "candidate_middle_out_order_rival.md": {
+      "variation_slots": [
+        "order_nesting_rival"
+      ],
+      "package": {
+        "claim": "If the minimal persisting structure of a finite ratchet can be meaningfully probed by simultaneously constraining outward from a central layer, rather than accumulating from the base or collapsing from the apex, then a middle-out bidirectional schedule may reveal coherence or contradiction invisible to monotonic sweeps.",
+        "assumptions": [
+          "layer 6 (or another chosen mid-point) is epistemically accessible prior to verification of its immediate neighbors",
+          "constraints discovered in opposite directions can be meaningfully compared without prior alignment of their lexical/structural vocabularies",
+          "the middle layer's internal structure is sufficiently stable to serve as a pivot"
+        ],
+        "carrier": "system_v8_axis_vocabulary_reused",
+        "nesting_order": "middle_out_6_bidirectional",
+        "implementation": {
+          "kind": "prose_spec",
+          "path": "system_v8/candidates/candidate_middle_out_order_rival.md",
+          "language": null,
+          "notes": "prose spec generated in a single NVIDIA-hosted qwen3-next-80b-a3b-instruct chat-completion call; no code written"
+        },
+        "predictions": [
+          "downward (layer 6 -> 0) and upward (layer 6 -> 12) sweeps discover mutually consistent constraints at every symmetric layer pair, if the middle-out order is coherent",
+          "a discovered contradiction at a symmetric pair (e.g. layer 5 vs layer 7) defeats the schedule's claim to neutrality"
+        ],
+        "rivals": [
+          "candidate_topdown_12to0.md (whose own weaknesses section names this exact gap: 'a middle-out / depths-both-ways order... absent from its schedule')",
+          "candidate_classical_bottomup.md",
+          "candidate_spinor_qit.md",
+          "candidate_foreign_nonassoc.md"
+        ],
+        "known_failure_modes": [
+          "the middle layer (layer 6) may be underdefined or semantically unstable, making it a fragile anchor -- exactly the premature stabilization the bottom-up camp warns against",
+          "bidirectional sweeps may generate incompatible constraint vocabularies (e.g. QIT density terms vs registry state terms) that cannot be reconciled without an external translation layer",
+          "the schedule may produce phantom coherence by conflating syntactic symmetry with semantic equivalence, creating false consistency where none exists"
+        ],
+        "provenance": {
+          "model": "nvidia_qwen",
+          "version": "qwen/qwen3-next-80b-a3b-instruct, via integrate.api.nvidia.com chat-completions, max_tokens=2500, finish_reason=stop (not truncated)",
+          "prompt_lineage": "MIDDLE-OUT ORDER-NESTING RIVAL BRIEF (role: order_nesting_rival, for a fuel-adequacy pool in a nominalist constraint-admissibility ratchet project called Codex-Ratchet).\n\nContext: an existing pool of candidate carrier proposals (system_v8/candidates/*.md) argues over what the minimal persisting structure (\"MSS\") for a finite ratchet should be, and in what SCHEDULE ORDER its layers should be tested. Current members include a bottom-up spinor/QIT density-matrix schedule (layers 0 to 8), a bottom-up classical finite-relation schedule (layers 0 to 2), a bottom-up nonassociative octonion schedule (layers 0 to 7), and a top-down multi-agent-registry schedule (layers 12 down to 0). The top-down candidate's own named weaknesses section explicitly admits a gap: it names \"a middle-out / depths-both-ways order\" as a rival ordering absent from its own schedule, never built by anyone in the pool.\n\nTASK: author an order_nesting_rival candidate proposing a MIDDLE-OUT schedule: pick a middle layer (for example, layer 6, midway between the deep layers 0-6 and the object-forming layers 7-12 named by the existing pool), and test outward in BOTH directions simultaneously (down toward layer 0 and up toward layer 12), rather than a single monotone bottom-up or top-down sweep. This is a genuinely different SCHEDULE ORDER over the same shared axis vocabulary the pool already uses (layers/axes 0 through 12), not a new carrier family.\n\nWrite it as a markdown document with clear section headers, matching this shape:\n1. A one-sentence conditional claim (never asserted as settled fact) proposing the middle-out schedule.\n2. Named assumptions this ordering installs (e.g. that a middle layer can be entered before the layers on either side of it are earned -- name this explicitly as a presumption, in the same self-critical spirit as the pool's other members).\n3. A short carrier identifier (reuse the existing axis vocabulary, do not invent a new carrier) and a nesting/order identifier such as `middle_out_6_bidirectional`.\n4. A \"Probe / distinguishability test\" section (must literally contain the words \"probe\" and \"test\" together, e.g. as a heading) describing a concrete check -- for example, whether constraints discovered sweeping downward from layer 6 and constraints discovered sweeping upward from layer 6 are mutually consistent, versus contradictory.\n5. A section using at least one of: \"witness\", \"defeat condition\", \"can-fail\", \"falsifiable\", \"would flip\", \"loses its\", \"wins if\" -- because an automated executable-enough check greps for these patterns.\n6. Named known failure modes (an empty list would itself be a red flag) -- name at least the risk that entering at a middle layer presumes that layer's own content is already well-defined, which is exactly the kind of presumption the pool's bottom-up and top-down members both try to avoid, each in their own direction.\n7. Explicitly state this is `promotion_allowed: false`, `formal_admission_allowed: false`, prose-only (no executable code), a candidate among rivals, not canon, does not admit anything.\n\nDo NOT write any files. Do NOT run any shell commands or tools. Output ONLY the full markdown document text directly in your response, starting with a level-1 heading, and nothing else (no preamble, no explanation before or after, no markdown code fences wrapping the whole document).",
+          "source_corpus": "no repo files were cited to the model; the brief describes the pool's existing four schedules (bottom-up spinor/QIT, bottom-up classical, bottom-up octonion, top-down multi-agent registry) and quotes candidate_topdown_12to0.md's own named gap ('a middle-out / depths-both-ways order... absent from its schedule') in prose, not verbatim file content",
+          "tools": [
+            "nvidia_integrate_api (curl POST to https://integrate.api.nvidia.com/v1/chat/completions, model qwen/qwen3-next-80b-a3b-instruct, max_tokens 2500, single request, API key piped directly into the Authorization header via inline command substitution, never echoed to stdout)"
+          ],
+          "saw_preferred_answer": false,
+          "inherited_assumptions": [
+            "finitude (F01) and the shared 0-12 axis vocabulary, inherited from the repo frame via the brief's own framing",
+            "the specific named gap (middle-out order absent from candidate_topdown_12to0.md) inherited verbatim from that file's own weaknesses section, quoted in the brief"
           ],
           "code_lineage": null,
           "counterarguments": [],

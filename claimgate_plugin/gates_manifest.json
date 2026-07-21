@@ -170,6 +170,24 @@
     "add rate limiting middleware to an unrelated web server"
    ],
    "expect_exit": 0
+  },
+  {
+   "id": "claim_verify-tainted-rejected",
+   "cmd": "python3",
+   "args": [
+    "claim_verify.py",
+    "../system_v8/nested_manifold/results/stage64/receipt.json"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "claim_verify-usage-error",
+   "cmd": "python3",
+   "args": [
+    "claim_verify.py",
+    "/nonexistent.json"
+   ],
+   "expect_exit": 2
   }
  ]
 }

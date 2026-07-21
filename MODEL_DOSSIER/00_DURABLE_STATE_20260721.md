@@ -109,7 +109,7 @@ glm-5.2, gpt-oss-120b; receipts: system_v8/axis0_front/results/nvidia_referee_20
 
 | # | Step | Honest status now |
 |---|---|---|
-| 1 | ALL tools/engines/libraries/repos/Lev integrated | PARTIAL — ~100 tools ledgered, batteries ran, Lev exec.gate.run verified once; not freshly re-verified; idle tier remains |
+| 1 | ALL tools/engines/libraries/repos/Lev integrated | PARTIAL, now MEASURED (07-21 audit, commit f323ec2df): 83 INTEGRATED rows — 81 RECEIPT_BACKED, 2 CONTRADICTED (QuantumToolbox: number promoted from a pass=false receipt; Attractors.jl extract_attractors: claimed unblock has no durable receipt, UndefVarError survives). Re-run plan in system_v8/tool_ledger/results/ledger_audit_20260721.json; engine re-runs queued behind memory cap; Lev now drives 2 project gates (execIds 92469e1b84d1, 6b3fb45591e1) |
 | 2 | Test-integrate on TEST SIMS of the owner's model | PARTIAL/SCATTERED — 3-engine backends exist for manifold_one; no systematic per-tool test-sim matrix on model objects |
 | 3 | FULL sim of the whole model; working engines; Carnot/Szilard/Otto; every stage real work in nuance | NOT MET — manifold_one scratch+tainted checks; stages not one-by-one; thermo baselines honest; spinor Otto a card |
 | 4 | Everything working across every layer + nesting + Lev | NOT DONE — exceptional stack unwelded; histories/dynamics/response = target/negative |

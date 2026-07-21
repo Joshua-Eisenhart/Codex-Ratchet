@@ -378,6 +378,11 @@ def main() -> int:
         "IDENTITY_GATE.FAIL_unearned_identity": {
             "candidate": "toy_raw_label", "result": matrix["toy_raw_label"]["IDENTITY_GATE"],
         },
+        "IDENTITY_GATE.FAIL_internal_reidentify_contradiction": {
+            "candidate": "toy_intransitive_reidentify",
+            "result": matrix["toy_intransitive_reidentify"]["IDENTITY_GATE"],
+            "note": "old partition-equality-only check would PASS; widened direct in-block check FAILs",
+        },
         "persistence_gate.FAIL_collapse_under_continuation": {
             "candidate": "toy_amnesiac", "result": matrix["toy_amnesiac"]["persistence_gate__base_D"],
         },
@@ -414,10 +419,19 @@ def main() -> int:
         evolve_smuggle_result["verdict"] == "FAIL"
         and "smuggled" in evolve_smuggle_result["reasons"].get("reason", "")
     )
+    intransitive_identity_fires = (
+        matrix["toy_intransitive_reidentify"]["IDENTITY_GATE"]["verdict"] == "FAIL"
+        and bool(matrix["toy_intransitive_reidentify"]["IDENTITY_GATE"]["reasons"].get(
+            "reidentify_internal_contradictions"
+        ))
+    )
     f2_fixtures_identity_honest = (
         evolve_collapse_identity["verdict"] == "PASS" and evolve_smuggle_identity["verdict"] == "PASS"
     )
-    audit_fixes_confirmed = f1_fires and f2_collapse_fires and f2_smuggle_fires and f2_fixtures_identity_honest
+    audit_fixes_confirmed = (
+        f1_fires and f2_collapse_fires and f2_smuggle_fires and f2_fixtures_identity_honest
+        and intransitive_identity_fires
+    )
 
     ok = all_gates_non_vacuous and no_llm["clean"] and headline_is_strict_coarsening and audit_fixes_confirmed
 
@@ -460,6 +474,7 @@ def main() -> int:
             "F2_evolvability_D_collapse_branch_fires_in_this_receipt": f2_collapse_fires,
             "F2_evolvability_primitive_smuggle_branch_fires_in_this_receipt": f2_smuggle_fires,
             "F2_new_fixtures_are_identity_honest": f2_fixtures_identity_honest,
+            "F1_identity_internal_contradiction_fires": intransitive_identity_fires,
         },
         "confirmations": {
             "all_gates_non_vacuous": all_gates_non_vacuous,
@@ -480,6 +495,11 @@ def main() -> int:
     print(f"\nF1 (negative-control leak) fires: {f1_fires}")
     print(f"F2 (evolvability D-collapse) fires: {f2_collapse_fires}")
     print(f"F2 (evolvability primitive-smuggle) fires: {f2_smuggle_fires}")
+    print("new toy IDENTITY_GATE = "
+          f"{matrix['toy_intransitive_reidentify']['IDENTITY_GATE']['verdict']}: "
+          f"{matrix['toy_intransitive_reidentify']['IDENTITY_GATE']['reasons']}")
+    print("collapsed-demand breakdown fields are emitted on continuation FAILs as "
+          "already_collapsed_at_base_edges and newly_collapsed_by_continuation_edges")
 
     return 0 if ok else 1
 

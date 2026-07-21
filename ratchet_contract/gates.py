@@ -162,6 +162,66 @@ def collapsed_demand_edges(
     return collapsed
 
 
+def collapsed_demand_edge_buckets(
+    partition: Sequence[int],
+    index: dict[State, int],
+    D: Sequence[tuple[State, State]],
+    *,
+    base_partition: Optional[Sequence[int]] = None,
+    base_index: Optional[dict[State, int]] = None,
+    base_pairs: Optional[Sequence[tuple[State, State]]] = None,
+) -> dict[str, list[tuple[State, State]]]:
+    """Classify collapsed demanded edges by whether continuation caused loss.
+
+    With no base partition, retain the historical undifferentiated result.
+    ``base_pairs`` maps continuation edges back to their original X pair; it
+    is needed when continuation changes the state values (persistence).
+    """
+    collapsed = collapsed_demand_edges(partition, index, D)
+    buckets = {"collapsed_edges": collapsed}
+    if base_partition is None or base_index is None:
+        return buckets
+    if base_pairs is None:
+        base_pairs = D
+    already = []
+    newly = []
+    collapsed_positions = {
+        position for position, edge in enumerate(D)
+        if partition[index[edge[0]]] == partition[index[edge[1]]]
+    }
+    for position, edge in enumerate(D):
+        if position not in collapsed_positions:
+            continue
+        try:
+            original = base_pairs[position]
+            a, b = original
+            if base_partition[base_index[a]] == base_partition[base_index[b]]:
+                already.append(edge)
+            else:
+                newly.append(edge)
+        except (ValueError, KeyError, IndexError):
+            newly.append(edge)
+    buckets["already_collapsed_at_base"] = already
+    buckets["newly_collapsed_by_continuation"] = newly
+    return buckets
+
+
+def reidentify_internal_contradictions(
+    candidate: CandidatePackage, X: Sequence[State]
+) -> list[tuple[State, State]]:
+    """Return same-final-block pairs directly denied by reidentify()."""
+    partition = induced_partition(candidate, X)
+    contradictions = []
+    for i, a in enumerate(X):
+        for j in range(i + 1, len(X)):
+            b = X[j]
+            if partition[i] == partition[j] and not (
+                candidate.reidentify(a, b) and candidate.reidentify(b, a)
+            ):
+                contradictions.append((a, b))
+    return contradictions
+
+
 # ===========================================================================
 # buildability_gate -- UNCHANGED per owner correction.
 # ===========================================================================
@@ -339,6 +399,7 @@ def IDENTITY_GATE(candidate: CandidatePackage, X: Optional[Sequence[State]] = No
     declared_flag = bool(set(declared) & {"identity", "equality"})
 
     equal = pi_probes == pi_reidentify
+    contradictions = reidentify_internal_contradictions(candidate, X)
     # reidentify STRICTLY FINER than the probe partition == unearned distinction:
     reidentify_finer = (not equal) and partition_coarser(pi_probes, pi_reidentify)
     # reidentify STRICTLY COARSER than the probe partition == under-discriminating:
@@ -351,8 +412,17 @@ def IDENTITY_GATE(candidate: CandidatePackage, X: Optional[Sequence[State]] = No
         "pi_probes_cells": len(set(pi_probes)),
         "pi_reidentify_cells": len(set(pi_reidentify)),
     }
+    if contradictions:
+        base["reidentify_internal_contradictions"] = [[repr(a), repr(b)] for a, b in contradictions]
 
     if equal and not declared_flag:
+        if contradictions:
+            base["reason"] = (
+                "reidentify's transitive closure produced a partition block containing a pair "
+                "reidentify itself denies -- reidentify is not an honest equivalence relation, "
+                "even though the resulting partition happens to match the probe fingerprint partition"
+            )
+            return _result("IDENTITY_GATE", candidate, Verdict.FAIL, base)
         base["reason"] = (
             "reidentify agrees exactly with the probe-induced partition over X; "
             "a=a iff a~b holds under the current probe family"
@@ -421,6 +491,11 @@ def persistence_gate(
     collapsed = collapsed_demand_edges(pi_layer, index, D_persistence)
 
     if collapsed:
+        base_partition = induced_partition(candidate, X)
+        buckets = collapsed_demand_edge_buckets(
+            pi_layer, index, D_persistence, base_partition=base_partition,
+            base_index={x: i for i, x in enumerate(X)}, base_pairs=D,
+        )
         return _result("persistence_gate", candidate, Verdict.FAIL, {
             "reason": (
                 "distinctions demanded by D do not survive the declared continuation "
@@ -430,6 +505,8 @@ def persistence_gate(
             "partial_access": repr(partial_access), "relabeled": relabeled,
             "collapsed_persistence_demand_edges": [[repr(a), repr(b)] for (a, b) in collapsed],
             "D_persistence_size": len(D_persistence),
+            "already_collapsed_at_base_edges": [[repr(a), repr(b)] for a, b in buckets["already_collapsed_at_base"]],
+            "newly_collapsed_by_continuation_edges": [[repr(a), repr(b)] for a, b in buckets["newly_collapsed_by_continuation"]],
         })
     return _result("persistence_gate", candidate, Verdict.PASS, {
         "perturbation": repr(perturbation), "delay": delay,
@@ -477,10 +554,16 @@ def evolvability_gate(
     index = {x: i for i, x in enumerate(X)}
     collapsed = collapsed_demand_edges(pi_extended, index, D)
     if collapsed:
+        base_partition = induced_partition(candidate, X)
+        buckets = collapsed_demand_edge_buckets(
+            pi_extended, index, D, base_partition=base_partition, base_index=index,
+        )
         return _result("evolvability_gate", candidate, Verdict.FAIL, {
             "reason": "the evolved extension destroys a previously-live demanded distinction",
             "new_constraint": repr(new_constraint),
             "collapsed_evolvability_demand_edges": [[repr(a), repr(b)] for (a, b) in collapsed],
+            "already_collapsed_at_base_edges": [[repr(a), repr(b)] for a, b in buckets["already_collapsed_at_base"]],
+            "newly_collapsed_by_continuation_edges": [[repr(a), repr(b)] for a, b in buckets["newly_collapsed_by_continuation"]],
         })
 
     new_primitives = set(extended.declared_primitives()) - set(candidate.declared_primitives())

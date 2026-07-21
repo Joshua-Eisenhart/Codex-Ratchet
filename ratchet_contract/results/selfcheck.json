@@ -789,7 +789,14 @@
               "(1, 'forgotten')"
             ]
           ],
-          "D_persistence_size": 1
+          "D_persistence_size": 1,
+          "already_collapsed_at_base_edges": [],
+          "newly_collapsed_by_continuation_edges": [
+            [
+              "(0, 'forgotten')",
+              "(1, 'forgotten')"
+            ]
+          ]
         }
       },
       "evolvability_gate__base_D": {
@@ -881,7 +888,14 @@
                     "(1, 'forgotten')"
                   ]
                 ],
-                "D_persistence_size": 1
+                "D_persistence_size": 1,
+                "already_collapsed_at_base_edges": [],
+                "newly_collapsed_by_continuation_edges": [
+                  [
+                    "(0, 'forgotten')",
+                    "(1, 'forgotten')"
+                  ]
+                ]
               }
             },
             "Evolve": {
@@ -909,6 +923,291 @@
             "Distinguish": "PASS",
             "Persist": "FAIL",
             "Evolve": "PASS",
+            "Extend": "HOLD"
+          }
+        }
+      }
+    },
+    "toy_intransitive_reidentify": {
+      "buildability_gate": {
+        "gate": "buildability_gate",
+        "candidate": "toy_intransitive_reidentify",
+        "verdict": "PASS",
+        "reasons": {
+          "state_count": 5,
+          "probe_count": 1,
+          "allowed_op_count": 1
+        }
+      },
+      "probe_validity_gate__own_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_intransitive_reidentify",
+        "verdict": "UNRESOLVED",
+        "reasons": {
+          "reason": "no positive or negative controls declared -- cannot test discrimination power"
+        }
+      },
+      "probe_validity_gate__thin_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_intransitive_reidentify",
+        "verdict": "UNRESOLVED",
+        "reasons": {
+          "reason": "no positive or negative controls declared -- cannot test discrimination power"
+        }
+      },
+      "probe_validity_gate__leaky_D": {
+        "gate": "probe_validity_gate",
+        "candidate": "toy_intransitive_reidentify",
+        "verdict": "UNRESOLVED",
+        "reasons": {
+          "reason": "no positive or negative controls declared -- cannot test discrimination power"
+        }
+      },
+      "IDENTITY_GATE": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "toy_intransitive_reidentify",
+        "verdict": "FAIL",
+        "reasons": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "pi_reidentify": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "pi_probes_cells": 1,
+          "pi_reidentify_cells": 1,
+          "reidentify_internal_contradictions": [
+            [
+              "(0, 'red')",
+              "(2, 'red')"
+            ],
+            [
+              "(0, 'red')",
+              "(3, 'green')"
+            ],
+            [
+              "(0, 'red')",
+              "(4, 'yellow')"
+            ],
+            [
+              "(1, 'blue')",
+              "(3, 'green')"
+            ],
+            [
+              "(1, 'blue')",
+              "(4, 'yellow')"
+            ],
+            [
+              "(2, 'red')",
+              "(4, 'yellow')"
+            ]
+          ],
+          "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+        }
+      },
+      "persistence_gate__base_D": {
+        "gate": "persistence_gate",
+        "candidate": "toy_intransitive_reidentify",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+          "perturbation": "'default_probe_perturbation'",
+          "delay": 1,
+          "partial_access": "None",
+          "relabeled": false,
+          "collapsed_persistence_demand_edges": [
+            [
+              "(0, 'red')",
+              "(1, 'blue')"
+            ]
+          ],
+          "D_persistence_size": 1,
+          "already_collapsed_at_base_edges": [
+            [
+              "(0, 'red')",
+              "(1, 'blue')"
+            ]
+          ],
+          "newly_collapsed_by_continuation_edges": []
+        }
+      },
+      "evolvability_gate__base_D": {
+        "gate": "evolvability_gate",
+        "candidate": "toy_intransitive_reidentify",
+        "verdict": "FAIL",
+        "reasons": {
+          "reason": "the evolved extension destroys a previously-live demanded distinction",
+          "new_constraint": "'probe_generic_extension'",
+          "collapsed_evolvability_demand_edges": [
+            [
+              "(0, 'red')",
+              "(1, 'blue')"
+            ]
+          ],
+          "already_collapsed_at_base_edges": [
+            [
+              "(0, 'red')",
+              "(1, 'blue')"
+            ]
+          ],
+          "newly_collapsed_by_continuation_edges": []
+        }
+      },
+      "extension_gate__base_D": {
+        "gate": "extension_gate",
+        "candidate": "toy_intransitive_reidentify",
+        "verdict": "HOLD",
+        "reasons": {
+          "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+        }
+      },
+      "adequacy": {
+        "gate": "adequacy",
+        "candidate": "toy_intransitive_reidentify",
+        "verdict": "FAIL",
+        "reasons": {
+          "terms": {
+            "Compose": {
+              "gate": "buildability_gate",
+              "candidate": "toy_intransitive_reidentify",
+              "verdict": "PASS",
+              "reasons": {
+                "state_count": 5,
+                "probe_count": 1,
+                "allowed_op_count": 1
+              }
+            },
+            "PassControls": {
+              "gate": "probe_validity_gate",
+              "candidate": "toy_intransitive_reidentify",
+              "verdict": "UNRESOLVED",
+              "reasons": {
+                "reason": "no positive or negative controls declared -- cannot test discrimination power"
+              }
+            },
+            "Distinguish": {
+              "gate": "IDENTITY_GATE",
+              "candidate": "toy_intransitive_reidentify",
+              "verdict": "FAIL",
+              "reasons": {
+                "declared_primitives": [],
+                "pi_probes": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pi_reidentify": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pi_probes_cells": 1,
+                "pi_reidentify_cells": 1,
+                "reidentify_internal_contradictions": [
+                  [
+                    "(0, 'red')",
+                    "(2, 'red')"
+                  ],
+                  [
+                    "(0, 'red')",
+                    "(3, 'green')"
+                  ],
+                  [
+                    "(0, 'red')",
+                    "(4, 'yellow')"
+                  ],
+                  [
+                    "(1, 'blue')",
+                    "(3, 'green')"
+                  ],
+                  [
+                    "(1, 'blue')",
+                    "(4, 'yellow')"
+                  ],
+                  [
+                    "(2, 'red')",
+                    "(4, 'yellow')"
+                  ]
+                ],
+                "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+              }
+            },
+            "Persist": {
+              "gate": "persistence_gate",
+              "candidate": "toy_intransitive_reidentify",
+              "verdict": "FAIL",
+              "reasons": {
+                "reason": "distinctions demanded by D do not survive the declared continuation (delay/perturbation/relabeling/partial-access)",
+                "perturbation": "'default_probe_perturbation'",
+                "delay": 1,
+                "partial_access": "None",
+                "relabeled": false,
+                "collapsed_persistence_demand_edges": [
+                  [
+                    "(0, 'red')",
+                    "(1, 'blue')"
+                  ]
+                ],
+                "D_persistence_size": 1,
+                "already_collapsed_at_base_edges": [
+                  [
+                    "(0, 'red')",
+                    "(1, 'blue')"
+                  ]
+                ],
+                "newly_collapsed_by_continuation_edges": []
+              }
+            },
+            "Evolve": {
+              "gate": "evolvability_gate",
+              "candidate": "toy_intransitive_reidentify",
+              "verdict": "FAIL",
+              "reasons": {
+                "reason": "the evolved extension destroys a previously-live demanded distinction",
+                "new_constraint": "'probe_generic_extension'",
+                "collapsed_evolvability_demand_edges": [
+                  [
+                    "(0, 'red')",
+                    "(1, 'blue')"
+                  ]
+                ],
+                "already_collapsed_at_base_edges": [
+                  [
+                    "(0, 'red')",
+                    "(1, 'blue')"
+                  ]
+                ],
+                "newly_collapsed_by_continuation_edges": []
+              }
+            },
+            "Extend": {
+              "gate": "extension_gate",
+              "candidate": "toy_intransitive_reidentify",
+              "verdict": "HOLD",
+              "reasons": {
+                "reason": "no nest interface declared -- shell-local candidate, whole-nest recompute not applicable"
+              }
+            }
+          },
+          "verdicts": {
+            "Compose": "PASS",
+            "PassControls": "UNRESOLVED",
+            "Distinguish": "FAIL",
+            "Persist": "FAIL",
+            "Evolve": "FAIL",
             "Extend": "HOLD"
           }
         }
@@ -974,6 +1273,13 @@
           "reason": "the evolved extension destroys a previously-live demanded distinction",
           "new_constraint": "'probe_generic_extension'",
           "collapsed_evolvability_demand_edges": [
+            [
+              "(0, 'red')",
+              "(1, 'blue')"
+            ]
+          ],
+          "already_collapsed_at_base_edges": [],
+          "newly_collapsed_by_continuation_edges": [
             [
               "(0, 'red')",
               "(1, 'blue')"
@@ -1129,6 +1435,61 @@
         }
       }
     },
+    "IDENTITY_GATE.FAIL_internal_reidentify_contradiction": {
+      "candidate": "toy_intransitive_reidentify",
+      "result": {
+        "gate": "IDENTITY_GATE",
+        "candidate": "toy_intransitive_reidentify",
+        "verdict": "FAIL",
+        "reasons": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "pi_reidentify": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "pi_probes_cells": 1,
+          "pi_reidentify_cells": 1,
+          "reidentify_internal_contradictions": [
+            [
+              "(0, 'red')",
+              "(2, 'red')"
+            ],
+            [
+              "(0, 'red')",
+              "(3, 'green')"
+            ],
+            [
+              "(0, 'red')",
+              "(4, 'yellow')"
+            ],
+            [
+              "(1, 'blue')",
+              "(3, 'green')"
+            ],
+            [
+              "(1, 'blue')",
+              "(4, 'yellow')"
+            ],
+            [
+              "(2, 'red')",
+              "(4, 'yellow')"
+            ]
+          ],
+          "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+        }
+      },
+      "note": "old partition-equality-only check would PASS; widened direct in-block check FAILs"
+    },
     "persistence_gate.FAIL_collapse_under_continuation": {
       "candidate": "toy_amnesiac",
       "result": {
@@ -1147,7 +1508,14 @@
               "(1, 'forgotten')"
             ]
           ],
-          "D_persistence_size": 1
+          "D_persistence_size": 1,
+          "already_collapsed_at_base_edges": [],
+          "newly_collapsed_by_continuation_edges": [
+            [
+              "(0, 'forgotten')",
+              "(1, 'forgotten')"
+            ]
+          ]
         }
       }
     },
@@ -1199,6 +1567,13 @@
           "reason": "the evolved extension destroys a previously-live demanded distinction",
           "new_constraint": "'probe_generic_extension'",
           "collapsed_evolvability_demand_edges": [
+            [
+              "(0, 'red')",
+              "(1, 'blue')"
+            ]
+          ],
+          "already_collapsed_at_base_edges": [],
+          "newly_collapsed_by_continuation_edges": [
             [
               "(0, 'red')",
               "(1, 'blue')"
@@ -1269,6 +1644,7 @@
         "toy_quotient_respecting": "PASS",
         "toy_frozen": "PASS",
         "toy_amnesiac": "PASS",
+        "toy_intransitive_reidentify": "PASS",
         "_broken_buildability_fixture(non_roster_vacuity_check_only)": "FAIL"
       },
       "distinct_verdicts": [
@@ -1283,24 +1659,28 @@
         "toy_raw_label": "PASS",
         "toy_quotient_respecting": "PASS",
         "toy_frozen": "PASS",
-        "toy_amnesiac": "PASS"
+        "toy_amnesiac": "PASS",
+        "toy_intransitive_reidentify": "UNRESOLVED"
       },
       "thin_D_verdicts": {
         "toy_raw_label": "HOLD",
         "toy_quotient_respecting": "HOLD",
         "toy_frozen": "HOLD",
-        "toy_amnesiac": "HOLD"
+        "toy_amnesiac": "HOLD",
+        "toy_intransitive_reidentify": "UNRESOLVED"
       },
       "leaky_D_verdicts": {
         "toy_raw_label": "FAIL",
         "toy_quotient_respecting": "FAIL",
         "toy_frozen": "PASS",
-        "toy_amnesiac": "PASS"
+        "toy_amnesiac": "PASS",
+        "toy_intransitive_reidentify": "UNRESOLVED"
       },
       "distinct_verdicts": [
         "FAIL",
         "HOLD",
-        "PASS"
+        "PASS",
+        "UNRESOLVED"
       ],
       "pass": true,
       "note": "own_D (the toy's own adequate probes) demonstrates PASS; thin_D=('constant_probe',) demonstrates HOLD -- 'probe family has not demonstrated discrimination power'; leaky_D=('noop',) demonstrates FAIL for toys with a declared negative control -- 'noop' echoes the full (raw_id,value) state, so it separates a same-value/different-raw_id alias pair the candidate declares must not be separated (audit finding F1's fix)"
@@ -1310,7 +1690,8 @@
         "toy_raw_label": "FAIL",
         "toy_quotient_respecting": "PASS",
         "toy_frozen": "PASS",
-        "toy_amnesiac": "PASS"
+        "toy_amnesiac": "PASS",
+        "toy_intransitive_reidentify": "FAIL"
       },
       "distinct_verdicts": [
         "FAIL",
@@ -1323,7 +1704,8 @@
         "toy_raw_label": "PASS",
         "toy_quotient_respecting": "PASS",
         "toy_frozen": "PASS",
-        "toy_amnesiac": "FAIL"
+        "toy_amnesiac": "FAIL",
+        "toy_intransitive_reidentify": "FAIL"
       },
       "distinct_verdicts": [
         "FAIL",
@@ -1336,7 +1718,8 @@
         "toy_raw_label": "PASS",
         "toy_quotient_respecting": "PASS",
         "toy_frozen": "FAIL",
-        "toy_amnesiac": "PASS"
+        "toy_amnesiac": "PASS",
+        "toy_intransitive_reidentify": "FAIL"
       },
       "distinct_verdicts": [
         "FAIL",
@@ -1349,7 +1732,8 @@
         "toy_raw_label": "HOLD",
         "toy_quotient_respecting": "PASS",
         "toy_frozen": "FAIL",
-        "toy_amnesiac": "HOLD"
+        "toy_amnesiac": "HOLD",
+        "toy_intransitive_reidentify": "HOLD"
       },
       "distinct_verdicts": [
         "FAIL",
@@ -1363,7 +1747,8 @@
         "toy_raw_label": "FAIL",
         "toy_quotient_respecting": "PASS",
         "toy_frozen": "FAIL",
-        "toy_amnesiac": "FAIL"
+        "toy_amnesiac": "FAIL",
+        "toy_intransitive_reidentify": "FAIL"
       },
       "distinct_verdicts": [
         "FAIL",
@@ -1556,6 +1941,93 @@
         }
       }
     },
+    "toy_raw_label__vs__toy_intransitive_reidentify": {
+      "candidate_a": "toy_raw_label",
+      "candidate_b": "toy_intransitive_reidentify",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_raw_label",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [
+              "identity"
+            ],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 5,
+            "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_intransitive_reidentify",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_probes_cells": 1,
+            "pi_reidentify_cells": 1,
+            "reidentify_internal_contradictions": [
+              [
+                "(0, 'red')",
+                "(2, 'red')"
+              ],
+              [
+                "(0, 'red')",
+                "(3, 'green')"
+              ],
+              [
+                "(0, 'red')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(1, 'blue')",
+                "(3, 'green')"
+              ],
+              [
+                "(1, 'blue')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(2, 'red')",
+                "(4, 'yellow')"
+              ]
+            ],
+            "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+          }
+        }
+      }
+    },
     "toy_quotient_respecting__vs__toy_frozen": {
       "candidate_a": "toy_quotient_respecting",
       "candidate_b": "toy_frozen",
@@ -1610,6 +2082,91 @@
         "reason": "identical induced partitions over the base surface -- re-mergeable, no strict order"
       }
     },
+    "toy_quotient_respecting__vs__toy_intransitive_reidentify": {
+      "candidate_a": "toy_quotient_respecting",
+      "candidate_b": "toy_intransitive_reidentify",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_quotient_respecting",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 4,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_intransitive_reidentify",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_probes_cells": 1,
+            "pi_reidentify_cells": 1,
+            "reidentify_internal_contradictions": [
+              [
+                "(0, 'red')",
+                "(2, 'red')"
+              ],
+              [
+                "(0, 'red')",
+                "(3, 'green')"
+              ],
+              [
+                "(0, 'red')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(1, 'blue')",
+                "(3, 'green')"
+              ],
+              [
+                "(1, 'blue')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(2, 'red')",
+                "(4, 'yellow')"
+              ]
+            ],
+            "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+          }
+        }
+      }
+    },
     "toy_frozen__vs__toy_amnesiac": {
       "candidate_a": "toy_frozen",
       "candidate_b": "toy_amnesiac",
@@ -1635,6 +2192,176 @@
         "partition_digest_A": "3f291d3f1b279b2aab4f72457f5a26631e1d22be5830fc23385d98204212fd81",
         "partition_digest_B": "ff4bca26f006e9a7a6367fe6a4946d48b517f0eb2e15c9ed685f2c650b63ac21",
         "reason": "A's partition is a strict coarsening of B's -- A preserves every demanded distinction B preserves using fewer distinctions overall (more MSS)"
+      }
+    },
+    "toy_frozen__vs__toy_intransitive_reidentify": {
+      "candidate_a": "toy_frozen",
+      "candidate_b": "toy_intransitive_reidentify",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_frozen",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "pi_probes_cells": 2,
+            "pi_reidentify_cells": 2,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_intransitive_reidentify",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_probes_cells": 1,
+            "pi_reidentify_cells": 1,
+            "reidentify_internal_contradictions": [
+              [
+                "(0, 'red')",
+                "(2, 'red')"
+              ],
+              [
+                "(0, 'red')",
+                "(3, 'green')"
+              ],
+              [
+                "(0, 'red')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(1, 'blue')",
+                "(3, 'green')"
+              ],
+              [
+                "(1, 'blue')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(2, 'red')",
+                "(4, 'yellow')"
+              ]
+            ],
+            "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+          }
+        }
+      }
+    },
+    "toy_amnesiac__vs__toy_intransitive_reidentify": {
+      "candidate_a": "toy_amnesiac",
+      "candidate_b": "toy_intransitive_reidentify",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_amnesiac",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 4,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_intransitive_reidentify",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_probes_cells": 1,
+            "pi_reidentify_cells": 1,
+            "reidentify_internal_contradictions": [
+              [
+                "(0, 'red')",
+                "(2, 'red')"
+              ],
+              [
+                "(0, 'red')",
+                "(3, 'green')"
+              ],
+              [
+                "(0, 'red')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(1, 'blue')",
+                "(3, 'green')"
+              ],
+              [
+                "(1, 'blue')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(2, 'red')",
+                "(4, 'yellow')"
+              ]
+            ],
+            "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+          }
+        }
       }
     }
   },
@@ -1822,6 +2549,93 @@
         }
       }
     },
+    "toy_raw_label__vs__toy_intransitive_reidentify": {
+      "candidate_a": "toy_raw_label",
+      "candidate_b": "toy_intransitive_reidentify",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_raw_label",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [
+              "identity"
+            ],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 5,
+            "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_intransitive_reidentify",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_probes_cells": 1,
+            "pi_reidentify_cells": 1,
+            "reidentify_internal_contradictions": [
+              [
+                "(0, 'red')",
+                "(2, 'red')"
+              ],
+              [
+                "(0, 'red')",
+                "(3, 'green')"
+              ],
+              [
+                "(0, 'red')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(1, 'blue')",
+                "(3, 'green')"
+              ],
+              [
+                "(1, 'blue')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(2, 'red')",
+                "(4, 'yellow')"
+              ]
+            ],
+            "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+          }
+        }
+      }
+    },
     "toy_quotient_respecting__vs__toy_frozen": {
       "candidate_a": "toy_quotient_respecting",
       "candidate_b": "toy_frozen",
@@ -1876,10 +2690,102 @@
                   "(1, 'forgotten')"
                 ]
               ],
-              "D_persistence_size": 1
+              "D_persistence_size": 1,
+              "already_collapsed_at_base_edges": [],
+              "newly_collapsed_by_continuation_edges": [
+                [
+                  "(0, 'forgotten')",
+                  "(1, 'forgotten')"
+                ]
+              ]
             }
           }
         ]
+      }
+    },
+    "toy_quotient_respecting__vs__toy_intransitive_reidentify": {
+      "candidate_a": "toy_quotient_respecting",
+      "candidate_b": "toy_intransitive_reidentify",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_quotient_respecting",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 4,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_intransitive_reidentify",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_probes_cells": 1,
+            "pi_reidentify_cells": 1,
+            "reidentify_internal_contradictions": [
+              [
+                "(0, 'red')",
+                "(2, 'red')"
+              ],
+              [
+                "(0, 'red')",
+                "(3, 'green')"
+              ],
+              [
+                "(0, 'red')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(1, 'blue')",
+                "(3, 'green')"
+              ],
+              [
+                "(1, 'blue')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(2, 'red')",
+                "(4, 'yellow')"
+              ]
+            ],
+            "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+          }
+        }
       }
     },
     "toy_frozen__vs__toy_amnesiac": {
@@ -1925,10 +2831,187 @@
                   "(1, 'forgotten')"
                 ]
               ],
-              "D_persistence_size": 1
+              "D_persistence_size": 1,
+              "already_collapsed_at_base_edges": [],
+              "newly_collapsed_by_continuation_edges": [
+                [
+                  "(0, 'forgotten')",
+                  "(1, 'forgotten')"
+                ]
+              ]
             }
           }
         ]
+      }
+    },
+    "toy_frozen__vs__toy_intransitive_reidentify": {
+      "candidate_a": "toy_frozen",
+      "candidate_b": "toy_intransitive_reidentify",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_frozen",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "pi_probes_cells": 2,
+            "pi_reidentify_cells": 2,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_intransitive_reidentify",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_probes_cells": 1,
+            "pi_reidentify_cells": 1,
+            "reidentify_internal_contradictions": [
+              [
+                "(0, 'red')",
+                "(2, 'red')"
+              ],
+              [
+                "(0, 'red')",
+                "(3, 'green')"
+              ],
+              [
+                "(0, 'red')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(1, 'blue')",
+                "(3, 'green')"
+              ],
+              [
+                "(1, 'blue')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(2, 'red')",
+                "(4, 'yellow')"
+              ]
+            ],
+            "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+          }
+        }
+      }
+    },
+    "toy_amnesiac__vs__toy_intransitive_reidentify": {
+      "candidate_a": "toy_amnesiac",
+      "candidate_b": "toy_intransitive_reidentify",
+      "verdict": "HOLD",
+      "reasons": {
+        "stage": "eligibility",
+        "reason": "a candidate whose partition is not probe-honest is ineligible for the coarseness comparison -- its partition cannot be trusted",
+        "identity_A": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_amnesiac",
+          "verdict": "PASS",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_reidentify": [
+              0,
+              1,
+              0,
+              2,
+              3
+            ],
+            "pi_probes_cells": 4,
+            "pi_reidentify_cells": 4,
+            "reason": "reidentify agrees exactly with the probe-induced partition over X; a=a iff a~b holds under the current probe family"
+          }
+        },
+        "identity_B": {
+          "gate": "IDENTITY_GATE",
+          "candidate": "toy_intransitive_reidentify",
+          "verdict": "FAIL",
+          "reasons": {
+            "declared_primitives": [],
+            "pi_probes": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_reidentify": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "pi_probes_cells": 1,
+            "pi_reidentify_cells": 1,
+            "reidentify_internal_contradictions": [
+              [
+                "(0, 'red')",
+                "(2, 'red')"
+              ],
+              [
+                "(0, 'red')",
+                "(3, 'green')"
+              ],
+              [
+                "(0, 'red')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(1, 'blue')",
+                "(3, 'green')"
+              ],
+              [
+                "(1, 'blue')",
+                "(4, 'yellow')"
+              ],
+              [
+                "(2, 'red')",
+                "(4, 'yellow')"
+              ]
+            ],
+            "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+          }
+        }
       }
     }
   },
@@ -1958,6 +3041,57 @@
           "pi_probes_cells": 4,
           "pi_reidentify_cells": 5,
           "reason": "reidentify distinguishes states no probe in the family separates, and/or the candidate declares raw identity/equality as an installed primitive -- unearned identity"
+        },
+        "re_entry_condition": "reidentify() must agree exactly with the probe-induced partition over X (no distinction reidentify makes that no probe exposes)"
+      },
+      {
+        "candidate": "toy_intransitive_reidentify",
+        "failed_at": "eligibility_identity_honesty",
+        "reason": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "pi_reidentify": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "pi_probes_cells": 1,
+          "pi_reidentify_cells": 1,
+          "reidentify_internal_contradictions": [
+            [
+              "(0, 'red')",
+              "(2, 'red')"
+            ],
+            [
+              "(0, 'red')",
+              "(3, 'green')"
+            ],
+            [
+              "(0, 'red')",
+              "(4, 'yellow')"
+            ],
+            [
+              "(1, 'blue')",
+              "(3, 'green')"
+            ],
+            [
+              "(1, 'blue')",
+              "(4, 'yellow')"
+            ],
+            [
+              "(2, 'red')",
+              "(4, 'yellow')"
+            ]
+          ],
+          "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
         },
         "re_entry_condition": "reidentify() must agree exactly with the probe-induced partition over X (no distinction reidentify makes that no probe exposes)"
       }
@@ -2133,12 +3267,70 @@
               "(1, 'forgotten')"
             ]
           ],
-          "D_persistence_size": 1
+          "D_persistence_size": 1,
+          "already_collapsed_at_base_edges": [],
+          "newly_collapsed_by_continuation_edges": [
+            [
+              "(0, 'forgotten')",
+              "(1, 'forgotten')"
+            ]
+          ]
         },
         "re_entry_condition": "persist() must produce continuations whose reidentify-relation still separates every base-demanded pair (no collapse under delay/perturbation/relabeling/partial-access)",
         "all_failed_layers": [
           "persistence_demand"
         ]
+      },
+      {
+        "candidate": "toy_intransitive_reidentify",
+        "failed_at": "eligibility_identity_honesty",
+        "reason": {
+          "declared_primitives": [],
+          "pi_probes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "pi_reidentify": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "pi_probes_cells": 1,
+          "pi_reidentify_cells": 1,
+          "reidentify_internal_contradictions": [
+            [
+              "(0, 'red')",
+              "(2, 'red')"
+            ],
+            [
+              "(0, 'red')",
+              "(3, 'green')"
+            ],
+            [
+              "(0, 'red')",
+              "(4, 'yellow')"
+            ],
+            [
+              "(1, 'blue')",
+              "(3, 'green')"
+            ],
+            [
+              "(1, 'blue')",
+              "(4, 'yellow')"
+            ],
+            [
+              "(2, 'red')",
+              "(4, 'yellow')"
+            ]
+          ],
+          "reason": "reidentify's transitive closure produced a partition block containing a pair reidentify itself denies -- reidentify is not an honest equivalence relation, even though the resulting partition happens to match the probe fingerprint partition"
+        },
+        "re_entry_condition": "reidentify() must agree exactly with the probe-induced partition over X (no distinction reidentify makes that no probe exposes)"
       }
     ],
     "survivors": [
@@ -2214,7 +3406,8 @@
     "F1_fires_in_this_receipt": true,
     "F2_evolvability_D_collapse_branch_fires_in_this_receipt": true,
     "F2_evolvability_primitive_smuggle_branch_fires_in_this_receipt": true,
-    "F2_new_fixtures_are_identity_honest": true
+    "F2_new_fixtures_are_identity_honest": true,
+    "F1_identity_internal_contradiction_fires": true
   },
   "confirmations": {
     "all_gates_non_vacuous": true,

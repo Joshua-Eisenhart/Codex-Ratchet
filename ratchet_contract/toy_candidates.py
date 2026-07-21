@@ -258,6 +258,57 @@ class ToyFrozen(CandidatePackage):
 # ---------------------------------------------------------------------------
 # toy_amnesiac
 # ---------------------------------------------------------------------------
+class ToyIntransitiveReidentify(CandidatePackage):
+    """Probe-coarse partition matches transitive closure, but raw answers do not.
+
+    The old IDENTITY_GATE check would PASS this candidate; the widened check
+    correctly FAILs because 0~1 and 1~2 merge a block while 0~2 is denied.
+    """
+
+    def __init__(self, states: Sequence[State] = X_BASE):
+        self._states = tuple(states)
+
+    @property
+    def name(self) -> str:
+        return "toy_intransitive_reidentify"
+
+    @property
+    def carrier(self) -> Carrier:
+        return Carrier(description="constant probe with deliberately non-transitive reidentify", allowed_ops=("noop",))
+
+    def states(self):
+        return self._states
+
+    def probes(self):
+        return ("constant_probe",)
+
+    def apply(self, op, state):
+        if op == "constant_probe":
+            return "same"
+        if op == "noop":
+            return state
+        raise ValueError(f"unknown op {op!r}")
+
+    def reidentify(self, record, current_state):
+        return abs(record[0] - current_state[0]) <= 1
+
+    def persist(self, state, *, perturbation=None, delay=0, partial_access=None, relabeled=False):
+        return state
+
+    def evolve(self, new_constraint):
+        return self
+
+    def nest_interface(self):
+        return NestInterface()
+
+    def declared_primitives(self):
+        return ()
+
+    def controls(self):
+        return ControlSet()
+
+
+# ---------------------------------------------------------------------------
 class ToyAmnesiac(CandidatePackage):
     def __init__(self, states: Sequence[State] = X_BASE):
         self._states = tuple(states)
@@ -316,4 +367,4 @@ class ToyAmnesiac(CandidatePackage):
 
 
 def all_toys() -> tuple[CandidatePackage, ...]:
-    return (ToyRawLabel(), ToyQuotientRespecting(), ToyFrozen(), ToyAmnesiac())
+    return (ToyRawLabel(), ToyQuotientRespecting(), ToyFrozen(), ToyAmnesiac(), ToyIntransitiveReidentify())

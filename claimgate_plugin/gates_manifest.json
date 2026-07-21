@@ -233,6 +233,30 @@
     "stress/cv/unclassified/receipt.json"
    ],
    "expect_exit": 3
+  },
+  {
+   "id": "rf-new-admitted",
+   "cmd": "python3",
+   "args": [
+    "ratchet_floor.py",
+    "admit",
+    "stress/rf/new.json",
+    "--store",
+    "/tmp/gk_rf_store.json"
+   ],
+   "expect_exit": 0
+  },
+  {
+   "id": "rf-regress-rejected",
+   "cmd": "python3",
+   "args": [
+    "ratchet_floor.py",
+    "admit",
+    "stress/rf/regress.json",
+    "--store",
+    "/tmp/gk_rf_store.json"
+   ],
+   "expect_exit": 1
   }
  ]
 }

@@ -423,6 +423,8 @@ def main() -> int:
 
     result = {
         "schema_version": "ratchet-contract-selfcheck/0.2",
+        "classification": "scratch_diagnostic",
+        "promotion_allowed": False,
         "ceiling": "infrastructure_selfcheck_on_toy_candidates; promotion_allowed=false",
         "X_BASE": list(X_BASE),
         "D_BASE": [list(pair) for pair in D_BASE],

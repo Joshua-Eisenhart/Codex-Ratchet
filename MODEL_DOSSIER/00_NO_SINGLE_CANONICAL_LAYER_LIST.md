@@ -43,3 +43,21 @@ catching. Present the divergent owner structures in parallel; the count/order is
 ratchet decides. The P1 raw owner reservoir (axes math apple notes 385KB, working_math_scaffold, A0 thread
 save 447KB) is "for original phrasing and provenance, not direct authority" (MANIFEST). Owner confirmation
 is required to pick a working ladder; no assistant may crown one.
+
+## Apple-notes raw reservoir dig (385KB, 17,700 lines) — confirms the finding decisively
+- NO numbered manifold-layer list exists in the owner's own axes-math notes.
+- The notes CAP AT AXIS 0-6. Exhaustive grep: octonion / G2 / F4 / quaternion / Clifford / sedenion /
+  exceptional / Axis 7..12 = ZERO hits. The G2/F4/octonion/axes-7-12 tier is NOT in this primary source.
+  (It lives in the owner-voice 2026-07-04 file — "quaternions to octonions, using g2 structures is a bit
+  beyond my math understanding, i just intuit the needs" — a SEPARATE, later owner intuition, and in the
+  planned many-engine mirror. Different strata, not yet unified into one numbered layer list.)
+- The owner's STABLE RECURRING structure (re-derived many sessions, never crowned as a numbered list):
+  pre-axial F01/N01 -> nested Hopf tori in S^3 (S^3 = ∪_θ T^2(θ); fiber S^1 phase, base S^2 Bloch) ->
+  Axis 3 selects Weyl chirality + fixes flux sign -> 8 terrains from 4 topologies × 2 chiralities ->
+  construction order topology -> Axis3 -> Axis4 (loop order) -> Axis5 (algebra class/operator) -> Axis6
+  (action orientation/precedence) -> Axis 0 = evaluation FUNCTIONAL (the oracle), NOT a generator.
+  Type-1 deductive loop frozen canonical: Ni -> Si -> Ne -> Se.
+- The owner LITERALLY documented MY failure mode: "Axis 3 was repeatedly collapsed into the wrong
+  conceptual bucket... a known LLM failure mode. LLMs are trained to: prioritize procedural axes (order,
+  loops, actions), downplay geometric/topological primitives, treat 'chirality' metaphorically instead
+  of mathematically." That is exactly what I did by reciting a stale operator/stage/axis ledger.

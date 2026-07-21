@@ -96,3 +96,18 @@ missing-search-receipt rejection (`decl_novel_no_search.json`).
   the fixtures live in the agent-writable repo today. "External policy" is only
   real once they move to a branch-protected / CODEOWNERS / harness-owned path.
   claim_verify cannot self-enforce its own registry's immutability.
+
+## canfail_probe — the by-construction detector (deterministic, no LLM)
+
+Corpus finding across every audit: ~half of each all_pass=N/N cannot fail on the
+data (entropy theorems, algebraic identities, symmetry-forced controls). canfail_probe
+severs a claimed mechanism (patch the constant in an isolated sim copy, re-run
+subprocess, diff checks): a check that FLIPS is proven can-fail; one that flips under
+NO tested mutation is SUSPECT_BY_CONSTRUCTION. Deterministic reproduction of the
+manifold_one K2 finding: under GAMMA_BASE=0 (K2's own drive->quantum knob) K2 does
+NOT flip = by-construction, while K6 flips = genuine. This is "controls must flip" as
+code; all_pass should count only can-fail checks. In-process monkeypatch was tried and
+REJECTED (some sims re-exec and revert a patched global — it silently failed to mutate,
+which would falsely accuse every check); subprocess+file-patch+temp-isolation is correct.
+Improves all four: claimgate gains a can-fail tier, the ratchet gains an honest gate
+count, the sims get an automatic bullshit map, Lev runs it as a verifier.

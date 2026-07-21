@@ -76,3 +76,30 @@ Trigger at admission/verify time via `flowmind.programs[].trigger` →
 The 5-gate `ratchet-admission.flow.yaml` is a Phase-2+ stub
 (`system-flowmind-executor.ts:240-278`) — compose the real primitives above
 behind `claim_verify` rather than waiting on that YAML to execute.
+
+## v2 — hardened after adversarial red-team (2026-07-20)
+
+v1 was red-teamed and had 4 confirmed holes (all: the agent authored its own
+pass-criteria). v2 moves ALL verification policy outside agent write-control,
+matching the Lev dev's approved design `20260716-claim-submission-evaluation-
+admission.yaml` (observation -> deterministic measurement -> decision; operator
+never assembles methodology; `cannot false-green`):
+
+- tier2/3 argv comes from `gate_registry.json` (external), NEVER the receipt. A
+  receipt that declares its own `verification.*.cmd` is REJECTED outright.
+- the receipt only names a `claim_kind`; the registry maps kind -> required tiers.
+  An unclassified receipt is INSUFFICIENT_DEPTH (exit 3), never green.
+- tier4 admits an audit only if: exact `verdict: CLEAN` token (substring banned —
+  "NOT CLEAN" no longer passes), an `auditor:` identity that differs from the
+  receipt producer (self-audit rejected), AND a current evalcheck
+  EVALUATOR_CALIBRATED receipt for that auditor against a sealed deck.
+- cross-tier bootstrap guard: the sibling AUDIT file is hash-pinned before any
+  tier runs; a tier that creates/modifies it -> REJECTED.
+- tri-valued exit: 0 VERIFIED, 1 REJECTED, 3 INSUFFICIENT_DEPTH, 2 error.
+  Consumers must match `verdict == "VERIFIED"` exactly, not startswith.
+
+Latest-Lev note: the flowmind YAML executor is STILL a boot-stub on origin/main;
+the 923-line claim/eval/admission design is approved but runtime-unmaterialized.
+`claim_verify` is a runnable prototype of its `deterministic_case` evaluator; the
+`hybrid_case` (LLM audit as observation, measured not trusted) is realized here by
+gating tier4 on evalcheck calibration.

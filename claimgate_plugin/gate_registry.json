@@ -1,0 +1,28 @@
+{
+  "_note": "EXTERNAL verification policy. The producing agent must NOT be able to write this file (in production: branch-protected / CODEOWNERS / harness-owned path). A receipt may only NAME a claim_kind; it may NOT declare its own verification command. claim_verify resolves the argv from HERE, never from the receipt.",
+  "gates": {
+    "smt_proof_order": {
+      "tier": "tier2",
+      "cmd": ["python3", "system_v8/manifold/engine/proof_order_lane.py"],
+      "result_path": "system_v8/manifold/engine/results/proof_order_lane.json",
+      "expect": {"all_pass": true}
+    },
+    "qit_referee": {
+      "tier": "tier3",
+      "cmd": ["python3", "system_v8/deep_integration/tools_qit_referee.py"],
+      "result_path": "system_v8/deep_integration/results/qit_referee/receipt.json",
+      "expect": {"all_pass": true}
+    }
+  },
+  "claim_kinds": {
+    "field_only": {"required_tiers": ["tier0"]},
+    "manifold_sim": {"required_tiers": ["tier0", "tier1"], "tier2_gate": "smt_proof_order", "tier3_gate": "qit_referee"},
+    "quantum_claim": {"required_tiers": ["tier0", "tier1"], "tier3_gate": "qit_referee"}
+  },
+  "audit_policy": {
+    "_note": "tier4 admits an audit only if (1) its verdict token is exact, (2) its auditor identity differs from the receipt producer, and (3) a current evalcheck calibration receipt for that auditor exists against a sealed deck.",
+    "calibration_deck_dir": "claimgate_plugin/evaldeck",
+    "require_auditor_identity": true,
+    "require_calibration": true
+  }
+}

@@ -172,15 +172,6 @@
    "expect_exit": 0
   },
   {
-   "id": "claim_verify-tainted-rejected",
-   "cmd": "python3",
-   "args": [
-    "claim_verify.py",
-    "../system_v8/nested_manifold/results/stage64/receipt.json"
-   ],
-   "expect_exit": 1
-  },
-  {
    "id": "claim_verify-usage-error",
    "cmd": "python3",
    "args": [
@@ -188,6 +179,60 @@
     "/nonexistent.json"
    ],
    "expect_exit": 2
+  },
+  {
+   "id": "cv-declared-cmd-rejected",
+   "cmd": "python3",
+   "args": [
+    "claim_verify.py",
+    "stress/cv/declared_cmd/receipt.json"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "cv-self-audit-rejected",
+   "cmd": "python3",
+   "args": [
+    "claim_verify.py",
+    "stress/cv/self_audit/receipt.json"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "cv-substring-rejected",
+   "cmd": "python3",
+   "args": [
+    "claim_verify.py",
+    "stress/cv/substring/receipt.json"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "cv-self-auditor-rejected",
+   "cmd": "python3",
+   "args": [
+    "claim_verify.py",
+    "stress/cv/self_auditor/receipt.json"
+   ],
+   "expect_exit": 1
+  },
+  {
+   "id": "cv-legit-verified",
+   "cmd": "python3",
+   "args": [
+    "claim_verify.py",
+    "stress/cv/legit/receipt.json"
+   ],
+   "expect_exit": 0
+  },
+  {
+   "id": "cv-unclassified-insufficient",
+   "cmd": "python3",
+   "args": [
+    "claim_verify.py",
+    "stress/cv/unclassified/receipt.json"
+   ],
+   "expect_exit": 3
   }
  ]
 }

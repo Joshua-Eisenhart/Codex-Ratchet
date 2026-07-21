@@ -1,37 +1,32 @@
 #!/usr/bin/env python3
 """
-claim_verify — the higher-level claimgate: a TIER-DISPATCHING verifier.
+claim_verify v2 — the higher-level claimgate: a TIER-DISPATCHER whose pass-policy
+lives OUTSIDE the producing agent's write-control.
 
-The gap the inventory found: every verification TIER already exists in this repo
-as a separate tool, and Lev already fires shell commands as un-skippable hooks
-(`lev exec --verifier`). What was missing is the ONE thing that, given a receipt,
-runs the applicable tiers and emits a composite verdict. This is that thing.
+v1 was red-teamed (2026-07-20) and had 4 confirmed holes: the receipt declared its
+own tier2/3 command (["true"] passed), a builder-written AUDIT_VERDICT.md passed
+tier4, a substring bug let "NOT CLEAN" pass, and a tier2 command could manufacture
+the tier4 audit file. All four share one root: the agent authored its own
+pass-criteria. v2 closes that root, following the Lev dev's approved design
+(observation -> deterministic measurement -> decision; operator/agent never
+assembles methodology; external evaluator policy).
 
-It does NOT reimplement any checker. It dispatches the existing ones and records
-what it verified AND what it could not — a skipped tier is NEVER counted as passed.
+    claim_verify <receipt.json> [--registry gate_registry.json] [--json]
+        exit 0 = VERIFIED           (every required tier passed)
+        exit 1 = REJECTED           (a required tier failed / producer authored policy)
+        exit 3 = INSUFFICIENT_DEPTH (nothing failed but required depth not met)
+        exit 2 = usage / IO error
 
-    claim_verify <receipt.json> [--require tier0,tier2,...] [--json]
-        exit 0 = every applicable/required tier passed
-        exit 1 = a tier failed, or a --require tier was not verifiable
-        exit 2 = usage/IO error
-
-Tiers (cheapest -> deepest), each wired to a tool that ALREADY EXISTS here:
-  tier0  field-consistency   claimgate/claimgate.py (R1-R6) | fallback claimgate.mjs
-  tier1  recompute           claimgate.mjs R5 (runs when the receipt has a `recompute` block)
-  tier2  smt-recheck+flip    the receipt's declared verification.tier2 cmd (e.g. proof_order_lane.py)
-  tier3  referee-agreement   the receipt's declared verification.tier3 cmd (e.g. tools_qit_referee.py)
-  tier4  fresh-audit affirm  sibling AUDIT_VERDICT.md must be CLEAN (not TAINTED/FATAL)
-
-A receipt opts into tiers 2/3 by declaring them:
-  "verification": { "tier2": {"cmd": ["python3","system_v8/manifold/engine/proof_order_lane.py"],
-                              "expect": {"all_pass": true}} }
-
-Designed to be the <cmd> in:  lev exec --verifier 'python3 claimgate_plugin/claim_verify.py <receipt>'
-Emits a Lev-shaped claim_verdicts array so `lev gate validate` can consume it.
+Policy source (all EXTERNAL to the receipt):
+  - which tiers a claim needs           -> gate_registry.claim_kinds[receipt.claim_kind]
+  - the argv for tier2/tier3            -> gate_registry.gates[...] (NEVER receipt-declared)
+  - tier4 audit admissibility           -> exact verdict token + auditor identity != producer
+                                           + a current evalcheck calibration receipt
+A receipt that tries to declare its own verification.*.cmd is REJECTED outright.
 
 No third-party deps. Python 3.
 """
-import json, os, subprocess, sys
+import json, os, subprocess, sys, hashlib, glob
 
 def repo_root(start):
     d = os.path.abspath(start)
@@ -52,10 +47,15 @@ def load(path):
     with open(path) as f:
         return json.load(f)
 
-# ---- tier implementations: each returns (status, evidence_ref, detail) ----
-# status in {PASS, FAIL, SKIP, ERROR}. SKIP carries a reason and NEVER counts as passed.
+def sha(path):
+    try:
+        return hashlib.sha256(open(path, "rb").read()).hexdigest()
+    except Exception:
+        return None
 
-def tier0(receipt_path, receipt, root):
+# ---- tiers. status in {PASS, FAIL, SKIP, ERROR}; SKIP never counts as passed ----
+
+def tier0(receipt_path, receipt, root, reg):
     py = os.path.join(root, "claimgate", "claimgate.py")
     if os.path.exists(py):
         rc, out, err = run(["python3", py, receipt_path], root)
@@ -64,61 +64,121 @@ def tier0(receipt_path, receipt, root):
         mjs = os.path.join(root, "claimgate_plugin", "claimgate.mjs")
         rc, out, err = run(["node", mjs, "lint-receipt", receipt_path, "--rules",
                             os.path.join(root, "claimgate_plugin", "rules_ratchet.json")], root)
-        tool = "claimgate_plugin/claimgate.mjs"
+        tool = "claimgate.mjs"
     if rc is None:
         return "ERROR", tool, err[:200]
     return ("PASS" if rc == 0 else "FAIL"), tool, f"{tool} exit {rc}"
 
-def tier1(receipt_path, receipt, root):
+def tier1(receipt_path, receipt, root, reg):
     if "recompute" not in receipt:
-        return "SKIP", None, "no recompute contract declared in receipt"
+        return "SKIP", None, "no recompute contract declared"
     mjs = os.path.join(root, "claimgate_plugin", "claimgate.mjs")
     rc, out, err = run(["node", mjs, "lint-receipt", receipt_path], root)
     if rc is None:
         return "ERROR", "claimgate.mjs", err[:200]
-    # R5 mismatch surfaces as a violation -> nonzero exit
-    return ("PASS" if rc == 0 else "FAIL"), "claimgate.mjs R5", f"recompute exit {rc}"
+    # honest caveat: recompute proves internal consistency of claim-vs-own-raw,
+    # NOT that the raw itself is genuine (that needs the replay tier / controlled run)
+    return ("PASS" if rc == 0 else "FAIL"), "claimgate.mjs R5", f"recompute (internal-consistency) exit {rc}"
 
-def _declared_tier(receipt, key, receipt_path, root):
-    v = (receipt.get("verification") or {}).get(key)
-    if not v or "cmd" not in v:
-        return "SKIP", None, f"receipt declares no verification.{key}"
-    rc, out, err = run(v["cmd"], root)
+def _registered_tier(tier_key, receipt, root, reg):
+    # HARD FAIL if the producer tried to author its own verification policy.
+    v = (receipt.get("verification") or {}).get(tier_key)
+    if isinstance(v, dict) and "cmd" in v:
+        return "FAIL", None, f"receipt declared its own {tier_key}.cmd — producer-authored verification is forbidden (policy must be external)"
+    kind = reg["claim_kinds"].get(receipt.get("claim_kind"))
+    if not kind:
+        return "SKIP", None, f"claim_kind '{receipt.get('claim_kind')}' names no {tier_key} gate"
+    gate_name = kind.get(f"{tier_key}_gate")
+    if not gate_name:
+        return "SKIP", None, f"claim_kind declares no {tier_key} gate"
+    gate = reg["gates"].get(gate_name)
+    if not gate:
+        return "ERROR", gate_name, "registry gate missing"
+    rc, out, err = run(gate["cmd"], root)          # argv from REGISTRY, not receipt
     if rc is None:
-        return "ERROR", " ".join(v["cmd"][:2]), err[:200]
-    expect = v.get("expect", {})
-    # the declared cmd should have written its own receipt; if expect names fields,
-    # re-open the produced json and check them (re-derive, don't trust stdout)
-    ok = rc == 0
-    ev = v.get("result_path")
-    if expect and ev and os.path.exists(os.path.join(root, ev)):
+        return "ERROR", gate_name, err[:200]
+    # re-derive from the produced result file (do not trust stdout/exit alone)
+    rp = gate.get("result_path")
+    expect = gate.get("expect", {})
+    if rp and expect:
+        full = os.path.join(root, rp)
+        if not os.path.exists(full):
+            return "FAIL", gate_name, f"gate produced no result at {rp}"
         try:
-            produced = load(os.path.join(root, ev))
-            for k, want in expect.items():
-                if produced.get(k) != want:
-                    return "FAIL", ev, f"{k}={produced.get(k)} != expected {want}"
+            produced = load(full)
         except Exception as e:
-            return "ERROR", ev, str(e)[:120]
-    return ("PASS" if ok else "FAIL"), (ev or " ".join(v["cmd"][:2])), f"exit {rc}"
+            return "ERROR", rp, str(e)[:120]
+        for k, want in expect.items():
+            if produced.get(k) != want:
+                return "FAIL", rp, f"{k}={produced.get(k)} != {want}"
+        return "PASS", rp, f"{gate_name}: {', '.join(f'{k}={want}' for k, want in expect.items())}"
+    return ("PASS" if rc == 0 else "FAIL"), gate_name, f"{gate_name} exit {rc}"
 
-def tier2(receipt_path, receipt, root):
-    return _declared_tier(receipt, "tier2", receipt_path, root)
+def tier2(receipt_path, receipt, root, reg):
+    return _registered_tier("tier2", receipt, root, reg)
 
-def tier3(receipt_path, receipt, root):
-    return _declared_tier(receipt, "tier3", receipt_path, root)
+def tier3(receipt_path, receipt, root, reg):
+    return _registered_tier("tier3", receipt, root, reg)
 
-def tier4(receipt_path, receipt, root):
+def _read_audit_verdict(path):
+    """Exact machine-readable token only. A fenced/keyed 'verdict: CLEAN|TAINTED|FATAL'
+    or a bare first-line token. Substring matching ('NOT CLEAN' contains 'CLEAN') is banned."""
+    txt = open(path).read()
+    for line in txt.splitlines():
+        s = line.strip().lower()
+        for key in ("verdict:", "audit verdict:", "audit_verdict:"):
+            if s.startswith(key):
+                tok = s[len(key):].strip().strip("`*_ ").split()[0].upper() if s[len(key):].strip() else ""
+                if tok in ("CLEAN", "TAINTED", "FATAL"):
+                    return tok
+    return None  # no machine-readable verdict token -> not admissible
+
+def _auditor_identity(path):
+    for line in open(path).read().splitlines():
+        s = line.strip().lower()
+        if s.startswith("auditor:"):
+            return line.split(":", 1)[1].strip()
+    return None
+
+def tier4(receipt_path, receipt, root, reg):
+    pol = reg.get("audit_policy", {})
     d = os.path.dirname(receipt_path)
-    cand = [os.path.join(d, n) for n in ("AUDIT_VERDICT.md", "audit_verdict.md")]
-    found = next((c for c in cand if os.path.exists(c)), None)
+    found = next((os.path.join(d, n) for n in ("AUDIT_VERDICT.md", "audit_verdict.md")
+                  if os.path.exists(os.path.join(d, n))), None)
     if not found:
-        return "SKIP", None, "no sibling AUDIT_VERDICT.md (unaudited)"
-    head = open(found).read(600).upper()
-    if "TAINTED" in head or "FATAL" in head:
-        return "FAIL", os.path.relpath(found, root), "fresh audit headline is TAINTED/FATAL"
-    if "CLEAN" in head:
-        return "PASS", os.path.relpath(found, root), "fresh audit affirms CLEAN"
-    return "SKIP", os.path.relpath(found, root), "audit present but headline not machine-readable"
+        return "SKIP", None, "no sibling audit (unaudited)"
+    verdict = _read_audit_verdict(found)
+    if verdict is None:
+        return "FAIL", os.path.relpath(found, root), "audit has no exact 'verdict: CLEAN|TAINTED|FATAL' token (prose headline not admissible)"
+    if verdict in ("TAINTED", "FATAL"):
+        return "FAIL", os.path.relpath(found, root), f"audit verdict {verdict}"
+    # verdict == CLEAN: now prove the audit is not self-authored and its auditor is calibrated
+    if pol.get("require_auditor_identity"):
+        auditor = _auditor_identity(found)
+        producer = receipt.get("produced_by") or receipt.get("builder") or receipt.get("author")
+        if not auditor:
+            return "FAIL", os.path.relpath(found, root), "audit CLEAN but names no 'auditor:' identity — cannot prove it isn't self-authored"
+        if producer and auditor.lower() == str(producer).lower():
+            return "FAIL", os.path.relpath(found, root), f"auditor '{auditor}' == producer — self-audit forbidden"
+    if pol.get("require_calibration"):
+        deck_dir = os.path.join(root, pol.get("calibration_deck_dir", ""))
+        cal = _auditor_calibrated(auditor if pol.get("require_auditor_identity") else None, deck_dir, root)
+        if not cal:
+            return "FAIL", os.path.relpath(found, root), "audit CLEAN but no current evalcheck calibration receipt for the auditor (eval-the-eval unmet)"
+    return "PASS", os.path.relpath(found, root), f"audit CLEAN, auditor identified{' + calibrated' if pol.get('require_calibration') else ''}"
+
+def _auditor_calibrated(auditor, deck_dir, root):
+    # a current EVALUATOR_CALIBRATED evalcheck receipt must exist for this auditor/deck.
+    if not os.path.isdir(deck_dir):
+        return False
+    for cal in glob.glob(os.path.join(deck_dir, "*.calibration.json")):
+        try:
+            c = load(cal)
+            if c.get("verdict") == "EVALUATOR_CALIBRATED" and (auditor is None or c.get("evaluator") == auditor):
+                return True
+        except Exception:
+            continue
+    return False
 
 TIERS = [("tier0", tier0), ("tier1", tier1), ("tier2", tier2), ("tier3", tier3), ("tier4", tier4)]
 
@@ -126,51 +186,74 @@ def main():
     args = sys.argv[1:]
     receipt_path = next((a for a in args if not a.startswith("--")), None)
     if not receipt_path or not os.path.exists(receipt_path):
-        sys.stderr.write("usage: claim_verify <receipt.json> [--require tier0,tier2] [--json]\n")
-        sys.exit(2)
-    require = set()
-    if "--require" in args:
-        require = set(args[args.index("--require") + 1].split(","))
+        sys.stderr.write("usage: claim_verify <receipt.json> [--registry gate_registry.json]\n"); sys.exit(2)
+    receipt_path = os.path.abspath(receipt_path)  # subprocesses run with cwd=root; the path must be absolute
     root = repo_root(receipt_path)
+    reg_path = args[args.index("--registry") + 1] if "--registry" in args else \
+        os.path.join(root, "claimgate_plugin", "gate_registry.json")
     try:
         receipt = load(receipt_path)
+        reg = load(reg_path)
     except Exception as e:
-        sys.stderr.write(f"claim_verify: bad receipt: {e}\n"); sys.exit(2)
+        sys.stderr.write(f"claim_verify: {e}\n"); sys.exit(2)
 
-    results, claim_verdicts = [], []
+    kind = reg["claim_kinds"].get(receipt.get("claim_kind"))
+    # an unclassified receipt cannot resolve its required depth -> never VERIFIED
+    unclassified = kind is None
+    required = set(kind["required_tiers"]) if kind else {"tier0"}
+
+    # cross-tier bootstrap guard: pin the sibling AUDIT file(s) by hash BEFORE any
+    # tier runs; a registered gate writing its OWN result_path is expected, but no
+    # tier may create/modify the tier4 audit evidence.
+    d = os.path.dirname(receipt_path)
+    pinned = {}
+    for n in ("AUDIT_VERDICT.md", "audit_verdict.md"):
+        p = os.path.join(d, n)
+        pinned[p] = sha(p)
+
+    results, claim_verdicts, tamper = [], [], []
     for name, fn in TIERS:
-        status, ev, detail = fn(receipt_path, receipt, root)
+        status, ev, detail = fn(receipt_path, receipt, root, reg)
+        # after each tier, detect if it manufactured/altered a pinned evidence file
+        for p, h0 in list(pinned.items()):
+            h1 = sha(p)
+            if h1 != h0:
+                tamper.append({"tier": name, "path": os.path.relpath(p, root),
+                               "change": "created" if h0 is None else "modified"})
+                pinned[p] = h1  # re-pin so we attribute once
         results.append({"tier": name, "status": status, "evidence_ref": ev, "detail": detail})
         if status in ("PASS", "FAIL"):
-            claim_verdicts.append({"claim": name, "verdict": "pass" if status == "PASS" else "fail",
-                                   "evidence_ref": ev})
+            claim_verdicts.append({"claim": name, "verdict": "pass" if status == "PASS" else "fail", "evidence_ref": ev})
 
     failed = [r for r in results if r["status"] in ("FAIL", "ERROR")]
-    # a --require tier that did not actually PASS is itself a failure
-    req_unmet = [t for t in require if not any(r["tier"] == t and r["status"] == "PASS" for r in results)]
+    req_unmet = [t for t in required if not any(r["tier"] == t and r["status"] == "PASS" for r in results)]
     verified = [r["tier"] for r in results if r["status"] == "PASS"]
     unverified = [r["tier"] for r in results if r["status"] == "SKIP"]
 
-    if failed or req_unmet:
-        verdict = "REJECTED"
-    elif require:
-        verdict = "VERIFIED"           # all required tiers passed
+    if tamper:
+        verdict, code = "REJECTED", 1           # cross-tier evidence bootstrap = fatal
+    elif failed:
+        verdict, code = "REJECTED", 1
+    elif unclassified or req_unmet:
+        verdict, code = "INSUFFICIENT_DEPTH", 3  # unclassified, or required depth not met
     else:
-        verdict = "VERIFIED_PARTIAL"    # nothing failed, but depth was not required
+        verdict, code = "VERIFIED", 0
 
     report = {
-        "tool": "claim_verify",
+        "tool": "claim_verify", "version": 2,
         "receipt": os.path.relpath(receipt_path, root),
+        "claim_kind": receipt.get("claim_kind"),
         "verdict": verdict,
+        "required_tiers": sorted(required),
         "verified_tiers": verified,
-        "unverified_tiers": unverified,           # SKIPPED — explicitly NOT passed
-        "required": sorted(require),
+        "unverified_tiers": unverified,          # SKIPPED — explicitly NOT passed
         "required_unmet": req_unmet,
+        "tamper_events": tamper,                 # a tier that manufactured another tier's evidence
         "tier_results": results,
-        "claim_verdicts": claim_verdicts,          # Lev-shaped, for `lev gate validate`
+        "claim_verdicts": claim_verdicts,
     }
     print(json.dumps(report, indent=1))
-    sys.exit(0 if verdict.startswith("VERIFIED") else 1)
+    sys.exit(code)
 
 if __name__ == "__main__":
     main()

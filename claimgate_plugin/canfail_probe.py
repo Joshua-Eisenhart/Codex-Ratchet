@@ -104,28 +104,38 @@ def main():
     if not muts: die("spec has no mutations — a can-fail probe needs a mutation deck that severs each claimed mechanism")
 
     flips = {k: [] for k in base}
+    targeted = {k: False for k in base}   # was this check named as a mutation's target?
     mlog = []
     for mut in muts:
+        for k in mut.get("targets", []):
+            if k in targeted: targeted[k] = True
         mutated, missed = run_variant(sim, mut["set"], receipt_rel, ckey)
         changed = [k for k in base if k in mutated and mutated[k] != base[k]]
         for k in changed: flips[k].append(mut["name"])
-        mlog.append({"mutation": mut["name"], "set": mut["set"],
+        mlog.append({"mutation": mut["name"], "set": mut["set"], "targets": mut.get("targets", []),
                      "missed_consts": missed, "flipped": changed})
 
+    # three honest classes — the corpus workflow flagged that lumping them lies:
+    #   CAN_FAIL          : flipped under some mutation (proven genuine)
+    #   BY_CONSTRUCTION   : a mutation TARGETED it (claims to sever its mechanism) yet it never flipped
+    #   UNTESTED          : no mutation targeted it — deck gap, NOT a verdict on the check
     can_fail = [k for k, v in flips.items() if v]
-    suspect = [k for k, v in flips.items() if not v]
+    by_construction = [k for k, v in flips.items() if not v and targeted[k]]
+    untested = [k for k, v in flips.items() if not v and not targeted[k]]
     report = {
         "tool": "canfail_probe", "sim": spec["sim"],
         "mutations_tried": [m["name"] for m in muts],
         "n_checks": len(base),
         "can_fail": can_fail,
-        "suspect_by_construction": suspect,
+        "by_construction": by_construction,           # targeted-but-never-flipped = real finding
+        "untested": untested,                          # deck did not reach the mechanism
         "can_fail_ratio": round(len(can_fail) / len(base), 3) if base else 0.0,
-        "honest_all_pass_count": f"{len(can_fail)} can-fail of {len(base)} claimed under this deck",
+        "honest_all_pass_count": f"{len(can_fail)} proven can-fail, {len(by_construction)} by-construction, {len(untested)} untested, of {len(base)} claimed",
         "per_mutation": mlog,
     }
     print(json.dumps(report, indent=1))
-    sys.exit(0 if not suspect else 3)
+    # exit 1 iff a by-construction check was PROVEN (targeted, never flipped); untested alone is exit 3 (incomplete), clean is 0
+    sys.exit(1 if by_construction else (3 if untested else 0))
 
 if __name__ == "__main__":
     main()

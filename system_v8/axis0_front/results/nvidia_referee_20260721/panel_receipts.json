@@ -1,0 +1,65 @@
+{
+  "date": "2026-07-21",
+  "facts_inlined": {
+    "r1_W1_rms_cut_corr": 0.028241957664686405,
+    "r1_W1_negativity_corr": 0.0,
+    "r1_W1_shuffled_S_L": -0.12381981648119474,
+    "r2_summary_keys": [
+      "schema",
+      "authority",
+      "hypothesis_status",
+      "new_ingredient",
+      "entangling_operator_check",
+      "prior_state_cited",
+      "parameters",
+      "drive_series_source",
+      "candidates",
+      "per_candidate",
+      "w6_null_distribution",
+      "qutip_referee"
+    ],
+    "pawl_summary_keys": [
+      "schema",
+      "name",
+      "generated_at",
+      "classification",
+      "promotion_allowed",
+      "formal_admission_allowed",
+      "claim_ceiling",
+      "runtime",
+      "source_provenance",
+      "register",
+      "parameters",
+      "tool_manifest"
+    ]
+  },
+  "panel": [
+    "deepseek-ai/deepseek-v4-pro",
+    "qwen/qwen3.5-397b-a17b",
+    "z-ai/glm-5.2",
+    "openai/gpt-oss-120b",
+    "nvidia/llama-3.3-nemotron-super-49b-v1.5"
+  ],
+  "results": [
+    {
+      "model": "deepseek-ai/deepseek-v4-pro",
+      "reply": "{\n  \"n1_confound\": \"The 'shuffled control' may not preserve the same marginal statistics of the drive process, so the larger correlation could be an artifact of comparing different distributions rather than a genuine structural signal.\",\n  \"locc_diagnosis\": \"Correct as stated for the drive-weighted mixture, but incomplete: the later entangling-generator attempt (0.0445 vs 0.162) suggests the LOCC barrier is not absolute for all coupling architectures.\",\n  \"n2_lever\": \"4-5 qubit DFS-encoded logical qubit with projective tooth onto an entangled sector, combined with a pump/dissipation ratio sweep to locate a non-dissipative record regime.\",\n  \"n1_sound\": false,\n  \"n2_design_adequate\": false,\n  \"note\": \"N1 confound: shuffled control may sample a different drive distribution, inflating the null. The 0.0445 entangling-generator result, while small, is structurally distinct from the LOCC branch-by-branch argument and not fully excluded. N2: all four lock families failed at 3 qubits with dissipation 0.20; the design space was not exhausted\u2014no ratio sweep, no larger DFS, no projective tooth onto entangled sector was tested.\"\n}"
+    },
+    {
+      "model": "qwen/qwen3.5-397b-a17b",
+      "reply": "{\n\"n1_confound\": \"Basis-mismatch between the drive's local Kraus operators and the specific entanglement witness basis used for negativity calculation\",\n\"locc_diagnosis\": \"Correct\",\n\"n2_lever\": \"Scale to 5 qubits to enable a non-trivial Decoherence-Free Subspace (DFS) encoding immune to the dominant collective noise channel\",\n\"n1_sound\": true,\n\"n2_design_adequate\": false,\n\"note\": \"N1 confirms separability via local branches; N2 fails due to insufficient Hilbert space dimension for robust DFS at 3 qubits under strong dissipation.\"\n}"
+    },
+    {
+      "model": "z-ai/glm-5.2",
+      "reply": "```json\n{\n  \"n1_confound\": \"Finite-size statistical noise: at 3 qubits, the entanglement negativity distribution is highly discrete and bounded. The shuffled control yielding a larger spurious correlation (~0.12) indicates the Pearson metric is dominated by finite-sample variance, not a true structural separability bound.\",\n  \"locc_diagnosis\": \"Incomplete: 'local per-sheet' does not imply the global mixture is LOCC. If the Kraus branches do not share a common local tensor product structure across all sheets, the mixture can still be globally entangling.\",\n  \"n2_lever\": \"Scale to 4-5 qubits to provide a sufficient DFS subspace, enabling a non-dissipative projective 'tooth' that deterministically maps onto an entangled logical sector.\",\n  \"n1_sound\": false,\n  \"n2_design_adequate\": false,\n  \"note\": \"N1's null result is likely a finite-size artifact, not a fundamental dynamical bound. N2 fails because 3 qubits lacks the Hilbert-space volume for a robust DFS; 4-5 qubits are required for a non-dissipative entangling pawl.\"\n}\n```"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "reply": "{\n  \"n1_confound\": \"drive\u2011induced coherent cross\u2011talk (bath\u2011mediated non\u2011local correlations) not captured in the assumed product Kraus decomposition\",\n  \"locc_diagnosis\": \"incomplete \u2013 hidden classical correlations between locally\u2011acting Kraus branches can render the map non\u2011separable\",\n  \"n2_lever\": \"implement a DFS\u2011encoded logical qubit and apply a coherent, Hamiltonian\u2011only entangling interaction (e.g. resonant exchange) within the DFS, avoiding dissipative pumping\",\n  \"n1_sound\": false,\n  \"n2_design_adequate\": false,\n  \"note\": \"The reported negatives likely stem from unmodelled non\u2011local back\u2011action and insufficient exploration of coherent DFS\u2011based entangling dynamics.\"\n}"
+    },
+    {
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "reply": null
+    }
+  ]
+}

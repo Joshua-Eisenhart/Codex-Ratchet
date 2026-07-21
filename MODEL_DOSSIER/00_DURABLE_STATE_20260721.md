@@ -85,6 +85,26 @@ thing that dissolves the resource. Untried levers: (1) 4–5 qubits so a DFS has
 (2) sweep pump-rate vs dissipation ratio (never varied); (3) a non-dissipative record
 (DFS-encoded logical qubit / projective tooth onto the entangled sector).
 
+NVIDIA cross-family referee panel 2026-07-21 (4/5 usable: deepseek-v4-pro, qwen3.5-397b,
+glm-5.2, gpt-oss-120b; receipts: system_v8/axis0_front/results/nvidia_referee_20260721/):
+- N2 pawl design adequate: 0/4 — UNANIMOUS no. All four independently converge on the same
+  lever already listed above: 4–5 qubits + DFS-encoded logical record + non-dissipative
+  tooth (projective onto entangled sector / Hamiltonian-only entangling inside the DFS).
+  Cross-family convergence = FUEL evidence for the pawl-v1 card, not a ratchet verdict.
+- N1 weld verdict: 1 sound / 3 confounded, each naming a DIFFERENT confound:
+  (a) glm CATCH, accepted: the negativity-corr-exactly-0.0 datum is VACUOUS, not a negative
+  — at the manifold's own J the register never entangles, so the negativity series is
+  identically 0 and correlation with a constant is degenerate. Re-label that cell: "no
+  entanglement present to correlate with" (the ladder finding), not an extra coupling null.
+  (b) deepseek, methodological: naive shuffle destroys the drive's autocorrelation, so the
+  shuffle null compares different distributions — r3 should use an autocorrelation-
+  preserving surrogate (block-shuffle / phase-randomized) as the null.
+  (c) gpt-oss: check the actual generator for bath-mediated cross terms before trusting the
+  separability diagnosis (its "hidden classical correlations break separability" claim is
+  wrong as stated — shared classical randomness stays separable — but the check stands).
+- LOCC diagnosis: 2 correct / 2 incomplete; the structural point (local-branch mixtures
+  cannot entangle) survives, conditional on the generator carrying no cross terms.
+
 ## 5. The owner's six-step program (2026-07-21) and honest status
 
 | # | Step | Honest status now |

@@ -1,5 +1,5 @@
 # Authoritative Julia leg for the pure_to_vn arrow — QuantumOptics.jl carries
-# the load-bearing witness (numpy is control-only cross-check on the Python side).
+# the load-bearing witness; the Python side is jax-based.
 #
 # Witness: partial trace is one-way — two ORTHOGONAL global pure states map to
 # the SAME reduced density operator (I/2), so von Neumann entropy is born at the

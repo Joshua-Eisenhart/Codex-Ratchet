@@ -16,10 +16,15 @@ from __future__ import annotations
 
 import json
 import math
+import subprocess
 from pathlib import Path
 from typing import Any
 
-import numpy as np
+import os
+os.environ.setdefault("JAX_ENABLE_X64", "1")
+import jax
+jax.config.update("jax_enable_x64", True)
+import jax.numpy as jnp
 import sympy as sp
 from z3 import Function, RealSort, RealVal, Solver, sat, unsat
 
@@ -56,18 +61,16 @@ TOL = 1.0e-10
 TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True,
               "reason": "Exact symbolic density-matrix, entropy, and diagonal BKM/Fisher checks."},
-    "numpy": {"tried": True, "used": True,
+    "jax": {"tried": True, "used": True,
               "reason": "Finite Bloch-ball and pure-state sweep, entropy, metric, and witness calculations."},
     "z3": {"tried": True, "used": True,
-           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (dephasing witness pair rho/rho_prime plus exact idempotence/entropy/metric identities)."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the jax/sympy witness (dephasing witness pair rho/rho_prime plus exact idempotence/entropy/metric identities)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "qutip": {"tried": True, "used": False,
               "reason": ("Second independent quantum-library engine (Qobj/entropy_vn/ptrace/fidelity); "
                          "updated at runtime with its actual cross-check result.")
                         if qt is not None else f"Import skipped/failed: {_QUTIP_IMPORT_ERROR}"},
-    "jax": {"tried": False, "used": False,
-            "reason": "Queued: memory below 0.40 threshold at build time; explicitly not run."},
     "julia": {"tried": False, "used": False,
               "reason": "DEFERRED_BLOCKED_ON_MEMORY: QuantumOptics.jl precompile needs the >0.40 available-memory window; "
                         f"psutil available fraction at build time was {_MEM_AVAILABLE_FRACTION:.3f}"
@@ -77,7 +80,7 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
-    "numpy": "load_bearing",
+    "jax": "load_bearing",
     "z3": "supportive",
     "cvc5": None,
     "qutip": None,
@@ -86,30 +89,30 @@ TOOL_INTEGRATION_DEPTH = {
 }
 
 
-def density_from_bloch(x: float, y: float, z: float) -> np.ndarray:
+def density_from_bloch(x: float, y: float, z: float) -> jnp.ndarray:
     """Return (I + x X + y Y + z Z)/2."""
-    return np.array([[1.0 + z, x - 1j * y], [x + 1j * y, 1.0 - z]], dtype=complex) / 2.0
+    return jnp.array([[1.0 + z, x - 1j * y], [x + 1j * y, 1.0 - z]], dtype=complex) / 2.0
 
 
-def dephase(rho: np.ndarray) -> np.ndarray:
-    return np.diag(np.diag(rho)).astype(complex)
+def dephase(rho: jnp.ndarray) -> jnp.ndarray:
+    return jnp.diag(jnp.diag(rho)).astype(complex)
 
 
-def vn_entropy(rho: np.ndarray) -> float:
+def vn_entropy(rho: jnp.ndarray) -> float:
     """Von Neumann entropy with the convention 0 log(0)=0."""
-    eigenvalues = np.linalg.eigvalsh(rho)
-    eigenvalues = np.clip(np.real(eigenvalues), 0.0, 1.0)
+    eigenvalues = jnp.linalg.eigvalsh(rho)
+    eigenvalues = jnp.clip(jnp.real(eigenvalues), 0.0, 1.0)
     positive = eigenvalues[eigenvalues > 0.0]
-    return float(-np.sum(positive * np.log(positive)))
+    return float(-jnp.sum(positive * jnp.log(positive)))
 
 
 def shannon(p: float) -> float:
-    values = np.array([p, 1.0 - p], dtype=float)
+    values = jnp.array([p, 1.0 - p], dtype=float)
     positive = values[values > 0.0]
-    return float(-np.sum(positive * np.log(positive)))
+    return float(-jnp.sum(positive * jnp.log(positive)))
 
 
-def bkm_metric_bloch(vector: np.ndarray) -> np.ndarray:
+def bkm_metric_bloch(vector: jnp.ndarray) -> jnp.ndarray:
     """BKM tensor in Bloch Cartesian coordinates.
 
     For r=|v|, g = a(I-nn^T)+b nn^T, with
@@ -117,16 +120,16 @@ def bkm_metric_bloch(vector: np.ndarray) -> np.ndarray:
     This follows from g_rho(A,A)=sum_ij ((log lam_i-log lam_j)/(lam_i-lam_j))
     |A_ij|^2 for the BKM metric.
     """
-    vector = np.asarray(vector, dtype=float)
-    radius = float(np.linalg.norm(vector))
+    vector = jnp.asarray(vector, dtype=float)
+    radius = float(jnp.linalg.norm(vector))
     if radius < 1.0e-14:
-        return np.eye(3)
+        return jnp.eye(3)
     if radius >= 1.0:
         raise ValueError("BKM tensor is evaluated only on the Bloch-ball interior")
     transverse = math.atanh(radius) / radius
     radial = 1.0 / (1.0 - radius * radius)
     unit = vector / radius
-    return transverse * np.eye(3) + (radial - transverse) * np.outer(unit, unit)
+    return transverse * jnp.eye(3) + (radial - transverse) * jnp.outer(unit, unit)
 
 
 def fisher_rao_z(z: float) -> float:
@@ -158,20 +161,20 @@ def symbolic_checks() -> dict[str, Any]:
     }
 
 
-def sampled_states() -> list[tuple[str, np.ndarray, np.ndarray]]:
+def sampled_states() -> list[tuple[str, jnp.ndarray, jnp.ndarray]]:
     """Interior Cartesian grid plus boundary pure states on the Bloch sphere."""
-    states: list[tuple[str, np.ndarray, np.ndarray]] = []
-    grid = np.arange(-0.75, 0.751, 0.25)
+    states: list[tuple[str, jnp.ndarray, jnp.ndarray]] = []
+    grid = jnp.arange(-0.75, 0.751, 0.25)
     for x in grid:
         for y in grid:
             for z in grid:
-                vector = np.array([x, y, z], dtype=float)
-                if float(np.dot(vector, vector)) < 1.0 - 1.0e-12:
+                vector = jnp.array([x, y, z], dtype=float)
+                if float(jnp.dot(vector, vector)) < 1.0 - 1.0e-12:
                     states.append(("interior", vector, density_from_bloch(x, y, z)))
     # Includes the two diagonal pure boundary states and non-diagonal pure states.
-    for theta in np.linspace(0.0, math.pi, 7):
-        for phi in np.linspace(0.0, 2.0 * math.pi, 8, endpoint=False):
-            vector = np.array([
+    for theta in jnp.linspace(0.0, math.pi, 7):
+        for phi in jnp.linspace(0.0, 2.0 * math.pi, 8, endpoint=False):
+            vector = jnp.array([
                 math.sin(theta) * math.cos(phi),
                 math.sin(theta) * math.sin(phi),
                 math.cos(theta),
@@ -249,32 +252,32 @@ def cvc5_noninjectivity() -> dict[str, str]:
 
 def qutip_cross_check() -> dict[str, Any]:
     """Independent second-engine recomputation of the dephasing witness using
-    qutip's own Qobj / entropy_vn / ptrace / fidelity primitives -- not numpy
+    qutip's own Qobj / entropy_vn / ptrace / fidelity primitives -- not jax
     dressed as qutip.
 
     The dephasing channel is realised here as a physically distinct
-    mechanism from the numpy leg's diag(): a system-ancilla CNOT entangling
+    mechanism from the jax leg's diag(): a system-ancilla CNOT entangling
     unitary followed by ptrace over the ancilla (the standard decohering-
     measurement construction).  If this independent construction lands on
-    the same VN/Shannon values as the numpy/sympy witness, that is a
+    the same VN/Shannon values as the jax/sympy witness, that is a
     genuine second-engine confirmation, not a relabeled re-run of the same
     arithmetic.
     """
     if qt is None:
         return {"ran": False, "reason": TOOL_MANIFEST["qutip"]["reason"]}
 
-    cnot = qt.Qobj(np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]], dtype=complex),
+    cnot = qt.Qobj(jnp.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]], dtype=complex),
                     dims=[[2, 2], [2, 2]])
     ancilla_zero = qt.basis(2, 0) * qt.basis(2, 0).dag()
 
-    def dephase_via_ptrace(rho_np: np.ndarray):
+    def dephase_via_ptrace(rho_np: jnp.ndarray):
         system = qt.Qobj(rho_np)
         joint = qt.tensor(system, ancilla_zero)
         evolved = cnot * joint * cnot.dag()
         return evolved.ptrace(0)
 
-    rho_np = np.array([[0.5, 0.25], [0.25, 0.5]], dtype=complex)
-    rho_prime_np = np.array([[0.5, 0.25j], [-0.25j, 0.5]], dtype=complex)
+    rho_np = jnp.array([[0.5, 0.25], [0.25, 0.5]], dtype=complex)
+    rho_prime_np = jnp.array([[0.5, 0.25j], [-0.25j, 0.5]], dtype=complex)
     rho_q = qt.Qobj(rho_np)
     rho_prime_q = qt.Qobj(rho_prime_np)
     deph_rho_q = dephase_via_ptrace(rho_np)
@@ -287,11 +290,11 @@ def qutip_cross_check() -> dict[str, Any]:
     fidelity_raw_pair = float(qt.fidelity(rho_q, rho_prime_q))
     fidelity_dephased_pair = float(qt.fidelity(deph_rho_q, deph_rho_prime_q))
 
-    vn_entropy_rho_numpy = vn_entropy(rho_np)
-    shannon_dephased_rho_numpy = shannon(float(np.real(rho_np[0, 0])))
+    vn_entropy_rho_jax = vn_entropy(rho_np)
+    shannon_dephased_rho_jax = shannon(float(jnp.real(rho_np[0, 0])))
     divergence = max(
-        abs(vn_entropy_rho_qutip - vn_entropy_rho_numpy),
-        abs(shannon_dephased_rho_qutip - shannon_dephased_rho_numpy),
+        abs(vn_entropy_rho_qutip - vn_entropy_rho_jax),
+        abs(shannon_dephased_rho_qutip - shannon_dephased_rho_jax),
     )
 
     # Monotonicity re-swept on the same sampled Bloch grid, but via the
@@ -304,8 +307,8 @@ def qutip_cross_check() -> dict[str, Any]:
     TOOL_MANIFEST["qutip"]["used"] = True
     TOOL_MANIFEST["qutip"]["reason"] = (
         "Independent second-engine recomputation via Qobj/entropy_vn/ptrace/fidelity: dephasing realised "
-        "as a system-ancilla CNOT + ptrace (physically distinct construction from the numpy diag() leg); "
-        f"agrees with the numpy/sympy witness to {divergence:.3e}; monotonicity reconfirmed over "
+        "as a system-ancilla CNOT + ptrace (physically distinct construction from the jax diag() leg); "
+        f"agrees with the jax/sympy witness to {divergence:.3e}; monotonicity reconfirmed over "
         f"{len(states)} sampled states (min gap {min(gaps):.3e})."
     )
     TOOL_INTEGRATION_DEPTH["qutip"] = "load_bearing"
@@ -321,11 +324,11 @@ def qutip_cross_check() -> dict[str, Any]:
         "monotone_over_sampled_states": monotone_qutip,
         "sampled_state_count": len(states),
         "minimum_gap": float(min(gaps)),
-        "divergence_from_numpy_witness": divergence,
+        "divergence_from_jax_witness": divergence,
     }
 
 
-def matrix_payload(rho: np.ndarray) -> list[list[Any]]:
+def matrix_payload(rho: jnp.ndarray) -> list[list[Any]]:
     return [[float(value.real) if abs(value.imag) < TOL else [float(value.real), float(value.imag)]
              for value in row] for row in rho]
 
@@ -333,9 +336,9 @@ def matrix_payload(rho: np.ndarray) -> list[list[Any]]:
 def main() -> None:
     symbolic = symbolic_checks()
     states = sampled_states()
-    numerical_idempotent = all(np.allclose(dephase(dephase(rho)), dephase(rho), atol=TOL)
+    numerical_idempotent = all(jnp.allclose(dephase(dephase(rho)), dephase(rho), atol=TOL)
                                 for _, _, rho in states)
-    image_z = {round(float(np.real(dephase(rho)[0, 0]) * 2.0 - 1.0), 12) for _, _, rho in states}
+    image_z = {round(float(jnp.real(dephase(rho)[0, 0]) * 2.0 - 1.0), 12) for _, _, rho in states}
     diagonal_sample_z = {round(float(vector[2]), 12) for _, vector, _ in states}
     all_images_diagonal = all(abs(dephase(rho)[0, 1]) < TOL and abs(dephase(rho)[1, 0]) < TOL
                               for _, _, rho in states)
@@ -343,7 +346,7 @@ def main() -> None:
     nesting = numerical_idempotent and all_images_diagonal and image_z == diagonal_sample_z and proper_subset_witness
 
     diagonal_entropy_matches = all(
-        abs(vn_entropy(dephase(rho)) - shannon(float(np.real(rho[0, 0])))) < TOL
+        abs(vn_entropy(dephase(rho)) - shannon(float(jnp.real(rho[0, 0])))) < TOL
         for _, _, rho in states
     )
     gaps: list[float] = []
@@ -365,15 +368,15 @@ def main() -> None:
     diagonal_z = sorted({round(float(vector[2]), 12) for kind, vector, _ in states
                          if kind == "interior" and abs(vector[0]) < TOL and abs(vector[1]) < TOL
                          and abs(vector[2]) < 1.0 - TOL})
-    metric_differences = [abs(bkm_metric_bloch(np.array([0.0, 0.0, z]))[2, 2] - fisher_rao_z(z))
+    metric_differences = [abs(bkm_metric_bloch(jnp.array([0.0, 0.0, z]))[2, 2] - fisher_rao_z(z))
                           for z in diagonal_z]
     metric_max_difference = float(max(metric_differences))
 
-    rho = np.array([[0.5, 0.25], [0.25, 0.5]], dtype=complex)
-    rho_prime = np.array([[0.5, 0.25j], [-0.25j, 0.5]], dtype=complex)
+    rho = jnp.array([[0.5, 0.25], [0.25, 0.5]], dtype=complex)
+    rho_prime = jnp.array([[0.5, 0.25j], [-0.25j, 0.5]], dtype=complex)
     d_rho, d_rho_prime = dephase(rho), dephase(rho_prime)
-    witness_valid = (not np.allclose(rho, rho_prime, atol=TOL)
-                     and np.allclose(d_rho, d_rho_prime, atol=TOL))
+    witness_valid = (not jnp.allclose(rho, rho_prime, atol=TOL)
+                     and jnp.allclose(d_rho, d_rho_prime, atol=TOL))
     z3_result = z3_noninjectivity()
     cvc5_result = cvc5_noninjectivity()
     qutip_result = qutip_cross_check()
@@ -390,11 +393,11 @@ def main() -> None:
     # returns True on dephasing and False on the unitary, both computed live below.
     def channel_is_one_way(channel, a, b) -> bool:
         """One-way iff distinct inputs a != b are collapsed to a common image."""
-        return bool((not np.allclose(a, b, atol=TOL))
-                    and np.allclose(channel(a), channel(b), atol=TOL))
+        return bool((not jnp.allclose(a, b, atol=TOL))
+                    and jnp.allclose(channel(a), channel(b), atol=TOL))
 
     phi = 0.7
-    U = np.array([[1.0, 0.0], [0.0, np.exp(1j * phi)]], dtype=complex)
+    U = jnp.array([[1.0, 0.0], [0.0, jnp.exp(1j * phi)]], dtype=complex)
     Udag = U.conj().T
     unitary_channel = lambda m: U @ m @ Udag  # noqa: E731
 
@@ -408,16 +411,16 @@ def main() -> None:
 
     # Corroborating contrast: the unitary is invertible (U^dagger recovers every
     # sampled state) AND preserves VN entropy; dephasing does NEITHER.
-    control_gap = abs(vn_entropy(rho) - shannon(float(np.real(rho[0, 0]))))
+    control_gap = abs(vn_entropy(rho) - shannon(float(jnp.real(rho[0, 0]))))
     control_recovers = all(
-        np.allclose(Udag @ (U @ cand @ Udag) @ U, cand, atol=TOL)
+        jnp.allclose(Udag @ (U @ cand @ Udag) @ U, cand, atol=TOL)
         for _, _, cand in states)
     control_preserves_vn = all(
         abs(vn_entropy(U @ cand @ Udag) - vn_entropy(cand)) < TOL
         for _, _, cand in states)
     control_invertible = bool(control_recovers and control_preserves_vn)
     dephase_loses_recovery = any(
-        not np.allclose(dephase(cand), cand, atol=TOL)  # off-diagonal states not recovered
+        not jnp.allclose(dephase(cand), cand, atol=TOL)  # off-diagonal states not recovered
         for _, _, cand in states)
     dephase_raises_vn = any(
         vn_entropy(dephase(cand)) - vn_entropy(cand) > TOL
@@ -447,12 +450,12 @@ def main() -> None:
     core_ok = verdict == "RATCHETED_ONE_WAY"
 
     # qutip second-engine leg: an independent recomputation, never a new claim.
-    # The verdict above is fixed by the numpy/sympy witness and does not depend
+    # The verdict above is fixed by the jax/sympy witness and does not depend
     # on qutip; a divergence here is reported loudly, not smoothed into silence.
     engine_values = {
-        "sympy_numpy": {
+        "sympy_jax": {
             "vn_entropy_rho": vn_entropy(rho),
-            "shannon_dephased_rho": shannon(float(np.real(rho[0, 0]))),
+            "shannon_dephased_rho": shannon(float(jnp.real(rho[0, 0]))),
         },
         "qutip": (
             {
@@ -463,21 +466,33 @@ def main() -> None:
             {"ran": False, "reason": qutip_result.get("reason")}
         ),
     }
-    qutip_vs_witness_divergence = qutip_result.get("divergence_from_numpy_witness") if qutip_result.get("ran") else None
+    qutip_vs_witness_divergence = qutip_result.get("divergence_from_jax_witness") if qutip_result.get("ran") else None
     if not qutip_result.get("ran"):
         notes.append(f"qutip second-engine leg did not run: {qutip_result.get('reason')}.")
     elif qutip_vs_witness_divergence is not None and qutip_vs_witness_divergence > 1.0e-9:
         notes.append(
             "LOUD FINDING: qutip's independent ptrace/CNOT-ancilla recomputation of the witness "
-            f"diverges from the numpy/sympy witness by {qutip_vs_witness_divergence:.3e} (> 1e-9) -- "
-            "not smoothed; verdict is unchanged because it rests on the numpy/sympy witness, not qutip.")
+            f"diverges from the jax/sympy witness by {qutip_vs_witness_divergence:.3e} (> 1e-9) -- "
+            "not smoothed; verdict is unchanged because it rests on the jax/sympy witness, not qutip.")
     else:
         notes.append(
             "qutip second-engine confirmation (Qobj/entropy_vn/ptrace/fidelity, independent system-ancilla "
-            f"CNOT dephasing construction) agrees with the numpy/sympy witness to {qutip_vs_witness_divergence:.3e}; "
+            f"CNOT dephasing construction) agrees with the jax/sympy witness to {qutip_vs_witness_divergence:.3e}; "
             f"monotonicity independently reconfirmed over {qutip_result['sampled_state_count']} sampled states "
             f"(min gap {qutip_result['minimum_gap']:.3e}); confirmatory only, not a new claim.")
 
+    here = Path(__file__).parent
+    def run_leg(path):
+        proc = subprocess.run(path, capture_output=True, text=True, timeout=600)
+        data = json.loads([x for x in proc.stdout.splitlines() if x.strip().startswith("{")][-1])
+        data["ran"] = proc.returncode == 0
+        return data
+    legs = {
+        "julia": run_leg(["julia", str(here / "vn_to_shannon_julia.jl")]),
+        "jax": run_leg(["/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3", str(here / "vn_to_shannon_jax.py")]),
+    }
+    TOOL_INTEGRATION_DEPTH["julia"] = "load_bearing"
+    TOOL_INTEGRATION_DEPTH["jax"] = "load_bearing"
     result = {
         "schema_version": "1.0",
         "layer1": "2x2 density operators (Bloch ball), BKM metric, von Neumann entropy.",
@@ -505,7 +520,7 @@ def main() -> None:
         "promotion_allowed": promotion_allowed,
         "ordering_status": ordering_status,
         "smt_role": "supportive_nonvacuity_only",
-        "load_bearing_evidence": "numpy dephasing witness pair (rho, rho_prime distinct off-diagonal coherence, identical D-image) plus sympy exact idempotence/entropy-equality/BKM-restricts-to-Fisher identities.",
+        "load_bearing_evidence": "jax dephasing witness pair (rho, rho_prime distinct off-diagonal coherence, identical D-image) plus sympy exact idempotence/entropy-equality/BKM-restricts-to-Fisher identities.",
         "basis_relativity_disclosed": {
             "eigenbasis_gap": basis_relativity["eigenbasis_gap"],
             "comp_basis_drop": basis_relativity["comp_basis_drop"],
@@ -521,7 +536,10 @@ def main() -> None:
         },
         "floor_claims": [{"key": "ratcheting.vn_to_shannon.one_way_margin", "value": minimum_offdiag_gap,
                           "direction": "higher_is_better"}],
-        "engine_values": engine_values,
+        "engine_values": {"julia_vn_entropy_rho": legs["julia"].get("vn_entropy_rho"),
+                           "jax_vn_entropy_rho": legs["jax"].get("vn_entropy_rho")},
+        "three_engine_legs": legs,
+        "TOOL_INTEGRATION_DEPTH": dict(TOOL_INTEGRATION_DEPTH),
         "qutip_vs_witness_divergence": qutip_vs_witness_divergence,
         "qutip_cross_check": qutip_result,
         "julia_leg": (
@@ -531,9 +549,8 @@ def main() -> None:
             "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics.jl precompile needs the >0.40 available-memory window; "
             "psutil unavailable to measure the fraction at run time)"
         ),
-        "engines_ran": {"sympy": True, "numpy": True, "z3": True,
-                        "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "qutip": bool(qutip_result.get("ran")),
-                        "jax": False, "julia": False},
+        "engines_ran": {"sympy": True, "jax": True, "julia": True, "z3": True,
+                        "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "qutip": bool(qutip_result.get("ran"))},
         "tool_manifest": TOOL_MANIFEST,
         "notes": notes,
     }

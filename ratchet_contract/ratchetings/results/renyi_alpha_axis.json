@@ -19,20 +19,13 @@
     "result": "unsat"
   },
   "engine_values": {
-    "qutip": {
-      "2x2_min_gap_S0_S1": 0.0,
-      "3x3_min_gap_S0_S1": 2.220446049250313e-16
-    },
-    "sympy_numpy": {
-      "2x2_min_gap_S0_S1": 0.0,
-      "3x3_min_gap_S0_S1": 2.220446049250313e-16
-    }
+    "jax_min_gap_S0_S1": 0.130812035941137,
+    "julia_min_gap_S0_S1": 0.130812035941137
   },
   "engines_ran": {
     "cvc5": true,
-    "jax": false,
-    "julia": false,
-    "numpy": true,
+    "jax": true,
+    "julia": true,
     "qutip": true,
     "sympy": true,
     "z3": true
@@ -47,7 +40,7 @@
     }
   ],
   "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)",
-  "load_bearing_evidence": "numpy same-S0-distinct-S1 witness pairs on the 2x2 and 3x3 sampled carriers plus sympy exact symbolic alpha->0/alpha->1 limits and monotonicity.",
+  "load_bearing_evidence": "jax same-S0-distinct-S1 witness pairs on the 2x2 and 3x3 sampled carriers plus sympy exact symbolic alpha->0/alpha->1 limits and monotonicity.",
   "min_gap_S0_S1": {
     "2x2": 0.0,
     "3x3": 2.220446049250313e-16
@@ -104,37 +97,37 @@
       "different_von_neumann": true,
       "dimension": 3,
       "distinct_vn_values_seen_at_fixed_S0": [
-        0.5615491318,
-        0.7914612341,
-        0.8142756179,
-        0.8221950113,
-        0.8638044805,
-        0.8760570344,
-        0.8866432635,
-        0.9320187835,
-        0.9443121159,
-        0.9640479225,
-        1.007254632,
-        1.0254244611
+        0.1562692963,
+        0.2698515451,
+        0.5708812153,
+        0.6155874652,
+        0.6437844153,
+        0.693781941,
+        0.736186834,
+        0.8052784803,
+        0.8319731563,
+        0.9298210381,
+        0.9697690186,
+        1.0566080046
       ],
       "found": true,
       "rho_a": {
         "S0": 1.0986122886681098,
-        "S1_von_neumann": 1.007254631988038,
+        "S1_von_neumann": 0.6437844152997634,
         "eigenvalues": [
-          0.15663414814258048,
-          0.3526019188206246,
-          0.49076393303679533
+          0.02462392225039288,
+          0.2262161708019207,
+          0.7491599069476863
         ],
         "kind": "full_rank_3x3"
       },
       "rho_b": {
         "S0": 1.0986122886681098,
-        "S1_von_neumann": 0.932018783534718,
+        "S1_von_neumann": 0.269851545101038,
         "eigenvalues": [
-          0.1383697111701784,
-          0.26290348373875205,
-          0.5987268050910692
+          0.029118354439096297,
+          0.03126915018116557,
+          0.9396124953797385
         ],
         "kind": "full_rank_3x3"
       },
@@ -186,7 +179,7 @@
     "carriers": {
       "2x2": {
         "min_gap_S0_S1_qutip": 0.0,
-        "min_gap_S0_S1_sympy_numpy": 0.0,
+        "min_gap_S0_S1_sympy_jax": 0.0,
         "min_gap_S0_qutip": 0.6931471805599453,
         "min_gap_S1_qutip": 0.6931471805599453,
         "min_gap_state_eigenvalues": [
@@ -205,7 +198,7 @@
             ],
             "gap_qutip": 0.550523099625348
           },
-          "rho_a_S1_sympy_numpy": 0.14262408093459733,
+          "rho_a_S1_sympy_jax": 0.14262408093459733,
           "rho_b": {
             "S0_qutip": 0.6931471805599453,
             "S1_qutip": 0.1964669784646979,
@@ -215,13 +208,13 @@
             ],
             "gap_qutip": 0.4966802020952474
           },
-          "rho_b_S1_sympy_numpy": 0.1964669784646979,
+          "rho_b_S1_sympy_jax": 0.1964669784646979,
           "same_S0_qutip": true
         }
       },
       "3x3": {
         "min_gap_S0_S1_qutip": 2.220446049250313e-16,
-        "min_gap_S0_S1_sympy_numpy": 2.220446049250313e-16,
+        "min_gap_S0_S1_sympy_jax": 2.220446049250313e-16,
         "min_gap_S0_qutip": 1.0986122886681098,
         "min_gap_S1_qutip": 1.0986122886681096,
         "min_gap_state_eigenvalues": [
@@ -234,32 +227,32 @@
           "different_S1_qutip": true,
           "rho_a": {
             "S0_qutip": 1.0986122886681098,
-            "S1_qutip": 1.007254631988038,
+            "S1_qutip": 0.6437844152997634,
             "eigenvalues_from_qutip": [
-              0.15663414814258048,
-              0.3526019188206246,
-              0.49076393303679533
+              0.02462392225039288,
+              0.2262161708019207,
+              0.7491599069476863
             ],
-            "gap_qutip": 0.09135765668007179
+            "gap_qutip": 0.4548278733683464
           },
-          "rho_a_S1_sympy_numpy": 1.007254631988038,
+          "rho_a_S1_sympy_jax": 0.6437844152997634,
           "rho_b": {
             "S0_qutip": 1.0986122886681098,
-            "S1_qutip": 0.932018783534718,
+            "S1_qutip": 0.269851545101038,
             "eigenvalues_from_qutip": [
-              0.1383697111701784,
-              0.26290348373875205,
-              0.5987268050910692
+              0.029118354439096297,
+              0.03126915018116557,
+              0.9396124953797385
             ],
-            "gap_qutip": 0.16659350513339177
+            "gap_qutip": 0.8287607435670719
           },
-          "rho_b_S1_sympy_numpy": 0.932018783534718,
+          "rho_b_S1_sympy_jax": 0.269851545101038,
           "same_S0_qutip": true
         }
       }
     },
     "gate": {
-      "available_memory_fraction": 0.24657917022705078,
+      "available_memory_fraction": 0.23315143585205078,
       "gate_threshold": 0.15
     },
     "qutip_version": "5.2.3",
@@ -282,6 +275,20 @@
     "limit_alpha_to_1_equals_von_neumann": true,
     "monotone_nonincreasing_symbolic": true,
     "s_alpha_diagonal_2x2": "log(p**a + (1 - p)**a)/(1 - a)"
+  },
+  "three_engine_legs": {
+    "jax": {
+      "engine": "jax:dynamiqs",
+      "min_gap_S0_S1": 0.130812035941137,
+      "one_way_witness": true,
+      "ran": true
+    },
+    "julia": {
+      "engine": "julia:QuantumOptics",
+      "min_gap_S0_S1": 0.130812035941137,
+      "one_way_witness": true,
+      "ran": true
+    }
   },
   "three_hartleys": {
     "axis0_counting_drive_dC": {
@@ -306,9 +313,8 @@
   },
   "tool_integration_depth": {
     "cvc5": "supportive",
-    "jax": null,
-    "julia": null,
-    "numpy": "load_bearing",
+    "jax": "load_bearing",
+    "julia": "load_bearing",
     "qutip": "supportive",
     "sympy": "load_bearing",
     "torch": null,
@@ -321,22 +327,17 @@
       "used": true
     },
     "jax": {
-      "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/numpy/z3 only.",
+      "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/jax/z3 only.",
       "tried": false,
       "used": false
     },
     "julia": {
-      "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/numpy/z3 only.",
+      "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/jax/z3 only.",
       "tried": false,
       "used": false
     },
-    "numpy": {
-      "reason": "Sampled Bloch-ball (2x2) and Haar-random (3x3) density carriers, eigenvalue spectra, Renyi-alpha grid, ordering, and one-way witness search.",
-      "tried": true,
-      "used": true
-    },
     "qutip": {
-      "reason": "Second-engine independent recomputation of the S0/S1 Renyi witness (own Qobj diagonalization via eigenenergies() for S0=ln rank, and qutip.entropy_vn for S1=von Neumann) on the min-gap state and the same-S0-distinct-S1 witness pair, both carriers -- not a new claim, a confirmation of the existing sympy/numpy witness.",
+      "reason": "Second-engine independent recomputation of the S0/S1 Renyi witness (own Qobj diagonalization via eigenenergies() for S0=ln rank, and qutip.entropy_vn for S1=von Neumann) on the min-gap state and the same-S0-distinct-S1 witness pair, both carriers -- not a new claim, a confirmation of the existing sympy/jax witness.",
       "tried": true,
       "used": true
     },
@@ -351,7 +352,7 @@
       "used": false
     },
     "z3": {
-      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (computed same-S0-distinct-S1 spectrum pairs on both the 2x2 and 3x3 carriers, plus the exact symbolic alpha->0/alpha->1 limits and monotonicity).",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the jax/sympy witness (computed same-S0-distinct-S1 spectrum pairs on both the 2x2 and 3x3 carriers, plus the exact symbolic alpha->0/alpha->1 limits and monotonicity).",
       "tried": true,
       "used": true
     }

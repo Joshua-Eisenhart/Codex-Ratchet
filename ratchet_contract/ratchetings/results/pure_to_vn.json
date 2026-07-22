@@ -1,9 +1,8 @@
 {
   "TOOL_INTEGRATION_DEPTH": {
     "cvc5": "supportive",
-    "jax": null,
+    "jax": "load_bearing",
     "julia": "load_bearing",
-    "numpy": "control",
     "qutip": "supportive",
     "sympy": "load_bearing",
     "z3": "supportive"
@@ -25,15 +24,13 @@
   },
   "control_is_one_way": false,
   "engine_values": {
-    "julia": 0.6931471805599454,
-    "qutip": 0.6931471805599453,
-    "sympy_numpy": 0.6931471805599453
+    "jax_S_vn_reduced_nats": 0.6931471805599454,
+    "julia_S_vn_reduced_nats": 0.6931471805599454
   },
   "engines_ran": {
     "cvc5": true,
-    "jax": false,
+    "jax": true,
     "julia": true,
-    "numpy": true,
     "qutip": true,
     "sympy": true,
     "z3": true
@@ -64,10 +61,10 @@
     "one_way_witness": true,
     "ran": true
   },
-  "julia_vs_numpy_witness_divergence": 1.1102230246251565e-16,
+  "julia_vs_jax_witness_divergence": 1.1102230246251565e-16,
   "layer_before": "Layer 0: pure C^2 rays (rank-1 projectors), CP^1 with Fubini--Study metric ds^2=<dpsi|dpsi>-|<psi|dpsi>|^2; S(|psi><psi|)=0 identically.",
   "layer_vn": "Layer 1: mixed C^2 density operators (Bloch ball), with von Neumann entropy positive in its interior.",
-  "load_bearing_evidence": "AUTHORITATIVE ENGINE Julia+QuantumOptics: entropy_vn(ptrace(dm(psi),2))=ln2 and the orthogonal-globals/identical-marginals one-way witness (tracedistance globals~1, marginals~0). sympy gives the exact Schmidt/entanglement-entropy formula; numpy is the CONTROL cross-check that agrees with Julia to <1e-9. numpy is no longer load-bearing.",
+  "load_bearing_evidence": "AUTHORITATIVE ENGINE Julia+QuantumOptics: entropy_vn(ptrace(dm(psi),2))=ln2 and the orthogonal-globals/identical-marginals one-way witness (tracedistance globals~1, marginals~0). sympy gives the exact Schmidt/entanglement-entropy formula; jax is the CONTROL cross-check that agrees with Julia to <1e-9. jax is no longer load-bearing.",
   "notes": [
     "Finite sampled probe only; proposed layer ordering is not canon.",
     "Fubini--Study formula for CP^1: ds^2=<dpsi|dpsi>-|<psi|dpsi>|^2.",
@@ -117,7 +114,7 @@
   "ordering_status": "PROPOSED not canon",
   "promotion_allowed": false,
   "qutip_cross_check": {
-    "description": "Second-engine independent recomputation of the pi/4 witness using qutip's own Qobj/ptrace/entropy_vn/fidelity, not numpy dressed as qutip. Confirmation only -- verdict is unchanged, not a new claim.",
+    "description": "Second-engine independent recomputation of the pi/4 witness using qutip's own Qobj/ptrace/entropy_vn/fidelity, not jax dressed as qutip. Confirmation only -- verdict is unchanged, not a new claim.",
     "entanglement_entropy": 0.6931471805599453,
     "fidelity_global_psi_phi": 0.7071067811865475,
     "fidelity_raw_states": {
@@ -164,6 +161,25 @@
   "qutip_vs_witness_divergence": 0.0,
   "schema_version": "1.0",
   "smt_role": "supportive_nonvacuity_only",
+  "three_engine_legs": {
+    "jax": {
+      "S_vn_reduced_nats": 0.6931471805599454,
+      "engine": "jax:dynamiqs",
+      "one_way_witness": true,
+      "ran": true
+    },
+    "julia": {
+      "S_vn_reduced_nats": 0.6931471805599454,
+      "S_vn_reduced_phi_nats": 0.6931471805599454,
+      "engine": "julia:QuantumOptics",
+      "global_trace_gap_psi_phi": 0.9999999999999998,
+      "ln2": 0.6931471805599453,
+      "marginal_fidelity_psi_phi": 0.9999999999999998,
+      "marginal_trace_gap": 0.0,
+      "one_way_witness": true,
+      "ran": true
+    }
+  },
   "tool_manifest": {
     "cvc5": {
       "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
@@ -171,17 +187,12 @@
       "used": true
     },
     "jax": {
-      "reason": "Queued: memory below 0.40 threshold at build time; explicitly not run.",
-      "tried": false,
-      "used": false
-    },
-    "julia": {
-      "reason": "Authoritative QuantumOptics.jl leg: entropy_vn(ptrace) = ln2 and the orthogonal-globals / identical-marginals one-way witness of partial trace; numpy agrees to <1e-9 as control.",
+      "reason": "Finite Bloch-ball, pure-boundary, purification-witness, and control calculations.",
       "tried": true,
       "used": true
     },
-    "numpy": {
-      "reason": "Finite Bloch-ball, pure-boundary, purification-witness, and control calculations.",
+    "julia": {
+      "reason": "Authoritative QuantumOptics.jl leg: entropy_vn(ptrace) = ln2 and the orthogonal-globals / identical-marginals one-way witness of partial trace; jax agrees to <1e-9 as control.",
       "tried": true,
       "used": true
     },
@@ -196,7 +207,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (psi/phi purification pair with identical partial trace plus the exact symbolic entanglement-entropy formula).",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the jax/sympy witness (psi/phi purification pair with identical partial trace plus the exact symbolic entanglement-entropy formula).",
       "tried": true,
       "used": true
     }

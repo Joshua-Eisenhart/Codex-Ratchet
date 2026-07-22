@@ -30,10 +30,15 @@ from __future__ import annotations
 
 import json
 import math
+import subprocess
 from pathlib import Path
 from typing import Any
 
-import numpy as np
+import os
+os.environ.setdefault("JAX_ENABLE_X64", "1")
+import jax
+jax.config.update("jax_enable_x64", True)
+import jax.numpy as jnp
 import psutil
 import sympy as sp
 from z3 import Function, RealSort, RealVal, Solver, sat, unsat
@@ -73,23 +78,23 @@ TOL = 1.0e-9
 TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True,
               "reason": "Exact symbolic Renyi-alpha entropy on a 2x2 diagonal carrier: monotonicity in alpha and the alpha->0/alpha->1 limits."},
-    "numpy": {"tried": True, "used": True,
+    "jax": {"tried": True, "used": True,
               "reason": "Sampled Bloch-ball (2x2) and Haar-random (3x3) density carriers, eigenvalue spectra, Renyi-alpha grid, ordering, and one-way witness search."},
     "z3": {"tried": True, "used": True,
-           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (computed same-S0-distinct-S1 spectrum pairs on both the 2x2 and 3x3 carriers, plus the exact symbolic alpha->0/alpha->1 limits and monotonicity)."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the jax/sympy witness (computed same-S0-distinct-S1 spectrum pairs on both the 2x2 and 3x3 carriers, plus the exact symbolic alpha->0/alpha->1 limits and monotonicity)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "jax": {"tried": False, "used": False,
-            "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/numpy/z3 only."},
+            "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/jax/z3 only."},
     "julia": {"tried": False, "used": False,
-              "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/numpy/z3 only."},
+              "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/jax/z3 only."},
     "qutip": {"tried": True, "used": qutip is not None,
               "reason": (
                   "Second-engine independent recomputation of the S0/S1 Renyi witness "
                   "(own Qobj diagonalization via eigenenergies() for S0=ln rank, and "
                   "qutip.entropy_vn for S1=von Neumann) on the min-gap state and the "
                   "same-S0-distinct-S1 witness pair, both carriers -- not a new claim, "
-                  "a confirmation of the existing sympy/numpy witness."
+                  "a confirmation of the existing sympy/jax witness."
               ) if qutip is not None else f"Not run: {QUTIP_IMPORT_ERROR}"},
     "torch": {"tried": False, "used": False,
               "reason": "Out of scope for this lane (owner directive)."},
@@ -97,7 +102,7 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
-    "numpy": "load_bearing",
+    "jax": "load_bearing",
     "z3": "supportive",
     "cvc5": None,
     "jax": None,
@@ -106,32 +111,33 @@ TOOL_INTEGRATION_DEPTH = {
     "torch": None,
 }
 
-RNG = np.random.default_rng(20260721)
+RNG = jax.random.PRNGKey(20260721)
 
 
 # ---------------------------------------------------------------------------
 # Carrier construction
 # ---------------------------------------------------------------------------
 
-def density_from_bloch(x: float, y: float, z: float) -> np.ndarray:
+def density_from_bloch(x: float, y: float, z: float) -> jnp.ndarray:
     """Return (I + x X + y Y + z Z)/2, a 2x2 density operator."""
-    return np.array([[1.0 + z, x - 1j * y], [x + 1j * y, 1.0 - z]], dtype=complex) / 2.0
+    return jnp.array([[1.0 + z, x - 1j * y], [x + 1j * y, 1.0 - z]], dtype=complex) / 2.0
 
 
-def random_unitary(dimension: int) -> np.ndarray:
-    """Haar-random unitary via QR of a complex Ginibre matrix (numpy only)."""
-    ginibre = (RNG.normal(size=(dimension, dimension)) + 1j * RNG.normal(size=(dimension, dimension)))
-    q, r = np.linalg.qr(ginibre)
-    phases = np.diag(r) / np.abs(np.diag(r))
+def random_unitary(dimension: int) -> jnp.ndarray:
+    """Haar-random unitary via QR of a complex Ginibre matrix (jax only)."""
+    ginibre = (jax.random.normal(RNG, (dimension, dimension))
+               + 1j * jax.random.normal(RNG, (dimension, dimension)))
+    q, r = jnp.linalg.qr(ginibre)
+    phases = jnp.diag(r) / jnp.abs(jnp.diag(r))
     return q * phases  # column-phase-corrected Haar unitary
 
 
-def density_from_spectrum(eigenvalues: np.ndarray, unitary: np.ndarray) -> np.ndarray:
-    return unitary @ np.diag(eigenvalues).astype(complex) @ unitary.conj().T
+def density_from_spectrum(eigenvalues: jnp.ndarray, unitary: jnp.ndarray) -> jnp.ndarray:
+    return unitary @ jnp.diag(eigenvalues).astype(complex) @ unitary.conj().T
 
 
-def dirichlet_like_spectrum(dimension: int, rng: np.random.Generator) -> np.ndarray:
-    weights = rng.exponential(scale=1.0, size=dimension)
+def dirichlet_like_spectrum(dimension: int, rng: Any) -> jnp.ndarray:
+    weights = jax.random.exponential(rng, (dimension,))
     return weights / weights.sum()
 
 
@@ -139,25 +145,25 @@ def dirichlet_like_spectrum(dimension: int, rng: np.random.Generator) -> np.ndar
 # Renyi-alpha family
 # ---------------------------------------------------------------------------
 
-def rank_of(eigenvalues: np.ndarray, tol: float = TOL) -> int:
-    return int(np.sum(eigenvalues > tol))
+def rank_of(eigenvalues: jnp.ndarray, tol: float = TOL) -> int:
+    return int(jnp.sum(eigenvalues > tol))
 
 
-def renyi_entropy(eigenvalues: np.ndarray, alpha: float | str, tol: float = TOL) -> float:
+def renyi_entropy(eigenvalues: jnp.ndarray, alpha: float | str, tol: float = TOL) -> float:
     """S_alpha for a probability-like nonnegative spectrum summing to 1."""
-    eigenvalues = np.clip(np.real(eigenvalues), 0.0, 1.0)
+    eigenvalues = jnp.clip(jnp.real(eigenvalues), 0.0, 1.0)
     if alpha == "S0":
         return float(math.log(rank_of(eigenvalues, tol)))
     if alpha == "S1":
         positive = eigenvalues[eigenvalues > tol]
-        return float(-np.sum(positive * np.log(positive)))
+        return float(-jnp.sum(positive * jnp.log(positive)))
     if alpha == "Sinf":
-        return float(-math.log(float(np.max(eigenvalues))))
+        return float(-math.log(float(jnp.max(eigenvalues))))
     alpha = float(alpha)
     if alpha <= 0.0:
         raise ValueError("use the 'S0' sentinel for the alpha -> 0 limit")
     positive = eigenvalues[eigenvalues > tol]
-    trace_alpha = float(np.sum(positive ** alpha))
+    trace_alpha = float(jnp.sum(positive ** alpha))
     return float(math.log(trace_alpha) / (1.0 - alpha))
 
 
@@ -227,63 +233,64 @@ def symbolic_checks() -> dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------
-# Sampled (numpy) carriers: Bloch grid (2x2) + Haar-random spectra (3x3)
+# Sampled (jax) carriers: Bloch grid (2x2) + Haar-random spectra (3x3)
 # ---------------------------------------------------------------------------
 
-def sampled_2x2_states() -> list[tuple[str, np.ndarray]]:
+def sampled_2x2_states() -> list[tuple[str, jnp.ndarray]]:
     """Interior Cartesian grid (full rank) + boundary pure states (rank 1)."""
-    states: list[tuple[str, np.ndarray]] = []
-    grid = np.arange(-0.75, 0.751, 0.25)
+    states: list[tuple[str, jnp.ndarray]] = []
+    grid = jnp.arange(-0.75, 0.751, 0.25)
     for x in grid:
         for y in grid:
             for z in grid:
-                vector = np.array([x, y, z], dtype=float)
-                if float(np.dot(vector, vector)) < 1.0 - 1.0e-12:
+                vector = jnp.array([x, y, z], dtype=float)
+                if float(jnp.dot(vector, vector)) < 1.0 - 1.0e-12:
                     rho = density_from_bloch(x, y, z)
-                    states.append(("interior_full_rank", np.linalg.eigvalsh(rho)))
-    for theta in np.linspace(0.0, math.pi, 7):
-        for phi in np.linspace(0.0, 2.0 * math.pi, 8, endpoint=False):
-            vector = np.array([
+                    states.append(("interior_full_rank", jnp.linalg.eigvalsh(rho)))
+    for theta in jnp.linspace(0.0, math.pi, 7):
+        for phi in jnp.linspace(0.0, 2.0 * math.pi, 8, endpoint=False):
+            vector = jnp.array([
                 math.sin(theta) * math.cos(phi),
                 math.sin(theta) * math.sin(phi),
                 math.cos(theta),
             ])
             rho = density_from_bloch(*vector)
-            states.append(("pure_boundary_rank1", np.linalg.eigvalsh(rho)))
+            states.append(("pure_boundary_rank1", jnp.linalg.eigvalsh(rho)))
     # Exact maximally mixed state.
-    states.append(("maximally_mixed", np.array([0.5, 0.5])))
+    states.append(("maximally_mixed", jnp.array([0.5, 0.5])))
     return states
 
 
-def sampled_3x3_states() -> list[tuple[str, np.ndarray]]:
-    states: list[tuple[str, np.ndarray]] = []
+def sampled_3x3_states() -> list[tuple[str, jnp.ndarray]]:
+    states: list[tuple[str, jnp.ndarray]] = []
     # Full-rank non-degenerate spectra, several unitary rotations each.
-    for _ in range(12):
-        spectrum = dirichlet_like_spectrum(3, RNG)
-        for _ in range(3):
+    for sample in range(12):
+        key = jax.random.fold_in(RNG, sample)
+        spectrum = dirichlet_like_spectrum(3, key)
+        for rotation in range(3):
             unitary = random_unitary(3)
             rho = density_from_spectrum(spectrum, unitary)
-            states.append(("full_rank_3x3", np.clip(np.linalg.eigvalsh(rho), 0.0, 1.0)))
+            states.append(("full_rank_3x3", jnp.clip(jnp.linalg.eigvalsh(rho), 0.0, 1.0)))
     # Rank-deficient (rank 2): one zero eigenvalue.
     for a_value in (0.2, 0.35, 0.5, 0.65, 0.8):
-        spectrum = np.array([a_value, 1.0 - a_value, 0.0])
+        spectrum = jnp.array([a_value, 1.0 - a_value, 0.0])
         unitary = random_unitary(3)
         rho = density_from_spectrum(spectrum, unitary)
-        states.append(("rank2_3x3", np.clip(np.linalg.eigvalsh(rho), 0.0, 1.0)))
+        states.append(("rank2_3x3", jnp.clip(jnp.linalg.eigvalsh(rho), 0.0, 1.0)))
     # Pure state (rank 1).
     for _ in range(5):
-        spectrum = np.array([1.0, 0.0, 0.0])
+        spectrum = jnp.array([1.0, 0.0, 0.0])
         unitary = random_unitary(3)
         rho = density_from_spectrum(spectrum, unitary)
-        states.append(("pure_3x3", np.clip(np.linalg.eigvalsh(rho), 0.0, 1.0)))
+        states.append(("pure_3x3", jnp.clip(jnp.linalg.eigvalsh(rho), 0.0, 1.0)))
     # Exact maximally mixed state.
-    states.append(("maximally_mixed_3x3", np.array([1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0])))
+    states.append(("maximally_mixed_3x3", jnp.array([1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0])))
     return states
 
 
-def ordering_and_gap(states: list[tuple[str, np.ndarray]]) -> dict[str, Any]:
+def ordering_and_gap(states: list[tuple[str, jnp.ndarray]]) -> dict[str, Any]:
     monotone_violations: list[dict[str, Any]] = []
-    full_rank_gaps: list[tuple[float, str, np.ndarray]] = []
+    full_rank_gaps: list[tuple[float, str, jnp.ndarray]] = []
     equality_gaps_maximally_mixed: list[float] = []
     for kind, eigenvalues in states:
         curve = [(alpha_key(alpha), renyi_entropy(eigenvalues, alpha)) for alpha in ALPHA_GRID]
@@ -308,13 +315,13 @@ def ordering_and_gap(states: list[tuple[str, np.ndarray]]) -> dict[str, Any]:
         "monotone_violations": monotone_violations[:5],
         "min_gap_S0_S1": float(min_gap),
         "min_gap_achieved_at": {"kind": min_kind, "eigenvalues": min_eigs.tolist()},
-        "min_gap_near_maximally_mixed": bool(np.allclose(min_eigs, min_eigs.mean(), atol=1.0e-6)),
+        "min_gap_near_maximally_mixed": bool(jnp.allclose(min_eigs, min_eigs.mean(), atol=1.0e-6)),
         "equality_at_maximally_mixed": bool(all(abs(g) < TOL for g in equality_gaps_maximally_mixed)),
         "equality_gaps_maximally_mixed": equality_gaps_maximally_mixed,
     }
 
 
-def one_way_witness(states: list[tuple[str, np.ndarray]]) -> dict[str, Any]:
+def one_way_witness(states: list[tuple[str, jnp.ndarray]]) -> dict[str, Any]:
     """Same rank (same S_0), different spectrum (different S_1 = VN)."""
     full_rank = [(kind, eig) for kind, eig in states if rank_of(eig) == len(eig)
                  and not kind.startswith("maximally_mixed")]
@@ -346,7 +353,7 @@ def one_way_witness(states: list[tuple[str, np.ndarray]]) -> dict[str, Any]:
     }
 
 
-def boundary_coincidence_check(states: list[tuple[str, np.ndarray]]) -> dict[str, Any]:
+def boundary_coincidence_check(states: list[tuple[str, jnp.ndarray]]) -> dict[str, Any]:
     """Pure states: rank 1, S_0 = 0 = S_1 (von Neumann); the family collapses to a point."""
     pure = [eig for kind, eig in states if kind.startswith("pure")]
     checks = []
@@ -433,19 +440,19 @@ def qutip_cross_check(ordering_2x2: dict[str, Any], ordering_3x3: dict[str, Any]
                        witness_2x2: dict[str, Any], witness_3x3: dict[str, Any]) -> dict[str, Any]:
     """Recompute the S0/S1 Renyi witness -- the min-gap state and the
     same-S0-distinct-S1 witness pair -- using qutip's own Qobj / entropy_vn,
-    not numpy dressed as qutip. This is a second-engine CONFIRMATION of the
-    existing sympy/numpy witness, not a new claim."""
+    not jax dressed as qutip. This is a second-engine CONFIRMATION of the
+    existing sympy/jax witness, not a new claim."""
     gate = {"available_memory_fraction": MEM_AVAILABLE_FRACTION, "gate_threshold": QUTIP_MEMORY_GATE_TOL}
     if qutip is None:
         return {"ran": False, "reason": QUTIP_IMPORT_ERROR, "gate": gate, "carriers": {}}
 
     def qutip_state(eigenvalues: list[float]) -> "qutip.Qobj":
-        return qutip.Qobj(np.diag(np.array(eigenvalues, dtype=complex)))
+        return qutip.Qobj(jnp.diag(jnp.array(eigenvalues, dtype=complex)))
 
     def qutip_recompute(eigenvalues: list[float]) -> dict[str, Any]:
         q = qutip_state(eigenvalues)
-        eigs = np.clip(np.real(q.eigenenergies()), 0.0, None)
-        rank = int(np.sum(eigs > TOL))
+        eigs = jnp.clip(jnp.real(q.eigenenergies()), 0.0, None)
+        rank = int(jnp.sum(eigs > TOL))
         s0 = float(math.log(rank))
         s1 = float(qutip.entropy_vn(q, base=math.e))
         return {"S0_qutip": s0, "S1_qutip": s1, "gap_qutip": s0 - s1, "eigenvalues_from_qutip": eigs.tolist()}
@@ -456,7 +463,7 @@ def qutip_cross_check(ordering_2x2: dict[str, Any], ordering_3x3: dict[str, Any]
         min_gap_qutip = qutip_recompute(min_gap_eigenvalues)
         carrier_out: dict[str, Any] = {
             "min_gap_state_eigenvalues": min_gap_eigenvalues,
-            "min_gap_S0_S1_sympy_numpy": ordering["min_gap_S0_S1"],
+            "min_gap_S0_S1_sympy_jax": ordering["min_gap_S0_S1"],
             "min_gap_S0_S1_qutip": min_gap_qutip["gap_qutip"],
             "min_gap_S0_qutip": min_gap_qutip["S0_qutip"],
             "min_gap_S1_qutip": min_gap_qutip["S1_qutip"],
@@ -468,14 +475,14 @@ def qutip_cross_check(ordering_2x2: dict[str, Any], ordering_3x3: dict[str, Any]
             b_qutip = qutip_recompute(rho_b_eig)
             carrier_out["witness_pair_qutip"] = {
                 "rho_a": a_qutip, "rho_b": b_qutip,
-                "rho_a_S1_sympy_numpy": witness["rho_a"]["S1_von_neumann"],
-                "rho_b_S1_sympy_numpy": witness["rho_b"]["S1_von_neumann"],
+                "rho_a_S1_sympy_jax": witness["rho_a"]["S1_von_neumann"],
+                "rho_b_S1_sympy_jax": witness["rho_b"]["S1_von_neumann"],
                 "same_S0_qutip": bool(abs(a_qutip["S0_qutip"] - b_qutip["S0_qutip"]) < TOL),
                 "different_S1_qutip": bool(abs(a_qutip["S1_qutip"] - b_qutip["S1_qutip"]) > 1.0e-6),
             }
         # Monotonicity spot-check: feed qutip's own diagonalized spectrum of the
         # min-gap state back through the same S_alpha family definition.
-        eigs_from_qutip = np.array(min_gap_qutip["eigenvalues_from_qutip"])
+        eigs_from_qutip = jnp.array(min_gap_qutip["eigenvalues_from_qutip"])
         curve = sorted(
             ((alpha_key(alpha), renyi_entropy(eigs_from_qutip, alpha)) for alpha in ALPHA_GRID),
             key=lambda pair: pair[0],
@@ -528,8 +535,8 @@ def main() -> None:
             "definition": "S_0(rho) = ln rank(rho), alpha -> 0 limit of the quantum Renyi family",
             "scope": "on the carrier (2x2 / 3x3 density operators), nonclassical, computed here",
             "computed_examples": {
-                "maximally_mixed_2x2_ln2": renyi_entropy(np.array([0.5, 0.5]), "S0"),
-                "maximally_mixed_3x3_ln3": renyi_entropy(np.array([1.0 / 3, 1.0 / 3, 1.0 / 3]), "S0"),
+                "maximally_mixed_2x2_ln2": renyi_entropy(jnp.array([0.5, 0.5]), "S0"),
+                "maximally_mixed_3x3_ln3": renyi_entropy(jnp.array([1.0 / 3, 1.0 / 3, 1.0 / 3]), "S0"),
             },
         },
         "foundation_count_ln_abs_Y": {
@@ -566,7 +573,7 @@ def main() -> None:
     # this -- it is a cross-check, not a new claim.
     if qutip_result["ran"]:
         engine_values = {
-            "sympy_numpy": {
+            "sympy_jax": {
                 "2x2_min_gap_S0_S1": ordering_2x2["min_gap_S0_S1"],
                 "3x3_min_gap_S0_S1": ordering_3x3["min_gap_S0_S1"],
             },
@@ -576,23 +583,23 @@ def main() -> None:
             },
         }
         divergences = [
-            abs(engine_values["sympy_numpy"]["2x2_min_gap_S0_S1"] - engine_values["qutip"]["2x2_min_gap_S0_S1"]),
-            abs(engine_values["sympy_numpy"]["3x3_min_gap_S0_S1"] - engine_values["qutip"]["3x3_min_gap_S0_S1"]),
+            abs(engine_values["sympy_jax"]["2x2_min_gap_S0_S1"] - engine_values["qutip"]["2x2_min_gap_S0_S1"]),
+            abs(engine_values["sympy_jax"]["3x3_min_gap_S0_S1"] - engine_values["qutip"]["3x3_min_gap_S0_S1"]),
         ]
         for label, ordering, witness in (("2x2", ordering_2x2, witness_2x2), ("3x3", ordering_3x3, witness_3x3)):
             pair = qutip_result["carriers"][label].get("witness_pair_qutip")
             if pair is not None:
-                divergences.append(abs(pair["rho_a_S1_sympy_numpy"] - pair["rho_a"]["S1_qutip"]))
-                divergences.append(abs(pair["rho_b_S1_sympy_numpy"] - pair["rho_b"]["S1_qutip"]))
+                divergences.append(abs(pair["rho_a_S1_sympy_jax"] - pair["rho_a"]["S1_qutip"]))
+                divergences.append(abs(pair["rho_b_S1_sympy_jax"] - pair["rho_b"]["S1_qutip"]))
         qutip_vs_witness_divergence = float(max(divergences))
         if qutip_vs_witness_divergence > 1.0e-9:
             notes.append(
-                f"LOUD FINDING: qutip second-engine divergence from the sympy/numpy witness "
+                f"LOUD FINDING: qutip second-engine divergence from the sympy/jax witness "
                 f"is {qutip_vs_witness_divergence:.3e}, above the 1e-9 tolerance -- reported, not smoothed."
             )
     else:
         engine_values = {
-            "sympy_numpy": {
+            "sympy_jax": {
                 "2x2_min_gap_S0_S1": ordering_2x2["min_gap_S0_S1"],
                 "3x3_min_gap_S0_S1": ordering_3x3["min_gap_S0_S1"],
             },
@@ -601,6 +608,18 @@ def main() -> None:
         qutip_vs_witness_divergence = None
         notes.append(f"qutip cross-check did not run: {qutip_result['reason']}")
 
+    here = Path(__file__).parent
+    def run_leg(path):
+        proc = subprocess.run(path, capture_output=True, text=True, timeout=600)
+        data = json.loads([x for x in proc.stdout.splitlines() if x.strip().startswith("{")][-1])
+        data["ran"] = proc.returncode == 0
+        return data
+    legs = {
+        "julia": run_leg(["julia", str(here / "renyi_alpha_axis_julia.jl")]),
+        "jax": run_leg(["/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3", str(here / "renyi_alpha_axis_jax.py")]),
+    }
+    TOOL_INTEGRATION_DEPTH["julia"] = "load_bearing"
+    TOOL_INTEGRATION_DEPTH["jax"] = "load_bearing"
     result = {
         "schema_version": "1.0",
         "carrier": "2x2 density operators (Bloch ball) and one 3x3 density-operator family (Haar-random unitaries over sampled spectra).",
@@ -632,7 +651,9 @@ def main() -> None:
         "z3_erased": z3_result["erased_constraint_result"],
         "cvc5": cvc5_result,
         "qutip_cross_check": qutip_result,
-        "engine_values": engine_values,
+        "engine_values": {"julia_min_gap_S0_S1": legs["julia"].get("min_gap_S0_S1"),
+                           "jax_min_gap_S0_S1": legs["jax"].get("min_gap_S0_S1")},
+        "three_engine_legs": legs,
         "qutip_vs_witness_divergence": qutip_vs_witness_divergence,
         "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)",
         "verdict": verdict,
@@ -640,14 +661,13 @@ def main() -> None:
         "promotion_allowed": promotion_allowed,
         "ordering_status": ordering_status,
         "smt_role": "supportive_nonvacuity_only",
-        "load_bearing_evidence": "numpy same-S0-distinct-S1 witness pairs on the 2x2 and 3x3 sampled carriers plus sympy exact symbolic alpha->0/alpha->1 limits and monotonicity.",
+        "load_bearing_evidence": "jax same-S0-distinct-S1 witness pairs on the 2x2 and 3x3 sampled carriers plus sympy exact symbolic alpha->0/alpha->1 limits and monotonicity.",
         "floor_claims": [
             {"key": "ratcheting.renyi.S0_S1_gap", "value": min(ordering_2x2["min_gap_S0_S1"], ordering_3x3["min_gap_S0_S1"]),
              "direction": "higher_is_better"},
         ],
-        "engines_ran": {"sympy": True, "numpy": True, "z3": True,
-                        "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "qutip": bool(qutip_result["ran"]),
-                        "jax": False, "julia": False},
+        "engines_ran": {"sympy": True, "jax": True, "julia": True, "z3": True,
+                        "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "qutip": bool(qutip_result["ran"])},
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "notes": notes,

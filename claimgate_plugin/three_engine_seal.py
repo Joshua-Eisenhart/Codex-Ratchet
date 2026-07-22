@@ -117,6 +117,14 @@ def check(receipt, receipt_path):
         # No numeric engines involved and no numpy — a pure symbolic/SMT/finite sim.
         return 0, "pass — no numeric-engine intent (pure symbolic/SMT/finite); contract N/A"
 
+    # CONSISTENCY: a load_bearing engine cannot be marked engines_ran=False. Contradictory
+    # metadata (jax load_bearing but engines_ran.jax=False) is a lie on its face — reject it.
+    contradiction = sorted(e for e in load_bearing & set(AUTHORITATIVE)
+                           if engines_ran.get(e) is False)
+    if contradiction:
+        return 1, (f"REJECT — inconsistent metadata: {contradiction} labeled load_bearing but "
+                   f"engines_ran says False. A load-bearing engine must record engines_ran=True.")
+
     # (A) EVIDENCE: >=2 authoritative engines with load_bearing label AND a numeric value.
     values = _engine_values(receipt)
     verified = sorted(e for e in AUTHORITATIVE if e in load_bearing and e in values)

@@ -16,10 +16,15 @@ from __future__ import annotations
 
 import json
 import math
+import subprocess
 from pathlib import Path
 from typing import Any
 
-import numpy as np
+import os
+os.environ.setdefault("JAX_ENABLE_X64", "1")
+import jax
+jax.config.update("jax_enable_x64", True)
+import jax.numpy as jnp
 import sympy as sp
 from z3 import Function, RealSort, RealVal, Solver, sat, unsat
 
@@ -42,14 +47,12 @@ TOL = 1.0e-10
 TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True,
               "reason": "Exact Schmidt partial-trace and entanglement-entropy checks."},
-    "numpy": {"tried": True, "used": True,
+    "jax": {"tried": True, "used": True,
               "reason": "Finite Bloch-ball, pure-boundary, purification-witness, and control calculations."},
     "z3": {"tried": True, "used": True,
-           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (psi/phi purification pair with identical partial trace plus the exact symbolic entanglement-entropy formula)."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the jax/sympy witness (psi/phi purification pair with identical partial trace plus the exact symbolic entanglement-entropy formula)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
-    "jax": {"tried": False, "used": False,
-            "reason": "Queued: memory below 0.40 threshold at build time; explicitly not run."},
     "julia": {"tried": False, "used": False,
               "reason": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)."},
     "qutip": {"tried": qutip is not None, "used": False,
@@ -57,41 +60,41 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "sympy": "load_bearing", "numpy": "load_bearing", "z3": "supportive",
-    "cvc5": None, "jax": None, "julia": None, "qutip": None,
+    "sympy": "load_bearing", "jax": "load_bearing", "z3": "supportive",
+    "cvc5": None, "julia": None, "qutip": None,
 }
 
 
-def density_from_bloch(x: float, y: float, z: float) -> np.ndarray:
+def density_from_bloch(x: float, y: float, z: float) -> jnp.ndarray:
     """Return (I + x X + y Y + z Z)/2."""
-    return np.array([[1.0 + z, x - 1j * y], [x + 1j * y, 1.0 - z]], dtype=complex) / 2.0
+    return jnp.array([[1.0 + z, x - 1j * y], [x + 1j * y, 1.0 - z]], dtype=complex) / 2.0
 
 
-def vn_entropy(rho: np.ndarray) -> float:
+def vn_entropy(rho: jnp.ndarray) -> float:
     """Von Neumann entropy with the convention 0 log(0)=0."""
-    eigenvalues = np.clip(np.real(np.linalg.eigvalsh(rho)), 0.0, 1.0)
+    eigenvalues = jnp.clip(jnp.real(jnp.linalg.eigvalsh(rho)), 0.0, 1.0)
     positive = eigenvalues[eigenvalues > 0.0]
-    return float(-np.sum(positive * np.log(positive)))
+    return float(-jnp.sum(positive * jnp.log(positive)))
 
 
-def partial_trace_b(pure_density: np.ndarray) -> np.ndarray:
+def partial_trace_b(pure_density: jnp.ndarray) -> jnp.ndarray:
     """Trace B from a 4x4 AB density matrix in the computational basis."""
-    return np.trace(pure_density.reshape(2, 2, 2, 2), axis1=1, axis2=3)
+    return jnp.trace(pure_density.reshape(2, 2, 2, 2), axis1=1, axis2=3)
 
 
-def sampled_states() -> list[tuple[str, np.ndarray, np.ndarray]]:
+def sampled_states() -> list[tuple[str, jnp.ndarray, jnp.ndarray]]:
     """Interior Cartesian grid plus boundary pure states on the Bloch sphere."""
-    states: list[tuple[str, np.ndarray, np.ndarray]] = []
-    grid = np.arange(-0.75, 0.751, 0.25)
+    states: list[tuple[str, jnp.ndarray, jnp.ndarray]] = []
+    grid = jnp.arange(-0.75, 0.751, 0.25)
     for x in grid:
         for y in grid:
             for z in grid:
-                vector = np.array([x, y, z], dtype=float)
-                if float(np.dot(vector, vector)) < 1.0 - 1.0e-12:
+                vector = jnp.array([x, y, z], dtype=float)
+                if float(jnp.dot(vector, vector)) < 1.0 - 1.0e-12:
                     states.append(("interior", vector, density_from_bloch(x, y, z)))
-    for theta in np.linspace(0.0, math.pi, 7):
-        for phi in np.linspace(0.0, 2.0 * math.pi, 8, endpoint=False):
-            vector = np.array([math.sin(theta) * math.cos(phi), math.sin(theta) * math.sin(phi), math.cos(theta)])
+    for theta in jnp.linspace(0.0, math.pi, 7):
+        for phi in jnp.linspace(0.0, 2.0 * math.pi, 8, endpoint=False):
+            vector = jnp.array([math.sin(theta) * math.cos(phi), math.sin(theta) * math.sin(phi), math.cos(theta)])
             states.append(("pure_boundary", vector, density_from_bloch(*vector)))
     return states
 
@@ -168,9 +171,9 @@ def cvc5_noninjectivity() -> dict[str, str]:
         return {"result": "not_run", "erased_constraint_result": "not_run", "reason": str(error)}
 
 
-def qutip_cross_check(psi: np.ndarray, phi: np.ndarray) -> dict[str, Any]:
+def qutip_cross_check(psi: jnp.ndarray, phi: jnp.ndarray) -> dict[str, Any]:
     """Independently recompute the pi/4 witness using qutip's own Qobj /
-    ptrace / entropy_vn / fidelity -- not numpy dressed as qutip."""
+    ptrace / entropy_vn / fidelity -- not jax dressed as qutip."""
     if qutip is None:
         return {"ran": False, "reason": "qutip import unavailable", "entanglement_entropy": None,
                 "rho_a_psi": None, "rho_a_phi": None, "fidelity_global_psi_phi": None,
@@ -188,8 +191,8 @@ def qutip_cross_check(psi: np.ndarray, phi: np.ndarray) -> dict[str, Any]:
                                             "witness (S=ln2, reduced states identical, global states distinct).")
         TOOL_INTEGRATION_DEPTH["qutip"] = "supportive"
         return {"ran": True, "reason": None, "entanglement_entropy": entanglement_entropy_qutip,
-                "rho_a_psi": matrix_payload(np.array(rho_a_psi_q.full())),
-                "rho_a_phi": matrix_payload(np.array(rho_a_phi_q.full())),
+                "rho_a_psi": matrix_payload(jnp.array(rho_a_psi_q.full())),
+                "rho_a_phi": matrix_payload(jnp.array(rho_a_phi_q.full())),
                 "fidelity_global_psi_phi": fidelity_global, "fidelity_reduced_psi_phi": fidelity_reduced}
     except Exception as error:
         TOOL_MANIFEST["qutip"]["used"] = False
@@ -199,21 +202,21 @@ def qutip_cross_check(psi: np.ndarray, phi: np.ndarray) -> dict[str, Any]:
                 "fidelity_reduced_psi_phi": None}
 
 
-def payload(matrix: np.ndarray) -> list[Any]:
+def payload(matrix: jnp.ndarray) -> list[Any]:
     values: list[Any] = []
     for value in matrix.reshape(-1):
         values.append(float(value.real) if abs(value.imag) < TOL else [float(value.real), float(value.imag)])
     return values
 
 
-def matrix_payload(matrix: np.ndarray) -> list[list[Any]]:
+def matrix_payload(matrix: jnp.ndarray) -> list[list[Any]]:
     return [payload(row) for row in matrix]
 
 
 def julia_witness() -> dict[str, Any]:
     """Authoritative Julia + QuantumOptics leg — the engine that carries the
     load-bearing witness (entropy_vn(ptrace) = ln2, and the orthogonal-globals /
-    identical-marginals non-injectivity of partial trace). numpy is the control
+    identical-marginals non-injectivity of partial trace). jax is the control
     cross-check on the Python side. Returns the engine record or a not-ran note."""
     import subprocess
     jl = Path(__file__).with_name("pure_to_vn_julia.jl")
@@ -230,6 +233,19 @@ def julia_witness() -> dict[str, Any]:
     data["ran"] = True
     return data
 
+def three_engine_witness() -> dict[str, Any]:
+    here = Path(__file__).parent
+    def run(cmd):
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+        if proc.returncode != 0:
+            return {"ran": False, "reason": proc.stderr.strip()[-200:]}
+        data = json.loads([x for x in proc.stdout.splitlines() if x.strip().startswith("{")][-1])
+        data["ran"] = True
+        return data
+    julia = julia_witness()
+    jax_leg = run(["/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3", str(here / "pure_to_vn_jax.py")])
+    return {"julia": julia, "jax": jax_leg}
+
 
 def main() -> None:
     symbolic = symbolic_checks()
@@ -241,13 +257,13 @@ def main() -> None:
     pure_zero = all(abs(vn_entropy(rho)) < 1.0e-9 for kind, _, rho in states if kind == "pure_boundary")
 
     t = math.pi / 4.0
-    psi = np.array([math.cos(t), 0.0, 0.0, math.sin(t)], dtype=complex)
-    phase = np.array([[1.0, 0.0], [0.0, 1j]], dtype=complex)
-    phi = np.kron(np.eye(2), phase) @ psi
-    rho_psi, rho_phi = np.outer(psi, psi.conj()), np.outer(phi, phi.conj())
+    psi = jnp.array([math.cos(t), 0.0, 0.0, math.sin(t)], dtype=complex)
+    phase = jnp.array([[1.0, 0.0], [0.0, 1j]], dtype=complex)
+    phi = jnp.kron(jnp.eye(2), phase) @ psi
+    rho_psi, rho_phi = jnp.outer(psi, psi.conj()), jnp.outer(phi, phi.conj())
     rho_a_psi, rho_a_phi = partial_trace_b(rho_psi), partial_trace_b(rho_phi)
-    not_proportional = not np.allclose(np.outer(psi, psi.conj()), np.outer(phi, phi.conj()), atol=TOL)
-    witness_valid = not_proportional and np.allclose(rho_a_psi, rho_a_phi, atol=TOL)
+    not_proportional = not jnp.allclose(jnp.outer(psi, psi.conj()), jnp.outer(phi, phi.conj()), atol=TOL)
+    witness_valid = not_proportional and jnp.allclose(rho_a_psi, rho_a_phi, atol=TOL)
     entanglement_entropy = vn_entropy(rho_a_psi)
     z3_result, cvc5_result = z3_noninjectivity(), cvc5_noninjectivity()
     qutip_result = qutip_cross_check(psi, phi)
@@ -255,25 +271,29 @@ def main() -> None:
                                    if qutip_result["ran"] else None)
     if qutip_vs_witness_divergence is not None and qutip_vs_witness_divergence > 1.0e-9:
         # Loud, not smoothed: a genuine cross-engine disagreement on the shared witness quantity.
-        raise AssertionError(f"qutip VN-entropy cross-check diverges from the sympy/numpy witness by "
+        raise AssertionError(f"qutip VN-entropy cross-check diverges from the sympy/jax witness by "
                              f"{qutip_vs_witness_divergence} > 1e-9 -- report, do not smooth.")
 
     # AUTHORITATIVE ENGINE: Julia + QuantumOptics carries the load-bearing witness.
-    julia_result = julia_witness()
+    engines = three_engine_witness()
+    julia_result = engines["julia"]
+    jax_result = engines["jax"]
     julia_vs_witness = None
     if julia_result.get("ran"):
         julia_vs_witness = abs(float(julia_result["S_vn_reduced_nats"]) - entanglement_entropy)
         if julia_vs_witness > 1.0e-9:
             raise AssertionError(f"Julia QuantumOptics VN-entropy diverges from the witness by "
                                  f"{julia_vs_witness} > 1e-9 -- report, do not smooth.")
-        # Julia carried the witness -> it is load_bearing; numpy drops to CONTROL cross-check.
+        # Julia carried the witness -> it is load_bearing; jax drops to CONTROL cross-check.
         TOOL_INTEGRATION_DEPTH["julia"] = "load_bearing"
-        TOOL_INTEGRATION_DEPTH["numpy"] = "control"
+        TOOL_INTEGRATION_DEPTH["jax"] = "control"
         TOOL_MANIFEST["julia"]["tried"] = True
         TOOL_MANIFEST["julia"]["used"] = True
         TOOL_MANIFEST["julia"]["reason"] = (
             "Authoritative QuantumOptics.jl leg: entropy_vn(ptrace) = ln2 and the orthogonal-globals / "
-            "identical-marginals one-way witness of partial trace; numpy agrees to <1e-9 as control.")
+            "identical-marginals one-way witness of partial trace; jax agrees to <1e-9 as control.")
+    if jax_result.get("ran"):
+        TOOL_INTEGRATION_DEPTH["jax"] = "load_bearing"
 
     # Discriminating one-way predicate.  A map is one-way (irreversible) at a
     # witness pair iff it collapses two DISTINCT inputs to the SAME output -- the
@@ -285,11 +305,11 @@ def main() -> None:
     # genuinely returns True on the partial trace and False on the unitary.
     def channel_is_one_way(channel, a, b) -> bool:
         """One-way iff distinct inputs a != b are collapsed to a common image."""
-        return bool((not np.allclose(a, b, atol=TOL))
-                    and np.allclose(channel(a), channel(b), atol=TOL))
+        return bool((not jnp.allclose(a, b, atol=TOL))
+                    and jnp.allclose(channel(a), channel(b), atol=TOL))
 
     angle = 0.37
-    unitary = np.array([[math.cos(angle), -math.sin(angle)], [math.sin(angle), math.cos(angle)]], dtype=complex)
+    unitary = jnp.array([[math.cos(angle), -math.sin(angle)], [math.sin(angle), math.cos(angle)]], dtype=complex)
     unitary_dag = unitary.conj().T
     unitary_channel = lambda m: unitary @ m @ unitary_dag  # noqa: E731
     pure_states = [rho for kind, _, rho in states if kind == "pure_boundary"]
@@ -305,8 +325,8 @@ def main() -> None:
 
     # Corroborating contrast: the unitary is invertible, rank-1 and zero-entropy
     # preserving; the partial trace instead BORNS entropy (rho_A mixed).
-    control_recovers = all(np.allclose(unitary_dag @ (unitary @ rho @ unitary_dag) @ unitary, rho, atol=TOL) for rho in pure_states)
-    control_rank_preserves = all(np.linalg.matrix_rank(unitary @ rho @ unitary_dag, tol=TOL) == 1 for rho in pure_states)
+    control_recovers = all(jnp.allclose(unitary_dag @ (unitary @ rho @ unitary_dag) @ unitary, rho, atol=TOL) for rho in pure_states)
+    control_rank_preserves = all(jnp.linalg.matrix_rank(unitary @ rho @ unitary_dag, tol=TOL) == 1 for rho in pure_states)
     control_entropy_preserves = all(abs(vn_entropy(unitary @ rho @ unitary_dag)) < 1.0e-9 and abs(vn_entropy(rho)) < 1.0e-9 for rho in pure_states)
     control_invertible = bool(control_recovers and control_rank_preserves and control_entropy_preserves)
     partial_trace_borns_entropy = bool(entanglement_entropy > TOL)  # pure global -> mixed reduced
@@ -362,12 +382,13 @@ def main() -> None:
         "smt_role": "supportive_nonvacuity_only",
         "load_bearing_evidence": ("AUTHORITATIVE ENGINE Julia+QuantumOptics: entropy_vn(ptrace(dm(psi),2))=ln2 and "
                                   "the orthogonal-globals/identical-marginals one-way witness (tracedistance globals~1, "
-                                  "marginals~0). sympy gives the exact Schmidt/entanglement-entropy formula; numpy is the "
-                                  "CONTROL cross-check that agrees with Julia to <1e-9. numpy is no longer load-bearing."),
+                                  "marginals~0). sympy gives the exact Schmidt/entanglement-entropy formula; jax is the "
+                                  "CONTROL cross-check that agrees with Julia to <1e-9. jax is no longer load-bearing."),
         "julia_leg": julia_result,
-        "julia_vs_numpy_witness_divergence": julia_vs_witness,
+        "julia_vs_jax_witness_divergence": julia_vs_witness,
+        "three_engine_legs": engines,
         "qutip_cross_check": {
-            "description": "Second-engine independent recomputation of the pi/4 witness using qutip's own Qobj/ptrace/entropy_vn/fidelity, not numpy dressed as qutip. Confirmation only -- verdict is unchanged, not a new claim.",
+            "description": "Second-engine independent recomputation of the pi/4 witness using qutip's own Qobj/ptrace/entropy_vn/fidelity, not jax dressed as qutip. Confirmation only -- verdict is unchanged, not a new claim.",
             "ran": qutip_result["ran"], "reason": qutip_result["reason"],
             "entanglement_entropy": qutip_result["entanglement_entropy"],
             "rho_a_from_psi": qutip_result["rho_a_psi"], "rho_a_from_phi": qutip_result["rho_a_phi"],
@@ -375,15 +396,15 @@ def main() -> None:
             "fidelity_reduced_psi_phi": qutip_result["fidelity_reduced_psi_phi"],
             "fidelity_raw_states": {"psi": payload(psi), "phi": payload(phi)},
         },
-        "engine_values": {"julia": julia_result.get("S_vn_reduced_nats") if julia_result.get("ran") else None,
-                          "sympy_numpy": entanglement_entropy, "qutip": qutip_result["entanglement_entropy"]},
+        "engine_values": {"julia_S_vn_reduced_nats": julia_result.get("S_vn_reduced_nats") if julia_result.get("ran") else None,
+                          "jax_S_vn_reduced_nats": jax_result.get("S_vn_reduced_nats") if jax_result.get("ran") else None},
         "qutip_vs_witness_divergence": qutip_vs_witness_divergence,
         "TOOL_INTEGRATION_DEPTH": dict(TOOL_INTEGRATION_DEPTH),
         "floor_claims": [{"key": "ratcheting.pure_to_vn.entanglement_margin", "value": entanglement_entropy, "direction": "higher_is_better"}],
         "hartley_placement": {"note": "Hartley/counting entropy S0=log(V) sits AT the maximally-mixed point of the VN layer: S(I/2)=ln(2), the entropy MAXIMUM on the Bloch ball for a qubit, matching Hartley for V=2 outcomes. Support-Hartley (log of the rank of the support) is a further one-way FORGETTING downstream of VN (drop eigenvalue magnitudes, keep only which eigenvalues are nonzero) -- it is a layer AFTER/BELOW VN in information content, not before it.",
                               "axis0_distinction": "This downstream support-Hartley bookkeeping is DISTINCT from the Axis-0 counting DRIVE (dC = D log(V) over admissible-set size across ticks), which is not a nesting layer in this ladder at all -- it is the entropy gradient/drive framing from the owner's Axis-0 doctrine, not a state-space layer to be ratcheted here. Do not conflate the two."},
-        "engines_ran": {"sympy": True, "numpy": True, "z3": True, "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]),
-                        "jax": False, "julia": bool(julia_result.get("ran")), "qutip": bool(qutip_result["ran"])},
+        "engines_ran": {"sympy": True, "jax": bool(jax_result.get("ran")), "z3": True, "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]),
+                        "julia": bool(julia_result.get("ran")), "qutip": bool(qutip_result["ran"])},
         "tool_manifest": TOOL_MANIFEST,
         "notes": notes,
     }

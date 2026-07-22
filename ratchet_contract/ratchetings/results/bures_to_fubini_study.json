@@ -36,11 +36,24 @@
   "control_real_part_recoverable": true,
   "cvc5": "unsat",
   "cvc5_erased_constraint": "sat",
+  "engine_values": {
+    "qutip": {
+      "berry_at_pi_2": 0.5000000002097622,
+      "g_pp": 0.24999999426178476,
+      "g_tt": 0.24999999426178476
+    },
+    "sympy_numpy": {
+      "berry_at_pi_2": 0.5,
+      "g_pp": 0.25,
+      "g_tt": 0.25
+    }
+  },
   "engines_ran": {
     "cvc5": true,
     "jax": false,
     "julia": false,
     "numpy": true,
+    "qutip": true,
     "sympy": true,
     "z3": true
   },
@@ -51,6 +64,7 @@
       "value": 0.5
     }
   ],
+  "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)",
   "mixed_layer": "2x2 density operators (Bloch ball, 0<=r<1), Bures (fidelity/SLD) metric g^B; closed form ds_B^2=(1/4)[dr^2/(1-r^2)+r^2(dtheta^2+sin^2(theta)dphi^2)].",
   "mixed_layer_interior_closed_form_check": {
     "closed_form": "ds_B^2=(1/4)[dr^2/(1-r^2)+r^2(dtheta^2+sin^2(theta)dphi^2)]",
@@ -80,11 +94,24 @@
     "Bures via Hessian of the closed-form Uhlmann-fidelity Bures distance D_B^2=2(1-sqrt(F)), F=(1/2)(1+a.b+sqrt((1-|a|^2)(1-|b|^2))) (Nielsen-Chuang closed form for 2x2 density operators).",
     "Fubini-Study/Berry via Provost-Vallee Q=<dpsi|dpsi>-|<psi|dpsi>|^2 on |psi(theta,phi)>=cos(theta/2)|0>+e^{i phi}sin(theta/2)|1>.",
     "Computed proportionality constant (Bures at r=1 tangential vs Re(Q)) = 1.000000, not the frequently-cited 1/4 -- see module docstring HONESTY NOTE for the convention this depends on.",
-    "Berry irreducibility witness: psi(theta,phi) and its coordinatewise conjugate family chi=psi* share identical (g_tt,g_pp,g_tp) at every theta but have Berry curvature F and -F respectively."
+    "Berry irreducibility witness: psi(theta,phi) and its coordinatewise conjugate family chi=psi* share identical (g_tt,g_pp,g_tp) at every theta but have Berry curvature F and -F respectively.",
+    "qutip second-engine cross-check (qt.fidelity/ket2dm/entropy_vn/ptrace, independent of sympy/numpy): g_tt=0.24999999, g_pp=0.24999999 (witness 0.25 each), berry=0.5000000002 (witness 0.5); max divergence from the sympy/numpy witness = 5.738e-09, consistent with qutip's own FD-Hessian/matrix-sqrt-fidelity precision floor (not a mechanism disagreement) -- same order of magnitude as the primary leg's own reported max_dev. Verdict unchanged."
   ],
   "ordering_status": "PROPOSED not canon",
   "promotion_allowed": false,
   "pure_layer": "CP^1, the pure-state sphere (r=1), Fubini-Study metric g^FS and Berry curvature F via the Provost-Vallee quantum geometric tensor Q=g^FS+(i/2)F.",
+  "qutip_cross_check": {
+    "berry_at_theta0": 0.5000000002097622,
+    "entropy_vn_mixed_of_two_pure": 0.07889287171076027,
+    "entropy_vn_pure": 3.914394658089878e-16,
+    "g_pp": 0.24999999426178476,
+    "g_tp": 0.0,
+    "g_tt": 0.24999999426178476,
+    "ptrace_bell_full_s_vn": 1.3963630023519946e-15,
+    "ptrace_bell_reduced_s_vn": 0.6931471805599454,
+    "ran": true
+  },
+  "qutip_vs_witness_divergence": 5.738215236306132e-09,
   "schema_version": "1.0",
   "tool_manifest": {
     "cvc5": {
@@ -98,12 +125,17 @@
       "used": false
     },
     "julia": {
-      "reason": "Queued: memory usage above the 0.40 build-time threshold (heavy engines gated); explicitly not run.",
+      "reason": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23).",
       "tried": false,
       "used": false
     },
     "numpy": {
       "reason": "Finite-difference Bures-Hessian sweep over sampled Bloch-ball and pure-boundary points, plus the interior closed-form cross-check.",
+      "tried": true,
+      "used": true
+    },
+    "qutip": {
+      "reason": "Second-engine independent cross-check of the Bures-restricts-to-FS witness (qt.fidelity on Qobj density matrices) and the Berry curvature witness (Fukui-Hatsugai-Suzuki plaquette on Qobj kets via .overlap()); updated at runtime with actual computed values.",
       "tried": true,
       "used": true
     },

@@ -28,6 +28,11 @@ try:
 except ImportError:  # Recorded honestly below; z3 remains the primary proof leg.
     cvc5 = None
 
+try:
+    import qutip
+except ImportError:  # Recorded honestly below; qutip is a second-engine cross-check, not primary.
+    qutip = None
+
 
 classification = "tool_lego_fit_probe"
 promotion_allowed = False
@@ -46,12 +51,14 @@ TOOL_MANIFEST = {
     "jax": {"tried": False, "used": False,
             "reason": "Queued: memory below 0.40 threshold at build time; explicitly not run."},
     "julia": {"tried": False, "used": False,
-              "reason": "Queued: memory below 0.40 threshold at build time; explicitly not run."},
+              "reason": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)."},
+    "qutip": {"tried": qutip is not None, "used": False,
+              "reason": "Second-engine independent cross-check of the VN-entropy witness (light library, not a heavy engine-stack leg; not gated by the >0.40 threshold); updated at runtime with its actual result."},
 }
 
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing", "numpy": "load_bearing", "z3": "supportive",
-    "cvc5": None, "jax": None, "julia": None,
+    "cvc5": None, "jax": None, "julia": None, "qutip": None,
 }
 
 
@@ -161,6 +168,37 @@ def cvc5_noninjectivity() -> dict[str, str]:
         return {"result": "not_run", "erased_constraint_result": "not_run", "reason": str(error)}
 
 
+def qutip_cross_check(psi: np.ndarray, phi: np.ndarray) -> dict[str, Any]:
+    """Independently recompute the pi/4 witness using qutip's own Qobj /
+    ptrace / entropy_vn / fidelity -- not numpy dressed as qutip."""
+    if qutip is None:
+        return {"ran": False, "reason": "qutip import unavailable", "entanglement_entropy": None,
+                "rho_a_psi": None, "rho_a_phi": None, "fidelity_global_psi_phi": None,
+                "fidelity_reduced_psi_phi": None}
+    try:
+        psi_q = qutip.Qobj(psi.reshape(4, 1), dims=[[2, 2], [1, 1]])
+        phi_q = qutip.Qobj(phi.reshape(4, 1), dims=[[2, 2], [1, 1]])
+        rho_a_psi_q = (psi_q * psi_q.dag()).ptrace(0)
+        rho_a_phi_q = (phi_q * phi_q.dag()).ptrace(0)
+        entanglement_entropy_qutip = float(qutip.entropy_vn(rho_a_psi_q))  # base=e by default, matches ln(2) convention
+        fidelity_global = float(qutip.fidelity(psi_q, phi_q))
+        fidelity_reduced = float(qutip.fidelity(rho_a_psi_q, rho_a_phi_q))
+        TOOL_MANIFEST["qutip"]["used"] = True
+        TOOL_MANIFEST["qutip"]["reason"] = ("qutip.entropy_vn/ptrace/fidelity independently reproduced the pi/4 "
+                                            "witness (S=ln2, reduced states identical, global states distinct).")
+        TOOL_INTEGRATION_DEPTH["qutip"] = "supportive"
+        return {"ran": True, "reason": None, "entanglement_entropy": entanglement_entropy_qutip,
+                "rho_a_psi": matrix_payload(np.array(rho_a_psi_q.full())),
+                "rho_a_phi": matrix_payload(np.array(rho_a_phi_q.full())),
+                "fidelity_global_psi_phi": fidelity_global, "fidelity_reduced_psi_phi": fidelity_reduced}
+    except Exception as error:
+        TOOL_MANIFEST["qutip"]["used"] = False
+        TOOL_MANIFEST["qutip"]["reason"] = f"qutip available but cross-check did not run successfully: {error}"
+        return {"ran": False, "reason": str(error), "entanglement_entropy": None,
+                "rho_a_psi": None, "rho_a_phi": None, "fidelity_global_psi_phi": None,
+                "fidelity_reduced_psi_phi": None}
+
+
 def payload(matrix: np.ndarray) -> list[Any]:
     values: list[Any] = []
     for value in matrix.reshape(-1):
@@ -191,6 +229,13 @@ def main() -> None:
     witness_valid = not_proportional and np.allclose(rho_a_psi, rho_a_phi, atol=TOL)
     entanglement_entropy = vn_entropy(rho_a_psi)
     z3_result, cvc5_result = z3_noninjectivity(), cvc5_noninjectivity()
+    qutip_result = qutip_cross_check(psi, phi)
+    qutip_vs_witness_divergence = (abs(qutip_result["entanglement_entropy"] - entanglement_entropy)
+                                   if qutip_result["ran"] else None)
+    if qutip_vs_witness_divergence is not None and qutip_vs_witness_divergence > 1.0e-9:
+        # Loud, not smoothed: a genuine cross-engine disagreement on the shared witness quantity.
+        raise AssertionError(f"qutip VN-entropy cross-check diverges from the sympy/numpy witness by "
+                             f"{qutip_vs_witness_divergence} > 1e-9 -- report, do not smooth.")
 
     # Discriminating one-way predicate.  A map is one-way (irreversible) at a
     # witness pair iff it collapses two DISTINCT inputs to the SAME output -- the
@@ -278,10 +323,23 @@ def main() -> None:
         "ordering_status": ordering_status,
         "smt_role": "supportive_nonvacuity_only",
         "load_bearing_evidence": "numpy purification witness pair (psi, phi=(I tensor diag(1,i))psi distinct states, identical partial-trace rho_A) plus sympy exact Schmidt/entanglement-entropy formula and endpoint/generic-sample checks.",
+        "qutip_cross_check": {
+            "description": "Second-engine independent recomputation of the pi/4 witness using qutip's own Qobj/ptrace/entropy_vn/fidelity, not numpy dressed as qutip. Confirmation only -- verdict is unchanged, not a new claim.",
+            "ran": qutip_result["ran"], "reason": qutip_result["reason"],
+            "entanglement_entropy": qutip_result["entanglement_entropy"],
+            "rho_a_from_psi": qutip_result["rho_a_psi"], "rho_a_from_phi": qutip_result["rho_a_phi"],
+            "fidelity_global_psi_phi": qutip_result["fidelity_global_psi_phi"],
+            "fidelity_reduced_psi_phi": qutip_result["fidelity_reduced_psi_phi"],
+            "fidelity_raw_states": {"psi": payload(psi), "phi": payload(phi)},
+        },
+        "engine_values": {"sympy_numpy": entanglement_entropy, "qutip": qutip_result["entanglement_entropy"]},
+        "qutip_vs_witness_divergence": qutip_vs_witness_divergence,
+        "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)",
         "floor_claims": [{"key": "ratcheting.pure_to_vn.entanglement_margin", "value": entanglement_entropy, "direction": "higher_is_better"}],
         "hartley_placement": {"note": "Hartley/counting entropy S0=log(V) sits AT the maximally-mixed point of the VN layer: S(I/2)=ln(2), the entropy MAXIMUM on the Bloch ball for a qubit, matching Hartley for V=2 outcomes. Support-Hartley (log of the rank of the support) is a further one-way FORGETTING downstream of VN (drop eigenvalue magnitudes, keep only which eigenvalues are nonzero) -- it is a layer AFTER/BELOW VN in information content, not before it.",
                               "axis0_distinction": "This downstream support-Hartley bookkeeping is DISTINCT from the Axis-0 counting DRIVE (dC = D log(V) over admissible-set size across ticks), which is not a nesting layer in this ladder at all -- it is the entropy gradient/drive framing from the owner's Axis-0 doctrine, not a state-space layer to be ratcheted here. Do not conflate the two."},
-        "engines_ran": {"sympy": True, "numpy": True, "z3": True, "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "jax": False, "julia": False},
+        "engines_ran": {"sympy": True, "numpy": True, "z3": True, "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]),
+                        "jax": False, "julia": False, "qutip": bool(qutip_result["ran"])},
         "tool_manifest": TOOL_MANIFEST,
         "notes": notes,
     }
@@ -290,7 +348,8 @@ def main() -> None:
     output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({"result": str(output), "verdict": verdict, "max_abs_S_on_sampled_sphere": max_boundary_entropy,
                       "min_S_off_sphere": min_interior_entropy, "z3": z3_result["result"],
-                      "z3_erased_constraint": z3_result["erased_constraint_result"], "cvc5": cvc5_result["result"]}, indent=2))
+                      "z3_erased_constraint": z3_result["erased_constraint_result"], "cvc5": cvc5_result["result"],
+                      "qutip_ran": qutip_result["ran"], "qutip_vs_witness_divergence": qutip_vs_witness_divergence}, indent=2))
 
 
 if __name__ == "__main__":

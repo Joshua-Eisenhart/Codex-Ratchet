@@ -34,6 +34,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+import psutil
 import sympy as sp
 from z3 import Function, RealSort, RealVal, Solver, sat, unsat
 
@@ -41,6 +42,27 @@ try:
     import cvc5
 except ImportError:  # Recorded honestly below; z3 remains the primary proof leg.
     cvc5 = None
+
+# qutip is a genuine independent quantum library (light, ~200MB) used as a
+# second-engine cross-check on the S0/S1 Renyi witness -- NOT a heavy engine
+# stack (Julia/JAX/Torch), so the >0.40 memory gate does not apply; a lighter
+# sanity gate (>0.15 available) still guards against a starved machine.
+QUTIP_MEMORY_GATE_TOL = 0.15
+_vm = psutil.virtual_memory()
+MEM_AVAILABLE_FRACTION = _vm.available / _vm.total
+qutip = None
+QUTIP_IMPORT_ERROR: str | None = None
+if MEM_AVAILABLE_FRACTION > QUTIP_MEMORY_GATE_TOL:
+    try:
+        import qutip as _qutip_module
+        qutip = _qutip_module
+    except ImportError as error:  # Recorded honestly below; not a fatal condition.
+        QUTIP_IMPORT_ERROR = str(error)
+else:
+    QUTIP_IMPORT_ERROR = (
+        f"psutil available memory fraction {MEM_AVAILABLE_FRACTION:.3f} "
+        f"<= gate {QUTIP_MEMORY_GATE_TOL}; refused import, machine too starved."
+    )
 
 
 classification = "tool_lego_fit_probe"
@@ -61,8 +83,14 @@ TOOL_MANIFEST = {
             "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/numpy/z3 only."},
     "julia": {"tried": False, "used": False,
               "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/numpy/z3 only."},
-    "qutip": {"tried": False, "used": False,
-              "reason": "Out of scope for this lane (owner directive); density-carrier math done directly with numpy/sympy."},
+    "qutip": {"tried": True, "used": qutip is not None,
+              "reason": (
+                  "Second-engine independent recomputation of the S0/S1 Renyi witness "
+                  "(own Qobj diagonalization via eigenenergies() for S0=ln rank, and "
+                  "qutip.entropy_vn for S1=von Neumann) on the min-gap state and the "
+                  "same-S0-distinct-S1 witness pair, both carriers -- not a new claim, "
+                  "a confirmation of the existing sympy/numpy witness."
+              ) if qutip is not None else f"Not run: {QUTIP_IMPORT_ERROR}"},
     "torch": {"tried": False, "used": False,
               "reason": "Out of scope for this lane (owner directive)."},
 }
@@ -74,7 +102,7 @@ TOOL_INTEGRATION_DEPTH = {
     "cvc5": None,
     "jax": None,
     "julia": None,
-    "qutip": None,
+    "qutip": "supportive" if qutip is not None else None,
     "torch": None,
 }
 
@@ -398,6 +426,70 @@ def cvc5_noninjectivity() -> dict[str, str]:
 
 
 # ---------------------------------------------------------------------------
+# qutip second-engine cross-check (independent recomputation of the witness)
+# ---------------------------------------------------------------------------
+
+def qutip_cross_check(ordering_2x2: dict[str, Any], ordering_3x3: dict[str, Any],
+                       witness_2x2: dict[str, Any], witness_3x3: dict[str, Any]) -> dict[str, Any]:
+    """Recompute the S0/S1 Renyi witness -- the min-gap state and the
+    same-S0-distinct-S1 witness pair -- using qutip's own Qobj / entropy_vn,
+    not numpy dressed as qutip. This is a second-engine CONFIRMATION of the
+    existing sympy/numpy witness, not a new claim."""
+    gate = {"available_memory_fraction": MEM_AVAILABLE_FRACTION, "gate_threshold": QUTIP_MEMORY_GATE_TOL}
+    if qutip is None:
+        return {"ran": False, "reason": QUTIP_IMPORT_ERROR, "gate": gate, "carriers": {}}
+
+    def qutip_state(eigenvalues: list[float]) -> "qutip.Qobj":
+        return qutip.Qobj(np.diag(np.array(eigenvalues, dtype=complex)))
+
+    def qutip_recompute(eigenvalues: list[float]) -> dict[str, Any]:
+        q = qutip_state(eigenvalues)
+        eigs = np.clip(np.real(q.eigenenergies()), 0.0, None)
+        rank = int(np.sum(eigs > TOL))
+        s0 = float(math.log(rank))
+        s1 = float(qutip.entropy_vn(q, base=math.e))
+        return {"S0_qutip": s0, "S1_qutip": s1, "gap_qutip": s0 - s1, "eigenvalues_from_qutip": eigs.tolist()}
+
+    carriers: dict[str, Any] = {}
+    for label, ordering, witness in (("2x2", ordering_2x2, witness_2x2), ("3x3", ordering_3x3, witness_3x3)):
+        min_gap_eigenvalues = ordering["min_gap_achieved_at"]["eigenvalues"]
+        min_gap_qutip = qutip_recompute(min_gap_eigenvalues)
+        carrier_out: dict[str, Any] = {
+            "min_gap_state_eigenvalues": min_gap_eigenvalues,
+            "min_gap_S0_S1_sympy_numpy": ordering["min_gap_S0_S1"],
+            "min_gap_S0_S1_qutip": min_gap_qutip["gap_qutip"],
+            "min_gap_S0_qutip": min_gap_qutip["S0_qutip"],
+            "min_gap_S1_qutip": min_gap_qutip["S1_qutip"],
+        }
+        if witness.get("found"):
+            rho_a_eig = witness["rho_a"]["eigenvalues"]
+            rho_b_eig = witness["rho_b"]["eigenvalues"]
+            a_qutip = qutip_recompute(rho_a_eig)
+            b_qutip = qutip_recompute(rho_b_eig)
+            carrier_out["witness_pair_qutip"] = {
+                "rho_a": a_qutip, "rho_b": b_qutip,
+                "rho_a_S1_sympy_numpy": witness["rho_a"]["S1_von_neumann"],
+                "rho_b_S1_sympy_numpy": witness["rho_b"]["S1_von_neumann"],
+                "same_S0_qutip": bool(abs(a_qutip["S0_qutip"] - b_qutip["S0_qutip"]) < TOL),
+                "different_S1_qutip": bool(abs(a_qutip["S1_qutip"] - b_qutip["S1_qutip"]) > 1.0e-6),
+            }
+        # Monotonicity spot-check: feed qutip's own diagonalized spectrum of the
+        # min-gap state back through the same S_alpha family definition.
+        eigs_from_qutip = np.array(min_gap_qutip["eigenvalues_from_qutip"])
+        curve = sorted(
+            ((alpha_key(alpha), renyi_entropy(eigs_from_qutip, alpha)) for alpha in ALPHA_GRID),
+            key=lambda pair: pair[0],
+        )
+        values = [value for _, value in curve]
+        carrier_out["monotone_nonincreasing_qutip"] = bool(
+            all(later - earlier <= TOL for earlier, later in zip(values, values[1:]))
+        )
+        carriers[label] = carrier_out
+
+    return {"ran": True, "gate": gate, "qutip_version": qutip.__version__, "carriers": carriers}
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -418,6 +510,7 @@ def main() -> None:
 
     z3_result = z3_noninjectivity()
     cvc5_result = cvc5_noninjectivity()
+    qutip_result = qutip_cross_check(ordering_2x2, ordering_3x3, witness_2x2, witness_3x3)
 
     alpha_ordering_monotone = bool(ordering_2x2["monotone_nonincreasing"]
                                     and ordering_3x3["monotone_nonincreasing"]
@@ -468,6 +561,46 @@ def main() -> None:
         verdict = "FAILED"
         notes.append("At least one required finite-probe check failed; inspect check details.")
 
+    # Second-engine (qutip) confirmation of the shared witness quantity (the
+    # S0-S1 min-gap on each carrier); the verdict above does not depend on
+    # this -- it is a cross-check, not a new claim.
+    if qutip_result["ran"]:
+        engine_values = {
+            "sympy_numpy": {
+                "2x2_min_gap_S0_S1": ordering_2x2["min_gap_S0_S1"],
+                "3x3_min_gap_S0_S1": ordering_3x3["min_gap_S0_S1"],
+            },
+            "qutip": {
+                "2x2_min_gap_S0_S1": qutip_result["carriers"]["2x2"]["min_gap_S0_S1_qutip"],
+                "3x3_min_gap_S0_S1": qutip_result["carriers"]["3x3"]["min_gap_S0_S1_qutip"],
+            },
+        }
+        divergences = [
+            abs(engine_values["sympy_numpy"]["2x2_min_gap_S0_S1"] - engine_values["qutip"]["2x2_min_gap_S0_S1"]),
+            abs(engine_values["sympy_numpy"]["3x3_min_gap_S0_S1"] - engine_values["qutip"]["3x3_min_gap_S0_S1"]),
+        ]
+        for label, ordering, witness in (("2x2", ordering_2x2, witness_2x2), ("3x3", ordering_3x3, witness_3x3)):
+            pair = qutip_result["carriers"][label].get("witness_pair_qutip")
+            if pair is not None:
+                divergences.append(abs(pair["rho_a_S1_sympy_numpy"] - pair["rho_a"]["S1_qutip"]))
+                divergences.append(abs(pair["rho_b_S1_sympy_numpy"] - pair["rho_b"]["S1_qutip"]))
+        qutip_vs_witness_divergence = float(max(divergences))
+        if qutip_vs_witness_divergence > 1.0e-9:
+            notes.append(
+                f"LOUD FINDING: qutip second-engine divergence from the sympy/numpy witness "
+                f"is {qutip_vs_witness_divergence:.3e}, above the 1e-9 tolerance -- reported, not smoothed."
+            )
+    else:
+        engine_values = {
+            "sympy_numpy": {
+                "2x2_min_gap_S0_S1": ordering_2x2["min_gap_S0_S1"],
+                "3x3_min_gap_S0_S1": ordering_3x3["min_gap_S0_S1"],
+            },
+            "qutip": None,
+        }
+        qutip_vs_witness_divergence = None
+        notes.append(f"qutip cross-check did not run: {qutip_result['reason']}")
+
     result = {
         "schema_version": "1.0",
         "carrier": "2x2 density operators (Bloch ball) and one 3x3 density-operator family (Haar-random unitaries over sampled spectra).",
@@ -498,6 +631,10 @@ def main() -> None:
         "z3": z3_result,
         "z3_erased": z3_result["erased_constraint_result"],
         "cvc5": cvc5_result,
+        "qutip_cross_check": qutip_result,
+        "engine_values": engine_values,
+        "qutip_vs_witness_divergence": qutip_vs_witness_divergence,
+        "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)",
         "verdict": verdict,
         "classification": classification,
         "promotion_allowed": promotion_allowed,
@@ -509,7 +646,8 @@ def main() -> None:
              "direction": "higher_is_better"},
         ],
         "engines_ran": {"sympy": True, "numpy": True, "z3": True,
-                        "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "jax": False, "julia": False},
+                        "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "qutip": bool(qutip_result["ran"]),
+                        "jax": False, "julia": False},
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "notes": notes,
@@ -528,6 +666,8 @@ def main() -> None:
         "control_genuine": control_genuine,
         "z3": z3_result["result"], "z3_erased_constraint": z3_result["erased_constraint_result"],
         "cvc5": cvc5_result["result"], "cvc5_erased_constraint": cvc5_result["erased_constraint_result"],
+        "qutip_ran": qutip_result["ran"], "qutip_vs_witness_divergence": qutip_vs_witness_divergence,
+        "julia_leg": result["julia_leg"],
     }, indent=2))
 
 

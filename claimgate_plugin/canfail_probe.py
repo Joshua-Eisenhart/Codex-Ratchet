@@ -9,8 +9,11 @@ caught them by hand: patch the constant that severs a mechanism (GAMMA_BASE=0),
 re-run, see if the verdict moves. This tool does that severing DETERMINISTICALLY.
 
     canfail_probe <spec.json> [--json]
-        exit 0 = every claimed check flipped under some tested mutation
-        exit 3 = SUSPECT checks found (never flipped -> candidate by-construction)
+        exit 0 = every claimed check flipped under some non-crashing mutation
+        exit 1 = BY_CONSTRUCTION found (cleanly targeted, never flipped) — finding
+        exit 4 = SUSPECT found (targeting mutations ALL crashed — could not test;
+                 a crash must NOT downgrade a targeted check to a clean deck-gap)
+        exit 3 = UNTESTED only (no mutation reached the check) — genuine deck gap
         exit 2 = usage / IO error
 
 Honest framing (the whole point):
@@ -269,7 +272,8 @@ def main():
     if not muts: die("spec has no mutations — a can-fail probe needs a mutation deck that severs each claimed mechanism")
 
     flips = {k: [] for k in base}
-    targeted = {k: False for k in base}   # was this check named as a target of a mutation that ACTUALLY RAN?
+    targeted = {k: False for k in base}         # named target of a mutation that ran CLEANLY (no crash)
+    crashed_target = {k: False for k in base}   # named target of a mutation that CRASHED (could not test)
     mlog = []
     for mut in muts:
         is_defunc = "defunc" in mut
@@ -285,40 +289,62 @@ def main():
         else:
             entry = {"mutation": mut["name"], "set": mut["set"], "targets": mut.get("targets", [])}
         if mutated is None:
-            # a crash is not evidence about any check; record and move on, do not mark targeted
+            # a crash is NOT evidence a check can fail — but it must NOT downgrade a
+            # targeted check to a clean UNTESTED deck-gap (the crash-hides-finding hole:
+            # a builder could pick a crashing sever value to bury a by-construction check).
+            # Record the targeting independent of the crash so an all-crashed target
+            # surfaces as SUSPECT, not clean UNTESTED. This is a distinct third state from
+            # `targeted` (clean run): a crashed target was never given a clean chance to flip.
             entry["crashed"] = err
             entry["flipped"] = []
+            entry["crash_targets"] = mut.get("targets", [])
+            for k in mut.get("targets", []):
+                if k in crashed_target: crashed_target[k] = True
             mlog.append(entry)
             continue
         for k in mut.get("targets", []):
-            if k in targeted: targeted[k] = True   # only after a successful run
+            if k in targeted: targeted[k] = True   # only after a successful (non-crashing) run
         changed = [k for k in base if k in mutated and mutated[k] != base[k]]
         for k in changed: flips[k].append(mut["name"])
         entry["missed_consts"] = missed
         entry["flipped"] = changed
         mlog.append(entry)
 
-    # three honest classes — the corpus workflow flagged that lumping them lies:
-    #   CAN_FAIL          : flipped under some mutation (proven genuine)
-    #   BY_CONSTRUCTION   : a mutation TARGETED it (claims to sever its mechanism) yet it never flipped
-    #   UNTESTED          : no mutation targeted it — deck gap, NOT a verdict on the check
+    # four honest classes — the corpus workflow flagged that lumping them lies, and a
+    # crash must not let a targeted check masquerade as a mere deck-gap:
+    #   CAN_FAIL          : flipped under some NON-crashing mutation (proven genuine)
+    #   BY_CONSTRUCTION   : a CLEANLY-RUN mutation TARGETED it yet it never flipped (real finding)
+    #   SUSPECT           : every mutation that TARGETED it CRASHED (never got a clean chance
+    #                       to flip) -> could not test; must NOT be cleared as a deck-gap, and
+    #                       must NOT be scored as an honest all_pass. A check must flip under a
+    #                       non-crashing mutation before it is cleared.
+    #   UNTESTED          : no mutation targeted it at all — genuine deck gap, NOT a verdict
     can_fail = [k for k, v in flips.items() if v]
     by_construction = [k for k, v in flips.items() if not v and targeted[k]]
-    untested = [k for k, v in flips.items() if not v and not targeted[k]]
+    # suspect = never flipped, never cleanly targeted, but a crashing mutation DID target it
+    suspect = [k for k, v in flips.items() if not v and not targeted[k] and crashed_target[k]]
+    untested = [k for k, v in flips.items() if not v and not targeted[k] and not crashed_target[k]]
     report = {
         "tool": "canfail_probe", "sim": spec["sim"],
         "mutations_tried": [m["name"] for m in muts],
         "n_checks": len(base),
         "can_fail": can_fail,
-        "by_construction": by_construction,           # targeted-but-never-flipped = real finding
+        "by_construction": by_construction,           # cleanly-targeted-but-never-flipped = real finding
+        "suspect": suspect,                            # targeting mutations all crashed = could not test
         "untested": untested,                          # deck did not reach the mechanism
         "can_fail_ratio": round(len(can_fail) / len(base), 3) if base else 0.0,
-        "honest_all_pass_count": f"{len(can_fail)} proven can-fail, {len(by_construction)} by-construction, {len(untested)} untested, of {len(base)} claimed",
+        "honest_all_pass_count": f"{len(can_fail)} proven can-fail, {len(by_construction)} by-construction, {len(suspect)} suspect (targeting mutation crashed), {len(untested)} untested, of {len(base)} claimed",
         "per_mutation": mlog,
     }
     print(json.dumps(report, indent=1))
-    # exit 1 iff a by-construction check was PROVEN (targeted, never flipped); untested alone is exit 3 (incomplete), clean is 0
-    sys.exit(1 if by_construction else (3 if untested else 0))
+    # exit priority (strictest first): a proven by-construction finding is exit 1; a SUSPECT
+    # (crash hid the test) is a distinct exit 4 that is NOT a clean deck-gap and NOT cleared;
+    # untested-only is the deck-gap exit 3; all clean is 0.
+    if by_construction:
+        sys.exit(1)
+    if suspect:
+        sys.exit(4)
+    sys.exit(3 if untested else 0)
 
 if __name__ == "__main__":
     main()

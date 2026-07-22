@@ -92,17 +92,39 @@ function main() {
   }
 
   const failures = results.filter((r) => !r.ok);
+
+  // Trust anchor: the held-out set (not just the visible cases) must be
+  // two-sided — at least one PASS (expect_exit 0) and at least one REJECT
+  // (expect_exit != 0) case. Held-out that is absent, empty, or one-sided
+  // (all-pass or all-reject) cannot rule out a gate that structurally
+  // always says PASS (or always says FAIL) on cases it never saw curated —
+  // that gate must never be stamped a clean GATE_ACCEPTED.
+  const heldoutResults = results.filter((r) => r.heldout);
+  const heldoutExits = new Set(heldoutResults.map((r) => r.expect));
+  const heldoutTwoSided = heldoutResults.length > 0 && heldoutExits.has(0) && [...heldoutExits].some((e) => e !== 0);
+  const trusted = Boolean(heldoutDir) && heldoutTwoSided;
+
+  let verdict;
+  if (failures.length) {
+    verdict = "GATE_REJECTED";
+  } else if (trusted) {
+    verdict = "GATE_ACCEPTED";
+  } else {
+    verdict = "GATE_UNTRUSTED"; // all cases passed, but the held-out trust anchor is missing or one-sided
+  }
+
   const report = {
     tool: "gatecheck",
     gate: manifest.gate_name || manifestPath,
     cases_run: results.length,
-    heldout_run: results.filter((r) => r.heldout).length,
-    verdict: failures.length ? "GATE_REJECTED" : "GATE_ACCEPTED",
+    heldout_run: heldoutResults.length,
+    trusted,
+    verdict,
     failures,
     results,
   };
   process.stdout.write(JSON.stringify(report, null, 1) + "\n");
-  process.exit(failures.length ? 1 : 0);
+  process.exit(verdict === "GATE_ACCEPTED" ? 0 : verdict === "GATE_UNTRUSTED" ? 3 : 1);
 }
 
 main();

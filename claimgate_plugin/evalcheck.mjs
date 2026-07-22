@@ -41,7 +41,9 @@
  */
 
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
+import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
 
 function die(msg, code = 2) {
@@ -64,9 +66,73 @@ function parseVerdict(spec, exitCode, stdout) {
   return "unparseable";
 }
 
+// --selftest: prove blind scoring is ENFORCED, not asserted. Build a truth-leaking
+// deck (artifacts named clean1/dirty1.json) and two judges: a path-only EXPLOIT
+// (classify by /dirty/ in the path, never opens the file) and a genuine
+// content-reading judge. The exploit MUST now fail calibration; the content judge
+// MUST still calibrate. Exit 0 only if both hold.
+function selftest() {
+  const td = fs.mkdtempSync(path.join(os.tmpdir(), "evalcheck-selftest-"));
+  const self = process.argv[1];
+  const write = (n, s) => fs.writeFileSync(path.join(td, n), s);
+  try {
+    // truth-leaking filenames + a readable truth-labels file in the deck dir
+    write("clean1.json", '{"tool":"a","verdict":"INTEGRATED","pass":true}\n');
+    write("dirty1.json", '{"tool":"c","verdict":"INTEGRATED","pass":false}\n');
+    write("deck_honest.json", '{"clean1.json":"clean","dirty1.json":"dirty"}\n');
+    // EXPLOIT judge: never reads the file; truth would leak via path or cwd
+    write("pathjudge.mjs",
+      'import fs from "node:fs";\n' +
+      'const p = process.argv[2];\n' +
+      '// try both leak channels: filename token and the deck truth file in cwd\n' +
+      'if (/dirty/.test(p)) process.exit(1);\n' +
+      'try { const t = JSON.parse(fs.readFileSync("deck_honest.json","utf8"));\n' +
+      '  for (const k of Object.keys(t)) if (p.endsWith(k) && t[k]==="dirty") process.exit(1);\n' +
+      '} catch {}\n' +
+      'process.exit(0);\n');
+    // genuine judge: opens the artifact and checks its content
+    write("contentjudge.mjs",
+      'import fs from "node:fs";\n' +
+      'const r = JSON.parse(fs.readFileSync(process.argv[2],"utf8"));\n' +
+      'process.exit(((r.verdict==="INTEGRATED"||r.verdict==="PASS") && r.pass!==true) ? 1 : 0);\n');
+    const mkDeck = (script) => JSON.stringify({
+      name: "selftest",
+      evaluator: { cmd: "node", args: [script, "{artifact}"] },
+      verdict: { from: "exit_code" }, trials: 3,
+      cases: [
+        { id: "clean-1", artifact: "clean1.json", truth: "clean" },
+        { id: "dirty-1", artifact: "dirty1.json", truth: "dirty", planted: "INTEGRATED with pass:false" },
+      ],
+    });
+    write("deck_exploit.json", mkDeck("pathjudge.mjs"));
+    write("deck_content.json", mkDeck("contentjudge.mjs"));
+    const run = (deckName) => spawnSync(process.execPath, [self, path.join(td, deckName)], { encoding: "utf8" });
+    const exploit = run("deck_exploit.json");
+    const content = run("deck_content.json");
+    const exploitReport = (() => { try { return JSON.parse(exploit.stdout); } catch { return {}; } })();
+    const contentReport = (() => { try { return JSON.parse(content.stdout); } catch { return {}; } })();
+    const exploitBlinded = exploit.status === 1 && exploitReport.verdict === "EVALUATOR_REJECTED"
+      && (exploitReport.rates.fabrication_rate > 0 || exploitReport.rates.miss_rate > 0);
+    const contentCalibrates = content.status === 0 && contentReport.verdict === "EVALUATOR_CALIBRATED";
+    const out = {
+      tool: "evalcheck", mode: "selftest",
+      exploit_now_fails: exploitBlinded,
+      exploit_verdict: exploitReport.verdict, exploit_rates: exploitReport.rates,
+      content_judge_calibrates: contentCalibrates,
+      content_verdict: contentReport.verdict,
+      pass: exploitBlinded && contentCalibrates,
+    };
+    process.stdout.write(JSON.stringify(out, null, 1) + "\n");
+    process.exit(out.pass ? 0 : 1);
+  } finally {
+    try { fs.rmSync(td, { recursive: true, force: true }); } catch {}
+  }
+}
+
 function main() {
   const deckPath = process.argv[2];
-  if (!deckPath) die("usage: evalcheck <deck.json>");
+  if (deckPath === "--selftest") return selftest();
+  if (!deckPath) die("usage: evalcheck <deck.json> | --selftest");
   let deck;
   try { deck = JSON.parse(fs.readFileSync(deckPath, "utf8")); } catch (e) { die(`bad deck: ${e.message}`); }
 
@@ -88,21 +154,53 @@ function main() {
   const baseDir = path.dirname(path.resolve(deckPath));
   const perCase = [];
 
-  for (const c of cases) {
-    const artifact = path.resolve(baseDir, c.artifact);
-    if (!fs.existsSync(artifact)) die(`case ${c.id}: artifact not found at ${artifact}`);
-    const verdicts = [];
-    for (let t = 0; t < trials; t++) {
-      const args = ev.args.map((a) => a.replaceAll("{artifact}", artifact).replaceAll("{trial}", String(t)));
-      const r = spawnSync(ev.cmd, args, { cwd: baseDir, timeout: ev.timeout_ms ?? 300000, encoding: "utf8" });
-      if (r.error) { verdicts.push("error"); continue; }
-      verdicts.push(parseVerdict(deck.verdict, r.status, r.stdout || ""));
+  // BLIND SCORING (enforced, not asserted). The judge must never learn a case's
+  // ground truth. Two channels leaked it before: (1) the artifact PATH carried
+  // the label — deck files are named clean1/dirty1.json, so a judge that only did
+  // /dirty/.test(path) scored perfectly without ever opening a file; (2) the judge
+  // ran with cwd=baseDir, where deck_honest.json (the truth labels) is readable.
+  // Fix (mirrors canfail_probe's isolation): each case runs in its OWN temp cwd
+  // that contains ONLY a copy of the artifact under a random uuid name — no
+  // clean/dirty token, no deck dir, no deck_honest.json. The harness keeps the
+  // truth->score mapping (it knows each temp file's real label); the judge sees
+  // a path with zero truth signal. The truth mapping stays OUTSIDE the judge.
+
+  // Resolve any evaluator cmd/arg that names an existing file under baseDir to an
+  // absolute path, so the judge SCRIPT still resolves when cwd moves to the
+  // isolated temp dir. Placeholders are left for per-trial substitution.
+  const resolveIfFile = (s) => {
+    if (typeof s !== "string" || s.includes("{artifact}") || s.includes("{trial}")) return s;
+    const abs = path.resolve(baseDir, s);
+    return fs.existsSync(abs) ? abs : s;
+  };
+  const evCmd = resolveIfFile(ev.cmd);
+  const argTemplate = ev.args.map(resolveIfFile);
+
+  const tmpRoots = [];
+  try {
+    for (const c of cases) {
+      const srcArtifact = path.resolve(baseDir, c.artifact);
+      if (!fs.existsSync(srcArtifact)) die(`case ${c.id}: artifact not found at ${srcArtifact}`);
+      // isolated cwd: ONLY the neutrally-renamed artifact lives here
+      const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), "evalcheck-"));
+      tmpRoots.push(tmpRoot);
+      const neutralPath = path.join(tmpRoot, crypto.randomUUID() + path.extname(c.artifact));
+      fs.copyFileSync(srcArtifact, neutralPath);
+      const verdicts = [];
+      for (let t = 0; t < trials; t++) {
+        const args = argTemplate.map((a) => a.replaceAll("{artifact}", neutralPath).replaceAll("{trial}", String(t)));
+        const r = spawnSync(evCmd, args, { cwd: tmpRoot, timeout: ev.timeout_ms ?? 300000, encoding: "utf8" });
+        if (r.error) { verdicts.push("error"); continue; }
+        verdicts.push(parseVerdict(deck.verdict, r.status, r.stdout || ""));
+      }
+      const counts = {};
+      for (const v of verdicts) counts[v] = (counts[v] || 0) + 1;
+      const majority = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+      const stability = Math.max(...Object.values(counts)) / verdicts.length;
+      perCase.push({ id: c.id, truth: c.truth, verdicts, majority, stability, planted: c.planted });
     }
-    const counts = {};
-    for (const v of verdicts) counts[v] = (counts[v] || 0) + 1;
-    const majority = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
-    const stability = Math.max(...Object.values(counts)) / verdicts.length;
-    perCase.push({ id: c.id, truth: c.truth, verdicts, majority, stability, planted: c.planted });
+  } finally {
+    for (const d of tmpRoots) { try { fs.rmSync(d, { recursive: true, force: true }); } catch {} }
   }
 
   // rates computed over ALL trials, not just majorities — an evaluator that

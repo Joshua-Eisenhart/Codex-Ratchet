@@ -21,7 +21,7 @@ from typing import Any
 
 import numpy as np
 import sympy as sp
-from z3 import Function, RealSort, RealVal, Solver, unsat
+from z3 import Function, RealSort, RealVal, Solver, sat, unsat
 
 try:
     import cvc5
@@ -165,13 +165,17 @@ def z3_noninjectivity() -> dict[str, str]:
                recovered_re(p) == 0, recovered_im(p) == quarter)
     verdict = solver.check()
     assert verdict == unsat
+    relaxed = Solver()
+    relaxed.add(recovered_re(p) == quarter, recovered_im(p) == 0)
+    relaxed_result = relaxed.check()
+    assert relaxed_result == sat
     return {"encoding": "same dephased p=1/2 must recover both (Re,Im)=(1/4,0) and (0,1/4)",
-            "result": str(verdict)}
+            "result": str(verdict), "erased_constraint_result": str(relaxed_result)}
 
 
 def cvc5_noninjectivity() -> dict[str, str]:
     if cvc5 is None:
-        return {"result": "not_run", "reason": "cvc5 Python bindings unavailable"}
+        return {"result": "not_run", "erased_constraint_result": "not_run", "reason": "cvc5 Python bindings unavailable"}
     try:
         solver = cvc5.Solver()
         solver.setLogic("QF_UFLRA")
@@ -190,14 +194,30 @@ def cvc5_noninjectivity() -> dict[str, str]:
         result = solver.checkSat()
         if not result.isUnsat():
             raise RuntimeError(f"expected unsat, got {result}")
+        relaxed = cvc5.Solver()
+        relaxed.setLogic("QF_UFLRA")
+        real2 = relaxed.getRealSort()
+        function_sort2 = relaxed.mkFunctionSort([real2], real2)
+        recovered_re2 = relaxed.mkConst(function_sort2, "recover_re_relaxed")
+        recovered_im2 = relaxed.mkConst(function_sort2, "recover_im_relaxed")
+        half2 = relaxed.mkReal("1/2")
+        quarter2 = relaxed.mkReal("1/4")
+        zero2 = relaxed.mkReal(0)
+        app2 = lambda function: relaxed.mkTerm(cvc5.Kind.APPLY_UF, function, half2)
+        relaxed.assertFormula(relaxed.mkTerm(cvc5.Kind.EQUAL, app2(recovered_re2), quarter2))
+        relaxed.assertFormula(relaxed.mkTerm(cvc5.Kind.EQUAL, app2(recovered_im2), zero2))
+        relaxed_result = relaxed.checkSat()
+        if not relaxed_result.isSat():
+            raise RuntimeError(f"expected sat after erasure, got {relaxed_result}")
         TOOL_MANIFEST["cvc5"]["used"] = True
-        TOOL_MANIFEST["cvc5"]["reason"] = "Cross-check SMT contradiction returned unsat."
+        TOOL_MANIFEST["cvc5"]["reason"] = "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat."
         TOOL_INTEGRATION_DEPTH["cvc5"] = "supportive"
-        return {"result": str(result), "reason": "same deterministic-recovery coherence contradiction"}
+        return {"result": str(result), "erased_constraint_result": str(relaxed_result),
+                "reason": "same deterministic-recovery coherence contradiction"}
     except Exception as error:  # No false engine-use claim if the local API differs.
         TOOL_MANIFEST["cvc5"]["used"] = False
         TOOL_MANIFEST["cvc5"]["reason"] = f"Bindings available but cross-check did not run successfully: {error}"
-        return {"result": "not_run", "reason": str(error)}
+        return {"result": "not_run", "erased_constraint_result": "not_run", "reason": str(error)}
 
 
 def matrix_payload(rho: np.ndarray) -> list[list[Any]]:
@@ -281,6 +301,7 @@ def main() -> None:
     core_ok = (nesting and symbolic["idempotent"] and diagonal_entropy_matches and symbolic["entropy_equal"]
                and entropy_monotone and symbolic["bkm_diagonal_equals_fisher"]
                and metric_max_difference < 1.0e-8 and witness_valid and z3_result["result"] == "unsat"
+               and z3_result["erased_constraint_result"] == "sat"
                and control_gap > TOL and control_invertible and not control_is_one_way)
     if not core_ok:
         verdict = "FAILED"
@@ -318,7 +339,8 @@ def main() -> None:
     print(json.dumps({"result": str(output), "verdict": verdict,
                       "minimum_offdiagonal_gap": minimum_offdiag_gap,
                       "metric_max_difference": metric_max_difference,
-                      "z3": z3_result["result"], "cvc5": cvc5_result["result"]}, indent=2))
+                      "z3": z3_result["result"], "z3_erased_constraint": z3_result["erased_constraint_result"],
+                      "cvc5": cvc5_result["result"], "cvc5_erased_constraint": cvc5_result["erased_constraint_result"]}, indent=2))
 
 
 if __name__ == "__main__":

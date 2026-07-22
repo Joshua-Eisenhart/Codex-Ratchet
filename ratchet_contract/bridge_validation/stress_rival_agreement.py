@@ -28,7 +28,17 @@ from bridge_word_bfs import induce_word_bfs_partition  # noqa: E402
 
 
 class OrderSensitiveCandidate(CandidateBridgeInterface):
-    """First action is always an ack; the second action reveals order/state."""
+    """First action is always an ack -- root is hidden at depth one
+    regardless of which action is taken. At depth two, whether root is
+    REVEALED depends on the ORDER of the last two actions, not on the
+    actions in isolation: order "ab" reveals root (token "L"/"R"), every
+    other two-action order ("ba", "aa", "bb") stays "steady" and reveals
+    nothing. This makes apply(a, apply(b, root)) != apply(b, apply(a,
+    root)) for a fixed root -- genuine noncommutation, not a token
+    relabeling -- so a bridge that (incorrectly) treated the action
+    sequence as an unordered multiset would misjudge the partition over X
+    (it would either never separate the two roots, or separate them on the
+    wrong word)."""
 
     name = "stress_order_sensitive"
 
@@ -45,12 +55,15 @@ class OrderSensitiveCandidate(CandidateBridgeInterface):
         root, seen = state
         if action not in self.action_alphabet():
             raise ValueError(action)
+        next_seen = seen + (action,)
         if not seen:
-            return (root, (action,)), Outcome.deterministic("ack")
-        # The observable distinction is deliberately absent at depth one.
-        order = seen[0] + action
-        token = {"ab": "left", "ba": "right"}.get(order, "steady")
-        return (root, seen + (action,)), Outcome.deterministic(token)
+            return (root, next_seen), Outcome.deterministic("ack")
+        order = seen[-1] + action
+        if order == "ab":
+            token = "L" if root == "left" else "R"
+        else:
+            token = "steady"
+        return (root, next_seen), Outcome.deterministic(token)
 
 
 class HorizonBoundaryCandidate(CandidateBridgeInterface):
@@ -194,6 +207,9 @@ def run_stress_rival_agreement():
             divergences.append(dict(row))
         rows.append(row)
     return {
+        "schema_version": "stress-rival-agreement/0.1",
+        "classification": "tool_lego_fit_probe",
+        "promotion_allowed": False,
         "purpose": "adversarial stress cross-check of the two independent bridge partitions with order, exact-horizon, prefix-trap, and bijective token-relabel cases",
         "scope": "practice/fuel development only -- promotion_allowed=false, formal_admission_allowed=false; does NOT ratchet the axioms, does NOT admit any real carrier",
         "cases_checked": len(rows), "cases": rows, "all_agree": not divergences, "divergences": divergences,
@@ -206,7 +222,13 @@ def main():
         result = run_stress_rival_agreement()
         RESULTS_PATH.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     except Exception:
-        RESULTS_PATH.write_text(json.dumps({"error": "stress_rival_agreement raised", "traceback": traceback.format_exc()}, indent=2) + "\n", encoding="utf-8")
+        RESULTS_PATH.write_text(json.dumps({
+            "schema_version": "stress-rival-agreement/0.1",
+            "classification": "tool_lego_fit_probe",
+            "promotion_allowed": False,
+            "error": "stress_rival_agreement raised",
+            "traceback": traceback.format_exc(),
+        }, indent=2) + "\n", encoding="utf-8")
         print(json.dumps({"exit_code": 1, "error": "stress_rival_agreement raised -- see results/stress_rival_agreement.json"}))
         return 1
     print(json.dumps({"cases_checked": result["cases_checked"], "all_agree": result["all_agree"],

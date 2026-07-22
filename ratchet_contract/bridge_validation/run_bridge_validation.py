@@ -130,6 +130,8 @@ def main() -> int:
 
     result = {
         "schema_version": "bridge-validation/0.1",
+        "classification": "tool_lego_fit_probe",
+        "promotion_allowed": False,
         "ceiling": (
             "input_interface_validation_only; this campaign tests whether a proposed trace->partition "
             "bridge honestly lets the FIXED ratchet (ratchet_contract/gates.py, mss.py) see competing "

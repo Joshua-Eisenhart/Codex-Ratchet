@@ -193,6 +193,9 @@ def run_rival_agreement() -> dict:
     all_agree = all(row["agree"] for row in cases_out) if cases_out else False
 
     return {
+        "schema_version": "rival-agreement/0.1",
+        "classification": "tool_lego_fit_probe",
+        "promotion_allowed": False,
         "purpose": (
             "cross-check induce_word_bfs_partition (bridge_word_bfs.py, forward breadth-first "
             "word enumeration + union-find) against induce_action_predictive_partition "
@@ -226,7 +229,13 @@ def main() -> int:
         result = run_rival_agreement()
     except Exception:
         RESULTS_PATH.write_text(
-            json.dumps({"error": "run_rival_agreement raised", "traceback": traceback.format_exc()}, indent=2) + "\n",
+            json.dumps({
+                "schema_version": "rival-agreement/0.1",
+                "classification": "tool_lego_fit_probe",
+                "promotion_allowed": False,
+                "error": "run_rival_agreement raised",
+                "traceback": traceback.format_exc(),
+            }, indent=2) + "\n",
             encoding="utf-8",
         )
         print(json.dumps({"exit_code": 1, "error": "run_rival_agreement raised -- see results/rival_agreement.json"}))

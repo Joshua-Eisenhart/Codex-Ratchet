@@ -1,11 +1,12 @@
 {
   "TOOL_INTEGRATION_DEPTH": {
     "cvc5": "supportive",
-    "jax": null,
+    "jax": "load_bearing",
     "julia": "load_bearing",
     "numpy": "control",
     "qutip": "supportive",
     "sympy": "load_bearing",
+    "torch": "load_bearing",
     "z3": "supportive"
   },
   "checks": {
@@ -56,18 +57,28 @@
     "product_probe_lossy": false
   },
   "core_ok": true,
+  "engine_contract": {
+    "engines_agree_to": 1.1102230246251565e-16,
+    "mode": "all_three_full_sims",
+    "n_authoritative_engines": 3,
+    "reference": "julia:QuantumOptics",
+    "semantic_owner": "julia"
+  },
   "engine_values": {
+    "jax_S_cond_bell": -0.9999999999999999,
     "julia_S_cond_bell": -0.9999999999999999,
+    "numpy_control_S_cond_bell": -1.0,
     "qutip_S_cond_bell": -0.9999999999999983,
-    "sympy_numpy_S_cond_bell": -1.0
+    "torch_S_cond_bell": -0.9999999999999999
   },
   "engines_ran": {
     "cvc5": true,
-    "jax": false,
+    "jax": true,
     "julia": true,
     "numpy": true,
     "qutip": true,
     "sympy": true,
+    "torch": true,
     "z3": true
   },
   "family_sweep": {
@@ -112,21 +123,9 @@
       "value": 1.0
     }
   ],
-  "julia_leg": {
-    "born_at_cut_witness": true,
-    "engine": "julia:QuantumOptics",
-    "marginal_gap_bell_vs_product": 2.220446049250313e-16,
-    "mutual_info_bell_bits": 2.0,
-    "mutual_info_product_bits": 8.881784197001252e-16,
-    "ran": true,
-    "s_cond_bell_bits": -0.9999999999999999,
-    "s_cond_bell_is_negative": true,
-    "s_cond_product_bits": 0.9999999999999993
-  },
-  "julia_vs_numpy_witness_divergence": 1.1102230246251565e-16,
   "layer_joint": "Layer J: joint two-qubit density operator rho_AB on C^2 (x) C^2.",
   "layer_marginal_pair": "Layer M: the pair of marginals (rho_A, rho_B) = (Tr_B rho_AB, Tr_A rho_AB).",
-  "load_bearing_evidence": "AUTHORITATIVE ENGINE Julia+QuantumOptics: S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow) with identical marginals to the product (mutual info 2 vs 0 bits) -- the signed-correlation witness born at the cut. sympy gives the exact family-wide S(L|R)=-S_A identity; numpy is the CONTROL cross-check agreeing with Julia to <1e-9 (Umegaki relative-entropy cross-identity, same-marginals/different-correlation pair). numpy is no longer load-bearing.",
+  "load_bearing_evidence": "THREE INDEPENDENT ENGINES each recompute S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow; mutual info 2 vs 0 for the product): Julia+QuantumOptics (Canon reference), JAX+dynamiqs, PyTorch -- agreeing to max cross-engine divergence ~1.1e-16 with Julia as reference. Each leg runs as its own subprocess and recomputes from scratch (no echo). sympy gives the exact family-wide S(L|R)=-S_A identity. numpy is CONTROL only, never load-bearing.",
   "matrix_witnesses": {
     "bell": [
       [
@@ -181,6 +180,7 @@
       ]
     ]
   },
+  "max_cross_engine_divergence": 1.1102230246251565e-16,
   "notes": [
     "Finite two-qubit sampled probe only; proposed layer ordering is not canon.",
     "OPEN BOUNDARY (untested, named): the born-at-the-cut result is established only for the PURE two-qubit entangled(t) family. Mixed rho_AB and dimension > 2 (d_A d_B > 4) are NOT tested here -- the next tooth for this rung, before Holevo-at-records. No claim is made beyond the pure two-qubit family.",
@@ -329,6 +329,39 @@
     "s_cond_pi4_is_minus_one": true,
     "schmidt_symmetric": true
   },
+  "three_engine_legs": {
+    "jax": {
+      "born_at_cut_witness": true,
+      "engine": "jax:dynamiqs",
+      "marginal_gap": 1.1102230246251565e-16,
+      "mutual_info_bell_bits": 2.0,
+      "mutual_info_product_bits": 6.406853007629835e-16,
+      "ran": true,
+      "s_cond_bell_bits": -0.9999999999999999,
+      "s_cond_product_bits": 0.9999999999999996
+    },
+    "julia": {
+      "born_at_cut_witness": true,
+      "engine": "julia:QuantumOptics",
+      "marginal_gap_bell_vs_product": 2.220446049250313e-16,
+      "mutual_info_bell_bits": 2.0,
+      "mutual_info_product_bits": 8.881784197001252e-16,
+      "ran": true,
+      "s_cond_bell_bits": -0.9999999999999999,
+      "s_cond_bell_is_negative": true,
+      "s_cond_product_bits": 0.9999999999999993
+    },
+    "torch": {
+      "born_at_cut_witness": true,
+      "engine": "pytorch",
+      "marginal_gap": 1.1102230246251565e-16,
+      "mutual_info_bell_bits": 2.0,
+      "mutual_info_product_bits": 6.406853007629835e-16,
+      "ran": true,
+      "s_cond_bell_bits": -0.9999999999999999,
+      "s_cond_product_bits": 0.9999999999999996
+    }
+  },
   "tool_manifest": {
     "cvc5": {
       "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
@@ -336,12 +369,12 @@
       "used": true
     },
     "jax": {
-      "reason": "Not required for this finite two-qubit probe; queued as a confirmation leg, not run.",
-      "tried": false,
-      "used": false
+      "reason": "Independent jax leg (dynamiqs): S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow); agrees with the Julia Canon reference to <1e-9. numpy is control.",
+      "tried": true,
+      "used": true
     },
     "julia": {
-      "reason": "Authoritative QuantumOptics.jl leg: S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow) with identical marginals to the product; numpy agrees to <1e-9 as control.",
+      "reason": "Independent julia leg (QuantumOptics): S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow); agrees with the Julia Canon reference to <1e-9. numpy is control.",
       "tried": true,
       "used": true
     },
@@ -357,6 +390,11 @@
     },
     "sympy": {
       "reason": "Exact family-wide algebraic identity S(L|R)(t) = -S_A(t) over the ENTIRE entangled family (global rank-1 purity + Schmidt marginal symmetry, both proved symbolically), not a sampled numeric approximation.",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "Independent torch leg (torch): S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow); agrees with the Julia Canon reference to <1e-9. numpy is control.",
       "tried": true,
       "used": true
     },

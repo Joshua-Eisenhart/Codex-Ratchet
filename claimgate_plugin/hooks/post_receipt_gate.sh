@@ -25,6 +25,19 @@ if [ "$tier0_exit" -ne 0 ]; then
   exit "$tier0_exit"
 fi
 
+# THREE-ENGINE SEAL (hard, structural): numpy/scipy/mpmath are CONTROL-ONLY; an
+# authoritative engine (Julia/JAX/PyTorch) must carry the numeric work. Fired here
+# so a contract-violating receipt cannot be admitted. Closes the systemic
+# 2026-07-22 breaking (10 arrows ran on numpy with no engine). Pure symbolic/SMT/
+# finite receipts are exempt. See claimgate_plugin/three_engine_seal.py.
+python3 "$script_dir/../three_engine_seal.py" "$receipt"
+seal_exit=$?
+if [ "$seal_exit" -eq 1 ]; then
+  echo "post_receipt_gate: THREE-ENGINE SEAL rejected (numpy control-only / no authoritative engine)" >&2
+  advise
+  exit 1
+fi
+
 python3 "$script_dir/../claim_verify.py" "$receipt"
 claim_exit=$?
 # claim_verify exit codes: 0=VERIFIED, 1=REJECTED, 2=usage/IO, 3=INSUFFICIENT_DEPTH.

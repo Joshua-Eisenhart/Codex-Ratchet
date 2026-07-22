@@ -162,12 +162,15 @@
   "classification": "tool_lego_fit_probe",
   "control_channel": {
     "control_bijective_on_support": true,
+    "control_discriminates": true,
     "control_invertible": true,
     "control_is_one_way": false,
     "control_recovers_f_from_finer_cells": true,
     "distinct_f_values": 64,
     "k0": 6,
     "k_test": 10,
+    "lossless_is_one_way": false,
+    "lossy_is_one_way": true,
     "note": "f is constant on 2^-k0 cells by construction; refining to k_test>=k0 loses nothing about f, so recovery is a genuine, computed bijection, not a hard-coded false.",
     "sample_count": 256
   },
@@ -294,6 +297,7 @@
   "honest_ceiling": "This is a finite PROXY for the finite/infinite presumption gap, not a construction of the real numbers. It demonstrates (i) that continuum-to-finite discretization is a one-way, many-to-one forgetting map at every tested resolution, and (ii) that recovering a unique continuum point from the finite tower requires an added completeness axiom that no finite level of the tower supplies. It does not prove the continuum's cardinality, does not construct Dedekind cuts or Cauchy-sequence equivalence classes, and does not settle any bridge, axis, or canonical admission claim.",
   "layer1": "Continuum [0,1] with the usual order/metric topology (presumed, not constructed here).",
   "layer2": "Nested finite dyadic quotients Y_1 subset Y_2 subset ... subset Y_K_MAX, |Y_k|=2^k, Hartley H_0(Y_k)=k*ln(2).",
+  "load_bearing_evidence": "Exact Fraction cell-index arithmetic showing x1!=x2 sharing a cell index at every tested level 1..K_MAX, plus sympy exact Hartley-growth formula and per-level interval-width-positivity identities.",
   "notes": [
     "Finite sampled probe only; this does not construct the reals and does not settle a canonical layer ordering.",
     "K_MAX resolution levels are all finite; no actual infinity is evaluated or invoked at any point.",
@@ -303,13 +307,14 @@
   "ordering_status": "PROPOSED not canon",
   "promotion_allowed": false,
   "schema_version": "1.0",
+  "smt_role": "supportive_nonvacuity_only",
   "tool_integration_depth": {
     "cvc5": "supportive",
     "jax": null,
     "julia": null,
     "numpy": null,
     "sympy": "load_bearing",
-    "z3": "load_bearing"
+    "z3": "supportive"
   },
   "tool_manifest": {
     "cvc5": {
@@ -338,7 +343,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Primary SMT contradiction: one recovery function of one cell index cannot return two distinct real points, at every tested level.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the sympy/Fraction witness (exact rational cell arithmetic showing two distinct dyadic points sharing a cell index at every tested finite level, plus the symbolic Hartley growth and interval-width identities).",
       "tried": true,
       "used": true
     }

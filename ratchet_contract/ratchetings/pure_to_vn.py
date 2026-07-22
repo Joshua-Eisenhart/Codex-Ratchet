@@ -40,7 +40,7 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True,
               "reason": "Finite Bloch-ball, pure-boundary, purification-witness, and control calculations."},
     "z3": {"tried": True, "used": True,
-           "reason": "Primary SMT contradiction: one recovery of one reduced state cannot return two purifications."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (psi/phi purification pair with identical partial trace plus the exact symbolic entanglement-entropy formula)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "jax": {"tried": False, "used": False,
@@ -50,7 +50,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "sympy": "load_bearing", "numpy": "load_bearing", "z3": "load_bearing",
+    "sympy": "load_bearing", "numpy": "load_bearing", "z3": "supportive",
     "cvc5": None, "jax": None, "julia": None,
 }
 
@@ -192,29 +192,63 @@ def main() -> None:
     entanglement_entropy = vn_entropy(rho_a_psi)
     z3_result, cvc5_result = z3_noninjectivity(), cvc5_noninjectivity()
 
-    # Control: a single-system unitary.  It is tested on each sampled pure state:
-    # recovery is recomputed with U^dagger, rank remains one, and entropy remains zero.
+    # Discriminating one-way predicate.  A map is one-way (irreversible) at a
+    # witness pair iff it collapses two DISTINCT inputs to the SAME output -- the
+    # non-injectivity the probe claims for the partial trace.  The SAME predicate
+    # is fed both the partial trace (on the distinct global purifications psi, phi)
+    # and a single-system unitary (on two distinct pure states), and must return
+    # DIFFERENT answers.  The previous "not invertible" form was a frozen False
+    # (every unitary is invertible), so it could never flag anything; this predicate
+    # genuinely returns True on the partial trace and False on the unitary.
+    def channel_is_one_way(channel, a, b) -> bool:
+        """One-way iff distinct inputs a != b are collapsed to a common image."""
+        return bool((not np.allclose(a, b, atol=TOL))
+                    and np.allclose(channel(a), channel(b), atol=TOL))
+
     angle = 0.37
     unitary = np.array([[math.cos(angle), -math.sin(angle)], [math.sin(angle), math.cos(angle)]], dtype=complex)
     unitary_dag = unitary.conj().T
+    unitary_channel = lambda m: unitary @ m @ unitary_dag  # noqa: E731
     pure_states = [rho for kind, _, rho in states if kind == "pure_boundary"]
+
+    # Two distinct pure states for the unitary control's own domain (C^2):
+    ctrl_state_a = density_from_bloch(0.0, 0.0, 1.0)   # |0><0|
+    ctrl_state_b = density_from_bloch(1.0, 0.0, 0.0)   # |+><+|
+
+    # Same predicate, both channels:
+    partial_trace_is_one_way = channel_is_one_way(partial_trace_b, rho_psi, rho_phi)   # expect True
+    control_is_one_way = channel_is_one_way(unitary_channel, ctrl_state_a, ctrl_state_b)  # expect False
+    control_discriminates = bool(partial_trace_is_one_way and not control_is_one_way)
+
+    # Corroborating contrast: the unitary is invertible, rank-1 and zero-entropy
+    # preserving; the partial trace instead BORNS entropy (rho_A mixed).
     control_recovers = all(np.allclose(unitary_dag @ (unitary @ rho @ unitary_dag) @ unitary, rho, atol=TOL) for rho in pure_states)
     control_rank_preserves = all(np.linalg.matrix_rank(unitary @ rho @ unitary_dag, tol=TOL) == 1 for rho in pure_states)
     control_entropy_preserves = all(abs(vn_entropy(unitary @ rho @ unitary_dag)) < 1.0e-9 and abs(vn_entropy(rho)) < 1.0e-9 for rho in pure_states)
     control_invertible = bool(control_recovers and control_rank_preserves and control_entropy_preserves)
-    control_is_one_way = not control_invertible
+    partial_trace_borns_entropy = bool(entanglement_entropy > TOL)  # pure global -> mixed reduced
 
-    core_ok = (symbolic["formula_exact"] and symbolic["endpoints_zero"] and symbolic["generic_samples_positive"]
-               and pure_zero and boundary_zero_set and witness_valid and abs(entanglement_entropy - math.log(2.0)) < TOL
-               and z3_result["result"] == "unsat" and z3_result["erased_constraint_result"] == "sat")
-    verdict = "EMERGES_ONE_WAY" if core_ok and not control_is_one_way else ("BY_CONSTRUCTION" if core_ok else "FAILED")
+    # Mechanism gate (the arrow), independent of the control's discrimination so
+    # that BY_CONSTRUCTION is a genuinely reachable branch, not dead code.
+    mechanism_ok = (symbolic["formula_exact"] and symbolic["endpoints_zero"] and symbolic["generic_samples_positive"]
+                    and pure_zero and boundary_zero_set and witness_valid and abs(entanglement_entropy - math.log(2.0)) < TOL
+                    and control_invertible and partial_trace_borns_entropy)
+    if not mechanism_ok:
+        verdict = "FAILED"
+    elif not control_discriminates:
+        verdict = "BY_CONSTRUCTION"
+    else:
+        verdict = "EMERGES_ONE_WAY"
+    core_ok = mechanism_ok
     notes = ["Finite sampled probe only; proposed layer ordering is not canon.",
              "Fubini--Study formula for CP^1: ds^2=<dpsi|dpsi>-|<psi|dpsi>|^2.",
              "VN entropy is zero identically for single-system pure states; its nonzero value here is born through the partial-trace cut.",
              symbolic["zero_iff_note"],
-             "SMT encodes deterministic recovery of a purification-identifying phase from one reduced state, not a full parametrization of all purifications."]
-    if control_is_one_way:
-        notes.append("The unitary control unexpectedly failed its invertibility/purity checks; directionality is therefore by construction.")
+             "SMT encodes deterministic recovery of a purification-identifying phase from one reduced state, not a full parametrization of all purifications.",
+             "Control is a DISCRIMINATING predicate: the same channel_is_one_way test returns "
+             f"partial_trace={partial_trace_is_one_way} vs unitary={control_is_one_way}; it is not a constant."]
+    if verdict == "BY_CONSTRUCTION":
+        notes.append("The discriminating predicate did not separate the unitary control from the partial trace; directionality is not partial-trace-specific.")
     if not core_ok:
         notes.append("At least one required finite-probe check failed; inspect check details.")
 
@@ -227,12 +261,23 @@ def main() -> None:
         "entanglement_entropy_born": {"t": "pi/4", "value": entanglement_entropy},
         "one_way_witness_pair": {"description": "psi and phi=(I_A tensor diag(1,i))psi are distinct purifications with the same rho_A=I/2.",
                                  "psi": payload(psi), "phi": payload(phi), "rho_A_from_psi": matrix_payload(rho_a_psi), "rho_A_from_phi": matrix_payload(rho_a_phi)},
-        "control_channel": "Single-system real rotation U on C^2; U^dagger recovery, rank-1 preservation, and zero-entropy preservation are recomputed on every sampled pure state.",
+        "control_channel": "Single-system real rotation U on C^2. The SAME channel_is_one_way predicate (distinct inputs collapsed to a common image) is fed both the partial trace and this unitary and returns different answers -- a discriminating, non-decorative control.",
         "control_is_one_way": control_is_one_way,
+        "control_discrimination": {
+            "predicate": "channel_is_one_way(channel, a, b): distinct a != b collapsed to a common image channel(a) == channel(b)",
+            "partial_trace_is_one_way": bool(partial_trace_is_one_way),
+            "control_is_one_way": bool(control_is_one_way),
+            "discriminates": bool(control_discriminates),
+            "control_invertible_rank1_zero_entropy": bool(control_invertible),
+            "partial_trace_borns_entropy": bool(partial_trace_borns_entropy),
+            "note": "Feed-both-and-differ: same predicate returns True on the partial trace (psi, phi collapse to rho_A=I/2) and False on the local unitary; the control can flip and does not.",
+        },
         "verdict": verdict,
         "classification": classification,
         "promotion_allowed": promotion_allowed,
         "ordering_status": ordering_status,
+        "smt_role": "supportive_nonvacuity_only",
+        "load_bearing_evidence": "numpy purification witness pair (psi, phi=(I tensor diag(1,i))psi distinct states, identical partial-trace rho_A) plus sympy exact Schmidt/entanglement-entropy formula and endpoint/generic-sample checks.",
         "floor_claims": [{"key": "ratcheting.pure_to_vn.entanglement_margin", "value": entanglement_entropy, "direction": "higher_is_better"}],
         "hartley_placement": {"note": "Hartley/counting entropy S0=log(V) sits AT the maximally-mixed point of the VN layer: S(I/2)=ln(2), the entropy MAXIMUM on the Bloch ball for a qubit, matching Hartley for V=2 outcomes. Support-Hartley (log of the rank of the support) is a further one-way FORGETTING downstream of VN (drop eigenvalue magnitudes, keep only which eigenvalues are nonzero) -- it is a layer AFTER/BELOW VN in information content, not before it.",
                               "axis0_distinction": "This downstream support-Hartley bookkeeping is DISTINCT from the Axis-0 counting DRIVE (dC = D log(V) over admissible-set size across ticks), which is not a nesting layer in this ladder at all -- it is the entropy gradient/drive framing from the owner's Axis-0 doctrine, not a state-space layer to be ratcheted here. Do not conflate the two."},

@@ -45,6 +45,7 @@
   "layer_anticommutative": "Lambda(V): Grassmann/exterior algebra, dim 2^2=4, theta_i theta_j=-theta_j theta_i, theta_i^2=0.",
   "layer_clifford": "Cl(g): Clifford algebra with symbolic metric g=(g11,g12,g22), e_i e_j+e_j e_i=2 g_ij, dim 4, same PBW basis as Lambda(V).",
   "layer_commutative": "S(V): commutative polynomial algebra on 2 generators, truncated degree<=2, xy=yx.",
+  "load_bearing_evidence": "sympy exact structure-constant tables: grassmann_is_g0_clifford (entrywise table equality), clifford_presumes_metric (generic-g table divergence), and the theta1*theta2/theta2*theta1 distinct-sign-same-symmetrized-image witness.",
   "notes": [
     "Finite structure-constant probe only (n=2 generators); proposed ordering is not canon.",
     "Clifford built abstractly on basis {1,e1,e2,e12} via e_i*e_j+e_j*e_i=2g_ij reduction relations, exact in sympy (no matrix representation needed).",
@@ -54,6 +55,7 @@
   "presumption_note": "Grassmann (bare, metric-free anticommutation) is the g=0 degenerate case of Clifford: Clifford presumes a metric g that Grassmann does not need. Symmetrization (forgetting the anticommuting sign) is a one-way algebra map Lambda(V) -> S(V)-image: the sign/orientation is not recoverable after forgetting it. So on the metric axis, commutative <- (forget sign) <- anticommuting (Grassmann) <- (deform by metric) <- Clifford, with each arrow one-way (structure lost, not gained) as it moves left.",
   "promotion_allowed": false,
   "schema_version": "1.0",
+  "smt_role": "supportive_nonvacuity_only",
   "symmetrization_one_way_witness": {
     "both_map_to_symmetric_x1x2": true,
     "distinct_in_grassmann": true,
@@ -88,7 +90,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Primary SMT contradiction: one function of the symmetrized image cannot recover two distinct Grassmann signs.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the sympy witness (exact structure-constant tables: Grassmann==g0-Clifford, theta1*theta2 vs theta2*theta1 distinct signs both symmetrizing to the same monomial).",
       "tried": true,
       "used": true
     }

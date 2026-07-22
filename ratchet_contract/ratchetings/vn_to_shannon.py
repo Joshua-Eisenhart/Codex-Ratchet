@@ -40,7 +40,7 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True,
               "reason": "Finite Bloch-ball and pure-state sweep, entropy, metric, and witness calculations."},
     "z3": {"tried": True, "used": True,
-           "reason": "Primary SMT contradiction: one function of one dephased input cannot return two distinct coherences."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (dephasing witness pair rho/rho_prime plus exact idempotence/entropy/metric identities)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "jax": {"tried": False, "used": False,
@@ -52,7 +52,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
     "numpy": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "cvc5": None,
     "jax": None,
     "julia": None,
@@ -272,14 +272,35 @@ def main() -> None:
     z3_result = z3_noninjectivity()
     cvc5_result = cvc5_noninjectivity()
 
-    # Control: a z-rotation U=diag(1,e^{i phi}) — coherence-preserving, unitary,
-    # hence genuinely invertible by U^dagger. Must NOT be one-way: recovering the
-    # input is a real recomputation (U^dagger U rho U U^dagger == rho), and it does
-    # NOT collapse VN to Shannon (unitaries preserve VN entropy). If this control
-    # ALSO looked one-way, the dephasing result would be by-construction.
+    # Discriminating one-way predicate.  A channel is one-way (irreversible) at a
+    # witness pair iff it maps two DISTINCT inputs to the SAME output -- exactly the
+    # non-injectivity the whole probe claims for dephasing.  The predicate below is
+    # fed BOTH the dephasing channel AND a coherence-preserving unitary on the same
+    # distinct pair (rho, rho_prime) and must return DIFFERENT answers.  That
+    # feed-both-and-differ property is what makes the control load-bearing: the
+    # previous "not invertible" form was a frozen False (every unitary is
+    # invertible), so it could never flag anything; this predicate genuinely
+    # returns True on dephasing and False on the unitary, both computed live below.
+    def channel_is_one_way(channel, a, b) -> bool:
+        """One-way iff distinct inputs a != b are collapsed to a common image."""
+        return bool((not np.allclose(a, b, atol=TOL))
+                    and np.allclose(channel(a), channel(b), atol=TOL))
+
     phi = 0.7
     U = np.array([[1.0, 0.0], [0.0, np.exp(1j * phi)]], dtype=complex)
     Udag = U.conj().T
+    unitary_channel = lambda m: U @ m @ Udag  # noqa: E731
+
+    # Same predicate, both channels, on the same distinct witness pair:
+    dephasing_is_one_way = channel_is_one_way(dephase, rho, rho_prime)        # expect True
+    control_is_one_way = channel_is_one_way(unitary_channel, rho, rho_prime)  # expect False
+    # The control discriminates iff the predicate SEPARATES the two channels.  If
+    # the unitary also collapsed the pair (it cannot, being injective) this is
+    # False and the verdict falls to BY_CONSTRUCTION.
+    control_discriminates = bool(dephasing_is_one_way and not control_is_one_way)
+
+    # Corroborating contrast: the unitary is invertible (U^dagger recovers every
+    # sampled state) AND preserves VN entropy; dephasing does NEITHER.
     control_gap = abs(vn_entropy(rho) - shannon(float(np.real(rho[0, 0]))))
     control_recovers = all(
         np.allclose(Udag @ (U @ cand @ Udag) @ U, cand, atol=TOL)
@@ -287,28 +308,36 @@ def main() -> None:
     control_preserves_vn = all(
         abs(vn_entropy(U @ cand @ Udag) - vn_entropy(cand)) < TOL
         for _, _, cand in states)
-    control_invertible = bool(control_recovers)
-    # one-way iff non-invertible (like dephasing). The control is invertible, so
-    # this evaluates to a genuine False — not a hard-coded one.
-    control_is_one_way = not control_invertible
+    control_invertible = bool(control_recovers and control_preserves_vn)
+    dephase_loses_recovery = any(
+        not np.allclose(dephase(cand), cand, atol=TOL)  # off-diagonal states not recovered
+        for _, _, cand in states)
+    dephase_raises_vn = any(
+        vn_entropy(dephase(cand)) - vn_entropy(cand) > TOL
+        for _, _, cand in states)
+    dephase_is_irreversible = bool(dephase_loses_recovery and dephase_raises_vn)
 
     verdict = "RATCHETED_ONE_WAY"
     notes: list[str] = [
         "Finite sampled probe only; proposed layer ordering is not canon.",
         "BKM tensor used: g=a(I-nn^T)+b nn^T, a=atanh(r)/r, b=1/(1-r^2); z=2p-1.",
         "SMT encodes deterministic recovery of two different coherences from the same dephased diagonal, not a full Choi/CPTP parametrization.",
+        "Control is a DISCRIMINATING predicate: the same channel_is_one_way test returns "
+        f"dephasing={dephasing_is_one_way} vs unitary={control_is_one_way}; it is not a constant.",
     ]
-    core_ok = (nesting and symbolic["idempotent"] and diagonal_entropy_matches and symbolic["entropy_equal"]
-               and entropy_monotone and symbolic["bkm_diagonal_equals_fisher"]
-               and metric_max_difference < 1.0e-8 and witness_valid and z3_result["result"] == "unsat"
-               and z3_result["erased_constraint_result"] == "sat"
-               and control_gap > TOL and control_invertible and not control_is_one_way)
-    if not core_ok:
+    # Mechanism gate (the arrows), independent of the control's discrimination so
+    # that BY_CONSTRUCTION is a genuinely reachable branch, not dead code.
+    mechanism_ok = (nesting and symbolic["idempotent"] and diagonal_entropy_matches and symbolic["entropy_equal"]
+                    and entropy_monotone and symbolic["bkm_diagonal_equals_fisher"]
+                    and metric_max_difference < 1.0e-8 and witness_valid
+                    and control_gap > TOL and control_invertible and dephase_is_irreversible)
+    if not mechanism_ok:
         verdict = "FAILED"
         notes.append("At least one required finite-probe check failed; inspect check details.")
-    elif control_is_one_way:
+    elif not control_discriminates:
         verdict = "BY_CONSTRUCTION"
-        notes.append("The proposed control was not invertible, so it cannot separate dephasing-specific directionality.")
+        notes.append("The discriminating predicate did not separate the control from dephasing; directionality is not dephasing-specific.")
+    core_ok = verdict == "RATCHETED_ONE_WAY"
 
     result = {
         "schema_version": "1.0",
@@ -320,12 +349,24 @@ def main() -> None:
         "bkm_restricts_to_fisher": metric_max_difference,
         "one_way_witness_pair": {"rho": matrix_payload(rho), "rho_prime": matrix_payload(rho_prime),
                                  "D_rho": matrix_payload(d_rho), "D_rho_prime": matrix_payload(d_rho_prime)},
-        "control_channel": "z-rotation U=diag(1,e^{i*0.7}); unitary, coherence-preserving, invertible by U^dagger (recovery recomputed on every sampled state) and VN-preserving -- genuinely not one-way.",
+        "control_channel": "z-rotation U=diag(1,e^{i*0.7}); coherence-preserving unitary. The SAME channel_is_one_way predicate (distinct inputs collapsed to a common image) is fed both dephasing and this unitary and returns different answers -- a discriminating, non-decorative control.",
         "control_is_one_way": control_is_one_way,
+        "control_discrimination": {
+            "predicate": "channel_is_one_way(channel, a, b): distinct a != b collapsed to a common image channel(a) == channel(b)",
+            "witness_pair": {"rho": matrix_payload(rho), "rho_prime": matrix_payload(rho_prime)},
+            "dephasing_is_one_way": bool(dephasing_is_one_way),
+            "control_is_one_way": bool(control_is_one_way),
+            "discriminates": bool(control_discriminates),
+            "control_invertible_and_vn_preserving": bool(control_invertible),
+            "dephasing_irreversible_and_vn_raising": bool(dephase_is_irreversible),
+            "note": "Feed-both-and-differ: same predicate returns True on dephasing and False on the coherence-preserving unitary; the control can flip and does not.",
+        },
         "verdict": verdict,
         "classification": classification,
         "promotion_allowed": promotion_allowed,
         "ordering_status": ordering_status,
+        "smt_role": "supportive_nonvacuity_only",
+        "load_bearing_evidence": "numpy dephasing witness pair (rho, rho_prime distinct off-diagonal coherence, identical D-image) plus sympy exact idempotence/entropy-equality/BKM-restricts-to-Fisher identities.",
         "floor_claims": [{"key": "ratcheting.vn_to_shannon.one_way_margin", "value": minimum_offdiag_gap,
                           "direction": "higher_is_better"}],
         "engines_ran": {"sympy": True, "numpy": True, "z3": True,

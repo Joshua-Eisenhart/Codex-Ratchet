@@ -26,11 +26,17 @@ ordering_status = "PROPOSED not canon"
 
 TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True, "reason": "Exact Hartley/log2 entropy evaluation."},
-    "z3": {"tried": True, "used": True, "reason": "Primary non-injectivity contradiction and SAT-flip check."},
+    "z3": {"tried": True, "used": True,
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the plain-Python union-find associativity-quotient computation (reps[left]==reps[right] on the two bracketings, plus the noncommutativity witness pair)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
               "reason": "Cross-check attempted when bindings are available; updated at runtime."},
 }
-TOOL_INTEGRATION_DEPTH = {"sympy": "supportive", "z3": "load_bearing", "cvc5": None}
+TOOL_INTEGRATION_DEPTH = {"sympy": "supportive", "z3": "supportive", "cvc5": None}
+# Note: neither sympy nor numpy is the arrow-carrier here (numpy is not used;
+# sympy only formats the log2 Hartley-drop value for reporting). The genuine
+# load-bearing evidence is the plain-Python union-find associativity-quotient
+# computation (see quotient()/spine below) -- named honestly rather than
+# force-labeling sympy/numpy as load_bearing when they do not carry the arrow.
 
 ELEMENTS = [0, 1, 2]
 TABLE = [[0, 1, 2], [1, 2, 0], [2, 0, 1]]
@@ -145,6 +151,8 @@ def main() -> None:
               "geometry_kind": "combinatorial (Cayley graph / bracketing tree), not metric -- the proposal's 'vanishing curvature' claim does not apply until the density-matrix layer",
               "verdict": verdict, "checks_of_proposal": {"spine_confirmed": spine, "counting_neq_magma_note": "S0 counting choice is a modeling choice, not forced by the magma itself.", "noncommut_neq_infinite_note": "The finite quotient's commutativity is checked by its concrete class table; no infinite claim is made.", "entropy_object_switch_note": "These are Hartley counts over syntactic objects, not physical entropy; bracketings and evaluated elements are distinct object choices."},
               "classification": classification, "promotion_allowed": promotion_allowed, "ordering_status": ordering_status,
+              "smt_role": "supportive_nonvacuity_only",
+              "load_bearing_evidence": "Plain-Python union-find associativity-quotient computation: reps[left]==reps[right] collapses the two distinct bracketing words under the smallest associative congruence, combined with the computed noncommutativity witness pair.",
               "floor_claims": [{"key": "ratcheting.magma_to_semigroup.assoc_drop", "value": assoc_drop, "direction": "higher_is_better"}],
               "engines_ran": {"sympy": True, "numpy": False, "z3": True, "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "jax": False, "julia": False}, "tool_manifest": TOOL_MANIFEST,
               "notes": ["Pre-admission evidence only; never canonical, bridge, or axis admission.", f"Control recovery recomputed: invertible={control_invertible}, one_way={control_is_one_way}."]}

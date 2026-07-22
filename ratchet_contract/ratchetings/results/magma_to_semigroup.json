@@ -28,6 +28,7 @@
     }
   ],
   "geometry_kind": "combinatorial (Cayley graph / bracketing tree), not metric -- the proposal's 'vanishing curvature' claim does not apply until the density-matrix layer",
+  "load_bearing_evidence": "Plain-Python union-find associativity-quotient computation: reps[left]==reps[right] collapses the two distinct bracketing words under the smallest associative congruence, combined with the computed noncommutativity witness pair.",
   "magma_table": {
     "elements": [
       0,
@@ -93,6 +94,7 @@
   "ordering_status": "PROPOSED not canon",
   "promotion_allowed": false,
   "schema_version": "1.0",
+  "smt_role": "supportive_nonvacuity_only",
   "tool_manifest": {
     "cvc5": {
       "reason": "Returned unsat cross-check.",
@@ -105,7 +107,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Primary non-injectivity contradiction and SAT-flip check.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the plain-Python union-find associativity-quotient computation (reps[left]==reps[right] on the two bracketings, plus the noncommutativity witness pair).",
       "tried": true,
       "used": true
     }

@@ -59,7 +59,7 @@ TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True,
               "reason": "Exact rational cell arithmetic, Hartley H_0=k*ln(2) symbolic growth, and the nested-interval width check."},
     "z3": {"tried": True, "used": True,
-           "reason": "Primary SMT contradiction: one recovery function of one cell index cannot return two distinct real points, at every tested level."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the sympy/Fraction witness (exact rational cell arithmetic showing two distinct dyadic points sharing a cell index at every tested finite level, plus the symbolic Hartley growth and interval-width identities)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "numpy": {"tried": False, "used": False,
@@ -70,7 +70,7 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "cvc5": None,
     "numpy": None,
     "jax": None,
@@ -275,7 +275,26 @@ def control_probe() -> dict[str, Any]:
     control_bijective_on_support = distinct_f_values == n0
     control_invertible = bool(control_recovers_f and control_bijective_on_support)
     control_is_one_way = not control_invertible
+    # Discriminating check (feed-both-and-differ, mirrors the vn/pure control
+    # repair): the SAME "does this map collapse distinct points" predicate must
+    # return True for a genuinely lossy map and False for the lossless one, so
+    # the control is load-bearing rather than a frozen not-invertible.
+    def map_collapses(m, pts) -> bool:
+        seen: dict[int, Fraction] = {}
+        for x in pts:
+            key = m(x)
+            if key in seen and seen[key] != x:
+                return True
+            seen[key] = x
+        return False
+    cell_reps = [cell_interval(i, k0)[0] for i in range(n0)]
+    lossy_is_one_way = map_collapses(lambda x: cell_index(x, k0), sample_points)      # 4/cell -> collapses
+    lossless_is_one_way = map_collapses(lambda x: cell_index(x, k0), cell_reps)        # 1/cell -> bijection
+    control_discriminates = bool(lossy_is_one_way and not lossless_is_one_way)
     return {
+        "lossy_is_one_way": lossy_is_one_way,
+        "lossless_is_one_way": lossless_is_one_way,
+        "control_discriminates": control_discriminates,
         "k0": k0,
         "k_test": k_test,
         "sample_count": len(sample_points),
@@ -328,13 +347,11 @@ def main() -> None:
         hartley["exact_formula_holds_symbolically"]
         and hartley["hartley_grows_unbounded"]
         and discretization_one_way_witness["many_to_one_confirmed"]
-        and z3_result["result"] == "unsat"
-        and z3_result["erased_constraint_result"] == "sat"
         and axiom_probe["agree_at_every_finite_level_tested"]
         and axiom_probe["interval_still_nondegenerate_at_k_max"]
         and axiom_probe["width_positive_for_every_finite_k_checked_symbolically"]
         and control["control_invertible"]
-        and not control["control_is_one_way"]
+        and control["control_discriminates"]
     )
 
     verdict = "CONTINUUM_ABOVE_FINITE_ONEWAY" if core_ok else "FAILED"
@@ -359,11 +376,13 @@ def main() -> None:
         "added_axiom_named": "Cauchy/order-completeness",
         "finite_presumes_less": finite_presumes_less,
         "control_channel": control,
-        "control_genuine": bool(control["control_invertible"] and not control["control_is_one_way"]),
+        "control_genuine": bool(control["control_discriminates"]),
         "verdict": verdict,
         "classification": classification,
         "promotion_allowed": promotion_allowed,
         "ordering_status": ordering_status,
+        "smt_role": "supportive_nonvacuity_only",
+        "load_bearing_evidence": "Exact Fraction cell-index arithmetic showing x1!=x2 sharing a cell index at every tested level 1..K_MAX, plus sympy exact Hartley-growth formula and per-level interval-width-positivity identities.",
         "honest_ceiling": ("This is a finite PROXY for the finite/infinite presumption gap, not a construction of "
                             "the real numbers. It demonstrates (i) that continuum-to-finite discretization is a "
                             "one-way, many-to-one forgetting map at every tested resolution, and (ii) that recovering "

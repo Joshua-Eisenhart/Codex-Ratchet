@@ -4,7 +4,16 @@
     "min_S_off_sphere": 0.14262408093459733
   },
   "classification": "tool_lego_fit_probe",
-  "control_channel": "Single-system real rotation U on C^2; U^dagger recovery, rank-1 preservation, and zero-entropy preservation are recomputed on every sampled pure state.",
+  "control_channel": "Single-system real rotation U on C^2. The SAME channel_is_one_way predicate (distinct inputs collapsed to a common image) is fed both the partial trace and this unitary and returns different answers -- a discriminating, non-decorative control.",
+  "control_discrimination": {
+    "control_invertible_rank1_zero_entropy": true,
+    "control_is_one_way": false,
+    "discriminates": true,
+    "note": "Feed-both-and-differ: same predicate returns True on the partial trace (psi, phi collapse to rho_A=I/2) and False on the local unitary; the control can flip and does not.",
+    "partial_trace_borns_entropy": true,
+    "partial_trace_is_one_way": true,
+    "predicate": "channel_is_one_way(channel, a, b): distinct a != b collapsed to a common image channel(a) == channel(b)"
+  },
   "control_is_one_way": false,
   "engines_ran": {
     "cvc5": true,
@@ -31,12 +40,14 @@
   },
   "layer_before": "Layer 0: pure C^2 rays (rank-1 projectors), CP^1 with Fubini--Study metric ds^2=<dpsi|dpsi>-|<psi|dpsi>|^2; S(|psi><psi|)=0 identically.",
   "layer_vn": "Layer 1: mixed C^2 density operators (Bloch ball), with von Neumann entropy positive in its interior.",
+  "load_bearing_evidence": "numpy purification witness pair (psi, phi=(I tensor diag(1,i))psi distinct states, identical partial-trace rho_A) plus sympy exact Schmidt/entanglement-entropy formula and endpoint/generic-sample checks.",
   "notes": [
     "Finite sampled probe only; proposed layer ordering is not canon.",
     "Fubini--Study formula for CP^1: ds^2=<dpsi|dpsi>-|<psi|dpsi>|^2.",
     "VN entropy is zero identically for single-system pure states; its nonzero value here is born through the partial-trace cut.",
     "For real t, the binary entropy is zero iff cos^2(t) is 0 or 1, equivalently t is a multiple of pi/2.",
-    "SMT encodes deterministic recovery of a purification-identifying phase from one reduced state, not a full parametrization of all purifications."
+    "SMT encodes deterministic recovery of a purification-identifying phase from one reduced state, not a full parametrization of all purifications.",
+    "Control is a DISCRIMINATING predicate: the same channel_is_one_way test returns partial_trace=True vs unitary=False; it is not a constant."
   ],
   "one_way_witness_pair": {
     "description": "psi and phi=(I_A tensor diag(1,i))psi are distinct purifications with the same rho_A=I/2.",
@@ -79,6 +90,7 @@
   "ordering_status": "PROPOSED not canon",
   "promotion_allowed": false,
   "schema_version": "1.0",
+  "smt_role": "supportive_nonvacuity_only",
   "tool_manifest": {
     "cvc5": {
       "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
@@ -106,7 +118,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Primary SMT contradiction: one recovery of one reduced state cannot return two purifications.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (psi/phi purification pair with identical partial trace plus the exact symbolic entanglement-entropy formula).",
       "tried": true,
       "used": true
     }

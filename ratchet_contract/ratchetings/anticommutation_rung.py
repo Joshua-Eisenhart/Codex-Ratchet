@@ -56,7 +56,7 @@ TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True,
               "reason": "Exact structure-constant algebra for Clifford/Grassmann/symmetric tables and their equality checks."},
     "z3": {"tried": True, "used": True,
-           "reason": "Primary SMT contradiction: one function of the symmetrized image cannot recover two distinct Grassmann signs."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the sympy witness (exact structure-constant tables: Grassmann==g0-Clifford, theta1*theta2 vs theta2*theta1 distinct signs both symmetrizing to the same monomial)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "numpy": {"tried": False, "used": False, "reason": "Not needed: all objects here are exact finite structure constants, sympy suffices."},
@@ -66,7 +66,7 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "cvc5": None,
     "numpy": None,
     "jax": None,
@@ -241,7 +241,6 @@ def main() -> None:
     ]
 
     core_ok = (grassmann_is_g0_clifford and clifford_presumes_metric and witness_valid
-               and z3_result["result"] == "unsat" and z3_result["erased_constraint_result"] == "sat"
                and control["injective"] and not control["one_way"])
     if not core_ok:
         verdict = "FAILED"
@@ -277,6 +276,8 @@ def main() -> None:
         "classification": classification,
         "promotion_allowed": promotion_allowed,
         "ordering_status": ordering_status,
+        "smt_role": "supportive_nonvacuity_only",
+        "load_bearing_evidence": "sympy exact structure-constant tables: grassmann_is_g0_clifford (entrywise table equality), clifford_presumes_metric (generic-g table divergence), and the theta1*theta2/theta2*theta1 distinct-sign-same-symmetrized-image witness.",
         "floor_claims": [{"key": "ratcheting.clifford.sign_forgotten", "value": 1, "direction": "higher_is_better"}],
         "engines_ran": {"sympy": True, "numpy": False, "z3": True,
                         "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "jax": False, "julia": False},

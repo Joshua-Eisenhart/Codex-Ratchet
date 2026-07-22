@@ -35,6 +35,7 @@
       "value": 0.0
     }
   ],
+  "load_bearing_evidence": "numpy same-S0-distinct-S1 witness pairs on the 2x2 and 3x3 sampled carriers plus sympy exact symbolic alpha->0/alpha->1 limits and monotonicity.",
   "min_gap_S0_S1": {
     "2x2": 0.0,
     "3x3": 2.220446049250313e-16
@@ -170,6 +171,7 @@
   "ordering_status": "PROPOSED not canon",
   "promotion_allowed": false,
   "schema_version": "1.0",
+  "smt_role": "supportive_nonvacuity_only",
   "symbolic_checks": {
     "derivative_samples_at_p_eq_1_3": [
       -0.05809354330862728,
@@ -214,7 +216,7 @@
     "qutip": null,
     "sympy": "load_bearing",
     "torch": null,
-    "z3": "load_bearing"
+    "z3": "supportive"
   },
   "tool_manifest": {
     "cvc5": {
@@ -253,7 +255,7 @@
       "used": false
     },
     "z3": {
-      "reason": "Primary SMT contradiction: a deterministic recovery function of S_0 (rank) alone cannot return two distinct von Neumann values recorded at the same S_0 input.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (computed same-S0-distinct-S1 spectrum pairs on both the 2x2 and 3x3 carriers, plus the exact symbolic alpha->0/alpha->1 limits and monotonicity).",
       "tried": true,
       "used": true
     }

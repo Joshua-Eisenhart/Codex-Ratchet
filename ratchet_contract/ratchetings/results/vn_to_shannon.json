@@ -1,7 +1,44 @@
 {
   "bkm_restricts_to_fisher": 0.0,
   "classification": "tool_lego_fit_probe",
-  "control_channel": "z-rotation U=diag(1,e^{i*0.7}); unitary, coherence-preserving, invertible by U^dagger (recovery recomputed on every sampled state) and VN-preserving -- genuinely not one-way.",
+  "control_channel": "z-rotation U=diag(1,e^{i*0.7}); coherence-preserving unitary. The SAME channel_is_one_way predicate (distinct inputs collapsed to a common image) is fed both dephasing and this unitary and returns different answers -- a discriminating, non-decorative control.",
+  "control_discrimination": {
+    "control_invertible_and_vn_preserving": true,
+    "control_is_one_way": false,
+    "dephasing_irreversible_and_vn_raising": true,
+    "dephasing_is_one_way": true,
+    "discriminates": true,
+    "note": "Feed-both-and-differ: same predicate returns True on dephasing and False on the coherence-preserving unitary; the control can flip and does not.",
+    "predicate": "channel_is_one_way(channel, a, b): distinct a != b collapsed to a common image channel(a) == channel(b)",
+    "witness_pair": {
+      "rho": [
+        [
+          0.5,
+          0.25
+        ],
+        [
+          0.25,
+          0.5
+        ]
+      ],
+      "rho_prime": [
+        [
+          0.5,
+          [
+            0.0,
+            0.25
+          ]
+        ],
+        [
+          [
+            -0.0,
+            -0.25
+          ],
+          0.5
+        ]
+      ]
+    }
+  },
   "control_is_one_way": false,
   "dephasing_entropy_monotone": 0.03158394240196316,
   "engines_ran": {
@@ -21,11 +58,13 @@
   ],
   "layer1": "2x2 density operators (Bloch ball), BKM metric, von Neumann entropy.",
   "layer2": "Diagonal density operators (simplex Delta^1), Fisher-Rao metric, Shannon entropy.",
+  "load_bearing_evidence": "numpy dephasing witness pair (rho, rho_prime distinct off-diagonal coherence, identical D-image) plus sympy exact idempotence/entropy-equality/BKM-restricts-to-Fisher identities.",
   "nesting_idempotent": true,
   "notes": [
     "Finite sampled probe only; proposed layer ordering is not canon.",
     "BKM tensor used: g=a(I-nn^T)+b nn^T, a=atanh(r)/r, b=1/(1-r^2); z=2p-1.",
-    "SMT encodes deterministic recovery of two different coherences from the same dephased diagonal, not a full Choi/CPTP parametrization."
+    "SMT encodes deterministic recovery of two different coherences from the same dephased diagonal, not a full Choi/CPTP parametrization.",
+    "Control is a DISCRIMINATING predicate: the same channel_is_one_way test returns dephasing=True vs unitary=False; it is not a constant."
   ],
   "one_way_witness_pair": {
     "D_rho": [
@@ -79,6 +118,7 @@
   "promotion_allowed": false,
   "schema_version": "1.0",
   "shannon_equals_vn_on_diagonal": true,
+  "smt_role": "supportive_nonvacuity_only",
   "tool_manifest": {
     "cvc5": {
       "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
@@ -106,7 +146,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Primary SMT contradiction: one function of one dephased input cannot return two distinct coherences.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (dephasing witness pair rho/rho_prime plus exact idempotence/entropy/metric identities).",
       "tried": true,
       "used": true
     }

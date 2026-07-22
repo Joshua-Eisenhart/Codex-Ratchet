@@ -54,7 +54,7 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True,
               "reason": "Sampled Bloch-ball (2x2) and Haar-random (3x3) density carriers, eigenvalue spectra, Renyi-alpha grid, ordering, and one-way witness search."},
     "z3": {"tried": True, "used": True,
-           "reason": "Primary SMT contradiction: a deterministic recovery function of S_0 (rank) alone cannot return two distinct von Neumann values recorded at the same S_0 input."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy/sympy witness (computed same-S0-distinct-S1 spectrum pairs on both the 2x2 and 3x3 carriers, plus the exact symbolic alpha->0/alpha->1 limits and monotonicity)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "jax": {"tried": False, "used": False,
@@ -70,7 +70,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
     "numpy": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "cvc5": None,
     "jax": None,
     "julia": None,
@@ -463,9 +463,7 @@ def main() -> None:
                and symbolic["limit_alpha_to_0_equals_log_rank"]
                and equality_at_maximally_mixed
                and one_way_computed
-               and control_genuine
-               and z3_result["result"] == "unsat"
-               and z3_result["erased_constraint_result"] == "sat")
+               and control_genuine)
     if not core_ok:
         verdict = "FAILED"
         notes.append("At least one required finite-probe check failed; inspect check details.")
@@ -504,6 +502,8 @@ def main() -> None:
         "classification": classification,
         "promotion_allowed": promotion_allowed,
         "ordering_status": ordering_status,
+        "smt_role": "supportive_nonvacuity_only",
+        "load_bearing_evidence": "numpy same-S0-distinct-S1 witness pairs on the 2x2 and 3x3 sampled carriers plus sympy exact symbolic alpha->0/alpha->1 limits and monotonicity.",
         "floor_claims": [
             {"key": "ratcheting.renyi.S0_S1_gap", "value": min(ordering_2x2["min_gap_S0_S1"], ordering_3x3["min_gap_S0_S1"]),
              "direction": "higher_is_better"},

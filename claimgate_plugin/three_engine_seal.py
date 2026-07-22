@@ -95,13 +95,12 @@ def check(receipt, receipt_path):
     if ctrl:
         return 1, f"REJECT — {sorted(ctrl)} labeled load_bearing, but numpy/scipy/mpmath are CONTROL-ONLY."
 
-    # R1b: numpy is NOT USED in this project at all (owner: "anything numpy can do jax can do
-    # better"). Reject any presence — ran, or any depth label including 'control'. jax is the base.
-    present = ({t for t in CONTROL_ONLY if engines_ran.get(t)}
-               | {t for t in CONTROL_ONLY if depth.get(t) not in (None, "None")})
-    if present:
-        return 1, (f"REJECT — {sorted(present)} present (ran or labeled) in a sim. numpy/scipy/mpmath "
-                   f"are NOT used in this project — jax.numpy is the base. Remove numpy entirely.")
+    # R1b superseded (owner 2026-07-22 new spec): numpy is ALLOWED in a CONTAINED role — the
+    # downstream CPU satellite (post-hoc pysindy/sympy/scipy on JAX output), NEVER load_bearing and
+    # NEVER the sim engine. The containment is enforced structurally below: a numeric sim must show
+    # >=2 authoritative engines (JAX base + Julia authoritative) that AGREE and whose jax leg
+    # RE-DERIVES. That requirement makes numpy incapable of being the workhorse-in-disguise — the
+    # load-bearing witness must provably come from the engines, so numpy can only sit in the satellite.
 
     # (B) explicit exemption for a genuinely non-numeric sim.
     ec = _d(receipt, "engine_contract")

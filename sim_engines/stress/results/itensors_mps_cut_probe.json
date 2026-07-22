@@ -1,0 +1,48 @@
+{
+ "all_checks_pass": true,
+ "checks": {
+  "ghz8_mps_bond_dim_is_2": {
+   "expected": 2,
+   "pass": true,
+   "value": 2
+  },
+  "ghz8_mps_cut_is_1_bit": {
+   "div_from_closed_form": 0.0,
+   "expected": 1.0,
+   "pass": true,
+   "value_bits": 1.0
+  },
+  "negative_control_product_state_0_bits_same_path": {
+   "expected": 0.0,
+   "pass": true,
+   "product_bond_dim": 1,
+   "value_bits": 9.61027951144475e-16
+  },
+  "quantumoptics_dense_ghz4_cross_check_1_bit": {
+   "div_from_closed_form": 2.220446049250313e-16,
+   "expected": 1.0,
+   "pass": true,
+   "value_bits": 1.0000000000000002
+  }
+ },
+ "claim_ceiling": "capability demonstration only \u2014 ITensors/ITensorMPS bond-SVD entropy at an MPS cut, cross-checked by QuantumOptics dense + closed form; no manifold/axis/bridge claim; parks by definition",
+ "classification": "unofficial_stress_probe",
+ "engines_used": {
+  "julia_itensors": [
+   "siteinds S=1/2",
+   "MPS from dense amplitudes",
+   "orthogonalize",
+   "bond svd",
+   "maxlinkdim"
+  ],
+  "julia_quantumoptics": [
+   "tensor",
+   "dm",
+   "ptrace",
+   "entropy_vn (dense, dim 16)"
+  ]
+ },
+ "load_bearing": "ITensors/ITensorMPS \u2014 the cut entropy is read off the bond SVD of the orthogonalized MPS, a tensor-network operation dense matrices do not provide",
+ "promotion_allowed": false,
+ "seconds": 43.084
+}

@@ -1,0 +1,60 @@
+{
+ "all_checks_pass": true,
+ "checks": {
+  "negative_control_anticommuting_pair": {
+   "comm": 1,
+   "excluded_by_same_predicate": true,
+   "pair": "+XX vs +ZI",
+   "pass": true
+  },
+  "negative_control_one_qubit": {
+   "differs_from_60": true,
+   "pass": true,
+   "sympy_formula_count": 6,
+   "unique_canonical_tableaux": 6
+  },
+  "sample_verification": {
+   "all_valid": true,
+   "criteria": [
+    "rows_commute",
+    "phases_real",
+    "independent_full_rank",
+    "canonical_fixed_point"
+   ],
+   "n_sampled": 10,
+   "pass": true,
+   "weights_seen": [
+    1,
+    2
+   ]
+  },
+  "two_qubit_enumeration": {
+   "method": "exhaustive signed-Pauli-pair enumeration + canonicalize!, not sampling",
+   "pairs_considered": 435,
+   "pass": true,
+   "rejected_anticommuting": 240,
+   "rejected_dependent_pattern": 15,
+   "sympy_formula_count": 60,
+   "unique_canonical_tableaux": 60
+  }
+ },
+ "claim_ceiling": "capability demonstration only \u2014 QuantumClifford stabilizer-tableau enumeration exercise; no manifold/axis/bridge claim; parks by definition",
+ "classification": "unofficial_stress_probe",
+ "engines_used": {
+  "julia_quantumclifford": [
+   "PauliOperator",
+   "Stabilizer",
+   "comm",
+   "canonicalize!",
+   "xbit",
+   "zbit",
+   "phase tableau"
+  ],
+  "sympy": [
+   "Integer-exact count formula 2^n * prod(2^k+1)"
+  ]
+ },
+ "julia_seconds": 0.957,
+ "promotion_allowed": false,
+ "seconds": 4.869
+}

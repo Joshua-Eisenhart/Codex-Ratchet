@@ -1,0 +1,102 @@
+{
+ "all_checks_pass": true,
+ "checks": {
+  "p1_negative_control": {
+   "basin_fraction_sum": 1.0,
+   "expected": 1,
+   "found": 1,
+   "matches": {
+    "1": {
+     "attractor": [
+      1.0,
+      0.0
+     ],
+     "distance": 0.0,
+     "nearest_root": [
+      1.0,
+      0.0
+     ]
+    }
+   },
+   "max_distance": 0.0,
+   "pass": true
+  },
+  "p3_attractor_count": {
+   "expected": 3,
+   "found": 3,
+   "pass": true
+  },
+  "p3_attractors_match_sympy_roots": {
+   "matches": {
+    "1": {
+     "attractor": [
+      -0.5,
+      -0.8660254037844386
+     ],
+     "distance": 0.0,
+     "nearest_root": [
+      -0.5,
+      -0.8660254037844386
+     ]
+    },
+    "2": {
+     "attractor": [
+      1.0,
+      0.0
+     ],
+     "distance": 0.0,
+     "nearest_root": [
+      1.0,
+      0.0
+     ]
+    },
+    "3": {
+     "attractor": [
+      -0.5,
+      0.8660254037844387
+     ],
+     "distance": 1.1102230246251565e-16,
+     "nearest_root": [
+      -0.5,
+      0.8660254037844386
+     ]
+    }
+   },
+   "max_distance": 1.1102230246251565e-16,
+   "pass": true,
+   "roots_covered": 3,
+   "tolerance": 1e-08
+  },
+  "p3_basin_fractions": {
+   "each_in_open_02_05": true,
+   "fractions": {
+    "1": 0.32663464366238604,
+    "2": 0.3466326830702872,
+    "3": 0.32663464366238604
+   },
+   "pass": true,
+   "sum": 0.9999019703950593,
+   "unlabeled_fraction": 9.802960494069208e-05
+  }
+ },
+ "claim_ceiling": "capability demonstration only \u2014 Attractors.jl/DynamicalSystems.jl basin mapping cross-checked by sympy exact roots; no manifold/axis/bridge claim; parks by definition",
+ "classification": "unofficial_stress_probe",
+ "engines_used": {
+  "julia": [
+   "DynamicalSystems.jl DeterministicIteratedMap + Attractors.jl AttractorsViaRecurrences",
+   "separate process, --project=system_v5/julia_carrier"
+  ],
+  "sympy": [
+   "roots (exact algebraic roots of z^p - 1)"
+  ]
+ },
+ "grid": {
+  "ic_grid": "101x101 on [-1.5,1.5]^2",
+  "recurrence_grid": "301x301"
+ },
+ "load_bearing": "AttractorsViaRecurrences discovers attractors and labels the 101x101 IC grid \u2014 basin-of-attraction capability nothing else in the estate provides",
+ "negative_control": "z^1 - 1 (single root) through the same machinery: 3-attractor property genuinely fails, exactly 1 found",
+ "promotion_allowed": false,
+ "seconds": 9.336,
+ "seconds_julia_leg": 9.31
+}

@@ -1,0 +1,84 @@
+{
+ "all_pass": true,
+ "claim_ceiling": "capability demonstration only \u2014 ott-jax Sinkhorn W2 on eigenvalue clouds, exact-closed-form cross-checked; no manifold/axis/bridge claim; parks by definition",
+ "classification": "unofficial_stress_probe",
+ "crosscheck": {
+  "pass": true,
+  "rel_tolerance": 0.001
+ },
+ "engines_used": {
+  "exact_crosscheck": [
+   "1-D sorted-coupling closed form, pure python floats"
+  ],
+  "jax": [
+   "random+qr construction",
+   "eigvalsh",
+   "complex128_x64"
+  ],
+  "ott": [
+   "geometry.pointcloud.PointCloud (SqEuclidean)",
+   "solvers.linear.sinkhorn.Sinkhorn (lse, eps=1e-3, marginal threshold 1e-5) \u2014 LOAD-BEARING"
+  ]
+ },
+ "epsilon": 0.001,
+ "negative_control": {
+  "distinct_floor": 0.001,
+  "distinct_spectra_w2sq": 0.008127094034847585,
+  "flips": true,
+  "identical_spectra_w2sq": 5.710162426109784e-12,
+  "identical_threshold": 1e-06
+ },
+ "objects": {
+  "pass": true,
+  "rho_C_max_abs_imag": 0.09510576900952283,
+  "rho_R_max_abs_imag": 0.0,
+  "spectrum_recovery_max_div": 3.3306690738754696e-16,
+  "trace_max_div": 2.220446049250313e-16
+ },
+ "ott_version": "0.6.0",
+ "promotion_allowed": false,
+ "seconds": 2.944,
+ "spectra": {
+  "lam_distinct": [
+   0.6,
+   0.2,
+   0.15,
+   0.05
+  ],
+  "lam_shared": [
+   0.475,
+   0.325,
+   0.175,
+   0.025
+  ]
+ },
+ "w2_pairs": {
+  "C_vs_D_distinct": {
+   "abs_div": 2.094034847585982e-06,
+   "exact_sorted_w2sq": 0.008125000000000028,
+   "final_marginal_error": 9.881536996991791e-06,
+   "n_iters": 2350,
+   "rel_div": 0.0002577273658567354,
+   "sinkhorn_converged": true,
+   "sinkhorn_w2sq": 0.008127094034847614
+  },
+  "R_vs_C_identical_multiset": {
+   "abs_div": 5.710162426109784e-12,
+   "exact_sorted_w2sq": 8.58242531467562e-33,
+   "final_marginal_error": 0.0,
+   "n_iters": 10,
+   "rel_div": 5.710162426109783,
+   "sinkhorn_converged": true,
+   "sinkhorn_w2sq": 5.710162426109784e-12
+  },
+  "R_vs_D_distinct": {
+   "abs_div": 2.0940348475599613e-06,
+   "exact_sorted_w2sq": 0.008125000000000025,
+   "final_marginal_error": 9.881536996991791e-06,
+   "n_iters": 2350,
+   "rel_div": 0.00025772736585353293,
+   "sinkhorn_converged": true,
+   "sinkhorn_w2sq": 0.008127094034847585
+  }
+ }
+}

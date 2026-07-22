@@ -1,0 +1,76 @@
+{
+ "all_checks_pass": true,
+ "checks": {
+  "constant_omega_vs_closed_form": {
+   "bound": 1e-06,
+   "max_div": 4.823511645657419e-09,
+   "pass": true
+  },
+  "constant_omega_vs_dynamiqs_mesolve": {
+   "bound": 1e-06,
+   "max_div": 4.807400921791327e-09,
+   "pass": true
+  },
+  "gibbs_ratio_approach": {
+   "div_from_exact_at_T": 1.7319479184152442e-14,
+   "exact_ratio_at_T": 0.5375245442702773,
+   "gibbs_ratio_gamma_up_over_down": 0.19999999999999998,
+   "p_e_over_p_g_at_T": 0.5375245442702946,
+   "pass": true
+  },
+  "negative_control_flips": {
+   "dissipative_pop_drift": 0.15039612130198343,
+   "frozen_pop_drift": 0.0,
+   "pass": true
+  },
+  "negative_control_frozen_populations": {
+   "bound": 1e-09,
+   "coherence_magnitude_drift": 1.0373033210164806e-08,
+   "max_pop_drift": 0.0,
+   "pass": true
+  },
+  "ramp_phase_witness": {
+   "analytic_phase_mod_2pi": 5.0663706143591725,
+   "arg_c_at_T": -1.2168146966514302,
+   "pass": true,
+   "unit_circle_div": 3.831016661165502e-09
+  }
+ },
+ "claim_ceiling": "capability demonstration only \u2014 diffrax time-dependent Lindblad solve, cross-checked exact; no manifold/axis/bridge claim; parks by definition",
+ "classification": "unofficial_stress_probe",
+ "engines_used": {
+  "closed_form": [
+   "exponential relaxation to Gibbs ratio + coherence phase/damping \u2014 independent exact path"
+  ],
+  "diffrax": [
+   "ODETerm",
+   "Dopri5",
+   "PIDController(rtol=1e-8)",
+   "SaveAt",
+   "diffeqsolve \u2014 LOAD-BEARING (time-dependent solve)"
+  ],
+  "dynamiqs": [
+   "asqarray",
+   "mesolve (Tsit5 rtol 1e-10) \u2014 independent cross-check on the constant-omega case"
+  ]
+ },
+ "object": {
+  "H": "omega(t) sigma_z / 2, omega linear ramp 1.0 -> 2.0 over T=5.0",
+  "dim": 2,
+  "initial_state": "|+> (p_e = p_g = 0.5, rho_eg = 0.5)",
+  "jumps": {
+   "gamma_down": 0.1,
+   "gamma_up": 0.02
+  },
+  "vectorization": "y = [p_e, p_g, Re rho_eg, Im rho_eg] (4-real-vector)"
+ },
+ "promotion_allowed": false,
+ "seconds": 4.744,
+ "solver_stats": {
+  "save_points": 41,
+  "steps_const": 65,
+  "steps_negative_control": 98,
+  "steps_ramp": 98,
+  "trace_drift_ramp": 2.7755575615628914e-15
+ }
+}

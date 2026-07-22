@@ -3,7 +3,6 @@
     "cvc5": "supportive",
     "jax": "load_bearing",
     "julia": "load_bearing",
-    "numpy": "control",
     "qutip": "supportive",
     "sympy": "load_bearing",
     "torch": "load_bearing",
@@ -24,7 +23,7 @@
     "positive_family_sweep_nonpositive": true,
     "positive_marginalize_is_one_way": true,
     "positive_mutual_information_differs": true,
-    "positive_qutip_matches_numpy": true,
+    "positive_qutip_matches_jax": true,
     "positive_relative_entropy_matches_identity_bell": true,
     "positive_relative_entropy_matches_identity_ccorr": true,
     "positive_relative_entropy_matches_identity_product_boundary": true,
@@ -66,8 +65,8 @@
   },
   "engine_values": {
     "jax_S_cond_bell": -0.9999999999999999,
+    "jax_base_S_cond_bell": -1.0,
     "julia_S_cond_bell": -0.9999999999999999,
-    "numpy_control_S_cond_bell": -1.0,
     "qutip_S_cond_bell": -0.9999999999999983,
     "torch_S_cond_bell": -0.9999999999999999
   },
@@ -75,7 +74,6 @@
     "cvc5": true,
     "jax": true,
     "julia": true,
-    "numpy": true,
     "qutip": true,
     "sympy": true,
     "torch": true,
@@ -85,7 +83,7 @@
     "S_cond_values": [
       0.0,
       -0.12446465105050113,
-      -0.35457890266526976,
+      -0.3545789026652697,
       -0.6008760366928562,
       -0.8112781244591327,
       -0.9511243982217246,
@@ -125,7 +123,7 @@
   ],
   "layer_joint": "Layer J: joint two-qubit density operator rho_AB on C^2 (x) C^2.",
   "layer_marginal_pair": "Layer M: the pair of marginals (rho_A, rho_B) = (Tr_B rho_AB, Tr_A rho_AB).",
-  "load_bearing_evidence": "THREE INDEPENDENT ENGINES each recompute S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow; mutual info 2 vs 0 for the product): Julia+QuantumOptics (Canon reference), JAX+dynamiqs, PyTorch -- agreeing to max cross-engine divergence ~1.1e-16 with Julia as reference. Each leg runs as its own subprocess and recomputes from scratch (no echo). sympy gives the exact family-wide S(L|R)=-S_A identity. numpy is CONTROL only, never load-bearing.",
+  "load_bearing_evidence": "THREE INDEPENDENT ENGINES each recompute S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow; mutual info 2 vs 0 for the product): Julia+QuantumOptics (Canon reference), JAX+dynamiqs, PyTorch -- agreeing to max cross-engine divergence ~1e-16 with Julia as reference. Each leg runs as its own subprocess and recomputes from scratch (no echo). The base carrier itself runs on jax.numpy (x64) -- there is NO numpy anywhere in this sim. sympy gives the exact family-wide S(L|R)=-S_A identity.",
   "matrix_witnesses": {
     "bell": [
       [
@@ -270,7 +268,7 @@
     "positive_family_sweep_nonpositive",
     "positive_marginalize_is_one_way",
     "positive_mutual_information_differs",
-    "positive_qutip_matches_numpy",
+    "positive_qutip_matches_jax",
     "positive_relative_entropy_matches_identity_bell",
     "positive_relative_entropy_matches_identity_ccorr",
     "positive_relative_entropy_matches_identity_product_boundary",
@@ -369,22 +367,17 @@
       "used": true
     },
     "jax": {
-      "reason": "Independent jax leg (dynamiqs): S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow); agrees with the Julia Canon reference to <1e-9. numpy is control.",
+      "reason": "Independent jax leg (dynamiqs): S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow); agrees with the Julia Canon reference to <1e-9.",
       "tried": true,
       "used": true
     },
     "julia": {
-      "reason": "Independent julia leg (QuantumOptics): S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow); agrees with the Julia Canon reference to <1e-9. numpy is control.",
-      "tried": true,
-      "used": true
-    },
-    "numpy": {
-      "reason": "Lifted rungC carrier (ket/entangled/vn_entropy/ptrace/negativity verbatim; cut_readouts adapted), the marginalize/reconstruct witness-and-control pair, the Umegaki relative-entropy cross-identity, and the classical Shannon H(A|B)>=0 contrast computation.",
+      "reason": "Independent julia leg (QuantumOptics): S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow); agrees with the Julia Canon reference to <1e-9.",
       "tried": true,
       "used": true
     },
     "qutip": {
-      "reason": "qutip.entropy_conditional/entropy_mutual/negativity independently reproduced the Bell witness (S(L|R)=-1.000000, I=2.000000, N=0.500000), agreeing with the numpy witness to 1.776e-15.",
+      "reason": "qutip.entropy_conditional/entropy_mutual/negativity independently reproduced the Bell witness (S(L|R)=-1.000000, I=2.000000, N=0.500000), agreeing with the jax witness to 1.776e-15.",
       "tried": true,
       "used": true
     },
@@ -394,12 +387,12 @@
       "used": true
     },
     "torch": {
-      "reason": "Independent torch leg (torch): S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow); agrees with the Julia Canon reference to <1e-9. numpy is control.",
+      "reason": "Independent torch leg (torch): S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow); agrees with the Julia Canon reference to <1e-9.",
       "tried": true,
       "used": true
     },
     "z3": {
-      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the numpy same-marginals/different-mutual-information witness pair plus the sympy exact family identity.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the jax same-marginals/different-mutual-information witness pair (three engines agree) plus the sympy exact family identity.",
       "tried": true,
       "used": true
     }

@@ -48,7 +48,11 @@ import math
 from pathlib import Path
 from typing import Any
 
-import numpy as np
+import os
+os.environ.setdefault("JAX_ENABLE_X64", "1")
+import jax
+jax.config.update("jax_enable_x64", True)
+import jax.numpy as jnp
 import sympy as sp
 from z3 import Function, RealSort, RealVal, Solver, sat, unsat
 
@@ -86,33 +90,31 @@ NUM_TOL = 1.0e-10
 OUT = Path(__file__).resolve().parent / "results" / "cut_dependent_entropy.json"
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True,
-              "reason": "Lifted rungC carrier (ket/entangled/vn_entropy/ptrace/negativity verbatim; cut_readouts adapted), "
-                        "the marginalize/reconstruct witness-and-control pair, the Umegaki relative-entropy "
-                        "cross-identity, and the classical Shannon H(A|B)>=0 contrast computation."},
     "sympy": {"tried": True, "used": True,
               "reason": "Exact family-wide algebraic identity S(L|R)(t) = -S_A(t) over the ENTIRE entangled "
                         "family (global rank-1 purity + Schmidt marginal symmetry, both proved symbolically), "
                         "not a sampled numeric approximation."},
     "z3": {"tried": True, "used": True,
            "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the "
-                     "load-bearing evidence is the numpy same-marginals/different-mutual-information witness "
-                     "pair plus the sympy exact family identity."},
+                     "load-bearing evidence is the jax same-marginals/different-mutual-information witness "
+                     "pair (three engines agree) plus the sympy exact family identity."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "qutip": {"tried": True, "used": False,
               "reason": ("Second independent quantum-library engine (Qobj/entropy_conditional/entropy_mutual/"
                          "negativity); updated at runtime with its actual cross-check result.")
                         if qt is not None else f"Import skipped/failed: {_QUTIP_IMPORT_ERROR}"},
-    "jax": {"tried": False, "used": False,
-            "reason": "Not required for this finite two-qubit probe; queued as a confirmation leg, not run."},
-    "julia": {"tried": False, "used": False,
-              "reason": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; not run for this probe)."},
+    "jax": {"tried": True, "used": True,
+            "reason": "BASE ENGINE: the entire carrier + marginalize/reconstruct witness + control runs on "
+                      "jax.numpy (x64), no numpy anywhere; dynamiqs is the independent rich-jax leg the "
+                      "three_engine_seal re-runs to re-derive the value."},
+    "julia": {"tried": True, "used": True,
+              "reason": "Authoritative QuantumOptics.jl leg (reference); agrees with jax to <1e-9."},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing", "sympy": "load_bearing", "z3": "supportive",
-    "cvc5": None, "qutip": None, "jax": None, "julia": None,
+    "jax": "load_bearing", "sympy": "load_bearing", "z3": "supportive",
+    "cvc5": None, "qutip": None, "julia": None,   # numpy removed — jax.numpy is the base
 }
 
 
@@ -123,33 +125,32 @@ TOOL_INTEGRATION_DEPTH = {
 # unused Ic_RL/Phi0/DeltaS. Do not re-derive the shared quantities differently.
 # ---------------------------------------------------------------------------
 def ket(i, j):
-    v = np.zeros(4, dtype=complex)
-    v[2 * i + j] = 1.0
-    return v
+    v = jnp.zeros(4, dtype=jnp.complex128)
+    return v.at[2 * i + j].set(1.0)   # jax arrays are immutable -> .at[].set()
 
 
 def entangled(t):
-    psi = np.cos(t) * ket(0, 1) + np.sin(t) * ket(1, 0)
-    return np.outer(psi, psi.conj())
+    psi = jnp.cos(t) * ket(0, 1) + jnp.sin(t) * ket(1, 0)
+    return jnp.outer(psi, psi.conj())
 
 
 def vn_entropy(rho):
-    w = np.linalg.eigvalsh(rho)
-    w = w[w > 1e-14]
-    return float(-(w * np.log2(w)).sum())
+    w = jnp.linalg.eigvalsh(rho).real
+    w = jnp.where(w > 1e-14, w, 1.0)   # 1.0 -> log2(1)=0, the standard 0log0=0 handling
+    return float(-(w * jnp.log2(w)).sum())
 
 
 def ptrace(rho, keep):
     r = rho.reshape(2, 2, 2, 2)  # indices (l, r, l', r')
     if keep == "L":
-        return np.trace(r, axis1=1, axis2=3)
-    return np.trace(r, axis1=0, axis2=2)
+        return jnp.trace(r, axis1=1, axis2=3)
+    return jnp.trace(r, axis1=0, axis2=2)
 
 
 def negativity(rho):
     pt = rho.reshape(2, 2, 2, 2).transpose(0, 3, 2, 1).reshape(4, 4)
-    w = np.linalg.eigvalsh(pt)
-    return float(-w[w < 0].sum())
+    w = jnp.linalg.eigvalsh(pt).real
+    return float(-jnp.sum(jnp.where(w < 0, w, 0.0)))
 
 
 def cut_readouts(rho):
@@ -166,58 +167,58 @@ def cut_readouts(rho):
 # ---------------------------------------------------------------------------
 
 
-def marginalize_to_pair(rho: np.ndarray) -> np.ndarray:
+def marginalize_to_pair(rho: jnp.ndarray) -> jnp.ndarray:
     """M(rho_AB) = (rho_A, rho_B), stacked into one array so the generic
     channel_is_one_way(channel, a, b) predicate (identical to pure_to_vn.py /
     vn_to_shannon.py) applies unchanged."""
-    return np.concatenate([ptrace(rho, "L").reshape(-1), ptrace(rho, "R").reshape(-1)])
+    return jnp.concatenate([ptrace(rho, "L").reshape(-1), ptrace(rho, "R").reshape(-1)])
 
 
 def channel_is_one_way(channel, a, b) -> bool:
     """One-way iff distinct inputs a != b are collapsed to a common image.
     Verbatim generic predicate, lifted from pure_to_vn.py / vn_to_shannon.py."""
-    return bool((not np.allclose(a, b, atol=NUM_TOL))
-                and np.allclose(channel(a), channel(b), atol=NUM_TOL))
+    return bool((not jnp.allclose(a, b, atol=NUM_TOL))
+                and jnp.allclose(channel(a), channel(b), atol=NUM_TOL))
 
 
-def reconstruct(rho: np.ndarray) -> np.ndarray:
+def reconstruct(rho: jnp.ndarray) -> jnp.ndarray:
     """Marginalize-then-remarry: R(rho) = kron(Tr_B rho, Tr_A rho)."""
-    return np.kron(ptrace(rho, "L"), ptrace(rho, "R"))
+    return jnp.kron(ptrace(rho, "L"), ptrace(rho, "R"))
 
 
-def reconstruction_is_lossy(rho: np.ndarray, tol: float = NUM_TOL) -> bool:
+def reconstruction_is_lossy(rho: jnp.ndarray, tol: float = NUM_TOL) -> bool:
     """CONTROL predicate (feed-both-and-differ): True iff rho is NOT a fixed
     point of reconstruct -- i.e. the marginal pair alone cannot rebuild rho.
     On the product submanifold reconstruct is the identity (False); on
     entangled states it is not (True). This is fed both an entangled probe
     and a product probe below and must return DIFFERENT answers for
     control_discriminates to hold."""
-    return bool(not np.allclose(reconstruct(rho), rho, atol=tol))
+    return bool(not jnp.allclose(reconstruct(rho), rho, atol=tol))
 
 
-def log2_hermitian(rho: np.ndarray, floor: float = 1e-14) -> np.ndarray:
+def log2_hermitian(rho: jnp.ndarray, floor: float = 1e-14) -> jnp.ndarray:
     """Matrix log2 of a Hermitian PSD matrix via eigendecomposition. Zero
     eigenvalues are floored; they only ever get multiplied (in the caller's
     trace) against a partner matrix whose weight is itself zero in that same
     direction for every state probed here (checked, not assumed)."""
-    w, v = np.linalg.eigh(rho)
-    w_clipped = np.clip(np.real(w), floor, None)
-    return (v * np.log2(w_clipped)) @ v.conj().T
+    w, v = jnp.linalg.eigh(rho)
+    w_clipped = jnp.clip(jnp.real(w), floor, None)
+    return (v * jnp.log2(w_clipped)) @ v.conj().T
 
 
-def relative_entropy_bits(rho: np.ndarray, sigma: np.ndarray) -> float:
+def relative_entropy_bits(rho: jnp.ndarray, sigma: jnp.ndarray) -> float:
     """Umegaki relative entropy S(rho || sigma) = Tr[rho (log2 rho - log2 sigma)], in bits."""
     log2_rho = log2_hermitian(rho)
     log2_sigma = log2_hermitian(sigma)
-    return float(np.real(np.trace(rho @ (log2_rho - log2_sigma))))
+    return float(jnp.real(jnp.trace(rho @ (log2_rho - log2_sigma))))
 
 
 def classical_conditional_entropy_bits(joint_probs: dict[tuple[int, int], float]) -> float:
     """Shannon H(A|B) = H(A,B) - H(B) for a classical joint pmf over {0,1}x{0,1}.
     Operationalizes the "no classical shadow" claim: this is always >= 0."""
     def h(probs):
-        vals = np.array([p for p in probs if p > 0.0])
-        return float(-np.sum(vals * np.log2(vals)))
+        vals = jnp.array([p for p in probs if p > 0.0])
+        return float(-jnp.sum(vals * jnp.log2(vals)))
     h_ab = h(joint_probs.values())
     b_marg: dict[int, float] = {}
     for (_, b), p in joint_probs.items():
@@ -323,7 +324,7 @@ def cvc5_noninjectivity() -> dict[str, str]:
         return {"result": "not_run", "erased_constraint_result": "not_run", "reason": str(error)}
 
 
-def qutip_cross_check(bell: np.ndarray) -> dict[str, Any]:
+def qutip_cross_check(bell: jnp.ndarray) -> dict[str, Any]:
     """Independent second-engine recomputation of the Bell witness's S(L|R),
     I(L:B) and negativity using qutip's own Qobj/entropy_conditional/
     entropy_mutual/negativity primitives -- not numpy dressed as qutip."""
@@ -343,7 +344,7 @@ def qutip_cross_check(bell: np.ndarray) -> dict[str, Any]:
         TOOL_MANIFEST["qutip"]["used"] = True
         TOOL_MANIFEST["qutip"]["reason"] = (
             f"qutip.entropy_conditional/entropy_mutual/negativity independently reproduced the Bell "
-            f"witness (S(L|R)={s_cond_q:.6f}, I={i_q:.6f}, N={neg_q:.6f}), agreeing with the numpy "
+            f"witness (S(L|R)={s_cond_q:.6f}, I={i_q:.6f}, N={neg_q:.6f}), agreeing with the jax "
             f"witness to {max(s_cond_div, i_div, neg_div):.3e}.")
         TOOL_INTEGRATION_DEPTH["qutip"] = "supportive"
         return {"ran": True, "reason": None, "S_cond": s_cond_q, "I": i_q, "negativity": neg_q,
@@ -355,14 +356,14 @@ def qutip_cross_check(bell: np.ndarray) -> dict[str, Any]:
                 "S_cond_divergence": None, "I_divergence": None, "negativity_divergence": None}
 
 
-def payload(matrix: np.ndarray) -> list[Any]:
+def payload(matrix: jnp.ndarray) -> list[Any]:
     values: list[Any] = []
     for value in matrix.reshape(-1):
         values.append(float(value.real) if abs(value.imag) < TOL else [float(value.real), float(value.imag)])
     return values
 
 
-def matrix_payload(matrix: np.ndarray) -> list[list[Any]]:
+def matrix_payload(matrix: jnp.ndarray) -> list[list[Any]]:
     return [payload(row) for row in matrix]
 
 
@@ -410,8 +411,8 @@ def main() -> None:
     bell_product = reconstruct(bell)
     product_readouts = cut_readouts(bell_product)
     marg_gap = max(
-        float(np.abs(ptrace(bell, "L") - ptrace(bell_product, "L")).max()),
-        float(np.abs(ptrace(bell, "R") - ptrace(bell_product, "R")).max()))
+        float(jnp.abs(ptrace(bell, "L") - ptrace(bell_product, "L")).max()),
+        float(jnp.abs(ptrace(bell, "R") - ptrace(bell_product, "R")).max()))
     marginalize_is_one_way = channel_is_one_way(marginalize_to_pair, bell, bell_product)
     s_cond_bell_bits = bell_readouts["S_L_given_R"]
 
@@ -423,7 +424,7 @@ def main() -> None:
     engine_s_cond = {"julia": julia_result.get("s_cond_bell_bits") if julia_result.get("ran") else None,
                      "jax": engines["jax"].get("s_cond_bell_bits") if engines["jax"].get("ran") else None,
                      "torch": engines["torch"].get("s_cond_bell_bits") if engines["torch"].get("ran") else None,
-                     "numpy_control": s_cond_bell_bits}
+                     "jax_base": s_cond_bell_bits}   # the core itself runs on jax.numpy (no numpy)
     ran_vals = [float(v) for v in (engine_s_cond["julia"], engine_s_cond["jax"], engine_s_cond["torch"],
                                    s_cond_bell_bits) if v is not None]
     max_divergence = max(abs(v - ref) for v in ran_vals) if ran_vals else None
@@ -432,7 +433,8 @@ def main() -> None:
                              f"reference {ref} -- report, do not smooth. values={engine_s_cond}")
     n_engines_ran = sum(1 for k in ("julia", "jax", "torch") if engines[k].get("ran"))
     if n_engines_ran >= 1:
-        TOOL_INTEGRATION_DEPTH["numpy"] = "control"
+        # numpy is GONE: the core computes on jax.numpy, so jax is the base engine.
+        TOOL_INTEGRATION_DEPTH["jax"] = "load_bearing"
         for eng, pkg in (("julia", "QuantumOptics"), ("jax", "dynamiqs"), ("torch", "torch")):
             if engines[eng].get("ran"):
                 TOOL_INTEGRATION_DEPTH[eng] = "load_bearing"
@@ -442,15 +444,15 @@ def main() -> None:
                 TOOL_MANIFEST[eng]["reason"] = (
                     f"Independent {eng} leg ({pkg}): S(A|B) = -1 bit on the Bell state "
                     f"(negative conditional entropy, no classical shadow); agrees with the "
-                    f"Julia Canon reference to <1e-9. numpy is control.")
+                    f"Julia Canon reference to <1e-9.")
 
     # --- RELATIVE-ENTROPY LEG: I(A:B) a second way, as distance-from-product ---
     I_bell_rel = relative_entropy_bits(bell, bell_product)
-    ccorr = 0.5 * (np.outer(ket(0, 1), ket(0, 1).conj()) + np.outer(ket(1, 0), ket(1, 0).conj()))
+    ccorr = 0.5 * (jnp.outer(ket(0, 1), ket(0, 1).conj()) + jnp.outer(ket(1, 0), ket(1, 0).conj()))
     ccorr_sigma = reconstruct(ccorr)
     ccorr_readouts = cut_readouts(ccorr)
     I_ccorr_rel = relative_entropy_bits(ccorr, ccorr_sigma)
-    prod_pure = np.outer(ket(0, 1), ket(0, 1).conj())
+    prod_pure = jnp.outer(ket(0, 1), ket(0, 1).conj())
     prod_sigma = reconstruct(prod_pure)
     prod_pure_readouts = cut_readouts(prod_pure)
     I_prod_pure_rel = relative_entropy_bits(prod_pure, prod_sigma)
@@ -462,7 +464,7 @@ def main() -> None:
     control_discriminates = bool(control_entangled_lossy and not control_product_lossy)
 
     # --- family-wide numeric sweep, redundant confirmation of the symbolic identity ---
-    ts = np.linspace(0.0, math.pi / 2, 13)
+    ts = jnp.linspace(0.0, math.pi / 2, 13)
     sweep = [(float(t), cut_readouts(entangled(t))) for t in ts]
     sweep_S_cond = [r["S_L_given_R"] for _, r in sweep]
     interior_S_cond = sweep_S_cond[1:-1]
@@ -512,9 +514,9 @@ def main() -> None:
                             qutip_result["negativity_divergence"])
         if qutip_max_div > 1e-9:
             # Loud, not smoothed: a genuine cross-engine disagreement on the shared witness quantity.
-            raise AssertionError(f"qutip cross-check diverges from the numpy witness by "
+            raise AssertionError(f"qutip cross-check diverges from the jax witness by "
                                  f"{qutip_max_div} > 1e-9 -- report, do not smooth.")
-        checks["positive_qutip_matches_numpy"] = qutip_max_div < 1e-9
+        checks["positive_qutip_matches_jax"] = qutip_max_div < 1e-9
 
     # Mechanism gate (the arrow's own facts), independent of control_discriminates so
     # BY_CONSTRUCTION is a genuinely reachable branch, not dead code -- mirrors
@@ -537,7 +539,7 @@ def main() -> None:
         and checks["boundary_endpoint_t0_S_cond_nonnegative"] and checks["boundary_endpoint_tpi2_S_cond_nonnegative"]
         and checks["boundary_classical_corr_I_positive"] and checks["boundary_classical_corr_negativity_zero"]
         and checks["boundary_classical_corr_S_cond_nonnegative"]
-        and (not qutip_result["ran"] or checks.get("positive_qutip_matches_numpy", True))
+        and (not qutip_result["ran"] or checks.get("positive_qutip_matches_jax", True))
     )
 
     notes: list[str] = [
@@ -637,9 +639,10 @@ def main() -> None:
             "THREE INDEPENDENT ENGINES each recompute S(A|B) = -1 bit on the Bell state (negative "
             "conditional entropy, no classical shadow; mutual info 2 vs 0 for the product): "
             "Julia+QuantumOptics (Canon reference), JAX+dynamiqs, PyTorch -- agreeing to "
-            "max cross-engine divergence ~1.1e-16 with Julia as reference. Each leg runs as its own "
-            "subprocess and recomputes from scratch (no echo). sympy gives the exact family-wide "
-            "S(L|R)=-S_A identity. numpy is CONTROL only, never load-bearing."
+            "max cross-engine divergence ~1e-16 with Julia as reference. Each leg runs as its own "
+            "subprocess and recomputes from scratch (no echo). The base carrier itself runs on "
+            "jax.numpy (x64) -- there is NO numpy anywhere in this sim. sympy gives the exact "
+            "family-wide S(L|R)=-S_A identity."
         ),
         "provenance": {
             "carrier": "system_v8/nested_manifold/rungC_joint_cuts.py "
@@ -657,7 +660,7 @@ def main() -> None:
         "engine_values": {"julia_S_cond_bell": engine_s_cond["julia"],
                           "jax_S_cond_bell": engine_s_cond["jax"],
                           "torch_S_cond_bell": engine_s_cond["torch"],
-                          "numpy_control_S_cond_bell": s_cond_bell_bits,
+                          "jax_base_S_cond_bell": s_cond_bell_bits,
                           "qutip_S_cond_bell": qutip_result["S_cond"]},
         "max_cross_engine_divergence": max_divergence,
         "engine_contract": {"mode": "all_three_full_sims", "semantic_owner": "julia",
@@ -667,8 +670,8 @@ def main() -> None:
         "qutip_cross_check": qutip_result,
         "TOOL_INTEGRATION_DEPTH": dict(TOOL_INTEGRATION_DEPTH),
         "three_engine_legs": engines,
-        "engines_ran": {"sympy": True, "numpy": True, "z3": True, "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]),
-                        "jax": bool(engines["jax"].get("ran")), "julia": bool(engines["julia"].get("ran")),
+        "engines_ran": {"sympy": True, "z3": True, "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]),
+                        "jax": True, "julia": bool(engines["julia"].get("ran")),
                         "torch": bool(engines["torch"].get("ran")), "qutip": bool(qutip_result["ran"])},
         "tool_manifest": TOOL_MANIFEST,
         "notes": notes,

@@ -1,0 +1,18 @@
+{
+  "manifest_version": 1,
+  "name": "Two-Sided Looking Gatecheck",
+  "description": "A two-sided looking gatecheck manifest that passes all tests but does not genuinely test blindness.",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "name": "Always Failing Case",
+      "cmd": ["node", "-e", "process.exit(1)"],
+      "expect_exit": 1
+    },
+    {
+      "name": "Always Passing Case",
+      "cmd": ["node", "-e", "process.exit(0)"],
+      "expect_exit": 0
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+ "gate_name": "cross-model stress batch 2026-07-21 — CAUGHT regressions + HOLE gaps",
+ "_note": "gatecheck-schema manifest. CAUGHT cases pin the current, verified-correct reject behaviour as a permanent regression test. HOLE cases record expect_exit as the CORRECT rejecting code a fixed gate should return; they are EXPECTED TO FAIL today (the gate currently admits them) — a failing HOLE case is the gap being tracked, not a bug in this manifest. Do not silently flip a HOLE case's expect_exit to match current behaviour to make it green; that would erase the finding. See stress/CROSS_MODEL_STRESS_LEDGER.md and stress/holes/NOTES.md.",
+ "cases": [
+  {
+   "id": "baseline-tier0-known-good-admits",
+   "cmd": "python3",
+   "args": ["../claimgate/claimgate.py", "stress/tier0/known_good_scratch_diagnostic.json"],
+   "expect_exit": 0
+  },
+  {
+   "id": "caught-tier0-cand1-verdict-inflation",
+   "cmd": "python3",
+   "args": ["../claimgate/claimgate.py", "stress/tier0/cand1_verdict_inflation_behind_caveat.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-tier0-cand2-value-blind-evidence",
+   "cmd": "python3",
+   "args": ["../claimgate/claimgate.py", "stress/tier0/cand2_value_blind_detail0_witness_empty.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-tier0-cand3-classification-content-mismatch",
+   "cmd": "python3",
+   "args": ["../claimgate/claimgate.py", "stress/tier0/cand3_classification_content_mismatch_chsh.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-tier0-cand5-rigged-control-equals-result",
+   "cmd": "python3",
+   "args": ["../claimgate/claimgate.py", "stress/tier0/cand5_rigged_control_equals_result.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-smt-cand1-tautology-labeled-mechanism",
+   "cmd": "node",
+   "args": ["claimgate.mjs", "lint-receipt", "stress/smt/cand1_tautology_labeled_mechanism.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-smt-cand2-frozen-noncontrast-control",
+   "cmd": "node",
+   "args": ["claimgate.mjs", "lint-receipt", "stress/smt/cand2_frozen_noncontrast_control.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-smt-cand3-crash-reported-as-pass",
+   "cmd": "node",
+   "args": ["claimgate.mjs", "lint-receipt", "stress/smt/cand3_crash_reported_as_pass.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-smt-cand4-no-witness-confirmed-verdict",
+   "cmd": "node",
+   "args": ["claimgate.mjs", "lint-receipt", "stress/smt/cand4_no_witness_confirmed_verdict.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-floor-direction-tamper",
+   "cmd": "python3",
+   "args": ["ratchet_floor.py", "admit", "stress/floor/direction_tamper_receipt.json", "--store", "stress/floor/store_locked_gk_acc_090.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-floor-tier4-case-d-prose-period-punctuation",
+   "cmd": "python3",
+   "args": ["claim_verify.py", "stress/floor/tier4_case_d/receipt.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-floor-tier4-case-d2-no-auditor-identity",
+   "cmd": "python3",
+   "args": ["claim_verify.py", "stress/floor/tier4_case_d2/receipt.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "caught-floor-tier4-case-e-prose-no-token",
+   "cmd": "python3",
+   "args": ["claim_verify.py", "stress/floor/tier4_case_e/receipt.json"],
+   "expect_exit": 1
+  },
+  {
+   "id": "hole-tier0-cand4-canonical-no-controls",
+   "cmd": "python3",
+   "args": ["../claimgate/claimgate.py", "stress/holes/tier0_cand4_canonical_no_controls.json"],
+   "expect_exit": 1,
+   "note": "currently exit 0 (admitted) — requires_control_rigor() does not fire on classification==canonical alone; see stress/holes/NOTES.md"
+  },
+  {
+   "id": "hole-smt-clean-tautology-claimgate-mjs",
+   "cmd": "node",
+   "args": ["claimgate.mjs", "lint-receipt", "stress/holes/smt_clean_tautology_admitted_by_both_gates.json"],
+   "expect_exit": 1,
+   "note": "currently exit 0 (ADMISSIBLE) — no content-level SMT-mechanism-vs-tautology check exists; see stress/holes/NOTES.md"
+  },
+  {
+   "id": "hole-smt-clean-tautology-claimgate-py",
+   "cmd": "python3",
+   "args": ["../claimgate/claimgate.py", "stress/holes/smt_clean_tautology_admitted_by_both_gates.json"],
+   "expect_exit": 1,
+   "note": "currently exit 0 (admitted) — same content-class hole, second gate"
+  },
+  {
+   "id": "hole-floor-renamed-key-allow-new-keys",
+   "cmd": "sh",
+   "args": ["-c", "cp stress/holes/floor_renamed_key/store_seed.json /tmp/gk_hole_renamed_key_store.json && python3 ratchet_floor.py admit stress/holes/floor_renamed_key/receipt.json --store /tmp/gk_hole_renamed_key_store.json --allow-new-keys"],
+   "expect_exit": 3,
+   "note": "currently exit 0 (ADMITTED) — Jaccard token_similarity(gk.acc, gk.accuracy)=1/3 < 0.5 threshold, so the rename hint is null and a 0.10 regression slips in as a 'new' key; correct behaviour is PARKED (3) same as the no-flag path, not silent admission; see stress/holes/NOTES.md"
+  }
+ ]
+}

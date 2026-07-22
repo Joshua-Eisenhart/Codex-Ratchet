@@ -162,6 +162,7 @@
   },
   "notes": [
     "Finite two-qubit sampled probe only; proposed layer ordering is not canon.",
+    "OPEN BOUNDARY (untested, named): the born-at-the-cut result is established only for the PURE two-qubit entangled(t) family. Mixed rho_AB and dimension > 2 (d_A d_B > 4) are NOT tested here -- the next tooth for this rung, before Holevo-at-records. No claim is made beyond the pure two-qubit family.",
     "S(L|R) < 0 has no classical shadow: the classical H(A|B) computed on the perfectly anti-correlated joint pmf is 0.000000 bits (>= 0), while the quantum S(L|R) at the SAME correlation strength (Bell state) is -1.000000 bits (< 0).",
     "S(L|R)(t) = -S_A(t), exact over the whole entangled family (not sampled)",
     "SMT encodes deterministic recovery of two different mutual-information values from the same marginal-pair key, not a full parametrization of all joints sharing that marginal pair.",
@@ -262,7 +263,7 @@
   ],
   "promotion_allowed": false,
   "provenance": {
-    "carrier": "system_v8/nested_manifold/rungC_joint_cuts.py (ket/entangled/vn_entropy/ptrace/negativity/cut_readouts lifted verbatim)",
+    "carrier": "system_v8/nested_manifold/rungC_joint_cuts.py (ket/entangled/vn_entropy/ptrace/negativity lifted verbatim; cut_readouts adapted -- shared readouts byte-identical, drops unused Ic_RL/Phi0/DeltaS)",
     "packaging_sibling": "ratchet_contract/ratchetings/pure_to_vn.py (channel_is_one_way / control_discriminates / BY_CONSTRUCTION-reachability / TOOL_MANIFEST / smt_role schema matched exactly)"
   },
   "qutip_cross_check": {
@@ -324,7 +325,7 @@
       "used": false
     },
     "numpy": {
-      "reason": "Lifted rungC cut readouts (ket/entangled/vn_entropy/ptrace/negativity/cut_readouts), the marginalize/reconstruct witness-and-control pair, the Umegaki relative-entropy cross-identity, and the classical Shannon H(A|B)>=0 contrast computation.",
+      "reason": "Lifted rungC carrier (ket/entangled/vn_entropy/ptrace/negativity verbatim; cut_readouts adapted), the marginalize/reconstruct witness-and-control pair, the Umegaki relative-entropy cross-identity, and the classical Shannon H(A|B)>=0 contrast computation.",
       "tried": true,
       "used": true
     },

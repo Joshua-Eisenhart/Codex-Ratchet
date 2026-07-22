@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Cut-dependent correlation entropy: the SIGNED correlation structure is born at the cut.
 
-Provenance: the joint carrier (ket, entangled, vn_entropy, ptrace, negativity,
-cut_readouts) is LIFTED VERBATIM from
-system_v8/nested_manifold/rungC_joint_cuts.py -- not re-derived. This file is
+Provenance: the joint carrier functions ket, entangled, vn_entropy, ptrace,
+negativity are LIFTED VERBATIM from system_v8/nested_manifold/rungC_joint_cuts.py;
+cut_readouts is ADAPTED from rungC's -- byte-identical formulas for the shared
+readouts (S_L/S_R/S_LR/I/S(L|R)/negativity), dropping rungC's unused
+Ic_RL/CUT_FAMILY/Phi0/DeltaS fields. Not re-derived. This file is
 the sibling arrow-packaging of ratchet_contract/ratchetings/pure_to_vn.py,
 matching its channel_is_one_way predicate, control_discriminates gate,
 BY_CONSTRUCTION reachability, qutip cross-check, and TOOL_MANIFEST /
@@ -85,7 +87,7 @@ OUT = Path(__file__).resolve().parent / "results" / "cut_dependent_entropy.json"
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True,
-              "reason": "Lifted rungC cut readouts (ket/entangled/vn_entropy/ptrace/negativity/cut_readouts), "
+              "reason": "Lifted rungC carrier (ket/entangled/vn_entropy/ptrace/negativity verbatim; cut_readouts adapted), "
                         "the marginalize/reconstruct witness-and-control pair, the Umegaki relative-entropy "
                         "cross-identity, and the classical Shannon H(A|B)>=0 contrast computation."},
     "sympy": {"tried": True, "used": True,
@@ -115,8 +117,10 @@ TOOL_INTEGRATION_DEPTH = {
 
 
 # ---------------------------------------------------------------------------
-# LIFTED VERBATIM from system_v8/nested_manifold/rungC_joint_cuts.py.
-# Do not re-derive differently -- this is the executed carrier being packaged.
+# ket/entangled/vn_entropy/ptrace/negativity are LIFTED VERBATIM from
+# system_v8/nested_manifold/rungC_joint_cuts.py; cut_readouts (below) is ADAPTED
+# from rungC's -- byte-identical formulas for the shared readouts, drops rungC's
+# unused Ic_RL/Phi0/DeltaS. Do not re-derive the shared quantities differently.
 # ---------------------------------------------------------------------------
 def ket(i, j):
     v = np.zeros(4, dtype=complex)
@@ -477,6 +481,10 @@ def main() -> None:
 
     notes: list[str] = [
         "Finite two-qubit sampled probe only; proposed layer ordering is not canon.",
+        "OPEN BOUNDARY (untested, named): the born-at-the-cut result is established only for the "
+        "PURE two-qubit entangled(t) family. Mixed rho_AB and dimension > 2 (d_A d_B > 4) are NOT "
+        "tested here -- the next tooth for this rung, before Holevo-at-records. No claim is made beyond "
+        "the pure two-qubit family.",
         "S(L|R) < 0 has no classical shadow: the classical H(A|B) computed on the perfectly "
         f"anti-correlated joint pmf is {classical_h_cond:.6f} bits (>= 0), while the quantum "
         f"S(L|R) at the SAME correlation strength (Bell state) is {s_cond_bell_bits:.6f} bits (< 0).",
@@ -571,7 +579,8 @@ def main() -> None:
         ),
         "provenance": {
             "carrier": "system_v8/nested_manifold/rungC_joint_cuts.py "
-                      "(ket/entangled/vn_entropy/ptrace/negativity/cut_readouts lifted verbatim)",
+                      "(ket/entangled/vn_entropy/ptrace/negativity lifted verbatim; "
+                      "cut_readouts adapted -- shared readouts byte-identical, drops unused Ic_RL/Phi0/DeltaS)",
             "packaging_sibling": "ratchet_contract/ratchetings/pure_to_vn.py "
                                  "(channel_is_one_way / control_discriminates / BY_CONSTRUCTION-reachability / "
                                  "TOOL_MANIFEST / smt_role schema matched exactly)",

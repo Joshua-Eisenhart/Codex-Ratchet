@@ -56,3 +56,10 @@ bridge is `orchestration claimgate-steering consume` (host-recompute; enforced b
 3. Proof/dynamics tools integrated as their own lanes (pysindy/pykoopman/z3/cvc5/topology).
 4. Unbound repos triaged and bound where they add capability.
 5. Integrated stacks composed from what proved load-bearing.
+
+## SPEC UPDATE 2026-07-22 (owner — supersedes prior numpy rules)
+- **2 engines**: JAX = base workhorse (the load-bearing relaxation, jax.numpy x64 + rich libs); Julia = authoritative canon (QuantumOptics + carrier). Both re-derive-verified by the seal.
+- **numpy = CONTAINED satellite**, NOT banned (reverted the blanket reject). Allowed as the downstream CPU analytical layer (post-hoc pysindy/sympy/scipy/sklearn on JAX output), control-only, NEVER load_bearing, NEVER the sim engine. Containment = the seal's >=2-agreeing-engines + jax-re-derive requirement (proves the real work is on the engines, so numpy can only sit in the satellite).
+- **PyTorch = LATER** — needs rented cloud GPUs; deferred. Not required by the seal (2 engines suffice).
+- **Target machine = M1 MacBook Pro, 16GB unified memory.** Engineering constraints (from the Gemini M1 survival rules, grounded): SEQUENTIAL engine execution (never JAX-Metal + PyTorch-MPS concurrently — swap-death); JAX preallocation off (`XLA_PYTHON_CLIENT_PREALLOCATE=false`); half-precision perception models when PyTorch is eventually used; ~4-6GB active RAM ceiling per stage. Zero-copy on M1 UMA is genuinely zero-copy (shared silicon).
+- **Gemini chain verdict**: stack REJECTED (cuts dynamiqs = breaks 4 working arrows; core = unintegrated pennylane/kingdon/V-JEPA2 + env-incompatible PythonCall/DLPack bridge not in carrier). KEEP: the M1 survival rules, the 4 engineering laws (SMT isolation, dimensionality bottleneck, DLPack layout-transpose, jaxtyping padding), and Gate M5 "claim semantic witness binding" (hardens the ClaimGate metadata-trust holes — worth building).

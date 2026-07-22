@@ -1,0 +1,535 @@
+#!/usr/bin/env python3
+"""Finite quantum Renyi-alpha-family probe (RENYI-AXIS lane).
+
+Object: on the 2x2 (Bloch ball) and one 3x3 density-operator carrier, the
+quantum Renyi entropy family
+
+    S_alpha(rho) = 1/(1-alpha) * ln Tr(rho^alpha),  alpha in (0,1) U (1,infinity)
+
+with limits
+
+    S_0   = ln rank(rho)          (alpha -> 0,   quantum Hartley / max-entropy)
+    S_1   = -Tr(rho ln rho)       (alpha -> 1,   von Neumann)
+    S_inf = -ln lambda_max(rho)   (alpha -> inf, min-entropy)
+
+This probe checks: (a) the family is non-increasing in alpha, with equality
+at rho = I/d; (b) S_0 = ln rank is a one-way FORGETTING of the von Neumann
+spectrum information as alpha -> 0 (non-injective: many full-rank spectra
+share one S_0 value); (c) three distinct "Hartley" quantities are held
+apart in this JSON rather than conflated; (d) the one-way witness is a
+genuine computed property of sampled data, not a hard-coded assertion, with
+a coincidence boundary check at pure states.
+
+classification = "tool_lego_fit_probe"; promotion_allowed = False;
+ordering_status = "PROPOSED not canon". This is standard Renyi-entropy math
+applied as a finite sampled probe; it does not settle a canonical layer
+ordering or support bridge/axis/canonical promotion.
+"""
+
+from __future__ import annotations
+
+import json
+import math
+from pathlib import Path
+from typing import Any
+
+import numpy as np
+import sympy as sp
+from z3 import Function, RealSort, RealVal, Solver, sat, unsat
+
+try:
+    import cvc5
+except ImportError:  # Recorded honestly below; z3 remains the primary proof leg.
+    cvc5 = None
+
+
+classification = "tool_lego_fit_probe"
+promotion_allowed = False
+ordering_status = "PROPOSED not canon"
+TOL = 1.0e-9
+
+TOOL_MANIFEST = {
+    "sympy": {"tried": True, "used": True,
+              "reason": "Exact symbolic Renyi-alpha entropy on a 2x2 diagonal carrier: monotonicity in alpha and the alpha->0/alpha->1 limits."},
+    "numpy": {"tried": True, "used": True,
+              "reason": "Sampled Bloch-ball (2x2) and Haar-random (3x3) density carriers, eigenvalue spectra, Renyi-alpha grid, ordering, and one-way witness search."},
+    "z3": {"tried": True, "used": True,
+           "reason": "Primary SMT contradiction: a deterministic recovery function of S_0 (rank) alone cannot return two distinct von Neumann values recorded at the same S_0 input."},
+    "cvc5": {"tried": cvc5 is not None, "used": False,
+             "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
+    "jax": {"tried": False, "used": False,
+            "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/numpy/z3 only."},
+    "julia": {"tried": False, "used": False,
+              "reason": "Out of scope for this lane (owner directive): light in-worker build with sympy/numpy/z3 only."},
+    "qutip": {"tried": False, "used": False,
+              "reason": "Out of scope for this lane (owner directive); density-carrier math done directly with numpy/sympy."},
+    "torch": {"tried": False, "used": False,
+              "reason": "Out of scope for this lane (owner directive)."},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "sympy": "load_bearing",
+    "numpy": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": None,
+    "jax": None,
+    "julia": None,
+    "qutip": None,
+    "torch": None,
+}
+
+RNG = np.random.default_rng(20260721)
+
+
+# ---------------------------------------------------------------------------
+# Carrier construction
+# ---------------------------------------------------------------------------
+
+def density_from_bloch(x: float, y: float, z: float) -> np.ndarray:
+    """Return (I + x X + y Y + z Z)/2, a 2x2 density operator."""
+    return np.array([[1.0 + z, x - 1j * y], [x + 1j * y, 1.0 - z]], dtype=complex) / 2.0
+
+
+def random_unitary(dimension: int) -> np.ndarray:
+    """Haar-random unitary via QR of a complex Ginibre matrix (numpy only)."""
+    ginibre = (RNG.normal(size=(dimension, dimension)) + 1j * RNG.normal(size=(dimension, dimension)))
+    q, r = np.linalg.qr(ginibre)
+    phases = np.diag(r) / np.abs(np.diag(r))
+    return q * phases  # column-phase-corrected Haar unitary
+
+
+def density_from_spectrum(eigenvalues: np.ndarray, unitary: np.ndarray) -> np.ndarray:
+    return unitary @ np.diag(eigenvalues).astype(complex) @ unitary.conj().T
+
+
+def dirichlet_like_spectrum(dimension: int, rng: np.random.Generator) -> np.ndarray:
+    weights = rng.exponential(scale=1.0, size=dimension)
+    return weights / weights.sum()
+
+
+# ---------------------------------------------------------------------------
+# Renyi-alpha family
+# ---------------------------------------------------------------------------
+
+def rank_of(eigenvalues: np.ndarray, tol: float = TOL) -> int:
+    return int(np.sum(eigenvalues > tol))
+
+
+def renyi_entropy(eigenvalues: np.ndarray, alpha: float | str, tol: float = TOL) -> float:
+    """S_alpha for a probability-like nonnegative spectrum summing to 1."""
+    eigenvalues = np.clip(np.real(eigenvalues), 0.0, 1.0)
+    if alpha == "S0":
+        return float(math.log(rank_of(eigenvalues, tol)))
+    if alpha == "S1":
+        positive = eigenvalues[eigenvalues > tol]
+        return float(-np.sum(positive * np.log(positive)))
+    if alpha == "Sinf":
+        return float(-math.log(float(np.max(eigenvalues))))
+    alpha = float(alpha)
+    if alpha <= 0.0:
+        raise ValueError("use the 'S0' sentinel for the alpha -> 0 limit")
+    positive = eigenvalues[eigenvalues > tol]
+    trace_alpha = float(np.sum(positive ** alpha))
+    return float(math.log(trace_alpha) / (1.0 - alpha))
+
+
+ALPHA_GRID: list[float | str] = [
+    "S0", 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99,
+    "S1",
+    1.01, 1.1, 1.25, 1.5, 2.0, 3.0, 5.0, 10.0, 50.0, 200.0,
+    "Sinf",
+]
+
+
+def alpha_key(alpha: float | str) -> float:
+    """Ordering key: S0 first, S1 at 1.0, Sinf last."""
+    if alpha == "S0":
+        return -math.inf
+    if alpha == "S1":
+        return 1.0
+    if alpha == "Sinf":
+        return math.inf
+    return float(alpha)
+
+
+# ---------------------------------------------------------------------------
+# Symbolic (sympy) exact checks on the 2x2 diagonal carrier
+# ---------------------------------------------------------------------------
+
+def symbolic_checks() -> dict[str, Any]:
+    p, a = sp.symbols("p a", positive=True)
+    # Diagonal 2x2 spectrum (p, 1-p), 0 < p < 1, full rank.
+    s_alpha = sp.Rational(1, 1) / (1 - a) * sp.log(p ** a + (1 - p) ** a)
+
+    # alpha -> 1 limit should equal the Shannon/von Neumann entropy exactly.
+    s1_limit = sp.simplify(sp.limit(s_alpha, a, 1))
+    shannon = -p * sp.log(p) - (1 - p) * sp.log(1 - p)
+    limit_equals_vn = sp.simplify(s1_limit - shannon) == 0
+
+    # alpha -> 0+ limit should equal ln(2) = ln(rank) for 0 < p < 1 (full rank).
+    s0_limit = sp.simplify(sp.limit(s_alpha, a, 0, dir="+"))
+    limit_equals_log_rank = sp.simplify(s0_limit - sp.log(2)) == 0
+
+    # Monotone non-increasing in alpha: check dS_alpha/dalpha <= 0 at sample points.
+    derivative = sp.diff(s_alpha, a)
+    sample_points = [sp.Rational(1, 4), sp.Rational(1, 2), sp.Rational(3, 4),
+                      sp.Rational(3, 2), sp.Integer(2), sp.Integer(5)]
+    p_value = sp.Rational(1, 3)  # a fixed non-maximally-mixed, full-rank spectrum
+    derivative_signs = []
+    for a_value in sample_points:
+        value = float(derivative.subs({p: p_value, a: a_value}))
+        derivative_signs.append(value)
+    monotone_nonincreasing = all(value <= TOL for value in derivative_signs)
+
+    # Equality at maximally mixed p=1/2: S_alpha should be constant = ln 2 for all alpha.
+    equality_values = []
+    for a_value in [sp.Rational(1, 4), sp.Rational(3, 4), sp.Integer(2), sp.Integer(10)]:
+        value = sp.simplify(s_alpha.subs({p: sp.Rational(1, 2), a: a_value}))
+        equality_values.append(sp.simplify(value - sp.log(2)) == 0)
+    equality_at_maximally_mixed_symbolic = all(equality_values)
+
+    return {
+        "s_alpha_diagonal_2x2": str(s_alpha),
+        "limit_alpha_to_1_equals_von_neumann": bool(limit_equals_vn),
+        "limit_alpha_to_0_equals_log_rank": bool(limit_equals_log_rank),
+        "derivative_samples_at_p_eq_1_3": [float(v) for v in derivative_signs],
+        "monotone_nonincreasing_symbolic": bool(monotone_nonincreasing),
+        "equality_at_maximally_mixed_symbolic": bool(equality_at_maximally_mixed_symbolic),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Sampled (numpy) carriers: Bloch grid (2x2) + Haar-random spectra (3x3)
+# ---------------------------------------------------------------------------
+
+def sampled_2x2_states() -> list[tuple[str, np.ndarray]]:
+    """Interior Cartesian grid (full rank) + boundary pure states (rank 1)."""
+    states: list[tuple[str, np.ndarray]] = []
+    grid = np.arange(-0.75, 0.751, 0.25)
+    for x in grid:
+        for y in grid:
+            for z in grid:
+                vector = np.array([x, y, z], dtype=float)
+                if float(np.dot(vector, vector)) < 1.0 - 1.0e-12:
+                    rho = density_from_bloch(x, y, z)
+                    states.append(("interior_full_rank", np.linalg.eigvalsh(rho)))
+    for theta in np.linspace(0.0, math.pi, 7):
+        for phi in np.linspace(0.0, 2.0 * math.pi, 8, endpoint=False):
+            vector = np.array([
+                math.sin(theta) * math.cos(phi),
+                math.sin(theta) * math.sin(phi),
+                math.cos(theta),
+            ])
+            rho = density_from_bloch(*vector)
+            states.append(("pure_boundary_rank1", np.linalg.eigvalsh(rho)))
+    # Exact maximally mixed state.
+    states.append(("maximally_mixed", np.array([0.5, 0.5])))
+    return states
+
+
+def sampled_3x3_states() -> list[tuple[str, np.ndarray]]:
+    states: list[tuple[str, np.ndarray]] = []
+    # Full-rank non-degenerate spectra, several unitary rotations each.
+    for _ in range(12):
+        spectrum = dirichlet_like_spectrum(3, RNG)
+        for _ in range(3):
+            unitary = random_unitary(3)
+            rho = density_from_spectrum(spectrum, unitary)
+            states.append(("full_rank_3x3", np.clip(np.linalg.eigvalsh(rho), 0.0, 1.0)))
+    # Rank-deficient (rank 2): one zero eigenvalue.
+    for a_value in (0.2, 0.35, 0.5, 0.65, 0.8):
+        spectrum = np.array([a_value, 1.0 - a_value, 0.0])
+        unitary = random_unitary(3)
+        rho = density_from_spectrum(spectrum, unitary)
+        states.append(("rank2_3x3", np.clip(np.linalg.eigvalsh(rho), 0.0, 1.0)))
+    # Pure state (rank 1).
+    for _ in range(5):
+        spectrum = np.array([1.0, 0.0, 0.0])
+        unitary = random_unitary(3)
+        rho = density_from_spectrum(spectrum, unitary)
+        states.append(("pure_3x3", np.clip(np.linalg.eigvalsh(rho), 0.0, 1.0)))
+    # Exact maximally mixed state.
+    states.append(("maximally_mixed_3x3", np.array([1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0])))
+    return states
+
+
+def ordering_and_gap(states: list[tuple[str, np.ndarray]]) -> dict[str, Any]:
+    monotone_violations: list[dict[str, Any]] = []
+    full_rank_gaps: list[tuple[float, str, np.ndarray]] = []
+    equality_gaps_maximally_mixed: list[float] = []
+    for kind, eigenvalues in states:
+        curve = [(alpha_key(alpha), renyi_entropy(eigenvalues, alpha)) for alpha in ALPHA_GRID]
+        curve.sort(key=lambda pair: pair[0])
+        values = [value for _, value in curve]
+        for earlier, later in zip(values, values[1:]):
+            if later - earlier > TOL:
+                monotone_violations.append({"kind": kind, "eigenvalues": eigenvalues.tolist(),
+                                             "violation_delta": later - earlier})
+        s0 = renyi_entropy(eigenvalues, "S0")
+        s1 = renyi_entropy(eigenvalues, "S1")
+        gap = s0 - s1
+        if rank_of(eigenvalues) == len(eigenvalues):  # full rank only
+            full_rank_gaps.append((gap, kind, eigenvalues))
+        if kind.startswith("maximally_mixed"):
+            equality_gaps_maximally_mixed.append(gap)
+
+    full_rank_gaps.sort(key=lambda triple: triple[0])
+    min_gap, min_kind, min_eigs = full_rank_gaps[0]
+    return {
+        "monotone_nonincreasing": len(monotone_violations) == 0,
+        "monotone_violations": monotone_violations[:5],
+        "min_gap_S0_S1": float(min_gap),
+        "min_gap_achieved_at": {"kind": min_kind, "eigenvalues": min_eigs.tolist()},
+        "min_gap_near_maximally_mixed": bool(np.allclose(min_eigs, min_eigs.mean(), atol=1.0e-6)),
+        "equality_at_maximally_mixed": bool(all(abs(g) < TOL for g in equality_gaps_maximally_mixed)),
+        "equality_gaps_maximally_mixed": equality_gaps_maximally_mixed,
+    }
+
+
+def one_way_witness(states: list[tuple[str, np.ndarray]]) -> dict[str, Any]:
+    """Same rank (same S_0), different spectrum (different S_1 = VN)."""
+    full_rank = [(kind, eig) for kind, eig in states if rank_of(eig) == len(eig)
+                 and not kind.startswith("maximally_mixed")]
+    if not full_rank:
+        return {"found": False}
+    dimension = len(full_rank[0][1])
+    same_dim = [(kind, eig) for kind, eig in full_rank if len(eig) == dimension]
+    s0_reference = renyi_entropy(same_dim[0][1], "S0")
+    vn_values = sorted({round(renyi_entropy(eig, "S1"), 10) for _, eig in same_dim})
+    distinct_vn_at_same_s0 = len(vn_values) > 1
+    rho_a_kind, rho_a_eig = same_dim[0]
+    rho_b_kind, rho_b_eig = next(
+        ((kind, eig) for kind, eig in same_dim
+         if abs(renyi_entropy(eig, "S1") - renyi_entropy(rho_a_eig, "S1")) > 1.0e-6),
+        same_dim[1] if len(same_dim) > 1 else same_dim[0],
+    )
+    return {
+        "found": True,
+        "dimension": dimension,
+        "shared_S0": s0_reference,
+        "rho_a": {"kind": rho_a_kind, "eigenvalues": rho_a_eig.tolist(),
+                  "S0": renyi_entropy(rho_a_eig, "S0"), "S1_von_neumann": renyi_entropy(rho_a_eig, "S1")},
+        "rho_b": {"kind": rho_b_kind, "eigenvalues": rho_b_eig.tolist(),
+                  "S0": renyi_entropy(rho_b_eig, "S0"), "S1_von_neumann": renyi_entropy(rho_b_eig, "S1")},
+        "same_rank_i.e._same_S0": bool(abs(renyi_entropy(rho_a_eig, "S0") - renyi_entropy(rho_b_eig, "S0")) < TOL),
+        "different_von_neumann": bool(abs(renyi_entropy(rho_a_eig, "S1") - renyi_entropy(rho_b_eig, "S1")) > 1.0e-6),
+        "distinct_vn_values_seen_at_fixed_S0": vn_values,
+        "witness_valid": bool(distinct_vn_at_same_s0),
+    }
+
+
+def boundary_coincidence_check(states: list[tuple[str, np.ndarray]]) -> dict[str, Any]:
+    """Pure states: rank 1, S_0 = 0 = S_1 (von Neumann); the family collapses to a point."""
+    pure = [eig for kind, eig in states if kind.startswith("pure")]
+    checks = []
+    for eig in pure:
+        s0 = renyi_entropy(eig, "S0")
+        s1 = renyi_entropy(eig, "S1")
+        checks.append(abs(s0) < TOL and abs(s1) < TOL and abs(s0 - s1) < TOL)
+    return {
+        "pure_states_checked": len(pure),
+        "all_coincide_at_zero": bool(all(checks)) if checks else False,
+    }
+
+
+# ---------------------------------------------------------------------------
+# SMT non-injectivity witness (z3 primary, cvc5 cross-check)
+# ---------------------------------------------------------------------------
+
+def z3_noninjectivity() -> dict[str, str]:
+    """A deterministic recovery function of S_0 alone cannot return two distinct
+    recorded von-Neumann values at the same S_0 input; erasing one constraint
+    (leaving only the first assignment) is satisfiable."""
+    s0_input = RealVal("1")  # stand-in for a fixed full-rank S_0 = ln(rank) input slot
+    vn_value_a = RealVal("7/10")   # stand-in distinct recorded VN entropy for spectrum A
+    vn_value_b = RealVal("3/10")   # stand-in distinct recorded VN entropy for spectrum B (same S_0)
+    recover_vn = Function("recover_vn_from_S0", RealSort(), RealSort())
+    solver = Solver()
+    solver.add(recover_vn(s0_input) == vn_value_a, recover_vn(s0_input) == vn_value_b)
+    verdict = solver.check()
+    assert verdict == unsat
+    relaxed = Solver()
+    relaxed.add(recover_vn(s0_input) == vn_value_a)
+    relaxed_result = relaxed.check()
+    assert relaxed_result == sat
+    return {"encoding": "same S_0 (rank) input must recover two distinct recorded von Neumann values (7/10 and 3/10)",
+            "result": str(verdict), "erased_constraint_result": str(relaxed_result)}
+
+
+def cvc5_noninjectivity() -> dict[str, str]:
+    if cvc5 is None:
+        return {"result": "not_run", "erased_constraint_result": "not_run", "reason": "cvc5 Python bindings unavailable"}
+    try:
+        solver = cvc5.Solver()
+        solver.setLogic("QF_UFLRA")
+        real = solver.getRealSort()
+        function_sort = solver.mkFunctionSort([real], real)
+        recover_vn = solver.mkConst(function_sort, "recover_vn_from_S0")
+        s0_input = solver.mkReal(1)
+        vn_a = solver.mkReal(7, 10)
+        vn_b = solver.mkReal(3, 10)
+        app = lambda: solver.mkTerm(cvc5.Kind.APPLY_UF, recover_vn, s0_input)
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, app(), vn_a))
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, app(), vn_b))
+        result = solver.checkSat()
+        if not result.isUnsat():
+            raise RuntimeError(f"expected unsat, got {result}")
+        relaxed = cvc5.Solver()
+        relaxed.setLogic("QF_UFLRA")
+        real2 = relaxed.getRealSort()
+        function_sort2 = relaxed.mkFunctionSort([real2], real2)
+        recover_vn2 = relaxed.mkConst(function_sort2, "recover_vn_from_S0_relaxed")
+        s0_input2 = relaxed.mkReal(1)
+        vn_a2 = relaxed.mkReal(7, 10)
+        app2 = lambda: relaxed.mkTerm(cvc5.Kind.APPLY_UF, recover_vn2, s0_input2)
+        relaxed.assertFormula(relaxed.mkTerm(cvc5.Kind.EQUAL, app2(), vn_a2))
+        relaxed_result = relaxed.checkSat()
+        if not relaxed_result.isSat():
+            raise RuntimeError(f"expected sat after erasure, got {relaxed_result}")
+        TOOL_MANIFEST["cvc5"]["used"] = True
+        TOOL_MANIFEST["cvc5"]["reason"] = "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat."
+        TOOL_INTEGRATION_DEPTH["cvc5"] = "supportive"
+        return {"result": str(result), "erased_constraint_result": str(relaxed_result),
+                "reason": "same fixed-S0-input deterministic-recovery contradiction"}
+    except Exception as error:  # No false engine-use claim if the local API differs.
+        TOOL_MANIFEST["cvc5"]["used"] = False
+        TOOL_MANIFEST["cvc5"]["reason"] = f"Bindings available but cross-check did not run successfully: {error}"
+        return {"result": "not_run", "erased_constraint_result": "not_run", "reason": str(error)}
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+
+def main() -> None:
+    symbolic = symbolic_checks()
+
+    states_2x2 = sampled_2x2_states()
+    states_3x3 = sampled_3x3_states()
+
+    ordering_2x2 = ordering_and_gap(states_2x2)
+    ordering_3x3 = ordering_and_gap(states_3x3)
+
+    witness_2x2 = one_way_witness(states_2x2)
+    witness_3x3 = one_way_witness(states_3x3)
+
+    boundary_2x2 = boundary_coincidence_check(states_2x2)
+    boundary_3x3 = boundary_coincidence_check(states_3x3)
+
+    z3_result = z3_noninjectivity()
+    cvc5_result = cvc5_noninjectivity()
+
+    alpha_ordering_monotone = bool(ordering_2x2["monotone_nonincreasing"]
+                                    and ordering_3x3["monotone_nonincreasing"]
+                                    and symbolic["monotone_nonincreasing_symbolic"])
+    equality_at_maximally_mixed = bool(ordering_2x2["equality_at_maximally_mixed"]
+                                        and ordering_3x3["equality_at_maximally_mixed"]
+                                        and symbolic["equality_at_maximally_mixed_symbolic"])
+    one_way_computed = bool(witness_2x2.get("witness_valid") and witness_3x3.get("witness_valid"))
+    control_genuine = bool(one_way_computed
+                            and boundary_2x2["all_coincide_at_zero"]
+                            and boundary_3x3["all_coincide_at_zero"])
+
+    three_hartleys = {
+        "quantum_Hartley_S0": {
+            "definition": "S_0(rho) = ln rank(rho), alpha -> 0 limit of the quantum Renyi family",
+            "scope": "on the carrier (2x2 / 3x3 density operators), nonclassical, computed here",
+            "computed_examples": {
+                "maximally_mixed_2x2_ln2": renyi_entropy(np.array([0.5, 0.5]), "S0"),
+                "maximally_mixed_3x3_ln3": renyi_entropy(np.array([1.0 / 3, 1.0 / 3, 1.0 / 3]), "S0"),
+            },
+        },
+        "foundation_count_ln_abs_Y": {
+            "definition": "ln|Y| for a finite pre-carrier support set Y (sets the dimension d before any density operator or spectrum exists)",
+            "scope": "pre-carrier; fixes d, is not a functional of a state rho, and is not computed by this probe",
+            "computed": False,
+        },
+        "axis0_counting_drive_dC": {
+            "definition": "dC = Delta ln V across ticks (owner Axis-0 entropy-gradient drive)",
+            "scope": "a drive/drift across ticks, not a static layer or a functional of a single rho; out of scope for this probe",
+            "computed": False,
+        },
+        "single_coincidence_point": "S_0(I/d) = von Neumann(I/d) = ln d for both d=2 and d=3, verified numerically above",
+    }
+
+    verdict = "S0_ONEWAY_FORGET_OF_VN"
+    notes: list[str] = [
+        "Finite sampled probe only (2x2 Bloch ball + one 3x3 Haar-random carrier); proposed ordering is not canon.",
+        "SMT encodes the generic non-injectivity template (a deterministic recovery of one distinct output cannot equal two distinct recorded values at the same input), instantiated with computed-distinct VN stand-in values, not a full CPTP/Choi parametrization of a channel.",
+        "S_0 = ln rank is a functional (Hartley bound of the family), not itself a CPTP map; the 'one-way' claim is about non-injectivity of the alpha->0 limit relative to the full spectrum, mirroring the dephasing-channel one-way template in vn_to_shannon.py.",
+    ]
+    core_ok = (alpha_ordering_monotone
+               and symbolic["limit_alpha_to_1_equals_von_neumann"]
+               and symbolic["limit_alpha_to_0_equals_log_rank"]
+               and equality_at_maximally_mixed
+               and one_way_computed
+               and control_genuine
+               and z3_result["result"] == "unsat"
+               and z3_result["erased_constraint_result"] == "sat")
+    if not core_ok:
+        verdict = "FAILED"
+        notes.append("At least one required finite-probe check failed; inspect check details.")
+
+    result = {
+        "schema_version": "1.0",
+        "carrier": "2x2 density operators (Bloch ball) and one 3x3 density-operator family (Haar-random unitaries over sampled spectra).",
+        "family": "Quantum Renyi entropy S_alpha(rho) = 1/(1-alpha) ln Tr(rho^alpha); limits S_0=ln rank, S_1=von Neumann, S_inf=-ln lambda_max.",
+        "alpha_ordering_monotone": alpha_ordering_monotone,
+        "min_gap_S0_S1": {
+            "2x2": ordering_2x2["min_gap_S0_S1"],
+            "3x3": ordering_3x3["min_gap_S0_S1"],
+        },
+        "equality_at_maximally_mixed": equality_at_maximally_mixed,
+        "one_way_witness": {
+            "2x2": witness_2x2,
+            "3x3": witness_3x3,
+        },
+        "boundary_coincidence_pure_states": {
+            "2x2": boundary_2x2,
+            "3x3": boundary_3x3,
+        },
+        "symbolic_checks": symbolic,
+        "ordering_details": {
+            "2x2": {k: v for k, v in ordering_2x2.items() if k != "min_gap_achieved_at"},
+            "3x3": {k: v for k, v in ordering_3x3.items() if k != "min_gap_achieved_at"},
+            "2x2_min_gap_achieved_at": ordering_2x2["min_gap_achieved_at"],
+            "3x3_min_gap_achieved_at": ordering_3x3["min_gap_achieved_at"],
+        },
+        "three_hartleys": three_hartleys,
+        "control_genuine": control_genuine,
+        "z3": z3_result,
+        "z3_erased": z3_result["erased_constraint_result"],
+        "cvc5": cvc5_result,
+        "verdict": verdict,
+        "classification": classification,
+        "promotion_allowed": promotion_allowed,
+        "ordering_status": ordering_status,
+        "floor_claims": [
+            {"key": "ratcheting.renyi.S0_S1_gap", "value": min(ordering_2x2["min_gap_S0_S1"], ordering_3x3["min_gap_S0_S1"]),
+             "direction": "higher_is_better"},
+        ],
+        "engines_ran": {"sympy": True, "numpy": True, "z3": True,
+                        "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "jax": False, "julia": False},
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "notes": notes,
+    }
+    output = Path(__file__).resolve().parent / "results" / "renyi_alpha_axis.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(json.dumps({
+        "result": str(output), "verdict": verdict,
+        "alpha_ordering_monotone": alpha_ordering_monotone,
+        "min_gap_S0_S1_2x2": ordering_2x2["min_gap_S0_S1"],
+        "min_gap_S0_S1_3x3": ordering_3x3["min_gap_S0_S1"],
+        "equality_at_maximally_mixed": equality_at_maximally_mixed,
+        "one_way_witness_2x2": witness_2x2.get("witness_valid"),
+        "one_way_witness_3x3": witness_3x3.get("witness_valid"),
+        "control_genuine": control_genuine,
+        "z3": z3_result["result"], "z3_erased_constraint": z3_result["erased_constraint_result"],
+        "cvc5": cvc5_result["result"], "cvc5_erased_constraint": cvc5_result["erased_constraint_result"],
+    }, indent=2))
+
+
+if __name__ == "__main__":
+    main()

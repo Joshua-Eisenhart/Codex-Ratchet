@@ -1,0 +1,103 @@
+{
+  "classification": "tool_lego_fit_probe",
+  "clifford_presumes_metric": true,
+  "control_genuine": true,
+  "control_n1": {
+    "injective": true,
+    "lambda_basis": [
+      "1",
+      "theta1"
+    ],
+    "one_way": false,
+    "s_basis": [
+      "1",
+      "x1"
+    ],
+    "sym_map": {
+      "1": "1",
+      "theta1": "x1"
+    }
+  },
+  "cvc5": {
+    "erased_constraint_result": "sat",
+    "reason": "same symmetrized-image sign-recovery contradiction",
+    "result": "unsat"
+  },
+  "engines_ran": {
+    "cvc5": true,
+    "jax": false,
+    "julia": false,
+    "numpy": false,
+    "sympy": true,
+    "z3": true
+  },
+  "floor_claims": [
+    {
+      "direction": "higher_is_better",
+      "key": "ratcheting.clifford.sign_forgotten",
+      "value": 1
+    }
+  ],
+  "grassmann_is_g0_clifford": {
+    "match": true,
+    "mismatches": []
+  },
+  "layer_anticommutative": "Lambda(V): Grassmann/exterior algebra, dim 2^2=4, theta_i theta_j=-theta_j theta_i, theta_i^2=0.",
+  "layer_clifford": "Cl(g): Clifford algebra with symbolic metric g=(g11,g12,g22), e_i e_j+e_j e_i=2 g_ij, dim 4, same PBW basis as Lambda(V).",
+  "layer_commutative": "S(V): commutative polynomial algebra on 2 generators, truncated degree<=2, xy=yx.",
+  "notes": [
+    "Finite structure-constant probe only (n=2 generators); proposed ordering is not canon.",
+    "Clifford built abstractly on basis {1,e1,e2,e12} via e_i*e_j+e_j*e_i=2g_ij reduction relations, exact in sympy (no matrix representation needed).",
+    "This lane does NOT settle the global order of {noncommutation, nonassociativity, anticommutation} (owner-open per ROOT/META_AXIOMS_LLM_FAILURE_GUARD.md Part C) -- it settles ONLY the two arrows computed here: Grassmann = degenerate (g=0) Clifford, and symmetrization theta_i->x_i (forgetting sign) is one-way."
+  ],
+  "ordering_status": "PROPOSED not canon",
+  "presumption_note": "Grassmann (bare, metric-free anticommutation) is the g=0 degenerate case of Clifford: Clifford presumes a metric g that Grassmann does not need. Symmetrization (forgetting the anticommuting sign) is a one-way algebra map Lambda(V) -> S(V)-image: the sign/orientation is not recoverable after forgetting it. So on the metric axis, commutative <- (forget sign) <- anticommuting (Grassmann) <- (deform by metric) <- Clifford, with each arrow one-way (structure lost, not gained) as it moves left.",
+  "promotion_allowed": false,
+  "schema_version": "1.0",
+  "symmetrization_one_way_witness": {
+    "both_map_to_symmetric_x1x2": true,
+    "distinct_in_grassmann": true,
+    "theta1_theta2_coeff_of_e12": "1",
+    "theta2_theta1_coeff_of_e12": "-1",
+    "witness_valid": true
+  },
+  "tool_manifest": {
+    "cvc5": {
+      "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "Not needed for this finite symbolic probe; explicitly not run.",
+      "tried": false,
+      "used": false
+    },
+    "julia": {
+      "reason": "Not needed for this finite symbolic probe; explicitly not run.",
+      "tried": false,
+      "used": false
+    },
+    "numpy": {
+      "reason": "Not needed: all objects here are exact finite structure constants, sympy suffices.",
+      "tried": false,
+      "used": false
+    },
+    "sympy": {
+      "reason": "Exact structure-constant algebra for Clifford/Grassmann/symmetric tables and their equality checks.",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Primary SMT contradiction: one function of the symmetrized image cannot recover two distinct Grassmann signs.",
+      "tried": true,
+      "used": true
+    }
+  },
+  "verdict": "ANTICOMM_ARROWS_ONEWAY",
+  "z3": {
+    "encoding": "same symmetrized image x1*x2 must recover sign=+1 (theta1theta2) and sign=-1 (theta2theta1)",
+    "erased_constraint_result": "sat",
+    "result": "unsat"
+  },
+  "z3_erased": "sat"
+}

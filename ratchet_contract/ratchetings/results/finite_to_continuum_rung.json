@@ -1,0 +1,353 @@
+{
+  "added_axiom_named": "Cauchy/order-completeness",
+  "added_axiom_probe": {
+    "added_axiom_named": "Cauchy-completeness (equivalently order/nested-interval completeness) of the reals",
+    "agree_at_every_finite_level_tested": true,
+    "interval_still_nondegenerate_at_k_max": true,
+    "interval_width_at_k_max": 5.960464477539063e-08,
+    "limit_only_symbolic_never_evaluated_on_an_actual_infinite_tower": true,
+    "per_level_agreement": [
+      {
+        "agree": true,
+        "cell_index_x1": 1,
+        "cell_index_x2": 1,
+        "k": 1
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 2,
+        "cell_index_x2": 2,
+        "k": 2
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 5,
+        "cell_index_x2": 5,
+        "k": 3
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 11,
+        "cell_index_x2": 11,
+        "k": 4
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 22,
+        "cell_index_x2": 22,
+        "k": 5
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 45,
+        "cell_index_x2": 45,
+        "k": 6
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 90,
+        "cell_index_x2": 90,
+        "k": 7
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 180,
+        "cell_index_x2": 180,
+        "k": 8
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 361,
+        "cell_index_x2": 361,
+        "k": 9
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 723,
+        "cell_index_x2": 723,
+        "k": 10
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 1446,
+        "cell_index_x2": 1446,
+        "k": 11
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 2892,
+        "cell_index_x2": 2892,
+        "k": 12
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 5785,
+        "cell_index_x2": 5785,
+        "k": 13
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 11570,
+        "cell_index_x2": 11570,
+        "k": 14
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 23140,
+        "cell_index_x2": 23140,
+        "k": 15
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 46281,
+        "cell_index_x2": 46281,
+        "k": 16
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 92562,
+        "cell_index_x2": 92562,
+        "k": 17
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 185125,
+        "cell_index_x2": 185125,
+        "k": 18
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 370250,
+        "cell_index_x2": 370250,
+        "k": 19
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 740501,
+        "cell_index_x2": 740501,
+        "k": 20
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 1481003,
+        "cell_index_x2": 1481003,
+        "k": 21
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 2962006,
+        "cell_index_x2": 2962006,
+        "k": 22
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 5924012,
+        "cell_index_x2": 5924012,
+        "k": 23
+      },
+      {
+        "agree": true,
+        "cell_index_x1": 11848025,
+        "cell_index_x2": 11848025,
+        "k": 24
+      }
+    ],
+    "reading": "The finite tower Y_1,...,Y_K_MAX never separates x1 from x2: at every finite level tested they land in the same cell. Only ASSUMING the nested intervals intersect in exactly one point as an actually-completed infinite sequence -- the completeness axiom -- lets the limit pick out a unique real. No finite Y_k, and no finite computation performed here, supplies or earns that axiom; it is added, not derived.",
+    "symbolic_limit_of_width_as_k_to_infinity": "0",
+    "width_positive_for_every_finite_k_checked_symbolically": true,
+    "x1": "94784201/134217728",
+    "x1_ne_x2": true,
+    "x2": "23696051/33554432"
+  },
+  "classification": "tool_lego_fit_probe",
+  "control_channel": {
+    "control_bijective_on_support": true,
+    "control_invertible": true,
+    "control_is_one_way": false,
+    "control_recovers_f_from_finer_cells": true,
+    "distinct_f_values": 64,
+    "k0": 6,
+    "k_test": 10,
+    "note": "f is constant on 2^-k0 cells by construction; refining to k_test>=k0 loses nothing about f, so recovery is a genuine, computed bijection, not a hard-coded false.",
+    "sample_count": 256
+  },
+  "control_genuine": true,
+  "cvc5": {
+    "erased_constraint_result": "sat",
+    "reason": "same deterministic-recovery cell-index contradiction",
+    "result": "unsat"
+  },
+  "discretization_one_way_witness": {
+    "both_map_to_same_cell": true,
+    "cell_index": 341,
+    "cell_interval": [
+      "341/1024",
+      "171/512"
+    ],
+    "many_to_one_confirmed": true,
+    "resolution_level_k": 10,
+    "x1": "1365/4096",
+    "x1_ne_x2": true,
+    "x2": "1367/4096"
+  },
+  "engines_ran": {
+    "cvc5": true,
+    "jax": false,
+    "julia": false,
+    "numpy": false,
+    "sympy": true,
+    "z3": true
+  },
+  "finite_presumes_less": true,
+  "floor_claims": [
+    {
+      "direction": "higher_is_better",
+      "key": "ratcheting.continuum.resolution_levels",
+      "value": 24
+    }
+  ],
+  "hartley_grows_unbounded": {
+    "bound_witnesses": [
+      {
+        "bound": 1.0,
+        "exceeded_at_finite_k": 2,
+        "needed_k": 2,
+        "still_finite": true
+      },
+      {
+        "bound": 5.0,
+        "exceeded_at_finite_k": 8,
+        "needed_k": 8,
+        "still_finite": true
+      },
+      {
+        "bound": 10.0,
+        "exceeded_at_finite_k": 15,
+        "needed_k": 15,
+        "still_finite": true
+      },
+      {
+        "bound": 15.0,
+        "exceeded_at_finite_k": 22,
+        "needed_k": 22,
+        "still_finite": true
+      }
+    ],
+    "exact_formula": "H_0(Y_k) = ln|Y_k| = k*ln(2)",
+    "exact_formula_holds_symbolically": true,
+    "hartley_grows_unbounded": true,
+    "hartley_values": [
+      0.6931471805599453,
+      1.3862943611198906,
+      2.0794415416798357,
+      2.772588722239781,
+      3.4657359027997265,
+      4.1588830833596715,
+      4.852030263919617,
+      5.545177444479562,
+      6.238324625039508,
+      6.931471805599453,
+      7.6246189861593985,
+      8.317766166719343,
+      9.010913347279288,
+      9.704060527839234,
+      10.39720770839918,
+      11.090354888959125,
+      11.78350206951907,
+      12.476649250079015,
+      13.16979643063896,
+      13.862943611198906,
+      14.556090791758852,
+      15.249237972318797,
+      15.942385152878742,
+      16.635532333438686
+    ],
+    "levels_tested": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "note": "Growth is witnessed at finite k for each tested bound; unboundedness is a statement about the tower, no actual infinity is evaluated.",
+    "strictly_increasing": true
+  },
+  "honest_ceiling": "This is a finite PROXY for the finite/infinite presumption gap, not a construction of the real numbers. It demonstrates (i) that continuum-to-finite discretization is a one-way, many-to-one forgetting map at every tested resolution, and (ii) that recovering a unique continuum point from the finite tower requires an added completeness axiom that no finite level of the tower supplies. It does not prove the continuum's cardinality, does not construct Dedekind cuts or Cauchy-sequence equivalence classes, and does not settle any bridge, axis, or canonical admission claim.",
+  "layer1": "Continuum [0,1] with the usual order/metric topology (presumed, not constructed here).",
+  "layer2": "Nested finite dyadic quotients Y_1 subset Y_2 subset ... subset Y_K_MAX, |Y_k|=2^k, Hartley H_0(Y_k)=k*ln(2).",
+  "notes": [
+    "Finite sampled probe only; this does not construct the reals and does not settle a canonical layer ordering.",
+    "K_MAX resolution levels are all finite; no actual infinity is evaluated or invoked at any point.",
+    "The SMT encoding is a deterministic-recovery contradiction on cell indices, not a full measure-theoretic argument.",
+    "Control channel confirms the pipeline can compute one_way=false honestly when nothing is actually lost."
+  ],
+  "ordering_status": "PROPOSED not canon",
+  "promotion_allowed": false,
+  "schema_version": "1.0",
+  "tool_integration_depth": {
+    "cvc5": "supportive",
+    "jax": null,
+    "julia": null,
+    "numpy": null,
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "cvc5": {
+      "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "Queued: not required for this finite combinatorial probe.",
+      "tried": false,
+      "used": false
+    },
+    "julia": {
+      "reason": "Queued: not required for this finite combinatorial probe.",
+      "tried": false,
+      "used": false
+    },
+    "numpy": {
+      "reason": "Not needed: exact Fraction/sympy rational arithmetic is used throughout to avoid floating-point cell-boundary artifacts.",
+      "tried": false,
+      "used": false
+    },
+    "sympy": {
+      "reason": "Exact rational cell arithmetic, Hartley H_0=k*ln(2) symbolic growth, and the nested-interval width check.",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Primary SMT contradiction: one recovery function of one cell index cannot return two distinct real points, at every tested level.",
+      "tried": true,
+      "used": true
+    }
+  },
+  "verdict": "CONTINUUM_ABOVE_FINITE_ONEWAY",
+  "z3": {
+    "encoding": "same cell index must recover two distinct points",
+    "erased_constraint_result": "sat",
+    "result": "unsat"
+  },
+  "z3_erased": "sat"
+}

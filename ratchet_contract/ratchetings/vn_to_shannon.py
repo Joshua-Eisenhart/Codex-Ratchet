@@ -28,6 +28,8 @@ try:
 except ImportError:  # Recorded honestly below; z3 remains the primary proof leg.
     cvc5 = None
 
+from vn_to_shannon_basis_relativity import basis_relativity_report
+
 try:
     import psutil
     _MEM_AVAILABLE_FRACTION = psutil.virtual_memory().available / psutil.virtual_memory().total
@@ -375,6 +377,7 @@ def main() -> None:
     z3_result = z3_noninjectivity()
     cvc5_result = cvc5_noninjectivity()
     qutip_result = qutip_cross_check()
+    basis_relativity = basis_relativity_report()
 
     # Discriminating one-way predicate.  A channel is one-way (irreversible) at a
     # witness pair iff it maps two DISTINCT inputs to the SAME output -- exactly the
@@ -503,6 +506,19 @@ def main() -> None:
         "ordering_status": ordering_status,
         "smt_role": "supportive_nonvacuity_only",
         "load_bearing_evidence": "numpy dephasing witness pair (rho, rho_prime distinct off-diagonal coherence, identical D-image) plus sympy exact idempotence/entropy-equality/BKM-restricts-to-Fisher identities.",
+        "basis_relativity_disclosed": {
+            "eigenbasis_gap": basis_relativity["eigenbasis_gap"],
+            "comp_basis_drop": basis_relativity["comp_basis_drop"],
+            "disclosure": (
+                "The RATCHETED_ONE_WAY verdict above is relative to the FIXED computational "
+                "(pointer) basis this sim's dephasing channel actually uses. Dephasing in each "
+                "state's OWN eigenbasis is the identity on that state -- eigenbasis entropy gap "
+                f"= {basis_relativity['eigenbasis_gap']:.3e} (~0, computed over "
+                f"{basis_relativity['sampled_state_count']} sampled states), invertible there. "
+                "This is not a refutation; it discloses the arrow's one-way-ness is basis-"
+                "relative, not basis-free. Full receipt: results/vn_to_shannon_basis_relativity.json."
+            ),
+        },
         "floor_claims": [{"key": "ratcheting.vn_to_shannon.one_way_margin", "value": minimum_offdiag_gap,
                           "direction": "higher_is_better"}],
         "engine_values": engine_values,

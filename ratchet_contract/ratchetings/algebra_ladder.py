@@ -52,11 +52,11 @@ TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True,
               "reason": "Exact natural-log structural entropy per arrow and chain-total telescoping check."},
     "z3": {"tried": True, "used": True,
-           "reason": "Per-arrow non-injectivity contradiction (deterministic recovery UNSAT) and erased-constraint SAT non-vacuity check."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the plain-Python union-find congruence-closure quotient computation (size_before/size_after and the concrete witness pair of elements identified but distinct before each reducing arrow)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
 }
-TOOL_INTEGRATION_DEPTH = {"sympy": "supportive", "z3": "load_bearing", "cvc5": None}
+TOOL_INTEGRATION_DEPTH = {"sympy": "supportive", "z3": "supportive", "cvc5": None}
 
 N = 4
 ELEMENTS = list(range(N))
@@ -191,7 +191,7 @@ def cvc5_noninjective(left: int, right: int) -> dict[str, str]:
         if not relaxed_result.isSat():
             raise RuntimeError(f"expected sat after erasure, got {relaxed_result}")
         TOOL_MANIFEST["cvc5"]["used"] = True
-        TOOL_MANIFEST["cvc5"]["reason"] = "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat."
+        TOOL_MANIFEST["cvc5"]["reason"] = "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- same caveat as z3, load-bearing evidence is the union-find congruence-closure quotient computation."
         TOOL_INTEGRATION_DEPTH["cvc5"] = "supportive"
         return {"result": str(result), "erased_constraint_result": str(relaxed_result)}
     except Exception as error:  # No false engine-use claim if the local API differs.
@@ -293,7 +293,7 @@ def main() -> None:
     control_all_bijections = all(a["control_is_bijection_when_already_satisfied"] for a in control_chain)
     at_least_one_genuine_drop = any(a["size_after"] < a["size_before"] for a in main_chain)
 
-    core_ok = (reducing_arrows_one_way and reducing_arrows_z3_confirmed and control_all_bijections
+    core_ok = (reducing_arrows_one_way and control_all_bijections
                and at_least_one_genuine_drop and final_check["is_abelian_group"]
                and control_final_check["is_abelian_group"] and telescoping_consistent)
     verdict = "LADDER_ONE_WAY" if core_ok else "FAILED"
@@ -341,7 +341,10 @@ def main() -> None:
                           "direction": "higher_is_better"}],
         "engines_ran": {"sympy": True, "numpy": False, "z3": True,
                         "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "jax": False, "julia": False},
+        "smt_role": "supportive_nonvacuity_only",
+        "load_bearing_evidence": "Plain-Python union-find congruence-closure quotient computation: per reducing arrow, size_before/size_after and the concrete witness pair of elements identified but distinct before the quotient, cross-checked against the telescoping sympy log-drop identity.",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "notes": notes,
     }
     output = Path(__file__).resolve().parent / "results" / "algebra_ladder.json"

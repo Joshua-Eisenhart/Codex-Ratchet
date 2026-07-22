@@ -1,4 +1,9 @@
 {
+  "basis_relativity_disclosed": {
+    "comp_basis_drop": 0.03158394240196316,
+    "disclosure": "The RATCHETED_ONE_WAY verdict above is relative to the FIXED computational (pointer) basis this sim's dephasing channel actually uses. Dephasing in each state's OWN eigenbasis is the identity on that state -- eigenbasis entropy gap = 5.178e-15 (~0, computed over 307 sampled states), invertible there. This is not a refutation; it discloses the arrow's one-way-ness is basis-relative, not basis-free. Full receipt: results/vn_to_shannon_basis_relativity.json.",
+    "eigenbasis_gap": 5.178310144344068e-15
+  },
   "bkm_restricts_to_fisher": 0.0,
   "classification": "tool_lego_fit_probe",
   "control_channel": "z-rotation U=diag(1,e^{i*0.7}); coherence-preserving unitary. The SAME channel_is_one_way predicate (distinct inputs collapsed to a common image) is fed both dephasing and this unitary and returns different answers -- a discriminating, non-decorative control.",
@@ -67,7 +72,7 @@
       "value": 0.03158394240196316
     }
   ],
-  "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics.jl precompile needs the >0.40 available-memory window; psutil available fraction at run time was 0.252)",
+  "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics.jl precompile needs the >0.40 available-memory window; psutil available fraction at run time was 0.273)",
   "layer1": "2x2 density operators (Bloch ball), BKM metric, von Neumann entropy.",
   "layer2": "Diagonal density operators (simplex Delta^1), Fisher-Rao metric, Shannon entropy.",
   "load_bearing_evidence": "numpy dephasing witness pair (rho, rho_prime distinct off-diagonal coherence, identical D-image) plus sympy exact idempotence/entropy-equality/BKM-restricts-to-Fisher identities.",
@@ -158,7 +163,7 @@
       "used": false
     },
     "julia": {
-      "reason": "DEFERRED_BLOCKED_ON_MEMORY: QuantumOptics.jl precompile needs the >0.40 available-memory window; psutil available fraction at build time was 0.252",
+      "reason": "DEFERRED_BLOCKED_ON_MEMORY: QuantumOptics.jl precompile needs the >0.40 available-memory window; psutil available fraction at build time was 0.273",
       "tried": false,
       "used": false
     },

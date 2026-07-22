@@ -76,7 +76,7 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True,
               "reason": "Finite-difference Bures-Hessian sweep over sampled Bloch-ball and pure-boundary points, plus the interior closed-form cross-check."},
     "z3": {"tried": True, "used": True,
-           "reason": "Primary SMT contradiction: one function of the (real, symmetric) Bures/FS metric components cannot return both signs of Berry curvature."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the sympy exact conjugate-pair witness (psi vs chi=psi* sharing identical real (g_tt,g_pp,g_tp) but opposite Berry curvature +F/-F)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "jax": {"tried": False, "used": False,
@@ -93,7 +93,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
     "numpy": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "cvc5": None,
     "jax": None,
     "julia": None,
@@ -284,7 +284,7 @@ def cvc5_berry_irreducibility(g_tt: float, g_pp: float, g_tp: float, f_plus: flo
         if not relaxed_result.isSat():
             raise RuntimeError(f"expected sat after erasure, got {relaxed_result}")
         TOOL_MANIFEST["cvc5"]["used"] = True
-        TOOL_MANIFEST["cvc5"]["reason"] = "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat."
+        TOOL_MANIFEST["cvc5"]["reason"] = "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- same caveat as z3, load-bearing evidence is the sympy exact conjugate-pair witness."
         TOOL_INTEGRATION_DEPTH["cvc5"] = "supportive"
         return {"result": str(result), "erased_constraint_result": str(relaxed_result),
                 "reason": "same conjugate-pair Bures/FS metric-component contradiction"}
@@ -504,11 +504,9 @@ def main() -> None:
     # sanity check on the closed form and is reported on its own.
     control_real_recoverable = max_dev < 1.0e-6 and interior_closed_form_confirmed
     berry_irreducible = (qgt["conjugate_shares_real_part"] and qgt["conjugate_flips_berry"]
-                          and z3_result["result"] == "unsat" and z3_result["erased_constraint_result"] == "sat"
                           and bures_antisym_max < 1.0e-6)
 
-    core_ok = (control_real_recoverable and berry_matches_monopole and qgt["off_diagonal_is_zero"]
-               and z3_result["result"] == "unsat" and z3_result["erased_constraint_result"] == "sat")
+    core_ok = (control_real_recoverable and berry_matches_monopole and qgt["off_diagonal_is_zero"])
 
     verdict = "FAILED"
     notes = [
@@ -587,7 +585,10 @@ def main() -> None:
         "engine_values": engine_values,
         "qutip_vs_witness_divergence": qutip_vs_witness_divergence,
         "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)",
+        "smt_role": "supportive_nonvacuity_only",
+        "load_bearing_evidence": "Sympy exact conjugate-pair witness: psi(theta,phi) and chi=psi* share identical real (g_tt,g_pp,g_tp) at every theta but have Berry curvature F and -F respectively (Provost-Vallee QGT), cross-checked by the numpy finite-difference Hessian sweep and the qutip second-engine recomputation.",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "notes": notes,
     }
     output = Path(__file__).resolve().parent / "results" / "bures_to_fubini_study.json"

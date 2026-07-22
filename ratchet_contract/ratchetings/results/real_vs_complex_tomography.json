@@ -49,6 +49,7 @@
       "value": 1
     }
   ],
+  "load_bearing_evidence": "Sympy exact dimension arithmetic (complex_d2=complex_d1^2 holds identically; real_d2=10 > real_d1^2=9, the standard two-rebit deficit) plus the numpy same-real-projection-distinct-original-state witness pair and the phase-free control subset.",
   "notes": [
     "Finite dimension-counting probe over one reconstruction axiom (local tomography); not a full derivation of C.",
     "Standard convention: d1/d2 use the UNCONSTRAINED (subnormalized) Hermitian/symmetric operator-space dimension (n^2 complex, n(n+1)/2 real), not the trace-1 Bloch-ball slice -- this is the convention under which local tomography is a non-vacuous axiom (Hardy 2001; Hardy & Wootters 2012).",
@@ -114,9 +115,18 @@
   "real_local_tomography": false,
   "schema_version": "1.0",
   "selected_carrier": "complex",
+  "smt_role": "supportive_nonvacuity_only",
+  "tool_integration_depth": {
+    "cvc5": "supportive",
+    "jax": null,
+    "julia": null,
+    "numpy": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "supportive"
+  },
   "tool_manifest": {
     "cvc5": {
-      "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- same caveat as z3, load-bearing evidence is the dimension arithmetic and the numpy witness pair.",
       "tried": true,
       "used": true
     },
@@ -141,7 +151,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Primary SMT contradiction: one deterministic recovery of the real projection cannot return two distinct imaginary parts.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the dimension arithmetic (complex_d2==complex_d1^2 tautology vs real_d2=10>real_d1^2=9) plus the numpy same-real-projection-distinct-original witness pair.",
       "tried": true,
       "used": true
     }

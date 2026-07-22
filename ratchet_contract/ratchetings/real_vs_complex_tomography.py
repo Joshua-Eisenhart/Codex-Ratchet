@@ -54,7 +54,7 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True,
               "reason": "Finite sampled Hermitian/symmetric density matrices, PSD checks, and the forgetting-map witness pair."},
     "z3": {"tried": True, "used": True,
-           "reason": "Primary SMT contradiction: one deterministic recovery of the real projection cannot return two distinct imaginary parts."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the dimension arithmetic (complex_d2==complex_d1^2 tautology vs real_d2=10>real_d1^2=9) plus the numpy same-real-projection-distinct-original witness pair."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "jax": {"tried": False, "used": False,
@@ -66,7 +66,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
     "numpy": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "cvc5": None,
     "jax": None,
     "julia": None,
@@ -193,7 +193,7 @@ def cvc5_noninjectivity() -> dict[str, str]:
         if not relaxed_result.isSat():
             raise RuntimeError(f"expected sat after erasure, got {relaxed_result}")
         TOOL_MANIFEST["cvc5"]["used"] = True
-        TOOL_MANIFEST["cvc5"]["reason"] = "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat."
+        TOOL_MANIFEST["cvc5"]["reason"] = "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- same caveat as z3, load-bearing evidence is the dimension arithmetic and the numpy witness pair."
         TOOL_INTEGRATION_DEPTH["cvc5"] = "supportive"
         return {"result": str(result), "erased_constraint_result": str(relaxed_result),
                 "reason": "same deterministic-recovery imaginary-part contradiction"}
@@ -258,7 +258,6 @@ def main() -> None:
     core_checks_ok = (
         complex_local_tomography and not real_local_tomography and real_gap == 1
         and witness_valid and proper_noninjective_witness
-        and z3_result["result"] == "unsat" and z3_result["erased_constraint_result"] == "sat"
         and control_genuine and not control_is_one_way
     )
     verdict = "COMPLEX_EARNED_BY_TOMOGRAPHY" if core_checks_ok else "INCONCLUSIVE"
@@ -335,7 +334,10 @@ def main() -> None:
         }],
         "engines_ran": {"sympy": True, "numpy": True, "z3": True,
                          "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]), "jax": False, "julia": False},
+        "smt_role": "supportive_nonvacuity_only",
+        "load_bearing_evidence": "Sympy exact dimension arithmetic (complex_d2=complex_d1^2 holds identically; real_d2=10 > real_d1^2=9, the standard two-rebit deficit) plus the numpy same-real-projection-distinct-original-state witness pair and the phase-free control subset.",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "notes": notes,
     }
     output = Path(__file__).resolve().parent / "results" / "real_vs_complex_tomography.json"

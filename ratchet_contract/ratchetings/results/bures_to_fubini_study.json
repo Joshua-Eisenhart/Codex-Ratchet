@@ -65,6 +65,7 @@
     }
   ],
   "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)",
+  "load_bearing_evidence": "Sympy exact conjugate-pair witness: psi(theta,phi) and chi=psi* share identical real (g_tt,g_pp,g_tp) at every theta but have Berry curvature F and -F respectively (Provost-Vallee QGT), cross-checked by the numpy finite-difference Hessian sweep and the qutip second-engine recomputation.",
   "mixed_layer": "2x2 density operators (Bloch ball, 0<=r<1), Bures (fidelity/SLD) metric g^B; closed form ds_B^2=(1/4)[dr^2/(1-r^2)+r^2(dtheta^2+sin^2(theta)dphi^2)].",
   "mixed_layer_interior_closed_form_check": {
     "closed_form": "ds_B^2=(1/4)[dr^2/(1-r^2)+r^2(dtheta^2+sin^2(theta)dphi^2)]",
@@ -113,9 +114,19 @@
   },
   "qutip_vs_witness_divergence": 5.738215236306132e-09,
   "schema_version": "1.0",
+  "smt_role": "supportive_nonvacuity_only",
+  "tool_integration_depth": {
+    "cvc5": "supportive",
+    "jax": null,
+    "julia": null,
+    "numpy": "load_bearing",
+    "qutip": "supportive",
+    "sympy": "load_bearing",
+    "z3": "supportive"
+  },
   "tool_manifest": {
     "cvc5": {
-      "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- same caveat as z3, load-bearing evidence is the sympy exact conjugate-pair witness.",
       "tried": true,
       "used": true
     },
@@ -145,7 +156,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Primary SMT contradiction: one function of the (real, symmetric) Bures/FS metric components cannot return both signs of Berry curvature.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the sympy exact conjugate-pair witness (psi vs chi=psi* sharing identical real (g_tt,g_pp,g_tp) but opposite Berry curvature +F/-F).",
       "tried": true,
       "used": true
     }

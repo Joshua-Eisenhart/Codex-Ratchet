@@ -33,10 +33,17 @@ originally-committed arrows were a generic single-valued-function tautology
 actual mechanism). This was fixed same day (commit `4fcd539d6`): SMT
 downgraded to `smt_role: supportive_nonvacuity_only` and dropped from every
 `core_ok` conjunction; the load-bearing evidence is the direct numpy/sympy
-witness recompute named in each row below. One exception:
+witness recompute named in each row below. As of this fix, the downgrade is
+uniform across all eleven receipts in this map with exactly one exception:
 `magma_smt_genuine.py` encodes the actual magma table as z3 `Function`
 constraints, so its UNSAT genuinely depends on the table (verified by
-perturbation) — the one case where z3 is correctly load-bearing.
+perturbation) — the only case in the set where z3 is correctly load-bearing
+on the mechanism itself, not on a generic tautology. `bures_to_fubini_study`
+(Layer 7) is not an exception to this: its receipt predates the fix (commit
+`5aaffc3ca`, before `4fcd539d6`) and still shows z3 tried/used with no
+mechanism-perturbation evidence — the same generic template as the other
+five. Its `BERRY_IRREDUCIBLE` verdict rests on the sympy conjugate-pair
+witness (`psi` vs `psi*`), not on its z3 leg; see Layer 7 below.
 
 ---
 
@@ -68,8 +75,23 @@ failure directions):**
   measurements, yet interferometry distinguishes them; no finite `M` is
   provably maximal, so "iff" quietly assumes an unstated completeness axiom.
 
-Neither negative has a sim built against it yet. Recorded as open pressure
-on the root, not as a refutation.
+Both negatives are folded into `root_foundation.py`
+(`ratchet_contract/ratchetings/results/root_foundation.json`) as `NEG6a` and
+`NEG6b`, each mapped to a concrete, computable, finite carrier rather than
+left as prose. Both `flip: true` — the sim genuinely catches them, it does
+not wave them off:
+- `NEG6a` (llama, over-merge): same mechanism as `NEG1` — a coarser probe
+  family `M1` over-merges relative to a finer reference `M3`; the mechanism
+  correctly flags the result coarse/`HOLD`, not final identity.
+- `NEG6b` (qwen3, completeness): the "active" family `M3` is shown NOT
+  complete — a hidden probe `p_h` outside `M3` strictly refines its
+  quotient to all-singletons. From inside `M3` there is no signal it is
+  incomplete; completeness can only be refuted by a probe not yet in the
+  family, never proved from within it. Every `iff` claim in the sim is
+  reported relative-to-active-`M`, never as an absolute completeness claim.
+
+Recorded as open pressure on the root, held open by the sim itself, not as a
+refutation.
 
 ---
 
@@ -316,8 +338,12 @@ components (`g_tt = g_pp = 0.25`, `g_tp = 0`) but opposite curvature
 (`+/- 0.5`). z3 and cvc5 both UNSAT on shared-recovery, erased control flips
 to SAT. Berry curvature at `theta = pi/2` equals `0.5` (monopole).
 
-**Engines.** sympy + numpy + z3 (load-bearing), cvc5 (supportive), qutip
-(cross-check, deviation `~2.8e-8`). Julia: deferred on memory.
+**Engines.** sympy + numpy (load-bearing, the conjugate-pair witness above),
+z3 + cvc5 (supportive_nonvacuity_only — this receipt's z3 leg is the same
+generic single-valued-function template flagged in the cross-cutting caveat
+above, not a mechanism-encoded constraint; it has no perturbation evidence
+tying its UNSAT to the actual Bures/Berry mechanism), qutip (cross-check,
+deviation `~2.8e-8`). Julia: deferred on memory.
 
 **Status.** EARNED, ordering PROPOSED not canon. This is the geometric twin
 of "VN born at the cut": complex phase structure is genuinely new at the

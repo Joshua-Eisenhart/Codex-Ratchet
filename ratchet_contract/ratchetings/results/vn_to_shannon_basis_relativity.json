@@ -1,0 +1,75 @@
+{
+  "classification": "tool_lego_fit_probe",
+  "comp_basis_drop": 0.03158394240196316,
+  "comp_basis_monotone_always_geq": true,
+  "comp_basis_noninvertible_witness": true,
+  "disclosure": "The vn_to_shannon one-way dephasing arrow is BASIS-RELATIVE, not basis-free. Relative to the FIXED computational (pointer) basis, D_comp raises entropy on every off-diagonal sampled state (min gap 0.031584 > 0) and is NOT invertible (the witness pair rho, rho_prime share a computational-basis diagonal but differ in off-diagonal coherence, and both collapse to the same D_comp image). Relative to EACH state's OWN eigenbasis, dephasing is the identity on that state: D_eigen(rho) = rho exactly (max entropy gap over all sampled states = 5.178e-15, reconstruction error = 1.332e-15), and is trivially invertible there. This is the physical content of decoherence relative to a fixed pointer basis, not a refutation of the committed arrow -- but it IS a disclosure: the committed one-way claim smuggles the computational basis as its reference, and does not hold basis-free.",
+  "eigenbasis_gap": 5.178310144344068e-15,
+  "eigenbasis_gap_is_zero": true,
+  "eigenbasis_invertible_on_samples": true,
+  "eigenbasis_reconstruction_max_error": 1.332474155427911e-15,
+  "engines_ran": {
+    "cvc5": false,
+    "jax": false,
+    "julia": false,
+    "numpy": true,
+    "qutip": false,
+    "sympy": false,
+    "z3": false
+  },
+  "floor_claims": [
+    {
+      "direction": "lower_is_better",
+      "key": "ratcheting.vn_to_shannon_basis_relativity.eigenbasis_gap",
+      "value": 5.178310144344068e-15
+    }
+  ],
+  "notes": [
+    "This does NOT refute vn_to_shannon's committed RATCHETED_ONE_WAY verdict -- the arrow holds exactly as claimed relative to the fixed computational/pointer basis vn_to_shannon actually uses (the Layer-2 carrier Delta^1's z-axis).",
+    "It DOES disclose that the arrow is basis-relative: a differently-chosen reference basis (the state's own eigenbasis) makes the SAME channel act as the identity, entropy-preserving and invertible, on that state.",
+    "Eased formality per instruction: numpy-only, single plain rerun + one post_receipt_gate.sh pass (honest exit 3 acceptable); full ClaimGate tier0-4 not pushed."
+  ],
+  "object": "Same Layer-1/Layer-2 pair as vn_to_shannon.py: 2x2 density operators (Bloch ball) -> diagonal simplex Delta^1, dephasing/pinching channel D.",
+  "ordering_status": "PROPOSED not canon",
+  "promotion_allowed": false,
+  "sampled_state_count": 307,
+  "schema_version": "1.0",
+  "tool_manifest": {
+    "cvc5": {
+      "reason": "Eased formality per instruction: not run.",
+      "tried": false,
+      "used": false
+    },
+    "jax": {
+      "reason": "Eased formality per instruction: not run.",
+      "tried": false,
+      "used": false
+    },
+    "julia": {
+      "reason": "Eased formality per instruction: not run.",
+      "tried": false,
+      "used": false
+    },
+    "numpy": {
+      "reason": "Bloch-ball sampled states, eigendecomposition-based dephasing, entropy and invertibility checks.",
+      "tried": true,
+      "used": true
+    },
+    "qutip": {
+      "reason": "Eased formality per instruction: not run.",
+      "tried": false,
+      "used": false
+    },
+    "sympy": {
+      "reason": "Eased formality per instruction: the numeric numpy witness is sufficient for this disclosure probe.",
+      "tried": false,
+      "used": false
+    },
+    "z3": {
+      "reason": "Eased formality per instruction: not run.",
+      "tried": false,
+      "used": false
+    }
+  },
+  "verdict": "BASIS_RELATIVE_DISCLOSURE"
+}

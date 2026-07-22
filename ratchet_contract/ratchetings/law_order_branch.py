@@ -61,7 +61,7 @@ TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True,
               "reason": "Exact structural-entropy drops (log of finite class counts) and their symbolic difference."},
     "z3": {"tried": True, "used": True,
-           "reason": "Primary SMT contradiction: the shared merged endpoint cannot recover both distinct intermediate sizes -- order/cost information is genuinely erased at the join."},
+           "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the direct isomorphism check (brute-forced over all permutations) and the trajectory recompute (structural-entropy drops per path)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
     "numpy": {"tried": False, "used": False,
@@ -74,7 +74,7 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "cvc5": None,
     "numpy": None,
     "jax": None,
@@ -257,7 +257,7 @@ def cvc5_order_erased(mid_a_size: int, mid_c_size: int) -> dict[str, str]:
         if not relaxed_result.isSat():
             raise RuntimeError(f"expected sat after erasure, got {relaxed_result}")
         TOOL_MANIFEST["cvc5"]["used"] = True
-        TOOL_MANIFEST["cvc5"]["reason"] = "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat."
+        TOOL_MANIFEST["cvc5"]["reason"] = "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- same caveat as z3, load-bearing evidence is the direct isomorphism check and trajectory recompute."
         TOOL_INTEGRATION_DEPTH["cvc5"] = "supportive"
         return {"result": str(result), "erased_constraint_result": str(relaxed_result),
                 "reason": "same order-erasure contradiction"}
@@ -426,15 +426,13 @@ def main() -> None:
     core_ok = (not base_associative and not base_commutative
                and nonassoc_witness is not None and noncomm_witness is not None
                and symbolic_paths_differ == path_entropy_order_dependent
-               and z3_result["result"] == "unsat"
-               and z3_result["erased_constraint_result"] == "sat"
                and detector_non_vacuous)
 
     notes = [
         "Finite fixed-carrier probe only; the proposed law-imposition order is not canon.",
         "Endpoints (question 1) and path cost (question 2) are distinct tests and are not conflated.",
         "Each path's second arrow re-closes under both laws, so the destination is the {A,C} congruence-lattice join reached along that path; the strict single-law two-step is reported separately as an honest secondary.",
-        "The SMT leg certifies the merged endpoint cannot recover which intermediate size was paid, i.e. order/cost is erased at the join; it is load-bearing only because the two intermediate sizes differ.",
+        "The SMT leg is a generic single-valued-function non-vacuity witness (supportive only, non-vacuous because the two intermediate sizes differ), not a mechanism encoding; the load-bearing evidence for order-dependence is the direct isomorphism check and trajectory recompute below.",
         "Contrast pair uses the class operators S (subalgebra) and H (homomorphic image), which are known not to commute, to exhibit a genuine non-re-merging branch on the same machinery.",
     ]
     if not core_ok:
@@ -500,6 +498,8 @@ def main() -> None:
         "engines_ran": {"sympy": True, "z3": True,
                         "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]),
                         "numpy": False, "jax": False, "julia": False},
+        "smt_role": "supportive_nonvacuity_only",
+        "load_bearing_evidence": "Direct isomorphism check (brute-forced over all permutations, not cardinality) on the {A,C} join endpoints, plus the trajectory recompute (structural-entropy drops per path, cross-confirmed by sympy exact log arithmetic).",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "notes": notes,

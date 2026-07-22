@@ -204,11 +204,12 @@
     "A": "associativity (a*b)*c = a*(b*c)",
     "C": "commutativity a*b = b*a"
   },
+  "load_bearing_evidence": "Direct isomorphism check (brute-forced over all permutations, not cardinality) on the {A,C} join endpoints, plus the trajectory recompute (structural-entropy drops per path, cross-confirmed by sympy exact log arithmetic).",
   "notes": [
     "Finite fixed-carrier probe only; the proposed law-imposition order is not canon.",
     "Endpoints (question 1) and path cost (question 2) are distinct tests and are not conflated.",
     "Each path's second arrow re-closes under both laws, so the destination is the {A,C} congruence-lattice join reached along that path; the strict single-law two-step is reported separately as an honest secondary.",
-    "The SMT leg certifies the merged endpoint cannot recover which intermediate size was paid, i.e. order/cost is erased at the join; it is load-bearing only because the two intermediate sizes differ.",
+    "The SMT leg is a generic single-valued-function non-vacuity witness (supportive only, non-vacuous because the two intermediate sizes differ), not a mechanism encoding; the load-bearing evidence for order-dependence is the direct isomorphism check and trajectory recompute below.",
     "Contrast pair uses the class operators S (subalgebra) and H (homomorphic image), which are known not to commute, to exhibit a genuine non-re-merging branch on the same machinery."
   ],
   "ordering_status": "PROPOSED not canon",
@@ -282,6 +283,7 @@
       "result": "unsat"
     }
   },
+  "smt_role": "supportive_nonvacuity_only",
   "strict_two_step_secondary": {
     "isomorphic": true,
     "isomorphism": [
@@ -322,11 +324,11 @@
     "julia": null,
     "numpy": null,
     "sympy": "load_bearing",
-    "z3": "load_bearing"
+    "z3": "supportive"
   },
   "tool_manifest": {
     "cvc5": {
-      "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- same caveat as z3, load-bearing evidence is the direct isomorphism check and trajectory recompute.",
       "tried": true,
       "used": true
     },
@@ -351,7 +353,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Primary SMT contradiction: the shared merged endpoint cannot recover both distinct intermediate sizes -- order/cost information is genuinely erased at the join.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the direct isomorphism check (brute-forced over all permutations) and the trajectory recompute (structural-entropy drops per path).",
       "tried": true,
       "used": true
     }

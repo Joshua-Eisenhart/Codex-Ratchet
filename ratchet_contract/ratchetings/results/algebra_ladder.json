@@ -475,6 +475,7 @@
       "value": 0.6931471805599453
     }
   ],
+  "load_bearing_evidence": "Plain-Python union-find congruence-closure quotient computation: per reducing arrow, size_before/size_after and the concrete witness pair of elements identified but distinct before the quotient, cross-checked against the telescoping sympy log-drop identity.",
   "notes": [
     "Finite carrier (|S|=4) probe only; PROPOSED not canon, pre-admission evidence.",
     "Congruence closure per arrow: seed pairs from the law's defining equations, closed under a~b => x*a~x*b, a*x~b*x for all x (standard congruence closure), so the quotient operation is well-defined.",
@@ -509,9 +510,15 @@
   "reducing_arrows_are_one_way": true,
   "reducing_arrows_z3_confirmed": true,
   "schema_version": "1.0",
+  "smt_role": "supportive_nonvacuity_only",
+  "tool_integration_depth": {
+    "cvc5": "supportive",
+    "sympy": "supportive",
+    "z3": "supportive"
+  },
   "tool_manifest": {
     "cvc5": {
-      "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- same caveat as z3, load-bearing evidence is the union-find congruence-closure quotient computation.",
       "tried": true,
       "used": true
     },
@@ -521,7 +528,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Per-arrow non-injectivity contradiction (deterministic recovery UNSAT) and erased-constraint SAT non-vacuity check.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the plain-Python union-find congruence-closure quotient computation (size_before/size_after and the concrete witness pair of elements identified but distinct before each reducing arrow).",
       "tried": true,
       "used": true
     }

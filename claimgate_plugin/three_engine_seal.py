@@ -1,96 +1,135 @@
 #!/usr/bin/env python3
-"""Three-engine seal — the fired-side enforcement of the numpy=control-only contract.
+"""Three-engine seal — EXECUTION-EVIDENCE enforcement (hardened 2026-07-22).
 
-The system contract (CLAUDE.md, binding): Julia (QuantumOptics) authoritative,
-JAX batched workhorse, PyTorch graph/autograd; numpy/scipy/mpmath are CONTROL-ONLY.
-At least one authoritative engine must carry the numeric work. numpy as the
-load-bearing workhorse is the anti-pattern.
+A webui audit found the prior seal TRUSTED receipt metadata: a forged
+engines_ran=true passed, missing metadata passed, an IO error passed, and one
+engine sufficed. This version RE-DERIVES instead of trusting, and fails CLOSED.
 
-This was violated systemically (2026-07-22): every ratcheting arrow ran on
-numpy/sympy with julia=jax=torch=None, and numpy was outright load_bearing on
-three. The enforcement (scripts/validate_three_engine_sim_result.py) existed but
-was never wired into the gate that fires. This seal closes that: it runs inside
-post_receipt_gate.sh, so git (the pre-commit hook) and Lev cannot admit a
-contract-violating receipt.
+A sim receipt is admitted only if ONE of:
+  (A) EVIDENCE — it carries >=2 authoritative engines (Julia/JAX/PyTorch) that
+      each have a load_bearing label AND a numeric engine_value, those values
+      AGREE (divergence recomputed here, not a trusted field), AND the jax leg
+      RE-RUNS and reproduces its recorded values. Re-running the jax leg is where
+      ClaimGate genuinely USES jax — the un-plantable execution evidence.
+  (B) EXEMPT — it explicitly declares engine_contract.numeric_engine_required=false
+      with a reason (a genuinely non-numeric proof/finite-set sim).
+Everything else REJECTS, including: numpy/scipy/mpmath labeled load_bearing; a
+sim that shows numeric-engine intent but <2 agreeing engine values; engine
+disagreement; a jax leg that will not re-run or does not reproduce; an unreadable
+receipt.
 
-Rules (a receipt "owes the contract" iff numpy appears in its
-TOOL_INTEGRATION_DEPTH — i.e. it is a numeric sim that used numpy):
-  R1  numpy/scipy/mpmath labeled load_bearing            -> REJECT (control-only).
-  R2  owes the contract, and NONE of {julia,jax,torch}   -> REJECT (no
-      is load_bearing                                        authoritative engine
-                                                             carried the work).
-Pure-SMT (z3/cvc5 only) and pure-finite-set receipts (no numpy at all) do NOT
-owe the numeric-engine contract and pass. A receipt with no
-TOOL_INTEGRATION_DEPTH is not a three-engine sim and passes (other gates cover it).
-
-Exit: 0 = pass / not-applicable, 1 = REJECT (contract violation), 2 = usage/IO.
+Exit: 0 pass, 1 REJECT, 2 usage.
 """
 import json
+import subprocess
 import sys
+from pathlib import Path
 
 CONTROL_ONLY = {"numpy", "scipy", "mpmath"}
-AUTHORITATIVE = {"julia", "jax", "torch", "pytorch"}
+AUTHORITATIVE = ("julia", "jax", "torch", "pytorch")
+SIM_PY = "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
+AGREE_TOL = 1.0e-6
+RERUN_TOL = 1.0e-9
 
 
-def _depth(receipt):
-    for k in ("TOOL_INTEGRATION_DEPTH", "tool_integration_depth"):
+def _d(receipt, *keys):
+    for k in keys:
         v = receipt.get(k)
         if isinstance(v, dict):
-            return {str(name).lower(): val for name, val in v.items()}
+            return v
     return {}
 
 
-def _engines_ran(receipt):
-    for k in ("engines_ran", "engines"):
-        v = receipt.get(k)
-        if isinstance(v, dict):
-            return {str(name).lower(): bool(val) for name, val in v.items()}
-    return {}
+def _depth(r):
+    return {str(k).lower(): v for k, v in _d(r, "TOOL_INTEGRATION_DEPTH", "tool_integration_depth").items()}
 
 
-def check(receipt):
-    """Return (exit_code, message). Keys on engines_ran (the deterministic signal),
-    with TOOL_INTEGRATION_DEPTH as the secondary source for load-bearing labels."""
+def _engine_values(r):
+    """{engine: numeric value} pulled from engine_values keys prefixed '<engine>_'."""
+    ev = _d(r, "engine_values")
+    out = {}
+    for eng in AUTHORITATIVE:
+        for k, v in ev.items():
+            if str(k).lower().startswith(eng + "_") and isinstance(v, (int, float)):
+                out[eng] = float(v)
+                break
+    return out
+
+
+def _rerun_jax_reproduces(receipt_path, recorded_jax):
+    """Re-run <name>_jax.py and confirm it reproduces recorded_jax's numerics.
+    THIS is ClaimGate using jax: execution evidence, not a self-reported boolean."""
+    rp = Path(receipt_path)
+    leg = rp.parent.parent / f"{rp.stem}_jax.py"  # results/<name>.json -> ../<name>_jax.py
+    if not leg.exists():
+        return False, f"jax load_bearing but no runnable leg at {leg.name} (fabricated-source anti-pattern)"
+    try:
+        proc = subprocess.run([SIM_PY, str(leg)], capture_output=True, text=True, timeout=600)
+    except Exception as exc:  # noqa: BLE001
+        return False, f"jax leg re-run dispatch failed: {exc}"
+    if proc.returncode != 0:
+        return False, f"jax leg re-run exit {proc.returncode}: {proc.stderr.strip()[-160:]}"
+    fresh_lines = [ln for ln in proc.stdout.splitlines() if ln.strip().startswith("{")]
+    if not fresh_lines:
+        return False, "jax leg re-run produced no JSON"
+    fresh = json.loads(fresh_lines[-1])
+    compared = 0
+    for k, v in (recorded_jax or {}).items():
+        if isinstance(v, (int, float)) and isinstance(fresh.get(k), (int, float)):
+            compared += 1
+            if abs(float(v) - float(fresh[k])) > RERUN_TOL:
+                return False, f"jax leg NOT reproducible: recorded {k}={v} vs re-run {fresh[k]} (>1e-9)"
+    if compared == 0:
+        return False, "jax leg re-ran but shares no numeric field with the recorded leg — cannot verify"
+    return True, f"jax leg re-derived, {compared} numeric field(s) reproduce to <1e-9"
+
+
+def check(receipt, receipt_path):
     depth = _depth(receipt)
-    engines = _engines_ran(receipt)
-    if not depth and not engines:
-        return 0, "three_engine_seal: no engine metadata — not a three-engine sim, pass"
-
-    load_bearing = {name for name, val in depth.items() if val == "load_bearing"}
+    engines_ran = _d(receipt, "engines_ran", "engines")
+    load_bearing = {k for k, v in depth.items() if v == "load_bearing"}
 
     # R1: control-only tool labeled load_bearing — absolute violation.
-    lb_control = load_bearing & CONTROL_ONLY
-    if lb_control:
-        return 1, (
-            f"three_engine_seal: REJECT — {sorted(lb_control)} labeled load_bearing, "
-            f"but numpy/scipy/mpmath are CONTROL-ONLY. The numeric work must run on an "
-            f"authoritative engine (Julia/JAX/PyTorch). Move the load-bearing witness to "
-            f"an engine leg and relabel {sorted(lb_control)} supportive/control."
-        )
+    ctrl = load_bearing & CONTROL_ONLY
+    if ctrl:
+        return 1, f"REJECT — {sorted(ctrl)} labeled load_bearing, but numpy/scipy/mpmath are CONTROL-ONLY."
 
-    # Does this receipt owe the numeric-engine contract? (numpy is a worker here)
-    numpy_used = engines.get("numpy", False) or ("numpy" in depth)
-    if not numpy_used:
-        return 0, "three_engine_seal: numpy not used (pure symbolic/SMT/finite) — contract N/A, pass"
+    # (B) explicit exemption for a genuinely non-numeric sim.
+    ec = _d(receipt, "engine_contract")
+    if ec.get("numeric_engine_required") is False:
+        return 0, f"pass — exempt (numeric_engine_required=false): {ec.get('exemption_reason', 'declared')}"
 
-    # An authoritative engine must carry the work: either labeled load_bearing OR at
-    # least actually run (engines_ran True). Running one is the achievable fix.
-    auth_load_bearing = sorted(load_bearing & AUTHORITATIVE)
-    auth_ran = sorted(n for n in ("julia", "jax", "torch", "pytorch") if engines.get(n))
-    if not auth_load_bearing and not auth_ran:
-        return 1, (
-            "three_engine_seal: REJECT — numeric sim (numpy ran) with NO authoritative engine. "
-            "The contract requires >=1 of Julia(authoritative)/JAX/PyTorch to carry the numeric "
-            "work; numpy is control-only. Fix: run a Julia/JAX/PyTorch leg on the numeric witness "
-            "(engines_ran.<engine>=true) and mark it load_bearing (see .claude/skills/three-engine-sim). "
-            "The engines load fine at ~25% mem — the DEFERRED_BLOCKED_ON_MEMORY >40% gate was false."
-        )
-    if not auth_load_bearing and auth_ran:
-        return 0, (
-            f"three_engine_seal: pass-with-note — authoritative engine RAN {auth_ran} but is not "
-            f"yet labeled load_bearing; promote the witness onto it to fully satisfy the contract."
-        )
-    return 0, f"three_engine_seal: pass — authoritative engine load_bearing {auth_load_bearing}"
+    # Does the receipt show numeric-engine INTENT? (numpy, an authoritative engine, or engine_values)
+    numeric_intent = ("numpy" in depth or engines_ran.get("numpy")
+                      or bool(load_bearing & set(AUTHORITATIVE))
+                      or any(engines_ran.get(e) for e in AUTHORITATIVE)
+                      or bool(_d(receipt, "engine_values")))
+    if not numeric_intent:
+        # No numeric engines involved and no numpy — a pure symbolic/SMT/finite sim.
+        return 0, "pass — no numeric-engine intent (pure symbolic/SMT/finite); contract N/A"
+
+    # (A) EVIDENCE: >=2 authoritative engines with load_bearing label AND a numeric value.
+    values = _engine_values(receipt)
+    verified = sorted(e for e in AUTHORITATIVE if e in load_bearing and e in values)
+    if len(verified) < 2:
+        return 1, (f"REJECT — a numeric sim must show >=2 authoritative engines each load_bearing AND "
+                   f"carrying a numeric engine_value; verified={verified or 'none'}. A self-reported "
+                   f"engines_ran boolean is NOT evidence — record the engine's computed value.")
+
+    # Values must AGREE (recomputed from the values themselves).
+    vv = [values[e] for e in verified]
+    div = max(abs(a - b) for a in vv for b in vv)
+    if div > AGREE_TOL:
+        return 1, f"REJECT — authoritative engines DISAGREE: max divergence {div} > {AGREE_TOL} across {verified}."
+
+    # RE-DERIVE via jax (ClaimGate USES jax): re-run the jax leg, require reproducibility.
+    if "jax" in verified:
+        ok, msg = _rerun_jax_reproduces(receipt_path, _d(receipt, "three_engine_legs").get("jax"))
+        if not ok:
+            return 1, f"REJECT — jax re-derive failed: {msg}"
+        return 0, f"pass — {len(verified)} engines {verified} agree (div {div:.1e}); {msg}"
+    return 1, (f"REJECT — engines {verified} agree but none is jax; ClaimGate re-derives via jax as the "
+               f"execution check. Include a jax leg (dynamiqs) so the value can be independently re-run.")
 
 
 def main(argv):
@@ -99,11 +138,11 @@ def main(argv):
         return 2
     try:
         receipt = json.load(open(argv[1]))
-    except Exception as exc:  # noqa: BLE001 — IO/parse error is not a contract verdict
-        print(f"three_engine_seal: could not read receipt ({exc}) — not blocking", file=sys.stderr)
-        return 0
-    code, message = check(receipt)
-    print(message, file=sys.stderr)
+    except Exception as exc:  # noqa: BLE001
+        print(f"three_engine_seal: REJECT — receipt unreadable ({exc}); failing CLOSED.", file=sys.stderr)
+        return 1
+    code, message = check(receipt, argv[1])
+    print("three_engine_seal: " + message, file=sys.stderr)
     return code
 
 

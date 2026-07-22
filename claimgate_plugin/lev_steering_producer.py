@@ -21,16 +21,22 @@ This file is a faithful Python mirror of that producer, driven by the CR hook
 instead of a Lev council execution. Every field name, binding, and value here is
 chosen to pass the host validator `validateProjection` with zero error findings.
 
-HONEST CEILING — NOT YET RECORDABLE
------------------------------------
+HONEST CEILING — CONSUME SURFACE IS LIVE; SOURCE STILL CANNOT SELF-PROMOTE
+-------------------------------------------------------------------------
 The passive consume surface
 
-    lev orchestration claimgate-steering consume <run-dir> [--json] [--no-write]
+    ./core/poly/bin/lev orchestration claimgate-steering consume <run-dir> [--json] [--no-write]
 
-exists in Lev source (branch patch/waverun-engine-gates-20260630 + its dist, wired
-in the poly CLI surface test) but is NOT reachable from the installed `lev` CLI,
-which respawns into the CR-facing branch (lev-main) where the surface has not
-shipped. So ClaimGate -> Lev is BLOCKED-ON-PRODUCER at the CLI boundary.
+IS REACHABLE and was demonstrated live 2026-07-22 — run it from the Lev repo root
+via the POLY BUILD binary (core/poly/bin/lev). The earlier "BLOCKED-ON-PRODUCER at
+the CLI boundary" reading was a WRONG-BINARY artifact, not a missing surface: the
+installed GLOBAL `lev` (~/.local/bin/lev, which respawns into the CR-facing lev-main
+worktree) still has NO `orchestration` subcommand ("Unknown command: orchestration"),
+but the poly build ships it. Verified: the `good` fixture -> host_consumed
+(recomputed verdict pass); this producer's own cut_dependent_entropy.json projection
+-> host_reviewed_failed (recomputed `conditional`, correctly NOT admitted — a probe
+cannot self-promote). The ceiling below is what remains real: the producer prepares
+the projection but never mints host authority — Lev recomputes and decides.
 
 This producer prepares the source projection so recording works the instant the
 surface ships. It does NOT — and cannot — make the run `host_consumed`:

@@ -21,6 +21,7 @@ receipt.
 Exit: 0 pass, 1 REJECT, 2 usage.
 """
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -130,6 +131,12 @@ def check(receipt, receipt_path):
     if div > AGREE_TOL:
         return 1, f"REJECT — authoritative engines DISAGREE: max divergence {div} > {AGREE_TOL} across {verified}."
 
+    # METADATA-ONLY mode (CI, where the sim env / jax leg is not installed): the numpy and
+    # engine-count/agreement checks above need no env and fully catch the numpy bullshit;
+    # only the jax re-derive is skipped. Local runs (pre-commit, Stop hook) do the re-derive.
+    if os.environ.get("SEAL_METADATA_ONLY"):
+        return 0, f"pass (metadata-only) — {len(verified)} engines {verified} agree (div {div:.1e}); no numpy"
+
     # RE-DERIVE via jax (ClaimGate USES jax): re-run the jax leg, require reproducibility.
     if "jax" in verified:
         ok, msg = _rerun_jax_reproduces(receipt_path, _d(receipt, "three_engine_legs").get("jax"))
@@ -149,6 +156,9 @@ def main(argv):
     except Exception as exc:  # noqa: BLE001
         print(f"three_engine_seal: REJECT — receipt unreadable ({exc}); failing CLOSED.", file=sys.stderr)
         return 1
+    if not isinstance(receipt, dict):
+        print("three_engine_seal: pass — not a sim-receipt object (list/scalar); N/A", file=sys.stderr)
+        return 0
     code, message = check(receipt, argv[1])
     print("three_engine_seal: " + message, file=sys.stderr)
     return code

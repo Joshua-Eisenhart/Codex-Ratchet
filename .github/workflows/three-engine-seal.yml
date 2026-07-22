@@ -1,0 +1,21 @@
+name: three-engine seal (no numpy)
+
+# Un-bypassable enforcement: runs on every push/PR on GitHub's servers, so a sim
+# receipt that contains numpy or lacks real engine evidence turns this check RED
+# regardless of what any commit claims. --no-verify on a local hook cannot skip
+# this. The jax re-derive is done locally (pre-commit + Stop hook); CI enforces the
+# numpy / engine-count / agreement checks, which need no sim env.
+on:
+  push:
+  pull_request:
+
+jobs:
+  no-numpy-sims:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Three-engine seal over all sim receipts
+        run: python3 scripts/ci_three_engine_seal.py

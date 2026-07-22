@@ -1,4 +1,13 @@
 {
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "supportive",
+    "jax": null,
+    "julia": "load_bearing",
+    "numpy": "control",
+    "qutip": "supportive",
+    "sympy": "load_bearing",
+    "z3": "supportive"
+  },
   "boundary_is_zero_entropy_set": {
     "max_abs_S_on_sampled_sphere": 3.0829074828094444e-15,
     "min_S_off_sphere": 0.14262408093459733
@@ -16,13 +25,14 @@
   },
   "control_is_one_way": false,
   "engine_values": {
+    "julia": 0.6931471805599454,
     "qutip": 0.6931471805599453,
     "sympy_numpy": 0.6931471805599453
   },
   "engines_ran": {
     "cvc5": true,
     "jax": false,
-    "julia": false,
+    "julia": true,
     "numpy": true,
     "qutip": true,
     "sympy": true,
@@ -43,10 +53,21 @@
     "axis0_distinction": "This downstream support-Hartley bookkeeping is DISTINCT from the Axis-0 counting DRIVE (dC = D log(V) over admissible-set size across ticks), which is not a nesting layer in this ladder at all -- it is the entropy gradient/drive framing from the owner's Axis-0 doctrine, not a state-space layer to be ratcheted here. Do not conflate the two.",
     "note": "Hartley/counting entropy S0=log(V) sits AT the maximally-mixed point of the VN layer: S(I/2)=ln(2), the entropy MAXIMUM on the Bloch ball for a qubit, matching Hartley for V=2 outcomes. Support-Hartley (log of the rank of the support) is a further one-way FORGETTING downstream of VN (drop eigenvalue magnitudes, keep only which eigenvalues are nonzero) -- it is a layer AFTER/BELOW VN in information content, not before it."
   },
-  "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)",
+  "julia_leg": {
+    "S_vn_reduced_nats": 0.6931471805599454,
+    "S_vn_reduced_phi_nats": 0.6931471805599454,
+    "engine": "julia:QuantumOptics",
+    "global_trace_gap_psi_phi": 0.9999999999999998,
+    "ln2": 0.6931471805599453,
+    "marginal_fidelity_psi_phi": 0.9999999999999998,
+    "marginal_trace_gap": 0.0,
+    "one_way_witness": true,
+    "ran": true
+  },
+  "julia_vs_numpy_witness_divergence": 1.1102230246251565e-16,
   "layer_before": "Layer 0: pure C^2 rays (rank-1 projectors), CP^1 with Fubini--Study metric ds^2=<dpsi|dpsi>-|<psi|dpsi>|^2; S(|psi><psi|)=0 identically.",
   "layer_vn": "Layer 1: mixed C^2 density operators (Bloch ball), with von Neumann entropy positive in its interior.",
-  "load_bearing_evidence": "numpy purification witness pair (psi, phi=(I tensor diag(1,i))psi distinct states, identical partial-trace rho_A) plus sympy exact Schmidt/entanglement-entropy formula and endpoint/generic-sample checks.",
+  "load_bearing_evidence": "AUTHORITATIVE ENGINE Julia+QuantumOptics: entropy_vn(ptrace(dm(psi),2))=ln2 and the orthogonal-globals/identical-marginals one-way witness (tracedistance globals~1, marginals~0). sympy gives the exact Schmidt/entanglement-entropy formula; numpy is the CONTROL cross-check that agrees with Julia to <1e-9. numpy is no longer load-bearing.",
   "notes": [
     "Finite sampled probe only; proposed layer ordering is not canon.",
     "Fubini--Study formula for CP^1: ds^2=<dpsi|dpsi>-|<psi|dpsi>|^2.",
@@ -155,9 +176,9 @@
       "used": false
     },
     "julia": {
-      "reason": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23).",
-      "tried": false,
-      "used": false
+      "reason": "Authoritative QuantumOptics.jl leg: entropy_vn(ptrace) = ln2 and the orthogonal-globals / identical-marginals one-way witness of partial trace; numpy agrees to <1e-9 as control.",
+      "tried": true,
+      "used": true
     },
     "numpy": {
       "reason": "Finite Bloch-ball, pure-boundary, purification-witness, and control calculations.",

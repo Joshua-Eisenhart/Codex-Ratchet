@@ -264,6 +264,16 @@ def main() -> None:
         "mechanism_encoded": mechanism_encoded,
         "unsat_depends_on_table": unsat_depends_on_table,
         "verdict": verdict,
+        "TOOL_INTEGRATION_DEPTH": dict(TOOL_INTEGRATION_DEPTH),
+        "smt_role": "load_bearing_mechanism_encoded",
+        "load_bearing_evidence": (
+            "The z3 UNSAT is itself the mechanism, not a supportive non-vacuity leg: the magma "
+            "table is pinned as z3 Function constraints plus the associativity congruence; "
+            "perturbing the table flips UNSAT->SAT (unsat_depends_on_table), the unsat core names "
+            "only genuinely nonassociative triples of TABLE, and cvc5 independently confirms UNSAT. "
+            "This is the one ratcheting receipt where z3 is correctly load_bearing; every sibling "
+            "arrow carries smt_role=supportive_nonvacuity_only with a numpy/sympy/Fraction witness."
+        ),
         "classification": classification,
         "promotion_allowed": promotion_allowed,
         "ordering_status": ordering_status,

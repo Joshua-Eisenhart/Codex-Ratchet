@@ -1,4 +1,8 @@
 {
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "supportive",
+    "z3": "load_bearing"
+  },
   "classification": "tool_lego_fit_probe",
   "cvc5_witness_cross_check": {
     "result": "unsat"
@@ -55,6 +59,7 @@
       1
     ]
   ],
+  "load_bearing_evidence": "The z3 UNSAT is itself the mechanism, not a supportive non-vacuity leg: the magma table is pinned as z3 Function constraints plus the associativity congruence; perturbing the table flips UNSAT->SAT (unsat_depends_on_table), the unsat core names only genuinely nonassociative triples of TABLE, and cvc5 independently confirms UNSAT. This is the one ratcheting receipt where z3 is correctly load_bearing; every sibling arrow carries smt_role=supportive_nonvacuity_only with a numpy/sympy/Fraction witness.",
   "magma_table": {
     "elements": [
       0,
@@ -90,6 +95,7 @@
   "purpose": "Show a mechanism-encoded SMT UNSAT for magma->semigroup (table-pinned Function + associativity congruence + unsat-core cross-check + table-perturbation SAT flip), as distinct from the generic 'f(0)==A and f(0)==B' tautology in magma_to_semigroup.py, which is UNSAT independent of any table.",
   "reading": "The claim proven is: no recovery map quot on free-bracketed words can (i) be forced by the table via structural recursion on both bracketings of every leaf-triple AND (ii) also satisfy the associativity-quotient congruence identifying (xy)z with x(yz) for every leaf-triple -- because the table's own structural evaluation already sends the witness pair to distinct S-elements. This is NOT a claim that quot is injective on all 54 free words into |S|=3 elements (that fails by pigeonhole regardless of associativity, and would be a decorative, mechanism-independent UNSAT if used instead).",
   "schema_version": "1.0",
+  "smt_role": "load_bearing_mechanism_encoded",
   "tool_manifest": {
     "cvc5": {
       "reason": "Independent witness-triple cross-check returned unsat.",

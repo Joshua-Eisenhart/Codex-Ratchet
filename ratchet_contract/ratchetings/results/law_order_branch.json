@@ -1,0 +1,360 @@
+{
+  "branches_remerge": true,
+  "carrier": {
+    "associative": false,
+    "commutative": false,
+    "description": "Fixed 4-element magma, neither associative nor commutative; A-only and C-only quotients have different sizes and the {A,C} join is a non-degenerate 2-element semilattice.",
+    "elements": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "nonassoc_witness": [
+      0,
+      0,
+      0
+    ],
+    "noncomm_witness": [
+      0,
+      1
+    ],
+    "table": [
+      [
+        2,
+        3,
+        2,
+        2
+      ],
+      [
+        0,
+        1,
+        3,
+        2
+      ],
+      [
+        3,
+        2,
+        2,
+        2
+      ],
+      [
+        2,
+        3,
+        2,
+        3
+      ]
+    ]
+  },
+  "chain_control": {
+    "endpoint_isomorphic": true,
+    "law_pair": "A then A (same law twice)",
+    "path_entropy_order_dependent": false,
+    "role": "confirms path-dependence detector can return False; not hardwired",
+    "verdict": "CHAIN"
+  },
+  "classification": "tool_lego_fit_probe",
+  "contrast_pair_result": {
+    "H_then_S": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "S_then_H": [
+      [
+        2,
+        2,
+        0
+      ],
+      [
+        2,
+        0,
+        2
+      ],
+      [
+        0,
+        2,
+        0
+      ]
+    ],
+    "carrier": [
+      [
+        3,
+        1,
+        0,
+        3
+      ],
+      [
+        1,
+        3,
+        3,
+        1
+      ],
+      [
+        3,
+        3,
+        1,
+        3
+      ],
+      [
+        3,
+        1,
+        3,
+        1
+      ]
+    ],
+    "commutativity_classes": [
+      0,
+      0,
+      2,
+      0
+    ],
+    "distinguishing_invariant": {
+      "path1": {
+        "commutative": true,
+        "distinct_products": 2,
+        "idempotents": 0,
+        "order": 3
+      },
+      "path2": {
+        "commutative": true,
+        "distinct_products": 1,
+        "idempotents": 1,
+        "order": 2
+      }
+    },
+    "isomorphic": false,
+    "operators": "S = submagma on subset; H = quotient by commutativity congruence",
+    "subset": [
+      1,
+      2,
+      3
+    ],
+    "subset_is_submagma": true,
+    "verdict": "GENUINE_BRANCH"
+  },
+  "detector_non_vacuous": true,
+  "endpoints_isomorphic": {
+    "check": "genuine label-bijection preserving the Cayley table, brute-forced over all permutations",
+    "distinguishing_invariant": null,
+    "isomorphic": true,
+    "isomorphism": [
+      0,
+      1
+    ]
+  },
+  "engines_ran": {
+    "cvc5": true,
+    "jax": false,
+    "julia": false,
+    "numpy": false,
+    "sympy": true,
+    "z3": true
+  },
+  "floor_claims": [
+    {
+      "direction": "higher_is_better",
+      "key": "ratcheting.law_order.remerge_confirmed",
+      "value": 1
+    }
+  ],
+  "intermediate_after_A": {
+    "associative": true,
+    "commutative": false,
+    "size": 3,
+    "table": [
+      [
+        2,
+        2,
+        2
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        2,
+        2,
+        2
+      ]
+    ]
+  },
+  "intermediate_after_C": {
+    "associative": true,
+    "commutative": true,
+    "size": 2,
+    "table": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  "laws": {
+    "A": "associativity (a*b)*c = a*(b*c)",
+    "C": "commutativity a*b = b*a"
+  },
+  "notes": [
+    "Finite fixed-carrier probe only; the proposed law-imposition order is not canon.",
+    "Endpoints (question 1) and path cost (question 2) are distinct tests and are not conflated.",
+    "Each path's second arrow re-closes under both laws, so the destination is the {A,C} congruence-lattice join reached along that path; the strict single-law two-step is reported separately as an honest secondary.",
+    "The SMT leg certifies the merged endpoint cannot recover which intermediate size was paid, i.e. order/cost is erased at the join; it is load-bearing only because the two intermediate sizes differ.",
+    "Contrast pair uses the class operators S (subalgebra) and H (homomorphic image), which are known not to commute, to exhibit a genuine non-re-merging branch on the same machinery."
+  ],
+  "ordering_status": "PROPOSED not canon",
+  "path1_end": {
+    "associative": true,
+    "commutative": true,
+    "route": "free -> +A -> +C",
+    "size": 2,
+    "table": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  "path2_end": {
+    "associative": true,
+    "commutative": true,
+    "route": "free -> +C -> +A",
+    "size": 2,
+    "table": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  "path_entropy_order_dependent": {
+    "order_dependent": true,
+    "symbolic_paths_differ": true,
+    "trajectory1_ln_drops": [
+      0.2876820724517808,
+      0.4054651081081645
+    ],
+    "trajectory1_sizes": [
+      4,
+      3,
+      2
+    ],
+    "trajectory2_ln_drops": [
+      0.6931471805599453,
+      0.0
+    ],
+    "trajectory2_sizes": [
+      4,
+      2,
+      2
+    ]
+  },
+  "promotion_allowed": false,
+  "schema_version": "1.0",
+  "smt_order_erased": {
+    "cvc5": {
+      "erased_constraint_result": "sat",
+      "reason": "same order-erasure contradiction",
+      "result": "unsat"
+    },
+    "z3": {
+      "encoding": "recover(endpoint) must equal both intermediate sizes",
+      "erased_constraint_result": "sat",
+      "mid_a_size": 3,
+      "mid_c_size": 2,
+      "result": "unsat"
+    }
+  },
+  "strict_two_step_secondary": {
+    "isomorphic": true,
+    "isomorphism": [
+      0,
+      1
+    ],
+    "note": "Each arrow imposes only its own law with no re-close under the first; reported to avoid smoothing.",
+    "path1_end": {
+      "size": 2,
+      "table": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "path2_end": {
+      "size": 2,
+      "table": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    }
+  },
+  "tool_integration_depth": {
+    "cvc5": "supportive",
+    "jax": null,
+    "julia": null,
+    "numpy": null,
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "cvc5": {
+      "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "Queued: no batched/continuous dynamics in this finite combinatorial probe; explicitly not run.",
+      "tried": false,
+      "used": false
+    },
+    "julia": {
+      "reason": "Queued confirmation leg: not required for this finite probe; explicitly not run.",
+      "tried": false,
+      "used": false
+    },
+    "numpy": {
+      "reason": "Not needed: the carrier is a finite integer Cayley table, handled with exact integer arithmetic.",
+      "tried": false,
+      "used": false
+    },
+    "sympy": {
+      "reason": "Exact structural-entropy drops (log of finite class counts) and their symbolic difference.",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Primary SMT contradiction: the shared merged endpoint cannot recover both distinct intermediate sizes -- order/cost information is genuinely erased at the join.",
+      "tried": true,
+      "used": true
+    }
+  },
+  "verdict": "REMERGE_PATH_DEPENDENT"
+}

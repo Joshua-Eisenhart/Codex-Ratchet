@@ -1,0 +1,532 @@
+{
+  "base_magma_table": {
+    "0": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3
+    },
+    "1": {
+      "0": 1,
+      "1": 2,
+      "2": 3,
+      "3": 2
+    },
+    "2": {
+      "0": 2,
+      "1": 3,
+      "2": 2,
+      "3": 1
+    },
+    "3": {
+      "0": 3,
+      "1": 2,
+      "2": 1,
+      "3": 2
+    }
+  },
+  "carrier_size": 4,
+  "chain": [
+    {
+      "control_is_bijection_when_already_satisfied": true,
+      "cvc5": {
+        "erased_constraint_result": "sat",
+        "result": "unsat"
+      },
+      "elements_after": [
+        0,
+        1,
+        2
+      ],
+      "law_imposed": "associativity",
+      "one_way": {
+        "value": true,
+        "witness": [
+          1,
+          3
+        ]
+      },
+      "size_after": 3,
+      "size_before": 4,
+      "structural_entropy_drop": 0.2876820724517809,
+      "table_after": {
+        "0": {
+          "0": 0,
+          "1": 1,
+          "2": 2
+        },
+        "1": {
+          "0": 1,
+          "1": 2,
+          "2": 1
+        },
+        "2": {
+          "0": 2,
+          "1": 1,
+          "2": 2
+        }
+      },
+      "z3": {
+        "encoding": "one recover_preimage(quotient_point) cannot equal both pre-image labels",
+        "erased_constraint_result": "sat",
+        "result": "unsat"
+      }
+    },
+    {
+      "control_is_bijection_when_already_satisfied": true,
+      "cvc5": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      },
+      "elements_after": [
+        0,
+        1,
+        2
+      ],
+      "identity_candidate": 0,
+      "law_imposed": "identity",
+      "one_way": {
+        "value": false,
+        "witness": null
+      },
+      "size_after": 3,
+      "size_before": 3,
+      "structural_entropy_drop": 0.0,
+      "table_after": {
+        "0": {
+          "0": 0,
+          "1": 1,
+          "2": 2
+        },
+        "1": {
+          "0": 1,
+          "1": 2,
+          "2": 1
+        },
+        "2": {
+          "0": 2,
+          "1": 1,
+          "2": 2
+        }
+      },
+      "z3": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      }
+    },
+    {
+      "control_is_bijection_when_already_satisfied": true,
+      "cvc5": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      },
+      "elements_after": [
+        0,
+        1,
+        2
+      ],
+      "law_imposed": "commutativity",
+      "one_way": {
+        "value": false,
+        "witness": null
+      },
+      "size_after": 3,
+      "size_before": 3,
+      "structural_entropy_drop": 0.0,
+      "table_after": {
+        "0": {
+          "0": 0,
+          "1": 1,
+          "2": 2
+        },
+        "1": {
+          "0": 1,
+          "1": 2,
+          "2": 1
+        },
+        "2": {
+          "0": 2,
+          "1": 1,
+          "2": 2
+        }
+      },
+      "z3": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      }
+    },
+    {
+      "control_is_bijection_when_already_satisfied": true,
+      "cvc5": {
+        "erased_constraint_result": "sat",
+        "result": "unsat"
+      },
+      "elements_after": [
+        0,
+        1
+      ],
+      "law_imposed": "inverse (cancellation)",
+      "one_way": {
+        "value": true,
+        "witness": [
+          0,
+          2
+        ]
+      },
+      "size_after": 2,
+      "size_before": 3,
+      "structural_entropy_drop": 0.4054651081081644,
+      "table_after": {
+        "0": {
+          "0": 0,
+          "1": 1
+        },
+        "1": {
+          "0": 1,
+          "1": 0
+        }
+      },
+      "z3": {
+        "encoding": "one recover_preimage(quotient_point) cannot equal both pre-image labels",
+        "erased_constraint_result": "sat",
+        "result": "unsat"
+      }
+    }
+  ],
+  "chain_definition": "magma --[+assoc]--> semigroup --[+identity]--> monoid --[+comm]--> commutative_monoid --[+inverse]--> abelian_group",
+  "classification": "tool_lego_fit_probe",
+  "control_all_bijections": true,
+  "control_chain": [
+    {
+      "control_is_bijection_when_already_satisfied": true,
+      "cvc5": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      },
+      "elements_after": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "law_imposed": "associativity",
+      "one_way": {
+        "value": false,
+        "witness": null
+      },
+      "size_after": 4,
+      "size_before": 4,
+      "structural_entropy_drop": 0.0,
+      "table_after": {
+        "0": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
+        "1": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 0
+        },
+        "2": {
+          "0": 2,
+          "1": 3,
+          "2": 0,
+          "3": 1
+        },
+        "3": {
+          "0": 3,
+          "1": 0,
+          "2": 1,
+          "3": 2
+        }
+      },
+      "z3": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      }
+    },
+    {
+      "control_is_bijection_when_already_satisfied": true,
+      "cvc5": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      },
+      "elements_after": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "identity_candidate": 0,
+      "law_imposed": "identity",
+      "one_way": {
+        "value": false,
+        "witness": null
+      },
+      "size_after": 4,
+      "size_before": 4,
+      "structural_entropy_drop": 0.0,
+      "table_after": {
+        "0": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
+        "1": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 0
+        },
+        "2": {
+          "0": 2,
+          "1": 3,
+          "2": 0,
+          "3": 1
+        },
+        "3": {
+          "0": 3,
+          "1": 0,
+          "2": 1,
+          "3": 2
+        }
+      },
+      "z3": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      }
+    },
+    {
+      "control_is_bijection_when_already_satisfied": true,
+      "cvc5": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      },
+      "elements_after": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "law_imposed": "commutativity",
+      "one_way": {
+        "value": false,
+        "witness": null
+      },
+      "size_after": 4,
+      "size_before": 4,
+      "structural_entropy_drop": 0.0,
+      "table_after": {
+        "0": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
+        "1": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 0
+        },
+        "2": {
+          "0": 2,
+          "1": 3,
+          "2": 0,
+          "3": 1
+        },
+        "3": {
+          "0": 3,
+          "1": 0,
+          "2": 1,
+          "3": 2
+        }
+      },
+      "z3": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      }
+    },
+    {
+      "control_is_bijection_when_already_satisfied": true,
+      "cvc5": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      },
+      "elements_after": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "law_imposed": "inverse (cancellation)",
+      "one_way": {
+        "value": false,
+        "witness": null
+      },
+      "size_after": 4,
+      "size_before": 4,
+      "structural_entropy_drop": 0.0,
+      "table_after": {
+        "0": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
+        "1": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 0
+        },
+        "2": {
+          "0": 2,
+          "1": 3,
+          "2": 0,
+          "3": 1
+        },
+        "3": {
+          "0": 3,
+          "1": 0,
+          "2": 1,
+          "3": 2
+        }
+      },
+      "z3": {
+        "erased_constraint_result": "not_run",
+        "reason": "quotient map is injective on this carrier; no distinct pair to test",
+        "result": "not_run"
+      }
+    }
+  ],
+  "control_final_structure_check": {
+    "associative": true,
+    "commutative": true,
+    "every_element_has_inverse": true,
+    "identity": 0,
+    "identity_unique": true,
+    "is_abelian_group": true,
+    "order": 4
+  },
+  "control_table": {
+    "0": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3
+    },
+    "1": {
+      "0": 1,
+      "1": 2,
+      "2": 3,
+      "3": 0
+    },
+    "2": {
+      "0": 2,
+      "1": 3,
+      "2": 0,
+      "3": 1
+    },
+    "3": {
+      "0": 3,
+      "1": 0,
+      "2": 1,
+      "3": 2
+    }
+  },
+  "dual_reading": "presumption (laws imposed) strictly increases magma < semigroup < monoid < commutative_monoid < abelian_group down this chain, while structural entropy S=ln|carrier| strictly decreases or holds at each already-satisfied arrow -- the two are coupled, never independent.",
+  "engines_ran": {
+    "cvc5": true,
+    "jax": false,
+    "julia": false,
+    "numpy": false,
+    "sympy": true,
+    "z3": true
+  },
+  "final_structure_check": {
+    "associative": true,
+    "commutative": true,
+    "every_element_has_inverse": true,
+    "identity": 0,
+    "identity_unique": true,
+    "is_abelian_group": true,
+    "order": 2
+  },
+  "floor_claims": [
+    {
+      "direction": "higher_is_better",
+      "key": "ratcheting.algebra_ladder.total_drop",
+      "value": 0.6931471805599453
+    }
+  ],
+  "notes": [
+    "Finite carrier (|S|=4) probe only; PROPOSED not canon, pre-admission evidence.",
+    "Congruence closure per arrow: seed pairs from the law's defining equations, closed under a~b => x*a~x*b, a*x~b*x for all x (standard congruence closure), so the quotient operation is well-defined.",
+    "Inverse arrow imposes cancellativity, not adjunction: a finite cancellative commutative monoid is already a group (left-multiplication by any element is injective on a finite set, hence bijective), so 'add inverses' is realized here as a genuine QUOTIENT (collapse indistinguishable-under-translation elements), never as adjoining new carrier elements.",
+    "On this carrier the base magma was constructed commutative by choice (3-cell perturbation of Z/4Z addition, kept symmetric at the perturbed cells): associativity and inverse/cancellation show genuine drop (size_before>size_after); identity and commutativity are computed BIJECTIONS at their stage (already satisfied once associativity was imposed) -- reported as-is, not forced.",
+    "control_is_bijection_when_already_satisfied is computed per arrow on a genuine Z/4Z-addition control chain, not hard-coded; every control arrow is verified to be size-preserving and non-collapsing."
+  ],
+  "ordering_status": "PROPOSED not canon",
+  "poset_edges": [
+    {
+      "from": "magma",
+      "law": "associativity",
+      "to": "semigroup"
+    },
+    {
+      "from": "semigroup",
+      "law": "identity",
+      "to": "monoid"
+    },
+    {
+      "from": "monoid",
+      "law": "commutativity",
+      "to": "commutative_monoid"
+    },
+    {
+      "from": "commutative_monoid",
+      "law": "inverse (cancellation, finite case)",
+      "to": "abelian_group"
+    }
+  ],
+  "promotion_allowed": false,
+  "reducing_arrows_are_one_way": true,
+  "reducing_arrows_z3_confirmed": true,
+  "schema_version": "1.0",
+  "tool_manifest": {
+    "cvc5": {
+      "reason": "Cross-check SMT contradiction returned unsat; erased-constraint control returned sat.",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "Exact natural-log structural entropy per arrow and chain-total telescoping check.",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Per-arrow non-injectivity contradiction (deterministic recovery UNSAT) and erased-constraint SAT non-vacuity check.",
+      "tried": true,
+      "used": true
+    }
+  },
+  "total_drop_matches_arrow_sum": true,
+  "total_structural_entropy_drop": 0.6931471805599453,
+  "verdict": "LADDER_ONE_WAY"
+}

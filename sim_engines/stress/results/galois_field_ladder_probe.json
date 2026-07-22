@@ -1,0 +1,47 @@
+{
+ "all_checks_pass": true,
+ "checks": {
+  "frobenius_gf343": {
+   "fails_over_Z_negative_control": true,
+   "freshmans_dream_holds_in_field": true,
+   "pass": true
+  },
+  "gf256_generator": {
+   "expected": 255,
+   "no_proper_power_is_identity": true,
+   "order": 255,
+   "pass": true,
+   "sympy_prime_factors_255": [
+    3,
+    5,
+    17
+   ]
+  },
+  "subfield_ladder": {
+   "GF(2^1)": {
+    "expected": 2,
+    "fixed_points": 2,
+    "pass": true
+   },
+   "GF(2^2)": {
+    "expected": 4,
+    "fixed_points": 4,
+    "pass": true
+   },
+   "GF(2^4)": {
+    "expected": 16,
+    "fixed_points": 16,
+    "pass": true
+   },
+   "GF(2^8)": {
+    "expected": 256,
+    "fixed_points": 256,
+    "pass": true
+   }
+  }
+ },
+ "claim_ceiling": "capability demonstration only \u2014 candidate role for algebra_ladder; not integrated into any arrow; parks by definition",
+ "classification": "unofficial_stress_probe",
+ "promotion_allowed": false,
+ "seconds": 0.967
+}

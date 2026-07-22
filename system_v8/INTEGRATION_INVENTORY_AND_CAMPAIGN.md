@@ -120,6 +120,11 @@ Python (sim-stack env), 14/14 one-real-operation smokes PASS: msgspec (encode/de
 Julia (carrier project), 7/7 smokes PASS: Catlab SymmetricGraph, Arrow roundtrip, Z3 unsat (And takes Vector), Satisfiability.jl sat, DynamicalSystems henon, QuantumOptics entropy_vn, PackageCompiler loads. Added to carrier 07-22: Catlab, Arrow, Satisfiability, PackageCompiler.
 Spine status: Phase 1 (containment) + Phase 2 (real Julia ratchet, Gate M1 sat/unsat pair bound into ledger) at passes-local-rerun; mock quarantine ON (mock stages park, never admit).
 
+### LIBRARY->ARROW INTEGRATION MAP 2026-07-22 (NVIDIA deepseek draft, Claude-triaged)
+Adopted, ranked: 1. diffrax->carnot+otto (time-dependent Lindblad cycles — clears 2 CI-reds + the open-system-dynamics capability gap); 2. galois->algebra_ladder (finite fields, S); 3. diffrax->bures_to_fubini (GKSL transport); 4. ott-jax->real_vs_complex_tomography (W2 Sinkhorn); 5. QuantumClifford->magma_smt (orbit enumeration cross-check); 6. Attractors/DynamicalSystems->law_order_branch+finite_to_continuum (basins/Lyapunov).
+Rejected w/ reason: netket-NQS szilard (speculative research, not integration), quimb-PEPS for 2-qubit basis sim (overkill), jax-verify->root_foundation (domain mismatch — finite/symbolic arrow).
+Full draft: scratchpad nvidia_library_map.md (session 2026-07-22). Stress lane live: sim_engines/stress/ (unofficial_stress_probe, promotion_allowed=false, parks by definition) — first probe: entropy_gradient_sweep (vmap/jit/grad, 247k pts/s, 3-way 1e-15 agreement).
+
 ### The 9 CI-red, by remedy
 - numpy load-bearing -> migrate to JAX+Julia: bures_to_fubini_study, real_vs_complex_tomography, vn_to_shannon_basis_relativity, carnot_engine, szilard_engine.
 - no engine value -> add JAX+Julia legs: extension_fibre_capacity, quantum_otto_engine.

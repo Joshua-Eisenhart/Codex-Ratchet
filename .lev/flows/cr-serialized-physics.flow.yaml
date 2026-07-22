@@ -1,0 +1,96 @@
+# CR Serialized Physics — FlowMind Program (Phase 1: the spine)
+#
+# Tombstone-and-boot serial pipeline: julia -> jax -> pysindy -> z3 -> claim_admission.
+# No node passes data to the next; every handoff is an immutable disk artifact whose
+# SHA-256 the NEXT stage re-derives before running. lev.validate branches on shell
+# exit code: 0=pass, !=0=fail (per .lev/pm absorbed rule 6).
+#
+# claim_admission today runs the node auditor (claimgate_plugin/claim_admission.mjs,
+# exit 0=admitted 3=parked 1=rejected — lev.validate folds 3 and 1 into 'fail'; the
+# printed verdict line carries the distinction). The native 3-branch capability
+# `physics.claim-admission` is the PROPOSED Lev patch in
+# claimgate_plugin/lev_patch/claim-admission.ts — the current Lev plugin surface has
+# no registerCapability API (verified 2026-07-22), so this flow stays inside the
+# authoring guide's lev.validate-only op set until that patch lands.
+#
+# Deterministic local runner (same node sequence, no agent in the loop):
+#   sim_engines/serialized/run_spine.sh <run_id>
+
+name: cr-serialized-physics
+entry: julia_canon
+
+policy:
+  determinism: true
+
+knobs:
+  run_id:
+    type: string
+    required: true
+  state_db:
+    type: string
+    default: .lev/physics/agentfs/physics.db
+  force_fail_z3:
+    type: boolean
+    default: false
+    description: "Phase 1 acceptance test: force the z3 stage to fail closed."
+
+nodes:
+  julia_canon:
+    type: action
+    op: lev.validate
+    inputs:
+      fail_closed: true
+      command: >-
+        python3 sim_engines/serialized/serialized_stage.py --stage julia
+        --run-id {{knobs.run_id}} --state-db {{knobs.state_db}}
+    branches: { pass: jax_relax, fail: halted }
+
+  jax_relax:
+    type: action
+    op: lev.validate
+    inputs:
+      fail_closed: true
+      command: >-
+        python3 sim_engines/serialized/serialized_stage.py --stage jax
+        --run-id {{knobs.run_id}} --state-db {{knobs.state_db}}
+    branches: { pass: pysindy_discovery, fail: halted }
+
+  pysindy_discovery:
+    type: action
+    op: lev.validate
+    inputs:
+      fail_closed: true
+      command: >-
+        python3 sim_engines/serialized/serialized_stage.py --stage pysindy
+        --run-id {{knobs.run_id}} --state-db {{knobs.state_db}}
+    branches: { pass: z3_verify, fail: halted }
+
+  z3_verify:
+    type: action
+    op: lev.validate
+    inputs:
+      fail_closed: true
+      command: >-
+        python3 sim_engines/serialized/serialized_stage.py --stage z3
+        --run-id {{knobs.run_id}} --state-db {{knobs.state_db}}
+        {{#if knobs.force_fail_z3}}--force-fail{{/if}}
+    branches: { pass: claim_admission, fail: halted }
+
+  claim_admission:
+    type: action
+    op: lev.validate
+    inputs:
+      fail_closed: true
+      # exit 0=admitted; 3=parked; 1=rejected (verdict printed by the auditor)
+      command: >-
+        node --experimental-sqlite claimgate_plugin/claim_admission.mjs
+        {{knobs.run_id}} {{knobs.state_db}}
+    branches: { pass: done, fail: halted }
+
+  halted:
+    terminal: true
+    description: "Stopped without promotion — run the auditor's printed verdict (parked/rejected) to Oracle review."
+
+  done:
+    terminal: true
+    description: "State admitted to canon: chain unbroken, digests re-derived, Gate M5 UNSAT."

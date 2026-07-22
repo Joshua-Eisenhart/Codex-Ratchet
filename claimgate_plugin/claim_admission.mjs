@@ -77,5 +77,27 @@ if (z3.proof_status !== "UNSAT") {
   process.exit(3);
 }
 
-console.log("[ClaimGate] ADMITTED — chain unbroken, every digest re-derived, Gate M5 UNSAT.");
+// Gate M1: a REAL julia stage must carry its bound bipartiteness proof —
+// sat on the torus AND the unsat polarity flip (referee finding: a proof
+// living only in stdout pins nothing; it must sit in the ledger).
+const julia = get(`runs/${runId}/stages/julia`);
+if (julia.payload === "real") {
+  if (julia.m1_status !== "sat" || julia.m1_polarity !== "unsat" || !julia.m1_receipt_digest) {
+    console.log(`[ClaimGate] REJECTED — real julia stage lacks a bound Gate M1 proof pair ` +
+      `(m1_status=${julia.m1_status}, m1_polarity=${julia.m1_polarity}).`);
+    process.exit(1);
+  }
+  console.log(`[ClaimGate]   Gate M1 bound: sat/unsat pair, receipt ${julia.m1_receipt_digest.slice(0, 8)}`);
+}
+
+// MOCK QUARANTINE (referee finding: an unlabeled mock chain reached ADMITTED).
+// Mock stages prove the spine, never the physics — any mock parks the run.
+const mock = STAGES.filter((s) => get(`runs/${runId}/stages/${s}`).payload !== "real");
+if (mock.length > 0) {
+  console.log(`[ClaimGate] PARKED — mock stages present [${mock.join(", ")}]; ` +
+    `spine verified, nothing admitted to canon until every stage is real.`);
+  process.exit(3);
+}
+
+console.log("[ClaimGate] ADMITTED — chain unbroken, digests re-derived, Gate M1 bound, Gate M5 UNSAT, all stages real.");
 process.exit(0);

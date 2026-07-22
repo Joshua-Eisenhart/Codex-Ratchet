@@ -69,7 +69,24 @@ export const claimAdmissionCapability = {
       return { branch: "parked", output: { reason: "proof_unknown" } };
     }
 
-    context.logger.info("[ClaimGate] admitted — chain unbroken, digests re-derived, M5 UNSAT.");
+    // Gate M1: a real julia stage must carry its bound proof pair (sat + unsat polarity).
+    const julia = await agentFs.kv.get(`runs/${run_id}/stages/julia`);
+    if (julia.payload === "real" &&
+        (julia.m1_status !== "sat" || julia.m1_polarity !== "unsat" || !julia.m1_receipt_digest)) {
+      return { branch: "rejected", output: { reason: "gate_m1_unbound" } };
+    }
+
+    // Mock quarantine: mock stages prove the spine, never the physics.
+    const mock: string[] = [];
+    for (const stage of STAGES) {
+      const r = await agentFs.kv.get(`runs/${run_id}/stages/${stage}`);
+      if (r.payload !== "real") mock.push(stage);
+    }
+    if (mock.length > 0) {
+      return { branch: "parked", output: { reason: "mock_stages", stages: mock } };
+    }
+
+    context.logger.info("[ClaimGate] admitted — chain unbroken, digests re-derived, M1 bound, M5 UNSAT, all real.");
     return { branch: "admitted", output: { status: "canonical", final_digest: prevDigest } };
   },
 };

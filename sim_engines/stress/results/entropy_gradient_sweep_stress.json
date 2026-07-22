@@ -1,0 +1,44 @@
+{
+ "agreement": {
+  "all_below_1e-9": true,
+  "engine_vs_closed_form_max_div": 3.6330404601665864e-15,
+  "jax_vs_dynamiqs_max_div": 6.106226635438361e-15,
+  "jax_vs_julia_max_div": 3.3306690738754696e-16
+ },
+ "claim_ceiling": "engine exercise only \u2014 no manifold/axis/bridge claim; parks by definition",
+ "classification": "unofficial_stress_probe",
+ "engines_used": {
+  "dynamiqs": [
+   "asqarray",
+   "ptrace",
+   "entropy_vn"
+  ],
+  "jax": [
+   "vmap",
+   "jit",
+   "grad",
+   "eigvalsh",
+   "einsum_ptrace",
+   "complex128_x64"
+  ],
+  "julia": [
+   "QuantumOptics tensor/ptrace/entropy_vn (separate process)"
+  ]
+ },
+ "promotion_allowed": false,
+ "stress": {
+  "grad_points": 1001,
+  "grad_seconds": 0.136,
+  "points_per_second": 247614,
+  "sweep_points": 100001,
+  "sweep_seconds": 0.404
+ },
+ "witnesses": {
+  "grad_sign_flips": 1,
+  "grad_zero_near_pi_over_4": 0.7853981633974483,
+  "pi_over_4": 0.7853981633974483,
+  "s_cond_at_0": 0.0,
+  "s_cond_min_bits": -1.0,
+  "s_cond_negative_fraction": 0.9999799728393555
+ }
+}

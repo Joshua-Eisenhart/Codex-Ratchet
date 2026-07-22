@@ -115,6 +115,11 @@ State legend: **INTEGRATED** = load_bearing in a committed arrow · **SUPPORTIVE
 2. SMT stack (5 arrows): z3+cvc5+sympy, pure symbolic/finite, correctly no numeric engine.
 3. numpy-red cluster (9 receipts): numpy+sympy(+qutip) — the migration targets.
 
+### SERIALIZED SPINE STACK 2026-07-22 (install-and-test sweep — all functional, not just importable)
+Python (sim-stack env), 14/14 one-real-operation smokes PASS: msgspec (encode/decode), fastparquet, pandas+pyarrow parquet roundtrip, pyarrow feather roundtrip, jax CPU x64, diffrax ODE solve, pysindy fit, z3 UNSAT, sympy lambdify->jax, kingdon Cl(3), geomstats hypersphere, pennylane Bell circuit, sklearn r2, scipy solve_ivp.
+Julia (carrier project), 7/7 smokes PASS: Catlab SymmetricGraph, Arrow roundtrip, Z3 unsat (And takes Vector), Satisfiability.jl sat, DynamicalSystems henon, QuantumOptics entropy_vn, PackageCompiler loads. Added to carrier 07-22: Catlab, Arrow, Satisfiability, PackageCompiler.
+Spine status: Phase 1 (containment) + Phase 2 (real Julia ratchet, Gate M1 sat/unsat pair bound into ledger) at passes-local-rerun; mock quarantine ON (mock stages park, never admit).
+
 ### The 9 CI-red, by remedy
 - numpy load-bearing -> migrate to JAX+Julia: bures_to_fubini_study, real_vs_complex_tomography, vn_to_shannon_basis_relativity, carnot_engine, szilard_engine.
 - no engine value -> add JAX+Julia legs: extension_fibre_capacity, quantum_otto_engine.

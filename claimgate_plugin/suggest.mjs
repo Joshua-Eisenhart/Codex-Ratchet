@@ -406,12 +406,25 @@ function buildFix(f, receipt, live) {
       return { fix: `The audit itself found a real defect (${f.detail}) -- fix the underlying issue it names in ${f.auditPath || "AUDIT_VERDICT.md"}; no suggestion layer can paper over a TAINTED/FATAL verdict.` };
 
     // ---- ratchet_floor.py ----
-    case "floor_park_unknown_key":
+    case "floor_park_unknown_key": {
+      // FINDING C guard: do NOT casually advise --allow-new-keys when the key is
+      // similar to an existing floor key -- that is the rename-evasion path (a
+      // regressed metric renamed to dodge the locked floor). High similarity =>
+      // steer to the locked key; only permit --allow-new-keys with an explicit
+      // different-metric justification.
+      const sim = typeof f.similarity === "number" ? f.similarity : 0;
+      if (f.nearestExistingKey && sim >= 0.5) {
+        return {
+          fix: `LIKELY RENAME of the locked floor key '${f.nearestExistingKey}' (similarity ${f.similarity}). If it is the same metric, use that exact locked key so the floor actually compares -- do NOT pass --allow-new-keys, which would register a fresh (possibly regressed) floor and defeat the ratchet. Only if this is a GENUINELY different metric, register it under a clearly distinct name with --allow-new-keys AND state why it is not '${f.nearestExistingKey}'.`,
+          warning: `--allow-new-keys on a key this similar is the rename-evasion path; not advised here.`,
+        };
+      }
       return {
         fix: f.nearestExistingKey
-          ? `Either rename this floor_claims key to the existing floor key it's most similar to ('${f.nearestExistingKey}', similarity ${f.similarity}) if it's the same metric renamed, OR run: python3 claimgate_plugin/ratchet_floor.py admit <receipt> --store ${f.storeArg} --allow-new-keys  (to register it as a genuinely new floor).`
+          ? `Closest existing floor key is '${f.nearestExistingKey}' (similarity ${f.similarity}, low). If it is the same metric, rename to it; otherwise register the new metric: python3 claimgate_plugin/ratchet_floor.py admit <receipt> --store ${f.storeArg} --allow-new-keys`
           : `Run: python3 claimgate_plugin/ratchet_floor.py admit <receipt> --store ${f.storeArg} --allow-new-keys  (no similar existing key found -- this looks like a genuinely new floor metric).`,
       };
+    }
     case "floor_regression":
       return {
         fix: `Design gap, not a self-serve fix (Tier D in the ledger): '${f.key}' claims ${f.claimed} which weakens the recorded floor ${f.floor}. There is no admissible reset path in ratchet_floor.py today -- either recompute a genuinely better value, or route to the owner for a logged --allow-regression <reason> / human-only floor reset (not yet implemented; do not hand-edit the floor store).`,

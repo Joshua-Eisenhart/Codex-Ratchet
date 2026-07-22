@@ -1,19 +1,27 @@
 #!/usr/bin/env node --experimental-sqlite
-// ClaimGate admission auditor — the zero-trust inspector for the serialized
-// physics spine. Runnable TODAY under node v22 (node:sqlite built in).
-// The same logic, expressed as a native Lev FlowMind capability, is the
-// proposed patch in claimgate_plugin/lev_patch/claim-admission.ts.
+// CR-SIDE ENVELOPE CHECK for the serialized transport canary — NON-FINAL.
+//
+// Scope (webui audit 2026-07-22): this validates the CR evidence ENVELOPE —
+// chain of custody, re-derived digests, bound proof receipts, mock quarantine.
+// A complete hash chain proves provenance and byte identity ONLY; it never
+// proves the mathematics. Truth evaluation belongs to Lev core/eval, and
+// settlement to the later policy layer. This check is one composable link:
+//   CR stage execution -> CR envelope check (THIS) -> Lev effect persistence
+//   -> non-final claim intake -> core/eval -> policy -> settlement.
+// It must never become a self-certifying gate, and "admitted" here means
+// "envelope sound, eligible for claim intake" — not canon.
 //
 // Zero-trust means RE-DERIVE, not read: every artifact is re-hashed from disk
-// and compared to the ledger's recorded digest. A ledger that says "fine"
-// about a tampered file is itself the tamper evidence.
+// and compared to the ledger's recorded digest.
 //
-// Verdicts (exit codes match ClaimGate convention):
-//   0 = ADMITTED  — full chain julia->jax->pysindy->z3, every digest
-//                   re-derives, every link matches, z3 proof_status UNSAT.
-//   3 = PARKED    — incomplete pipeline (missing receipt) or proof unknown.
-//   1 = REJECTED  — digest mismatch (tamper), broken link, or z3 SAT.
+// Status axes are handled distinctly (never collapsed):
+//   execution_status  COMPLETED | INFRA_ERROR — non-COMPLETED z3 parks;
+//   proof_status      SAT -> REJECTED here as a PRESERVED counterexample
+//                     receipt (completed negative science — it reached this
+//                     check as evidence, exactly as required); UNKNOWN parks;
+//                     UNSAT continues. SAT is never an infrastructure crash.
 //
+// Exit codes: 0 envelope-sound, 3 PARKED, 1 REJECTED.
 // Usage: node --experimental-sqlite claim_admission.mjs <run_id> <state_db>
 import { DatabaseSync } from "node:sqlite";
 import { createHash } from "node:crypto";
@@ -66,14 +74,23 @@ for (const stage of STAGES) {
   console.log(`[ClaimGate]   ${stage}: digest ${onDisk.slice(0, 8)} re-derived OK, link OK`);
 }
 
-// Gate M5: the z3 receipt must carry an UNSAT proof.
+// Proof axis (z3 stage): SAT / UNSAT / UNKNOWN are three different facts.
 const z3 = get(`runs/${runId}/stages/z3`);
+if (z3.execution_status && z3.execution_status !== "COMPLETED") {
+  console.log(`[ClaimGate] PARKED — z3 execution_status '${z3.execution_status}' (infra, not science).`);
+  process.exit(3);
+}
 if (z3.proof_status === "SAT") {
-  console.log("[ClaimGate] REJECTED — Gate M5 proof is SAT: finitude violated, counterexample exists.");
+  console.log("[ClaimGate] REJECTED — proof is SAT: a counterexample EXISTS and its receipt is " +
+    "preserved as completed negative science. Admission refused; evidence retained for evaluation.");
   process.exit(1);
 }
+if (z3.proof_status === "UNKNOWN") {
+  console.log("[ClaimGate] PARKED — solver returned UNKNOWN (neither proof nor counterexample).");
+  process.exit(3);
+}
 if (z3.proof_status !== "UNSAT") {
-  console.log(`[ClaimGate] PARKED — Gate M5 proof status '${z3.proof_status}' (not UNSAT); Oracle review.`);
+  console.log(`[ClaimGate] PARKED — proof status '${z3.proof_status}' (not UNSAT); review.`);
   process.exit(3);
 }
 
@@ -99,5 +116,6 @@ if (mock.length > 0) {
   process.exit(3);
 }
 
-console.log("[ClaimGate] ADMITTED — chain unbroken, digests re-derived, Gate M1 bound, Gate M5 UNSAT, all stages real.");
+console.log("[ClaimGate] ENVELOPE SOUND — chain unbroken, digests re-derived, proofs bound, all stages real. " +
+  "Non-final: eligible for Lev claim intake -> core/eval -> settlement. Not canon.");
 process.exit(0);

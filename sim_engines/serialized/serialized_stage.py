@@ -67,7 +67,8 @@ def main():
     p.add_argument("--run-id", required=True)
     p.add_argument("--state-db", required=True)
     p.add_argument("--force-fail", action="store_true",
-                   help="z3 only: simulate a failed proof — exit 1 WITHOUT publishing (fail-closed)")
+                   help="z3 only: emit a SAT COUNTEREXAMPLE receipt (completed negative science, "
+                        "exit 0 — it must REACH admission; nonzero exit is for infra failure only)")
     args = p.parse_args()
 
     if not RUN_ID_RE.match(args.run_id):
@@ -152,15 +153,21 @@ def main():
         with open(out_path, "wb") as f:
             f.write(f"MOCK_DATA_FOR_{args.stage.upper()}".encode())
 
-    proof_status = None
+    # Three status axes, never collapsed (webui audit 2026-07-22): a SAT proof
+    # is a successfully EXECUTED counterexample — completed negative science
+    # that must reach admission as a receipt. Nonzero process exit is reserved
+    # for infrastructure failure (unreadable input, broken chain, crash).
+    proof_status = "NOT_APPLICABLE"
+    # A mock stage is transport plumbing — it may not claim scientific support.
+    scientific_status = "SUPPORT" if payload == "real" else "INCONCLUSIVE"
     if args.stage == "z3":
         if args.force_fail:
-            # Simulated proof failure: fail closed BEFORE publishing, so the
-            # ledger holds no z3 receipt -> ClaimGate classifies the run PARKED.
-            print("[-] z3: proof FAILED (forced) — bounds breached; halting without publishing.",
-                  file=sys.stderr)
-            return 1
-        proof_status = "UNSAT"
+            proof_status = "SAT"
+            scientific_status = "COUNTEREXAMPLE"
+            print("[*] z3: proof returned SAT — counterexample found. Publishing the "
+                  "counterexample receipt (completed execution, negative science).")
+        else:
+            proof_status = "UNSAT"
 
     # 3. PUBLISH MANIFEST (ledger + JSON receipt mirror) — atomic commit.
     manifest = {
@@ -170,8 +177,10 @@ def main():
         "artifact_path": out_path,
         "input_digest": input_digest,
         "output_digest": hash_artifact(out_path),
+        "execution_status": "COMPLETED",
+        "scientific_status": scientific_status,
         "proof_status": proof_status,
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         **m1,
     }
     kv_set(db, f"runs/{args.run_id}/stages/{args.stage}", manifest)

@@ -1,16 +1,17 @@
-# Phase 2 — Stage 1 (julia): the topological Ratchet.
+# Stage 1 (julia): CARRIER CALIBRATION — one authored carrier candidate.
 #
-# Builds the 4x4 Ring Checkerboard (toroidal, bipartite) as a Catlab
-# SymmetricGraph, proves Gate M1 (bipartiteness) with Z3.jl — with a polarity
-# control (a diagonal smuggling edge must flip the proof to unsat, showing the
-# proof is load-bearing, not decorative) — and writes the adjacency mask as an
-# immutable Arrow artifact for the JAX stage.
+# CLAIM CEILING (webui audit 2026-07-22): C4 x C4 is a finite 16-vertex
+# 4-regular bipartite graph. That is the ENTIRE licensed conclusion. This is
+# NOT the Ratchet, not physics genesis, not noncommutation, not entropy
+# closure, not the constraint manifold — one authored carrier/control among
+# candidates. The mask governs only whichever vector field later multiplies it.
 #
-# The mask IS the constraint: constraints precede axioms. Every later vector
-# field is multiplied by this matrix before it flows.
+# Method: exact Catlab construction + TWO independent bipartiteness witnesses
+# (deterministic BFS 2-coloring, and an SMT 2-colorability witness with an
+# odd-cycle polarity control showing the solver call is not decorative).
 #
 # Usage: julia --project=<carrier> catlab_ratchet.jl <output_path.arrow>
-# Exit: 0 mask bound, 1 Gate M1 failure (fail closed).
+# Exit: 0 mask bound, 1 calibration failure (fail closed).
 
 using Catlab
 using Catlab.Graphs
@@ -45,7 +46,30 @@ function edge_pairs(g)
     return sort(Base.collect(pairs))  # Base-qualified: Catlab exports a clashing `collect`
 end
 
-"Gate M1: Z3 proves a 2-coloring exists (bipartite <=> no odd smuggling cycle)."
+"Independent witness 1: deterministic BFS 2-coloring (no solver involved)."
+function bfs_bipartite(pairs)
+    adj = Dict{Int,Vector{Int}}()
+    for (u, v) in pairs
+        push!(get!(adj, u, Int[]), v)
+        push!(get!(adj, v, Int[]), u)
+    end
+    color = Dict{Int,Int}(1 => 0)
+    queue = [1]
+    while !isempty(queue)
+        u = popfirst!(queue)
+        for w in get(adj, u, Int[])
+            if !haskey(color, w)
+                color[w] = 1 - color[u]
+                push!(queue, w)
+            elseif color[w] == color[u]
+                return false
+            end
+        end
+    end
+    return length(color) == N  # connected + properly 2-colored
+end
+
+"Independent witness 2: SMT 2-colorability (sat <=> bipartite)."
 function gate_m1_bipartite(pairs; label="torus")
     # Z3-qualified throughout: Catlab/GATlab export clashing Context/Solver names.
     ctx = Z3.Context()
@@ -62,23 +86,31 @@ function execute(output_path::String)
     pairs = edge_pairs(g)
     println("[+] Catlab graph: $(nv(g)) vertices, $(length(pairs)) undirected edges")
 
-    # Gate M1 positive: the torus must be 2-colorable.
-    status = gate_m1_bipartite(pairs)
-    if status != "sat"
-        println("[!] FATAL Gate M1: torus 2-coloring returned :$status (expected sat). Failing closed.")
+    # Witness 1: deterministic BFS 2-coloring — the primary check (a fixed
+    # graph does not need a solver to establish bipartiteness).
+    if !bfs_bipartite(pairs)
+        println("[!] FATAL calibration: BFS 2-coloring failed. Failing closed.")
         exit(1)
     end
-    println("[*] Gate M1 PASSED: :sat — topology is strictly bipartite; diagonal smuggling structurally impossible.")
+    println("[*] carrier calibration: BFS 2-coloring OK — C4xC4 is bipartite (claim ceiling: carrier property only).")
 
-    # Polarity control: inject a diagonal smuggling edge (0,0)-(1,1); the same
-    # proof MUST flip to unsat, or the proof is decorative.
+    # Witness 2: SMT 2-colorability, cross-checking witness 1.
+    status = gate_m1_bipartite(pairs)
+    if status != "sat"
+        println("[!] FATAL calibration: SMT witness returned :$status, disagreeing with BFS. Failing closed.")
+        exit(1)
+    end
+    println("[*] carrier calibration: SMT witness :sat agrees with BFS.")
+
+    # Polarity control: a diagonal edge creates an odd cycle; the SMT call
+    # must flip to unsat or the solver call is decorative.
     smuggled = vcat(pairs, [(min(idx(0,0), idx(1,1)), max(idx(0,0), idx(1,1)))])
     flip = gate_m1_bipartite(smuggled; label="torus+diagonal")
     if flip != "unsat"
-        println("[!] FATAL Gate M1 polarity control: smuggling edge returned :$flip (expected unsat). Proof decorative. Failing closed.")
+        println("[!] FATAL calibration polarity control: odd-cycle fixture returned :$flip (expected unsat). Failing closed.")
         exit(1)
     end
-    println("[*] Gate M1 polarity control PASSED: diagonal edge -> :unsat (proof is load-bearing).")
+    println("[*] calibration polarity control: odd-cycle fixture -> :unsat (solver call not decorative).")
 
     # Dense Float64 mask (x64 is non-negotiable) built from the Catlab edges.
     A = zeros(Float64, N, N)
@@ -99,10 +131,12 @@ function execute(output_path::String)
     receipt = Dict(
         "m1_status" => status,
         "m1_polarity" => flip,
+        "bfs_bipartite" => true,
         "pairs_digest" => bytes2hex(sha256(codeunits(pairs_str))),
         "n_vertices" => N,
         "n_edges" => length(pairs),
         "encoding" => "xor_per_edge_2coloring",
+        "claim_ceiling" => "carrier property only — C4xC4 is a finite 16-vertex 4-regular bipartite graph; establishes nothing about noncommutation, smuggling, the Ratchet, or the manifold",
     )
     open(output_path * ".receipt.json", "w") do io
         JSON.print(io, receipt)

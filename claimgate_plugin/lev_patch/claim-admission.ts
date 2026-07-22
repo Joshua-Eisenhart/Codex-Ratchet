@@ -1,18 +1,18 @@
-// PROPOSED LEV PATCH — physics.claim-admission native capability.
+// WITHDRAWN 2026-07-22 (webui audit) — do not implement as written.
 //
-// STATUS (honest): the current Lev repo has NO registerCapability / Capability /
-// @lev-os/flowmind-types plugin surface (verified by grep 2026-07-22), and
-// @lev-os/agentfs-sdk is not an installed package. This file is the zip-pack
-// PROPOSAL for the Lev dev: the admission auditor expressed as a native
-// FlowMind op with the 3-way branch (admitted/parked/rejected) that
-// lev.validate's binary pass/fail cannot express.
+// This proposed a FINALIZING physics.claim-admission capability: one function
+// that interprets the proof, decides truth, and writes canon. The audit
+// rejects that collapse: Lev claim admission is deliberately NON-FINAL; truth
+// evaluation belongs to core/eval (which EXISTS in lev-main, with CR eval
+// tests already present); settlement is a separate later policy layer. The
+// invented registerCapability / @lev-os/flowmind-types surface also does not
+// exist — the real native seam is `lev.call` (currently a design-doc span
+// name, not yet wired).
 //
-// The RUNNABLE equivalent (same logic, node:sqlite, exit 0/3/1) is
-// claimgate_plugin/claim_admission.mjs — that is what the flow executes today.
-//
-// Zero-trust rule carried over from ClaimGate's three_engine_seal: RE-DERIVE,
-// don't read. Every artifact digest is recomputed from disk; the ledger's
-// recorded value is a claim to be checked, never evidence.
+// What replaces this: claimgate_plugin/claim_admission.mjs relabeled as the
+// CR-side ENVELOPE check (non-final, one composable link), feeding Lev's real
+// chain: effect persistence -> non-final claim intake -> core/eval -> policy
+// -> settlement. Kept on disk as an honest negative, per repo doctrine.
 
 import { createHash } from "node:crypto";
 import { readFileSync, existsSync } from "node:fs";

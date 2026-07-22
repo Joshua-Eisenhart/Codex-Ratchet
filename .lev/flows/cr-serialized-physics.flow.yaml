@@ -1,17 +1,24 @@
-# CR Serialized Physics — FlowMind Program (Phase 1: the spine)
+# CR Serialized TRANSPORT CANARY — FlowMind Program (webui audit relabel 2026-07-22).
+#
+# CLAIM CEILING: this flow proves transport properties ONLY — process
+# tombstoning, atomic artifacts, re-derived digest chain, negative-science
+# routing (a SAT counterexample receipt REACHES admission; it is not a crash),
+# and mock quarantine (mock stages park, never admit). It emits NO scientific
+# claims and is not "Phase 1 of the physics."
 #
 # Tombstone-and-boot serial pipeline: julia -> jax -> pysindy -> z3 -> claim_admission.
 # No node passes data to the next; every handoff is an immutable disk artifact whose
 # SHA-256 the NEXT stage re-derives before running. lev.validate branches on shell
-# exit code: 0=pass, !=0=fail (per .lev/pm absorbed rule 6).
+# exit code: 0=pass, !=0=fail (per .lev/pm absorbed rule 6) — and nonzero exit is
+# reserved for INFRASTRUCTURE failure; completed negative science exits 0 with its
+# receipt published.
 #
-# claim_admission today runs the node auditor (claimgate_plugin/claim_admission.mjs,
-# exit 0=admitted 3=parked 1=rejected — lev.validate folds 3 and 1 into 'fail'; the
-# printed verdict line carries the distinction). The native 3-branch capability
-# `physics.claim-admission` is the PROPOSED Lev patch in
-# claimgate_plugin/lev_patch/claim-admission.ts — the current Lev plugin surface has
-# no registerCapability API (verified 2026-07-22), so this flow stays inside the
-# authoring guide's lev.validate-only op set until that patch lands.
+# claim_admission runs the CR-side ENVELOPE check (claimgate_plugin/claim_admission.mjs,
+# exit 0=envelope-sound 3=parked 1=rejected — lev.validate folds 3 and 1 into 'fail';
+# the printed verdict line carries the distinction). It is NON-FINAL: envelope-sound
+# means eligible for Lev claim intake -> core/eval -> settlement, never canon. The
+# earlier physics.claim-admission finalizing-capability proposal is WITHDRAWN (webui
+# audit: collapses intake/eval/finality; real seam is lev.call, not yet wired).
 #
 # Deterministic local runner (same node sequence, no agent in the loop):
 #   sim_engines/serialized/run_spine.sh <run_id>

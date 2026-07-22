@@ -545,7 +545,12 @@ Required invariants:
 
 ## 9. Required repository updates
 
-This reconciliation is intended for narrow draft-PR updates to the Wiki and the active Codex branch. It must not be used to merge the active branch to `main` or to create a second ClaimGate runtime in Lev.
+This reconciliation was published for review in two bounded draft PRs:
+
+- Codex-Ratchet PR #3, `agent/july22-n3-whole-state-ratchet` into `session/r0-three-engine-probes`;
+- Wiki PR #4, `agent/july22-whole-manifold-ratchet-correction` into `main`.
+
+It must not be used to merge the active Codex branch to stale `main` or to create a second ClaimGate runtime in Lev.
 
 ### Wiki
 

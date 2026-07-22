@@ -257,10 +257,28 @@ def d2_thickening() -> tuple[list[dict], tuple[tuple, ...], tuple[tuple, ...]]:
     return translated, (cut_pair, bell0_pair, bell1_pair), tuple({point for pair in (cut_pair, bell0_pair, bell1_pair) for point in pair})
 
 
+def _floor_receipt_body(d_size: int, purgatory_count: int) -> dict:
+    # Carry the probe ceiling ON the floor receipt so tier0 (claimgate.py R1/R2)
+    # admits it: classification present + promotion_allowed=false means the floor
+    # stage is reachable through the hook, not a side channel. schema_version
+    # matches the parent ratchet-tick receipt. The floor receipt inherits no
+    # canonical status — it is a tool_lego_fit_probe like its parent run.
+    return {"schema_version": "ratchet-tick/0.1", "classification": "tool_lego_fit_probe",
+            "promotion_allowed": False,
+            "floor_claims": [{"key": "ratchet_tick.demand_count", "value": d_size, "direction": "higher_is_better"},
+                             {"key": "ratchet_tick.purgatory_count", "value": purgatory_count, "direction": "lower_is_better"}]}
+
+
 def invoke_floor(d_size: int, purgatory_count: int) -> dict:
     results = HERE / "results"; results.mkdir(parents=True, exist_ok=True)
-    receipt = results / "ratchet_tick_floor_receipt.json"
-    receipt.write_text(json.dumps({"floor_claims": [{"key": "ratchet_tick.demand_count", "value": d_size, "direction": "higher_is_better"}, {"key": "ratchet_tick.purgatory_count", "value": purgatory_count, "direction": "lower_is_better"}]}, indent=2) + "\n", encoding="utf-8")
+    # The floor receipt is claim_verify'd by the hook, so it must NOT sit beside the
+    # core's results/AUDIT_VERDICT.md — that sibling is pinned as this receipt's tier4
+    # audit and (prose headline, no machine token) FAILs, collapsing the run to exit 1.
+    # A dedicated floor/ dir leaves tier4 SKIP (unaudited) so the honest verdict is
+    # INSUFFICIENT_DEPTH (exit 3), not REJECTED.
+    floor_dir = results / "floor"; floor_dir.mkdir(parents=True, exist_ok=True)
+    receipt = floor_dir / "ratchet_tick_floor_receipt.json"
+    receipt.write_text(json.dumps(_floor_receipt_body(d_size, purgatory_count), indent=2) + "\n", encoding="utf-8")
     # Legacy store ratchet_tick_floors.json is RETIRED in place (pre-hash-chain
     # format + purgatory_count direction mis-declared at first seal). Never
     # mutated, never deleted; new store = new admission at a new path.
@@ -281,8 +299,9 @@ def invoke_floor(d_size: int, purgatory_count: int) -> dict:
 def invoke_floor_v2(d_size: int, purgatory_count: int) -> dict:
     """Make a first v2 admission without mutating the sealed original floor store."""
     results = HERE / "results"; results.mkdir(parents=True, exist_ok=True)
-    receipt = results / "ratchet_tick_floor_receipt_v2.json"
-    receipt.write_text(json.dumps({"floor_claims": [{"key": "ratchet_tick.demand_count", "value": d_size, "direction": "higher_is_better"}, {"key": "ratchet_tick.purgatory_count", "value": purgatory_count, "direction": "lower_is_better"}]}, indent=2) + "\n", encoding="utf-8")
+    floor_dir = results / "floor"; floor_dir.mkdir(parents=True, exist_ok=True)
+    receipt = floor_dir / "ratchet_tick_floor_receipt_v2.json"
+    receipt.write_text(json.dumps(_floor_receipt_body(d_size, purgatory_count), indent=2) + "\n", encoding="utf-8")
     store = results / "ratchet_tick_floors_v2.json"
     command = [sys.executable, str(REPO_ROOT / "claimgate_plugin" / "ratchet_floor.py"), "admit", str(receipt), "--store", str(store), "--allow-new-keys"]
     try:

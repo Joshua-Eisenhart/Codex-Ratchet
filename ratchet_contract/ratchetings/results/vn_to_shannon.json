@@ -1,0 +1,115 @@
+{
+  "bkm_restricts_to_fisher": 0.0,
+  "classification": "tool_lego_fit_probe",
+  "control_channel": "z-rotation U=diag(1,e^{i*0.7}); unitary, coherence-preserving, invertible by U^dagger (recovery recomputed on every sampled state) and VN-preserving -- genuinely not one-way.",
+  "control_is_one_way": false,
+  "dephasing_entropy_monotone": 0.03158394240196316,
+  "engines_ran": {
+    "cvc5": true,
+    "jax": false,
+    "julia": false,
+    "numpy": true,
+    "sympy": true,
+    "z3": true
+  },
+  "floor_claims": [
+    {
+      "direction": "higher_is_better",
+      "key": "ratcheting.vn_to_shannon.one_way_margin",
+      "value": 0.03158394240196316
+    }
+  ],
+  "layer1": "2x2 density operators (Bloch ball), BKM metric, von Neumann entropy.",
+  "layer2": "Diagonal density operators (simplex Delta^1), Fisher-Rao metric, Shannon entropy.",
+  "nesting_idempotent": true,
+  "notes": [
+    "Finite sampled probe only; proposed layer ordering is not canon.",
+    "BKM tensor used: g=a(I-nn^T)+b nn^T, a=atanh(r)/r, b=1/(1-r^2); z=2p-1.",
+    "SMT encodes deterministic recovery of two different coherences from the same dephased diagonal, not a full Choi/CPTP parametrization."
+  ],
+  "one_way_witness_pair": {
+    "D_rho": [
+      [
+        0.5,
+        0.0
+      ],
+      [
+        0.0,
+        0.5
+      ]
+    ],
+    "D_rho_prime": [
+      [
+        0.5,
+        0.0
+      ],
+      [
+        0.0,
+        0.5
+      ]
+    ],
+    "rho": [
+      [
+        0.5,
+        0.25
+      ],
+      [
+        0.25,
+        0.5
+      ]
+    ],
+    "rho_prime": [
+      [
+        0.5,
+        [
+          0.0,
+          0.25
+        ]
+      ],
+      [
+        [
+          -0.0,
+          -0.25
+        ],
+        0.5
+      ]
+    ]
+  },
+  "ordering_status": "PROPOSED not canon",
+  "promotion_allowed": false,
+  "schema_version": "1.0",
+  "shannon_equals_vn_on_diagonal": true,
+  "tool_manifest": {
+    "cvc5": {
+      "reason": "Cross-check SMT contradiction returned unsat.",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "Queued: memory below 0.40 threshold at build time; explicitly not run.",
+      "tried": false,
+      "used": false
+    },
+    "julia": {
+      "reason": "Queued confirmation leg: not required for this probe and memory-gated at build time; explicitly not run.",
+      "tried": false,
+      "used": false
+    },
+    "numpy": {
+      "reason": "Finite Bloch-ball and pure-state sweep, entropy, metric, and witness calculations.",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "Exact symbolic density-matrix, entropy, and diagonal BKM/Fisher checks.",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Primary SMT contradiction: one function of one dephased input cannot return two distinct coherences.",
+      "tried": true,
+      "used": true
+    }
+  },
+  "verdict": "RATCHETED_ONE_WAY"
+}

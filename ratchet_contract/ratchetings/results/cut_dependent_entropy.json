@@ -1,4 +1,13 @@
 {
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "supportive",
+    "jax": null,
+    "julia": "load_bearing",
+    "numpy": "control",
+    "qutip": "supportive",
+    "sympy": "load_bearing",
+    "z3": "supportive"
+  },
   "checks": {
     "boundary_classical_corr_I_positive": true,
     "boundary_classical_corr_S_cond_nonnegative": true,
@@ -48,13 +57,14 @@
   },
   "core_ok": true,
   "engine_values": {
+    "julia_S_cond_bell": -0.9999999999999999,
     "qutip_S_cond_bell": -0.9999999999999983,
     "sympy_numpy_S_cond_bell": -1.0
   },
   "engines_ran": {
     "cvc5": true,
     "jax": false,
-    "julia": false,
+    "julia": true,
     "numpy": true,
     "qutip": true,
     "sympy": true,
@@ -102,10 +112,21 @@
       "value": 1.0
     }
   ],
-  "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; not run for this probe)",
+  "julia_leg": {
+    "born_at_cut_witness": true,
+    "engine": "julia:QuantumOptics",
+    "marginal_gap_bell_vs_product": 2.220446049250313e-16,
+    "mutual_info_bell_bits": 2.0,
+    "mutual_info_product_bits": 8.881784197001252e-16,
+    "ran": true,
+    "s_cond_bell_bits": -0.9999999999999999,
+    "s_cond_bell_is_negative": true,
+    "s_cond_product_bits": 0.9999999999999993
+  },
+  "julia_vs_numpy_witness_divergence": 1.1102230246251565e-16,
   "layer_joint": "Layer J: joint two-qubit density operator rho_AB on C^2 (x) C^2.",
   "layer_marginal_pair": "Layer M: the pair of marginals (rho_A, rho_B) = (Tr_B rho_AB, Tr_A rho_AB).",
-  "load_bearing_evidence": "numpy same-marginals/different-correlation witness pair (Bell vs product-of-marginals) + Umegaki relative-entropy cross-identity (3 states) + exact sympy family-wide S(L|R)=-S_A identity + qutip independent recompute.",
+  "load_bearing_evidence": "AUTHORITATIVE ENGINE Julia+QuantumOptics: S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow) with identical marginals to the product (mutual info 2 vs 0 bits) -- the signed-correlation witness born at the cut. sympy gives the exact family-wide S(L|R)=-S_A identity; numpy is the CONTROL cross-check agreeing with Julia to <1e-9 (Umegaki relative-entropy cross-identity, same-marginals/different-correlation pair). numpy is no longer load-bearing.",
   "matrix_witnesses": {
     "bell": [
       [
@@ -320,9 +341,9 @@
       "used": false
     },
     "julia": {
-      "reason": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; not run for this probe).",
-      "tried": false,
-      "used": false
+      "reason": "Authoritative QuantumOptics.jl leg: S(A|B) = -1 bit on the Bell state (negative conditional entropy, no classical shadow) with identical marginals to the product; numpy agrees to <1e-9 as control.",
+      "tried": true,
+      "used": true
     },
     "numpy": {
       "reason": "Lifted rungC carrier (ket/entangled/vn_entropy/ptrace/negativity verbatim; cut_readouts adapted), the marginalize/reconstruct witness-and-control pair, the Umegaki relative-entropy cross-identity, and the classical Shannon H(A|B)>=0 contrast computation.",

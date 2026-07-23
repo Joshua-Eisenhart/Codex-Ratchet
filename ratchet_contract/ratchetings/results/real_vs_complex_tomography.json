@@ -33,11 +33,38 @@
       "real_local_tomography_trace1": false
     }
   },
+  "engine_contract": {
+    "engines_agree_to": 0.0,
+    "mode": "independent_span_rank_legs",
+    "n_authoritative_engines": 3,
+    "reference": "julia:QuantumOptics",
+    "semantic_owner": "julia"
+  },
+  "engine_span_readouts": {
+    "description": "Density-matrix span-rank recomputation of the local-tomography counts: rank of the real-vectorized qubit/rebit projector frames, their products, and products plus real-amplitude Bell projectors. real_tomography_gap = real_d2 - real_product_span = 1 (the Y(x)Y direction); complex gap = 0.",
+    "jax_base": {
+      "complex_d1": 4,
+      "complex_d2": 16,
+      "complex_local_tomography": true,
+      "complex_product_span": 16,
+      "complex_tomography_gap": 0,
+      "engine": "jax:base(jax.numpy)",
+      "real_d1": 3,
+      "real_d2": 10,
+      "real_local_tomography": false,
+      "real_product_span": 9,
+      "real_tomography_gap": 1
+    }
+  },
+  "engine_values": {
+    "jax_base_real_tomography_gap": 1.0,
+    "jax_real_tomography_gap": 1.0,
+    "julia_real_tomography_gap": 1.0
+  },
   "engines_ran": {
     "cvc5": true,
-    "jax": false,
-    "julia": false,
-    "numpy": true,
+    "jax": true,
+    "julia": true,
     "sympy": true,
     "z3": true
   },
@@ -49,13 +76,15 @@
       "value": 1
     }
   ],
-  "load_bearing_evidence": "Sympy exact dimension arithmetic (complex_d2=complex_d1^2 holds identically; real_d2=10 > real_d1^2=9, the standard two-rebit deficit) plus the numpy same-real-projection-distinct-original-state witness pair and the phase-free control subset.",
+  "load_bearing_evidence": "Sympy exact dimension arithmetic (complex_d2=complex_d1^2 holds identically; real_d2=10 > real_d1^2=9, the standard two-rebit deficit), the jax same-real-projection-distinct-original-state witness pair with the phase-free control subset, and THREE INDEPENDENT ENGINE recomputations of the tomography gap on density matrices (jax.numpy base + dynamiqs jax leg + QuantumOptics.jl julia leg, span ranks agreeing exactly with the arithmetic). The base carrier runs on jax.numpy (x64) -- there is NO numpy anywhere in this sim.",
+  "max_cross_engine_divergence": 0.0,
   "notes": [
     "Finite dimension-counting probe over one reconstruction axiom (local tomography); not a full derivation of C.",
     "Standard convention: d1/d2 use the UNCONSTRAINED (subnormalized) Hermitian/symmetric operator-space dimension (n^2 complex, n(n+1)/2 real), not the trace-1 Bloch-ball slice -- this is the convention under which local tomography is a non-vacuous axiom (Hardy 2001; Hardy & Wootters 2012).",
     "Trace-1 (Bloch-ball) figures are reported separately for comparison (complex_d1_trace1, real_d1_trace1, etc); under that constrained convention the naive d2==d1*d1 test does NOT hold for either branch, so it is not used as the axiom test here.",
     "complex local tomography is an algebraic tautology at this n1=n2=2 case: (n1*n2)^2 = n1^2 * n2^2 identically.",
-    "real local tomography fails by exactly one real dimension for two rebits (10 vs 9), the standard cited gap."
+    "real local tomography fails by exactly one real dimension for two rebits (10 vs 9), the standard cited gap.",
+    "ENGINE SUBSTRATE: base carrier on jax.numpy x64 (numpy fully removed); the tomography gap is re-derived on density matrices by independent dynamiqs (jax) and QuantumOptics.jl (julia, authoritative) legs via span ranks -- the missing real direction is Y(x)Y, invisible to products of real symmetric states."
   ],
   "one_way_forgetting_witness": {
     "forgotten": [
@@ -113,35 +142,59 @@
   "real_d1": 3,
   "real_d2": 10,
   "real_local_tomography": false,
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "selected_carrier": "complex",
   "smt_role": "supportive_nonvacuity_only",
+  "three_engine_legs": {
+    "jax": {
+      "complex_d1": 4,
+      "complex_d2": 16,
+      "complex_local_tomography": true,
+      "complex_product_span": 16,
+      "complex_tomography_gap": 0,
+      "engine": "jax:dynamiqs",
+      "ran": true,
+      "real_d1": 3,
+      "real_d2": 10,
+      "real_local_tomography": false,
+      "real_product_span": 9,
+      "real_tomography_gap": 1
+    },
+    "julia": {
+      "complex_d1": 4,
+      "complex_d2": 16,
+      "complex_local_tomography": true,
+      "complex_product_span": 16,
+      "complex_tomography_gap": 0,
+      "engine": "julia:QuantumOptics",
+      "ran": true,
+      "real_d1": 3,
+      "real_d2": 10,
+      "real_local_tomography": false,
+      "real_product_span": 9,
+      "real_tomography_gap": 1
+    }
+  },
   "tool_integration_depth": {
     "cvc5": "supportive",
-    "jax": null,
-    "julia": null,
-    "numpy": "load_bearing",
+    "jax": "load_bearing",
+    "julia": "load_bearing",
     "sympy": "load_bearing",
     "z3": "supportive"
   },
   "tool_manifest": {
     "cvc5": {
-      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- same caveat as z3, load-bearing evidence is the dimension arithmetic and the numpy witness pair.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- same caveat as z3, load-bearing evidence is the dimension arithmetic, the jax witness pair, and the three-engine span ranks.",
       "tried": true,
       "used": true
     },
     "jax": {
-      "reason": "Queued: not required for this finite dimension-counting probe; explicitly not run.",
-      "tried": false,
-      "used": false
+      "reason": "Independent jax leg (dynamiqs): density-matrix span ranks reproduce the local-tomography verdict (real gap 1 = 10-9, complex gap 0 = 16-16); agrees with the Julia Canon reference and the sympy arithmetic to <1e-9.",
+      "tried": true,
+      "used": true
     },
     "julia": {
-      "reason": "Queued confirmation leg: not required for this probe; explicitly not run.",
-      "tried": false,
-      "used": false
-    },
-    "numpy": {
-      "reason": "Finite sampled Hermitian/symmetric density matrices, PSD checks, and the forgetting-map witness pair.",
+      "reason": "Independent julia leg (QuantumOptics): density-matrix span ranks reproduce the local-tomography verdict (real gap 1 = 10-9, complex gap 0 = 16-16); agrees with the Julia Canon reference and the sympy arithmetic to <1e-9.",
       "tried": true,
       "used": true
     },
@@ -151,7 +204,7 @@
       "used": true
     },
     "z3": {
-      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the dimension arithmetic (complex_d2==complex_d1^2 tautology vs real_d2=10>real_d1^2=9) plus the numpy same-real-projection-distinct-original witness pair.",
+      "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the dimension arithmetic (complex_d2==complex_d1^2 tautology vs real_d2=10>real_d1^2=9) plus the jax same-real-projection-distinct-original witness pair and the three-engine density-matrix span ranks.",
       "tried": true,
       "used": true
     }

@@ -365,6 +365,13 @@ def main() -> None:
 
     result = {
         "schema_version": "1.0",
+        "engine_contract": {
+            "numeric_engine_required": False,
+            "exemption_reason": ("Pure exact-arithmetic probe: every load-bearing value comes from "
+                                  "Fraction rational cell arithmetic, sympy symbolic identities, and "
+                                  "z3/cvc5 UNSAT/SAT witnesses; no floating-point numeric engine "
+                                  "(jax/julia/torch/numpy) computes anything load-bearing."),
+        },
         "layer1": "Continuum [0,1] with the usual order/metric topology (presumed, not constructed here).",
         "layer2": "Nested finite dyadic quotients Y_1 subset Y_2 subset ... subset Y_K_MAX, |Y_k|=2^k, Hartley H_0(Y_k)=k*ln(2).",
         "hartley_grows_unbounded": hartley,

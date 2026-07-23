@@ -13,6 +13,14 @@ This is the GEOMETRY companion to the committed pure_to_vn.py entropy arrow
 (same C^2 object, same mixed->pure boundary, geometric rather than entropic
 readout).
 
+ENGINE SUBSTRATE (2026-07-22, engine migration only -- the science claims are
+unchanged): the compute path runs on jax.numpy (x64); numpy is fully removed.
+Two independent engine legs recompute the boundary witness from scratch and are
+recorded in three_engine_legs / engine_values: Julia+QuantumOptics
+(authoritative, fidelity path, bures_to_fubini_study_julia.jl) and
+JAX+dynamiqs (bures_to_fubini_study_jax.py, the leg the three_engine_seal
+re-runs to re-derive the value).  qutip stays a supportive control.
+
 classification = "tool_lego_fit_probe"; promotion_allowed = False;
 ordering_status = "PROPOSED not canon".  This finite probe does not settle a
 canonical layer ordering or support bridge/axis/canonical promotion.
@@ -36,12 +44,18 @@ is not forced onto the result.
 
 from __future__ import annotations
 
+import cmath
 import json
 import math
+import os
+import subprocess
 from pathlib import Path
 from typing import Any
 
-import numpy as np
+os.environ.setdefault("JAX_ENABLE_X64", "1")
+import jax
+jax.config.update("jax_enable_x64", True)
+import jax.numpy as jnp
 import sympy as sp
 from z3 import Function, RealSort, RealVal, Solver, sat, unsat
 
@@ -69,20 +83,22 @@ classification = "tool_lego_fit_probe"
 promotion_allowed = False
 ordering_status = "PROPOSED not canon"
 TOL = 1.0e-8
+CROSS_ENGINE_TOL = 1.0e-6  # FD-vs-autodiff legs share the value, not the algorithm.
 
 TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True,
               "reason": "Exact Hessian of the closed-form Uhlmann-fidelity Bures distance and exact Provost-Vallee QGT differentiation."},
-    "numpy": {"tried": True, "used": True,
-              "reason": "Finite-difference Bures-Hessian sweep over sampled Bloch-ball and pure-boundary points, plus the interior closed-form cross-check."},
+    "jax": {"tried": True, "used": True,
+            "reason": "BASE ENGINE: the entire numeric compute path (Bloch-ball finite-difference Bures-Hessian "
+                      "sweep, interior closed-form cross-check, qutip-wrapped Hessians) runs on jax.numpy (x64), "
+                      "no numpy anywhere; dynamiqs is the independent rich-jax leg the three_engine_seal re-runs "
+                      "to re-derive the boundary metric + Berry values."},
+    "julia": {"tried": True, "used": False,
+              "reason": "Authoritative QuantumOptics.jl fidelity-path leg; updated at runtime with its actual result."},
     "z3": {"tried": True, "used": True,
            "reason": "Generic single-valued-function non-vacuity witness; NOT a mechanism encoding -- the load-bearing evidence is the sympy exact conjugate-pair witness (psi vs chi=psi* sharing identical real (g_tt,g_pp,g_tp) but opposite Berry curvature +F/-F)."},
     "cvc5": {"tried": cvc5 is not None, "used": False,
              "reason": "Cross-check attempted when bindings are available; updated at runtime with its actual solver result."},
-    "jax": {"tried": False, "used": False,
-            "reason": "Queued: memory usage above the 0.40 build-time threshold (heavy engines gated); explicitly not run."},
-    "julia": {"tried": False, "used": False,
-              "reason": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)."},
     "qutip": {"tried": qutip is not None, "used": False,
               "reason": (QUTIP_SKIPPED_REASON if qutip is None else
                           "Second-engine independent cross-check of the Bures-restricts-to-FS witness (qt.fidelity on Qobj density "
@@ -92,70 +108,70 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
-    "numpy": "load_bearing",
+    "jax": "load_bearing",   # numpy removed -- jax.numpy is the base
+    "julia": None,           # set to load_bearing at runtime when the QuantumOptics leg runs
     "z3": "supportive",
     "cvc5": None,
-    "jax": None,
-    "julia": None,
     "qutip": None,
 }
 
 
 # ---------------------------------------------------------------------------
-# Numeric primitives (Bloch ball, Uhlmann fidelity, Bures distance).
+# Numeric primitives (Bloch ball, Uhlmann fidelity, Bures distance) -- jax.numpy x64.
 # ---------------------------------------------------------------------------
 
-def bloch_unit(theta: float, phi: float) -> np.ndarray:
-    return np.array([
+def bloch_unit(theta: float, phi: float) -> jnp.ndarray:
+    theta, phi = float(theta), float(phi)
+    return jnp.array([
         math.sin(theta) * math.cos(phi),
         math.sin(theta) * math.sin(phi),
         math.cos(theta),
     ])
 
 
-def fidelity_bloch(a: np.ndarray, b: np.ndarray) -> float:
+def fidelity_bloch(a: jnp.ndarray, b: jnp.ndarray) -> float:
     """Nielsen-Chuang closed form for 2x2 density-matrix fidelity in Bloch coords."""
-    norm_a2 = float(np.dot(a, a))
-    norm_b2 = float(np.dot(b, b))
+    norm_a2 = float(jnp.dot(a, a))
+    norm_b2 = float(jnp.dot(b, b))
     radicand = (1.0 - norm_a2) * (1.0 - norm_b2)
-    return 0.5 * (1.0 + float(np.dot(a, b)) + math.sqrt(max(radicand, 0.0)))
+    return 0.5 * (1.0 + float(jnp.dot(a, b)) + math.sqrt(max(radicand, 0.0)))
 
 
-def bures_d2(a: np.ndarray, b: np.ndarray) -> float:
+def bures_d2(a: jnp.ndarray, b: jnp.ndarray) -> float:
     fidelity = min(max(fidelity_bloch(a, b), 0.0), 1.0)
     return 2.0 * (1.0 - math.sqrt(fidelity))
 
 
-def numeric_metric_tensor(func, dim: int, h: float = 2.0e-3) -> np.ndarray:
+def numeric_metric_tensor(func, dim: int, h: float = 2.0e-3) -> jnp.ndarray:
     """Metric tensor g_ij such that func(d) = g_ij d^i d^j + O(d^3), for a
     scalar squared-distance func: R^dim -> R with func(0)=0 and a minimum at 0
     (odd terms vanish).  g_ij = (1/2) * central-difference-Hessian(func)_ij,
     since d^T Hess(d^T G d) d = 2 d^T G d (the raw second-derivative Hessian is
     twice the metric-tensor coefficient, not equal to it)."""
-    hessian = np.zeros((dim, dim))
+    zero = jnp.zeros(dim)
+    hessian = [[0.0] * dim for _ in range(dim)]
     for i in range(dim):
-        ei = np.zeros(dim)
-        ei[i] = h
-        hessian[i, i] = (func(ei) - 2.0 * func(np.zeros(dim)) + func(-ei)) / (h * h)
+        ei = zero.at[i].set(h)
+        hessian[i][i] = float((func(ei) - 2.0 * func(zero) + func(-ei)) / (h * h))
     for i in range(dim):
         for j in range(i + 1, dim):
-            ei, ej = np.zeros(dim), np.zeros(dim)
-            ei[i], ej[j] = h, h
-            value = (func(ei + ej) - func(ei - ej) - func(-ei + ej) + func(-ei - ej)) / (4.0 * h * h)
-            hessian[i, j] = value
-            hessian[j, i] = value
-    return 0.5 * hessian
+            ei = zero.at[i].set(h)
+            ej = zero.at[j].set(h)
+            value = float((func(ei + ej) - func(ei - ej) - func(-ei + ej) + func(-ei - ej)) / (4.0 * h * h))
+            hessian[i][j] = value
+            hessian[j][i] = value
+    return 0.5 * jnp.array(hessian)
 
 
-def perturbed_angular_point(r: float, theta: float, phi: float, d: np.ndarray) -> np.ndarray:
+def perturbed_angular_point(r: float, theta: float, phi: float, d: jnp.ndarray) -> jnp.ndarray:
     """Bloch vector at (r, theta+d_theta, phi+d_phi); d=[dtheta, dphi]."""
-    dtheta, dphi = d
+    dtheta, dphi = float(d[0]), float(d[1])
     return r * bloch_unit(theta + dtheta, phi + dphi)
 
 
-def perturbed_mixed_point(r: float, theta: float, phi: float, d: np.ndarray) -> np.ndarray:
+def perturbed_mixed_point(r: float, theta: float, phi: float, d: jnp.ndarray) -> jnp.ndarray:
     """Bloch vector at (r+d_r, theta+d_theta, phi+d_phi); d=[dr, dtheta, dphi]."""
-    dr, dtheta, dphi = d
+    dr, dtheta, dphi = float(d[0]), float(d[1]), float(d[2])
     return (r + dr) * bloch_unit(theta + dtheta, phi + dphi)
 
 
@@ -295,7 +311,7 @@ def cvc5_berry_irreducibility(g_tt: float, g_pp: float, g_tp: float, f_plus: flo
 
 
 # ---------------------------------------------------------------------------
-# qutip: independent second-engine cross-check (Qobj/fidelity/entropy_vn/ptrace).
+# qutip: independent supportive cross-check (Qobj/fidelity/entropy_vn/ptrace).
 # ---------------------------------------------------------------------------
 
 def qutip_qubit_ket(theta: float, phi: float):
@@ -306,7 +322,7 @@ def qutip_qubit_ket(theta: float, phi: float):
 
 def qutip_bures_d2(theta0: float, phi0: float, dtheta: float, dphi: float) -> float:
     """Bures D_B^2 between two PURE qubit states via qutip's own qutip.fidelity on
-    qutip.ket2dm density matrices (Uhlmann amplitude fidelity, not numpy)."""
+    qutip.ket2dm density matrices (Uhlmann amplitude fidelity, not the base engine)."""
     rho_a = qutip.ket2dm(qutip_qubit_ket(theta0, phi0))
     rho_b = qutip.ket2dm(qutip_qubit_ket(theta0 + dtheta, phi0 + dphi))
     fid = min(max(float(qutip.fidelity(rho_a, rho_b)), 0.0), 1.0)
@@ -318,7 +334,7 @@ def qutip_pure_boundary_metric(theta0: float, h: float = 2.0e-3) -> dict[str, fl
     from qutip.fidelity via the same (1/2)*central-difference-Hessian convention
     as numeric_metric_tensor above, but built entirely on qutip Qobj machinery."""
 
-    def d2(d: np.ndarray) -> float:
+    def d2(d: jnp.ndarray) -> float:
         return qutip_bures_d2(theta0, 0.0, float(d[0]), float(d[1]))
 
     hessian = numeric_metric_tensor(d2, 2, h=h)
@@ -329,7 +345,7 @@ def qutip_entropy_boundary_sanity(theta0: float) -> dict[str, float]:
     """Sanity leg on qutip.entropy_vn: a PURE qubit density matrix has S_vn=0;
     an equal mixture of two distinct pure states on the boundary does not.
     Independent confirmation that the r=1 boundary states qutip is handling are
-    genuinely pure (not a numpy-array stand-in mislabeled as qutip)."""
+    genuinely pure (not a jnp-array stand-in mislabeled as qutip)."""
     rho_pure = qutip.ket2dm(qutip_qubit_ket(theta0, 0.0))
     rho_mixed = 0.5 * rho_pure + 0.5 * qutip.ket2dm(qutip_qubit_ket(theta0 + 0.3, 0.4))
     return {"s_vn_pure": float(qutip.entropy_vn(rho_pure)),
@@ -362,7 +378,7 @@ def qutip_berry_plaquette(theta0: float, phi0: float, deps: float) -> float:
     p3 = qutip_qubit_ket(theta0 + deps / 2, phi0 + deps / 2)
     p4 = qutip_qubit_ket(theta0 - deps / 2, phi0 + deps / 2)
     loop = p1.overlap(p4) * p4.overlap(p3) * p3.overlap(p2) * p2.overlap(p1)
-    berry_phase = -float(np.angle(complex(loop)))
+    berry_phase = -cmath.phase(complex(loop))
     return berry_phase / (deps * deps)
 
 
@@ -388,6 +404,42 @@ def run_qutip_cross_check(theta0: float) -> dict[str, Any]:
         "ptrace_bell_full_s_vn": ptrace_sanity["s_vn_bell_full"],
         "ptrace_bell_reduced_s_vn": ptrace_sanity["s_vn_bell_reduced"],
     }
+
+
+# ---------------------------------------------------------------------------
+# Engine legs: Julia (QuantumOptics, authoritative) + JAX (dynamiqs), each an
+# independent subprocess that recomputes the boundary witness from scratch.
+# ---------------------------------------------------------------------------
+
+PY_ENGINE = "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
+
+
+def _run_leg(cmd: list) -> dict:
+    """Run one engine leg as an independent subprocess (no echo -- each recomputes from
+    scratch) and parse its single JSON line. Returns the record or a not-ran note."""
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=600,
+                              cwd=str(Path(__file__).resolve().parents[2]))
+    except Exception as exc:  # noqa: BLE001
+        return {"ran": False, "reason": f"dispatch failed: {exc}"}
+    if proc.returncode != 0:
+        return {"ran": False, "reason": f"exit {proc.returncode}: {proc.stderr.strip()[-200:]}"}
+    lines = [ln for ln in proc.stdout.splitlines() if ln.strip().startswith("{")]
+    if not lines:
+        return {"ran": False, "reason": "no JSON on stdout"}
+    data = json.loads(lines[-1])
+    data["ran"] = True
+    return data
+
+
+def three_engine_witness() -> dict:
+    """Julia(QuantumOptics, authoritative) + JAX(dynamiqs), each computing the
+    boundary Bures/FS metric + Berry witness INDEPENDENTLY, sequentially (Julia
+    startup is expensive; never parallel). Julia is the reference on disagreement."""
+    here = Path(__file__).parent
+    julia = _run_leg(["julia", str(here / "bures_to_fubini_study_julia.jl")])
+    jax_leg = _run_leg([PY_ENGINE, str(here / "bures_to_fubini_study_jax.py")])
+    return {"julia": julia, "jax": jax_leg}
 
 
 def main() -> None:
@@ -416,14 +468,16 @@ def main() -> None:
         exact_ratios.append(g_tt_bures / g_tt_fs)
         entry["g_tp"] = float(entry["g_tp"])  # off-diagonal, expect 0
 
-    # --- (a) sampled numeric cross-check via finite-difference Hessian ---
-    sampled_thetas = np.linspace(0.05, math.pi - 0.05, 25)
+    # --- (a) sampled numeric cross-check via finite-difference Hessian (jnp) ---
+    sampled_thetas = jnp.linspace(0.05, math.pi - 0.05, 25)
     sampled_deviations = []
     sampled_ratios = []
     bures_antisym_max = 0.0
     for theta in sampled_thetas:
-        def d2(d: np.ndarray, theta=theta) -> float:
-            a = perturbed_angular_point(1.0, theta, 0.0, np.zeros(2))
+        theta = float(theta)
+
+        def d2(d: jnp.ndarray, theta=theta) -> float:
+            a = perturbed_angular_point(1.0, theta, 0.0, jnp.zeros(2))
             b = perturbed_angular_point(1.0, theta, 0.0, d)
             return bures_d2(a, b)
 
@@ -437,15 +491,15 @@ def main() -> None:
         sampled_ratios.append(float(hessian[0, 0] / g_tt_fs))
 
     max_dev = float(max(exact_deviations + sampled_deviations))
-    proportionality_constant = float(np.mean(exact_ratios + sampled_ratios))
+    proportionality_constant = float(jnp.mean(jnp.array(exact_ratios + sampled_ratios)))
     proportionality_spread = float(max(abs(r - proportionality_constant) for r in exact_ratios + sampled_ratios))
 
     # --- MIXED-layer interior closed-form cross-check (Bloch-ball, r<1) ---
     interior_points = [(0.3, math.pi / 5, 0.7), (0.6, math.pi / 3, 2.1), (0.85, 2 * math.pi / 3, 4.0)]
     interior_deviations = []
     for r0, theta0, phi0 in interior_points:
-        def d2_mixed(d: np.ndarray, r0=r0, theta0=theta0, phi0=phi0) -> float:
-            a = perturbed_mixed_point(r0, theta0, phi0, np.zeros(3))
+        def d2_mixed(d: jnp.ndarray, r0=r0, theta0=theta0, phi0=phi0) -> float:
+            a = perturbed_mixed_point(r0, theta0, phi0, jnp.zeros(3))
             b = perturbed_mixed_point(r0, theta0, phi0, d)
             return bures_d2(a, b)
 
@@ -453,9 +507,9 @@ def main() -> None:
         expected_rr = 1.0 / (4.0 * (1.0 - r0 * r0))
         expected_tt = r0 * r0 / 4.0
         expected_pp = r0 * r0 * math.sin(theta0) ** 2 / 4.0
-        interior_deviations.append(abs(hessian3[0, 0] - expected_rr))
-        interior_deviations.append(abs(hessian3[1, 1] - expected_tt))
-        interior_deviations.append(abs(hessian3[2, 2] - expected_pp))
+        interior_deviations.append(float(abs(hessian3[0, 0] - expected_rr)))
+        interior_deviations.append(float(abs(hessian3[1, 1] - expected_tt)))
+        interior_deviations.append(float(abs(hessian3[2, 2] - expected_pp)))
     interior_max_dev = float(max(interior_deviations))
     # Finite-difference truncation floor at h=2e-3 is ~1e-5-1e-4 (this check is
     # a numeric sanity cross-check of the closed form, not the core (a)/(c)
@@ -477,25 +531,61 @@ def main() -> None:
     z3_result = z3_berry_irreducibility(conjugate_g_tt, conjugate_g_pp, conjugate_g_tp, f_plus, f_minus)
     cvc5_result = cvc5_berry_irreducibility(conjugate_g_tt, conjugate_g_pp, conjugate_g_tp, f_plus, f_minus)
 
-    # --- qutip: independent second-engine cross-check of the SAME two witness
+    # --- qutip: independent supportive cross-check of the SAME two witness
     # quantities (Bures-restricts-to-FS metric components, Berry at pi/2) ---
     qutip_check = run_qutip_cross_check(math.pi / 2)
     if qutip_check["ran"]:
-        engine_values = {
-            "sympy_numpy": {"g_tt": conjugate_g_tt, "g_pp": conjugate_g_pp, "berry_at_pi_2": berry_at_pi_2},
-            "qutip": {"g_tt": qutip_check["g_tt"], "g_pp": qutip_check["g_pp"], "berry_at_pi_2": qutip_check["berry_at_theta0"]},
-        }
         qutip_vs_witness_divergence = float(max(
             abs(qutip_check["g_tt"] - conjugate_g_tt),
             abs(qutip_check["g_pp"] - conjugate_g_pp),
             abs(qutip_check["berry_at_theta0"] - berry_at_pi_2),
         ))
     else:
-        engine_values = {
-            "sympy_numpy": {"g_tt": conjugate_g_tt, "g_pp": conjugate_g_pp, "berry_at_pi_2": berry_at_pi_2},
-            "qutip": None,
-        }
         qutip_vs_witness_divergence = None
+
+    # --- TWO AUTHORITATIVE ENGINES, each recomputing the boundary witness
+    # independently (no echo), run sequentially: Julia(QuantumOptics) is the
+    # authoritative reference; JAX(dynamiqs) is the seal-re-runnable leg. ---
+    engines = three_engine_witness()
+    for name in ("julia", "jax"):
+        if not engines[name].get("ran"):
+            raise AssertionError(
+                f"{name} engine leg did not run ({engines[name].get('reason')}); the "
+                f"three-engine contract requires both -- report, do not smooth.")
+    cross_engine_divergence = float(max(
+        abs(float(engines["julia"][k]) - float(engines["jax"][k]))
+        for k in ("g_tt_bures_boundary", "g_pp_bures_boundary", "berry_at_pi_2_plaquette")))
+    base_vs_jax_leg_divergence = float(max(
+        abs(float(engines["jax"]["g_tt_bures_boundary"]) - conjugate_g_tt),
+        abs(float(engines["jax"]["g_pp_bures_boundary"]) - conjugate_g_pp),
+        abs(float(engines["jax"]["berry_at_pi_2_qgt"]) - berry_at_pi_2)))
+    if cross_engine_divergence > CROSS_ENGINE_TOL:
+        raise AssertionError(
+            f"cross-engine divergence {cross_engine_divergence} > {CROSS_ENGINE_TOL} vs Julia "
+            f"reference -- report, do not smooth. julia={engines['julia']} jax={engines['jax']}")
+    for eng, pkg in (("julia", "QuantumOptics"), ("jax", "dynamiqs")):
+        TOOL_INTEGRATION_DEPTH[eng] = "load_bearing"
+        TOOL_MANIFEST[eng]["tried"] = True
+        TOOL_MANIFEST[eng]["used"] = True
+        TOOL_MANIFEST[eng]["reason"] = (
+            f"Independent {eng} leg ({pkg}): Bures boundary metric (g_tt, g_pp) = (1/4, 1/4) at "
+            f"theta0=pi/2 coincides with Fubini-Study (ratio 1) and Berry = 1/2 (monopole); agrees "
+            f"with the other engine to {cross_engine_divergence:.3e} (< {CROSS_ENGINE_TOL}).")
+
+    engine_values = {
+        # First-alphabetical jax_*/julia_* keys are the LIKE-FOR-LIKE plaquette pair
+        # the three_engine_seal compares; the metric components follow.
+        "jax_berry_at_pi_2": float(engines["jax"]["berry_at_pi_2_plaquette"]),
+        "jax_g_pp_boundary_pi_2": float(engines["jax"]["g_pp_bures_boundary"]),
+        "jax_g_tt_boundary_pi_2": float(engines["jax"]["g_tt_bures_boundary"]),
+        "julia_berry_at_pi_2": float(engines["julia"]["berry_at_pi_2_plaquette"]),
+        "julia_g_pp_boundary_pi_2": float(engines["julia"]["g_pp_bures_boundary"]),
+        "julia_g_tt_boundary_pi_2": float(engines["julia"]["g_tt_bures_boundary"]),
+        "qutip_berry_at_pi_2": qutip_check["berry_at_theta0"] if qutip_check["ran"] else None,
+        "sympy_berry_at_pi_2": berry_at_pi_2,
+        "sympy_g_pp_boundary_pi_2": conjugate_g_pp,
+        "sympy_g_tt_boundary_pi_2": conjugate_g_tt,
+    }
 
     # --- (c) control: the real part IS recoverable (genuine flip vs (b)) ---
     # Gated on the boundary restriction (near-machine-precision exact+sampled
@@ -516,13 +606,18 @@ def main() -> None:
         f"Computed proportionality constant (Bures at r=1 tangential vs Re(Q)) = {proportionality_constant:.6f}, "
         "not the frequently-cited 1/4 -- see module docstring HONESTY NOTE for the convention this depends on.",
         "Berry irreducibility witness: psi(theta,phi) and its coordinatewise conjugate family chi=psi* share identical (g_tt,g_pp,g_tp) at every theta but have Berry curvature F and -F respectively.",
+        "ENGINE SUBSTRATE: compute path on jax.numpy x64 (numpy removed); two independent "
+        "authoritative legs -- Julia+QuantumOptics (fidelity path, FD h=3e-3) and JAX+dynamiqs "
+        "(exact jax.hessian through dq.fidelity + jacfwd QGT) -- each recompute the boundary "
+        f"witness from scratch and agree to {cross_engine_divergence:.3e}; the jax leg is what "
+        "the three_engine_seal re-runs to re-derive the value.",
     ]
     if qutip_check["ran"]:
         notes.append(
-            f"qutip second-engine cross-check (qt.fidelity/ket2dm/entropy_vn/ptrace, independent of sympy/numpy): "
+            f"qutip supportive cross-check (qt.fidelity/ket2dm/entropy_vn/ptrace, independent of sympy/jax): "
             f"g_tt={qutip_check['g_tt']:.8f}, g_pp={qutip_check['g_pp']:.8f} (witness 0.25 each), "
             f"berry={qutip_check['berry_at_theta0']:.10f} (witness {berry_at_pi_2}); "
-            f"max divergence from the sympy/numpy witness = {qutip_vs_witness_divergence:.3e}, "
+            f"max divergence from the sympy/jax witness = {qutip_vs_witness_divergence:.3e}, "
             "consistent with qutip's own FD-Hessian/matrix-sqrt-fidelity precision floor (not a mechanism disagreement) "
             "-- same order of magnitude as the primary leg's own reported max_dev. Verdict unchanged."
         )
@@ -579,14 +674,28 @@ def main() -> None:
         "promotion_allowed": promotion_allowed,
         "ordering_status": ordering_status,
         "floor_claims": [{"key": "ratcheting.bures_to_fs.berry_flux", "value": berry_at_pi_2, "direction": "higher_is_better"}],
-        "engines_ran": {"sympy": True, "numpy": True, "z3": True, "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]),
-                        "jax": False, "julia": False, "qutip": bool(qutip_check["ran"])},
+        "engines_ran": {"sympy": True, "z3": True, "cvc5": bool(TOOL_MANIFEST["cvc5"]["used"]),
+                        "jax": True, "julia": bool(engines["julia"].get("ran")),
+                        "qutip": bool(qutip_check["ran"])},
         "qutip_cross_check": qutip_check,
         "engine_values": engine_values,
+        "three_engine_legs": engines,
+        "max_cross_engine_divergence": cross_engine_divergence,
+        "base_vs_jax_leg_divergence": base_vs_jax_leg_divergence,
+        "engine_contract": {"mode": "julia_authoritative_jax_rerunnable", "semantic_owner": "julia",
+                            "reference": "julia:QuantumOptics",
+                            "engines_agree_to": cross_engine_divergence,
+                            "n_authoritative_engines": 2},
         "qutip_vs_witness_divergence": qutip_vs_witness_divergence,
-        "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)",
         "smt_role": "supportive_nonvacuity_only",
-        "load_bearing_evidence": "Sympy exact conjugate-pair witness: psi(theta,phi) and chi=psi* share identical real (g_tt,g_pp,g_tp) at every theta but have Berry curvature F and -F respectively (Provost-Vallee QGT), cross-checked by the numpy finite-difference Hessian sweep and the qutip second-engine recomputation.",
+        "load_bearing_evidence": "TWO AUTHORITATIVE ENGINES each recompute the boundary witness from scratch "
+                                 "(no echo): Julia+QuantumOptics (fidelity path) and JAX+dynamiqs (exact "
+                                 "jax.hessian through dq.fidelity + jacfwd Provost-Vallee QGT), agreeing to "
+                                 f"{cross_engine_divergence:.3e} on (g_tt, g_pp, Berry) at theta0=pi/2. The "
+                                 "sympy exact conjugate-pair witness (psi vs chi=psi* sharing identical real "
+                                 "(g_tt,g_pp,g_tp) with Berry F and -F) carries the irreducibility claim; the "
+                                 "base compute path runs on jax.numpy x64 (numpy removed) and qutip is a "
+                                 "supportive cross-check.",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "notes": notes,
@@ -602,6 +711,7 @@ def main() -> None:
         "z3": z3_result["result"], "z3_erased_constraint": z3_result["erased_constraint_result"],
         "cvc5": cvc5_result["result"], "cvc5_erased_constraint": cvc5_result["erased_constraint_result"],
         "qutip_ran": qutip_check["ran"], "qutip_vs_witness_divergence": qutip_vs_witness_divergence,
+        "max_cross_engine_divergence": cross_engine_divergence,
         "engine_values": engine_values,
     }, indent=2))
 

@@ -1,4 +1,12 @@
 {
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": null,
+    "jax": "load_bearing",
+    "julia": "load_bearing",
+    "qutip": null,
+    "sympy": null,
+    "z3": null
+  },
   "classification": "tool_lego_fit_probe",
   "comp_basis_drop": 0.03158394240196316,
   "comp_basis_monotone_always_geq": true,
@@ -8,11 +16,14 @@
   "eigenbasis_gap_is_zero": true,
   "eigenbasis_invertible_on_samples": true,
   "eigenbasis_reconstruction_max_error": 1.332474155427911e-15,
+  "engine_values": {
+    "jax_comp_basis_entropy_gap": 0.130812035941137,
+    "julia_comp_basis_entropy_gap": 0.130812035941137
+  },
   "engines_ran": {
     "cvc5": false,
-    "jax": false,
-    "julia": false,
-    "numpy": true,
+    "jax": true,
+    "julia": true,
     "qutip": false,
     "sympy": false,
     "z3": false
@@ -27,49 +38,71 @@
   "notes": [
     "This does NOT refute vn_to_shannon's committed RATCHETED_ONE_WAY verdict -- the arrow holds exactly as claimed relative to the fixed computational/pointer basis vn_to_shannon actually uses (the Layer-2 carrier Delta^1's z-axis).",
     "It DOES disclose that the arrow is basis-relative: a differently-chosen reference basis (the state's own eigenbasis) makes the SAME channel act as the identity, entropy-preserving and invertible, on that state.",
-    "Eased formality per instruction: numpy-only, single plain rerun + one post_receipt_gate.sh pass (honest exit 3 acceptable); full ClaimGate tier0-4 not pushed."
+    "Engine substrate 2026-07-22: compute path is jax.numpy x64 (numpy fully removed); the receipt carries julia:QuantumOptics + jax:dynamiqs witness legs, and the jax leg is re-run by the three-engine seal as execution evidence."
   ],
   "object": "Same Layer-1/Layer-2 pair as vn_to_shannon.py: 2x2 density operators (Bloch ball) -> diagonal simplex Delta^1, dephasing/pinching channel D.",
   "ordering_status": "PROPOSED not canon",
   "promotion_allowed": false,
   "sampled_state_count": 307,
   "schema_version": "1.0",
+  "three_engine_legs": {
+    "jax": {
+      "basis_relative_witness": true,
+      "comp_basis_entropy_gap": 0.130812035941137,
+      "comp_dephased_entropy": 0.6931471805599453,
+      "eigen_dephased_entropy": 0.5623351446188085,
+      "eigen_reconstruction_error": 1.6653345369377348e-16,
+      "eigenbasis_gap": 2.220446049250313e-16,
+      "engine": "jax:dynamiqs",
+      "ran": true,
+      "vn_entropy_rho": 0.5623351446188083
+    },
+    "julia": {
+      "basis_relative_witness": true,
+      "comp_basis_entropy_gap": 0.130812035941137,
+      "comp_dephased_entropy": 0.6931471805599453,
+      "eigen_dephased_entropy": 0.5623351446188085,
+      "eigen_reconstruction_error": 1.6653345369377348e-16,
+      "eigenbasis_gap": 2.220446049250313e-16,
+      "engine": "julia:QuantumOptics",
+      "ran": true,
+      "vn_entropy_rho": 0.5623351446188083
+    }
+  },
   "tool_manifest": {
     "cvc5": {
-      "reason": "Eased formality per instruction: not run.",
+      "reason": "Not run for this disclosure probe.",
       "tried": false,
       "used": false
     },
     "jax": {
-      "reason": "Eased formality per instruction: not run.",
-      "tried": false,
-      "used": false
+      "reason": "Base engine (jax.numpy x64): Bloch-ball sampled states, eigenbasis rotation/pinch, entropy and invertibility checks; plus the standalone dynamiqs witness leg the seal re-runs.",
+      "tried": true,
+      "used": true
     },
     "julia": {
-      "reason": "Eased formality per instruction: not run.",
-      "tried": false,
-      "used": false
-    },
-    "numpy": {
-      "reason": "Bloch-ball sampled states, eigendecomposition-based dephasing, entropy and invertibility checks.",
+      "reason": "Authoritative QuantumOptics basis-rotation leg: the same pinching channel raises entropy in the fixed computational basis and is the identity in rho's own eigenbasis; agrees with the jax witness to <1e-9.",
       "tried": true,
       "used": true
     },
     "qutip": {
-      "reason": "Eased formality per instruction: not run.",
+      "reason": "Not run for this disclosure probe.",
       "tried": false,
       "used": false
     },
     "sympy": {
-      "reason": "Eased formality per instruction: the numeric numpy witness is sufficient for this disclosure probe.",
+      "reason": "The numeric jax/julia witness pair is sufficient for this disclosure probe.",
       "tried": false,
       "used": false
     },
     "z3": {
-      "reason": "Eased formality per instruction: not run.",
+      "reason": "Not run for this disclosure probe.",
       "tried": false,
       "used": false
     }
   },
-  "verdict": "BASIS_RELATIVE_DISCLOSURE"
+  "verdict": "BASIS_RELATIVE_DISCLOSURE",
+  "witness_comp_basis_entropy_gap": 0.130812035941137,
+  "witness_eigenbasis_gap": 2.220446049250313e-16,
+  "witness_vn_entropy_rho": 0.5623351446188083
 }

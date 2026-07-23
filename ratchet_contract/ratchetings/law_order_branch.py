@@ -441,6 +441,16 @@ def main() -> None:
 
     result = {
         "schema_version": "1.0",
+        "engine_contract": {
+            "numeric_engine_required": False,
+            "exemption_reason": ("Pure finite/symbolic probe: every load-bearing value comes from "
+                                 "exact integer Cayley-table arithmetic (union-find congruence "
+                                 "closure, brute-forced permutation isomorphism), sympy exact log "
+                                 "identities, and z3/cvc5 UNSAT/SAT witnesses; no floating-point "
+                                 "numeric engine (jax/julia/torch/numpy) computes anything "
+                                 "load-bearing. The math.log trajectory drops are logs of exact "
+                                 "finite class counts, cross-confirmed symbolically by sympy."),
+        },
         "carrier": {
             "elements": list(range(n)),
             "table": carrier,

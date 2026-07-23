@@ -21,84 +21,96 @@ fixed measurement basis. It IS a disclosure the receipt should carry: the
 one-way claim is basis-relative, not basis-free.
 
 classification = "tool_lego_fit_probe"; promotion_allowed = False;
-ordering_status = "PROPOSED not canon". Eased formality per instruction:
-numpy-only, single plain rerun + one post_receipt_gate.sh pass (honest exit 3
-acceptable); full ClaimGate tier0-4 not pushed.
+ordering_status = "PROPOSED not canon". Engine substrate (2026-07-22): the
+compute path is jax.numpy x64 -- numpy fully removed. The receipt carries a
+julia:QuantumOptics + jax:dynamiqs witness-leg pair (both load-bearing): each
+leg independently re-derives the basis-relativity witness (computational-basis
+pinch raises entropy; eigenbasis pinch is the identity), and the jax leg is
+re-run by claimgate_plugin/three_engine_seal.py as execution evidence.
 """
 
 from __future__ import annotations
 
 import json
 import math
+import subprocess
 from pathlib import Path
 from typing import Any
 
-import numpy as np
+import os
+os.environ.setdefault("JAX_ENABLE_X64", "1")
+import jax
+jax.config.update("jax_enable_x64", True)
+import jax.numpy as jnp
 
 classification = "tool_lego_fit_probe"
 promotion_allowed = False
 ordering_status = "PROPOSED not canon"
 TOL = 1.0e-10
+LEG_TOL = 1.0e-9
+SIM_PY = "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True,
-              "reason": "Bloch-ball sampled states, eigendecomposition-based dephasing, entropy and invertibility checks."},
+    "jax": {"tried": True, "used": True,
+            "reason": "Base engine (jax.numpy x64): Bloch-ball sampled states, eigenbasis rotation/pinch, "
+                      "entropy and invertibility checks; plus the standalone dynamiqs witness leg the seal re-runs."},
+    "julia": {"tried": False, "used": False,
+              "reason": "Authoritative QuantumOptics basis-rotation witness leg run by main(); "
+                        "updated at runtime with its actual result."},
     "sympy": {"tried": False, "used": False,
-              "reason": "Eased formality per instruction: the numeric numpy witness is sufficient for this disclosure probe."},
-    "z3": {"tried": False, "used": False, "reason": "Eased formality per instruction: not run."},
-    "cvc5": {"tried": False, "used": False, "reason": "Eased formality per instruction: not run."},
-    "qutip": {"tried": False, "used": False, "reason": "Eased formality per instruction: not run."},
-    "jax": {"tried": False, "used": False, "reason": "Eased formality per instruction: not run."},
-    "julia": {"tried": False, "used": False, "reason": "Eased formality per instruction: not run."},
+              "reason": "The numeric jax/julia witness pair is sufficient for this disclosure probe."},
+    "z3": {"tried": False, "used": False, "reason": "Not run for this disclosure probe."},
+    "cvc5": {"tried": False, "used": False, "reason": "Not run for this disclosure probe."},
+    "qutip": {"tried": False, "used": False, "reason": "Not run for this disclosure probe."},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "sympy": None, "z3": None, "cvc5": None, "qutip": None, "jax": None, "julia": None,
+    "jax": "load_bearing",
+    "julia": None, "sympy": None, "z3": None, "cvc5": None, "qutip": None,
 }
 
 
-def density_from_bloch(x: float, y: float, z: float) -> np.ndarray:
-    return np.array([[1.0 + z, x - 1j * y], [x + 1j * y, 1.0 - z]], dtype=complex) / 2.0
+def density_from_bloch(x: float, y: float, z: float) -> jnp.ndarray:
+    return jnp.array([[1.0 + z, x - 1j * y], [x + 1j * y, 1.0 - z]], dtype=jnp.complex128) / 2.0
 
 
-def vn_entropy(rho: np.ndarray) -> float:
-    eigenvalues = np.linalg.eigvalsh(rho)
-    eigenvalues = np.clip(np.real(eigenvalues), 0.0, 1.0)
+def vn_entropy(rho: jnp.ndarray) -> float:
+    eigenvalues = jnp.linalg.eigvalsh(rho)
+    eigenvalues = jnp.clip(jnp.real(eigenvalues), 0.0, 1.0)
     positive = eigenvalues[eigenvalues > 0.0]
-    return float(-np.sum(positive * np.log(positive)))
+    return float(-jnp.sum(positive * jnp.log(positive)))
 
 
-def dephase_computational(rho: np.ndarray) -> np.ndarray:
+def dephase_computational(rho: jnp.ndarray) -> jnp.ndarray:
     """Pinch rho in the FIXED computational (pointer) basis. This is the
     channel vn_to_shannon.py commits its RATCHETED_ONE_WAY verdict to."""
-    return np.diag(np.diag(rho)).astype(complex)
+    return jnp.diag(jnp.diag(rho)).astype(jnp.complex128)
 
 
-def dephase_eigenbasis(rho: np.ndarray) -> np.ndarray:
+def dephase_eigenbasis(rho: jnp.ndarray) -> jnp.ndarray:
     """Pinch rho in ITS OWN eigenbasis: D_eigen(rho) = sum_i lambda_i |v_i><v_i|.
     By definition of the eigendecomposition of a Hermitian rho this reconstructs
     rho exactly -- confirmed numerically below, not assumed."""
-    eigenvalues, eigenvectors = np.linalg.eigh(rho)
-    reconstructed = np.zeros_like(rho, dtype=complex)
+    eigenvalues, eigenvectors = jnp.linalg.eigh(rho)
+    reconstructed = jnp.zeros_like(rho)
     for lam, vec in zip(eigenvalues, eigenvectors.T):
-        reconstructed += lam * np.outer(vec, vec.conj())
+        reconstructed = reconstructed + lam * jnp.outer(vec, vec.conj())
     return reconstructed
 
 
-def sampled_states() -> list[tuple[str, np.ndarray, np.ndarray]]:
+def sampled_states() -> list[tuple[str, jnp.ndarray, jnp.ndarray]]:
     """Same interior grid + pure-boundary sweep as vn_to_shannon.py's sampler."""
-    states: list[tuple[str, np.ndarray, np.ndarray]] = []
-    grid = np.arange(-0.75, 0.751, 0.25)
+    states: list[tuple[str, jnp.ndarray, jnp.ndarray]] = []
+    grid = jnp.arange(-0.75, 0.751, 0.25)
     for x in grid:
         for y in grid:
             for z in grid:
-                vector = np.array([x, y, z], dtype=float)
-                if float(np.dot(vector, vector)) < 1.0 - 1.0e-12:
+                vector = jnp.array([x, y, z], dtype=float)
+                if float(jnp.dot(vector, vector)) < 1.0 - 1.0e-12:
                     states.append(("interior", vector, density_from_bloch(x, y, z)))
-    for theta in np.linspace(0.0, math.pi, 7):
-        for phi in np.linspace(0.0, 2.0 * math.pi, 8, endpoint=False):
-            vector = np.array([
+    for theta in jnp.linspace(0.0, math.pi, 7):
+        for phi in jnp.linspace(0.0, 2.0 * math.pi, 8, endpoint=False):
+            vector = jnp.array([
                 math.sin(theta) * math.cos(phi),
                 math.sin(theta) * math.sin(phi),
                 math.cos(theta),
@@ -122,7 +134,7 @@ def basis_relativity_report() -> dict[str, Any]:
         eigen_gap = vn_entropy(d_eigen) - s_rho
         comp_gaps.append(comp_gap)
         eigen_gaps.append(eigen_gap)
-        eigen_recon_errors.append(float(np.max(np.abs(d_eigen - rho))))
+        eigen_recon_errors.append(float(jnp.max(jnp.abs(d_eigen - rho))))
         if abs(rho[0, 1]) > TOL:
             comp_offdiag_gaps.append(comp_gap)
 
@@ -131,13 +143,18 @@ def basis_relativity_report() -> dict[str, Any]:
     eigenbasis_recon_max_error = float(max(eigen_recon_errors))
 
     # Invertibility witness, FIXED computational basis (same pair vn_to_shannon.py uses):
-    rho = np.array([[0.5, 0.25], [0.25, 0.5]], dtype=complex)
-    rho_prime = np.array([[0.5, 0.25j], [-0.25j, 0.5]], dtype=complex)
+    rho = jnp.array([[0.5, 0.25], [0.25, 0.5]], dtype=jnp.complex128)
+    rho_prime = jnp.array([[0.5, 0.25j], [-0.25j, 0.5]], dtype=jnp.complex128)
     d_comp_rho, d_comp_rho_prime = dephase_computational(rho), dephase_computational(rho_prime)
     comp_noninvertible = bool(
-        (not np.allclose(rho, rho_prime, atol=TOL))
-        and np.allclose(d_comp_rho, d_comp_rho_prime, atol=TOL)
+        (not jnp.allclose(rho, rho_prime, atol=TOL))
+        and jnp.allclose(d_comp_rho, d_comp_rho_prime, atol=TOL)
     )
+
+    # Witness-state quantities the julia/jax engine legs independently re-derive:
+    witness_s_rho = vn_entropy(rho)
+    witness_comp_gap = vn_entropy(d_comp_rho) - witness_s_rho
+    witness_eigen_gap = abs(vn_entropy(dephase_eigenbasis(rho)) - witness_s_rho)
 
     # Eigenbasis-dephasing invertibility: D_eigen(rho) reconstructs rho exactly at
     # every sampled state (the map is the identity ON that state, by construction
@@ -178,6 +195,9 @@ def basis_relativity_report() -> dict[str, Any]:
         "eigenbasis_gap_is_zero": eigen_basis_always_zero,
         "eigenbasis_reconstruction_max_error": eigenbasis_recon_max_error,
         "eigenbasis_invertible_on_samples": eigen_invertible_on_samples,
+        "witness_vn_entropy_rho": witness_s_rho,
+        "witness_comp_basis_entropy_gap": witness_comp_gap,
+        "witness_eigenbasis_gap": witness_eigen_gap,
         "disclosure": disclosure,
         "verdict": verdict,
         "classification": classification,
@@ -192,17 +212,74 @@ def basis_relativity_report() -> dict[str, Any]:
             "It DOES disclose that the arrow is basis-relative: a differently-chosen reference "
             "basis (the state's own eigenbasis) makes the SAME channel act as the identity, "
             "entropy-preserving and invertible, on that state.",
-            "Eased formality per instruction: numpy-only, single plain rerun + one "
-            "post_receipt_gate.sh pass (honest exit 3 acceptable); full ClaimGate tier0-4 not pushed.",
+            "Engine substrate 2026-07-22: compute path is jax.numpy x64 (numpy fully removed); "
+            "the receipt carries julia:QuantumOptics + jax:dynamiqs witness legs, and the jax leg "
+            "is re-run by the three-engine seal as execution evidence.",
         ],
         "tool_manifest": TOOL_MANIFEST,
-        "engines_ran": {"numpy": True, "sympy": False, "z3": False, "cvc5": False,
-                        "qutip": False, "jax": False, "julia": False},
+        "engines_ran": {"jax": True, "julia": False, "sympy": False, "z3": False,
+                        "cvc5": False, "qutip": False},
     }
+
+
+def _run_leg(cmd: list[str]) -> dict[str, Any]:
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+    except Exception as exc:  # noqa: BLE001 -- dispatch failure is recorded, not smoothed
+        return {"ran": False, "reason": f"leg dispatch failed: {exc}"}
+    if proc.returncode != 0:
+        return {"ran": False, "reason": f"leg exit {proc.returncode}: {proc.stderr.strip()[-200:]}"}
+    lines = [ln for ln in proc.stdout.splitlines() if ln.strip().startswith("{")]
+    if not lines:
+        return {"ran": False, "reason": "leg produced no JSON on stdout"}
+    data = json.loads(lines[-1])
+    data["ran"] = True
+    return data
 
 
 def main() -> None:
     report = basis_relativity_report()
+
+    # Engine witness legs -- sequential (julia startup is expensive; never parallel julia).
+    here = Path(__file__).resolve().parent
+    legs = {"julia": _run_leg(["julia", str(here / "vn_to_shannon_basis_relativity_julia.jl")])}
+    legs["jax"] = _run_leg([SIM_PY, str(here / "vn_to_shannon_basis_relativity_jax.py")])
+
+    # Loud cross-check, not smoothed: each leg must re-derive the in-process witness numbers.
+    for engine, leg in legs.items():
+        if not leg.get("ran"):
+            continue
+        divergence = max(
+            abs(float(leg["vn_entropy_rho"]) - report["witness_vn_entropy_rho"]),
+            abs(float(leg["comp_basis_entropy_gap"]) - report["witness_comp_basis_entropy_gap"]),
+            abs(float(leg["eigenbasis_gap"]) - report["witness_eigenbasis_gap"]),
+        )
+        if divergence > LEG_TOL:
+            raise AssertionError(f"{engine} witness leg diverges from the in-process jax.numpy "
+                                 f"witness by {divergence} > {LEG_TOL} -- report, do not smooth.")
+
+    if legs["julia"].get("ran"):
+        TOOL_INTEGRATION_DEPTH["julia"] = "load_bearing"
+        TOOL_MANIFEST["julia"]["tried"] = True
+        TOOL_MANIFEST["julia"]["used"] = True
+        TOOL_MANIFEST["julia"]["reason"] = (
+            "Authoritative QuantumOptics basis-rotation leg: the same pinching channel raises entropy "
+            "in the fixed computational basis and is the identity in rho's own eigenbasis; agrees with "
+            "the jax witness to <1e-9.")
+        report["engines_ran"]["julia"] = True
+    if not legs["jax"].get("ran"):
+        # The in-process compute path is jax, but the seal's execution evidence is the
+        # standalone leg; without it the receipt must not claim a re-runnable jax witness.
+        TOOL_INTEGRATION_DEPTH["jax"] = None
+        report["engines_ran"]["jax"] = False
+
+    report["three_engine_legs"] = legs
+    report["engine_values"] = {
+        "julia_comp_basis_entropy_gap": legs["julia"].get("comp_basis_entropy_gap") if legs["julia"].get("ran") else None,
+        "jax_comp_basis_entropy_gap": legs["jax"].get("comp_basis_entropy_gap") if legs["jax"].get("ran") else None,
+    }
+    report["TOOL_INTEGRATION_DEPTH"] = dict(TOOL_INTEGRATION_DEPTH)
+
     output = Path(__file__).resolve().parent / "results" / "vn_to_shannon_basis_relativity.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -211,6 +288,8 @@ def main() -> None:
         "verdict": report["verdict"],
         "comp_basis_drop": report["comp_basis_drop"],
         "eigenbasis_gap": report["eigenbasis_gap"],
+        "julia_comp_basis_entropy_gap": report["engine_values"]["julia_comp_basis_entropy_gap"],
+        "jax_comp_basis_entropy_gap": report["engine_values"]["jax_comp_basis_entropy_gap"],
     }, indent=2))
 
 

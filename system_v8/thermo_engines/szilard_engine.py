@@ -44,6 +44,22 @@ extra work, consistent with the second law. This sim checks both: (a)
 extraction equals the Landauer figure to numerical tolerance, and (b)
 extraction never exceeds it.
 
+THREE-ENGINE SUBSTRATE (2026-07-22 migration; science unchanged)
+----------------------------------------------------------------
+The base computation (quadrature + Monte Carlo ensemble) runs on jax.numpy
+(x64) -- numpy is fully removed from the compute path. Two independent engine
+legs recompute the SAME extracted-work / Landauer bookkeeping as the
+quantum-information form of the measurement/erasure cycle (which-side
+register S + 1-bit memory M; projective measurement recorded via projectors;
+W/kT = I(S:M) = ln 2 per cycle, erasure >= S(M) = ln 2, closed cycle nets 0;
+no-measurement control licenses nothing):
+  - szilard_engine_julia.jl  (QuantumOptics.jl projectors + entropy_vn; authoritative)
+  - szilard_engine_jax.py    (dynamiqs; the leg the three_engine_seal re-runs)
+Each leg is its own subprocess, recomputes from scratch (no echo), and prints
+one JSON line. The shared scalar is extracted_work_kT = W/(k_B T) = ln 2, an
+O(1) number so the <1e-6 cross-engine agreement bar is meaningful (the raw
+Joule figure at 300 K is ~3e-21 and would make any agreement check vacuous).
+
 PREREGISTERED PASS CRITERIA (checked in header, before any run)
 -----------------------------------------------------------------
   C1: |W_informed_numeric - k_B*T*ln2| / (k_B*T*ln2)   <= 1e-6   (relative)
@@ -54,45 +70,67 @@ PREREGISTERED PASS CRITERIA (checked in header, before any run)
   C5 (boundary): grid-convergence -- coarse (n=100) vs fine (n=2,000,000)
       quadrature of the same integral must agree to relative 1e-4 (coarse
       grid is expected to be less accurate; this bounds how much)
-ALL_PASS iff C1..C5 all hold. No partial credit language.
+  C6 (engine agreement): the julia leg, the jax leg, and the base quadrature
+      all ran and their extracted_work_kT scalars agree to <1e-6 (absolute,
+      on the O(1) kT-unit value)
+ALL_PASS iff C1..C6 all hold. No partial credit language.
 
 TOOLS
 -----
-numpy is the load-bearing computation tool: numeric quadrature of the
-single-particle P(V)=k_B T/V work integral, plus a genuine Monte Carlo
-ensemble (N random Bernoulli which-side draws) for the informed vs blind
-comparison. qutip was considered and is NOT used: a single classical
-molecule's positional degree of freedom has no operator/Hilbert-space
-content in this derivation, so invoking qutip would be decorative.
+jax (jax.numpy x64 + jax.random) is the load-bearing base engine: numeric
+quadrature of the single-particle P(V)=k_B T/V work integral plus a genuine
+Monte Carlo ensemble (N random Bernoulli which-side draws) for the informed
+vs blind comparison. julia/QuantumOptics is the authoritative second engine
+(projector + entropy measurement/erasure cycle); dynamiqs carries the
+independent jax leg. numpy is not imported anywhere in this sim.
 
 Interpreter: /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3
 """
 
 import json
+import math
 import os
-import numpy as np
+import subprocess
+
+os.environ.setdefault("JAX_ENABLE_X64", "1")
+import jax
+jax.config.update("jax_enable_x64", True)
+import jax.numpy as jnp
 
 # =====================================================================
 # TOOL MANIFEST (lean, task-scoped)
 # =====================================================================
 TOOL_MANIFEST = {
-    "numpy": {
+    "jax": {
         "tried": True,
         "used": True,
-        "reason": "numeric quadrature of the single-particle work integral "
-                   "and a genuine Monte Carlo ensemble over random "
-                   "which-side measurement outcomes.",
+        "reason": "BASE ENGINE: numeric quadrature of the single-particle "
+                   "work integral (jnp.trapezoid, x64) and a genuine Monte "
+                   "Carlo ensemble over random which-side measurement "
+                   "outcomes (jax.random); dynamiqs carries the independent "
+                   "measurement/erasure-cycle leg the three_engine_seal "
+                   "re-runs.",
+    },
+    "julia": {
+        "tried": True,
+        "used": True,
+        "reason": "Authoritative QuantumOptics.jl leg: projective which-side "
+                   "measurement recorded into a 1-bit memory (projectors + "
+                   "entropy_vn); extracted-work / Landauer bookkeeping in kT "
+                   "units; updated at runtime with its actual result.",
     },
     "qutip": {
         "tried": True,
         "used": False,
-        "reason": "single-molecule positional degree of freedom in a box "
-                   "has no operator/Hilbert-space content in the standard "
-                   "Szilard derivation; qutip would be decorative here.",
+        "reason": "the quantum-information measurement/erasure legs run on "
+                   "dynamiqs (jax) and QuantumOptics.jl (julia); a third "
+                   "qutip recompute of the same ln2 bookkeeping would be "
+                   "decorative here.",
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "jax": "load_bearing",   # base carrier + dynamiqs leg
+    "julia": None,           # promoted to load_bearing below iff its leg ran
     "qutip": None,
 }
 
@@ -101,11 +139,12 @@ T_K = 300.0
 V_FULL = 1.0e-6     # m^3, arbitrary concrete box volume (1 cm^3)
 V_HALF = V_FULL / 2.0
 
-LANDAUER_BOUND_J = K_B * T_K * np.log(2.0)
+LANDAUER_BOUND_J = K_B * T_K * math.log(2.0)
 
 REL_TOL = 1e-6
 SYMMETRY_REL_TOL = 1e-9
 GRID_CONVERGENCE_REL_TOL = 1e-4
+ENGINE_AGREE_TOL = 1e-6   # absolute, on the O(1) kT-unit shared scalar
 
 N_TRIALS = 100_000
 RNG_SEED = 20260719
@@ -113,16 +152,18 @@ RNG_SEED = 20260719
 FINE_GRID_N = 2_000_000
 COARSE_GRID_N = 100
 
+PY_ENGINE = "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
+
 
 def isothermal_single_particle_work(v_start, v_end, n=FINE_GRID_N):
     """W = integral_{v_start}^{v_end} (k_B T / V) dV via trapezoid quadrature.
 
     P_eff(V) = k_B T / V is the N=1 single-particle equation-of-state used
     in the Szilard derivation (from F(V) = -k_B T ln V for one particle in
-    a box)."""
-    V = np.linspace(v_start, v_end, n)
+    a box). Runs on jax.numpy in x64."""
+    V = jnp.linspace(v_start, v_end, n)
     P = K_B * T_K / V
-    return float(np.trapezoid(P, V))
+    return float(jnp.trapezoid(P, V))
 
 
 def run_positive_tests():
@@ -159,20 +200,21 @@ def run_ensemble(W_left, W_right):
     """Genuine Monte Carlo ensemble: N random which-side draws, informed arm
     extracts the side-appropriate work, blind/zero-information control arm
     extracts nothing (free expansion, no piston coupled)."""
-    rng = np.random.default_rng(RNG_SEED)
-    side_is_left = rng.random(N_TRIALS) < 0.5  # True=left, False=right
+    key = jax.random.PRNGKey(RNG_SEED)
+    side_is_left = jax.random.uniform(key, (N_TRIALS,)) < 0.5  # True=left
 
-    informed_work = np.where(side_is_left, W_left, W_right)
-    blind_work = np.zeros(N_TRIALS)  # free expansion: P_ext=0 for every trial
+    informed_work = jnp.where(side_is_left, W_left, W_right)
+    blind_work = jnp.zeros(N_TRIALS)  # free expansion: P_ext=0 for every trial
 
     return {
         "n_trials": N_TRIALS,
         "rng_seed": RNG_SEED,
-        "fraction_left": float(np.mean(side_is_left)),
-        "informed_mean_J": float(np.mean(informed_work)),
-        "informed_std_J": float(np.std(informed_work)),
-        "blind_mean_J": float(np.mean(blind_work)),
-        "blind_std_J": float(np.std(blind_work)),
+        "rng": "jax.random.PRNGKey (threefry)",
+        "fraction_left": float(jnp.mean(side_is_left)),
+        "informed_mean_J": float(jnp.mean(informed_work)),
+        "informed_std_J": float(jnp.std(informed_work)),
+        "blind_mean_J": float(jnp.mean(blind_work)),
+        "blind_std_J": float(jnp.std(blind_work)),
     }
 
 
@@ -223,11 +265,75 @@ def run_boundary_tests():
     }
 
 
+def _run_leg(cmd):
+    """Run one engine leg as an independent subprocess (no echo -- each
+    recomputes from scratch) and parse its single JSON line."""
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=600,
+                              cwd=os.path.dirname(os.path.abspath(__file__)))
+    except Exception as exc:  # noqa: BLE001
+        return {"ran": False, "reason": f"dispatch failed: {exc}"}
+    if proc.returncode != 0:
+        return {"ran": False, "reason": f"exit {proc.returncode}: {proc.stderr.strip()[-200:]}"}
+    lines = [ln for ln in proc.stdout.splitlines() if ln.strip().startswith("{")]
+    if not lines:
+        return {"ran": False, "reason": "no JSON on stdout"}
+    data = json.loads(lines[-1])
+    data["ran"] = True
+    return data
+
+
+def run_three_engine_legs():
+    """Julia(QuantumOptics, authoritative) then JAX(dynamiqs), sequentially
+    (never parallel julia), each recomputing the measurement/erasure-cycle
+    extracted-work / Landauer bookkeeping independently."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    julia = _run_leg(["julia", os.path.join(here, "szilard_engine_julia.jl")])
+    jax_leg = _run_leg([PY_ENGINE, os.path.join(here, "szilard_engine_jax.py")])
+    return {"julia": julia, "jax": jax_leg}
+
+
+def run_engine_agreement(legs, W_fine_J):
+    """C6: julia leg, jax leg, and the base quadrature agree on the shared
+    O(1) scalar extracted_work_kT = W/(k_B T) to <1e-6 absolute."""
+    w_base_kT = W_fine_J / (K_B * T_K)
+    vals = {"jax_base_quadrature": w_base_kT}
+    for eng in ("julia", "jax"):
+        if legs[eng].get("ran") and isinstance(legs[eng].get("extracted_work_kT"), (int, float)):
+            vals[eng] = float(legs[eng]["extracted_work_kT"])
+    both_legs_ran = "julia" in vals and "jax" in vals
+    vv = list(vals.values())
+    max_div = max(abs(a - b) for a in vv for b in vv)
+    c6_pass = both_legs_ran and max_div <= ENGINE_AGREE_TOL
+    return {
+        "C6_cross_engine_agreement": {
+            "pass": bool(c6_pass),
+            "extracted_work_kT_by_engine": vals,
+            "exact_ln2": math.log(2.0),
+            "max_divergence": max_div,
+            "tol": ENGINE_AGREE_TOL,
+            "both_legs_ran": bool(both_legs_ran),
+            "note": "shared scalar is W/(k_B T) = ln 2, an O(1) value so the "
+                    "1e-6 agreement bar is meaningful; julia is the "
+                    "authoritative reference on any disagreement.",
+        }
+    }, w_base_kT
+
+
 if __name__ == "__main__":
     positive = run_positive_tests()
     ensemble = run_ensemble(positive["W_left_J"], positive["W_right_J"])
     negative = run_negative_tests(ensemble)
     boundary = run_boundary_tests()
+    legs = run_three_engine_legs()
+    agreement, w_base_kT = run_engine_agreement(legs, boundary["C5_grid_convergence"]["W_fine_J"])
+
+    if legs["julia"].get("ran"):
+        TOOL_INTEGRATION_DEPTH["julia"] = "load_bearing"
+    else:
+        TOOL_MANIFEST["julia"]["used"] = False
+        TOOL_MANIFEST["julia"]["reason"] = (
+            f"leg did not run: {legs['julia'].get('reason')}")
 
     all_checks = [
         positive["C1_informed_work_matches_kT_ln2"]["pass"],
@@ -235,8 +341,17 @@ if __name__ == "__main__":
         negative["C3_zero_information_zero_work"]["pass"],
         negative["C4_never_exceeds_landauer_bound"]["pass"],
         boundary["C5_grid_convergence"]["pass"],
+        agreement["C6_cross_engine_agreement"]["pass"],
     ]
     all_pass = bool(all(all_checks))
+
+    engine_values = {
+        "julia_extracted_work_kT": (float(legs["julia"]["extracted_work_kT"])
+                                    if legs["julia"].get("ran") else None),
+        "jax_extracted_work_kT": (float(legs["jax"]["extracted_work_kT"])
+                                  if legs["jax"].get("ran") else None),
+        "jax_base_quadrature_work_kT": w_base_kT,
+    }
 
     results = {
         "name": "szilard_engine",
@@ -249,6 +364,20 @@ if __name__ == "__main__":
         "ensemble": ensemble,
         "negative": negative,
         "boundary": boundary,
+        "engine_agreement": agreement,
+        "engine_values": engine_values,
+        "max_cross_engine_divergence": agreement["C6_cross_engine_agreement"]["max_divergence"],
+        "three_engine_legs": legs,
+        "engines_ran": {
+            "jax": True,   # base carrier is jax.numpy; dynamiqs leg recorded above
+            "julia": bool(legs["julia"].get("ran")),
+        },
+        "engine_contract": {
+            "mode": "base_plus_two_quantum_legs",
+            "semantic_owner": "julia",
+            "reference": "julia:QuantumOptics",
+            "shared_scalar": "extracted_work_kT = W/(k_B T) = ln 2",
+        },
         "classification": "classical_baseline",
         "surviving_alternatives": [],
         "claim_ceiling": "engine_competence_check_only",
@@ -262,15 +391,19 @@ if __name__ == "__main__":
             "no bridge, axis, engine-estate, emergence, or nonclassical claim",
         ],
         "all_pass": all_pass,
-        "criteria_checked": ["C1", "C2", "C3", "C4", "C5"],
+        "criteria_checked": ["C1", "C2", "C3", "C4", "C5", "C6"],
         "engine_machinery_used": {
-            "qutip_mesolve": False,
-            "qutip_unitary": False,
-            "qutip_counts": False,
-            "numpy_quadrature": True,
-            "numpy_monte_carlo_ensemble": True,
-            "note": "classical single-molecule statistical mechanics; no "
-                    "quantum engine machinery is applicable or used.",
+            "jax_numpy_quadrature": True,
+            "jax_random_monte_carlo_ensemble": True,
+            "dynamiqs_measurement_erasure_cycle": bool(legs["jax"].get("ran")),
+            "quantumoptics_projectors_and_entropies": bool(legs["julia"].get("ran")),
+            "numpy": False,
+            "note": "base is classical single-molecule statistical mechanics "
+                    "on jax.numpy x64; the julia/jax legs recompute the SAME "
+                    "kT ln2 extracted-work / Landauer bookkeeping as the "
+                    "density-operator measurement/erasure cycle (projectors "
+                    "+ von Neumann entropies). Substrate migration only; the "
+                    "science and claim ceiling are unchanged.",
         },
     }
 
@@ -286,11 +419,16 @@ if __name__ == "__main__":
     print(f"Ensemble (N={ensemble['n_trials']}): informed_mean={ensemble['informed_mean_J']:.6e} J "
           f"(std={ensemble['informed_std_J']:.3e})  blind_mean={ensemble['blind_mean_J']:.6e} J "
           f"(std={ensemble['blind_std_J']:.3e})")
+    print(f"Engines: julia_extracted_work_kT={engine_values['julia_extracted_work_kT']}  "
+          f"jax_extracted_work_kT={engine_values['jax_extracted_work_kT']}  "
+          f"base_quadrature_kT={engine_values['jax_base_quadrature_work_kT']:.15f}  "
+          f"max_div={results['max_cross_engine_divergence']:.3e}")
     print(f"ALL_PASS = {all_pass}")
     if not all_pass:
         for name, val in [("C1", positive["C1_informed_work_matches_kT_ln2"]),
                            ("C2", positive["C2_left_right_symmetry"]),
                            ("C3", negative["C3_zero_information_zero_work"]),
                            ("C4", negative["C4_never_exceeds_landauer_bound"]),
-                           ("C5", boundary["C5_grid_convergence"])]:
+                           ("C5", boundary["C5_grid_convergence"]),
+                           ("C6", agreement["C6_cross_engine_agreement"])]:
             print(f"  {name}: pass={val['pass']}")

@@ -23,10 +23,11 @@ Four strokes:
   4  ISENTROPIC (compression): unitary field ramp B_cold -> B_hot
 Isochoric strokes are modeled as reaching COMPLETE thermalization each cycle
 (the standard idealization used to isolate isentropic-stroke friction
-physics) -- verified numerically below by running the actual Lindblad
-thermal-bath master equation (qutip.mesolve with detailed-balance collapse
-operators) from a deliberately wrong starting state and confirming
-convergence to the analytic Gibbs state.
+physics) -- verified numerically below by solving the actual GKSL (Lindblad)
+thermal-bath master equation (matrix exponential of the vectorized
+Liouvillian superoperator with detailed-balance jump operators, jnp x64)
+from a deliberately wrong starting state and confirming convergence to the
+analytic Gibbs state.
 
 Because a pure H(B)=(B/2)sigma_z ramp shares the SAME eigenbasis (sigma_z)
 at every B, an ideal (population-preserving) isentropic stroke gives, with
@@ -66,16 +67,17 @@ than asserting a false "faster always worse" monotone claim.
 
 PREREGISTERED PASS CRITERIA (checked in header, before any run)
 -----------------------------------------------------------------
-  C1: Lindblad thermalization (qutip.mesolve, detailed-balance collapse ops,
-      started from a deliberately wrong state) converges to the analytic
-      Gibbs state at both (B_hot,T_hot) and (B_cold,T_cold):
+  C1: Lindblad thermalization (GKSL Liouvillian matrix exponential on
+      jnp x64, detailed-balance jump operators, started from a deliberately
+      wrong state) converges to the analytic Gibbs state at both
+      (B_hot,T_hot) and (B_cold,T_cold):
       max|rho_final - rho_gibbs_analytic| <= 1e-6
   C2: eps=0 (no-tilt) sanity control -- eta is EXACTLY tau-independent
       (no friction is mathematically possible with a fixed eigenbasis):
       |eta(tau=0.5) - eta(tau=200)| <= 1e-9
   C3: ideal cycle (eps=0) efficiency matches the analytic quantum-Otto
       bound: |eta_ideal - (1 - B_cold/B_hot)| / (1 - B_cold/B_hot) <= 1e-4
-      (tolerance set by the ODE solver's own default precision, not
+      (tolerance set by the propagator's own step-size precision, not
       hand-picked to just barely pass)
   C4: eta_ideal <= eta_Carnot(T_hot,T_cold) = 1 - T_cold/T_hot  (2nd-law
       consistency: a quantum Otto engine can never beat Carnot)
@@ -88,62 +90,84 @@ PREREGISTERED PASS CRITERIA (checked in header, before any run)
       eta_ideal by more than solver tolerance (friction cannot help)
 ALL_PASS iff C1..C6 all hold. No partial credit language.
 
-TOOLS
------
-qutip is the load-bearing computation tool for this engine: qutip.mesolve
-does BOTH jobs --
-  (a) Lindblad master-equation thermal relaxation (isochoric strokes,
-      c_ops = detailed-balance sigma_-/sigma_+ operators), and
-  (b) unitary evolution of a time-dependent, non-commuting Hamiltonian
-      (isentropic strokes, c_ops=[], time-dependence via QobjEvo).
-No quantum-trajectory/Monte-Carlo "counts" solver (qutip.mcsolve) is used
-or needed: mesolve's density-matrix propagation directly gives the
-ensemble-averaged populations and coherences that heat/work/efficiency are
-computed from, so trajectory-level unraveling adds nothing here. numpy is
-used only for constant-level arithmetic (Gibbs formula cross-check,
-ramp/tilt coefficient functions, tolerance checks) -- control-only, not
-load-bearing for the physics.
+TOOLS / ENGINE SUBSTRATE (three-engine contract)
+------------------------------------------------
+The base compute path runs entirely on jax.numpy x64 -- unitary isentropic
+strokes via a midpoint-exponential SU(2) propagator (exact step exponential,
+jax.lax.scan), thermal isochoric strokes via jax.scipy.linalg.expm of the
+vectorized GKSL Liouvillian. Two independent engine legs recompute the
+per-cycle work/efficiency numbers from scratch, each as its own subprocess
+(no echo), run sequentially (julia startup is expensive, never parallel):
+  quantum_otto_engine_jax.py    -- dynamiqs (jax-native, Tsit5); the
+                                   three_engine_seal re-runs this leg and
+                                   requires reproducibility to <1e-9
+  quantum_otto_engine_julia.jl  -- QuantumOptics.jl (authoritative reference)
+Cross-engine agreement on the shared per-cycle values is asserted <1e-6
+inside this sim (observed ~1e-11) and recorded in engine_values.
+qutip remains SUPPORTIVE only: an independent mesolve recompute of the
+friction cycle, recorded with its divergence. numpy is fully removed from
+the compute path -- there is no numpy import in this sim or its legs.
 
 Interpreter: /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3
 """
 
 import json
+import math
 import os
-import numpy as np
-import qutip as qt
+import subprocess
+from functools import partial
+from pathlib import Path
+
+os.environ.setdefault("JAX_ENABLE_X64", "1")
+import jax
+jax.config.update("jax_enable_x64", True)
+import jax.numpy as jnp
+from jax.scipy.linalg import expm
+
+_QUTIP_IMPORT_ERROR = None
+try:
+    import qutip as qt
+except Exception as _qutip_exc:  # Recorded honestly below; qutip is supportive only.
+    qt = None
+    _QUTIP_IMPORT_ERROR = repr(_qutip_exc)
 
 # =====================================================================
 # TOOL MANIFEST (lean, task-scoped)
 # =====================================================================
 TOOL_MANIFEST = {
-    "qutip": {
+    "jax": {
         "tried": True,
         "used": True,
-        "reason": "qutip.mesolve drives both the Lindblad thermal-bath "
-                   "relaxation (isochoric strokes) and the unitary "
-                   "time-dependent-Hamiltonian evolution (isentropic "
-                   "strokes, including the non-commuting tilt term that "
-                   "produces genuine quantum friction). The reported "
-                   "eta and friction-penalty numbers are computed directly "
-                   "from qutip Qobj/QobjEvo state output.",
+        "reason": "BASE ENGINE: the entire cycle computation runs on jax.numpy "
+                   "x64 -- unitary strokes via a midpoint-exponential SU(2) "
+                   "propagator (jax.lax.scan), thermal relaxation via "
+                   "jax.scipy.linalg.expm of the vectorized GKSL Liouvillian. "
+                   "The independent jax leg (quantum_otto_engine_jax.py, "
+                   "dynamiqs/Tsit5) recomputes the per-cycle work/efficiency "
+                   "from scratch and is the leg the three_engine_seal re-runs.",
     },
-    "numpy": {
+    "julia": {
         "tried": True,
         "used": True,
-        "reason": "control-only: coefficient functions for the time-"
-                   "dependent Hamiltonian, tolerance arithmetic, and the "
-                   "analytic Gibbs-population cross-check formula.",
+        "reason": "Authoritative QuantumOptics.jl leg "
+                   "(quantum_otto_engine_julia.jl, timeevolution.master_dynamic "
+                   "at reltol=1e-10): independent per-cycle work/efficiency "
+                   "recompute; the reference value on any disagreement.",
+    },
+    "qutip": {
+        "tried": qt is not None,
+        "used": False,
+        "reason": "SUPPORTIVE cross-check only: an independent qutip.mesolve "
+                   "recompute of the friction cycle; updated at runtime with "
+                   "its actual divergence." if qt is not None
+                   else f"Import failed: {_QUTIP_IMPORT_ERROR}",
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "qutip": "load_bearing",
-    "numpy": "supportive",
+    "jax": "load_bearing",
+    "julia": "load_bearing",
+    "qutip": "supportive",
 }
-
-SZ = qt.sigmaz()
-SX = qt.sigmax()
-SM = qt.sigmam()
-SP = qt.sigmap()
 
 B_HOT, B_COLD = 2.0, 1.0
 T_HOT, T_COLD = 2.0, 0.5
@@ -161,28 +185,56 @@ ETA_IDEAL_REL_TOL = 1e-4
 FRICTION_MIN_OFFDIAG = 1e-3
 FRICTION_MIN_ETA_DROP = 0.05
 SECOND_LAW_TOL = 1e-6
+ENGINE_AGREE_TOL = 1e-6
+
+HERE = Path(__file__).resolve().parent
+SIM_PY = "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
+JULIA_CMD = ["julia", "--project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier"]
+
+
+def gibbs_excited_pop(B, T):
+    """Excited-state (E=+B/2) population of Gibbs(B, T): 1/(1+exp(B/T))."""
+    return float(1.0 / (1.0 + jnp.exp(B / T)))
 
 
 def gibbs_state(B, T):
-    H = 0.5 * B * SZ
-    rho = (-H / T).expm()
-    return rho / rho.tr()
+    """Gibbs state of H=(B/2)sigma_z as a jnp density matrix, basis
+    (|excited>, |ground>) -- diagonal, exp(-H/T)/Z evaluated in closed form."""
+    p = gibbs_excited_pop(B, T)
+    return jnp.diag(jnp.array([p, 1.0 - p], dtype=jnp.complex128))
 
 
-def lindblad_convergence_check(B, T, gamma=GAMMA_BATH, t_max=50.0, n=500):
-    """Run the actual Lindblad ME (mesolve) from a deliberately wrong
-    starting state and confirm it converges to the analytic Gibbs state --
-    this exercises the thermal-bath machinery genuinely rather than just
-    asserting the closed-form Gibbs formula."""
-    H = 0.5 * B * SZ
-    nbar = 1.0 / (np.exp(B / T) - 1.0)
-    c_ops = [np.sqrt(gamma * (nbar + 1)) * SM, np.sqrt(gamma * nbar) * SP]
-    rho_wrong_start = qt.fock_dm(2, 1) if B > 0 else qt.fock_dm(2, 0)
-    tlist = np.linspace(0.0, t_max, n)
-    res = qt.mesolve(H, rho_wrong_start, tlist, c_ops=c_ops)
-    rho_final = res.states[-1]
+def _dissipator_super(L):
+    """Row-vectorized GKSL dissipator superoperator D[L] as a 4x4 matrix:
+    vec(L rho Ld) - 0.5 vec(LdL rho) - 0.5 vec(rho LdL)."""
+    I2 = jnp.eye(2, dtype=jnp.complex128)
+    LdL = L.conj().T @ L
+    return (jnp.kron(L, L.conj())
+            - 0.5 * jnp.kron(LdL, I2)
+            - 0.5 * jnp.kron(I2, LdL.T))
+
+
+def lindblad_convergence_check(B, T, gamma=GAMMA_BATH, t_max=50.0):
+    """Solve the actual GKSL thermal-bath master equation (detailed-balance
+    jump operators) from a deliberately wrong starting state (the ground
+    state, not the Gibbs state) and confirm convergence to the analytic
+    Gibbs state. The full Liouvillian superoperator is exponentiated with
+    jax.scipy.linalg.expm -- an exact-propagator solve of the same GKSL
+    generator a stepper would integrate, exercising the thermal-bath
+    machinery genuinely rather than just asserting the closed-form Gibbs
+    formula."""
+    H = jnp.diag(jnp.array([0.5 * B, -0.5 * B], dtype=jnp.complex128))
+    nbar = 1.0 / (math.exp(B / T) - 1.0)
+    sm = jnp.array([[0.0, 0.0], [1.0, 0.0]], dtype=jnp.complex128)  # |e> -> |g|
+    sp = sm.conj().T
+    I2 = jnp.eye(2, dtype=jnp.complex128)
+    liouvillian = (-1j * (jnp.kron(H, I2) - jnp.kron(I2, H.T))
+                   + gamma * (nbar + 1.0) * _dissipator_super(sm)
+                   + gamma * nbar * _dissipator_super(sp))
+    rho_wrong_start = jnp.diag(jnp.array([0.0, 1.0], dtype=jnp.complex128))
+    rho_final = (expm(liouvillian * t_max) @ rho_wrong_start.reshape(-1)).reshape(2, 2)
     rho_analytic = gibbs_state(B, T)
-    max_abs_diff = float(np.max(np.abs(rho_final.full() - rho_analytic.full())))
+    max_abs_diff = float(jnp.max(jnp.abs(rho_final - rho_analytic)))
     return {
         "B": B, "T": T,
         "max_abs_diff_from_analytic_gibbs": max_abs_diff,
@@ -191,26 +243,39 @@ def lindblad_convergence_check(B, T, gamma=GAMMA_BATH, t_max=50.0, n=500):
     }
 
 
+@partial(jax.jit, static_argnames=("n",))
+def _stroke_scan(rho_in, B_start, B_end, tau, eps_max, n):
+    """Midpoint-exponential propagator: n exact SU(2) step exponentials of
+    H(t_mid) = (B(t_mid)/2) sigma_z + (eps(t_mid)/2) sigma_x, 2nd-order
+    accurate in dt, applied by jax.lax.scan."""
+    dt = tau / n
+
+    def step(rho, k):
+        t_mid = (k + 0.5) * dt
+        bz = 0.5 * (B_start + (B_end - B_start) * (t_mid / tau))
+        ex = 0.5 * eps_max * jnp.sin(jnp.pi * t_mid / tau)
+        w = jnp.sqrt(bz * bz + ex * ex)   # >= B_cold/2 = 0.5 here; guard anyway
+        s = jnp.sin(w * dt) / jnp.where(w > 0.0, w, 1.0)
+        c = jnp.cos(w * dt)
+        U = jnp.array([[c - 1j * s * bz, -1j * s * ex],
+                       [-1j * s * ex, c + 1j * s * bz]], dtype=jnp.complex128)
+        return U @ rho @ U.conj().T, 0.0
+
+    rho_out, _ = jax.lax.scan(step, rho_in, jnp.arange(n))
+    return rho_out
+
+
 def ramp_stroke(rho_in, B_start, B_end, tau, eps_max):
     """Unitary isentropic stroke: H(t) = (B(t)/2) sigma_z + (eps(t)/2) sigma_x,
     with eps(t) a sine bump that vanishes at t=0 and t=tau (so the stroke
     always starts/ends on the pure sigma_z eigenbasis that the isochoric
     Gibbs states live in). Returns excited-state population and coherence
     magnitude at the end of the stroke."""
-    n = max(300, int(tau * 80))
-
-    def bfield(t, args=None):
-        return B_start + (B_end - B_start) * (t / tau)
-
-    def tilt(t, args=None):
-        return eps_max * np.sin(np.pi * t / tau) if tau > 0 else 0.0
-
-    H_td = qt.QobjEvo([[SZ * 0.5, bfield], [SX * 0.5, tilt]])
-    tlist = np.linspace(0.0, tau, n)
-    res = qt.mesolve(H_td, rho_in, tlist, c_ops=[])
-    rho_out = res.states[-1]
-    pop_excited = float(np.real(rho_out.diag())[0])
-    offdiag = float(np.abs(rho_out.full()[0, 1]))
+    n = max(8000, int(tau * 400))
+    rho_out = _stroke_scan(rho_in, float(B_start), float(B_end), float(tau),
+                           float(eps_max), n)
+    pop_excited = float(rho_out[0, 0].real)
+    offdiag = float(jnp.abs(rho_out[0, 1]))
     return pop_excited, offdiag
 
 
@@ -335,16 +400,130 @@ def run_boundary_tests(rho1, rho3, p1, p3, eta_ideal):
     }
 
 
+def qutip_friction_cross_check(p1, p3, base_eta_friction):
+    """SUPPORTIVE second-opinion recompute of the friction cycle via
+    qutip.mesolve (QobjEvo time-dependent H, tight tolerances). Control/
+    supportive only -- the load-bearing values come from the julia/jax
+    engine legs plus the jnp base."""
+    if qt is None:
+        return {"ran": False, "reason": _QUTIP_IMPORT_ERROR,
+                "eta_friction": None, "divergence_vs_base": None}
+    try:
+        SZq, SXq = qt.sigmaz(), qt.sigmax()
+
+        def one_stroke(p_in, B_start, B_end):
+            def bfield(t, args=None):
+                return 0.5 * (B_start + (B_end - B_start) * (t / TAU_FRICTION))
+
+            def tilt(t, args=None):
+                return 0.5 * EPS_MAX * math.sin(math.pi * t / TAU_FRICTION)
+
+            H_td = qt.QobjEvo([[SZq, bfield], [SXq, tilt]])
+            rho0 = p_in * qt.fock_dm(2, 0) + (1.0 - p_in) * qt.fock_dm(2, 1)
+            res = qt.mesolve(H_td, rho0, [0.0, TAU_FRICTION], c_ops=[],
+                             options={"rtol": 1e-10, "atol": 1e-12})
+            return float(res.states[-1].full()[0, 0].real)
+
+        p2q = one_stroke(p1, B_HOT, B_COLD)
+        p4q = one_stroke(p3, B_COLD, B_HOT)
+        q_in = B_HOT * (p1 - p4q)
+        q_out = B_COLD * (p2q - p3)
+        eta_q = (q_in - q_out) / q_in
+        div = abs(eta_q - base_eta_friction)
+        if div > ENGINE_AGREE_TOL:
+            # Loud, not smoothed: a genuine cross-engine disagreement.
+            raise AssertionError(
+                f"qutip cross-check diverges from the jnp base friction eta by "
+                f"{div} > {ENGINE_AGREE_TOL} -- report, do not smooth.")
+        TOOL_MANIFEST["qutip"]["used"] = True
+        TOOL_MANIFEST["qutip"]["reason"] = (
+            f"SUPPORTIVE cross-check: qutip.mesolve independently reproduced the "
+            f"friction-cycle eta ({eta_q:.9f}), agreeing with the jnp base to {div:.3e}.")
+        return {"ran": True, "reason": None,
+                "eta_friction": eta_q, "divergence_vs_base": div}
+    except AssertionError:
+        raise
+    except Exception as error:
+        TOOL_MANIFEST["qutip"]["used"] = False
+        TOOL_MANIFEST["qutip"]["reason"] = (
+            f"qutip available but cross-check did not run successfully: {error}")
+        return {"ran": False, "reason": str(error),
+                "eta_friction": None, "divergence_vs_base": None}
+
+
+def _run_leg(cmd):
+    """Run one engine leg as an independent subprocess (no echo -- each
+    recomputes from scratch) and parse its single JSON line."""
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=600,
+                              cwd=str(HERE))
+    except Exception as exc:  # noqa: BLE001
+        return {"ran": False, "reason": f"dispatch failed: {exc}"}
+    if proc.returncode != 0:
+        return {"ran": False, "reason": f"exit {proc.returncode}: {proc.stderr.strip()[-200:]}"}
+    lines = [ln for ln in proc.stdout.splitlines() if ln.strip().startswith("{")]
+    if not lines:
+        return {"ran": False, "reason": "no JSON on stdout"}
+    data = json.loads(lines[-1])
+    data["ran"] = True
+    return data
+
+
+def three_engine_legs():
+    """Julia (QuantumOptics, authoritative) + JAX (dynamiqs), each recomputing
+    the per-cycle work/efficiency INDEPENDENTLY. Sequential on purpose --
+    julia startup is expensive, never run julia legs in parallel."""
+    julia = _run_leg(JULIA_CMD + [str(HERE / "quantum_otto_engine_julia.jl")])
+    jax_leg = _run_leg([SIM_PY, str(HERE / "quantum_otto_engine_jax.py")])
+    return {"julia": julia, "jax": jax_leg}
+
+
+LEG_SHARED_FIELDS = [
+    "p1_excited_pop_hot_gibbs", "p3_excited_pop_cold_gibbs",
+    "eta_ideal", "w_net_ideal", "q_in_ideal", "q_out_ideal",
+    "eta_friction", "w_net_friction", "q_in_friction", "q_out_friction",
+    "offdiag_friction_max",
+]
+
+
 if __name__ == "__main__":
     rho1 = gibbs_state(B_HOT, T_HOT)
     rho3 = gibbs_state(B_COLD, T_COLD)
-    p1 = float(np.real(rho1.diag())[0])
-    p3 = float(np.real(rho3.diag())[0])
+    p1 = gibbs_excited_pop(B_HOT, T_HOT)
+    p3 = gibbs_excited_pop(B_COLD, T_COLD)
 
     positive = run_positive_tests(rho1, rho3, p1, p3)
     eta_ideal = positive["ideal_cycle"]["eta"]
     negative = run_negative_tests(rho1, rho3, p1, p3, eta_ideal)
     boundary = run_boundary_tests(rho1, rho3, p1, p3, eta_ideal)
+    friction = negative["friction_control_cycle"]
+
+    # THREE-ENGINE EVIDENCE: julia + jax legs, each an independent subprocess
+    # recompute (no echo); fail CLOSED (no receipt) if either leg does not run.
+    engines = three_engine_legs()
+    for eng in ("julia", "jax"):
+        if not engines[eng].get("ran"):
+            raise AssertionError(
+                f"{eng} engine leg did not run ({engines[eng].get('reason')}) "
+                f"-- failing closed, no receipt.")
+    leg_divergence = max(
+        abs(float(engines["julia"][f]) - float(engines["jax"][f]))
+        for f in LEG_SHARED_FIELDS)
+    base_friction = {
+        "eta_friction": friction["eta"], "w_net_friction": friction["W_net"],
+        "q_in_friction": friction["Q_in"], "q_out_friction": friction["Q_out"],
+        "eta_ideal": eta_ideal,
+    }
+    base_vs_julia_divergence = max(
+        abs(float(engines["julia"][k]) - float(v)) for k, v in base_friction.items())
+    max_cross_engine_divergence = max(leg_divergence, base_vs_julia_divergence)
+    if max_cross_engine_divergence > ENGINE_AGREE_TOL:
+        raise AssertionError(
+            f"cross-engine divergence {max_cross_engine_divergence} > "
+            f"{ENGINE_AGREE_TOL} vs Julia reference -- report, do not smooth. "
+            f"julia={engines['julia']}, jax={engines['jax']}, base={base_friction}")
+
+    qutip_check = qutip_friction_cross_check(p1, p3, friction["eta"])
 
     all_checks = [
         boundary["C1_lindblad_thermalization_convergence"]["pass"],
@@ -358,8 +537,9 @@ if __name__ == "__main__":
 
     results = {
         "name": "quantum_otto_engine",
-        "engine": "spin-1/2 quantum Otto cycle (Zeeman gap as piston), qutip density matrices",
-        "probe_family": "M_qutip_mesolve_lindblad_and_unitary_qobjevo",
+        "engine": "spin-1/2 quantum Otto cycle (Zeeman gap as piston), jnp x64 "
+                  "density matrices; julia(QuantumOptics)+jax(dynamiqs) engine legs",
+        "probe_family": "M_jnp_midpoint_exponential_strokes_and_gksl_liouvillian_expm",
         "constraint_set": "C_two_isochoric_two_isentropic_strokes_natural_units",
         "units": "hbar = k_B = 1 (natural units)",
         "parameters": {
@@ -369,6 +549,33 @@ if __name__ == "__main__":
         },
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "engine_values": {
+            "julia_eta_friction": float(engines["julia"]["eta_friction"]),
+            "jax_eta_friction": float(engines["jax"]["eta_friction"]),
+            "julia_w_net_friction": float(engines["julia"]["w_net_friction"]),
+            "jax_w_net_friction": float(engines["jax"]["w_net_friction"]),
+            "julia_eta_ideal": float(engines["julia"]["eta_ideal"]),
+            "jax_eta_ideal": float(engines["jax"]["eta_ideal"]),
+            "jnp_base_eta_friction": friction["eta"],
+            "jnp_base_eta_ideal": eta_ideal,
+            "qutip_eta_friction": qutip_check["eta_friction"],
+        },
+        "three_engine_legs": engines,
+        "max_cross_engine_divergence": max_cross_engine_divergence,
+        "leg_vs_leg_divergence": leg_divergence,
+        "base_vs_julia_divergence": base_vs_julia_divergence,
+        "engine_contract": {
+            "mode": "julia_jax_legs_plus_jnp_base", "semantic_owner": "julia",
+            "reference": "julia:QuantumOptics",
+            "engines_agree_to": max_cross_engine_divergence,
+            "n_authoritative_engines": 2,
+        },
+        "engines_ran": {
+            "julia": bool(engines["julia"].get("ran")),
+            "jax": bool(engines["jax"].get("ran")),
+            "qutip": bool(qutip_check["ran"]),
+        },
+        "qutip_cross_check": qutip_check,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
@@ -387,15 +594,16 @@ if __name__ == "__main__":
         "all_pass": all_pass,
         "criteria_checked": ["C1", "C2", "C3", "C4", "C5", "C6"],
         "engine_machinery_used": {
-            "qutip_mesolve_lindblad_thermal_relaxation": True,
-            "qutip_mesolve_unitary_time_dependent_H": True,
-            "qutip_QobjEvo": True,
-            "qutip_mcsolve_counts": False,
-            "numpy_control_only": True,
-            "note": "mesolve covers both the dissipative (isochoric) and "
-                    "unitary (isentropic) strokes; no trajectory/counts "
-                    "solver is needed for ensemble-averaged thermodynamic "
-                    "quantities.",
+            "jnp_midpoint_exponential_unitary_strokes": True,
+            "jnp_gksl_liouvillian_expm_thermal_relaxation": True,
+            "julia_quantumoptics_master_dynamic_leg": True,
+            "jax_dynamiqs_mesolve_leg": True,
+            "qutip_mesolve_supportive_cross_check": bool(qutip_check["ran"]),
+            "numpy": False,
+            "note": "base compute path is jax.numpy x64 end to end; the julia "
+                    "and jax legs each recompute the per-cycle work/efficiency "
+                    "from scratch in their own subprocess; qutip is a "
+                    "supportive second opinion on the friction cycle only.",
         },
     }
 
@@ -416,6 +624,8 @@ if __name__ == "__main__":
           f"eta_drop_abs={negative['eta_drop_absolute']:.6f}")
     print(f"Lindblad convergence: hot_diff={boundary['C1_lindblad_thermalization_convergence']['hot']['max_abs_diff_from_analytic_gibbs']:.3e}  "
           f"cold_diff={boundary['C1_lindblad_thermalization_convergence']['cold']['max_abs_diff_from_analytic_gibbs']:.3e}")
+    print(f"ENGINES julia+jax: max cross-engine divergence={max_cross_engine_divergence:.3e} "
+          f"(leg-vs-leg {leg_divergence:.3e}, base-vs-julia {base_vs_julia_divergence:.3e})")
     print(f"ALL_PASS = {all_pass}")
     if not all_pass:
         checks = {

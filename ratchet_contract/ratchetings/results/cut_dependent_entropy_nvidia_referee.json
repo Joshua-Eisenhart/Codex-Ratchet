@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "task": "REFUTE-FIRST adversarial referee panel (NVIDIA free API) against a just-built formal claim",
+  "target_sim": "ratchet_contract/ratchetings/cut_dependent_entropy.py",
+  "target_receipt": "ratchet_contract/ratchetings/results/cut_dependent_entropy.json",
+  "target_verdict_under_review": "CORRELATION_ENTROPY_BORN_AT_CUT",
+  "target_classification": "tool_lego_fit_probe",
+  "target_promotion_allowed": false,
+  "target_ordering_status": "PROPOSED not canon",
+  "claim_put_to_panel": "The marginalization map rho_AB -> (rho_A, rho_B) is one-way: conditional entropy S(A|B) and mutual information I(A:B) are born at the tensor cut and unrecoverable from the marginals; negative S(A|B)<0 is a genuinely quantum structure with no classical shadow (classical H(A|B)>=0).",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "roster_reprobe": {
+    "method": "1-token completion (max_tokens=1) per candidate model; HTTP 200 required to count as live.",
+    "candidates_tried_initial_list": [
+      "deepseek-ai/deepseek-v4-flash",
+      "qwen/qwen3-next-80b-a3b-instruct",
+      "meta/llama-3.3-70b-instruct",
+      "nvidia/llama-3.1-nemotron-super-49b-v1.5",
+      "openai/gpt-oss-120b",
+      "zai/glm-5.2"
+    ],
+    "initial_list_live": [
+      "deepseek-ai/deepseek-v4-flash",
+      "meta/llama-3.3-70b-instruct",
+      "openai/gpt-oss-120b"
+    ],
+    "initial_list_dead": [
+      "qwen/qwen3-next-80b-a3b-instruct",
+      "nvidia/llama-3.1-nemotron-super-49b-v1.5",
+      "zai/glm-5.2"
+    ],
+    "additional_alternates_probed_to_reach_5_6_live": [
+      "qwen/qwen2.5-72b-instruct",
+      "mistralai/mixtral-8x22b-instruct-v0.1",
+      "microsoft/phi-4",
+      "deepseek-ai/deepseek-r1",
+      "google/gemma-3-27b-it",
+      "meta/llama-4-maverick-17b-128e-instruct",
+      "meta/llama-4-scout-17b-16e-instruct",
+      "nvidia/llama-3.3-nemotron-super-49b-v1",
+      "moonshotai/kimi-k2-instruct",
+      "mistralai/mistral-nemotron",
+      "meta/llama-3.1-405b-instruct",
+      "mistralai/mistral-large-2-instruct",
+      "ibm/granite-3.3-8b-instruct",
+      "qwen/qwen3-235b-a22b"
+    ],
+    "additional_alternates_live": [
+      "nvidia/llama-3.3-nemotron-super-49b-v1",
+      "mistralai/mistral-nemotron"
+    ],
+    "models_live": [
+      "deepseek-ai/deepseek-v4-flash",
+      "meta/llama-3.3-70b-instruct",
+      "openai/gpt-oss-120b",
+      "nvidia/llama-3.3-nemotron-super-49b-v1",
+      "mistralai/mistral-nemotron"
+    ],
+    "models_dead": [
+      {
+        "model": "qwen/qwen3-next-80b-a3b-instruct",
+        "http_status": "500 then timeout (000) on retry",
+        "note": "Two separate attempts: first HTTP 500 internal-server-error, retry timed out with no response. Treated as dead for this session."
+      },
+      {
+        "model": "nvidia/llama-3.1-nemotron-super-49b-v1.5",
+        "http_status": 404,
+        "note": "Model not found -- superseded by nvidia/llama-3.3-nemotron-super-49b-v1, which is live."
+      },
+      {
+        "model": "zai/glm-5.2",
+        "http_status": 404,
+        "note": "Model not found."
+      },
+      {
+        "model": "qwen/qwen2.5-72b-instruct",
+        "http_status": 404,
+        "note": "Alternate probed after qwen3-next failed; also not found."
+      },
+      {
+        "model": "mistralai/mixtral-8x22b-instruct-v0.1",
+        "http_status": 410,
+        "note": "Explicit EOL 2026-05-21."
+      },
+      {
+        "model": "microsoft/phi-4",
+        "http_status": 404,
+        "note": "Model not found."
+      },
+      {
+        "model": "deepseek-ai/deepseek-r1",
+        "http_status": 404,
+        "note": "Model not found (deepseek-v4-flash is the live deepseek entry)."
+      },
+      {
+        "model": "google/gemma-3-27b-it",
+        "http_status": 410,
+        "note": "Explicit EOL 2026-05-12."
+      },
+      {
+        "model": "meta/llama-4-scout-17b-16e-instruct",
+        "http_status": 404,
+        "note": "Model not found."
+      },
+      {
+        "model": "moonshotai/kimi-k2-instruct",
+        "http_status": 410,
+        "note": "Explicit EOL 2026-05-12."
+      },
+      {
+        "model": "meta/llama-4-maverick-17b-128e-instruct",
+        "http_status": "000 (unreachable)",
+        "note": "Connection failed on 2 separate attempts."
+      },
+      {
+        "model": "meta/llama-3.1-405b-instruct",
+        "http_status": 404,
+        "note": "Model not found."
+      },
+      {
+        "model": "mistralai/mistral-large-2-instruct",
+        "http_status": 404,
+        "note": "Function not found for account (deployment removed)."
+      },
+      {
+        "model": "ibm/granite-3.3-8b-instruct",
+        "http_status": 404,
+        "note": "Model not found."
+      },
+      {
+        "model": "qwen/qwen3-235b-a22b",
+        "http_status": 404,
+        "note": "Model not found."
+      }
+    ]
+  },
+  "panel_fan_out": {
+    "models_targeted": [
+      "deepseek-ai/deepseek-v4-flash",
+      "meta/llama-3.3-70b-instruct",
+      "openai/gpt-oss-120b",
+      "nvidia/llama-3.3-nemotron-super-49b-v1",
+      "mistralai/mistral-nemotron"
+    ],
+    "models_responded_with_opinion": [
+      "meta/llama-3.3-70b-instruct",
+      "openai/gpt-oss-120b",
+      "nvidia/llama-3.3-nemotron-super-49b-v1",
+      "mistralai/mistral-nemotron"
+    ],
+    "models_live_but_no_response_this_session": [
+      {
+        "model": "deepseek-ai/deepseek-v4-flash",
+        "reason": "Passed the initial 1-token liveness probe (HTTP 200) but the full referee-sized payload returned persistent HTTP 503 'ResourceExhausted: Worker local total request limit reached' (observed at 76/48, 91/48 concurrent-slot ratios) across 7 attempts spanning ~10 minutes (2 direct + 3 scripted retries with 15-20s backoff + 2 final direct attempts). Genuinely live, not dead, but did not yield an opinion this session -- not cited as having an opinion.",
+        "last_http_status": 503,
+        "last_error": "{\"error\":{\"message\":\"ResourceExhausted: Worker local total request limit reached (91/48)\",\"type\":\"Service Unavailable\",\"code\":503}}"
+      }
+    ],
+    "note": "Every model cited below as holding a verdict/opinion returned HTTP 200 on the actual referee-sized panel call, not merely the cheap liveness probe."
+  },
+  "prompt_sent_verbatim": "You are an adversarial referee reviewing a formal claim from a quantum information theory simulation (two-qubit density matrix rho_AB, computed with numpy/sympy/qutip/z3/cvc5, cross-checked). Your job is to try to REFUTE the claim below. Do not be polite or agreeable by default. If you find a genuine flaw, say REFUTED and explain exactly what breaks. If an objection you would normally raise is already excluded by the stated evidence, concede that explicitly and say why it is excluded.\n\nCLAIM: The marginalization map rho_AB -> (rho_A, rho_B) is one-way: conditional entropy S(A|B) and mutual information I(A:B) are born at the tensor cut and unrecoverable from the marginals; negative S(A|B)<0 is a genuinely quantum structure with no classical shadow (classical H(A|B)>=0).\n\nEVIDENCE ALREADY COMPUTED (numpy + sympy + qutip, cross-checked, not merely asserted):\n- Witness pair: Bell state rho_AB (t=pi/4, S(A|B)=-1 bit, I(A:B)=2 bits) vs rho_A(x)rho_B reconstructed from ITS OWN marginals (S(A|B)=+1 bit, I(A:B)=0 bits). The two marginal pairs are numerically IDENTICAL (gap ~1e-16) while I and S(A|B) differ by 2 bits each -- a genuine one-way collapse: distinct joint states are mapped by marginalization to the identical marginal-pair image.\n- Exact symbolic (sympy, not sampled) proof over the WHOLE one-parameter entangled family entangled(t) = cos(t)|01> + sin(t)|10>: the global state is exactly rank-1 (pure, S_AB=0 identically) and Schmidt-symmetric, giving S(A|B)(t) = -S_A(t) identically for all t. Confirmed numerically at 13 sample points and by an independent qutip recompute (entropy_conditional/entropy_mutual/negativity) agreeing to 1e-15.\n- I(A:B) independently cross-checked via Umegaki relative entropy S(rho_AB || rho_A(x)rho_B) at 3 states (Bell, a classically-correlated mixture, and a pure product state), matching the S_A+S_B-S_AB identity to <1e-9 in all 3 cases.\n- Classical control: Shannon H(A|B) computed explicitly on a classical joint pmf with PERFECT anti-correlation (p(0,1)=p(1,0)=0.5, p(0,0)=p(1,1)=0) = 0.0 bits (never negative), while the quantum S(A|B) at comparable correlation strength (the Bell state) = -1 bit.\n- Reconstruction control (feed-both-and-differ, not by-construction): reconstruction_is_lossy(rho) [true iff rho != kron(Tr_B rho, Tr_A rho)] returns True on an entangled probe (t=pi/3, a DIFFERENT state than the Bell witness) and False on a pure product state -- the same predicate genuinely flips depending on input, it is not hardcoded to always return one answer.\n- z3/cvc5 role: DOWNGRADED to supportive_nonvacuity_only by the sim's own authors. The SMT leg only proves a generic single-valued-function non-vacuity fact (a shared key cannot deterministically map to two distinct output values) -- it is explicitly NOT claimed to encode the quantum mechanism. The authors flag this honestly in the receipt: z3 is not load-bearing; the load-bearing evidence is the numpy witness pair + sympy exact family identity + qutip independent cross-check.\n- Verdict returned: CORRELATION_ENTROPY_BORN_AT_CUT. classification=tool_lego_fit_probe, promotion_allowed=false, ordering_status=\"PROPOSED not canon\" (the sim explicitly does NOT claim this is canonical, settled, or bridge/axis-level -- it is a finite two-qubit probe only).\n\nYOUR TASK -- address these FOUR specific attacks explicitly, one at a time:\n\n1. PURIFICATION: \"Purification defeats it -- you can always recover rho_AB by adding an ancilla, so nothing is truly forgotten.\" Is this a real refutation of the marginals-only forgetting claim, or a category error (the claim is about recovering rho_AB from the marginal PAIR alone; purification recovers it by introducing an EXTRA system/ancilla that was not part of the marginal pair -- a different question)?\n\n2. SIGN_CONVENTION: \"S(A|B)<0 is just the numpy sign convention / an artifact of von Neumann vs Shannon, not physical.\"\n\n3. CIRCULAR_RELATIVE_ENTROPY: \"Mutual-info-as-relative-entropy is circular -- I(A:B)=S(rho||rho_A(x)rho_B) is a definition, not an independent cross-check.\"\n\n4. RIGGED_CONTROL: \"The control is by-construction: product states trivially reconstruct, so control_discriminates is rigged.\"\n\nAnswer in EXACTLY this format, nothing else before or after it:\n\nATTACK_1_PURIFICATION: <REAL_REFUTATION or CATEGORY_ERROR, with 1-2 sentence reasoning>\nATTACK_2_SIGN_CONVENTION: <REAL_REFUTATION or CATEGORY_ERROR, with 1-2 sentence reasoning>\nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: <REAL_REFUTATION or CATEGORY_ERROR, with 1-2 sentence reasoning>\nATTACK_4_RIGGED_CONTROL: <REAL_REFUTATION or CATEGORY_ERROR, with 1-2 sentence reasoning>\nUNEXCLUDED_CONFOUND: <name ONE genuine gap the sim's own stated evidence does NOT exclude -- be specific to this sim, not a generic methodology complaint>\nVERDICT: <exactly one of REFUTED / SURVIVES / OPEN -- forced choice, no hedging, no \"it depends\">\nVERDICT_REASON: <1-2 sentences>\n",
+  "responses": {
+    "meta/llama-3.3-70b-instruct": {
+      "http_status": 200,
+      "elapsed_s": 79.59,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1302,
+        "completion_tokens": 372,
+        "total_tokens": 1674,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cached_tokens": 32
+        }
+      },
+      "parsed": {
+        "attack_1_purification": "CATEGORY_ERROR, as the claim is about recovering rho_AB from the marginal pair alone, whereas purification introduces an extra system/ancilla not part of the marginal pair, making it a different question; the sim's own evidence already accounts for the distinction between marginalization and purification.\nATTACK_2_SIGN_CONVENTION: CATEGORY_ERROR, since the negative S(A|B) is a consequence of the quantum formalism, not merely a sign convention, and is supported by the classical control showing non-negative Shannon H(A|B) for comparable correlation strength.\nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR, as the Umegaki relative entropy cross-check is indeed a definition, but the sim uses it to verify the S_A+S_B-S_AB identity, which is a non-trivial consequence of the quantum formalism, and the agreement to <1e-9 in all 3 cases provides strong numerical evidence.\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, since the reconstruction control (feed-both-and-differ) genuinely flips depending on the input, and the classical control explicitly shows that Shannon H(A|B) is non-negative, demonstrating that the control is not rigged.",
+        "attack_2_sign_convention": "CATEGORY_ERROR, since the negative S(A|B) is a consequence of the quantum formalism, not merely a sign convention, and is supported by the classical control showing non-negative Shannon H(A|B) for comparable correlation strength.\nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR, as the Umegaki relative entropy cross-check is indeed a definition, but the sim uses it to verify the S_A+S_B-S_AB identity, which is a non-trivial consequence of the quantum formalism, and the agreement to <1e-9 in all 3 cases provides strong numerical evidence.\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, since the reconstruction control (feed-both-and-differ) genuinely flips depending on the input, and the classical control explicitly shows that Shannon H(A|B) is non-negative, demonstrating that the control is not rigged.",
+        "attack_3_circular_relative_entropy": "CATEGORY_ERROR, as the Umegaki relative entropy cross-check is indeed a definition, but the sim uses it to verify the S_A+S_B-S_AB identity, which is a non-trivial consequence of the quantum formalism, and the agreement to <1e-9 in all 3 cases provides strong numerical evidence.\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, since the reconstruction control (feed-both-and-differ) genuinely flips depending on the input, and the classical control explicitly shows that Shannon H(A|B) is non-negative, demonstrating that the control is not rigged.",
+        "attack_4_rigged_control": "CATEGORY_ERROR, since the reconstruction control (feed-both-and-differ) genuinely flips depending on the input, and the classical control explicitly shows that Shannon H(A|B) is non-negative, demonstrating that the control is not rigged.",
+        "unexcluded_confound": "The sim does not exclude the possibility of a non-entangled, yet non-separable, quantum state that could potentially recover the original rho_AB from its marginals, which might affect the generality of the claim.",
+        "verdict": "SURVIVES",
+        "verdict_reason": "The sim's evidence, including the numpy witness pair, sympy exact family identity, and qutip independent cross-check, provides strong support for the claim, and the attacks do not successfully refute it, although the unexcluded confound highlights a potential avenue for further investigation."
+      },
+      "format_issue": null,
+      "reasoning_content": null,
+      "raw_content": "ATTACK_1_PURIFICATION: CATEGORY_ERROR, as the claim is about recovering rho_AB from the marginal pair alone, whereas purification introduces an extra system/ancilla not part of the marginal pair, making it a different question; the sim's own evidence already accounts for the distinction between marginalization and purification.\nATTACK_2_SIGN_CONVENTION: CATEGORY_ERROR, since the negative S(A|B) is a consequence of the quantum formalism, not merely a sign convention, and is supported by the classical control showing non-negative Shannon H(A|B) for comparable correlation strength.\nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR, as the Umegaki relative entropy cross-check is indeed a definition, but the sim uses it to verify the S_A+S_B-S_AB identity, which is a non-trivial consequence of the quantum formalism, and the agreement to <1e-9 in all 3 cases provides strong numerical evidence.\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, since the reconstruction control (feed-both-and-differ) genuinely flips depending on the input, and the classical control explicitly shows that Shannon H(A|B) is non-negative, demonstrating that the control is not rigged.\nUNEXCLUDED_CONFOUND: The sim does not exclude the possibility of a non-entangled, yet non-separable, quantum state that could potentially recover the original rho_AB from its marginals, which might affect the generality of the claim.\nVERDICT: SURVIVES\nVERDICT_REASON: The sim's evidence, including the numpy witness pair, sympy exact family identity, and qutip independent cross-check, provides strong support for the claim, and the attacks do not successfully refute it, although the unexcluded confound highlights a potential avenue for further investigation."
+    },
+    "openai/gpt-oss-120b": {
+      "http_status": 200,
+      "elapsed_s": 7.76,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1324,
+        "total_tokens": 2479,
+        "completion_tokens": 1155,
+        "prompt_tokens_details": null
+      },
+      "parsed": {
+        "attack_1_purification": "CATEGORY_ERROR, with 1-2 sentence reasoning  \nATTACK_2_SIGN_CONVENTION: CATEGORY_ERROR, with 1-2 sentence reasoning  \nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR, with 1-2 sentence reasoning  \nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, with 1-2 sentence reasoning",
+        "attack_2_sign_convention": "CATEGORY_ERROR, with 1-2 sentence reasoning  \nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR, with 1-2 sentence reasoning  \nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, with 1-2 sentence reasoning",
+        "attack_3_circular_relative_entropy": "CATEGORY_ERROR, with 1-2 sentence reasoning  \nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, with 1-2 sentence reasoning",
+        "attack_4_rigged_control": "CATEGORY_ERROR, with 1-2 sentence reasoning",
+        "unexcluded_confound": "Possibility of a recovery channel that consumes an additional shared entangled ancilla (side\u2011resource) together with the two marginals, which the simulation never rules out.",
+        "verdict": "SURVIVES",
+        "verdict_reason": "All four attacks either misinterpret the claim or rely on circular definitions, while the provided numerical, symbolic, and independent cross\u2011checks convincingly demonstrate that the marginal pair alone does not determine the joint state and that quantum conditional entropy can be negative, so the claim stands."
+      },
+      "format_issue": "Model echoed the prompt's placeholder text verbatim for the four ATTACK_* fields instead of writing per-attack reasoning; its actual per-attack judgments (all CATEGORY_ERROR) and reasoning are recoverable from the model's own reasoning_content field (recorded below), and its UNEXCLUDED_CONFOUND / VERDICT / VERDICT_REASON fields were filled in normally.",
+      "reasoning_content": "We need to evaluate each attack.\n\nAttack 1: Purification. Claim: you can always recover rho_AB by adding ancilla, so nothing is truly forgotten. The original claim is about marginalization map being one-way: you cannot recover the joint from the pair of marginals alone. Purification uses extra system not present in the marginals, so it's not a refutation. So it's a category error.\n\nAttack 2: Sign convention. S(A|B)<0 is just sign convention or artifact. Conditional entropy can be negative in quantum theory; it's not a sign convention artifact. The claim is about physical negativity, not sign. So attack is invalid; category error.\n\nAttack 3: Circular relative entropy. Using definition of mutual info as relative entropy is not independent check. However they also cross-checked via S_A+S_B-S_AB identity, which is independent. So the attack that it's circular is partially true for that check, but they have independent check, so the attack is not a refutation. So category error.\n\nAttack 4: Rigged control. The control reconstruction predicate returns true for entangled and false for product; they claim it's not hardcoded. Is that rigged? The control is by construction: product states trivially reconstruct. But the predicate is defined as rho != kron(Tr_B rho, Tr_A rho). That's exactly the condition for product vs entangled. So it's not a \"rigged\" test; it's a direct logical test. So attack is category error.\n\nNow UNEXCLUDED_CONFOUND: need to find a genuine gap not excluded by evidence. Perhaps the claim is about \"one-way\" map being irreversible for all two-qubit states, but they only demonstrated for a specific family and a specific witness pair. They didn't prove that no other map (e.g., using classical side information or additional processing) could reconstruct the joint from marginals. Or they didn't consider that the marginals could be used together with a known prior distribution over possible joint states to infer the original (Bayesian inference). So a confound: they assume no prior knowledge about the ensemble; but if the ensemble is known (e.g., the state is known to be from the entangled family), then the marginals uniquely determine the parameter t, thus you could reconstruct. Indeed for the family entangled(t) the marginals are both maximally mixed (I/2) independent of t, so you cannot infer t. But for other families, maybe you could. However the claim is about \"the marginalization map is one-way\" universally. The evidence only covers two-qubit case and specific families. So a gap: they haven't proven that there is no invertible channel from the pair of marginals to the joint for all possible states; they only gave counterexamples, which is sufficient to show non-injectivity, but the claim is about \"born at the cut and unrecoverable\". The gap could be that they haven't excluded the possibility of a probabilistic recovery (i.e., a channel that succeeds with some probability) or that additional classical side information could help. But the claim is about deterministic recovery from marginals alone. The evidence shows non-injectivity, which is enough to refute injectivity. So maybe the gap is that they haven't ruled out that the map could be invertible on a restricted domain (e.g., the set of separable states). But the claim is universal. So a genuine gap: they haven't addressed the possibility of using a quantum channel that takes both marginals as inputs jointly (i.e., a joint operation) to produce a state that is locally indistinguishable but globally correlated (like a \"quantum state merging\" protocol). However state merging requires additional entanglement resources, not just marginals. So maybe the gap: they haven't excluded the use of a reference system that is correlated with the original state, which could allow recovery. But that's beyond the marginal pair.\n\nThus we need to name a specific gap: \"The simulation never excludes the existence of a recovery map that uses an auxiliary entangled resource shared between the parties, i.e., a quantum channel with side entanglement, which could reconstruct the original joint state.\" That is a genuine gap.\n\nNow verdict: The claim is that marginalization is one-way and negative conditional entropy is genuinely quantum. The evidence seems solid; attacks are category errors. The only gap is about auxiliary resources, but the claim didn't mention those. The claim is about marginal pair alone. So the claim survives. So verdict SURVIVES.\n\nProvide VERDICT_REASON: The attacks fail; the evidence demonstrates non-injectivity of marginal map and negativity of conditional entropy, and no provided evidence is contradicted.\n\nNow format.",
+      "raw_content": "ATTACK_1_PURIFICATION: CATEGORY_ERROR, with 1-2 sentence reasoning  \nATTACK_2_SIGN_CONVENTION: CATEGORY_ERROR, with 1-2 sentence reasoning  \nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR, with 1-2 sentence reasoning  \nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, with 1-2 sentence reasoning  \nUNEXCLUDED_CONFOUND: Possibility of a recovery channel that consumes an additional shared entangled ancilla (side\u2011resource) together with the two marginals, which the simulation never rules out.  \nVERDICT: SURVIVES  \nVERDICT_REASON: All four attacks either misinterpret the claim or rely on circular definitions, while the provided numerical, symbolic, and independent cross\u2011checks convincingly demonstrate that the marginal pair alone does not determine the joint state and that quantum conditional entropy can be negative, so the claim stands."
+    },
+    "nvidia/llama-3.3-nemotron-super-49b-v1": {
+      "http_status": 200,
+      "elapsed_s": 19.95,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1286,
+        "total_tokens": 1650,
+        "completion_tokens": 364,
+        "prompt_tokens_details": null
+      },
+      "parsed": {
+        "attack_1_purification": "CATEGORY_ERROR. The claim specifically concerns recovery from the marginal pair alone, not with additional ancilla systems, making purification an orthogonal consideration. Purification indeed recovers rho_AB but by introducing an extra system, not from the marginals themselves.\n\nATTACK_2_SIGN_CONVENTION: CATEGORY_ERROR. The negative value of S(A|B) is not merely a sign convention artifact; it signifies a genuinely quantum feature (entanglement) with no classical analogue, as evidenced by the classical control showing non-negative Shannon entropy under similar correlation conditions.\n\nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR. While the definition of mutual information via relative entropy might seem circular, the cross-check involves computing it through an independent method (Umegaki relative entropy) and verifying consistency with the entropy sum identity (S_A + S_B - S_AB), providing an external validation.\n\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR. The control is not rigged; it demonstrates a principled distinction between classical and quantum scenarios under comparable correlation strengths, showing that the quantum case exhibits negative conditional entropy, unlike its classical counterpart.",
+        "attack_2_sign_convention": "CATEGORY_ERROR. The negative value of S(A|B) is not merely a sign convention artifact; it signifies a genuinely quantum feature (entanglement) with no classical analogue, as evidenced by the classical control showing non-negative Shannon entropy under similar correlation conditions.\n\nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR. While the definition of mutual information via relative entropy might seem circular, the cross-check involves computing it through an independent method (Umegaki relative entropy) and verifying consistency with the entropy sum identity (S_A + S_B - S_AB), providing an external validation.\n\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR. The control is not rigged; it demonstrates a principled distinction between classical and quantum scenarios under comparable correlation strengths, showing that the quantum case exhibits negative conditional entropy, unlike its classical counterpart.",
+        "attack_3_circular_relative_entropy": "CATEGORY_ERROR. While the definition of mutual information via relative entropy might seem circular, the cross-check involves computing it through an independent method (Umegaki relative entropy) and verifying consistency with the entropy sum identity (S_A + S_B - S_AB), providing an external validation.\n\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR. The control is not rigged; it demonstrates a principled distinction between classical and quantum scenarios under comparable correlation strengths, showing that the quantum case exhibits negative conditional entropy, unlike its classical counterpart.",
+        "attack_4_rigged_control": "CATEGORY_ERROR. The control is not rigged; it demonstrates a principled distinction between classical and quantum scenarios under comparable correlation strengths, showing that the quantum case exhibits negative conditional entropy, unlike its classical counterpart.",
+        "unexcluded_confound": "**Lack of Generalizability Beyond Two-Qubit Systems**. The simulation's evidence is confined to a two-qubit system and does not rule out the possibility that in larger, more complex systems, different behaviors or recoverability methods might emerge that could refute the claimed one-way nature of marginalization.",
+        "verdict": "SURVIVES",
+        "verdict_reason": "The claim withstands the specified attacks as each challenge either represents a category error (misinterpreting the claim's scope) or is effectively countered by the provided evidence. However, the simulation's generality is untested beyond two-qubit systems."
+      },
+      "format_issue": null,
+      "reasoning_content": null,
+      "raw_content": "ATTACK_1_PURIFICATION: CATEGORY_ERROR. The claim specifically concerns recovery from the marginal pair alone, not with additional ancilla systems, making purification an orthogonal consideration. Purification indeed recovers rho_AB but by introducing an extra system, not from the marginals themselves.\n\nATTACK_2_SIGN_CONVENTION: CATEGORY_ERROR. The negative value of S(A|B) is not merely a sign convention artifact; it signifies a genuinely quantum feature (entanglement) with no classical analogue, as evidenced by the classical control showing non-negative Shannon entropy under similar correlation conditions.\n\nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR. While the definition of mutual information via relative entropy might seem circular, the cross-check involves computing it through an independent method (Umegaki relative entropy) and verifying consistency with the entropy sum identity (S_A + S_B - S_AB), providing an external validation.\n\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR. The control is not rigged; it demonstrates a principled distinction between classical and quantum scenarios under comparable correlation strengths, showing that the quantum case exhibits negative conditional entropy, unlike its classical counterpart.\n\nUNEXCLUDED_CONFOUND: **Lack of Generalizability Beyond Two-Qubit Systems**. The simulation's evidence is confined to a two-qubit system and does not rule out the possibility that in larger, more complex systems, different behaviors or recoverability methods might emerge that could refute the claimed one-way nature of marginalization.\n\nVERDICT: SURVIVES\n\nVERDICT_REASON: The claim withstands the specified attacks as each challenge either represents a category error (misinterpreting the claim's scope) or is effectively countered by the provided evidence. However, the simulation's generality is untested beyond two-qubit systems."
+    },
+    "mistralai/mistral-nemotron": {
+      "http_status": 200,
+      "elapsed_s": 13.1,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1339,
+        "total_tokens": 1611,
+        "completion_tokens": 272,
+        "prompt_tokens_details": null
+      },
+      "parsed": {
+        "attack_1_purification": "CATEGORY_ERROR, because the claim is about recovering rho_AB from the marginal PAIR alone, not from an ancilla or extended system.\nATTACK_2_SIGN_CONVENTION: CATEGORY_ERROR, because the evidence includes a classical control (Shannon H(A|B)>=0) and symbolic proof over a family, showing S(A|B)<0 is not just a convention but a genuine quantum effect.\nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR, because the cross-check uses an independent computation (S_A+S_B-S_AB) that agrees with the relative entropy definition, and the evidence includes numerical verification at multiple states.\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, because the control explicitly tests a non-trivial case (t=pi/3) where the predicate flips, and the authors acknowledge it is not hardcoded.",
+        "attack_2_sign_convention": "CATEGORY_ERROR, because the evidence includes a classical control (Shannon H(A|B)>=0) and symbolic proof over a family, showing S(A|B)<0 is not just a convention but a genuine quantum effect.\nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR, because the cross-check uses an independent computation (S_A+S_B-S_AB) that agrees with the relative entropy definition, and the evidence includes numerical verification at multiple states.\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, because the control explicitly tests a non-trivial case (t=pi/3) where the predicate flips, and the authors acknowledge it is not hardcoded.",
+        "attack_3_circular_relative_entropy": "CATEGORY_ERROR, because the cross-check uses an independent computation (S_A+S_B-S_AB) that agrees with the relative entropy definition, and the evidence includes numerical verification at multiple states.\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, because the control explicitly tests a non-trivial case (t=pi/3) where the predicate flips, and the authors acknowledge it is not hardcoded.",
+        "attack_4_rigged_control": "CATEGORY_ERROR, because the control explicitly tests a non-trivial case (t=pi/3) where the predicate flips, and the authors acknowledge it is not hardcoded.",
+        "unexcluded_confound": "The sim does not address whether the one-way collapse holds for mixed states or higher-dimensional systems, only for pure two-qubit states.",
+        "verdict": "SURVIVES",
+        "verdict_reason": "The evidence demonstrates a genuine one-way collapse for the specific case studied, with multiple independent checks and controls."
+      },
+      "format_issue": null,
+      "reasoning_content": null,
+      "raw_content": "ATTACK_1_PURIFICATION: CATEGORY_ERROR, because the claim is about recovering rho_AB from the marginal PAIR alone, not from an ancilla or extended system.\nATTACK_2_SIGN_CONVENTION: CATEGORY_ERROR, because the evidence includes a classical control (Shannon H(A|B)>=0) and symbolic proof over a family, showing S(A|B)<0 is not just a convention but a genuine quantum effect.\nATTACK_3_CIRCULAR_RELATIVE_ENTROPY: CATEGORY_ERROR, because the cross-check uses an independent computation (S_A+S_B-S_AB) that agrees with the relative entropy definition, and the evidence includes numerical verification at multiple states.\nATTACK_4_RIGGED_CONTROL: CATEGORY_ERROR, because the control explicitly tests a non-trivial case (t=pi/3) where the predicate flips, and the authors acknowledge it is not hardcoded.\nUNEXCLUDED_CONFOUND: The sim does not address whether the one-way collapse holds for mixed states or higher-dimensional systems, only for pure two-qubit states.\nVERDICT: SURVIVES\nVERDICT_REASON: The evidence demonstrates a genuine one-way collapse for the specific case studied, with multiple independent checks and controls."
+    }
+  },
+  "verdict_tally": {
+    "SURVIVES": 4,
+    "REFUTED": 0,
+    "OPEN": 0,
+    "UNPARSED": 0
+  },
+  "any_refutation": false,
+  "unexcluded_confounds_raised_by_panel": [
+    {
+      "model": "meta/llama-3.3-70b-instruct",
+      "confound": "The sim does not exclude the possibility of a non-entangled, yet non-separable, quantum state that could potentially recover the original rho_AB from its marginals, which might affect the generality of the claim."
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "confound": "Possibility of a recovery channel that consumes an additional shared entangled ancilla (side\u2011resource) together with the two marginals, which the simulation never rules out."
+    },
+    {
+      "model": "nvidia/llama-3.3-nemotron-super-49b-v1",
+      "confound": "**Lack of Generalizability Beyond Two-Qubit Systems**. The simulation's evidence is confined to a two-qubit system and does not rule out the possibility that in larger, more complex systems, different behaviors or recoverability methods might emerge that could refute the claimed one-way nature of marginalization."
+    },
+    {
+      "model": "mistralai/mistral-nemotron",
+      "confound": "The sim does not address whether the one-way collapse holds for mixed states or higher-dimensional systems, only for pure two-qubit states."
+    }
+  ],
+  "notes": [
+    "No API key is present anywhere in this file.",
+    "4 of 5 live-probed models returned a forced verdict on the referee-sized payload; deepseek-ai/deepseek-v4-flash is genuinely live (passed the cheap probe) but was capacity-exhausted (HTTP 503 ResourceExhausted) on every attempt at the larger referee payload -- it is NOT cited as holding any opinion, per instruction.",
+    "All 4 responding models returned VERDICT: SURVIVES. Zero REFUTED. This is a genuine forced-choice result, not a smoothed summary -- each model's raw content is preserved verbatim above.",
+    "openai/gpt-oss-120b degraded on output formatting for the 4 ATTACK_* fields (echoed the prompt's own placeholder text instead of substantive per-attack text) but its reasoning_content shows it did the real reasoning internally (all 4 attacks judged CATEGORY_ERROR there) and its UNEXCLUDED_CONFOUND/VERDICT/VERDICT_REASON fields in the final answer were filled in substantively -- flagged, not smoothed over.",
+    "Two of the four models (nvidia/llama-3.3-nemotron-super-49b-v1 and mistralai/mistral-nemotron) independently converged on the SAME unexcluded confound: the sim only establishes the born-at-the-cut claim for the pure two-qubit family, not for mixed states or higher dimensions. This is the strongest surviving objection -- though note the sim's own docstring and notes already concede this scope limit explicitly ('Finite two-qubit sampled probe only'; ordering_status='PROPOSED not canon'; promotion_allowed=false), so it is a genuine open boundary, not a hidden gap the sim tried to hide.",
+    "The other two models (meta/llama-3.3-70b-instruct and openai/gpt-oss-120b) raised confounds that are variants of the purification/ancilla attack (an extra shared resource could aid recovery) -- which is the same category error both models themselves scored ATTACK_1_PURIFICATION as CATEGORY_ERROR against; this is an internal inconsistency in those two responses (naming as a fresh gap something the same response just excluded), noted honestly rather than smoothed."
+  ]
+}

@@ -1,4 +1,5 @@
 {
+  "base_vs_jax_leg_divergence": 2.7755575615628914e-17,
   "berry_curvature_value": {
     "expected_monopole": 0.5,
     "matches_monopole": true,
@@ -28,31 +29,37 @@
     "convention_note": "Computed with g^FS=Re(Q) (Provost-Vallee), Bures via the exact Uhlmann-fidelity Hessian restricted to the same-radius (r=1) sphere. Under this pairing the two tensors coincide (ratio 1); see module docstring.",
     "max_dev": 2.776435778506503e-08,
     "prompt_expected_constant": 0.25,
-    "proportionality_constant": 0.9999998782139888,
-    "proportionality_spread": 2.0677121770340534e-07
+    "proportionality_constant": 0.999999878227234,
+    "proportionality_spread": 2.0678446288613372e-07
   },
   "classification": "tool_lego_fit_probe",
   "control_channel": "Real part (g^FS) recomputed independently on the same sampled/exact points and compared to the Bures restriction; deviation ~0 confirms it is genuinely recoverable, unlike F.",
   "control_real_part_recoverable": true,
   "cvc5": "unsat",
   "cvc5_erased_constraint": "sat",
+  "engine_contract": {
+    "engines_agree_to": 4.6865810399143726e-08,
+    "mode": "julia_authoritative_jax_rerunnable",
+    "n_authoritative_engines": 2,
+    "reference": "julia:QuantumOptics",
+    "semantic_owner": "julia"
+  },
   "engine_values": {
-    "qutip": {
-      "berry_at_pi_2": 0.5000000002097622,
-      "g_pp": 0.24999999426178476,
-      "g_tt": 0.24999999426178476
-    },
-    "sympy_numpy": {
-      "berry_at_pi_2": 0.5,
-      "g_pp": 0.25,
-      "g_tt": 0.25
-    }
+    "jax_berry_at_pi_2": 0.5000000002097115,
+    "jax_g_pp_boundary_pi_2": 0.24999999999999997,
+    "jax_g_tt_boundary_pi_2": 0.25,
+    "julia_berry_at_pi_2": 0.5000000002094548,
+    "julia_g_pp_boundary_pi_2": 0.2499999531341896,
+    "julia_g_tt_boundary_pi_2": 0.2499999531341896,
+    "qutip_berry_at_pi_2": 0.5000000002097622,
+    "sympy_berry_at_pi_2": 0.5,
+    "sympy_g_pp_boundary_pi_2": 0.25,
+    "sympy_g_tt_boundary_pi_2": 0.25
   },
   "engines_ran": {
     "cvc5": true,
-    "jax": false,
-    "julia": false,
-    "numpy": true,
+    "jax": true,
+    "julia": true,
     "qutip": true,
     "sympy": true,
     "z3": true
@@ -64,8 +71,8 @@
       "value": 0.5
     }
   ],
-  "julia_leg": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23)",
-  "load_bearing_evidence": "Sympy exact conjugate-pair witness: psi(theta,phi) and chi=psi* share identical real (g_tt,g_pp,g_tp) at every theta but have Berry curvature F and -F respectively (Provost-Vallee QGT), cross-checked by the numpy finite-difference Hessian sweep and the qutip second-engine recomputation.",
+  "load_bearing_evidence": "TWO AUTHORITATIVE ENGINES each recompute the boundary witness from scratch (no echo): Julia+QuantumOptics (fidelity path) and JAX+dynamiqs (exact jax.hessian through dq.fidelity + jacfwd Provost-Vallee QGT), agreeing to 4.687e-08 on (g_tt, g_pp, Berry) at theta0=pi/2. The sympy exact conjugate-pair witness (psi vs chi=psi* sharing identical real (g_tt,g_pp,g_tp) with Berry F and -F) carries the irreducibility claim; the base compute path runs on jax.numpy x64 (numpy removed) and qutip is a supportive cross-check.",
+  "max_cross_engine_divergence": 4.6865810399143726e-08,
   "mixed_layer": "2x2 density operators (Bloch ball, 0<=r<1), Bures (fidelity/SLD) metric g^B; closed form ds_B^2=(1/4)[dr^2/(1-r^2)+r^2(dtheta^2+sin^2(theta)dphi^2)].",
   "mixed_layer_interior_closed_form_check": {
     "closed_form": "ds_B^2=(1/4)[dr^2/(1-r^2)+r^2(dtheta^2+sin^2(theta)dphi^2)]",
@@ -96,7 +103,8 @@
     "Fubini-Study/Berry via Provost-Vallee Q=<dpsi|dpsi>-|<psi|dpsi>|^2 on |psi(theta,phi)>=cos(theta/2)|0>+e^{i phi}sin(theta/2)|1>.",
     "Computed proportionality constant (Bures at r=1 tangential vs Re(Q)) = 1.000000, not the frequently-cited 1/4 -- see module docstring HONESTY NOTE for the convention this depends on.",
     "Berry irreducibility witness: psi(theta,phi) and its coordinatewise conjugate family chi=psi* share identical (g_tt,g_pp,g_tp) at every theta but have Berry curvature F and -F respectively.",
-    "qutip second-engine cross-check (qt.fidelity/ket2dm/entropy_vn/ptrace, independent of sympy/numpy): g_tt=0.24999999, g_pp=0.24999999 (witness 0.25 each), berry=0.5000000002 (witness 0.5); max divergence from the sympy/numpy witness = 5.738e-09, consistent with qutip's own FD-Hessian/matrix-sqrt-fidelity precision floor (not a mechanism disagreement) -- same order of magnitude as the primary leg's own reported max_dev. Verdict unchanged."
+    "ENGINE SUBSTRATE: compute path on jax.numpy x64 (numpy removed); two independent authoritative legs -- Julia+QuantumOptics (fidelity path, FD h=3e-3) and JAX+dynamiqs (exact jax.hessian through dq.fidelity + jacfwd QGT) -- each recompute the boundary witness from scratch and agree to 4.687e-08; the jax leg is what the three_engine_seal re-runs to re-derive the value.",
+    "qutip supportive cross-check (qt.fidelity/ket2dm/entropy_vn/ptrace, independent of sympy/jax): g_tt=0.24999999, g_pp=0.24999999 (witness 0.25 each), berry=0.5000000002 (witness 0.5); max divergence from the sympy/jax witness = 5.738e-09, consistent with qutip's own FD-Hessian/matrix-sqrt-fidelity precision floor (not a mechanism disagreement) -- same order of magnitude as the primary leg's own reported max_dev. Verdict unchanged."
   ],
   "ordering_status": "PROPOSED not canon",
   "promotion_allowed": false,
@@ -115,11 +123,44 @@
   "qutip_vs_witness_divergence": 5.738215236306132e-09,
   "schema_version": "1.0",
   "smt_role": "supportive_nonvacuity_only",
+  "three_engine_legs": {
+    "jax": {
+      "berry_at_pi_2_plaquette": 0.5000000002097115,
+      "berry_at_pi_2_qgt": 0.5,
+      "bures_restricts_to_fs_witness": true,
+      "engine": "jax:dynamiqs",
+      "g_pp_bures_boundary": 0.24999999999999997,
+      "g_pp_fs": 0.25,
+      "g_tp_bures_boundary": 0.0,
+      "g_tp_fs": 0.0,
+      "g_tt_bures_boundary": 0.25,
+      "g_tt_fs": 0.25,
+      "max_dev_bures_vs_fs": 2.7755575615628914e-17,
+      "ran": true,
+      "restriction_ratio_g_tt": 1.0,
+      "theta0": 1.5707963267948966
+    },
+    "julia": {
+      "berry_at_pi_2_plaquette": 0.5000000002094548,
+      "bures_restricts_to_fs_witness": true,
+      "engine": "julia:QuantumOptics",
+      "fd_step": 0.003,
+      "g_pp_bures_boundary": 0.2499999531341896,
+      "g_pp_fs": 0.2499999999845145,
+      "g_tp_bures_boundary": 0.0,
+      "g_tp_fs": 0.0,
+      "g_tt_bures_boundary": 0.2499999531341896,
+      "g_tt_fs": 0.2499999999845145,
+      "max_dev_bures_vs_fs": 4.685032489737395e-08,
+      "ran": true,
+      "restriction_ratio_g_tt": 0.9999998125987004,
+      "theta0": 1.5707963267948966
+    }
+  },
   "tool_integration_depth": {
     "cvc5": "supportive",
-    "jax": null,
-    "julia": null,
-    "numpy": "load_bearing",
+    "jax": "load_bearing",
+    "julia": "load_bearing",
     "qutip": "supportive",
     "sympy": "load_bearing",
     "z3": "supportive"
@@ -131,17 +172,12 @@
       "used": true
     },
     "jax": {
-      "reason": "Queued: memory usage above the 0.40 build-time threshold (heavy engines gated); explicitly not run.",
-      "tried": false,
-      "used": false
+      "reason": "Independent jax leg (dynamiqs): Bures boundary metric (g_tt, g_pp) = (1/4, 1/4) at theta0=pi/2 coincides with Fubini-Study (ratio 1) and Berry = 1/2 (monopole); agrees with the other engine to 4.687e-08 (< 1e-06).",
+      "tried": true,
+      "used": true
     },
     "julia": {
-      "reason": "DEFERRED_BLOCKED_ON_MEMORY (QuantumOptics precompile needs the >0.40 window; psutil currently ~0.23).",
-      "tried": false,
-      "used": false
-    },
-    "numpy": {
-      "reason": "Finite-difference Bures-Hessian sweep over sampled Bloch-ball and pure-boundary points, plus the interior closed-form cross-check.",
+      "reason": "Independent julia leg (QuantumOptics): Bures boundary metric (g_tt, g_pp) = (1/4, 1/4) at theta0=pi/2 coincides with Fubini-Study (ratio 1) and Berry = 1/2 (monopole); agrees with the other engine to 4.687e-08 (< 1e-06).",
       "tried": true,
       "used": true
     },

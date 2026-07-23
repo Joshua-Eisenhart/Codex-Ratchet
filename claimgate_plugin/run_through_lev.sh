@@ -12,7 +12,8 @@ set -o pipefail
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) || exit 2
 receipt=${1:?usage: run_through_lev.sh <receipt.json> [--generated-at <iso>]}
 gen_at=${3:-2026-07-22T00:00:00Z}
-lev_root=${LEV_REPO_ROOT:-/Users/joshuaeisenhart/GitHub/lev}
+# 2026-07-22: ~/GitHub/lev deleted; ~/lev-main = the only Lev (pure upstream main).
+lev_root=${LEV_REPO_ROOT:-/Users/joshuaeisenhart/lev-main}
 PY=${SIM_PY:-/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3}
 
 echo "== [1/2] ClaimGate fired gate =="
@@ -27,6 +28,15 @@ echo "== [2/2] Lev host-recompute (claimgate-steering consume) =="
 lev_bin="$lev_root/core/poly/bin/lev"
 if [ ! -x "$lev_bin" ]; then
   echo "  Lev poly binary missing ($lev_bin) — cannot host-consume; ClaimGate leg stands." >&2
+  exit 0
+fi
+# Pure upstream main does NOT ship 'orchestration claimgate-steering' (it lived on
+# the deleted fable/cr-sim-eval-pack branch). Detect and degrade HONESTLY: the
+# ClaimGate leg stands alone until the rebuilt patch restores a Lev-side consumer.
+if ! "$lev_bin" orchestration --help >/dev/null 2>&1; then
+  echo "  Lev at $lev_root has no 'orchestration' subcommand (pure upstream main;"
+  echo "  steering-consume was branch-only and is being rebuilt as the ClaimGate patch)."
+  echo "  ClaimGate leg stands; Lev host-recompute SKIPPED — not silently passed."
   exit 0
 fi
 work=$(mktemp -d)

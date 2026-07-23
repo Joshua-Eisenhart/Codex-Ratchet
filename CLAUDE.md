@@ -52,7 +52,7 @@ After any multi-step action chain — especially when another agent (Hermes, Cod
 ## Read First (every session)
 Before any work: read `system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md` and `system_v5/docs/LLM_CONTROLLER_CONTRACT.md`.
 
-All human-readable docs live under `system_v5/docs/` (with subdirs: `plans/`, `references/`, `new content/`, `archive/`, `archive_old/`, `archive_hermes_overlaps/`). See `REPO_LAYOUT.md` for the map. Do not create `docs/` at repo root.
+**Docs home (updated 2026-07-22, owner order "we are in v8"):** current-era docs (state reports, audits, layer math, durable state) live in `MODEL_DOSSIER/` at repo root. `system_v5/docs/` is a HISTORICAL archive — read it as a mine, never write new docs there. Do not create `docs/` at repo root. GENERAL RULE (same class as "old docs are a mine"): any path or rule in this file stamped with an earlier system era (v4/v5) is historical unless re-affirmed; the live surfaces are `system_v8/`, `MODEL_DOSSIER/`, `ROOT/`, and current receipts. When an era-stamped rule conflicts with where current work lives, ASK or follow the current era — do not obey stale canon silently.
 
 ---
 

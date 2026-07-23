@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Universal stage CLI for the serialized physics spine (Phase 1: dummy payloads).
+"""Universal stage CLI for the serialized transport canary + real CR packets.
+
+PACKET MODE (Slice C): SPINE_PACKET=<path.json> wraps an EXISTING repo-defined
+CR packet, unchanged, in true separate processes. The spec lists ordered
+stages, each a real command whose stdout-JSON (or written file) becomes the
+immutable artifact. The packet's stage list is bound into the ledger at
+genesis so the envelope check audits the declared chain, not a hardcoded one.
+Engine disagreement in a crosscheck stage is COMPLETED/COUNTEREXAMPLE —
+negative science that reaches admission — never a process crash.
 
 Tombstone-and-boot: each stage runs as its OWN process, verifies the prior
 stage's artifact by RE-HASHING it from disk (not trusting the ledger claim),
@@ -63,13 +71,27 @@ def kv_set(db, key, value):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--stage", required=True, choices=STAGES)
+    p.add_argument("--stage", required=True)
     p.add_argument("--run-id", required=True)
     p.add_argument("--state-db", required=True)
     p.add_argument("--force-fail", action="store_true",
                    help="z3 only: emit a SAT COUNTEREXAMPLE receipt (completed negative science, "
                         "exit 0 — it must REACH admission; nonzero exit is for infra failure only)")
     args = p.parse_args()
+
+    # Packet mode: an ordered stage list from the spec replaces the canary's four.
+    packet = None
+    packet_path = os.environ.get("SPINE_PACKET", "")
+    if packet_path:
+        try:
+            packet = json.load(open(packet_path))
+        except Exception as exc:  # noqa: BLE001
+            print(f"[FATAL] packet spec unreadable ({exc}); failing closed.", file=sys.stderr)
+            return 1
+    stage_names = [s["name"] for s in packet["stages"]] if packet else list(STAGES)
+    if args.stage not in stage_names:
+        print(f"[FATAL] unknown stage {args.stage!r} (expected one of {stage_names}).", file=sys.stderr)
+        return 1
 
     if not RUN_ID_RE.match(args.run_id):
         print(f"[FATAL] invalid run_id {args.run_id!r} (allowed: [A-Za-z0-9_-]+); "
@@ -81,9 +103,9 @@ def main():
     art_dir = os.path.normpath(art_dir)
     os.makedirs(art_dir, exist_ok=True)
 
-    # 1. CHAIN OF CUSTODY — re-derive, don't trust (genesis stage 'julia' has no input).
+    # 1. CHAIN OF CUSTODY — re-derive, don't trust (the genesis stage has no input).
     input_digest = None
-    if args.stage != "julia":
+    if args.stage != stage_names[0]:
         prior = kv_get(db, f"runs/{args.run_id}/current")
         if not prior:
             print(f"[FATAL] {args.stage}: no prior state for run {args.run_id}; refusing to run.",
@@ -104,8 +126,44 @@ def main():
     # reach ADMITTED. Mocks may exercise the spine; they may never enter canon.
     real_stages = set(filter(None, os.environ.get("SPINE_REAL", "").split(",")))
     payload = "real" if args.stage in real_stages else "mock"
+    role = "transport"
     m1 = {}
-    if args.stage == "julia" and payload == "real":
+    scientific_status_override = None
+    repo = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    if packet:
+        # PACKET MODE — every stage is a real command from the spec; the sim is UNCHANGED.
+        import subprocess
+        spec = next(s for s in packet["stages"] if s["name"] == args.stage)
+        payload, role = "real", spec.get("role", "engine_leg")
+        out_path = os.path.join(art_dir, f"{args.stage}_output.json")
+        cmd = [c.replace("{out}", out_path)
+                .replace("{repo}", repo)
+                .replace("{art_dir}", art_dir) for c in spec["command"]]
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=1800, cwd=repo)
+        sys.stderr.write(proc.stderr)
+        if proc.returncode != 0:
+            print(f"[FATAL] {args.stage}: packet command exit {proc.returncode}; infra failure.",
+                  file=sys.stderr)
+            return 1
+        if spec.get("capture") == "stdout":
+            lines = [ln for ln in proc.stdout.splitlines() if ln.strip().startswith("{")]
+            if not lines:
+                print(f"[FATAL] {args.stage}: no JSON on stdout; infra failure.", file=sys.stderr)
+                return 1
+            with open(out_path, "w") as f:
+                f.write(lines[-1])
+        elif not os.path.exists(out_path):
+            print(f"[FATAL] {args.stage}: command wrote no artifact at {out_path}.", file=sys.stderr)
+            return 1
+        # A crosscheck artifact reporting disagreement is COMPLETED negative science.
+        try:
+            art = json.load(open(out_path))
+            if isinstance(art, dict) and art.get("counterexample") is True:
+                scientific_status_override = "COUNTEREXAMPLE"
+        except Exception:  # noqa: BLE001 — non-JSON artifacts carry no verdict
+            pass
+    elif args.stage == "julia" and payload == "real":
+        role = "carrier_calibration"
         # Phase 2: the Catlab ratchet — Gate M1 proof + Arrow mask artifact.
         import subprocess
         out_path = os.path.join(art_dir, "julia_output.arrow")

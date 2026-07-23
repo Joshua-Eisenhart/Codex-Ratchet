@@ -80,6 +80,7 @@ SLOT_DESCRIPTIONS = {
 DEFAULT_MIN_DIVERSITY_FLOOR = 4
 
 DEFAULT_FILE_PATTERN = "candidate_*.md"
+SUPERSEDED_SUBDIR = "superseded"
 
 # A provenance value that is technically present and correctly typed but
 # says, in effect, "we don't actually know this" -- flagged as thin rather
@@ -163,24 +164,34 @@ def discover_candidate_files(pool_dir: Path, file_pattern: str):
     return sorted(p.name for p in pool_dir.glob(file_pattern) if p.is_file())
 
 
+def discover_superseded_files(pool_dir: Path, file_pattern: str):
+    superseded_dir = pool_dir / SUPERSEDED_SUBDIR
+    if not superseded_dir.exists():
+        return []
+    return sorted(p.name for p in superseded_dir.glob(file_pattern) if p.is_file())
+
+
 def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def build_entry(filename, manifest_candidates):
+    man = manifest_candidates.get(filename)
+    if man is None:
+        return {"file": filename, "has_manifest": False, "variation_slots": [], "package": None}
+    return {
+        "file": filename,
+        "has_manifest": True,
+        "variation_slots": man.get("variation_slots", []) or [],
+        "package": man.get("package"),
+    }
 
 
 def build_entries(candidate_files, manifest_candidates):
     """One entry per discovered file: (filename, has_manifest, variation_slots, package)."""
     entries = []
     for filename in candidate_files:
-        man = manifest_candidates.get(filename)
-        if man is None:
-            entries.append({"file": filename, "has_manifest": False, "variation_slots": [], "package": None})
-        else:
-            entries.append({
-                "file": filename,
-                "has_manifest": True,
-                "variation_slots": man.get("variation_slots", []) or [],
-                "package": man.get("package"),
-            })
+        entries.append(build_entry(filename, manifest_candidates))
     return entries
 
 
@@ -215,6 +226,7 @@ def check_b_diversity(entries, min_floor, raw_count):
     generation_keys = []
     bucket_keys = []
     per_candidate = []
+    saw_preferred_answer_true_files = []
 
     for e in entries:
         pkg = e["package"]
@@ -227,6 +239,8 @@ def check_b_diversity(entries, min_floor, raw_count):
             continue
 
         prov = pkg.get("provenance", {}) if isinstance(pkg.get("provenance"), dict) else {}
+        if prov.get("saw_preferred_answer") is True:
+            saw_preferred_answer_true_files.append(e["file"])
         model = prov.get("model")
         carrier = pkg.get("carrier")
         order = pkg.get("nesting_order")
@@ -271,6 +285,8 @@ def check_b_diversity(entries, min_floor, raw_count):
             for key, files in bucket_map.items()
         },
         "per_candidate": per_candidate,
+        "saw_preferred_answer_true_count": len(saw_preferred_answer_true_files),
+        "saw_preferred_answer_true_files": saw_preferred_answer_true_files,
     }
 
 
@@ -278,43 +294,76 @@ def check_b_diversity(entries, min_floor, raw_count):
 # (c) provenance present -- required-field list comes from the schema file
 # itself (single source of truth), not a hand-duplicated constant.
 # ---------------------------------------------------------------------------
-def check_c_provenance(entries, schema):
+def provenance_requirements(schema):
     provenance_schema = schema.get("properties", {}).get("provenance", {})
     required_fields = provenance_schema.get("required", [])
     field_types = {k: v.get("type") for k, v in provenance_schema.get("properties", {}).items()}
+    return required_fields, field_types
+
+
+def _provenance_gaps_for_entry(filename, entry, required_fields, field_types):
+    if not entry["has_manifest"] or not isinstance(entry["package"], dict):
+        return [{"file": filename, "field": None, "code": "no_manifest_entry",
+                 "detail": "no provenance recorded for this candidate at all"}]
+    prov = entry["package"].get("provenance")
+    if not isinstance(prov, dict):
+        return [{"file": filename, "field": "provenance", "code": "provenance_block_missing",
+                 "detail": "candidate package has no 'provenance' object"}]
+
+    gaps = []
+    for field in required_fields:
+        if field not in prov:
+            gaps.append({"file": filename, "field": field, "code": "missing_field",
+                         "detail": f"required provenance field '{field}' is absent"})
+            continue
+        value = prov[field]
+        declared_type = field_types.get(field)
+        if not type_matches(value, declared_type):
+            gaps.append({"file": filename, "field": field, "code": "type_mismatch",
+                         "detail": f"'{field}' = {value!r} does not match schema type {declared_type!r}"})
+            continue
+        if isinstance(value, str) and is_thin(value):
+            gaps.append({"file": filename, "field": field, "code": "thin_value",
+                         "detail": f"'{field}' is present but declared unknown/thin: {value!r}"})
+    return gaps
+
+
+def check_c_provenance(entries, schema):
+    required_fields, field_types = provenance_requirements(schema)
 
     gaps = []
     for e in entries:
-        filename = e["file"]
-        if not e["has_manifest"] or not isinstance(e["package"], dict):
-            gaps.append({"file": filename, "field": None, "code": "no_manifest_entry",
-                         "detail": "no provenance recorded for this candidate at all"})
-            continue
-        prov = e["package"].get("provenance")
-        if not isinstance(prov, dict):
-            gaps.append({"file": filename, "field": "provenance", "code": "provenance_block_missing",
-                         "detail": "candidate package has no 'provenance' object"})
-            continue
-        for field in required_fields:
-            if field not in prov:
-                gaps.append({"file": filename, "field": field, "code": "missing_field",
-                             "detail": f"required provenance field '{field}' is absent"})
-                continue
-            value = prov[field]
-            declared_type = field_types.get(field)
-            if not type_matches(value, declared_type):
-                gaps.append({"file": filename, "field": field, "code": "type_mismatch",
-                             "detail": f"'{field}' = {value!r} does not match schema type {declared_type!r}"})
-                continue
-            if isinstance(value, str) and is_thin(value):
-                gaps.append({"file": filename, "field": field, "code": "thin_value",
-                             "detail": f"'{field}' is present but declared unknown/thin: {value!r}"})
+        gaps.extend(_provenance_gaps_for_entry(e["file"], e, required_fields, field_types))
 
     return {
         "pass": len(gaps) == 0,
         "required_provenance_fields": required_fields,
         "provenance_gaps": gaps,
     }
+
+
+def check_supersession(superseded_filename, manifest_candidates, active_candidate_files,
+                       required_fields, field_types):
+    candidates_v2 = [
+        filename for filename, entry in manifest_candidates.items()
+        if filename != superseded_filename and isinstance(entry, dict)
+        and entry.get("supersedes") == superseded_filename
+    ]
+    if not candidates_v2:
+        return {"accepted": False, "reason": "no_v2_link_found", "v2_candidates_considered": []}
+
+    details = []
+    for v2_name in candidates_v2:
+        in_active_pool = v2_name in active_candidate_files
+        gaps = _provenance_gaps_for_entry(
+            v2_name, build_entry(v2_name, manifest_candidates), required_fields, field_types
+        )
+        details.append({"v2_file": v2_name, "in_active_pool": in_active_pool, "gaps": gaps})
+        if in_active_pool and not gaps:
+            return {"accepted": True, "superseded_by": v2_name, "reason": "valid_v2_link",
+                    "v2_candidates_considered": details}
+    return {"accepted": False, "reason": "v2_link_found_but_invalid",
+            "v2_candidates_considered": details}
 
 
 # ---------------------------------------------------------------------------
@@ -368,10 +417,13 @@ def evaluate(pool_dir: Path, manifest_path: Path, schema_path: Path,
                          f"candidate is treated as having no provenance entry")
 
     candidate_files = discover_candidate_files(pool_dir, file_pattern)
+    superseded_files = discover_superseded_files(pool_dir, file_pattern)
     if not candidate_files:
         warnings.append(f"no files matching '{file_pattern}' found under {pool_dir}")
 
-    orphan_manifest_entries = sorted(set(manifest_candidates) - set(candidate_files))
+    orphan_manifest_entries = sorted(
+        set(manifest_candidates) - set(candidate_files) - set(superseded_files)
+    )
     if orphan_manifest_entries:
         warnings.append(f"manifest references files not present in pool_dir (ignored for "
                          f"scoring, pool membership comes from the directory): {orphan_manifest_entries}")
@@ -383,6 +435,30 @@ def evaluate(pool_dir: Path, manifest_path: Path, schema_path: Path,
     b = check_b_diversity(entries, min_diversity_floor, raw_count)
     c = check_c_provenance(entries, schema)
     d = check_d_executable(pool_dir, candidate_files)
+
+    required_fields, field_types = provenance_requirements(schema)
+    superseded_report = []
+    for superseded_filename in superseded_files:
+        superseded_entry = build_entry(superseded_filename, manifest_candidates)
+        supersession = check_supersession(
+            superseded_filename, manifest_candidates, candidate_files, required_fields, field_types
+        )
+        row = {
+            "file": superseded_filename,
+            "has_manifest": superseded_entry["has_manifest"],
+            "accepted": supersession["accepted"],
+            "reason": supersession["reason"],
+            "superseded_by": supersession.get("superseded_by"),
+            "v2_candidates_considered": supersession["v2_candidates_considered"],
+        }
+        if not supersession["accepted"]:
+            rejected_gaps = _provenance_gaps_for_entry(
+                superseded_filename, superseded_entry, required_fields, field_types
+            )
+            row["gaps_counted_against_check_c"] = rejected_gaps
+            c["provenance_gaps"].extend(rejected_gaps)
+        superseded_report.append(row)
+    c["pass"] = len(c["provenance_gaps"]) == 0
 
     overall_pass = raw_count > 0 and a["pass"] and b["pass"] and c["pass"] and d["pass"]
     if raw_count == 0:
@@ -398,6 +474,7 @@ def evaluate(pool_dir: Path, manifest_path: Path, schema_path: Path,
         "min_diversity_floor": min_diversity_floor,
         "raw_candidate_count": raw_count,
         "candidate_files": candidate_files,
+        "superseded": {"count": len(superseded_files), "entries": superseded_report},
         "manifest_meta": manifest_meta,
         "warnings": warnings,
         "checks": {

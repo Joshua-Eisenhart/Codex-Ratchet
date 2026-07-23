@@ -1,0 +1,102 @@
+{
+  "purpose": "Mutation-test the rival predictive-quotient bridges and independently arbitrate their first conflicting pair.",
+  "scope": "practice/fuel development only -- promotion_allowed=false, formal_admission_allowed=false (matches bridge_validation/README.md's ceiling)",
+  "cases_checked_per_fault": 17,
+  "faults": [
+    {
+      "bridge_faulted": "bridge_word_bfs",
+      "fault": "depth_off_by_one",
+      "disagreement_found": true,
+      "disagreeing_cases": [
+        "C2_honest_bookkeeping",
+        "C3_last_write_wins_register",
+        "C4_amnesiac_pre_delay",
+        "C5_frozen_pre_extend",
+        "C6_dead_end_pre_renest",
+        "C7_rich_deck",
+        "C8_neighbor_aware_full",
+        "classical_relational_exec"
+      ],
+      "coverage_finding": false,
+      "arbiter_check": {
+        "case": "C2_honest_bookkeeping",
+        "pair_indices": [
+          0,
+          1
+        ],
+        "faulted_bridge_says_indistinguishable": true,
+        "unfaulted_bridge_says_indistinguishable": false,
+        "arbiter_verdict_indistinguishable": false,
+        "arbiter_sided_with_unfaulted": true
+      }
+    },
+    {
+      "bridge_faulted": "bridge_word_bfs",
+      "fault": "prefix_comparison_skipped",
+      "disagreement_found": false,
+      "disagreeing_cases": [],
+      "coverage_finding": true,
+      "arbiter_check": null
+    },
+    {
+      "bridge_faulted": "bridge_action_predictive",
+      "fault": "memo_poisoned",
+      "disagreement_found": true,
+      "disagreeing_cases": [
+        "C1_int_counter",
+        "C1_string_counter",
+        "C2_honest_bookkeeping",
+        "C3_last_write_wins_register",
+        "C4_amnesiac_pre_delay",
+        "C5_frozen_pre_extend",
+        "C6_dead_end_pre_renest"
+      ],
+      "coverage_finding": false,
+      "arbiter_check": {
+        "case": "C1_int_counter",
+        "pair_indices": [
+          0,
+          1
+        ],
+        "faulted_bridge_says_indistinguishable": true,
+        "unfaulted_bridge_says_indistinguishable": false,
+        "arbiter_verdict_indistinguishable": false,
+        "arbiter_sided_with_unfaulted": true
+      }
+    },
+    {
+      "bridge_faulted": "bridge_action_predictive",
+      "fault": "base_case_wrong",
+      "disagreement_found": true,
+      "disagreeing_cases": [
+        "C1_int_counter",
+        "C1_string_counter",
+        "C4_amnesiac_post_delay",
+        "C5_frozen_post_extend",
+        "C6_dead_end_post_renest"
+      ],
+      "coverage_finding": false,
+      "arbiter_check": {
+        "case": "C1_int_counter",
+        "pair_indices": [
+          0,
+          2
+        ],
+        "faulted_bridge_says_indistinguishable": false,
+        "unfaulted_bridge_says_indistinguishable": true,
+        "arbiter_verdict_indistinguishable": true,
+        "arbiter_sided_with_unfaulted": true
+      }
+    }
+  ],
+  "summary": {
+    "total_faults": 4,
+    "faults_with_disagreement": 3,
+    "faults_arbiter_sided_with_unfaulted": 3,
+    "coverage_findings": [
+      "prefix_comparison_skipped"
+    ],
+    "cross_check_earned": false,
+    "ratio": "3/4"
+  }
+}

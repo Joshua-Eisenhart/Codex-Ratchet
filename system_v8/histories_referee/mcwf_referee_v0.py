@@ -222,7 +222,7 @@ def main():
             if n_i == 0:
                 continue
             res = qt.mcsolve(
-                H, qt.Qobj(psi_i, dims=rho0.dims[0]), tlist,
+                H, qt.Qobj(psi_i, dims=[rho0.dims[0], [1, 1]]), tlist,
                 c_ops=c_ops, ntraj=int(n_i),
                 options={"store_states": True, "map": "serial"},
                 seeds=SEED_BASE + seed_offset + i,

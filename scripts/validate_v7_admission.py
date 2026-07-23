@@ -490,7 +490,7 @@ def _selftest() -> int:
                 "all_pass": True,
                 "quotient_classes": [[0, 1], [2, 3]],
                 "von_neumann_entropy": 0.6931471805599453,
-                "partition_cut": {"AB": 0.5},
+                "partition_cut": {"cut_value": 0.5},
             },
         )
         report = run(sim)

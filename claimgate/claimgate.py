@@ -178,9 +178,20 @@ HIGH_TIER_STATUS_LABELS = {"passes local rerun", "canonical by process"}
 
 def requires_control_rigor(receipt):
     """Only receipts claiming a status above bare 'exists/runs' owe controls +
-    a preregistration reference. Bare scratch/tool-fit probes do not."""
+    a preregistration reference. Bare scratch/tool-fit probes do not.
+
+    A ``classification == "canonical"`` receipt also owes rigor regardless of
+    its promotion_allowed / accepted_status_label fields: canonical work must
+    carry controls + a preregistration reference. Without this clause a receipt
+    could claim classification=canonical with promotion_allowed=false (or absent)
+    and no accepted_status_label and thereby owe no controls and no
+    preregistration -- a full rigor dodge (stress fixture tier0_cand4)."""
     label = str(receipt.get("accepted_status_label", "")).strip().lower()
-    return label in HIGH_TIER_STATUS_LABELS or receipt.get("promotion_allowed") is True
+    return (
+        label in HIGH_TIER_STATUS_LABELS
+        or receipt.get("promotion_allowed") is True
+        or receipt.get("classification") == "canonical"
+    )
 
 
 def check_controls(receipt):

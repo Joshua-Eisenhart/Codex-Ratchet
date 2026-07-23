@@ -57,7 +57,8 @@ if [[ -z "$receipt" ]]; then
 fi
 shift || true
 
-lev_root="${LEV_REPO_ROOT:-$HOME/GitHub/lev}"
+# 2026-07-22: ~/GitHub/lev deleted; ~/lev-main (pure upstream) has .lev/nudges/pending/.
+lev_root="${LEV_REPO_ROOT:-$HOME/lev-main}"
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --lev-root)

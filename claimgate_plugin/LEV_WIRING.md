@@ -1,3 +1,5 @@
+> **STATUS 2026-07-22 (supersession banner):** paths below citing `~/GitHub/lev` or `~/lev-main/.worktrees/*` refer to DELETED checkouts. The only Lev is now `~/lev-main` (pure upstream main) and it does NOT ship the `orchestration claimgate-steering` surface — that was branch-only work, lost with the old tree. The live rebuild seam is `lev_patch/` + Lev `core/eval`. This doc is kept as design record.
+
 # Wiring the higher-level claimgate into Lev OS
 
 Cross-checked against the live Lev checkout

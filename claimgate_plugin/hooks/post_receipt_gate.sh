@@ -32,8 +32,10 @@ fi
 # finite receipts are exempt. See claimgate_plugin/three_engine_seal.py.
 python3 "$script_dir/../three_engine_seal.py" "$receipt"
 seal_exit=$?
-if [ "$seal_exit" -eq 1 ]; then
-  echo "post_receipt_gate: THREE-ENGINE SEAL rejected (numpy control-only / no authoritative engine)" >&2
+if [ "$seal_exit" -ne 0 ]; then
+  # FAIL-CLOSED on ANY nonzero (audit 2026-07-22): exit 1 = rejected; exit 2 =
+  # the seal's own tooling/usage broke — a broken gate must BLOCK, not wave through.
+  echo "post_receipt_gate: THREE-ENGINE SEAL blocked (exit $seal_exit — 1=rejected, 2=seal tooling error; both fail closed)" >&2
   advise
   exit 1
 fi

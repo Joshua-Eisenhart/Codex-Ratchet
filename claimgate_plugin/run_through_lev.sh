@@ -45,7 +45,13 @@ run_dir=$("$PY" "$script_dir/lev_steering_producer.py" "$receipt" --out "$work" 
            --generated-at "$gen_at" --json 2>/dev/null \
          | "$PY" -c "import json,sys; print(json.load(sys.stdin)['run_dir'])") || {
   echo "  producer failed to emit a projection." >&2; exit 0; }
-( cd "$lev_root" && "$lev_bin" orchestration claimgate-steering consume "$run_dir" --no-write 2>&1 ) \
-  | grep -iE "steering run|Projected verdict|Recomputed verdict|Live Lev consumed"
+consume_out=$( cd "$lev_root" && "$lev_bin" orchestration claimgate-steering consume "$run_dir" --no-write 2>&1 )
+consume_exit=$?
+echo "$consume_out" | grep -iE "steering run|Projected verdict|Recomputed verdict|Live Lev consumed"
+if [ "$consume_exit" -ne 0 ]; then
+  # LOUD, never swallowed (audit 2026-07-22): a failed consume is reported, not green.
+  echo "  Lev consume FAILED (exit $consume_exit) — ClaimGate leg stands; Lev leg NOT passed:" >&2
+  echo "$consume_out" | tail -3 >&2
+fi
 echo "  (host_consumed = full pass admitted; host_reviewed_failed = recomputed + correctly not admitted for a probe)"
 exit 0

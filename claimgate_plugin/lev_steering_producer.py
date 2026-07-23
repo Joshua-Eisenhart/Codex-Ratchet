@@ -68,6 +68,11 @@ WRITER-EXEC HAZARD — AVOIDED
 This producer does not run any Lev writer, does not run `consume`, and does not
 mint witnesses. It only emits source JSON and (optionally) runs the CR hook with
 an isolated floor store so the CR repo is untouched.
+
+STATUS 2026-07-22: the Lev-side consumer for this projection was branch-only
+and is DELETED; pure upstream ~/lev-main has no reader. This producer is kept
+as the projection-format record; the rebuilt patch (lev_patch/ + core/eval)
+is the live seam. Docstring claims of live-verified consume are HISTORICAL.
 """
 
 from __future__ import annotations

@@ -64,7 +64,7 @@ missing-search-receipt rejection (`decl_novel_no_search.json`).
   `system_v8/tool_ledger/battery_batch2/results/quantumtoolbox.json`)
 - Fail-closed resource guard: a sim that refused to run at 21% free memory
   (gate >25%) and wrote a blocked receipt instead of numbers —
-  `system_v8/histories_referee/results/mcwf_referee_v0/receipt.json`
+  `system_v8/histories_referee/results/mcwf_referee_v0_blocked_20260719/receipt.json (path updated 2026-07-22; original deleted)`
 - Preregistered expected-failures (negative sims, 6/6 failed as designed,
   one honest INCONCLUSIVE first run kept): `system_v8/negative_sims/`
 

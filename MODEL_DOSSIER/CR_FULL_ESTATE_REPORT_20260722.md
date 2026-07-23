@@ -1,5 +1,15 @@
 # Codex-Ratchet Full Estate Report — 2026-07-22 (audit-ready)
 
+> **SUPERSEDED 2026-07-22 (this section only):** Section 1's manifold table and layer ordering are
+> superseded by `MODEL_DOSSIER/CR_CORRECTED_ENTROPIC_GEOMETRIC_MANIFOLD_AND_ESTATE_AUDIT_20260722.md`
+> (webui-corrected architecture) and indicted in detail by
+> `MODEL_DOSSIER/PROBLEMS_FOUND_MANIFOLD_AUDIT_20260722.md` (13 blockers / 17 majors / 7 minors).
+> Decisive corrections: Axis 0 is NOT a rung — it is the manifold-wide entropy-geometry gradient
+> field acting through every layer; Phi_0(rho_AB) is one candidate cut-response functional, not
+> Axis 0 itself. Five kinds never to collapse: nested stratum / Axis 0 / Ratchet / engine DOF /
+> runtime-governance. The rest of this report (statuses, provenance, sections 2-7) remains the
+> working ledger, subject to the same problems doc.
+
 ## Preamble
 
 **Purpose.** This document is assembled for external LLM audit. It exists so an

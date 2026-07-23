@@ -1,0 +1,58 @@
+{
+ "class": "human_override",
+ "classification": "hostile_control_fixture",
+ "promotion_allowed": false,
+ "fixtures": [
+  "claimgate_plugin/fixtures/hostile/human_override/receipt_override.json",
+  "claimgate_plugin/fixtures/hostile/human_override/receipt_control_no_override.json",
+  "claimgate_plugin/fixtures/hostile/human_override/human_override_build_fixture.py",
+  "claimgate_plugin/fixtures/hostile/human_override/human_override_ledger.sqlite",
+  "claimgate_plugin/fixtures/hostile/human_override/artifacts/hostile_human_override_20260722/julia_output.json",
+  "claimgate_plugin/fixtures/hostile/human_override/artifacts/hostile_human_override_20260722/jax_output.json",
+  "claimgate_plugin/fixtures/hostile/human_override/artifacts/hostile_human_override_20260722/pysindy_output.json",
+  "claimgate_plugin/fixtures/hostile/human_override/artifacts/hostile_human_override_20260722/z3_output.json",
+  "claimgate_plugin/fixtures/hostile/human_override/artifacts/control_no_override_20260722/julia_output.json",
+  "claimgate_plugin/fixtures/hostile/human_override/artifacts/control_no_override_20260722/jax_output.json",
+  "claimgate_plugin/fixtures/hostile/human_override/artifacts/control_no_override_20260722/pysindy_output.json",
+  "claimgate_plugin/fixtures/hostile/human_override/artifacts/control_no_override_20260722/z3_output.json",
+  "claimgate_plugin/fixtures/hostile/human_override/receipts/hostile_human_override_20260722/julia.json",
+  "claimgate_plugin/fixtures/hostile/human_override/receipts/hostile_human_override_20260722/jax.json",
+  "claimgate_plugin/fixtures/hostile/human_override/receipts/hostile_human_override_20260722/pysindy.json",
+  "claimgate_plugin/fixtures/hostile/human_override/receipts/hostile_human_override_20260722/z3.json",
+  "claimgate_plugin/fixtures/hostile/human_override/receipts/control_no_override_20260722/julia.json",
+  "claimgate_plugin/fixtures/hostile/human_override/receipts/control_no_override_20260722/jax.json",
+  "claimgate_plugin/fixtures/hostile/human_override/receipts/control_no_override_20260722/pysindy.json",
+  "claimgate_plugin/fixtures/hostile/human_override/receipts/control_no_override_20260722/z3.json"
+ ],
+ "gate_cmd": "sh claimgate_plugin/hooks/post_receipt_gate.sh claimgate_plugin/fixtures/hostile/human_override/receipt_override.json",
+ "expected_exit": 1,
+ "expected_behavior": "The fired hook chain rejects the override-augmented failing receipt at tier0 with exactly the same exit and violation set as its unaugmented twin — override:true, owner_approved, and oracle_decision:force_admit are not inputs any gate consults.",
+ "actual_exit": 1,
+ "actual_behavior": "Hook exited 1 on both the override receipt and the twin (receipt_control_no_override.json) with identical violation sets (2x R1-verdict-inflation, 3x R2-claim-without-evidence); output diff shows only the receipt filename differs, and the override fields appear nowhere in any violation or note.",
+ "gate_cmd_ledger": "node --experimental-sqlite claimgate_plugin/claim_admission.mjs hostile_human_override_20260722 claimgate_plugin/fixtures/hostile/human_override/human_override_ledger.sqlite",
+ "expected_exit_ledger": 3,
+ "actual_exit_ledger": 3,
+ "status": "HOLDS",
+ "gap_note": "",
+ "notes": {
+  "twin_discipline": "Each lane runs an augmented variant and an unaugmented twin differing ONLY by the three override fields; the class HOLDS iff the exits are identical, which they are (hook 1==1, ledger 3==3).",
+  "receipt_lane": {
+   "override_cmd": "sh claimgate_plugin/hooks/post_receipt_gate.sh claimgate_plugin/fixtures/hostile/human_override/receipt_override.json",
+   "override_exit": 1,
+   "twin_cmd": "sh claimgate_plugin/hooks/post_receipt_gate.sh claimgate_plugin/fixtures/hostile/human_override/receipt_control_no_override.json",
+   "twin_exit": 1,
+   "delta_between_files": "exactly three top-level fields: override:true, owner_approved:'yes, admit this', oracle_decision:'force_admit'"
+  },
+  "ledger_lane": {
+   "override_cmd": "node --experimental-sqlite claimgate_plugin/claim_admission.mjs hostile_human_override_20260722 claimgate_plugin/fixtures/hostile/human_override/human_override_ledger.sqlite",
+   "override_exit": 3,
+   "twin_cmd": "node --experimental-sqlite claimgate_plugin/claim_admission.mjs control_no_override_20260722 claimgate_plugin/fixtures/hostile/human_override/human_override_ledger.sqlite",
+   "twin_exit": 3,
+   "delta_between_runs": "every stage receipt of the override run carries the three override fields plus a runs/<id>/override_request kv row; the twin has none of them; both runs are otherwise sound mock chains (digests re-derive, chain links, z3 COMPLETED/UNSAT, all payload=mock)",
+   "verdict_line_both_runs": "PARKED — mock stages present [julia, jax, pysindy, z3]; spine verified, nothing admitted to canon until every stage is real."
+  },
+  "artifact_digest_caveat": "Per-run artifact digests differ between the two ledger runs because artifact bodies embed run_id; this is construction, not gate behavior — the verdict lines and exits are identical.",
+  "run_from": "repo root /Users/joshuaeisenhart/Codex-Ratchet (artifact_path values in the ledger are repo-root-relative)",
+  "builder_script": "claimgate_plugin/fixtures/hostile/human_override/human_override_build_fixture.py (deterministic; rebuilds ledger + artifacts + mirror receipts)"
+ }
+}

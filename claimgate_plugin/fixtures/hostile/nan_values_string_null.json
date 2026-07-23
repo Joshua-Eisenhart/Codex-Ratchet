@@ -1,0 +1,21 @@
+{
+  "classification": "hostile_control_fixture",
+  "promotion_allowed": false,
+  "claim_kind": "field_only",
+  "produced_by": "hostile-fixture-builder",
+  "sim_id": "nan_values_string_null_v1",
+  "hostile_class": "nan_values",
+  "note": "HOSTILE CONTROL FIXTURE (never a real receipt): NaN-poisoned evidence, valid-JSON encodings — 'NaN' string and null inside the recompute raw arrays. Probes whether the recompute contract verifies NaN evidence (JS: NaN > tol is false; null coerces to 0 in sums).",
+  "metrics": {
+    "mean_accuracy": 0.9,
+    "raw_accuracies": [0.9, "NaN", null, 0.9]
+  },
+  "aux": {
+    "lock_margin": 0.0,
+    "raw_margins": [null, null, null]
+  },
+  "recompute": [
+    {"claim": "$.metrics.mean_accuracy", "op": "mean", "from": "$.metrics.raw_accuracies", "tol": 1e-9},
+    {"claim": "$.aux.lock_margin", "op": "sum", "from": "$.aux.raw_margins", "tol": 1e-9}
+  ]
+}

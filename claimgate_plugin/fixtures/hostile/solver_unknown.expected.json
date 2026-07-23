@@ -1,0 +1,25 @@
+{
+  "class": "solver_unknown",
+  "classification": "hostile_control_fixture",
+  "promotion_allowed": false,
+  "fixtures": [
+    "claimgate_plugin/fixtures/hostile/solver_unknown/state/state.db",
+    "claimgate_plugin/fixtures/hostile/solver_unknown/artifacts/solver_unknown_hostile_v1/julia_output.arrow",
+    "claimgate_plugin/fixtures/hostile/solver_unknown/artifacts/solver_unknown_hostile_v1/julia_output.arrow.receipt.json",
+    "claimgate_plugin/fixtures/hostile/solver_unknown/artifacts/solver_unknown_hostile_v1/jax_output.json",
+    "claimgate_plugin/fixtures/hostile/solver_unknown/artifacts/solver_unknown_hostile_v1/pysindy_output.json",
+    "claimgate_plugin/fixtures/hostile/solver_unknown/artifacts/solver_unknown_hostile_v1/z3_output.json",
+    "claimgate_plugin/fixtures/hostile/solver_unknown/receipts/solver_unknown_hostile_v1/julia.json",
+    "claimgate_plugin/fixtures/hostile/solver_unknown/receipts/solver_unknown_hostile_v1/jax.json",
+    "claimgate_plugin/fixtures/hostile/solver_unknown/receipts/solver_unknown_hostile_v1/pysindy.json",
+    "claimgate_plugin/fixtures/hostile/solver_unknown/receipts/solver_unknown_hostile_v1/z3.json"
+  ],
+  "gate_cmd": "node --experimental-sqlite claimgate_plugin/claim_admission.mjs solver_unknown_hostile_v1 claimgate_plugin/fixtures/hostile/solver_unknown/state/state.db",
+  "gate_cmd_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "expected_exit": 3,
+  "expected_behavior": "PARKED exit 3: z3 stage completed (execution_status COMPLETED) but proof_status UNKNOWN is neither proof nor counterexample, so the envelope parks the run without rejecting or admitting it.",
+  "actual_exit": 3,
+  "actual_behavior": "All four stage digests re-derived OK with chain links OK, then '[ClaimGate] PARKED — solver returned UNKNOWN (neither proof nor counterexample).' exit 3; control counterfactual (identical ledger with proof_status UNSAT in a scratch copy) exits 0 ENVELOPE SOUND, so UNKNOWN is the sole park cause and the branch can-fail.",
+  "status": "HOLDS",
+  "gap_note": "claim_admission.mjs HOLDS, but the older claim_verify.py tier ladder has NO vocabulary for UNKNOWN at all (audit finding, re-verified 2026-07-22: grep -i unknown over claimgate_plugin/claim_verify.py returns zero hits; its only verdicts are VERIFIED/REJECTED/INSUFFICIENT_DEPTH plus CLEAN|TAINTED|FATAL audit tokens), so a solver-UNKNOWN outcome routed through the tier ladder instead of the envelope check has no dedicated park path."
+}

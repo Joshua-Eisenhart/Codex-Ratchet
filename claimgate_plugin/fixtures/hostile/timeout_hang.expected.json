@@ -1,0 +1,22 @@
+{
+  "classification": "hostile_control_fixture",
+  "promotion_allowed": false,
+  "class": "timeout_hang",
+  "fixtures": [
+    "claimgate_plugin/fixtures/hostile/hang_gate.py",
+    "claimgate_plugin/fixtures/hostile/timeout_demo.py",
+    "claimgate_plugin/fixtures/hostile/timeout_hang.expected.json"
+  ],
+  "gate_cmd": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 claimgate_plugin/fixtures/hostile/timeout_demo.py",
+  "expected_exit": 1,
+  "expected_behavior": "A registry gate that hangs is killed by claim_verify's subprocess timeout (run(), claim_verify.py lines 39-44, timeout=900); rc=None maps to tier ERROR (lines 98-99), ERROR counts as failed (line 240), verdict REJECTED exit 1 (lines 246-248) — blocked, never VERIFIED; demonstrated here at 5s via a harness that mirrors run() exactly.",
+  "actual_exit": 1,
+  "actual_behavior": "Harness killed hang_gate.py at elapsed_s=5.0 (TimeoutExpired, 'timed out after 5 seconds'), rc=None mapped to tier ERROR then verdict REJECTED exit 1; harness_result=TIMEOUT, hang_killed=true, no output from the gate, no orphan process; total runtime 5.05s.",
+  "status": "HOLDS",
+  "gap_note": "",
+  "caveats": [
+    "900s path demonstrated by structural mirror at 5s, not by a real 900s run; the try/except and rc->ERROR->REJECTED mapping are claim_verify's own, unmodified.",
+    "Latency, not a verification hole: each hung gate invocation costs up to 900s of wall-clock before blocking (tier0, tier2, tier3, and the tier4 evalcheck each carry their own 900s budget).",
+    "Axis-collapse observation (postmortem miss #3 family): a timeout exits 1 REJECTED, the same exit code as a scientific FAIL — no distinct parked/UNKNOWN exit; the timeout is recoverable only from the tier_results detail string ('timed out after 900 seconds'), which run() preserves via str(e)."
+  ]
+}

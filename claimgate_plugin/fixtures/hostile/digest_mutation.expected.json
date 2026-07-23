@@ -1,0 +1,39 @@
+{
+ "class": "digest_mutation",
+ "classification": "hostile_control_fixture",
+ "promotion_allowed": false,
+ "fixtures": [
+  "claimgate_plugin/fixtures/hostile/digest_mutation/digest_mutation_ledger.sqlite",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/artifacts/julia_output.dat",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/artifacts/jax_output.dat",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/artifacts/pysindy_output.dat",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/artifacts/z3_output.dat",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/hostile_digest_mutation_20260722/julia.json",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/hostile_digest_mutation_20260722/jax.json",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/hostile_digest_mutation_20260722/pysindy.json",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/hostile_digest_mutation_20260722/z3.json",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/control_digest_intact_ledger.sqlite",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/artifacts_control/julia_output.dat",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/artifacts_control/jax_output.dat",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/artifacts_control/pysindy_output.dat",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/artifacts_control/z3_output.dat",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/control_digest_intact_20260722/julia.json",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/control_digest_intact_20260722/jax.json",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/control_digest_intact_20260722/pysindy.json",
+  "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/control_digest_intact_20260722/z3.json"
+ ],
+ "gate_cmd": "node --experimental-sqlite claimgate_plugin/claim_admission.mjs hostile_digest_mutation_20260722 claimgate_plugin/fixtures/hostile/digest_mutation/digest_mutation_ledger.sqlite",
+ "expected_exit": 1,
+ "expected_behavior": "The gate re-derives sha256 of the julia artifact from disk, sees it differs from the ledger's recorded output_digest (one byte was flipped after hashing), and exits 1 REJECTED tamper-evident before any later check.",
+ "actual_exit": 1,
+ "actual_behavior": "Gate printed 'REJECTED — tamper evident at julia: ledger says f7e24768, disk re-derives 08ab0dc5' and exited 1; the intact control ledger (control_digest_intact_20260722, control_digest_intact_ledger.sqlite) passed all four digest re-derivations and parked at exit 3 only for mock quarantine, isolating the rejection to the digest mismatch.",
+ "status": "HOLDS",
+ "gap_note": "",
+ "notes": {
+  "mutation": "artifacts/julia_output.dat byte index 154 flipped 0x41 -> 0x40 after the ledger digest was recorded",
+  "recorded_digest": "f7e2476864959bce57360470b622b49e2754d6087ffac73926074c14f9087e20",
+  "on_disk_digest": "08ab0dc5fe32b0cd8610f82f559fe44061be2e493b3ea57f192c292731c8c649",
+  "run_from": "repo root /Users/joshuaeisenhart/Codex-Ratchet (artifact_path values in the ledger are repo-root-relative)",
+  "builder_script": "scratchpad build_digest_mutation_fixture.py (session-local); ledger kv schema mirrors sim_engines/serialized/serialized_stage.py"
+ }
+}

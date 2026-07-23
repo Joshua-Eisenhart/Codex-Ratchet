@@ -1,0 +1,13 @@
+{
+  "_fixture": "hostile_control:duplicate_json_key",
+  "_note": "RAW BYTES carry the same key twice inside one object. 'all_pass' appears as true then false; 'classification' appears as canonical then hostile_control_fixture. RFC 8259 leaves duplicate object keys undefined; python json.load and JS JSON.parse both silently keep the LAST occurrence. Both values are physically present in the file (grep -c proves 2 each). A first-match / top-skimming reader sees all_pass:true, classification:canonical; every gate that parses the file acts on the LAST value.",
+  "sim_id": "dupkey_hostile_fixture",
+  "classification": "canonical",
+  "all_pass": true,
+  "promotion_allowed": false,
+  "claim_kind": "field_only",
+  "produced_by": "hostile-fixture-builder",
+  "first_occurrence_reads": "all_pass=true, classification=canonical (what grep/skim sees)",
+  "all_pass": false,
+  "classification": "hostile_control_fixture"
+}

@@ -1,0 +1,12 @@
+{
+  "_fixture_note": "HOSTILE CONTROL FIXTURE (class: renamed_metric, container variant) — never a real receipt, never promotable. Same locked store (renamed_metric.store.json, 'acc' floor 0.8 higher_is_better). Here the RENAMED key is the container the fired chain itself reads: 'floor_claims' -> 'floor_claims_v2'. The regressing value 0.31 even sits under the ORIGINAL key 'acc', but post_receipt_gate.sh only fires the floor stage when d.get('floor_claims') is truthy, so the floor comparison is skipped entirely. classification stays 'scratch_diagnostic' for the same tier0-allowlist reason documented in renamed_metric.receipt.json.",
+  "hostile_control_fixture": true,
+  "hostile_class": "renamed_metric",
+  "classification": "scratch_diagnostic",
+  "claim_kind": "field_only",
+  "produced_by": "hostile-corpus-builder",
+  "promotion_allowed": false,
+  "floor_claims_v2": [
+    {"key": "acc", "value": 0.31, "direction": "higher_is_better"}
+  ]
+}

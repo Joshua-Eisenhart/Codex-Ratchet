@@ -1,0 +1,26 @@
+{
+  "class": "solver_sat_counterexample",
+  "classification": "hostile_control_fixture",
+  "promotion_allowed": false,
+  "fixtures": [
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/build_fixture.py",
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/state/state.db",
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/artifacts/solver_sat_counterexample_hostile_v1/julia_output.arrow",
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/artifacts/solver_sat_counterexample_hostile_v1/julia_output.arrow.receipt.json",
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/artifacts/solver_sat_counterexample_hostile_v1/jax_output.json",
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/artifacts/solver_sat_counterexample_hostile_v1/pysindy_output.json",
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/artifacts/solver_sat_counterexample_hostile_v1/z3_output.json",
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/receipts/solver_sat_counterexample_hostile_v1/julia.json",
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/receipts/solver_sat_counterexample_hostile_v1/jax.json",
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/receipts/solver_sat_counterexample_hostile_v1/pysindy.json",
+    "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/receipts/solver_sat_counterexample_hostile_v1/z3.json"
+  ],
+  "gate_cmd": "node --experimental-sqlite claimgate_plugin/claim_admission.mjs solver_sat_counterexample_hostile_v1 claimgate_plugin/fixtures/hostile/solver_sat_counterexample/state/state.db",
+  "gate_cmd_cwd": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "expected_exit": 1,
+  "expected_behavior": "REJECTED exit 1 via the dedicated SAT branch AFTER all four stage digests re-derive OK, printing the evidence-preserved line ('proof is SAT: a counterexample EXISTS and its receipt is preserved as completed negative science. Admission refused; evidence retained for evaluation.') — the COMPLETED/COUNTEREXAMPLE/SAT receipt reaches admission as evidence and is never converted into a tool crash (exit 2) or parked as infra (exit 3).",
+  "actual_exit": 1,
+  "actual_behavior": "All four stage digests re-derived OK with chain links OK, then '[ClaimGate] REJECTED — proof is SAT: a counterexample EXISTS and its receipt is preserved as completed negative science. Admission refused; evidence retained for evaluation.' exit 1; control counterfactual (identical ledger with only z3 proof_status flipped SAT->UNSAT in a scratch copy) exits 0 ENVELOPE SOUND incl. Gate M1 bound, so SAT is the sole rejection cause and the branch can-fail.",
+  "status": "HOLDS",
+  "gap_note": "claim_admission.mjs HOLDS (post-mortem miss #3 status-axis collapse is genuinely encoded), but the tier0/claim_verify side has NO SAT-as-negative-science axis (re-verified 2026-07-22: case-insensitive grep for 'sat' over claimgate_plugin/claim_verify.py returns 0 hits, and 'counterexample|proof_status|scientific_status' 0 hits — its only verdicts are VERIFIED/REJECTED/INSUFFICIENT_DEPTH plus CLEAN|TAINTED|FATAL audit tokens; claimgate.mjs's only 'sat' hits are the English word 'satisfied' in comments), so a solver-SAT counterexample routed through tier0 lint or the tier ladder instead of the envelope check has no vocabulary to preserve it as completed negative science."
+}

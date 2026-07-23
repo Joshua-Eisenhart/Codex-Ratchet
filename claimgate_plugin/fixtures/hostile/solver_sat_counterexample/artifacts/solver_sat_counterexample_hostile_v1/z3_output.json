@@ -1,0 +1,58 @@
+{
+ "check_sat": "sat",
+ "claim_under_test": "seam bipartition (Gate M1 family): every admissible mask on the 4x4 torus carrier preserves the seam 2-coloring; the NEGATION is encoded, so SAT = a counterexample mask exists",
+ "classification": "hostile_control_fixture",
+ "counterexample_model": {
+  "color_assignment": {
+   "v_0_0": 0,
+   "v_0_1": 1,
+   "v_1_1": 0,
+   "v_2_0": 0,
+   "v_2_1": 1
+  },
+  "conflict": "both endpoints of the seam-closing edge take color 0",
+  "conflict_edge": [
+   "v_2_0",
+   "v_0_0"
+  ],
+  "cycle_length": 5,
+  "cycle_parity": "odd",
+  "induced_cycle": [
+   "v_0_0",
+   "v_0_1",
+   "v_1_1",
+   "v_2_1",
+   "v_2_0"
+  ],
+  "mask_cells_open": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    2,
+    0
+   ]
+  ]
+ },
+ "encoding": "(assert (not (seam-bipartite carrier mask)))",
+ "fixture_class": "solver_sat_counterexample",
+ "note": "completed negative science: the solver RAN (no infra error) and found a model of the negated claim; this receipt must reach the envelope check as preserved evidence, never as a crash",
+ "promotion_allowed": false,
+ "solver": "z3",
+ "solver_version": "4.15.3",
+ "stage": "z3",
+ "wall_time_s": 0.41
+}

@@ -101,35 +101,57 @@ def _pre_out(verdict: str, reason: str, a) -> int:
 
 
 # ------------------------------------------------------------- post_tool_use
-def _strict_load(raw: bytes):
-    """Parse ONCE from raw bytes: reject duplicate keys and non-finite numbers
-    BEFORE object construction. Ordinary json.loads silently last-wins a
-    duplicate key, which is how {"all_pass":false,"all_pass":true} gets in."""
-    def no_dupes(pairs):
-        seen = set()
-        for k, _ in pairs:
-            if k in seen:
-                raise ValueError(f"duplicate key {k!r} rejected at raw parse")
-            seen.add(k)
-        return dict(pairs)
-
-    def no_nonfinite(x):
-        raise ValueError(f"non-finite number {x!r} rejected at raw parse")
-
-    return json.loads(raw.decode("utf-8"), object_pairs_hook=no_dupes,
-                      parse_constant=no_nonfinite)
+# The strict parse boundary is the SINGLE implementation in
+# claimgate_plugin/intake_supervisor.py. This gate DELEGATES to it.
+#
+# It used to carry its own weaker copy, and red team (2026-07-25) walked three
+# criticals straight through: 1e400 (overflows to inf without ever reaching
+# parse_constant), a non-finite token as a dict VALUE rather than a list element,
+# and a locked metric id present only as a value. Two parsers where one is weaker
+# is the same defect this project flags elsewhere; there is now exactly one.
+_CR_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(_CR_ROOT / "claimgate_plugin"))
+try:
+    from intake_supervisor import (strict_parse, poisoned_numeric_arrays,  # noqa: E402
+                                   locked_floor_check)
+    _HAVE_SUPERVISOR = True
+except Exception:  # noqa: BLE001
+    _HAVE_SUPERVISOR = False
 
 
 def post(a) -> int:
     p = Path(a.receipt)
     if not p.exists():
         return _post_out("BLOCKED", f"required artifact absent: {p} (missing is not N/A-ok)", a)
+
+    # fail CLOSED if the single strict parser is unavailable — never fall back
+    # to a weaker local copy, which is exactly how the criticals got through.
+    if not _HAVE_SUPERVISOR:
+        return _post_out("BLOCKED",
+                         "intake supervisor unavailable; failing closed rather than "
+                         "parsing with a weaker local implementation", a)
+
     raw = p.read_bytes()
     raw_digest = hashlib.sha256(raw).hexdigest()[:16]     # hashed BEFORE canonicalization
     try:
-        r = _strict_load(raw)
+        r = strict_parse(raw)
     except ValueError as e:
         return _post_out("BLOCKED", f"strict intake: {e}", a)
+    except Exception as e:  # noqa: BLE001
+        return _post_out("BLOCKED", f"strict intake: unparseable ({e}); failing closed", a)
+
+    if not isinstance(r, dict):
+        return _post_out("BLOCKED", "receipt is not a JSON object", a)
+
+    hits = poisoned_numeric_arrays(r)
+    if hits:
+        where = "; ".join(f"{pth} contains {bad}" for pth, bad, _ in hits[:2])
+        return _post_out("BLOCKED", f"non-finite/null poisoning numeric evidence: {where}", a)
+
+    floor = locked_floor_check(r)
+    if floor:
+        code, msg = floor
+        return _post_out("BLOCKED" if code == 1 else "PARKED_INCOMPARABLE", msg, a)
 
     present = [f for f in SELF_VERDICT_FIELDS if f in r]
     if any(r.get(f) is True for f in present):

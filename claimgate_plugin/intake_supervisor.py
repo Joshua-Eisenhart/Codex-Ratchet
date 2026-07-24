@@ -22,6 +22,7 @@ Env: RF_STORE=<floor store json>  (optional; enables the locked-floor check)
 from __future__ import annotations
 
 import json
+import math
 import os
 import re
 import sys
@@ -54,12 +55,27 @@ def strict_parse(raw: bytes):
 
 
 def poisoned_numeric_arrays(obj, path=""):
-    """A numeric evidence array carrying null or a non-finite STRING is poisoned:
-    valid JSON, but any recompute over it produces NaN and 'matches'."""
+    """Non-finite / null poisoning of numeric evidence, ANYWHERE in the document.
+
+    Three distinct encodings, all valid JSON, all making a recompute 'match':
+      1. a numeric array carrying null or a non-finite STRING token
+      2. a non-finite string as a plain dict VALUE (not inside a list)
+      3. a float that is already inf/-inf/nan after parsing -- e.g. the literal
+         1e400 overflows to inf WITHOUT ever reaching parse_constant, because
+         parse_constant only fires for the bare NaN/Infinity tokens.
+    (2) and (3) were live blind spots found by red team, 2026-07-25.
+    """
     hits = []
+    # (3) any float that survived parsing as non-finite, at any depth
+    if isinstance(obj, float) and not math.isfinite(obj):
+        return [(path or "<root>", [repr(obj)], 1)]
     if isinstance(obj, dict):
         for k, v in obj.items():
-            hits += poisoned_numeric_arrays(v, f"{path}.{k}")
+            p = f"{path}.{k}"
+            # (2) non-finite token as a dict value
+            if isinstance(v, str) and v.strip().lower() in NONFINITE_TOKENS:
+                hits.append((p, [v], 1))
+            hits += poisoned_numeric_arrays(v, p)
     elif isinstance(obj, list):
         has_num = any(isinstance(x, (int, float)) and not isinstance(x, bool) for x in obj)
         bad = [x for x in obj

@@ -129,3 +129,9 @@ Full draft: scratchpad nvidia_library_map.md (session 2026-07-22). Stress lane l
 - numpy load-bearing -> migrate to JAX+Julia: bures_to_fubini_study, real_vs_complex_tomography, vn_to_shannon_basis_relativity, carnot_engine, szilard_engine.
 - no engine value -> add JAX+Julia legs: extension_fibre_capacity, quantum_otto_engine.
 - mislabeled numeric (actually pure symbolic) -> declare numeric_engine_required=false: finite_to_continuum_rung, law_order_branch.
+
+### NEW RUN-MODALITIES 2026-07-23 (owner: "install all the proposed stuff and try it out")
+- INSTALLED+SMOKED: dimod + dwave-neal (annealing/QUBO lane), pgmpy 1.1.2 (factor-graph settlement lane), Metatheory.jl (e-graph rewriting, Julia). NOT installed w/ reason: cuQuantum (no NVIDIA GPU on M1 — cloud lane later), jax-metal (float32-only, precision veto).
+- DEMONSTRATED (stress lane, now 9/9 probes): ising_comparator_probe (4x4 checkerboard, exhaustive 16-site DeltaE max-err 0.0, 2^16 enumeration = JAX Metropolis = dimod exact = neal, frustrated control; ceiling: comparator NOT engine/oracle); factor_graph_settlement_probe (exact vs pgmpy VE 1e-10 on chain/tree/grid n=8-16, treewidth cost measured, wrong-factor diverges 0.33-0.73; ceiling: no 4^16 extrapolation licensed).
+- LEV EVAL MODALITY LIVE: `lev eval run <abs-path>.eval.js` executed sim-witness cr_constraint_battery pass suite through pure upstream Lev — lev.eval_decision.v1 emitted, artifact in ~/.local/share/lev/execution-ledger/artifacts/eval/. New pipeline shape: engines produce -> ClaimGate envelopes -> Lev decides. Zero lev-main changes.
+- QUEUED: ClaimGateIntakeSupervisor (thread-2 PDF proposal; fixes dup-key+NaN gaps; hostile corpus = acceptance bar).

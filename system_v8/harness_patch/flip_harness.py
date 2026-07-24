@@ -19,8 +19,14 @@ b12c0e8c7 -- where nearly every z3 leg was the tautology
   2. PERTURB   change one pinned entry    -> verdict must FLIP
   3. CORE      the unsat core must be a subset of the REAL constraints
 
-JAX batches the perturbations (vmap over rate space); z3 decides each instance.
+JAX generates the perturbation batch; z3 decides each instance.
 Output is a NUMBER: flip_rate. Tautology ~ 0.0. Genuine mechanism ~ 1.0.
+
+NOTE (corrected 2026-07-25): this file's perturbation sweep is a sequential
+Python loop -- there is no vmap and no jit here. The earlier wording claiming
+'vmap over rate space' was an overclaim about this file. The genuinely batched
+version, with a measured speedup and a sequential-vs-vmap agreement check, is
+system_v8/harness_patch/jax_smt_bridge.py.
 
 Claim under test here (a real one, not a toy): in the Type-1 deductive engine
 loop, STAGE ORDER is load-bearing -- i.e. some state exists where running the

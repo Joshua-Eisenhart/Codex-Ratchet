@@ -45,16 +45,29 @@ def _depth(r):
     return {str(k).lower(): v for k, v in _d(r, "TOOL_INTEGRATION_DEPTH", "tool_integration_depth").items()}
 
 
-def _engine_values(r):
-    """{engine: numeric value} pulled from engine_values keys prefixed '<engine>_'."""
+def _engine_metrics(r):
+    """{engine: {metric_id: value}} from engine_values keys '<engine>_<metric_id>'.
+
+    Keeps the METRIC ID, not just the first number. The prior version took the
+    first prefixed key and compared across engines regardless of which observable
+    it was -- so `jax_entropy=0.5` and `julia_unrelated=0.5` counted as agreement.
+    An external audit (2026-07-24) named this; a hostile fixture confirmed it
+    passed. Agreement is only meaningful between the SAME measured quantity.
+    """
     ev = _d(r, "engine_values")
     out = {}
     for eng in AUTHORITATIVE:
         for k, v in ev.items():
-            if str(k).lower().startswith(eng + "_") and isinstance(v, (int, float)):
-                out[eng] = float(v)
-                break
+            kl = str(k).lower()
+            if kl.startswith(eng + "_") and isinstance(v, (int, float)) and not isinstance(v, bool):
+                out.setdefault(eng, {})[kl[len(eng) + 1:]] = float(v)
     return out
+
+
+def _engine_values(r):
+    """Back-compat shim: {engine: one value} (first metric). Never used for the
+    agreement test -- that now goes through _engine_metrics by metric ID."""
+    return {e: next(iter(m.values())) for e, m in _engine_metrics(r).items() if m}
 
 
 def _rerun_jax_reproduces(receipt_path, recorded_jax):
@@ -132,11 +145,25 @@ def check(receipt, receipt_path):
                    f"carrying a numeric engine_value; verified={verified or 'none'}. A self-reported "
                    f"engines_ran boolean is NOT evidence — record the engine's computed value.")
 
-    # Values must AGREE (recomputed from the values themselves).
-    vv = [values[e] for e in verified]
-    div = max(abs(a - b) for a in vv for b in vv)
+    # Values must AGREE on the SAME METRIC ID. Comparing an engine's entropy to
+    # another engine's unrelated number is not agreement (audit 2026-07-24).
+    metrics = _engine_metrics(receipt)
+    shared = set.intersection(*(set(metrics[e]) for e in verified)) if verified else set()
+    if not shared:
+        per_engine = {e: sorted(metrics.get(e, {})) for e in verified}
+        return 1, (f"REJECT — engines share no common metric ID, so 'agreement' is undefined: "
+                   f"{per_engine}. Two engines must report the SAME measured quantity "
+                   f"(engine_values keys '<engine>_<metric_id>' with matching metric_id).")
+    div = 0.0
+    worst = None
+    for m in sorted(shared):
+        vals = [metrics[e][m] for e in verified]
+        d = max(abs(a - b) for a in vals for b in vals)
+        if d > div:
+            div, worst = d, m
     if div > AGREE_TOL:
-        return 1, f"REJECT — authoritative engines DISAGREE: max divergence {div} > {AGREE_TOL} across {verified}."
+        return 1, (f"REJECT — authoritative engines DISAGREE on metric '{worst}': "
+                   f"max divergence {div} > {AGREE_TOL} across {verified}.")
 
     # METADATA-ONLY mode (CI, where the sim env / jax leg is not installed): the numpy and
     # engine-count/agreement checks above need no env and fully catch the numpy bullshit;

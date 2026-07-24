@@ -1,0 +1,21 @@
+schema: lev.flowmind.flow.v1
+id: claimgate_flip_battery.score
+description: >
+  Score ClaimGate flip-battery evidence produced by Codex-Ratchet. Provider
+  evidence measures only; this flow's companion decides. Mirrors the
+  sim-witness one-brain contract.
+inputs:
+  provider_evidence:
+    type: object
+    required: true
+outputs:
+  observations:
+    type: object
+  measurements:
+    type: object
+nodes:
+  - id: score_flip_battery
+    kind: companion.score
+    inputs:
+      companion: ../companions/flip_sensor.mjs
+      provider_evidence: ${inputs.provider_evidence}

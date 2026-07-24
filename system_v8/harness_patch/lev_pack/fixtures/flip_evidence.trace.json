@@ -1,0 +1,166 @@
+{
+  "schema": "lev.claimgate_flip_battery.trace.v1",
+  "subject_ref": "codex-ratchet:system_v8/harness_patch/flip_harness.py",
+  "observable_name": "flip_rate",
+  "tolerance": 0,
+  "claim_under_test": "stage ORDER is load-bearing in the Type-1 deductive engine loop",
+  "llm_tokens_spent": 0,
+  "provider_evidence": [
+    {
+      "schema": "lev.sim_witness.provider_evidence.v1",
+      "lane_id": "sim.jax",
+      "status": "non_authoritative_input",
+      "subject_ref": "codex-ratchet:system_v8/harness_patch/flip_harness.py",
+      "generation": 1,
+      "content_address": "sim-witness:fnv1a32:6b3720bf",
+      "refs": [
+        {
+          "kind": "codex_ratchet_result_json",
+          "ref": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/harness_patch/results/flip_harness_v0.json"
+        }
+      ],
+      "facts": [
+        {
+          "name": "label",
+          "value": "type1_deductive_loop"
+        },
+        {
+          "name": "flip_rate",
+          "value": 1.0
+        },
+        {
+          "name": "n_perturbations",
+          "value": 24
+        },
+        {
+          "name": "erase_flips",
+          "value": true
+        },
+        {
+          "name": "smt_real",
+          "value": "unsat"
+        },
+        {
+          "name": "smt_erased",
+          "value": "sat"
+        },
+        {
+          "name": "unsat_core_size",
+          "value": 2
+        },
+        {
+          "name": "n_pinned",
+          "value": 6
+        },
+        {
+          "name": "core_is_subset",
+          "value": true
+        }
+      ]
+    },
+    {
+      "schema": "lev.sim_witness.provider_evidence.v1",
+      "lane_id": "proof.smt",
+      "status": "non_authoritative_input",
+      "subject_ref": "codex-ratchet:system_v8/harness_patch/flip_harness.py",
+      "generation": 1,
+      "content_address": "sim-witness:fnv1a32:57750359",
+      "refs": [
+        {
+          "kind": "codex_ratchet_result_json",
+          "ref": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/harness_patch/results/flip_harness_v0.json"
+        }
+      ],
+      "facts": [
+        {
+          "name": "label",
+          "value": "type1_deductive_loop"
+        },
+        {
+          "name": "flip_rate",
+          "value": 1.0
+        },
+        {
+          "name": "n_perturbations",
+          "value": 24
+        },
+        {
+          "name": "erase_flips",
+          "value": true
+        },
+        {
+          "name": "smt_real",
+          "value": "unsat"
+        },
+        {
+          "name": "smt_erased",
+          "value": "sat"
+        },
+        {
+          "name": "unsat_core_size",
+          "value": 2
+        },
+        {
+          "name": "n_pinned",
+          "value": 6
+        },
+        {
+          "name": "core_is_subset",
+          "value": true
+        }
+      ]
+    },
+    {
+      "schema": "lev.sim_witness.provider_evidence.v1",
+      "lane_id": "proof.smt",
+      "status": "non_authoritative_input",
+      "subject_ref": "codex-ratchet:system_v8/harness_patch/flip_harness.py",
+      "generation": 2,
+      "content_address": "sim-witness:fnv1a32:2bddc2a4",
+      "refs": [
+        {
+          "kind": "codex_ratchet_result_json",
+          "ref": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/harness_patch/results/flip_harness_v0.json"
+        }
+      ],
+      "facts": [
+        {
+          "name": "label",
+          "value": "NEGATIVE_CONTROL_commuting_z_only"
+        },
+        {
+          "name": "flip_rate",
+          "value": 0.0
+        },
+        {
+          "name": "n_perturbations",
+          "value": 24
+        },
+        {
+          "name": "erase_flips",
+          "value": false
+        },
+        {
+          "name": "smt_real",
+          "value": "sat"
+        },
+        {
+          "name": "smt_erased",
+          "value": "sat"
+        },
+        {
+          "name": "unsat_core_size",
+          "value": 0
+        },
+        {
+          "name": "n_pinned",
+          "value": 6
+        },
+        {
+          "name": "core_is_subset",
+          "value": false
+        }
+      ]
+    }
+  ]
+}

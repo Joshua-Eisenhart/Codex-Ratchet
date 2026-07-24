@@ -186,44 +186,56 @@ def flip_battery(schedule, label, n_perturb=24, seed=0):
     erase_flips = (real_v == "unsat" and erased_v == "sat")
     core_ok = (real_core > 0 and real_core <= n_pin + 1)
 
+    # MEASUREMENTS ONLY. No verdict field.
+    # Lev's sim-witness contract (companions/sensor.mjs) lists 'verdict',
+    # 'EvalVerdict', 'gate_proof', 'run_seal' as FORBIDDEN_PROVIDER_FIELDS and
+    # 'pass'/'fail'/'evaluated' as FORBIDDEN_PROVIDER_STATUSES: provider evidence
+    # may not carry its own verdict. The scorer decides; this only measures.
     return {
         "label": label,
         "n_sampled_states": len(rows),
         "measured_gaps": [g for _, g in rows],
-        "test_1_erase": {"real": real_v, "erased": erased_v, "passes": bool(erase_flips)},
+        "test_1_erase": {"real": real_v, "erased": erased_v, "erase_flips": bool(erase_flips)},
         "test_2_perturb": {"n_perturbations": int(n_perturb), "n_moved_table": int(checked),
                            "flips": int(flips), "flip_rate": round(flip_rate, 4)},
         "test_3_core": {"unsat_core_size": int(real_core), "n_pinned": int(n_pin),
-                        "passes": bool(core_ok)},
-        "verdict": (
-            "LOAD_BEARING" if (erase_flips and flip_rate > 0.5 and core_ok)
-            else "DECORATIVE_OR_TAUTOLOGY"
-        ),
+                        "core_is_subset": bool(core_ok)},
     }
 
 
+def _local_read(r):
+    """CLI convenience ONLY — printed, never written into provider evidence."""
+    return ("LOAD_BEARING" if (r["test_1_erase"]["erase_flips"]
+                               and r["test_2_perturb"]["flip_rate"] > 0.5
+                               and r["test_3_core"]["core_is_subset"])
+            else "DECORATIVE_OR_TAUTOLOGY")
+
+
 def main():
+    results = [
+        flip_battery(LOOP, "type1_deductive_loop"),
+        flip_battery(COMMUTING, "NEGATIVE_CONTROL_commuting_z_only"),
+    ]
     out = {
+        "schema": "lev.sim_witness.provider_evidence.v1",
         "harness": "flip_harness_v0",
         "classification": "tool_lego_fit_probe",
         "promotion_allowed": False,
         "claim_under_test": "stage ORDER is load-bearing in the Type-1 deductive engine loop",
         "llm_tokens_spent": 0,
-        "results": [
-            flip_battery(LOOP, "type1_deductive_loop"),
-            flip_battery(COMMUTING, "NEGATIVE_CONTROL_commuting_z_only"),
-        ],
+        "evidence_only": True,
+        "note": ("measurements only — no verdict, no pass/fail status. "
+                 "Lev's scorer decides. See sim-witness FORBIDDEN_PROVIDER_FIELDS."),
+        "results": results,
     }
-    good = next(r for r in out["results"] if r["label"] == "type1_deductive_loop")
-    ctrl = next(r for r in out["results"] if r["label"].startswith("NEGATIVE"))
-    out["battery_discriminates"] = bool(
-        good["verdict"] == "LOAD_BEARING" and ctrl["verdict"] != "LOAD_BEARING"
-    )
     d = Path(__file__).parent / "results"
     d.mkdir(exist_ok=True)
     (d / "flip_harness_v0.json").write_text(json.dumps(out, indent=1))
     print(json.dumps(out, indent=1))
-    return 0 if out["battery_discriminates"] else 1
+    # local read for the operator; NOT part of the artifact
+    for r in results:
+        print(f"# local read (not evidence): {r['label']} -> {_local_read(r)}", file=sys.stderr)
+    return 0
 
 
 if __name__ == "__main__":

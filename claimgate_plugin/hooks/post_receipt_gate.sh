@@ -16,6 +16,21 @@ advise() {
   node "$script_dir/../suggest.mjs" "$receipt" >&2 2>/dev/null || true
 }
 
+# INTAKE SUPERVISOR (strict parse boundary — fires BEFORE every other tier).
+# Poisoned bytes must never reach a checker that can normalize them into a
+# convenient claim. Closes the three standing hostile GAPs:
+#   duplicate_json_key  last-wins would silently pick a value before validation
+#   nan_values          NaN/null evidence made every recompute "match"
+#   renamed_metric      a locked floor metric vanished via rename
+# Exit 1 REJECT, 3 PARK — both block admission. See claimgate_plugin/intake_supervisor.py.
+python3 "$script_dir/../intake_supervisor.py" "$receipt"
+intake_exit=$?
+if [ "$intake_exit" -ne 0 ]; then
+  echo "post_receipt_gate: intake supervisor blocked at the parse boundary (exit $intake_exit)" >&2
+  advise
+  exit "$intake_exit"
+fi
+
 node "$script_dir/../claimgate.mjs" lint-receipt "$receipt" \
   --rules "$script_dir/../rules_ratchet.json"
 tier0_exit=$?

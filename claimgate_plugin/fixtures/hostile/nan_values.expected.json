@@ -8,9 +8,9 @@
   "expected_exit": 1,
   "expected_behavior": "NaN-poisoned recompute raw arrays / numeric evidence must not verify: the chain must exit nonzero (reject) or park, and the rejection must be attributable to the NaN evidence itself.",
   "actual_exit": 1,
-  "actual_behavior": "Chain exited 1, but ONLY because the mandatory fixture marker classification 'hostile_control_fixture' fails claimgate/claimgate.py R1 (classification_not_allowed); every NaN-facing check passed the NaN through — tier0 claimgate.mjs returned ADMISSIBLE with note 'recomputed mean matches (NaN)' and 'recomputed sum matches (0)' over [null,null,null], the seal passed, and claim_verify tier1 (recompute) PASSED; a counterfactual with the same NaN payload and an allowed classification ran the full chain to exit 0 VERIFIED.",
-  "status": "GAP",
-  "gap_note": "The gate has no NaN defense on the recompute contract; the observed exit 1 is an artifact of the fixture-safety marker, not NaN detection. Root cause in claimgate.mjs R5: 'Math.abs(got - claimed) > tol' is false when got is NaN (JS NaN comparisons are false), so a NaN recompute counts as a MATCH; 0.9+'NaN' string-concatenates then /length yields NaN, and null coerces to 0 in mean/sum so an all-null raw array 'matches' a claim of 0.0 and also satisfies R2 provenance. Counterfactual receipts (scratchpad, allowed classification 'scratch_diagnostic', NOT shipped as fixtures): (a) string/null variant -> full post_receipt_gate.sh chain exit 0 VERIFIED; (b) bare-NaN variant -> chain exit 2 (blocked, see per_variant), but python3 claim_verify.py invoked DIRECTLY on a bare-NaN receipt with no recompute contract exits 0 VERIFIED, because python json.load accepts bare NaN while only node's JSON.parse rejects it — the bare-literal block is an accidental property of node running first in the chain, not a designed NaN check. Fix direction (not applied — fixtures only): Number.isFinite guard on recompute inputs and the recomputed value in claimgate.mjs R5, mirroring the math.isfinite fix already applied to ratchet_floor.py per FIXTURE_CORPUS.md.",
+  "actual_behavior": "CLOSED 2026-07-25. Exit code is unchanged (1) but the ATTRIBUTION is now correct, which is what this class actually tests. Bare NaN/Infinity literals are rejected by parse_constant; the valid-JSON encodings ('NaN' string and null inside numeric evidence arrays) are rejected by a recursive scan that flags any array mixing real numbers with null/non-finite tokens. string_null now fails on '.metrics.raw_accuracies contains [NaN, None]' and '.aux.raw_margins contains [None,None,None]'. PRIOR BEHAVIOR: exit 1 ONLY because the fixture marker classification failed R1; every NaN-facing check passed the NaN through (tier0 ADMISSIBLE 'recomputed mean matches (NaN)', seal passed, tier1 recompute PASSED), and a counterfactual with an allowed classification ran to exit 0 VERIFIED.",
+  "status": "HOLDS",
+  "gap_note": "The gate has no NaN defense on the recompute contract; the observed exit 1 is an artifact of the fixture-safety marker, not NaN detection. Root cause in claimgate.mjs R5: 'Math.abs(got - claimed) > tol' is false when got is NaN (JS NaN comparisons are false), so a NaN recompute counts as a MATCH; 0.9+'NaN' string-concatenates then /length yields NaN, and null coerces to 0 in mean/sum so an all-null raw array 'matches' a claim of 0.0 and also satisfies R2 provenance. Counterfactual receipts (scratchpad, allowed classification 'scratch_diagnostic', NOT shipped as fixtures): (a) string/null variant -> full post_receipt_gate.sh chain exit 0 VERIFIED; (b) bare-NaN variant -> chain exit 2 (blocked, see per_variant), but python3 claim_verify.py invoked DIRECTLY on a bare-NaN receipt with no recompute contract exits 0 VERIFIED, because python json.load accepts bare NaN while only node's JSON.parse rejects it \u2014 the bare-literal block is an accidental property of node running first in the chain, not a designed NaN check. Fix direction (not applied \u2014 fixtures only): Number.isFinite guard on recompute inputs and the recomputed value in claimgate.mjs R5, mirroring the math.isfinite fix already applied to ratchet_floor.py per FIXTURE_CORPUS.md.",
   "per_variant": [
     {
       "fixture": "claimgate_plugin/fixtures/hostile/nan_values_string_null.json",
@@ -23,12 +23,20 @@
     },
     {
       "fixture": "claimgate_plugin/fixtures/hostile/nan_values_bare_literal.json",
-      "encoding": "bare NaN literal (invalid JSON per RFC 8259; python json.load accepts it as float('nan') — confirmed; node JSON.parse rejects it)",
+      "encoding": "bare NaN literal (invalid JSON per RFC 8259; python json.load accepts it as float('nan') \u2014 confirmed; node JSON.parse rejects it)",
       "gate_cmd": "sh claimgate_plugin/hooks/post_receipt_gate.sh claimgate_plugin/fixtures/hostile/nan_values_bare_literal.json",
       "expected_exit": 2,
       "actual_exit": 2,
       "actual_behavior": "Blocked at stage 1: claimgate.mjs readJson dies exit 2 on JSON.parse ('Unexpected token N'); hook propagates 2. Holds at the fired-chain level, but only via the node parser: python-side gates accept the same bytes (three_engine_seal direct exit 0 N/A; claim_verify direct WITH recompute exit 1 only because tier1 shells out to the mjs; claim_verify direct WITHOUT a recompute contract exit 0 VERIFIED).",
       "variant_status": "HOLDS_AT_CHAIN_LEVEL_ONLY"
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-07-25",
+      "prior_actual_exit": 1,
+      "prior_status": "GAP",
+      "closed_by": "claimgate_plugin/intake_supervisor.py (fired first in post_receipt_gate.sh)"
     }
   ]
 }

@@ -27,9 +27,11 @@ gF=0.6; gV=0.6; gP=0.6; gSi=0.6
 eF=0.9; eV=1.0; eP=0.9
 wSi=0.8; tau=0.5; qTi=0.5; phiFe=0.7
 
-# terrain (H_eff, jump ops), signs folded (Type-1 s=+1)
-terr_Se() = (op(s_sign*eF*H0m), [op(sqrt(gF)*mz)])
-terr_Ne() = (op(s_sign*H0m),    [op(sqrt(eV*gV)*mx)])
+# terrain generators — EXACT per "terrain math.md" (Type-1, s=+1):
+# Se = depolarizing(all 3 Paulis)+Ham; Ne = PURE Hamiltonian (no jumps);
+# Ni = sigma- sink + Ham; Si = z-dephase + z-Ham.
+terr_Se() = (op(s_sign*eF*H0m), [op(sqrt(gF)*mx), op(sqrt(gF)*my), op(sqrt(gF)*mz)])
+terr_Ne() = (op(s_sign*H0m),    Operator[])
 terr_Ni() = (op(s_sign*eP*H0m), [op(sqrt(gP)*msm)])
 terr_Si() = (op(s_sign*wSi*mz), [op(sqrt(gSi)*mP0), op(sqrt(gSi)*mP1)])
 

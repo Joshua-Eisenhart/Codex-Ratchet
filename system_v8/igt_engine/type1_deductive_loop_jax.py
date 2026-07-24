@@ -72,13 +72,19 @@ def _liouvillian(H_eff, jumps):
     return Ls
 
 
-# terrain (H_eff, jump-operator list), signs folded (Type-1 s=+1)
+# terrain generators — EXACT per "terrain math.md" §Eight Terrain Generators (Type-1, s=+1):
+#   Se/Funnel  X = lambda_Se * sum_{j=x,y,z} D[sigma_j] - i eps_Se [H0,.]   (DEPOLARIZING + Ham)
+#   Ne/Vortex  X = -i[H0,.]                                                 (PURE Hamiltonian, no jumps)
+#   Ni/Pit     X = gamma_Ni D[sigma_-] - i eps_Ni [H0,.]                    (sink + Ham)
+#   Si/Hill    X = -i[omega m.sigma,.] + kappa(P+ rho P+ + P- rho P- - rho) (dephase in m-basis + Ham); m=z
+# rates are the doc's free parameters (lambda,eps,gamma,kappa,omega), declared here.
 def _terr_Se():
-    return S_SIGN * EPS["F"] * H0, [jnp.sqrt(GAMMA["F"]) * sz]
+    j = jnp.sqrt(GAMMA["F"])
+    return S_SIGN * EPS["F"] * H0, [j * sx, j * sy, j * sz]      # depolarizing (all 3 Paulis)
 
 
 def _terr_Ne():
-    return S_SIGN * H0, [jnp.sqrt(EPS["V"] * GAMMA["V"]) * sx]
+    return S_SIGN * H0, []                                        # PURE Hamiltonian circulation
 
 
 def _terr_Ni():

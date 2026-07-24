@@ -20,12 +20,12 @@
   "julia": "load_bearing"
  },
  "engine_values": {
-  "jax_dS_loop": 0.16934711086589016,
-  "julia_dS_loop": 0.16934711086620158,
-  "jax_loop_noncomm": 0.10843476440090188,
-  "julia_loop_noncomm": 0.10843476440341766,
-  "jax_purity_out": 0.511853790768033,
-  "julia_purity_out": 0.511853790767724
+  "jax_dS_loop": 0.16399368023519634,
+  "julia_dS_loop": 0.1639936802357409,
+  "jax_loop_noncomm": 0.13169565322448926,
+  "julia_loop_noncomm": 0.13169565322217314,
+  "jax_purity_out": 0.5171550386936763,
+  "julia_purity_out": 0.517155038693138
  },
  "three_engine_legs": {
   "jax": {
@@ -35,14 +35,14 @@
    "operators": "Ti,Fe (FeTi/z-family)",
    "vN_entropy_trajectory": [
     0.5118989915874357,
-    0.6378779610528015,
-    0.6783309357592417,
-    0.6797982015442912,
-    0.6812461024533258
+    0.6862138982797488,
+    0.6880146489248384,
+    0.6752428260789534,
+    0.675892671822632
    ],
-   "dS_loop": 0.16934711086589016,
-   "purity_out": 0.511853790768033,
-   "loop_noncomm_fwd_vs_rev": 0.10843476440090188,
+   "dS_loop": 0.16399368023519634,
+   "purity_out": 0.5171550386936763,
+   "loop_noncomm_fwd_vs_rev": 0.13169565322448926,
    "commuting_control_noncomm": 0.0,
    "ran": true
   },
@@ -50,27 +50,28 @@
    "ran": true,
    "vN_entropy_trajectory": [
     0.5118989915874357,
-    0.6378779610531593,
-    0.6783309357593057,
-    0.6797982015448447,
-    0.6812461024536373
+    0.6862138982793207,
+    0.6880146489245458,
+    0.6752428260796006,
+    0.6758926718231766
    ],
    "commuting_control_noncomm": 0.0,
    "terrain_order": "Se->Ne->Ni->Si",
-   "dS_loop": 0.16934711086620158,
-   "loop_noncomm_fwd_vs_rev": 0.10843476440341766,
+   "dS_loop": 0.1639936802357409,
+   "loop_noncomm_fwd_vs_rev": 0.13169565322217314,
    "loop": "type1_deductive_outer",
-   "purity_out": 0.511853790767724,
+   "purity_out": 0.517155038693138,
    "engine": "julia:QuantumOptics"
   }
  },
  "cross_engine_divergence": {
-  "dS_loop": 3.114175584073564e-13,
-  "loop_noncomm": 2.5157792515884125e-12
+  "dS_loop": 5.445643935786393e-13,
+  "loop_noncomm": 2.316119518397386e-12
  },
  "findings": {
   "cycle_is_irreversible": true,
   "order_is_load_bearing": true,
   "commuting_control_collapses": true
- }
+ },
+ "terrain_generators": "EXACT per terrain math.md: Se=depolarizing(3 Paulis)+Ham, Ne=pure Hamiltonian, Ni=sigma- sink+Ham, Si=z-dephase+z-Ham"
 }

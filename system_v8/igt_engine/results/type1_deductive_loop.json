@@ -1,0 +1,76 @@
+{
+ "sim_id": "type1_deductive_loop",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "formal_admission_allowed": false,
+ "claim_ceiling": "one IGT engine-cycle loop (Type-1 deductive outer) run on 2 engines; candidate terrain generators; NOT canon, NOT axis/bridge/admission",
+ "loop": "type1_deductive_outer  Se->Ne->Ni->Si  (FeTi/z-family: Ti,Fe)",
+ "engine_contract": {
+  "semantic_owner": "julia",
+  "numeric_engine_required": true,
+  "n_authoritative_engines": 2
+ },
+ "engines_ran": {
+  "jax": true,
+  "julia": true,
+  "numpy": false
+ },
+ "tool_integration_depth": {
+  "jax": "load_bearing",
+  "julia": "load_bearing"
+ },
+ "engine_values": {
+  "jax_dS_loop": 0.16934711086589016,
+  "julia_dS_loop": 0.16934711086620158,
+  "jax_loop_noncomm": 0.10843476440090188,
+  "julia_loop_noncomm": 0.10843476440341766,
+  "jax_purity_out": 0.511853790768033,
+  "julia_purity_out": 0.511853790767724
+ },
+ "three_engine_legs": {
+  "jax": {
+   "engine": "jax:x64",
+   "loop": "type1_deductive_outer",
+   "terrain_order": "Se->Ne->Ni->Si",
+   "operators": "Ti,Fe (FeTi/z-family)",
+   "vN_entropy_trajectory": [
+    0.5118989915874357,
+    0.6378779610528015,
+    0.6783309357592417,
+    0.6797982015442912,
+    0.6812461024533258
+   ],
+   "dS_loop": 0.16934711086589016,
+   "purity_out": 0.511853790768033,
+   "loop_noncomm_fwd_vs_rev": 0.10843476440090188,
+   "commuting_control_noncomm": 0.0,
+   "ran": true
+  },
+  "julia": {
+   "ran": true,
+   "vN_entropy_trajectory": [
+    0.5118989915874357,
+    0.6378779610531593,
+    0.6783309357593057,
+    0.6797982015448447,
+    0.6812461024536373
+   ],
+   "commuting_control_noncomm": 0.0,
+   "terrain_order": "Se->Ne->Ni->Si",
+   "dS_loop": 0.16934711086620158,
+   "loop_noncomm_fwd_vs_rev": 0.10843476440341766,
+   "loop": "type1_deductive_outer",
+   "purity_out": 0.511853790767724,
+   "engine": "julia:QuantumOptics"
+  }
+ },
+ "cross_engine_divergence": {
+  "dS_loop": 3.114175584073564e-13,
+  "loop_noncomm": 2.5157792515884125e-12
+ },
+ "findings": {
+  "cycle_is_irreversible": true,
+  "order_is_load_bearing": true,
+  "commuting_control_collapses": true
+ }
+}

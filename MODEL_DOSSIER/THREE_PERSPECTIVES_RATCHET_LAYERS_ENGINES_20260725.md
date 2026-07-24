@@ -353,10 +353,10 @@ And the honest current state of that model:
 
 **The gap this exposes** is the most useful thing in this document: your model wants the engines to converge on a *basin structure*, and the measured engines converge on a *point*. Selection is not happening in the dynamics. It is happening — if anywhere — one level up, in which candidate towers survive `L_D = 0` and sit on the coarseness antichain.
 
-Three ways the basin could acquire structure (all untested, all cheap):
-1. **Couple two engines** (the mesh, axes 7–12) — a product of two contractions can have structure the factors lack.
-2. **Leave the contraction regime** — the controls prove structure appears when contraction fails; a schedule with a unitary-dominant stroke may sit between 1 and 16 attractors.
-3. **Nest** — `engine_pair_basin_map_sim` already shows loop-basin ⊂ engine-basin (`nesting_holds`); a deeper nest is the untried direction.
+Three ways the basin could acquire structure (see §6.2 — route 1 as originally written is now **measured false**):
+1. ~~**Couple two engines** — a product of two contractions can have structure the factors lack.~~ **RETRACTED, see §6.2.**
+2. **Leave the contraction regime** — the controls prove structure appears when contraction fails; a schedule with a unitary-dominant stroke may sit between 1 and 16 attractors. (Necessary but not sufficient — pure preservation selects nothing.)
+3. **Nest** — `engine_pair_basin_map_sim` already shows loop-basin ⊂ engine-basin (`nesting_holds`); useful only if nesting adds persistent state or renesting, not if it wraps the same point attractor.
 
 ---
 
@@ -369,9 +369,81 @@ Three ways the basin could acquire structure (all untested, all cheap):
 5. **Which of 21 ladders** enters the tournament as the tower.
 6. **Probe-family thickness** — the ratchet only discriminates in a narrow band; D and M must be chosen, and that choice is a modelling act, not a measurement.
 
+---
+
+# PART 6 — CORRECTIONS (external review, then measured)
+
+External review (GPT) raised four objections to Parts 1–5. Two were **tested this session and confirmed against the running engine**; two are adopted as method corrections. Nothing here is smoothed — the superseded statements stay visible above with pointers.
+
+## 6.1 The arrow was drawn linear; the kernel is cyclic — ADOPTED
+
+Part 4 drew `D≠∅ → tower → engine → point basin`, which ends. That is wrong-shaped and the source says so: the kernel's own residual compiler closes the loop, `O_{r+1} = Compile(Δ_r, C_r, H_r)`. Corrected shape:
+
+```
+𝓕_r ──► {𝒯_α} ──► Hist(𝓔_α) ──► π_α ──► MSS_{D_r⁺} ──► 𝓕_{r+1}
+ fuzz     rival        engine       induced      coarsest        renested
+ field    nests        histories    partition    survivors       field
+```
+
+Also adopted: `D ≠ ∅` **activates** the executable ratchet; it is not the ontological floor. The floor candidate is the finite distinction field `p: E₀ → K`, `|Ω_c| = 2^{n_c}`, `H₀(Ω_c) = n_c` — the fuzz. This matches your own position from the previous turn, and the repo's one earned arrow family (Rényi Layer 6).
+
+## 6.2 "Products of contractions can create structure" — MEASURED FALSE
+
+My route 1 in Part 4. Computed directly (`rotation_and_product_test_v0`):
+
+| quantity | value |
+|---|---|
+| engine-1 contraction coefficient | 0.149446413909 |
+| engine-2 contraction coefficient | 0.149446413909 |
+| direct-product unit eigenvalues | **1** |
+| direct-product subdominant modulus | 0.13226717053 |
+| `product_is_contraction` | **true** |
+
+A direct product of two contractions is a contraction with a unique fixed point. **Coupling two engines by direct product cannot create basin structure.** Structure requires state-dependent, record-mediated, or obstruction-mediated coupling. Route 1 as written is retracted.
+
+## 6.3 Cyclic rotation — CONFIRMED, and it dissolves part of OD-11
+
+Claim tested: "cyclic rotations are the same loop." If so, rotated orders have **conjugate** return maps and therefore identical Liouvillian spectra. Measured:
+
+| pair | predicted same cycle | max spectral gap | verdict |
+|---|---|---|---|
+| `doc Se→Ne→Ni→Si` vs `owner-hyp Ne→Ni→Si→Se` | yes | **0.0** | **SAME CYCLE, different phase** |
+| `reversed-doc Si→Ni→Ne→Se` vs `doc-inductive Se→Si→Ni→Ne` | yes | **0.0** | same cycle — deduction reversed *is* induction, confirmed numerically |
+| `doc` vs `AR01 Ne→Si→Se→Ni` | no | 0.007724 | genuinely different cycle |
+| `doc` vs `reversed-doc` | no | 0.069291 | different cycle |
+| `AR01` vs `reversed-doc` | no | 0.061567 | different cycle |
+
+**Consequence for OD-11.** The apparent conflict between the doc's deductive order and your S→N / N→S hypothetical is **not a conflict about the cycle** — they are the same 4-cycle read from different starting phases, spectra identical to machine zero. What remains open is narrower and cleaner:
+
+1. **which phase is stage 1** — a labelling/interpretation choice (it does change the one-step map, which is conjugate, not equal), and
+2. the **AR01 / recovery-pack order**, which is a genuinely different cycle and remains an error.
+
+## 6.4 One-step partitions conflate phase with cycle — METHOD CORRECTION
+
+Part 3.4 reported rival orders producing 7 / 6 / 9 cells at probe resolution 1, and treated that as the orders differing. §6.3 shows the doc and owner orders are the same cycle, so that difference measures **starting phase**, not cycle identity. Rotations give conjugate one-step maps: same spectrum, different single-step partition.
+
+Correction adopted: the candidate's signature for ratchet comparison must be the **transition relation over the full history**, not a one-step partition or a terminal attractor. Three typed objects instead of my pre-loop/post-loop fork:
+
+```
+π_in  ──T_α──►  π_out          with behaviour signature
+b_α = ( ρ_0…ρ_16 , D_jk , R_0…R_16 , Δ_order , Δ_direction , Δ_Axis6 , Δ_deletion )
+```
+
+This also supersedes §3.4's framing of the identity-honesty failure: it is not "pick pre-loop or post-loop," it is "the candidate is identified by its transition, and both endpoints are typed."
+
+## 6.5 What is NOT adopted
+
+The review's proposed F0–F10 dependency DAG is a **new candidate ladder — number 22** — and goes into the tournament with the other 21. It is not adopted as the manifold. The review states the rule itself ("no LLM-generated table should be treated as canon") and that rule applies to its own table.
+
+Its `16 = 4 topologies × 2 flux × 2 Axis-6` coordinate system is checkable and holds, but only as a **relabelling**: in the 16-cell chart the Axis-6 arrow is a function of (terrain, loop) — for Se, outer=UP / inner=DOWN; for Ne, outer=DOWN / inner=UP — so arrow substitutes for loop bijectively given terrain. It is one coordinate system written two ways, not two independent ones.
+
+---
+
 ## Artifacts
 
 - `system_v8/ratchet_bridge/engine_as_candidate.py` — engine presented as a ratchet `CandidatePackage`
 - `system_v8/ratchet_bridge/run_bridge.py` — rival orders + 4 negative controls + probe sweep
-- `system_v8/ratchet_bridge/results/engine_to_ratchet_bridge_v0.json` — receipt
+- `system_v8/ratchet_bridge/rotation_and_product_test.py` — §6.2 and §6.3 tests
+- `system_v8/ratchet_bridge/results/engine_to_ratchet_bridge_v0.json`
+- `system_v8/ratchet_bridge/results/rotation_and_product_test_v0.json`
 - `classification: tool_lego_fit_probe`, `promotion_allowed: false`

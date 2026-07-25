@@ -31,6 +31,19 @@ if [ "$intake_exit" -ne 0 ]; then
   exit "$intake_exit"
 fi
 
+# RECOMPUTE VETO (lean gate tier: numpy + numba, no Julia/PyTorch/JAX).
+# Re-derives claimed aggregates from the raw arrays in the same receipt instead of
+# trusting the producer's number, and vetoes when summation ORDER is load-bearing
+# (ordered vs compensated disagree) because a bare "sum" claim is then ambiguous.
+# numpy is ALLOWED in the ClaimGate lane by owner rule — the gate's job is veto.
+python3 "$script_dir/../recompute_veto.py" "$receipt"
+recompute_exit=$?
+if [ "$recompute_exit" -ne 0 ]; then
+  echo "post_receipt_gate: recompute veto (exit $recompute_exit) — a claimed number did not re-derive" >&2
+  advise
+  exit "$recompute_exit"
+fi
+
 node "$script_dir/../claimgate.mjs" lint-receipt "$receipt" \
   --rules "$script_dir/../rules_ratchet.json"
 tier0_exit=$?

@@ -1,4 +1,26 @@
 #!/usr/bin/env python3
+# =============================================================================
+# FAILED CANDIDATE — PURGATORY. Do NOT import this from any gate, and do NOT
+# treat a WITNESSED verdict it emits as evidence for any claim.
+#
+# 11 defects recorded in claimgate_plugin/results/purgatory_engine_witness_v0.json.
+# Wrong in BOTH directions:
+#   fail-open   token dispatch, poison-detection, mutation-on-crash, decoy-field
+#               mutation, .py-only leg path so Julia never fires, and the full
+#               chain admitting a receipt whose legs compute nothing
+#   fail-closed real JAX work using off-list ops labelled DECORATIVE_IMPORT
+#
+# ROOT CAUSE: every control asks about the PROCESS — did a module load, did a
+# call happen, does the source matter, does the dependency matter. None asks the
+# only question that decides the claim: do the receipt's asserted numbers come
+# from this engine's output? A process property can always be manufactured
+# cheaply alongside a fabricated answer.
+#
+# Kept for its reproductions and its four control ideas, which are inputs to a
+# real witness (output bound to the receipt, output-dependence, native JAXPR /
+# StableHLO + device + block_until_ready, an actual Julia process, cross-engine
+# ARTIFACT comparison). Not a boundary. Not integrated.
+# =============================================================================
 """ENGINE WITNESS — evidence that an engine RAN, not metadata saying it did.
 
 WHAT THIS REPLACES, and why it had to be replaced. three_engine_seal's

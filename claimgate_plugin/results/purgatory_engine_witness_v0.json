@@ -1,0 +1,56 @@
+{
+ "schema": "cr.purgatory_record.v1",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "candidate": "claimgate_plugin/engine_witness.py",
+ "status": "FAILED_CANDIDATE — Purgatory fuel. NOT integrated, and must not be wired into any gate chain or CI job in this form.",
+ "date": "2026-07-25",
+
+ "what_it_claimed": "Execution evidence that a declared load-bearing engine actually computed a receipt's numbers, via four controls: PRESENCE, DISPATCH count, dependency POISON, source MUTATION.",
+
+ "why_it_fails": "It measures properties of a PROCESS, never the binding between an engine's output and the receipt's claimed values. Every control can be satisfied by a leg that computes nothing the receipt reports. It also rejects genuine work, so it is wrong in both directions at once.",
+
+ "failures": [
+  {"id": "F1", "severity": "CRITICAL", "class": "CAN_FAIL",
+   "finding": "Full chain admits a receipt whose two engine legs compute nothing. The sanctioned good fixture's receipt bytes were taken verbatim and only the legs swapped for token-dispatch versions.",
+   "why_it_matters": "The receipt is byte-identical to one that passed honestly, so nothing about the receipt distinguishes them. Only the legs differ, and the legs are what the witness was supposed to judge."},
+  {"id": "F2", "severity": "CRITICAL", "class": "CAN_FAIL",
+   "finding": "torch is listed authoritative in claim_policy.json but witness_leg guarded DISPATCH with `if eng == \"jax\"`, so torch skipped the control entirely.",
+   "note": "Patched during this session to apply to all engines, but the patch is untested for torch and does not rescue the design."},
+  {"id": "F3", "severity": "CRITICAL", "class": "CAN_FAIL",
+   "finding": "The Julia witness never fires: claim_policy_gate._witness builds the leg path as f\"{stem}_{eng}.py\", always .py, so a real probe_julia.jl beside the receipt is reported NO_LEG."},
+  {"id": "F4", "severity": "HIGH", "class": "CAN_FAIL",
+   "finding": "Token dispatch defeats DISPATCH on both engines: one jnp.array([0.0,0.0,0.0]) with the result discarded, observables typed by hand.",
+   "note": "This is fixture b10, recorded as open before the lane confirmed it independently."},
+  {"id": "F5", "severity": "HIGH", "class": "CAN_FAIL",
+   "finding": "MUTATION scores ANY nonzero exit as a pass (`if rc != 0: return True`). A leg that recomputes the sha256 of its own source and exits 3 when it changes is provably INVARIANT to its source, yet passes the control designed to prove the opposite."},
+  {"id": "F6", "severity": "HIGH", "class": "CAN_FAIL",
+   "finding": "MUTATION passes when ANY shared numeric field moves, and perturbs only the LAST literal. A decoy field (calibration_nonce) derived from that literal satisfies it while every claimed observable stays constant."},
+  {"id": "F7", "severity": "HIGH", "class": "CAN_FAIL",
+   "finding": "POISON is defeated by detecting the poison. _POISON_MODULE raises ImportError with a fixed greppable string, so a leg can catch ImportError, check for that string, and choose to fail — satisfying the control without depending on the engine."},
+  {"id": "F8", "severity": "HIGH", "class": "CAN_FAIL",
+   "finding": "Julia POISON is satisfied by a decorative `using Printf` that is never called, while all numeric work is Base and all output is a string literal."},
+  {"id": "F9", "severity": "CRITICAL", "class": "CAN_FAIL",
+   "finding": "The second engine's claimed values bind to NOTHING. three_engine_seal re-derives only the JAX leg; claim_policy_gate records witness verdicts and never compares leg OUTPUT to the receipt's claimed values.",
+   "why_it_matters": "This is the structural defect the whole design misses. Even a genuinely witnessed engine does not certify the numbers in the receipt, because no comparison is ever made between what the leg printed and what the receipt asserts."},
+  {"id": "F10", "severity": "MEDIUM", "class": "CAN_FAIL",
+   "finding": "The durable ledger cannot separate an honest run from a forgery: its identity fields are receipt_sha256 and gate_source_digest, and the LEGS are not covered by either."},
+  {"id": "F11", "severity": "MEDIUM", "class": "CAN_FAIL",
+   "finding": "FALSE NEGATIVE — real JAX work is labelled DECORATIVE_IMPORT. DISPATCH counts membership in a hand-written name list, so a leg computing every printed number in JAX via eye/diag/full/slogdet/var is rejected.",
+   "why_it_matters": "Wrong in the opposite direction. A control that rejects honest computation trains people to route around the gate, which costs more than the fail-open."}
+ ],
+
+ "root_cause": "Every control asks about the PROCESS (did a module load, did a call happen, does the source matter, does the dependency matter). None asks the only question that decides the claim: do the receipt's asserted numbers come from this engine's output? A process property can always be manufactured cheaply alongside a fabricated answer.",
+
+ "what_would_have_to_be_true_instead": [
+  "the demanded OUTPUT is bound to the receipt: the leg emits an artifact whose hash the receipt carries, and the gate compares the artifact's values to the claimed values",
+  "output-dependence: replacing or removing the declared operation must CHANGE the demanded output, not merely change some field",
+  "JAX native witness: JAXPR or StableHLO hash, version, x64 state, actual device, and block_until_ready() before measuring",
+  "Julia native witness: its own process, Project.toml and Manifest.toml hashes, source digest, output artifact, recomputation — never a Julia number copied into a JSON receipt",
+  "cross-engine comparison of ARTIFACTS produced independently, not of two fields in one document"
+ ],
+
+ "provenance_discipline": "Three lanes (codex-terra, an NVIDIA model, and a workflow stress agent) reached overlapping conclusions about these defects. That agreement is INDEPENDENT PROPOSAL FUEL, not evidence. The evidence is the measured exit code of each reproduction, run here. An earlier report in this session called two lanes agreeing 'the useful signal', which overstated it.",
+
+ "disposition": "Keep the file for its reproductions and its four control ideas, which are reusable inputs to a real witness. Do not import it from any gate. Do not count any WITNESSED verdict it emits as evidence for any claim."
+}

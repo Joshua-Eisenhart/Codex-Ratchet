@@ -3,6 +3,8 @@
  "_rule": "If the sweep reports a mismatch, FIX THE CHECKER. Re-running this generator re-pins to current behaviour and erases the finding \u2014 the same mistake as raising a ratchet ceiling to make CI green.",
  "_baseline_note": "Exits below are MEASURED, not aspirational. Some are 0 because the checker genuinely has nothing to say about that fixture (a control receipt, or poison outside that checker's remit). A 0 here is a recorded fact about today, not an endorsement.",
  "_regenerate": "python3 claimgate_plugin/build_sweep_fixture_manifest.py --write",
+ "_tracked_only": "Pinned from `git ls-files` \u2014 the committed set, which is all CI can see. Untracked/gitignored fixtures are deliberately absent.",
+ "_skipped_untracked": [],
  "_checkers": [
   "intake_supervisor",
   "recompute_veto"
@@ -675,38 +677,6 @@
   {
    "path": "claimgate_plugin/rf_fixtures/receipt_tamper.json",
    "sha256": "0fd8a0139b3e4e380d10af9432dfe79df34c612a1c781703c7e394c325951c41",
-   "expect_exit": {
-    "intake_supervisor": 0,
-    "recompute_veto": 0
-   }
-  },
-  {
-   "path": "system_v8/harness_patch/results/fixtures/clean.json",
-   "sha256": "f92bb726ab56f74d70f25c988ec050b30f5e8c5fc3cc23076cb98fe2113a1980",
-   "expect_exit": {
-    "intake_supervisor": 0,
-    "recompute_veto": 0
-   }
-  },
-  {
-   "path": "system_v8/harness_patch/results/fixtures/dupkey.json",
-   "sha256": "f371a9bcf83b56ea2bc2dd3a132c45879114298b99472bdc4d99dc43414dd51d",
-   "expect_exit": {
-    "intake_supervisor": 1,
-    "recompute_veto": 0
-   }
-  },
-  {
-   "path": "system_v8/harness_patch/results/fixtures/nan.json",
-   "sha256": "a092fed3889d19f44f07e0eca88cd1ba975df01a4fa91612f0191ca9a7edd434",
-   "expect_exit": {
-    "intake_supervisor": 1,
-    "recompute_veto": 0
-   }
-  },
-  {
-   "path": "system_v8/harness_patch/results/fixtures/selfverdict.json",
-   "sha256": "3b0841c6dfe5ce992ee71045f5bddf0a55073e816762f85f7c061b9ca1379e0d",
    "expect_exit": {
     "intake_supervisor": 0,
     "recompute_veto": 0

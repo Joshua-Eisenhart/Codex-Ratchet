@@ -3,7 +3,7 @@
  "_rule": "May only ever SHRINK, and only by a reviewed edit. A NEW failing path, or a frozen path whose bytes changed, fails the job \u2014 repairing one old failure no longer buys a slot for a new one.",
  "checker": "claimgate_plugin/recompute_veto.py",
  "scope": "all",
- "count_at_freeze": 17,
+ "count_at_freeze": 16,
  "failures": {
   "system_v5/julia_carrier/scratch_jax_snapshot_20260604/gs_su3_calabiyau_jax_results.json": {
    "exit": 1,
@@ -19,11 +19,6 @@
    "exit": 1,
    "sha256": "a4ace2b868d2683570f5db00ab32956a38e4fc150298bb60b7fce8e07bcdbc37",
    "msg": "recompute_veto: VETO \u2014 .n01_noncomm.max_abs_difference: claimed 2.0 but max of raw = 1.0"
-  },
-  "system_v5/ops/formal_scouts/results/world_model_repo_admission_gap_adapter_probe_results.json": {
-   "exit": 1,
-   "sha256": "4c7b68a879ca3e95b1c25be7901e9ff51cf2a93685c2e19f0fa2a5f93535ba3d",
-   "msg": "recompute_veto: VETO \u2014 .repair_receipt.primary_control/result.auto_lirpa_consumption_probe.bounds.max_abs_diff_ub: claimed 5.960464477539063e-08 but max of raw = 2.4669535160064697"
   },
   "system_v6/sims/basin_information_fusion_v0/results/basin_information_fusion_v0_envelope_results.json": {
    "exit": 1,

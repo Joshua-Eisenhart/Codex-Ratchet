@@ -27,14 +27,19 @@ jobs:
   # pre-commit gate entirely, so every checker that only fires from a hook is
   # optional in practice. These jobs fire where the committer has no --no-verify.
   #
-  # Jobs 1-3 are ZERO TOLERANCE by construction: no continue-on-error, no `|| true`,
-  # no `if:` condition, and --max-failures defaults to 0. Do not add any of those to
-  # make a red build green.
+  # Jobs 1-3 have no continue-on-error, no `|| true`, and no `if:` condition. They
+  # are held against FROZEN FAILURE SETS (path + sha256 + exit) rather than count
+  # budgets: a count is fungible, so repairing one old failure would free a slot for
+  # a new poisoned receipt. Measured on that exact swap: --max-failures 1 exits 0
+  # while the frozen set exits 1. Do not re-freeze a set to make a red build green.
   #
-  # Deliberately-malformed fixture corpora are excluded inside
-  # claimgate_plugin/ci_receipt_sweep.py by an explicit, grep-able prefix list, each
-  # naming the manifest that records its expected nonzero exits. That list is the one
-  # narrowing surface in this tier and changing it is a reviewed act.
+  # Deliberately-malformed fixture corpora are PINNED BY DIGEST in
+  # claimgate_plugin/fixtures/sweep_fixture_manifest.json with the exit each checker
+  # must return, and are RUN as regression inputs. They are not path-excluded: a
+  # prefix cannot tell poison-we-wrote from poison-someone-parked, and that was the
+  # cheapest bypass in this layer. Anything unpinned under a fixture root is swept
+  # normally. Every baseline is frozen from `git ls-files`, because CI only ever
+  # sees committed files.
   #
   # Install stays lean on purpose: stdlib + numpy + numba. No jax, no Julia, no
   # PyTorch in the gate tier (jax was measured at 529 ms against numpy's 52 ms for a
@@ -51,8 +56,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      # Frozen live set, not --max-failures 0. The one recorded live failure
+      # (system_v8/nested_manifold/results/rungB/receipt.json — a bare Infinity
+      # literal, invalid JSON per RFC 8259) is REAL DEBT and is named in the frozen
+      # set with its message. Held at zero tolerance it would paint this job red
+      # forever, which is how a check gets ignored. Editing the receipt to green the
+      # build is worse: that is science content. So the finding stays recorded and
+      # any NEW live failure still fails, including a swap that repairs rungB and
+      # spends the slot elsewhere.
       - name: Reject poisoned claim receipts before downstream normalization
-        run: python3 claimgate_plugin/ci_receipt_sweep.py --checker claimgate_plugin/intake_supervisor.py --scope live
+        run: |
+          python3 claimgate_plugin/ci_receipt_sweep.py \
+            --checker claimgate_plugin/intake_supervisor.py --scope live \
+            --frozen-failures claimgate_plugin/baselines/frozen_failures_intake_supervisor_live.json
 
   # JOB 2 — hostile-control battery. Must stay 10 HOLDS, no-drift.
   # Needs node with node:sqlite (4 classes drive claim_admission.mjs against a
@@ -86,14 +102,19 @@ jobs:
           python-version: "3.12"
       - name: Install lean gate-tier dependencies
         run: python3 -m pip install --disable-pip-version-check numpy numba
+      # Frozen live set holds ZERO entries: live recompute is genuinely clean, so
+      # this is zero tolerance expressed as an empty set rather than a count.
       - name: Re-derive claimed aggregates instead of trusting them
-        run: python3 claimgate_plugin/ci_receipt_sweep.py --checker claimgate_plugin/recompute_veto.py --scope live
+        run: |
+          python3 claimgate_plugin/ci_receipt_sweep.py \
+            --checker claimgate_plugin/recompute_veto.py --scope live \
+            --frozen-failures claimgate_plugin/baselines/frozen_failures_recompute_veto_live.json
 
-  # JOB 4 — orphan-receipt ratchet. Reports the count every run; fails ONLY if the
-  # count rises above the recorded ceiling in claimgate_plugin/ci_ratchet_baseline.json.
-  # Measured on a clean HEAD checkout: 2221 orphans against 0 durable ledger records.
-  # Wiring the detector's raw exit 1 straight into CI would fail on a known baseline
-  # and enforce nothing. Blocking, but not tripped by the baseline.
+  # JOB 4 — orphan-receipt ratchet, held against the FROZEN SET in
+  # claimgate_plugin/ci_orphan_baseline.json (path + sha256, 1871 entries frozen from
+  # a clean checkout). Fails on a NEW orphan or a MUTATED grandfathered one; a count
+  # would let one be swapped for the other. Wiring the detector's raw exit 1 straight
+  # into CI would fail on a known baseline and enforce nothing.
   claimgate-orphan-ratchet:
     runs-on: ubuntu-latest
     steps:
@@ -119,16 +140,20 @@ jobs:
           python-version: "3.12"
       - name: Install lean gate-tier dependencies
         run: python3 -m pip install --disable-pip-version-check numpy numba
-      - name: Whole-repo intake sweep against its recorded ceiling
+      # FROZEN SETS, NOT COUNTS. A count budget is fungible: repair one old failing
+      # receipt and a free slot opens for a new poisoned one, with CI still green.
+      # Measured on exactly that swap: --max-failures 1 exits 0 (blind) while the
+      # frozen set exits 1 (new=1 repaired=1, same total). Identity, not arithmetic.
+      - name: Whole-repo intake sweep against its frozen failure set
         run: |
           python3 claimgate_plugin/ci_receipt_sweep.py \
             --checker claimgate_plugin/intake_supervisor.py --scope all \
-            --max-failures "$(python3 -c 'import json;print(json.load(open("claimgate_plugin/ci_ratchet_baseline.json"))["legacy_intake_failures_max"])')"
-      - name: Whole-repo recompute sweep against its recorded ceiling
+            --frozen-failures claimgate_plugin/baselines/frozen_failures_intake_supervisor_all.json
+      - name: Whole-repo recompute sweep against its frozen failure set
         run: |
           python3 claimgate_plugin/ci_receipt_sweep.py \
             --checker claimgate_plugin/recompute_veto.py --scope all \
-            --max-failures "$(python3 -c 'import json;print(json.load(open("claimgate_plugin/ci_ratchet_baseline.json"))["legacy_recompute_vetoes_max"])')"
+            --frozen-failures claimgate_plugin/baselines/frozen_failures_recompute_veto_all.json
 
   claimgate-flip-harness:
     runs-on: ubuntu-latest

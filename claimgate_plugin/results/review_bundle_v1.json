@@ -1,333 +1,503 @@
 {
- "schema": "claimgate_review_bundle_v1",
+ "schema": "claimgate_review_bundle_v2",
  "classification": "tool_lego_fit_probe",
  "promotion_allowed": false,
- "claim_under_test": "Answers the seven items requested by external review, with the artifacts each one names.",
- "claim_ceiling": "LOCAL MEASUREMENT ONLY at the time of writing. Nothing here is server-enforced. Reviewer was correct that 'both critiques are addressed' was premature: the commits existed only locally.",
- "item_1_branch_and_shas": {
-  "note": "Filled in by the push step; see git_push_result below."
- },
- "item_3_bakeoff_environment_fingerprint": {
-  "interpreter_path_as_invoked": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
-  "interpreter_path_resolved": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
-  "resolved_is_NOT_used": "The resolved path is recorded for provenance ONLY. Invoking it drops the venv, because a venv derives sys.prefix from argv[0]'s location plus pyvenv.cfg.",
-  "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
-  "machine": "arm64",
-  "system": "Darwin",
-  "python_version": "3.13.6",
-  "rss_units_note": "ru_maxrss is BYTES on Darwin, KILOBYTES on Linux. Each row carries rss_raw + rss_unit alongside rss_mb; do not compare rss_mb across platforms without checking rss_unit.",
-  "rss_scope": "RUSAGE_SELF measured INSIDE each child, i.e. per-process peak. NOT RUSAGE_CHILDREN, which is a running max across all children.",
-  "timing_method": "time.perf_counter() in the PARENT around subprocess.run of a fresh interpreter: wall-clock cold start including process spawn and import, single sample, no warm cache control.",
-  "timing_caveats": "Single unrepeated sample per library, same-machine, other processes not quiesced. Treat as order-of-magnitude only.",
-  "isolation_flags": "-I (isolated: no PYTHONPATH, no user site, no script dir)"
- },
- "item_3_bakeoff_rows": [
-  {
-   "lib": "numpy",
-   "version": "2.3.4",
-   "cold_start_ms": 104.4,
-   "peak_rss_mb_self": 25.5,
-   "dataset_n": 4,
-   "known_answer": true,
-   "wrong_model_rejected": true,
-   "dependency_kill": "FAILS_CLOSED",
-   "exact_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -I -c '<numpy fixture>'",
-   "trigger": "numeric aggregate",
-   "coverage_claim": "passed a fixture NOT covered by the current numpy+z3 implementation (capability-impossibility NOT established)"
-  },
-  {
-   "lib": "scipy",
-   "version": "1.17.1",
-   "cold_start_ms": 862.0,
-   "peak_rss_mb_self": 96.1,
-   "dataset_n": 400,
-   "known_answer": true,
-   "wrong_model_rejected": true,
-   "dependency_kill": "FAILS_CLOSED",
-   "exact_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -I -c '<scipy fixture>'",
-   "trigger": "declared distribution claim",
-   "coverage_claim": "passed a fixture NOT covered by the current numpy+z3 implementation (capability-impossibility NOT established)"
-  },
-  {
-   "lib": "pydmd",
-   "version": "?",
-   "cold_start_ms": 1912.9,
-   "peak_rss_mb_self": 203.2,
-   "dataset_n": 120,
-   "known_answer": true,
-   "wrong_model_rejected": true,
-   "dependency_kill": "FAILS_CLOSED",
-   "exact_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -I -c '<pydmd fixture>'",
-   "trigger": "declared spectral/rate claim",
-   "coverage_claim": "passed a fixture NOT covered by the current numpy+z3 implementation (capability-impossibility NOT established)"
-  },
-  {
-   "lib": "pysindy",
-   "version": "2.1.0",
-   "cold_start_ms": 2498.2,
-   "peak_rss_mb_self": 279.5,
-   "dataset_n": 400,
-   "known_answer": true,
-   "wrong_model_rejected": true,
-   "dependency_kill": "FAILS_CLOSED",
-   "exact_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -I -c '<pysindy fixture>'",
-   "trigger": "declared law-family claim (feature library MUST be frozen)",
-   "coverage_claim": "passed a fixture NOT covered by the current numpy+z3 implementation (capability-impossibility NOT established)"
-  },
-  {
-   "lib": "pykoopman",
-   "version": "1.2.1",
-   "cold_start_ms": 5167.2,
-   "peak_rss_mb_self": 482.8,
-   "dataset_n": 80,
-   "known_answer": true,
-   "wrong_model_rejected": true,
-   "dependency_kill": "FAILS_CLOSED",
-   "exact_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -I -c '<pykoopman fixture>'",
-   "trigger": "koopman-specific nonlinear claim \u2014 PARKED",
-   "coverage_claim": "passed a fixture NOT covered by the current numpy+z3 implementation (capability-impossibility NOT established)"
-  },
-  {
-   "lib": "z3",
-   "version": "4.16.0",
-   "cold_start_ms": 102.4,
-   "peak_rss_mb_self": 50.2,
-   "dataset_n": 2,
-   "known_answer": true,
-   "wrong_model_rejected": true,
-   "dependency_kill": "FAILS_CLOSED",
-   "exact_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -I -c '<z3 fixture>'",
-   "trigger": "finite logical obligation",
-   "coverage_claim": "passed a fixture NOT covered by the current numpy+z3 implementation (capability-impossibility NOT established)"
-  },
-  {
-   "lib": "cvc5",
-   "version": "1.3.3",
-   "cold_start_ms": 76.9,
-   "peak_rss_mb_self": 29.2,
-   "dataset_n": 2,
-   "known_answer": true,
-   "wrong_model_rejected": true,
-   "dependency_kill": "FAILS_CLOSED",
-   "exact_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -I -c '<cvc5 fixture>'",
-   "trigger": "finite logical obligation (cross-check)",
-   "coverage_claim": "passed a fixture NOT covered by the current numpy+z3 implementation (capability-impossibility NOT established)"
-  },
-  {
-   "lib": "jax",
-   "version": "0.10.1",
-   "cold_start_ms": 839.5,
-   "peak_rss_mb_self": 173.8,
-   "dataset_n": 12,
-   "known_answer": true,
-   "wrong_model_rejected": true,
-   "dependency_kill": "FAILS_CLOSED",
-   "exact_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -I -c '<jax fixture>'",
-   "trigger": "jax-generated claim or large batch \u2014 CONDITIONAL",
-   "coverage_claim": "passed a fixture NOT covered by the current numpy+z3 implementation (capability-impossibility NOT established)"
-  }
- ],
- "item_3_bakeoff_raw_rss": {
-  "numpy": {
-   "rss_raw": 26771456,
-   "rss_unit": "bytes",
-   "rss_mb": 25.5,
-   "child_python": "3.13.6"
-  },
-  "scipy": {
-   "rss_raw": 100794368,
-   "rss_unit": "bytes",
-   "rss_mb": 96.1,
-   "child_python": "3.13.6"
-  },
-  "pydmd": {
-   "rss_raw": 213123072,
-   "rss_unit": "bytes",
-   "rss_mb": 203.2,
-   "child_python": "3.13.6"
-  },
-  "pysindy": {
-   "rss_raw": 293027840,
-   "rss_unit": "bytes",
-   "rss_mb": 279.5,
-   "child_python": "3.13.6"
-  },
-  "pykoopman": {
-   "rss_raw": 506281984,
-   "rss_unit": "bytes",
-   "rss_mb": 482.8,
-   "child_python": "3.13.6"
-  },
-  "z3": {
-   "rss_raw": 52592640,
-   "rss_unit": "bytes",
-   "rss_mb": 50.2,
-   "child_python": "3.13.6"
-  },
-  "cvc5": {
-   "rss_raw": 30638080,
-   "rss_unit": "bytes",
-   "rss_mb": 29.2,
-   "child_python": "3.13.6"
-  },
-  "jax": {
-   "rss_raw": 182206464,
-   "rss_unit": "bytes",
-   "rss_mb": 173.8,
-   "child_python": "3.13.6"
-  }
- },
- "item_4_hostile_fixtures": {
-  "total_pinned": 112,
-  "pinned_manifest_path": "claimgate_plugin/fixtures/sweep_fixture_manifest.json",
-  "pinned_manifest_sha256": "87a37e80c580f2f5e61fbc157209b168465bb3e205c06085c899c50b8fd63e9f",
-  "asserting_nonzero_exit": [
-   {
-    "path": "claimgate_plugin/fixtures/hostile/duplicate_json_key_laundered_pass.json",
-    "sha256": "fd266b845e340b0b72fe7009bb1d745b958b9d8d5e2744b5751f144459b53837",
-    "expected_and_actual": {
-     "intake_supervisor": 1,
-     "recompute_veto": 0
+ "supersedes": "claimgate_review_bundle_v1 (same path). v1 was transcribed from prose and four counts, four digests and one commit SHA were wrong.",
+ "_generated_by": "python3 claimgate_plugin/review_bundle.py --write",
+ "_self_check": "python3 claimgate_plugin/review_bundle.py --verify",
+ "_provenance_rule": "Every value under `measured` is read from disk or from git by the generator. Nothing is transcribed. --verify re-measures and exits 1 on any difference, so this file cannot go stale silently.",
+ "claim_ceiling": "LOCAL MEASUREMENT at the pinned head_sha. The CI jobs described here are committed workflow steps; this bundle does not observe a server-side run and does not claim one. The gate is NOT closed: three bypasses are open and named under bypass_regression.still_admitted.",
+ "measured": {
+  "git": {
+   "branch": "claimgate/bypass-regression",
+   "base_ref": "origin/session/r0-three-engine-probes",
+   "base_ref_sha": "ab9c333531c64707374a0faff5a5a92a00d22eeb",
+   "head_sha": "348da619586b8a3c11664d71673053996e3f553e",
+   "count_ahead_of_base": 21,
+   "count_ahead_cross_checked": 21,
+   "commits_ahead": [
+    {
+     "sha": "348da619586b8a3c11664d71673053996e3f553e",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: four evasions defeat my own fix \u2014 b7-b10 recorded as OPEN."
     },
-    "note": "expected == actual by construction of the freeze; a later divergence FAILS the sweep"
+    {
+     "sha": "40cf6abb79af4765ea7bf195bdcb3c3131b66bc8",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: bypass regression 6/6 \u2014 the evaluator decides, the receipt no longer self-certifies."
+    },
+    {
+     "sha": "5e61f279d25456a96a4441135babc67e25af2dca",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: freeze from git ls-files in place; the temp-clone 'clean checkout' was not one."
+    },
+    {
+     "sha": "ec9d645d40cfae8bbbc1157fed3bda039f17bf5c",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: CI held against frozen path+digest sets, baselines re-measured from a clean checkout."
+    },
+    {
+     "sha": "ff8e38964caa423587a73ad4fb32347caecd3b1a",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: freeze baselines from the COMMITTED set, not the working tree."
+    },
+    {
+     "sha": "2ba9129b028d70aa0353ca290fcc7b7244dc9821",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: TEST_KEYED vs PRODUCTION distinction, platform-correct RSS, E9 closed by frozen failure sets."
+    },
+    {
+     "sha": "8104ce80243aee944839f51b166f65ae7c9104cd",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: enforcement layer \u2014 4 bypasses and 9 fail-open defects closed, each demonstrated by running the attack."
+    },
+    {
+     "sha": "7cda17c0b11ed7188fd57c5b11d98d6828ba3fab",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: bake-off v1 \u2014 RSS surfaced, coverage wording softened, PySINDy PARK rule proved."
+    },
+    {
+     "sha": "b616299d4ed7fadb8b90c2cf6b4b7bf0a8751b77",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: stack bake-off \u2014 measured marginal value, no policy change."
+    },
+    {
+     "sha": "87a56258bfd0db297604cc273c30dacd4edeb0d2",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: lean gate tier \u2014 recompute veto wired in (numpy+numba, no Julia/PyTorch/JAX)."
+    },
+    {
+     "sha": "4b1394d576bbd9e8c45228709c54143cd92239f9",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: orphan-receipt detector \u2014 measures the real enforcement baseline. 2875/2875 receipts are orphans."
+    },
+    {
+     "sha": "36985012b10f85da4f4a019bff0faefff9898a07",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "V2 scorecard: measured against its own 25 acceptance tests \u2014 9 PASS / 6 PARTIAL / 4 FAIL / 6 UNTESTED."
+    },
+    {
+     "sha": "da01b1638e836f5bba431994d7f6cfed871e6f69",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "synthesis: OD-11 RESOLVED by measurement \u2014 the doc order and the owner's N->S hypothetical are the SAME oriented cycle."
+    },
+    {
+     "sha": "9faba18a215fb5a9663bb245df07d82bc48dac10",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "seal: close the metric-mismatch hole found by external audit (2026-07-24)."
+    },
+    {
+     "sha": "f1b556126c0d7e9522f6c338daf0225ecd305709",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "jax_smt_bridge: measure what JAX can actually do for a solver; correct my own vmap overclaim."
+    },
+    {
+     "sha": "5ff87b9b252490b2f713dcfd9c052628d209cdef",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: full SMT/TLA+/z3 formal tier + 3 live bypasses closed (found by codex+grok+nvidia red team)."
+    },
+    {
+     "sha": "5439b6276cb73afbb5af559b997f09d495b3f250",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "sim engine layout audited: numpy restored as satellite lane (no gate change needed), cloud GPU lane with the pairing rule."
+    },
+    {
+     "sha": "3467526ce18cd878c144db237a5cbce48dee6eba",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "harness_patch: Lev now DECIDES on a Codex-Ratchet ClaimGate claim \u2014 lev.eval_decision.v1 verdict pass."
+    },
+    {
+     "sha": "0692be79d10bb4391235493907d482d3ee21f757",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "tournament: ran the proposed decisive tests. 5 positives with working controls, 1 negative, 4 honestly NOT RUN."
+    },
+    {
+     "sha": "d86132158a7341a2617b4eea2dd07f0110303605",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "claimgate: intake supervisor closes all 3 standing hostile GAPs \u2014 corpus 7 HOLD/3 GAP -> 10 HOLD/0 GAP, no drift."
+    },
+    {
+     "sha": "2156dd7b05620f78922a63426ec5099349b775ed",
+     "sha_len": 40,
+     "exists": true,
+     "subject": "corrections from external review, two tested against the running engine."
+    }
+   ],
+   "fabricated_sha_still_absent": true,
+   "fabricated_sha": "ff8e389643aa0f5f0b0c2ad0e50a76e1c1e88a3f",
+   "real_sha_it_corrupted": "ff8e38964caa423587a73ad4fb32347caecd3b1a",
+   "real_sha_exists": true,
+   "shared_prefix_chars": 9,
+   "_sha_note": "The fabricated string shares only the 9-character short hash that `git log --oneline` prints. The other 31 characters name nothing."
+  },
+  "file_digests": {
+   ".github/workflows/three-engine-seal.yml": {
+    "sha256": "c4c8a2601df806ecedf0a3bf327b0ddf917d41733aa6a082549994915cec5390",
+    "bytes": 9800
    },
-   {
-    "path": "claimgate_plugin/fixtures/hostile/duplicate_json_key_receipt.json",
-    "sha256": "6abc265c4a718a09ffef82fae85c998350d202ccf1cefa62d47e7245d6ebc9a6",
-    "expected_and_actual": {
-     "intake_supervisor": 1,
-     "recompute_veto": 0
-    },
-    "note": "expected == actual by construction of the freeze; a later divergence FAILS the sweep"
+   "claimgate_plugin/baselines/frozen_failures_intake_supervisor_all.json": {
+    "sha256": "8b49a9bb07a21c02a7fb5e0840b015e03dc407a5be154b8bfdedb086d8eec230",
+    "bytes": 13846
    },
-   {
-    "path": "claimgate_plugin/fixtures/hostile/nan_values_bare_literal.json",
-    "sha256": "59811522ca77de68997f371b6ff6f8e0a449da638ad4eeba59662fccaa595a70",
-    "expected_and_actual": {
-     "intake_supervisor": 1,
-     "recompute_veto": 0
-    },
-    "note": "expected == actual by construction of the freeze; a later divergence FAILS the sweep"
+   "claimgate_plugin/baselines/frozen_failures_intake_supervisor_live.json": {
+    "sha256": "b6612a1c5d9b2b91b96d8e6e724342ae9eb4b203e46a809c57a0cb4631ece4c6",
+    "bytes": 760
    },
-   {
-    "path": "claimgate_plugin/fixtures/hostile/nan_values_string_null.json",
-    "sha256": "f123d2a81067b29a6c4eac70537694b3781bf82c869d6f657428cea2da393bf8",
-    "expected_and_actual": {
-     "intake_supervisor": 1,
-     "recompute_veto": 0
-    },
-    "note": "expected == actual by construction of the freeze; a later divergence FAILS the sweep"
+   "claimgate_plugin/baselines/frozen_failures_recompute_veto_all.json": {
+    "sha256": "b8958bd883efdbfe6987d6e163726bec181423cc52c736a2b7b4123e7d12df3b",
+    "bytes": 5683
    },
-   {
-    "path": "claimgate_plugin/rf_fixtures/receipt_nan.json",
-    "sha256": "d89db5edd641c7a5d2c6470da3e4e499eef4b720a524611a466b7fdca3cd3b17",
-    "expected_and_actual": {
-     "intake_supervisor": 1,
-     "recompute_veto": 0
-    },
-    "note": "expected == actual by construction of the freeze; a later divergence FAILS the sweep"
+   "claimgate_plugin/baselines/frozen_failures_recompute_veto_live.json": {
+    "sha256": "ab79876361414cccbb2cef225300b3703db765b51f0cb15a9c107ff41ff47980",
+    "bytes": 500
    },
-   {
-    "path": "system_v8/harness_patch/results/fixtures/dupkey.json",
-    "sha256": "f371a9bcf83b56ea2bc2dd3a132c45879114298b99472bdc4d99dc43414dd51d",
-    "expected_and_actual": {
-     "intake_supervisor": 1,
-     "recompute_veto": 0
-    },
-    "note": "expected == actual by construction of the freeze; a later divergence FAILS the sweep"
+   "claimgate_plugin/ci_orphan_baseline.json": {
+    "sha256": "986911a6b96377eafa767246d3e7c5e5d5252e33cd68a37c1280d636bdeb2e8b",
+    "bytes": 368313
    },
-   {
-    "path": "system_v8/harness_patch/results/fixtures/nan.json",
-    "sha256": "a092fed3889d19f44f07e0eca88cd1ba975df01a4fa91612f0191ca9a7edd434",
-    "expected_and_actual": {
-     "intake_supervisor": 1,
-     "recompute_veto": 0
-    },
-    "note": "expected == actual by construction of the freeze; a later divergence FAILS the sweep"
+   "claimgate_plugin/ci_orphan_ratchet.py": {
+    "sha256": "aac687894db8ac418fe950c67a448a118dc4701064265d9d3193043cdd482b0f",
+    "bytes": 6101
    },
-   {
-    "path": "claimgate_plugin/stress/s3_malformed.json",
-    "sha256": "e6fc8cdbbae472bc2d3576587f7b0e96e323d4db965c01af6505a611fe05ed42",
-    "expected_and_actual": {
-     "intake_supervisor": 1,
-     "recompute_veto": 1
-    },
-    "note": "expected == actual by construction of the freeze; a later divergence FAILS the sweep"
+   "claimgate_plugin/ci_receipt_sweep.py": {
+    "sha256": "ec8a3d04dd5c1806fab71198290897baa58168bf0c12e09add6d176dfe88eda3",
+    "bytes": 18405
+   },
+   "claimgate_plugin/claim_policy.json": {
+    "sha256": "2b63f22afbd213b854b4b96e2b2dce2d9b7e94f860607f6ea9d9dbe130c65635",
+    "bytes": 3621
+   },
+   "claimgate_plugin/claim_policy_gate.py": {
+    "sha256": "38a883983da4c7e3af9e892ca039cf3950c4a34141bdb79cc089eca1ab7d8657",
+    "bytes": 9447
+   },
+   "claimgate_plugin/engine_witness.py": {
+    "sha256": "244b90f6fb7e387c9599084ae208e2e00bf7aa2ad9a639a4904612caa6a003fc",
+    "bytes": 31155
+   },
+   "claimgate_plugin/fixtures/sweep_fixture_manifest.json": {
+    "sha256": "7714b68cc38a43848e49c123e65f173052fee359a4e693f3e669944c78ab9343",
+    "bytes": 29610
+   },
+   "claimgate_plugin/hooks/post_receipt_gate.sh": {
+    "sha256": "8c58d632bd4233472e559502734ea463704990b6664472cc437eccfa475cd99f",
+    "bytes": 9133
+   },
+   "claimgate_plugin/run_bypass_regression.py": {
+    "sha256": "9f8874cd54c27c7f122e0897b1f04e34d5ec666dc498914308c0bc0921d3895a",
+    "bytes": 7344
    }
-  ],
-  "asserting_zero_exit_count": 104,
-  "zero_means": "the checker has nothing to say about that fixture (a control receipt, or poison outside that checker's remit). A recorded fact, not an endorsement."
- },
- "item_5_ledger_key_mode": {
-  "modes": {
-   "PRODUCTION_KEYED": "key at the default path, or CLAIMGATE_LEDGER_KEY_MODE=production AND a non-temp path",
-   "TEST_KEYED": "any other key location \u2014 the FAIL-SAFE default",
-   "UNKEYED": "no usable key; consistency only, never authorship"
   },
-  "mode_used_in_all_testing_here": "TEST_KEYED",
-  "test_key_location": "session scratchpad, outside the repo, ephemeral, NOT committed",
-  "production_key_provisioned": false,
-  "contradiction_the_reviewer_caught": "An earlier report said ledger seq=36 was KEYED while also saying no key exists. Both were true of different records and the difference was never recorded. A durable record reading KEYED from a throwaway key is exactly what later reads as production authentication.",
-  "repair": "records now carry key_mode + key_fingerprint verbatim; verify() reports TEST_KEYED lines as NOT production authentication, and pre-field records as UNLABELLED-MODE to be treated as TEST_KEYED. History is annotated, never rewritten.",
-  "measured": {
-   "seq_37": "TEST_KEYED, fingerprint 0dc4c3e714b7e963",
-   "seq_35_36": "UNLABELLED-MODE (predate the field) -> treat as TEST_KEYED"
-  },
-  "do_not_provision_yet": "Agreed. A production secret must not be added until an untrusted workflow change cannot read or exfiltrate it \u2014 that means required reviewers on .github/**, no secret exposure to pull_request-triggered workflows, and least-privilege job permissions. Not built here."
- },
- "item_6_baselines": {
-  "orphan_baseline_path": "claimgate_plugin/ci_orphan_baseline.json",
-  "orphan_baseline_sha256": "72deee17a0fe9bf054a1442d50742ad625e074b881672b1e6c1a989543f17ad5",
-  "orphan_count_at_freeze": 2851,
-  "orphan_entry_shape": "{repo-relative path: sha256 of bytes}",
-  "orphan_sample_first_3": {
-   "claimgate_plugin/formal/results/chain_bmc_cvc5_v0.json": "d3a7e0bd12121746695727fa8b42d1e33109618225ee0dc162ae14bf51542f51",
-   "claimgate_plugin/results/lean_stack_v0.json": "bacdcd16fdf8c4a106737554c5743231566552813bf588a7712924b345a2d37d",
-   "claimgate_plugin/results/stack_bakeoff_v0.json": "25e3e6fe867909d0b859298e2d5747cb6ed3356fb42faa3897bae67f8c42efa5"
-  },
-  "attack_artifact_leak_check": "grep of the frozen set for sneak/att_a/laundered_attack/evasion_probe: NONE. The one 'laundered' path in the fixture manifest is a pre-existing hostile fixture from d5ccd9707 (2026-07-22), not a probe artifact from this session."
- },
- "item_7_E9_repair": {
-  "status": "IMPLEMENTED, not merely proposed",
-  "what": "--frozen-failures replaces the fungible --max-failures COUNT with a path+digest+exit freeze per checker per scope. --write-frozen-failures records it as a reviewed act.",
-  "frozen_sets": {
+  "frozen_failure_sets": {
+   "intake_supervisor/all": {
+    "path": "claimgate_plugin/baselines/frozen_failures_intake_supervisor_all.json",
+    "sha256": "8b49a9bb07a21c02a7fb5e0840b015e03dc407a5be154b8bfdedb086d8eec230",
+    "declared_count_at_freeze": 36,
+    "actual_entry_count": 36,
+    "declared_matches_actual": true
+   },
    "intake_supervisor/live": {
     "path": "claimgate_plugin/baselines/frozen_failures_intake_supervisor_live.json",
     "sha256": "b6612a1c5d9b2b91b96d8e6e724342ae9eb4b203e46a809c57a0cb4631ece4c6",
-    "count_at_freeze": 1
+    "declared_count_at_freeze": 1,
+    "actual_entry_count": 1,
+    "declared_matches_actual": true
    },
-   "intake_supervisor/all": {
-    "path": "claimgate_plugin/baselines/frozen_failures_intake_supervisor_all.json",
-    "sha256": "7a60e66305469842163bedae5c7950f7f0aac95e5a411b72af75fba2959e5d67",
-    "count_at_freeze": 46
+   "recompute_veto/all": {
+    "path": "claimgate_plugin/baselines/frozen_failures_recompute_veto_all.json",
+    "sha256": "b8958bd883efdbfe6987d6e163726bec181423cc52c736a2b7b4123e7d12df3b",
+    "declared_count_at_freeze": 16,
+    "actual_entry_count": 16,
+    "declared_matches_actual": true
    },
    "recompute_veto/live": {
     "path": "claimgate_plugin/baselines/frozen_failures_recompute_veto_live.json",
     "sha256": "ab79876361414cccbb2cef225300b3703db765b51f0cb15a9c107ff41ff47980",
-    "count_at_freeze": 0
-   },
-   "recompute_veto/all": {
-    "path": "claimgate_plugin/baselines/frozen_failures_recompute_veto_all.json",
-    "sha256": "79dd531773f546d1f8b1f4ed2d0fab2120b11338d7acad956617b731e3572635",
-    "count_at_freeze": 17
+    "declared_count_at_freeze": 0,
+    "actual_entry_count": 0,
+    "declared_matches_actual": true
    }
   },
-  "demonstration": {
-   "setup": "Repaired the one known live intake failure (stripped the bare Infinity from system_v8/nested_manifold/results/rungB/receipt.json), then spent the freed slot on a NEW poisoned receipt system_v8/slot_spent.json. Failure count unchanged at 1.",
-   "count_budget_result": {
-    "cmd": "--scope live --max-failures 1",
-    "failed": 1,
-    "exit": 0,
-    "verdict": "BLIND \u2014 the swap succeeded"
-   },
-   "frozen_set_result": {
-    "cmd": "--scope live --frozen-failures <intake live>",
-    "observed": "now=1 frozen=1 new=1 mutated=0 repaired=1",
-    "exit": 1,
-    "verdict": "CAUGHT \u2014 identity, not arithmetic"
-   },
-   "cleanup": "rungB restored from backup, slot_spent.json removed; both verified."
+  "orphan_baseline": {
+   "path": "claimgate_plugin/ci_orphan_baseline.json",
+   "sha256": "986911a6b96377eafa767246d3e7c5e5d5252e33cd68a37c1280d636bdeb2e8b",
+   "declared_count_at_freeze": 2198,
+   "actual_entry_count": 2198,
+   "declared_matches_actual": true,
+   "entry_shape": "{repo-relative path: sha256 of bytes}",
+   "frozen_from": "git ls-files (the committed set \u2014 all CI can see)"
   },
-  "residual": "The old --max-failures flag is retained for callers not yet migrated and is now documented as DEPRECATED and fungible. The CI workflow still passes counts; migrating it is the next step and is NOT done here."
- }
+  "fixture_manifest": {
+   "path": "claimgate_plugin/fixtures/sweep_fixture_manifest.json",
+   "sha256": "7714b68cc38a43848e49c123e65f173052fee359a4e693f3e669944c78ab9343",
+   "total_pinned": 108,
+   "asserting_nonzero_exit": 6,
+   "asserting_all_zero_exit": 102,
+   "checkers": [
+    "intake_supervisor",
+    "recompute_veto"
+   ],
+   "skipped_untracked": [
+    "system_v8/harness_patch/results/fixtures/clean.json",
+    "system_v8/harness_patch/results/fixtures/dupkey.json",
+    "system_v8/harness_patch/results/fixtures/nan.json",
+    "system_v8/harness_patch/results/fixtures/selfverdict.json"
+   ],
+   "nonzero_entries": [
+    {
+     "path": "claimgate_plugin/fixtures/hostile/duplicate_json_key_laundered_pass.json",
+     "sha256": "fd266b845e340b0b72fe7009bb1d745b958b9d8d5e2744b5751f144459b53837",
+     "expect_exit": {
+      "intake_supervisor": 1,
+      "recompute_veto": 0
+     }
+    },
+    {
+     "path": "claimgate_plugin/fixtures/hostile/duplicate_json_key_receipt.json",
+     "sha256": "6abc265c4a718a09ffef82fae85c998350d202ccf1cefa62d47e7245d6ebc9a6",
+     "expect_exit": {
+      "intake_supervisor": 1,
+      "recompute_veto": 0
+     }
+    },
+    {
+     "path": "claimgate_plugin/fixtures/hostile/nan_values_bare_literal.json",
+     "sha256": "59811522ca77de68997f371b6ff6f8e0a449da638ad4eeba59662fccaa595a70",
+     "expect_exit": {
+      "intake_supervisor": 1,
+      "recompute_veto": 0
+     }
+    },
+    {
+     "path": "claimgate_plugin/fixtures/hostile/nan_values_string_null.json",
+     "sha256": "f123d2a81067b29a6c4eac70537694b3781bf82c869d6f657428cea2da393bf8",
+     "expect_exit": {
+      "intake_supervisor": 1,
+      "recompute_veto": 0
+     }
+    },
+    {
+     "path": "claimgate_plugin/rf_fixtures/receipt_nan.json",
+     "sha256": "d89db5edd641c7a5d2c6470da3e4e499eef4b720a524611a466b7fdca3cd3b17",
+     "expect_exit": {
+      "intake_supervisor": 1,
+      "recompute_veto": 0
+     }
+    },
+    {
+     "path": "claimgate_plugin/stress/s3_malformed.json",
+     "sha256": "e6fc8cdbbae472bc2d3576587f7b0e96e323d4db965c01af6505a611fe05ed42",
+     "expect_exit": {
+      "intake_supervisor": 1,
+      "recompute_veto": 1
+     }
+    }
+   ],
+   "zero_means": "the checker has nothing to say about that fixture (a control receipt, or poison outside that checker's remit). A recorded fact, not an endorsement."
+  },
+  "ci_workflow": {
+   "path": ".github/workflows/three-engine-seal.yml",
+   "sha256": "c4c8a2601df806ecedf0a3bf327b0ddf917d41733aa6a082549994915cec5390",
+   "frozen_failures_baselines_referenced": [
+    "claimgate_plugin/baselines/frozen_failures_intake_supervisor_all.json",
+    "claimgate_plugin/baselines/frozen_failures_intake_supervisor_live.json",
+    "claimgate_plugin/baselines/frozen_failures_recompute_veto_all.json",
+    "claimgate_plugin/baselines/frozen_failures_recompute_veto_live.json"
+   ],
+   "max_failures_in_run_steps": 0,
+   "orphan_count_stated_in_comment": 2198,
+   "_comment_number_rule": "The workflow states the orphan-baseline size in prose. It is compared to the measured set here, because a stale number in CI is the same defect this bundle exists to fix."
+  },
+  "bypass_regression": {
+   "result_path": "claimgate_plugin/results/bypass_regression_v1.json",
+   "result_sha256": "91a2134efa0c8125a2c2cd82f8ec7d31e7b34c56cb5cc853e4c88006ad09069a",
+   "blocked": 7,
+   "total": 10,
+   "still_admitted": [
+    "b7",
+    "b8",
+    "b9"
+   ],
+   "cases_defined_in_source": 10,
+   "per_case": [
+    {
+     "id": "b1",
+     "disposition": "PARKED",
+     "claim_verify": "PENDING_EVIDENCE",
+     "exit": 3
+    },
+    {
+     "id": "b2",
+     "disposition": "PARKED",
+     "claim_verify": "PENDING_EVIDENCE",
+     "exit": 3
+    },
+    {
+     "id": "b3",
+     "disposition": "BLOCKED",
+     "claim_verify": "PENDING_EVIDENCE",
+     "exit": 1
+    },
+    {
+     "id": "b4",
+     "disposition": "BLOCKED",
+     "claim_verify": "PENDING_EVIDENCE",
+     "exit": 1
+    },
+    {
+     "id": "b5",
+     "disposition": "BLOCKED",
+     "claim_verify": "PENDING_EVIDENCE",
+     "exit": 1
+    },
+    {
+     "id": "b6",
+     "disposition": "BLOCKED",
+     "claim_verify": "PENDING_EVIDENCE",
+     "exit": 1
+    },
+    {
+     "id": "b7",
+     "disposition": "ADMITTED_PENDING_DEPTH",
+     "claim_verify": "INSUFFICIENT_DEPTH",
+     "exit": 3
+    },
+    {
+     "id": "b8",
+     "disposition": "ADMITTED_PENDING_DEPTH",
+     "claim_verify": "INSUFFICIENT_DEPTH",
+     "exit": 3
+    },
+    {
+     "id": "b9",
+     "disposition": "ADMITTED_PENDING_DEPTH",
+     "claim_verify": "INSUFFICIENT_DEPTH",
+     "exit": 3
+    },
+    {
+     "id": "b10",
+     "disposition": "PARKED",
+     "claim_verify": "INSUFFICIENT_DEPTH",
+     "exit": 3
+    }
+   ]
+  }
+ },
+ "observed_volatile": {
+  "_why_not_enforced": "The ledger is append-only and grows on every gate run. Pinning it would fail on correct behaviour.",
+  "ledger_lines": 110,
+  "key_mode_histogram": {
+   "<absent>": 37,
+   "TEST_KEYED": 41,
+   "UNKEYED": 32
+  },
+  "key_mode_meaning": {
+   "PRODUCTION_KEYED": "key at the default path, or CLAIMGATE_LEDGER_KEY_MODE=production AND a non-temp path",
+   "TEST_KEYED": "any other key location \u2014 the FAIL-SAFE default",
+   "UNKEYED": "no usable key; consistency only, never authorship",
+   "<absent>": "predates the key_mode field; treat as TEST_KEYED"
+  },
+  "production_key_provisioned": false,
+  "_authorship_note": "No line in this ledger is production-authenticated. A durable record reading KEYED from a throwaway key is exactly what later reads as production authentication.",
+  "head_anchor": {
+   "schema": "claimgate_gate_ledger_v1/head",
+   "count": 110,
+   "last_line_sha256": "2f912e9d9ba892677c54fdbe3df0684d0ec3f79d6bfeba1431bffffb2523b5e7",
+   "updated": "2026-07-25T08:00:00Z",
+   "note": "tail anchor: truncating the ledger now requires editing this file too."
+  }
+ },
+ "corrections": [
+  {
+   "field": "item_6_baselines.orphan_count_at_freeze",
+   "status": "STALE_ONCE_TRUE",
+   "stale_value": 2851,
+   "was_true_at": "8104ce80243aee944839f51b166f65ae7c9104cd",
+   "path": "claimgate_plugin/ci_orphan_baseline.json",
+   "container": "orphans",
+   "why_it_changed": "That freeze counted the WORKING TREE. CI only ever sees committed files, so the set was re-measured from `git ls-files` \u2014 first to 1871 from a temp clone that was not a clean checkout, then to the current 2198 in place. ci_orphan_ratchet.py:60-62 records the same correction at the source."
+  },
+  {
+   "field": "item_6_baselines.orphan_baseline_sha256",
+   "status": "STALE_ONCE_TRUE",
+   "stale_value": "72deee17a0fe9bf054a1442d50742ad625e074b881672b1e6c1a989543f17ad5",
+   "was_true_at": "8104ce80243aee944839f51b166f65ae7c9104cd",
+   "path": "claimgate_plugin/ci_orphan_baseline.json",
+   "container": null,
+   "why_it_changed": "Digest of the superseded 2851-entry freeze."
+  },
+  {
+   "field": "item_7_E9_repair.frozen_sets['intake_supervisor/all'].count_at_freeze",
+   "status": "STALE_ONCE_TRUE",
+   "stale_value": 46,
+   "was_true_at": "2ba9129b028d70aa0353ca290fcc7b7244dc9821",
+   "path": "claimgate_plugin/baselines/frozen_failures_intake_supervisor_all.json",
+   "container": "failures",
+   "why_it_changed": "Re-frozen from the committed set at ec9d645d4; 10 of the 46 were untracked working-tree files CI cannot see."
+  },
+  {
+   "field": "item_7_E9_repair.frozen_sets['recompute_veto/all'].count_at_freeze",
+   "status": "STALE_ONCE_TRUE",
+   "stale_value": 17,
+   "was_true_at": "2ba9129b028d70aa0353ca290fcc7b7244dc9821",
+   "path": "claimgate_plugin/baselines/frozen_failures_recompute_veto_all.json",
+   "container": "failures",
+   "why_it_changed": "Same re-freeze; one entry was untracked."
+  },
+  {
+   "field": "item_4_hostile_fixtures.total_pinned",
+   "status": "STALE_ONCE_TRUE",
+   "stale_value": 112,
+   "was_true_at": "2ba9129b028d70aa0353ca290fcc7b7244dc9821",
+   "path": "claimgate_plugin/fixtures/sweep_fixture_manifest.json",
+   "container": "fixtures",
+   "why_it_changed": "Re-pinned from `git ls-files`; the 4 dropped entries are the untracked fixtures now listed under _skipped_untracked."
+  },
+  {
+   "field": "covering_report.commit_sha_for 'claimgate: freeze baselines from the COMMITTED set, not the working tree.'",
+   "status": "FABRICATED",
+   "stale_text": "ff8e389643aa0f5f0b0c2ad0e50a76e1c1e88a3f",
+   "current_state": "That string names NO object in this repository: `git cat-file -e ff8e389643aa0f5f0b0c2ad0e50a76e1c1e88a3f` exits 1. The real commit is ff8e38964caa423587a73ad4fb32347caecd3b1a. The two share exactly the 9-character short hash `ff8e38964` that `git log --oneline` prints; the remaining 31 characters were invented, not mistyped or truncated. This is the one error here that is a FABRICATION rather than a stale-but-once-true measurement: the other six describe values that git can still show were real at the commit they name. Enforced by git.fabricated_sha_still_absent and by a standing --verify check that every recorded SHA is 40 characters and resolves."
+  },
+  {
+   "field": "item_7_E9_repair.residual",
+   "status": "STALE_PROSE",
+   "stale_text": "The CI workflow still passes counts; migrating it is the next step and is NOT done here.",
+   "current_state": "Superseded at ec9d645d4. All four sweep invocations in .github/workflows/three-engine-seal.yml now pass --frozen-failures with a path+digest set, and the orphan job runs the frozen-set ratchet. --max-failures survives in ci_receipt_sweep.py as a DEPRECATED flag but no workflow step uses it. Enforced below by ci_workflow.frozen_failures_baselines_referenced and ci_workflow.max_failures_in_run_steps == 0."
+  },
+  {
+   "field": "item_1_branch_and_shas",
+   "status": "NEVER_FILLED",
+   "stale_text": "Filled in by the push step; see git_push_result below.",
+   "current_state": "The placeholder was never replaced and there is no git_push_result key in the file. The bundle shipped with an empty commit list while its covering report carried a SHA that names no object. Item 1 is now git.commits_ahead, every entry verified with git cat-file -e."
+  }
+ ],
+ "_corrections_rule": "Entries with a `was_true_at` commit are re-checked by --verify: it reads that blob from git and re-counts. A correction that cannot be demonstrated fails the same way a bad measurement does.",
+ "open_not_closed_by_this_bundle": [
+  "bypass b7/b8/b9 are ADMITTED_PENDING_DEPTH \u2014 an ADMITTING disposition. The content-detection rules in claim_policy.json miss a claim hidden under an ignored-metadata key, a bare integer outside a claim-bearing container, and a number encoded as a JSON string.",
+  "b10 PARKS rather than blocks, and parking is the correct floor, not a fix: dispatch counting proves an engine operation ran, not that the reported output came from it.",
+  "claim_policy.json is not yet a trust root. CODEOWNERS plus branch protection on claimgate_plugin/claim_policy.json are NOT in force, so the producing agent can still edit the policy that judges it.",
+  "No production ledger key. Every ledger line is TEST_KEYED, UNKEYED, or predates the field.",
+  "The orphan baseline is DEBT, not enforcement: 2198 committed receipts carry no durable gate-ledger record and are grandfathered."
+ ]
 }

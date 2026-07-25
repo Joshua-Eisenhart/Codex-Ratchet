@@ -4,7 +4,7 @@
  "claim_under_test":"spectral gap of a fixed 3x3 Hermitian matrix, computed independently by JAX and PyTorch",
  "numpy_usage":"probe_numpy_satellite.py imports numpy, reads what the two engine legs printed, and reports the spread between them. It computes no observable of its own, so deleting it changes no claimed value.",
  "engine_contract":{"numeric_engine_required":true,"engines":["jax","torch"]},
- "TOOL_INTEGRATION_DEPTH":{"jax":"load_bearing","torch":"load_bearing","numpy":"supportive"},
+ "TOOL_INTEGRATION_DEPTH":{"jax":"load_bearing","torch":"load_bearing","numpy":"load_bearing"},
  "engines_ran":{"jax":{"jax_spectral_gap":1.3565065188738898,"jax_trace":9.0},
                 "torch":{"torch_spectral_gap":1.3565065188738894,"torch_trace":9.0},
                 "numpy":"downstream_satellite_only"},

@@ -40,6 +40,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -52,27 +53,47 @@ def load_policy():
     return json.loads(POLICY_PATH.read_bytes())
 
 
+_NUMERIC_STRING = re.compile(r"^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$")
+
+
 def _numbers_in_claim_positions(obj, pol, container=None, path="", hits=None):
-    """CONTENT-DERIVED numeric detection. Walks the whole document; a number
-    counts when it sits under a claim-bearing container and is not a known
-    metadata key. Nothing the producer declares affects this."""
+    """CONTENT-DERIVED numeric detection. EVERY number is a claim by default.
+
+    INVERTED 2026-07-25 after three fixtures (b7, b8, b9) walked through the
+    previous design, which was a key-name denylist plus a container allowlist:
+
+      b7  {"count": 1.7807764}        'count' is on metadata_keys_ignored, at ANY depth
+      b8  {"survivors": 42}           an integer outside claim_bearing_containers
+      b9  {"metrics":{"gap":"1.78"}}  the number encoded as a string
+
+    That is the same shape as the path-prefix exclusion which was the cheapest
+    bypass earlier in this work: a NAME cannot establish that a number is not a
+    claim, exactly as a path prefix could not establish that a file was not
+    poison. So the polarity is flipped — numbers are claims, and exemption must
+    be EARNED by an exact full-path match on a short reviewed list, never by a
+    key name that happens to appear somewhere in the document.
+
+    Numeric-looking STRINGS count too: encoding a float as text does not make it
+    a different claim.
+    """
     hits = [] if hits is None else hits
-    ignore = set(pol["numeric_content_detection"]["metadata_keys_ignored"])
-    containers = set(pol["numeric_content_detection"]["claim_bearing_containers"])
+    nc = pol["numeric_content_detection"]
+    exempt_paths = set(nc.get("metadata_paths_exempt", []))
     if isinstance(obj, dict):
         for k, v in obj.items():
-            nxt = k if k in containers else container
-            if k in ignore:
-                continue
-            _numbers_in_claim_positions(v, pol, nxt, f"{path}.{k}", hits)
+            p = f"{path}.{k}" if path else f".{k}"
+            if p.lstrip(".") in exempt_paths:
+                continue                     # EXACT full path, not a bare name
+            _numbers_in_claim_positions(v, pol, container, p, hits)
     elif isinstance(obj, list):
         for i, v in enumerate(obj):
             _numbers_in_claim_positions(v, pol, container, f"{path}[{i}]", hits)
-    elif isinstance(obj, (int, float)) and not isinstance(obj, bool):
-        # A non-integer float anywhere is numeric evidence; an integer counts only
-        # inside a claim-bearing container (bare counts elsewhere are metadata).
-        if container is not None or (isinstance(obj, float) and not float(obj).is_integer()):
-            hits.append((path, obj))
+    elif isinstance(obj, bool):
+        return hits                          # a flag is not a measurement
+    elif isinstance(obj, (int, float)):
+        hits.append((path, obj))
+    elif isinstance(obj, str) and _NUMERIC_STRING.match(obj.strip()):
+        hits.append((path, obj))
     return hits
 
 

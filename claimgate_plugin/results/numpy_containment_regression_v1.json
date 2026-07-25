@@ -1,0 +1,52 @@
+{
+ "probe": "claimgate_numpy_containment_regression_v1",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "rule": "owner 2026-07-22 \u2014 CONTAINED numpy as a downstream satellite is ALLOWED; numpy labelled or evidenced as LOAD-BEARING is REJECTED",
+ "rule_source": [
+  "claimgate_plugin/claim_policy.json engine_requirement.control_only",
+  "claimgate_plugin/three_engine_seal.py R1"
+ ],
+ "acceptance": "both directions must land: the contained satellite ADMITTED, the load-bearing label BLOCKED at the seal for the numpy reason, with the claim-policy engine witness passing on BOTH sides",
+ "isolation": {
+  "one_field_difference": true,
+  "differing_top_level_keys": [
+   "TOOL_INTEGRATION_DEPTH"
+  ],
+  "differing_depth_labels": [
+   "numpy"
+  ],
+  "problems": []
+ },
+ "allowed_case": {
+  "fixture": "claimgate_plugin/fixtures/bypass/n1_contained_numpy_satellite/results/probe.json",
+  "exit": 0,
+  "disposition": "PASS",
+  "blocking_stage": null,
+  "stages": {
+   "intake": 0,
+   "recompute_veto": 0,
+   "tier0": 0,
+   "claim_policy": 0,
+   "seal": 0,
+   "claim_verify": 0
+  },
+  "seal_message": "three_engine_seal: pass \u2014 2 engines ['jax', 'torch'] agree (div 4.4e-16); jax leg re-derived, 2 numeric field(s) reproduce to <1e-9"
+ },
+ "rejected_case": {
+  "fixture": "claimgate_plugin/fixtures/bypass/n2_load_bearing_numpy/results/probe.json",
+  "exit": 1,
+  "disposition": "BLOCKED",
+  "blocking_stage": "seal",
+  "stages": {
+   "intake": 0,
+   "recompute_veto": 0,
+   "tier0": 0,
+   "claim_policy": 0,
+   "seal": 1
+  },
+  "seal_message": "three_engine_seal: REJECT \u2014 ['numpy'] labeled load_bearing, but numpy/scipy/mpmath are CONTROL-ONLY."
+ },
+ "rule_proven": true,
+ "failures": []
+}

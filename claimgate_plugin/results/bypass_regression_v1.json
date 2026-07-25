@@ -3,13 +3,9 @@
  "classification": "tool_lego_fit_probe",
  "promotion_allowed": false,
  "acceptance": "every case must PARK or BLOCK; none may yield VERIFIED, PASS, or ADMITTED_PENDING_DEPTH (that disposition ADMITS)",
- "blocked": 7,
+ "blocked": 10,
  "total": 10,
- "still_admitted": [
-  "b7",
-  "b8",
-  "b9"
- ],
+ "still_admitted": [],
  "results": [
   {
    "id": "b1",
@@ -56,21 +52,21 @@
   {
    "id": "b7",
    "case": "claim hidden under a key name on the ignored-metadata list",
-   "disposition": "ADMITTED_PENDING_DEPTH",
+   "disposition": "PARKED",
    "claim_verify": "INSUFFICIENT_DEPTH",
    "exit": 3
   },
   {
    "id": "b8",
    "case": "integer claim outside any claim-bearing container",
-   "disposition": "ADMITTED_PENDING_DEPTH",
+   "disposition": "PARKED",
    "claim_verify": "INSUFFICIENT_DEPTH",
    "exit": 3
   },
   {
    "id": "b9",
    "case": "number encoded as a JSON string",
-   "disposition": "ADMITTED_PENDING_DEPTH",
+   "disposition": "PARKED",
    "claim_verify": "INSUFFICIENT_DEPTH",
    "exit": 3
   },

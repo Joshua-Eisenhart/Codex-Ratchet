@@ -1,16 +1,47 @@
-name: three-engine seal (no numpy)
+name: three-engine seal (contained numpy)
 
 # Un-bypassable enforcement: runs on every push/PR on GitHub's servers, so a sim
-# receipt that contains numpy or lacks real engine evidence turns this check RED
-# regardless of what any commit claims. --no-verify on a local hook cannot skip
-# this. The jax re-derive is done locally (pre-commit + Stop hook); CI enforces the
-# numpy / engine-count / agreement checks, which need no sim env.
+# receipt that labels numpy load-bearing, or lacks real engine evidence, turns this
+# check RED regardless of what any commit claims. --no-verify on a local hook cannot
+# skip this.
+#
+# THE NUMPY RULE IS CONTAINMENT, NOT A BAN. The owner restored numpy on 2026-07-22,
+# superseding the blanket ban this workflow was previously named after. Stated exactly:
+#
+#   ALLOWED   numpy in a CONTAINED role — a downstream satellite that consumes what an
+#             authoritative engine produced and computes no observable of its own.
+#   REJECTED  numpy labelled load_bearing, or evidenced as load-bearing because the
+#             receipt's numeric work has no witnessed authoritative engine behind it.
+#
+# Containment is structural, not a keyword scan. three_engine_seal.py R1 rejects
+# numpy/scipy/mpmath carrying a load_bearing label, and a numeric receipt must still
+# show >=2 authoritative engines (JAX/Julia/PyTorch) agreeing on the SAME metric ID.
+# Together those leave numpy no way to be the workhorse in disguise — the load-bearing
+# witness has to come from an engine — while leaving the satellite seat open. Rule
+# source: claimgate_plugin/claim_policy.json engine_requirement.control_only.
+#
+# Proven two-sided rather than asserted, because a one-sided test is also satisfied by
+# a gate that rejects everything: claimgate_plugin/run_numpy_containment_regression.py
+# runs a receipt with numpy supportive against a byte-identical copy with numpy
+# load_bearing. Measured 2026-07-25 — contained exit 0 / ledger PASS, load-bearing
+# exit 1 / ledger BLOCKED at the seal, engines witnessed on BOTH sides.
+#
+# That runner is LOCAL-ONLY and deliberately absent from this file. Witnessing an
+# engine leg shells out to the developer's sim interpreter at a hardcoded absolute
+# path, which no GitHub runner has, so a job running it here would be red for an
+# environment reason. What CI does enforce is the metadata half — the numpy label,
+# the engine count, and the agreement check — which needs no sim env. The jax
+# re-derive stays local (pre-commit + Stop hook).
 on:
   push:
   pull_request:
 
 jobs:
-  no-numpy-sims:
+  # RENAMED 2026-07-25 from `no-numpy-sims`, which asserted the superseded blanket
+  # ban. If any branch-protection rule requires the old job name as a status check,
+  # re-point it — a required check that names a job which no longer exists is not
+  # enforcement, it is a permanently pending tick.
+  three-engine-seal-sims:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,9 +74,15 @@ jobs:
   #
   # Install stays lean on purpose: stdlib + numpy + numba. No jax, no Julia, no
   # PyTorch in the gate tier (jax was measured at 529 ms against numpy's 52 ms for a
-  # single recompute on CPU-only arm64, so it buys nothing here). numpy is ALLOWED in
-  # the ClaimGate lane by owner rule and that rule is independent of Codex-Ratchet's
-  # science-side numpy rule: the gate's job is veto, and numpy vetoes.
+  # single recompute on CPU-only arm64, so it buys nothing here).
+  #
+  # numpy here is the SAME contained pattern the science-side rule allows, not an
+  # exception to it. An earlier version of this comment claimed the two rules were
+  # independent; they are not, and that framing is what let "no numpy" harden into a
+  # blanket ban the owner then had to restore from. recompute_veto.py uses numpy to
+  # RE-DERIVE a claimed number and refuse it. It computes nothing that can be
+  # promoted and carries no claim of its own, so it is a downstream satellite by
+  # construction — which is exactly the allowed role.
   # ---------------------------------------------------------------------------
 
   # JOB 1 — intake_supervisor over every live-era claim-bearing receipt.
@@ -111,10 +148,13 @@ jobs:
             --frozen-failures claimgate_plugin/baselines/frozen_failures_recompute_veto_live.json
 
   # JOB 4 — orphan-receipt ratchet, held against the FROZEN SET in
-  # claimgate_plugin/ci_orphan_baseline.json (path + sha256, 1871 entries frozen from
-  # a clean checkout). Fails on a NEW orphan or a MUTATED grandfathered one; a count
-  # would let one be swapped for the other. Wiring the detector's raw exit 1 straight
-  # into CI would fail on a known baseline and enforce nothing.
+  # claimgate_plugin/ci_orphan_baseline.json (path + sha256, 2198 entries frozen from
+  # `git ls-files` in place). Fails on a NEW orphan or a MUTATED grandfathered one; a
+  # count would let one be swapped for the other. Wiring the detector's raw exit 1
+  # straight into CI would fail on a known baseline and enforce nothing.
+  # The count above is CHECKED: claimgate_plugin/review_bundle.py --verify fails if it
+  # drifts from the frozen set. It read 1871 until 2026-07-25, measured from a temp
+  # clone that was not a clean checkout.
   claimgate-orphan-ratchet:
     runs-on: ubuntu-latest
     steps:

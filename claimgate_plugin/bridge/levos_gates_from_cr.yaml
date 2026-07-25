@@ -1,0 +1,186 @@
+# ClaimGate -> LevOS bridge: gates exported from Codex-Ratchet.
+#
+# Drop-in for lev-main/dna/gates.yaml (v2 schema: status, category, rule, scope
+# required; enforced adds check + on_fail; falsifier is the existing LevOS idiom
+# where any hit is a violation, as used by single_verdict_authority).
+#
+# NOTHING CR-SPECIFIC IS EXPORTED HERE. No density carriers, no manifold schema,
+# no MSS, no engine requirement. Those stay CR profiles. What crosses the bridge
+# is the control CR was forced to discover, in its general form.
+#
+# Each gate below cites the MEASURED CR failure that motivates it, so the LevOS
+# side can judge the evidence rather than take the rule on trust.
+
+version: 2
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# EVIDENCE GATES — exported from Codex-Ratchet, 2026-07-25
+# ═══════════════════════════════════════════════════════════════════════════════
+
+no_uncomputed_verdict:
+  status: enforced
+  category: evidence
+  rule: >
+    A file that reports a tool's verdict must invoke that tool. Writing
+    ran/verdict/passed/load_bearing as a literal, in a file that imports neither
+    the tool nor a subprocess launcher, is an unearned pass — the report is
+    indistinguishable from a real run.
+  scope: "**/*.py, **/*.ts, **/*.js"
+  falsifier: >
+    rg -n '"(ran|verdict|passed|load_bearing)"\s*:\s*(True|true|"unsat"|"sat"|"pass")'
+    --glob '!**/*.test.*' --glob '!**/fixtures/**' -l
+    | xargs -r rg -L '^\s*(import|from|require|exec|spawn).*(subprocess|child_process|z3|cvc5|solver)'
+    — any file listed reports a verdict it never computed.
+  check: "claimgate/bridge/check_no_uncomputed_verdict.py"
+  on_fail: block
+  motivating_evidence: >
+    Codex-Ratchet system_v7/sims/tower_g5_density_floor_v0/check_agreement.py,
+    132 lines, 0 imports of z3/cvc5/subprocess, writes
+    {"ran": true, "verdict": "unsat", "load_bearing": true} three times for
+    z3, cvc5 and julia_z3. Its sibling tower_g0 does the same and encodes BOTH
+    ran-true and ran-false as literals. Neither was caught by a receipt-shape
+    gate, because the receipt shape is impeccable.
+  why_general: >
+    Nothing here is scientific. The same shape is "tests passed" written by a
+    file that never ran the test runner, or "lint clean" by a file that never
+    invoked the linter.
+
+causal_use_witness:
+  status: declared     # no automated checker yet — honest per severity_model
+  category: evidence
+  rule: >
+    A task that declares a tool load-bearing must show the tool MATTERED, not
+    merely that it was imported. The check is severance: make the dependency
+    unavailable and require the task's verdict to CHANGE. A task that still
+    succeeds without the tool was not using it.
+  scope: "task profiles declaring a required tool"
+  motivating_evidence: >
+    Measured in CR: a leg reading `import jax` and printing a constant passed
+    presence, dependency-severing and source-mutation controls, and was reported
+    WITNESSED. Only counting actual engine dispatches separated it. Conversely a
+    controller flipped exit 0 -> exit 3 under a PYTHONPATH shim, which a
+    controller reading stored output cannot do.
+  why_general: >
+    Applies to any adapter: compiler, test runner, linter, API client, solver.
+    Distinguishes "installed" from "mattered".
+  promotion_requires: >
+    A severance harness that (a) is not reconstructable by the process under
+    test — CR measured a leg detecting a fixed poison string by name — and
+    (b) does not score a crash as a pass.
+
+independent_rederivation:
+  status: declared
+  category: evidence
+  rule: >
+    A numeric or structural result claimed as checked must be compared against
+    an oracle computed OUTSIDE the producing code. Agreement between two
+    implementations that share an input, a library, or an author is not
+    independence.
+  scope: "tasks claiming CHECKED or above"
+  motivating_evidence: >
+    CR measured three engines agreeing to ~1.5 eps on a GKSL result. A stdlib
+    Decimal Taylor series then caught a sigma_plus/sigma_minus channel error in
+    a fourth leg — an error that engine-to-engine agreement on a second
+    quantity had HIDDEN, because that quantity decays identically under either
+    operator.
+  why_general: >
+    The general form is a small independent oracle: a second implementation, a
+    closed form, an exhaustive enumeration over a bounded domain, or a
+    known-answer fixture. Cheap, and it catches shared mistakes that redundancy
+    cannot.
+
+derive_dont_read_the_rule:
+  status: declared
+  category: evidence
+  rule: >
+    A task claiming to TEST a rule must DERIVE the rule, not read it from the
+    fixture it is testing against. Reading the expected value and confirming it
+    matches is not a test.
+  scope: "tasks with a declared ordering, schedule, or generated sequence"
+  motivating_evidence: >
+    CR measured a wrong-order control that changed 8 of 16 ring edges and broke
+    subgraph membership, yet moved 0 of 21 contract keys across three
+    independent engines, all exit 0. Every lane read gray_code_order from the
+    fixture; only the stdlib ground truth derived g(i) = i XOR (i >> 1) and
+    refused. Three engines faithfully reproduced one wrong fixture.
+  why_general: >
+    Content-correctness and order-correctness are different tests. Any task
+    with a schedule, sequence, or generated key can hold this defect.
+
+claim_ceiling:
+  status: declared
+  category: evidence
+  rule: >
+    A result carries an explicit ceiling and may never be reported above it.
+    EXECUTED < CHECKED < REPRODUCED < BOUNDED-TESTED. A task reports the rung it
+    measured, never a higher one, and PENDING is a valid terminal state.
+  scope: all task receipts
+  motivating_evidence: >
+    CR's own ladder (exists < runs < passes local rerun < canonical by process)
+    exists precisely because inflation was the recurring failure. LevOS already
+    has the same shape in severity_model's one-way lifecycle, so this is
+    alignment rather than a new concept.
+  why_general: >
+    Maps onto the existing aspirational -> declared -> enforced -> auto-enforced
+    ratchet. Same one-way discipline, applied to results instead of gates.
+
+capability_freshness:
+  status: declared
+  category: maintenance
+  rule: >
+    installed != tested != integrated != current. An adapter loses active status
+    when it has not been exercised against its own fixture within its declared
+    window.
+  scope: adapters and external workers
+  motivating_evidence: >
+    CR measured 2198 committed receipts with no durable gate record, and a
+    dependency-kill probe that was a tautology (sys.modules['x']=None then
+    import x always raises) reporting FAILS_CLOSED for eight libraries while
+    testing nothing about any verifier.
+  why_general: >
+    A scheduled canary per adapter. Cheap, and it stops silent driver, driver
+    version, and API drift.
+
+external_worker_receipt:
+  status: declared
+  category: runtime
+  rule: >
+    LevOS may REQUEST a specialist job from an external worker and verify its
+    bounded receipt. LevOS does not host the worker's runtime. The receipt must
+    carry frozen input hash, named worker, output artifact hash, process or job
+    receipt, and a claim ceiling. self_declared_pass and direct-shell-fallback
+    are forbidden.
+  scope: "profile levos.external_sim.v1"
+  motivating_evidence: >
+    CR carries Julia + JAX + PyTorch + GPU tooling. Installing that estate into
+    LevOS would create a duplicate runtime with high maintenance and rare use.
+    The bridge is a request and a receipt, not a runtime merge.
+  why_general: >
+    Same shape for any specialist worker: a build farm, a GPU job, a licensed
+    solver, an external data pipeline.
+  profile:
+    id: levos.external_sim.v1
+    required:
+      - frozen_input_hash
+      - named_external_worker
+      - output_artifact_hash
+      - process_or_job_receipt
+      - claim_ceiling
+    forbidden:
+      - self_declared_pass
+      - direct_shell_fallback
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# EXPLICITLY NOT EXPORTED — these stay Codex-Ratchet profiles
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+#   density carriers, S_alpha(rho), I(A:B), Renyi ordering
+#   Hopf / Weyl / chirality obligations, associator witnesses
+#   MSS / Ratchet settlement and its verdict tokens
+#   the three-engine requirement (a CR profile, never a platform rule)
+#   manifold layer ontology, pair-field and quotient-fibre obligations
+#
+# A normal LevOS task must never be made to pretend it has Julia, a density
+# operator, or a manifold layer. Profile selection is the mechanism that keeps
+# everyday work cheap: tool_run and test_run should stay a process receipt plus
+# an output hash.

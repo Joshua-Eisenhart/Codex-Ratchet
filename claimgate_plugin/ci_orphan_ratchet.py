@@ -48,12 +48,20 @@ def current_orphans() -> dict[str, str]:
     the detector's prose would silently read zero orphans the day the wording
     changes, and that failure is OPEN."""
     from claimgate_plugin.orphan_receipt_detector import find_orphans
+    from claimgate_plugin.tracked_set import tracked_files
+
+    tracked = tracked_files(REPO)
 
     report = find_orphans(REPO)
     out: dict[str, str] = {}
     for entry in report["orphans"]:
         p = Path(entry)
         rel = (p.relative_to(REPO) if p.is_absolute() else p).as_posix()
+        # TRACKED-ONLY: the first freeze took 2851 from the working tree while CI
+        # measured 2202, producing 651 phantom "resolved" entries. A baseline must
+        # describe the committed set.
+        if rel not in tracked:
+            continue
         try:
             out[rel] = hashlib.sha256((REPO / rel).read_bytes()).hexdigest()
         except OSError:

@@ -27,6 +27,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from claimgate_plugin.tracked_set import tracked_files
+
 REPO = Path(__file__).resolve().parent.parent
 OUT = REPO / "claimgate_plugin" / "fixtures" / "sweep_fixture_manifest.json"
 FIXTURE_ROOTS = ("claimgate_plugin/fixtures", "claimgate_plugin/rf_fixtures",
@@ -67,6 +70,11 @@ def claim_bearing(path: Path) -> bool:
 
 def main(argv):
     write = "--write" in argv
+    # TRACKED-ONLY. Four gitignored generated fixtures were pinned from the working
+    # tree on the first attempt and every CI job reported PINNED FIXTURE MISSING.
+    # A manifest describes what CI will see, so untracked files cannot enter it.
+    tracked = tracked_files(REPO)
+    skipped_untracked = []
     entries = []
     for root in FIXTURE_ROOTS:
         base = REPO / root
@@ -78,6 +86,9 @@ def main(argv):
             if not claim_bearing(p):
                 continue
             rel = p.relative_to(REPO).as_posix()
+            if rel not in tracked:
+                skipped_untracked.append(rel)
+                continue
             exits = {c: run_checker(c, p) for c in CHECKERS}
             entries.append({
                 "path": rel,
@@ -97,6 +108,9 @@ def main(argv):
                           "control receipt, or poison outside that checker's remit). A 0 "
                           "here is a recorded fact about today, not an endorsement.",
         "_regenerate": "python3 claimgate_plugin/build_sweep_fixture_manifest.py --write",
+        "_tracked_only": "Pinned from `git ls-files` — the committed set, which is all CI "
+                         "can see. Untracked/gitignored fixtures are deliberately absent.",
+        "_skipped_untracked": skipped_untracked,
         "_checkers": list(CHECKERS),
         "fixtures": entries,
     }

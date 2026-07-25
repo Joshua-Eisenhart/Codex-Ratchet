@@ -302,6 +302,18 @@ def main(argv: list[str] | None = None) -> int:
                  "msg": line[:200]}
                 for p, code, line in failures}
     if args.write_frozen_failures:
+        # TRACKED-ONLY, matching the other freeze tools. discover() deliberately
+        # sweeps everything present so a developer's uncommitted receipt is still
+        # checked, but a BASELINE must describe what CI will see. Freezing the
+        # sweep's raw result would bake untracked working-tree files into the set
+        # and then report them as phantom failures in CI.
+        sys.path.insert(0, str(REPO))
+        from claimgate_plugin.tracked_set import tracked_files
+        tracked = tracked_files(REPO)
+        dropped = sorted(set(cur_fail) - tracked)
+        cur_fail = {k: v for k, v in cur_fail.items() if k in tracked}
+        for d in dropped:
+            print(f"  not frozen (untracked): {d}")
         Path(args.write_frozen_failures).write_text(json.dumps({
             "_what": f"FROZEN failure set for {args.checker} at scope={args.scope}: every "
                      f"known-failing receipt by path + sha256 + exit. Replaces the fungible "

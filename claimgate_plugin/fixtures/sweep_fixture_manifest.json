@@ -4,7 +4,12 @@
  "_baseline_note": "Exits below are MEASURED, not aspirational. Some are 0 because the checker genuinely has nothing to say about that fixture (a control receipt, or poison outside that checker's remit). A 0 here is a recorded fact about today, not an endorsement.",
  "_regenerate": "python3 claimgate_plugin/build_sweep_fixture_manifest.py --write",
  "_tracked_only": "Pinned from `git ls-files` \u2014 the committed set, which is all CI can see. Untracked/gitignored fixtures are deliberately absent.",
- "_skipped_untracked": [],
+ "_skipped_untracked": [
+  "system_v8/harness_patch/results/fixtures/clean.json",
+  "system_v8/harness_patch/results/fixtures/dupkey.json",
+  "system_v8/harness_patch/results/fixtures/nan.json",
+  "system_v8/harness_patch/results/fixtures/selfverdict.json"
+ ],
  "_checkers": [
   "intake_supervisor",
   "recompute_veto"

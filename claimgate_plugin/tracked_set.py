@@ -14,6 +14,23 @@ trap and even carried the remeasure command. Reading the warning was not enough,
 so the guard is now structural: freezing walks `git ls-files`, and a file the repo
 does not track cannot be frozen by accident.
 
+AND THE SECOND MISTAKE, worth recording because it looked like the fix. The first
+repair re-froze inside a "clean checkout" built as:
+
+    git archive HEAD | tar -x -C $TMP && cd $TMP && git init && git add -A
+
+That is NOT a faithful copy of the committed set. `git add -A` re-applies
+.gitignore, but git happily tracks files added BEFORE a matching ignore rule
+existed — so the temp repo tracked 1871 receipts where the real repo tracks 2198.
+CI then reported 327 NEW ORPHANs, all under system_v4/, and the baseline looked
+wrong in the opposite direction from the first attempt.
+
+There is no need for a temp clone at all: `git ls-files` in the real repo already
+IS the committed set. Freeze in place, filtered by this module, and verify the
+count against a CI run before trusting it. (Working-tree digests equal committed
+digests only when no tracked file is dirty — check `git diff --name-only HEAD`
+before freezing.)
+
 Asymmetry, on purpose:
   FREEZING  tracked-only — a baseline must describe what CI will see
   SWEEPING  everything present — a developer's new uncommitted receipt should

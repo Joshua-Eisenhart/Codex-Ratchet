@@ -1,0 +1,347 @@
+{
+  "analytic_control": {
+    "argv": [
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine/ground_truth_v0.py"
+    ],
+    "contract_accepted": true,
+    "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine",
+    "elapsed_s": 0.04,
+    "exit_code": 0,
+    "launched_pid": 61931,
+    "output_file": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine/ground_truth_v0.json",
+    "output_file_mtime_after_launch": true,
+    "stderr_tail": "",
+    "stdout_bytes": 861,
+    "stdout_head": "{\n  \"f0_coh_a0\": 4.0,\n  \"f0_coh_a1\": 6.321928094887363,\n  \"f0_coh_a2\": 16,\n  \"f0",
+    "stdout_sha256": "894a1b7451de5692f43d41e06336a9492bb9825eb5b37b076ef4c620a79f3c63"
+  },
+  "claim_check": {
+    "all_claims_survived": false,
+    "claimed_file": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine/controls/stale/stale_B_wrong_carrier.json",
+    "claimed_file_sha256": "b654725e8b8e76a0b2b60a7397c6d170100ab1ec35360f1bce94c618c3935591",
+    "note": "the lanes were launched regardless; the claim was compared, never trusted",
+    "per_lane": {
+      "jax": {
+        "claim_present": true,
+        "claim_survived_measurement": false,
+        "divergences": [
+          {
+            "key": "f0_diag_a0",
+            "left": 2.9999999999999996,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 4.0
+          },
+          {
+            "key": "f0_diag_a1",
+            "left": 2.9999999999999996,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 4.0
+          },
+          {
+            "key": "f0_diag_a2",
+            "left": 8,
+            "reason": "exact mismatch",
+            "right": 16
+          },
+          {
+            "key": "f0_coh_a0",
+            "left": 2.9999999999999996,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 4.0
+          },
+          {
+            "key": "f0_coh_a1",
+            "left": 5.0,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 6.321928094887362
+          },
+          {
+            "key": "f0_coh_a2",
+            "left": 5,
+            "reason": "exact mismatch",
+            "right": 16
+          }
+        ],
+        "n_divergences_from_measurement": 14
+      },
+      "julia": {
+        "claim_present": true,
+        "claim_survived_measurement": false,
+        "divergences": [
+          {
+            "key": "f0_diag_a0",
+            "left": 3.0,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 4.0
+          },
+          {
+            "key": "f0_diag_a1",
+            "left": 3.0,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 4.0
+          },
+          {
+            "key": "f0_diag_a2",
+            "left": 8,
+            "reason": "exact mismatch",
+            "right": 16
+          },
+          {
+            "key": "f0_coh_a0",
+            "left": 3.0,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 4.0
+          },
+          {
+            "key": "f0_coh_a1",
+            "left": 5.0,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 6.321928094887363
+          },
+          {
+            "key": "f0_coh_a2",
+            "left": 5,
+            "reason": "exact mismatch",
+            "right": 16
+          }
+        ],
+        "n_divergences_from_measurement": 14
+      },
+      "pytorch": {
+        "claim_present": true,
+        "claim_survived_measurement": false,
+        "divergences": [
+          {
+            "key": "f0_diag_a0",
+            "left": 3.0,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 4.0
+          },
+          {
+            "key": "f0_diag_a1",
+            "left": 3.0,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 4.0
+          },
+          {
+            "key": "f0_diag_a2",
+            "left": 8,
+            "reason": "exact mismatch",
+            "right": 16
+          },
+          {
+            "key": "f0_coh_a0",
+            "left": 3.0,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 4.0
+          },
+          {
+            "key": "f0_coh_a1",
+            "left": 5.0,
+            "reason": "outside stated tolerance 1e-12",
+            "right": 6.321928094887363
+          },
+          {
+            "key": "f0_coh_a2",
+            "left": 5,
+            "reason": "exact mismatch",
+            "right": 16
+          }
+        ],
+        "n_divergences_from_measurement": 14
+      }
+    }
+  },
+  "controller": "fresh_spine/controls/spine_controller_v0.py",
+  "controller_pid": 61930,
+  "cross_lane": {
+    "jax_vs_julia": {
+      "divergences": [],
+      "n_divergences": 0
+    },
+    "jax_vs_pytorch": {
+      "divergences": [],
+      "n_divergences": 0
+    },
+    "pytorch_vs_julia": {
+      "divergences": [],
+      "n_divergences": 0
+    }
+  },
+  "lanes": {
+    "jax": {
+      "agreement_with_analytic_control": true,
+      "argv": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine/jax_lane.py"
+      ],
+      "contract": {
+        "f0_coh_a0": 4.0,
+        "f0_coh_a1": 6.321928094887362,
+        "f0_coh_a2": 16,
+        "f0_diag_a0": 4.0,
+        "f0_diag_a1": 4.0,
+        "f0_diag_a2": 16,
+        "f1_fibre_sizes": [
+          1,
+          4,
+          6,
+          4,
+          1
+        ],
+        "f1_kappa": [
+          0.0,
+          2.0,
+          2.584962500721156,
+          2.0,
+          0.0
+        ],
+        "f1_q2_fibre_sizes": [
+          4,
+          3,
+          3,
+          3,
+          3
+        ],
+        "f2_checker_cycles": 17,
+        "f2_checker_edges": 32,
+        "f2_n1_ring_cycles_after_cut": 0,
+        "f2_n2_degree_changed": true,
+        "f2_n3_edge_counts_differ": true,
+        "f2_ring_cycles": 1,
+        "f2_ring_edges": 16,
+        "f3_r1_quotient_vertices": 4,
+        "f3_r2_blocked": true,
+        "f3_r2_violating_edges": 1,
+        "f3_seam_satisfied_edges": 32,
+        "f3_seam_total_edges": 32
+      },
+      "contract_captured": true,
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine",
+      "divergences_from_analytic_control": [],
+      "elapsed_s": 2.352,
+      "exit_code": 0,
+      "launched_pid": 61932,
+      "stderr_tail": "",
+      "stdout_bytes": 23285,
+      "stdout_sha256": "530d04432ab5b68b6eb09163f23a7898d910fddcdb25e238af9b16d34abf56b6"
+    },
+    "julia": {
+      "agreement_with_analytic_control": true,
+      "argv": [
+        "/opt/homebrew/bin/julia",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine/julia_lane.jl"
+      ],
+      "contract": {
+        "f0_coh_a0": 4.0,
+        "f0_coh_a1": 6.321928094887363,
+        "f0_coh_a2": 16,
+        "f0_diag_a0": 4.0,
+        "f0_diag_a1": 4.0,
+        "f0_diag_a2": 16,
+        "f1_fibre_sizes": [
+          1,
+          4,
+          6,
+          4,
+          1
+        ],
+        "f1_kappa": [
+          0.0,
+          2.0,
+          2.584962500721156,
+          2.0,
+          0.0
+        ],
+        "f1_q2_fibre_sizes": [
+          4,
+          3,
+          3,
+          3,
+          3
+        ],
+        "f2_checker_cycles": 17,
+        "f2_checker_edges": 32,
+        "f2_n1_ring_cycles_after_cut": 0,
+        "f2_n2_degree_changed": true,
+        "f2_n3_edge_counts_differ": true,
+        "f2_ring_cycles": 1,
+        "f2_ring_edges": 16,
+        "f3_r1_quotient_vertices": 4,
+        "f3_r2_blocked": true,
+        "f3_r2_violating_edges": 1,
+        "f3_seam_satisfied_edges": 32,
+        "f3_seam_total_edges": 32
+      },
+      "contract_captured": true,
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine",
+      "divergences_from_analytic_control": [],
+      "elapsed_s": 4.997,
+      "exit_code": 0,
+      "launched_pid": 61938,
+      "stderr_tail": "",
+      "stdout_bytes": 7784,
+      "stdout_sha256": "9b12e2286d4657e356e0a0ddd81397d29891264eeaa477ccc0875602cf5ed6a0"
+    },
+    "pytorch": {
+      "agreement_with_analytic_control": true,
+      "argv": [
+        "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine/pytorch_lane.py"
+      ],
+      "contract": {
+        "f0_coh_a0": 4.0,
+        "f0_coh_a1": 6.321928094887363,
+        "f0_coh_a2": 16,
+        "f0_diag_a0": 4.0,
+        "f0_diag_a1": 4.0,
+        "f0_diag_a2": 16,
+        "f1_fibre_sizes": [
+          1,
+          4,
+          6,
+          4,
+          1
+        ],
+        "f1_kappa": [
+          0.0,
+          2.0,
+          2.584962500721156,
+          2.0,
+          0.0
+        ],
+        "f1_q2_fibre_sizes": [
+          4,
+          3,
+          3,
+          3,
+          3
+        ],
+        "f2_checker_cycles": 17,
+        "f2_checker_edges": 32,
+        "f2_n1_ring_cycles_after_cut": 0,
+        "f2_n2_degree_changed": true,
+        "f2_n3_edge_counts_differ": true,
+        "f2_ring_cycles": 1,
+        "f2_ring_edges": 16,
+        "f3_r1_quotient_vertices": 4,
+        "f3_r2_blocked": true,
+        "f3_r2_violating_edges": 1,
+        "f3_seam_satisfied_edges": 32,
+        "f3_seam_total_edges": 32
+      },
+      "contract_captured": true,
+      "cwd": "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine",
+      "divergences_from_analytic_control": [],
+      "elapsed_s": 0.819,
+      "exit_code": 0,
+      "launched_pid": 61937,
+      "stderr_tail": "",
+      "stdout_bytes": 16267,
+      "stdout_sha256": "e66d208fe64343c995804d40e9c13e89fe85377dd77b5950773abe3c6c6cc056"
+    }
+  },
+  "rule": "every per-lane record below was derived from a process this controller started",
+  "started_unix": 1784977295.1926641
+}

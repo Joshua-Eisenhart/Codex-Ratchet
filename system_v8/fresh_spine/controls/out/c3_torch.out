@@ -1,0 +1,486 @@
+=== pytorch lane :: fresh_spine fixture v0 ===
+interpreter      : /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3
+python           : 3.13.6
+torch            : 2.11.0   default_dtype=torch.float32
+fixture          : /Users/joshuaeisenhart/Codex-Ratchet/system_v8/fresh_spine/controls/c3_n3/fixture_v0.json
+fixture sha256   : 4a2d210a2e4126e8d41744d84d395524018d5f95879b1a0a6e69c136e4823ff7 (recomputed in-process, matched)
+
+note  fixture sha256 recomputed in-process and matched: 4a2d210a2e4126e8d41744d84d395524018d5f95879b1a0a6e69c136e4823ff7
+note  n=3, |J|=8, J dtype=torch.int64
+note  F0 A0 identical by construction (same J): diag 3 vs coh 3
+note  F0 A1 separates: diag 3 (support 8) vs coh 5 (support 32)
+note  F0 A2 does NOT separate: rank 8 vs 5 (computed, not by construction)
+note  F1 fibre sizes by enumeration: [1, 3, 3, 1, 0] ; q2 sizes: [2, 2, 2, 1, 1]
+note  F2 checker E=12 V=8 C=1 cyc=5 ; ring E=8 cyc=1 ; spun E=8 cyc=1
+note  F3 seam 12/12 (forced by carrier); R1 quotient V=4; R2 violating=1 blocked=True
+
+--- torch dispatch census (functions this process actually invoked) ---
+     258  TensorBase.__getitem__
+     200  TensorBase.item
+     106  TensorBase.mul
+      69  TensorBase.clone
+      65  TensorBase.__setitem__
+      62  torch._VariableFunctionsClass.count_nonzero
+      57  torch._VariableFunctionsClass.abs
+      57  torch._VariableFunctionsClass.max
+      54  torch._VariableFunctionsClass.remainder
+      53  TensorBase.sub
+      53  torch._VariableFunctionsClass.div
+      23  TensorBase.tolist
+      23  torch._VariableFunctionsClass.tensor
+      20  TensorBase.to
+      17  TensorBase.add
+      17  torch._VariableFunctionsClass.equal
+      16  TensorBase.__eq__
+      16  TensorBase.gt
+      16  getset_descriptor.__get__
+      16  torch._VariableFunctionsClass.matmul
+      13  torch._VariableFunctionsClass.bitwise_and
+      12  torch._VariableFunctionsClass.bitwise_right_shift
+      12  torch._VariableFunctionsClass.log2
+      11  torch._VariableFunctionsClass.masked_select
+      11  torch._VariableFunctionsClass.sum
+       7  torch.functional.boolean_dispatch.<locals>.fn
+       6  torch._VariableFunctionsClass.eye
+       5  torch._VariableFunctionsClass.clamp
+       5  torch._VariableFunctionsClass.zeros
+       5  torch._VariableFunctionsClass.zeros_like
+       4  torch._C._linalg.linalg_matrix_rank
+       4  torch._VariableFunctionsClass.bitwise_xor
+       4  torch._VariableFunctionsClass.min
+       2  TensorBase.numel
+       2  TensorBase.unsqueeze
+       2  torch._C._linalg.linalg_det
+       2  torch._C._linalg.linalg_eigvalsh
+       2  torch._C._linalg.linalg_svdvals
+       2  torch._VariableFunctionsClass.bincount
+       2  torch._VariableFunctionsClass.diagonal
+       2  torch._VariableFunctionsClass.logical_or
+       2  torch._VariableFunctionsClass.triu
+       1  TensorBase.le
+       1  torch._VariableFunctionsClass.arange
+       1  torch._VariableFunctionsClass.logical_not
+  distinct torch functions dispatched: 45 ; total dispatches: 1318
+
+--- detail ---
+{
+  "f0": {
+    "coh": {
+      "a0": 3.0,
+      "a1": 5.0,
+      "a2_rank_exact_int64_bareiss": 5,
+      "a2_rank_float_svd": 5,
+      "a2_ranks_agree": true,
+      "bareiss_divisions_exact": true,
+      "bareiss_max_abs_intermediate_pyint_control": 3,
+      "bareiss_max_abs_intermediate_torch": 3,
+      "det_exact_int64_bareiss": 0,
+      "det_float_linalg": -0.0,
+      "eigenvalue_abs_min": 1.0962544538071926e-16,
+      "eigenvalues_sorted": [
+        -2.0,
+        -0.0,
+        -0.0,
+        0.0,
+        2.0,
+        2.0,
+        2.0,
+        4.0
+      ],
+      "int64_overflow_excluded": true,
+      "matrix_rank_on_int64_response": "RuntimeError: This function doesn't handle types other than float and double",
+      "nonzero_entries_ordered": 32,
+      "nonzero_pairs_unordered_diagnostic": 20,
+      "pyint_control_det": 0,
+      "pyint_control_rank": 5,
+      "singular_value_max": 4.0,
+      "singular_value_min": 3.738221992442537e-17
+    },
+    "diag": {
+      "a0": 3.0,
+      "a1": 3.0,
+      "a2_rank_exact_int64_bareiss": 8,
+      "a2_rank_float_svd": 8,
+      "a2_ranks_agree": true,
+      "bareiss_divisions_exact": true,
+      "bareiss_max_abs_intermediate_pyint_control": 1,
+      "bareiss_max_abs_intermediate_torch": 1,
+      "det_exact_int64_bareiss": 1,
+      "det_float_linalg": 1.0,
+      "eigenvalue_abs_min": 1.0,
+      "eigenvalues_sorted": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "int64_overflow_excluded": true,
+      "matrix_rank_on_int64_response": "RuntimeError: This function doesn't handle types other than float and double",
+      "nonzero_entries_ordered": 8,
+      "nonzero_pairs_unordered_diagnostic": 8,
+      "pyint_control_det": 1,
+      "pyint_control_rank": 8,
+      "singular_value_max": 1.0,
+      "singular_value_min": 1.0
+    }
+  },
+  "f1": {
+    "any_empty_fibre_q": true,
+    "any_empty_fibre_q2": false,
+    "fibres_q": [
+      {
+        "members": [
+          0
+        ],
+        "size": 1,
+        "y": 0
+      },
+      {
+        "members": [
+          1,
+          2,
+          4
+        ],
+        "size": 3,
+        "y": 1
+      },
+      {
+        "members": [
+          3,
+          5,
+          6
+        ],
+        "size": 3,
+        "y": 2
+      },
+      {
+        "members": [
+          7
+        ],
+        "size": 1,
+        "y": 3
+      },
+      {
+        "members": [],
+        "size": 0,
+        "y": 4
+      }
+    ],
+    "fibres_q2": [
+      {
+        "members": [
+          0,
+          5
+        ],
+        "size": 2,
+        "y": 0
+      },
+      {
+        "members": [
+          1,
+          6
+        ],
+        "size": 2,
+        "y": 1
+      },
+      {
+        "members": [
+          2,
+          7
+        ],
+        "size": 2,
+        "y": 2
+      },
+      {
+        "members": [
+          3
+        ],
+        "size": 1,
+        "y": 3
+      },
+      {
+        "members": [
+          4
+        ],
+        "size": 1,
+        "y": 4
+      }
+    ],
+    "q2_definition": "q2(j) = j mod 5, computed by torch.remainder",
+    "q_definition": "q(j) = popcount(j), computed by torch bitwise shift/and/add",
+    "quotients_distinguished_by_size_multiset": true,
+    "release_q_descriptors": [
+      {
+        "empty": false,
+        "fibre": [
+          0
+        ],
+        "release": "fibre_descriptor",
+        "y": 0
+      },
+      {
+        "empty": false,
+        "fibre": [
+          1,
+          2,
+          4
+        ],
+        "release": "fibre_descriptor",
+        "y": 1
+      },
+      {
+        "empty": false,
+        "fibre": [
+          3,
+          5,
+          6
+        ],
+        "release": "fibre_descriptor",
+        "y": 2
+      },
+      {
+        "empty": false,
+        "fibre": [
+          7
+        ],
+        "release": "fibre_descriptor",
+        "y": 3
+      },
+      {
+        "empty": true,
+        "fibre": [],
+        "release": "descriptor_only_no_capacity",
+        "y": 4
+      }
+    ],
+    "same_codomain_cardinality": true,
+    "size_multiset_q": [
+      0,
+      1,
+      1,
+      3,
+      3
+    ],
+    "size_multiset_q2": [
+      1,
+      1,
+      2,
+      2,
+      2
+    ],
+    "sizes_sum_equals_J": true
+  },
+  "f2": {
+    "checker": {
+      "closure_steps": 3,
+      "components": 1,
+      "degree_multiset": [
+        3
+      ],
+      "degree_sequence": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "edge_list_has_duplicates": false,
+      "edges_from_adjacency": 12,
+      "edges_in_list": 12,
+      "independent_cycles": 5,
+      "name": "checker",
+      "vertices": 8
+    },
+    "independent_cycles_definition": "edges - vertices + components (cycle rank / first Betti number), NOT a count of cycles",
+    "n1": {
+      "components_after": 1,
+      "cut_edge": [
+        0,
+        1
+      ],
+      "cycle_count_dropped": true,
+      "cycles_after": 0,
+      "cycles_before": 1
+    },
+    "n2": {
+      "added_edge": [
+        0,
+        7
+      ],
+      "degree_changed": true,
+      "degree_sequence_after": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "degree_sequence_before": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "hamming_distance_computed": 3
+    },
+    "n3": {
+      "checker_edges": 12,
+      "edge_counts_differ": true,
+      "ground": "edge count is an isomorphism invariant; the two computed counts differ, which excludes identification. A topology tool may measure a supplied complex; without the transition map it cannot license a global identity claim.",
+      "ring_edges": 8,
+      "same_object_claim_excluded_by_computed_invariant": true
+    },
+    "ring": {
+      "closure_steps": 3,
+      "components": 1,
+      "degree_multiset": [
+        2
+      ],
+      "degree_sequence": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "edge_list_has_duplicates": false,
+      "edges_from_adjacency": 8,
+      "edges_in_list": 8,
+      "independent_cycles": 1,
+      "name": "ring",
+      "vertices": 8
+    },
+    "spun": {
+      "closure_steps": 3,
+      "components": 1,
+      "degree_multiset": [
+        2
+      ],
+      "degree_sequence": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "edge_list_has_duplicates": false,
+      "edges_from_adjacency": 8,
+      "edges_in_list": 8,
+      "independent_cycles": 1,
+      "name": "spun",
+      "vertices": 8
+    },
+    "spun_contract_gap": "the output contract declares no f2_spun_* key, so a lane can omit SPUN entirely and still satisfy it literally; SPUN is reported here anyway",
+    "transition_maps": {
+      "checker_edges_match_stated_definition": true,
+      "gray_code_order_from_fixture": [
+        0,
+        1,
+        3,
+        2,
+        6,
+        7,
+        5,
+        4
+      ],
+      "ring_edges_match_gray_order": true,
+      "sigma_from_fixture": [
+        7,
+        2,
+        5,
+        0,
+        3,
+        6,
+        1,
+        4
+      ],
+      "sigma_is_bijection_verified_by_enumeration": true,
+      "spun_edges_match_sigma_of_ring": true
+    }
+  },
+  "f3": {
+    "r1_contract": {
+      "ambiguity": "'the quotient graph' admits 4 (simple), 20 (simple+loops) or 32 (all with multiplicity); only quotient_vertices is pinned by the contract",
+      "edge_accounting_closes": true,
+      "edges_becoming_self_loops": 4,
+      "edges_mapping_to_quotient_edges": 8,
+      "note": "R1 applied; quotient carrier is the 4-vertex bit-flip graph on the r-images",
+      "quotient_edge_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "1-3": 2,
+        "2-3": 2
+      },
+      "quotient_simple_edges_excluding_loops": 4,
+      "quotient_total_edges_with_multiplicity_including_loops": 12,
+      "quotient_vertices": 4
+    },
+    "r2_obstruct": {
+      "added_edge": [
+        0,
+        7
+      ],
+      "blocked_under_no_repair": true,
+      "hamming_distance_computed": 3,
+      "note": "obstruction survives; no value was adjusted to make the check pass",
+      "r_image_hamming": 2,
+      "r_images": [
+        0,
+        3
+      ],
+      "repair_policy": "NO-REPAIR: resettlement is only by applying a declared rewrite",
+      "seam_satisfied_after": 12,
+      "seam_total_after": 13,
+      "violating_edge_count": 1,
+      "violating_edges": [
+        [
+          0,
+          7
+        ]
+      ]
+    },
+    "r_definition": "r(j) = j AND 0b11 (low two bits), torch.bitwise_and",
+    "seam_obligation": "for every CHECKER edge (j,k): r(j)==r(k) OR popcount(r(j) XOR r(k))==1",
+    "seam_positive_check_has_no_discriminating_power": true,
+    "seam_satisfied_edges": 12,
+    "seam_total_edges": 12,
+    "seam_why_no_teeth": "a Q4 edge flips exactly one bit; that bit is low (r differs in one bit) or high (r equal). 32/32 is forced by the carrier, so this check cannot fail here."
+  },
+  "float_notes": {
+    "dtype_policy": "int64 for all combinatorics and the exact rank; float64 only for log2 capacities, SVD/eig, and linalg.det",
+    "matrix_rank_int64": "torch.linalg.matrix_rank rejects int64 outright; the float64 cast is mandatory, so the engine rank path is a float SVD by construction",
+    "torch_log2_vs_math_log2": {
+      "identical_bits": true,
+      "identical_bits_6": true,
+      "log2_6_math": 2.584962500721156,
+      "log2_6_torch": 2.584962500721156,
+      "log2_80_math": 6.321928094887363,
+      "log2_80_torch": 6.321928094887363
+    }
+  }
+}
+
+--- census (json) ---
+{"counts": {"TensorBase.__eq__": 16, "TensorBase.__getitem__": 258, "TensorBase.__setitem__": 65, "TensorBase.add": 17, "TensorBase.clone": 69, "TensorBase.gt": 16, "TensorBase.item": 200, "TensorBase.le": 1, "TensorBase.mul": 106, "TensorBase.numel": 2, "TensorBase.sub": 53, "TensorBase.to": 20, "TensorBase.tolist": 23, "TensorBase.unsqueeze": 2, "getset_descriptor.__get__": 16, "torch._C._linalg.linalg_det": 2, "torch._C._linalg.linalg_eigvalsh": 2, "torch._C._linalg.linalg_matrix_rank": 4, "torch._C._linalg.linalg_svdvals": 2, "torch._VariableFunctionsClass.abs": 57, "torch._VariableFunctionsClass.arange": 1, "torch._VariableFunctionsClass.bincount": 2, "torch._VariableFunctionsClass.bitwise_and": 13, "torch._VariableFunctionsClass.bitwise_right_shift": 12, "torch._VariableFunctionsClass.bitwise_xor": 4, "torch._VariableFunctionsClass.clamp": 5, "torch._VariableFunctionsClass.count_nonzero": 62, "torch._VariableFunctionsClass.diagonal": 2, "torch._VariableFunctionsClass.div": 53, "torch._VariableFunctionsClass.equal": 17, "torch._VariableFunctionsClass.eye": 6, "torch._VariableFunctionsClass.log2": 12, "torch._VariableFunctionsClass.logical_not": 1, "torch._VariableFunctionsClass.logical_or": 2, "torch._VariableFunctionsClass.masked_select": 11, "torch._VariableFunctionsClass.matmul": 16, "torch._VariableFunctionsClass.max": 57, "torch._VariableFunctionsClass.min": 4, "torch._VariableFunctionsClass.remainder": 54, "torch._VariableFunctionsClass.sum": 11, "torch._VariableFunctionsClass.tensor": 23, "torch._VariableFunctionsClass.triu": 2, "torch._VariableFunctionsClass.zeros": 5, "torch._VariableFunctionsClass.zeros_like": 5, "torch.functional.boolean_dispatch.<locals>.fn": 7}, "distinct": 45, "total": 1318}
+
+{"engine_name": "pytorch", "f0_coh_a0": 3.0, "f0_coh_a1": 5.0, "f0_coh_a2": 5, "f0_diag_a0": 3.0, "f0_diag_a1": 3.0, "f0_diag_a2": 8, "f1_fibre_sizes": [1, 3, 3, 1, 0], "f1_kappa": [0.0, 1.584962500721156, 1.584962500721156, 0.0, null], "f1_q2_fibre_sizes": [2, 2, 2, 1, 1], "f2_checker_cycles": 5, "f2_checker_edges": 12, "f2_n1_ring_cycles_after_cut": 0, "f2_n2_degree_changed": true, "f2_n3_edge_counts_differ": true, "f2_ring_cycles": 1, "f2_ring_edges": 8, "f3_r1_quotient_vertices": 4, "f3_r2_blocked": true, "f3_r2_violating_edges": 1, "f3_seam_satisfied_edges": 12, "f3_seam_total_edges": 12, "lane_nonce": "NONCE-TOR-5b1d77"}

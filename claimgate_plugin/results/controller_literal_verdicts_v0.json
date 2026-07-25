@@ -1,0 +1,45 @@
+{
+ "schema": "cr.finding.v1",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "severity": "CRITICAL",
+ "claim_under_test": "Named sim controllers write solver and engine verdicts as string literals without invoking any solver or engine.",
+ "date": "2026-07-25",
+ "method": "grep for imports and for the literal fields, in the files themselves. No inference.",
+
+ "measured": [
+  {"file": "system_v7/sims/tower_g0_finite_support_v0/check_agreement.py",
+   "lines": 83,
+   "imports_z3_cvc5_subprocess": 0, "imports_jax_torch": 0,
+   "reads": "json.loads(RESULT_DIR / f'{SIM_ID}_{engine}_results.json')  [line 18]",
+   "writes_literals": ["line 52  \"ran\": True",
+                       "line 67  \"z3\": {\"ran\": True, \"load_bearing\": True, \"claim\": \"...binds to the actual constructed carrier in JAX and PyTorch\"}",
+                       "line 68  \"cvc5\": {\"ran\": False, \"reason\": \"cvc5 was not invoked by this run\"}"],
+   "note": "ran-true and ran-false are BOTH literals. The file distinguishes them by typing a different constant, not by invoking anything."},
+  {"file": "system_v7/sims/tower_g5_density_floor_v0/check_agreement.py",
+   "lines": 132,
+   "imports_z3_cvc5_subprocess": 0, "imports_jax_torch": 0,
+   "reads": "json.loads(RESULT_DIR / f'{SIM_ID}_{name}_results.json')  [line 31]",
+   "writes_literals": ["line 56   \"ran\": True",
+                       "line 99   \"z3\": {\"ran\": True, \"verdict\": \"unsat\", \"load_bearing\": True}",
+                       "line 100  \"cvc5\": {\"ran\": True, \"verdict\": \"unsat\", \"load_bearing\": True}",
+                       "line 101  \"julia_z3\": {\"ran\": True, \"verdict\": \"unsat\", \"load_bearing\": True}"],
+   "note": "THREE solver verdicts, each asserting unsat and load_bearing, in a file that imports no solver."},
+  {"file": "system_v7/sims/type1_engine_v0/validate_type1_engine_v0.py",
+   "reads": "json.loads(RESULTS / f'{SIM_ID}_{engine}_results.json')  [line 27]",
+   "self_disclosure": "line 187: 'JAX and torch legs are queued, not included in v0.'",
+   "note": "This one is HONEST about its scope. It compares stored numpy and Julia output and says so."}
+ ],
+
+ "why_this_is_the_central_finding": "Every gate defect found in this session was a way for a FORGED receipt to be admitted. This is the same failure one level upstream and already committed: the artifact that produces the receipt asserts that solvers ran and returned unsat, with no solver present. ClaimGate never caught it because ClaimGate validates receipt SHAPE, and the shape is impeccable. A gate that reads `ran: true` and a gate that reads a hand-typed `verdict: unsat` cannot tell either from a real run.",
+
+ "status_ladder_consequence": "Numeric claims resting on these controllers are REPO-REPORTED DIAGNOSTIC ARTIFACTS. They are not `runs` for the solver or engine legs they name, because those legs were not invoked by the controller that reports them. Per CLAUDE.md the honest label is `exists`, and any downstream doc citing z3/cvc5/julia_z3 agreement from tower_g5 is citing a literal.",
+
+ "not_asserted_here": [
+  "That the underlying result JSONs are wrong. They may have been produced by genuine runs at some earlier time; that is untested and is exactly the stale-artifact problem.",
+  "That every controller in the estate does this. Three were read. A full sweep is owed.",
+  "Any judgement about the science content of the G0/G5 sims themselves."
+ ],
+
+ "next": "A fresh-run spine (F0-F3) in which each lane is launched by the controller, in its own process, from a frozen raw fixture, with native causal evidence per engine — rather than a controller that reads results and reports that they ran."
+}

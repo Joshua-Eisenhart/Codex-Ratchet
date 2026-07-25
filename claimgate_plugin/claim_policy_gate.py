@@ -160,11 +160,25 @@ def evaluate(receipt: dict, receipt_path: Path, pol: dict):
            "numeric_evidence_count": len(nums),
            "policy_ownership": pol["_ownership"][:140]}
 
-    if not nums:
-        return 0, "pass", ("no numbers in any claim-bearing container, so the evaluator "
-                           "establishes exemption from CONTENT (not from a declaration)"), det
-
-    # From here the claim IS numeric, whatever it declared.
+    # ORDERING. The non-finite and witness checks used to sit BEHIND `if not nums:
+    # return 0`, so an empty number hunt skipped both. Measured on this branch,
+    # b13_zero_number_declares_engines:
+    #
+    #   {"engine_contract":{"numeric_engine_required":false,"engines":["jax","julia"]},
+    #    "TOOL_INTEGRATION_DEPTH":{"jax":"load_bearing","julia":"load_bearing"},
+    #    "engines_ran":{"jax":"admissible","julia":"admissible"}}
+    #
+    #     claim_policy_gate  exit 0  "no numbers in any claim-bearing container"
+    #     three_engine_seal  exit 0  "exempt (numeric_engine_required=false)"
+    #     claim_verify       VERIFIED
+    #     post_receipt_gate  exit 0, gate_ledger seq=191 PASS
+    #
+    # Two engines declared load-bearing, not one line of engine code on disk,
+    # admitted. The two stages excused each other: this gate exists to refuse the
+    # seal's producer exemption and it never looked, because it triggered on
+    # number COUNT. So the trigger is now ROLE PRESENCE — a declared engine obliges
+    # a witness whether or not a number was recorded — and the exemption requires
+    # BOTH no numeric content AND no engine declaration.
     nf = _non_finite_engine_values(receipt)
     if nf:
         det["non_finite_engine_values"] = nf
@@ -173,7 +187,15 @@ def evaluate(receipt: dict, receipt_path: Path, pol: dict):
 
     declared = sorted(_declared_load_bearing(receipt, pol))
     det["declared_authoritative_engines"] = declared
+    det["requirement_trigger"] = ("numeric content" if nums else "") + \
+                                 (" + " if nums and declared else "") + \
+                                 (f"declared engine(s) {declared}" if declared else "")
     need = pol["engine_requirement"]["min_witnessed_engines"]
+
+    if not nums and not declared:
+        return 0, "pass", ("no numbers in any claim-bearing container AND no engine declared "
+                           "anywhere, so the evaluator establishes exemption from CONTENT and "
+                           "from the absence of a declaration — not from a producer field"), det
 
     if not declared:
         return 3, "PARK", (f"numeric claim ({len(nums)} value(s) in claim-bearing containers, "
@@ -224,16 +246,18 @@ def main(argv):
         # a JSON array skipped the whole policy. The walk already descends lists;
         # only the engine lookups need a mapping, so a numeric non-object document
         # PARKS rather than passing.
+        # Numberless non-object documents used to keep the exit-0 branch, which is
+        # the same ordering hole one level up: engine declarations inside an array
+        # wrapper are unreachable by the mapping lookups, so "no numbers" would have
+        # excused them too. A JSON array, string or number at the document root is
+        # not a receipt. It PARKS either way, and the count is reported.
         nums = _numbers_in_claim_positions(receipt, pol)
-        if nums:
-            print(f"claim_policy_gate: PARK — non-object document carrying {len(nums)} "
-                  f"numeric value(s) (e.g. {nums[0][0]}={nums[0][1]}). Engine evidence "
-                  f"cannot be resolved from a non-mapping receipt, so this is pending "
-                  f"evidence, not an exemption.", file=sys.stderr)
-            return 3
-        print("claim_policy_gate: pass — non-object document with no numeric content",
-              file=sys.stderr)
-        return 0
+        print(f"claim_policy_gate: PARK — non-object document ({type(receipt).__name__}) "
+              f"carrying {len(nums)} numeric value(s)"
+              + (f" (e.g. {nums[0][0]}={nums[0][1]})" if nums else "")
+              + ". Engine evidence cannot be resolved from a non-mapping receipt, so this is "
+                "pending evidence, not an exemption.", file=sys.stderr)
+        return 3
     code, label, msg, det = evaluate(receipt, p, pol)
     print(json.dumps({"tool": "claimgate.claim_policy_gate", "receipt": str(p),
                       "disposition": label, "message": msg, "detail": det,

@@ -20,33 +20,38 @@
  },
  "allowed_case": {
   "fixture": "claimgate_plugin/fixtures/bypass/n1_contained_numpy_satellite/results/probe.json",
-  "exit": 0,
-  "disposition": "PASS",
-  "blocking_stage": null,
+  "exit": 1,
+  "disposition": "BLOCKED",
+  "blocking_stage": "claim_policy",
   "stages": {
    "intake": 0,
    "recompute_veto": 0,
    "tier0": 0,
-   "claim_policy": 0,
-   "seal": 0,
-   "claim_verify": 0
+   "claim_policy": 1
   },
-  "seal_message": "three_engine_seal: pass \u2014 2 engines ['jax', 'torch'] agree (div 4.4e-16); jax leg re-derived, 2 numeric field(s) reproduce to <1e-9"
+  "seal_message": null
  },
  "rejected_case": {
   "fixture": "claimgate_plugin/fixtures/bypass/n2_load_bearing_numpy/results/probe.json",
   "exit": 1,
   "disposition": "BLOCKED",
-  "blocking_stage": "seal",
+  "blocking_stage": "claim_policy",
   "stages": {
    "intake": 0,
    "recompute_veto": 0,
    "tier0": 0,
-   "claim_policy": 0,
-   "seal": 1
+   "claim_policy": 1
   },
-  "seal_message": "three_engine_seal: REJECT \u2014 ['numpy'] labeled load_bearing, but numpy/scipy/mpmath are CONTROL-ONLY."
+  "seal_message": null
  },
- "rule_proven": true,
- "failures": []
+ "rule_proven": false,
+ "failures": [
+  "contained-numpy receipt exited 1, expected 0",
+  "contained-numpy disposition 'BLOCKED' does not admit",
+  "seal exited None on the contained side; the rule must ALLOW a satellite, not merely fail it late",
+  "load-bearing-numpy blocked at 'claim_policy', not the seal \u2014 the right verdict for the wrong reason is not the rule holding",
+  "seal message does not name numpy as control-only: ''",
+  "contained side: claim_policy exited 1, so its JAX and PyTorch legs were not both witnessed. Without that, the pair proves nothing about numpy \u2014 only that one side had weaker engines.",
+  "load_bearing side: claim_policy exited 1, so its JAX and PyTorch legs were not both witnessed. Without that, the pair proves nothing about numpy \u2014 only that one side had weaker engines."
+ ]
 }

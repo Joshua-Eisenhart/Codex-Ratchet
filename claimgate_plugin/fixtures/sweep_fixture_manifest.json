@@ -1,0 +1,908 @@
+{
+ "_what": "Poison-by-design regression inputs, pinned by DIGEST and by the exit each lean-tier checker must return. Replaces the path-prefix exclusion list, which let anyone hide a poisoned receipt by parking it under a fixture directory.",
+ "_rule": "If the sweep reports a mismatch, FIX THE CHECKER. Re-running this generator re-pins to current behaviour and erases the finding \u2014 the same mistake as raising a ratchet ceiling to make CI green.",
+ "_baseline_note": "Exits below are MEASURED, not aspirational. Some are 0 because the checker genuinely has nothing to say about that fixture (a control receipt, or poison outside that checker's remit). A 0 here is a recorded fact about today, not an endorsement.",
+ "_regenerate": "python3 claimgate_plugin/build_sweep_fixture_manifest.py --write",
+ "_checkers": [
+  "intake_supervisor",
+  "recompute_veto"
+ ],
+ "fixtures": [
+  {
+   "path": "claimgate_plugin/fixtures/hook_clean_receipt.json",
+   "sha256": "701f84715d42348a6a7a9a7f11b3ef64af8d3b1e0f8187d1127d9f4f06034ef3",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hook_inflated_receipt.json",
+   "sha256": "d94edfc0a3d8b2bd36c5151fd2357e09d9f843159f367a9675ac6e08be9070f0",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/control_digest_intact_20260722/jax.json",
+   "sha256": "52548a0786ac193f551fbb9c3fe63df3334817387b3cb7b07a4037d989d2a942",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/control_digest_intact_20260722/julia.json",
+   "sha256": "e74eb714b492acc56184e3b7484f1c79668c12e143eb1dc23616ffb3fcb9728f",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/control_digest_intact_20260722/pysindy.json",
+   "sha256": "ca66c99b9531006aa3bfa9fb5f53f7bc6dbae87e1cd3bf10591a5333a850d48d",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/control_digest_intact_20260722/z3.json",
+   "sha256": "05ea23d26c48c26727c53ac40c129eb33c706902427eae7a3e8a0ba1ca5b1b41",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/hostile_digest_mutation_20260722/jax.json",
+   "sha256": "c6f0598b1a28846f82bce1bfd0e7e86dc045f33f81d10002ee42a192843fa00b",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/hostile_digest_mutation_20260722/julia.json",
+   "sha256": "9441a94d0b91d79413dc40cbecbbf0282e086202c019eec3b2d792e7d9584094",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/hostile_digest_mutation_20260722/pysindy.json",
+   "sha256": "c3a0d0e70b254fd67adba826bfbbd0c8f71de1ec10e047a427280486f9b992da",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/digest_mutation/receipts/hostile_digest_mutation_20260722/z3.json",
+   "sha256": "dd5e5b4a9a26b68996bf96f7836ed90caf57e07a0c24d7763f260fa495714ed0",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/digest_mutation.expected.json",
+   "sha256": "677455a9a17aa5d76e4e65d575f0060748bd8b9bf98c7a3fb34a08c848d5efd9",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/duplicate_json_key.expected.json",
+   "sha256": "ce1c1fc01fc10bb9a2340578a4d928743d1bd31325d526ccec3224a01b8d647b",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/duplicate_json_key_laundered_pass.json",
+   "sha256": "fd266b845e340b0b72fe7009bb1d745b958b9d8d5e2744b5751f144459b53837",
+   "expect_exit": {
+    "intake_supervisor": 1,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/duplicate_json_key_receipt.json",
+   "sha256": "6abc265c4a718a09ffef82fae85c998350d202ccf1cefa62d47e7245d6ebc9a6",
+   "expect_exit": {
+    "intake_supervisor": 1,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/artifacts/control_no_override_20260722/jax_output.json",
+   "sha256": "f1af7dfd3d0d791e9ad01c5fe775b63d64f8eebb42194a9e1501e07ad8a24d63",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/artifacts/control_no_override_20260722/julia_output.json",
+   "sha256": "5358a4200c3733f9e70d9345d06a5dd7a6386a056a121736ac16482b7dac868b",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/artifacts/control_no_override_20260722/pysindy_output.json",
+   "sha256": "b41faa0fb6c8780cb716bec88b8b9343d546070b2d214ecf9763372139f94f4e",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/artifacts/control_no_override_20260722/z3_output.json",
+   "sha256": "6f107c545aebf996cf3cb140706401cc5f177dbc8ce0caa0636167bdcaffd796",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/artifacts/hostile_human_override_20260722/jax_output.json",
+   "sha256": "7642d1657b9dd1c603cd1baccd71b09649778c1bfe2a44b0178f8e3d7c2e2b8a",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/artifacts/hostile_human_override_20260722/julia_output.json",
+   "sha256": "93ccdb38431a6cb8928b4b176a14ccfac5a560965253e0945a0cecae9aec312b",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/artifacts/hostile_human_override_20260722/pysindy_output.json",
+   "sha256": "0aec89c9cb8b13881e6786a6be30305208c0b4a20d5d13dde186210de625bf24",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/artifacts/hostile_human_override_20260722/z3_output.json",
+   "sha256": "862916b6db604022c456d560008012b9bf00247b9a57aaec966d9f0fc972cb2e",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/receipt_control_no_override.json",
+   "sha256": "842a6d0f1b4e999a913dcb7a7fb7e052770a941e40020b4d34aa0cff18de78ff",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/receipt_override.json",
+   "sha256": "55b3de9b7c144ef6ded58ed2fd911f3c73f3b2e20b31b313861510ccf9981bcc",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/receipts/control_no_override_20260722/jax.json",
+   "sha256": "9615b78685a71ccc5a2f58e1832b308439532616271f626a2dd05a3df312759a",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/receipts/control_no_override_20260722/julia.json",
+   "sha256": "363e35fffaf7ddc95f1d5f7148d7538f6bf019a6cc02e7ecca2cc802259df7c9",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/receipts/control_no_override_20260722/pysindy.json",
+   "sha256": "be91d47dcf6fe976b4b43eed06786a4c346a8e6d14773551a79dc02e18fb35d5",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/receipts/control_no_override_20260722/z3.json",
+   "sha256": "bcc17fa8243e755e400cc318dc20660ac3e1ff5b6df5a9b84afd304d7530e69b",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/receipts/hostile_human_override_20260722/jax.json",
+   "sha256": "d02e654262f7c797f6d3fc83abbe5272cb3e69a170b75e8e15a1f9f886ccf84a",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/receipts/hostile_human_override_20260722/julia.json",
+   "sha256": "4cea9df0c5c2f6183238373d885e2cad0ca3f75db378a20390a0afd4e2f89fac",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/receipts/hostile_human_override_20260722/pysindy.json",
+   "sha256": "2e658c8c88aa1da98be81bee89d45f7b8b2992663f8b9a5639290ced07056214",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override/receipts/hostile_human_override_20260722/z3.json",
+   "sha256": "176e3294ea727de02983e7b2cdf8fe8bb4f80bdd552bc3edd05be42c5081b078",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/human_override.expected.json",
+   "sha256": "6a6e48644b196a4330b5fea7050267fe6f52776115a78200fa17b349889f7114",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_artifacts/missing_parent_r1/jax_output.json",
+   "sha256": "a3e75282980e9b862bf49e482c0dc63205c766cf7e4ed4c76e3dbddadbee32c6",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_artifacts/missing_parent_r1/pysindy_output.json",
+   "sha256": "8371baefc10b98159819a50f902ac74cbf94a882e745b37f97116f85c808b2ed",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_artifacts/missing_parent_r1/z3_output.json",
+   "sha256": "65c4d79e320ab8034e249fb63584b35b18258b7952053d925dc6661e17fcb4bb",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_artifacts/missing_parent_r2/julia_output.json",
+   "sha256": "6e29c123b4d9c109c8fe3383e0cfa410133bf5c475d57d48781dfdea66095c35",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_artifacts/missing_parent_r2/julia_output.json.receipt.json",
+   "sha256": "e7dbfbeb1d8b14d0d2fd14b29f497edc60e002b1dd2d258d663ddd4b60156e1d",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_artifacts/missing_parent_r2/pysindy_output.json",
+   "sha256": "865382ca6bda3461ae70952f949a99a92ea797f43c75bbaa8a2dc02bc48b250b",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_artifacts/missing_parent_r2/z3_output.json",
+   "sha256": "4a80ee8768c73d10b1bcb80387c207f848609633e4b3e860b994f20292581587",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_receipts/missing_parent_r1/jax.json",
+   "sha256": "6d3a979cfd619d1f76599829f72d6705171500eaaf695a4172a8cb13d3ee80e0",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_receipts/missing_parent_r1/pysindy.json",
+   "sha256": "5c1fd1db2fcef6c19c9008b79c47cb51cf9f292a5acd5277e046f08f344abdbe",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_receipts/missing_parent_r1/z3.json",
+   "sha256": "ed3419b6561ed635dad8e9093862dc4400e6ed4a80bb061e6398e1510adeb031",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_receipts/missing_parent_r2/julia.json",
+   "sha256": "1342651c5613b6673a3b6f94fd8fd3abfaf8c239dc5ea96424076f1e8e54b16b",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_receipts/missing_parent_r2/pysindy.json",
+   "sha256": "aab692e6db8245b20d6d15f4b4266766d72ce3a126d5ab80f2d72c0ee4f66c21",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/missing_parent_receipts/missing_parent_r2/z3.json",
+   "sha256": "906f989994d429e7f80db4f354b6d3ac2cdda3151e3c619f5ff14153f73244f2",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/nan_values_bare_literal.json",
+   "sha256": "59811522ca77de68997f371b6ff6f8e0a449da638ad4eeba59662fccaa595a70",
+   "expect_exit": {
+    "intake_supervisor": 1,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/nan_values_string_null.json",
+   "sha256": "f123d2a81067b29a6c4eac70537694b3781bf82c869d6f657428cea2da393bf8",
+   "expect_exit": {
+    "intake_supervisor": 1,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/renamed_metric.container_renamed.receipt.json",
+   "sha256": "9030077ed444c51742765d71f31bccd0d6db3858943e71a6f6335a00bf221423",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/renamed_metric.marker_strict.receipt.json",
+   "sha256": "1179b305285da97cf52de32eaf49c1eb0358ec91a9243adabb4cb72dc41ee8f7",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/renamed_metric.receipt.json",
+   "sha256": "162606877429c0c77e6962f24179326d3bf5c4c82d599f79dc003cdda11dad8c",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/renamed_metric.store.json",
+   "sha256": "f088795a6562e35f38b058c79c3543109ff764d73c9ff61ccc2053f9304784da",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/artifacts/solver_sat_counterexample_hostile_v1/jax_output.json",
+   "sha256": "7cecb30f8fbe26ddca374ae388b05002bd3643782c9194bdf07f4758ea891fc5",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/artifacts/solver_sat_counterexample_hostile_v1/julia_output.arrow.receipt.json",
+   "sha256": "79fe7c7367f11131ad04dbb52047535cceac05691809de037deaceb59c46f05a",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/artifacts/solver_sat_counterexample_hostile_v1/pysindy_output.json",
+   "sha256": "974f4544af13a4170c60654ef01a0a8bd1a0f8ae19af5f10d18e60e1f80be5d2",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/artifacts/solver_sat_counterexample_hostile_v1/z3_output.json",
+   "sha256": "bd18c6d8bbdaa7cfeeb49a536111ca43a023201f5d07d71a09c9ace3f0dae5b6",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/receipts/solver_sat_counterexample_hostile_v1/jax.json",
+   "sha256": "e21bb62635a63fd47b3cdf3ad69e4e02d364138748e3831cae7fe38bc92a92d0",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/receipts/solver_sat_counterexample_hostile_v1/julia.json",
+   "sha256": "969e7d7cf19f6cd7022e6fb060d56876df9f7940217fdf69fbc990b4999364de",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/receipts/solver_sat_counterexample_hostile_v1/pysindy.json",
+   "sha256": "5091c8130801883d11b2014160f5aea65e179472b4fd3368bff7fc98517c7b88",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_sat_counterexample/receipts/solver_sat_counterexample_hostile_v1/z3.json",
+   "sha256": "c0b5991f17a10c44cc99a7605943dac08f429b41c30cfa5c81e5d4d8e77dbe17",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_sat_counterexample.expected.json",
+   "sha256": "9b0a145d8dcb7d4e2fb51da8efa91326292e1cc1b93b7487266fa71da26c2e08",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_unknown/artifacts/solver_unknown_hostile_v1/jax_output.json",
+   "sha256": "c309cb5720faee7f03531c1221aa3ac74feee1f1a16610ecbbbec536004bf635",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_unknown/artifacts/solver_unknown_hostile_v1/julia_output.arrow.receipt.json",
+   "sha256": "29629bec34144058e957cc48f952828297b8d47cda3484bbaa69133f485a6450",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_unknown/artifacts/solver_unknown_hostile_v1/pysindy_output.json",
+   "sha256": "8d1f92702e9056f9d8927a45970ee51c6773e5dce4252ae853feae9a67d0f560",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_unknown/artifacts/solver_unknown_hostile_v1/z3_output.json",
+   "sha256": "0c716d21c2ac7562d31f8494f63d028623d7d1b26800b77cbb9700a09b1f4b9a",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_unknown/receipts/solver_unknown_hostile_v1/jax.json",
+   "sha256": "c55cb994bb082118de21bb04c7b3e9edf7df40f70d96d85e1e00a1fd1a22c627",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_unknown/receipts/solver_unknown_hostile_v1/julia.json",
+   "sha256": "744780caa6934c3da6405ea9baae67af19694af2aa5c70dc9621b0e7543604d2",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_unknown/receipts/solver_unknown_hostile_v1/pysindy.json",
+   "sha256": "de5d4ee2f84d923c0f1fc3d3ca05ee94adfd2040a51c417d10b03bdc59d77b19",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_unknown/receipts/solver_unknown_hostile_v1/z3.json",
+   "sha256": "e48657d50f2b0468673acbd84c1f167ee26111e950870098903fb010da3b3093",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/solver_unknown.expected.json",
+   "sha256": "0cf251cd864408239d56eefd8e5082f51b3f2727bca7263db4b48f80f1fbbf16",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/stale_policy_pinned_registry.json",
+   "sha256": "53b0a18bf462f29b791990068a1afeeb9ea7d4873f9b1170e51e906a0de6f890",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/stale_policy_receipt.json",
+   "sha256": "e43215b8bca091703022872c01b0d3df92de1a99ed4b0c03452df9a760e74995",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/stale_policy_receipt_isolated.json",
+   "sha256": "fd527c0177b26d8c8331befae3c7e00ea44f129a2336bac65eb478bd48109ca7",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/hostile/timeout_hang.expected.json",
+   "sha256": "80bd68e16e6fee0224b8022f9dcac24ae7f9b090ae868f9641026f1e30f6f74d",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/receipt_honest.json",
+   "sha256": "a074cf6ba3c6e95ea8a9156222a09a1952f5974cf5be84a28956d2ab44a76496",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/fixtures/receipt_inflated.json",
+   "sha256": "d1d7d034aa18c8a3293ce531863f0c7a932382b99f7f1305007e24215ad81622",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/rf_fixtures/receipt_any.json",
+   "sha256": "8edb940c95422fc1846b3cdd4fab494ac80845af9d8ea5e14c63449e8e0aec55",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/rf_fixtures/receipt_atomic.json",
+   "sha256": "c11d9d50bbfd4124aafa4010ebe2ad3c55bfc2385a3337646f0f776ac2faa52d",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/rf_fixtures/receipt_fabricated.json",
+   "sha256": "941798be92ec31370ebda882bcaa566e9296ba59324a14f3a70bbafe125da104",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/rf_fixtures/receipt_honest.json",
+   "sha256": "902f4c573cdf0e40225f65df3369170be9d7c1dc13180afd7216b97434cf8214",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/rf_fixtures/receipt_nan.json",
+   "sha256": "d89db5edd641c7a5d2c6470da3e4e499eef4b720a524611a466b7fdca3cd3b17",
+   "expect_exit": {
+    "intake_supervisor": 1,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/rf_fixtures/receipt_plausible.json",
+   "sha256": "e5cc5f53467df37bb38323f167ddf9db4423c34d02d8a5eab587cc951d919fb0",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/rf_fixtures/receipt_rename.json",
+   "sha256": "fb70a341b0ee03adcc1e2f8f403ae89ce1e8bba131db3b50327e22df8433943f",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/rf_fixtures/receipt_tamper.json",
+   "sha256": "0fd8a0139b3e4e380d10af9432dfe79df34c612a1c781703c7e394c325951c41",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "system_v8/harness_patch/results/fixtures/clean.json",
+   "sha256": "f92bb726ab56f74d70f25c988ec050b30f5e8c5fc3cc23076cb98fe2113a1980",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "system_v8/harness_patch/results/fixtures/dupkey.json",
+   "sha256": "f371a9bcf83b56ea2bc2dd3a132c45879114298b99472bdc4d99dc43414dd51d",
+   "expect_exit": {
+    "intake_supervisor": 1,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "system_v8/harness_patch/results/fixtures/nan.json",
+   "sha256": "a092fed3889d19f44f07e0eca88cd1ba975df01a4fa91612f0191ca9a7edd434",
+   "expect_exit": {
+    "intake_supervisor": 1,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "system_v8/harness_patch/results/fixtures/selfverdict.json",
+   "sha256": "3b0841c6dfe5ce992ee71045f5bddf0a55073e816762f85f7c061b9ca1379e0d",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/cv/declared_cmd/receipt.json",
+   "sha256": "bb39d4137b7f78f949875958f47e25c3d8ab861213bb384ada305b8e4501097e",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/cv/forged_auditor/receipt.json",
+   "sha256": "1489f61b387e963c07838216eef0547c82415487eddd59b4e87ba71571523f87",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/cv/legit/receipt.json",
+   "sha256": "1489f61b387e963c07838216eef0547c82415487eddd59b4e87ba71571523f87",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/cv/self_audit/receipt.json",
+   "sha256": "1489f61b387e963c07838216eef0547c82415487eddd59b4e87ba71571523f87",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/cv/self_auditor/receipt.json",
+   "sha256": "1489f61b387e963c07838216eef0547c82415487eddd59b4e87ba71571523f87",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/cv/substring/receipt.json",
+   "sha256": "1489f61b387e963c07838216eef0547c82415487eddd59b4e87ba71571523f87",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/cv/unclassified/receipt.json",
+   "sha256": "9143a37f9c4fec992934916157207896b90b4b38bb3486a3186998404fe572f5",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/floor/direction_tamper_receipt.json",
+   "sha256": "4fd7482b68b38eeaa86b390a4c3607418262c46c305cbb7ec2d645e2075c7638",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/floor/tier4_case_d/receipt.json",
+   "sha256": "d33f236413e7747eb4801d9fc0ff4803096efede5ea0a0d0aaa8f305ea4a4ce9",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/floor/tier4_case_d2/receipt.json",
+   "sha256": "babb49b187d4f98cd5f771a298288bae4381c8e6e83a484c8ade54d96c9ff666",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/floor/tier4_case_e/receipt.json",
+   "sha256": "1c6fe1845c83a7830b86ce346bc5f0fdfc27076e319ecabbf86e34fd8d7c5a45",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/holes/floor_renamed_key/receipt.json",
+   "sha256": "7401ed6a2a7dcf2bb1298bcb9bc41e704248fd96572ebcaedca07e5c6e8cd6e2",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/holes/smt_clean_tautology_admitted_by_both_gates.json",
+   "sha256": "3715a78e65a69196c1bcf79fb9fe96af3f139f5547ae68d7e235d9838027306d",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/holes/tier0_cand4_canonical_no_controls.json",
+   "sha256": "ed6471c36d50bf672791eaa44b049b0dade044433fc088325951af122c75448f",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/s3_malformed.json",
+   "sha256": "e6fc8cdbbae472bc2d3576587f7b0e96e323d4db965c01af6505a611fe05ed42",
+   "expect_exit": {
+    "intake_supervisor": 1,
+    "recompute_veto": 1
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/smt/cand1_tautology_labeled_mechanism.json",
+   "sha256": "6fbccfaefd1a6965eb9362bff651c51e7ecfdd4abfe8f77572962fc76880e0d3",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/smt/cand2_frozen_noncontrast_control.json",
+   "sha256": "5112376dc661ad3e1f45ba6851c26ad12a2ecd02cca7f34121c761a911e20e82",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/smt/cand3_crash_reported_as_pass.json",
+   "sha256": "7d7d16df275ea67b36ff270cc3120fb752d27d3f2aa22279b5a90301f27c57a7",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/smt/cand4_no_witness_confirmed_verdict.json",
+   "sha256": "ddddb80f34879a35f7765799151d13389a12520aefdb8d53987fbe256a0100c1",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/tier0/cand1_verdict_inflation_behind_caveat.json",
+   "sha256": "34d1ae3ac50979329f604b2392f032664d6229cc92eb699783b5972166676577",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/tier0/cand2_value_blind_detail0_witness_empty.json",
+   "sha256": "f37efef87e8da76245de1c7acac51f14a9760fa7ba6226e43519ea2f821636cc",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/tier0/cand3_classification_content_mismatch_chsh.json",
+   "sha256": "f3f060398b25e7985fd973dbd82f23ecc8cabfa6fcbae21e81fec088819fa88a",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/tier0/cand5_rigged_control_equals_result.json",
+   "sha256": "3528ef3e8f99fd5d324f6e52a7b60c5763227997e946d5851907cfabedadac27",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  },
+  {
+   "path": "claimgate_plugin/stress/tier0/known_good_scratch_diagnostic.json",
+   "sha256": "456d22b463170e00b5883d6e8ac5e0a6d701891544d584184daf27fe187c680a",
+   "expect_exit": {
+    "intake_supervisor": 0,
+    "recompute_veto": 0
+   }
+  }
+ ]
+}

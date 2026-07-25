@@ -7,7 +7,7 @@
     "claimgate_plugin/fixtures/hostile/timeout_demo.py",
     "claimgate_plugin/fixtures/hostile/timeout_hang.expected.json"
   ],
-  "gate_cmd": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 claimgate_plugin/fixtures/hostile/timeout_demo.py",
+  "gate_cmd": "python3 claimgate_plugin/fixtures/hostile/timeout_demo.py",
   "expected_exit": 1,
   "expected_behavior": "A registry gate that hangs is killed by claim_verify's subprocess timeout (run(), claim_verify.py lines 39-44, timeout=900); rc=None maps to tier ERROR (lines 98-99), ERROR counts as failed (line 240), verdict REJECTED exit 1 (lines 246-248) — blocked, never VERIFIED; demonstrated here at 5s via a harness that mirrors run() exactly.",
   "actual_exit": 1,
@@ -17,6 +17,7 @@
   "caveats": [
     "900s path demonstrated by structural mirror at 5s, not by a real 900s run; the try/except and rc->ERROR->REJECTED mapping are claim_verify's own, unmodified.",
     "Latency, not a verification hole: each hung gate invocation costs up to 900s of wall-clock before blocking (tier0, tier2, tier3, and the tier4 evalcheck each carry their own 900s budget).",
-    "Axis-collapse observation (postmortem miss #3 family): a timeout exits 1 REJECTED, the same exit code as a scientific FAIL — no distinct parked/UNKNOWN exit; the timeout is recoverable only from the tier_results detail string ('timed out after 900 seconds'), which run() preserves via str(e)."
+    "Axis-collapse observation (postmortem miss #3 family): a timeout exits 1 REJECTED, the same exit code as a scientific FAIL — no distinct parked/UNKNOWN exit; the timeout is recoverable only from the tier_results detail string ('timed out after 900 seconds'), which run() preserves via str(e).",
+    "gate_cmd interpreter changed 2026-07-24 from the absolute /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 to plain python3, so the battery can run server-side in CI. That path does not exist on a GitHub runner, so the command exited 127 there against a recorded actual_exit of 1 — a false DRIFT. timeout_demo.py is pure stdlib; re-measured under plain python3 the fresh exit is still 1 and the recorded verdict is unchanged. Portability fix only, no check weakened."
   ]
 }

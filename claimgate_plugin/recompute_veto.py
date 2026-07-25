@@ -127,8 +127,12 @@ def ordered_sum_check(arr):
 
         npa = np.asarray(arr, dtype=np.float64)
         return float(_ordered(npa)), math.fsum(arr), True
-    except Exception:
-        return None, None, False
+    except Exception as exc:  # noqa: BLE001
+        # ran=False used to mean "no veto", so killing numba deleted this check:
+        # PYTHONPATH=<dir with a numba.py that raises> made a receipt claiming
+        # sum([1e16,1,-1e16])==1.0 pass, exit 0. A check that cannot run has not
+        # passed, so the absence is reported and the caller vetoes.
+        return None, None, f"UNAVAILABLE: {exc.__class__.__name__}: {exc}"
 
 
 def main(argv):
@@ -144,7 +148,10 @@ def main(argv):
     except Exception as e:  # noqa: BLE001
         print(f"recompute_veto: VETO — unparseable ({e}); failing closed", file=sys.stderr)
         return 1
-    if not isinstance(receipt, dict):
+    # A top-level array returned 0 here unscanned, so wrapping a receipt in [...]
+    # skipped every recompute. _walk already descends lists; only the top-level
+    # contract lookup assumed a dict, and that is handled below.
+    if not isinstance(receipt, (dict, list)):
         return 0
 
     try:
@@ -173,6 +180,13 @@ def main(argv):
     for j in jobs:
         op = j["op"]
         if op not in AGG:
+            # `continue` here meant a receipt could declare op:"median" and get
+            # "pass — 0 claimed value(s) re-derived": a PASS message covering
+            # nothing. An op this gate cannot compute is unverifiable, so it
+            # blocks. Adding the op is the fix; skipping it is not.
+            vetoes.append(f"{j['where']}: declared aggregate op {op!r} is not one this "
+                          f"gate can recompute (known: {sorted(AGG)}). An unverifiable "
+                          f"claim is not a verified one.")
             continue
         arr = j["raw_inline"]
         actual = float(AGG[op](arr))
@@ -180,7 +194,11 @@ def main(argv):
         if not math.isclose(actual, j["claim_value"], rel_tol=j["tol"], abs_tol=j["tol"]):
             vetoes.append(f"{j['where']}: claimed {j['claim_value']} but {op} of raw = {actual}")
         o, c, ran = ordered_sum_check(arr)
-        if ran and o is not None and not math.isclose(o, c, rel_tol=1e-12, abs_tol=1e-12):
+        if ran is not True:
+            vetoes.append(f"{j['where']}: the summation-order check could not run ({ran}). "
+                          f"This gate cannot tell an ordered sum from a compensated one for "
+                          f"this array, so the claim is unverifiable, not verified.")
+        elif o is not None and not math.isclose(o, c, rel_tol=1e-12, abs_tol=1e-12):
             vetoes.append(f"{j['where']}: summation order is LOAD-BEARING for this array "
                           f"(ordered {o} vs compensated {c}); a bare '{op}' claim is ambiguous — "
                           f"the receipt must declare which summation it claims")

@@ -19,3 +19,148 @@ jobs:
           python-version: "3.12"
       - name: Three-engine seal over all sim receipts
         run: python3 scripts/ci_three_engine_seal.py
+
+  # ---------------------------------------------------------------------------
+  # LEAN GATE TIER, SERVER-SIDE.
+  #
+  # Measured reality this answers: `git commit --no-verify` bypasses the local
+  # pre-commit gate entirely, so every checker that only fires from a hook is
+  # optional in practice. These jobs fire where the committer has no --no-verify.
+  #
+  # Jobs 1-3 are ZERO TOLERANCE by construction: no continue-on-error, no `|| true`,
+  # no `if:` condition, and --max-failures defaults to 0. Do not add any of those to
+  # make a red build green.
+  #
+  # Deliberately-malformed fixture corpora are excluded inside
+  # claimgate_plugin/ci_receipt_sweep.py by an explicit, grep-able prefix list, each
+  # naming the manifest that records its expected nonzero exits. That list is the one
+  # narrowing surface in this tier and changing it is a reviewed act.
+  #
+  # Install stays lean on purpose: stdlib + numpy + numba. No jax, no Julia, no
+  # PyTorch in the gate tier (jax was measured at 529 ms against numpy's 52 ms for a
+  # single recompute on CPU-only arm64, so it buys nothing here). numpy is ALLOWED in
+  # the ClaimGate lane by owner rule and that rule is independent of Codex-Ratchet's
+  # science-side numpy rule: the gate's job is veto, and numpy vetoes.
+  # ---------------------------------------------------------------------------
+
+  # JOB 1 — intake_supervisor over every live-era claim-bearing receipt.
+  claimgate-intake-live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reject poisoned claim receipts before downstream normalization
+        run: python3 claimgate_plugin/ci_receipt_sweep.py --checker claimgate_plugin/intake_supervisor.py --scope live
+
+  # JOB 2 — hostile-control battery. Must stay 10 HOLDS, no-drift.
+  # Needs node with node:sqlite (4 classes drive claim_admission.mjs against a
+  # committed sqlite ledger), so node 22 is pinned rather than left to the runner
+  # image. No npm install: every import in those .mjs files is a node: builtin.
+  # numpy/numba are installed because the post_receipt_gate.sh chain reaches
+  # recompute_veto.py, which fails CLOSED when numpy is missing — an uninstalled
+  # dependency must not be able to change a recorded fixture exit.
+  claimgate-hostile-controls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install lean gate-tier dependencies
+        run: python3 -m pip install --disable-pip-version-check numpy numba
+      - name: Run hostile-control no-drift battery
+        run: bash claimgate_plugin/fixtures/hostile/run_hostile_controls.sh
+
+  # JOB 3 — recompute_veto over the SAME receipt set as job 1.
+  claimgate-recompute-veto-live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install lean gate-tier dependencies
+        run: python3 -m pip install --disable-pip-version-check numpy numba
+      - name: Re-derive claimed aggregates instead of trusting them
+        run: python3 claimgate_plugin/ci_receipt_sweep.py --checker claimgate_plugin/recompute_veto.py --scope live
+
+  # JOB 4 — orphan-receipt ratchet. Reports the count every run; fails ONLY if the
+  # count rises above the recorded ceiling in claimgate_plugin/ci_ratchet_baseline.json.
+  # Measured on a clean HEAD checkout: 2221 orphans against 0 durable ledger records.
+  # Wiring the detector's raw exit 1 straight into CI would fail on a known baseline
+  # and enforce nothing. Blocking, but not tripped by the baseline.
+  claimgate-orphan-ratchet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Report orphan-receipt count and enforce the down-only ratchet
+        run: python3 claimgate_plugin/ci_orphan_ratchet.py
+
+  # JOB 5 — the historical archives (system_v4..v7, work/) under the same two
+  # checkers, held at recorded ceilings that may only be lowered. This is what makes
+  # "every claim-bearing receipt" true rather than "every current-era one", without
+  # painting the build permanently red over 2026-04 receipts in a read-only mine.
+  # The ceilings are debt, not a pass. See ci_ratchet_baseline.json for the caveat
+  # that part of the recompute ceiling is heuristic noise, not science findings.
+  claimgate-legacy-ratchet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install lean gate-tier dependencies
+        run: python3 -m pip install --disable-pip-version-check numpy numba
+      - name: Whole-repo intake sweep against its recorded ceiling
+        run: |
+          python3 claimgate_plugin/ci_receipt_sweep.py \
+            --checker claimgate_plugin/intake_supervisor.py --scope all \
+            --max-failures "$(python3 -c 'import json;print(json.load(open("claimgate_plugin/ci_ratchet_baseline.json"))["legacy_intake_failures_max"])')"
+      - name: Whole-repo recompute sweep against its recorded ceiling
+        run: |
+          python3 claimgate_plugin/ci_receipt_sweep.py \
+            --checker claimgate_plugin/recompute_veto.py --scope all \
+            --max-failures "$(python3 -c 'import json;print(json.load(open("claimgate_plugin/ci_ratchet_baseline.json"))["legacy_recompute_vetoes_max"])')"
+
+  claimgate-flip-harness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install flip-harness dependencies
+        run: python3 -m pip install --disable-pip-version-check z3-solver "jax[cpu]"
+      - name: Run load-bearing mechanism flip battery
+        run: |
+          python3 system_v8/harness_patch/flip_harness.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          result_path = Path("system_v8/harness_patch/results/flip_harness_v0.json")
+          results = {row["label"]: row for row in json.loads(result_path.read_text())["results"]}
+          positive = results["type1_deductive_loop"]
+          control = results["NEGATIVE_CONTROL_commuting_z_only"]
+          positive_ok = (
+              positive["test_1_erase"]["erase_flips"]
+              and positive["test_2_perturb"]["flip_rate"] > 0.5
+              and positive["test_3_core"]["core_is_subset"]
+          )
+          control_ok = (
+              not control["test_1_erase"]["erase_flips"]
+              and control["test_2_perturb"]["flip_rate"] <= 0.5
+              and not control["test_3_core"]["core_is_subset"]
+          )
+          if not (positive_ok and control_ok):
+              raise SystemExit("flip harness mechanism/control assertions failed")
+          print("flip harness mechanism/control assertions passed")
+          PY

@@ -1,0 +1,146 @@
+{
+ "schema": "claimgate.gate_integrity.manifest.v1",
+ "algo": "sha256",
+ "generated_at": "2026-07-25T04:09:55Z",
+ "generated_by": "claimgate_plugin/gate_integrity.py --update",
+ "sources_digest": "9d9bea8dface12d81bdcf052f9a1137a864dc61ab6dffe8ea4df644a6d1167bc",
+ "enforcing_digest": "f518152416914f18cff31b0c67d00cd6832a14064d2ec3f38965fb5495109574",
+ "entry_count": 19,
+ "missing_at_generation": [],
+ "prevention_note": "IN-REPO manifest. An agent that edits a source and reruns --update in the same commit produces a matching manifest. This file raises cost and leaves a trace; it does not prevent. Prevention requires GitHub-settings controls (required status check pinned by name, CODEOWNERS on .github/ and claimgate_plugin/, blocked force-push) or an out-of-repo digest pin passed via --expect-digest. See the module docstring.",
+ "entries": {
+  "claimgate_plugin/hooks/post_receipt_gate.sh": {
+   "sha256": "b58003ed12774ea0d7f66bbe53dcbd4c5c08db0cc5cd9fbddb61f47082a23509",
+   "bytes": 8176,
+   "exec": true,
+   "role": "chain-entry",
+   "enforcing": true
+  },
+  "claimgate_plugin/hooks/pre_commit_gate_receipts.sh": {
+   "sha256": "2e7f8ec14bd99822050c09dcf61c157c6958d8995bbb28f0a7c7cdc1b06c9d9c",
+   "bytes": 2793,
+   "exec": true,
+   "role": "fired-side",
+   "enforcing": true
+  },
+  "claimgate_plugin/intake_supervisor.py": {
+   "sha256": "dc6630f4847a00fce8938a7d3f718eec461980e9d6dd3d341e0dfd5a7a3144b5",
+   "bytes": 6873,
+   "exec": false,
+   "role": "chain-tier",
+   "enforcing": true
+  },
+  "claimgate_plugin/recompute_veto.py": {
+   "sha256": "17a2b2c176f06de58b169dabba8662577095b0b029ac50777df420a11c01a1ed",
+   "bytes": 7807,
+   "exec": false,
+   "role": "chain-tier",
+   "enforcing": true
+  },
+  "claimgate_plugin/three_engine_seal.py": {
+   "sha256": "0f93b5e600c8add01609c67d39b2f15ce3b20348f959abbde7cb52c3c0a4af1d",
+   "bytes": 10187,
+   "exec": false,
+   "role": "chain-tier",
+   "enforcing": true
+  },
+  "claimgate_plugin/claim_verify.py": {
+   "sha256": "19141ab907b1a6212cc05a2a0f4204c8ad4a30be17a2cdb6e89952b300f86710",
+   "bytes": 13142,
+   "exec": false,
+   "role": "chain-tier",
+   "enforcing": true
+  },
+  "claimgate_plugin/ratchet_floor.py": {
+   "sha256": "81a7577d12fe41b4f30a1bb3a1d83b15e09c1467920ee53c2df13edd4efef12c",
+   "bytes": 9083,
+   "exec": false,
+   "role": "chain-tier",
+   "enforcing": true
+  },
+  "claimgate_plugin/claimgate.mjs": {
+   "sha256": "137e29ba15a44cd7b670ec92f35e511c10bd761bcd1eae093ab29c42c17a11a9",
+   "bytes": 18676,
+   "exec": false,
+   "role": "chain-tier",
+   "enforcing": true
+  },
+  "claimgate_plugin/rules_ratchet.json": {
+   "sha256": "f4c0efc2dae758d4f7417abe7ce873974d0b24724d81212876bf3d06be41f6b9",
+   "bytes": 1117,
+   "exec": false,
+   "role": "chain-rules",
+   "enforcing": true
+  },
+  "claimgate_plugin/gate_ledger.py": {
+   "sha256": "564a46e0b37e863a6a7c52f85deb70e45883052dd0361f4e750eb57f589252bf",
+   "bytes": 12519,
+   "exec": false,
+   "role": "chain-ledger",
+   "enforcing": true
+  },
+  "claimgate_plugin/orphan_receipt_detector.py": {
+   "sha256": "cfd64cbf285ac1a04b0d49ee83912c7fa6ccc974b3d218850d3694b4f4e3c2c6",
+   "bytes": 4534,
+   "exec": false,
+   "role": "detector",
+   "enforcing": true
+  },
+  "claimgate_plugin/fixtures/hostile/run_hostile_controls.sh": {
+   "sha256": "dca8df59ddb8708ba01fe709471b75e6578b33132adfe00f594181eeea80c725",
+   "bytes": 4612,
+   "exec": true,
+   "role": "control-battery",
+   "enforcing": true
+  },
+  "claimgate_plugin/gate_integrity.py": {
+   "sha256": "e0320f6466e46d715aaf27d1cb6ccbda56b3a14f704b91fa79c4fe2de0caff87",
+   "bytes": 20776,
+   "exec": false,
+   "role": "self",
+   "enforcing": true
+  },
+  "scripts/ci_three_engine_seal.py": {
+   "sha256": "ce71d9683e7518df0d1e8118631fa545c05b2a3d712f7220493d09db686deb49",
+   "bytes": 2056,
+   "exec": false,
+   "role": "ci-enforcing",
+   "enforcing": true
+  },
+  ".github/workflows/three-engine-seal.yml": {
+   "sha256": "a7ee72826d2581f974a3c613ef71b1ca62360209c4d581babfe070625fff74b6",
+   "bytes": 4447,
+   "exec": false,
+   "role": "ci-enforcing",
+   "enforcing": true
+  },
+  "claimgate_plugin/formal/chain_bmc_z3.py": {
+   "sha256": "5098781b648acc983a9609b11298d87fb109eca354d1e115be702f6c063ccf4b",
+   "bytes": 13314,
+   "exec": false,
+   "role": "formal",
+   "enforcing": false
+  },
+  "claimgate_plugin/formal/chain_bmc_cvc5.py": {
+   "sha256": "915f2af419b9336194d50a21c9d5bf82990e201bf209d25fe1752794ef52b8d9",
+   "bytes": 5758,
+   "exec": false,
+   "role": "formal",
+   "enforcing": false
+  },
+  ".github/workflows/ci.yml": {
+   "sha256": "d10915c9f1f5163eff6c360c3a717a86d2d478b66ac3c97c7242a595c0711fc0",
+   "bytes": 3786,
+   "exec": false,
+   "role": "ci-nonenforcing",
+   "enforcing": false
+  },
+  ".github/workflows/ratchet-ci.yml": {
+   "sha256": "cb5f6d394f21af48a755704e9e6cf0eca6d284cc5bba9f990487486fd8d16eb3",
+   "bytes": 2488,
+   "exec": false,
+   "role": "ci-nonenforcing",
+   "enforcing": false
+  }
+ }
+}

@@ -104,12 +104,21 @@ def locked_floor_check(receipt):
     """Every locked floor metric must be present under its EXACT registered id.
     A near-name is a rename signal, not a substitute."""
     store_path = os.environ.get("RF_STORE")
-    if not store_path or not Path(store_path).exists():
-        return None
+    if not store_path:
+        return None                       # no floor store configured: nothing locked
+    # RF_STORE is attacker-influenceable ENV. Pointing it at a missing or
+    # unparseable file used to return None, silently deleting this entire check --
+    # `RF_STORE=/dev/null` made every locked floor vanish and intake exited 0.
+    # A configured-but-unusable store is INFRASTRUCTURE BREAKAGE, so it blocks.
+    if not Path(store_path).exists():
+        return (3, f"RF_STORE is set to {store_path!r} but no such file exists. A "
+                   f"configured floor store that cannot be read is infrastructure "
+                   f"breakage, not an absence of floors.")
     try:
         floors = json.loads(Path(store_path).read_bytes()).get("floors") or {}
-    except Exception:
-        return None
+    except Exception as exc:  # noqa: BLE001
+        return (3, f"RF_STORE {store_path!r} is unreadable/unparseable ({exc}); the "
+                   f"locked-floor check cannot run, so it blocks rather than passing")
     if not floors:
         return None
 
@@ -149,15 +158,20 @@ def main(argv):
         print(f"intake_supervisor: REJECT — unparseable ({e}); failing CLOSED", file=sys.stderr)
         return 1
 
-    if not isinstance(receipt, dict):
-        return 0
-
+    # A top-level ARRAY (or scalar) used to return 0 here without ever being
+    # scanned, so `[{"classification":"canonical","raw":[1.0,"NaN"]}]` walked
+    # straight through. The poison scan already recurses through lists, so scan
+    # whatever shape arrived; only the dict-shaped floor check needs a dict.
     hits = poisoned_numeric_arrays(receipt)
     if hits:
         where = "; ".join(f"{pth} contains {bad} (len {n})" for pth, bad, n in hits[:3])
         print(f"intake_supervisor: REJECT — non-finite/null poisoning numeric evidence: {where}. "
               f"A recompute over these 'matches' because NaN propagates.", file=sys.stderr)
         return 1
+    if not isinstance(receipt, dict):
+        print("intake_supervisor: pass — non-object document, scanned for poisoned "
+              "numeric evidence and clean (locked-floor check needs an object)", file=sys.stderr)
+        return 0
 
     floor = locked_floor_check(receipt)
     if floor:

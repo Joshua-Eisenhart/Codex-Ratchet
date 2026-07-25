@@ -1,0 +1,906 @@
+{
+ "schema": "cr.gate_measurement.v1",
+ "gate": "claimgate_plugin/artifact_binding.py",
+ "gate_source_sha256": "7b4317df9087e8311f0e195860cf85e4152d4131d02ac189ca97fca7c1535d68",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "wired_into_any_hook_or_ci": false,
+ "date": "2026-07-25",
+ "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+ "_measurement_discipline": "Every MEASURED_EXIT below is the return code of a fresh subprocess run in this pass. Cross-lane design agreement was treated as independent proposal fuel and is not cited as evidence anywhere in this file.",
+ "recorded_bypass_corpus": {
+  "_class": "BY_CONSTRUCTION",
+  "_why": "Not one recorded fixture carries an artifact_binding block, so every PARK below measures the absence of a binding, not the design. An all-PARK sweep is also satisfied by a gate that parks on everything. The discriminating rows are in pass_path and stress_deck.",
+  "rows": [
+   {
+    "case": "b1",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b1_field_only_self_exempt.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 1,
+    "covered": 0,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "producer declares its own exemption"
+   },
+   {
+    "case": "b2",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b2_field_only_asserted_number.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 1,
+    "covered": 0,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "asserted number, no engine metadata"
+   },
+   {
+    "case": "b3",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b3_forged_two_engine_agreement.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 4,
+    "covered": 0,
+    "uncovered": 4,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "two copied numbers in one file"
+   },
+   {
+    "case": "b4",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b4_fake_jax_leg/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 0,
+    "uncovered": 2,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "leg prints JSON without jax"
+   },
+   {
+    "case": "b5",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b5_decorative_jax/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 0,
+    "uncovered": 2,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "jax imported, never called"
+   },
+   {
+    "case": "b6",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b6_nan_matching_engine_values.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 3,
+    "covered": 0,
+    "uncovered": 3,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "NaN pair reads as perfect agreement"
+   },
+   {
+    "case": "b7",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b7_claim_hidden_under_ignored_key.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 1,
+    "covered": 0,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "defeated design 2: name denylist"
+   },
+   {
+    "case": "b8",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b8_integer_outside_container.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 1,
+    "covered": 0,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "defeated design 2: container allowlist"
+   },
+   {
+    "case": "b9",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b9_number_as_string.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 1,
+    "covered": 0,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "defeated design 2: number as string"
+   },
+   {
+    "case": "b10",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b10_token_dispatch/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 1,
+    "covered": 0,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "one token op, then constants"
+   },
+   {
+    "case": "b11",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b11_subtree_under_exempt_path.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 4,
+    "covered": 0,
+    "uncovered": 4,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "defeated design 3: payload under digest"
+   },
+   {
+    "case": "b12",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b12_toplevel_array_wrapper.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 0,
+    "uncovered": 2,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "defeated design 3: top-level array"
+   },
+   {
+    "case": "b13",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/b13_zero_number_declares_engines/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_VACUOUS_NO_NUMERIC_LEAF",
+    "numeric_leaves": 0,
+    "covered": 0,
+    "uncovered": 0,
+    "first_block": null,
+    "first_uncovered": null,
+    "note": "zero numbers, two engines declared"
+   },
+   {
+    "case": "j1",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/j1_real_julia_leg/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 0,
+    "uncovered": 2,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "real julia leg"
+   },
+   {
+    "case": "j2",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/j2_fake_julia_leg/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 0,
+    "uncovered": 2,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "julia literals in a string"
+   },
+   {
+    "case": "j3",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/j3_decorative_julia/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 0,
+    "uncovered": 2,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "julia LinearAlgebra loaded, never called"
+   },
+   {
+    "case": "p1",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/p1_no_assertion_no_engine/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_VACUOUS_NO_NUMERIC_LEAF",
+    "numeric_leaves": 0,
+    "covered": 0,
+    "uncovered": 0,
+    "first_block": null,
+    "first_uncovered": null,
+    "note": "no assertion at all"
+   },
+   {
+    "case": "p2",
+    "receipt": "/Users/joshuaeisenhart/Codex-Ratchet/claimgate_plugin/fixtures/bypass/p2_one_typed_measurement/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 1,
+    "covered": 0,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "one typed measurement"
+   }
+  ]
+ },
+ "stress_deck": {
+  "_class": "CAN_FAIL",
+  "_why": "Each case declares a binding and runs a real leg, so each exit code is a measurement of the rule rather than of a missing block.",
+  "rows": [
+   {
+    "case": "g10_receipt_supplied_tolerance",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g10_receipt_supplied_tolerance/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 14,
+    "covered": 5,
+    "uncovered": 9,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_INPUT_INDEPENDENT \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "Receipt carries tolerance/epsilon/significant_digits fields."
+   },
+   {
+    "case": "g10c_control_no_tolerance",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g10c_control_no_tolerance/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 6,
+    "covered": 5,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_INPUT_INDEPENDENT \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "Control for g10: same leg, no tolerance fields."
+   },
+   {
+    "case": "g11_nondeterministic",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g11_nondeterministic/results/probe.json",
+    "MEASURED_EXIT": 1,
+    "disposition": "BLOCK_BINDING_FAILED",
+    "numeric_leaves": 1,
+    "covered": 0,
+    "uncovered": 1,
+    "first_block": "artifact leg: two verifier-caused runs disagreed, so no digest can be pinned (nondeterminism must be declared, not absorbed by a per-leg tolerance)",
+    "first_uncovered": "BINDING_DECLARED_BUT_FAILED \u2014 a binding names this leaf and did not survive; see blocks",
+    "note": "Leg output differs between two verifier-caused runs."
+   },
+   {
+    "case": "g12_numeric_string_bound",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g12_numeric_string_bound/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 6,
+    "covered": 5,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_INPUT_INDEPENDENT \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "Receipt states the value as a string; bound to a float artifact position."
+   },
+   {
+    "case": "g14_baked_literal_alongside",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g14_baked_literal_alongside/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 1,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_INPUT_INDEPENDENT \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "A hard 2.2e-15 literal riding beside genuine jax work."
+   },
+   {
+    "case": "g15_julia_honest",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g15_julia_honest/results/probe.json",
+    "MEASURED_EXIT": 0,
+    "disposition": "COVERED",
+    "numeric_leaves": 2,
+    "covered": 2,
+    "uncovered": 0,
+    "first_block": null,
+    "first_uncovered": null,
+    "note": "PASS PATH, second engine. Real julia eigvals leg, own process."
+   },
+   {
+    "case": "g16_times_zero",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g16_times_zero/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 1,
+    "covered": 0,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_INPUT_INDEPENDENT \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "Reads the input, multiplies its influence by 0.0."
+   },
+   {
+    "case": "g17_below_ulp",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g17_below_ulp/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 1,
+    "covered": 0,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_INPUT_INDEPENDENT \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "Input influence scaled to 1e-300, below float64 resolution at the claim."
+   },
+   {
+    "case": "g18_honest_no_restated_constant",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g18_honest_no_restated_constant/results/probe.json",
+    "MEASURED_EXIT": 0,
+    "disposition": "COVERED",
+    "numeric_leaves": 5,
+    "covered": 5,
+    "uncovered": 0,
+    "first_block": null,
+    "first_uncovered": null,
+    "note": "PASS PATH. Same jax leg, no restated input constant."
+   },
+   {
+    "case": "g19_one_extra_assertion",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g19_one_extra_assertion/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 6,
+    "covered": 5,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "Five honest bound leaves plus one asserted berry_curvature_value.value."
+   },
+   {
+    "case": "g1_producer_constant_no_inputs",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g1_producer_constant_no_inputs/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 0,
+    "uncovered": 2,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_UNDETERMINED \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "THE PRODUCER-WROTE-THE-ARTIFACT CASE. Constant emitter, no declared inputs."
+   },
+   {
+    "case": "g1b_producer_constant_ignores_input",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g1b_producer_constant_ignores_input/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 0,
+    "uncovered": 2,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_INPUT_INDEPENDENT \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "Constant emitter that reads and discards its input."
+   },
+   {
+    "case": "g20_ulp_off_plus_every_tolerance",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g20_ulp_off_plus_every_tolerance/results/probe.json",
+    "MEASURED_EXIT": 1,
+    "disposition": "BLOCK_BINDING_FAILED",
+    "numeric_leaves": 17,
+    "covered": 4,
+    "uncovered": 13,
+    "first_block": "binding /metrics/spectral_gap: receipt holds 1.1753905296791063 and artifact position leg/spectral_gap holds 1.175390529679106 \u2014 not identical",
+    "first_uncovered": "BINDING_DECLARED_BUT_FAILED \u2014 a binding names this leaf and did not survive; see blocks",
+    "note": "1-ULP error plus nine receipt-supplied tolerance fields, including inside artifact_binding and relation=WITHIN_TOLERANCE."
+   },
+   {
+    "case": "g20c_ulp_off_no_tolerance",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g20c_ulp_off_no_tolerance/results/probe.json",
+    "MEASURED_EXIT": 1,
+    "disposition": "BLOCK_BINDING_FAILED",
+    "numeric_leaves": 5,
+    "covered": 4,
+    "uncovered": 1,
+    "first_block": "binding /metrics/spectral_gap: receipt holds 1.1753905296791063 and artifact position leg/spectral_gap holds 1.175390529679106 \u2014 not identical",
+    "first_uncovered": "BINDING_DECLARED_BUT_FAILED \u2014 a binding names this leaf and did not survive; see blocks",
+    "note": "Control for g20: the same 1-ULP error, no tolerance fields."
+   },
+   {
+    "case": "g21_b7_shape_but_witnessed",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g21_b7_shape_but_witnessed/results/probe.json",
+    "MEASURED_EXIT": 0,
+    "disposition": "COVERED",
+    "numeric_leaves": 2,
+    "covered": 2,
+    "uncovered": 0,
+    "first_block": null,
+    "first_uncovered": null,
+    "note": "b7's shape (float at bare `count`) and b9's shape (numeric string) with the value genuinely computed and bound."
+   },
+   {
+    "case": "g2_identity_leg",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g2_identity_leg/results/probe.json",
+    "MEASURED_EXIT": 0,
+    "disposition": "COVERED",
+    "numeric_leaves": 2,
+    "covered": 2,
+    "uncovered": 0,
+    "first_block": null,
+    "first_uncovered": null,
+    "note": "THE RESIDUAL. Leg reads a producer-written input and prints it verbatim."
+   },
+   {
+    "case": "g2b_prints_undeclared_file",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g2b_prints_undeclared_file/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 0,
+    "uncovered": 2,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_UNDETERMINED \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "Leg prints a producer-written file not declared as an input."
+   },
+   {
+    "case": "g2c_prints_declared_file",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g2c_prints_declared_file/results/probe.json",
+    "MEASURED_EXIT": 0,
+    "disposition": "COVERED",
+    "numeric_leaves": 2,
+    "covered": 2,
+    "uncovered": 0,
+    "first_block": null,
+    "first_uncovered": null,
+    "note": "Same, declared as an input. Same residual as g2."
+   },
+   {
+    "case": "g3_design4_slot_unbound",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g3_design4_slot_unbound/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 9,
+    "covered": 5,
+    "uncovered": 4,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_INPUT_INDEPENDENT \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "The exact design-4 payload: 2.2e-15 at engine_contract.tolerance and 4.44e-16 at agreement.tol."
+   },
+   {
+    "case": "g3b_design4_slot_bound",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g3b_design4_slot_bound/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 2,
+    "covered": 1,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "A genuinely computed delta placed at agreement.tol without a binding."
+   },
+   {
+    "case": "g4_digest_mismatch",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g4_digest_mismatch/results/probe.json",
+    "MEASURED_EXIT": 1,
+    "disposition": "BLOCK_BINDING_FAILED",
+    "numeric_leaves": 7,
+    "covered": 0,
+    "uncovered": 7,
+    "first_block": "artifact leg: recorded stdout_sha256 0000000000000000000000000000000000000000000000000000000000000000 does not match the verifier-regenerated a5548804dd09c06f78138e1a299dd8f488da951b2acf41d2191b8431c8fa7de1",
+    "first_uncovered": "BINDING_DECLARED_BUT_FAILED \u2014 a binding names this leaf and did not survive; see blocks",
+    "note": "Recorded stdout_sha256 does not match verifier regeneration."
+   },
+   {
+    "case": "g5_one_ulp_off",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g5_one_ulp_off/results/probe.json",
+    "MEASURED_EXIT": 1,
+    "disposition": "BLOCK_BINDING_FAILED",
+    "numeric_leaves": 6,
+    "covered": 4,
+    "uncovered": 2,
+    "first_block": "binding /metrics/spectral_gap: receipt holds 1.1753905296791063 and artifact position leg/spectral_gap holds 1.175390529679106 \u2014 not identical",
+    "first_uncovered": "BINDING_DECLARED_BUT_FAILED \u2014 a binding names this leaf and did not survive; see blocks",
+    "note": "Binding resolves; the receipt value is 1 ULP off."
+   },
+   {
+    "case": "g6_injectivity",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g6_injectivity/results/probe.json",
+    "MEASURED_EXIT": 1,
+    "disposition": "BLOCK_BINDING_FAILED",
+    "numeric_leaves": 7,
+    "covered": 5,
+    "uncovered": 2,
+    "first_block": "binding /metrics/restated_gap: artifact position leg/spectral_gap is already bound by /metrics/spectral_gap \u2014 one artifact position cannot discharge two receipt claims",
+    "first_uncovered": "BOUND_BUT_INPUT_INDEPENDENT \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "Two receipt leaves bound to one artifact position."
+   },
+   {
+    "case": "g7_one_field_discharges",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g7_one_field_discharges/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 6,
+    "covered": 1,
+    "uncovered": 5,
+    "first_block": null,
+    "first_uncovered": "UNBOUND \u2014 no declared binding names this leaf",
+    "note": "One bound leaf beside five unbound ones (the '1 field reproduces' defect)."
+   },
+   {
+    "case": "g8_script_escapes_root",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g8_script_escapes_root/results/probe.json",
+    "MEASURED_EXIT": 1,
+    "disposition": "BLOCK_BINDING_FAILED",
+    "numeric_leaves": 6,
+    "covered": 0,
+    "uncovered": 6,
+    "first_block": "artifact leg: script '../../../../../bin/echo' does not resolve to a file inside the receipt root /private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g8_script_escapes_root",
+    "first_uncovered": "BINDING_DECLARED_BUT_FAILED \u2014 a binding names this leaf and did not survive; see blocks",
+    "note": "Declared script path escapes the receipt root."
+   },
+   {
+    "case": "g9_duplicate_key",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/g9_duplicate_key/results/probe.json",
+    "MEASURED_EXIT": 1,
+    "disposition": "BLOCK_UNPARSEABLE",
+    "numeric_leaves": null,
+    "covered": null,
+    "uncovered": null,
+    "first_block": "strict parse refused the receipt bytes: duplicate key 'spectral_gap' at raw parse (last-wins would have silently chosen one value)",
+    "first_uncovered": null,
+    "note": "Duplicate JSON key in the receipt."
+   },
+   {
+    "case": "h1_honest_jax",
+    "receipt": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/deck/h1_honest_jax/results/probe.json",
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "numeric_leaves": 6,
+    "covered": 5,
+    "uncovered": 1,
+    "first_block": null,
+    "first_uncovered": "BOUND_BUT_INPUT_INDEPENDENT \u2014 the artifact position reproduces the value, but varying the declared inputs did not show the value is a function of them",
+    "note": "PASS-PATH CANDIDATE. Genuine jax eigvalsh leg reading a declared input; the receipt also RESTATES the input dimension n=3."
+   }
+  ]
+ },
+ "dependence_probe_ablation": {
+  "_class": "CAN_FAIL",
+  "_what": "A scratch copy of the module with the INPUT_DEPENDENT clause replaced by True. The repo file was not modified. This measures whether coverage plus verifier regeneration is sufficient on its own.",
+  "_ablated_copy": "/private/tmp/claude-501/-Users-joshuaeisenhart-Codex-Ratchet/02a01fd9-b117-490f-b383-1e213fb41c4e/scratchpad/ablate/artifact_binding_nodep.py",
+  "rows": [
+   {
+    "case": "h1_honest_jax",
+    "MEASURED_EXIT_live": 3,
+    "MEASURED_EXIT_dependence_removed": 0,
+    "probe_is_the_only_refusal": true
+   },
+   {
+    "case": "g18_honest_no_restated_constant",
+    "MEASURED_EXIT_live": 0,
+    "MEASURED_EXIT_dependence_removed": 0,
+    "probe_is_the_only_refusal": false
+   },
+   {
+    "case": "g15_julia_honest",
+    "MEASURED_EXIT_live": 0,
+    "MEASURED_EXIT_dependence_removed": 0,
+    "probe_is_the_only_refusal": false
+   },
+   {
+    "case": "g1_producer_constant_no_inputs",
+    "MEASURED_EXIT_live": 3,
+    "MEASURED_EXIT_dependence_removed": 0,
+    "probe_is_the_only_refusal": true
+   },
+   {
+    "case": "g1b_producer_constant_ignores_input",
+    "MEASURED_EXIT_live": 3,
+    "MEASURED_EXIT_dependence_removed": 0,
+    "probe_is_the_only_refusal": true
+   },
+   {
+    "case": "g2b_prints_undeclared_file",
+    "MEASURED_EXIT_live": 3,
+    "MEASURED_EXIT_dependence_removed": 0,
+    "probe_is_the_only_refusal": true
+   },
+   {
+    "case": "g14_baked_literal_alongside",
+    "MEASURED_EXIT_live": 3,
+    "MEASURED_EXIT_dependence_removed": 0,
+    "probe_is_the_only_refusal": true
+   },
+   {
+    "case": "g16_times_zero",
+    "MEASURED_EXIT_live": 3,
+    "MEASURED_EXIT_dependence_removed": 0,
+    "probe_is_the_only_refusal": true
+   },
+   {
+    "case": "g17_below_ulp",
+    "MEASURED_EXIT_live": 3,
+    "MEASURED_EXIT_dependence_removed": 0,
+    "probe_is_the_only_refusal": true
+   },
+   {
+    "case": "g7_one_field_discharges",
+    "MEASURED_EXIT_live": 3,
+    "MEASURED_EXIT_dependence_removed": 3,
+    "probe_is_the_only_refusal": false
+   },
+   {
+    "case": "g3_design4_slot_unbound",
+    "MEASURED_EXIT_live": 3,
+    "MEASURED_EXIT_dependence_removed": 3,
+    "probe_is_the_only_refusal": false
+   },
+   {
+    "case": "g4_digest_mismatch",
+    "MEASURED_EXIT_live": 1,
+    "MEASURED_EXIT_dependence_removed": 1,
+    "probe_is_the_only_refusal": false
+   },
+   {
+    "case": "g5_one_ulp_off",
+    "MEASURED_EXIT_live": 1,
+    "MEASURED_EXIT_dependence_removed": 1,
+    "probe_is_the_only_refusal": false
+   }
+  ],
+  "count_admitted_only_because_the_probe_was_removed": 7
+ },
+ "receipt_supplied_tolerance_control": {
+  "_class": "CAN_FAIL",
+  "_what": "The same 1-ULP disagreement, once with nine producer-written tolerance fields (agreement.tol, agreement.tolerance, recompute.tol/rel_tol/abs_tol, engine_contract.tolerance, math_epsilon, significant_digits, and a tolerance plus relation=WITHIN_TOLERANCE inside artifact_binding itself) and once without.",
+  "MEASURED_EXIT_with_tolerance_fields": 1,
+  "MEASURED_EXIT_control": 1,
+  "verdict_identical_on_disposition": true,
+  "verdict_identical_on_blocks": true,
+  "verdict_identical_on_covered_set": true,
+  "verdict_identical_on_metrics_uncovered": true,
+  "block_text": "binding /metrics/spectral_gap: receipt holds 1.1753905296791063 and artifact position leg/spectral_gap holds 1.175390529679106 \u2014 not identical"
+ },
+ "ambient_environment_control": {
+  "_class": "CAN_FAIL",
+  "_why": "A variable outside the document is still a relieving surface with no path, no key name and no type. three_engine_seal.py reads SEAL_METADATA_ONLY and returns 0 before its re-derive, and scripts/ci_three_engine_seal.py sets it for every receipt. This module branches on no environment variable; os.environ is read once, only to build the child process environment.",
+  "rows": [
+   {
+    "case": "g20c_ulp_off_no_tolerance",
+    "MEASURED_EXIT_clean_env": 1,
+    "MEASURED_EXIT_10_env_vars_set": 1,
+    "identical": true
+   },
+   {
+    "case": "h1_honest_jax",
+    "MEASURED_EXIT_clean_env": 3,
+    "MEASURED_EXIT_10_env_vars_set": 3,
+    "identical": true
+   },
+   {
+    "case": "g18_honest_no_restated_constant",
+    "MEASURED_EXIT_clean_env": 0,
+    "MEASURED_EXIT_10_env_vars_set": 0,
+    "identical": true
+   },
+   {
+    "case": "g2_identity_leg",
+    "MEASURED_EXIT_clean_env": 0,
+    "MEASURED_EXIT_10_env_vars_set": 0,
+    "identical": true
+   },
+   {
+    "case": "g14_baked_literal_alongside",
+    "MEASURED_EXIT_clean_env": 3,
+    "MEASURED_EXIT_10_env_vars_set": 3,
+    "identical": true
+   }
+  ],
+  "all_identical": true
+ },
+ "exemption_census": {
+  "_class": "CAN_FAIL",
+  "_what": "2.2e-15 placed at each of claim_policy.json's declared exempt full paths, one document per path, plus three positions nobody has declared anywhere including one inside this module's own artifact_binding block.",
+  "declared_exempt_paths": 22,
+  "all_park_with_the_value_named": true,
+  "rows": [
+   {
+    "path": "promotion_allowed",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "seq",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "gate_exit",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "exit",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "timestamp",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "schema",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "schema_version",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "count_at_freeze",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "_measured_on",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "sha256",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "digest",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "receipt_sha256",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "prev_line_sha256",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "gate_source_digest",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "mac",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "key_fingerprint",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "engine_contract.tolerance",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "agreement.tolerance",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "agreement.tol",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "recompute.tol",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "recompute.rel_tol",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "recompute.abs_tol",
+    "declared_exempt_by_claim_policy": true,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "calibration.epsilon",
+    "declared_exempt_by_claim_policy": false,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "my_brand_new_slot.value",
+    "declared_exempt_by_claim_policy": false,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   },
+   {
+    "path": "artifact_binding.notes.gap",
+    "declared_exempt_by_claim_policy": false,
+    "MEASURED_EXIT": 3,
+    "value_named_in_uncovered": true
+   }
+  ]
+ },
+ "deep_nesting": {
+  "_class": "CAN_FAIL",
+  "rows": [
+   {
+    "depth": 600,
+    "MEASURED_EXIT": 3,
+    "disposition": "PARK_UNBOUND_NUMERIC_CLAIM",
+    "verdict_json_emitted": true
+   },
+   {
+    "depth": 5000,
+    "MEASURED_EXIT": 1,
+    "disposition": "BLOCK_RECURSION",
+    "verdict_json_emitted": true
+   }
+  ],
+  "_note": "The recorded receipt_grammar defect was exit 1 with ZERO bytes on stdout. Here the recursion limit yields exit 1 WITH a parseable BLOCK_RECURSION verdict."
+ },
+ "legacy_debt_in_ci_seal_scope": {
+  "_class": "CAN_FAIL",
+  "receipts": 44,
+  "numeric_leaves_in_denominator": 35686,
+  "receipts_carrying_an_artifact_binding_block": 0,
+  "receipts_with_zero_numeric_leaves_would_report_VACUOUS": 4,
+  "_consequence": "Every one of these receipts PARKs today. That debt is a floor to burn down per (pointer, receipt_sha256), never an exemption list, and PARK must keep blocking rather than being reissued as an ADMITTED_PENDING_* label, which is an ADMITTING disposition in post_receipt_gate.sh."
+ },
+ "scouted_tool_status_measured_here": {
+  "in_toto": {
+   "importable_from_sim_stack": false,
+   "used_by_this_module": false,
+   "_why_not": "measured ABSENT, so it could not be used. Its scouted value is the recompute Inspection with a terminal DISALLOW; the verifier-caused regeneration in this module is the same idea implemented natively. in-toto would additionally give a signed DSSE envelope, which relocates the trust root to key custody and is only real once the key and layout are branch-protected outside producer write-control."
+  },
+  "deepdiff": {
+   "importable_from_sim_stack": false,
+   "used_by_this_module": false,
+   "_why_not": "absent, and its math_epsilon would be design 4 re-entering through a dependency"
+  },
+  "jsonschema": {
+   "importable_from_sim_stack": true,
+   "used_by_this_module": false,
+   "_why_not": "validates the already-parsed object, so a duplicate key deletes the claim before any keyword runs; strict_parse stays upstream"
+  },
+  "jax": {
+   "importable_from_sim_stack": true,
+   "used_by": "the honest pass-path legs in the stress deck, not by the gate itself"
+  },
+  "hypothesis": {
+   "importable_from_sim_stack": true,
+   "used_by_this_module": false
+  }
+ }
+}

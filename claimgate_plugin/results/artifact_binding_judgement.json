@@ -1,0 +1,288 @@
+{
+ "schema": "cr.purgatory_judgement.v1",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "date": "2026-07-25",
+ "lane": "FRESH-CONTEXT JUDGEMENT — I built none of the three modules and none of the two stress decks",
+ "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+ "candidates_judged": [
+  "claimgate_plugin/artifact_binding.py",
+  "claimgate_plugin/julia_witness.py",
+  "claimgate_plugin/output_dependence.py"
+ ],
+
+ "_measurement_discipline": {
+  "what_i_did": "I re-ran the reproduction commands myself rather than accepting either stress lane's recorded exit codes. 22 artifact_binding cases from the lane-1 deck, 5 honest/gaming cases from the BUILDER's own deck, 8 output_dependence cases, and all 11 julia_witness cases were measured in this session. Every exit code below marked JUDGE_MEASURED is my own.",
+  "agreement_status": "All 46 re-measured exit codes agreed with the recorded values. That agreement is not what makes them evidence; my own measurement is. Where a lane cited another lane rather than measuring, I say so under findings_that_fail_the_evidence_bar.",
+  "digest_of_candidate_at_my_measurement": "artifact_binding.py a07872e5052b1da12a37e40f1cab1c8fe9655cb0a3d215ace65c077eb72837a8 (EQUALS the digest lane 1 recorded, so lane 1 measured the live file); julia_witness.py c273b9f819b775b80cdcc85e4c8fceb386867a5d4b043ca3e5820463d756a3d9; output_dependence.py 3445137d753dc23f9f33b49fc07de6482dc958a8ea6369796cd640f88f98363d",
+  "constraints_honoured": "No .github/workflows file, no hook, and no existing gate file was edited or read-modified. No commit, no push, no branch change. hooks/post_receipt_gate.sh was NOT fired, so no gate ran and no ledger row was written. I took a precautionary backup of claimgate_plugin/results/gate_ledger.jsonl anyway and verified it byte-identical at the end: de28a49a885550be2a5cd000dee9da1fc8fab8752aedb06299442ac65055f91e before and after, 282 lines both times. The real receipt ratchet_contract/ratchetings/results/bures_to_fubini_study.json was read only and verified unchanged (5c334feeccb2076a86859cff4032818811067fa832329748e43afda80cf899b8 before and after). The julia deck writes source mutants as siblings of each leg; I snapshotted claimgate_plugin/fixtures/stress2 before and after and the 42-file tree diffed clean, so no mutant residue was left."
+ },
+
+ "verdict_per_file": {
+  "claimgate_plugin/artifact_binding.py": {
+   "verdict": "DEMOTE_TO_PURGATORY",
+   "bar_clause_that_fires": "ANY unrepaired CAN_FAIL where a receipt whose numbers no engine produced reaches an admitting disposition.",
+   "decisive_measurement_taken_by_me": "a4_receipt_as_input_all_float -> exit 0 COVERED, 20/20 numeric leaves, 0 blocks. The receipt declares ITSELF as the artifact's declared input; the whole leg is a 25-line generic JSON echo (leg.py + results/probe.json are the ONLY two files in the case). No engine ran. The covered set includes /engine_contract/tolerance = 2.2e-15 — the exact value and position that defeated design 4 — plus /engine_contract/agreement/tol = 4.44e-16 and /metrics/berry_curvature_value/value = 4.685032489737395e-08.",
+   "unearned_passes_i_measured": [
+    {"case": "a1_receipt_as_input", "rc": 0, "class": "CAN_FAIL"},
+    {"case": "a4_receipt_as_input_all_float", "rc": 0, "class": "CAN_FAIL", "note": "20/20, full-shaped three-engine receipt"},
+    {"case": "b1_probe_detect_cwd", "rc": 0, "class": "CAN_FAIL", "note": "leg branches on the fixed temp prefix cg_bind_dep_, verified present at artifact_binding.py:324"},
+    {"case": "l1_probe_detect_via_input", "rc": 0, "class": "CAN_FAIL", "note": "detects the probe through the varied input itself; randomising the prefix does not close it"},
+    {"case": "c1_offset_cancel", "rc": 0, "class": "CAN_FAIL", "note": "leg source reads TARGET = 2.2e-15 hand-typed, prints TARGET + k with k = 0.0; no transcription control exists in this module"},
+    {"case": "c2_saturation_12", "rc": 0, "class": "CAN_FAIL", "note": "12/12 hand-typed constants covered by one leg"},
+    {"case": "d1_hidden_positions", "rc": 0, "class": "CAN_FAIL", "note": "numeric_leaf_count = 1 (verified in the emitted verdict) while 8 measurements sit in the document, in a dict KEY, in prose, in a JSON-encoded string, and in list labels"},
+    {"case": "e1_small_ints", "rc": 0, "class": "CAN_FAIL"},
+    {"case": "f9_bigint_precision", "rc": 0, "class": "CAN_FAIL", "note": "receipt claims int 9007199254740993, artifact holds 9007199254740992.0; COVERED on a value the artifact does not hold"},
+    {"case": "f10_overflow_inf", "rc": 0, "class": "CAN_FAIL", "note": "1e999 -> inf both sides; intake_supervisor.poisoned_numeric_arrays exists for this and is never called"},
+    {"case": "j1_julia_offset_cancel", "rc": 0, "class": "CAN_FAIL", "note": "the second gate-owned interpreter is defeated identically"},
+    {"case": "n1_root_alias_injectivity", "rc": 0, "class": "CAN_FAIL", "note": "'' and '/' are distinct seen_slots keys resolving to one artifact position; two claims discharged by one scalar, against the module's own stated injectivity rule"},
+    {"case": "o1_selection_laundering", "rc": 0, "class": "CAN_FAIL", "note": "leg honestly computes 4096 values; receipt labels index 2731 spectral_gap = -0.0043487524636441. The recompute is honest, the selection is the fabrication. Builder had recorded this class as UNTESTED"},
+    {"case": "g2_identity_leg / h1_identity_leg", "rc": 0, "class": "CAN_FAIL", "note": "the builder's own declared residual, re-measured by me at rc 0"}
+   ],
+   "what_genuinely_held_and_should_be_preserved": [
+    "NO TOLERANCE ANYWHERE, and design 4's defect provably cannot re-enter this file. JUDGE_MEASURED: f1_near_miss (1.5 vs 1.5000000000001) rc=1; f5 (0.0 vs -0.0) rc=1; f7 (NaN vs NaN) rc=1. Lane 1 additionally measured 7 hostile env vars including SEAL_METADATA_ONLY, CG_TOLERANCE and ARTIFACT_BINDING_TOLERANCE leaving all three dispositions unchanged.",
+    "NO EXEMPTION LIST, literally. grep -nE 'EXEMPT|IGNORE|DENY|SKIP|_KEYS|metadata_paths' returns rc=1 (I ran it), and the emitted verdict carries an exemptions block with four empty arrays. This claim is TRUE and is not the same claim as 'every number is in the denominator', which is false (see d1).",
+    "THE DIGEST BINDS TO A VERIFIER-CAUSED EXECUTION, not a file on disk. JUDGE_MEASURED: i1_data_file_as_script rc=1, g2_wrong_digest rc=1.",
+    "AN UNBOUND NUMBER BLOCKS. JUDGE_MEASURED: g1_no_binding_block rc=3, k1_b11_b12_reachability rc=3, g3_top_level_array rc=3. The b11 nested-under-digest and b12 array-wrapper shapes ARE reached by the walker.",
+    "strict_parse is reused at 4 call sites; the only json.loads in the file is inside a comment. I verified the import at line 121."
+   ]
+  },
+
+  "claimgate_plugin/output_dependence.py": {
+   "verdict": "DEMOTE_TO_PURGATORY",
+   "bar_clause_that_fires": "ANY unrepaired CAN_FAIL where a receipt whose numbers no engine produced reaches an admitting disposition.",
+   "decisive_measurement_taken_by_me": "x1_value_substitution -> exit 0, verdict DEPENDENT. This is the bar clause in its purest form. The receipt asserts engines_ran.jax.jax_spectral_gap = 42.0 and jax_trace = 99.0 (I read the file). The leg is genuinely honest jax — jnp.linalg.eigvalsh on a real matrix — and computes 1.1753902435302734 and 5.25. The module binds a receipt leaf to a leg output position BY KEY NAME, stores the receipt value as d['value'], and never reads it again; movement is measured between the LEG's baseline and the severed run. So the receipt's asserted number is never compared to anything. The module's own docstring claims a DEPENDENT verdict 'excludes b4/b5-shaped fabrication'; b4/b5 IS asserted-diverges-from-computed, and it is not excluded.",
+   "unearned_passes_i_measured": [
+    {"case": "x1_value_substitution", "rc": 0, "verdict": "DEPENDENT", "class": "CAN_FAIL"},
+    {"case": "x2_env_leak", "rc": 0, "verdict": "DEPENDENT", "class": "CAN_FAIL", "note": "the harness ships OD_MODE/OD_FACTOR/OD_OFFSET/OD_TARGET/OD_LEG into the process under test via os.environ and runpy.run_path in-process"},
+    {"case": "x3_probe_reconstructs_perturbation", "rc": 0, "verdict": "DEPENDENT", "class": "CAN_FAIL", "note": "the affine map is recovered from the engine's own returns — jnp.zeros returns OFFSET, jnp.ones returns FACTOR+OFFSET — with no environment read and no string to grep. This survives closing x2, so they are two defects, not one"},
+    {"case": "x4_crash_refuting_pass_single", "rc": 0, "verdict": "DEPENDENT", "class": "CAN_FAIL", "note": "one guard kills ENTRY/ALL/ZERO (all rc 70), leaving only SINGLE, which is existential-only by design and can never refute"},
+    {"case": "od13_offset_cancelled_laundering", "rc": 0, "class": "CAN_FAIL", "note": "the builder's own declared open residual"}
+   ],
+   "what_genuinely_held_and_should_be_preserved": [
+    "THE ONLY TOTAL DENOMINATOR OF THE THREE. JUDGE_MEASURED x8_out_of_denominator rc=3 UNMEASURED_UNBOUND_RECEIPT_LEAVES: fabrications parked at three_engine_legs.julia, at agreement.jax_vs_julia_delta = 2.2e-15 and at floor_claims[].value are UNBOUND and block. This module has NO path-based relieving surface. It is the one place in the package where the design 4 payload cannot ride through by position.",
+    "NO NAME LIST. JUDGE_MEASURED x7_honest_operator_ops rc=0: work done through .T, @, *, .sum(), .trace() rather than public module callables is not refused. Recorded finding F11's name-list defect is genuinely closed here.",
+    "S0 NULL neutrality licenses bit-inequality as the movement test, so there is no tolerance parameter in the file at all.",
+    "strict_parse is REUSED (verified at line 113/801), and it refuses the duplicate-key bytes that its sibling julia_witness accepts.",
+    "A MEASURED EXCLUSION, not an omission: lines 767-776 record that a jaxpr/StableHLO digest WAS measured and deliberately rejected as the verdict, because the jaxpr of an honest traced function is byte-identical whether or not the leg prints that function's result, and the producer chooses which function is traced. That is a scout result changing a design by exclusion, and it is the best-documented reasoning in the package."
+   ]
+  },
+
+  "claimgate_plugin/julia_witness.py": {
+   "verdict": "DEMOTE_TO_PURGATORY",
+   "bar_clause_that_fires": "ANY unrepaired CAN_FAIL where a receipt whose numbers no engine produced reaches an admitting disposition.",
+   "decisive_measurement_taken_by_me": "y10_predicted_perturbation -> exit 0 WITNESSED. I read the leg: it is a two-branch lookup table, `if a > 0.6 then (1.9, 3.1) else (c1*2, c2*2)`, with NO arithmetic path from the input to the output at all. It witnesses because input_perturbations computes nv = float(v) * 1.37 + 0.11 (verified at julia_witness.py:647) where 1.37 and 0.11 are constants in the VERIFIER's source and v comes from the producer-written receipt.julia_input_contract.params. A producer declaring coupling 0.5 knows the verifier will send 0.795 before the leg is hashed. The crediting control's stated ground — 'the verifier chooses the value at run time, so a constant cannot track it' — is defeated directly, not by analogy.",
+   "unearned_passes_i_measured": [
+    {"case": "y10_predicted_perturbation", "rc": 0, "class": "CAN_FAIL", "note": "no arithmetic path input -> output"},
+    {"case": "y1_input_laundered_constant", "rc": 0, "class": "CAN_FAIL", "note": "gap = c * 2 * (coupling / 0.5). No matrix, no eigenvalue, no package, no computation. The producer writes the input contract, so it can divide by the baseline it declared"},
+    {"case": "y4_token_dispatch_laundered", "rc": 0, "class": "CAN_FAIL", "note": "fixture b10's shape on the engine this module was built for. One real LinearAlgebra call with the result discarded is enough: the real call dies under the empty shadow, severing records INCONCLUSIVE_LEG_FAILED, and the DECORATIVE_PACKAGES refusal is converted into no finding. Distinct from the builder's fakecrash residual, which needed deliberate detection"},
+    {"case": "y5_dupkey_honest_leg", "rc": 0, "class": "CAN_FAIL", "note": "julia_witness.py:885 uses json.loads(receipt_path.read_text()) — last-wins. I confirmed strict_parse REFUSES the same bytes with ValueError \"duplicate key 'julia_spectral_gap' at raw parse\". 0.42 is silently dropped and the module reports WITNESSED while 0.42 remains in the committed receipt bytes. duplicate_json_key was the FIRST hostile class this estate closed; this is the second consecutive new file to reintroduce it"},
+    {"case": "y6_out_of_denominator", "rc": 0, "class": "CAN_FAIL", "note": "demanded_from_receipt reads engines_ran.julia and nothing else (verified at line 352-364). Five julia claims ride through: three_engine_legs.julia.julia_berry_curvature, .julia_chern_number, agreement.julia_vs_jax_delta = 2.2e-15 (the design-4 payload), floor_claims[0].value = 1.9999999999, julia_input_contract.params.coupling"}
+   ],
+   "what_genuinely_held_and_should_be_preserved": [
+    "THE RECEIPT-VALUE COMPARISON ITS SIBLING LACKS. JUDGE_MEASURED y9_value_substitution rc=1 UNBOUND_OR_MISMATCHED. A receipt asserting 42.0 against a leg that computed 1.175390529679106 is REFUSED. This is exactly output_dependence's decisive defect, closed here, 200 lines away in the same package.",
+    "PARK IS EXIT 4, NOT 3, and the reasoning is correct. I verified in claimgate_plugin/hooks/post_receipt_gate.sh that the claim_verify branch sets gate_admits=1 for exit 0 OR exit 3, with gate_disposition=ADMITTED_PENDING_DEPTH on 3. Refusing to land a blocking-for-missing-evidence verdict on an admitting code is the single best integration decision in the package.",
+    "F8's closure holds. JUDGE_MEASURED y3_decorative_using_control rc=1 DECORATIVE_DEPENDENCY: the empty shadow LOADS, a decorative `using` survives it, values return identical, and that is the refusal condition. No marker string exists to grep.",
+    "AN ABSENT ENGINE PARKS. JUDGE_MEASURED y8_julia_absent rc=4 TOOLCHAIN_ABSENT with PATH=/nonexistent.",
+    "A VACUOUS WITNESS IS NOT A PASS. My own new measurement: run against the estate's real flagship receipt (ratchet_contract/ratchetings/results/bures_to_fubini_study.json), demanded_from_receipt returns {} and the module exits 4 PARK NO_DEMANDED_SET with the explicit reason that a leg witnessing no number is VACUOUS, not passing. Correct and worth keeping.",
+    "The pass path is real. JUDGE_MEASURED y2_honest_all_dependent rc=0, so the refusals above are not a checker that refuses everything."
+   ]
+  }
+ },
+
+ "findings_that_fail_the_evidence_bar": {
+  "_rule_applied": "A finding with no reproduction command, or whose measured_exit is not an exit code, is not evidence. Cross-lane agreement asserted with no measurement between the lanes is unverified.",
+  "rows": [
+   {
+    "id": "L1-L (lane 1, receipt hygiene)",
+    "problem": "measured_exit is the literal string \"n/a — digest comparison\". It is not an exit code and says nothing about gate behaviour.",
+    "my_disposition": "VERIFIED AS A FACT, NOT AS A GATE FINDING. I independently confirmed the mismatch: claimgate_plugin/results/artifact_binding_v0.json records gate_source_sha256 7b4317df9087e8311f0e195860cf85e4152d4131d02ac189ca97fca7c1535d68 while the live file is a07872e5052b1da12a37e40f1cab1c8fe9655cb0a3d215ace65c077eb72837a8. The builder's disclosed third emission never landed. So the builder's durable 27-case deck is attributed to a file version that is not on disk. This is a real provenance defect and it is correctly self-labelled n/a. It must not be counted among the behavioural findings.",
+    "consequence": "The builder's own receipt is not citable as evidence about the current file. I therefore re-measured five of its rows myself (h1_honest_jax rc=3, g18 rc=0, g2_identity_leg rc=0, g15_julia_honest rc=0, g16_times_zero rc=3), and only those five are load-bearing here."
+   },
+   {
+    "id": "lane 1 what_held row: 'a non-existent artifact position blocks'",
+    "problem": "The stated evidence is \"my own first a3 attempt used a wrong pointer escaping and produced 20 blocks / exit 1\". That is an incidental byproduct of the lane's own builder bug, not a designed case, and it carries no reproduction command.",
+    "my_disposition": "FAILS THE BAR as evidence for the property. The property may well hold; it was not tested on purpose. Do not cite it."
+   },
+   {
+    "id": "L1-G adjacent claim (OverflowError above 1e308)",
+    "problem": "No measurement; the lane says so.",
+    "my_disposition": "CORRECTLY SELF-LABELLED UNTESTED. Not a defect in the record. Named here only so it is not read as measured."
+   },
+   {
+    "id": "J1 (lane 2) sub-claim: 'the estate's real receipt puts engine numbers at three_engine_legs.julia'",
+    "problem": "Lane 2 sourced this from the SIBLING module's note rather than measuring it, and used it to argue the selected path 'misses the shape the estate actually writes'.",
+    "my_disposition": "SUB-CLAIM VERIFIED BY ME, SEVERITY REFINED DOWNWARD ON THIS LEG ONLY. I read the real receipt: engines_ran.julia is the BOOLEAN true, and engine numbers live under three_engine_legs.jax / three_engine_legs.julia. So demanded_from_receipt returns {} on the real receipt — I measured it. But the consequence is exit 4 PARK NO_DEMANDED_SET, which is FAIL-CLOSED, not an unearned pass. Lane 2 conflated two things under one CRITICAL: the y6 measured bypass (real, exit 0, CRITICAL — extra julia claims outside the path ride through) and the real-receipt shape mismatch (fail-closed park). J1's CRITICAL rating stands on y6 alone."
+   },
+   {
+    "id": "the handoff aggregate 'STRESS RESULTS (56 findings, 40 CAN_FAIL, 19 CRITICAL)'",
+    "problem": "Not reconstructible from the two receipts on disk. I counted them: lane 1 has 12 findings (decisive_finding + 11 further_findings) plus 8 what_held rows plus a 32-row deck; lane 2 has 12 findings (5 output_dependence + 7 julia_witness) plus 1 cross-module finding plus 11 what_held rows. That totals 44 finding-and-held items, not 56.",
+    "my_disposition": "THE AGGREGATE IS UNVERIFIED. It changes no verdict — the individual findings I re-measured are what decide this — but the count must not be quoted."
+   },
+   {
+    "id": "the handoff finding IDs 'L1-HELD-1' and 'L1-HELD-2'",
+    "problem": "These IDs do not exist in claimgate_plugin/results/purgatory_artifact_binding_stress_v0.json, which carries a what_held.rows array instead.",
+    "my_disposition": "HANDOFF REFORMATTING, not a receipt defect. The underlying rows are real and I re-measured them (f1/f5/f7 rc=1, i1/g2 rc=1, g1/k1/g3 rc=3). Cite the rows, not the invented IDs."
+   },
+   {
+    "id": "L4 (lane 2) 'bound on the damage' — SINGLE_CAP=32 against 1435 outermost calls",
+    "problem": "The 1435 figure is the BUILDER's measurement, cited by lane 2 rather than re-measured.",
+    "my_disposition": "CORRECTLY SELF-LABELLED 'UNTESTED at real-leg scale'. The L4 finding itself (exit 0 on a 2-call leg) is measured and stands. The scale bound is fuel."
+   }
+  ],
+  "no_lane_fired_the_chain": "Both lanes state this and I confirmed it: no ledger row mentions any of the three modules, and I did not fire the hook either. Every exit code in this judgement — mine included — is a module in isolation. Nothing here measures how any of these codes would be dispositioned downstream."
+ },
+
+ "is_this_iteration_five": {
+  "answer": "YES — it is iteration five of the same error class, and on one axis it is WORSE than iterations one to four.",
+  "what_genuinely_changed_and_is_not_nothing": [
+   "The question moved. Designs 1-4 asked 'is this position a claim?' and answered with a syntactic property of the receipt. artifact_binding genuinely does not ask that: the exemption list is empty (grep rc=1, verified), the verdict's exemptions block is four empty arrays, and design 4's tolerance defect provably cannot re-enter (f1/f5/f7 all rc=1; 7 hostile env vars change nothing). That is a real structural gain.",
+   "The judgement moved from 'which positions are excused' to 'what did the verifier cause to run'. That IS a different kind of question, and output_dependence's denominator (x8 rc=3) is the first total denominator in five iterations."
+  ],
+  "why_it_is_still_the_same_error": "The judgement still rests on a syntactic property; the property was relocated from the RECEIPT to the EXECUTION. All three modules pick a variant of one property — RESPONSIVENESS TO A PERTURBATION THE VERIFIER KNOWS AND THE PRODUCER CAN PREDICT — and stand it in for the judgement 'this number is the declared measurement'. It fails the same two ways a name, a path, a type and a bound failed: it is satisfiable without computing (c1, c2, j1, y1, y10, x3 — all measured at exit 0), and it is not satisfied by honest values that legitimately do not respond (h1_honest_jax rc=3, x6 rc=1, y0 rc=4 — all measured by me).",
+  "the_axis_on_which_it_is_worse": "Iterations 1-4 were wrong in ONE direction: a name-based surface let fabrication through but never rejected honest work. Iteration five is wrong in BOTH directions at once, because mathematical invariance is a real property of real observables. A spectral signature, a rank, a count, a dimension and a trace that does not depend on an off-diagonal coupling are all genuinely computed and genuinely unresponsive. output_dependence REFUSES two of them at exit 1 (x6: jnp.sum(ev > 0) and jnp.linalg.matrix_rank — I read the leg and measured the refusal). This is precisely the root cause the engine_witness Purgatory record already named — 'it also rejects genuine work, so it is wrong in both directions at once' — reproduced by all three of its replacements."
+ },
+
+ "the_surface_if_any": {
+  "_there_are_three_and_they_are_nested": true,
+  "surface_1_the_load_bearing_one": {
+   "name": "RESPONSIVENESS TO A VERIFIER-KNOWN PERTURBATION OF PRODUCER-DECLARED INPUTS",
+   "where_it_lives_in_code": [
+    "artifact_binding.py:138-142 — PERTURBATIONS is a fixed 3-tuple: scale_1p5 (x*1.5), plus_1 (x+1.0), negate (-x). Applied to every float leaf of producer-declared JSON inputs at once (_perturb_floats, line 275).",
+    "julia_witness.py:647 — nv = float(v) * 1.37 + 0.11, applied to producer-written receipt.julia_input_contract.params.",
+    "output_dependence.py — FACTOR=1.37 / OFFSET=0.11 affine severance of engine returns."
+   ],
+   "why_it_is_the_same_object_as_a_name_a_path_a_type_and_a_bound": "It is a syntactic property standing in for a judgement about what a number MEANS. A number that moves under x*1.5 is not thereby a measurement, and a number that does not move is not thereby a fabrication. Both halves are measured: c1 moves without computing (TARGET + k, k=0.0, rc=0) and x6 computes without moving (rank and signature, rc=1).",
+   "why_making_it_unguessable_does_not_close_it": "MEASURED, not argued. l1 detects the probe with no reference to the temp path at all — the leg reads its own declared input and branches on whether the value is still 7.25 (rc=0). The probe's only channel IS the input it varies, so 'the leg cannot tell it is being probed' is unobtainable by construction. x3 goes further and reconstructs the affine map from the engine's own returns, with no environment read and no string to grep."
+  },
+  "surface_2_the_old_positional_one_relocated_from_config_into_code": {
+   "name": "THE DENOMINATOR IS STILL NEGATIVELY BOUNDED — by the walker's shape, or by a single path",
+   "artifact_binding": "numeric_leaves recurses into dict VALUES only, and _as_number requires a string's FULL content to parse. There is no list to grep, so the 'no exemption list' claim is literally true — and 'every number is in the denominator' is still false. MEASURED on d1: exit 0 COVERED with numeric_leaf_count = 1 while 8 measurements sit in the document, in a dict key ('2.2e-15'), in prose (/notes carries 4.685032489737395e-08 and 1.5707963267948966), in a JSON-encoded string (/payload carries 4.44e-16 and 1e-13), and in list labels ('delta=2.2e-15', 'chi2=1.7807764064044151', 'phi0 .756'). The recorded grammar findings had already measured 15 relieving STRING positions; this design closed the bare-numeric-string case and left the embedded case wide open.",
+   "julia_witness": "demanded_from_receipt reads engines_ran.julia and nothing else (lines 352-364). Its own docstring calls this 'a POSITIVE selection of what must be witnessed, not a negative list of what is excused'. That is a true description of the intent and it does not change the effect — y6 rc=0 with five julia claims riding through, including agreement.julia_vs_jax_delta = 2.2e-15, the exact design-4 payload. A positive selection and a negative exemption are the same object seen from two sides.",
+   "output_dependence": "GENUINELY TOTAL. x8 rc=3. This is the one module with no surface-2, and it is the property to carry forward."
+  },
+  "surface_3_not_a_surface_but_the_trust_root_underneath_all_of_them": {
+   "name": "THE VERIFIER EXECUTES PRODUCER-AUTHORED SOURCE, AND NO TRUST ROOT EXISTS",
+   "measured": "git ls-files | grep -i codeowner returns rc=1 — nothing tracked. claimgate_plugin/claim_policy.json's own _ownership field already admits its requirement is 'NOT yet in force, so today this is a strong default rather than a trust root'.",
+   "why_it_subsumes_surfaces_1_and_2": "a1/a4 (receipt-as-input) and o1 (selection laundering) do not exploit the perturbation family or the walker at all. They pass because the producer chooses WHAT FUNCTION RUNS. a4 satisfies every clause by echoing the receipt; o1 satisfies every clause by computing 4096 honest values and labelling index 2731 'spectral_gap'. No refinement of the perturbation family and no widening of the denominator touches either. Coverage does not eliminate the trust root, it relocates it — the builder said so, and a4 shows the relocation is to a place the producer already owns.",
+   "the_honest_summary": "Verifier-caused execution of producer-authored code is a strictly better question than verifier-inspection of producer-authored receipts. It is still not the question that decides the claim."
+  }
+ },
+
+ "manifold_false_negatives": {
+  "_why_weighted_equally": "The bar says a file that only PARKs is not admitted either, and directs that FALSE_NEGATIVE count be weighed as heavily as any fail-open. All three modules are wrong in both directions, so this section is load-bearing for the verdicts and not a footnote.",
+  "artifact_binding": {
+   "measured_by_me": [
+    {"case": "h1_honest_jax", "rc": 3, "disposition": "PARK_UNBOUND_NUMERIC_CLAIM", "why": "genuine jax work; the receipt restates the input dimension n=3 and a constant is not a function of the inputs, so the dependence probe refuses it (BOUND_BUT_INPUT_INDEPENDENT)"},
+    {"case": "a3_receipt_as_input_full_shape", "rc": 3, "why": "16/20 covered. int leaves and numeric-string leaves park because _perturb_floats varies floats only. A producer reaches exit 0 by writing 3.0 instead of 3 — a4 does exactly that and covers 20/20. So the integer park is not protection, it is a formatting inconvenience for the fabricator and a hard block for an honest integer-valued contract"}
+   ],
+   "estate_scale_cost_verified_by_me": "I grepped the repo for receipts carrying an artifact_binding block. Outside claimgate_plugin/results and fixtures there are exactly 2 hits, and both are a sibling lane's obligation DOCUMENTS (system_v8/typed_ontology/carrier_obligations.json and check_carrier_obligations_run.json), not receipts with binding blocks. So ZERO real receipts can be covered today. The builder's own receipt records the scope: 44 CI-scope receipts, 35686 numeric leaves in the denominator, 0 carrying a binding block, 4 that would report VACUOUS. Every one parks.",
+   "verdict_on_direction": "Simultaneously fail-open on 13+ gaming cases and fail-closed on the honest jax leg and on 44/44 real receipts. Wiring it today is an estate-wide red."
+  },
+  "output_dependence": {
+   "measured_by_me": [
+    {"case": "x6_honest_invariant_observable", "rc": 1, "disposition": "REFUSED_OUTPUT_INVARIANT", "why": "I read the leg: jnp.sum(ev > 0.0) and jnp.linalg.matrix_rank(H), both genuinely computed by jax from a real matrix. A spectral signature and a rank are scale-and-shift stable, so they cannot move under an affine severance. This is an ACTIVE REFUSAL, worse than a park: the module asserts the honest work is invariant rather than unmeasured"}
+   ],
+   "why_this_one_is_the_most_serious_false_negative_in_the_package": "The refused observables are exactly what this estate computes. The rank of a distinguishability matrix and a spectral signature are ordinary constraint-geometry readouts, and the whole nominalist frame is built on them. A control that returns REFUSED on the estate's core observable class does not get routed around occasionally; it gets routed around always.",
+   "builder_self_reported_and_not_re_measured_by_me": [
+    "An input parameter echoed inside an engine-output block is refused: three_engine_legs.jax.theta0 = pi/2 on the estate's strongest receipt is invariant exactly as a fabrication would be, and takes the whole receipt to exit 1 while its other 10 jax-bound leaves are DEPENDENT.",
+    "Coverage is 11 of 69 leaves on that real receipt; the 58 unbound include the headline berry_curvature_value.value and every floor_claims entry, all of which block.",
+    "od12 integer-only engine data rc=3; od6 and od8 rc=3; no julia and no torch, so a julia or torch number returns rc=3 without running."
+   ]
+  },
+  "julia_witness": {
+   "measured_by_me": [
+    {"case": "y0_honest_input_contract", "rc": 4, "disposition": "PARK NO_VERIFIER_CHOSEN_INPUT_DEPENDENCE", "why": "an honest leg builds H from the verifier's coupling and reports sum(eigvals(Symmetric(H))) — genuine LinearAlgebra — but the trace of that matrix does not depend on an off-diagonal coupling, so it never moves"},
+    {"case": "y7_legacy_honest_no_contract", "rc": 4, "why": "j1_real_julia_leg, the sanctioned good fixture that genuinely computes eigenvalues, parks with input_perturbation UNTESTED_NO_PARAMS. Every existing honest Julia leg in this estate parks, because none declares an input contract"},
+    {"case": "real flagship receipt", "rc": 4, "disposition": "PARK NO_DEMANDED_SET", "why": "my own new measurement. engines_ran.julia is the boolean true on ratchet_contract/ratchetings/results/bures_to_fubini_study.json, so demanded_from_receipt returns {} and the module correctly refuses to call a vacuous witness a pass"}
+   ],
+   "the_pair_that_decides_it": "y0 (honest, rc=4 PARK) and y4 (token dispatch, laundered, rc=0 WITNESSED) run against byte-identical receipt structure. I measured both in the same deck run. The control is ordered the wrong way round on that pair: it admits the fabrication and blocks the honest computation.",
+   "adoption_cost_verified_by_me": "grep for julia_input_contract outside fixtures returns only the lane-2 purgatory receipt itself. No real receipt declares one. So the crediting control cannot fire anywhere in the estate today, and every real julia claim parks."
+  },
+  "aggregate": "Across the three modules I measured 24 unearned passes and 6 refusals-or-parks of genuine engine work, plus a verified estate-wide adoption floor of zero: 0 real receipts carry an artifact_binding block, 0 declare a julia_input_contract, and the flagship receipt's julia block is a boolean. Neither direction is a rounding error and neither module earns admission."
+ },
+
+ "library_value": {
+  "headline": "The scouting was LOAD-BEARING AS DIAGNOSIS AND DECORATIVE AS MECHANISM. Zero scouted libraries are imported by any of the three built modules — I checked every import line. All three are stdlib plus claimgate_plugin.intake_supervisor.strict_parse, with jax imported at runtime by output_dependence for severance only. Not one hand-rolled surface was replaced by a spec-tested one.",
+  "presence_re_measured_by_me": {
+   "in_toto": "ABSENT from the sim-stack interpreter",
+   "deepdiff": "ABSENT",
+   "hypothesis": "PRESENT 6.151.12",
+   "jsonschema": "PRESENT 4.26.0",
+   "jax": "PRESENT 0.10.1"
+  },
+  "per_library": [
+   {
+    "library": "jax make_jaxpr / StableHLO",
+    "value": "LOAD-BEARING AS A MEASURED EXCLUSION. Not adopted, and output_dependence.py:767-776 records why, with the specific numbers: the jaxpr of an honest traced function is byte-identical (da0b93b242d8d450) whether or not the leg PRINTS that function's result, and the producer declares which function is traced, so the producer chooses what is inspected. That is a scout result that changed a design by ruling a mechanism out. This is the correct use of a scout and it is the best-documented reasoning in the package.",
+    "decorative": false
+   },
+   {
+    "library": "hypothesis 6.151.12",
+    "value": "DIAGNOSTIC VALUE REALISED, GENERATIVE VALUE NOT. Its census measured concrete slipping documents for 22 of 22 declared exempt paths, which is a large part of why the exemption-list design was abandoned at all. But its scouted hook was the exemption list itself — 'every exemption the policy contains becomes a generated stress case automatically' — and the new design has no exemption list, so the tool lost its anchor and was never run against any of the three modules. Lane 1 lists that as UNTESTED. The gap it would plausibly have found (d1: numbers in keys, prose and JSON-in-string) was found by hand instead. It should be re-pointed at the walker, not retired.",
+    "decorative": "partially"
+   },
+   {
+    "library": "jsonschema 4.26.0",
+    "value": "THE ONE GENUINELY WASTED SCOUT RESULT. Draft 2020-12 unevaluatedProperties:false converts an open negative enumeration (things that are exempt, whose completeness is unknowable) into a CLOSED positive one (every position that may exist, enumerable from the schema document). That is the direct answer to surface 2 — the measured d1 gap where 8 real measurements sit outside the walker's shape at exit 0. It was scouted with five measured fixture refusals, it is installed, and it was then neither adopted nor excluded with a reason. Unlike the jaxpr case there is no recorded measurement saying why not.",
+    "decorative": true,
+    "caveat_that_still_applies": "The scout's own measurement stands: jsonschema validates the PARSED object, so {\"metrics\":{\"gap\":1.78},\"metrics\":{}} validates clean after last-wins parsing. strict_parse must stay upstream of any validator. Adopting jsonschema does not retire strict_parse — and julia_witness's json.loads at line 885 is the live proof that this lesson has not landed."
+   },
+   {
+    "library": "in-toto 3.1.0",
+    "value": "HIGH VALUE, UNREALISABLE TODAY, AND CORRECTLY DIAGNOSED. It is the only scouted mechanism that addresses surface 3 rather than surfaces 1 and 2: a layout held by the verifier declaring which command may run, plus an Inspection that RE-RUNS the computation at verification time and hash-compares. The scout's decisive measurement is the MATCH-without-terminal-DISALLOW split (honest 0 / fabricated 0 without DISALLOW; honest 0 / fabricated 1 with it) and the julia leg equivalent. It was not adopted, it is ABSENT from sim-stack, and the blocker is named correctly: in-toto relocates the trust root to 'who controls the key and the layout', and I verified no CODEOWNERS is tracked in this repo. Adopting it today would measure key custody, not the claim.",
+    "decorative": false
+   },
+   {
+    "library": "deepdiff 9.1.0",
+    "value": "CORRECTLY REJECTED, and the reasoning is the sharpest in the scout: passing any tolerance, epsilon or bound from the receipt into the comparison is design 4's defect re-entering through a library instead of a hand-rolled slot. artifact_binding's no-tolerance property (f1/f5/f7 rc=1, verified by me) is exactly what adopting math_epsilon would have destroyed.",
+    "decorative": false
+   }
+  ],
+  "the_uncomfortable_pattern": "The two scout results that MEASURED the eventual failure in advance were both set aside. The jaxpr scout measured the 'laundered' case defeating both structural checks before output_dependence was built, and output_dependence shipped with od13 / offset-cancelled laundering as its declared residual. The scout also stated plainly that 'the only measured mechanism that split honest from fabricated on the SAME receipt shape was recomputation by a party other than the producer', and that a fifth hand-rolled detector would not fare differently. Three hand-rolled modules were then built and all three failed on the producer-authored leg. The scouting was not wrong; it was not used."
+ },
+
+ "what_would_have_to_change": {
+  "one_line_repairs_that_are_worth_doing_and_do_not_close_the_class": [
+   "julia_witness.py:885 — replace json.loads(receipt_path.read_text()) with strict_parse(receipt_path.read_bytes()). The function is in the same package and its sibling already uses it. I confirmed it refuses the y5 bytes. This is the second consecutive new file to reintroduce the FIRST hostile class this estate closed; the recorded lesson is that closure must be a reused function, not a fixed instance, and the lesson is still not landing.",
+   "artifact_binding — refuse a binding whose declared input IS the receipt. That closes L1-A's cheapest form (a1, a4) and closes nothing else: any producer-written input reproduces it, which h1/g2_identity_leg measure at rc=0.",
+   "artifact_binding — key seen_slots on the RESOLVED artifact position, not the pointer string, so '' and '/' cannot both discharge a claim (n1).",
+   "artifact_binding — compare int claims as ints on both sides, or refuse an int-vs-float binding, so float64 lossiness above 2^53 cannot register a pass (f9).",
+   "artifact_binding — call intake_supervisor.poisoned_numeric_arrays so overflow-to-inf cannot be COVERED (f10).",
+   "MERGE THE TWO CHECKS THE PACKAGE ALREADY HAS. output_dependence has a total denominator and no receipt-value comparison; julia_witness has the comparison and a one-path denominator. Each module's open defect is closed in the other, in the same package, in the same commit. Merging refuses x1, y6 and y9. It does NOT close x2, x3, y1, y10, a4, o1 or c1, because fake movement, laundered tracking and producer-chosen functions touch neither check."
+  ],
+  "what_would_actually_change_the_kind_of_thing_this_is": [
+   "THE VERIFIER MUST COMPUTE THE DECLARED FUNCTION, not run the producer's program and probe it. Every unearned pass I measured that survives all one-line repairs — a4, o1, c1, y1, y10, x3 — survives because the producer chose what function runs. A recompute is only evidence when the recomputed function is fixed outside producer write-control.",
+   "THAT REQUIRES A TRUST ROOT THAT DOES NOT EXIST. git ls-files | grep -i codeowner returns nothing tracked, and claim_policy.json's _ownership field says so about itself. Until a layout or schema document is unwritable by the producing agent, every green result in this package measures what the verifier ran, not who was allowed to define the rule. This is the same structural caveat as the recorded BY_CONSTRUCTION finding where a 12/12 green measured one status token. The trust root is the prerequisite, not a later hardening step.",
+   "THE DENOMINATOR MUST BE DEFINED OVER THE RECEIPT BYTES, or by a CLOSED POSITIVE ENUMERATION of every position that may exist. Numbers in keys, in prose and in JSON-encoded strings must either enter the denominator or be measured and committed as a count that FAILS WHEN IT GROWS. jsonschema's unevaluatedProperties:false is the installed, measured mechanism for the closed-world form; strict_parse stays upstream of it.",
+   "A CONTROL THAT REFUSES A MATHEMATICALLY INVARIANT OBSERVABLE IS NOT READY, whatever its fail-open count. A rank, a signature, a count, a dimension and a trace independent of the perturbed parameter are all genuine engine outputs. Any design whose crediting test is responsiveness must first state which observables it structurally cannot witness, and must PARK rather than REFUSE them.",
+   "THE PERTURBATION FAMILY MUST NOT BE THE LOAD-BEARING TEST, and making it unguessable does not rescue it. Measured: l1 detects the probe through the input itself, and x3 reconstructs the affine map from the engine's own returns. A severance is detectable by its own effect, so 'the leg cannot tell it is being probed' is unobtainable by construction.",
+   "IF A BURN-DOWN IS USED, IT MUST BE A COUNT, NEVER A LIST. 44 receipts and 35686 leaves cannot be converted at once. The debt must be a per-(pointer, receipt_sha256) count that may only decrease, never a grandfathering list keyed on path or name — a grandfathering list is iteration one wearing a schedule."
+  ]
+ },
+
+ "ci_readiness": {
+  "verdict": "NOT READY. None of the three may enter hooks/post_receipt_gate.sh, gate_registry.json, or any CI job in this form.",
+  "wiring_state_verified_by_me": "Zero of three are wired. I grepped .github, hooks, claimgate_plugin/hooks, claimgate_plugin/gate_registry.json and scripts: the only hit is scripts/codex_engine_stack_shakedown.py:899, which uses \"julia_witness\" as an unrelated dict key for an octonion associator payload and imports nothing from claimgate_plugin. I read the surrounding function to confirm.",
+  "adoption_state_verified_by_me": "Zero real receipts can satisfy any of the three contracts today. 0 carry an artifact_binding block (the 2 repo hits are a sibling lane's obligation documents), 0 declare a julia_input_contract, and the flagship receipt's engines_ran.julia is the boolean true, which the julia witness correctly parks on.",
+  "my_own_new_integration_finding_that_neither_lane_measured": {
+   "id": "JUDGE-1",
+   "severity": "CRITICAL for any wiring decision",
+   "class": "verified in source, UNTESTED through the fired chain",
+   "finding": "TWO OF THE THREE MODULES USE THE ADMITTING EXIT CODE FOR THEIR BLOCKING DISPOSITION. I read claimgate_plugin/hooks/post_receipt_gate.sh: after claim_verify it sets `gate_admits=1   # claim_verify returned 0 or 3 — both admit` and, on exit 3, `gate_disposition=ADMITTED_PENDING_DEPTH`. artifact_binding and output_dependence both use exit 3 for PARK. julia_witness deliberately uses exit 4 and records this exact reason. So the package is internally inconsistent on the single point that decides whether a PARK blocks.",
+   "why_it_matters_more_than_it_looks": "artifact_binding parks 44 of 44 CI-scope receipts. Wired at a position that maps exit 3 onto gate_admits=1, the estate's entire unconverted debt is reissued as ADMITTED_PENDING_DEPTH — an ADMITTING disposition that the estate's own regression runner names as a way a forged receipt passes by wearing an audit-owed label. That is the s3/s6 mechanism from design 4 returning through the wiring layer rather than through the receipt. artifact_binding's own receipt warns against exactly this relabelling and then uses the code that causes it.",
+   "reproduction": "sed -n '153,172p' claimgate_plugin/hooks/post_receipt_gate.sh  (read only; I did not fire the hook)",
+   "required_before_any_wiring": "Standardise the package on a blocking code that no branch of post_receipt_gate.sh maps to gate_admits=1, and verify it by firing the chain with the ledger backed up — which no lane has yet done."
+  },
+  "what_must_be_measured_before_this_question_is_reopened": [
+   "FIRE THE CHAIN. All 46 exit codes in this judgement, and all of both lanes', are modules in isolation. Nothing is known about behaviour inside hooks/post_receipt_gate.sh, interaction with the ledger identity fields (recorded finding F10: leg sources and artifact digests are covered by neither receipt_sha256 nor gate_source_digest), or whether an ADMITTING disposition would override a PARK. Back up claimgate_plugin/results/gate_ledger.jsonl first and restore it after.",
+   "The SEAL_METADATA_ONLY ambient variable that a sibling lane reports as a live relieving surface in three_engine_seal.py. I measured no analogue in artifact_binding (lane 1's 7-variable control is clean), but the chain was never fired with it set.",
+   "torch. claim_policy.json lists torch authoritative. artifact_binding's interpreter table holds python3 and julia only, so a torch leg runs as python3 with its engine identity never checked; output_dependence severs jax only; julia_witness runs julia only. A torch claim is unwitnessed by all three.",
+   "Nondeterminism beyond a 2-run byte check, and CI runtime. julia_witness performs roughly 20 julia startups per leg (16 source mutants plus severing plus perturbations); artifact_binding copytree's the whole receipt root per probe, unmeasured against a 35686-leaf tree.",
+   "hypothesis re-pointed at the WALKER rather than at an exemption list, which is where surface 2 now lives."
+  ],
+  "disposition": "All three to Purgatory as reproductions and as the record of iteration five. Keep the decks: 32 lane-1 cases, 19 lane-2 cases, the builder's 27, and the 46 codes I re-measured. Convert every exit-0 gaming case and both wrong-direction cases into permanent fixtures. Preserve the four properties that genuinely held — no tolerance anywhere (artifact_binding), a total denominator (output_dependence), a receipt-value comparison and a non-admitting park code (julia_witness) — because a sixth iteration that loses any of them is a regression. Do not wire, do not commit as a gate, and do not cite any COVERED, DEPENDENT or WITNESSED verdict from these three files as evidence for any claim."
+ },
+
+ "provenance_discipline": "Design text and both stress receipts were treated as proposal fuel. No cross-lane agreement is cited as evidence anywhere in this judgement; where a lane cited another lane rather than measuring, it is named under findings_that_fail_the_evidence_bar. The evidence is the 46 exit codes I measured in this session with the reproduction commands recorded beside them, plus four source reads (post_receipt_gate.sh's claim_verify branch, artifact_binding.py:138-142 and :275-337, julia_witness.py:352-364 and :647, output_dependence.py:113/767-776/801) and three digest comparisons."
+}

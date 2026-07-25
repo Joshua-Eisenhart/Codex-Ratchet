@@ -1,0 +1,56 @@
+{
+ "schema": "cr.purgatory_record.v1",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "candidates": ["claimgate_plugin/artifact_binding.py", "claimgate_plugin/julia_witness.py",
+                "claimgate_plugin/output_dependence.py"],
+ "status": "FIFTH FAILED CANDIDATE SET. All four adversarial stress lanes returned DEFEATED. 56 findings, 40 CAN_FAIL. None may enter CI or the fired chain.",
+ "date": "2026-07-25",
+
+ "the_reviewer_predicted_this_exactly": "The design brief was told: 'coverage-based binding merely relocates trust from which numbers are claims to which artifacts are trustworthy. If the producer writes both the receipt and the artifact, coverage is satisfied by construction and proves nothing.' Finding L1-A is literally that: RECEIPT-AS-INPUT — the receipt declares ITSELF as the artifact's declared input. The objection was stated in the brief, the builder was told to design against it, and it landed anyway.",
+
+ "five_relieving_surfaces": [
+  {"n": 1, "surface": "path prefix", "defeated_by": "park poison under a fixture prefix"},
+  {"n": 2, "surface": "key name denylist", "defeated_by": "b7, b8, b9"},
+  {"n": 3, "surface": "exempt full path pruning a subtree", "defeated_by": "b11, b12"},
+  {"n": 4, "surface": "typed role with a bounded slot", "defeated_by": "a 2.2e-15 measurement in a tolerance bounded [0,1e-3]"},
+  {"n": 5, "surface": "artifact trust — plus a PATH-BASED surface reintroduced inside julia_witness (finding J1, named by the lane as 'iteration 5 of the recorded error class')", "defeated_by": "receipt-as-input, probe detection, constant laundering through the producer-written input contract"}
+ ],
+
+ "decisive_finding": {
+  "id": "L3-01",
+  "severity": "CRITICAL",
+  "class": "CAN_FAIL (false negative)",
+  "measured_by_me": "0 of 45 tracked manifold-layer receipts reach exit 0 under artifact_binding.py",
+  "corpus": "48 tracked JSON receipts under system_v8 nested_manifold(11) manifold(26) manifold_layers(2) igt_engine(1) deep_integration(5) ratchet_bridge(3), carrying 318,403 numeric leaves",
+  "why_it_settles_it": "A gate that parks the entire manifold estate has measured nothing, and is worse than no gate because people route around it. This alone disqualifies the candidate independently of every fail-open finding below."
+ },
+
+ "critical_fail_open": [
+  {"id": "L1-A", "finding": "RECEIPT-AS-INPUT — the receipt declares itself as the artifact's declared input. Coverage is then circular."},
+  {"id": "L1-B", "finding": "PROBE DETECTION — dependence_probe copies the receipt root to a temp dir with the FIXED prefix 'cg_bind_dep_', so the leg can detect that it is being probed. This is the fixed-greppable-poison-string defect recurring after being recorded once."},
+  {"id": "L1-C", "finding": "ADDITIVE CANCELLATION, and no transcription control: the claim is a LITERAL in the leg source."},
+  {"id": "L1-D", "finding": "UNREACHED POSITIONS — the b7/b8 shape returns even though the exemptions block is genuinely empty."},
+  {"id": "L1", "finding": "output_dependence NEVER COMPARES THE RECEIPT'S ASSERTED NUMBER TO THE LEG'S OUTPUT. That is finding F9, the exact defect this module was built to close."},
+  {"id": "L2", "finding": "THE HARNESS SHIPS ITS OWN SEVERANCE PLAN INTO THE PROCESS UNDER TEST — run_severed passes OD_MODE / OD_FACTOR to the leg, so the leg reads its own test plan."},
+  {"id": "L3", "finding": "THE SEVERANCE IS RECONSTRUCTABLE FROM THE ENGINE'S OWN RETURNS, with no environment read and nothing to grep."},
+  {"id": "J2", "finding": "CONSTANT LAUNDERING THROUGH THE PRODUCER-WRITTEN INPUT CONTRACT."},
+  {"id": "J3", "finding": "THE ONLY CREDITING CONTROL RESTS ON A VALUE THE PRODUCER CAN PREDICT."},
+  {"id": "XM", "finding": "CROSS-MODULE: each module's open defect is closed in the OTHER module, in the same package, in the same round. So neither is independently sound, and together they read as fine. This is the sharpest observation of the round — mutual cover is not coverage."}
+ ],
+
+ "what_actually_discriminated_this_session": {
+  "_statement": "Across every round, exactly two techniques produced discrimination, and neither is authored by the producer. That is the whole lesson.",
+  "1_severance": "Breaking an import and observing the verdict change. The F0-F3 controller flipped exit 0 -> exit 3 under a PYTHONPATH shim; a controller reading stored JSON cannot do that. Engine legs died to exit 1 with 0 bytes when severed.",
+  "2_independent_re_derivation": "A closed form or exhaustive enumeration computed with no engine. 0.75*exp(-0.3) from a stdlib Decimal Taylor series caught a sigma_plus/sigma_minus error that engine-to-engine agreement on a second quantity had hidden. Exhaustive enumeration over 16 elements settled every F0-F3 value.",
+  "why_they_work": "Neither is a property of the receipt or of an artifact the producer wrote. Every failed surface — name, path, type, bound, artifact trust — asked a question the producer's own output could answer."
+ },
+
+ "libraries_scouted": {
+  "installed_and_measured": ["hypothesis 6.151.12", "jsonschema 4.26.0 Draft 2020-12 with unevaluatedProperties:false", "jax.make_jaxpr + StableHLO lowering (jax 0.10.1)"],
+  "absent": ["in-toto 3.1.0 with securesystemslib DSSE envelopes", "deepdiff 9.1.0"],
+  "note": "in-toto is the tool that actually matches the artifact-to-execution binding problem and it is NOT installed, so this round hand-rolled the thing a mature library already does. Whether the scouting reduced hand-rolled surface is answered NO for this round."
+ },
+
+ "disposition": "Keep all three files as reproductions and as the record of the fifth iteration. Wire none into hooks/post_receipt_gate.sh or CI. Do NOT attempt iteration six as another receipt-side or artifact-side property. The next attempt should be built out of severance and independent re-derivation, which are the only two things that discriminated."
+}

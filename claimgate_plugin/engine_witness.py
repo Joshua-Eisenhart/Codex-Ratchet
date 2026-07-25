@@ -541,7 +541,12 @@ def witness_leg(leg: Path, eng: str) -> tuple[bool, dict]:
         return False, {**rep, "verdict": "NOT_PRESENT"}
     # DISPATCH — the control that closes the decorative-import false pass.
     w = det_p.get("witness") or {}
-    if eng == "jax":
+    # DISPATCH applies to every authoritative engine, not just jax. Gating it on
+    # eng == "jax" meant torch and julia legs skipped the one control that asks
+    # whether the engine COMPUTED anything — so the strongest check was absent
+    # from exactly the engines with no other coverage. An engine we cannot
+    # instrument is UNMEASURED, and unmeasured is not a pass.
+    if True:
         if "dispatch_total" not in w:
             return False, {**rep, "verdict": "DISPATCH_UNMEASURED",
                            "error": "instrumentation did not report a dispatch count; "

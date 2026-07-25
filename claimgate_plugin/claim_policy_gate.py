@@ -82,8 +82,18 @@ def _numbers_in_claim_positions(obj, pol, container=None, path="", hits=None):
     if isinstance(obj, dict):
         for k, v in obj.items():
             p = f"{path}.{k}" if path else f".{k}"
-            if p.lstrip(".") in exempt_paths:
-                continue                     # EXACT full path, not a bare name
+            # EXEMPT A LEAF, NEVER A SUBTREE. Skipping recursion here was the A12
+            # gaming attempt, found by an independent lane and reproduced against
+            # this very function: the whole payload rides one level down under a
+            # key on the exempt list —
+            #   {"digest": {"metrics": {...}, "engines_ran": {...}}}
+            # — and the walk never enters it. Measured exit 0 / PASS / VERIFIED
+            # through the full chain with no engine leg on disk at all, while the
+            # byte-identical document without the wrapper BLOCKED. An exemption
+            # says "the scalar at this exact path is bookkeeping"; it can never
+            # say "everything beneath this name is bookkeeping".
+            if p.lstrip(".") in exempt_paths and not isinstance(v, (dict, list)):
+                continue
             _numbers_in_claim_positions(v, pol, container, p, hits)
     elif isinstance(obj, list):
         for i, v in enumerate(obj):
@@ -210,7 +220,19 @@ def main(argv):
               file=sys.stderr)
         return 1
     if not isinstance(receipt, dict):
-        print("claim_policy_gate: pass — non-object document, no claim to police", file=sys.stderr)
+        # R4: this used to return 0 without evaluating, so wrapping any receipt in
+        # a JSON array skipped the whole policy. The walk already descends lists;
+        # only the engine lookups need a mapping, so a numeric non-object document
+        # PARKS rather than passing.
+        nums = _numbers_in_claim_positions(receipt, pol)
+        if nums:
+            print(f"claim_policy_gate: PARK — non-object document carrying {len(nums)} "
+                  f"numeric value(s) (e.g. {nums[0][0]}={nums[0][1]}). Engine evidence "
+                  f"cannot be resolved from a non-mapping receipt, so this is pending "
+                  f"evidence, not an exemption.", file=sys.stderr)
+            return 3
+        print("claim_policy_gate: pass — non-object document with no numeric content",
+              file=sys.stderr)
         return 0
     code, label, msg, det = evaluate(receipt, p, pol)
     print(json.dumps({"tool": "claimgate.claim_policy_gate", "receipt": str(p),

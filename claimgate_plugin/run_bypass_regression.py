@@ -80,6 +80,16 @@ CASES = [
      "b10_token_dispatch/results/probe.json",
      "dispatch counting proves AN operation ran, not that the OUTPUT came from it — the "
      "deepest of the four, and the one the design does not currently address"),
+    # b11-b12 defeated the INVERSION that fixed b7-b9. Found by an independent
+    # workflow lane, then reproduced against the inverted function.
+    ("b11", "whole payload one level down under a key on the exempt-path list",
+     "b11_subtree_under_exempt_path.json",
+     "the exemption skipped the SUBTREE, not the leaf, so {\"digest\": {...everything...}} "
+     "was never walked; measured exit 0 / PASS / VERIFIED with no engine leg on disk"),
+    ("b12", "receipt wrapped in a top-level JSON array",
+     "b12_toplevel_array_wrapper.json",
+     "a non-dict document returned 0 without evaluating, so an array wrapper skipped "
+     "the whole policy"),
 ]
 
 

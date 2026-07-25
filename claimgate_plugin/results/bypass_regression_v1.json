@@ -3,8 +3,8 @@
  "classification": "tool_lego_fit_probe",
  "promotion_allowed": false,
  "acceptance": "every case must PARK or BLOCK; none may yield VERIFIED, PASS, or ADMITTED_PENDING_DEPTH (that disposition ADMITS)",
- "blocked": 10,
- "total": 10,
+ "blocked": 12,
+ "total": 12,
  "still_admitted": [],
  "results": [
   {
@@ -75,6 +75,20 @@
    "case": "one token engine op, then print fabricated constants",
    "disposition": "PARKED",
    "claim_verify": "INSUFFICIENT_DEPTH",
+   "exit": 3
+  },
+  {
+   "id": "b11",
+   "case": "whole payload one level down under a key on the exempt-path list",
+   "disposition": "PARKED",
+   "claim_verify": "PENDING_EVIDENCE",
+   "exit": 3
+  },
+  {
+   "id": "b12",
+   "case": "receipt wrapped in a top-level JSON array",
+   "disposition": "PARKED",
+   "claim_verify": null,
    "exit": 3
   }
  ]

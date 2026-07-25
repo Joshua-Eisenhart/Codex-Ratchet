@@ -224,8 +224,14 @@ def main(argv: list[str] | None = None) -> int:
                     help="repo-relative checker script; run as <python> <checker> <receipt>")
     ap.add_argument("--scope", choices=("live", "all"), default="live")
     ap.add_argument("--max-failures", type=int, default=0,
-                    help="failure budget. 0 = zero tolerance. >0 is a RATCHET CEILING "
-                         "for recorded legacy debt and may only ever be lowered.")
+                    help="COUNT budget. DEPRECATED and fungible — see --frozen-failures. "
+                         "0 = zero tolerance. Retained only for callers not yet migrated.")
+    ap.add_argument("--frozen-failures", metavar="JSON",
+                    help="Path+digest freeze of known-failing receipts, replacing the "
+                         "fungible --max-failures count. A failure outside the frozen set, "
+                         "or a frozen receipt whose bytes changed, fails the job.")
+    ap.add_argument("--write-frozen-failures", metavar="JSON",
+                    help="Record the current failure set as a frozen baseline (reviewed act).")
     ap.add_argument("--workers", type=int, default=8)
     args = ap.parse_args(argv)
 
@@ -286,6 +292,56 @@ def main(argv: list[str] | None = None) -> int:
               f"--max-failures. Fix the checker; do not re-pin to whatever it now returns.",
               file=sys.stderr)
         return 1
+
+    # ---------------------------------------------------------------- E9 REPAIR
+    # A COUNT budget is fungible in exactly the way the orphan ceiling was: repair
+    # one old failing receipt and a free slot opens for one new poisoned one, with
+    # CI still green. The frozen set removes the slot — identity, not arithmetic.
+    cur_fail = {p.relative_to(REPO).as_posix():
+                {"exit": code, "sha256": hashlib.sha256(p.read_bytes()).hexdigest(),
+                 "msg": line[:200]}
+                for p, code, line in failures}
+    if args.write_frozen_failures:
+        Path(args.write_frozen_failures).write_text(json.dumps({
+            "_what": f"FROZEN failure set for {args.checker} at scope={args.scope}: every "
+                     f"known-failing receipt by path + sha256 + exit. Replaces the fungible "
+                     f"--max-failures count.",
+            "_rule": "May only ever SHRINK, and only by a reviewed edit. A NEW failing path, "
+                     "or a frozen path whose bytes changed, fails the job — repairing one old "
+                     "failure no longer buys a slot for a new one.",
+            "checker": args.checker, "scope": args.scope,
+            "count_at_freeze": len(cur_fail), "failures": dict(sorted(cur_fail.items())),
+        }, indent=1) + "\n")
+        print(f"\nci_receipt_sweep: froze {len(cur_fail)} failure(s) into "
+              f"{args.write_frozen_failures}")
+        return 0
+
+    if args.frozen_failures:
+        try:
+            frozen_f = json.loads(Path(args.frozen_failures).read_bytes())["failures"]
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            print(f"ci_receipt_sweep: FAIL — cannot read the frozen failure set "
+                  f"{args.frozen_failures} ({exc}); failing CLOSED", file=sys.stderr)
+            return 1
+        new_f = sorted(set(cur_fail) - set(frozen_f))
+        gone_f = sorted(set(frozen_f) - set(cur_fail))
+        mutated_f = sorted(p for p in set(cur_fail) & set(frozen_f)
+                           if cur_fail[p]["sha256"] != frozen_f[p].get("sha256"))
+        print(f"  frozen-failure set: now={len(cur_fail)} frozen={len(frozen_f)} "
+              f"new={len(new_f)} mutated={len(mutated_f)} repaired={len(gone_f)}")
+        for p in gone_f[:20]:
+            print(f"  REPAIRED {p} — prune it from the frozen set")
+        for p in new_f:
+            print(f"  NEW FAILURE {p} — {cur_fail[p]['msg'][:110]}")
+        for p in mutated_f:
+            print(f"  MUTATED {p} — a known-failing receipt was edited while still failing")
+        if new_f or mutated_f:
+            print(f"\nci_receipt_sweep: FAIL — {len(new_f)} new and {len(mutated_f)} mutated "
+                  f"failing receipt(s) outside the frozen set. Do not re-freeze to make this "
+                  f"green; that erases the finding.", file=sys.stderr)
+            return 1
+        print("ci_receipt_sweep: within the frozen failure set — DEBT, not a pass.")
+        return 0
 
     if len(failures) > args.max_failures:
         print(f"\nci_receipt_sweep: FAIL — {len(failures)} failure(s) exceeds budget "

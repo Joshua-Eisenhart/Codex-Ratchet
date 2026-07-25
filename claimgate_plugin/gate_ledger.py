@@ -80,6 +80,33 @@ DEFAULT_KEY_PATH = Path.home() / ".config" / "claimgate" / "ledger.key"
 REPO_ROOT = PLUGIN_DIR.parent
 
 
+# TEST vs PRODUCTION authentication must be distinguishable IN THE RECORD, not in
+# prose next to it. A dogfood run with an ephemeral scratchpad key wrote a record
+# reading `mac_status: KEYED` while no production key existed anywhere; that record
+# is durable, and later readers would take it for production authentication. So:
+#
+#   PRODUCTION_KEYED  key at DEFAULT_KEY_PATH, or CLAIMGATE_LEDGER_KEY_MODE=production
+#   TEST_KEYED        any other key location — the FAIL-SAFE default, because an
+#                     unlabelled key must never inherit production authority
+#   UNKEYED           no usable key; consistency only, no authorship
+#
+# key_fingerprint is sha256(key)[:16] — enough to tell two keys apart across runs
+# without carrying the secret. Never log the key itself.
+MODE_ENV = "CLAIMGATE_LEDGER_KEY_MODE"
+TEMP_PREFIXES = ("/tmp", "/private/tmp", "/var/folders", "/private/var/folders")
+
+
+def classify_key(resolved: Path, key: bytes) -> tuple[str, str]:
+    """(key_mode, key_fingerprint). Production is OPT-IN and explicit."""
+    fp = hashlib.sha256(key).hexdigest()[:16]
+    declared = (os.environ.get(MODE_ENV) or "").strip().lower()
+    if declared == "production" and not str(resolved).startswith(TEMP_PREFIXES):
+        return "PRODUCTION_KEYED", fp
+    if resolved == DEFAULT_KEY_PATH.resolve() if DEFAULT_KEY_PATH.exists() else False:
+        return "PRODUCTION_KEYED", fp
+    return "TEST_KEYED", fp
+
+
 def resolve_key() -> tuple[bytes | None, str]:
     """Return (key, status). Never returns a key that lives inside the repo."""
     raw = os.environ.get(KEY_ENV)
@@ -101,7 +128,8 @@ def resolve_key() -> tuple[bytes | None, str]:
     key = resolved.read_bytes().strip()
     if len(key) < 32:
         return None, f"REFUSED: key at {resolved} is shorter than 32 bytes"
-    return key, "KEYED"
+    mode, fp = classify_key(resolved, key)
+    return key, f"{mode}:{fp}"
 
 
 def record_mac(record: dict, key: bytes) -> str:
@@ -239,7 +267,13 @@ def append(receipt: str, gate_exit: int, disposition: str,
                 "prev_line_sha256": prev,
             }
             key, key_status = resolve_key()
-            record["mac_status"] = "KEYED" if key else key_status.split(":")[0]
+            # key_mode is written VERBATIM, so TEST_KEYED can never be read as
+            # production. mac_status is kept for back-compatibility but is no
+            # longer the authority on authentication mode.
+            mode, _, fp = key_status.partition(":")
+            record["key_mode"] = mode
+            record["key_fingerprint"] = fp or None
+            record["mac_status"] = mode
             record["mac"] = record_mac(record, key) if key else None
             line = serialize(record)
             handle.seek(0, 2)
@@ -321,6 +355,18 @@ def verify(ledger_path: Path = LEDGER_PATH,
     # a holder of the key". A wholly regenerated file passes the first and fails
     # the second, which is exactly the forgery the chain alone cannot see.
     key, key_status = resolve_key()
+    # A TEST-keyed record carries a real MAC but NO production authority. Report it
+    # as its own state so it is never counted as authenticated provenance.
+    test_keyed = [r.get("seq") for r in records if r.get("key_mode") == "TEST_KEYED"]
+    legacy = [r.get("seq") for r in records if r.get("mac") and "key_mode" not in r]
+    if test_keyed:
+        problems.append(f"TEST_KEYED line(s) {test_keyed} — written with an ephemeral/"
+                        f"non-default key. The MAC is valid but proves only that the same "
+                        f"test key signed it; this is NOT production authentication.")
+    if legacy:
+        problems.append(f"UNLABELLED-MODE line(s) {legacy} — carry a MAC but predate the "
+                        f"key_mode field, so test and production cannot be told apart for "
+                        f"them. Treat as TEST_KEYED (fail-safe), never as production.")
     unkeyed = [r.get("seq") for r in records if not r.get("mac")]
     if key:
         bad = [r.get("seq") for r in records

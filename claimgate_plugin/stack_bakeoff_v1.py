@@ -24,7 +24,7 @@ Codex-Ratchet science backend layout — separate estate. No policy change.
 """
 from __future__ import annotations
 
-import json, subprocess, sys, time
+import json, platform, subprocess, sys, time
 from pathlib import Path
 
 # PINNED, not inherited. v0 used sys.executable, so the measurement silently
@@ -45,13 +45,22 @@ PY = str(SIM_PY) if SIM_PY.exists() else sys.executable
 # numpy comparisons return np.bool_, which json refuses. Coerce, never drop:
 # a fixture whose result cannot be serialized must not silently become "absent".
 PREAMBLE = r'''
-import json, resource, sys
+import json, platform, resource, sys
 def _plain(o):
     if hasattr(o, "item"): return o.item()
     if isinstance(o, (list, tuple)): return [_plain(x) for x in o]
     return str(o)
 def emit(**kw):
-    kw["rss_mb"] = round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/(1024*1024), 1)
+    # ru_maxrss UNITS ARE PLATFORM-DEPENDENT: BYTES on Darwin/macOS, KILOBYTES on
+    # Linux. A fixed /(1024*1024) is correct on macOS and wrong by 1024x on Linux,
+    # so the divisor is chosen per platform and the raw value + unit are BOTH
+    # reported. Never quote an RSS number without the platform that produced it.
+    raw = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    unit = "bytes" if platform.system() == "Darwin" else "kilobytes"
+    kw["rss_raw"] = raw
+    kw["rss_unit"] = unit
+    kw["rss_mb"] = round(raw / (1024*1024 if unit == "bytes" else 1024), 1)
+    kw["py"] = sys.version.split()[0]
     print("@@" + json.dumps(kw, default=_plain))
 '''
 
@@ -193,6 +202,28 @@ def main():
         rows.append(row)
     out = {"probe": "claimgate_stack_bakeoff_v1", "classification": "tool_lego_fit_probe",
            "promotion_allowed": False,
+           "environment_fingerprint": {
+               "interpreter_path_as_invoked": PY,
+               "interpreter_path_resolved": str(SIM_PY.resolve()) if SIM_PY.exists() else None,
+               "resolved_is_NOT_used": "The resolved path is recorded for provenance ONLY. "
+                                       "Invoking it drops the venv, because a venv derives "
+                                       "sys.prefix from argv[0]'s location plus pyvenv.cfg.",
+               "platform": platform.platform(),
+               "machine": platform.machine(),
+               "system": platform.system(),
+               "python_version": platform.python_version(),
+               "rss_units_note": "ru_maxrss is BYTES on Darwin, KILOBYTES on Linux. Each row "
+                                 "carries rss_raw + rss_unit alongside rss_mb; do not compare "
+                                 "rss_mb across platforms without checking rss_unit.",
+               "rss_scope": "RUSAGE_SELF measured INSIDE each child, i.e. per-process peak. "
+                            "NOT RUSAGE_CHILDREN, which is a running max across all children.",
+               "timing_method": "time.perf_counter() in the PARENT around subprocess.run of a "
+                                "fresh interpreter: wall-clock cold start including process "
+                                "spawn and import, single sample, no warm cache control.",
+               "timing_caveats": "Single unrepeated sample per library, same-machine, other "
+                                 "processes not quiesced. Treat as order-of-magnitude only.",
+               "isolation_flags": "-I (isolated: no PYTHONPATH, no user site, no script dir)",
+           },
            "interpreter": PY, "interpreter_pinned": SIM_PY.exists(),
            "interpreter_note": "PINNED to Makefile SIM_PY. Under the system python3, five of "
                                "these eight libraries are ABSENT — the stack is a property of a "

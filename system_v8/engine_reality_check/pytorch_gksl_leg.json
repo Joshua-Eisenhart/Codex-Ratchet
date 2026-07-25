@@ -1,0 +1,64 @@
+{
+  "engine": "pytorch",
+  "torch_version": "2.11.0",
+  "dtype": "torch.complex128",
+  "method": "exact matrix exponential of vectorised Liouvillian (column stacking)",
+  "t": 1.0,
+  "gamma": 0.3,
+  "t1_pop": 0.5556136655112885,
+  "t2_coh_re": 0.11626062608538973,
+  "t3_purity": 0.5987880371684178,
+  "t4_vn_entropy_log2": 0.852370121809831,
+  "t5_trace": 1.0,
+  "c1": true,
+  "c2": true,
+  "c3": true,
+  "c4": true,
+  "c1_trace_abs_err": 0.0,
+  "c2_hermitian_max_abs_err": 0.0,
+  "c3_min_eigenvalue": 0.27775234852937414,
+  "c4_S_rho0_log2": 0.6008760366928562,
+  "c4_S_rhot_log2": 0.852370121809831,
+  "eigenvalues_rho_t": [
+    0.27775234852937414,
+    0.722247651470626
+  ],
+  "eigenvalues_rho0": [
+    0.14644660940672627,
+    0.8535533905932737
+  ],
+  "sig12": {
+    "t1_pop": "0.555613665511",
+    "t2_coh_re": "0.116260626085",
+    "t3_purity": "0.598788037168",
+    "t4_vn_entropy_log2": "0.85237012181",
+    "t5_trace": "1"
+  },
+  "analytic_crosscheck": {
+    "note": "independent closed form, used only to detect Liouvillian miswiring",
+    "pop_abs_diff": 1.1102230246251565e-16,
+    "coh_abs_diff": 6.938893903907228e-17
+  },
+  "torch_functions_called": [
+    "torch.tensor",
+    "torch.eye",
+    "torch.kron",
+    "torch.linalg.matrix_exp",
+    "torch.linalg.eigvalsh",
+    "torch.matmul",
+    "torch.conj",
+    "torch.transpose",
+    "torch.reshape",
+    "torch.diagonal",
+    "torch.sum",
+    "torch.log2",
+    "torch.abs",
+    "torch.max",
+    "torch.min",
+    "torch.isfinite",
+    "Tensor.mH",
+    "Tensor.contiguous",
+    "Tensor.real",
+    "Tensor.item"
+  ]
+}

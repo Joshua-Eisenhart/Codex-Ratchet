@@ -1,0 +1,53 @@
+{
+ "probe": "claimgate_bypass_regression_v1",
+ "classification": "tool_lego_fit_probe",
+ "promotion_allowed": false,
+ "acceptance": "every case must PARK or BLOCK; none may yield VERIFIED, PASS, or ADMITTED_PENDING_DEPTH (that disposition ADMITS)",
+ "blocked": 6,
+ "total": 6,
+ "still_admitted": [],
+ "results": [
+  {
+   "id": "b1",
+   "case": "field_only + producer numeric_engine_required=false",
+   "disposition": "PARKED",
+   "claim_verify": "PENDING_EVIDENCE",
+   "exit": 3
+  },
+  {
+   "id": "b2",
+   "case": "field_only + asserted numeric value, no engine metadata",
+   "disposition": "PARKED",
+   "claim_verify": "PENDING_EVIDENCE",
+   "exit": 3
+  },
+  {
+   "id": "b3",
+   "case": "forged matching JAX/Julia numeric fields",
+   "disposition": "BLOCKED",
+   "claim_verify": "PENDING_EVIDENCE",
+   "exit": 1
+  },
+  {
+   "id": "b4",
+   "case": "fake JAX leg that prints JSON without JAX",
+   "disposition": "BLOCKED",
+   "claim_verify": "PENDING_EVIDENCE",
+   "exit": 1
+  },
+  {
+   "id": "b5",
+   "case": "decorative JAX import with no dispatched operation",
+   "disposition": "BLOCKED",
+   "claim_verify": "PENDING_EVIDENCE",
+   "exit": 1
+  },
+  {
+   "id": "b6",
+   "case": "NaN matching engine values via the metadata-only path",
+   "disposition": "BLOCKED",
+   "claim_verify": "PENDING_EVIDENCE",
+   "exit": 1
+  }
+ ]
+}

@@ -112,6 +112,24 @@ if [ "$tier0_exit" -ne 0 ]; then
   exit "$tier0_exit"
 fi
 
+# CLAIM POLICY GATE — the EVALUATOR decides what this receipt must satisfy.
+# Fires BEFORE the seal, because the seal honours producer-declared exemptions.
+# Measured on the reviewed branch: a receipt declaring claim_kind=field_only with
+# engine_contract.numeric_engine_required=false returned exit 0 / VERIFIED / ledger
+# PASS, and so did one that simply omitted engine metadata and asserted a number.
+# Numeric-ness is now derived from CONTENT and the requirement comes from
+# claimgate_plugin/claim_policy.json, so neither a boolean nor silence is an
+# exemption. Exit 1 BLOCK, 3 PARK — both block admission.
+python3 "$script_dir/../claim_policy_gate.py" "$receipt"
+policy_exit=$?
+stage_done claim_policy "$policy_exit"
+if [ "$policy_exit" -ne 0 ]; then
+  classify_block claim_policy "$policy_exit"
+  echo "post_receipt_gate: claim policy gate blocked (exit $policy_exit — 1=BLOCK, 3=PARK/pending evidence)" >&2
+  advise
+  exit "$policy_exit"
+fi
+
 # THREE-ENGINE SEAL (hard, structural): numpy/scipy/mpmath are CONTROL-ONLY; an
 # authoritative engine (Julia/JAX/PyTorch) must carry the numeric work. Fired here
 # so a contract-violating receipt cannot be admitted. Closes the systemic

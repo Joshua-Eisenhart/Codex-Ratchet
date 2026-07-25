@@ -190,6 +190,25 @@ def _auditor_calibrated(auditor, root, reg):
 
 TIERS = [("tier0", tier0), ("tier1", tier1), ("tier2", tier2), ("tier3", tier3), ("tier4", tier4)]
 
+def _needs_execution_evidence(receipt, receipt_path):
+    """True when this receipt makes a NUMERIC claim that only witnessed engine
+    execution can support. Resolved from the EVALUATOR-owned policy and the
+    receipt's measurable content, never from a producer-declared field.
+
+    Fails CLOSED: if the policy or the witness cannot be consulted, the claim is
+    treated as pending evidence rather than verified, because an unavailable
+    check has not passed."""
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        from claimgate_plugin.claim_policy_gate import evaluate, load_policy
+        from pathlib import Path as _P
+        code, label, msg, _ = evaluate(receipt, _P(receipt_path), load_policy())
+        return code != 0, f"{label}: {msg}"
+    except Exception as exc:  # noqa: BLE001
+        return True, (f"execution-evidence policy could not be consulted ({exc}); "
+                      f"treating as pending evidence rather than verified")
+
+
 def main():
     args = sys.argv[1:]
     receipt_path = next((a for a in args if not a.startswith("--")), None)
@@ -242,12 +261,23 @@ def main():
     verified = [r["tier"] for r in results if r["status"] == "PASS"]
     unverified = [r["tier"] for r in results if r["status"] == "SKIP"]
 
+    # METADATA-ONLY CEILING. Every tier above reads the receipt and its declared
+    # evidence; none of them watches an engine run. Measured on the reviewed
+    # branch, this function returned VERIFIED for all six forged bypass fixtures,
+    # including a fake JAX leg that printed JSON without importing jax and a pair
+    # of copied numbers labelled "JAX and Julia agree to 1e-13". A metadata path
+    # cannot certify computation, so for an engine-bearing NUMERIC claim its best
+    # outcome is PENDING_EVIDENCE — never VERIFIED.
+    engine_bearing_numeric, why_pending = _needs_execution_evidence(receipt, receipt_path)
+
     if tamper:
         verdict, code = "REJECTED", 1           # cross-tier evidence bootstrap = fatal
     elif failed:
         verdict, code = "REJECTED", 1
     elif unclassified or req_unmet:
         verdict, code = "INSUFFICIENT_DEPTH", 3  # unclassified, or required depth not met
+    elif engine_bearing_numeric:
+        verdict, code = "PENDING_EVIDENCE", 3
     else:
         verdict, code = "VERIFIED", 0
 
@@ -256,6 +286,7 @@ def main():
         "receipt": os.path.relpath(receipt_path, root),
         "claim_kind": receipt.get("claim_kind"),
         "verdict": verdict,
+        "execution_evidence": why_pending,
         "required_tiers": sorted(required),
         "verified_tiers": verified,
         "unverified_tiers": unverified,          # SKIPPED — explicitly NOT passed

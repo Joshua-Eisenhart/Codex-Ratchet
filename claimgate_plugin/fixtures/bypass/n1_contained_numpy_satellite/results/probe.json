@@ -1,0 +1,13 @@
+{"classification":"tool_lego_fit_probe","promotion_allowed":false,
+ "claim_under_test":"spectral gap of a fixed 3x3 Hermitian matrix, computed independently by JAX and PyTorch; numpy only summarises the spread between them afterwards",
+ "numpy_role":"CONTAINED downstream satellite — probe_numpy_satellite.py consumes what the engines produced and computes no observable of its own",
+ "engine_contract":{"numeric_engine_required":true,"engines":["jax","torch"]},
+ "TOOL_INTEGRATION_DEPTH":{"jax":"load_bearing","torch":"load_bearing","numpy":"supportive"},
+ "engines_ran":{"jax":{"jax_spectral_gap":1.3565065188738898,"jax_trace":9.0},
+                "torch":{"torch_spectral_gap":1.3565065188738894,"torch_trace":9.0},
+                "numpy":"downstream_satellite_only"},
+ "engine_values":{"jax_spectral_gap":1.3565065188738898,"jax_trace":9.0,
+                  "torch_spectral_gap":1.3565065188738894,"torch_trace":9.0},
+ "three_engine_legs":{"jax":{"spectral_gap":1.3565065188738898,"trace":9.0},
+                      "torch":{"spectral_gap":1.3565065188738894,"trace":9.0}},
+ "agreement":{"max_abs_diff":4.440892098500626e-16,"tolerance":1e-6,"agree":true}}

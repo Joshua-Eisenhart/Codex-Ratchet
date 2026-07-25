@@ -63,6 +63,23 @@ CASES = [
     ("b6", "NaN matching engine values via the metadata-only path",
      "b6_nan_matching_engine_values.json",
      "NaN == NaN comparisons are false, so a NaN pair reads as perfect agreement"),
+    # --------------------------------------------------------------------------
+    # b7-b10 defeat the FIX for b1-b6. Found by attacking my own gate rather than
+    # by waiting for review. All four are OPEN.
+    ("b7", "claim hidden under a key name on the ignored-metadata list",
+     "b7_claim_hidden_under_ignored_key.json",
+     "metadata_keys_ignored skips 'count' at ANY depth, so the claim rides in a key "
+     "the detector refuses to look at"),
+    ("b8", "integer claim outside any claim-bearing container",
+     "b8_integer_outside_container.json",
+     "integers count only inside a claim_bearing_container, so a bare integer claim evades"),
+    ("b9", "number encoded as a JSON string",
+     "b9_number_as_string.json",
+     "content detection walks for int/float; a stringified number is invisible to it"),
+    ("b10", "one token engine op, then print fabricated constants",
+     "b10_token_dispatch/results/probe.json",
+     "dispatch counting proves AN operation ran, not that the OUTPUT came from it — the "
+     "deepest of the four, and the one the design does not currently address"),
 ]
 
 

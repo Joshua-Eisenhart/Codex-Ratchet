@@ -1,0 +1,165 @@
+{
+  "capabilities": [
+    {
+      "capability_id": "pysindy_law",
+      "controls": {
+        "dispatch": true,
+        "mutation": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 5.1047301220005465,
+      "evidence": {
+        "dispatch": [
+          "pysindy.PolynomialLibrary",
+          "pysindy.STLSQ",
+          "pysindy.SINDy.fit"
+        ],
+        "observed": {
+          "coefficient": -2.0000142063284,
+          "true_residual": 4.970839334418086e-11,
+          "wrong_residual": 0.24630091581381616
+        },
+        "runtime": {
+          "feature_library": "polynomial_degree_1_no_bias"
+        },
+        "stdout_sha256": "69165d504d4e1cebac182d3055c9e3ae3d3f58d08bb3fd1d5636b806e43d3c72"
+      },
+      "expected_version": "2.1.0",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "2.1.0",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "pydmd_rate",
+      "controls": {
+        "dispatch": true,
+        "mutation": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 6.184027500001321,
+      "evidence": {
+        "dispatch": [
+          "pydmd.DMD",
+          "pydmd.DMD.fit",
+          "pydmd.DMD.eigs"
+        ],
+        "observed": {
+          "eigenvalue": 0.5000000000000001
+        },
+        "runtime": {},
+        "stdout_sha256": "6d93519fd4cabd2e397b7066a10a79d822834bce9b8636f641ba9eb2dec141fe"
+      },
+      "expected_version": "2025.8.1",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "2025.8.1",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "pymdp_fep",
+      "controls": {
+        "dispatch": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 14.40376114999708,
+      "evidence": {
+        "dispatch": [
+          "pymdp.Agent.infer_states",
+          "pymdp.Agent.infer_policies"
+        ],
+        "observed": {
+          "neg_efe_finite": true,
+          "policy_sum": 1.0,
+          "posterior_sum": 0.9999999999999999,
+          "vfe_finite": true
+        },
+        "runtime": {},
+        "stdout_sha256": "ca0ece2f51327ea8263d6d7e009967dd375548bae834a96b235797bcd354c33d"
+      },
+      "expected_version": "1.0.3",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "1.0.3",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "pykoopman_rate",
+      "controls": {},
+      "elapsed_seconds": 0.0,
+      "evidence": {},
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "acceptance_profile_not_implemented",
+      "required": false,
+      "state": "UNTESTED",
+      "worker_sha256": null
+    },
+    {
+      "capability_id": "torch_density",
+      "controls": {
+        "positive": false
+      },
+      "elapsed_seconds": 0.05449222999959602,
+      "evidence": {
+        "exit_code": 1,
+        "stderr_sha256": "5b9f5a9ba298b205a533245c262e606d1a3f6f9d9b25bc39018dd0cf253e5473"
+      },
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "dependency_unavailable",
+      "required": false,
+      "state": "UNAVAILABLE",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "dimod_anneal",
+      "controls": {},
+      "elapsed_seconds": 0.0,
+      "evidence": {},
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "acceptance_profile_not_implemented",
+      "required": false,
+      "state": "UNTESTED",
+      "worker_sha256": null
+    }
+  ],
+  "controller_sha256": "c4233d493f5096a88eaebd66912e77f03ae9a7ebacbe76671effab7b82f2b2c0",
+  "elapsed_seconds": 25.85141830199973,
+  "environment": {
+    "distribution_count": 40,
+    "expected_lock_sha256": "915f5c3f25ddffc3dda4d522b1be36bc9760b47259401840f4c8d4f76fd561c7",
+    "missing": [],
+    "state": "READY",
+    "tested_lock": "requirements/locks/e2-py312-linux.lock",
+    "tested_lock_sha256": "915f5c3f25ddffc3dda4d522b1be36bc9760b47259401840f4c8d4f76fd561c7",
+    "unexpected": []
+  },
+  "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+  "generated_at_utc": "2026-07-26T03:57:51.401535+00:00",
+  "layer_id": "S3",
+  "layer_name": "IGT FEP and scientific-field satellites",
+  "manifest_sha256": "4a814fd7ee727d15a8c78d5bc0741eeeaa41eacf04e501789c80177a58f585ff",
+  "mode": "acceptance",
+  "promotion_allowed": false,
+  "python_executable": "/tmp/constraintbox-estate-e2/bin/python",
+  "python_version": "3.12.13",
+  "schema": "constraintbox.sim-tier-receipt.v2",
+  "state": "DEGRADED"
+}

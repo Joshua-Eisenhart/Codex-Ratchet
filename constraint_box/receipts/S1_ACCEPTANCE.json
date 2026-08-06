@@ -1,0 +1,223 @@
+{
+  "capabilities": [
+    {
+      "capability_id": "stdlib_finite",
+      "controls": {
+        "dispatch": true,
+        "mutation": true,
+        "positive": true,
+        "replay": true
+      },
+      "elapsed_seconds": 0.17573541899946576,
+      "evidence": {
+        "dispatch": [
+          "set",
+          "math.log2"
+        ],
+        "observed": {
+          "fibre_sizes": [
+            2,
+            2
+          ],
+          "hartley_bits": 2.0,
+          "history_count": 4,
+          "projection_count": 2
+        },
+        "runtime": {},
+        "stdout_sha256": "21dbe1d6ae8246323ec8ef1afbd31bda4124334354c78c6f22d95f0afddf324d"
+      },
+      "expected_version": "builtin",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "builtin",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "numpy_density",
+      "controls": {
+        "dispatch": true,
+        "mutation": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 0.37988933099768474,
+      "evidence": {
+        "dispatch": [
+          "numpy.asarray",
+          "numpy.linalg.eigvalsh",
+          "numpy.trace"
+        ],
+        "observed": {
+          "dephased_entropy_bits": 0.8112781244591328,
+          "eigenvalues": [
+            0.14644660940672627,
+            0.8535533905932737
+          ],
+          "hartley_bits": 1.0,
+          "rank": 2,
+          "trace": 1.0,
+          "von_neumann_bits": 0.6008760366928562
+        },
+        "runtime": {
+          "dtype": "float64"
+        },
+        "stdout_sha256": "633bafc28b48faaf973aacbcd43ecb623ead64d12c27db9a9b54717b71b9201e"
+      },
+      "expected_version": "2.5.1",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "2.5.1",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "scipy_channel",
+      "controls": {
+        "dispatch": true,
+        "mutation": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 1.0694726900019305,
+      "evidence": {
+        "dispatch": [
+          "scipy.linalg.expm",
+          "numpy.matmul"
+        ],
+        "observed": {
+          "column_sum": 1.0,
+          "state": [
+            0.7856045319244075,
+            0.21439546807559248
+          ]
+        },
+        "runtime": {},
+        "stdout_sha256": "b94584f1473fcecde19641cff63a28b79a765dd22915435ca305ca50752374e5"
+      },
+      "expected_version": "1.18.0",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "1.18.0",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "z3_finite",
+      "controls": {
+        "dispatch": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 0.3753149160002067,
+      "evidence": {
+        "dispatch": [
+          "z3.Solver.add",
+          "z3.Solver.check",
+          "z3.Solver.model"
+        ],
+        "observed": {
+          "sat": "sat",
+          "unsat": "unsat",
+          "witness": {
+            "x": 0,
+            "y": 1
+          }
+        },
+        "runtime": {},
+        "stdout_sha256": "92a6c401f6b5368ce9dded826e79227b8dd3a8743ccd8e87fe8b3c27861471e5"
+      },
+      "expected_version": "5.0.0.0",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "5.0.0.0",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "cvc5_finite",
+      "controls": {
+        "dispatch": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 0.2810167300012836,
+      "evidence": {
+        "dispatch": [
+          "cvc5.Solver.assertFormula",
+          "cvc5.Solver.checkSat"
+        ],
+        "observed": {
+          "sat": "sat",
+          "unsat": "unsat"
+        },
+        "runtime": {},
+        "stdout_sha256": "14f420b041b19aa899e344a5b0b7028c93868175e5d39943737dfa77b3f3528a"
+      },
+      "expected_version": "1.3.4",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "1.3.4",
+      "reason": "all_required_controls_passed",
+      "required": false,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "tla_controller",
+      "controls": {
+        "artifact_hash": true,
+        "dispatch": true,
+        "mutation": true,
+        "positive": true,
+        "replay": true
+      },
+      "elapsed_seconds": 2.1771763549986645,
+      "evidence": {
+        "cfg_sha256": "a18ec5dd8b647014baf93507336b51d3d3fd92b0183afe1732c15d48a7621bdf",
+        "jar_sha1": "bee4a54f3ee3d4afc347c3240ec2d9e93b075104",
+        "jar_sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
+        "java": "/usr/bin/java",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "080c663f86eb097dec864b4c0add1e311b0a1169d96ddd3ff0a5ebfbaa117e94",
+        "tla_sha256": "b106cc6432c0d5c91ce87cda3356ab55f06a844fb8e1bc348e35a392bb3312a6"
+      },
+      "expected_version": "1.7.4",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "1.7.4",
+      "reason": "all_required_controls_passed",
+      "required": false,
+      "state": "READY",
+      "worker_sha256": null
+    }
+  ],
+  "controller_sha256": "c4233d493f5096a88eaebd66912e77f03ae9a7ebacbe76671effab7b82f2b2c0",
+  "elapsed_seconds": 4.5430043670003215,
+  "environment": {
+    "distribution_count": 4,
+    "expected_lock_sha256": "fc8ad6f3c2d22123c89cb325359ed7beab3b5b258b5fed507d6450a5c4c60aef",
+    "missing": [],
+    "state": "READY",
+    "tested_lock": "requirements/locks/e0-py312-linux.lock",
+    "tested_lock_sha256": "fc8ad6f3c2d22123c89cb325359ed7beab3b5b258b5fed507d6450a5c4c60aef",
+    "unexpected": []
+  },
+  "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+  "generated_at_utc": "2026-07-26T03:57:04.519814+00:00",
+  "layer_id": "S1",
+  "layer_name": "claim-control simulation instruments",
+  "manifest_sha256": "4a814fd7ee727d15a8c78d5bc0741eeeaa41eacf04e501789c80177a58f585ff",
+  "mode": "acceptance",
+  "promotion_allowed": false,
+  "python_executable": "/tmp/constraintbox-estate-e0/bin/python",
+  "python_version": "3.12.13",
+  "schema": "constraintbox.sim-tier-receipt.v2",
+  "state": "READY"
+}

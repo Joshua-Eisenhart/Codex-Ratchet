@@ -1,0 +1,183 @@
+{
+  "capabilities": [
+    {
+      "capability_id": "jax_density",
+      "controls": {
+        "dispatch": true,
+        "mutation": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 2.598124549000204,
+      "evidence": {
+        "dispatch": [
+          "jax.numpy.asarray",
+          "jax.numpy.linalg.eigvalsh",
+          "jax.jit.lower"
+        ],
+        "observed": {
+          "dephased_entropy_bits": 0.8112781244591328,
+          "eigenvalues": [
+            0.14644660940672627,
+            0.8535533905932737
+          ],
+          "hartley_bits": 1.0,
+          "rank": 2,
+          "trace": 1.0,
+          "von_neumann_bits": 0.6008760366928562
+        },
+        "runtime": {
+          "device": "cpu:0",
+          "platform": "cpu",
+          "stablehlo_sha256": "3786e9674a6113603c180a2e5c505a22b97366a171fa8db39a7cfaca64e82b96",
+          "x64": true
+        },
+        "stdout_sha256": "031f3d45141d43a869f8704ea2d89349553d956ad9f7743054cf5e822946c746"
+      },
+      "expected_version": "0.11.0",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "0.11.0",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "diffrax_flow",
+      "controls": {
+        "dispatch": true,
+        "mutation": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 4.264458273000855,
+      "evidence": {
+        "dispatch": [
+          "diffrax.ODETerm",
+          "diffrax.Tsit5",
+          "diffrax.diffeqsolve"
+        ],
+        "observed": {
+          "terminal": 0.1353352832366546
+        },
+        "runtime": {
+          "result": "diffrax._solution.RESULTS<>"
+        },
+        "stdout_sha256": "ce53e18d4731b267fea7af2431e191bbd03876dcc975bd8ea769bee6dd272e4c"
+      },
+      "expected_version": "0.7.2",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "0.7.2",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "quimb_tensor",
+      "controls": {
+        "dispatch": true,
+        "mutation": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 2.7963147899990872,
+      "evidence": {
+        "dispatch": [
+          "quimb.qarray",
+          "quimb.eigvalsh",
+          "quimb.trace"
+        ],
+        "observed": {
+          "dephased_entropy_bits": 0.8112781244591328,
+          "eigenvalues": [
+            0.14644660940672627,
+            0.8535533905932737
+          ],
+          "hartley_bits": 1.0,
+          "rank": 2,
+          "trace": 1.0,
+          "von_neumann_bits": 0.6008760366928562
+        },
+        "runtime": {},
+        "stdout_sha256": "ff71bf62a69198116ddea1de4ead4bffad3aa940a70c7690ad63c16cebf76dec"
+      },
+      "expected_version": "1.14.0",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "1.14.0",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "cotengra_path",
+      "controls": {
+        "dispatch": true,
+        "positive": true,
+        "replay": true,
+        "severance": true
+      },
+      "elapsed_seconds": 0.905746566999369,
+      "evidence": {
+        "dispatch": [
+          "cotengra.HyperOptimizer",
+          "cotengra.HyperOptimizer.search"
+        ],
+        "observed": {
+          "contraction_cost": 12,
+          "max_size": 4
+        },
+        "runtime": {},
+        "stdout_sha256": "b8c30dc2b1edb877c13862a6e7fb5901c47750cea85133a329dfaa9aa5459274"
+      },
+      "expected_version": "0.8.2",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": "0.8.2",
+      "reason": "all_required_controls_passed",
+      "required": true,
+      "state": "READY",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "julia_density",
+      "controls": {},
+      "elapsed_seconds": 0.0,
+      "evidence": {
+        "executable": null
+      },
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "external_executable_absent",
+      "required": false,
+      "state": "UNAVAILABLE",
+      "worker_sha256": null
+    }
+  ],
+  "controller_sha256": "c4233d493f5096a88eaebd66912e77f03ae9a7ebacbe76671effab7b82f2b2c0",
+  "elapsed_seconds": 10.65347371200005,
+  "environment": {
+    "distribution_count": 22,
+    "expected_lock_sha256": "d956b396abd9ef44ff3ddac90daf73fd85753838a064db74b3fe33e511e8f957",
+    "missing": [],
+    "state": "READY",
+    "tested_lock": "requirements/locks/e1-py312-linux.lock",
+    "tested_lock_sha256": "d956b396abd9ef44ff3ddac90daf73fd85753838a064db74b3fe33e511e8f957",
+    "unexpected": []
+  },
+  "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+  "generated_at_utc": "2026-07-26T03:57:21.094448+00:00",
+  "layer_id": "S2",
+  "layer_name": "local manifold and engine workhorses",
+  "manifest_sha256": "4a814fd7ee727d15a8c78d5bc0741eeeaa41eacf04e501789c80177a58f585ff",
+  "mode": "acceptance",
+  "promotion_allowed": false,
+  "python_executable": "/tmp/constraintbox-estate-e1/bin/python",
+  "python_version": "3.12.13",
+  "schema": "constraintbox.sim-tier-receipt.v2",
+  "state": "DEGRADED"
+}

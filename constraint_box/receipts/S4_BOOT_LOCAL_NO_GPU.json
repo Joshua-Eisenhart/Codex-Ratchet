@@ -1,0 +1,101 @@
+{
+  "capabilities": [
+    {
+      "capability_id": "nvidia_device",
+      "controls": {},
+      "elapsed_seconds": 0.0,
+      "evidence": {
+        "executable": null
+      },
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "nvidia_smi_absent",
+      "required": false,
+      "state": "UNAVAILABLE",
+      "worker_sha256": null
+    },
+    {
+      "capability_id": "jax_cuda_parity",
+      "controls": {
+        "positive": false
+      },
+      "elapsed_seconds": 0.7926521979989047,
+      "evidence": {
+        "exit_code": 1,
+        "stderr_sha256": "b17e6116b7366eec240a610de600991d48fbb6646139e9ea7d4f67b934ddba25"
+      },
+      "expected_version": "0.11.0",
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "positive_witness_failed",
+      "required": false,
+      "state": "FAILED",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "torch_cuda_parity",
+      "controls": {
+        "positive": false
+      },
+      "elapsed_seconds": 0.05065674799880071,
+      "evidence": {
+        "exit_code": 1,
+        "stderr_sha256": "7842b2f613d73011797cc3e8bd5d63c1df8fe85651608686abee36907f321e80"
+      },
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "dependency_unavailable",
+      "required": false,
+      "state": "UNAVAILABLE",
+      "worker_sha256": "8d7969f93fe05d2f93f5b404e5da611e9cc5a926d286f3e40f783645d6c8f4c1"
+    },
+    {
+      "capability_id": "cuquantum_tensor",
+      "controls": {},
+      "elapsed_seconds": 0.0,
+      "evidence": {},
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "acceptance_profile_not_implemented",
+      "required": false,
+      "state": "UNTESTED",
+      "worker_sha256": null
+    },
+    {
+      "capability_id": "reactant_julia_gpu",
+      "controls": {},
+      "elapsed_seconds": 0.0,
+      "evidence": {
+        "executable": null
+      },
+      "expected_version": null,
+      "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+      "observed_version": null,
+      "reason": "external_executable_absent",
+      "required": false,
+      "state": "UNAVAILABLE",
+      "worker_sha256": null
+    }
+  ],
+  "controller_sha256": "c4233d493f5096a88eaebd66912e77f03ae9a7ebacbe76671effab7b82f2b2c0",
+  "elapsed_seconds": 0.9269765059998463,
+  "environment": {
+    "distribution_count": 22,
+    "observed_sha256": "d956b396abd9ef44ff3ddac90daf73fd85753838a064db74b3fe33e511e8f957",
+    "state": "UNPINNED"
+  },
+  "fixture_sha256": "bef31abdda024743467a0479de650ffd814764bbbab193709a04b9318c484bed",
+  "generated_at_utc": "2026-07-26T03:58:00.411949+00:00",
+  "layer_id": "S4",
+  "layer_name": "cloud GPU acceleration and parity",
+  "manifest_sha256": "4a814fd7ee727d15a8c78d5bc0741eeeaa41eacf04e501789c80177a58f585ff",
+  "mode": "boot",
+  "promotion_allowed": false,
+  "python_executable": "/tmp/constraintbox-estate-e1/bin/python",
+  "python_version": "3.12.13",
+  "schema": "constraintbox.sim-tier-receipt.v2",
+  "state": "FAILED"
+}

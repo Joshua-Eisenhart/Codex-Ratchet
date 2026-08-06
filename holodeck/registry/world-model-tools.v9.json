@@ -1,0 +1,15 @@
+{
+  "schema": "codex-ratchet.holodeck-tool-registry.v9",
+  "version": "0.1.0.dev1",
+  "sim_engines_profile": "holodeck-world-model",
+  "tools": [
+    {"id": "python.numpy", "import": "numpy", "role": "finite_state_and_reference_arrays", "declared_integration_level": "imported_in_source"},
+    {"id": "python.scipy", "import": "scipy", "role": "reference_dynamics_and_matrix_functions", "declared_integration_level": "imported_in_source"},
+    {"id": "python.torch", "import": "torch", "role": "trainable_predictive_and_memory_models", "declared_integration_level": "function_level_receipt"},
+    {"id": "python.torch-geometric", "import": "torch_geometric", "role": "graph_world_models_and_hopfield_support", "declared_integration_level": "function_level_receipt"},
+    {"id": "python.lightning", "import": "lightning", "role": "optional_training_orchestration", "declared_integration_level": "installed_only"},
+    {"id": "python.gymnasium", "import": "gymnasium", "role": "controlled_environment_interface", "declared_integration_level": "installed_only"},
+    {"id": "python.scikit-learn", "import": "sklearn", "role": "classical_predictive_controls", "declared_integration_level": "installed_only"},
+    {"id": "python.e3nn", "import": "e3nn", "role": "equivariant_geometric_models", "declared_integration_level": "function_level_receipt"}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "codex-ratchet.artifact-submission.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "bridge_id", "artifact_path", "artifact_sha256", "claim_ceiling"],
+  "properties": {
+    "schema": {"const": "codex-ratchet.artifact-submission.v1"},
+    "bridge_id": {"type": "string", "minLength": 1},
+    "artifact_path": {"type": "string", "minLength": 1},
+    "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "claim_ceiling": {"type": "string", "minLength": 1}
+  }
+}

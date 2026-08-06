@@ -1,0 +1,57 @@
+{
+  "schema": "constraintbox.core-tool-registry.v9",
+  "version": "0.4.0.dev1",
+  "mirrors": "sim_engines/registry/tool-registry.v9.json",
+  "tools": [
+    {
+      "id": "python.z3",
+      "distribution": "z3-solver",
+      "import": "z3",
+      "required_apis": ["Solver", "Int", "sat"],
+      "cb_roles": ["finite_satisfiability", "counterexample_witness"],
+      "source": ["constraint_box/src/constraintbox/constraints.py"],
+      "tests": ["constraint_box/tests/test_constraints_backend_parity.py"],
+      "integration_level": "function_level_receipt"
+    },
+    {
+      "id": "python.cvc5",
+      "distribution": "cvc5",
+      "import": "cvc5",
+      "required_apis": ["Solver", "Kind", "Result.isSat"],
+      "cb_roles": ["independent_finite_satisfiability", "solver_disagreement_control"],
+      "source": ["constraint_box/src/constraintbox/constraints.py"],
+      "tests": ["constraint_box/tests/test_constraints_backend_parity.py"],
+      "integration_level": "function_level_receipt"
+    },
+    {
+      "id": "python.sympy",
+      "distribution": "sympy",
+      "import": "sympy",
+      "required_apis": ["symbols", "expand", "Poly"],
+      "cb_roles": ["exact_symbolic_normalization", "finite_polynomial_checks"],
+      "source": ["constraint_box/src/constraintbox/symbolic.py"],
+      "tests": ["constraint_box/tests/test_symbolic.py"],
+      "integration_level": "function_level_receipt"
+    },
+    {
+      "id": "python.rustworkx",
+      "distribution": "rustworkx",
+      "import": "rustworkx",
+      "required_apis": ["PyDiGraph", "topological_sort"],
+      "cb_roles": ["finite_workflow_graph", "acyclic_order_check"],
+      "source": ["constraint_box/src/constraintbox/workflow_graph.py"],
+      "tests": ["constraint_box/tests/test_workflow_graph.py"],
+      "integration_level": "function_level_receipt"
+    },
+    {
+      "id": "python.maude",
+      "distribution": "maude",
+      "import": "maude",
+      "required_apis": ["init", "input", "getModule", "Module.parseTerm", "Term.apply"],
+      "cb_roles": ["finite_rewrite_transition", "ordered_state_change"],
+      "source": ["constraint_box/src/constraintbox/maude_rewrite.py"],
+      "tests": ["constraint_box/tests/test_maude_rewrite.py"],
+      "integration_level": "function_level_receipt"
+    }
+  ]
+}

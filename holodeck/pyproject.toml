@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codex-ratchet-holodeck"
+version = "0.1.0.dev1"
+description = "Independent predictive-world and perception experiment shell"
+requires-python = ">=3.11,<3.14"
+dependencies = []
+
+[project.optional-dependencies]
+world-model = [
+    "numpy==2.3.4",
+    "scipy==1.17.1",
+    "torch==2.11.0",
+    "torch-geometric==2.7.0",
+    "lightning==2.6.5",
+    "gymnasium",
+    "scikit-learn==1.8.0",
+    "e3nn==0.6.0",
+]
+test = []
+
+[project.scripts]
+holodeck = "holodeck_world.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

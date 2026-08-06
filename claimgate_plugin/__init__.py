@@ -7,3 +7,5 @@ claimgate_plugin/hashlib.py shadow the stdlib. Module invocation off the repo
 root makes that file a SUBMODULE (claimgate_plugin.hashlib), not top-level
 hashlib, so it cannot shadow.
 """
+
+__version__ = "0.1.0.dev1"

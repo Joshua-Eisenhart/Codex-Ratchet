@@ -1,0 +1,31 @@
+{
+  "schema": "codex-ratchet.product-boundary.v1",
+  "product_id": "constraint_box",
+  "version": "0.4.0.dev1",
+  "default_entrypoint": "constraintbox.core_cli:main",
+  "legacy_entrypoint": "constraintbox.cli:main",
+  "core_third_party_tools": ["z3", "cvc5", "sympy", "rustworkx", "maude"],
+  "standard_library_plumbing": true,
+  "forbidden_as_core": [
+    "jax",
+    "torch",
+    "julia",
+    "pysindy",
+    "pykoopman",
+    "java",
+    "tlc",
+    "apalache"
+  ],
+  "legacy_bridge_debt": {
+    "external_capability_modules": "must move behind cb-to-sim-engines process envelopes",
+    "formalcheck_temporal_pair": "TLC and Apalache are external proof bridges, not CB core",
+    "bundled_claimgate_copy": "excluded duplicate; repository-root claimgate_plugin is authoritative",
+    "legacy_cli": "retained temporarily as constraintbox-legacy and not the v9 default"
+  },
+  "independent_acceptance": [
+    "python -m constraintbox doctor --json",
+    "python -m constraintbox exercise --json",
+    "python -m pytest -q tests/test_v9_core_boundary.py"
+  ],
+  "promotion_allowed": false
+}

@@ -1,8 +1,40 @@
 # Repo Layout — Codex Ratchet
 
-> Canonical map of the repository structure. Updated 2026-04-14.
+> Canonical map of the repository structure. Updated 2026-08-06 for v9.
 
-Docs live in `system_v5/`. Sim code lives in `system_v4/probes/`. Nothing random at root.
+V9 is a boundary and integration overlay. It does not erase the v4-v8 corpus;
+it identifies independent products, current entry points, bridge contracts, and
+the evidence ceiling of migrated sources.
+
+## V9 authority overlay
+
+```
+/
+├── system_v9/                 # Stack manifest, CR boundary, bridge contracts, verifier
+├── constraint_box/            # Lean deterministic CB product; exact five-tool core
+├── claimgate_plugin/          # Canonical ClaimGate product
+├── claimgate/                 # Legacy/reference ClaimGate material
+├── sim_engines/               # Portable install profiles, tool registry, live doctor
+├── holodeck/                  # Independent world-model/perception product scaffold
+├── system_v4/ ... system_v8/  # Historical source/evidence strata, not auto-promoted
+└── scripts/                   # Shared repository operations and legacy runners
+```
+
+The v9 product boundaries are literal:
+
+| Product | Owns | Does not own |
+|---|---|---|
+| ConstraintBox | deterministic orchestration and its five-tool Python core | ClaimGate, Julia, JAX, PyTorch, QIT, Holodeck |
+| ClaimGate | claim admission and evidence policy | simulation or orchestration |
+| Sim Engines | external numerical, symbolic, graph, QIT, and formal runtimes | claim admission or CR doctrine |
+| Codex Ratchet | schedules, candidate construction, and system-level protocols | the internals of CB or engines |
+| Holodeck | trainable world-model and perception surfaces | QIT-engine or CR authority |
+
+Every cross-product call must route through `system_v9/bridges/`. Direct legacy
+imports remain migration debt until a bridge has its own test and receipt.
+
+The sections below describe the historical v4/v5 layout retained for source
+continuity.
 
 ---
 

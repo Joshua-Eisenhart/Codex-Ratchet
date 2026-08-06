@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "codex-ratchet.bridge-result.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "bridge_id", "job_id", "producer", "source_sha256", "input_sha256", "disposition", "observations", "errors"],
+  "properties": {
+    "schema": {"const": "codex-ratchet.bridge-result.v1"},
+    "bridge_id": {"type": "string", "minLength": 1},
+    "job_id": {"type": "string", "minLength": 1},
+    "producer": {"type": "string", "minLength": 1},
+    "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "input_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "disposition": {"enum": ["observed", "blocked", "failed", "timed_out", "unavailable"]},
+    "observations": {"type": "object"},
+    "errors": {"type": "array", "items": {"type": "string"}}
+  }
+}

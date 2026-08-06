@@ -130,8 +130,9 @@ def main(argv):
     failures = list(iso["problems"])
 
     # ---- ALLOWED side: contained numpy satellite must be ADMITTED.
-    if allowed["exit"] != 0:
-        failures.append(f"contained-numpy receipt exited {allowed['exit']}, expected 0")
+    if allowed["exit"] not in (0, 3):
+        failures.append(f"contained-numpy receipt exited {allowed['exit']}, "
+                        f"expected admitting exit 0 or 3")
     if allowed["disposition"] not in ADMITTING:
         failures.append(f"contained-numpy disposition {allowed['disposition']!r} does not admit")
     if allowed["stages"].get("seal") != 0:

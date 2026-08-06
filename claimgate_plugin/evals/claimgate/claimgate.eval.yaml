@@ -1,0 +1,24 @@
+schema: lev.evaluator_pack.v1
+evaluator_id: claimgate
+owner: claimgate_plugin
+kind: local_evaluator_pack
+entrypoints:
+  flow: flows/measure.flow.yaml
+  sensor: companions/sensor.mjs
+policies:
+  gate: policies/gate-policy.yaml
+inputs:
+  receipt_path:
+    required: true
+    description: Path to one provider-authored codex_ratchet.engine_leg_result.v1 receipt.
+outputs:
+  result_schema: lev.evaluator.result.v1
+  measurement_schema: lev.measurement.v1
+variables:
+  - claim_verify_exit_code
+  - claim_verified
+  - provider_verdict_bits_present
+  - disposition
+collision_policy:
+  evaluator_pack: select
+  proof_gate: reject

@@ -340,6 +340,15 @@ lego-registry:
 lego-normalize:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/actual_lego_normalization_queue.py
 
+# Run the proposed typed-ontology root-strata engine profile against the
+# canonical local Python and strict Julia carrier. This remains a local
+# diagnostic/acceptance check, not scientific or ClaimGate admission.
+typed-ontology-root-strata-acceptance:
+	bash system_v8/typed_ontology/probe_lane2_root_strata/run_all.sh --acceptance
+
+typed-ontology-root-strata-diagnostic:
+	bash system_v8/typed_ontology/probe_lane2_root_strata/run_all.sh --diagnostic
+
 # Tail the iMessage bot log
 imessage-log:
 	tail -f /tmp/imessage_bot.log
@@ -351,4 +360,29 @@ telegram:
 telegram-log:
 	tail -f /tmp/telegram_bot.log
 
-.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit helper-process-audit helper-process-audit-strict semantic-naming-audit runner-preflight state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue mass-lego-batch runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-validate-run-boundary receipt-reconcile receipt-reconcile-all-c receipt-reconcile-strict receipt-reconcile-all-c-strict receipt-reconcile-scope-strict receipt-reconcile-all-c-scope-strict receipt-reconcile-run-boundary-strict receipt-reconcile-all-c-run-boundary-strict receipt-reconcile-all-c-with-tier-d stage-gate stage-gate-claim lego-registry lego-normalize
+.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit helper-process-audit helper-process-audit-strict semantic-naming-audit runner-preflight state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue mass-lego-batch runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-validate-run-boundary receipt-reconcile receipt-reconcile-all-c receipt-reconcile-strict receipt-reconcile-all-c-strict receipt-reconcile-scope-strict receipt-reconcile-all-c-scope-strict receipt-reconcile-run-boundary-strict receipt-reconcile-all-c-run-boundary-strict receipt-reconcile-all-c-with-tier-d stage-gate stage-gate-claim lego-registry lego-normalize typed-ontology-root-strata-acceptance typed-ontology-root-strata-diagnostic
+
+# Run every ClaimGate gate suite against its recorded expectation
+gates:
+	$(PYTHON) claimgate_plugin/run_all_gates.py
+
+# Run the ConstraintBox unittest suite
+cb-suite:
+	cd constraint_box && PYTHONPATH=src $(PYTHON) -m unittest discover -s tests
+
+# Run the ConstraintBox S1 acceptance tier
+cb-estate:
+	cd constraint_box && PYTHONPATH=src $(PYTHON) -m constraintbox estate --pack-root . --manifest config/sim_estate_v2.json --fixture fixtures/manifold/manifold_fixture_v1.json --tier S1 --mode acceptance --python $(PYTHON) --enforce
+
+# Run the ClaimGate gates, ConstraintBox tests, and S1 acceptance tier in order
+cb-check:
+	@gates_rc=0; $(MAKE) gates || gates_rc=$$?; \
+	cb_suite_rc=0; $(MAKE) cb-suite || cb_suite_rc=$$?; \
+	cb_estate_rc=0; $(MAKE) cb-estate || cb_estate_rc=$$?; \
+	echo "cb-check: gates exit=$$gates_rc"; \
+	echo "cb-check: cb-suite exit=$$cb_suite_rc"; \
+	echo "cb-check: cb-estate exit=$$cb_estate_rc"; \
+	if [ "$$cb_estate_rc" -ne 0 ]; then \
+		echo "cb-check: cb-estate nonzero — documented Darwin-versus-Linux environment drift plus stale controller pin; not a capability pass"; \
+	fi; \
+	test "$$gates_rc" -eq 0 -a "$$cb_suite_rc" -eq 0 -a "$$cb_estate_rc" -eq 0

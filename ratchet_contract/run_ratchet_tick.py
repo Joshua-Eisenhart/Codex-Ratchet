@@ -24,8 +24,10 @@ for path in (HERE, FUEL_SIMS, BRIDGE):
         sys.path.insert(0, str(path))
 
 from contract import CandidatePackage, Carrier, ControlCase, ControlSet, NestInterface
-from gates import (IDENTITY_GATE, adequacy, buildability_gate, evolvability_gate,
-                   extension_gate, persistence_gate, probe_validity_gate)
+from gates import (IDENTITY_GATE, adequacy, buildability_gate,
+                   distinction_adequacy_gate, evolvability_gate, extension_gate,
+                   gauge_rejection_gate, operational_reidentification_gate,
+                   order_honesty_gate, persistence_gate, probe_validity_gate)
 from mss import frontier, pairwise_mss
 from bridge_interface import Action, CandidateBridgeInterface, Outcome, history_point, hp_json, replay
 
@@ -200,6 +202,36 @@ def run_kernel(candidates, X, D) -> dict:
     return {"x_size": len(X), "d_size": len(D), "demand_pairs": [pair_json(pair) for pair in D],
             "gate_verdicts": gates, "pairwise_mss_base_no_thickening": pairwise,
             "frontier": result}
+
+
+def attach_supplemental_gate_verdicts(kernel: dict, candidates, X, D) -> None:
+    packages = [
+        BridgeCandidateAsPackage(candidate, X, horizon=1, name=f"{candidate.name}_pkg")
+        for candidate in candidates
+    ]
+    # C1 requires every established six-term adequacy verdict and whole frontier
+    # to remain byte-identical. Execute this separate report-only declared set
+    # only after every core/attribution kernel run is complete, on equivalent
+    # tick packages and the same X and D; these results never feed adequacy/MSS.
+    kernel["supplemental_gate_verdicts"] = {
+        package.name: {
+            "order_honesty_gate": order_honesty_gate(package, X, D).to_json(),
+            "distinction_adequacy_gate": distinction_adequacy_gate(package, X, D).to_json(),
+            "operational_reidentification_gate": operational_reidentification_gate(package, X, D).to_json(),
+            "gauge_rejection_gate": gauge_rejection_gate(package, X, D).to_json(),
+        }
+        for package in packages
+    }
+
+
+def supplemental_gate_rollup(kernel: dict) -> dict:
+    return {
+        package: {
+            gate: result["verdict"]
+            for gate, result in gate_results.items()
+        }
+        for package, gate_results in kernel["supplemental_gate_verdicts"].items()
+    }
 
 
 def frontier_signature(kernel: dict) -> dict:
@@ -452,6 +484,9 @@ def main() -> int:
         elif not moved: verdict = "STALLED"
         elif not ambiguous: verdict = "RATCHETED"
         else: verdict = "STALLED"
+        attach_supplemental_gate_verdicts(tick0, candidates, X0, D0)
+        attach_supplemental_gate_verdicts(tick1, candidates, X1, D1)
+        attach_supplemental_gate_verdicts(junk_run, candidates, Xjunk, Djunk)
         floor = invoke_floor(len(D1), len(tick1["frontier"]["purgatory"]))
         output = {"schema_version": "ratchet-tick/0.1", "classification": "tool_lego_fit_probe", "promotion_allowed": False,
                   "tick0": tick0, "tick1": tick1, "junk_run": junk_run, "translated_d2_edges": translated,
@@ -460,7 +495,21 @@ def main() -> int:
                   "anti_stall_control_diff": None if anti == "PASS" else {"differences": control_diff}, "verdict": verdict,
                   "floor_seal": floor}
         results = HERE / "results"; results.mkdir(parents=True, exist_ok=True)
-        (results / "ratchet_tick.json").write_text(json.dumps(output, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        result_path = results / "ratchet_tick.json"
+        result_path.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        rollup = {
+            "tick0": supplemental_gate_rollup(tick0),
+            "tick1": supplemental_gate_rollup(tick1),
+            "junk_run": supplemental_gate_rollup(junk_run),
+        }
+        print(
+            f"result={result_path}; "
+            f"tick0=|X|{tick0['x_size']},|D|{tick0['d_size']}; "
+            f"tick1=|X|{tick1['x_size']},|D|{tick1['d_size']}; "
+            f"verdict={verdict}; frontier_moved={moved}; "
+            f"anti_stall_control={anti}; "
+            f"supplemental_gates={json.dumps(rollup, sort_keys=True, separators=(',', ':'))}"
+        )
         return 0
     except Exception as exc:
         print(f"run_ratchet_tick: hard failure: {exc}", file=sys.stderr)
@@ -468,6 +517,9 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    if sys.argv[1:] in (["--help"], ["-h"]):
+        print("usage: run_ratchet_tick.py [--v2]")
+        raise SystemExit(0)
     if sys.argv[1:] == ["--v2"]:
         raise SystemExit(main_v2())
     if sys.argv[1:]:

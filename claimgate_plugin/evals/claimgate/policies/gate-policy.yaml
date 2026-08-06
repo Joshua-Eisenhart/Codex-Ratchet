@@ -1,0 +1,12 @@
+schema: lev.evaluator.gate_policy.v1
+evaluator_id: claimgate
+thresholds:
+  claim_verify_exit_code: 0
+  claim_verified: true
+  provider_verdict_bits_present: false
+  disposition: verified
+decisions:
+  pass: pass
+  warn: block
+  repair: block
+  block: block

@@ -30,7 +30,10 @@ import jax
 jax.config.update("jax_enable_x64", True)
 import jax.numpy as jnp
 
-RESULTS_DIR = "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/engine_estate/results/jax"
+RESULTS_DIR = os.environ.get(
+    "ENGINE_ESTATE_RESULTS_DIR",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v8/engine_estate/results/jax",
+)
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 CHECKS = []

@@ -14,7 +14,10 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PACKETS = os.path.join(HERE, "..", "manifold", "results", "source_packets.json")
-OUT = os.path.join(HERE, "results", "integration", "handoff_torch.json")
+OUT = os.path.join(
+    os.environ.get("ENGINE_ESTATE_INTEGRATION_DIR", os.path.join(HERE, "results", "integration")),
+    "handoff_torch.json",
+)
 
 import torch
 import torch_geometric

@@ -44,6 +44,11 @@ JULIA_PROJECT = Path(
     os.environ.get("CODEX_RATCHET_JULIA_PROJECT", str(REPO / "system_v5/julia_carrier"))
 )
 STRICT_JULIA_LOAD_PATH = "@:@stdlib"
+# Keep the doctor on the same cache contract as Makefile-launched sims.  Numba
+# otherwise tries to cache decorators next to installed package sources, which
+# fails for quimb and clifford in this managed environment.
+DEFAULT_MPLCONFIGDIR = "/tmp/codex-mpl"
+DEFAULT_NUMBA_CACHE_DIR = "/tmp/codex-numba"
 
 PYTHON_EXPECT_OK = [
     "jax",
@@ -217,7 +222,10 @@ print(json.dumps(out, sort_keys=True))
     ).replace(
         "__MODS_QUARANTINED__", repr(PYTHON_EXPECT_QUARANTINED)
     )
-    result = run([str(CANONICAL_PYTHON), "-c", code], timeout=180)
+    python_env = os.environ.copy()
+    python_env.setdefault("MPLCONFIGDIR", DEFAULT_MPLCONFIGDIR)
+    python_env.setdefault("NUMBA_CACHE_DIR", DEFAULT_NUMBA_CACHE_DIR)
+    result = run([str(CANONICAL_PYTHON), "-c", code], timeout=180, env=python_env)
     parsed: dict[str, Any] = {"exists": True, "path": str(CANONICAL_PYTHON), "raw": result}
     if result["returncode"] == 0:
         parsed.update(json.loads(result["stdout"]))
@@ -260,6 +268,11 @@ println("JSON_END")
 """
     julia_env = os.environ.copy()
     julia_env["JULIA_LOAD_PATH"] = STRICT_JULIA_LOAD_PATH
+    # A writable first depot keeps precompile locks/cache writes out of the
+    # global operator depot during isolated CI, CB, and handoff runs.  When
+    # unset, preserve the historical direct-carrier behavior for archaeology.
+    if os.environ.get("CODEX_RATCHET_JULIA_DEPOT_PATH"):
+        julia_env["JULIA_DEPOT_PATH"] = os.environ["CODEX_RATCHET_JULIA_DEPOT_PATH"]
     result = run(
         [
             str(JULIA),

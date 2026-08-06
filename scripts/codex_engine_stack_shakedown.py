@@ -22,7 +22,12 @@ from typing import Any
 
 
 REPO = Path(__file__).resolve().parents[1]
-RESULT_PATH = REPO / "system_v5/ops/tooling/codex_runtime_capability_shakedown_results.json"
+RESULT_PATH = Path(
+    os.environ.get(
+        "CODEX_RUNTIME_CAPABILITY_RESULT_PATH",
+        str(REPO / "system_v5/ops/tooling/codex_runtime_capability_shakedown_results.json"),
+    )
+)
 CANONICAL_PYTHON = Path(
     os.environ.get(
         "CODEX_RATCHET_PYTHON",

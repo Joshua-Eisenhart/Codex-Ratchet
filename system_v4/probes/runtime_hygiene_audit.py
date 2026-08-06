@@ -21,7 +21,12 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = SCRIPT_DIR.parent.parent
 RESULTS_DIR = SCRIPT_DIR / "a2_state" / "sim_results"
-OUT_PATH = RESULTS_DIR / "runtime_hygiene_audit_results.json"
+OUT_PATH = Path(
+    os.environ.get(
+        "CODEX_RUNTIME_HYGIENE_RESULT_PATH",
+        str(RESULTS_DIR / "runtime_hygiene_audit_results.json"),
+    )
+)
 MAKEFILE_PATH = PROJECT_DIR / "Makefile"
 BOT_PATH = PROJECT_DIR / "telegram_bot.py"
 REQ_RUNTIME_PATH = PROJECT_DIR / "requirements-runtime.txt"

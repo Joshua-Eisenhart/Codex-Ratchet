@@ -13,8 +13,12 @@ using JSON3, LinearAlgebra, Printf
 using QuantumOptics
 
 const HERE = @__DIR__
-const IN  = joinpath(HERE, "results", "integration", "handoff_jax.json")
-const OUT = joinpath(HERE, "results", "integration", "handoff_julia.json")
+const OUTDIR = get(ENV, "ENGINE_ESTATE_INTEGRATION_DIR", joinpath(HERE, "results", "integration"))
+const IN  = joinpath(OUTDIR, "handoff_jax.json")
+const OUT = joinpath(
+    OUTDIR,
+    "handoff_julia.json",
+)
 
 up = JSON3.read(read(IN, String))
 e  = Float64.(up.excitation_profile)

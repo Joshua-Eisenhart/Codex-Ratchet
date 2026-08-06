@@ -50,7 +50,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PACKETS = os.path.join(
     HERE, "..", "manifold", "results", "source_packets.json"
 )
-OUTDIR = os.path.join(HERE, "results", "torch")
+OUTDIR = os.environ.get("ENGINE_ESTATE_RESULTS_DIR", os.path.join(HERE, "results", "torch"))
 os.makedirs(OUTDIR, exist_ok=True)
 
 receipt = {

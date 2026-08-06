@@ -337,6 +337,10 @@ if __name__ == "__main__":
         print(f"{r['status']:4s} {p.__name__} ({r['sec']}s) {r.get('detail', r.get('error',''))}", flush=True)
     npass = sum(1 for r in RESULTS.values() if r["status"] == "PASS")
     out = {"battery": "python_sim_stack", "pass": npass, "fail": len(RESULTS)-npass, "results": RESULTS}
-    path = os.path.join(os.path.dirname(__file__), "py_battery_results.json")
+    path = os.environ.get(
+        "CODEX_PY_BATTERY_RESULT_PATH",
+        os.path.join(os.path.dirname(__file__), "py_battery_results.json"),
+    )
+    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
     json.dump(out, open(path, "w"), indent=1)
     print(f"=== {npass}/{len(RESULTS)} PASS -> {path}")

@@ -1,0 +1,45 @@
+{
+ "data": {
+  "pair_bits": 3.0,
+  "s0": 3.0
+ },
+ "typed_ontology": {
+  "carriers": {
+   "J": {
+    "class": "finite_address_set",
+    "cardinality": 8,
+    "n_bits": 3,
+    "alphabet": "binary"
+   },
+   "F": {
+    "class": "pair_indexed_field",
+    "support_cardinality": 8,
+    "index_set_ref": "J"
+   },
+   "rho": {
+    "class": "density_operator",
+    "dimension": 8,
+    "psd": true,
+    "trace": 1.0,
+    "rank": 8
+   }
+  },
+  "quantities": [
+   {
+    "id": "H0_pair",
+    "at": "data.pair_bits",
+    "carrier_ref": "F"
+   },
+   {
+    "id": "S_0",
+    "at": "data.s0",
+    "carrier_ref": "rho",
+    "derived_from": "F",
+    "rank_cutoff_contract": {
+     "path": "system_v8/typed_ontology/carrier_obligations.json",
+     "sha256": "PLACEHOLDER"
+    }
+   }
+  ]
+ }
+}

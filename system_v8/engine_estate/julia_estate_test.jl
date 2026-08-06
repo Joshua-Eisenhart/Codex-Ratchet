@@ -242,7 +242,7 @@ RESULTS["known_breakage"] = Dict(
     "Attractors.extract_attractors" =>
         "UndefVarError referenced_sciml_model (Attractors v1.37.0 vs installed DynamicalSystemsBase); core mapper labels work, worked around")
 
-outdir = joinpath(@__DIR__, "results", "julia")
+outdir = get(ENV, "ENGINE_ESTATE_RESULTS_DIR", joinpath(@__DIR__, "results", "julia"))
 mkpath(outdir)
 outfile = joinpath(outdir, "receipt.json")
 open(outfile, "w") do io

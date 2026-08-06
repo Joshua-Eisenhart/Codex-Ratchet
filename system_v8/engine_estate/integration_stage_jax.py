@@ -17,7 +17,10 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 IN = os.path.join(HERE, "results", "integration", "handoff_torch.json")
-OUT = os.path.join(HERE, "results", "integration", "handoff_jax.json")
+OUT = os.path.join(
+    os.environ.get("ENGINE_ESTATE_INTEGRATION_DIR", os.path.join(HERE, "results", "integration")),
+    "handoff_jax.json",
+)
 
 import jax
 jax.config.update("jax_enable_x64", True)
@@ -72,6 +75,7 @@ payload = {
     "versions": {"jax": jax.__version__},
     "interpreter": sys.executable,
 }
+os.makedirs(os.path.dirname(OUT), exist_ok=True)
 with open(OUT, "w") as f:
     json.dump(payload, f, indent=1)
 print(f"[jax stage] wrote {OUT}")

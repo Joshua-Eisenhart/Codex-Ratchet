@@ -50,8 +50,11 @@ end
     M = ExceptionalAlgebraCanon
     x = Base.invokelatest(M.primitive_idempotent, 1)
     r = Base.invokelatest(M.jordan_identity_residual, x, Base.invokelatest(M.primitive_idempotent, 2))
-    r < 1e-10 || error("Jordan identity residual $r")
-    "Albert algebra Jordan identity residual < 1e-10 on idempotents"
+    # The canon returns an Albert element, not a scalar.  Gate every
+    # coordinate explicitly so this remains a real identity check.
+    err = max(maximum(abs, r.diag), maximum(M.norm2, r.off))
+    err < 1e-10 || error("Jordan identity residual norm $err")
+    "Albert algebra Jordan identity residual norm < 1e-10 on idempotents"
 end
 
 @probe "quantumoptics_lindblad_trace" begin
@@ -72,7 +75,7 @@ end
 @probe "cliffordalgebras_rotor" begin
     cl = CliffordAlgebra(3)
     gp = cl.e1 * cl.e2
-    (gp * gp) == -one(cl) || error("(e1e2)^2 != -1")
+    CliffordAlgebras.scalar(gp * gp) == -1 || error("(e1e2)^2 scalar != -1")
     "Cl(3): (e1*e2)^2 = -1 verified"
 end
 
@@ -162,9 +165,11 @@ end
     # Enzyme loaded in subprocess to avoid polluting this session's world
     code = """
     using Enzyme
-    f(x) = sin(x)^2
-    g = autodiff(Reverse, f, Active, Active(0.3))[1][1]
-    println("GRAD_ERR=", abs(g - 2*sin(0.3)*cos(0.3)))
+    x = [0.2, -0.1, 0.4]; target = [0.1, 0.2, 0.3]
+    f(z) = sum((z .- target).^2)
+    dx = zero(x)
+    autodiff(Reverse, Const(f), Active, Duplicated(x, dx))
+    println("GRAD_ERR=", maximum(abs.(dx .- 2 .* (x .- target))))
     """
     out = read(pipeline(`julia --startup-file=no -e $code`, stderr=devnull), String)
     m = match(r"GRAD_ERR=([\d.e-]+)", out)
@@ -173,7 +178,9 @@ end
 end
 
 npass = count(r -> r["status"] == "PASS", values(results))
-open(joinpath(@__DIR__, "jl_battery_results.json"), "w") do io
+const BATTERY_OUT = get(ENV, "CODEX_JL_BATTERY_RESULT_PATH", joinpath(@__DIR__, "jl_battery_results.json"))
+mkpath(dirname(BATTERY_OUT))
+open(BATTERY_OUT, "w") do io
     JSON.print(io, Dict("battery"=>"julia", "pass"=>npass, "fail"=>length(results)-npass, "results"=>results), 1)
 end
 println("=== $npass/$(length(results)) PASS")

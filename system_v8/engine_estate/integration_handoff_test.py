@@ -31,12 +31,13 @@ import time
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUTDIR = os.path.join(HERE, "results", "integration")
+OUTDIR = os.environ.get("ENGINE_ESTATE_INTEGRATION_DIR", os.path.join(HERE, "results", "integration"))
 os.makedirs(OUTDIR, exist_ok=True)
 
 TORCH_PY = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
 JAX_PY = "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
 JULIA = "/opt/homebrew/bin/julia"
+JULIA_PROJECT = os.path.join(HERE, "..", "..", "system_v5", "julia_carrier")
 
 receipt = {
     "engine": "integration",
@@ -88,7 +89,11 @@ check("memory_free_gt_30pct", free_pct > 30, f"system free {free_pct}%")
 # ------------------------------------------------ sequential engine stages
 ok_t = run_stage("torch", [TORCH_PY, os.path.join(HERE, "integration_stage_torch.py")])
 ok_j = ok_t and run_stage("jax", [JAX_PY, os.path.join(HERE, "integration_stage_jax.py")])
-ok_u = ok_j and run_stage("julia", [JULIA, os.path.join(HERE, "integration_stage_julia.jl")])
+ok_u = ok_j and run_stage(
+    "julia",
+    [JULIA, "--startup-file=no", f"--project={JULIA_PROJECT}",
+     os.path.join(HERE, "integration_stage_julia.jl")],
+)
 
 h_torch = h_jax = h_julia = None
 if ok_t:

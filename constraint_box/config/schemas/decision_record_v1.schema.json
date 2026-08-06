@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://constraintbox.local/schemas/decision_record_v1.schema.json",
+  "title": "Controller-emitted ConstraintBox decision",
+  "type": "object",
+  "required": [
+    "schema",
+    "request_id",
+    "task_kind",
+    "profile_id",
+    "policy_sha256",
+    "input_sha256",
+    "disposition",
+    "reason",
+    "evidence",
+    "claim_ceiling",
+    "controller_emitted",
+    "promotion_allowed"
+  ],
+  "properties": {
+    "schema": {"const": "constraintbox.decision.v1"},
+    "request_id": {"type": "string"},
+    "task_kind": {"type": "string"},
+    "profile_id": {"type": ["string", "null"]},
+    "policy_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "disposition": {
+      "enum": ["ELIGIBLE", "BLOCKED", "PARKED", "HOLD"]
+    },
+    "reason": {"type": "string"},
+    "evidence": {"type": "object"},
+    "claim_ceiling": {"type": "string"},
+    "controller_emitted": {"const": true},
+    "promotion_allowed": {"const": false}
+  },
+  "unevaluatedProperties": false
+}

@@ -31,6 +31,20 @@ system_v3/runs/**/*
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# ConstraintBox local packaging outputs; source, fixtures, and receipts remain visible.
+constraint_box/build/
+constraint_box/dist/
+constraint_box/src/constraintbox.egg-info/
+
+# The live ClaimGate authority is the repo-root claimgate_plugin tree. The copy
+# inside the imported ConstraintBox seed is retained locally for provenance but
+# must not become a second tracked implementation.
+constraint_box/claimgate_plugin/
+
+# Schedule-tournament compiler scratch. These generated one-off Python files are
+# not source or receipts; the runner and bounded outputs remain visible.
+system_v8/schedule_tournament/results/schedule_tournament_v0/tmp*.py
 # Environment secrets
 .env
 .env.*

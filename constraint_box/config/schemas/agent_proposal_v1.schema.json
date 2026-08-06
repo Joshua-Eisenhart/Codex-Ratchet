@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://constraintbox.local/schemas/agent_proposal_v1.schema.json",
+  "title": "Untrusted ConstraintBox agent proposal",
+  "type": "object",
+  "required": ["proposal_id", "candidate", "falsifiers"],
+  "properties": {
+    "proposal_id": {"type": "string", "minLength": 1},
+    "source_agent": {"type": "string"},
+    "parent_branches": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "candidate": {"type": "object"},
+    "falsifiers": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "known_rivals": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "requested_experiments": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "self_confidence": {
+      "const": "informational_only"
+    }
+  },
+  "not": {
+    "anyOf": [
+      {"required": ["command"]},
+      {"required": ["decision"]},
+      {"required": ["verdict"]},
+      {"required": ["profile_id"]},
+      {"required": ["tolerance"]},
+      {"required": ["promotion_allowed"]}
+    ]
+  },
+  "unevaluatedProperties": false
+}

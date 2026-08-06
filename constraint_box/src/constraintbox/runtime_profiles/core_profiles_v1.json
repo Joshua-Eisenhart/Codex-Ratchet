@@ -1,0 +1,50 @@
+{
+  "schema": "constraintbox.runtime-profile-registry.v1",
+  "profiles": [
+    {
+      "profile_id": "core-cpython311-r1",
+      "implementation": "CPython",
+      "python_minor": [3, 11],
+      "allowed_optimization_levels": [0, 1],
+      "require_hash_randomization": true,
+      "libraries": [
+        {"distribution": "cvc5", "import_name": "cvc5", "minimum_version": "1.3.3", "maximum_exclusive_version": "1.4.0", "required_attributes": ["Kind", "Solver"]},
+        {"distribution": "maude", "import_name": "maude", "minimum_version": "1.6.0", "maximum_exclusive_version": "1.7.0", "required_attributes": ["MAUDE_VERSION", "getModule", "init", "input"]},
+        {"distribution": "rustworkx", "import_name": "rustworkx", "minimum_version": "0.17.0", "maximum_exclusive_version": "0.18.0", "required_attributes": ["PyDiGraph", "has_path", "is_directed_acyclic_graph", "topological_sort"]},
+        {"distribution": "sympy", "import_name": "sympy", "minimum_version": "1.14.0", "maximum_exclusive_version": "1.15.0", "required_attributes": ["Add", "Poly", "QQ", "Rational", "Symbol"]},
+        {"distribution": "z3-solver", "import_name": "z3", "minimum_version": "4.16.0.0", "maximum_exclusive_version": "4.17.0.0", "required_attributes": ["Bool", "Solver", "sat", "unsat"]}
+      ],
+      "claim_ceiling": "the active CPython 3.11 core runtime satisfied the declared ConstraintBox compatibility profile; this does not establish host integrity, external sim-estate readiness, release, promotion, or scientific truth"
+    },
+    {
+      "profile_id": "core-cpython312-r1",
+      "implementation": "CPython",
+      "python_minor": [3, 12],
+      "allowed_optimization_levels": [0, 1],
+      "require_hash_randomization": true,
+      "libraries": [
+        {"distribution": "cvc5", "import_name": "cvc5", "minimum_version": "1.3.3", "maximum_exclusive_version": "1.4.0", "required_attributes": ["Kind", "Solver"]},
+        {"distribution": "maude", "import_name": "maude", "minimum_version": "1.6.0", "maximum_exclusive_version": "1.7.0", "required_attributes": ["MAUDE_VERSION", "getModule", "init", "input"]},
+        {"distribution": "rustworkx", "import_name": "rustworkx", "minimum_version": "0.17.0", "maximum_exclusive_version": "0.18.0", "required_attributes": ["PyDiGraph", "has_path", "is_directed_acyclic_graph", "topological_sort"]},
+        {"distribution": "sympy", "import_name": "sympy", "minimum_version": "1.14.0", "maximum_exclusive_version": "1.15.0", "required_attributes": ["Add", "Poly", "QQ", "Rational", "Symbol"]},
+        {"distribution": "z3-solver", "import_name": "z3", "minimum_version": "4.16.0.0", "maximum_exclusive_version": "4.17.0.0", "required_attributes": ["Bool", "Solver", "sat", "unsat"]}
+      ],
+      "claim_ceiling": "the active CPython 3.12 core runtime satisfied the declared ConstraintBox compatibility profile; this does not establish host integrity, external sim-estate readiness, release, promotion, or scientific truth"
+    },
+    {
+      "profile_id": "core-cpython313-r1",
+      "implementation": "CPython",
+      "python_minor": [3, 13],
+      "allowed_optimization_levels": [0, 1],
+      "require_hash_randomization": true,
+      "libraries": [
+        {"distribution": "cvc5", "import_name": "cvc5", "minimum_version": "1.3.3", "maximum_exclusive_version": "1.4.0", "required_attributes": ["Kind", "Solver"]},
+        {"distribution": "maude", "import_name": "maude", "minimum_version": "1.6.0", "maximum_exclusive_version": "1.7.0", "required_attributes": ["MAUDE_VERSION", "getModule", "init", "input"]},
+        {"distribution": "rustworkx", "import_name": "rustworkx", "minimum_version": "0.17.0", "maximum_exclusive_version": "0.18.0", "required_attributes": ["PyDiGraph", "has_path", "is_directed_acyclic_graph", "topological_sort"]},
+        {"distribution": "sympy", "import_name": "sympy", "minimum_version": "1.14.0", "maximum_exclusive_version": "1.15.0", "required_attributes": ["Add", "Poly", "QQ", "Rational", "Symbol"]},
+        {"distribution": "z3-solver", "import_name": "z3", "minimum_version": "4.16.0.0", "maximum_exclusive_version": "4.17.0.0", "required_attributes": ["Bool", "Solver", "sat", "unsat"]}
+      ],
+      "claim_ceiling": "the active CPython 3.13 core runtime satisfied the declared ConstraintBox compatibility profile; this does not establish host integrity, external sim-estate readiness, release, promotion, or scientific truth"
+    }
+  ]
+}

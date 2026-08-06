@@ -1,0 +1,60 @@
+{
+  "schema": "constraintbox.formalcheck.expectations.v1",
+  "profile_id": "controller_lifecycle_v1",
+  "model_file": "ConstraintBox.tla",
+  "config_file": "ConstraintBox.cfg",
+  "model_sha256": "40c12374d123cf304c0c4cf6920cad1b5434e2bd4cd0105b8f4394da91f42c89",
+  "config_sha256": "88dc46bb2dc1b684b8dcb25e6b3e832cf7e3274a37fc7c9fcce887d777ea58ab",
+  "invariants": [
+    "BasicStateDomains",
+    "NoDispositionAtProposal",
+    "NonemptyEvidenceBeforeEligible",
+    "CapturedGenerationMatchesDuringRun"
+  ],
+  "bounds": {
+    "max_generation": 2,
+    "apalache_computation_length": 10
+  },
+  "mutation": {
+    "name": "observe_without_worker_evidence",
+    "target": "  /\\ evidence' = {\"worker_witness\"}",
+    "replacement": "  /\\ evidence' = {}",
+    "expected_invariant": "NonemptyEvidenceBeforeEligible"
+  },
+  "backends": {
+    "tlc": {
+      "artifact_sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
+      "expected_version": "2.19",
+      "expected_release": "v1.7.4",
+      "expected_java_version": "21.0.8",
+      "expected_generated_states": 73,
+      "expected_distinct_states": 45,
+      "expected_queue_states": 0,
+      "expected_depth": 10
+    },
+    "apalache": {
+      "artifact_sha256": "4ed614a62797fc74b5a7878e4a10c3597cc5bf8810e81eb18e667b731d4596d5",
+      "expected_version": "0.58.3",
+      "expected_java_version": "21.0.8",
+      "check_length": 10
+    }
+  },
+  "claim_ceiling": "bounded safety checking of one abstract completed controller-run state-token lifecycle skeleton whose global policy generation may advance before the run and after terminal settlement; no implementation correspondence or conformance, proposer identity, worker identity or provenance, actor identity, evidence provenance or validity, policy immutability beyond captured-generation equality during authorized or active states, decision or outcome correctness, retry, lease, release, liveness, concurrency, refinement, or general correctness claim",
+  "blocked_consumers": [
+    "implementation_correspondence_claims",
+    "proposer_identity_claims",
+    "worker_identity_or_provenance_claims",
+    "actor_identity_claims",
+    "evidence_validity_claims",
+    "policy_immutability_claims",
+    "decision_semantics_claims",
+    "decision_outcome_correctness_claims",
+    "retry_safety_claims",
+    "lease_safety_claims",
+    "release_correctness_claims",
+    "liveness_claims",
+    "concurrency_claims",
+    "refinement_claims",
+    "external_sim_estate_admission"
+  ]
+}

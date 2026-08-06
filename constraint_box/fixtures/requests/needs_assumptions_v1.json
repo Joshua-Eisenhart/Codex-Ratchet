@@ -1,0 +1,26 @@
+{
+  "schema": "constraintbox.user-request.v1",
+  "request_id": "needs-assumptions-v1",
+  "goal": "Run the bounded ConstraintBox formal kernel on a proposed task.",
+  "deliverable": "A deterministic request assessment and precise retry guidance.",
+  "in_scope": [
+    "Assess whether the request is explicit enough to generate an untrusted proposal."
+  ],
+  "out_of_scope": [],
+  "assumption_state": "unknown",
+  "assumptions": [],
+  "evidence_required": [
+    "Every required request clause is checked by the fixed request policy."
+  ],
+  "allowed_actions": [
+    "read"
+  ],
+  "requested_external_tests": [],
+  "claim_boundary": "This request may authorize proposal generation only; it cannot admit or release a proposal.",
+  "unknowns": [
+    "The assumptions that the requested work is allowed to rely on have not been stated."
+  ],
+  "communication_needs": [
+    "Name the exact missing clause and ask a concrete repair question."
+  ]
+}

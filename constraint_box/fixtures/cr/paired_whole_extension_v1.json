@@ -1,0 +1,62 @@
+{
+  "schema": "constraintbox.paired-whole-extension-fixture.v1",
+  "fixture_id": "paired-whole-extension-l1-v1",
+  "claim_ceiling": "finite set-level L1 carrier witness only; not a physical manifold, time law, chirality, basin, engine, CR, or physics result",
+  "promotion_allowed": false,
+  "carrier": {
+    "ambient_support": [0, 1, 2, 3, 4, 5, 6, 7],
+    "settled_support": [0, 1],
+    "newly_opened": [2, 3, 4],
+    "binding_admits": [0, 1, 2, 4, 5, 6, 7],
+    "history_words": {
+      "ob": ["open", "bind"],
+      "bo": ["bind", "open"]
+    }
+  },
+  "whole": {
+    "completion_ids": ["neutral", "scar_replay"],
+    "extension_by_history": {
+      "ob": ["neutral"],
+      "bo": ["neutral", "scar_replay"]
+    },
+    "extension_after_history_deletion": {
+      "ob": ["neutral"],
+      "bo": ["neutral"]
+    }
+  },
+  "demands": {
+    "order_scar": [3],
+    "future_extension": ["scar_replay"]
+  },
+  "controls": {
+    "no_opening_scar": [],
+    "no_binding_scar": [],
+    "relabel_map": {
+      "0": 5,
+      "1": 0,
+      "2": 7,
+      "3": 2,
+      "4": 6,
+      "5": 1,
+      "6": 4,
+      "7": 3
+    },
+    "reversal": {
+      "ob": "bo",
+      "bo": "ob"
+    }
+  },
+  "mss_candidates": {
+    "weak_no_binding": [0, 1, 2, 3, 4],
+    "minimal_exclude_scar": [0, 1, 2, 4],
+    "strong_exclude_scar_and_extra": [0, 1, 2]
+  },
+  "probes": [
+    "order_scar",
+    "whole_extension",
+    "history_deletion",
+    "relabel_invariance",
+    "reversal",
+    "mss_frontier"
+  ]
+}

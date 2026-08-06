@@ -1,0 +1,38 @@
+{
+  "schema": "constraintbox.semantic-claim.v1",
+  "claim_id": "fixture-valid-manifold-claim",
+  "claim_type": "manifold_whole_state",
+  "claim_ceiling": "one finite N=3 carrier candidate was evaluated",
+  "object_types": ["CTX", "QUOT", "DENS", "CUT", "PROC", "HIST", "WHOLE"],
+  "carrier": {
+    "carrier_id": "finite-density-candidate",
+    "finite_bound": 8,
+    "domain": "three finite two-state factors",
+    "maps": ["partial_trace", "finite_quotient", "record_projection"]
+  },
+  "demand_ids": ["preserve-distinction-a-b", "seam-compatible"],
+  "candidate_branches": ["complex-density", "rebit-control"],
+  "falsifiers": ["restriction mismatch", "negative eigenvalue", "empty survivor set"],
+  "evidence_obligations": [
+    "strict intake",
+    "finite carrier witness",
+    "independent numerical recomputation",
+    "whole-state restriction check"
+  ],
+  "typed_metrics": [
+    {
+      "metric_id": "support-capacity",
+      "metric_type": "HARTLEY_SUPPORT",
+      "scope": "DENS",
+      "value": 3.0
+    },
+    {
+      "metric_id": "seam-residual",
+      "metric_type": "NATURALITY_RESIDUAL",
+      "scope": "CUT",
+      "value": 0.0
+    }
+  ],
+  "metric_aggregation": "typed_vector",
+  "mss_scope": "relative_to_declared_candidates_and_demands"
+}

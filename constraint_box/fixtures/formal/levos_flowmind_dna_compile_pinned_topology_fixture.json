@@ -1,0 +1,273 @@
+{
+  "evidence": {
+    "artifact_refs": [],
+    "event_refs": [],
+    "proof_refs": [],
+    "receipt_refs": []
+  },
+  "operation": {
+    "id": "dna.compile",
+    "method": "compile",
+    "request_id": "fixture:levos:flowmind",
+    "service": "dna",
+    "surface": "cli"
+  },
+  "policy": {
+    "decision": "allow"
+  },
+  "result": {
+    "data": {
+      "entry": "gate_compiler_not_executor",
+      "executionProfileAlignment": {},
+      "executionProfileHint": {},
+      "graph": {
+        "entry": "gate_compiler_not_executor",
+        "name": "flowmind_contract",
+        "nodes": {
+          "admit_graph_blueprint": {
+            "branches": {
+              "fail": "done",
+              "pass": "delegate_execution_to_orchestration"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "check_data_budget_at_compile": {
+            "branches": {
+              "fail": "done",
+              "pass": "emit_workstream_prompt_instructions"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "compile_to_targets": {
+            "description": "controller-pinned topology fixture",
+            "next": "enforce_constraint_manifold"
+          },
+          "delegate_execution_to_orchestration": {
+            "branches": {
+              "fail": "done",
+              "pass": "resolve_flow_cascade"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "done": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "emit_execution_contract_types": {
+            "description": "controller-pinned topology fixture",
+            "next": "validate_determinism"
+          },
+          "emit_workstream_prompt_instructions": {
+            "description": "controller-pinned topology fixture",
+            "next": "unwrap_data_envelope_in_resolver"
+          },
+          "enforce_constraint_manifold": {
+            "branches": {
+              "fail": "done",
+              "pass": "load_system_flowminds"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "enforce_knob_precedence": {
+            "branches": {
+              "fail": "done",
+              "pass": "track_derived_from_lineage"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "fail_ambiguous_flow_resolution": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_argo_expression_predicate_boundary": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_dependency_cycle": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_execution_logic_in_flowmind": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_flat_system_prompt": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_flowmind_no_substrate_override": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_invalid_declaration_loads": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_knob_precedence_violation": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_missing_derived_from": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_missing_execution_bound": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_post_compile_mutation": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_prompt_injects_workstream_state": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_proposal_readiness": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_raw_output_in_workstream_flow": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_semantic_control_evaluator_ownershi": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_semantic_gate_executor_boundary": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_sensitive_knob_overridden": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_shadow_type_definition": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "fail_silent_field_drop": {
+            "description": "controller-pinned topology fixture",
+            "terminal": true
+          },
+          "freeze_compiled_output": {
+            "description": "controller-pinned topology fixture",
+            "next": "admit_graph_blueprint"
+          },
+          "gate_compiled_output_immutable": {
+            "branches": {
+              "fail": "done",
+              "pass": "gate_schema_source_of_truth"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "gate_compiler_not_executor": {
+            "branches": {
+              "fail": "done",
+              "pass": "gate_normalizer_roundtrip"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "gate_constraint_manifold_complete": {
+            "branches": {
+              "fail": "done",
+              "pass": "gate_fail_closed"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "gate_deterministic_compilation": {
+            "branches": {
+              "fail": "done",
+              "pass": "gate_system_flowmind_boot_order"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "gate_fail_closed": {
+            "branches": {
+              "fail": "done",
+              "pass": "gate_no_worker_pools"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "gate_no_orchestration_internals": {
+            "branches": {
+              "fail": "done",
+              "pass": "parse_flow_yaml"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "gate_no_worker_pools": {
+            "branches": {
+              "fail": "done",
+              "pass": "gate_deterministic_compilation"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "gate_normalizer_roundtrip": {
+            "branches": {
+              "fail": "done",
+              "pass": "gate_constraint_manifold_complete"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "gate_schema_source_of_truth": {
+            "branches": {
+              "fail": "done",
+              "pass": "gate_no_orchestration_internals"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "gate_system_flowmind_boot_order": {
+            "branches": {
+              "fail": "done",
+              "pass": "gate_compiled_output_immutable"
+            },
+            "description": "controller-pinned topology fixture"
+          },
+          "load_system_flowminds": {
+            "description": "controller-pinned topology fixture",
+            "next": "emit_execution_contract_types"
+          },
+          "normalize_to_ir": {
+            "description": "controller-pinned topology fixture",
+            "next": "compile_to_targets"
+          },
+          "parse_flow_yaml": {
+            "description": "controller-pinned topology fixture",
+            "next": "normalize_to_ir"
+          },
+          "resolve_flow_cascade": {
+            "description": "controller-pinned topology fixture",
+            "next": "enforce_knob_precedence"
+          },
+          "track_derived_from_lineage": {
+            "description": "controller-pinned topology fixture",
+            "next": "check_data_budget_at_compile"
+          },
+          "unwrap_data_envelope_in_resolver": {
+            "description": "controller-pinned topology fixture",
+            "next": "done"
+          },
+          "validate_determinism": {
+            "branches": {
+              "fail": "done",
+              "pass": "freeze_compiled_output"
+            },
+            "description": "controller-pinned topology fixture"
+          }
+        }
+      },
+      "kellyProfileHint": {},
+      "nodeCount": 46,
+      "path": "/fixture/lev/dna/core/flowmind.dna.yaml"
+    },
+    "exit_code": 0,
+    "status": "ok"
+  },
+  "side_effect": {
+    "class": "read",
+    "dry_run": false
+  },
+  "version": 1
+}

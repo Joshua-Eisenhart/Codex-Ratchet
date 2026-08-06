@@ -1,0 +1,46 @@
+{
+  "schema": "constraintbox.user-request.v1",
+  "request_id": "capability-pytorch-jacobian-v1",
+  "goal": "Run the controller-selected PyTorch Jacobian capability through ConstraintBox and its deterministic Mini-LevOS tool and gate flow.",
+  "deliverable": "A verified local receipt for one controller-challenged torch.func.jacrev operation with positive, wrong-value, and boundary controls.",
+  "in_scope": [
+    "Run the fixed pytorch-jacobian-v1 capability only.",
+    "Capture the deterministic request assessment, personalized context, Mini-LevOS flow ledger, and external capability receipt.",
+    "Verify the nested capability artifacts before reporting the bounded result."
+  ],
+  "out_of_scope": [
+    "Treating PyTorch or the full simulation estate as ConstraintBox core.",
+    "Using an LLM to select the worker, gate, transition, or disposition.",
+    "Claiming engine readiness, CR truth, scientific proof, release, or canonical promotion."
+  ],
+  "assumption_state": "listed",
+  "assumptions": [
+    {
+      "statement": "The local ConstraintBox tree is a candidate working tree whose passing receipt is not canonical admission.",
+      "source": "Current local audit",
+      "status": "working"
+    }
+  ],
+  "evidence_required": [
+    "The request is accepted only when the deterministic finite, Z3, and CVC5 request checks agree.",
+    "The controller-owned PyTorch capability runs a real torch.func.jacrev operation and records positive, wrong-value, and boundary controls.",
+    "The Mini-LevOS tool-to-gate flow and its hash-chained ledger validate before a bounded capability result is reported."
+  ],
+  "allowed_actions": [
+    "read",
+    "execute_tests",
+    "run_external_tools",
+    "write_receipts"
+  ],
+  "requested_external_tests": [
+    "pytorch-jacobian-v1"
+  ],
+  "claim_boundary": "This request can establish only one local controller-selected PyTorch Jacobian capability receipt with bounded controls; it cannot establish release, full engine readiness, CR truth, science, hostile-code containment, or canonical status.",
+  "unknowns": [
+    "Whether a later generic proposal flow can safely consume this receipt without weakening the Mini-LevOS authority boundary."
+  ],
+  "communication_needs": [
+    "State exactly what operation ran and which deterministic gate verified it.",
+    "Keep the external tool result separate from release or truth claims."
+  ]
+}

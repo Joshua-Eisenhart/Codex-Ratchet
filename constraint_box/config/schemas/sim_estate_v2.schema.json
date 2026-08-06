@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "constraintbox.sim-estate.v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status",
+    "promotion_allowed",
+    "controller_sha256",
+    "worker_sha256",
+    "import_blocker_sha256",
+    "tiers"
+  ],
+  "properties": {
+    "schema": {"const": "constraintbox.sim-estate.v2"},
+    "status": {"enum": ["PROPOSED", "TESTED"]},
+    "promotion_allowed": {"const": false},
+    "controller_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "worker_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "import_blocker_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "tiers": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["tier_id", "name", "boot_budget_seconds", "capabilities"],
+        "properties": {
+          "tier_id": {"type": "string", "pattern": "^S[1-4]$"},
+          "name": {"type": "string", "minLength": 1},
+          "boot_budget_seconds": {"type": "number", "exclusiveMinimum": 0},
+          "capabilities": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "required", "locked_version"],
+              "properties": {
+                "id": {"type": "string", "minLength": 1},
+                "required": {"type": "boolean"},
+                "locked_version": {"type": ["string", "null"]},
+                "artifact_sha1": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

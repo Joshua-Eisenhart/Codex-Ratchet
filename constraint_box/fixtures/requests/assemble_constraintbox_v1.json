@@ -1,0 +1,62 @@
+{
+  "schema": "constraintbox.user-request.v1",
+  "request_id": "assemble-constraintbox-v1",
+  "goal": "Assemble and test a minimal deterministic ConstraintBox that constrains user requests and untrusted model proposals before any tool result or output can be released.",
+  "deliverable": "A locally runnable request preflight, source-bound user context, nonauthoritative explanation surface, and basic real-operation test receipts for selected external simulation engines.",
+  "in_scope": [
+    "Require the user to state the goal, deliverable, scope, assumptions, evidence, allowed actions, and claim boundary.",
+    "Compile the owner's current communication requirements and pinned MMM packs into prompt-only context.",
+    "Use deterministic finite checks and independent SMT implementations to settle the request gate.",
+    "Run selected simulation engines as external systems through pinned adapters and bind exact operations and results into receipts.",
+    "Keep optional LLM audit explanations advisory and unable to change a deterministic decision."
+  ],
+  "out_of_scope": [
+    "Treating the full simulation estate as part of ConstraintBox.",
+    "Proving Codex Ratchet scientific claims.",
+    "Claiming that an import, a hand-written receipt, or an LLM judgment proves a tool operation ran.",
+    "Building the full LevOS avatar mesh in this first runnable slice.",
+    "Claiming production security, perfect gates, or universal truth detection."
+  ],
+  "assumption_state": "listed",
+  "assumptions": [
+    {
+      "statement": "The current ConstraintBox source tree is a local candidate and is not yet canonical or production-integrated.",
+      "source": "Current live-checkout audit on 2026-07-27",
+      "status": "working"
+    },
+    {
+      "statement": "A source-pinned adapter, controller-owned comparator, negative control, boundary case, and immutable receipt are sufficient evidence for a bounded local exact-operation test, but not for hostile-process containment.",
+      "source": "ConstraintBox implementation plan for this local test packet",
+      "status": "to_test"
+    }
+  ],
+  "evidence_required": [
+    "The complete request reaches ELIGIBLE_FOR_PROPOSAL only when Z3, CVC5, and exhaustive enumeration return the same bounded result.",
+    "Missing or unresolved required information parks before any untrusted model or external tool is invoked.",
+    "A user profile or LLM explanation cannot alter the request assessment.",
+    "Each selected external engine test names the exact function, records executable and source digests, passes a known-answer case, and fails a deliberate wrong-result control.",
+    "Focused and full local test commands and their exact results are recorded."
+  ],
+  "allowed_actions": [
+    "read",
+    "edit",
+    "execute_tests",
+    "invoke_llm",
+    "run_external_tools",
+    "write_receipts"
+  ],
+  "requested_external_tests": [
+    "basic_packet_v1"
+  ],
+  "claim_boundary": "This request can support only a passing local candidate harness and bounded exact-operation receipts for the named functions; it cannot support canonical, production-secure, full-estate-ready, scientific-proof, or avatar-mesh-complete claims.",
+  "unknowns": [
+    "Whether process isolation strong enough for hostile worker code is available in the current local runtime.",
+    "Which additional external engine functions should be admitted after the first bounded packet passes."
+  ],
+  "communication_needs": [
+    "Lead with what actually ran, what passed, what failed, and what remains blocked.",
+    "Use plain language before project terms.",
+    "Name assumptions and evidence ceilings explicitly.",
+    "Keep deterministic decisions visibly separate from optional LLM advice."
+  ]
+}

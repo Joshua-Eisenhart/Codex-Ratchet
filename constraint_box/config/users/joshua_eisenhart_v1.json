@@ -1,0 +1,152 @@
+{
+  "schema": "constraintbox.user-profile.v1",
+  "profile_id": "joshua-eisenhart",
+  "profile_version": 1,
+  "display_name": "Joshua Eisenhart",
+  "source_anchors": [
+    {
+      "source_id": "owner-cb-boundary-20260727",
+      "source_type": "current_owner_statement",
+      "reference": "Current Codex task: ConstraintBox boundary correction, 2026-07-27",
+      "statement": "ConstraintBox puts LLMs in the box; the sim engines are separate systems run by the box; LLMs do not decide deterministic gates.",
+      "authority": "owner_asserted"
+    },
+    {
+      "source_id": "owner-user-constraints-20260727",
+      "source_type": "current_owner_statement",
+      "reference": "Current Codex task: user constraints, avatars, and MMM, 2026-07-27",
+      "statement": "ConstraintBox also constrains user inputs, surfaces presumptions, and uses a personalized model of language and thinking to create better content and push back when needed.",
+      "authority": "owner_asserted"
+    },
+    {
+      "source_id": "owner-evidence-style-20260727",
+      "source_type": "current_owner_statement",
+      "reference": "Current Codex task: real sim work and anti-theater requirements, 2026-07-27",
+      "statement": "Use real tool operations and integrations with testable results; do not substitute NumPy plus fabricated JSON or import inventories for actual engine work.",
+      "authority": "owner_asserted"
+    }
+  ],
+  "mmm_packs": [
+    {
+      "name": "nominalist",
+      "sha256": "380554750988c1af5959cc2e11e94a3c0de4b9bf66088f2edf5e8ac72c528edd",
+      "role": "keep claims tied to finite operations and avoid ontology inflation"
+    },
+    {
+      "name": "constraint-programming",
+      "sha256": "1ecd4162a42d86ed90d7512d99c2ea515eae0486060003cb9e2abe8b0f63dc6b",
+      "role": "make constraints and failed clauses operational"
+    },
+    {
+      "name": "smt",
+      "sha256": "11a5074a5d4ae999ba41642eaee9748786aab00cc37b06464766fa9a11608886",
+      "role": "keep finite encodings, polarity, and uncertainty explicit"
+    },
+    {
+      "name": "claimgate",
+      "sha256": "07537fe62f4056d7fc8fd3a7708217fa925d9fa2f2e4ff1da97244d5b119b862",
+      "role": "preserve deterministic release checks and exact claim ceilings"
+    },
+    {
+      "name": "cr-ratchet",
+      "sha256": "cff83646e32bae5c658935fb9fcb322ef1fc25e9c245a5e4c3b07d06ea0eca06",
+      "role": "provide source and fixture context without importing CR conclusions"
+    },
+    {
+      "name": "lev-os",
+      "sha256": "66978f264fabe9da42d420681e2abd7caef22baf7aa7b89ca1bd527f612eb671",
+      "role": "reuse bounded agent and context mechanisms without making LevOS authoritative"
+    }
+  ],
+  "owner_requirements": [
+    {
+      "id": "plain-language",
+      "text": "Use plain language and explain the concrete operation before project terminology.",
+      "source_ids": [
+        "owner-user-constraints-20260727"
+      ],
+      "output_rule": "plain_language"
+    },
+    {
+      "id": "outcome-first",
+      "text": "Lead with what actually works, what failed, and what remains blocked.",
+      "source_ids": [
+        "owner-evidence-style-20260727"
+      ],
+      "output_rule": "lead_with_outcome"
+    },
+    {
+      "id": "surface-assumptions",
+      "text": "Surface the user's and model's assumptions instead of silently completing around them.",
+      "source_ids": [
+        "owner-user-constraints-20260727"
+      ],
+      "output_rule": "surface_assumptions"
+    },
+    {
+      "id": "real-operations",
+      "text": "Name the exact external function that ran and do not equate imports or worker-written JSON with execution.",
+      "source_ids": [
+        "owner-evidence-style-20260727"
+      ],
+      "output_rule": "name_real_operations"
+    },
+    {
+      "id": "evidence-ceiling",
+      "text": "State the bounded evidence ceiling and refuse CR, engine-readiness, or truth claims that the operation cannot support.",
+      "source_ids": [
+        "owner-cb-boundary-20260727",
+        "owner-evidence-style-20260727"
+      ],
+      "output_rule": "state_evidence_ceiling"
+    },
+    {
+      "id": "push-back",
+      "text": "Push back on unsupported premises, including the owner's, with concrete evidence and a decisive test.",
+      "source_ids": [
+        "owner-user-constraints-20260727"
+      ],
+      "output_rule": "push_back_on_unsupported_premises"
+    },
+    {
+      "id": "advice-not-authority",
+      "text": "Keep LLM audit explanations and repair advice separate from deterministic decisions.",
+      "source_ids": [
+        "owner-cb-boundary-20260727"
+      ],
+      "output_rule": "separate_advice_from_decision"
+    }
+  ],
+  "work_preferences": [
+    {
+      "id": "top-view",
+      "text": "Maintain an indexed top view of the system and work toward it instead of producing disconnected documents.",
+      "source_ids": [
+        "owner-cb-boundary-20260727"
+      ]
+    },
+    {
+      "id": "failures-as-training",
+      "text": "Use reproducible sim and harness failures as tuning cases with nearest valid passing twins.",
+      "source_ids": [
+        "owner-evidence-style-20260727"
+      ]
+    },
+    {
+      "id": "external-estate-boundary",
+      "text": "Keep the full simulation estate outside ConstraintBox and qualify exact function surfaces before integration.",
+      "source_ids": [
+        "owner-cb-boundary-20260727",
+        "owner-evidence-style-20260727"
+      ]
+    }
+  ],
+  "inferred_preferences": [],
+  "excluded_context": [
+    "CR scientific conclusions as gate premises",
+    "archive test counts as current runtime evidence",
+    "general personality or sensitive-trait inference",
+    "LLM consensus as pass or release authority"
+  ],
+  "claim_ceiling": "personalized prompt and output-shape context only; this profile cannot alter deterministic request, tool, SMT, ClaimGate, or release decisions"
+}

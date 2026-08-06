@@ -1,0 +1,19 @@
+{
+  "schema": "constraintbox.task-policy.v1",
+  "policy_id": "constraintbox.unified.proposed.v1",
+  "task_bindings": {
+    "strict-json": "constraintbox.intake.strict-json.v1",
+    "agent-proposal": "constraintbox.agent.proposal.v1",
+    "finite-constraint": "constraintbox.constraints.finite.v1",
+    "semantic-claim": "constraintbox.semantic-claim.v1"
+  },
+  "rules": {
+    "request_cannot_select_profile": true,
+    "request_cannot_select_tolerance": true,
+    "request_cannot_select_exemption": true,
+    "provider_self_verdict_ignored": true,
+    "absolute_mss_forbidden": true,
+    "heterogeneous_metric_scalarization_forbidden": true
+  },
+  "promotion_allowed": false
+}

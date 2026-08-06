@@ -1,0 +1,43 @@
+{
+  "schema": "constraintbox.vendored-provider-harness.v1",
+  "source": "Codex-Ratchet/scripts/llm_harness",
+  "purpose": "Lean provider, receipt, notary, and deterministic gate boundary for the contained ConstraintBox Mini-Lev loop.",
+  "excluded_parent_modules": [
+    "orchestrator.py",
+    "controller_adapter.py",
+    "cli.py"
+  ],
+  "files": {
+    "__init__.py": {
+      "upstream_sha256": "acafb1810dc803bf090de233c01ea45925b94ccc78e75b0c37c2a61d152d8c5f",
+      "local_role": "lean package marker; intentionally reduced from upstream exports"
+    },
+    "types.py": {
+      "upstream_sha256": "b44637bc1a6dda87bb50a58d174b8e2f9dc05bf7b691d85487df93efc50aa7d4"
+    },
+    "signing.py": {
+      "upstream_sha256": "9eb8e762c76b9746f0cf2c20393767fb04d8f5f7b5f0e66e8d190f9a2041be57"
+    },
+    "notary.py": {
+      "upstream_sha256": "07f41cec168f641cd1940e3bd77a92f9b70e442c05dfff4b24bd56789d14e347"
+    },
+    "providers.py": {
+      "upstream_sha256": "6c352e78c887a66ce34297fb9172cc77d7d9f25c7dc3da234e6133e650601259"
+    },
+    "runner.py": {
+      "upstream_sha256": "31f8dff2c58d7307c030ce3e531e884c75af26ddd450bd07da9ebbc8f545137c"
+    },
+    "gates.py": {
+      "upstream_sha256": "39089a60881c901965d4014ad8ef9a774c0204b816739063d9840e9483808810"
+    }
+  },
+  "local_adaptations": [
+    "__init__.py is intentionally leaner than upstream.",
+    "signing.py and notary.py require an explicit ConstraintBox runtime key location; they never fall back to a home-directory path.",
+    "providers.py uses bounded standard-library HTTPS rather than an implicit requests dependency, rejects redirects, and provides fixed OpenRouter and NVIDIA adapter classes for controller-owned policy selection."
+  ],
+  "runtime_dependencies": [
+    "Python standard library only"
+  ],
+  "promotion_allowed": false
+}

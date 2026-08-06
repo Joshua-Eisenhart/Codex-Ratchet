@@ -1,0 +1,101 @@
+{
+  "claim_types": {
+    "cloud_numeric": {
+      "claim_ceiling": "one bounded CPU/GPU parity fixture was executed",
+      "optional_capabilities": [
+        "torch_cuda_parity",
+        "cuquantum_tensor"
+      ],
+      "required_capabilities": [
+        "nvidia_device",
+        "jax_cuda_parity"
+      ]
+    },
+    "controller_lifecycle": {
+      "claim_ceiling": "one bounded controller lifecycle was checked",
+      "optional_capabilities": [
+        "tla_controller"
+      ],
+      "required_capabilities": [
+        "stdlib_finite"
+      ]
+    },
+    "dynamics_law": {
+      "claim_ceiling": "one predeclared candidate library fit held-out finite data",
+      "optional_capabilities": [
+        "sympy_identity",
+        "z3_finite"
+      ],
+      "required_capabilities": [
+        "numpy_density",
+        "pysindy_law"
+      ]
+    },
+    "engine_cycle": {
+      "claim_ceiling": "one declared finite engine cycle has two independent witnesses",
+      "optional_capabilities": [
+        "diffrax_flow",
+        "z3_finite"
+      ],
+      "required_capabilities": [
+        "jax_density"
+      ]
+    },
+    "finite_constraint": {
+      "claim_ceiling": "one bounded encoding was checked",
+      "optional_capabilities": [
+        "cvc5_finite",
+        "tla_controller"
+      ],
+      "required_capabilities": [
+        "stdlib_finite",
+        "z3_finite"
+      ]
+    },
+    "manifold_whole_state": {
+      "claim_ceiling": "one finite manifold fixture was evaluated",
+      "optional_capabilities": [
+        "diffrax_flow",
+        "quimb_tensor",
+        "cotengra_path"
+      ],
+      "required_capabilities": [
+        "numpy_density",
+        "z3_finite",
+        "jax_density"
+      ]
+    },
+    "numeric_observable": {
+      "claim_ceiling": "one declared finite observable was recomputed",
+      "optional_capabilities": [
+        "jax_density"
+      ],
+      "required_capabilities": [
+        "numpy_density",
+        "scipy_channel"
+      ]
+    },
+    "qualitative_structure": {
+      "claim_ceiling": "one typed finite structure passed intake",
+      "optional_capabilities": [
+        "z3_finite"
+      ],
+      "required_capabilities": [
+        "stdlib_finite"
+      ]
+    },
+    "rate_spectrum": {
+      "claim_ceiling": "one bounded rate or spectrum candidate survived controls",
+      "optional_capabilities": [
+        "pykoopman_rate"
+      ],
+      "required_capabilities": [
+        "numpy_density",
+        "pydmd_rate"
+      ]
+    }
+  },
+  "promotion_allowed": false,
+  "registry_id": "constraintbox.applicability.proposed.v1",
+  "schema": "constraintbox.applicability-registry.v1"
+}

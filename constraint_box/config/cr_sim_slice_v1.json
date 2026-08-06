@@ -1,0 +1,192 @@
+{
+  "schema": "constraintbox.cr-sim-slice-manifest.v1",
+  "manifest_id": "cr-sim-slice-v1",
+  "claim_ceiling": "source-addressed local operation evidence only; not CR validation, engine readiness, scientific proof, or promotion",
+  "profiles": {
+    "foundation-seed": [
+      "f01-julia",
+      "f01-jax",
+      "f01-pytorch",
+      "f01-envelope",
+      "n01-julia",
+      "n01-jax",
+      "n01-pytorch",
+      "n01-envelope"
+    ],
+    "cr-gksl-source": [
+      "cr-nonunitality-source",
+      "cr-gksl-fixture-derivation"
+    ],
+    "paired-extension": [
+      "paired-julia",
+      "paired-jax",
+      "paired-pytorch",
+      "paired-envelope"
+    ],
+    "foundation-and-cr": [
+      "f01-julia",
+      "f01-jax",
+      "f01-pytorch",
+      "f01-envelope",
+      "n01-julia",
+      "n01-jax",
+      "n01-pytorch",
+      "n01-envelope",
+      "cr-nonunitality-source",
+      "cr-gksl-fixture-derivation"
+    ]
+  },
+  "entries": [
+    {
+      "id": "f01-julia",
+      "group": "foundation_r1_f01_finitude",
+      "engine": "julia",
+      "source": "system_v5/julia_carrier/foundation_r1_f01_finite_admissibility_unsat_julia.jl",
+      "result": "system_v5/julia_carrier/foundation_r1_f01_finite_admissibility_unsat_julia_results.json",
+      "julia_project": "system_v5/julia_carrier",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": false,
+      "integration_level": ["source_invocation", "receipt_capture", "controller_recheck"]
+    },
+    {
+      "id": "f01-jax",
+      "group": "foundation_r1_f01_finitude",
+      "engine": "python",
+      "source": "system_v5/ops/formal_scouts/foundation_foundation_r1_f01_finitude_jax.py",
+      "result": "system_v5/ops/formal_scouts/results/foundation_foundation_r1_f01_finitude_jax_results.json",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": false,
+      "integration_level": ["source_invocation", "receipt_capture", "controller_recheck"]
+    },
+    {
+      "id": "f01-pytorch",
+      "group": "foundation_r1_f01_finitude",
+      "engine": "python",
+      "source": "system_v5/ops/formal_scouts/foundation_foundation_r1_f01_finitude_pytorch.py",
+      "result": "system_v5/ops/formal_scouts/results/foundation_foundation_r1_f01_finitude_pytorch_results.json",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": false,
+      "integration_level": ["source_invocation", "receipt_capture", "controller_recheck"]
+    },
+    {
+      "id": "f01-envelope",
+      "group": "foundation_r1_f01_finitude",
+      "engine": "python",
+      "source": "system_v5/ops/formal_scouts/sim_three_engine_foundation_r1_f01_finite_admissibility_unsat_envelope.py",
+      "result": "system_v5/ops/formal_scouts/results/three_engine_foundation_r1_f01_finite_admissibility_unsat_results.json",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": true,
+      "integration_level": ["source_invocation", "receipt_capture", "controller_recheck", "three_lane_envelope"]
+    },
+    {
+      "id": "n01-julia",
+      "group": "foundation_r1_n01_noncommutation",
+      "engine": "julia",
+      "source": "system_v5/julia_carrier/foundation_r1_n01_noncommutation_order_quotient_julia.jl",
+      "result": "system_v5/julia_carrier/foundation_r1_n01_noncommutation_order_quotient_julia_results.json",
+      "julia_project": "system_v5/julia_carrier",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": false,
+      "integration_level": ["source_invocation", "receipt_capture", "controller_recheck"]
+    },
+    {
+      "id": "n01-jax",
+      "group": "foundation_r1_n01_noncommutation",
+      "engine": "python",
+      "source": "system_v5/ops/formal_scouts/foundation_foundation_r1_n01_noncommutation_jax.py",
+      "result": "system_v5/ops/formal_scouts/results/foundation_foundation_r1_n01_noncommutation_jax_result.json",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": false,
+      "integration_level": ["source_invocation", "receipt_capture", "controller_recheck"]
+    },
+    {
+      "id": "n01-pytorch",
+      "group": "foundation_r1_n01_noncommutation",
+      "engine": "python",
+      "source": "system_v5/ops/formal_scouts/foundation_foundation_r1_n01_noncommutation_pytorch.py",
+      "result": "system_v5/ops/formal_scouts/results/foundation_foundation_r1_n01_noncommutation_pytorch_result.json",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": false,
+      "integration_level": ["source_invocation", "receipt_capture", "controller_recheck"]
+    },
+    {
+      "id": "n01-envelope",
+      "group": "foundation_r1_n01_noncommutation",
+      "engine": "python",
+      "source": "system_v5/ops/formal_scouts/sim_three_engine_foundation_r1_n01_noncommutation_order_quotient_envelope.py",
+      "result": "system_v5/ops/formal_scouts/results/three_engine_foundation_r1_n01_noncommutation_order_quotient_results.json",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": true,
+      "integration_level": ["source_invocation", "receipt_capture", "controller_recheck", "three_lane_envelope"]
+    },
+    {
+      "id": "cr-nonunitality-source",
+      "group": "cr_gksl_fixture",
+      "engine": "python",
+      "source": "system_v7/constraint_core/sims_and_scripts/nonunitality_theorem_sim.py",
+      "result": null,
+      "result_mode": "exit_zero",
+      "reads_peer_result": false,
+      "integration_level": ["source_invocation", "stdout_capture"]
+    },
+    {
+      "id": "cr-gksl-fixture-derivation",
+      "group": "cr_gksl_fixture",
+      "engine": "python",
+      "source": "constraint_box/fixtures/cr/derive_cr_fixture.py",
+      "result": "constraint_box/fixtures/cr/cr_gksl_fixture_v1.json",
+      "result_mode": "json_receipt",
+      "reads_peer_result": false,
+      "integration_level": ["source_invocation", "receipt_capture", "controller_recheck"]
+    },
+    {
+      "id": "paired-julia",
+      "group": "paired_whole_extension_l1",
+      "engine": "julia",
+      "source": "system_v5/julia_carrier/paired_extension_nominalist_julia.jl",
+      "result": "system_v5/julia_carrier/paired_extension_nominalist_julia_result.json",
+      "julia_project": "system_v5/julia_carrier",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": false,
+      "fixture": "constraint_box/fixtures/cr/paired_whole_extension_v1.json",
+      "fixture_kind": "paired_whole_extension",
+      "integration_level": ["source_invocation", "shared_fixture_hash", "canonical_observation", "receipt_capture", "controller_recheck"]
+    },
+    {
+      "id": "paired-jax",
+      "group": "paired_whole_extension_l1",
+      "engine": "python",
+      "source": "system_v5/ops/formal_scouts/paired_extension_nominalist_jax.py",
+      "result": "system_v5/ops/formal_scouts/results/paired_extension_nominalist_jax_result.json",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": false,
+      "fixture": "constraint_box/fixtures/cr/paired_whole_extension_v1.json",
+      "fixture_kind": "paired_whole_extension",
+      "integration_level": ["source_invocation", "shared_fixture_hash", "canonical_observation", "receipt_capture", "controller_recheck"]
+    },
+    {
+      "id": "paired-pytorch",
+      "group": "paired_whole_extension_l1",
+      "engine": "python",
+      "source": "system_v5/ops/formal_scouts/paired_extension_nominalist_pytorch.py",
+      "result": "system_v5/ops/formal_scouts/results/paired_extension_nominalist_pytorch_result.json",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": false,
+      "fixture": "constraint_box/fixtures/cr/paired_whole_extension_v1.json",
+      "fixture_kind": "paired_whole_extension",
+      "integration_level": ["source_invocation", "shared_fixture_hash", "canonical_observation", "receipt_capture", "controller_recheck"]
+    },
+    {
+      "id": "paired-envelope",
+      "group": "paired_whole_extension_l1",
+      "engine": "python",
+      "source": "system_v5/ops/formal_scouts/sim_three_engine_paired_extension_nominalist_envelope.py",
+      "result": "system_v5/ops/formal_scouts/results/three_engine_paired_extension_nominalist_result.json",
+      "result_mode": "json_all_pass",
+      "reads_peer_result": true,
+      "fixture": "constraint_box/fixtures/cr/paired_whole_extension_v1.json",
+      "fixture_kind": "paired_whole_extension",
+      "integration_level": ["source_invocation", "shared_fixture_hash", "canonical_observation", "receipt_capture", "controller_recheck", "three_lane_envelope"]
+    }
+  ]
+}

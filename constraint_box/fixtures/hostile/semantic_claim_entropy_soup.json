@@ -1,0 +1,33 @@
+{
+  "schema": "constraintbox.semantic-claim.v1",
+  "claim_id": "fixture-entropy-soup",
+  "claim_type": "manifold_whole_state",
+  "claim_ceiling": "invalid hostile fixture",
+  "object_types": ["DENS", "PROC", "HIST"],
+  "carrier": {
+    "carrier_id": "finite-density-candidate",
+    "finite_bound": 8,
+    "domain": "fixture",
+    "maps": []
+  },
+  "demand_ids": ["keep-types-separate"],
+  "candidate_branches": ["candidate-a", "candidate-b"],
+  "falsifiers": ["scalarization accepted"],
+  "evidence_obligations": ["typed comparison"],
+  "typed_metrics": [
+    {
+      "metric_id": "support",
+      "metric_type": "HARTLEY_SUPPORT",
+      "scope": "DENS",
+      "value": 3.0
+    },
+    {
+      "metric_id": "record",
+      "metric_type": "SHANNON_RECORD_ENTROPY",
+      "scope": "HIST",
+      "value": 0.5
+    }
+  ],
+  "metric_aggregation": "weighted_sum",
+  "mss_scope": "relative_to_declared_candidates_and_demands"
+}

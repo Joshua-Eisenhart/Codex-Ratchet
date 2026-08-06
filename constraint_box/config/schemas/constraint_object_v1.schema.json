@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://constraintbox.local/schemas/constraint_object_v1.schema.json",
+  "title": "ConstraintBox finite constraint-path object",
+  "type": "object",
+  "required": [
+    "schema",
+    "object_ref",
+    "carrier",
+    "probes",
+    "constraints",
+    "relations",
+    "demands",
+    "status",
+    "policy_sha256"
+  ],
+  "properties": {
+    "schema": {"const": "constraintbox.object.v1"},
+    "object_ref": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "description": "Content address only; not an ontological identity."
+    },
+    "carrier": {
+      "type": "object",
+      "required": ["kind", "finite_bound"],
+      "properties": {
+        "kind": {
+          "enum": ["finite_enumerated", "finite_generated", "history_pair"]
+        },
+        "finite_bound": {"type": "integer", "minimum": 0},
+        "artifact_ref": {"type": "string"}
+      },
+      "unevaluatedProperties": false
+    },
+    "probes": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "constraints": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "relations": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "demands": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [{"type": "integer"}, {"type": "integer"}],
+        "items": false
+      }
+    },
+    "status": {
+      "enum": ["LIVE", "PARKED", "PRUNED", "MERGED", "SETTLED"]
+    },
+    "policy_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "unevaluatedProperties": false
+}

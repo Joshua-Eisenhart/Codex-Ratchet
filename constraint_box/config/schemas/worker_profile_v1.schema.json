@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://constraintbox.local/schemas/worker_profile_v1.schema.json",
+  "title": "Controller-owned ConstraintBox worker profile",
+  "type": "object",
+  "required": [
+    "schema",
+    "profile_id",
+    "worker_id",
+    "argv",
+    "source_sha256",
+    "input_schema",
+    "output_schema",
+    "timeout_seconds",
+    "claim_ceiling",
+    "fixture_set_sha256"
+  ],
+  "properties": {
+    "schema": {"const": "constraintbox.worker-profile.v1"},
+    "profile_id": {"type": "string", "minLength": 1},
+    "worker_id": {"type": "string", "minLength": 1},
+    "argv": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "environment_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_schema": {"type": "string"},
+    "output_schema": {"type": "string"},
+    "timeout_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "max_output_bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "claim_ceiling": {"type": "string", "minLength": 1},
+    "fixture_set_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "promotion_allowed": {"const": false}
+  },
+  "unevaluatedProperties": false
+}

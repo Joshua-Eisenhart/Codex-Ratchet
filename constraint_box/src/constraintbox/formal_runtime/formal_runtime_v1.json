@@ -1,0 +1,18 @@
+{
+  "schema": "constraintbox.formal-runtime-policy.v2",
+  "profile_dir": "controller_lifecycle_v1",
+  "expected_expectations_sha256": "3496a08d6e6ccd15fac6251f5eb5edcb0166b67a73c8d82cc4475f166e4eec34",
+  "runtime_directory_env": "CONSTRAINTBOX_FORMAL_RUNTIME_DIR",
+  "java_command": "java",
+  "timeout_seconds": 30.0,
+  "backends": {
+    "apalache": {
+      "checker_artifact_relative_path": "apalache-0.58.3/lib/apalache.jar",
+      "required": true
+    },
+    "tlc": {
+      "checker_artifact_relative_path": "tla2tools.jar",
+      "required": true
+    }
+  }
+}
